@@ -100,6 +100,7 @@ export default class StoryPage extends PureComponent {
 
   _onPressSectionItem=(e)=> {
     let action = e.item.action;
+    // 跳转场景
     if (action.indexOf("SCENE ") != -1) {
       let path = action.substring(6).trim();
       this._selectChat(path);
