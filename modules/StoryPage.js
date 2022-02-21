@@ -76,7 +76,7 @@ export default class StoryPage extends PureComponent {
       for (let key in scenes) {
         let scene = scenes[key];
         if (scene.id == sceneId) {
-          newPosition = scene.desc;
+          newPosition = scene.name;
           break;
         }
       }
@@ -110,7 +110,7 @@ export default class StoryPage extends PureComponent {
   _renderItem=(data)=> {
     return (
       <View style={{backgroundColor: "#003964", paddingTop: 2, paddingBottom: 2, marginVertical: 2}}>
-        <Button title={data.item.title} onPress={() => this._onPressSectionItem(data)} color="#bcfefe" path="XX" />
+        <Button title={data.item.title} onPress={() => this._onPressSectionItem(data)} color="#bcfefe" />
       </View>
     );
   }

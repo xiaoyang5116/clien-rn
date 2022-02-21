@@ -2,20 +2,30 @@ main:
   # 默认场景对话
   default_chat: "/1/a"
 
-  # 场景
+  # 场景:
+  # 每个场景项必须提供 id, name属性，其中id为唯一的整数。
   scenes:
     -
       id: 1
-      desc: "新手村"
+      name: "新手村"
     -
       id: 2
-      desc: "训练场"
-  # NPC
+      name: "训练场"
+
+  # NPC:
+  # 每个NPC项必须提供 id, title, action属性，其中id为唯一的整数。
+  # NPC能在对话选项中被引用，需在 '-' 符号后添加 &npc{id} 标识，
+  # 且在对话选项中使用 *npc{id} 引用即可。
   npcs:
-    -
+    - &npc1
       id: 1
-      desc: "掌柜NPC"
-  # 对话
+      title: "掌柜NPC"
+      action: ""
+
+  # 对话:
+  # 每个对话项必须提供 desc, path, items 属性，其中path属性值必须唯一。
+  # path属性值组成：/{场景id}/{对话唯一标识: 0-9,a-z,A-Z组合的任意字符}
+  # items属性为对话项明细，必须提供 title, action 属性。
   chats:
     -
       desc: "???孩子"
@@ -58,3 +68,4 @@ main:
         -
           title: "正常"
           action: ""
+        - *npc1
