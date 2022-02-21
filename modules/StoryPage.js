@@ -17,7 +17,12 @@ const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+  },
+  chatContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   sectionContainer: {
     marginTop: 32,
@@ -44,14 +49,16 @@ export default class StoryPage extends PureComponent {
     super(props);
     this.state = {
       sectionData: [], // [{title:'', data:[{...title:'', action:''}]}]
-      stroysConfig: [] // Yaml config file.
+      stroysConfig: [], // Yaml config file.
+      position: "新手村"
     };
   }
 
   _selectChat(path) {
+    // 生成新的对话数据
     var newSectionData = [];
-    for (var chatKey in this.state.stroysConfig.storys.chats) {
-      var chat = this.state.stroysConfig.storys.chats[chatKey];
+    for (var chatKey in this.state.stroysConfig.main.chats) {
+      var chat = this.state.stroysConfig.main.chats[chatKey];
       if (chat.path == path) {
         var sectionItem = {title: chat.desc, data: []};
         for (var itemKey in chat.items) {
@@ -61,7 +68,21 @@ export default class StoryPage extends PureComponent {
         newSectionData.push(sectionItem);
       }
     }
-    this.setState({ sectionData: newSectionData, stroysConfig: this.state.stroysConfig });
+    // 生成位置信息
+    var newPosition = "";
+    var pathArray = path.split('/');
+    if (pathArray.length > 0) {
+      var sceneId = pathArray[1];
+      var scenes = this.state.stroysConfig.main.scenes;
+      for (var key in scenes) {
+        var scene = scenes[key];
+        if (scene.id == sceneId) {
+          newPosition = scene.desc;
+          break;
+        }
+      }
+    }
+    this.setState({ sectionData: newSectionData, stroysConfig: this.state.stroysConfig, position: newPosition });
   }
 
   componentDidMount() {
@@ -69,8 +90,12 @@ export default class StoryPage extends PureComponent {
       .then(r => r.text())
       .then(text => {
         var rawData = yaml.load(text);
-        this.setState({ sectionData: this.state.sectionData, stroysConfig: rawData});
-        this._selectChat(this.state.stroysConfig.storys.default_chat);
+        this.setState({ 
+          sectionData: this.state.sectionData, 
+          stroysConfig: rawData, 
+          position: this.state.position
+        });
+        this._selectChat(this.state.stroysConfig.main.default_chat);
       });
   }
 
@@ -93,17 +118,20 @@ export default class StoryPage extends PureComponent {
   render() {
     return (
       <View style={styles.viewContainer}>
-        <SectionList
-          sections={this.state.sectionData}
-          extraData={this.state}
-          keyExtractor={(item, index) => item + index}
-          renderItem={this._renderItem}
-          renderSectionHeader={({ section: { title } }) => (
-            <View>
-              <Text style={{fontSize: 18, width: width-20, paddingTop: 10, paddingBottom: 10, textAlign:'center', backgroundColor: "#fff"}}>{title}</Text>
-            </View>
-          )}
-        />
+        <Text style={{fontSize: 18, width: width-20, paddingTop: 10, paddingBottom: 10, textAlign:'left'}}>位置: {this.state.position}</Text>
+        <View style={styles.chatContainer}>
+          <SectionList
+            sections={this.state.sectionData}
+            extraData={this.state}
+            keyExtractor={(item, index) => item + index}
+            renderItem={this._renderItem}
+            renderSectionHeader={({ section: { title } }) => (
+              <View>
+                <Text style={{fontSize: 18, width: width-20, paddingTop: 10, paddingBottom: 10, textAlign:'center', backgroundColor: "#fff"}}>{title}</Text>
+              </View>
+            )}
+          />
+        </View>
       </View>
     );
   }
