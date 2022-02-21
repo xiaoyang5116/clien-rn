@@ -56,26 +56,25 @@ export default class StoryPage extends PureComponent {
 
   _selectChat(path) {
     // 生成新的对话数据
-    var newSectionData = [];
-    for (var chatKey in this.state.stroysConfig.main.chats) {
-      var chat = this.state.stroysConfig.main.chats[chatKey];
+    let newSectionData = [];
+    for (let chatKey in this.state.stroysConfig.main.chats) {
+      let chat = this.state.stroysConfig.main.chats[chatKey];
       if (chat.path == path) {
-        var sectionItem = {title: chat.desc, data: []};
-        for (var itemKey in chat.items) {
-          var chatItem = chat.items[itemKey];
+        let sectionItem = {title: chat.desc, data: []};
+        chat.items.forEach((chatItem) => {
           sectionItem.data.push({title: chatItem.title, action: chatItem.action});
-        }
+        });
         newSectionData.push(sectionItem);
       }
     }
     // 生成位置信息
-    var newPosition = "";
-    var pathArray = path.split('/');
+    let newPosition = "";
+    let pathArray = path.split('/');
     if (pathArray.length > 0) {
-      var sceneId = pathArray[1];
-      var scenes = this.state.stroysConfig.main.scenes;
-      for (var key in scenes) {
-        var scene = scenes[key];
+      let sceneId = pathArray[1];
+      let scenes = this.state.stroysConfig.main.scenes;
+      for (let key in scenes) {
+        let scene = scenes[key];
         if (scene.id == sceneId) {
           newPosition = scene.desc;
           break;
@@ -89,7 +88,7 @@ export default class StoryPage extends PureComponent {
     fetch("http://localhost:8081/Storys.yml")
       .then(r => r.text())
       .then(text => {
-        var rawData = yaml.load(text);
+        let rawData = yaml.load(text);
         this.setState({ 
           sectionData: this.state.sectionData, 
           stroysConfig: rawData, 
@@ -100,9 +99,9 @@ export default class StoryPage extends PureComponent {
   }
 
   _onPressSectionItem=(e)=> {
-    var action = e.item.action;
+    let action = e.item.action;
     if (action.indexOf("SCENE ") != -1) {
-      var path = action.substring(6).trim();
+      let path = action.substring(6).trim();
       this._selectChat(path);
     }
   }
