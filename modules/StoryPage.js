@@ -39,29 +39,29 @@ const styles = StyleSheet.create({
 
 const { width, height, scale, fontScale } = Dimensions.get('window');
 
-export default class SectionListPage extends PureComponent {
+export default class StoryPage extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
       sectionData: [], // [{title:'', data:[{...title:'', action:''}]}]
-      rawStorysData: []
+      stroysConfig: [] // Yaml config file.
     };
   }
 
-  selectStory(path) {
+  _selectChat(path) {
     var newSectionData = [];
-    for (var storyKey in this.state.rawStorysData.storys) {
-      var story = this.state.rawStorysData.storys[storyKey];
-      if (story.path == path) {
-        var sectionItem = {title: story.desc, data: []};
-        for (var itemKey in story.items) {
-          var storyItem = story.items[itemKey];
-          sectionItem.data.push({title: storyItem.title, action: storyItem.action});
+    for (var chatKey in this.state.stroysConfig.storys.chats) {
+      var chat = this.state.stroysConfig.storys.chats[chatKey];
+      if (chat.path == path) {
+        var sectionItem = {title: chat.desc, data: []};
+        for (var itemKey in chat.items) {
+          var chatItem = chat.items[itemKey];
+          sectionItem.data.push({title: chatItem.title, action: chatItem.action});
         }
         newSectionData.push(sectionItem);
       }
     }
-    this.setState({ sectionData: newSectionData, rawStorysData: this.state.rawStorysData });
+    this.setState({ sectionData: newSectionData, stroysConfig: this.state.stroysConfig });
   }
 
   componentDidMount() {
@@ -69,16 +69,16 @@ export default class SectionListPage extends PureComponent {
       .then(r => r.text())
       .then(text => {
         var rawData = yaml.load(text);
-        this.setState({ sectionData: this.state.sectionData, rawStorysData: rawData});
-        this.selectStory('/');
+        this.setState({ sectionData: this.state.sectionData, stroysConfig: rawData});
+        this._selectChat(this.state.stroysConfig.storys.default_chat);
       });
   }
 
   _onPressSectionItem=(e)=> {
     var action = e.item.action;
-    if (action.indexOf("TO ") != -1) {
-      var path = action.substring(3).trim();
-      this.selectStory(path);
+    if (action.indexOf("SCENE ") != -1) {
+      var path = action.substring(6).trim();
+      this._selectChat(path);
     }
   }
 

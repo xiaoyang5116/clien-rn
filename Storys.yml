@@ -1,53 +1,60 @@
 storys:
+  # 默认场景对话
+  default_chat: "/1/a"
+
+  # 场景
+  scenes:
     -
-      desc: "请选择难度"
-      path: "/"
+      id: 1,
+      desc: "新手村"
+    -
+      id: 2,
+      desc: "训练场"
+  # NPC
+  npcs:
+    -
+      id: 1,
+      desc: "掌柜NPC"
+  # 对话
+  chats:
+    -
+      desc: "???孩子"
+      path: "/1/a"
       items:
+        -
+          title: "..."
+          action: "SCENE /1/b"
+    -
+      desc: "???:别做白日梦了"
+      path: "/1/b"
+      items:
+        -
+          title: "?"
+          action: "SCENE /1/c"
+    -
+      desc: "???:你还得接着训练"
+      path: "/1/c"
+      items:
+        -
+          title: "!"
+          action: "SCENE /2/a"
+    -
+      desc: "???:拿上东西开始吧"
+      path: "/2/a"
+      items:
+        -
+          title: "..."
+          action: "SCENE /2/b"
+    -
+      desc: "选择难度"
+      path: "/2/b"
+      items:
+        -
+          title: "休闲"
+          action: ""
         -
           title: "简单"
-          style: ""
-          action: "TO /a/a1"
-        -
-          title: "一般"
-          style: ""
           action: ""
         -
-          title: "难"
-          style: ""
+          title: "正常"
           action: ""
-    -
-      desc: "是否进入新手村?"
-      path: "/"
-      items:
-        -
-          title: "进入"
-          style: ""
-          action: "TO /a"
-        -
-          title: "离开"
-          style: ""
-          action: ""
-    -
-      desc: "打一只怪兽"
-      path: "/a"
-      items:
-        -
-          title: "打"
-          style: ""
-          action: "TO /a/a1"
-        -
-          title: "怕了，先跑！"
-          style: ""
-          action: "TO /"
-    -
-      desc: "打那个怪？"
-      path: "/a/a1"
-      items:
-        -
-          title: "奥特曼"
-          style: ""
-          action: ""
-        -
-          title: "临阵退缩"
-          style: ""
-          action: "TO /a"

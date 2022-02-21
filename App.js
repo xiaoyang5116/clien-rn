@@ -36,7 +36,7 @@ import {
   createBottomTabNavigator
 } from '@react-navigation/bottom-tabs';
 
-import SectionListPage from './modules/SectionListPage';
+import StoryPage from './modules/StoryPage';
 
 const { width, height, scale, fontScale } = Dimensions.get('window');
 
@@ -62,7 +62,7 @@ const App: () => Node = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="tabWorld" component={SectionListPage} options={{
+        <Tab.Screen name="tabWorld" component={StoryPage} options={{
           tabBarLabel: "世界",
           headerTitle: "世界",
         }} />
@@ -70,7 +70,7 @@ const App: () => Node = () => {
           tabBarLabel: "活动",
           headerTitle: "活动",
         }} />
-        <Tab.Screen name="tab3" component={SectionListPage} options={{
+        <Tab.Screen name="tab3" component={StoryPage} options={{
           tabBarLabel: "技能",
           headerTitle: "技能",
         }} />
@@ -78,7 +78,7 @@ const App: () => Node = () => {
           tabBarLabel: "商城",
           headerTitle: "商城",
         }} />
-        <Tab.Screen name="tab5" component={SectionListPage} options={{
+        <Tab.Screen name="tab5" component={StoryPage} options={{
           tabBarLabel: "我的",
           headerTitle: "我的",
         }} />
