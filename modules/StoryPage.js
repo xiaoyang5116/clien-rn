@@ -49,39 +49,65 @@ export default class StoryPage extends PureComponent {
     super(props);
     this.state = {
       sectionData: [], // [{title:'', data:[{...title:'', action:''}]}]
-      stroysConfig: [], // Yaml config file.
-      position: "新手村"
+      stroysConfig: [], // Yaml配置.
+      sceneId: 0,   // 当前场景ID
+      position: "", // 位置信息
     };
   }
 
   _selectChat(path) {
+    let pathArrays = path.split('/');
+    if (pathArrays.length <= 0)
+      return;
+
+    let sceneId = this.state.sceneId;
+    let chatId = 0;
+    if (pathArrays[0] != '.') {   // 相对路径 ./chatId 或者绝对路径 /sceneId/chatId
+      sceneId = parseInt(pathArrays[1]);
+      chatId = parseInt(pathArrays[2]);
+    } else {
+      chatId = parseInt(pathArrays[1]);
+    }
+
+    if (sceneId <= 0 || chatId <= 0)
+      return;
+
+    let scene = null;
+    for (let key in this.state.stroysConfig.main.scenes) {
+      let item = this.state.stroysConfig.main.scenes[key];
+      if (item.id == sceneId) {
+        scene = item;
+        break;
+      }
+    }
+
+    if ((scene == null) || (scene.nodes.indexOf(chatId) == -1))
+      return;
+
     // 生成新的对话数据
     let newSectionData = [];
-    for (let chatKey in this.state.stroysConfig.main.chats) {
-      let chat = this.state.stroysConfig.main.chats[chatKey];
-      if (chat.path == path) {
+    for (let key in this.state.stroysConfig.main.chats) {
+      let chat = this.state.stroysConfig.main.chats[key];
+      if (chat.id == chatId) {
         let sectionItem = {title: chat.desc, data: []};
-        chat.items.forEach((chatItem) => {
-          sectionItem.data.push({title: chatItem.title, action: chatItem.action});
+        chat.items.forEach((item) => {
+          sectionItem.data.push({title: item.title, action: item.action});
         });
         newSectionData.push(sectionItem);
+        break;
       }
     }
-    // 生成位置信息
-    let newPosition = "";
-    let pathArray = path.split('/');
-    if (pathArray.length > 0) {
-      let sceneId = pathArray[1];
-      let scenes = this.state.stroysConfig.main.scenes;
-      for (let key in scenes) {
-        let scene = scenes[key];
-        if (scene.id == sceneId) {
-          newPosition = scene.name;
-          break;
-        }
-      }
-    }
-    this.setState({ sectionData: newSectionData, stroysConfig: this.state.stroysConfig, position: newPosition });
+
+    if (newSectionData.length <= 0 || sceneId <= 0)
+      return;
+
+    // 重新渲染
+    this.setState({ 
+      stroysConfig: this.state.stroysConfig, 
+      sectionData: newSectionData, 
+      sceneId: sceneId, 
+      position: scene.name 
+    });
   }
 
   componentDidMount() {
@@ -90,8 +116,9 @@ export default class StoryPage extends PureComponent {
       .then(text => {
         let rawData = yaml.load(text);
         this.setState({ 
-          sectionData: this.state.sectionData, 
           stroysConfig: rawData, 
+          sectionData: this.state.sectionData, 
+          sceneId: this.state.sceneId,
           position: this.state.position
         });
         this._selectChat(this.state.stroysConfig.main.default_chat);
@@ -107,11 +134,19 @@ export default class StoryPage extends PureComponent {
     }
   }
 
-  _renderItem=(data)=> {
+  _renderItem = (data) => {
     return (
       <View style={{backgroundColor: "#003964", paddingTop: 2, paddingBottom: 2, marginVertical: 2}}>
         <Button title={data.item.title} onPress={() => this._onPressSectionItem(data)} color="#bcfefe" />
       </View>
+    );
+  }
+
+  _renderSectionHeader = ({section: {title}}) => {
+    return (
+      <View>
+      <Text style={{fontSize: 18, width: width-20, paddingTop: 10, paddingBottom: 10, textAlign:'center', backgroundColor: "#fff"}}>{title}</Text>
+    </View>
     );
   }
 
@@ -125,11 +160,7 @@ export default class StoryPage extends PureComponent {
             extraData={this.state}
             keyExtractor={(item, index) => item + index}
             renderItem={this._renderItem}
-            renderSectionHeader={({ section: { title } }) => (
-              <View>
-                <Text style={{fontSize: 18, width: width-20, paddingTop: 10, paddingBottom: 10, textAlign:'center', backgroundColor: "#fff"}}>{title}</Text>
-              </View>
-            )}
+            renderSectionHeader={this._renderSectionHeader}
           />
         </View>
       </View>
