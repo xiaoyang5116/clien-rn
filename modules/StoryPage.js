@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 import yaml from 'js-yaml';
+import DialogModal from './DialogModal';
 
 const styles = StyleSheet.create({
   viewContainer: {
@@ -23,22 +24,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
   },
 });
 
@@ -131,6 +116,8 @@ export default class StoryPage extends PureComponent {
     if (action.indexOf("SCENE ") != -1) {
       let path = action.substring(6).trim();
       this._selectChat(path);
+    } else {
+      this._dialog.show("Title", "Test");
     }
   }
 
@@ -163,6 +150,7 @@ export default class StoryPage extends PureComponent {
             renderSectionHeader={this._renderSectionHeader}
           />
         </View>
+        <DialogModal ref={ref => (this._dialog = ref)} />
       </View>
     );
   }
