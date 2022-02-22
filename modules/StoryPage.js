@@ -1,6 +1,6 @@
 import React, { Component, PureComponent } from 'react';
 
-import type {Node} from 'react';
+import type { Node } from 'react';
 import {
   Button,
   StyleSheet,
@@ -74,9 +74,9 @@ export default class StoryPage extends PureComponent {
     for (let key in this.state.stroysConfig.main.chats) {
       let chat = this.state.stroysConfig.main.chats[key];
       if (chat.id == chatId) {
-        let sectionItem = {title: chat.desc, data: []};
+        let sectionItem = { title: chat.desc, data: [] };
         chat.items.forEach((item) => {
-          sectionItem.data.push({title: item.title, action: item.action});
+          sectionItem.data.push({ title: item.title, action: item.action });
         });
         newSectionData.push(sectionItem);
         break;
@@ -87,11 +87,11 @@ export default class StoryPage extends PureComponent {
       return;
 
     // 重新渲染
-    this.setState({ 
-      stroysConfig: this.state.stroysConfig, 
-      sectionData: newSectionData, 
-      sceneId: sceneId, 
-      position: scene.name 
+    this.setState({
+      stroysConfig: this.state.stroysConfig,
+      sectionData: newSectionData,
+      sceneId: sceneId,
+      position: scene.name
     });
   }
 
@@ -100,9 +100,9 @@ export default class StoryPage extends PureComponent {
       .then(r => r.text())
       .then(text => {
         let rawData = yaml.load(text);
-        this.setState({ 
-          stroysConfig: rawData, 
-          sectionData: this.state.sectionData, 
+        this.setState({
+          stroysConfig: rawData,
+          sectionData: this.state.sectionData,
           sceneId: this.state.sceneId,
           position: this.state.position
         });
@@ -110,37 +110,56 @@ export default class StoryPage extends PureComponent {
       });
   }
 
-  _onPressSectionItem=(e)=> {
-    let action = e.item.action;
+  _doAction(action) {
     // 跳转场景
-    if (action.indexOf("SCENE ") != -1) {
-      let path = action.substring(6).trim();
-      this._selectChat(path);
-    } else {
-      this._dialog.show("Title", "Test");
+    switch (action.cmd) {
+      case 'scene':
+        let path = action.params;
+        this._selectChat(path);
+        break;
+
+      case 'dialog':
+        if (action.title != undefined && action.content != undefined) {
+          this._dialog.show(action.title, action.content, this._onPressDialogButton.bind(this), action.action);
+        }
+        break;
+    }
+  }
+
+  _onPressSectionItem = (e) => {
+    let action = e.item.action;
+    if (action == null)
+      return;
+
+    this._doAction(action);
+  }
+
+  _onPressDialogButton(status, args) {
+    if (status == 'OK') {
+      this._doAction(args);
     }
   }
 
   _renderItem = (data) => {
     return (
-      <View style={{backgroundColor: "#003964", paddingTop: 2, paddingBottom: 2, marginVertical: 2}}>
+      <View style={{ backgroundColor: "#003964", paddingTop: 2, paddingBottom: 2, marginVertical: 2 }}>
         <Button title={data.item.title} onPress={() => this._onPressSectionItem(data)} color="#bcfefe" />
       </View>
     );
   }
 
-  _renderSectionHeader = ({section: {title}}) => {
+  _renderSectionHeader = ({ section: { title } }) => {
     return (
       <View>
-      <Text style={{fontSize: 18, width: width-20, paddingTop: 10, paddingBottom: 10, textAlign:'center', backgroundColor: "#fff"}}>{title}</Text>
-    </View>
+        <Text style={{ fontSize: 18, width: width - 20, paddingTop: 10, paddingBottom: 10, textAlign: 'center', backgroundColor: "#fff" }}>{title}</Text>
+      </View>
     );
   }
 
   render() {
     return (
       <View style={styles.viewContainer}>
-        <Text style={{fontSize: 18, width: width-20, paddingTop: 10, paddingBottom: 10, textAlign:'left'}}>位置: {this.state.position}</Text>
+        <Text style={{ fontSize: 18, width: width - 20, paddingTop: 10, paddingBottom: 10, textAlign: 'left' }}>位置: {this.state.position}</Text>
         <View style={styles.chatContainer}>
           <SectionList
             sections={this.state.sectionData}

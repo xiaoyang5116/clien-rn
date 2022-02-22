@@ -22,7 +22,13 @@ main:
     - &npc1
       id: 1
       title: "掌柜NPC"
-      action: ""
+      action:
+        cmd: 'dialog'
+        title: '提示'
+        content: '你要买啥？'
+        action:
+          cmd: 'scene'
+          params: '/1/1'
 
   # 对话:
   # 每个对话项必须提供 id, desc, items 属性，其中id为唯一的整数。
@@ -34,39 +40,55 @@ main:
       items:
         -
           title: "..."
-          action: "SCENE ./2"
+          action:
+            cmd: 'scene'
+            params: './2'
     -
       id: 2
       desc: "???:别做白日梦了"
       items:
         -
           title: "?"
-          action: "SCENE ./3"
+          action:
+            cmd: 'scene'
+            params: './3'
     -
       id: 3
       desc: "???:你还得接着训练"
       items:
         -
           title: "!"
-          action: "SCENE /2/10"
+          action:
+            cmd: 'scene'
+            params: '/2/10'
     -
       id: 10
       desc: "???:拿上东西开始吧"
       items:
         -
           title: "..."
-          action: "SCENE ./11"
+          action:
+            cmd: 'scene'
+            params: './11'
     -
       id: 11
       desc: "选择难度"
       items:
         -
           title: "休闲"
-          action: ""
+          action:
+            cmd: 'dialog'
+            title: '提示'
+            content: '切换到新手村？'
+            action:
+              cmd: 'scene'
+              params: '/1/1'
         -
           title: "简单"
-          action: ""
+          action:
+            cmd: ''
+            params: ''
         -
           title: "正常"
-          action: ""
+          action:
         - *npc1
