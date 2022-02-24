@@ -123,6 +123,10 @@ export default class StoryPage extends PureComponent {
           this._dialog.show(action.title, action.content, this._onPressDialogButton.bind(this), action.action);
         }
         break;
+
+      case 'navigate':
+        this.props.navigation.navigate(action.params);
+        break;
     }
   }
 

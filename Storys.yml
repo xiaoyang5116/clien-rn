@@ -29,6 +29,16 @@ main:
         action:
           cmd: 'scene'
           params: '/1/1'
+    - &npc2
+      id: 2
+      title: "街市老者NPC"
+      action:
+        cmd: 'dialog'
+        title: '提示'
+        content: '你要听我说书？'
+        action:
+          cmd: 'navigate'
+          params: 'Article'
 
   # 对话:
   # 每个对话项必须提供 id, desc, items 属性，其中id为唯一的整数。
@@ -92,3 +102,4 @@ main:
           title: "正常"
           action:
         - *npc1
+        - *npc2
