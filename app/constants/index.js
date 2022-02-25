@@ -6,7 +6,8 @@ export {
 
 export { 
     View, 
-    Dimensions 
+    Dimensions,
+    StyleSheet
 } from 'react-native';
 
 export {

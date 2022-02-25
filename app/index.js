@@ -17,9 +17,12 @@ import { name as appName } from '../app.json';
 import { Provider, dva_create } from './constants';
 
 import AppModel from './models/AppModel';
-import HomePage from './pages/HomePage';
+import StoryModel from './models/StoryModel';
+import DialogModel from './models/DialogModel';
 
-const models = [AppModel];
+import MainPage from './pages/MainPage';
+
+const models = [AppModel, StoryModel, DialogModel];
 
 const dva = dva_create();
 models.forEach((o) => {
@@ -32,9 +35,7 @@ const store = dva._store;
 const App = () => {
   return (
     <Provider store={store}>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <HomePage />
-      </View>
+      <MainPage />
     </Provider>
   );
 }

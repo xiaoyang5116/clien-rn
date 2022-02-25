@@ -5,7 +5,7 @@ export default {
   namespace: 'AppModel',
 
   state: {
-      name: '123',
+      name: '12345',
       age: 18,
   },
 

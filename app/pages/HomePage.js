@@ -1,44 +1,48 @@
 
-import React from 'react';
+import React, { Component, PureComponent } from 'react';
+
+import {
+  createBottomTabNavigator
+} from '@react-navigation/bottom-tabs';
 
 import {
   createAction,
   connect,
-  Component
 } from "../constants";
 
-import {
-  Button,
-  Text,
-  View,
-} from 'react-native';
+import StoryTabPage from './home/StoryTabPage';
 
-import { List } from '@ant-design/react-native';
+const Tab = createBottomTabNavigator();
 
 class HomePage extends Component {
-  
-  onLogin = () => {
-    this.props.dispatch(createAction('AppModel/login')())
-  }
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <View style={{ flex: 1, justifyContent:'flex-end' }}>
-          <List header='基础用法'>
-            <List.Item>1</List.Item>
-            <List.Item>2</List.Item>
-            <List.Item>3</List.Item>
-          </List>
-        </View>
-        <View style={{ flex: 1 }}>
-          <Text>你好:{this.props.name}</Text>
-          <Text>哈哈,如此优秀的我3~{this.props.age}</Text>
-          <Button title="点我" onPress={this.onLogin}/>
-        </View>
-      </View>
+      <Tab.Navigator>
+      <Tab.Screen name="tabWorld" component={StoryTabPage} options={{
+        tabBarLabel: "世界",
+        headerTitle: "世界",
+      }} />
+      <Tab.Screen name="tab2" component={StoryTabPage} options={{
+        tabBarLabel: "活动",
+        headerTitle: "活动",
+      }} />
+      <Tab.Screen name="tab3" component={StoryTabPage} options={{
+        tabBarLabel: "技能",
+        headerTitle: "技能",
+      }} />
+      <Tab.Screen name="tab4" component={StoryTabPage} options={{
+        tabBarLabel: "商城",
+        headerTitle: "商城",
+      }} />
+      <Tab.Screen name="tab5" component={StoryTabPage} options={{
+        tabBarLabel: "我的",
+        headerTitle: "我的",
+      }} />
+      </Tab.Navigator>
     );
   }
+  
 }
 
 export default connect(({ AppModel }) => ({ ...AppModel }))(HomePage);
