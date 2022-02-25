@@ -29,7 +29,6 @@ export default {
 
     *action({ payload }, { call, put, select }) {
       const state = yield select(state => state.DialogModel);
-      console.debug(state)
       if (state.typeConfirm != null) {
         yield put(createAction(state.typeConfirm)(state.params));
       }

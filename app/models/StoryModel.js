@@ -1,6 +1,7 @@
 
 import { createAction } from "../constants";
 import { GetStoryDataApi } from "../services/GetStoryDataApi";
+import * as RootNavigation from '../utils/RootNavigation';
 
 export default {
   namespace: 'StoryModel',
@@ -36,7 +37,7 @@ export default {
           break;
 
         case 'navigate':
-          this.props.navigation.navigate(payload.params);
+          RootNavigation.navigate(payload.params)
           break;
       }
     },
