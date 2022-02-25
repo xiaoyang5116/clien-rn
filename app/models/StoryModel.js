@@ -27,7 +27,11 @@ export default {
 
         case 'dialog':
           if (payload.title != undefined && payload.content != undefined) {
-            yield put(createAction('DialogModel/login')(payload));
+            yield put(createAction('DialogModel/show')({ 
+              typeConfirm: 'StoryModel/action', 
+              params: payload.action, 
+              ...payload 
+            }));
           }
           break;
 

@@ -18,7 +18,6 @@ class StoryTabPage extends Component {
     if (action == null)
       return;
 
-    // this.props.dispatch(createAction('DialogModel/login')(action));
     this.props.dispatch(createAction('StoryModel/click')(action));
   }
 

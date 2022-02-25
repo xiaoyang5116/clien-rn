@@ -9,7 +9,17 @@ import {
 
 import { Button, Text, View } from '../constants/native-ui';
 
+import { createAction } from "../constants";
+
 class DialogModal extends PureComponent {
+
+    _onConfirm = () => {    
+        this.props.dispatch(createAction('DialogModel/action')());
+    }
+
+    _onCancel = () => {    
+        this.props.dispatch(createAction('DialogModel/hide')());
+    }
 
     render() {
         return (
@@ -26,10 +36,10 @@ class DialogModal extends PureComponent {
                         </View>
                         <View style={{ flex: 2, justifyContent: 'center' }}>
                             <View style={{backgroundColor: "#003964", width: 280, marginBottom: 3}}>
-                                <Button title='确认' color="#bcfefe" onPress={()=> this._onClickButton('OK')} />
+                                <Button title='确认' color="#bcfefe" onPress={this._onConfirm} />
                             </View>
                             <View style={{backgroundColor: "#003964", width: 280, marginTop: 3}}>
-                                <Button title='取消' color="#bcfefe" onPress={()=> this._onClickButton('CANCEL')} />
+                                <Button title='取消' color="#bcfefe" onPress={this._onCancel} />
                             </View>
                         </View>
                     </View>
