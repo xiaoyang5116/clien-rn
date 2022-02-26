@@ -24,7 +24,8 @@ main:
       title: "掌柜NPC"
       action:
         cmd: 'aside'
-        title: '旁白'
+        title: '李白:'
+        style: 1
         sections: ['……完全没听过的名字。', '你是不是被打后伤到脑袋了，乞丐问。', '乞丐在睡觉，没有理你']
         
     - &npc2
@@ -37,6 +38,15 @@ main:
         action:
           cmd: 'navigate'
           params: 'Article'
+
+    - &npc3
+      id: 1
+      title: "老者NPC"
+      action:
+        cmd: 'aside'
+        title: ''
+        style: 2
+        sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。', '看来，到了一个不得了的世界啊。', '经过几天修养，现在可以走路了', '乞丐的生活是很清苦的，能吃饱饭已经谢天谢地。', '既然能够行动，李大哥决定带你一起讨乞。']
 
   # 对话:
   # 每个对话项必须提供 id, desc, items 属性，其中id为唯一的整数。
@@ -80,10 +90,10 @@ main:
             params: './11'
     -
       id: 11
-      desc: "选择难度"
+      desc: "桃花源，这里有一群武艺超凡，身怀绝技的江湖人士。"
       items:
         -
-          title: "休闲"
+          title: ">>传送门<<"
           action:
             cmd: 'dialog'
             title: '提示'
@@ -96,8 +106,6 @@ main:
           action:
             cmd: ''
             params: ''
-        -
-          title: "正常"
-          action:
+        - *npc3
         - *npc1
         - *npc2

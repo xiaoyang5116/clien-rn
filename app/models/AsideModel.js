@@ -9,6 +9,7 @@ export default {
   state: {
     title: '',
     content: '',
+    style: 1,
     visible: false,
     npcId: -1,
     sectionId: -1,
@@ -30,7 +31,9 @@ export default {
       }
 
       yield put(action('updateState')({
+        title: payload.title,
         content: payload.sections[0],
+        style: payload.style,
         visible: true,
         npcId: payload.parent.id,
         sectionId: 0,

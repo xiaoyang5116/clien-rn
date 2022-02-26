@@ -21,7 +21,7 @@ class AsideModal extends PureComponent {
         return (
             <Modal style={{ flex: 1 }} isVisible={this.props.visible} animationIn="pulse" animationOut="fadeOut" animationOutTiming={600} backdropColor="#fff" backdropOpacity={1}>
                 <View style={[styles.center]}>
-                    <View style={[styles.parent, styles.center]}>
+                    <View style={[this.props.style == 1 ? styles.parent1 : styles.parent2, styles.center]}>
                         <View style={{ flex: 4 }}>
                             <View style={styles.titleContainer}>
                                 <Text style={styles.title}>{this.props.title}</Text>
@@ -47,17 +47,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    parent: {
+    parent1: {
         width:300,
         height:300,
         backgroundColor: '#CCC',
+        borderRadius: 10
+    },
+    parent2: {
+        width:300,
+        height:300,
         borderRadius: 10
     },
     titleContainer: {
         flex: 1, 
         marginTop: 3, 
         width: 280, 
-        justifyContent: "center"
+        alignItems: 'flex-start',
+        justifyContent: 'center'
     },
     contentContainer: {
         flex: 3, 
@@ -74,12 +80,12 @@ const styles = StyleSheet.create({
         marginBottom: 3
     },
     title: {
-        fontSize: 25,
+        fontSize: 24,
         color: '#000',
         textAlign: 'center',
     },
     content: {
-        fontSize: 18,
+        fontSize: 24,
         color: 'black',
         textAlign: 'center'
     },
