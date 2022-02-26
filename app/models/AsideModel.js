@@ -13,7 +13,8 @@ export default {
     visible: false,
     npcId: -1,
     sectionId: -1,
-    sections: []
+    sections: [],
+    finishAction: null
   },
 
   effects: {
@@ -37,7 +38,8 @@ export default {
         visible: true,
         npcId: payload.parent.id,
         sectionId: 0,
-        sections: payload.sections
+        sections: payload.sections,
+        finishAction: payload.action
       }));
     },
 
@@ -59,8 +61,13 @@ export default {
       }));
     },
 
-    *hide({ payload }, { call, put }) {
+    *hide({ payload }, { call, put, select }) {
       yield put(action('updateState')({ visible: false, npcId: -1, sectionId: -1 }));
+
+      const state = yield select(state => state.AsideModel);
+      if (state.finishAction != null) {
+        yield put(action('StoryModel/action')(state.finishAction));
+      }
     }
   },
   

@@ -21,6 +21,18 @@ main:
   npcs:
     - &npc1
       id: 1
+      title: "新手NPC"
+      action:
+        cmd: 'aside'
+        title: ''
+        style: 2
+        sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。', '看来，到了一个不得了的世界啊。', '经过几天修养，现在可以走路了', '乞丐的生活是很清苦的，能吃饱饭已经谢天谢地。', '既然能够行动，李大哥决定带你一起讨乞。']
+        action:
+          cmd: 'navigate'
+          params: 'Home'
+
+    - &npc2
+      id: 2
       title: "掌柜NPC"
       action:
         cmd: 'aside'
@@ -28,8 +40,8 @@ main:
         style: 1
         sections: ['……完全没听过的名字。', '你是不是被打后伤到脑袋了，乞丐问。', '乞丐在睡觉，没有理你']
         
-    - &npc2
-      id: 2
+    - &npc3
+      id: 3
       title: "街市老者NPC"
       action:
         cmd: 'dialog'
@@ -39,9 +51,9 @@ main:
           cmd: 'navigate'
           params: 'Article'
 
-    - &npc3
-      id: 1
-      title: "老者NPC"
+    - &npc4
+      id: 4
+      title: "工匠NPC"
       action:
         cmd: 'aside'
         title: ''
@@ -106,6 +118,6 @@ main:
           action:
             cmd: ''
             params: ''
-        - *npc3
-        - *npc1
+        - *npc4
         - *npc2
+        - *npc3

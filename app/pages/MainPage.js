@@ -14,8 +14,10 @@ import {
   Component
 } from '../constants';
 
-import HomePage from '../pages/HomePage';
-import ArticlePage from '../pages/ArticlePage';
+import HomePage from './/HomePage';
+import ArticlePage from './ArticlePage';
+import FirstPage from './FirstPage';
+
 import { navigationRef } from '../utils/RootNavigation';
 
 const Stack = createNativeStackNavigator();
@@ -24,9 +26,10 @@ class MainPage extends Component {
   render() {
     return (
       <NavigationContainer ref={navigationRef}>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName='First'>
           <Stack.Screen name='Home' options={{ headerShown: false }} component={HomePage} />
           <Stack.Screen name='Article' options={{ headerShown: false }} component={ArticlePage} />
+          <Stack.Screen name="First" options={{ headerShown: false }} component={FirstPage} />
         </Stack.Navigator>
       </NavigationContainer>
     );
