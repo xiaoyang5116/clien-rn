@@ -10,8 +10,8 @@ export default {
     title: '',
     content: '',
     visible: false,
-    typeConfirm: null,
-    params: null
+    typeConfirm: null, // 点击确认后的动作类型
+    params: null  // 动作参数
   },
 
   effects: {
