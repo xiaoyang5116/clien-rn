@@ -10,6 +10,7 @@ import {
 
 import { Button, Text, View } from '../constants/native-ui';
 
+// 普通对话框
 class DialogModal extends PureComponent {
 
     _onConfirm = () => {    

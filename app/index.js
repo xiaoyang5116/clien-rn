@@ -19,10 +19,11 @@ import { Provider, dva_create } from './constants';
 import AppModel from './models/AppModel';
 import StoryModel from './models/StoryModel';
 import DialogModel from './models/DialogModel';
+import AsideModel from './models/AsideModel';
 
 import MainPage from './pages/MainPage';
 
-const models = [AppModel, StoryModel, DialogModel];
+const models = [AppModel, StoryModel, DialogModel, AsideModel];
 
 const dva = dva_create();
 models.forEach((o) => {

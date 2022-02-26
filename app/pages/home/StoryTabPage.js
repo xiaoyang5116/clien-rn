@@ -9,6 +9,7 @@ import {
 } from "../../constants";
 
 import DialogModal from '../../components/DialogModal';
+import AsideModal from '../../components/AsideModal';
 import { Button, Text, View, SectionList } from '../../constants/native-ui';
 
 class StoryTabPage extends Component {
@@ -53,6 +54,7 @@ class StoryTabPage extends Component {
           />
         </View>
         <DialogModal />
+        <AsideModal />
       </View>
     );
   }

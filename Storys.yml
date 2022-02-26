@@ -23,12 +23,10 @@ main:
       id: 1
       title: "掌柜NPC"
       action:
-        cmd: 'dialog'
-        title: '提示'
-        content: '你要买啥？'
-        action:
-          cmd: 'scene'
-          params: '/1/1'
+        cmd: 'aside'
+        title: '旁白'
+        sections: ['……完全没听过的名字。', '你是不是被打后伤到脑袋了，乞丐问。', '乞丐在睡觉，没有理你']
+        
     - &npc2
       id: 2
       title: "街市老者NPC"

@@ -25,14 +25,13 @@ export default {
     },
 
     *action({ payload }, { call, put }) {
-      // 跳转场景
       switch (payload.cmd) {
-        case 'scene':
+        case 'scene': // 切换剧情场景
           let path = payload.params;
           yield put(action('selectChat')({ path: path }));
           break;
 
-        case 'dialog':
+        case 'dialog': // 普通对话框
           if (payload.title != undefined && payload.content != undefined) {
             yield put(action('DialogModel/show')({ 
               typeConfirm: 'StoryModel/action', 
@@ -42,7 +41,11 @@ export default {
           }
           break;
 
-        case 'navigate':
+        case 'aside': // 旁白
+          yield put(action('AsideModel/show')({ ...payload }));
+          break;
+
+        case 'navigate': // 切换导航栏
           RootNavigation.navigate(payload.params)
           break;
       }
@@ -94,7 +97,7 @@ export default {
         if (chat.id == chatId) {
           let sectionItem = { title: chat.desc, data: [] };
           chat.items.forEach((item) => {
-            sectionItem.data.push({ title: item.title, action: item.action });
+            sectionItem.data.push({ title: item.title, action: {parent: item, ...item.action}});
           });
           newSectionData.push(sectionItem);
           break;
