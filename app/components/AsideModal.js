@@ -19,19 +19,19 @@ class AsideModal extends PureComponent {
 
     render() {
         return (
-            <Modal isVisible={this.props.visible} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
+            <Modal style={{ flex: 1 }} isVisible={this.props.visible} animationIn="pulse" animationOut="fadeOut" animationOutTiming={600} backdropColor="#fff" backdropOpacity={1}>
                 <View style={[styles.center]}>
                     <View style={[styles.parent, styles.center]}>
                         <View style={{ flex: 4 }}>
-                            <View style={{ flex: 1, marginTop: 3, width: 280, borderBottomWidth: 1, borderBottomColor: "#000", justifyContent: "center" }}>
+                            <View style={styles.titleContainer}>
                                 <Text style={styles.title}>{this.props.title}</Text>
                             </View>
-                            <View style={{ flex: 3, padding: 10, justifyContent: "space-around" }}>
+                            <View style={styles.contentContainer}>
                                 <Text style={styles.content}>{this.props.content}</Text>
                             </View>
                         </View>
-                        <View style={{ flex: 2, justifyContent: 'center' }}>
-                            <View style={{backgroundColor: "#003964", width: 280, marginBottom: 3}}>
+                        <View style={styles.bottomContainer}>
+                            <View style={styles.bottomBanner}>
                                 <Button title='>>>' color="#bcfefe" onPress={this._onNext} />
                             </View>
                         </View>
@@ -45,13 +45,33 @@ class AsideModal extends PureComponent {
 const styles = StyleSheet.create({
     center: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     parent: {
         width:300,
         height:300,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#CCC',
         borderRadius: 10
+    },
+    titleContainer: {
+        flex: 1, 
+        marginTop: 3, 
+        width: 280, 
+        justifyContent: "center"
+    },
+    contentContainer: {
+        flex: 3, 
+        padding: 10, 
+        justifyContent: "space-around"
+    },
+    bottomContainer: {
+        flex: 2, 
+        justifyContent: 'center'
+    },
+    bottomBanner: {
+        backgroundColor: "#003964", 
+        width: 280, 
+        marginBottom: 3
     },
     title: {
         fontSize: 25,
