@@ -8,7 +8,7 @@ main:
     -
       id: 1
       name: "新手村"
-      nodes: [1, 2, 3]
+      nodes: [1, 2, 3, 4, 5]
     -
       id: 2
       name: "训练场"
@@ -26,14 +26,14 @@ main:
         cmd: 'aside'
         title: ''
         style: 2
-        sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。', '看来，到了一个不得了的世界啊。', '经过几天修养，现在可以走路了', '乞丐的生活是很清苦的，能吃饱饭已经谢天谢地。', '既然能够行动，李大哥决定带你一起讨乞。']
+        sections: ['记忆到此位置', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局']
         action:
           cmd: 'navigate'
           params: 'Home'
 
     - &npc2
       id: 2
-      title: "掌柜NPC"
+      title: "对话框2"
       action:
         cmd: 'aside'
         title: '李白:'
@@ -42,7 +42,7 @@ main:
         
     - &npc3
       id: 3
-      title: "街市老者NPC"
+      title: "对话框3"
       action:
         cmd: 'dialog'
         title: '提示'
@@ -53,7 +53,7 @@ main:
 
     - &npc4
       id: 4
-      title: "工匠NPC"
+      title: "对话框1"
       action:
         cmd: 'aside'
         title: ''
@@ -66,40 +66,64 @@ main:
   chats:
     -
       id: 1
-      desc: "???孩子"
+      desc: "你穿越了, 请选择穿越开局"
       items:
         -
-          title: "..."
+          title: "【乞丐】"
           action:
             cmd: 'scene'
             params: './2'
-    -
-      id: 2
-      desc: "???:别做白日梦了"
-      items:
         -
-          title: "?"
+          title: "【没有名额了】"
           action:
             cmd: 'scene'
             params: './3'
+        -
+          title: "【没有名额了】"
+          action:
+            cmd: 'scene'
+            params: './4'
+        -
+          title: "<测试下一层>"
+          action:
+            cmd: 'scene'
+            params: './5'
+    -
+      id: 2
+      desc: "再等等"
+      items:
+        -
+          title: "<<返回"
+          action:
+            cmd: 'scene'
+            params: '/1/1'
     -
       id: 3
-      desc: "???:你还得接着训练"
+      desc: "为什么只能选最差开局"
       items:
         -
-          title: "!"
+          title: "<<返回"
           action:
             cmd: 'scene'
-            params: '/2/10'
+            params: '/1/1'
     -
-      id: 10
-      desc: "???:拿上东西开始吧"
+      id: 4
+      desc: "没有名额是什么鬼"
       items:
         -
-          title: "..."
+          title: "<<返回"
           action:
             cmd: 'scene'
-            params: './11'
+            params: '/1/1'
+    -
+      id: 5
+      desc: "测试：点击进入切换场景"
+      items:
+        -
+          title: ">>进入"
+          action:
+            cmd: 'scene'
+            params: '/2/11'
     -
       id: 11
       desc: "桃花源，这里有一群武艺超凡，身怀绝技的江湖人士。"
