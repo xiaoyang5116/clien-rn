@@ -5,9 +5,8 @@ export {
 } from 'react';
 
 export { 
-    View, 
-    Dimensions,
-    StyleSheet
+    StyleSheet,
+    Dimensions
 } from 'react-native';
 
 export {
@@ -22,7 +21,7 @@ export {
 import { Dimensions } from 'react-native';
 
 // 屏幕特性
-export const { screenWidth, screenHeight, screenScale, fontScale } = Dimensions.get('window');
+export const getWindowSize = () => { return Dimensions.get('window'); }
 
 // 定义DVA Action.
 export const createAction = type => payload => ({ type, payload })

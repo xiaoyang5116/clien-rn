@@ -3,13 +3,12 @@ import Modal from 'react-native-modal';
 
 import {
     connect,
+    createAction,
     PureComponent,
     StyleSheet,
   } from "../constants";
 
 import { Button, Text, View } from '../constants/native-ui';
-
-import { createAction } from "../constants";
 
 class DialogModal extends PureComponent {
 

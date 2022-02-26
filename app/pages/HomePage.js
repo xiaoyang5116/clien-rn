@@ -6,7 +6,6 @@ import {
 } from '@react-navigation/bottom-tabs';
 
 import {
-  createAction,
   connect,
 } from "../constants";
 
