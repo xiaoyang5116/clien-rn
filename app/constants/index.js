@@ -6,7 +6,8 @@ export {
 
 export { 
     StyleSheet,
-    Dimensions
+    Dimensions,
+    ScrollView
 } from 'react-native';
 
 export {

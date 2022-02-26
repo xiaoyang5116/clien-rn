@@ -9,7 +9,8 @@ import {
   connect,
   Component,
   StyleSheet,
-  getWindowSize
+  getWindowSize,
+  ScrollView
 } from "../constants";
 
 import * as RootNavigation from '../utils/RootNavigation'
@@ -47,9 +48,9 @@ class ArticlePage extends Component {
       <View style={styles.viewContainer}>
         <View style={styles.topBarContainer}>
         </View>
-        <View style={styles.bodyContainer}>
+        <ScrollView style={styles.bodyContainer}>
           <RenderHTML contentWidth={size.width} source={{html: html}} />
-        </View>
+        </ScrollView>
         <View style={styles.bottomContainer}>
           <View>
             <Text>第三章.第1节</Text>
