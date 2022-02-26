@@ -11,6 +11,7 @@ import {
 } from "../constants";
 
 import StoryTabPage from './home/StoryTabPage';
+import ProfileTabPage from './home/ProfileTabPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -35,7 +36,7 @@ class HomePage extends Component {
         tabBarLabel: "商城",
         headerTitle: "商城",
       }} />
-      <Tab.Screen name="tab5" component={StoryTabPage} options={{
+      <Tab.Screen name="tab5" component={ProfileTabPage} options={{
         tabBarLabel: "我的",
         headerTitle: "我的",
       }} />
