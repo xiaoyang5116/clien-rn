@@ -1,5 +1,5 @@
 
-import React, { Component, PureComponent } from 'react';
+import React from 'react';
 
 import {
   createBottomTabNavigator
@@ -7,6 +7,7 @@ import {
 
 import {
   connect,
+  Component
 } from "../constants";
 
 import StoryTabPage from './home/StoryTabPage';

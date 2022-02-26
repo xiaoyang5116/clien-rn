@@ -2,8 +2,8 @@
 import React from 'react';
 
 import {
+  action,
   connect,
-  createAction,
   Component,
   StyleSheet,
 } from "../../constants";
@@ -14,11 +14,10 @@ import { Button, Text, View, SectionList } from '../../constants/native-ui';
 class StoryTabPage extends Component {
 
   _onClickItem = (e) => {
-    let action = e.item.action;
-    if (action == null)
+    if (e.item.action == null)
       return;
 
-    this.props.dispatch(createAction('StoryModel/click')(action));
+    this.props.dispatch(action('StoryModel/click')(e.item.action));
   }
 
   _renderSectionHeader = ({ section: { title } }) => {

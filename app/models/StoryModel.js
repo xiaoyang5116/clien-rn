@@ -1,6 +1,12 @@
 
-import { createAction } from "../constants";
-import { GetStoryDataApi } from "../services/GetStoryDataApi";
+import {
+  action
+} from "../constants";
+
+import {
+  GetStoryDataApi
+} from "../services/GetStoryDataApi";
+
 import * as RootNavigation from '../utils/RootNavigation';
 
 export default {
@@ -15,7 +21,7 @@ export default {
 
   effects: {
     *click({ payload }, { call, put }) {
-      yield put(createAction('action')(payload));
+      yield put(action('action')(payload));
     },
 
     *action({ payload }, { call, put }) {
@@ -23,12 +29,12 @@ export default {
       switch (payload.cmd) {
         case 'scene':
           let path = payload.params;
-          yield put(createAction('selectChat')({ path: path }));
+          yield put(action('selectChat')({ path: path }));
           break;
 
         case 'dialog':
           if (payload.title != undefined && payload.content != undefined) {
-            yield put(createAction('DialogModel/show')({ 
+            yield put(action('DialogModel/show')({ 
               typeConfirm: 'StoryModel/action', 
               params: payload.action, 
               ...payload 
@@ -44,8 +50,8 @@ export default {
 
     *reload({ payload }, { call, put, select }) {
       let data = yield call(GetStoryDataApi, payload);
-      yield put(createAction('updateConfig')(data));
-      yield put(createAction('selectChat')({ path: '/1/1' }));
+      yield put(action('updateConfig')(data));
+      yield put(action('selectChat')({ path: '/1/1' }));
     },
 
     *selectChat({ payload }, { call, put, select }) {
@@ -99,7 +105,7 @@ export default {
         return;
   
       // 重新渲染
-      yield put(createAction('updateState')({ 
+      yield put(action('updateState')({ 
         sectionData: newSectionData, 
         sceneId: sceneId, 
         position: scene.name 

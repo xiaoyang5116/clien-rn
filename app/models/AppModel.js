@@ -1,5 +1,7 @@
 
-import { createAction } from "../constants";
+import { 
+  action
+} from "../constants";
 
 export default {
   namespace: 'AppModel',
@@ -11,7 +13,7 @@ export default {
 
   effects: {
     *login({ payload }, { call, put }) {
-      yield put(createAction('updateState')({ age: 1 }));
+      yield put(action('updateState')({ age: 1 }));
     }
   },
   

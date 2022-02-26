@@ -1,5 +1,7 @@
 
-import { createAction } from "../constants";
+import {
+  action
+} from "../constants";
 
 export default {
   namespace: 'DialogModel',
@@ -14,7 +16,7 @@ export default {
 
   effects: {
     *show({ payload }, { call, put }) {
-      yield put(createAction('updateState')({ 
+      yield put(action('updateState')({ 
         title: payload.title, 
         content: payload.content, 
         visible: true,
@@ -24,16 +26,16 @@ export default {
     },
 
     *hide({ payload }, { call, put }) {
-      yield put(createAction('updateState')({ visible: false }));
+      yield put(action('updateState')({ visible: false }));
     },
 
     *action({ payload }, { call, put, select }) {
       const state = yield select(state => state.DialogModel);
       if (state.typeConfirm != null) {
-        yield put(createAction(state.typeConfirm)(state.params));
+        yield put(action(state.typeConfirm)(state.params));
       }
 
-      yield put(createAction('hide')());
+      yield put(action('hide')());
     }
   },
   

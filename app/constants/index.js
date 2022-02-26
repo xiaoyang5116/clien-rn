@@ -24,4 +24,4 @@ import { Dimensions } from 'react-native';
 export const getWindowSize = () => { return Dimensions.get('window'); }
 
 // 定义DVA Action.
-export const createAction = type => payload => ({ type, payload })
+export const action = type => payload => ({ type, payload })

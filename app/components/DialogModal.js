@@ -2,10 +2,10 @@ import React from 'react';
 import Modal from 'react-native-modal';
 
 import {
+    action,
     connect,
-    createAction,
-    PureComponent,
     StyleSheet,
+    PureComponent,
   } from "../constants";
 
 import { Button, Text, View } from '../constants/native-ui';
@@ -13,11 +13,11 @@ import { Button, Text, View } from '../constants/native-ui';
 class DialogModal extends PureComponent {
 
     _onConfirm = () => {    
-        this.props.dispatch(createAction('DialogModel/action')());
+        this.props.dispatch(action('DialogModel/action')());
     }
 
     _onCancel = () => {    
-        this.props.dispatch(createAction('DialogModel/hide')());
+        this.props.dispatch(action('DialogModel/hide')());
     }
 
     render() {
