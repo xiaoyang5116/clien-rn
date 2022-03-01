@@ -14,11 +14,12 @@ import { Button, Text, View, SectionList } from '../../constants/native-ui';
 
 class StoryTabPage extends Component {
 
-  _onClickItem = (e) => {
-    if (e.item.action == null)
-      return;
+  componentDidMount() {
+    this.props.dispatch(action('StoryModel/selectChat')({ path: '/scene1/c1' }));
+  }
 
-    this.props.dispatch(action('StoryModel/click')(e.item.action));
+  _onClickItem = (e) => {
+    this.props.dispatch(action('StoryModel/click')(e.item));
   }
 
   _renderSectionHeader = ({ section: { title } }) => {

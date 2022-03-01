@@ -22,7 +22,9 @@ export {
 import { Dimensions } from 'react-native';
 
 // 屏幕特性
-export const getWindowSize = () => { return Dimensions.get('window'); }
+export const getWindowSize = () => { return Dimensions.get('window'); };
 
 // 定义DVA Action.
-export const action = type => payload => ({ type, payload })
+export const action = type => payload => ({ type, payload });
+
+export const delay = time => new Promise(resolve => setTimeout(resolve, time))

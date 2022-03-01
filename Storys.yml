@@ -1,147 +1,194 @@
+# ============================
+# 配置说明：
+# ============================
+
 main:
   # 默认场景对话
-  default_chat: "/1/1"
+  default_chat: '/scene1/c1'
 
-  # 场景:
-  # 每个场景项必须提供 id, name属性，其中id为唯一的整数。
+  # 场景配置:
+  #   id: 唯一的字符串。
+  #   name: 显示于位置的名称。
+  #   nodes: 数组形式，指定场景下有效的对话ID，等。
+  #   vars: 定义变量
+  #     id: 变量ID，当前场景下唯一的字符串，不同场景可以取相同的ID名称。
+  #     min: 变量最小值。
+  #     max: 变量最大值。
+  #     value: 初始化变量值。 
   scenes:
     -
-      id: 1
-      name: "新手村"
-      nodes: [1, 2, 3, 4, 5]
+      id: 'scene1'
+      name: '新手村'
+      nodes: ['c1', 'c11', 'c12', 'c2', 'c3']
+      vars:
+        -
+          id: 'scene1_var1'
+          min: 0
+          max: 1
+          value: 0
+        -
+          id: 'scene1_var2'
+          min: 0
+          max: 1
+          value: 0
     -
-      id: 2
-      name: "训练场"
+      id: 'scene2'
+      name: '训练场'
       nodes: [10, 11]
 
-  # NPC:
-  # 每个NPC项必须提供 id, title, action属性，其中id为唯一的整数。
-  # NPC能在对话选项中被引用，需在 '-' 符号后添加 &npc{id} 标识，
-  # 且在对话选项中使用 *npc{id} 引用即可。
+  # NPC/对话选项 配置:
+  #   id: 唯一的字符串。
+  #   title: 显示于选项中的名字。
+  #   click_event:  普通点击事件。
+  #   confirm_event: 对话框点击确认事件。
+  #   actions: 定义事件触发后执行的动作。
+  #       cmd:  命令类型(必须)，当前可支持：scene(切换场景), aside(旁白), dialog(对话框), navigate(导航跳转), var(执行变量)
+  #       params: 命令参数(可选)，所有命令有效。
+  #       title:  标题(可选)，aside, dialog命令有效。
+  #       style:  风格ID(可选), aside 命令有效。
+  #       sections: 段落(可选), aside 命令有效。
   npcs:
-    - &npc1
-      id: 1
-      title: "新手NPC"
-      action:
-        cmd: 'aside'
-        title: ''
-        style: 2
-        sections: ['记忆到此位置', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局']
-        action:
-          cmd: 'navigate'
-          params: 'Home'
-
-    - &npc2
-      id: 2
-      title: "对话框2"
-      action:
-        cmd: 'aside'
-        title: '李白:'
-        style: 1
-        sections: ['……完全没听过的名字。', '你是不是被打后伤到脑袋了，乞丐问。', '乞丐在睡觉，没有理你']
+    -
+      id: 'npc1'
+      title: '新手NPC'
+      vars:
+        -
+          id: 'npc1_var1'
+          min: 0
+          max: 1
+          value: 0
+      click_event:
+        actions:
+          -
+            cmd: 'aside'
+            style: 2
+            sections: ['记忆到此位置', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局']
+            confirm_event:
+              actions:
+                -
+                  cmd: 'var'
+                  params: 'npc1_var1 = 1'
+                -
+                  cmd: 'navigate'
+                  params: 'Home'
+    -
+      id: 'npc2'
+      title: '对话框2'
+      click_event:
+        actions:
+          -
+            cmd: 'aside'
+            title: '李白:'
+            style: 1
+            sections: ['……完全没听过的名字。', '你是不是被打后伤到脑袋了，乞丐问。', '乞丐在睡觉，没有理你']
         
-    - &npc3
-      id: 3
-      title: "对话框3"
-      action:
-        cmd: 'dialog'
-        title: '提示'
-        content: '你要听我说书？'
-        action:
-          cmd: 'navigate'
-          params: 'Article'
+    -
+      id: 'npc3'
+      title: '对话框3'
+      click_event:
+        actions:
+          -
+            cmd: 'dialog'
+            title: '提示'
+            content: '你要听我说书？'
+            confirm_event:
+              actions:
+                -
+                  cmd: 'navigate'
+                  params: 'Article'
 
-    - &npc4
-      id: 4
-      title: "对话框1"
-      action:
-        cmd: 'aside'
-        title: ''
-        style: 2
-        sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。', '看来，到了一个不得了的世界啊。', '经过几天修养，现在可以走路了', '乞丐的生活是很清苦的，能吃饱饭已经谢天谢地。', '既然能够行动，李大哥决定带你一起讨乞。']
+    -
+      id: 'npc4'
+      title: '对话框1'
+      click_event:
+        actions:
+          -
+            cmd: 'aside'
+            style: 2
+            sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。', '看来，到了一个不得了的世界啊。', '经过几天修养，现在可以走路了', '乞丐的生活是很清苦的，能吃饱饭已经谢天谢地。', '既然能够行动，李大哥决定带你一起讨乞。']
 
-  # 对话:
+  # 对话配置:
   # 每个对话项必须提供 id, desc, items 属性，其中id为唯一的整数。
   # items属性为对话项明细，必须提供 title, action 属性。
   chats:
     -
-      id: 1
-      desc: "你穿越了, 请选择穿越开局"
+      id: 'c1'
+      desc: '你穿越了, 请选择穿越开局'
       items:
         -
-          title: "【乞丐】"
-          action:
-            cmd: 'scene'
-            params: './2'
+          title: '【乞丐】'
+          click_event:
+            groups:
+              -
+                cond: 'if scene1_var1 == OFF'
+                actions:
+                  -
+                    cmd: 'scene'
+                    params: './c11'
+                  -
+                    cmd: 'var'
+                    params: 'scene1_var1 += 1'
+              -
+                cond: 'if scene1_var1 == ON' 
+                actions:
+                  -
+                    cmd: 'scene'
+                    params: './c12'
         -
-          title: "【没有名额了】"
-          action:
-            cmd: 'scene'
-            params: './3'
+          title: '【没有名额了】'
+          click_event:
+            actions:
+              -
+                cmd: 'scene'
+                params: './c2'
         -
-          title: "【没有名额了】"
-          action:
-            cmd: 'scene'
-            params: './4'
-        -
-          title: "<测试下一层>"
-          action:
-            cmd: 'scene'
-            params: './5'
+          title: '【真没有名额了】'
+          click_event:
+            actions:
+              -
+                cmd: 'scene'
+                params: './c3'
     -
-      id: 2
-      desc: "再等等"
+      id: 'c11'
+      desc: '再等等'
       items:
         -
-          title: "<<返回"
-          action:
-            cmd: 'scene'
-            params: '/1/1'
+          title: '<<返回'
+          click_event:
+            actions:
+              -
+                cmd: 'scene'
+                params: './c1'
     -
-      id: 3
-      desc: "为什么只能选最差开局"
+      id: 'c12'
+      desc: '行吧'
       items:
         -
-          title: "<<返回"
-          action:
-            cmd: 'scene'
-            params: '/1/1'
+          title: '确认'
+          click_event:
+            actions:
+              -
+                cmd: 'scene'
+                params: './c1'
     -
-      id: 4
-      desc: "没有名额是什么鬼"
+      id: 'c2'
+      desc: '为什么只能选最差开局'
       items:
         -
-          title: "<<返回"
-          action:
-            cmd: 'scene'
-            params: '/1/1'
+          title: '<<返回'
+          click_event:
+            actions:
+              -
+                cmd: 'scene'
+                params: './c1'
     -
-      id: 5
-      desc: "测试：点击进入切换场景"
+      id: 'c3'
+      desc: '没有名额是什么鬼'
       items:
         -
-          title: ">>进入"
-          action:
-            cmd: 'scene'
-            params: '/2/11'
-    -
-      id: 11
-      desc: "桃花源，这里有一群武艺超凡，身怀绝技的江湖人士。"
-      items:
-        -
-          title: ">>传送门<<"
-          action:
-            cmd: 'dialog'
-            title: '提示'
-            content: '切换到新手村？'
-            action:
-              cmd: 'scene'
-              params: '/1/1'
-        -
-          title: "简单"
-          action:
-            cmd: ''
-            params: ''
-        - *npc4
-        - *npc2
-        - *npc3
+          title: '<<返回'
+          click_event:
+            actions:
+              -
+                cmd: 'scene'
+                params: './c1'

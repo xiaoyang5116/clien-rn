@@ -11,23 +11,17 @@ export default {
     content: '',
     style: 1,
     visible: false,
-    npcId: -1,
     sectionId: -1,
     sections: [],
-    finishAction: null
+    action: null,
+    parent: null,
   },
 
   effects: {
     *show({ payload }, { call, put, select }) {
       const state = yield select(state => state.AsideModel);
-
-      if (state.npcId > 0 && state.npcId != payload.parent.id) {
+      if (state.sectionId != -1) {
         yield put(action('hide')());
-        return;
-      }
-
-      if (state.npcId > 0) {
-        yield put(action('next')());
         return;
       }
 
@@ -35,23 +29,22 @@ export default {
         title: payload.title,
         content: payload.sections[0],
         style: payload.style,
-        visible: true,
-        npcId: payload.parent.id,
-        sectionId: 0,
         sections: payload.sections,
-        finishAction: payload.action
+        action: payload,
+        parent: payload.parent,
+        sectionId: 0,
+        visible: true,
       }));
     },
 
     *next({ payload }, { call, put, select }) {
       const state = yield select(state => state.AsideModel);
-      if (state.npcId <= 0)
+      if (state.sectionId == -1)
         return;
       
       let nextSectionId = state.sectionId + 1
       if (nextSectionId >= state.sections.length) {
-        // 旁白结束
-        yield put(action('hide')());
+        yield put(action('hide')()); // 旁白结束
         return;
       }
 
@@ -62,12 +55,11 @@ export default {
     },
 
     *hide({ payload }, { call, put, select }) {
-      yield put(action('updateState')({ visible: false, npcId: -1, sectionId: -1 }));
-
       const state = yield select(state => state.AsideModel);
-      if (state.finishAction != null) {
-        yield put(action('StoryModel/action')(state.finishAction));
+      if (state.action.confirm_event != undefined) {
+        yield put.resolve(action('SceneModel/triggerDialogConfirmEvent')({ ...state.action, parent: state }));
       }
+      yield put(action('resetState')());
     }
   },
   
@@ -76,6 +68,14 @@ export default {
       return { 
         ...state,
         ...payload
+      };
+    },
+
+    resetState(state, { payload }) {
+      return {
+        ...state,
+        visible: false,
+        sectionId: -1,
       };
     }
   },
