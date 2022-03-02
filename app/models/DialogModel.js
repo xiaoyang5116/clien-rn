@@ -10,33 +10,34 @@ export default {
     title: '',
     content: '',
     visible: false,
-    typeConfirm: null, // 点击确认后的动作类型
-    params: null  // 动作参数
+    actions: [],
   },
 
   effects: {
+    // 显示普通对话框
+    // 参数 dialog 标准配置结构
     *show({ payload }, { call, put }) {
       yield put(action('updateState')({ 
         title: payload.title, 
         content: payload.content, 
         visible: true,
-        typeConfirm: payload.typeConfirm,
-        params: payload.params
+        actions: payload.confirm_actions,
       }));
+    },
+
+    // 响应点击事件
+    *confirm({ payload }, { call, put, select }) {
+      const state = yield select(state => state.DialogModel);
+      if (state.actions != null && state.actions.length > 0) {
+        yield put.resolve(action('SceneModel/processActions')({ actions: state.actions }));
+      }
+
+      yield put(action('hide')());
     },
 
     *hide({ payload }, { call, put }) {
       yield put(action('updateState')({ visible: false }));
     },
-
-    *action({ payload }, { call, put, select }) {
-      const state = yield select(state => state.DialogModel);
-      if (state.typeConfirm != null) {
-        yield put(action(state.typeConfirm)(state.params));
-      }
-
-      yield put(action('hide')());
-    }
   },
   
   reducers: {

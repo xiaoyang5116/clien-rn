@@ -14,7 +14,7 @@ import { Button, Text, View } from '../constants/native-ui';
 class DialogModal extends PureComponent {
 
     _onConfirm = () => {    
-        this.props.dispatch(action('DialogModel/action')());
+        this.props.dispatch(action('DialogModel/confirm')());
     }
 
     _onCancel = () => {    

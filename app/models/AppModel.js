@@ -17,7 +17,7 @@ export default {
     },
 
     *firstStep({ payload }, { call, put, select }) {
-      yield put(action('SceneModel/triggerNpcClick')({ npcId: 'npc1' }));
+      yield put(action('SceneModel/enterScene')({ sceneId: 'scene1' }));
     },
   },
   

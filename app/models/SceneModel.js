@@ -1,332 +1,240 @@
 
 import {
   action,
-  delay
 } from "../constants";
 
 import {
-  GetStoryDataApi
-} from "../services/GetStoryDataApi";
+  GetSceneDataApi,
+} from "../services/GetSceneDataApi";
 
-import ConfigParser from "../utils/ConfigParser";
+import SceneConfigReader from "../utils/SceneConfigReader";
 import * as RootNavigation from '../utils/RootNavigation';
+
+class VarUtils {
+
+  static generateVarUniqueId(sceneId, varId) {
+    return "{0}_{1}".format(sceneId, varId).toUpperCase();
+  }
+
+  static getVar(vars, sceneId, varId) {
+    let uniVarId = VarUtils.generateVarUniqueId(sceneId, varId);
+    for (let key in vars) {
+      let item = vars[key];
+      if (item.id == uniVarId)
+        return item;
+    }
+    return null;
+  }
+
+}
 
 export default {
   namespace: 'SceneModel',
 
   state: {
     data: {
-      sceneId: '',   // 当前场景ID
-      _vars: [],    // 存放注册变量
-      _parser: null,
+      _scenesCfgReader: null,
+      _vars: [],
+      sceneId: '',
     }
   },
 
   effects: {
     // 重新加载&初始化
     *reload({ payload }, { call, put, select }) {
-      let state = yield select((state) => state.SceneModel);
-      let data = yield call(GetStoryDataApi, payload);
-      let parser = new ConfigParser(data.main);
+      let sceneIdList = ['scene_1', 'scene_2'];
+      const state = yield select(state => state.SceneModel);
+
+      let scenes = [];
       let initVars = [];
 
-      console.debug(data);
-
-      // 注册场景变量
-      parser.getSceneIds().forEach((sceneId) => {
-        let varsConfig = parser.getSceneVars(sceneId);
-        if (varsConfig != null) {
-          varsConfig.forEach((e) => {
-            initVars.push({ ...e, id: e.id.toUpperCase() });
+      for (let key in sceneIdList) {
+        let sceneId = sceneIdList[key];
+        let data = yield call(GetSceneDataApi, sceneId);
+        if (data.scenes != undefined) {
+          data.scenes.forEach((e) => {
+            scenes.push(e);
           });
         }
-      });
+      }
 
-      // 注册NPC变量
-      parser.getNpcIds().forEach((npcId) => {
-        let varsConfig = parser.getNpcVars(npcId);
-        if (varsConfig != null) {
-          varsConfig.forEach((e) => {
-            initVars.push({ ...e, id: e.id.toUpperCase() });
+      let reader = new SceneConfigReader(scenes);
+      reader.getSceneIds().forEach((sceneId) => {
+        let vars = reader.getSceneVars(sceneId);
+        if (vars != null) {
+          vars.forEach((e) => {
+            let uniVarId = "{0}_{1}".format(sceneId, e.id).toUpperCase();
+            initVars.push({ ...e, value: e.defaulValue, id: uniVarId });
           });
         }
       });
 
       yield put.resolve(action('updateState')({ 
         data: {
-          sceneId: state.data.sceneId,
+          _scenesCfgReader: reader,
           _vars: initVars,
-          _parser: parser,
+          sceneId: state.data.sceneId,          
         }
       }));
     },
 
-    // 触发NPC点击
-    // 参数: { npcId: xxx }
-    *triggerNpcClick({ payload }, { call, put, select }) {
-      let npcId = payload.npcId;
-      if (npcId == undefined)
-        return;
-
+    // 进入场景
+    // 参数: sceneId: 场景ID
+    *enterScene({ payload }, { call, put, select }) {
       const state = yield select(state => state.SceneModel);
-      const npc = state.data._parser.getNpc(npcId);
-      if (npc == null)
+      let sceneId = payload.sceneId;
+      let reader = state.data._scenesCfgReader;
+      
+      let scene = reader.getScene(sceneId);
+      if (scene == null) {
+        console.error("SceneId={0} not found.".format(sceneId));
         return;
+      }
 
-      for (let key in npc.click_event.actions) {
-        let item = npc.click_event.actions[key];
-        yield put.resolve(action('action')({ ...item }));
+      state.data.sceneId = sceneId;
+      yield put.resolve(action('processActions')({ actions: scene.enter_actions }));
+    },
+
+    // 事件动作处理
+    // 参数：actions=动作列表,如:['a1', 'a2' ...]
+    *processActions({ payload }, { call, put, select }) {
+      const state = yield select(state => state.SceneModel);
+      let sceneId = state.data.sceneId;
+      let reader = state.data._scenesCfgReader;
+      let actions = reader.getSceneActions(sceneId, payload.actions);
+
+      for (let key in actions) {
+        let item = actions[key];
+        switch (item.cmd) {
+          case 'aside': // 旁白显示
+            let aside = reader.getSceneAside(sceneId, item.params);
+            if (aside != null) {
+              yield put(action('AsideModel/show')({ ...aside }));
+            }
+            break;
+
+          case 'dialog': // 对话框
+            let dialog = reader.getSceneDialog(sceneId, item.params);
+            if (dialog != null) {
+              yield put(action('DialogModel/show')({ ...dialog }));
+            }
+            break;
+
+          case 'navigate': // 导航跳转
+            RootNavigation.navigate(item.params);
+            break;
+
+          case 'chat': // 选择对话框
+            yield put(action('StoryModel/selectChat')({ chatId: item.params }));
+            break;
+
+          case 'scene': // 切换场景
+            yield put(action('enterScene')({ sceneId: item.params }));
+            break;
+
+          case 'var': // 变量修改
+            let params = [];
+            item.params.split(' ').forEach((s) => { 
+              params.push(s.trim().toUpperCase()); 
+            });
+          
+            let varRef = VarUtils.getVar(state.data._vars, sceneId, params[0]);
+            if (varRef == null)
+              return;
+
+            let operator = params[1];
+            let newVarValue = params[2];
+
+            if (newVarValue == 'OFF')
+              newVarValue = 0;
+            else if (newVarValue == 'ON')
+              newVarValue = 1;
+            else
+              newVarValue = parseInt(newVarValue);
+
+            let updateValue = varRef.value;
+            if (operator == '+=') {
+              updateValue += newVarValue; 
+            } else if (params[1] == '=') {
+              updateValue = newVarValue; 
+            } else if (params[1] == '-=') {
+              updateValue -= newVarValue; 
+            }
+
+            if (updateValue < varRef.min) updateValue = varRef.min;
+            if (updateValue > varRef.max) updateValue = varRef.max;
+            varRef.value = updateValue;
+            break;
+        }
       }
     },
 
-    // 触发对话框确认
-    *triggerDialogConfirmEvent({ payload }, { call, put, select }) {
-      yield put.resolve(action('batchAction')(payload));
-      // for (let key in payload.confirm_event.actions) {
-      //   let item = payload.confirm_event.actions[key];
-      //   yield put.resolve(action('batchAction')({ ...item }));
-      // }
-    },
-
     // 获取场景配置
-    // 参数: { sceneId: xxx }
+    // 参数: { sceneId: xxx}
     *getScene({ payload }, { call, put, select }) {
       const state = yield select(state => state.SceneModel);
-      return (state.data._parser != null)
-                ? state.data._parser.getScene(payload.sceneId)
+      return (state.data._scenesCfgReader != null)
+                ? state.data._scenesCfgReader.getScene(payload.sceneId)
                 : null;
     },
 
     // 获取对话配置
-    // 参数: { chatId: xxx }
+    // 参数: { sceneId: xxx, chatId: xxx }
     *getChat({ payload }, { call, put, select }) {
       const state = yield select(state => state.SceneModel);
-      return (state.data._parser != null)
-                ? state.data._parser.getChat(payload.chatId)
+      return (state.data._scenesCfgReader != null)
+                ? state.data._scenesCfgReader.getSceneChat(payload.sceneId, payload.chatId)
                 : null;
     },
 
-    // 设置场景ID
-    *setSceneId({ payload }, { call, put, select }) {
+    // 获取对话框配置
+    // 参数: { sceneId: xxx, dialogId: xxx }
+    *getDialog({ payload }, { call, put, select }) {
       const state = yield select(state => state.SceneModel);
-      state.data.sceneId = payload.sceneId;
+      return (state.data._scenesCfgReader != null)
+                ? state.data._scenesCfgReader.getSceneDialog(payload.sceneId, payload.dialogId)
+                : null;
     },
 
-    // 获取变量值
-    // 参数: { varId: xxx }
-    *getVarValue({ payload }, { call, put, select }) {
-      const state = yield select(state => state.SceneModel);
-      for (let key in state.data._vars) {
-        let item = state.data._vars[key];
-        if (item.id == payload.varId.toUpperCase())
-          return item;
-      }
-      return null;
-    },
-
-    // 判断条件是否成立
-    // 参数: { cond: xxx }
+    // 测试条件是否成立，支持andVarsOn,andVarsOff,andVarsValue,orVarsOn,orVarsOff,orVarsValue
+    // 参数: { ... }
     *testCondition({ payload }, { call, put, select }) {
-      if (payload.cond == undefined)
-        return false;
-
-      let params = [];
-      payload.cond.split(' ').forEach((e) => {
-        let item = e.trim();
-        if (item != '') {
-          params.push(item.toUpperCase());
-        }
-      });
-      if (params.length <= 0)
-        return false;
-
-      let ifKeyword = params.shift();
-      if (ifKeyword != 'IF')
-        return false;
-      
-      let andList = [];
-      let orList = [];
-      let otherList = [];
-      let prevList = null;
-      for (let i = 0; i < params.length;) {
-        let varId = params[i];
-        let opt = params[i + 1];
-        let value = params[i + 2];
-        let result = false;
-
-        let varRef = yield put.resolve(action('getVarValue')({ varId: varId }));
-        if (varRef != null) {
-
-          if (value == 'ON')
-            value = 1;
-          else if (value == 'OFF')
-            value = 0;
-          else
-            value = parseInt(value);
-          //
-          let varValue = varRef.value;
-          if (opt == '==')
-            result = (varValue == value);
-          else if (opt == '>=')
-            result = (varValue >= value);
-          else if (opt == '<=')
-            result = (varValue <= value);
-          else if (opt == '>')
-            result = (varValue > value);
-          else if (opt == '<')
-            result = (varValue < value);
-        }
-
-        if ((i + 4) <= params.length) {
-          let logic = params[i + 3];
-          if (logic == 'AND') {
-            andList.push(result);
-            prevList = andList;
-          } else if (logic == 'OR') {
-            orList.push(result);
-            prevList = orList;
-          }
-          i += 4;
-        } else {
-          if (prevList != null) {
-            prevList.push(result);
-          } else {
-            otherList.push(result);
-          }
-          i += 3;
-        }
-      }
-
-      if (otherList.length > 0 && andList.length == 0 && orList.length == 0) {
-        let count = 0;
-        otherList.forEach((e) => {
-          if (e) count++;
-        });
-        return (count == otherList.length);
-      } else if (andList.length > 0 && orList.length == 0) {
-        let count = 0;
-        andList.forEach((e) => {
-          if (e) count++;
-        });
-        return (count == andList.length);
-      } else if (orList.length > 0 && andList.length == 0) {
-        let count = 0;
-        andList.forEach((e) => {
-          if (e) count++;
-        });
-        return (count > 0);
-      }
-      return false;
-    },
-
-    *batchAction({ payload }, { call, put, select }) {
-      let validActions = [];
-      if (payload.click_event != undefined) {
-        if (payload.click_event.groups != undefined) {
-          let groups = payload.click_event.groups;
-          if (groups != undefined) {
-            for (let key in groups) {
-              let item = groups[key];
-              if (item.cond == undefined)
-                continue;
-              
-              let result = yield put.resolve(action('testCondition')({ cond: item.cond }));
-              if (result != true)
-                continue;
-              item.actions.forEach((e) => {
-                validActions.push(e);
-              });
-            }
-          }
-        } else {
-          payload.click_event.actions.forEach((e) => {
-            validActions.push(e);
-          });
-        }
-      } else if (payload.confirm_event != undefined) {
-        if (payload.confirm_event.groups != undefined) {
-          let groups = payload.confirm_event.groups;
-          if (groups != undefined) {
-            for (let key in groups) {
-              let item = groups[key];
-              if (item.cond == undefined)
-                continue;
-              
-              let result = yield put.resolve(action('testCondition')({ cond: item.cond }));
-              if (result != true)
-                continue;
-              item.actions.forEach((e) => {
-                validActions.push(e);
-              });
-            }
-          }
-        } else {
-          payload.confirm_event.actions.forEach((e) => {
-            validActions.push(e);
-          });
-        }
-      }
-      //
-      console.debug(validActions);
-      for (let key in validActions) {
-        let item = validActions[key];
-        yield put.resolve(action('action')(item));
-      }
-    },
-
-    // 动作逻辑
-    *action({ payload }, { call, put, select }) {
       const state = yield select(state => state.SceneModel);
-      switch (payload.cmd) {
-        case 'aside': // 旁白
-          yield put(action('AsideModel/show')({ ...payload }));
-          break;
+      let sceneId = state.data.sceneId;
 
-        case 'dialog': // 普通对话框
-          if (payload.title != undefined && payload.content != undefined) {
-            yield put(action('DialogModel/show')({ 
-              typeConfirm: 'SceneModel/action', 
-              params: payload.action, 
-              ...payload 
-            }));
+      let varFinder = (id) => {
+        for (let key in state.data._vars) {
+          let item = state.data._vars[key];
+          if (item.id == id)
+            return item;
+        }
+        return null;
+      };
+
+      let failure = false;
+      if (payload.andVarsOn != undefined) {
+        for (let key in payload.andVarsOn) {
+          let varId = payload.andVarsOn[key];
+          let varRef = VarUtils.getVar(state.data._vars, sceneId, varId);
+          if (varRef.value <= 0) {
+            failure = true;
+            break;
           }
-          break;
-        
-        case 'scene': // 切换场景
-          yield put(action('StoryModel/selectChat')({ path: payload.params }));
-          break;
-
-        case 'var': // 变量修改
-          let params = [];
-          payload.params.split(' ').forEach((s) => { 
-            params.push(s.trim()); 
-          });
-          
-          let varRef = yield put.resolve(action('getVarValue')({ varId: params[0] }));
-          if (varRef == null)
-            return;
-
-          let newVarValue = 0;
-          let varValue = varRef.value;
-
-          if (params[1] == '+=') {
-            newVarValue = varValue + parseInt(params[2]); 
-          } else if (params[1] == '=') {
-            newVarValue = parseInt(params[2]); 
-          } else if (params[1] == '-=') {
-            newVarValue = varValue - parseInt(params[2]); 
-          }
-
-          if (newVarValue < varRef.min) newVarValue = varRef.min;
-          if (newVarValue > varRef.max) newVarValue = varRef.max;
-          varRef.value = newVarValue;
-          break;
-
-        case 'navigate':  // 导航
-          RootNavigation.navigate(payload.params);
-          break;
+        }
       }
+      if (!failure && (payload.andVarsOff != undefined)) {
+        for (let key in payload.andVarsOff) {
+          let varId = payload.andVarsOff[key];
+          let varRef = VarUtils.getVar(state.data._vars, sceneId, varId);
+          if (varRef.value > 0) {
+            failure = true;
+            break;
+          }
+        }
+      }
+      return !failure;
     },
+    
   },
   
   reducers: {

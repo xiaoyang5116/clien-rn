@@ -15,7 +15,6 @@ import { Button, Text, View, SectionList } from '../../constants/native-ui';
 class StoryTabPage extends Component {
 
   componentDidMount() {
-    this.props.dispatch(action('StoryModel/selectChat')({ path: '/scene1/c1' }));
   }
 
   _onClickItem = (e) => {

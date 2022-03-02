@@ -21,7 +21,7 @@
 #       desc:     对话框顶部描述
 #       options:  选项列表
 #         title:  选项名称
-#         click_events: 选项点击后触发的事件ID列表
+#         click_actions: 选项点击事件后触发的动作ID列表
 #         andVarsOn:    该选项显示所需判断为ON的变量列表(全匹配) 
 #         andVarsOff:   该选项显示所需判断为OFF的变量列表(全匹配)
 #         andVarsValue: 该选项显示所需判断值大小的条件列表(全匹配)，
@@ -34,13 +34,23 @@
 #       id: 旁白ID
 #       style: 风格ID
 #       sections: 旁白段落
-#       click_events: 选项点击后触发的事件ID列表
+#       confirm_actions: 旁白结束事件触发的动作ID列表
+#
+#     dialogs: 对话框列表
+#       id: 对话框ID
+#       title: 标题
+#       content: 内容
+#       confirm_actions: 对话框确认按钮点击事件触发的动作ID列表
+#
 # ===========================================
 
 scenes: [
   # 新手村场景
   {
     id: 'scene1', name: '新手村',
+
+    # 进入场景事件处理动作ID列表
+    enter_actions: ['b1'],
 
     # 变量定义
     vars: [
@@ -49,12 +59,15 @@ scenes: [
 
     # 动作定义
     actions: [
-      { id: 'a1', cmd: 'scene',  params: './c1' },
-      { id: 'a2', cmd: 'scene',  params: './c2' },
-      { id: 'a3', cmd: 'scene',  params: './c3' },
+      { id: 'a0', cmd: 'navigate',  params: 'Home' },
+      { id: 'a1', cmd: 'chat',  params: 'c1' },
+      { id: 'a2', cmd: 'chat',  params: 'c2' },
+      { id: 'a3', cmd: 'chat',  params: 'c3' },
       { id: 'a4', cmd: 'var',    params: 'v1 = ON' },
-      { id: 'a5', cmd: 'scene',  params: './c4' },
-      { id: 'a6', cmd: 'scene',  params: './c5' },
+      { id: 'a5', cmd: 'chat',  params: 'c4' },
+      { id: 'a6', cmd: 'chat',  params: 'c5' },
+      { id: 'a7', cmd: 'scene',  params: 'scene2' },
+      { id: 'b1', cmd: 'aside',  params: 'p1' },
     ],
 
     # 对话选项
@@ -63,40 +76,49 @@ scenes: [
       { 
         id: 'c1', desc: '你穿越了, 请选择穿越开局', 
         options: [ 
-          { title: '【乞丐】', click_events: ['a2'], andVarsOff: ['v1'] }, 
-          { title: '【乞丐】', click_events: ['a3'], andVarsOn: ['v1'] }, 
-          { title: '【没有名额了】', click_events: ['a5'] }, 
-          { title: '【真没有名额了】', click_events: ['a6'] }, 
+          { title: '【乞丐】', click_actions: ['a2'], andVarsOff: ['v1'] }, 
+          { title: '【乞丐】', click_actions: ['a3'], andVarsOn: ['v1'] }, 
+          { title: '【没有名额了】', click_actions: ['a5'] }, 
+          { title: '【真没有名额了】', click_actions: ['a6'] }, 
         ],
       },
       # 乞丐第一次点击出现
       { 
         id: 'c2', desc: '再等等', 
         options: [ 
-          { title: '<<< 返回', click_events: ['a4', 'a1'] }, 
+          { title: '<<< 返回', click_actions: ['a4', 'a1'] }, 
         ]
       },
       # 乞丐第二次点击出现
       { 
         id: 'c3', desc: '行吧', 
         options: [ 
-          { title: '确认', click_events: [''] }, 
+          { title: '确认', click_actions: ['a7'] }, 
         ]
       },
       # 
       { 
         id: 'c4', desc: '为什么只能选最差开局', 
         options: [ 
-          { title: '返回', click_events: ['a1'] }, 
+          { title: '返回', click_actions: ['a1'] }, 
         ]
       },
       # 
       { 
         id: 'c5', desc: '没有名额是什么鬼', 
         options: [ 
-          { title: '返回', click_events: ['a1'] }, 
+          { title: '返回', click_actions: ['a1'] }, 
         ]
       },
+    ],
+
+    # 旁白
+    asides: [
+      { id: 'p1', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], confirm_actions: ['a0', 'a1'] },
+    ],
+
+   # 对话框
+    dialogs: [
     ]
   }
 ]

@@ -13,11 +13,13 @@ export default {
     visible: false,
     sectionId: -1,
     sections: [],
-    action: null,
+    actions: [],
   },
 
   effects: {
-    *show({ payload }, { call, put, select }) {
+    // 显示旁白
+    // 参数: aside 标准配置结构
+    *show({ payload }, { put, select }) {
       const state = yield select(state => state.AsideModel);
       if (state.sectionId != -1) {
         yield put(action('hide')());
@@ -29,20 +31,22 @@ export default {
         content: payload.sections[0],
         style: payload.style,
         sections: payload.sections,
-        action: payload,
+        actions: payload.confirm_actions,
         sectionId: 0,
         visible: true,
       }));
     },
 
-    *next({ payload }, { call, put, select }) {
+    // 点击下一段旁白
+    // 参数：无
+    *next({ }, { put, select }) {
       const state = yield select(state => state.AsideModel);
       if (state.sectionId == -1)
         return;
       
       let nextSectionId = state.sectionId + 1
       if (nextSectionId >= state.sections.length) {
-        yield put(action('hide')()); // 旁白结束
+        yield put(action('hide')());
         return;
       }
 
@@ -52,11 +56,12 @@ export default {
       }));
     },
 
-    *hide({ payload }, { call, put, select }) {
+    // 隐藏旁白
+    // 参数：无
+    *hide({ payload }, { put, select }) {
       const state = yield select(state => state.AsideModel);
-      if (state.action != null) {
-        console.debug(state.action);
-        yield put.resolve(action('SceneModel/triggerDialogConfirmEvent')(state.action));
+      if (state.actions != null && state.actions.length > 0) {
+        yield put.resolve(action('SceneModel/processActions')({ actions: state.actions }));
       }
       yield put(action('resetState')());
     }
@@ -70,9 +75,11 @@ export default {
       };
     },
 
-    resetState(state, { payload }) {
+    resetState(state, { }) {
       return {
         ...state,
+
+        confirmEvents: [],
         visible: false,
         sectionId: -1,
       };
