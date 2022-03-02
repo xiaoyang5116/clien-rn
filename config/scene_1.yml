@@ -1,0 +1,102 @@
+# ===========================================
+# 配置说明：
+#   单独一个场景使用{}包围，有效的配置项为：
+#     id: 场景ID（整个项目必须唯一）
+#
+#     name: 场景名称
+#
+#     vars: 变量定义
+#       id: 变量名称
+#       min: 变量最小值
+#       max: 变量最大值
+#       defaultValue: 变量缺省值
+#
+#     actions: 动作列表
+#       id: 动作ID
+#       cmd: 命令
+#       params: 参数
+#
+#     chats: 对话选项
+#       id:       对话ID
+#       desc:     对话框顶部描述
+#       options:  选项列表
+#         title:  选项名称
+#         click_events: 选项点击后触发的事件ID列表
+#         andVarsOn:    该选项显示所需判断为ON的变量列表(全匹配) 
+#         andVarsOff:   该选项显示所需判断为OFF的变量列表(全匹配)
+#         andVarsValue: 该选项显示所需判断值大小的条件列表(全匹配)，
+#                       如：varsValue: ['var1 >= 1', 'var1 <= 10']，可支持 ==, >, <, >=, <=, != 运算符。
+#         orVarsOn:     该选项显示所需判断为ON的变量列表(匹配任意一个)
+#         orVarsOff:    该选项显示所需判断为OFF的变量列表(匹配任意一个)
+#         orVarsValue:  该选项显示所需判断值大小的条件列表(匹配任意一个)
+#
+#     asides: 旁白列表
+#       id: 旁白ID
+#       style: 风格ID
+#       sections: 旁白段落
+#       click_events: 选项点击后触发的事件ID列表
+# ===========================================
+
+scenes: [
+  # 新手村场景
+  {
+    id: 'scene1', name: '新手村',
+
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1, defaulValue: 0 },
+    ],
+
+    # 动作定义
+    actions: [
+      { id: 'a1', cmd: 'scene',  params: './c1' },
+      { id: 'a2', cmd: 'scene',  params: './c2' },
+      { id: 'a3', cmd: 'scene',  params: './c3' },
+      { id: 'a4', cmd: 'var',    params: 'v1 = ON' },
+      { id: 'a5', cmd: 'scene',  params: './c4' },
+      { id: 'a6', cmd: 'scene',  params: './c5' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c1', desc: '你穿越了, 请选择穿越开局', 
+        options: [ 
+          { title: '【乞丐】', click_events: ['a2'], andVarsOff: ['v1'] }, 
+          { title: '【乞丐】', click_events: ['a3'], andVarsOn: ['v1'] }, 
+          { title: '【没有名额了】', click_events: ['a5'] }, 
+          { title: '【真没有名额了】', click_events: ['a6'] }, 
+        ],
+      },
+      # 乞丐第一次点击出现
+      { 
+        id: 'c2', desc: '再等等', 
+        options: [ 
+          { title: '<<< 返回', click_events: ['a4', 'a1'] }, 
+        ]
+      },
+      # 乞丐第二次点击出现
+      { 
+        id: 'c3', desc: '行吧', 
+        options: [ 
+          { title: '确认', click_events: [''] }, 
+        ]
+      },
+      # 
+      { 
+        id: 'c4', desc: '为什么只能选最差开局', 
+        options: [ 
+          { title: '返回', click_events: ['a1'] }, 
+        ]
+      },
+      # 
+      { 
+        id: 'c5', desc: '没有名额是什么鬼', 
+        options: [ 
+          { title: '返回', click_events: ['a1'] }, 
+        ]
+      },
+    ]
+  }
+]
