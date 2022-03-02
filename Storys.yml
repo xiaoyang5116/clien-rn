@@ -1,10 +1,24 @@
 # ============================
 # 配置说明：
 # ============================
-
 main:
+
   # 默认场景对话
   default_chat: '/scene1/c1'
+
+  test: [{ id: 1, name: 'kk' }, { id: 2, name: 'cc' }]
+  #
+  test2: [
+    { id: 'var1', min: 0, max: 1, value: 0 },
+    { id: 'var2', min: 0, max: 1, value: 0 },
+    { id: 'var3', min: 0, max: 1, value: 0 },
+  ]
+
+  event1: {
+    id: 'xxx',
+    name: 'test',
+    listx: [{ id: 'A' }, { id: 'B' }]
+  }
 
   # 场景配置:
   #   id: 唯一的字符串。
@@ -22,7 +36,7 @@ main:
       nodes: ['c1', 'c11', 'c12', 'c2', 'c3']
       vars:
         -
-          id: 'scene1_var1'
+          id: 'scene1_qi_gai'
           min: 0
           max: 1
           value: 0
@@ -33,8 +47,39 @@ main:
           value: 0
     -
       id: 'scene2'
-      name: '训练场'
-      nodes: [10, 11]
+      name: '临时破庙'
+      nodes: ['b1', 'b2']
+      vars:
+        -
+          id: 'scene2_pomiao_var1'
+          min: 0
+          max: 1
+          value: 0
+        -
+          id: 'scene2_pomiao_var2'
+          min: 0
+          max: 1
+          value: 0
+        -
+          id: 'scene2_pomiao_var3'
+          min: 0
+          max: 1
+          value: 0
+        -
+          id: 'scene2_pomiao_var4'
+          min: 0
+          max: 1
+          value: 0
+        -
+          id: 'scene2_pomiao_var5'
+          min: 0
+          max: 1
+          value: 0
+        -
+          id: 'scene2_pomiao_var6'
+          min: 0
+          max: 1
+          value: 0
 
   # NPC/对话选项 配置:
   #   id: 唯一的字符串。
@@ -51,23 +96,14 @@ main:
     -
       id: 'npc1'
       title: '新手NPC'
-      vars:
-        -
-          id: 'npc1_var1'
-          min: 0
-          max: 1
-          value: 0
       click_event:
         actions:
           -
             cmd: 'aside'
             style: 2
-            sections: ['记忆到此位置', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局']
+            sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局']
             confirm_event:
               actions:
-                -
-                  cmd: 'var'
-                  params: 'npc1_var1 = 1'
                 -
                   cmd: 'navigate'
                   params: 'Home'
@@ -120,16 +156,16 @@ main:
           click_event:
             groups:
               -
-                cond: 'if scene1_var1 == OFF'
+                cond: 'if scene1_qi_gai == OFF'
                 actions:
                   -
                     cmd: 'scene'
                     params: './c11'
                   -
                     cmd: 'var'
-                    params: 'scene1_var1 += 1'
+                    params: 'scene1_qi_gai += 1'
               -
-                cond: 'if scene1_var1 == ON' 
+                cond: 'if scene1_qi_gai == ON' 
                 actions:
                   -
                     cmd: 'scene'
@@ -168,8 +204,14 @@ main:
           click_event:
             actions:
               -
-                cmd: 'scene'
-                params: './c1'
+                cmd: 'aside'
+                style: 2
+                sections: ['一阵风刮过', '你发现你在一个破落的小庙内', '周围躺着一个年龄不大的乞丐，无精打采']
+                confirm_event:
+                  actions:
+                    -
+                      cmd: 'scene'
+                      params: '/scene2/b1'
     -
       id: 'c2'
       desc: '为什么只能选最差开局'
@@ -192,3 +234,172 @@ main:
               -
                 cmd: 'scene'
                 params: './c1'
+    -
+      id: 'b1'
+      desc: '你在一座破庙里面'
+      items:
+        -
+          title: '【查看四周】'
+          click_event:
+            actions:
+              -
+                cmd: 'aside'
+                style: 2
+                sections: ['这是一个小破庙，大概不到二十平米，由土垒成，而不是砖建造的这种建筑即使是农村也几乎见不到了。']
+                confirm_event:
+                  actions:
+                    -
+                      cmd: 'var'
+                      params: 'scene2_pomiao_var1 += 1'
+                    -
+                      cmd: 'scene'
+                      params: './b1'
+        -
+          title: '【查看头顶】'
+          click_event:
+            actions:
+              -
+                cmd: 'aside'
+                style: 2
+                sections: ['破庙的房顶是木头和茅草，有些漏风']
+                confirm_event:
+                  actions:
+                    -
+                      cmd: 'var'
+                      params: 'scene2_pomiao_var2 += 1'
+                    -
+                      cmd: 'scene'
+                      params: './b1'
+        -
+          title: '【动动身子】'
+          cond: 'if scene2_pomiao_var1 == ON AND scene2_pomiao_var2 == ON'
+          click_event:
+            actions:
+              -
+                cmd: 'aside'
+                style: 2
+                sections: ['一身酸痛袭来，怎么回事？']
+                confirm_event:
+                  actions:
+                    -
+                      cmd: 'var'
+                      params: 'scene2_pomiao_var3 += 1'
+                    -
+                      cmd: 'scene'
+                      params: './b1'
+        -
+          title: '【看看自己的手】'
+          cond: 'if scene2_pomiao_var1 == ON AND scene2_pomiao_var2 == ON AND scene2_pomiao_var3 == ON'
+          click_event:
+            actions:
+              -
+                cmd: 'aside'
+                style: 2
+                sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。']
+                confirm_event:
+                  actions:
+                    -
+                      cmd: 'var'
+                      params: 'scene2_pomiao_var4 += 1'
+                    -
+                      cmd: 'scene'
+                      params: './b1'
+        -
+          title: '【询问周围的乞丐】'
+          cond: 'if scene2_pomiao_var1 == ON AND scene2_pomiao_var2 == ON AND scene2_pomiao_var3 == ON AND scene2_pomiao_var4 == ON'
+          click_event:
+            actions:
+              -
+                cmd: 'aside'
+                style: 2
+                sections: ['乞丐在睡觉，没有理你']
+                confirm_event:
+                  groups:
+                    -
+                      cond: 'if scene2_pomiao_var5 == OFF AND scene2_pomiao_var6 == ON'
+                      actions:
+                        -
+                          cmd: 'var'
+                          params: 'scene2_pomiao_var5 += 1'
+                        -
+                          cmd: 'scene'
+                          params: './b1'
+                    -
+                      cond: 'if scene2_pomiao_var5 == ON AND scene2_pomiao_var6 == OFF'
+                      actions:
+                        -
+                          cmd: 'var'
+                          params: 'scene2_pomiao_var5 += 1'
+                        -
+                          cmd: 'scene'
+                          params: './b1'
+                    -
+                      cond: 'if scene2_pomiao_var5 == OFF AND scene2_pomiao_var6 == OFF'
+                      actions:
+                        -
+                          cmd: 'var'
+                          params: 'scene2_pomiao_var5 += 1'
+                        -
+                          cmd: 'scene'
+                          params: './b1'
+                    -
+                      cond: 'if scene2_pomiao_var5 == ON AND scene2_pomiao_var6 == ON'
+                      actions:
+                        -
+                          cmd: 'scene'
+                          params: './b2'
+        -
+          title: '【尝试起身】'
+          cond: 'if scene2_pomiao_var1 == ON AND scene2_pomiao_var2 == ON AND scene2_pomiao_var3 == ON AND scene2_pomiao_var4 == ON'
+          click_event:
+            actions:
+              -
+                cmd: 'aside'
+                style: 2
+                sections: ['动不了']
+                confirm_event:
+                  groups:
+                    -
+                      cond: 'if scene2_pomiao_var5 == OFF AND scene2_pomiao_var6 == ON'
+                      actions:
+                        -
+                          cmd: 'var'
+                          params: 'scene2_pomiao_var6 += 1'
+                        -
+                          cmd: 'scene'
+                          params: './b1'
+                    -
+                      cond: 'if scene2_pomiao_var5 == ON AND scene2_pomiao_var6 == OFF'
+                      actions:
+                        -
+                          cmd: 'var'
+                          params: 'scene2_pomiao_var6 += 1'
+                        -
+                          cmd: 'scene'
+                          params: './b1'
+                    -
+                      cond: 'if scene2_pomiao_var5 == OFF AND scene2_pomiao_var6 == OFF'
+                      actions:
+                        -
+                          cmd: 'var'
+                          params: 'scene2_pomiao_var6 += 1'
+                        -
+                          cmd: 'scene'
+                          params: './b1'
+                    -
+                      cond: 'if scene2_pomiao_var5 == ON AND scene2_pomiao_var6 == ON'
+                      actions:
+                        -
+                          cmd: 'scene'
+                          params: './b2'
+    -
+      id: 'b2'
+      desc: 'xxxxx'
+      items:
+        -
+          title: '<<返回'
+          click_event:
+            actions:
+              -
+                cmd: 'scene'
+                params: './b1'

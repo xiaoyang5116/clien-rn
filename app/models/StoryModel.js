@@ -14,36 +14,7 @@ export default {
   effects: {
 
     *click({ payload }, { call, put }) {
-      if (payload.click_event == undefined)
-        return;
-      
-      let validActions = [];
-      if (payload.click_event.groups != undefined) {
-        let groups = payload.click_event.groups;
-        if (groups != undefined) {
-          for (let key in groups) {
-            let item = groups[key];
-            if (item.cond == undefined)
-              continue;
-            
-            let result = yield put.resolve(action('SceneModel/testCondition')({ cond: item.cond }));
-            if (result != true)
-              continue;
-            item.actions.forEach((e) => {
-              validActions.push(e);
-            });
-          }
-        }
-      } else {
-        payload.click_event.actions.forEach((e) => {
-          validActions.push(e);
-        });
-      }
-
-      for (let key in validActions) {
-        let item = validActions[key];
-        yield put.resolve(action('SceneModel/action')(item));
-      }
+      yield put.resolve(action('SceneModel/batchAction')(payload));
     },
 
     // 参数: { path: xxx }
@@ -79,9 +50,15 @@ export default {
       // 生成新的对话数据
       let newSectionData = [];
       let sectionItem = { title: chat.desc, data: [] };
-      chat.items.forEach((item) => {
+      for (let key in chat.items) {
+        let item = chat.items[key];
+        if (item.cond != undefined) {
+          let result = yield put.resolve(action('SceneModel/testCondition')({ cond: item.cond }));
+          if (result != true)
+            continue;
+        }
         sectionItem.data.push({ ...item });
-      });
+      }
       newSectionData.push(sectionItem);
 
       // 设置新场景ID

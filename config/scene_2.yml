@@ -1,0 +1,49 @@
+scenes: [
+  # 新手村场景
+  {
+    id: 'scene2', name: '破庙',
+
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v2', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v3', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v4', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v5', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v6', min: 0, max: 1, defaulValue: 0 },
+    ],
+
+    # 动作定义
+    actions: [
+      { id: 'ax', cmd: 'aside', params: 'p1' }
+      { id: 'a0', cmd: 'scene', params: './b1' },
+      { id: 'a1', cmd: 'var',  params: 'v1 = ON' },
+      { id: 'a2', cmd: 'var',  params: 'v2 = ON' },
+      { id: 'a3', cmd: 'var',  params: 'v3 = ON' },
+      { id: 'a4', cmd: 'var',  params: 'v4 = ON' },
+      { id: 'a5', cmd: 'var',  params: 'v5 = ON' },
+      { id: 'a6', cmd: 'var',  params: 'v6 = ON' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c1', desc: '你在一座破庙里面', 
+        options: [ 
+          { title: '【查看四周】', click_events: ['a1', 'a0'] }, 
+          { title: '【查看头顶】', click_events: ['a2', 'a0'] }, 
+          { title: '【动动身子】', click_events: ['a3', 'a0'], andVarsOn: ['v1', 'v2'] }, 
+          { title: '【看看自己的手】', click_events: ['a4', 'a0'], andVarsOn: ['v1', 'v2', 'v3'] }, 
+          { title: '【询问周围的乞丐】', click_events: ['a5', 'a0'], andVarsOn: ['v1', 'v2', 'v3', 'v4'] }, 
+          { title: '【尝试起身】', click_events: ['a6', 'a0'], andVarsOn: ['v1', 'v2', 'v3', 'v4'] }, 
+        ],
+      },
+    ],
+
+    # 旁白
+    asides: [
+      { id: 'p1', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], confirm_events: ['a0'] },
+    ]
+  }
+]

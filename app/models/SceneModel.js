@@ -30,6 +30,8 @@ export default {
       let parser = new ConfigParser(data.main);
       let initVars = [];
 
+      console.debug(data);
+
       // 注册场景变量
       parser.getSceneIds().forEach((sceneId) => {
         let varsConfig = parser.getSceneVars(sceneId);
@@ -79,10 +81,11 @@ export default {
 
     // 触发对话框确认
     *triggerDialogConfirmEvent({ payload }, { call, put, select }) {
-      for (let key in payload.confirm_event.actions) {
-        let item = payload.confirm_event.actions[key];
-        yield put.resolve(action('action')({ ...item }));
-      }
+      yield put.resolve(action('batchAction')(payload));
+      // for (let key in payload.confirm_event.actions) {
+      //   let item = payload.confirm_event.actions[key];
+      //   yield put.resolve(action('batchAction')({ ...item }));
+      // }
     },
 
     // 获取场景配置
@@ -214,6 +217,61 @@ export default {
         return (count > 0);
       }
       return false;
+    },
+
+    *batchAction({ payload }, { call, put, select }) {
+      let validActions = [];
+      if (payload.click_event != undefined) {
+        if (payload.click_event.groups != undefined) {
+          let groups = payload.click_event.groups;
+          if (groups != undefined) {
+            for (let key in groups) {
+              let item = groups[key];
+              if (item.cond == undefined)
+                continue;
+              
+              let result = yield put.resolve(action('testCondition')({ cond: item.cond }));
+              if (result != true)
+                continue;
+              item.actions.forEach((e) => {
+                validActions.push(e);
+              });
+            }
+          }
+        } else {
+          payload.click_event.actions.forEach((e) => {
+            validActions.push(e);
+          });
+        }
+      } else if (payload.confirm_event != undefined) {
+        if (payload.confirm_event.groups != undefined) {
+          let groups = payload.confirm_event.groups;
+          if (groups != undefined) {
+            for (let key in groups) {
+              let item = groups[key];
+              if (item.cond == undefined)
+                continue;
+              
+              let result = yield put.resolve(action('testCondition')({ cond: item.cond }));
+              if (result != true)
+                continue;
+              item.actions.forEach((e) => {
+                validActions.push(e);
+              });
+            }
+          }
+        } else {
+          payload.confirm_event.actions.forEach((e) => {
+            validActions.push(e);
+          });
+        }
+      }
+      //
+      console.debug(validActions);
+      for (let key in validActions) {
+        let item = validActions[key];
+        yield put.resolve(action('action')(item));
+      }
     },
 
     // 动作逻辑

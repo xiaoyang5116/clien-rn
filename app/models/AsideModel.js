@@ -14,7 +14,6 @@ export default {
     sectionId: -1,
     sections: [],
     action: null,
-    parent: null,
   },
 
   effects: {
@@ -31,7 +30,6 @@ export default {
         style: payload.style,
         sections: payload.sections,
         action: payload,
-        parent: payload.parent,
         sectionId: 0,
         visible: true,
       }));
@@ -56,8 +54,9 @@ export default {
 
     *hide({ payload }, { call, put, select }) {
       const state = yield select(state => state.AsideModel);
-      if (state.action.confirm_event != undefined) {
-        yield put.resolve(action('SceneModel/triggerDialogConfirmEvent')({ ...state.action, parent: state }));
+      if (state.action != null) {
+        console.debug(state.action);
+        yield put.resolve(action('SceneModel/triggerDialogConfirmEvent')(state.action));
       }
       yield put(action('resetState')());
     }
