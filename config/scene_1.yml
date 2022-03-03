@@ -47,7 +47,7 @@
 scenes: [
   # 新手村场景
   {
-    id: 'scene1', name: '新手村',
+    id: 'scene1', name: '未知空间',
 
     # 进入场景事件处理动作ID列表
     enter_actions: ['b1'],

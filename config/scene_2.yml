@@ -59,6 +59,9 @@ scenes: [
       { id: 'v4', min: 0, max: 1, defaulValue: 0 },
       { id: 'v5', min: 0, max: 1, defaulValue: 0 },
       { id: 'v6', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v7', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v8', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v9', min: 0, max: 1, defaulValue: 0 },
     ],
 
     # 动作定义
@@ -70,6 +73,9 @@ scenes: [
       { id: 'a4', cmd: 'var',  params: 'v4 = ON' },
       { id: 'a5', cmd: 'var',  params: 'v5 = ON' },
       { id: 'a6', cmd: 'var',  params: 'v6 = ON' },
+      { id: 'a7', cmd: 'var',  params: 'v7 = ON' },
+      { id: 'a8', cmd: 'var',  params: 'v8 = ON' },
+      { id: 'a9', cmd: 'var',  params: 'v9 = ON' },
 
       { id: 'b0', cmd: 'chat',  params: 'c2' },
       { id: 'b1', cmd: 'aside',  params: 'p1' },
@@ -82,6 +88,13 @@ scenes: [
       { id: 'b8', cmd: 'dialog',  params: 'd1' },
       { id: 'b9', cmd: 'aside',  params: 'p10' },
       { id: 'b10', cmd: 'aside',  params: 'p11' },
+      { id: 'b11', cmd: 'dialog',  params: 'd2' },
+      { id: 'b12', cmd: 'aside',  params: 'p12' },
+      { id: 'b13', cmd: 'aside',  params: 'p13' },
+      { id: 'b14', cmd: 'aside',  params: 'p14' },
+      { id: 'b15', cmd: 'aside',  params: 'p15' },
+      { id: 'b16', cmd: 'aside',  params: 'p16' },
+      { id: 'b17', cmd: 'dialog',  params: 'd3' },
     ],
 
     # 对话选项
@@ -104,7 +117,11 @@ scenes: [
       { 
         id: 'c2', desc: '你在一座破庙里面', 
         options: [ 
-          { title: '【大声怪叫】', click_actions: ['b8'] }, 
+          { title: '【大声怪叫】', click_actions: ['b8'], andVarsOff: ['v7'] }, 
+          { title: '【询问  这是在哪】', click_actions: ['b11'], andVarsOn: ['v7'], andVarsOff: ['v8'] }, 
+          { title: '【承认】', click_actions: ['b13'], andVarsOn: ['v8'], andVarsOff: ['v9'] }, 
+          { title: '【拒绝】', click_actions: ['b14'], andVarsOn: ['v8'], andVarsOff: ['v9'] }, 
+          { title: '【离开破庙】', click_actions: [], andVarsOn: ['v9'] }, 
         ],
       },
     ],
@@ -119,12 +136,19 @@ scenes: [
       { id: 'p6', style: 2, sections: ['动不了'], confirm_actions: ['a6', 'a0'] },
       { id: 'p7', style: 2, sections: ['总得想个办法'], confirm_actions: ['a5', 'a6', 'b0'] },
       { id: 'p10', style: 1, sections: ['周围本来睡着的乞丐出声'], confirm_actions: ['b10'] },
-      { id: 'p11', style: 2, sections: ['你发现乞丐说的是一种没听过的语音，但是你竟然可以听懂。', '一股关于语言的记忆涌上脑海', '看来交流没问题'], confirm_actions: ['a0'] },
+      { id: 'p11', style: 2, sections: ['你发现乞丐说的是一种没听过的语音，但是你竟然可以听懂。', '一股关于语言的记忆涌上脑海', '看来交流没问题', '那么'], confirm_actions: ['a7', 'b0'] },
+      { id: 'p12', style: 2, sections: ['……完全没听过的名字。', '你是不是被打后伤到脑袋了，乞丐问。'], confirm_actions: ['a8', 'b0'] },
+      { id: 'p13', style: 2, sections: ['那这几天好好休息，乞丐说'], confirm_actions: ['b15'] },
+      { id: 'p14', style: 2, sections: ['还行，那你知道我是谁吗？', '……', '看来病的不轻……好好休息。'], confirm_actions: ['b0'] },
+      { id: 'p15', style: 2, sections: ['在闲聊中，你知道旁边的乞丐是你以前认的乞丐李大哥，两人都是从更远的地方流浪而来。', '你知道了全身的伤是因为讨乞的时候被村里的王员外打的。', '起因只是因为挡了人家的道，被嫌弃晦气。', '看来，到了一个不得了的世界啊。'], confirm_actions: ['b16'] },
+      { id: 'p16', style: 2, sections: ['一晃几天过去了', '经过几天修养，现在可以走路了', '乞丐的生活是很清苦的，能吃饱饭已经谢天谢地。', '在小村镇当中，也没有那么多富裕人家。', '奇怪的是，全身的伤，在半饥饿的状态好了个七七八八。', '询问乞丐李大哥，对方说大概是因为这片土地的天地灵气比较充沛的缘故。', '大多数人都受到恩惠。', '既然能够行动，李大哥决定带你一起讨乞。'], confirm_actions: ['b17'] },
     ],
 
     # 对话框
     dialogs: [
       { id: 'd1', title: '附近的声音：', content: '吵死了', confirm_actions: ['b9'] },
+      { id: 'd2', title: '乞丐：', content: '这是落月镇的土地庙啊', confirm_actions: ['b12'] },
+      { id: 'd3', title: '乞丐李大哥：', content: '平时讨乞的位置是在附近的东街市，我们一起走', confirm_actions: ['a9', 'b0'] },
     ]
   }
 ]
