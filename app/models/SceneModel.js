@@ -111,14 +111,14 @@ export default {
           case 'aside': // 旁白显示
             let aside = reader.getSceneAside(sceneId, item.params);
             if (aside != null) {
-              yield put(action('AsideModel/show')({ ...aside }));
+              yield put.resolve(action('AsideModel/show')({ ...aside }));
             }
             break;
 
           case 'dialog': // 对话框
             let dialog = reader.getSceneDialog(sceneId, item.params);
             if (dialog != null) {
-              yield put(action('DialogModel/show')({ ...dialog }));
+              yield put.resolve(action('DialogModel/show')({ ...dialog }));
             }
             break;
 
@@ -127,11 +127,11 @@ export default {
             break;
 
           case 'chat': // 选择对话框
-            yield put(action('StoryModel/selectChat')({ chatId: item.params }));
+            yield put.resolve(action('StoryModel/selectChat')({ chatId: item.params }));
             break;
 
           case 'scene': // 切换场景
-            yield put(action('enterScene')({ sceneId: item.params }));
+            yield put.resolve(action('enterScene')({ sceneId: item.params }));
             break;
 
           case 'delay': // 延时

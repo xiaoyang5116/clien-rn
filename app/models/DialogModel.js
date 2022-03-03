@@ -27,7 +27,7 @@ export default {
 
     // 响应点击事件
     *confirm({ payload }, { call, put, select }) {
-      yield put(action('hide')());
+      yield put.resolve(action('hide')());
     },
 
     // Modal隐藏后执行相应的动作，因iOS不支持多个Modal同时出现。
@@ -37,7 +37,7 @@ export default {
                       ? { actions: [...state.actions] }
                       : null;
       if (actions != null) {
-        yield put(action('SceneModel/processActions')(actions));
+        yield put.resolve(action('SceneModel/processActions')(actions));
       }
     },
 

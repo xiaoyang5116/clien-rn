@@ -17,7 +17,7 @@ export default {
     },
 
     *firstStep({ payload }, { call, put, select }) {
-      yield put(action('SceneModel/enterScene')({ sceneId: 'scene1' }));
+      yield put.resolve(action('SceneModel/enterScene')({ sceneId: 'scene1' }));
     },
   },
   

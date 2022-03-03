@@ -22,7 +22,7 @@ export default {
     *show({ payload }, { put, select }) {
       const state = yield select(state => state.AsideModel);
       if (state.sectionId != -1) {
-        yield put(action('hide')());
+        yield put.resolve(action('hide')());
         return;
       }
 
@@ -46,7 +46,7 @@ export default {
       
       let nextSectionId = state.sectionId + 1
       if (nextSectionId >= state.sections.length) {
-        yield put(action('hide')());
+        yield put.resolve(action('hide')());
         return;
       }
 
@@ -63,7 +63,7 @@ export default {
                       ? { actions: [...state.actions] }
                       : null;
       if (actions != null) {
-        yield put(action('SceneModel/processActions')(actions));
+        yield put.resolve(action('SceneModel/processActions')(actions));
       }
     },
 
