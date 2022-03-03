@@ -7,13 +7,10 @@ export default {
   namespace: 'AppModel',
 
   state: {
-      name: '12345',
-      age: 18,
   },
 
   effects: {
-    *login({ payload }, { call, put }) {
-      yield put(action('updateState')({ age: 1 }));
+    *login({ payload }, { call, put, select }) {
     },
 
     *firstStep({ payload }, { call, put, select }) {

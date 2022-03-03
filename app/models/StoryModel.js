@@ -17,7 +17,7 @@ export default {
     *click({ payload }, { call, put }) {
       yield put.resolve(action('SceneModel/processActions')({ actions: payload.click_actions }));
     },
-
+ 
     // 选择对话框
     // 参数: { chatId: xxx }
     *selectChat({ payload }, { call, put, select }) {
