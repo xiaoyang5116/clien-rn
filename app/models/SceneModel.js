@@ -11,6 +11,8 @@ import {
 import SceneConfigReader from "../utils/SceneConfigReader";
 import * as RootNavigation from '../utils/RootNavigation';
 
+var DEBUG_OUTPUT = true;
+
 class VarUtils {
 
   static generateVarUniqueId(sceneId, varId) {
@@ -99,14 +101,20 @@ export default {
     // 事件动作处理
     // 参数：actions=动作列表,如:['a1', 'a2' ...]
     *processActions({ payload }, { call, put, select }) {
-      console.debug(payload);
       const state = yield select(state => state.SceneModel);
       let sceneId = state.data.sceneId;
       let reader = state.data._scenesCfgReader;
       let actions = reader.getSceneActions(sceneId, payload.actions);
 
+      if (DEBUG_OUTPUT) {
+        console.debug("processActions: scene={0} action_list={1}".format(sceneId, payload.actions.join(', ')));
+      }
+
       for (let key in actions) {
         let item = actions[key];
+        if (DEBUG_OUTPUT) {
+          console.debug("---> detail: cmd={0} params=({1})".format(item.cmd, item.params));
+        }
         switch (item.cmd) {
           case 'aside': // 旁白显示
             let aside = reader.getSceneAside(sceneId, item.params);

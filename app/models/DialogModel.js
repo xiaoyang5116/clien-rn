@@ -10,6 +10,7 @@ export default {
     title: '',
     content: '',
     visible: false,
+    disappearing: false,
     actions: [],
   },
 
@@ -21,6 +22,7 @@ export default {
         title: payload.title, 
         content: payload.content, 
         visible: true,
+        disappearing: false,
         actions: payload.confirm_actions,
       }));
     },
@@ -36,13 +38,17 @@ export default {
       let actions = (state.actions != null && state.actions.length > 0)
                       ? { actions: [...state.actions] }
                       : null;
-      if (actions != null) {
+      if (actions != null && state.disappearing) {
+        state.disappearing = false;
         yield put.resolve(action('SceneModel/processActions')(actions));
       }
     },
 
     *hide({ payload }, { call, put }) {
-      yield put(action('updateState')({ visible: false }));
+      yield put(action('updateState')({ 
+        visible: false,
+        disappearing: true,
+      }));
     },
   },
   
