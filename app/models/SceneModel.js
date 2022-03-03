@@ -1,6 +1,7 @@
 
 import {
   action,
+  delay
 } from "../constants";
 
 import {
@@ -69,7 +70,7 @@ export default {
         }
       });
 
-      yield put.resolve(action('updateState')({ 
+      yield put(action('updateState')({ 
         data: {
           _scenesCfgReader: reader,
           _vars: initVars,
@@ -98,6 +99,7 @@ export default {
     // 事件动作处理
     // 参数：actions=动作列表,如:['a1', 'a2' ...]
     *processActions({ payload }, { call, put, select }) {
+      console.debug(payload);
       const state = yield select(state => state.SceneModel);
       let sceneId = state.data.sceneId;
       let reader = state.data._scenesCfgReader;
@@ -130,6 +132,10 @@ export default {
 
           case 'scene': // 切换场景
             yield put(action('enterScene')({ sceneId: item.params }));
+            break;
+
+          case 'delay': // 延时
+            yield call(delay, parseInt(item.params));
             break;
 
           case 'var': // 变量修改
@@ -234,7 +240,7 @@ export default {
       }
       return !failure;
     },
-    
+
   },
   
   reducers: {

@@ -17,9 +17,13 @@ class AsideModal extends PureComponent {
         this.props.dispatch(action('AsideModel/next')());
     }
 
+    _onModalHide = () => {
+        this.props.dispatch(action('AsideModel/onActionsAfterModalHidden')());
+    }
+
     render() {
         return (
-            <Modal style={{ flex: 1 }} isVisible={this.props.visible} animationIn="pulse" animationOut="fadeOut" animationOutTiming={600} backdropColor="#fff" backdropOpacity={1}>
+            <Modal style={{ flex: 1 }} onModalHide={this._onModalHide} isVisible={this.props.visible} animationIn="pulse" animationOut="fadeOut" animationOutTiming={600} backdropColor="#fff" backdropOpacity={1}>
                 <View style={[styles.center]}>
                     <View style={[this.props.style == 1 ? styles.parent1 : styles.parent2, styles.center]}>
                         <View style={{ flex: 4 }}>

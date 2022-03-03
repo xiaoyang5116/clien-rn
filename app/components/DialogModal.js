@@ -21,9 +21,13 @@ class DialogModal extends PureComponent {
         this.props.dispatch(action('DialogModel/hide')());
     }
 
+    _onModalHide = () => {
+        this.props.dispatch(action('DialogModel/onActionsAfterModalHidden')());
+    }
+
     render() {
         return (
-            <Modal isVisible={this.props.visible} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
+            <Modal isVisible={this.props.visible} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
                 <View style={[styles.center]}>
                     <View style={[styles.parent, styles.center]}>
                         <View style={{ flex: 4 }}>

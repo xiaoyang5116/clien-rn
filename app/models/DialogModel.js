@@ -27,12 +27,18 @@ export default {
 
     // 响应点击事件
     *confirm({ payload }, { call, put, select }) {
-      const state = yield select(state => state.DialogModel);
-      if (state.actions != null && state.actions.length > 0) {
-        yield put.resolve(action('SceneModel/processActions')({ actions: state.actions }));
-      }
-
       yield put(action('hide')());
+    },
+
+    // Modal隐藏后执行相应的动作，因iOS不支持多个Modal同时出现。
+    *onActionsAfterModalHidden({ }, { put, select }) {
+      let state = yield select(state => state.DialogModel);
+      let actions = (state.actions != null && state.actions.length > 0)
+                      ? { actions: [...state.actions] }
+                      : null;
+      if (actions != null) {
+        yield put(action('SceneModel/processActions')(actions));
+      }
     },
 
     *hide({ payload }, { call, put }) {

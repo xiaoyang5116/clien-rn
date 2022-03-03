@@ -56,14 +56,24 @@ export default {
       }));
     },
 
+    // Modal隐藏后执行相应的动作，因iOS不支持多个Modal同时出现。
+    *onActionsAfterModalHidden({ }, { put, select }) {
+      let state = yield select(state => state.AsideModel);
+      let actions = (state.actions != null && state.actions.length > 0)
+                      ? { actions: [...state.actions] }
+                      : null;
+      if (actions != null) {
+        yield put(action('SceneModel/processActions')(actions));
+      }
+    },
+
     // 隐藏旁白
     // 参数：无
-    *hide({ payload }, { put, select }) {
-      const state = yield select(state => state.AsideModel);
-      if (state.actions != null && state.actions.length > 0) {
-        yield put.resolve(action('SceneModel/processActions')({ actions: state.actions }));
-      }
-      yield put(action('resetState')());
+    *hide({ }, { put }) {
+      yield put(action('updateState')({
+        visible: false,
+        sectionId: -1,
+      }));
     }
   },
   
@@ -74,15 +84,5 @@ export default {
         ...payload
       };
     },
-
-    resetState(state, { }) {
-      return {
-        ...state,
-
-        confirmEvents: [],
-        visible: false,
-        sectionId: -1,
-      };
-    }
   },
 }

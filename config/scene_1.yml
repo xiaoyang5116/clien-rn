@@ -13,7 +13,7 @@
 #
 #     actions: 动作列表
 #       id: 动作ID
-#       cmd: 命令
+#       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var
 #       params: 参数
 #
 #     chats: 对话选项

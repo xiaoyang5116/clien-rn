@@ -13,7 +13,7 @@
 #
 #     actions: 动作列表
 #       id: 动作ID
-#       cmd: 命令
+#       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var
 #       params: 参数
 #
 #     chats: 对话选项
@@ -71,6 +71,7 @@ scenes: [
       { id: 'a5', cmd: 'var',  params: 'v5 = ON' },
       { id: 'a6', cmd: 'var',  params: 'v6 = ON' },
 
+      { id: 'b0', cmd: 'chat',  params: 'c2' },
       { id: 'b1', cmd: 'aside',  params: 'p1' },
       { id: 'b2', cmd: 'aside',  params: 'p2' },
       { id: 'b3', cmd: 'aside',  params: 'p3' },
@@ -78,7 +79,9 @@ scenes: [
       { id: 'b5', cmd: 'aside',  params: 'p5' },
       { id: 'b6', cmd: 'aside',  params: 'p6' },
       { id: 'b7', cmd: 'aside',  params: 'p7' },
-      { id: 'b7_test', cmd: 'dialog',  params: 'd1' },
+      { id: 'b8', cmd: 'dialog',  params: 'd1' },
+      { id: 'b9', cmd: 'aside',  params: 'p10' },
+      { id: 'b10', cmd: 'aside',  params: 'p11' },
     ],
 
     # 对话选项
@@ -94,8 +97,14 @@ scenes: [
           { title: '【询问周围的乞丐】', click_actions: ['b5'], andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v6'] }, 
           { title: '【尝试起身】', click_actions: ['b6'], andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v5'] }, 
           # 以下选项在【询问周围的乞丐】&【尝试起身】点击后替换
-          { title: '【询问周围的乞丐】', click_actions: ['b7_test'], andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v6'] }, 
-          { title: '【尝试起身】', click_actions: ['b7_test'], andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v5'] }, 
+          { title: '【询问周围的乞丐】', click_actions: ['b7'], andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v6'] }, 
+          { title: '【尝试起身】', click_actions: ['b7'], andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v5'] }, 
+        ],
+      },
+      { 
+        id: 'c2', desc: '你在一座破庙里面', 
+        options: [ 
+          { title: '【大声怪叫】', click_actions: ['b8'] }, 
         ],
       },
     ],
@@ -108,12 +117,14 @@ scenes: [
       { id: 'p4', style: 2, sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。'], confirm_actions: ['a4', 'a0'] },
       { id: 'p5', style: 2, sections: ['乞丐在睡觉，没有理你'], confirm_actions: ['a5', 'a0'] },
       { id: 'p6', style: 2, sections: ['动不了'], confirm_actions: ['a6', 'a0'] },
-      { id: 'p7', style: 2, sections: ['总得想个办法'], confirm_actions: ['a5', 'a6', 'a0'] },
+      { id: 'p7', style: 2, sections: ['总得想个办法'], confirm_actions: ['a5', 'a6', 'b0'] },
+      { id: 'p10', style: 1, sections: ['周围本来睡着的乞丐出声'], confirm_actions: ['b10'] },
+      { id: 'p11', style: 2, sections: ['你发现乞丐说的是一种没听过的语音，但是你竟然可以听懂。', '一股关于语言的记忆涌上脑海', '看来交流没问题'], confirm_actions: ['a0'] },
     ],
 
     # 对话框
     dialogs: [
-      { id: 'd1', title: '对话框标题', content: '对话框内容', confirm_actions: ['a5', 'a6', 'a0'] },
+      { id: 'd1', title: '附近的声音：', content: '吵死了', confirm_actions: ['b9'] },
     ]
   }
 ]
