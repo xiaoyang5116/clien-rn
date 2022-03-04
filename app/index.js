@@ -19,12 +19,16 @@ import { Provider, dva_create } from './constants';
 import AppModel from './models/AppModel';
 import SceneModel from './models/SceneModel';
 import StoryModel from './models/StoryModel';
-import DialogModel from './models/DialogModel';
-import AsideModel from './models/AsideModel';
+import MaskModel from './models/MaskModel';
 
 import MainPage from './pages/MainPage';
 
-const models = [AppModel, SceneModel, StoryModel, DialogModel, AsideModel];
+const models = [
+  AppModel,
+  SceneModel, 
+  StoryModel, 
+  MaskModel, 
+];
 
 const dva = dva_create();
 models.forEach((o) => {

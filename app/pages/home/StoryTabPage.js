@@ -8,8 +8,7 @@ import {
   StyleSheet,
 } from "../../constants";
 
-import DialogModal from '../../components/DialogModal';
-import AsideModal from '../../components/AsideModal';
+import MaskModal from '../../components/MaskModal';
 import { Button, Text, View, SectionList } from '../../constants/native-ui';
 
 class StoryTabPage extends Component {
@@ -53,8 +52,7 @@ class StoryTabPage extends Component {
             renderSectionHeader={this._renderSectionHeader}
           />
         </View>
-        <DialogModal />
-        <AsideModal />
+        <MaskModal />
       </View>
     );
   }

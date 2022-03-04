@@ -1,4 +1,6 @@
 
+require('./functions');
+
 export { 
     Component, 
     PureComponent 
@@ -7,7 +9,7 @@ export {
 export { 
     StyleSheet,
     Dimensions,
-    ScrollView
+    ScrollView,
 } from 'react-native';
 
 export {
@@ -19,7 +21,22 @@ export {
     create as dva_create 
 } from 'dva-core';
 
+export * from './keys';
+
 import { Dimensions } from 'react-native';
+
+// 是否调试模式
+export const DEBUG_MODE = true;
+
+// 输出调试信息
+export const debugMessage = (s, ...args) => {
+    if (DEBUG_MODE) console.debug((typeof(s) == 'string') ? s.format(args) : s);
+};
+
+// 输出错误信息
+export const errorMessage = (s, ...args) => {
+    if (DEBUG_MODE) console.error((typeof(s) == 'string') ? s.format(args) : s);
+};
 
 // 屏幕特性
 export const getWindowSize = () => { return Dimensions.get('window'); };
@@ -28,26 +45,3 @@ export const getWindowSize = () => { return Dimensions.get('window'); };
 export const action = type => payload => ({ type, payload });
 
 export const delay = time => new Promise(resolve => setTimeout(resolve, time))
-
-String.prototype.format = function(args) {
-    var result = this;
-    if (arguments.length > 0) {
-        if (arguments.length == 1 && typeof (args) == "object") {
-            for (var key in args) {
-                if(args[key]!=undefined){
-                    var reg = new RegExp("({" + key + "})", "g");
-                    result = result.replace(reg, args[key]);
-                }
-            }
-        }
-        else {
-            for (var i = 0; i < arguments.length; i++) {
-                if (arguments[i] != undefined) {
-                    var reg= new RegExp("({)" + i + "(})", "g");
-                    result = result.replace(reg, arguments[i]);
-                }
-            }
-        }
-    }
-    return result;
-}

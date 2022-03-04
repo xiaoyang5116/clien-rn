@@ -1,6 +1,7 @@
 
 import {
-  action
+  action,
+  errorMessage
 } from "../constants";
 
 export default {
@@ -28,14 +29,14 @@ export default {
       let sceneId = stateScene.data.sceneId;
 
       if (chatId == '' || sceneId == '') {
-        console.error("ChatId or SceneId not specified!");
+        errorMessage("ChatId or SceneId not specified!");
         return;
       }
 
       let scene = yield put.resolve(action('SceneModel/getScene')({ sceneId: sceneId }));
       let chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: sceneId, chatId: chatId }));
       if (scene == null || chat == null) {
-        console.error("Scene or Chat is null!");
+        errorMessage("Scene or Chat is null!");
         return;
       }
     

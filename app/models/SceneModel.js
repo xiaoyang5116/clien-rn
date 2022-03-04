@@ -1,17 +1,19 @@
 
 import {
   action,
-  delay
+  delay,
+  debugMessage,
+  errorMessage,
+  LocalCacheKeys
 } from "../constants";
 
 import {
   GetSceneDataApi,
 } from "../services/GetSceneDataApi";
 
+import LocalStorage from '../utils/LocalStorage';
 import SceneConfigReader from "../utils/SceneConfigReader";
 import * as RootNavigation from '../utils/RootNavigation';
-
-var DEBUG_OUTPUT = true;
 
 class VarUtils {
 
@@ -61,13 +63,26 @@ export default {
         }
       }
 
+      // 加载本地缓存
+      let sceneIdCache = yield call(LocalStorage.get, LocalCacheKeys.SCENE_ID);
+      let varsCache = yield call(LocalStorage.get, LocalCacheKeys.SCENES_VARS);
+      // debugMessage(sceneIdCache);
+      // debugMessage(varsCache);
+      
       let reader = new SceneConfigReader(scenes);
       reader.getSceneIds().forEach((sceneId) => {
         let vars = reader.getSceneVars(sceneId);
         if (vars != null) {
           vars.forEach((e) => {
+            let value = e.defaulValue;
             let uniVarId = "{0}_{1}".format(sceneId, e.id).toUpperCase();
-            initVars.push({ ...e, value: e.defaulValue, id: uniVarId });
+            if (varsCache != null) {
+              let varCache = VarUtils.getVar(varsCache, sceneId, e.id);
+              if (varCache != null && varCache.min >= e.min && varCache.max <= e.max) {
+                value = varCache.value;
+              }
+            }
+            initVars.push({ ...e, value: value, id: uniVarId });
           });
         }
       });
@@ -76,7 +91,7 @@ export default {
         data: {
           _scenesCfgReader: reader,
           _vars: initVars,
-          sceneId: state.data.sceneId,          
+          sceneId: ((sceneIdCache != null) ? sceneIdCache : state.data.sceneId),          
         }
       }));
     },
@@ -90,12 +105,16 @@ export default {
       
       let scene = reader.getScene(sceneId);
       if (scene == null) {
-        console.error("SceneId={0} not found.".format(sceneId));
+        errorMessage("SceneId={0} not found.", sceneId);
         return;
       }
 
+      // 场景必须在这里
+      RootNavigation.navigate('Home');
+
       state.data.sceneId = sceneId;
       yield put.resolve(action('processActions')({ actions: scene.enter_actions }));
+      yield call(LocalStorage.set, LocalCacheKeys.SCENE_ID, sceneId);
     },
 
     // 事件动作处理
@@ -105,28 +124,24 @@ export default {
       let sceneId = state.data.sceneId;
       let reader = state.data._scenesCfgReader;
       let actions = reader.getSceneActions(sceneId, payload.actions);
-
-      if (DEBUG_OUTPUT) {
-        console.debug("processActions: scene={0} action_list={1}".format(sceneId, payload.actions.join(', ')));
-      }
+      debugMessage("processActions: scene={0} action_list={1}", sceneId, payload.actions.join(', '));
 
       for (let key in actions) {
         let item = actions[key];
-        if (DEBUG_OUTPUT) {
-          console.debug("---> detail: cmd={0} params=({1})".format(item.cmd, item.params));
-        }
+        debugMessage("---> detail: cmd={0} params=({1})", item.cmd, item.params);
+
         switch (item.cmd) {
           case 'aside': // 旁白显示
             let aside = reader.getSceneAside(sceneId, item.params);
             if (aside != null) {
-              yield put.resolve(action('AsideModel/show')({ ...aside }));
+              yield put.resolve(action('MaskModel/showAside')({ ...aside }));
             }
             break;
 
           case 'dialog': // 对话框
             let dialog = reader.getSceneDialog(sceneId, item.params);
             if (dialog != null) {
-              yield put.resolve(action('DialogModel/show')({ ...dialog }));
+              yield put.resolve(action('MaskModel/showDialog')({ ...dialog }));
             }
             break;
 
@@ -177,7 +192,11 @@ export default {
 
             if (updateValue < varRef.min) updateValue = varRef.min;
             if (updateValue > varRef.max) updateValue = varRef.max;
-            varRef.value = updateValue;
+
+            if (varRef.value != updateValue) {
+              varRef.value = updateValue;
+              LocalStorage.set(LocalCacheKeys.SCENES_VARS, state.data._vars);
+            }
             break;
         }
       }

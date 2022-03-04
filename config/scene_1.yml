@@ -59,7 +59,6 @@ scenes: [
 
     # 动作定义
     actions: [
-      { id: 'a0', cmd: 'navigate',  params: 'Home' },
       { id: 'a1', cmd: 'chat',  params: 'c1' },
       { id: 'a2', cmd: 'chat',  params: 'c2' },
       { id: 'a3', cmd: 'chat',  params: 'c3' },
@@ -114,7 +113,7 @@ scenes: [
 
     # 旁白
     asides: [
-      { id: 'p1', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], confirm_actions: ['a0', 'a1'] },
+      { id: 'p1', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], confirm_actions: ['a1'] },
     ],
 
    # 对话框

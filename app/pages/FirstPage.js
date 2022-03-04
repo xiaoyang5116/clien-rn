@@ -14,7 +14,7 @@ import {
   ScrollView
 } from "../constants";
 
-import AsideModal from '../components/AsideModal';
+import MaskModal from '../components/MaskModal';
 import * as RootNavigation from '../utils/RootNavigation'
 import { Button, Text, View } from '../constants/native-ui';
 
@@ -96,7 +96,7 @@ let html = HTML_TPL.replace("{CONTENT}", TXT);
 class FirstPage extends Component {
 
   _onClick = (e) => {
-    this.props.dispatch(action('AppModel/firstStep')({ step: 1}));
+    this.props.dispatch(action('AppModel/firstStep')());
   }
 
   render() {
@@ -114,8 +114,8 @@ class FirstPage extends Component {
           <View style={styles.button}>
             <Button title='下一页' color="#bcfefe" onPress={this._onClick} />
           </View>
-          <AsideModal />
         </View>
+        <MaskModal />
       </View>
     );
   }

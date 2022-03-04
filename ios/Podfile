@@ -12,6 +12,8 @@ target 'wzproject' do
     :hermes_enabled => false
   )
 
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   target 'wzprojectTests' do
     inherit! :complete
     # Pods for testing
