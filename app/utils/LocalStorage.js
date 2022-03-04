@@ -20,7 +20,7 @@ export default class LocalStorage {
   }
 
   static async set(key, value) {
-    let path = LocalStorage._getFullFileName(key);    
+    let path = LocalStorage._getFullFileName(key);
     return RNFS.writeFile(path, JSON.stringify(value), 'utf8')
       .then((success) => {
         return true;
