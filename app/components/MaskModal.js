@@ -43,11 +43,11 @@ class MaskModal extends PureComponent {
                             </View>
                         </View>
                         <View style={{ flex: 2, justifyContent: 'center' }}>
-                            <View style={{backgroundColor: "#003964", width: 280, marginBottom: 3}}>
-                                <Button title='确认' color="#bcfefe" onPress={this._onDialogConfirm} />
+                            <View style={[dlgStyles.bottomBanner, {backgroundColor: this.props.currentStyles.button.backgroundColor}]}>
+                                <Button title='确认' onPress={this._onDialogConfirm} color={this.props.currentStyles.button.color} />
                             </View>
-                            <View style={{backgroundColor: "#003964", width: 280, marginTop: 3}}>
-                                <Button title='取消' color="#bcfefe" onPress={this._onDialogCancel} />
+                            <View style={[dlgStyles.bottomBanner, {backgroundColor: this.props.currentStyles.button.backgroundColor}]}>
+                                <Button title='取消' onPress={this._onDialogCancel} color={this.props.currentStyles.button.color} />
                             </View>
                         </View>
                     </View>
@@ -70,8 +70,8 @@ class MaskModal extends PureComponent {
                             </View>
                         </View>
                         <View style={asideStyles.bottomContainer}>
-                            <View style={asideStyles.bottomBanner}>
-                                <Button title='>>>' color="#bcfefe" onPress={this._onAsideNext} />
+                            <View style={[asideStyles.bottomBanner, {backgroundColor: this.props.currentStyles.button.backgroundColor}]}>
+                                <Button title='>>>' onPress={this._onAsideNext} color={this.props.currentStyles.button.color} />
                             </View>
                         </View>
                     </View>
@@ -112,6 +112,10 @@ const dlgStyles = StyleSheet.create({
         color: 'black',
         textAlign: 'center'
     },
+    bottomBanner: {
+        width: 280, 
+        marginBottom: 3
+    },
 });
 
 const asideStyles = StyleSheet.create({
@@ -147,7 +151,6 @@ const asideStyles = StyleSheet.create({
         justifyContent: 'center'
     },
     bottomBanner: {
-        backgroundColor: "#003964", 
         width: 280, 
         marginBottom: 3
     },

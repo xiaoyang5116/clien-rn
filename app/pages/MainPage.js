@@ -25,7 +25,7 @@ const Stack = createNativeStackNavigator();
 class MainPage extends Component {
   render() {
     return (
-      <NavigationContainer ref={navigationRef}>
+      <NavigationContainer theme={{ colors: this.props.currentStyles.navigation }} ref={navigationRef}>
         <Stack.Navigator initialRouteName='First'>
           <Stack.Screen name='Home' options={{ headerShown: false }} component={HomePage} />
           <Stack.Screen name='Article' options={{ headerShown: false }} component={ArticlePage} />

@@ -23,17 +23,17 @@ class ProfileTabPage extends Component {
 
     render() {
         return (
-            <View style={styles.viewContainer}>
+            <View style={this.props.currentStyles.viewContainer}>
                 <Text>个人信息页面</Text>
                 <Image style={styles.logo} source={{ uri: 'https://imgo.928vbi.com/img2020/6/11/15/2020061162540848.jpg' }} />
-                <View style={styles.buttonContainer}>
-                    <Button title='清档' onPress={this._onClearArchive} color="#bcfefe" />
+                <View style={[styles.buttonContainer, {backgroundColor: this.props.currentStyles.button.backgroundColor}]}>
+                    <Button title='清档' onPress={this._onClearArchive} color={this.props.currentStyles.button.color} />
                 </View>
-                <View style={styles.buttonContainer}>
-                    <Button title='皮肤1' color="#bcfefe" onPress={() => { this._onChangeTheme(0) }} />
+                <View style={[styles.buttonContainer, {backgroundColor: this.props.currentStyles.button.backgroundColor}]}>
+                    <Button title='皮肤1' onPress={() => { this._onChangeTheme(0) }} color={this.props.currentStyles.button.color} />
                 </View>
-                <View style={styles.buttonContainer}>
-                    <Button title='皮肤2' color="#bcfefe" onPress={() => { this._onChangeTheme(1) }} />
+                <View style={[styles.buttonContainer, {backgroundColor: this.props.currentStyles.button.backgroundColor}]}>
+                    <Button title='皮肤2' onPress={() => { this._onChangeTheme(1) }} color={this.props.currentStyles.button.color} />
                 </View>
             </View>
         );
@@ -42,11 +42,6 @@ class ProfileTabPage extends Component {
 }
 
 const styles = StyleSheet.create({
-    viewContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: "center"
-    },
     logo: {
         width: 80,
         height: 80
@@ -54,7 +49,6 @@ const styles = StyleSheet.create({
     buttonContainer: {
         width: 100,
         marginTop: 25,
-        backgroundColor: '#003964'
     }
 });
 

@@ -5,7 +5,6 @@ import {
   action,
   connect,
   Component,
-  StyleSheet,
 } from "../../constants";
 
 import MaskModal from '../../components/MaskModal';
@@ -23,28 +22,28 @@ class StoryTabPage extends Component {
   _renderSectionHeader = ({ section: { title } }) => {
     return (
       <View>
-        <Text style={styles.chatSectionHeader}>{title}</Text>
+        <Text style={this.props.currentStyles.chatHeader}>{title}</Text>
       </View>
     );
   }
 
   _renderItem = (data) => {
     return (
-      <View style={styles.chatItem}>
-        <Button title={data.item.title} onPress={() => this._onClickItem(data)} color="#bcfefe" />
+      <View style={this.props.currentStyles.chatItem}>
+        <Button title={data.item.title} onPress={() => this._onClickItem(data)} color={this.props.currentStyles.button.color} />
       </View>
     );
   }
 
   render() {
     return (
-      <View style={styles.viewContainer}>
-        <View style={styles.posBarContainer}>
-          <Text style={[styles.posLabel, this.props.currentStyles.fontColor]}>位置: {this.props.position}</Text>
+      <View style={this.props.currentStyles.viewContainer}>
+        <View style={this.props.currentStyles.positionBar}>
+          <Text style={[this.props.currentStyles.positionLabel, {color: this.props.currentStyles.navigation.text}]}>位置: {this.props.position}</Text>
         </View>
-        <View style={styles.chatContainer}>
+        <View style={this.props.currentStyles.chatContainer}>
           <SectionList
-            style={styles.chatSectionList}
+            style={this.props.currentStyles.chatList}
             sections={this.props.sectionData}
             extraData={this.props}
             keyExtractor={(item, index) => item + index}
@@ -57,44 +56,5 @@ class StoryTabPage extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  viewContainer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  posBarContainer: {
-    alignSelf: 'stretch'
-  },
-  posLabel: {
-    fontSize: 18, 
-    padding: 10, 
-    textAlign: 'left' 
-  },
-  chatContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    marginLeft: 10,
-    marginRight: 10
-  },
-  chatSectionList: {
-    alignSelf: 'stretch'
-  },
-  chatSectionHeader: {
-    fontSize: 18, 
-    flex:1, 
-    paddingTop: 10, 
-    paddingBottom: 10, 
-    textAlign: 'center', 
-    backgroundColor: "#fff"
-  },
-  chatItem: {
-    backgroundColor: "#003964",
-    paddingTop: 2,
-    paddingBottom: 2,
-    marginVertical: 2
-  }
-});
 
 export default connect((state) => ({ ...state.StoryModel, ...state.AppModel }))(StoryTabPage);

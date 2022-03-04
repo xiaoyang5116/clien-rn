@@ -108,11 +108,11 @@ class FirstPage extends Component {
           <RenderHTML contentWidth={size.width} source={{html: html}} />
         </ScrollView>
         <View style={styles.bottomContainer}>
-          <View style={styles.button}>
-            <Button title='上一页' color="#bcfefe" onPress={()=>RootNavigation.navigate('Home')} disabled={true} />
+          <View style={[styles.button, {backgroundColor: this.props.currentStyles.button.backgroundColor}]}>
+            <Button title='上一页' onPress={()=>RootNavigation.navigate('Home')} color={this.props.currentStyles.button.color} />
           </View>
-          <View style={styles.button}>
-            <Button title='下一页' color="#bcfefe" onPress={this._onClick} />
+          <View style={[styles.button, {backgroundColor: this.props.currentStyles.button.backgroundColor}]}>
+            <Button title='下一页' onPress={this._onClick} color={this.props.currentStyles.button.color} />
           </View>
         </View>
         <MaskModal />
@@ -145,7 +145,6 @@ const styles = StyleSheet.create({
   },
   button: {
     width:100, 
-    backgroundColor:'#003964'
   }
 });
 
