@@ -1,12 +1,16 @@
 
-import RNFS from 'react-native-fs';
+import RNFS, { stat } from 'react-native-fs';
 import CryptoJS from 'crypto-js';
 
 export default class LocalStorage {
 
+  static _getRootPath() {
+    return "{0}/LocalStorage".format(RNFS.DocumentDirectoryPath);
+  }
+
   static _getFullFileName(key) {
     let filename = CryptoJS.MD5("LocalStorage_{0}".format(key)).toString();
-    return "{0}/{1}.data".format(RNFS.DocumentDirectoryPath, filename);
+    return "{0}/{1}.data".format(LocalStorage._getRootPath(), filename);
   }
 
   static async get(key, defaultValue = null) {
@@ -21,12 +25,22 @@ export default class LocalStorage {
 
   static async set(key, value) {
     let path = LocalStorage._getFullFileName(key);
+    await RNFS.mkdir(LocalStorage._getRootPath());
     return RNFS.writeFile(path, JSON.stringify(value), 'utf8')
       .then((success) => {
         return true;
       })
       .catch((err) => {
         return false;
+      });
+  }
+
+  static async clear() {
+    let path = LocalStorage._getRootPath();
+    RNFS.unlink(path)
+      .then(() => {
+      })
+      .catch((err) => {
       });
   }
 

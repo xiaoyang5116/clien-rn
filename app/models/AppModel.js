@@ -1,7 +1,6 @@
 
 import { 
   action,
-  LocalCacheKeys
 } from "../constants";
 
 import LocalStorage from '../utils/LocalStorage';
@@ -28,7 +27,7 @@ export default {
       let state = yield select(state => state.SceneModel);
       state.data.sceneId = '';
 
-      yield call(LocalStorage.remove, LocalCacheKeys.SCENE_ID, LocalCacheKeys.SCENES_VARS);
+      yield call(LocalStorage.clear);
       yield put.resolve(action('SceneModel/reload')({}));
       
       RootNavigation.navigate('First');
