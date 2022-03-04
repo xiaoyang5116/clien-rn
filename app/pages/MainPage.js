@@ -36,4 +36,4 @@ class MainPage extends Component {
   }
 }
 
-export default connect(({ AppModel }) => ({ ...AppModel }))(MainPage);
+export default connect((state) => ({ ...state.AppModel }))(MainPage);

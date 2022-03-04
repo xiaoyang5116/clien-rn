@@ -46,4 +46,4 @@ class HomePage extends Component {
   
 }
 
-export default connect(({ AppModel }) => ({ ...AppModel }))(HomePage);
+export default connect((state) => ({ ...state.AppModel }))(HomePage);

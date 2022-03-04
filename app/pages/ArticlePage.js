@@ -90,4 +90,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(({ AppModel }) => ({ ...AppModel }))(ArticlePage);
+export default connect((state) => ({ ...state.AppModel }))(ArticlePage);

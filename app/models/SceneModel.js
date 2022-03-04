@@ -282,6 +282,6 @@ export default {
   subscriptions: {
     setup({ dispatch }) {
       dispatch({ 'type':  'reload'});
-    }
+    },
   }
 }

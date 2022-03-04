@@ -10,6 +10,7 @@ export {
     StyleSheet,
     Dimensions,
     ScrollView,
+    DeviceEventEmitter,
 } from 'react-native';
 
 export {

@@ -163,4 +163,4 @@ const asideStyles = StyleSheet.create({
     },
 });
 
-export default connect(({ MaskModel }) => ({ ...MaskModel }))(MaskModal);
+export default connect((state) => ({ ...state.MaskModel, ...state.AppModel }))(MaskModal);

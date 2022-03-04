@@ -15,6 +15,12 @@ class ProfileTabPage extends Component {
         this.props.dispatch(action('AppModel/clearArchive')());
     }
 
+    _onChangeTheme(themeId) {
+        if (themeId >= 0) {
+            this.props.dispatch(action('AppModel/changeTheme')({ themeId: themeId }));
+        }
+    }
+
     render() {
         return (
             <View style={styles.viewContainer}>
@@ -22,6 +28,12 @@ class ProfileTabPage extends Component {
                 <Image style={styles.logo} source={{ uri: 'https://imgo.928vbi.com/img2020/6/11/15/2020061162540848.jpg' }} />
                 <View style={styles.buttonContainer}>
                     <Button title='清档' onPress={this._onClearArchive} color="#bcfefe" />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <Button title='皮肤1' color="#bcfefe" onPress={() => { this._onChangeTheme(0) }} />
+                </View>
+                <View style={styles.buttonContainer}>
+                    <Button title='皮肤2' color="#bcfefe" onPress={() => { this._onChangeTheme(1) }} />
                 </View>
             </View>
         );
@@ -46,4 +58,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect(({ AppModel }) => ({ ...AppModel }))(ProfileTabPage);
+export default connect((state) => ({ ...state.AppModel }))(ProfileTabPage);

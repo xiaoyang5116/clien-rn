@@ -40,7 +40,7 @@ class StoryTabPage extends Component {
     return (
       <View style={styles.viewContainer}>
         <View style={styles.posBarContainer}>
-          <Text style={styles.posLabel}>位置: {this.props.position}</Text>
+          <Text style={[styles.posLabel, this.props.currentStyles.fontColor]}>位置: {this.props.position}</Text>
         </View>
         <View style={styles.chatContainer}>
           <SectionList
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(({ StoryModel }) => ({ ...StoryModel }))(StoryTabPage);
+export default connect((state) => ({ ...state.StoryModel, ...state.AppModel }))(StoryTabPage);

@@ -149,4 +149,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(({ AppModel }) => ({ ...AppModel }))(FirstPage);
+export default connect((state) => ({ ...state.AppModel }))(FirstPage);

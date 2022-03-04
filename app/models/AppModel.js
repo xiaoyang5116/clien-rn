@@ -5,15 +5,36 @@ import {
 
 import LocalStorage from '../utils/LocalStorage';
 import * as RootNavigation from '../utils/RootNavigation';
+import * as Themes from '../themes';
 
 export default {
   namespace: 'AppModel',
 
   state: {
+    // 全局状态，所有Model都接收到。
+    themeId: 0,
+    currentStyles: Themes.default.Normal,
   },
 
   effects: {
     *login({ payload }, { call, put, select }) {
+    },
+
+    *changeTheme({ payload }, { call, put, select }) {
+      let state = yield select(state => state.AppModel);
+      let themeId = payload.themeId;
+      let selectStyles = state.currentStyles;
+
+      if (themeId == 0)
+        selectStyles = Themes.default.Normal;
+      else if (themeId == 1) {
+        selectStyles = Themes.default.Dark;
+      }
+
+      yield put(action('updateState')({ 
+        themeId: payload.themeId, 
+        currentStyles: selectStyles 
+      }));
     },
 
     *firstStep({ payload }, { call, put, select }) {

@@ -9,25 +9,18 @@
 import React from 'react';
 
 import {
-  View,
   AppRegistry
 } from 'react-native';
 
 import { name as appName } from '../app.json';
-import { Provider, dva_create } from './constants';
-
-import AppModel from './models/AppModel';
-import SceneModel from './models/SceneModel';
-import StoryModel from './models/StoryModel';
-import MaskModel from './models/MaskModel';
-
+import { Provider, dva_create, Component } from './constants';
 import MainPage from './pages/MainPage';
 
 const models = [
-  AppModel,
-  SceneModel, 
-  StoryModel, 
-  MaskModel, 
+  require('./models/AppModel').default,
+  require('./models/SceneModel').default,
+  require('./models/StoryModel').default,
+  require('./models/MaskModel').default,
 ];
 
 const dva = dva_create();
@@ -36,14 +29,14 @@ models.forEach((o) => {
 });
 dva.start();
 
-const store = dva._store;
-
-const App = () => {
-  return (
-    <Provider store={store}>
-      <MainPage />
-    </Provider>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Provider store={dva._store}>
+        <MainPage />
+      </Provider>
+    );
+  }
 }
 
 export default App;
