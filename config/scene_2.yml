@@ -95,6 +95,7 @@ scenes: [
       { id: 'b15', cmd: 'aside',  params: 'p15' },
       { id: 'b16', cmd: 'aside',  params: 'p16' },
       { id: 'b17', cmd: 'dialog',  params: 'd3' },
+      { id: 'b18', cmd: 'scene',  params: 'scene3' },
     ],
 
     # 对话选项
@@ -121,7 +122,7 @@ scenes: [
           { title: '【询问  这是在哪】', click_actions: ['b11'], andVarsOn: ['v7'], andVarsOff: ['v8'] }, 
           { title: '【承认】', click_actions: ['b13'], andVarsOn: ['v8'], andVarsOff: ['v9'] }, 
           { title: '【拒绝】', click_actions: ['b14'], andVarsOn: ['v8'], andVarsOff: ['v9'] }, 
-          { title: '【离开破庙】', click_actions: [], andVarsOn: ['v9'] }, 
+          { title: '【离开破庙】', click_actions: ['b18'], andVarsOn: ['v9'] }, 
         ],
       },
     ],

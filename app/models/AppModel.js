@@ -1,6 +1,7 @@
 
 import { 
   action,
+  LocalCacheKeys,
 } from "../constants";
 
 import LocalStorage from '../utils/LocalStorage';
@@ -17,7 +18,11 @@ export default {
   },
 
   effects: {
-    *login({ payload }, { call, put, select }) {
+    *reload({ payload }, { call, put, select }) {
+      let themeId = yield call(LocalStorage.get, LocalCacheKeys.THEME_ID);
+      if (themeId != null) {
+        yield put.resolve(action('changeTheme')({ themeId: parseInt(themeId) }));
+      }
     },
 
     *changeTheme({ payload }, { call, put, select }) {
@@ -35,6 +40,7 @@ export default {
         themeId: payload.themeId, 
         currentStyles: selectStyles 
       }));
+      yield call(LocalStorage.set, LocalCacheKeys.THEME_ID, themeId);
     },
 
     *firstStep({ payload }, { call, put, select }) {
@@ -63,4 +69,10 @@ export default {
       };
     }
   },
+
+  subscriptions: {
+    setup({ dispatch }) {
+      dispatch({ 'type':  'reload'});
+    },
+  }
 }

@@ -133,7 +133,7 @@ export default {
         switch (item.cmd) {
           case 'aside': // 旁白显示
             let aside = reader.getSceneAside(sceneId, item.params);
-            if (aside != null) {
+            if (aside != null && (yield put.resolve(action('testCondition')(aside)))) {
               yield put.resolve(action('MaskModel/showAside')({ ...aside }));
             }
             break;
