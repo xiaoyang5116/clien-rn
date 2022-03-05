@@ -34,7 +34,7 @@
 #       id: 旁白ID
 #       style: 风格ID
 #       sections: 旁白段落
-#       confirm_actions: 旁白结束事件触发的动作ID列表
+#       finish_actions: 旁白结束事件触发的动作ID列表
 #
 #     dialogs: 对话框列表
 #       id: 对话框ID
@@ -113,7 +113,7 @@ scenes: [
 
     # 旁白
     asides: [
-      { id: 'p1', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], confirm_actions: ['a1'] },
+      { id: 'p1', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], finish_actions: ['a1'] },
     ],
 
    # 对话框

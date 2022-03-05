@@ -44,7 +44,7 @@ export default {
     *showAside({ payload }, { put, select }) {
       const state = yield select(state => state.MaskModel);
       state.data._disappearing = false;
-      state.data._actions = payload.confirm_actions;
+      state.data._actions = payload.finish_actions;
       state.data._aside._sectionId = 0;
       state.data._aside._sections = payload.sections;
       //
@@ -59,7 +59,7 @@ export default {
 
     // 响应确认按钮
     *onDialogConfirm({ payload }, { call, put, select }) {
-      yield put.resolve(action('hide')());
+      yield put.resolve(action('hide')({ success: true }));
     },
 
     // 响应下一段旁白
@@ -70,7 +70,7 @@ export default {
       
       let nextSectionId = state.data._aside._sectionId + 1
       if (nextSectionId >= state.data._aside._sections.length) {
-        yield put.resolve(action('hide')());
+        yield put.resolve(action('hide')({ success: true }));
         return;
       }
 
@@ -95,7 +95,11 @@ export default {
 
     *hide({ payload }, { put, select }) {
       let state = yield select(state => state.MaskModel);
-      state.data._disappearing = true;
+      if (payload != null && payload.success != undefined && payload.success) {
+        state.data._disappearing = true;
+      } else {
+        state.data._actions = [];
+      }
       yield put(action('updateState')({ 
         visible: false,
       }));
