@@ -46,7 +46,7 @@ export default {
 
   effects: {
     // 重新加载&初始化
-    *reload({ payload }, { call, put, select }) {
+    *reload({ }, { call, put, select }) {
       let sceneIdList = ['scene_1', 'scene_2', 'scene_3'];
       const state = yield select(state => state.SceneModel);
 

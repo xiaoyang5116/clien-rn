@@ -15,13 +15,13 @@ export default {
   effects: {
 
     // 对话选项选中
-    *click({ payload }, { call, put }) {
+    *click({ payload }, { put }) {
       yield put.resolve(action('SceneModel/processActions')({ actions: payload.click_actions }));
     },
  
     // 选择对话框
     // 参数: { chatId: xxx }
-    *selectChat({ payload }, { call, put, select }) {
+    *selectChat({ payload }, { put, select }) {
       const state = yield select((state) => state.StoryModel);
       const stateScene = yield select((state) => state.SceneModel);
 

@@ -58,7 +58,7 @@ class MaskModal extends PureComponent {
 
     _renderForAside() {
         return (
-            <Modal style={{ flex: 1 }} useNativeDriver={true} onModalHide={this._onModalHide} isVisible={this.props.visible} animationIn="fadeIn" animationOut="fadeOut"  backdropColor="#fff" backdropOpacity={1}>
+            <Modal isVisible={this.props.visible} style={{ flex: 1 }} useNativeDriver={true} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut"  backdropColor="#fff" backdropOpacity={1}>
                 <View style={[asideStyles.center]}>
                     <View style={[this.props.subStype == 1 ? asideStyles.parent1 : asideStyles.parent2, asideStyles.center]}>
                         <View style={{ flex: 4 }}>

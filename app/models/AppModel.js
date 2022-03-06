@@ -18,7 +18,7 @@ export default {
   },
 
   effects: {
-    *reload({ payload }, { call, put, select }) {
+    *reload({ }, { call, put }) {
       let themeId = yield call(LocalStorage.get, LocalCacheKeys.THEME_ID);
       if (themeId != null) {
         yield put.resolve(action('changeTheme')({ themeId: parseInt(themeId) }));
@@ -43,7 +43,7 @@ export default {
       yield call(LocalStorage.set, LocalCacheKeys.THEME_ID, themeId);
     },
 
-    *firstStep({ payload }, { call, put, select }) {
+    *firstStep({ }, { put, select }) {
       const defaultSceneId = 'scene1';
       let state = yield select(state => state.SceneModel);
       let sceneId = (state.data.sceneId != '') ? state.data.sceneId : 'scene1';
