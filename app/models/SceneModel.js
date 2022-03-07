@@ -47,7 +47,7 @@ export default {
   effects: {
     // 重新加载&初始化
     *reload({ }, { call, put, select }) {
-      let sceneIdList = ['scene_1', 'scene_2', 'scene_3'];
+      let sceneIdList = ['scene_1', 'scene_2', 'scene_3', 'scene_4', 'scene_5', 'scene_6', 'scene_7', 'scene_8'];
       const state = yield select(state => state.SceneModel);
 
       let scenes = [];
@@ -159,6 +159,10 @@ export default {
 
           case 'delay': // 延时
             yield call(delay, parseInt(item.params));
+            break;
+
+          case 'copper': // 铜币
+            yield put.resolve(action('UserModel/alertCopper')({ value: parseInt(item.params) }));
             break;
 
           case 'var': // 变量修改

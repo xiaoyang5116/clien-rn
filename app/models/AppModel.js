@@ -11,8 +11,9 @@ import * as Themes from '../themes';
 export default {
   namespace: 'AppModel',
 
+  // 所有Model都接收到
   state: {
-    // 全局状态，所有Model都接收到。
+    // 视图相关
     themeId: 0,
     currentStyles: Themes.default.Normal,
   },

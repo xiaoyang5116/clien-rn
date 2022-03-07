@@ -18,6 +18,7 @@ import MainPage from './pages/MainPage';
 
 const models = [
   require('./models/AppModel').default,
+  require('./models/UserModel').default,
   require('./models/SceneModel').default,
   require('./models/StoryModel').default,
   require('./models/MaskModel').default,
