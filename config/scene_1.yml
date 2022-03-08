@@ -64,7 +64,6 @@ scenes: [
       { id: 'a1', cmd: 'chat',  params: 'c1' },
       { id: 'a2', cmd: 'chat',  params: 'c2' },
       { id: 'a3', cmd: 'chat',  params: 'c3' },
-      { id: 'a4', cmd: 'var',    params: 'v1 = ON' },
       { id: 'a5', cmd: 'chat',  params: 'c4' },
       { id: 'a6', cmd: 'chat',  params: 'c5' },
       { id: 'a7', cmd: 'scene',  params: 'scene2' },
@@ -87,7 +86,7 @@ scenes: [
       { 
         id: 'c2', desc: '再等等', 
         options: [ 
-          { title: '<<< 返回', click_actions: ['a4', 'a1'] }, 
+          { title: '<<< 返回', click_actions: ['a1'], varsOn: ['v1'] }, 
         ]
       },
       # 乞丐第二次点击出现

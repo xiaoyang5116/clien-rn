@@ -69,16 +69,6 @@ scenes: [
     # 动作定义
     actions: [
       { id: 'a0', cmd: 'chat', params: 'c1' },
-      { id: 'a1', cmd: 'var',  params: 'v1 = ON' },
-      { id: 'a2', cmd: 'var',  params: 'v2 = ON' },
-      { id: 'a3', cmd: 'var',  params: 'v3 = ON' },
-      { id: 'a4', cmd: 'var',  params: 'v4 = ON' },
-      { id: 'a5', cmd: 'var',  params: 'v5 = ON' },
-      { id: 'a6', cmd: 'var',  params: 'v6 = ON' },
-      { id: 'a7', cmd: 'var',  params: 'v7 = ON' },
-      { id: 'a8', cmd: 'var',  params: 'v8 = ON' },
-      { id: 'a9', cmd: 'var',  params: 'v9 = ON' },
-
       { id: 'b0', cmd: 'chat',  params: 'c2' },
       { id: 'b1', cmd: 'aside',  params: 'p1' },
       { id: 'b2', cmd: 'aside',  params: 'p2' },
@@ -131,16 +121,16 @@ scenes: [
 
     # 旁白
     asides: [
-      { id: 'p1', style: 2, sections: ['这是一个小破庙，大概不到二十平米，由土垒成，而不是砖建造的这种建筑即使是农村也几乎见不到了。'], finish_actions: ['a1', 'a0'] },
-      { id: 'p2', style: 2, sections: ['破庙的房顶是木头和茅草，有些漏风'], finish_actions: ['a2', 'a0'] },
-      { id: 'p3', style: 2, sections: ['一身酸痛袭来，怎么回事？'], finish_actions: ['a3', 'a0'] },
-      { id: 'p4', style: 2, sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。'], finish_actions: ['a4', 'a0'] },
-      { id: 'p5', style: 2, sections: ['乞丐在睡觉，没有理你'], finish_actions: ['a5', 'a0'] },
-      { id: 'p6', style: 2, sections: ['动不了'], finish_actions: ['a6', 'a0'] },
-      { id: 'p7', style: 2, sections: ['总得想个办法'], finish_actions: ['a5', 'a6', 'b0'] },
+      { id: 'p1', style: 2, sections: ['这是一个小破庙，大概不到二十平米，由土垒成，而不是砖建造的这种建筑即使是农村也几乎见不到了。'], finish_actions: ['a0'], varsOn: ['v1'] },
+      { id: 'p2', style: 2, sections: ['破庙的房顶是木头和茅草，有些漏风'], finish_actions: ['a0'], varsOn: ['v2'] },
+      { id: 'p3', style: 2, sections: ['一身酸痛袭来，怎么回事？'], finish_actions: ['a0'], varsOn: ['v3'] },
+      { id: 'p4', style: 2, sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。'], finish_actions: ['a0'], varsOn: ['v4'] },
+      { id: 'p5', style: 2, sections: ['乞丐在睡觉，没有理你'], finish_actions: ['a0'], varsOn: ['v5'] },
+      { id: 'p6', style: 2, sections: ['动不了'], finish_actions: ['a0'], varsOn: ['v6'] },
+      { id: 'p7', style: 2, sections: ['总得想个办法'], finish_actions: ['b0'], varsOn: ['v5', 'v6'] },
       { id: 'p10', style: 1, sections: ['周围本来睡着的乞丐出声'], finish_actions: ['b10'] },
-      { id: 'p11', style: 2, sections: ['你发现乞丐说的是一种没听过的语音，但是你竟然可以听懂。', '一股关于语言的记忆涌上脑海', '看来交流没问题', '那么'], finish_actions: ['a7', 'b0'] },
-      { id: 'p12', style: 2, sections: ['……完全没听过的名字。', '你是不是被打后伤到脑袋了，乞丐问。'], finish_actions: ['a8', 'b0'] },
+      { id: 'p11', style: 2, sections: ['你发现乞丐说的是一种没听过的语音，但是你竟然可以听懂。', '一股关于语言的记忆涌上脑海', '看来交流没问题', '那么'], finish_actions: ['b0'], varsOn: ['v7'] },
+      { id: 'p12', style: 2, sections: ['……完全没听过的名字。', '你是不是被打后伤到脑袋了，乞丐问。'], finish_actions: ['b0'], varsOn: ['v8'] },
       { id: 'p13', style: 2, sections: ['那这几天好好休息，乞丐说'], finish_actions: ['b15'] },
       { id: 'p14', style: 2, sections: ['还行，那你知道我是谁吗？', '……', '看来病的不轻……好好休息。'], finish_actions: ['b0'] },
       { id: 'p15', style: 2, sections: ['在闲聊中，你知道旁边的乞丐是你以前认的乞丐李大哥，两人都是从更远的地方流浪而来。', '你知道了全身的伤是因为讨乞的时候被村里的王员外打的。', '起因只是因为挡了人家的道，被嫌弃晦气。', '看来，到了一个不得了的世界啊。'], finish_actions: ['b16'] },
@@ -151,7 +141,7 @@ scenes: [
     dialogs: [
       { id: 'd1', title: '附近的声音：', content: '吵死了', confirm_actions: ['b9'] },
       { id: 'd2', title: '乞丐：', content: '这是落月镇的土地庙啊', confirm_actions: ['b12'] },
-      { id: 'd3', title: '乞丐李大哥：', content: '平时讨乞的位置是在附近的东街市，我们一起走', confirm_actions: ['a9', 'b0'] },
+      { id: 'd3', title: '乞丐李大哥：', content: '平时讨乞的位置是在附近的东街市，我们一起走', confirm_actions: ['b0'], varsOn: ['v9'] },
     ]
   },
 ]
