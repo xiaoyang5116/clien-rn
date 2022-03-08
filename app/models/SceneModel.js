@@ -137,11 +137,28 @@ export default {
       const state = yield select(state => state.SceneModel);
       const sceneId = state.data.sceneId;
 
-      const actions = state.data._cfgReader.getSceneActions(sceneId, payload.actions);
-      debugMessage("processActions: scene={0} action_list={1}", sceneId, payload.actions.join(', '));
+      let allActions = [];
 
-      for (let key in actions) {
-        const item = actions[key];
+      const predefineActions = state.data._cfgReader.getSceneActions(sceneId, payload.actions);
+      if (predefineActions != null) {
+        allActions.push(...predefineActions);
+      }
+      
+      // 生成自动变量动作
+      if (payload.varsOn != undefined && Array.isArray(payload.varsOn)) {
+        let autoVars = [];
+        payload.varsOn.forEach(e => {
+          autoVars.push({ id: "__auto_{0}_on".format(e), cmd: 'var', params: "{0} = ON".format(e) });
+        });
+        allActions.unshift(...autoVars);
+      }
+
+      let actionIdList = [];
+      allActions.forEach(e => { actionIdList.push(e.id) });
+      debugMessage("processActions: scene={0} action_list={1}", sceneId, actionIdList.join(', '));
+
+      for (let key in allActions) {
+        const item = allActions[key];
         debugMessage("---> detail: cmd={0} params=({1})", item.cmd, item.params);
         
         const result = ACTIONS_MAP.find(e => e.cmd == item.cmd);

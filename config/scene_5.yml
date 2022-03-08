@@ -34,12 +34,14 @@
 #       id: 旁白ID
 #       style: 风格ID
 #       sections: 旁白段落
+#       varsOn: 旁边结束后修改这些变量为ON
 #       finish_actions: 旁白结束事件触发的动作ID列表
 #
 #     dialogs: 对话框列表
 #       id: 对话框ID
 #       title: 标题
 #       content: 内容
+#       varsOn: 旁边结束后修改这些变量为ON
 #       confirm_actions: 对话框确认按钮点击事件触发的动作ID列表
 #
 # ===========================================

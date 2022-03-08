@@ -11,25 +11,27 @@ class Queue {
     this._list = [];
   }
 
-  addDialog(title, content, confirmActions) {
+  addDialog(title, content, confirmActions, varsOn) {
     this._list.push({
       mtype: DIALOG_TYPE,
       title: title,
       content: content,
-      doneActions: [...confirmActions],
+      actions: [...confirmActions],
+      varsOn: varsOn,
       //
       confirm: false,
       hidden: false,
     })
   }
 
-  addAside(title, style, sections, finishActions) {
+  addAside(title, style, sections, finishActions, varsOn) {
     this._list.push({
       mtype: ASIDE_TYPE,
       title: title,
       style: style,
       sections: [...sections],
-      doneActions: [...finishActions],
+      actions: [...finishActions],
+      varsOn: varsOn,
       //
       sectionId: 0,
       hidden: false,
@@ -61,7 +63,7 @@ export default {
     // 参数 dialog 标准配置结构
     *showDialog({ payload }, { put, select }) {
       const state = yield select(state => state.MaskModel);
-      state.data._queue.addDialog(payload.title, payload.content, payload.confirm_actions);
+      state.data._queue.addDialog(payload.title, payload.content, payload.confirm_actions, payload.varsOn);
       yield put.resolve(action('_checkNext')({}));
     },
 
@@ -69,7 +71,7 @@ export default {
     // 参数: aside 标准配置结构
     *showAside({ payload }, { put, select }) {
       const state = yield select(state => state.MaskModel);
-      state.data._queue.addAside(payload.title, payload.style, payload.sections, payload.finish_actions);
+      state.data._queue.addAside(payload.title, payload.style, payload.sections, payload.finish_actions, payload.varsOn);
       yield put.resolve(action('_checkNext')({}));
     },
 
@@ -108,9 +110,11 @@ export default {
 
       if (current != null && !current.hidden) { // Modal回调2次？啥原因
         current.hidden = true;
-        if (current.doneActions.length > 0
+        if (current.actions.length > 0
           && (current.mtype == ASIDE_TYPE || (current.mtype == DIALOG_TYPE && current.confirm))) {
-          yield put.resolve(action('SceneModel/processActions')({ actions: [...current.doneActions] }));
+          const pl = { actions: [...current.actions] };
+          if (current.varsOn != undefined) pl.varsOn = current.varsOn;
+          yield put.resolve(action('SceneModel/processActions')(pl));
         }
         state.data._current = null;
         yield put.resolve(action('_checkNext')({}));
