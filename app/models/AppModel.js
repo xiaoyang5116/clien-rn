@@ -45,9 +45,9 @@ export default {
     },
 
     *firstStep({ }, { put, select }) {
-      const defaultSceneId = 'scene1';  // 默认为场景scene1
-      const state = yield select(state => state.SceneModel);  // 获取当前的场景
-      const sceneId = (state.data.sceneId != '') ? state.data.sceneId : 'scene1';  // 判断本地是否有场景
+      const defaultSceneId = 'scene1';
+      const state = yield select(state => state.SceneModel);
+      const sceneId = (state.data.sceneId != '') ? state.data.sceneId : 'scene1';
       yield put.resolve(action('SceneModel/enterScene')({ sceneId: sceneId }));
     },
 

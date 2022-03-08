@@ -117,7 +117,7 @@ export default {
       const state = yield select(state => state.SceneModel);
       const sceneId = payload.sceneId;
       
-      const scene = state.data._cfgReader.getScene(sceneId);  // 获取进入场景事件处理动作ID列表
+      const scene = state.data._cfgReader.getScene(sceneId);
       if (scene == null) {
         errorMessage("SceneId={0} not found.", sceneId);
         return;
@@ -137,7 +137,7 @@ export default {
       const state = yield select(state => state.SceneModel);
       const sceneId = state.data.sceneId;
 
-      const actions = state.data._cfgReader.getSceneActions(sceneId, payload.actions);  // 传入场景id,场景动作id,返回动作的定义
+      const actions = state.data._cfgReader.getSceneActions(sceneId, payload.actions);
       debugMessage("processActions: scene={0} action_list={1}", sceneId, payload.actions.join(', '));
 
       for (let key in actions) {
@@ -153,7 +153,7 @@ export default {
 
     *__onAsideCommand({ payload }, { put, select }) {
       const state = yield select(state => state.SceneModel);
-      let aside = state.data._cfgReader.getSceneAside(state.data.sceneId, payload.params);  // 获取旁白
+      let aside = state.data._cfgReader.getSceneAside(state.data.sceneId, payload.params);
       if (aside != null && (yield put.resolve(action('testCondition')(aside)))) {
         yield put.resolve(action('MaskModel/showAside')({ ...aside }));
       }

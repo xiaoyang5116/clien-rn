@@ -5,7 +5,6 @@ import {
     action,
     connect,
     PureComponent,
-    ScrollView,
   } from "../constants";
 
 import { Button, Text, View } from '../constants/native-ui';
@@ -68,9 +67,7 @@ class MaskModal extends PureComponent {
                                 <Text style={currentStyles.asideTitle}>{this.props.title}</Text>
                             </View>
                             <View style={currentStyles.asideContentContainer}>
-                                <ScrollView>
-                                    <Text style={currentStyles.asideContent}>{this.props.content}</Text>
-                                </ScrollView>
+                                <Text style={currentStyles.asideContent}>{this.props.content}</Text>
                             </View>
                         </View>
                         <View style={currentStyles.asideBottomContainer}>
