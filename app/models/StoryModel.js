@@ -16,7 +16,7 @@ export default {
 
     // 对话选项选中
     *click({ payload }, { put }) {
-      yield put.resolve(action('SceneModel/processActions')({ actions: payload.click_actions }));
+      yield put.resolve(action('SceneModel/processActions')({ actions: payload.click_actions, varsOn: payload.varsOn }));
     },
  
     // 选择对话框

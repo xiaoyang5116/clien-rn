@@ -34,12 +34,14 @@
 #       id: 旁白ID
 #       style: 风格ID
 #       sections: 旁白段落
+#       varsOn: 旁边结束后修改这些变量为ON
 #       finish_actions: 旁白结束事件触发的动作ID列表
 #
 #     dialogs: 对话框列表
 #       id: 对话框ID
 #       title: 标题
 #       content: 内容
+#       varsOn: 旁边结束后修改这些变量为ON
 #       confirm_actions: 对话框确认按钮点击事件触发的动作ID列表
 #
 # ===========================================
@@ -62,7 +64,6 @@ scenes: [
       { id: 'a1', cmd: 'chat',  params: 'c1' },
       { id: 'a2', cmd: 'chat',  params: 'c2' },
       { id: 'a3', cmd: 'chat',  params: 'c3' },
-      { id: 'a4', cmd: 'var',    params: 'v1 = ON' },
       { id: 'a5', cmd: 'chat',  params: 'c4' },
       { id: 'a6', cmd: 'chat',  params: 'c5' },
       { id: 'a7', cmd: 'scene',  params: 'scene2' },
@@ -85,7 +86,7 @@ scenes: [
       { 
         id: 'c2', desc: '再等等', 
         options: [ 
-          { title: '<<< 返回', click_actions: ['a4', 'a1'] }, 
+          { title: '<<< 返回', click_actions: ['a1'], varsOn: ['v1'] }, 
         ]
       },
       # 乞丐第二次点击出现

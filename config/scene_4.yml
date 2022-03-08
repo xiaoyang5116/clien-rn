@@ -34,12 +34,14 @@
 #       id: 旁白ID
 #       style: 风格ID
 #       sections: 旁白段落
+#       varsOn: 旁边结束后修改这些变量为ON
 #       finish_actions: 旁白结束事件触发的动作ID列表
 #
 #     dialogs: 对话框列表
 #       id: 对话框ID
 #       title: 标题
 #       content: 内容
+#       varsOn: 旁边结束后修改这些变量为ON
 #       confirm_actions: 对话框确认按钮点击事件触发的动作ID列表
 #
 # ===========================================
@@ -59,9 +61,6 @@ scenes: [
 
     # 动作定义
     actions: [
-      { id: 'a1', cmd: 'var', params: 'v1 = ON' },
-      { id: 'a2', cmd: 'var', params: 'v2 = ON' },
-
       { id: 'b0', cmd: 'aside', params: 'p1' },
       { id: 'b1', cmd: 'chat', params: 'c1' },
       { id: 'b2', cmd: 'chat', params: 'c2' },
@@ -88,8 +87,8 @@ scenes: [
 
     # 旁白
     asides: [
-      { id: 'p1', style: 2, sections: ['落月镇是个几千人口的镇子，比村子大，但人数也不多。'], finish_actions: ['a1', 'b1'], andVarsOff: ['v1'] },
-      { id: 'p2', style: 2, title: '乞丐李大哥：', sections: ['这些人也是寻常人家，不会搭理乞丐的。'], finish_actions: ['a2', 'b1'] },
+      { id: 'p1', style: 2, sections: ['落月镇是个几千人口的镇子，比村子大，但人数也不多。'], finish_actions: ['b1'], varsOn: ['v1'], andVarsOff: ['v1'] },
+      { id: 'p2', style: 2, title: '乞丐李大哥：', sections: ['这些人也是寻常人家，不会搭理乞丐的。'], finish_actions: ['b1'], varsOn: ['v2'] },
     ],
 
     # 对话框

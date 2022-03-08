@@ -34,12 +34,14 @@
 #       id: 旁白ID
 #       style: 风格ID
 #       sections: 旁白段落
+#       varsOn: 旁边结束后修改这些变量为ON
 #       finish_actions: 旁白结束事件触发的动作ID列表
 #
 #     dialogs: 对话框列表
 #       id: 对话框ID
 #       title: 标题
 #       content: 内容
+#       varsOn: 旁边结束后修改这些变量为ON
 #       confirm_actions: 对话框确认按钮点击事件触发的动作ID列表
 #
 # ===========================================
@@ -58,8 +60,6 @@ scenes: [
 
     # 动作定义
     actions: [
-      { id: 'a1', cmd: 'var', params: 'v1 = ON' },
-
       { id: 'b0', cmd: 'chat', params: 'c1' },
       { id: 'b1', cmd: 'aside', params: 'p1' },
       { id: 'b2', cmd: 'scene', params: 'scene7' },
@@ -79,7 +79,7 @@ scenes: [
 
     # 旁白
     asides: [
-      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['这里是马车路，记得要走两边，被马撞到的话只能认栽，一起也有被马撞死的乞丐，或者应该是被踩死的吧。'], finish_actions: ['a1', 'b0'] },
+      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['这里是马车路，记得要走两边，被马撞到的话只能认栽，一起也有被马撞死的乞丐，或者应该是被踩死的吧。'], finish_actions: ['b0'], varsOn: ['v1'] },
     ],
 
     # 对话框
