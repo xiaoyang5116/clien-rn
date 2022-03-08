@@ -17,15 +17,15 @@ export default {
 
   effects: {
     *reload({ }, { call, put }) {
-      let user = yield call(LocalStorage.get, LocalCacheKeys.USER);
+      const user = yield call(LocalStorage.get, LocalCacheKeys.USER);
       if (user != null) {
         yield put(action('updateState')({ ...user }));
       }
     },
 
-    *alertCopper({ payload }, { call, put, select }) {
+    *alertCopper({ payload }, { put, select }) {
       const state = yield select(state => state.UserModel);
-      let value = parseInt(payload.value);
+      const value = parseInt(payload.value);
       if (value == 0)
         return;
 

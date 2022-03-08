@@ -1,0 +1,12 @@
+编码规范：
+==============================================================
+1. dva effect 中除put reducers 外，统一使用put.resolve, call 调用。
+    put reducers 同步阻塞
+    put effects 异步不阻塞
+    put.resolve effects 同步阻塞
+    call 异步阻塞
+
+2. state 第一层为UI可访问属性，model相关数据统一存放在 data 属性下，使用“下划线”开头
+   为model内部数据，不带下划线其他model可访问。
+
+3. 项目内统一使用errorMessage, debugMessage 输出信息。

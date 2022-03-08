@@ -1,6 +1,6 @@
 
 import {
-  action, delay
+  action
 } from "../constants";
 
 const DIALOG_TYPE = 1;
@@ -76,7 +76,7 @@ export default {
     // 响应确认按钮
     *onDialogConfirm({ }, { put, select }) {
       const state = yield select(state => state.MaskModel);
-      let current = state.data._current;
+      const current = state.data._current;
       if (current != null && current.mtype == DIALOG_TYPE) {
         current.confirm = true;
         yield put.resolve(action('hide')());
@@ -86,9 +86,9 @@ export default {
     // 响应下一段旁白
     *onNextAside({ }, { put, select }) {
       const state = yield select(state => state.MaskModel);
-      let current = state.data._current;
+      const current = state.data._current;
       if (current != null && current.mtype == ASIDE_TYPE) {
-        let nextSectionId = current.sectionId + 1;
+        const nextSectionId = current.sectionId + 1;
         if (nextSectionId >= current.sections.length) {
           yield put.resolve(action('hide')());
           return;
@@ -102,9 +102,9 @@ export default {
     },
 
     // Modal隐藏后执行, 多Modal同时存在iOS会出现卡s
-    *onActionsAfterModalHidden({ }, { put, select, call }) {
-      let state = yield select(state => state.MaskModel);
-      let current = state.data._current;
+    *onActionsAfterModalHidden({ }, { put, select }) {
+      const state = yield select(state => state.MaskModel);
+      const current = state.data._current;
 
       if (current != null && !current.hidden) { // Modal回调2次？啥原因
         current.hidden = true;
@@ -118,11 +118,11 @@ export default {
     },
 
     *_checkNext({}, { put, select }) {
-      let state = yield select(state => state.MaskModel);
+      const state = yield select(state => state.MaskModel);
       if (state.data._current != null)
         return;
 
-      let next = state.data._queue.next();
+      const next = state.data._queue.next();
       if (next != undefined) {
         state.data._current = next;
         if (next.mtype == DIALOG_TYPE) {
