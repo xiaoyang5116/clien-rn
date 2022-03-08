@@ -41,7 +41,7 @@ export default {
         themeId: payload.themeId, 
         currentStyles: selectStyles 
       }));
-      LocalStorage.set(LocalCacheKeys.THEME_ID, themeId);
+      yield call(LocalStorage.set, LocalCacheKeys.THEME_ID, themeId);
     },
 
     *firstStep({ }, { put, select }) {

@@ -64,7 +64,6 @@ export default {
   effects: {
     // 重新加载&初始化
     *reload({ }, { call, put, select }) {
-      let sceneIdList = ['scene_1', 'scene_2', 'scene_3', 'scene_4', 'scene_5', 'scene_6', 'scene_7', 'scene_8'];
       const state = yield select(state => state.SceneModel);
 
       let scenes = [];
@@ -114,7 +113,7 @@ export default {
 
     // 进入场景
     // 参数: { sceneId: 场景ID }
-    *enterScene({ payload }, { call, put, select }) {
+    *enterScene({ payload }, { put, call, select }) {
       const state = yield select(state => state.SceneModel);
       const sceneId = payload.sceneId;
       
@@ -129,7 +128,7 @@ export default {
 
       state.data.sceneId = sceneId;
       yield put.resolve(action('processActions')({ actions: scene.enter_actions }));
-      LocalStorage.set(LocalCacheKeys.SCENE_ID, sceneId);
+      yield call(LocalStorage.set, LocalCacheKeys.SCENE_ID, sceneId);
     },
 
     // 事件动作处理

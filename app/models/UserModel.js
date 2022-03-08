@@ -23,7 +23,7 @@ export default {
       }
     },
 
-    *alertCopper({ payload }, { put, select }) {
+    *alertCopper({ payload }, { put, call, select }) {
       const state = yield select(state => state.UserModel);
       const value = parseInt(payload.value);
       if (value == 0)
@@ -34,7 +34,7 @@ export default {
       state.copper = newValue;
 
       yield put(action('updateState')({}));
-      LocalStorage.set(LocalCacheKeys.USER, state);
+      yield call(LocalStorage.set, LocalCacheKeys.USER, state);
     },
   },
   

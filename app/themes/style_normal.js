@@ -11,12 +11,23 @@ import React from 'react';
 import { StyleSheet } from '../constants';
 
 const styles = StyleSheet.create({
+    /** ================================ */
+    /**             公用                 */
+    /** ================================ */
     /* 通用视图容器 */
     viewContainer: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
+    /* 按钮样式 */
+    button: {
+        color: '#bcfefe',
+        backgroundColor: '#003964',
+    },
+    /** ================================ */
+    /**             选择框                */
+    /** ================================ */
     /* 位置栏 */
     positionBar: {
         alignSelf: 'stretch'
@@ -63,10 +74,93 @@ const styles = StyleSheet.create({
         border: '#c7c7cc',
         notification: '#ff453a',
     },
-    /* 按钮样式 */
-    button: {
-        color: '#bcfefe',
-        backgroundColor: '#003964',
+    /** ================================ */
+    /**             对话框                */
+    /** ================================ */
+    dlgCenter: {
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    dlgParent: {
+        width:300,
+        height:300,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 10
+    },
+    dlgTitle: {
+        fontSize: 25,
+        color: '#000',
+        textAlign: 'center',
+    },
+    dlgTitleContainer: {
+        flex: 1, 
+        marginTop: 3, 
+        width: 280, 
+        borderBottomWidth: 1, 
+        borderBottomColor: "#000", 
+        justifyContent: "center"
+    },
+    dlgContent: {
+        fontSize: 18,
+        color: 'black',
+        textAlign: 'center'
+    },
+    dlgContentContainer: {
+        flex: 3, 
+        padding: 10, 
+        justifyContent: "space-around"
+    },
+    dlgBottomBanner: {
+        width: 280, 
+        marginBottom: 3
+    },
+    /** ================================ */
+    /**             旁白                 */
+    /** ================================ */
+    asideCenter: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    asideParent1: {
+        width:300,
+        height:300,
+        backgroundColor: '#CCC',
+        borderRadius: 10
+    },
+    asideParent2: {
+        width:300,
+        height:300,
+        borderRadius: 10
+    },
+    asideTitleContainer: {
+        flex: 1, 
+        marginTop: 3, 
+        width: 280, 
+        alignItems: 'flex-start',
+        justifyContent: 'center'
+    },
+    asideContentContainer: {
+        flex: 3, 
+        padding: 10, 
+        justifyContent: "space-around"
+    },
+    asideBottomContainer: {
+        flex: 2, 
+        justifyContent: 'center'
+    },
+    asideBottomBanner: {
+        width: 280, 
+        marginBottom: 3
+    },
+    asideTitle: {
+        fontSize: 24,
+        color: '#000',
+        textAlign: 'center',
+    },
+    asideContent: {
+        fontSize: 24,
+        color: 'black',
+        textAlign: 'center'
     },
 });
 
