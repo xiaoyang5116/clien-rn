@@ -1,6 +1,7 @@
 
 import { 
   action,
+  delay,
   LocalCacheKeys,
 } from "../constants";
 
@@ -11,23 +12,24 @@ import * as Themes from '../themes';
 export default {
   namespace: 'AppModel',
 
+  // 所有Model都接收到
   state: {
-    // 全局状态，所有Model都接收到。
+    // 视图相关
     themeId: 0,
     currentStyles: Themes.default.Normal,
   },
 
   effects: {
     *reload({ }, { call, put }) {
-      let themeId = yield call(LocalStorage.get, LocalCacheKeys.THEME_ID);
+      const themeId = yield call(LocalStorage.get, LocalCacheKeys.THEME_ID);
       if (themeId != null) {
         yield put.resolve(action('changeTheme')({ themeId: parseInt(themeId) }));
       }
     },
 
     *changeTheme({ payload }, { call, put, select }) {
-      let state = yield select(state => state.AppModel);
-      let themeId = payload.themeId;
+      const state = yield select(state => state.AppModel);
+      const themeId = payload.themeId;
       let selectStyles = state.currentStyles;
 
       if (themeId == 0)
@@ -35,7 +37,6 @@ export default {
       else if (themeId == 1) {
         selectStyles = Themes.default.Dark;
       }
-
       yield put(action('updateState')({ 
         themeId: payload.themeId, 
         currentStyles: selectStyles 
@@ -45,18 +46,17 @@ export default {
 
     *firstStep({ }, { put, select }) {
       const defaultSceneId = 'scene1';
-      let state = yield select(state => state.SceneModel);
-      let sceneId = (state.data.sceneId != '') ? state.data.sceneId : 'scene1';
+      const state = yield select(state => state.SceneModel);
+      const sceneId = (state.data.sceneId != '') ? state.data.sceneId : 'scene1';
       yield put.resolve(action('SceneModel/enterScene')({ sceneId: sceneId }));
     },
 
-    *clearArchive({ payload }, { call, put, select }) {
-      let state = yield select(state => state.SceneModel);
+    *clearArchive({ }, { call, put, select }) {
+      const state = yield select(state => state.SceneModel);
       state.data.sceneId = '';
 
       yield call(LocalStorage.clear);
       yield put.resolve(action('SceneModel/reload')({}));
-      
       RootNavigation.navigate('First');
     },
   },

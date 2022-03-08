@@ -6,7 +6,7 @@ export default class SceneConfigReader {
   }
 
   getSceneIds() {
-    let ids = [];
+    const ids = [];
     this._scenes.forEach((e) => {
       ids.push(e.id);
     });
@@ -15,7 +15,7 @@ export default class SceneConfigReader {
 
   getScene(sceneId) {
     for (let key in this._scenes) {
-      let item = this._scenes[key];
+      const item = this._scenes[key];
       if (item.id == sceneId)
         return item;
     }
@@ -27,11 +27,11 @@ export default class SceneConfigReader {
   }
 
   getSceneVars(sceneId) {
-    let scene = this.getScene(sceneId);
+    const scene = this.getScene(sceneId);
     if (scene == null || scene.vars == undefined)
       return null;
 
-    let validVars = [];
+    const validVars = [];
     scene.vars.forEach((e) => {
       if (e.id != undefined && e.min != undefined && e.max != undefined && e.defaulValue != undefined) {
         validVars.push(e);
@@ -41,8 +41,8 @@ export default class SceneConfigReader {
   }
 
   getSceneActions(sceneId, actionIds) {
-    let actions = [];
-    let scene = this.getScene(sceneId);
+    const actions = [];
+    const scene = this.getScene(sceneId);
 
     if (scene == null)
       return null;
@@ -60,12 +60,12 @@ export default class SceneConfigReader {
   }
 
   getSceneAside(sceneId, asideId) {
-    let scene = this.getScene(sceneId);
+    const scene = this.getScene(sceneId);
     if (scene == null || scene.asides == undefined)
       return null;
 
     for (let key in scene.asides){
-      let aside = scene.asides[key];
+      const aside = scene.asides[key];
       if (aside.id == asideId)
         return aside;
     }
@@ -74,12 +74,12 @@ export default class SceneConfigReader {
   }
 
   getSceneDialog(sceneId, dialogId) {
-    let scene = this.getScene(sceneId);
+    const scene = this.getScene(sceneId);
     if (scene == null || scene.dialogs == undefined)
       return null;
 
     for (let key in scene.dialogs){
-      let dialog = scene.dialogs[key];
+      const dialog = scene.dialogs[key];
       if (dialog.id == dialogId)
         return dialog;
     }
@@ -88,12 +88,12 @@ export default class SceneConfigReader {
   }
 
   getSceneChat(sceneId, chatId) {
-    let scene = this.getScene(sceneId);
+    const scene = this.getScene(sceneId);
     if (scene == null || scene.chats == undefined)
       return null;
 
     for (let key in scene.chats) {
-      let chat = scene.chats[key];
+      const chat = scene.chats[key];
       if (chat.id == chatId)
         return chat;
     }

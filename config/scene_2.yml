@@ -13,7 +13,7 @@
 #
 #     actions: 动作列表
 #       id: 动作ID
-#       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var
+#       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var, copper
 #       params: 参数
 #
 #     chats: 对话选项
@@ -151,5 +151,5 @@ scenes: [
       { id: 'd2', title: '乞丐：', content: '这是落月镇的土地庙啊', confirm_actions: ['b12'] },
       { id: 'd3', title: '乞丐李大哥：', content: '平时讨乞的位置是在附近的东街市，我们一起走', confirm_actions: ['a9', 'b0'] },
     ]
-  }
+  },
 ]

@@ -1,0 +1,117 @@
+# ===========================================
+# 配置说明：
+#   单独一个场景使用{}包围，有效的配置项为：
+#     id: 场景ID（整个项目必须唯一）
+#
+#     name: 场景名称
+#
+#     vars: 变量定义
+#       id: 变量名称
+#       min: 变量最小值
+#       max: 变量最大值
+#       defaultValue: 变量缺省值
+#
+#     actions: 动作列表
+#       id: 动作ID
+#       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var, copper
+#       params: 参数
+#
+#     chats: 对话选项
+#       id:       对话ID
+#       desc:     对话框顶部描述
+#       options:  选项列表
+#         title:  选项名称
+#         click_actions: 选项点击事件后触发的动作ID列表
+#         andVarsOn:    该选项显示所需判断为ON的变量列表(全匹配) 
+#         andVarsOff:   该选项显示所需判断为OFF的变量列表(全匹配)
+#         andVarsValue: 该选项显示所需判断值大小的条件列表(全匹配)，
+#                       如：varsValue: ['var1 >= 1', 'var1 <= 10']，可支持 ==, >, <, >=, <=, != 运算符。
+#         orVarsOn:     该选项显示所需判断为ON的变量列表(匹配任意一个)
+#         orVarsOff:    该选项显示所需判断为OFF的变量列表(匹配任意一个)
+#         orVarsValue:  该选项显示所需判断值大小的条件列表(匹配任意一个)
+#
+#     asides: 旁白列表
+#       id: 旁白ID
+#       style: 风格ID
+#       sections: 旁白段落
+#       finish_actions: 旁白结束事件触发的动作ID列表
+#
+#     dialogs: 对话框列表
+#       id: 对话框ID
+#       title: 标题
+#       content: 内容
+#       confirm_actions: 对话框确认按钮点击事件触发的动作ID列表
+#
+# ===========================================
+scenes: [
+  # 破庙门口场景
+  {
+    id: 'scene8', name: '集市一角',
+
+    # 进入场景事件处理动作ID列表
+    enter_actions: ['b0', 'b1'],
+
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v2', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v3', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v4', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v5', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v6', min: 0, max: 1, defaulValue: 0 },
+    ],
+
+    # 动作定义
+    actions: [
+      { id: 'a1', cmd: 'var', params: 'v1 = ON' },
+      { id: 'a2', cmd: 'var', params: 'v2 = ON' },
+      { id: 'a3', cmd: 'var', params: 'v3 = ON' },
+      { id: 'a4', cmd: 'var', params: 'v4 = ON' },
+      { id: 'a5', cmd: 'var', params: 'v5 = ON' },
+      { id: 'a6', cmd: 'var', params: 'v6 = ON' },
+
+      { id: 'b0', cmd: 'aside', params: 'p1' },
+      { id: 'b1', cmd: 'chat', params: 'c1' },
+      { id: 'b2', cmd: 'chat', params: 'c2' },
+      { id: 'b3', cmd: 'aside', params: 'p2' },
+      { id: 'b4', cmd: 'aside', params: 'p3' },
+      { id: 'b5', cmd: 'aside', params: 'p4' },
+      { id: 'b6', cmd: 'copper', params: '1' },
+      { id: 'b7', cmd: 'aside', params: 'p5' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'c1', desc: '这里是经常讨乞的地方', 
+        options: [ 
+          { title: '【学着大哥乞讨】', click_actions: ['b2'], andVarsOn: ['v1'], andVarsOff: ['v5'] }, 
+          { title: '【观察周围】', click_actions: ['b3'], andVarsOn: ['v2'], andVarsOff: ['v5'] }, 
+          { title: '【再次观察周围】', click_actions: ['b4'], andVarsOn: ['v3'], andVarsOff: ['v5'] }, 
+          { title: '【提问】', click_actions: ['b5'], andVarsOn: ['v4'], andVarsOff: ['v5'] }, 
+          { title: '【继续乞讨】 ', click_actions: ['b6', 'b7'], andVarsOn: ['v5'] }, 
+        ],
+      },
+      { 
+        id: 'c2', desc: '路人露出鄙视的眼神', 
+        options: [ 
+          { title: '返回', click_actions: ['a2', 'b1']}, 
+        ],
+      },
+    ],
+
+    # 旁白
+    asides: [
+      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['各位老爷行行好，给点赏赐，大吉大利……'], finish_actions: ['a1', 'b1'], andVarsOff: ['v1'] },
+      { id: 'p2', style: 2, sections: ['周围形形色色的人川流而过，各种面孔，大多数人的衣着都还不错，能看出不少人带着行李商品，各种驴车马车偶尔带着商品经过。'], finish_actions: ['a3', 'b1'] },
+      { id: 'p3', style: 2, sections: ['能看到不少人带着武器，像是武者的打扮。'], finish_actions: ['a4', 'b1'] },
+      { id: 'p4', style: 2, title: '乞丐李大哥：', sections: ['你有没有发现，这里拿兵器的人不少，这是正常的吗。', '因为城镇外野兽精怪出没，这些跑商路的通常会雇佣一些佣兵防身，你看到的这些人估计都是些做这种活计的武者。'], finish_actions: ['a5', 'b1'] },
+      { id: 'p5', style: 2, title: '乞丐李大哥', sections: ['如果有两个铜币就够一个包子钱，加油'], finish_actions: ['a6', 'b1'], andVarsOff: ['v6'] },
+    ],
+
+    # 对话框
+    dialogs: [
+    ]
+  },
+]

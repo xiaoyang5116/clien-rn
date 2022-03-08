@@ -13,7 +13,7 @@
 #
 #     actions: 动作列表
 #       id: 动作ID
-#       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var
+#       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var, copper
 #       params: 参数
 #
 #     chats: 对话选项
@@ -49,23 +49,17 @@ scenes: [
     id: 'scene3', name: '破庙门口',
 
     # 进入场景事件处理动作ID列表
-    enter_actions: ['a0', 'b0'],
+    enter_actions: ['a0'],
 
     # 变量定义
     vars: [
-      { id: 'v1', min: 0, max: 1, defaulValue: 0 },
     ],
 
     # 动作定义
     actions: [
-      { id: 'a0', cmd: 'aside', params: 'p1' },
-      { id: 'a1', cmd: 'var', params: 'v1 = ON' },
-
-      { id: 'b0', cmd: 'chat', params: 'c1' },
+      { id: 'a0', cmd: 'chat', params: 'c1' },
       { id: 'b1', cmd: 'scene', params: 'scene2' },
-      { id: 'b2', cmd: 'chat', params: 'c2' },
-      { id: 'b3', cmd: 'dialog', params: 'd1' },
-      { id: 'b4', cmd: 'chat', params: 'c4' },
+      { id: 'b2', cmd: 'scene', params: 'scene4' },
     ],
 
     # 对话选项
@@ -74,38 +68,18 @@ scenes: [
       { 
         id: 'c1', desc: '请选择移动', 
         options: [ 
-          { title: '【回到破庙】', click_actions: ['b1'] }, 
+          { title: '【进入破庙】', click_actions: ['b1'] }, 
           { title: '【落月镇西-胡同口】', click_actions: ['b2'] }, 
         ],
-      },
-      { 
-        id: 'c2', desc: '这里是荒凉的地方，没人经过', 
-        options: [ 
-          { title: '【观察四周】', click_actions: ['b3'] }, 
-        ],
-      },
-      { 
-        id: 'c3', desc: '一些老人在路边闲坐，打发时间', 
-        options: [ 
-          { title: '返回', click_actions: ['b0'] }, 
-        ],
-      },
-      { 
-        id: 'c4', desc: '一些老人在路边闲坐，打发时间', 
-        options: [ 
-          { title: '返回', click_actions: ['b0'] }, 
-        ],
-      },
+      }
     ],
 
     # 旁白
     asides: [
-      { id: 'p1', style: 2, sections: ['落月镇是个几千人口的镇子，比村子大，但人数也不多。'], finish_actions: ['a1'], andVarsOff: ['v1'] },
-     ],
+    ],
 
     # 对话框
     dialogs: [
-      { id: 'd1', title: '乞丐李大哥：', content: '这些人也是寻常人家，不会搭理乞丐的。', confirm_actions: ['b4'] },
     ]
-  }
+  },
 ]

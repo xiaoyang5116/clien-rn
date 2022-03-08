@@ -1,0 +1,95 @@
+# ===========================================
+# 配置说明：
+#   单独一个场景使用{}包围，有效的配置项为：
+#     id: 场景ID（整个项目必须唯一）
+#
+#     name: 场景名称
+#
+#     vars: 变量定义
+#       id: 变量名称
+#       min: 变量最小值
+#       max: 变量最大值
+#       defaultValue: 变量缺省值
+#
+#     actions: 动作列表
+#       id: 动作ID
+#       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var, copper
+#       params: 参数
+#
+#     chats: 对话选项
+#       id:       对话ID
+#       desc:     对话框顶部描述
+#       options:  选项列表
+#         title:  选项名称
+#         click_actions: 选项点击事件后触发的动作ID列表
+#         andVarsOn:    该选项显示所需判断为ON的变量列表(全匹配) 
+#         andVarsOff:   该选项显示所需判断为OFF的变量列表(全匹配)
+#         andVarsValue: 该选项显示所需判断值大小的条件列表(全匹配)，
+#                       如：varsValue: ['var1 >= 1', 'var1 <= 10']，可支持 ==, >, <, >=, <=, != 运算符。
+#         orVarsOn:     该选项显示所需判断为ON的变量列表(匹配任意一个)
+#         orVarsOff:    该选项显示所需判断为OFF的变量列表(匹配任意一个)
+#         orVarsValue:  该选项显示所需判断值大小的条件列表(匹配任意一个)
+#
+#     asides: 旁白列表
+#       id: 旁白ID
+#       style: 风格ID
+#       sections: 旁白段落
+#       finish_actions: 旁白结束事件触发的动作ID列表
+#
+#     dialogs: 对话框列表
+#       id: 对话框ID
+#       title: 标题
+#       content: 内容
+#       confirm_actions: 对话框确认按钮点击事件触发的动作ID列表
+#
+# ===========================================
+scenes: [
+  # 破庙门口场景
+  {
+    id: 'scene5', name: '西镇民居街',
+
+    # 进入场景事件处理动作ID列表
+    enter_actions: ['b0'],
+
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1, defaulValue: 0 },
+    ],
+
+    # 动作定义
+    actions: [
+      { id: 'a1', cmd: 'var', params: 'v1 = ON' },
+
+      { id: 'b0', cmd: 'chat', params: 'c1' },
+      { id: 'b1', cmd: 'chat', params: 'c2' },
+      { id: 'b2', cmd: 'aside', params: 'p1' },
+      { id: 'b3', cmd: 'scene', params: 'scene6' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'c1', desc: '民居院落依着斜坡而建，路边有一条小河沟，桥头有一些小吃摊位', 
+        options: [ 
+          { title: '【观察路边的小吃摊】', click_actions: ['b1', 'b2'], andVarsOff: ['v1']}, 
+          { title: '【大路口】', click_actions: ['b3'], andVarsOn: ['v1']}, 
+        ],
+      },
+      { 
+        id: 'c2', desc: '一些老人在路边闲坐，打发时间', 
+        options: [ 
+        ],
+      },
+    ],
+
+    # 旁白
+    asides: [
+      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['价钱还行，运气好了讨到钱，我们也可以买东西吃，但不要在人多的时候打扰生意。'], finish_actions: ['a1', 'b0'] },
+    ],
+
+    # 对话框
+    dialogs: [
+    ]
+  },
+]

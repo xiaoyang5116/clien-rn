@@ -30,14 +30,10 @@ import { Dimensions } from 'react-native';
 export const DEBUG_MODE = true;
 
 // 输出调试信息
-export const debugMessage = (s, ...args) => {
-    if (DEBUG_MODE) console.debug((typeof(s) == 'string') ? s.format(args) : s);
-};
+export const debugMessage = (s, ...args) => { if (DEBUG_MODE) console.debug((typeof(s) == 'string') ? s.format(args) : s); };
 
 // 输出错误信息
-export const errorMessage = (s, ...args) => {
-    if (DEBUG_MODE) console.error((typeof(s) == 'string') ? s.format(args) : s);
-};
+export const errorMessage = (s, ...args) => { if (DEBUG_MODE) console.error((typeof(s) == 'string') ? s.format(args) : s); };
 
 // 屏幕特性
 export const getWindowSize = () => { return Dimensions.get('window'); };
