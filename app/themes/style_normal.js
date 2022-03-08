@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     },
     asideContentContainer: {
         flex: 3, 
-        // padding: 10, 
+        padding: 10, 
         justifyContent: "space-around"
     },
     asideBottomContainer: {
@@ -158,7 +158,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     asideContent: {
-        margin: 10,
         fontSize: 24,
         color: 'black',
         textAlign: 'center'
