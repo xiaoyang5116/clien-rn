@@ -159,7 +159,7 @@ export default {
     updateState(state, { payload }) {
       return { 
         ...state,
-        ...payload
+        ...payload,
       };
     }
   },

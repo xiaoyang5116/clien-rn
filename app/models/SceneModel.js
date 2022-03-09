@@ -41,6 +41,7 @@ const ACTIONS_MAP = [
   { cmd:'scene',    handler:  '__onSceneCommand'},
   { cmd:'delay',    handler:  '__onDelayCommand'},
   { cmd:'copper',   handler:  '__onCopperCommand'},
+  { cmd: 'wtime',   handler:  '__onWorldTimeCommand' },
   { cmd:'var',      handler:  '__onVarCommand'},
 ];
 
@@ -96,6 +97,7 @@ export default {
       }
       
       // 加载匹配的变量缓存
+      state.data._vars.length = 0;
       state.data._cfgReader = new SceneConfigReader(scenes);
       state.data._cfgReader.getSceneIds().forEach((sceneId) => {
         const vars = state.data._cfgReader.getSceneVars(sceneId);
@@ -284,6 +286,11 @@ export default {
 
     *__onCopperCommand({ payload }, { put }) {
       yield put.resolve(action('UserModel/alertCopper')({ value: parseInt(payload.params) }));
+    },
+
+    *__onWorldTimeCommand({ payload }, { put }) {
+      const [worldId, millis] = payload.params.split(',');
+      yield put.resolve(action('alertWorldTime')({ worldId: worldId, alertValue: parseInt(millis) }));
     },
 
     *__onVarCommand({ payload }, { put, select }) {
