@@ -115,7 +115,6 @@ class FirstPage extends Component {
             <Button title='下一页' onPress={this._onClick} color={this.props.currentStyles.button.color} />
           </View>
         </View>
-        <MaskModal />
       </View>
     );
   }
