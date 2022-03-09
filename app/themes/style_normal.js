@@ -118,44 +118,57 @@ const styles = StyleSheet.create({
     /**             旁白                 */
     /** ================================ */
     asideCenter: {
-        justifyContent: 'center',
+        // display:"flex",
+        // flexFlow: "column nowrap",
+        // justifyContent: '',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
+
+        flexDirection: "column",
+        flexWrap: "nowrap",
+        justifyContent: "center",
+        alignContent: "center",
         alignItems: 'center',
+        
     },
     asideParent1: {
-        width:300,
-        height:300,
-        backgroundColor: '#CCC',
-        borderRadius: 10
+        // width:300,
+        // height:300,
+        // backgroundColor: '#CCC',
+        // borderRadius: 10,
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "center",
+        flexFlow: "column wrap",
+        
     },
     asideParent2: {
-        width:300,
-        height:300,
-        borderRadius: 10
+        flexDirection: "column",
+        justifyContent: "flex-end",
+        padding: 10,
+        marginBottom: 15,
     },
     asideTitleContainer: {
-        flex: 1, 
-        marginTop: 3, 
-        width: 280, 
         alignItems: 'flex-start',
-        justifyContent: 'center'
+        marginBottom:15,
     },
     asideContentContainer: {
-        flex: 3, 
-        padding: 10, 
-        justifyContent: "space-around"
+        // flex: 3, 
+        // padding: 10, 
+        // justifyContent: "space-around"
     },
     asideBottomContainer: {
-        flex: 2, 
-        justifyContent: 'center'
+        justifyContent: "flex-start",
+        marginTop: 15,
     },
     asideBottomBanner: {
         width: 280, 
-        marginBottom: 3
     },
     asideTitle: {
         fontSize: 24,
         color: '#000',
-        textAlign: 'center',
+        textAlign: 'left',
     },
     asideContent: {
         fontSize: 24,

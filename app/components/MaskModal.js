@@ -5,18 +5,18 @@ import {
     action,
     connect,
     PureComponent,
-  } from "../constants";
+} from "../constants";
 
 import { Button, Text, View } from '../constants/native-ui';
 
 // 遮挡层
 class MaskModal extends PureComponent {
 
-    _onDialogConfirm = () => {    
+    _onDialogConfirm = () => {
         this.props.dispatch(action('MaskModel/onDialogConfirm')());
     }
 
-    _onDialogCancel = () => {    
+    _onDialogCancel = () => {
         this.props.dispatch(action('MaskModel/hide')());
     }
 
@@ -24,7 +24,7 @@ class MaskModal extends PureComponent {
         this.props.dispatch(action('MaskModel/onActionsAfterModalHidden')());
     }
 
-    _onAsideNext = () => {    
+    _onAsideNext = () => {
         this.props.dispatch(action('MaskModel/onNextAside')());
     }
 
@@ -43,10 +43,10 @@ class MaskModal extends PureComponent {
                             </View>
                         </View>
                         <View style={{ flex: 2 }}>
-                            <View style={[currentStyles.dlgBottomBanner, {backgroundColor: currentStyles.button.backgroundColor}]}>
+                            <View style={[currentStyles.dlgBottomBanner, { backgroundColor: currentStyles.button.backgroundColor }]}>
                                 <Button title='确认' onPress={this._onDialogConfirm} color={currentStyles.button.color} />
                             </View>
-                            <View style={[currentStyles.dlgBottomBanner, {backgroundColor: currentStyles.button.backgroundColor}]}>
+                            <View style={[currentStyles.dlgBottomBanner, { backgroundColor: currentStyles.button.backgroundColor }]}>
                                 <Button title='取消' onPress={this._onDialogCancel} color={currentStyles.button.color} />
                             </View>
                         </View>
@@ -59,19 +59,21 @@ class MaskModal extends PureComponent {
     _renderForAside() {
         const currentStyles = this.props.currentStyles;
         return (
-            <Modal isVisible={this.props.visible} style={{ flex: 1 }} useNativeDriver={true} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut"  backdropColor="#fff" backdropOpacity={1}>
+            <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={true} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
                 <View style={[currentStyles.asideCenter]}>
-                    <View style={[this.props.subStype == 1 ? currentStyles.asideParent1 : currentStyles.asideParent2, currentStyles.asideCenter]}>
-                        <View style={{ flex: 4 }}>
-                            <View style={currentStyles.asideTitleContainer}>
-                                <Text style={currentStyles.asideTitle}>{this.props.title}</Text>
-                            </View>
+                    <View style={[currentStyles.asideCenter]}>
+                        <View style={[this.props.subStype == 1 ? currentStyles.asideParent1 : currentStyles.asideParent2,]}>
+                            {
+                                this.props.title && <View style={currentStyles.asideTitleContainer}>
+                                    <Text style={currentStyles.asideTitle}>{this.props.title}</Text>
+                                </View>
+                            }
                             <View style={currentStyles.asideContentContainer}>
                                 <Text style={currentStyles.asideContent}>{this.props.content}</Text>
                             </View>
                         </View>
                         <View style={currentStyles.asideBottomContainer}>
-                            <View style={[currentStyles.asideBottomBanner, {backgroundColor: currentStyles.button.backgroundColor}]}>
+                            <View style={[currentStyles.asideBottomBanner, { backgroundColor: currentStyles.button.backgroundColor }]}>
                                 <Button title='>>>' onPress={this._onAsideNext} color={currentStyles.button.color} />
                             </View>
                         </View>
