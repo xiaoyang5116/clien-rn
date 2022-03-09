@@ -8,51 +8,8 @@ import {
 } from "../../constants";
 
 import MaskModal from '../../components/MaskModal';
+import * as DateTime from '../../utils/DateTimeUtils';
 import { Button, Text, View, SectionList } from '../../constants/native-ui';
-
-class Week {
-  static convert(day) {
-    if (day == 0)
-      return '一';
-    else if (day == 1)
-      return '二';
-    else if (day == 2)
-      return '三';
-    else if (day == 3)
-      return '四';
-    else if (day == 4)
-      return '五';
-    else if (day == 5)
-      return '六';
-    else if (day == 6)
-      return '日';
-  }
-}
-
-class Seasons {
-  static convert(month) {
-    switch(month+1) {
-      case 3:
-      case 4:
-      case 5:
-        return '春';
-      case 6:
-      case 7:
-      case 8:
-        return '夏';
-      case 9:
-      case 10:
-      case 11:
-        return '秋';
-      case 12:
-      case 1:
-      case 2:
-        return '冬';
-      default:
-        return '';
-    }
-  }
-}
 
 class StoryTabPage extends Component {
 
@@ -82,7 +39,15 @@ class StoryTabPage extends Component {
   render() {
     let dt = new Date();
     dt.setTime(this.props.time);
-    let fmtDateTime = "周{0} {1}年[{2}] {3}月{4}日".format(Week.convert(dt.getDay()), dt.getFullYear(), Seasons.convert(dt.getMonth()), dt.getMonth() + 1, dt.getDate());
+    
+    const fmtDateTime = "周{0} {1}年[{2}] {3}月{4}日 {5}".format(
+      DateTime.Week.format(dt.getDay()), 
+      dt.getFullYear(), 
+      DateTime.Seasons.format(dt.getMonth()), 
+      dt.getMonth() + 1, 
+      dt.getDate(),
+      DateTime.DayPeriod.format(dt.getHours())
+    );
 
     return (
       <View style={this.props.currentStyles.viewContainer}>
