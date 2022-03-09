@@ -28,9 +28,9 @@ export default {
     },
 
     *changeTheme({ payload }, { call, put, select }) {
-      const state = yield select(state => state.AppModel);
+      const appState = yield select(state => state.AppModel);
       const themeId = payload.themeId;
-      let selectStyles = state.currentStyles;
+      let selectStyles = appState.currentStyles;
 
       if (themeId == 0)
         selectStyles = Themes.default.Normal;
@@ -46,14 +46,14 @@ export default {
 
     *firstStep({ }, { put, select }) {
       const defaultSceneId = 'scene1';
-      const state = yield select(state => state.SceneModel);
-      const sceneId = (state.data.sceneId != '') ? state.data.sceneId : 'scene1';
+      const userState = yield select(state => state.UserModel);
+      const sceneId = (userState.sceneId != '') ? userState.sceneId : 'scene1';
       yield put.resolve(action('SceneModel/enterScene')({ sceneId: sceneId }));
     },
 
     *clearArchive({ }, { call, put, select }) {
-      const state = yield select(state => state.SceneModel);
-      state.data.sceneId = '';
+      const userState = yield select(state => state.UserModel);
+      userState.sceneId = '';
 
       yield call(LocalStorage.clear);
       yield put.resolve(action('SceneModel/reload')({}));

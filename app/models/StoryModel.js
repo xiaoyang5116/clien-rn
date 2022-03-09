@@ -23,9 +23,9 @@ export default {
     // 选择对话框
     // 参数: { chatId: xxx }
     *selectChat({ payload }, { put, select }) {
-      const stateScene = yield select(state => state.SceneModel);
+      const userState = yield select(state => state.UserModel);
       const chatId = payload.chatId;
-      const sceneId = stateScene.data.sceneId;
+      const sceneId = userState.sceneId;
 
       if (chatId == '' || sceneId == '') {
         errorMessage("ChatId or SceneId not specified!");
@@ -51,7 +51,7 @@ export default {
       newSectionData.push(sectionItem);
 
       // 获取当前场景的世界时间
-      const worldTime = yield put.resolve(action('SceneModel/getWorldTime')({ worldId: 0 }));
+      const worldTime = yield put.resolve(action('SceneModel/getWorldTime')({ worldId: userState.worldId }));
   
       // 重新渲染
       yield put(action('updateState')({ 

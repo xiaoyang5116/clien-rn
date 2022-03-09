@@ -62,23 +62,23 @@ export default {
     // 显示普通对话框
     // 参数 dialog 标准配置结构
     *showDialog({ payload }, { put, select }) {
-      const state = yield select(state => state.MaskModel);
-      state.data._queue.addDialog(payload.title, payload.content, payload.confirm_actions, payload.varsOn);
+      const maskState = yield select(state => state.MaskModel);
+      maskState.data._queue.addDialog(payload.title, payload.content, payload.confirm_actions, payload.varsOn);
       yield put.resolve(action('_checkNext')({}));
     },
 
     // 显示旁白
     // 参数: aside 标准配置结构
     *showAside({ payload }, { put, select }) {
-      const state = yield select(state => state.MaskModel);
-      state.data._queue.addAside(payload.title, payload.style, payload.sections, payload.finish_actions, payload.varsOn);
+      const maskState = yield select(state => state.MaskModel);
+      maskState.data._queue.addAside(payload.title, payload.style, payload.sections, payload.finish_actions, payload.varsOn);
       yield put.resolve(action('_checkNext')({}));
     },
 
     // 响应确认按钮
     *onDialogConfirm({ }, { put, select }) {
-      const state = yield select(state => state.MaskModel);
-      const current = state.data._current;
+      const maskState = yield select(state => state.MaskModel);
+      const current = maskState.data._current;
       if (current != null && current.mtype == DIALOG_TYPE) {
         current.confirm = true;
         yield put.resolve(action('hide')());
@@ -87,8 +87,8 @@ export default {
 
     // 响应下一段旁白
     *onNextAside({ }, { put, select }) {
-      const state = yield select(state => state.MaskModel);
-      const current = state.data._current;
+      const maskState = yield select(state => state.MaskModel);
+      const current = maskState.data._current;
       if (current != null && current.mtype == ASIDE_TYPE) {
         const nextSectionId = current.sectionId + 1;
         if (nextSectionId >= current.sections.length) {
@@ -105,8 +105,8 @@ export default {
 
     // Modal隐藏后执行, 多Modal同时存在iOS会出现卡s
     *onActionsAfterModalHidden({ }, { put, select }) {
-      const state = yield select(state => state.MaskModel);
-      const current = state.data._current;
+      const maskState = yield select(state => state.MaskModel);
+      const current = maskState.data._current;
 
       if (current != null && !current.hidden) { // Modal回调2次？啥原因
         current.hidden = true;
@@ -116,19 +116,19 @@ export default {
           if (current.varsOn != undefined) pl.varsOn = current.varsOn;
           yield put.resolve(action('SceneModel/processActions')(pl));
         }
-        state.data._current = null;
+        maskState.data._current = null;
         yield put.resolve(action('_checkNext')({}));
       }
     },
 
     *_checkNext({}, { put, select }) {
-      const state = yield select(state => state.MaskModel);
-      if (state.data._current != null)
+      const maskState = yield select(state => state.MaskModel);
+      if (maskState.data._current != null)
         return;
 
-      const next = state.data._queue.next();
+      const next = maskState.data._queue.next();
       if (next != undefined) {
-        state.data._current = next;
+        maskState.data._current = next;
         if (next.mtype == DIALOG_TYPE) {
           yield put(action('updateState')({ 
             mtype: DIALOG_TYPE,
