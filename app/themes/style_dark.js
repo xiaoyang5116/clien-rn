@@ -38,6 +38,11 @@ const styles = StyleSheet.create({
         padding: 10, 
         textAlign: 'left',
     },
+    /* 对话框内位置 */
+    datetimeLabel: {
+        fontSize: 18, 
+        padding: 10, 
+    },
     /* 对话框 */
     chatContainer: {
         flex: 1,

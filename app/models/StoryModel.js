@@ -8,6 +8,7 @@ export default {
   namespace: 'StoryModel',
 
   state: {
+    time: 0, // 时间信息
     position: '', // 位置信息
     sectionData: [], // [{title:'', data:[{...title:'', action:''}]}]
   },
@@ -48,11 +49,15 @@ export default {
         }
       }
       newSectionData.push(sectionItem);
+
+      // 获取当前场景的世界时间
+      const worldTime = yield put.resolve(action('SceneModel/getWorldTime')({ worldId: 0 }));
   
       // 重新渲染
       yield put(action('updateState')({ 
+        time: worldTime,
+        position: scene.name,
         sectionData: newSectionData, 
-        position: scene.name
       }));
     }
   },
