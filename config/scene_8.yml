@@ -61,6 +61,7 @@ scenes: [
       { id: 'v4', min: 0, max: 1, defaulValue: 0 },
       { id: 'v5', min: 0, max: 1, defaulValue: 0 },
       { id: 'v6', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v7', min: 0, max: 1, defaulValue: 0 },
     ],
 
     # 动作定义
@@ -74,6 +75,7 @@ scenes: [
       { id: 'b6', cmd: 'copper', params: '1' },
       { id: 'b7', cmd: 'aside', params: 'p5' },
       { id: 'b8', cmd: 'wtime', params: '0,10800000' },
+      { id: 'b9', cmd: 'aside', params: 'p6' },
     ],
 
     # 对话选项
@@ -82,11 +84,13 @@ scenes: [
       { 
         id: 'c1', desc: '这里是经常讨乞的地方', 
         options: [ 
-          { title: '【学着大哥乞讨】', click_actions: ['b2'], andVarsOn: ['v1'], andVarsOff: ['v5'] }, 
-          { title: '【观察周围】', click_actions: ['b3'], andVarsOn: ['v2'], andVarsOff: ['v5'] }, 
-          { title: '【再次观察周围】', click_actions: ['b4'], andVarsOn: ['v3'], andVarsOff: ['v5'] }, 
-          { title: '【提问】', click_actions: ['b5'], andVarsOn: ['v4'], andVarsOff: ['v5'] }, 
-          { title: '【继续乞讨】 ', click_actions: ['b6', 'b7', 'b8', 'b1'], andVarsOn: ['v5'] }, 
+          { title: '【学着大哥乞讨】', click_actions: ['b2'], andVarsOn: ['v1'], andVarsOff: ['v5', 'v7'] }, 
+          { title: '【观察周围】', click_actions: ['b3'], andVarsOn: ['v2'], andVarsOff: ['v5', 'v7'] }, 
+          { title: '【再次观察周围】', click_actions: ['b4'], andVarsOn: ['v3'], andVarsOff: ['v5', 'v7'] }, 
+          { title: '【提问】', click_actions: ['b5'], andVarsOn: ['v4'], andVarsOff: ['v5', 'v7'] }, 
+          { title: '【继续乞讨】 ', click_actions: ['b6', 'b7', 'b8', 'b1'], andVarsOn: ['v5'], andVarsOff: ['v7'], andVarsValue: ['@world_time_hours < 17'] }, 
+          { title: '【继续乞讨】 ', click_actions: ['b9'], andVarsOn: ['v5'], andVarsOff: ['v7'], andVarsValue: ['@world_time_hours >= 17'] }, 
+          { title: '【支付】', click_actions: ['b1'], andVarsOn: ['v7'] }, 
         ],
       },
       { 
@@ -104,6 +108,7 @@ scenes: [
       { id: 'p3', style: 2, sections: ['能看到不少人带着武器，像是武者的打扮。'], finish_actions: ['b1'], varsOn: ['v4'] },
       { id: 'p4', style: 2, title: '乞丐李大哥：', sections: ['你有没有发现，这里拿兵器的人不少，这是正常的吗。', '因为城镇外野兽精怪出没，这些跑商路的通常会雇佣一些佣兵防身，你看到的这些人估计都是些做这种活计的武者。'], finish_actions: ['b1'], varsOn: ['v5'] },
       { id: 'p5', style: 2, title: '乞丐李大哥', sections: ['如果有两个铜币就够一个包子钱，加油'], finish_actions: ['b1'], varsOn: ['v6'], andVarsOff: ['v6'] },
+      { id: 'p6', style: 1, title: '帮派小弟：', sections: ['今日的份子交了吧'], finish_actions: ['b1'], varsOn: ['v7'] },
     ],
 
     # 对话框

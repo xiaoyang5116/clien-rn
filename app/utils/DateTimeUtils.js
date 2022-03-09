@@ -59,3 +59,11 @@ export class DayPeriod {
             return '深夜';
     }
 }
+
+export class HourUtils {
+    static fromMillis(millis) {
+        const dt = new Date();
+        dt.setTime(millis);
+        return dt.getHours();
+    }
+}

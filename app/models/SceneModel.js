@@ -12,8 +12,9 @@ import {
 } from "../services/GetSceneDataApi";
 
 import LocalStorage from '../utils/LocalStorage';
-import SceneConfigReader from "../utils/SceneConfigReader";
+import * as DateTime from '../utils/DateTimeUtils';
 import * as RootNavigation from '../utils/RootNavigation';
+import SceneConfigReader from "../utils/SceneConfigReader";
 
 class VarUtils {
 
@@ -422,12 +423,15 @@ export default {
           const [varId, operator, value] = params;
           let compareValue = 0;
 
-          if (varId == '@world_time') {
+          if (varId == '@world_time_hours') {
             const value = yield put.resolve(action('getWorldTime')({ worldId: userState.worldId }));
-            compareValue = value != undefined ? value : 0;
-          } else if (varId == '@scene_time') {
+            compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
+          } else if (varId == '@scene_time_hours') {
             const value = yield put.resolve(action('getSceneTime')({ sceneId: userState.sceneId }));
-            compareValue = value != undefined ? value : 0;
+            compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
+          } else if (varId.indexOf('@') == 0) {
+            debugMessage("Unknown '{0}' variable!!!", varId);
+            continue;
           } else {
             const varRef = VarUtils.getVar(sceneState.data._vars, userState.sceneId, varId);
             compareValue = varRef.value;
