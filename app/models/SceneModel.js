@@ -93,9 +93,9 @@ export default {
       }
 
       // 加载本地缓存
-      const cacheData = yield call(LocalStorage.get, LocalCacheKeys.SCENES_DATA);
-      if (cacheData != null && cacheData.time != null) {
-        sceneState.data._time = cacheData.time;
+      const sceneCache = yield call(LocalStorage.get, LocalCacheKeys.SCENES_DATA);
+      if (sceneCache != null && sceneCache.time != null) {
+        sceneState.data._time = sceneCache.time;
       }
       
       // 加载匹配的变量缓存
@@ -107,8 +107,8 @@ export default {
           vars.forEach((e) => {
             let value = e.defaulValue;
             const uniVarId = "{0}_{1}".format(sceneId, e.id).toUpperCase();
-            if (cacheData != null && cacheData.vars != null) {
-              const varCache = VarUtils.getVar(cacheData.vars, sceneId, e.id);
+            if (sceneCache != null && sceneCache.vars != null) {
+              const varCache = VarUtils.getVar(sceneCache.vars, sceneId, e.id);
               if (varCache != null && varCache.min >= e.min && varCache.max <= e.max) {
                 value = varCache.value;
               }
@@ -305,9 +305,29 @@ export default {
       }
     },
 
-    *__onWorldTimeCommand({ payload }, { put }) {
-      const [worldId, millis] = payload.params.split(',');
-      yield put.resolve(action('alertWorldTime')({ worldId: worldId, alertValue: parseInt(millis) }));
+    *__onWorldTimeCommand({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+      let alertWorldTime = 0;
+
+      if (payload.params.indexOf('@') == 0) {
+        // 隔天隔月增减
+        const [type, v1, v2] = payload.params.split('/');
+        const wt = yield put.resolve(action('getWorldTime')({ worldId: userState.worldId }));
+        if (wt == undefined)
+          return;
+
+        if (type == '@day') {
+          const nwt = DateTime.toDays(wt, parseInt(v1), parseInt(v2)); // 到第几天的某个时间
+          alertWorldTime = nwt - wt;
+        }
+      } else {
+        // 直接增减时间
+        alertWorldTime = parseInt(payload.params)
+      }
+
+      if (alertWorldTime != 0) {
+        yield put.resolve(action('alertWorldTime')({ worldId: userState.worldId, alertValue: alertWorldTime }));
+      }
     },
 
     *__onVarCommand({ payload }, { put, select }) {
@@ -355,7 +375,7 @@ export default {
       const sceneState = yield select(state => state.SceneModel);
       yield call(LocalStorage.set, LocalCacheKeys.SCENES_DATA, { 
         vars: sceneState.data._vars, 
-        times: sceneState.data._time,
+        time: sceneState.data._time,
       });
     },
 
@@ -404,8 +424,9 @@ export default {
       let failure = false;
       if (payload.andVarsOn != undefined) {
         for (let key in payload.andVarsOn) {
-          const varId = payload.andVarsOn[key];
-          const varRef = VarUtils.getVar(sceneState.data._vars, userState.sceneId, varId);
+          const [v1, v2] = payload.andVarsOn[key].split('/');
+          const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
+          const varRef = VarUtils.getVar(sceneState.data._vars, sceneId, varId);
           if (varRef.value <= 0) {
             failure = true;
             break;
@@ -414,8 +435,9 @@ export default {
       }
       if (!failure && (payload.andVarsOff != undefined)) {
         for (let key in payload.andVarsOff) {
-          const varId = payload.andVarsOff[key];
-          const varRef = VarUtils.getVar(sceneState.data._vars, userState.sceneId, varId);
+          const [v1, v2] = payload.andVarsOff[key].split('/');
+          const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
+          const varRef = VarUtils.getVar(sceneState.data._vars, sceneId, varId);
           if (varRef.value > 0) {
             failure = true;
             break;
@@ -430,20 +452,22 @@ export default {
           cond.split(' ').forEach(e => params.push(e.trim()));
           if (params.length != 3) continue;
           
-          const [varId, operator, value] = params;
+          const [id, operator, value] = params;
           let compareValue = 0;
 
-          if (varId == '@world_time_hours') {
+          if (id == '@world_time_hours') {
             const value = yield put.resolve(action('getWorldTime')({ worldId: userState.worldId }));
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
-          } else if (varId == '@scene_time_hours') {
+          } else if (id == '@scene_time_hours') {
             const value = yield put.resolve(action('getSceneTime')({ sceneId: userState.sceneId }));
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
-          } else if (varId.indexOf('@') == 0) {
-            debugMessage("Unknown '{0}' variable!!!", varId);
+          } else if (id.indexOf('@') == 0) {
+            debugMessage("Unknown '{0}' identifier!!!", id);
             continue;
           } else {
-            const varRef = VarUtils.getVar(sceneState.data._vars, userState.sceneId, varId);
+            const [v1, v2] = id.split('/');
+            const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
+            const varRef = VarUtils.getVar(sceneState.data._vars, sceneId, varId);
             compareValue = varRef.value;
           }
 

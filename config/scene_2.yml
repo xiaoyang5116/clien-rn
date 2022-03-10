@@ -18,6 +18,7 @@ scenes: [
       { id: 'v8', min: 0, max: 1, defaulValue: 0 },
       { id: 'v9', min: 0, max: 1, defaulValue: 0 },
       { id: 'v10', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v11', min: 0, max: 1, defaulValue: 0 },
     ],
 
     # 动作定义
@@ -42,6 +43,7 @@ scenes: [
       { id: 'b16', cmd: 'aside',  params: 'p16' },
       { id: 'b17', cmd: 'dialog',  params: 'd3' },
       { id: 'b18', cmd: 'scene',  params: 'pomiaomk' },
+      { id: 'b19', cmd: 'wtime',  params: '@day/1/6' },
     ],
 
     # 对话选项
@@ -59,7 +61,8 @@ scenes: [
           # 以下选项在【询问周围的乞丐】&【尝试起身】点击后替换
           { title: '【询问周围的乞丐】', click_actions: ['b7'], andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v6'], andVarsOff: ['v10'] }, 
           { title: '【尝试起身】', click_actions: ['b7'], andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v5'], andVarsOff: ['v10'] }, 
-          { title: '【睡觉】', click_actions: [], andVarsOn: ['v10'] }, 
+          { title: '【睡觉】', click_actions: ['b19', 'a0'], andVarsOn: ['v10'], andVarsOff: ['v11'], varsOn: ['v11'] }, 
+          { title: '【走出破庙】', click_actions: ['b18'], andVarsOn: ['v11'] }, 
         ],
       },
       { 

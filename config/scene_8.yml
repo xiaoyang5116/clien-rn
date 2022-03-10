@@ -16,6 +16,7 @@ scenes: [
       { id: 'v6', min: 0, max: 1, defaulValue: 0 },
       { id: 'v7', min: 0, max: 1, defaulValue: 0 },
       { id: 'v8', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v9', min: 0, max: 1, defaulValue: 0 },
     ],
 
     # 动作定义
@@ -28,7 +29,7 @@ scenes: [
       { id: 'b5', cmd: 'aside', params: 'p4' },
       { id: 'b6', cmd: 'copper', params: '1' },
       { id: 'b7', cmd: 'aside', params: 'p5' },
-      { id: 'b8', cmd: 'wtime', params: '0,10800000' },
+      { id: 'b8', cmd: 'wtime', params: '10800000' },
       { id: 'b9', cmd: 'aside', params: 'p6' },
       { id: 'b10', cmd: 'copper', params: '-20%' },
       { id: 'b11', cmd: 'aside', params: 'p7' },
@@ -41,6 +42,7 @@ scenes: [
       { 
         id: 'c1', desc: '这里是经常讨乞的地方', 
         options: [ 
+          # 第一天
           { title: '【学着大哥乞讨】', click_actions: ['b2'], andVarsOn: ['v1'], andVarsOff: ['v5', 'v7', 'v8'] }, 
           { title: '【观察周围】', click_actions: ['b3'], andVarsOn: ['v2'], andVarsOff: ['v5', 'v7', 'v8'] }, 
           { title: '【再次观察周围】', click_actions: ['b4'], andVarsOn: ['v3'], andVarsOff: ['v5', 'v7', 'v8'] }, 
@@ -48,7 +50,9 @@ scenes: [
           { title: '【继续乞讨】 ', click_actions: ['b6', 'b7', 'b8', 'b1'], andVarsOn: ['v5'], andVarsOff: ['v7', 'v8'], andVarsValue: ['@world_time_hours < 17'] }, 
           { title: '【继续乞讨】 ', click_actions: ['b9'], andVarsOn: ['v5'], andVarsOff: ['v7', 'v8'], andVarsValue: ['@world_time_hours >= 17'] }, 
           { title: '【支付】', click_actions: ['b10', 'b11'], andVarsOn: ['v7'], andVarsOff: ['v8'] }, 
-          { title: '今天已经累了，先回去吧', click_actions: ['b12'], andVarsOn: ['v8'] }, 
+          { title: '今天已经累了，先回去吧', click_actions: ['b12'], andVarsOn: ['v8'], andVarsOff: ['v9'], varsOn: ['v9'] }, 
+          # 第二天
+          { title: '【学着大哥乞讨】', click_actions: [], andVarsOn: ['v9'] }, 
         ],
       },
       { 
