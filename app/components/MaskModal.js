@@ -31,7 +31,7 @@ class MaskModal extends PureComponent {
     _renderForDialog() {
         const currentStyles = this.props.currentStyles;
         return (
-            <Modal isVisible={this.props.visible} useNativeDriver={true} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
+            <Modal isVisible={this.props.visible} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
                 <View style={currentStyles.dlgCenter}>
                     <View style={[currentStyles.dlgParent, currentStyles.dlgCenter]}>
                         <View style={{ flex: 4 }}>
@@ -59,7 +59,7 @@ class MaskModal extends PureComponent {
     _renderForAside() {
         const currentStyles = this.props.currentStyles;
         return (
-            <Modal isVisible={this.props.visible} style={{ flex: 1 }} useNativeDriver={true} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut"  backdropColor="#fff" backdropOpacity={1}>
+            <Modal isVisible={this.props.visible} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut"  backdropColor="#fff" backdropOpacity={1}>
                 <View style={[currentStyles.asideCenter]}>
                     <View style={[this.props.subStype == 1 ? currentStyles.asideParent1 : currentStyles.asideParent2, currentStyles.asideCenter]}>
                         <View style={{ flex: 4 }}>
