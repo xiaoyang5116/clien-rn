@@ -4,7 +4,7 @@ scenes: [
     id: 'hutongkou', name: '落月镇西-胡同口',
 
     # 进入场景事件处理动作ID列表
-    enter_actions: ['b0', 'b1'],
+    enterActions: ['b0', 'b1'],
 
     # 变量定义
     vars: [
@@ -21,14 +21,18 @@ scenes: [
       { id: 'b4', cmd: 'scene', params: 'xizhenminjujie' },
     ],
 
+    # 事件定义
+    events: [
+    ],
+
     # 对话选项
     chats: [
       #
       { 
         id: 'c1', desc: '这里是荒凉的地方，没人经过', 
         options: [ 
-          { title: '【观察四周】', click_actions: ['b2', 'b3'], andVarsOn: ['v1'], andVarsOff: ['v2'] }, 
-          { title: '【西镇民居街】', click_actions: ['b4'], andVarsOn: ['v2'] }, 
+          { title: '【观察四周】', clickActions: ['b2', 'b3'], andVarsOn: ['v1'], andVarsOff: ['v2'] }, 
+          { title: '【西镇民居街】', clickActions: ['b4'], andVarsOn: ['v2'] }, 
         ],
       },
       { 
@@ -40,8 +44,8 @@ scenes: [
 
     # 旁白
     asides: [
-      { id: 'p1', style: 2, sections: ['落月镇是个几千人口的镇子，比村子大，但人数也不多。'], finish_actions: ['b1'], varsOn: ['v1'], andVarsOff: ['v1'] },
-      { id: 'p2', style: 2, title: '乞丐李大哥：', sections: ['这些人也是寻常人家，不会搭理乞丐的。'], finish_actions: ['b1'], varsOn: ['v2'] },
+      { id: 'p1', style: 2, sections: ['落月镇是个几千人口的镇子，比村子大，但人数也不多。'], finishActions: ['b1'], varsOn: ['v1'], andVarsOff: ['v1'] },
+      { id: 'p2', style: 2, title: '乞丐李大哥：', sections: ['这些人也是寻常人家，不会搭理乞丐的。'], finishActions: ['b1'], varsOn: ['v2'] },
     ],
 
     # 对话框

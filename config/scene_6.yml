@@ -4,7 +4,7 @@ scenes: [
     id: 'dalukou', name: '大路口',
 
     # 进入场景事件处理动作ID列表
-    enter_actions: ['b0'],
+    enterActions: ['b0'],
 
     # 变量定义
     vars: [
@@ -18,21 +18,25 @@ scenes: [
       { id: 'b2', cmd: 'scene', params: 'nanjieshi' },
     ],
 
+    # 事件定义
+    events: [
+    ],
+
     # 对话选项
     chats: [
       #
       { 
         id: 'c1', desc: '有些少许行人在路边，匆匆而过', 
         options: [ 
-          { title: '【观察路边状况】', click_actions: ['b1'], andVarsOff: ['v1']}, 
-          { title: '【南街市】', click_actions: ['b2'], andVarsOn: ['v1']}, 
+          { title: '【观察路边状况】', clickActions: ['b1'], andVarsOff: ['v1']}, 
+          { title: '【南街市】', clickActions: ['b2'], andVarsOn: ['v1']}, 
         ],
       },
     ],
 
     # 旁白
     asides: [
-      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['这里是马车路，记得要走两边，被马撞到的话只能认栽，一起也有被马撞死的乞丐，或者应该是被踩死的吧。'], finish_actions: ['b0'], varsOn: ['v1'] },
+      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['这里是马车路，记得要走两边，被马撞到的话只能认栽，一起也有被马撞死的乞丐，或者应该是被踩死的吧。'], finishActions: ['b0'], varsOn: ['v1'] },
     ],
 
     # 对话框

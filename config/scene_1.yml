@@ -16,12 +16,17 @@
 #       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var, copper, wtime
 #       params: 参数
 #
+#     events: 事件列表
+#       可选条件：andVarsOn, andVarsOff, andVarsValue
+#       影响结果：varsOn
+#       事件动作: eventActions
+#
 #     chats: 对话选项
 #       id:       对话ID
 #       desc:     对话框顶部描述
 #       options:  选项列表
 #         title:  选项名称
-#         click_actions: 选项点击事件后触发的动作ID列表
+#         clickActions: 选项点击事件后触发的动作ID列表
 #         andVarsOn:    该选项显示所需判断为ON的变量列表(全匹配) 
 #         andVarsOff:   该选项显示所需判断为OFF的变量列表(全匹配)
 #         andVarsValue: 该选项显示所需判断值大小的条件列表(全匹配)，
@@ -30,19 +35,26 @@
 #         orVarsOff:    该选项显示所需判断为OFF的变量列表(匹配任意一个)
 #         orVarsValue:  该选项显示所需判断值大小的条件列表(匹配任意一个)
 #
+#         varsOn:       选项点击后修改这些变量为ON
+#         asides:       显示的旁白列表(旁白ID)
+#         nextChat:     跳转到下一个对话框(对话ID)
+#         alertCopper:  增减铜币数量(可指定百分比)
+#         alertWorldTime: 增减世界时间(单位毫秒)
+#         toScene: 切换到某个场景
+#
 #     asides: 旁白列表
 #       id: 旁白ID
 #       style: 风格ID
 #       sections: 旁白段落
 #       varsOn: 旁边结束后修改这些变量为ON
-#       finish_actions: 旁白结束事件触发的动作ID列表
+#       finishActions: 旁白结束事件触发的动作ID列表
 #
 #     dialogs: 对话框列表
 #       id: 对话框ID
 #       title: 标题
 #       content: 内容
 #       varsOn: 旁边结束后修改这些变量为ON
-#       confirm_actions: 对话框确认按钮点击事件触发的动作ID列表
+#       confirmActions: 对话框确认按钮点击事件触发的动作ID列表
 #
 # ===========================================
 scenes: [
@@ -51,7 +63,7 @@ scenes: [
     id: 'wzkj', name: '未知空间',
 
     # 进入场景事件处理动作ID列表
-    enter_actions: ['b1'],
+    enterActions: ['b1'],
 
     # 变量定义
     vars: [
@@ -69,51 +81,55 @@ scenes: [
       { id: 'b1', cmd: 'aside',  params: 'p1' },
     ],
 
+    # 事件定义
+    events: [
+    ],
+
     # 对话选项
     chats: [
       # 新手对话主列表
       { 
         id: 'c1', desc: '你穿越了, 请选择穿越开局', 
         options: [ 
-          { title: '【乞丐】', click_actions: ['a2'], andVarsOff: ['v1'] }, 
-          { title: '【乞丐】', click_actions: ['a3'], andVarsOn: ['v1'] }, 
-          { title: '【没有名额了】', click_actions: ['a5'] }, 
-          { title: '【真没有名额了】', click_actions: ['a6'] }, 
+          { title: '【乞丐】', clickActions: ['a2'], andVarsOff: ['v1'] }, 
+          { title: '【乞丐】', clickActions: ['a3'], andVarsOn: ['v1'] }, 
+          { title: '【没有名额了】', clickActions: ['a5'] }, 
+          { title: '【真没有名额了】', clickActions: ['a6'] }, 
         ],
       },
       # 乞丐第一次点击出现
       { 
         id: 'c2', desc: '再等等', 
         options: [ 
-          { title: '<<< 返回', click_actions: ['a1'], varsOn: ['v1'] }, 
+          { title: '<<< 返回', clickActions: ['a1'], varsOn: ['v1'] }, 
         ]
       },
       # 乞丐第二次点击出现
       { 
         id: 'c3', desc: '行吧', 
         options: [ 
-          { title: '确认', click_actions: ['a7'] }, 
+          { title: '确认', clickActions: ['a7'] }, 
         ]
       },
       # 
       { 
         id: 'c4', desc: '为什么只能选最差开局', 
         options: [ 
-          { title: '返回', click_actions: ['a1'] }, 
+          { title: '返回', clickActions: ['a1'] }, 
         ]
       },
       # 
       { 
         id: 'c5', desc: '没有名额是什么鬼', 
         options: [ 
-          { title: '返回', click_actions: ['a1'] }, 
+          { title: '返回', clickActions: ['a1'] }, 
         ]
       },
     ],
 
     # 旁白
     asides: [
-      { id: 'p1', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], finish_actions: ['a1'] },
+      { id: 'p1', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], finishActions: ['a1'] },
     ],
 
    # 对话框

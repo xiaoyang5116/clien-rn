@@ -136,8 +136,7 @@ export default {
       RootNavigation.navigate('Home');
       userState.sceneId = sceneId;
       
-      yield put.resolve(action('processActions')({ actions: scene.enter_actions }));
-      yield put.resolve(action('syncData')({}));
+      yield put.resolve(action('processActions')({ enterActions: scene.enterActions }));
       yield put.resolve(action('UserModel/syncData')({}));
     },
 
@@ -220,26 +219,72 @@ export default {
     },
 
     // 事件动作处理
-    // 参数：{ actions=动作列表,如:['a1', 'a2' ...] }
+    // 参数：{ actions=动作列表,如:['a1', 'a2' ...], varsOn: [...], asides: [...], nextChat: xxx, alertCopper: xxx, alertWorldTime: xxx, toScene: xxx }
     *processActions({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const sceneState = yield select(state => state.SceneModel);
       const sceneId = userState.sceneId;
 
       let allActions = [];
-
-      const predefineActions = sceneState.data._cfgReader.getSceneActions(sceneId, payload.actions);
-      if (predefineActions != null) {
-        allActions.push(...predefineActions);
-      }
       
-      // 生成自动变量动作
+      // 生成变量变动
       if (payload.varsOn != undefined && Array.isArray(payload.varsOn)) {
-        let autoVars = [];
+        let varsActions = [];
         payload.varsOn.forEach(e => {
-          autoVars.push({ id: "__auto_{0}_on".format(e), cmd: 'var', params: "{0} = ON".format(e) });
+          varsActions.push({ id: "__auto_{0}_on".format(e), cmd: 'var', params: "{0} = ON".format(e) });
         });
-        allActions.unshift(...autoVars);
+        allActions.push(...varsActions);
+      }
+
+      // 生成铜币修改动作
+      if (payload.alertCopper != undefined && typeof(payload.alertCopper) == 'string') {
+        allActions.push({ id: "__auto_{0}_copper".format(payload.alertCopper), cmd: 'copper', params: payload.alertCopper });
+      }
+
+      // 生成世界时间修改动作
+      if (payload.alertWorldTime != undefined && typeof(payload.alertWorldTime) == 'string') {
+        allActions.push({ id: "__auto_{0}_wtime".format(payload.alertWorldTime), cmd: 'wtime', params: payload.alertWorldTime });
+      }
+
+      // 生成旁白动作
+      if (payload.asides != undefined && Array.isArray(payload.asides)) {
+        let asideActions = [];
+        payload.asides.forEach(e => {
+          asideActions.push({ id: "__auto_{0}_aside".format(e), cmd: 'aside', params: e });
+        });
+        allActions.push(...asideActions);
+      }
+
+      // 生成对话跳转动作
+      if (payload.nextChat != undefined && typeof(payload.nextChat) == 'string') {
+        allActions.push({ id: "__auto_{0}_chat".format(payload.nextChat), cmd: 'chat', params: payload.nextChat });
+      }
+
+      // 生成切换场景动作
+      if (payload.toScene != undefined && typeof(payload.toScene) == 'string') {
+        allActions.push({ id: "__auto_{0}_scene".format(payload.toScene), cmd: 'scene', params: payload.toScene });
+      }
+
+      // 预定义配置(在actions段设定)
+      const predefineActions = [];
+      if (payload.actions != undefined && payload.actions.length > 0) 
+        predefineActions.push(...payload.actions);
+      else if (payload.enterActions != undefined && payload.enterActions.length > 0)
+        predefineActions.push(...payload.enterActions);
+      else if (payload.clickActions != undefined && payload.clickActions.length > 0) 
+        predefineActions.push(...payload.clickActions);
+      else if (payload.finishActions != undefined && payload.finishActions.length > 0) 
+        predefineActions.push(...payload.finishActions);
+      else if (payload.confirmActions != undefined && payload.confirmActions.length > 0) 
+        predefineActions.push(...payload.confirmActions);
+      else if (payload.eventActions != undefined && payload.eventActions.length > 0) 
+        predefineActions.push(...payload.eventActions);
+
+      if (predefineActions.length > 0) {
+        const validActions = sceneState.data._cfgReader.getSceneActions(sceneId, predefineActions);
+        if (validActions != null && validActions.length > 0) {
+          allActions.push(...validActions);
+        }
       }
 
       let actionIdList = [];
@@ -254,6 +299,22 @@ export default {
         if (result != undefined) {
           yield put.resolve(action(result.handler)(item));
         }
+      }
+    },
+
+    *_raiseSceneEvents({ payload }, { put, select }) {
+      const sceneId = payload.sceneId;
+      const sceneState = yield select(state => state.SceneModel);
+      const events = sceneState.data._cfgReader.getSceneEvents(sceneId);
+      if (events == null)
+        return;
+
+      for (let key in events) {
+        const event = events[key];
+        if (!(yield put.resolve(action('testCondition')({ ...event }))))
+          continue;
+        //
+        yield put.resolve(action('processActions')(payload));
       }
     },
 
@@ -279,7 +340,9 @@ export default {
       RootNavigation.navigate(payload.params);
     },
 
-    *__onChatCommand({ payload }, { put }) {
+    *__onChatCommand({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+      yield put.resolve(action('_raiseSceneEvents')({ sceneId: userState.sceneId }));
       yield put.resolve(action('StoryModel/selectChat')({ chatId: payload.params }));
     },
 

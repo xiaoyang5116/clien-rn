@@ -11,28 +11,21 @@ class Queue {
     this._list = [];
   }
 
-  addDialog(title, content, confirmActions, varsOn) {
+  addDialog(payload) {
     this._list.push({
-      mtype: DIALOG_TYPE,
-      title: title,
-      content: content,
-      actions: [...confirmActions],
-      varsOn: varsOn,
+      ...payload,
       //
+      mtype: DIALOG_TYPE,
       confirm: false,
       hidden: false,
     })
   }
 
-  addAside(title, style, sections, finishActions, varsOn) {
+  addAside(payload) {
     this._list.push({
-      mtype: ASIDE_TYPE,
-      title: title,
-      style: style,
-      sections: [...sections],
-      actions: [...finishActions],
-      varsOn: varsOn,
+      ...payload,
       //
+      mtype: ASIDE_TYPE,
       sectionId: 0,
       hidden: false,
     });
@@ -63,7 +56,7 @@ export default {
     // 参数 dialog 标准配置结构
     *showDialog({ payload }, { put, select }) {
       const maskState = yield select(state => state.MaskModel);
-      maskState.data._queue.addDialog(payload.title, payload.content, payload.confirm_actions, payload.varsOn);
+      maskState.data._queue.addDialog(payload);
       yield put.resolve(action('_checkNext')({}));
     },
 
@@ -71,7 +64,7 @@ export default {
     // 参数: aside 标准配置结构
     *showAside({ payload }, { put, select }) {
       const maskState = yield select(state => state.MaskModel);
-      maskState.data._queue.addAside(payload.title, payload.style, payload.sections, payload.finish_actions, payload.varsOn);
+      maskState.data._queue.addAside(payload);
       yield put.resolve(action('_checkNext')({}));
     },
 
@@ -110,11 +103,8 @@ export default {
 
       if (current != null && !current.hidden) { // Modal回调2次？啥原因
         current.hidden = true;
-        if (current.actions.length > 0
-          && (current.mtype == ASIDE_TYPE || (current.mtype == DIALOG_TYPE && current.confirm))) {
-          const pl = { actions: [...current.actions] };
-          if (current.varsOn != undefined) pl.varsOn = current.varsOn;
-          yield put.resolve(action('SceneModel/processActions')(pl));
+        if (current.mtype == ASIDE_TYPE || (current.mtype == DIALOG_TYPE && current.confirm)) {
+          yield put.resolve(action('SceneModel/processActions')(current));
         }
         maskState.data._current = null;
         yield put.resolve(action('_checkNext')({}));

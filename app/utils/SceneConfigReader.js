@@ -59,6 +59,20 @@ export default class SceneConfigReader {
     return actions;
   }
 
+  getSceneEvents(sceneId) {
+    const scene = this.getScene(sceneId);
+    if (scene == null || scene.events == undefined)
+      return null;
+
+    const validEvents = [];
+    scene.events.forEach((e) => {
+      if (e.varsOn != undefined || e.eventActions != undefined) {
+        validEvents.push(e);
+      }
+    });
+    return validEvents;
+  }
+
   getSceneAside(sceneId, asideId) {
     const scene = this.getScene(sceneId);
     if (scene == null || scene.asides == undefined)

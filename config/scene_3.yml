@@ -4,7 +4,7 @@ scenes: [
     id: 'pomiaomk', name: '破庙门口',
 
     # 进入场景事件处理动作ID列表
-    enter_actions: ['a0'],
+    enterActions: ['a0'],
 
     # 变量定义
     vars: [
@@ -17,14 +17,18 @@ scenes: [
       { id: 'b2', cmd: 'scene', params: 'hutongkou' },
     ],
 
+    # 事件定义
+    events: [
+    ],
+
     # 对话选项
     chats: [
       #
       { 
         id: 'c1', desc: '请选择移动', 
         options: [ 
-          { title: '【进入破庙】', click_actions: ['b1'] }, 
-          { title: '【落月镇西-胡同口】', click_actions: ['b2'] }, 
+          { title: '【进入破庙】', clickActions: ['b1'] }, 
+          { title: '【落月镇西-胡同口】', clickActions: ['b2'] }, 
         ],
       }
     ],
