@@ -35,15 +35,15 @@ class VarUtils {
 }
 
 const ACTIONS_MAP = [
-  { cmd:'aside',    handler:  '__onAsideCommand'},
-  { cmd:'dialog',   handler:  '__onDialogCommand'},
-  { cmd:'navigate', handler:  '__onNavigateCommand'},
-  { cmd:'chat',     handler:  '__onChatCommand'},
-  { cmd:'scene',    handler:  '__onSceneCommand'},
-  { cmd:'delay',    handler:  '__onDelayCommand'},
-  { cmd:'copper',   handler:  '__onCopperCommand'},
-  { cmd: 'wtime',   handler:  '__onWorldTimeCommand' },
-  { cmd:'var',      handler:  '__onVarCommand'},
+  { cmd: 'aside',         handler: '__onAsideCommand'},
+  { cmd: 'dialog',        handler: '__onDialogCommand'},
+  { cmd: 'navigate',      handler: '__onNavigateCommand'},
+  { cmd: 'chat',          handler: '__onChatCommand'},
+  { cmd: 'scene',         handler: '__onSceneCommand'},
+  { cmd: 'delay',         handler: '__onDelayCommand'},
+  { cmd: 'copper',        handler: '__onCopperCommand'},
+  { cmd: 'wtime',         handler: '__onWorldTimeCommand' },
+  { cmd: 'var',           handler: '__onVarCommand'},
 ];
 
 const SCENES_LIST = [
@@ -291,8 +291,18 @@ export default {
       yield call(delay, parseInt(payload.params));
     },
 
-    *__onCopperCommand({ payload }, { put }) {
-      yield put.resolve(action('UserModel/alertCopper')({ value: parseInt(payload.params) }));
+    *__onCopperCommand({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+      let alertValue = 0;
+      if (payload.params.indexOf('%') != -1) {
+        alertValue = Math.ceil((parseFloat(payload.params.replace('%', '')) / 100) * userState.copper);
+      } else {
+        alertValue = parseInt(payload.params);
+      }
+
+      if (alertValue != 0) {
+        yield put.resolve(action('UserModel/alertCopper')({ value: alertValue }));
+      }
     },
 
     *__onWorldTimeCommand({ payload }, { put }) {

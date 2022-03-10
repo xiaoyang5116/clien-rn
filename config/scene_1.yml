@@ -13,7 +13,7 @@
 #
 #     actions: 动作列表
 #       id: 动作ID
-#       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var, copper
+#       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var, alertCopper
 #       params: 参数
 #
 #     chats: 对话选项
@@ -45,11 +45,10 @@
 #       confirm_actions: 对话框确认按钮点击事件触发的动作ID列表
 #
 # ===========================================
-
 scenes: [
   # 新手村场景
   {
-    id: 'scene1', name: '未知空间',
+    id: 'wzkj', name: '未知空间',
 
     # 进入场景事件处理动作ID列表
     enter_actions: ['b1'],
@@ -66,7 +65,7 @@ scenes: [
       { id: 'a3', cmd: 'chat',  params: 'c3' },
       { id: 'a5', cmd: 'chat',  params: 'c4' },
       { id: 'a6', cmd: 'chat',  params: 'c5' },
-      { id: 'a7', cmd: 'scene',  params: 'scene2' },
+      { id: 'a7', cmd: 'scene',  params: 'pomiao' },
       { id: 'b1', cmd: 'aside',  params: 'p1' },
     ],
 

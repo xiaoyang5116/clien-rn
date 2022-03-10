@@ -45,9 +45,9 @@ export default {
     },
 
     *firstStep({ }, { put, select }) {
-      const defaultSceneId = 'scene1';
+      const defaultSceneId = 'wzkj';
       const userState = yield select(state => state.UserModel);
-      const sceneId = (userState.sceneId != '') ? userState.sceneId : 'scene1';
+      const sceneId = (userState.sceneId != '') ? userState.sceneId : defaultSceneId;
       yield put.resolve(action('SceneModel/enterScene')({ sceneId: sceneId }));
     },
 
