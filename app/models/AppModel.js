@@ -54,6 +54,7 @@ export default {
     *clearArchive({ }, { call, put, select }) {
       const userState = yield select(state => state.UserModel);
       userState.sceneId = '';
+      userState.prevSceneId = '';
 
       yield call(LocalStorage.clear);
       yield put.resolve(action('SceneModel/reload')({}));

@@ -48,7 +48,8 @@ const ACTIONS_MAP = [
 const SCENES_LIST = [
   'scene_1', 'scene_2', 'scene_3', 
   'scene_4', 'scene_5', 'scene_6', 
-  'scene_7', 'scene_8'
+  'scene_7', 'scene_8',
+  'npc_1',
 ];
 
 export default {
@@ -86,6 +87,7 @@ export default {
         const data = yield call(GetSceneDataApi, sceneId);
         if (data.scenes != undefined) {
           data.scenes.forEach((e) => {
+            if (e.isNpc == undefined) e.isNpc = false;
             scenes.push(e);
           });
         }
@@ -104,7 +106,7 @@ export default {
         const vars = sceneState.data._cfgReader.getSceneVars(sceneId);
         if (vars != null) {
           vars.forEach((e) => {
-            let value = (e.defaulValue != undefined) ? e.defaulValue : 0;
+            let value = (e.defaultValue != undefined) ? e.defaultValue : 0;
             const uniVarId = "{0}_{1}".format(sceneId, e.id).toUpperCase();
             if (sceneCache != null && sceneCache.vars != null) {
               const varCache = VarUtils.getVar(sceneCache.vars, sceneId, e.id);
@@ -133,6 +135,10 @@ export default {
 
       // 场景必须在这里
       RootNavigation.navigate('Home');
+      if (sceneId !== userState.sceneId) {
+        // 只有场景发生变化才更新记录的上一个场景。
+        userState.prevSceneId = userState.sceneId;
+      }
       userState.sceneId = sceneId;
       
       yield put.resolve(action('raiseSceneEvents')({ sceneId: sceneId, eventType: 'enter' }));
@@ -284,6 +290,13 @@ export default {
         }
       }
 
+      // 如果没有指定刷新当前选项动作，则默认执行刷新当前选项框。
+      if (allActions.find(e => (e.cmd == 'chat' || e.cmd == 'scene' || e.cmd == 'navigate')) == undefined 
+        && payload.chatId != undefined 
+        && payload.chatId != '') {
+        allActions.push({ id: "__chat_{0}".format(payload.chatId), cmd: 'chat', params: payload.chatId });
+      }
+
       let actionIdList = [];
       allActions.forEach(e => { actionIdList.push(e.id) });
       debugMessage("processActions: scene={0} action_list={1}", sceneId, actionIdList.join(', '));
@@ -338,8 +351,13 @@ export default {
       yield put.resolve(action('StoryModel/selectChat')({ chatId: payload.params }));
     },
 
-    *__onSceneCommand({ payload }, { put }) {
-      yield put.resolve(action('enterScene')({ sceneId: payload.params }));
+    *__onSceneCommand({ payload }, { put, select }) {
+      let sceneId = payload.params;
+      if (sceneId == '@previous') {
+        const userState = yield select(state => state.UserModel);
+        sceneId = (userState.prevSceneId != '') ? userState.prevSceneId : sceneId;
+      }
+      yield put.resolve(action('enterScene')({ sceneId: sceneId }));
     },
 
     *__onDelayCommand({ payload }, { call }) {

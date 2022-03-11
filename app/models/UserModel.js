@@ -12,6 +12,7 @@ export default {
   state: {
     copper: 0,  // 铜币数量
     sceneId: '',  // 当前场景ID
+    prevSceneId: '',  // 前一个场景ID
     worldId: 0, // 用户当前世界ID
   },
 

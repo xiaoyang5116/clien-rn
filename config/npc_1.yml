@@ -82,69 +82,46 @@
 #
 # ===========================================
 scenes: [
-  # 新手村场景
+  # NPC
   {
-    id: 'wzkj', name: '未知空间',
+    id: 'npc1', name: '老者NPC',
+
+    # 指定场景为NPC场景
+    isNpc: true,
 
     # 变量定义
     vars: [
-      { id: 'v1', min: 0, max: 1 },
+      { id: 'hao_gan_du', min: 0, max: 10000000, defaultValue: 200 },
     ],
 
     # 动作定义
     actions: [
+      { id: 'a1', cmd: 'var', params: 'hao_gan_du += 10' },
+      { id: 'a2', cmd: 'var', params: 'hao_gan_du -= 10' },
     ],
 
     # 事件定义
     events: [
-      { type: 'enter', dialogs: ['p0'] },
+      { type: 'enter', nextChat: 'c1' },
     ],
 
     # 对话选项
     chats: [
-      # 新手对话主列表
+      #
       { 
-        id: 'c1', desc: '你穿越了, 请选择穿越开局', 
+        id: 'c1', desc: '', 
         options: [ 
-          { title: '【乞丐】', andVarsOff: ['v1'], nextChat: 'c2' }, 
-          { title: '【乞丐】', andVarsOn: ['v1'], nextChat: 'c3' }, 
-          { title: '【没有名额了】', nextChat: 'c4' }, 
-          { title: '【真没有名额了】', nextChat: 'c5' }, 
+          { title: '好感度 >= 200 显示', andVarsValue: ['hao_gan_du >= 200'] },
+          { title: '好感度 < 200 显示', andVarsValue: ['hao_gan_du < 200'] },
+          { title: '增加10点好感度', clickActions: ['a1'] },
+          { title: '减少10点好感度', clickActions: ['a2'] },
+          { title: '返回原场景', toScene: '@previous' },
         ],
-      },
-      # 乞丐第一次点击出现
-      { 
-        id: 'c2', desc: '再等等', 
-        options: [ 
-          { title: '<<< 返回', varsOn: ['v1'], nextChat: 'c1' }, 
-        ]
-      },
-      # 乞丐第二次点击出现
-      { 
-        id: 'c3', desc: '行吧', 
-        options: [ 
-          { title: '确认', toScene: 'pomiao' }, 
-        ]
-      },
-      # 
-      { 
-        id: 'c4', desc: '为什么只能选最差开局', 
-        options: [ 
-          { title: '返回', nextChat: 'c1' }, 
-        ]
-      },
-      # 
-      { 
-        id: 'c5', desc: '没有名额是什么鬼', 
-        options: [ 
-          { title: '返回', nextChat: 'c1' }, 
-        ]
-      },
+      }
     ],
 
     # 对话框
     dialogs: [
-      { id: 'p0', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], nextChat: 'c1' },
     ],
   },
 ]

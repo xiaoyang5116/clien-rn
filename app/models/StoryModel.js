@@ -35,7 +35,7 @@ export default {
       const scene = yield put.resolve(action('SceneModel/getScene')({ sceneId: sceneId }));
       const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: sceneId, chatId: chatId }));
       if (scene == null || chat == null) {
-        errorMessage("Scene or Chat is null!");
+        errorMessage("Scene or Chat is null!, sceneId={0}, chatId={1}", sceneId, chatId);
         return;
       }
     
@@ -44,6 +44,7 @@ export default {
       const sectionItem = { title: chat.desc, data: [] };
       for (let key in chat.options) {
         const item = chat.options[key];
+        item.chatId = chat.id;
         if (yield put.resolve(action('SceneModel/testCondition')(item))) {
           sectionItem.data.push({ ...item });
         }
