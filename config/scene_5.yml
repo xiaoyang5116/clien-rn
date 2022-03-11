@@ -6,6 +6,8 @@ scenes: [
     # 变量定义
     vars: [
       { id: 'v1', min: 0, max: 1 },
+      { id: 'v2', min: 0, max: 1 },
+      { id: 'v3', min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -25,6 +27,9 @@ scenes: [
         options: [ 
           { title: '【观察路边的小吃摊】', andVarsOff: ['v1'], nextChat: 'c2', dialogs: ['p1'] }, 
           { title: '【大路口】', andVarsOn: ['v1'], toScene: 'dalukou' }, 
+          { title: '【和善的老人】', andVarsOn: ['jishiyijiao/v14'], dialogs: ['p2'] }, 
+          { title: '【提问】', andVarsOn: ['v2'], dialogs: ['p3'] }, 
+          { title: '<<<【落月镇西-胡同口】', andVarsOn: ['v3'], toScene: 'hutongkou' }, 
         ],
       },
       { 
@@ -37,6 +42,9 @@ scenes: [
     # 对话框
     dialogs: [
       { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['价钱还行，运气好了讨到钱，我们也可以买东西吃，但不要在人多的时候打扰生意。'], varsOn: ['v1'], nextChat: 'c1' },
+      { id: 'p2', style: 2, title: '', sections: ['老人正在座椅上休息'], varsOn: ['v2'], nextChat: 'c1' },
+      { id: 'p3', style: 1, title: '', sections: ['能讲讲修行者的消息吗。'], dialogs: ['p4'] },
+      { id: 'p4', style: 2, title: '和善的老人：', sections: ['你说修行之人，这个的确是有的，每隔几十年，据说修行者会在各地探访有资质的孩童收徒，但具体是那一天谁也不知道，完全看运气。另外修行之人脱离世俗，大都远离城市，就是有些世俗想法的，也不会在我们这小地方……'], nextChat: 'c1', varsOn: ['v3'] },
     ],
   },
 ]

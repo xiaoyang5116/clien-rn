@@ -44,6 +44,7 @@ scenes: [
           { title: '【尝试起身】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v5'], andVarsOff: ['v10'], dialogs: ['p7'] }, 
           { title: '【睡觉】', andVarsOn: ['v10'], andVarsOff: ['v11'], varsOn: ['v11'], alertWorldTime: '@day/1/6', nextChat: 'c1' }, 
           { title: '【走出破庙】', andVarsOn: ['v11'], toScene: 'pomiaomk' }, 
+          { title: '【睡觉到下一天】', andVarsOn: ['hutongkou/v3'], alertWorldTime: '@day/1/6', nextChat: 'c1' }, 
         ],
       },
       {
