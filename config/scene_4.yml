@@ -16,7 +16,7 @@ scenes: [
     # 事件定义
     events: [
       { type: 'enter', andVarsOff: ['v1'], asides: ['p1'] },
-      { type: 'enter', andVarsOn: ['v1'], nextChat: ['c1'] },
+      { type: 'enter', andVarsOn: ['v1'], nextChat: 'c1' },
     ],
 
     # 对话选项
