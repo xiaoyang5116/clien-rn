@@ -3,9 +3,6 @@ scenes: [
   {
     id: 'pomiao', name: '破庙',
 
-    # 进入场景事件处理动作ID列表
-    enterActions: ['a0'],
-
     # 变量定义
     vars: [
       { id: 'v1', min: 0, max: 1, defaulValue: 0 },
@@ -23,11 +20,11 @@ scenes: [
 
     # 动作定义
     actions: [
-      { id: 'a0', cmd: 'chat', params: 'c1' },
     ],
 
     # 事件定义
     events: [
+      { type: 'enter', nextChat: 'c1' },
     ],
 
     # 对话选项

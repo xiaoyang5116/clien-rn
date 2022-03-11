@@ -49,6 +49,7 @@
 #       params: 参数
 #
 #     events: 事件列表
+#       type:   事件类型，必填项。enter: 场景进入事件，repeat: 可重复触发的场景内事件。
 #       可选条件：andVarsOn, andVarsOff, andVarsValue
 #       影响结果：varsOn
 #       事件动作: eventActions
@@ -84,9 +85,6 @@ scenes: [
   {
     id: 'wzkj', name: '未知空间',
 
-    # 进入场景事件处理动作ID列表
-    enterActions: ['a0'],
-
     # 变量定义
     vars: [
       { id: 'v1', min: 0, max: 1, defaulValue: 0 },
@@ -94,11 +92,11 @@ scenes: [
 
     # 动作定义
     actions: [
-      { id: 'a0', cmd: 'aside',  params: 'p0' },
     ],
 
     # 事件定义
     events: [
+      { type: 'enter', asides: ['p0'] },
     ],
 
     # 对话选项

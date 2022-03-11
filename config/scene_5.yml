@@ -3,9 +3,6 @@ scenes: [
   {
     id: 'xizhenminjujie', name: '西镇民居街',
 
-    # 进入场景事件处理动作ID列表
-    enterActions: ['b0'],
-
     # 变量定义
     vars: [
       { id: 'v1', min: 0, max: 1, defaulValue: 0 },
@@ -13,14 +10,11 @@ scenes: [
 
     # 动作定义
     actions: [
-      { id: 'b0', cmd: 'chat', params: 'c1' },
-      { id: 'b1', cmd: 'chat', params: 'c2' },
-      { id: 'b2', cmd: 'aside', params: 'p1' },
-      { id: 'b3', cmd: 'scene', params: 'dalukou' },
     ],
 
     # 事件定义
     events: [
+      { type: 'enter', nextChat: 'c1' },
     ],
 
     # 对话选项
@@ -29,8 +23,8 @@ scenes: [
       { 
         id: 'c1', desc: '民居院落依着斜坡而建，路边有一条小河沟，桥头有一些小吃摊位', 
         options: [ 
-          { title: '【观察路边的小吃摊】', clickActions: ['b1', 'b2'], andVarsOff: ['v1']}, 
-          { title: '【大路口】', clickActions: ['b3'], andVarsOn: ['v1']}, 
+          { title: '【观察路边的小吃摊】', andVarsOff: ['v1'], nextChat: 'c2', asides: ['p1'] }, 
+          { title: '【大路口】', andVarsOn: ['v1'], toScene: 'dalukou' }, 
         ],
       },
       { 
@@ -42,7 +36,7 @@ scenes: [
 
     # 旁白
     asides: [
-      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['价钱还行，运气好了讨到钱，我们也可以买东西吃，但不要在人多的时候打扰生意。'], finishActions: ['b0'], varsOn: ['v1'] },
+      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['价钱还行，运气好了讨到钱，我们也可以买东西吃，但不要在人多的时候打扰生意。'], varsOn: ['v1'], nextChat: 'c1' },
     ],
 
     # 对话框

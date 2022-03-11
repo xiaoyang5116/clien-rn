@@ -136,7 +136,7 @@ export default {
       RootNavigation.navigate('Home');
       userState.sceneId = sceneId;
       
-      yield put.resolve(action('processActions')({ enterActions: scene.enterActions }));
+      yield put.resolve(action('raiseSceneEvents')({ sceneId: sceneId, eventType: 'enter' }));
       yield put.resolve(action('UserModel/syncData')({}));
     },
 
@@ -278,8 +278,6 @@ export default {
       const predefineActions = [];
       if (payload.actions != undefined && payload.actions.length > 0) 
         predefineActions.push(...payload.actions);
-      else if (payload.enterActions != undefined && payload.enterActions.length > 0)
-        predefineActions.push(...payload.enterActions);
       else if (payload.clickActions != undefined && payload.clickActions.length > 0) 
         predefineActions.push(...payload.clickActions);
       else if (payload.finishActions != undefined && payload.finishActions.length > 0) 
@@ -311,19 +309,23 @@ export default {
       }
     },
 
-    *_raiseSceneEvents({ payload }, { put, select }) {
+    *raiseSceneEvents({ payload }, { put, select }) {
       const sceneId = payload.sceneId;
+      const eventType = payload.eventType;
       const sceneState = yield select(state => state.SceneModel);
       const events = sceneState.data._cfgReader.getSceneEvents(sceneId);
       if (events == null)
         return;
 
       for (let key in events) {
-        const event = events[key];
-        if (!(yield put.resolve(action('testCondition')({ ...event }))))
+        const ev = events[key];
+        if (ev.type != eventType)
           continue;
         //
-        yield put.resolve(action('processActions')(payload));
+        if (!(yield put.resolve(action('testCondition')({ ...ev }))))
+          continue;
+        //
+        yield put.resolve(action('processActions')(ev));
       }
     },
 
@@ -351,7 +353,7 @@ export default {
 
     *__onChatCommand({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
-      yield put.resolve(action('_raiseSceneEvents')({ sceneId: userState.sceneId }));
+      yield put.resolve(action('raiseSceneEvents')({ sceneId: userState.sceneId, eventType: 'repeat' }));
       yield put.resolve(action('StoryModel/selectChat')({ chatId: payload.params }));
     },
 

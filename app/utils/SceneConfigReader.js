@@ -66,7 +66,12 @@ export default class SceneConfigReader {
 
     const validEvents = [];
     scene.events.forEach((e) => {
-      if (e.varsOn != undefined || e.eventActions != undefined) {
+      if (e.type == undefined)
+        return;
+      if (e.varsOn != undefined 
+        || e.eventActions != undefined 
+        || e.nextChat != undefined 
+        || e.asides != undefined) {
         validEvents.push(e);
       }
     });

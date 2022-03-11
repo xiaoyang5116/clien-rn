@@ -3,9 +3,6 @@ scenes: [
   {
     id: 'nanjieshi', name: '南街市',
 
-    # 进入场景事件处理动作ID列表
-    enterActions: ['b0'],
-
     # 变量定义
     vars: [
       { id: 'v1', min: 0, max: 1, defaulValue: 0 },
@@ -13,13 +10,11 @@ scenes: [
 
     # 动作定义
     actions: [
-      { id: 'b0', cmd: 'chat', params: 'c1' },
-      { id: 'b1', cmd: 'aside', params: 'p1' },
-      { id: 'b2', cmd: 'scene', params: 'jishiyijiao' },
     ],
 
     # 事件定义
     events: [
+      { type: 'enter', nextChat: 'c1' },
     ],
 
     # 对话选项
@@ -28,15 +23,15 @@ scenes: [
       { 
         id: 'c1', desc: '繁华的商业街道。', 
         options: [ 
-          { title: '【观察街市内】', clickActions: ['b1'], andVarsOff: ['v1']}, 
-          { title: '【集市一角】', clickActions: ['b2'], andVarsOn: ['v1']}, 
+          { title: '【观察街市内】', andVarsOff: ['v1'], asides: ['p1'] }, 
+          { title: '【集市一角】', andVarsOn: ['v1'], toScene: 'jishiyijiao'}, 
         ],
       },
     ],
 
     # 旁白
     asides: [
-      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['这里是外来的一般商家来的市场，一般为了图个彩头，不会有多寒酸 我们就在这附近讨乞。不出这条路就行。', '讨乞后每天晚上要给帮派利钱，不然被记住会被帮派打走。', '记住不要去北街，那是富人才能去的地方，乞丐是去不了的。会被打。'], finishActions: ['b0'], varsOn: ['v1'] },
+      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['这里是外来的一般商家来的市场，一般为了图个彩头，不会有多寒酸 我们就在这附近讨乞。不出这条路就行。', '讨乞后每天晚上要给帮派利钱，不然被记住会被帮派打走。', '记住不要去北街，那是富人才能去的地方，乞丐是去不了的。会被打。'], varsOn: ['v1'], nextChat: 'c1' },
     ],
 
     # 对话框
