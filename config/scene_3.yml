@@ -28,10 +28,6 @@ scenes: [
       }
     ],
 
-    # 旁白
-    asides: [
-    ],
-
     # 对话框
     dialogs: [
     ]

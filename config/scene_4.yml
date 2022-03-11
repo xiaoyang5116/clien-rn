@@ -5,8 +5,8 @@ scenes: [
 
     # 变量定义
     vars: [
-      { id: 'v1', min: 0, max: 1, defaulValue: 0 },
-      { id: 'v2', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v1', min: 0, max: 1 },
+      { id: 'v2', min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -15,7 +15,7 @@ scenes: [
 
     # 事件定义
     events: [
-      { type: 'enter', andVarsOff: ['v1'], asides: ['p1'] },
+      { type: 'enter', andVarsOff: ['v1'], dialogs: ['p1'] },
       { type: 'enter', andVarsOn: ['v1'], nextChat: 'c1' },
     ],
 
@@ -25,7 +25,7 @@ scenes: [
       { 
         id: 'c1', desc: '这里是荒凉的地方，没人经过', 
         options: [ 
-          { title: '【观察四周】', andVarsOn: ['v1'], andVarsOff: ['v2'], asides: ['p2'], nextChat: 'c2' }, 
+          { title: '【观察四周】', andVarsOn: ['v1'], andVarsOff: ['v2'], dialogs: ['p2'], nextChat: 'c2' }, 
           { title: '【西镇民居街】', andVarsOn: ['v2'], toScene: 'xizhenminjujie' }, 
         ],
       },
@@ -36,14 +36,10 @@ scenes: [
       },
     ],
 
-    # 旁白
-    asides: [
+    # 对话框
+    dialogs: [
       { id: 'p1', style: 2, sections: ['落月镇是个几千人口的镇子，比村子大，但人数也不多。'], varsOn: ['v1'], nextChat: 'c1' },
       { id: 'p2', style: 2, title: '乞丐李大哥：', sections: ['这些人也是寻常人家，不会搭理乞丐的。'], varsOn: ['v2'], nextChat: 'c1' },
     ],
-
-    # 对话框
-    dialogs: [
-    ]
   },
 ]

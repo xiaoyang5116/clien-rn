@@ -35,7 +35,6 @@ class VarUtils {
 }
 
 const ACTIONS_MAP = [
-  { cmd: 'aside',         handler: '__onAsideCommand'},
   { cmd: 'dialog',        handler: '__onDialogCommand'},
   { cmd: 'navigate',      handler: '__onNavigateCommand'},
   { cmd: 'chat',          handler: '__onChatCommand'},
@@ -105,7 +104,7 @@ export default {
         const vars = sceneState.data._cfgReader.getSceneVars(sceneId);
         if (vars != null) {
           vars.forEach((e) => {
-            let value = e.defaulValue;
+            let value = (e.defaulValue != undefined) ? e.defaulValue : 0;
             const uniVarId = "{0}_{1}".format(sceneId, e.id).toUpperCase();
             if (sceneCache != null && sceneCache.vars != null) {
               const varCache = VarUtils.getVar(sceneCache.vars, sceneId, e.id);
@@ -219,7 +218,7 @@ export default {
     },
 
     // 事件动作处理
-    // 参数：{ actions=动作列表,如:['a1', 'a2' ...], varsOn: [...], asides: [...], dialogs: [...] nextChat: xxx, alertCopper: xxx, alertWorldTime: xxx, toScene: xxx }
+    // 参数：{ actions=动作列表,如:['a1', 'a2' ...], varsOn: [...], dialogs: [...], nextChat: xxx, alertCopper: xxx, alertWorldTime: xxx, toScene: xxx }
     *processActions({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const sceneState = yield select(state => state.SceneModel);
@@ -246,22 +245,13 @@ export default {
         allActions.push({ id: "__wtime_{0}".format(payload.alertWorldTime), cmd: 'wtime', params: payload.alertWorldTime });
       }
 
-      // 生成旁白动作
-      if (payload.asides != undefined && Array.isArray(payload.asides)) {
-        let asideActions = [];
-        payload.asides.forEach(e => {
-          asideActions.push({ id: "__aside_{0}".format(e), cmd: 'aside', params: e });
-        });
-        allActions.push(...asideActions);
-      }
-
       // 生成对话框动作
       if (payload.dialogs != undefined && Array.isArray(payload.dialogs)) {
-        let dialogsActions = [];
+        let dialogActions = [];
         payload.dialogs.forEach(e => {
-          dialogsActions.push({ id: "__dialog_{0}".format(e), cmd: 'dialog', params: e });
+          dialogActions.push({ id: "__dialog_{0}".format(e), cmd: 'dialog', params: e });
         });
-        allActions.push(...dialogsActions);
+        allActions.push(...dialogActions);
       }
 
       // 生成对话跳转动作
@@ -326,15 +316,6 @@ export default {
           continue;
         //
         yield put.resolve(action('processActions')(ev));
-      }
-    },
-
-    *__onAsideCommand({ payload }, { put, select }) {
-      const userState = yield select(state => state.UserModel);
-      const sceneState = yield select(state => state.SceneModel);
-      let aside = sceneState.data._cfgReader.getSceneAside(userState.sceneId, payload.params);
-      if (aside != null && (yield put.resolve(action('testCondition')(aside)))) {
-        yield put.resolve(action('MaskModel/showAside')({ ...aside }));
       }
     },
 
