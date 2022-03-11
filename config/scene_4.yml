@@ -7,6 +7,7 @@ scenes: [
     vars: [
       { id: 'v1', min: 0, max: 1 },
       { id: 'v2', min: 0, max: 1 },
+      { id: 'v3', min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -27,6 +28,7 @@ scenes: [
         options: [ 
           { title: '【观察四周】', andVarsOn: ['v1'], andVarsOff: ['v2'], dialogs: ['p2'], nextChat: 'c2' }, 
           { title: '【西镇民居街】', andVarsOn: ['v2'], toScene: 'xizhenminjujie' }, 
+          { title: '<<<【跑庙门口】', andVarsOn: ['xizhenminjujie/v3'], varsOn: ['v3'], toScene: 'pomiaomk' }, 
         ],
       },
       { 

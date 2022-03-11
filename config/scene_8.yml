@@ -18,6 +18,7 @@ scenes: [
       { id: 'v11', min: 0, max: 1 },
       { id: 'v12', min: 0, max: 1 },
       { id: 'v13', min: 0, max: 1 },
+      { id: 'v14', min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -49,7 +50,7 @@ scenes: [
           { title: '【学着大哥乞讨】', andVarsOn: ['v9'], andVarsOff: ['v10'], dialogs: ['p8'], alertCopper: '2', alertWorldTime: '10800000' }, 
           { title: '【支付】', andVarsOn: ['v11'], andVarsOff: ['v12'], varsOn: ['v12'], dialogs: ['p11', 'p12'], alertCopper: '-20%' }, 
           { title: '【问乞丐哥】', andVarsOn: ['v12'], andVarsOff: ['v13'], dialogs: ['p13'] }, 
-          { title: '<<<【西镇居民街】', andVarsOn: ['v13'], toScene: 'xizhenminjujie' }, 
+          { title: '<<<【西镇居民街】', andVarsOn: ['v13'], varsOn: ['v14'], toScene: 'xizhenminjujie' }, 
         ],
       },
       { 
