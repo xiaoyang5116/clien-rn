@@ -69,6 +69,7 @@ export default class SceneConfigReader {
       if (e.type == undefined)
         return;
       if (e.varsOn != undefined 
+        || e.varsOff != undefined
         || e.eventActions != undefined 
         || e.nextChat != undefined 
         || e.dialogs != undefined) {

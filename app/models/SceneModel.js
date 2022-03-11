@@ -17,7 +17,6 @@ import * as RootNavigation from '../utils/RootNavigation';
 import SceneConfigReader from "../utils/SceneConfigReader";
 
 class VarUtils {
-
   static generateVarUniqueId(sceneId, varId) {
     return "{0}_{1}".format(sceneId, varId).toUpperCase();
   }
@@ -31,7 +30,59 @@ class VarUtils {
     }
     return null;
   }
+}
 
+class PropertyActionBuilder {
+  static build(payload) {
+    let allActions = [];
+
+    // 生成变量变动
+    if (payload.varsOn != undefined && Array.isArray(payload.varsOn)) {
+      let varsActions = [];
+      payload.varsOn.forEach(e => {
+        varsActions.push({ id: "__var_{0}_on".format(e), cmd: 'var', params: "{0} = ON".format(e) });
+      });
+      allActions.push(...varsActions);
+    }
+    if (payload.varsOff != undefined && Array.isArray(payload.varsOff)) {
+      let varsActions = [];
+      payload.varsOff.forEach(e => {
+        varsActions.push({ id: "__var_{0}_off".format(e), cmd: 'var', params: "{0} = OFF".format(e) });
+      });
+      allActions.push(...varsActions);
+    }
+
+    // 生成铜币修改动作
+    if (payload.alertCopper != undefined && typeof(payload.alertCopper) == 'string') {
+      allActions.push({ id: "__copper_{0}".format(payload.alertCopper), cmd: 'copper', params: payload.alertCopper });
+    }
+
+    // 生成世界时间修改动作
+    if (payload.alertWorldTime != undefined && typeof(payload.alertWorldTime) == 'string') {
+      allActions.push({ id: "__wtime_{0}".format(payload.alertWorldTime), cmd: 'wtime', params: payload.alertWorldTime });
+    }
+
+    // 生成对话框动作
+    if (payload.dialogs != undefined && Array.isArray(payload.dialogs)) {
+      let dialogActions = [];
+      payload.dialogs.forEach(e => {
+        dialogActions.push({ id: "__dialog_{0}".format(e), cmd: 'dialog', params: e });
+      });
+      allActions.push(...dialogActions);
+    }
+
+    // 生成对话跳转动作
+    if (payload.nextChat != undefined && typeof(payload.nextChat) == 'string') {
+      allActions.push({ id: "__chat_{0}".format(payload.nextChat), cmd: 'chat', params: payload.nextChat });
+    }
+
+    // 生成切换场景动作
+    if (payload.toScene != undefined && typeof(payload.toScene) == 'string') {
+      allActions.push({ id: "__scene_{0}".format(payload.toScene), cmd: 'scene', params: payload.toScene });
+    }
+
+    return allActions;
+  }
 }
 
 const ACTIONS_MAP = [
@@ -224,7 +275,7 @@ export default {
     },
 
     // 事件动作处理
-    // 参数：{ actions=动作列表,如:['a1', 'a2' ...], varsOn: [...], dialogs: [...], nextChat: xxx, alertCopper: xxx, alertWorldTime: xxx, toScene: xxx }
+    // 参数：{ actions=动作列表,如:['a1', 'a2' ...], ... }
     *processActions({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const sceneState = yield select(state => state.SceneModel);
@@ -232,42 +283,10 @@ export default {
 
       let allActions = [];
       
-      // 生成变量变动
-      if (payload.varsOn != undefined && Array.isArray(payload.varsOn)) {
-        let varsActions = [];
-        payload.varsOn.forEach(e => {
-          varsActions.push({ id: "__var_{0}_on".format(e), cmd: 'var', params: "{0} = ON".format(e) });
-        });
-        allActions.push(...varsActions);
-      }
-
-      // 生成铜币修改动作
-      if (payload.alertCopper != undefined && typeof(payload.alertCopper) == 'string') {
-        allActions.push({ id: "__copper_{0}".format(payload.alertCopper), cmd: 'copper', params: payload.alertCopper });
-      }
-
-      // 生成世界时间修改动作
-      if (payload.alertWorldTime != undefined && typeof(payload.alertWorldTime) == 'string') {
-        allActions.push({ id: "__wtime_{0}".format(payload.alertWorldTime), cmd: 'wtime', params: payload.alertWorldTime });
-      }
-
-      // 生成对话框动作
-      if (payload.dialogs != undefined && Array.isArray(payload.dialogs)) {
-        let dialogActions = [];
-        payload.dialogs.forEach(e => {
-          dialogActions.push({ id: "__dialog_{0}".format(e), cmd: 'dialog', params: e });
-        });
-        allActions.push(...dialogActions);
-      }
-
-      // 生成对话跳转动作
-      if (payload.nextChat != undefined && typeof(payload.nextChat) == 'string') {
-        allActions.push({ id: "__chat_{0}".format(payload.nextChat), cmd: 'chat', params: payload.nextChat });
-      }
-
-      // 生成切换场景动作
-      if (payload.toScene != undefined && typeof(payload.toScene) == 'string') {
-        allActions.push({ id: "__scene_{0}".format(payload.toScene), cmd: 'scene', params: payload.toScene });
+      // 属性动作: item.property
+      const propertyActions = PropertyActionBuilder.build(payload);
+      if (propertyActions.length > 0) {
+        allActions.push(...propertyActions);
       }
 
       // 预定义配置(在actions段设定)

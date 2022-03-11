@@ -14,6 +14,7 @@
 #
 #     影响结果：
 #       varsOn:         触发指定的变量修改为ON
+#       varsOff:        触发指定的变量修改为OFF
 #       dialogs:        显示的对话框/旁白列表(对话框/旁白ID)
 #       nextChat:       跳转到下一个对话框(对话ID)
 #       alertCopper:    增减铜币数量(可指定百分比)
