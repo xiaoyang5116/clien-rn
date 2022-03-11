@@ -105,7 +105,7 @@ export default {
         const vars = sceneState.data._cfgReader.getSceneVars(sceneId);
         if (vars != null) {
           vars.forEach((e) => {
-            let value = e.defaulValue;
+            let value = (e.defaulValue != undefined) ? e.defaulValue : 0;
             const uniVarId = "{0}_{1}".format(sceneId, e.id).toUpperCase();
             if (sceneCache != null && sceneCache.vars != null) {
               const varCache = VarUtils.getVar(sceneCache.vars, sceneId, e.id);

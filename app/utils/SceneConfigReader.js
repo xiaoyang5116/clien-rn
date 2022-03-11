@@ -33,7 +33,7 @@ export default class SceneConfigReader {
 
     const validVars = [];
     scene.vars.forEach((e) => {
-      if (e.id != undefined && e.min != undefined && e.max != undefined && e.defaulValue != undefined) {
+      if (e.id != undefined && e.min != undefined && e.max != undefined) {
         validVars.push(e);
       }
     });
