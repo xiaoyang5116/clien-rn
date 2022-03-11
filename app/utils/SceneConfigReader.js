@@ -71,25 +71,11 @@ export default class SceneConfigReader {
       if (e.varsOn != undefined 
         || e.eventActions != undefined 
         || e.nextChat != undefined 
-        || e.asides != undefined) {
+        || e.dialogs != undefined) {
         validEvents.push(e);
       }
     });
     return validEvents;
-  }
-
-  getSceneAside(sceneId, asideId) {
-    const scene = this.getScene(sceneId);
-    if (scene == null || scene.asides == undefined)
-      return null;
-
-    for (let key in scene.asides){
-      const aside = scene.asides[key];
-      if (aside.id == asideId)
-        return aside;
-    }
-
-    return null;
   }
 
   getSceneDialog(sceneId, dialogId) {

@@ -61,7 +61,7 @@ class MaskModal extends PureComponent {
         return (
             <Modal isVisible={this.props.visible} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut"  backdropColor="#fff" backdropOpacity={1}>
                 <View style={[currentStyles.asideCenter]}>
-                    <View style={[this.props.subStype == 1 ? currentStyles.asideParent1 : currentStyles.asideParent2, currentStyles.asideCenter]}>
+                    <View style={[this.props.style == 1 ? currentStyles.asideParent1 : currentStyles.asideParent2, currentStyles.asideCenter]}>
                         <View style={{ flex: 4 }}>
                             <View style={currentStyles.asideTitleContainer}>
                                 <Text style={currentStyles.asideTitle}>{this.props.title}</Text>
@@ -82,9 +82,9 @@ class MaskModal extends PureComponent {
     }
 
     render() {
-        if (this.props.mtype == 1)
+        if (this.props.primaryType == 1)
             return this._renderForDialog();
-        else if (this.props.mtype == 2)
+        else if (this.props.primaryType == 2)
             return this._renderForAside();
         else {
             return (<View></View>);

@@ -26,8 +26,8 @@ scenes: [
 
     # 事件定义
     events: [
-      { type: 'enter', asides: ['p1'], nextChat: 'c1' },
-      { type: 'repeat', andVarsOn: ['v9'], andVarsOff: ['v10'], andVarsValue: ['@world_time_hours >= 17'], varsOn: ['v10'], asides: ['p9'] },
+      { type: 'enter', dialogs: ['p1'], nextChat: 'c1' },
+      { type: 'repeat', andVarsOn: ['v9'], andVarsOff: ['v10'], andVarsValue: ['@world_time_hours >= 17'], varsOn: ['v10'], dialogs: ['p9'] },
     ],
 
     # 对话选项
@@ -38,17 +38,17 @@ scenes: [
         options: [ 
           # 第一天
           { title: '【学着大哥乞讨】', andVarsOn: ['v1'], andVarsOff: ['v5', 'v7', 'v8'], nextChat: 'c2' }, 
-          { title: '【观察周围】', andVarsOn: ['v2'], andVarsOff: ['v5', 'v7', 'v8'], asides: ['p2'] }, 
-          { title: '【再次观察周围】', andVarsOn: ['v3'], andVarsOff: ['v5', 'v7', 'v8'], asides: ['p3'] }, 
-          { title: '【提问】', andVarsOn: ['v4'], andVarsOff: ['v5', 'v7', 'v8'], asides: ['p4'] }, 
-          { title: '【继续乞讨】 ', andVarsOn: ['v5'], andVarsOff: ['v7', 'v8'], andVarsValue: ['@world_time_hours < 17'], asides: ['p5'], nextChat: 'c1', alertCopper: '1', alertWorldTime: '10800000' }, 
-          { title: '【继续乞讨】 ', andVarsOn: ['v5'], andVarsOff: ['v7', 'v8'], andVarsValue: ['@world_time_hours >= 17'], asides: ['p6'] }, 
-          { title: '【支付】', andVarsOn: ['v7'], andVarsOff: ['v8'], asides: ['p7'], alertCopper: '-20%' }, 
+          { title: '【观察周围】', andVarsOn: ['v2'], andVarsOff: ['v5', 'v7', 'v8'], dialogs: ['p2'] }, 
+          { title: '【再次观察周围】', andVarsOn: ['v3'], andVarsOff: ['v5', 'v7', 'v8'], dialogs: ['p3'] }, 
+          { title: '【提问】', andVarsOn: ['v4'], andVarsOff: ['v5', 'v7', 'v8'], dialogs: ['p4'] }, 
+          { title: '【继续乞讨】 ', andVarsOn: ['v5'], andVarsOff: ['v7', 'v8'], andVarsValue: ['@world_time_hours < 17'], dialogs: ['p5'], nextChat: 'c1', alertCopper: '1', alertWorldTime: '10800000' }, 
+          { title: '【继续乞讨】 ', andVarsOn: ['v5'], andVarsOff: ['v7', 'v8'], andVarsValue: ['@world_time_hours >= 17'], dialogs: ['p6'] }, 
+          { title: '【支付】', andVarsOn: ['v7'], andVarsOff: ['v8'], dialogs: ['p7'], alertCopper: '-20%' }, 
           { title: '今天已经累了，先回去吧', andVarsOn: ['v8'], andVarsOff: ['v9'], varsOn: ['v9'], toScene: 'pomiao' }, 
           # 第二天
-          { title: '【学着大哥乞讨】', andVarsOn: ['v9'], andVarsOff: ['v10'], asides: ['p8'], alertCopper: '2', alertWorldTime: '10800000' }, 
-          { title: '【支付】', andVarsOn: ['v11'], andVarsOff: ['v12'], varsOn: ['v12'], asides: ['p11', 'p12'], alertCopper: '-20%' }, 
-          { title: '【问乞丐哥】', andVarsOn: ['v12'], andVarsOff: ['v13'], asides: ['p13'] }, 
+          { title: '【学着大哥乞讨】', andVarsOn: ['v9'], andVarsOff: ['v10'], dialogs: ['p8'], alertCopper: '2', alertWorldTime: '10800000' }, 
+          { title: '【支付】', andVarsOn: ['v11'], andVarsOff: ['v12'], varsOn: ['v12'], dialogs: ['p11', 'p12'], alertCopper: '-20%' }, 
+          { title: '【问乞丐哥】', andVarsOn: ['v12'], andVarsOff: ['v13'], dialogs: ['p13'] }, 
           { title: '<<<【西镇居民街】', andVarsOn: ['v13'], toScene: 'xizhenminjujie' }, 
         ],
       },
@@ -60,8 +60,8 @@ scenes: [
       },
     ],
 
-    # 旁白
-    asides: [
+    # 对话框
+    dialogs: [
       { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['各位老爷行行好，给点赏赐，大吉大利……'], varsOn: ['v1'], andVarsOff: ['v1'], nextChat: 'c1' },
       { id: 'p2', style: 2, sections: ['周围形形色色的人川流而过，各种面孔，大多数人的衣着都还不错，能看出不少人带着行李商品，各种驴车马车偶尔带着商品经过。'], varsOn: ['v3'], nextChat: 'c1' },
       { id: 'p3', style: 2, sections: ['能看到不少人带着武器，像是武者的打扮。'], varsOn: ['v4'], nextChat: 'c1' },
@@ -70,16 +70,12 @@ scenes: [
       { id: 'p6', style: 1, title: '帮派小弟：', sections: ['今日的份子交了吧'], varsOn: ['v7'], nextChat: 'c1' },
       { id: 'p7', style: 1, title: '', sections: ['已扣除身上两成的铜币'], varsOn: ['v8'], nextChat: 'c1' },
       { id: 'p8', style: 2, title: '', sections: ['获得2个铜币'], nextChat: 'c1' },
-      { id: 'p9', style: 1, title: '', sections: ['帮派小弟来收保护费。'], asides: ['p10'] },
+      { id: 'p9', style: 1, title: '', sections: ['帮派小弟来收保护费。'], dialogs: ['p10'] },
       { id: 'p10', style: 2, title: '', sections: ['今日的份子交了吧'], varsOn: ['v11'], nextChat: 'c1' },
       { id: 'p11', style: 2, title: '', sections: ['已扣除身上两成的铜币', '还是你们识相，我们老大可是真本事，有修为的，你们要是有心，以后可以加入我们帮派。', '帮派小弟离开了。'] },
       { id: 'p12', style: 1, title: '', sections: ['有修为是什么意思，难道是武侠，或者是修仙？'], varsOn: ['v12'], nextChat: 'c1' },
-      { id: 'p13', style: 2, title: '乞丐哥：', sections: ['我一个乞丐，哪里知道那么多，估计你要自己去问了，我们吃了上顿没下顿，别想那么多。'], asides: ['p14'] },
+      { id: 'p13', style: 2, title: '乞丐哥：', sections: ['我一个乞丐，哪里知道那么多，估计你要自己去问了，我们吃了上顿没下顿，别想那么多。'], dialogs: ['p14'] },
       { id: 'p14', style: 2, title: '', sections: ['来到这个世界，莫非真做乞丐一辈子？既然到了一个可能有修仙的世界，就一定要打听清楚。'], varsOn: ['v13'], nextChat: 'c1' },
     ],
-
-    # 对话框
-    dialogs: [
-    ]
   },
 ]

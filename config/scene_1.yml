@@ -10,18 +10,17 @@
 #       andVarsValue: 指定一个或多个变量值的判断条件，多个变量为全匹配模式，如：andVarsValue: ['@world_time_hours >= 17', '@world_time_hours <= 30'] 
 #                     表示判断@world_time_hours的值在[17,30]区间。可支持 ==, >, <, >=, <=, != 运算符。
 #
-#       !!! andVarsOn, andVarsOff, andVarsValue 对选项框(chats)、旁白(asides)、对话框(dialogs) 均有效。
+#       !!! andVarsOn, andVarsOff, andVarsValue 对选项框(chats)、对话框(dialogs) 均有效。
 #
 #     影响结果：
 #       varsOn:         触发指定的变量修改为ON
-#       asides:         显示的旁白列表(旁白ID)
+#       dialogs:        显示的对话框/旁白列表(对话框/旁白ID)
 #       nextChat:       跳转到下一个对话框(对话ID)
 #       alertCopper:    增减铜币数量(可指定百分比)
 #       alertWorldTime: 增减世界时间(单位毫秒)
 #       toScene:        切换到某个场景
 #
 #     CMD命令：
-#       aside:    显示旁白
 #       dialog:   显示对话框
 #       navigate: 切换导航栏
 #       chat:     切换对话框
@@ -45,7 +44,7 @@
 #
 #     actions: 动作列表
 #       id: 动作ID
-#       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var, copper, wtime
+#       cmd: 命令, 支持指令：dialog, navigate, chat, scene, delay, var, copper, wtime
 #       params: 参数
 #
 #     events: 事件列表
@@ -63,19 +62,13 @@
 #         ...条件判断
 #         ...影响结果
 #
-#     asides:           旁白列表
-#       id:             旁白ID
-#       style:          风格ID
-#       sections:       旁白段落
-#       finishActions:  旁白结束事件触发的动作ID列表
-#       ...条件判断
-#       ...影响结果
-#
 #     dialogs: 对话框列表
-#       id: 对话框ID
-#       title: 标题
-#       content: 内容
+#       id:             对话框ID
+#       title:          标题
+#       content:        普通对话框内容
+#       sections:       旁白段落
 #       confirmActions: 对话框确认按钮点击事件触发的动作ID列表
+#       finishActions:  旁白结束事件触发的动作ID列表
 #       ...条件判断
 #       ...影响结果
 #
@@ -96,7 +89,7 @@ scenes: [
 
     # 事件定义
     events: [
-      { type: 'enter', asides: ['p0'] },
+      { type: 'enter', dialogs: ['p0'] },
     ],
 
     # 对话选项
@@ -141,13 +134,9 @@ scenes: [
       },
     ],
 
-    # 旁白
-    asides: [
+    # 对话框
+    dialogs: [
       { id: 'p0', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], nextChat: 'c1' },
     ],
-
-   # 对话框
-    dialogs: [
-    ]
   },
 ]
