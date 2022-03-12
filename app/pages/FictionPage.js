@@ -1,15 +1,8 @@
 import React from 'react'
-
-// import {
-//     createBottomTabNavigator
-// } from '@react-navigation/bottom-tabs';
-
 import { connect } from "../constants";
-import { View, Text, ImageBackground, Image } from 'react-native';
+import { View, Text, ImageBackground, Image, Button } from 'react-native';
 
-import LeftTooltip from '../components/tooltip/LeftTooltip';
-
-// const Tab = createBottomTabNavigator();
+import Tooltip from '../components/tooltip';
 
 // 小说背景颜色
 // * 河白色 #FFFFFF rgb(255, 255, 255)  
@@ -33,7 +26,6 @@ const data = {
 
 function FictionPage(props) {
     const currentStyles = props.currentStyles;
-    // const img ={src:},require('../assets/123.png')]
     return (
         <View style={[currentStyles.prologueContainer]}>
             {/* <ImageBackground source={data.imgUrl} style={{
@@ -70,7 +62,11 @@ function FictionPage(props) {
                     fontSize: data.titleFontSize,
                 }}>{data.content}</Text>
             </View>
-            <LeftTooltip content={"left"} />
+            <Tooltip type={"BottomToTop"} content={"BottomToTop"} style={currentStyles} />
+            <Tooltip type={"LeftToRight"} content={"LeftToRight"} style={currentStyles} />
+            <Button title='游戏结束' onPress={() => {
+                props.navigation.navigate('GameOver')
+            }} />
         </View >
     )
 }
