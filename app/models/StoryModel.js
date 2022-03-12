@@ -17,15 +17,15 @@ export default {
 
     // 对话选项选中
     *click({ payload }, { put }) {
-      yield put.resolve(action('SceneModel/processActions')({ actions: payload.click_actions, varsOn: payload.varsOn }));
+      yield put.resolve(action('SceneModel/processActions')(payload));
     },
  
     // 选择对话框
     // 参数: { chatId: xxx }
     *selectChat({ payload }, { put, select }) {
-      const stateScene = yield select(state => state.SceneModel);
+      const userState = yield select(state => state.UserModel);
       const chatId = payload.chatId;
-      const sceneId = stateScene.data.sceneId;
+      const sceneId = userState.sceneId;
 
       if (chatId == '' || sceneId == '') {
         errorMessage("ChatId or SceneId not specified!");
@@ -35,7 +35,7 @@ export default {
       const scene = yield put.resolve(action('SceneModel/getScene')({ sceneId: sceneId }));
       const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: sceneId, chatId: chatId }));
       if (scene == null || chat == null) {
-        errorMessage("Scene or Chat is null!");
+        errorMessage("Scene or Chat is null!, sceneId={0}, chatId={1}", sceneId, chatId);
         return;
       }
     
@@ -44,6 +44,7 @@ export default {
       const sectionItem = { title: chat.desc, data: [] };
       for (let key in chat.options) {
         const item = chat.options[key];
+        item.chatId = chat.id;
         if (yield put.resolve(action('SceneModel/testCondition')(item))) {
           sectionItem.data.push({ ...item });
         }
@@ -51,7 +52,7 @@ export default {
       newSectionData.push(sectionItem);
 
       // 获取当前场景的世界时间
-      const worldTime = yield put.resolve(action('SceneModel/getWorldTime')({ worldId: 0 }));
+      const worldTime = yield put.resolve(action('SceneModel/getWorldTime')({ worldId: userState.worldId }));
   
       // 重新渲染
       yield put(action('updateState')({ 

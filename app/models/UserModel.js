@@ -5,36 +5,42 @@ import {
 } from "../constants";
 
 import LocalStorage from '../utils/LocalStorage';
-import * as RootNavigation from '../utils/RootNavigation';
-import * as Themes from '../themes';
 
 export default {
   namespace: 'UserModel',
 
   state: {
     copper: 0,  // 铜币数量
+    sceneId: '',  // 当前场景ID
+    prevSceneId: '',  // 前一个场景ID
+    worldId: 0, // 用户当前世界ID
   },
 
   effects: {
     *reload({ }, { call, put }) {
-      const user = yield call(LocalStorage.get, LocalCacheKeys.USER);
-      if (user != null) {
-        yield put(action('updateState')({ ...user }));
+      const userCache = yield call(LocalStorage.get, LocalCacheKeys.USER_DATA);
+      if (userCache != null) {
+        yield put(action('updateState')({ ...userCache }));
       }
     },
 
     *alertCopper({ payload }, { put, call, select }) {
-      const state = yield select(state => state.UserModel);
+      const userState = yield select(state => state.UserModel);
       const value = parseInt(payload.value);
       if (value == 0)
         return;
 
-      let newValue = parseInt(state.copper + value);
+      let newValue = parseInt(userState.copper + value);
       newValue = (newValue < 0) ? 0 : newValue;
-      state.copper = newValue;
+      userState.copper = newValue;
 
       yield put(action('updateState')({}));
-      yield call(LocalStorage.set, LocalCacheKeys.USER, state);
+      yield put.resolve(action('syncData')({}));
+    },
+
+    *syncData({ }, { select, call }) {
+      const userState = yield select(state => state.UserModel);
+      yield call(LocalStorage.set, LocalCacheKeys.USER_DATA, userState);
     },
   },
   

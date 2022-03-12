@@ -1,93 +1,30 @@
-# ===========================================
-# 配置说明：
-#   单独一个场景使用{}包围，有效的配置项为：
-#     id: 场景ID（整个项目必须唯一）
-#
-#     name: 场景名称
-#
-#     vars: 变量定义
-#       id: 变量名称
-#       min: 变量最小值
-#       max: 变量最大值
-#       defaultValue: 变量缺省值
-#
-#     actions: 动作列表
-#       id: 动作ID
-#       cmd: 命令, 支持指令：aside, dialog, navigate, chat, scene, delay, var, copper
-#       params: 参数
-#
-#     chats: 对话选项
-#       id:       对话ID
-#       desc:     对话框顶部描述
-#       options:  选项列表
-#         title:  选项名称
-#         click_actions: 选项点击事件后触发的动作ID列表
-#         andVarsOn:    该选项显示所需判断为ON的变量列表(全匹配) 
-#         andVarsOff:   该选项显示所需判断为OFF的变量列表(全匹配)
-#         andVarsValue: 该选项显示所需判断值大小的条件列表(全匹配)，
-#                       如：varsValue: ['var1 >= 1', 'var1 <= 10']，可支持 ==, >, <, >=, <=, != 运算符。
-#         orVarsOn:     该选项显示所需判断为ON的变量列表(匹配任意一个)
-#         orVarsOff:    该选项显示所需判断为OFF的变量列表(匹配任意一个)
-#         orVarsValue:  该选项显示所需判断值大小的条件列表(匹配任意一个)
-#
-#     asides: 旁白列表
-#       id: 旁白ID
-#       style: 风格ID
-#       sections: 旁白段落
-#       varsOn: 旁边结束后修改这些变量为ON
-#       finish_actions: 旁白结束事件触发的动作ID列表
-#
-#     dialogs: 对话框列表
-#       id: 对话框ID
-#       title: 标题
-#       content: 内容
-#       varsOn: 旁边结束后修改这些变量为ON
-#       confirm_actions: 对话框确认按钮点击事件触发的动作ID列表
-#
-# ===========================================
 scenes: [
   # 新手村场景
   {
-    id: 'scene2', name: '破庙',
-
-    # 进入场景事件处理动作ID列表
-    enter_actions: ['a0'],
+    id: 'pomiao', name: '破庙',
 
     # 变量定义
     vars: [
-      { id: 'v1', min: 0, max: 1, defaulValue: 0 },
-      { id: 'v2', min: 0, max: 1, defaulValue: 0 },
-      { id: 'v3', min: 0, max: 1, defaulValue: 0 },
-      { id: 'v4', min: 0, max: 1, defaulValue: 0 },
-      { id: 'v5', min: 0, max: 1, defaulValue: 0 },
-      { id: 'v6', min: 0, max: 1, defaulValue: 0 },
-      { id: 'v7', min: 0, max: 1, defaulValue: 0 },
-      { id: 'v8', min: 0, max: 1, defaulValue: 0 },
-      { id: 'v9', min: 0, max: 1, defaulValue: 0 },
+      { id: 'v1', min: 0, max: 1 },
+      { id: 'v2', min: 0, max: 1 },
+      { id: 'v3', min: 0, max: 1 },
+      { id: 'v4', min: 0, max: 1 },
+      { id: 'v5', min: 0, max: 1 },
+      { id: 'v6', min: 0, max: 1 },
+      { id: 'v7', min: 0, max: 1 },
+      { id: 'v8', min: 0, max: 1 },
+      { id: 'v9', min: 0, max: 1 },
+      { id: 'v10', min: 0, max: 1 },
+      { id: 'v11', min: 0, max: 1 },
     ],
 
     # 动作定义
     actions: [
-      { id: 'a0', cmd: 'chat', params: 'c1' },
-      { id: 'b0', cmd: 'chat',  params: 'c2' },
-      { id: 'b1', cmd: 'aside',  params: 'p1' },
-      { id: 'b2', cmd: 'aside',  params: 'p2' },
-      { id: 'b3', cmd: 'aside',  params: 'p3' },
-      { id: 'b4', cmd: 'aside',  params: 'p4' },
-      { id: 'b5', cmd: 'aside',  params: 'p5' },
-      { id: 'b6', cmd: 'aside',  params: 'p6' },
-      { id: 'b7', cmd: 'aside',  params: 'p7' },
-      { id: 'b8', cmd: 'dialog',  params: 'd1' },
-      { id: 'b9', cmd: 'aside',  params: 'p10' },
-      { id: 'b10', cmd: 'aside',  params: 'p11' },
-      { id: 'b11', cmd: 'dialog',  params: 'd2' },
-      { id: 'b12', cmd: 'aside',  params: 'p12' },
-      { id: 'b13', cmd: 'aside',  params: 'p13' },
-      { id: 'b14', cmd: 'aside',  params: 'p14' },
-      { id: 'b15', cmd: 'aside',  params: 'p15' },
-      { id: 'b16', cmd: 'aside',  params: 'p16' },
-      { id: 'b17', cmd: 'dialog',  params: 'd3' },
-      { id: 'b18', cmd: 'scene',  params: 'scene3' },
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c1' },
     ],
 
     # 对话选项
@@ -96,52 +33,52 @@ scenes: [
       { 
         id: 'c1', desc: '你在一座破庙里面', 
         options: [ 
-          { title: '【查看四周】', click_actions: ['b1'] }, 
-          { title: '【查看头顶】', click_actions: ['b2'] }, 
-          { title: '【动动身子】', click_actions: ['b3'], andVarsOn: ['v1', 'v2'] }, 
-          { title: '【看看自己的手】', click_actions: ['b4'], andVarsOn: ['v1', 'v2', 'v3'] }, 
-          { title: '【询问周围的乞丐】', click_actions: ['b5'], andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v6'] }, 
-          { title: '【尝试起身】', click_actions: ['b6'], andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v5'] }, 
+          { title: '【查看四周】', andVarsOff: ['v10'], dialogs: ['p1'] }, 
+          { title: '【查看头顶】', andVarsOff: ['v10'], dialogs: ['p2'] }, 
+          { title: '【动动身子】', andVarsOn: ['v1', 'v2'], andVarsOff: ['v10'], dialogs: ['p3'] }, 
+          { title: '【看看自己的手】', andVarsOn: ['v1', 'v2', 'v3'], andVarsOff: ['v10'], dialogs: ['p4'] }, 
+          { title: '【询问周围的乞丐】', andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v6', 'v10'], dialogs: ['p5'] }, 
+          { title: '【尝试起身】', andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v5', 'v10'], dialogs: ['p6'] }, 
           # 以下选项在【询问周围的乞丐】&【尝试起身】点击后替换
-          { title: '【询问周围的乞丐】', click_actions: ['b7'], andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v6'] }, 
-          { title: '【尝试起身】', click_actions: ['b7'], andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v5'] }, 
+          { title: '【询问周围的乞丐】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v6'], andVarsOff: ['v10'], dialogs: ['p7'] }, 
+          { title: '【尝试起身】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v5'], andVarsOff: ['v10'], dialogs: ['p7'] }, 
+          { title: '【睡觉】', andVarsOn: ['v10'], andVarsOff: ['v11'], varsOn: ['v11'], alertWorldTime: '@day/1/6', nextChat: 'c1' }, 
+          { title: '【走出破庙】', andVarsOn: ['v11'], toScene: 'pomiaomk' }, 
+          { title: '【睡觉到下一天】', andVarsOn: ['hutongkou/v3'], alertWorldTime: '@day/1/6', nextChat: 'c1' }, 
         ],
       },
-      { 
+      {
         id: 'c2', desc: '你在一座破庙里面', 
         options: [ 
-          { title: '【大声怪叫】', click_actions: ['b8'], andVarsOff: ['v7'] }, 
-          { title: '【询问  这是在哪】', click_actions: ['b11'], andVarsOn: ['v7'], andVarsOff: ['v8'] }, 
-          { title: '【承认】', click_actions: ['b13'], andVarsOn: ['v8'], andVarsOff: ['v9'] }, 
-          { title: '【拒绝】', click_actions: ['b14'], andVarsOn: ['v8'], andVarsOff: ['v9'] }, 
-          { title: '【离开破庙】', click_actions: ['b18'], andVarsOn: ['v9'] }, 
+          { title: '【大声怪叫】', andVarsOff: ['v7'], dialogs: ['d1'] }, 
+          { title: '【询问  这是在哪】', andVarsOn: ['v7'], andVarsOff: ['v8'], dialogs: ['d2'] }, 
+          { title: '【承认】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p13'] }, 
+          { title: '【拒绝】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p14'] }, 
+          { title: '【离开破庙】', andVarsOn: ['v9'], varsOn: ['v10'], toScene: 'pomiaomk' }, 
         ],
       },
-    ],
-
-    # 旁白
-    asides: [
-      { id: 'p1', style: 2, sections: ['这是一个小破庙，大概不到二十平米，由土垒成，而不是砖建造的这种建筑即使是农村也几乎见不到了。'], finish_actions: ['a0'], varsOn: ['v1'] },
-      { id: 'p2', style: 2, sections: ['破庙的房顶是木头和茅草，有些漏风'], finish_actions: ['a0'], varsOn: ['v2'] },
-      { id: 'p3', style: 2, sections: ['一身酸痛袭来，怎么回事？'], finish_actions: ['a0'], varsOn: ['v3'] },
-      { id: 'p4', style: 2, sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。'], finish_actions: ['a0'], varsOn: ['v4'] },
-      { id: 'p5', style: 2, sections: ['乞丐在睡觉，没有理你'], finish_actions: ['a0'], varsOn: ['v5'] },
-      { id: 'p6', style: 2, sections: ['动不了'], finish_actions: ['a0'], varsOn: ['v6'] },
-      { id: 'p7', style: 2, sections: ['总得想个办法'], finish_actions: ['b0'], varsOn: ['v5', 'v6'] },
-      { id: 'p10', style: 1, sections: ['周围本来睡着的乞丐出声'], finish_actions: ['b10'] },
-      { id: 'p11', style: 2, sections: ['你发现乞丐说的是一种没听过的语音，但是你竟然可以听懂。', '一股关于语言的记忆涌上脑海', '看来交流没问题', '那么'], finish_actions: ['b0'], varsOn: ['v7'] },
-      { id: 'p12', style: 2, sections: ['……完全没听过的名字。', '你是不是被打后伤到脑袋了，乞丐问。'], finish_actions: ['b0'], varsOn: ['v8'] },
-      { id: 'p13', style: 2, sections: ['那这几天好好休息，乞丐说'], finish_actions: ['b15'] },
-      { id: 'p14', style: 2, sections: ['还行，那你知道我是谁吗？', '……', '看来病的不轻……好好休息。'], finish_actions: ['b0'] },
-      { id: 'p15', style: 2, sections: ['在闲聊中，你知道旁边的乞丐是你以前认的乞丐李大哥，两人都是从更远的地方流浪而来。', '你知道了全身的伤是因为讨乞的时候被村里的王员外打的。', '起因只是因为挡了人家的道，被嫌弃晦气。', '看来，到了一个不得了的世界啊。'], finish_actions: ['b16'] },
-      { id: 'p16', style: 2, sections: ['一晃几天过去了', '经过几天修养，现在可以走路了', '乞丐的生活是很清苦的，能吃饱饭已经谢天谢地。', '在小村镇当中，也没有那么多富裕人家。', '奇怪的是，全身的伤，在半饥饿的状态好了个七七八八。', '询问乞丐李大哥，对方说大概是因为这片土地的天地灵气比较充沛的缘故。', '大多数人都受到恩惠。', '既然能够行动，李大哥决定带你一起讨乞。'], finish_actions: ['b17'] },
     ],
 
     # 对话框
     dialogs: [
-      { id: 'd1', title: '附近的声音：', content: '吵死了', confirm_actions: ['b9'] },
-      { id: 'd2', title: '乞丐：', content: '这是落月镇的土地庙啊', confirm_actions: ['b12'] },
-      { id: 'd3', title: '乞丐李大哥：', content: '平时讨乞的位置是在附近的东街市，我们一起走', confirm_actions: ['b0'], varsOn: ['v9'] },
-    ]
+      { id: 'p1', style: 2, sections: ['这是一个小破庙，大概不到二十平米，由土垒成，而不是砖建造的这种建筑即使是农村也几乎见不到了。'], varsOn: ['v1'], nextChat: 'c1' },
+      { id: 'p2', style: 2, sections: ['破庙的房顶是木头和茅草，有些漏风'], varsOn: ['v2'], nextChat: 'c1' },
+      { id: 'p3', style: 2, sections: ['一身酸痛袭来，怎么回事？'], varsOn: ['v3'], nextChat: 'c1' },
+      { id: 'p4', style: 2, sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。'], varsOn: ['v4'], nextChat: 'c1' },
+      { id: 'p5', style: 2, sections: ['乞丐在睡觉，没有理你'], varsOn: ['v5'], nextChat: 'c1' },
+      { id: 'p6', style: 2, sections: ['动不了'], varsOn: ['v6'], nextChat: 'c1' },
+      { id: 'p7', style: 2, sections: ['总得想个办法'], varsOn: ['v5', 'v6'], nextChat: 'c2' },
+      { id: 'p10', style: 1, sections: ['周围本来睡着的乞丐出声'], dialogs: ['p11'] },
+      { id: 'p11', style: 2, sections: ['你发现乞丐说的是一种没听过的语音，但是你竟然可以听懂。', '一股关于语言的记忆涌上脑海', '看来交流没问题', '那么'], varsOn: ['v7'], nextChat: 'c2' },
+      { id: 'p12', style: 2, sections: ['……完全没听过的名字。', '你是不是被打后伤到脑袋了，乞丐问。'], varsOn: ['v8'], nextChat: 'c2' },
+      { id: 'p13', style: 2, sections: ['那这几天好好休息，乞丐说'], dialogs: ['p15'] },
+      { id: 'p14', style: 2, sections: ['还行，那你知道我是谁吗？', '……', '看来病的不轻……好好休息。'], nextChat: 'c2' },
+      { id: 'p15', style: 2, sections: ['在闲聊中，你知道旁边的乞丐是你以前认的乞丐李大哥，两人都是从更远的地方流浪而来。', '你知道了全身的伤是因为讨乞的时候被村里的王员外打的。', '起因只是因为挡了人家的道，被嫌弃晦气。', '看来，到了一个不得了的世界啊。'], dialogs: ['p16'] },
+      { id: 'p16', style: 2, sections: ['一晃几天过去了', '经过几天修养，现在可以走路了', '乞丐的生活是很清苦的，能吃饱饭已经谢天谢地。', '在小村镇当中，也没有那么多富裕人家。', '奇怪的是，全身的伤，在半饥饿的状态好了个七七八八。', '询问乞丐李大哥，对方说大概是因为这片土地的天地灵气比较充沛的缘故。', '大多数人都受到恩惠。', '既然能够行动，李大哥决定带你一起讨乞。'], dialogs: ['d3'] },
+      #
+      { id: 'd1', title: '附近的声音：', content: '吵死了', dialogs: ['p10'] },
+      { id: 'd2', title: '乞丐：', content: '这是落月镇的土地庙啊', dialogs: ['p12'] },
+      { id: 'd3', title: '乞丐李大哥：', content: '平时讨乞的位置是在附近的东街市，我们一起走', nextChat: 'c2', varsOn: ['v9'] },
+    ],
   },
 ]

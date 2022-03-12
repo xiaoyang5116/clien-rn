@@ -5,6 +5,6 @@ export class LocalCacheKeys {
 
     static THEME_ID = 'THEME_ID';
     
-    static USER = 'USER';
+    static USER_DATA = 'USER_DATA';
     
 }

@@ -59,3 +59,18 @@ export class DayPeriod {
             return '深夜';
     }
 }
+
+export class HourUtils {
+    static fromMillis(millis) {
+        const dt = new Date();
+        dt.setTime(millis);
+        return dt.getHours();
+    }
+}
+
+export function toDays(now, days, hours) {
+    const dt = new Date();
+    dt.setTime(now + 86400 * days * 1000);
+    const str = "{0}/{1}/{2} {3}:00:00".format(dt.getFullYear(), dt.getMonth() + 1, dt.getDate(), hours);
+    return Date.parse(str);
+}
