@@ -1,4 +1,3 @@
 export { 
-    List,
-    Button
+    Progress,
 } from '@ant-design/react-native';
