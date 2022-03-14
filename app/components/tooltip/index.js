@@ -1,5 +1,12 @@
-import React, { useState } from 'react'
-
+import React, { useState, Component } from 'react'
+import {
+    StyleSheet,
+    View,
+    Easing,
+    Dimensions,
+    Text,
+    Animated
+} from 'react-native';
 // 导入不同的追加提示模板
 import BottomToTop from './BottomToTop';
 import LeftToRight from './LeftToRight';

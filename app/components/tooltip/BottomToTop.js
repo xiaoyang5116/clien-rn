@@ -36,12 +36,13 @@ export default BottomToTop = (props) => {
                 opacity: opacityAnim,
             }}
         >
-            <TouchableOpacity onPress={props.isHide}>
+            <TouchableOpacity onPress={props.onHide}>
+            {/* <TouchableOpacity> */}
                 <View style={{ ...props.style.tooltipContainer, }}>
                     <View style={{ ...props.style.tooltipImg, }}></View>
                     <Text style={{
                         ...props.style.tooltipText
-                    }}>{props.content}</Text>
+                    }}>{props.message}</Text>
                 </View>
             </TouchableOpacity>
         </Animated.View>

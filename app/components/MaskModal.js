@@ -8,6 +8,9 @@ import {
 } from "../constants";
 
 import { Button, Text, View } from '../constants/native-ui';
+import GameOverModal from './GameOverModal';
+import ChapterTemplate from './ChapterTemplate';
+import ToastApi from './tooltip/ToastApi';
 
 // 遮挡层
 class MaskModal extends PureComponent {
@@ -47,7 +50,14 @@ class MaskModal extends PureComponent {
                                 <Button title='确认' onPress={this._onDialogConfirm} color={currentStyles.button.color} />
                             </View>
                             <View style={[currentStyles.dlgBottomBanner, { backgroundColor: currentStyles.button.backgroundColor }]}>
-                                <Button title='取消' onPress={this._onDialogCancel} color={currentStyles.button.color} />
+                                {/* <Button title='取消' onPress={this._onDialogCancel} color={currentStyles.button.color} /> */}
+                                <Button title='取消' onPress={() => {
+                                    // sss
+                                    ToastApi.addView({
+                                        key: "sdfsdaf",
+                                        message:"sssss",
+                                    })
+                                }} color={currentStyles.button.color} />
                             </View>
                         </View>
                     </View>
@@ -58,6 +68,24 @@ class MaskModal extends PureComponent {
 
     _renderForAside() {
         const currentStyles = this.props.currentStyles;
+        // 3 代表 game over
+        if (this.props.style === 3) {
+            return (
+                <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
+                    <View style={currentStyles.gameOverPage}>
+                        <GameOverModal onDialogCancel={this._onDialogCancel} {...this.props} />
+                    </View>
+                </Modal>
+            )
+        }
+        // 4 代表章节模板
+        if (this.props.style === 4) {
+            return (
+                <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
+                    <ChapterTemplate onAsideNext={this._onAsideNext} {...this.props} />
+                </Modal>
+            )
+        }
         return (
             <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
                 <View style={[currentStyles.asideCenter]}>
@@ -75,6 +103,9 @@ class MaskModal extends PureComponent {
                         <View style={currentStyles.asideBottomContainer}>
                             <View style={[currentStyles.asideBottomBanner, { backgroundColor: currentStyles.button.backgroundColor }]}>
                                 <Button title='>>>' onPress={this._onAsideNext} color={currentStyles.button.color} />
+                                {/* <Button title='>>>' onPress={() => {
+                                    ToastApi.show('我是rootView', 2000)
+                                }} color={currentStyles.button.color} /> */}
                             </View>
                         </View>
                     </View>

@@ -9,12 +9,14 @@
 import React from 'react';
 
 import {
-  AppRegistry
+  AppRegistry,
+  View,
 } from 'react-native';
 
 import { name as appName } from '../app.json';
 import { Provider, dva_create, Component } from './constants';
 import MainPage from './pages/MainPage';
+import RootView from './components/tooltip/RootView';
 
 const models = [
   require('./models/AppModel').default,
@@ -34,7 +36,13 @@ class App extends Component {
   render() {
     return (
       <Provider store={dva._store}>
-        <MainPage />
+        <View style={{
+          flex: 1,
+          position: 'relative',
+        }}>
+          <MainPage />
+          <RootView />
+        </View>
       </Provider>
     );
   }
