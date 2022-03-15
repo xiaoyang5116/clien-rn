@@ -1,8 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from "../constants";
-import { View, Text, ImageBackground, Image, Button } from 'react-native';
+import {
+    View,
+    Text,
+    ImageBackground,
+    Image,
+    Button,
+    useWindowDimensions,
+    StyleSheet,
+    SafeAreaView,
+    SectionList,
+    StatusBar
+} from 'react-native';
 
-import Tooltip from '../components/tooltip';
 
 // 小说背景颜色
 // * 河白色 #FFFFFF rgb(255, 255, 255)  
@@ -24,51 +34,90 @@ const data = {
     imgUrl: require('../assets/lace2.png'),
 }
 
-function FictionPage(props) {
-    const currentStyles = props.currentStyles;
-    return (
-        <View style={[currentStyles.prologueContainer]}>
-            {/* <ImageBackground source={data.imgUrl} style={{
-                flex: 1,
-                // backgroundColor:"pink"
-                // height: ",
-                // height:100,
-                // width:366,
-                // backgroundColor:"pink",
-            }}>
-                <View style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    margin: 20,
-                    color: data.color,
-                }}>
-                    <Text style={{
-                        fontSize: data.titleFontSize,
-                    }}>{data.title}</Text>
-                    <Text style={{
-                        fontSize: data.titleFontSize,
-                    }}>{data.content}</Text>
-                </View>
-            </ImageBackground> */}
-            <View style={[currentStyles.prologueWrap, {
-                color: data.color,
-                backgroundColor: data.backgroundColor,
-            }]}>
-                <Text style={{
-                    fontSize: data.titleFontSize,
-                }}>{data.title}</Text>
-                <Text style={{
-                    fontSize: data.titleFontSize,
-                }}>{data.content}</Text>
-            </View>
-            <Tooltip type={"BottomToTop"} content={"BottomToTop"} style={currentStyles} />
-            <Tooltip type={"LeftToRight"} content={"LeftToRight"} style={currentStyles} />
-            <Button title='游戏结束' onPress={() => {
-                props.navigation.navigate('GameOver')
-            }} />
-        </View >
-    )
+
+// function FictionPage(props) {
+//     const currentStyles = props.currentStyles;
+//     const window = useWindowDimensions();
+//     console.log("window",window);
+//     return (
+//         <View style={styles.container}>
+//             {/* <Text>{`Window Dimensions: height - ${window.height}, width - ${window.width}`}</Text> */}
+
+//         </View>
+//     );
+// }
+
+// const styles = StyleSheet.create({
+//     container: {
+//         flex: 1,
+//         justifyContent: "center",
+//         alignItems: "center"
+//     }
+// });
+
+// export default connect((state) => ({ ...state.AppModel }))(FictionPage)
+
+
+const DATA = [
+    {
+        title: "Main dishes",
+        data: ["Pizza", "Burger", "Risotto"]
+    },
+    {
+        title: "Sides",
+        data: ["French Fries", "Onion Rings", "Fried Shrimps"]
+    },
+    {
+        title: "Drinks",
+        data: ["Water", "Coke", "Beer"]
+    },
+    {
+        title: "Desserts",
+        data: ["Cheese Cake", "Ice Cream"]
+    }
+];
+
+Item = ({ title }) => (
+    <View style={styles.item}>
+        <Text style={styles.title}>{title}</Text>
+    </View>
+);
+
+class App extends Component {
+    render() {
+        return (
+            <SafeAreaView style={styles.container}>
+                <SectionList
+                    sections={DATA}
+                    keyExtractor={(item, index) => item + index}
+                    renderItem={({ item }) => <Item title={item} />}
+                    renderSectionHeader={({ section: { title } }) => (
+                        <Text style={styles.header}>{title}</Text>
+                    )}
+                />
+            </SafeAreaView>
+        );
+    }
 }
 
-export default connect((state) => ({ ...state.AppModel }))(FictionPage)
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingTop: StatusBar.currentHeight,
+        // marginHorizontal: 16
+    },
+    item: {
+        backgroundColor: "#f9c2ff",
+        // padding: 20,
+        // marginVertical: 8
+    },
+    header: {
+        fontSize: 32,
+        backgroundColor: "#fff"
+    },
+    title: {
+        fontSize: 24
+    }
+});
+
+export default App;
