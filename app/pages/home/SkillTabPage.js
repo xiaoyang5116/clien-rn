@@ -26,7 +26,7 @@ class SkillTabPage extends Component {
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={{ flexDirection: 'row', height: 45, width: 350, paddingLeft: 0, paddingRight: 0 }}>
                     <ProgressBar percent={100} toPercent={0} duration={3000} onCompleted={() => {
-                        Alert.alert('', 'Completed!!!');
+                        // Alert.alert('', 'Completed!!!');
                     }} />
                 </View>
                 <View style={{ flexDirection: 'row', height: 45, width: 350, paddingLeft: 0, paddingRight: 0 }}>
