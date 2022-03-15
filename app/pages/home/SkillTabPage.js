@@ -14,7 +14,6 @@ class SkillTabPage extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { percent: 100 };
     }
 
     _alertCopper(value) {
@@ -27,6 +26,7 @@ class SkillTabPage extends Component {
                 <View style={{ flexDirection: 'row', height: 45, width: 350, paddingLeft: 0, paddingRight: 0 }}>
                     <ProgressBar percent={100} toPercent={0} duration={3000} onCompleted={() => {
                         // Alert.alert('', 'Completed!!!');
+                        console.debug('OK...');
                     }} />
                 </View>
                 <View style={{ flexDirection: 'row', height: 45, width: 350, paddingLeft: 0, paddingRight: 0 }}>

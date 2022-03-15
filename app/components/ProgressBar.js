@@ -48,6 +48,7 @@ export default class ProgressBar extends Component {
                 if ((this.state.index + 1) < this.sequeue.length) {
                     this.setState({ ...this.state, index: this.state.index + 1 })
                 } else {
+                    this.state.index = -1;
                     if (this.props.onCompleted != undefined) {
                         this.props.onCompleted();
                     }
