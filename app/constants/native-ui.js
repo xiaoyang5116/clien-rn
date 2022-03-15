@@ -7,4 +7,5 @@ export {
     SectionList,
     FlatList,
     TouchableHighlight,
+    Alert,
 } from 'react-native';

@@ -3,13 +3,12 @@ import React from 'react';
 import {
     action,
     connect,
-    delay,
     Component,
     StyleSheet,
 } from "../../constants";
 
-import { View, Button } from '../../constants/native-ui';
 import ProgressBar from '../../components/ProgressBar';
+import { View, Button, Alert } from '../../constants/native-ui';
 
 class SkillTabPage extends Component {
 
@@ -22,25 +21,29 @@ class SkillTabPage extends Component {
         this.props.dispatch(action('UserModel/alertCopper')({ value: value }));
     }
 
-    _reset() {
-        this.setState(
-            { percent: 100 }
-        );
-    }
-
     render() {
         return (
             <View style={this.props.currentStyles.viewContainer}>
-                <View style={{ flexDirection: 'row', height: 45, paddingLeft: 10, paddingRight: 10 }}>
-                    <ProgressBar percent={this.state.percent} duration={10000} />
+                <View style={{ flexDirection: 'row', height: 45, width: 350, paddingLeft: 0, paddingRight: 0 }}>
+                    <ProgressBar percent={100} toPercent={0} duration={3000} onCompleted={() => {
+                        Alert.alert('', 'Completed!!!');
+                    }} />
                 </View>
-                <View style={{ flexDirection: 'row', height: 45, paddingLeft: 10, paddingRight: 10 }}>
-                    <ProgressBar percent={this.state.percent} duration={6000} />
+                <View style={{ flexDirection: 'row', height: 45, width: 350, paddingLeft: 0, paddingRight: 0 }}>
+                    <ProgressBar percent={90} toPercent={50} duration={3000} onCompleted={() => {
+                        // Alert.alert('', 'Completed!!!');
+                    }} />
                 </View>
-                <View style={{ flexDirection: 'row', height: 45, paddingLeft: 10, paddingRight: 10 }}>
-                    <ProgressBar percent={this.state.percent} duration={3000} />
+                <View style={{ flexDirection: 'row', height: 45, width: 350, paddingLeft: 0, paddingRight: 0 }}>
+                    <ProgressBar percent={50} toPercent={90} duration={3000} onCompleted={() => {
+                        // Alert.alert('', 'Completed!!!');
+                    }} />
                 </View>
-                <Button title='重置' onPress={(e) => { this._reset(); }} />
+                <View style={{ flexDirection: 'row', height: 45, width: 350, paddingLeft: 0, paddingRight: 0 }}>
+                    <ProgressBar percent={0} toPercent={100} duration={3000} onCompleted={() => {
+                        // Alert.alert('', 'Completed!!!');
+                    }} />
+                </View>
             </View>
         );
     }
