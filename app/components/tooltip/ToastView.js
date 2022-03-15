@@ -29,75 +29,29 @@ class ToastView extends Component {
 
     dismissHandler = null;
 
-    constructor(props) {
-        super(props);
-        // 初始化数据，默认info，message为空
-        this.state = {
-            type: props.type,
-            message: props.message,
-            time: props.time,
-            key: props.key,
-        }
-    }
+    // constructor(props) {
+    //     super(props);
+    //     // 初始化数据，默认info，message为空
+    //     this.state = {
+    //         type: props.type,
+    //         message: props.message,
+    //         time: props.time,
+    //         key: props.key,
+    //     }
+    // }
 
-    componentDidMount() {
-        this.dismissHandler = setTimeout(() => {
-            this.props.onHide()
-        }, this.state.time)
-    }
+    // componentDidMount() {
+    //     this.dismissHandler = setTimeout(() => {
+    //         this.props.onHide()
+    //     }, this.props.time)
+    // }
     onHide = () => {
         this.props.onHide()
     }
-
-    render() {
-        console.log("ToastView");
-        const currentStyles = this.props.currentStyles
-        return (
-            <BottomToTop message={this.props.message} style={currentStyles} onHide={this.onHide} />
-        )
-    }
-
-    // // 这里处理消息的内容、时间和类型
-    // componentWillReceiveProps(nextProps) {
-    //     this.setState({
-    //         type: nextProps.type ? nextProps.type : 'info',
-    //         message: nextProps.message !== undefined ? nextProps.message : '',
-    //         time: nextProps.time && nextProps.time < 1500 ? 1000 : 2000,
-    //     })
-    //     clearTimeout(this.dismissHandler)
-    //     this.timingDismiss()
-    // }
-    // 组件加载完成后执行
-    // componentDidMount() {
-    //     Animated.timing(
-    //         this.moveAnim,
-    //         {
-    //             toValue: 90,
-    //             duration: 80,
-    //             easing: Easing.ease,
-    //             useNativeDriver: false
-    //         },
-    //     ).start();
-    //     Animated.timing(
-    //         this.opacityAnim,
-    //         {
-    //             toValue: 1,
-    //             duration: 100,
-    //             easing: Easing.linear,
-    //             useNativeDriver: false
-    //         },
-    //     ).start();
-    // }
-
-    componentWillUnmount() {
-        clearTimeout(this.dismissHandler)
-    }
-
-
     // timingDismiss = () => {
-    // this.dismissHandler = setTimeout(() => {
-    //     this.dismiss()
-    // }, this.state.time)
+    //     this.dismissHandler = setTimeout(() => {
+    //         this.dismiss()
+    //     }, this.props.time)
     // };
 
     // dismiss = () => {
@@ -117,38 +71,28 @@ class ToastView extends Component {
     //         this.props.onDismiss()
     //     }
     // }
+
+    render() {
+        switch (this.props.type) {
+            case "BottomToTop":
+                return (
+                    <BottomToTop {...this.props} onHide={this.onHide}  timingDismiss={this.timingDismiss}/>
+                )
+            case "LeftToRight":
+                return (
+                    <LeftToRight {...this.props} onHide={this.onHide} />
+                )
+
+            default:
+                return (
+                    <BottomToTop {...this.props} onHide={this.onHide} />
+                )
+        }
+    }
+
+    componentWillUnmount() {
+        // clearTimeout(this.dismissHandler)
+    }
 }
 
-const styles = StyleSheet.create({
-    textContainer: {
-        backgroundColor: '#FFF',
-        borderRadius: 25,
-        height: 40,
-        // minWidth: 80,
-        padding: 10,
-        maxWidth: width / 2,
-        alignSelf: "flex-end",
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'absolute',
-        shadowColor: '#BCBCBC',
-        shadowOffset: { width: 0, height: 4 },
-        shadowRadius: 9,
-        shadowOpacity: 0.5
-    },
-    defaultText: {
-        color: "#4A4A4A",
-        fontSize: 14
-    },
-    container: {
-        position: "absolute",
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        flexDirection: "row",
-        justifyContent: "center",
-    }
-});
 export default connect((state) => ({ ...state.AppModel }))(ToastView)

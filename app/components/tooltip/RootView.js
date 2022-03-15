@@ -10,22 +10,15 @@ import {
 import ToastView from './ToastView'
 
 viewRoot = null;
-let toastList = [];
 
 export default class RootView extends Component {
     constructor(props) {
         super(props);
         viewRoot = this;
         this.state = {
-            // toastObj: null,
             list: [],
+            key: 0
         }
-    }
-
-    add = (params = { content: '', type: 'info', key: '' }) => {
-        this.setState({
-            list: this.state.list.concat([params])
-        })
     }
 
     handleHide = (key) => {
@@ -35,30 +28,36 @@ export default class RootView extends Component {
     }
 
     render() {
-        console.log("this.state.list", this.state.list);
         return (
             this.state.list.length > 0 && <View style={styles.rootView} pointerEvents="box-none">
-                {
-                    this.state.list.map((item) => {
-                        return <ToastView onHide={this.handleHide.bind(this, item.key)} {...item} />
-                    })
-                }
+                <View style={{
+                    position: 'absolute',
+                    left: 25,
+                    bottom: 90,
+                    // // height: 100,
+                    // backgroundColor: 'pink',
+                }}>
+                    {
+                        this.state.list.map((item) => {
+                            return <ToastView style={styles.toastView} onHide={this.handleHide.bind(this, item.key)} {...item} />
+                        })
+                    }
+                </View>
+
             </View>
         )
     }
 
-    // static setView = (view) => {
-    //     viewRoot.setState({ toast: view })
-    // };
-    static addView = (params = { message: '', type: 'BottomToTop', key: '', time: 1000 }) => {
-        // console.log("params",params);
-        // toastList.push(params)
-        // console.log("toastList",toastList);
-        viewRoot.setState({ list: [...viewRoot.state.list, params] })
+    static addView = (params = { message: '', type: 'BottomToTop', time: 1000 }) => {
+        params.key = viewRoot.state.key
+        viewRoot.setState({
+            list: [...viewRoot.state.list, params],
+            key: viewRoot.state.key + 1
+        })
     }
 }
 const styles = StyleSheet.create({
     rootView: {
-        position: "relative",
-    }
+        position: 'relative',
+    },
 });

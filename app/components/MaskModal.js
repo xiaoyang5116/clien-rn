@@ -47,17 +47,16 @@ class MaskModal extends PureComponent {
                         </View>
                         <View style={{ flex: 2 }}>
                             <View style={[currentStyles.dlgBottomBanner, { backgroundColor: currentStyles.button.backgroundColor }]}>
-                                <Button title='确认' onPress={this._onDialogConfirm} color={currentStyles.button.color} />
+                                {/* <Button title='确认' onPress={this._onDialogConfirm} color={currentStyles.button.color} /> */}
+                                <Button title='确认' onPress={() => {
+                                    // sss
+                                    ToastApi.addView("sssss")
+                                    // ToastApi.addView("sssss","")
+                                    // ToastApi.addView("sssss")
+                                }} color={currentStyles.button.color} />
                             </View>
                             <View style={[currentStyles.dlgBottomBanner, { backgroundColor: currentStyles.button.backgroundColor }]}>
-                                {/* <Button title='取消' onPress={this._onDialogCancel} color={currentStyles.button.color} /> */}
-                                <Button title='取消' onPress={() => {
-                                    // sss
-                                    ToastApi.addView({
-                                        key: "sdfsdaf",
-                                        message:"sssss",
-                                    })
-                                }} color={currentStyles.button.color} />
+                                <Button title='取消' onPress={this._onDialogCancel} color={currentStyles.button.color} />
                             </View>
                         </View>
                     </View>
