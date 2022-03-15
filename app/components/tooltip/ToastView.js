@@ -29,49 +29,9 @@ class ToastView extends Component {
 
     dismissHandler = null;
 
-    // constructor(props) {
-    //     super(props);
-    //     // 初始化数据，默认info，message为空
-    //     this.state = {
-    //         type: props.type,
-    //         message: props.message,
-    //         time: props.time,
-    //         key: props.key,
-    //     }
-    // }
-
-    // componentDidMount() {
-    //     this.dismissHandler = setTimeout(() => {
-    //         this.props.onHide()
-    //     }, this.props.time)
-    // }
     onHide = () => {
         this.props.onHide()
     }
-    // timingDismiss = () => {
-    //     this.dismissHandler = setTimeout(() => {
-    //         this.dismiss()
-    //     }, this.props.time)
-    // };
-
-    // dismiss = () => {
-    //     Animated.timing(
-    //         this.opacityAnim,
-    //         {
-    //             toValue: 0,
-    //             duration: 100,
-    //             easing: Easing.linear,
-    //             useNativeDriver: false
-    //         },
-    //     ).start(this.onDismiss);
-    // };
-
-    // onDismiss = () => {
-    //     if (this.props.onDismiss) {
-    //         this.props.onDismiss()
-    //     }
-    // }
-
     render() {
         switch (this.props.type) {
             case "BottomToTop":
@@ -82,16 +42,11 @@ class ToastView extends Component {
                 return (
                     <LeftToRight {...this.props} onHide={this.onHide} />
                 )
-
             default:
                 return (
                     <BottomToTop {...this.props} onHide={this.onHide} />
                 )
         }
-    }
-
-    componentWillUnmount() {
-        // clearTimeout(this.dismissHandler)
     }
 }
 
