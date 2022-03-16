@@ -5,4 +5,7 @@ export {
     View,
     Image,
     SectionList,
+    FlatList,
+    TouchableHighlight,
+    Alert,
 } from 'react-native';
