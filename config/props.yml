@@ -28,7 +28,7 @@ props: [
   { id: 37 , name: '葡萄', num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '露浓压架葡萄熟，日嫩登场罢亚香。' }, 
   { id: 38 , name: '梨', num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '北客有来初未识，南金无价喜新尝，含滋嚼句齿牙香。' }, 
   { id: 39 , name: '枇杷', num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '清晓呼僮乘露摘，任教半熟杂甘酸。' }, 
-  { id: 40 , name: '木瓜', num: 100, quality: 1, type: 0, tags: ['普通'], attrs: ['剧情', '特殊'], capacity: 100, desc: '良人为渍木瓜粉,遮却红腮交午痕。' }, 
+  { id: 40 , name: '木瓜', num: 100, quality: 1, type: 0, tags: ['普通'], attrs: ['剧情', '特殊'], capacity: 100, desc: '良人为渍木瓜粉,遮却红腮交午痕。', useEffects: [{ copper: 999 }] }, 
   { id: 41 , name: '柠檬', num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '柠檬本酸涩，美香钻人心。' }, 
   { id: 42 , name: '山楂', num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '封君莫羡传柑宠，清爽何如山楂香。' }, 
   { id: 43 , name: '树莓', num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '雪模糊小树莓苔,月朦陇近水楼台。' }, 

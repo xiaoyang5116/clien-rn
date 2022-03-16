@@ -61,20 +61,31 @@ export default {
 
     *use({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
-      const { propsId } = payload;
+      const propsId = parseInt(payload.propsId);
+      const num = parseInt(payload.num);
 
       const props = propsState.data.bags.find((e) => e.id == propsId);
+      const config = propsState.data.propsConfig.find((e) => e.id == propsId);
       if (props == undefined) {
         Alert.alert('', '道具不存在！');
         return;
       }
 
-      if (props.num < 1) {
+      if (props.num < num) {
         Alert.alert('', '道具数量不足！');
         return;
       }
 
-      props.num--;
+      props.num -= num;
+
+      if (config.useEffects != undefined) {
+        for (let key in config.useEffects) {
+          const effect = config.useEffects[key];
+          if (effect.copper != undefined && effect.copper > 0) {
+            yield put.resolve(action('UserModel/alertCopper')({ value: effect.copper }));
+          }
+        }
+      }
 
       if (props.num <= 0) {
         propsState.data.bags = propsState.data.bags.filter((e) => e.num > 0);
@@ -82,6 +93,31 @@ export default {
       }
 
       Toast.show('使用成功！');
+      yield put(action('updateState')({}));
+      yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.data.bags);
+    },
+
+    *getPropsNum({ payload }, { put, call, select }) {
+      const propsState = yield select(state => state.PropsModel);
+      const { propsId } = payload;
+
+      const props = propsState.data.bags.find((e) => e.id == propsId);
+      return (props != undefined) ? props.num : 0;
+    },
+
+    *sendProps({ payload }, { put, call, select }) {
+      const propsState = yield select(state => state.PropsModel);
+      const propsId = parseInt(payload.propsId);
+      const num = parseInt(payload.num);
+
+      const props = propsState.data.bags.find((e) => e.id == propsId);
+      if (props == undefined) {
+        Alert.alert('', '道具不存在！');
+        return;
+      }
+
+      props.num += num;
+      Toast.show('获得道具！');
       yield put(action('updateState')({}));
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.data.bags);
     },

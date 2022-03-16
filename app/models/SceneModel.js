@@ -62,6 +62,16 @@ class PropertyActionBuilder {
       allActions.push({ id: "__wtime_{0}".format(payload.alertWorldTime), cmd: 'wtime', params: payload.alertWorldTime });
     }
 
+    // 使用道具
+    if (payload.useProps != undefined && typeof(payload.useProps) == 'string') {
+      allActions.push({ id: "__useProps_{0}".format(payload.useProps), cmd: 'useProps', params: payload.useProps });
+    }
+
+    // 发送道具
+    if (payload.sendProps != undefined && typeof(payload.sendProps) == 'string') {
+      allActions.push({ id: "__sendProps_{0}".format(payload.sendProps), cmd: 'sendProps', params: payload.sendProps });
+    }
+
     // 生成对话框动作
     if (payload.dialogs != undefined && Array.isArray(payload.dialogs)) {
       let dialogActions = [];
@@ -94,6 +104,8 @@ const ACTIONS_MAP = [
   { cmd: 'copper',        handler: '__onCopperCommand'},
   { cmd: 'wtime',         handler: '__onWorldTimeCommand' },
   { cmd: 'var',           handler: '__onVarCommand'},
+  { cmd: 'useProps',      handler: '__onUsePropsCommand'},
+  { cmd: 'sendProps',     handler: '__onSendPropsCommand'},
 ];
 
 const SCENES_LIST = [
@@ -463,6 +475,18 @@ export default {
       }
     },
 
+    *__onUsePropsCommand({ payload }, { put, select }) {
+      const sceneState = yield select(state => state.SceneModel);
+      const [propsId, num] = payload.params.split(',');
+      yield put.resolve(action('PropsModel/use')({ propsId: parseInt(propsId), num: parseInt(num) }));
+    },
+
+    *__onSendPropsCommand({ payload }, { put, select }) {
+      const sceneState = yield select(state => state.SceneModel);
+      const [propsId, num] = payload.params.split(',');
+      yield put.resolve(action('PropsModel/sendProps')({ propsId: parseInt(propsId), num: parseInt(num) }));
+    },
+
     *syncData({ }, { select, call }) {
       const sceneState = yield select(state => state.SceneModel);
       yield call(LocalStorage.set, LocalCacheKeys.SCENES_DATA, { 
@@ -553,6 +577,10 @@ export default {
           } else if (id == '@scene_time_hours') {
             const value = yield put.resolve(action('getSceneTime')({ sceneId: userState.sceneId }));
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
+          } else if (id.indexOf('@props_') == 0) {
+            const [_k, v] = id.split('_');
+            const propsId = parseInt(v);
+            compareValue = yield put.resolve(action('PropsModel/getPropsNum')({ propsId: propsId }));
           } else if (id.indexOf('@') == 0) {
             debugMessage("Unknown '{0}' identifier!!!", id);
             continue;

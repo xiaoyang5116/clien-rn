@@ -36,6 +36,8 @@
 #       var:      变量修改
 #       copper:   增减铜币
 #       wtime:    修改世界时间
+#       useProps: 使用道具
+#       sendProps:发送道具
 #
 ###################################################################
 #
@@ -111,6 +113,7 @@ scenes: [
           { title: '【乞丐】', andVarsOn: ['v1'], nextChat: 'c3' }, 
           { title: '【没有名额了】', nextChat: 'c4' }, 
           { title: '【真没有名额了】', nextChat: 'c5' }, 
+          { title: '【背包存在木瓜】', nextChat: 'c6', andVarsValue: ['@props_40 >= 1'] }, 
         ],
       },
       # 乞丐第一次点击出现
@@ -139,6 +142,14 @@ scenes: [
         id: 'c5', desc: '没有名额是什么鬼', 
         options: [ 
           { title: '返回', nextChat: 'c1' }, 
+        ]
+      },
+      # 
+      { 
+        id: 'c6', desc: '道具测试', 
+        options: [ 
+          { title: '交付木瓜', nextChat: 'c1', useProps: '40,1' }, 
+          { title: '获得木瓜', nextChat: 'c1', sendProps: '40,10' }, 
         ]
       },
     ],

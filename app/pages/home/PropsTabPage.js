@@ -49,7 +49,7 @@ class PropsTabPage extends Component {
     }
 
     _useProps() {
-        this.props.dispatch(action('PropsModel/use')({ propsId: this.state.selectId }));
+        this.props.dispatch(action('PropsModel/use')({ propsId: this.state.selectId, num: 1 }));
     }
 
     _discardProps() {
@@ -88,10 +88,10 @@ class PropsTabPage extends Component {
                 <View style={styles.propsContainer}>
                     <View style={{ height: 80, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                         <View>
-                            <Text>金币：{this.props.user.copper}</Text>
+                            <Text>金币：0</Text>
                         </View>
                         <View>
-                            <Text>银币：{this.props.user.copper}</Text>
+                            <Text>银币：0</Text>
                         </View>
                         <View>
                             <Text>铜币：{this.props.user.copper}</Text>
