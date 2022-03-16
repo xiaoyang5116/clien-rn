@@ -15,7 +15,7 @@ export default class RootView extends Component {
         viewRoot = this;
         this.state = {
             views: [],
-            keyUniqueId: 0,
+            key: 0,
         }
     }
 
@@ -26,24 +26,20 @@ export default class RootView extends Component {
     }
 
     static add(view) {
-        const key = viewRoot.state.keyUniqueId;
+        const key = viewRoot.state.key;
         let container = (<View style={styles.viewContainer} key={key} pointerEvents="box-none">{view}</View>);
         viewRoot.setState({
             views: [...viewRoot.state.views, container],
-            keyUniqueId:  key + 1
+            key:  key + 1
         })
         return key;
     };
 
     static remove(key) {
-        let views = [];
-        viewRoot.state.views.forEach(e => {
-            if (e.key != undefined && e.key != key)
-                views.push(e);
-        });
+        console.debug(key);
         viewRoot.setState({
-            views: views,
-            keyUniqueId: viewRoot.state.keyUniqueId
+            views: viewRoot.state.views.filter(e => e.key != key),
+            key: viewRoot.state.key
         })
     }
 }
