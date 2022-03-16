@@ -31,7 +31,7 @@ const data = {
     titleFontSize: 24,
     contentFontSize: 20,
     color: "black",
-    imgUrl: require('../assets/lace2.png'),
+    imgUrl: require('../../assets/lace2.png'),
 }
 
 

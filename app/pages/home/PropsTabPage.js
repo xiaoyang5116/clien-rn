@@ -76,12 +76,29 @@ class PropsTabPage extends Component {
                             <Text>铜币：{this.props.user.copper}</Text>
                         </View>
                     </View>
-                    <View style={{ height: 14, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                    <View style={{ height: 38, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                        <View style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#5e5e5e' }} >
+                            <Button color='#5e5e5e' title='全部' />
+                        </View>
+                        <View style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#5e5e5e' }}>
+                            <Button color='#5e5e5e' title='材料' />
+                        </View>
+                        <View style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#5e5e5e' }}>
+                            <Button color='#5e5e5e' title='装备' />
+                        </View>
+                        <View style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#5e5e5e' }}>
+                            <Button color='#5e5e5e' title='丹药' />
+                        </View>
+                        <View style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#5e5e5e' }}>
+                            <Button color='#5e5e5e' title='特殊' />
+                        </View>
+                    </View>
+                    <View style={{ height: 30, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                         <View style={{ flex: 1 }}>
-                            <Text style={{ marginLeft: 20, fontSize: 10, color: '#929292' }}>名称</Text>
+                            <Text style={{ marginLeft: 20, fontSize: 14, color: '#929292' }}>名称</Text>
                         </View>
                         <View style={{ flex: 1 }}>
-                            <Text style={{ marginRight: 20, textAlign: 'right', fontSize: 10, color: '#929292' }}>数量</Text>
+                            <Text style={{ marginRight: 20, textAlign: 'right', fontSize: 14, color: '#929292' }}>数量</Text>
                         </View>
                     </View>
                     <View style={{ flex: 1, paddingLeft: 10, paddingRight: 10 }}>
@@ -91,7 +108,7 @@ class PropsTabPage extends Component {
                             keyExtractor={item => item.id}
                         />
                     </View>
-                    <View style={{ height: 150, flexDirection: 'column'}}>
+                    <View style={{ height: 100, flexDirection: 'column'}}>
                         <View style={{ height: 35, justifyContent: 'center', alignItems: 'center' }}>
                             <Text>{selectedProp != undefined ? selectedProp.name : ''}</Text>
                             <Text>{(selectedProp != undefined && selectedProp.desc != undefined) ? selectedProp.desc : ''}</Text>
