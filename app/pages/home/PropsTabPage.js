@@ -15,6 +15,11 @@ import {
     TouchableHighlight,
 } from '../../constants/native-ui';
 
+import {
+    TabButton,
+    NormalButton,
+} from '../../constants/custom-ui';
+
 class PropsTabPage extends Component {
 
     constructor(props) {
@@ -77,21 +82,11 @@ class PropsTabPage extends Component {
                         </View>
                     </View>
                     <View style={{ height: 38, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                        <View style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#5e5e5e' }} >
-                            <Button color='#5e5e5e' title='全部' />
-                        </View>
-                        <View style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#5e5e5e' }}>
-                            <Button color='#5e5e5e' title='材料' />
-                        </View>
-                        <View style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#5e5e5e' }}>
-                            <Button color='#5e5e5e' title='装备' />
-                        </View>
-                        <View style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#5e5e5e' }}>
-                            <Button color='#5e5e5e' title='丹药' />
-                        </View>
-                        <View style={{ borderStyle: 'solid', borderWidth: 1, borderColor: '#5e5e5e' }}>
-                            <Button color='#5e5e5e' title='特殊' />
-                        </View>
+                        <TabButton title='全部' />
+                        <TabButton title='材料' />
+                        <TabButton title='装备' />
+                        <TabButton title='丹药' />
+                        <TabButton title='特殊' />
                     </View>
                     <View style={{ height: 30, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                         <View style={{ flex: 1 }}>
@@ -114,12 +109,8 @@ class PropsTabPage extends Component {
                             <Text>{(selectedProp != undefined && selectedProp.desc != undefined) ? selectedProp.desc : ''}</Text>
                         </View>
                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <View>
-                                <Button title='使用' />
-                            </View>
-                            <View>
-                                <Button title='丢弃' />
-                            </View>
+                            <NormalButton title="使用" {...this.props} />
+                            <NormalButton title="丢弃" {...this.props} />
                         </View>
                     </View>
                 </View>

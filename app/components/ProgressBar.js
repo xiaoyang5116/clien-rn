@@ -1,23 +1,12 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 import {
-    delay,
     Component,
-    getWindowSize,
   } from "../constants";
 
 import PropTypes from 'prop-types';
 import { View } from '../constants/native-ui';
 import { Animated, Easing } from 'react-native';
-
-async function timer(cb, dt) {
-    for (;;) {
-        await delay(dt);
-        const result = cb();
-        if (result == undefined || !result)
-            break;
-    }
-}
 
 export default class ProgressBar extends Component {
     constructor(props) {
