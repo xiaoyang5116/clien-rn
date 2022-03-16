@@ -50,10 +50,10 @@ class PropsTabPage extends Component {
         <TouchableHighlight onPress={() => this._propSelected(data.item)} underlayColor='#a9a9a9' activeOpacity={0.7}>
             <View style={[styles.propsItem, (this.state.selectId == data.item.id ? styles.propSelected : {})]}>
                 <View style={{ flex: 1, flexDirection: 'row' }} >
-                    <Text style={[{ marginLeft: 20 }, color]}>{data.item.name}</Text>
+                    <Text style={[{ marginLeft: 20, fontSize: 22 }, color]}>{data.item.name}</Text>
                 </View>
                 <View style={{ flex: 1 }}>
-                    <Text style={{ marginRight: 20, textAlign: 'right' }}>{data.item.num}</Text>
+                    <Text style={{ marginRight: 20, fontSize: 22, color: '#424242', textAlign: 'right' }}>x{data.item.num}</Text>
                 </View>
             </View>
         </TouchableHighlight>
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderTopColor: '#fff',
         backgroundColor: '#ebebeb',
-        height: 24,
+        height: 40,
     },
     propSelected: {
         backgroundColor: '#d6d6d6',
