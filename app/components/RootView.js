@@ -36,7 +36,6 @@ export default class RootView extends Component {
     };
 
     static remove(key) {
-        console.debug(key);
         viewRoot.setState({
             views: viewRoot.state.views.filter(e => e.key != key),
             key: viewRoot.state.key
