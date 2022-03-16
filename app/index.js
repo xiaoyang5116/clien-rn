@@ -9,7 +9,8 @@
 import React from 'react';
 
 import {
-  AppRegistry
+  AppRegistry,
+  View,
 } from 'react-native';
 
 import { 
@@ -23,6 +24,7 @@ import { name as appName } from '../app.json';
 import { View } from './constants/native-ui';
 import RootView from './components/RootView';
 import MainPage from './pages/MainPage';
+import RootView from './components/tooltip/RootView';
 
 const models = [
   require('./models/AppModel').default,

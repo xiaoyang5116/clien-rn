@@ -1,8 +1,8 @@
 
 import React from 'react';
 
-import { 
-  NavigationContainer 
+import {
+  NavigationContainer
 } from '@react-navigation/native';
 
 import {
@@ -17,6 +17,7 @@ import {
 import HomePage from './/HomePage';
 import ArticlePage from './ArticlePage';
 import FirstPage from './FirstPage';
+import FictionPage from './FictionPage';
 
 import { navigationRef } from '../utils/RootNavigation';
 
@@ -30,6 +31,7 @@ class MainPage extends Component {
           <Stack.Screen name='Home' options={{ headerShown: false }} component={HomePage} />
           <Stack.Screen name='Article' options={{ headerShown: false }} component={ArticlePage} />
           <Stack.Screen name="First" options={{ headerShown: false }} component={FirstPage} />
+          <Stack.Screen name="Fiction" options={{ headerShown: false }} component={FictionPage} />
         </Stack.Navigator>
       </NavigationContainer>
     );

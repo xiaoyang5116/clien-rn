@@ -9,11 +9,13 @@
 import React from 'react';
 
 import { StyleSheet } from '../constants';
+import sharedStyles from './sharedStyles';
 
 const styles = StyleSheet.create({
     /** ================================ */
     /**             公用                 */
     /** ================================ */
+    ...sharedStyles,
     /* 通用视图容器 */
     viewContainer: {
         flex: 1,
@@ -34,14 +36,14 @@ const styles = StyleSheet.create({
     },
     /* 对话框内位置 */
     positionLabel: {
-        fontSize: 18, 
-        padding: 10, 
+        fontSize: 18,
+        padding: 10,
         textAlign: 'left',
     },
     /* 对话框内位置 */
     datetimeLabel: {
-        fontSize: 18, 
-        padding: 10, 
+        fontSize: 18,
+        padding: 10,
     },
     /* 对话框 */
     chatContainer: {
@@ -56,11 +58,11 @@ const styles = StyleSheet.create({
     },
     /* 对话框头部 */
     chatHeader: {
-        fontSize: 18, 
-        flex:1, 
-        paddingTop: 10, 
-        paddingBottom: 10, 
-        textAlign: 'center', 
+        fontSize: 18,
+        flex: 1,
+        paddingTop: 10,
+        paddingBottom: 10,
+        textAlign: 'center',
         backgroundColor: "#fff"
     },
     /* 对话选项框条目 */
@@ -87,8 +89,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     dlgParent: {
-        width:300,
-        height:300,
+        width: 300,
+        height: 300,
         backgroundColor: '#FFFFFF',
         borderRadius: 10
     },
@@ -98,11 +100,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     dlgTitleContainer: {
-        flex: 1, 
-        marginTop: 3, 
-        width: 280, 
-        borderBottomWidth: 1, 
-        borderBottomColor: "#000", 
+        flex: 1,
+        marginTop: 3,
+        width: 280,
+        borderBottomWidth: 1,
+        borderBottomColor: "#000",
         justifyContent: "center"
     },
     dlgContent: {
@@ -111,56 +113,73 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     dlgContentContainer: {
-        flex: 3, 
-        padding: 10, 
+        flex: 3,
+        padding: 10,
         justifyContent: "space-around"
     },
     dlgBottomBanner: {
-        width: 280, 
+        width: 280,
         marginBottom: 3
     },
     /** ================================ */
     /**             旁白                 */
     /** ================================ */
     asideCenter: {
-        justifyContent: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
+
+        flexDirection: "column",
+        flexWrap: "nowrap",
+        justifyContent: "center",
+        alignContent: "center",
         alignItems: 'center',
     },
     asideParent1: {
-        width:300,
-        height:300,
+        width: 300,
+        height: 300,
         backgroundColor: '#CCC',
         borderRadius: 10
     },
     asideParent2: {
-        width:300,
-        height:300,
-        borderRadius: 10
+        // width:300,
+        // height:300,
+        // borderRadius: 10
+
+        flexDirection: "column",
+        justifyContent: "flex-end",
+        padding: 10,
+        marginBottom: 15,
     },
     asideTitleContainer: {
-        flex: 1, 
-        marginTop: 3, 
-        width: 280, 
+        // flex: 1, 
+        // marginTop: 3, 
+        // width: 280, 
+        // alignItems: 'flex-start',
+        // justifyContent: 'center'
+
         alignItems: 'flex-start',
-        justifyContent: 'center'
+        marginBottom: 15,
     },
     asideContentContainer: {
-        flex: 3, 
-        padding: 10, 
-        justifyContent: "space-around"
+        // flex: 3, 
+        // padding: 10, 
+        // justifyContent: "space-around"
     },
     asideBottomContainer: {
-        flex: 2, 
-        justifyContent: 'center'
+        // flex: 2, 
+        // justifyContent: 'center',
+
+        justifyContent: "flex-start",
+        marginTop: 15,
     },
     asideBottomBanner: {
-        width: 280, 
-        marginBottom: 3
+        width: 280,
+        // marginBottom: 3
     },
     asideTitle: {
         fontSize: 24,
         color: '#000',
-        textAlign: 'center',
+        textAlign: 'left',
     },
     asideContent: {
         fontSize: 24,
