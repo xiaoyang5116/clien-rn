@@ -30,6 +30,10 @@ class PropsTabPage extends Component {
         };
     }
 
+    componentDidMount() {
+        this.props.dispatch(action('PropsModel/filter')({ type: '' }));
+    }
+
     _alertCopper(value) {
         this.props.dispatch(action('UserModel/alertCopper')({ value: value }));
     }
@@ -38,6 +42,18 @@ class PropsTabPage extends Component {
         this.setState({
             selectId: item.id,
         });
+    }
+
+    _typeFilter(type) {
+        this.props.dispatch(action('PropsModel/filter')({ type: type }));
+    }
+
+    _useProps() {
+        this.props.dispatch(action('PropsModel/use')({ propsId: this.state.selectId }));
+    }
+
+    _discardProps() {
+        this.props.dispatch(action('PropsModel/discard')({ propsId: this.state.selectId }));
     }
 
     _renderItem = (data) => {
@@ -82,11 +98,11 @@ class PropsTabPage extends Component {
                         </View>
                     </View>
                     <View style={{ height: 38, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                        <TabButton title='全部' />
-                        <TabButton title='材料' />
-                        <TabButton title='装备' />
-                        <TabButton title='丹药' />
-                        <TabButton title='特殊' />
+                        <TabButton title='全部' onPress={() => { this._typeFilter('全部') }} />
+                        <TabButton title='材料' onPress={() => { this._typeFilter('材料') }} />
+                        <TabButton title='装备' onPress={() => { this._typeFilter('装备') }} />
+                        <TabButton title='丹药' onPress={() => { this._typeFilter('丹药')}} />
+                        <TabButton title='特殊' onPress={() => { this._typeFilter('特殊') }} />
                     </View>
                     <View style={{ height: 30, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                         <View style={{ flex: 1 }}>
@@ -104,13 +120,13 @@ class PropsTabPage extends Component {
                         />
                     </View>
                     <View style={{ height: 100, flexDirection: 'column'}}>
-                        <View style={{ height: 35, justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
                             <Text>{selectedProp != undefined ? selectedProp.name : ''}</Text>
                             <Text>{(selectedProp != undefined && selectedProp.desc != undefined) ? selectedProp.desc : ''}</Text>
                         </View>
                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <NormalButton title="使用" {...this.props} />
-                            <NormalButton title="丢弃" {...this.props} />
+                            <NormalButton title="使用" {...this.props} onPress={() => { this._useProps(); }} />
+                            <NormalButton title="丢弃" {...this.props} onPress={() => { this._discardProps(); }} />
                         </View>
                     </View>
                 </View>
