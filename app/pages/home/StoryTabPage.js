@@ -8,6 +8,7 @@ import {
 } from "../../constants";
 
 import MaskModal from '../../components/MaskModal';
+import ProgressBar from '../../components/ProgressBar';
 import * as DateTime from '../../utils/DateTimeUtils';
 import { Button, Text, View, SectionList } from '../../constants/native-ui';
 
@@ -18,6 +19,10 @@ class StoryTabPage extends Component {
 
   _onClickItem = (e) => {
     this.props.dispatch(action('StoryModel/click')(e.item));
+  }
+
+  _onProgressCompleted = (e) => {
+    this.props.dispatch(action('StoryModel/progressCompleted')(e.item));
   }
 
   _renderSectionHeader = ({ section: { title } }) => {
@@ -32,6 +37,12 @@ class StoryTabPage extends Component {
     return (
       <View style={this.props.currentStyles.chatItem}>
         <Button title={data.item.title} onPress={() => this._onClickItem(data)} color={this.props.currentStyles.button.color} />
+        {(data.item.duration != undefined && data.item.duration > 0) 
+          ?  <View style={{ position: 'absolute', left: 0, right: 0, top: 37, height: 4 }}>
+                <ProgressBar percent={100} toPercent={0} duration={data.item.duration} onCompleted={() => this._onProgressCompleted(data)} />
+            </View> 
+          : <></>
+        }
       </View>
     );
   }

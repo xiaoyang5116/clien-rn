@@ -69,6 +69,7 @@
 #       desc:           对话框顶部描述
 #       options:        选项列表
 #         title:        选项名称
+#         duration:     倒计时选项
 #         clickActions: 选项点击事件后触发的动作ID列表
 #         ...条件判断
 #         ...影响结果
@@ -92,10 +93,12 @@ scenes: [
     # 变量定义
     vars: [
       { id: 'v1', min: 0, max: 1 },
+      { id: 'v2', min: 0, max: 1 },
     ],
 
     # 动作定义
     actions: [
+      { id: 't2', cmd: 'var', params: 'v2 = ON' },
     ],
 
     # 事件定义
@@ -114,6 +117,7 @@ scenes: [
           { title: '【没有名额了】', nextChat: 'c4' }, 
           { title: '【真没有名额了】', nextChat: 'c5' }, 
           { title: '【背包存在木瓜】', nextChat: 'c6', andVarsValue: ['@props_40 >= 1'] }, 
+          { title: '【测试倒计时选项】', nextChat: 'c6', andVarsOff: ['v2'], duration: 5000, timeoutActions: ['t2'] }, 
         ],
       },
       # 乞丐第一次点击出现

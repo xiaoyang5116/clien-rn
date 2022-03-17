@@ -343,6 +343,11 @@ export default {
       }
     },
 
+    *processTimeoutActions({ payload }, { put }) {
+      const timeoutActions = { chatId: payload.chatId, actions: payload.timeoutActions };
+      yield put.resolve(action('processActions')(timeoutActions));
+    },
+
     *raiseSceneEvents({ payload }, { put, select }) {
       const sceneId = payload.sceneId;
       const eventType = payload.eventType;

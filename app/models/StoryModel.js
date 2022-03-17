@@ -19,6 +19,11 @@ export default {
     *click({ payload }, { put }) {
       yield put.resolve(action('SceneModel/processActions')(payload));
     },
+
+    // 进度条结束
+    *progressCompleted({ payload }, { put }) {
+      yield put.resolve(action('SceneModel/processTimeoutActions')(payload));
+    },
  
     // 选择对话框
     // 参数: { chatId: xxx }
