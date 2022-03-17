@@ -12,7 +12,8 @@ import {
 
 import StoryTabPage from './home/StoryTabPage';
 import ProfileTabPage from './home/ProfileTabPage';
-import ShopTabPage from './home/ShopTabPage';
+import PropsTabPage from './home/PropsTabPage';
+import SkillTabPage from './home/SkillTabPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,13 +30,13 @@ class HomePage extends Component {
         tabBarLabel: "活动",
         headerTitle: "活动",
       }} />
-      <Tab.Screen name="tab3" component={StoryTabPage} options={{
+      <Tab.Screen name="tab3" component={SkillTabPage} options={{
         tabBarLabel: "技能",
         headerTitle: "技能",
       }} />
-      <Tab.Screen name="tab4" component={ShopTabPage} options={{
-        tabBarLabel: "商城",
-        headerTitle: "商城",
+      <Tab.Screen name="tab4" component={PropsTabPage} options={{
+        tabBarLabel: "道具",
+        headerTitle: "道具",
       }} />
       <Tab.Screen name="tab5" component={ProfileTabPage} options={{
         tabBarLabel: "我的",

@@ -13,8 +13,16 @@ import {
   View,
 } from 'react-native';
 
+import { 
+  dva_create,
+  Provider, 
+  Component, 
+  StyleSheet 
+} from './constants';
+
 import { name as appName } from '../app.json';
-import { Provider, dva_create, Component } from './constants';
+import { View } from './constants/native-ui';
+import RootView from './components/RootView';
 import MainPage from './pages/MainPage';
 import RootView from './components/tooltip/RootView';
 
@@ -24,6 +32,7 @@ const models = [
   require('./models/SceneModel').default,
   require('./models/StoryModel').default,
   require('./models/MaskModel').default,
+  require('./models/PropsModel').default,
 ];
 
 const dva = dva_create();
@@ -36,10 +45,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={dva._store}>
-        <View style={{
-          flex: 1,
-          position: 'relative',
-        }}>
+        <View style={styles.rootContainer}>
           <MainPage />
           <RootView />
         </View>
@@ -47,6 +53,13 @@ class App extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  rootContainer: {
+      flex: 1,
+      position: 'relative',
+  }
+});
 
 export default App;
 AppRegistry.registerComponent(appName, () => App);
