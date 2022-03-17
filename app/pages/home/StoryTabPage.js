@@ -14,6 +14,11 @@ import { Button, Text, View, SectionList } from '../../constants/native-ui';
 
 class StoryTabPage extends Component {
 
+  constructor(props) {
+    super(props);
+    this.progressViews = [];
+  }
+
   componentDidMount() {
   }
 
@@ -21,8 +26,11 @@ class StoryTabPage extends Component {
     this.props.dispatch(action('StoryModel/click')(e.item));
   }
 
-  _onProgressCompleted = (e) => {
-    this.props.dispatch(action('StoryModel/progressCompleted')(e.item));
+  _onProgressCompleted = (data) => {
+    if (data.item.progressId != undefined) {
+      this.progressViews = this.progressViews.filter(e => e.progressId != data.item.progressId);
+    }
+    this.props.dispatch(action('StoryModel/progressCompleted')(data.item));
   }
 
   _renderSectionHeader = ({ section: { title } }) => {
@@ -34,15 +42,23 @@ class StoryTabPage extends Component {
   }
 
   _renderItem = (data) => {
+    let progressView = <></>;
+    // 进度条记录起来，倒计时没完成前不影响。
+    if (data.item.progressId != undefined) {
+      const progress = this.progressViews.find(e => e.progressId == data.item.progressId);
+      if (progress != undefined) {
+        progressView = progress.view;
+      } else {
+        progressView = (<View style={{ position: 'absolute', left: 0, right: 0, top: 37, height: 4 }}>
+                          <ProgressBar percent={100} toPercent={0} duration={data.item.duration} onCompleted={() => this._onProgressCompleted(data)} />
+                        </View>);
+        this.progressViews.push({ progressId: data.item.progressId, view: progressView });
+      }
+    }
     return (
       <View style={this.props.currentStyles.chatItem}>
         <Button title={data.item.title} onPress={() => this._onClickItem(data)} color={this.props.currentStyles.button.color} />
-        {(data.item.duration != undefined && data.item.duration > 0) 
-          ?  <View style={{ position: 'absolute', left: 0, right: 0, top: 37, height: 4 }}>
-                <ProgressBar percent={100} toPercent={0} duration={data.item.duration} onCompleted={() => this._onProgressCompleted(data)} />
-            </View> 
-          : <></>
-        }
+        {progressView}
       </View>
     );
   }
