@@ -70,10 +70,10 @@ class ArenaTabPage extends Component {
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', height: '100%' }}>
                         <View style={{ height: 20, marginTop: 6, marginRight: 6, marginBottom: 3 }}>
-                            <ProgressBar percent={50} />
+                            <ProgressBar percent={100} toPercent={0} duration={10000} />
                         </View>
                         <View style={{ height: 20, marginTop: 3, marginRight: 6, marginBottom: 6 }}>
-                            <ProgressBar percent={10} />
+                            <ProgressBar percent={100} toPercent={0} duration={6000} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                             <Text style={{ color: '#fff' }}>体力: 100</Text>
@@ -102,10 +102,10 @@ class ArenaTabPage extends Component {
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', height: '100%' }}>
                         <View style={{ height: 20, marginTop: 6, marginRight: 6, marginBottom: 3 }}>
-                            <ProgressBar percent={90} />
+                            <ProgressBar percent={100} toPercent={20} duration={10000} />
                         </View>
                         <View style={{ height: 20, marginTop: 3, marginRight: 6, marginBottom: 6 }}>
-                            <ProgressBar percent={50} />
+                            <ProgressBar percent={100} toPercent={30} duration={6000} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                             <Text style={{ color: '#fff' }}>体力: 100</Text>

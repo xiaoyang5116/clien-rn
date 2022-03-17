@@ -9,6 +9,26 @@ import { View } from '../constants/native-ui';
 import { Animated, Easing } from 'react-native';
 
 export default class ProgressBar extends Component {
+    static propTypes = {
+        percent: PropTypes.number,
+        toPercent: PropTypes.number,
+        duration: PropTypes.number,
+        onCompleted: PropTypes.func,
+        sections: PropTypes.array,
+    };
+    
+    static defaultProps = {
+        percent: 0,
+        toPercent: 0,
+        duration: 0,
+        onCompleted: undefined,
+        sections: [
+            { x: 0,  y: 30,  color: '#ff2600' },
+            { x: 30, y: 60,  color: '#ffd479' },
+            { x: 60, y: 100, color: '#12b7b5' },
+        ],
+    };
+
     constructor(props) {
         super(props);
         this.trans = false;
@@ -16,11 +36,6 @@ export default class ProgressBar extends Component {
             refWidth: new Animated.Value(0),
             index: 0,
         };
-        this.sections = [
-            { x: 0,  y: 30,  color: '#ff2600' },
-            { x: 30, y: 60,  color: '#ffd479' },
-            { x: 60, y: 100, color: '#12b7b5' },
-        ];
         // [{toValue: xxx, duration: xxx, color: xxx}...]
         this.sequeue = [];
     }
@@ -56,14 +71,15 @@ export default class ProgressBar extends Component {
 
     onLayout = (e) => {
         const { width } = e.nativeEvent.layout;
+        let percentage = this.props.percent;    // 当前百分比
+        let value = width * percentage / 100;   // 设置启始宽度
+        const validWidth = width *  Math.abs(this.props.percent - this.props.toPercent) / 100;  // 动画变化的有效宽度
 
-        let percentage = this.props.percent;
-        let value = width * percentage / 100;
         this.state.refWidth.setValue(value);
 
         if (this.playAnimation() && (this.props.toPercent > this.props.percent)) {
-            for (let key in this.sections) {
-                const section = this.sections[key];
+            for (let key in this.props.sections) {
+                const section = this.props.sections[key];
                 if (percentage >= section.x && percentage <= section.y) {
                     const diffPercent = (this.props.toPercent >= section.y) ? (section.y - percentage) : (this.props.toPercent - percentage);
                     const diffWith = width * diffPercent / 100;
@@ -73,24 +89,25 @@ export default class ProgressBar extends Component {
 
                     this.sequeue.push({ 
                         toValue: value, 
-                        duration: (diffWith / ((this.props.toPercent - this.props.percent) / 100 * width)) * this.props.duration, 
+                        duration: (diffWith / validWidth) * this.props.duration, 
                         color: section.color 
                     });
                 }
             }
         } else if (this.playAnimation() && (this.props.toPercent < this.props.percent)) {
-            for (let key in this.sections) {
-                const section = this.sections[(this.sections.length - 1) - key];
+            for (let key in this.props.sections) {
+                const section = this.props.sections[(this.props.sections.length - 1) - key];
                 if (percentage >= section.x && percentage <= section.y) {
                     const diffPercent = (this.props.toPercent <= section.x) ? (percentage - section.x) : (percentage - this.props.toPercent);
                     const diffWith = width * diffPercent / 100;
 
                     value -= diffWith;
+                    value = (value < 0) ? 0 : value;
                     percentage -= diffPercent;
 
                     this.sequeue.push({ 
                         toValue: value, 
-                        duration: (diffWith / ((this.props.percent - this.props.toPercent) / 100 * width)) * this.props.duration, 
+                        duration: (diffWith / validWidth) * this.props.duration, 
                         color: section.color 
                     });
                 }
@@ -107,7 +124,7 @@ export default class ProgressBar extends Component {
             return { backgroundColor: kv.color };
         } else if (!this.playAnimation() && this.props.percent != undefined) {
             let defaultColor = '';
-            this.sections.forEach((e) => { if (this.props.percent >= e.x) defaultColor = e.color; });
+            this.props.sections.forEach((e) => { if (this.props.percent >= e.x) defaultColor = e.color; });
             return { backgroundColor: defaultColor };
         } else {
             return {};
@@ -122,17 +139,3 @@ export default class ProgressBar extends Component {
         );
     }
 }
-
-ProgressBar.propTypes = {
-    percent: PropTypes.number,
-    toPercent: PropTypes.number,
-    duration: PropTypes.number,
-    onCompleted: PropTypes.func,
-};
-
-ProgressBar.defaultProps = {
-    percent: 0,
-    toPercent: 0,
-    duration: 0,
-    onCompleted: undefined,
-};
