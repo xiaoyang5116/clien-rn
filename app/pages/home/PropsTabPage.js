@@ -11,7 +11,6 @@ import {
     View, 
     Text, 
     FlatList, 
-    Button,
     TouchableHighlight,
 } from '../../constants/native-ui';
 
