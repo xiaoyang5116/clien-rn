@@ -2,28 +2,13 @@ import React, {
     Component,
 } from 'react';
 
-import {
-    StyleSheet,
-    View,
-    Easing,
-    Dimensions,
-    Text,
-    Animated
-} from 'react-native';
-import PropTypes from 'prop-types';
-// import Toast from "./index";
 // 导入不同的追加提示模板
 import BottomToTop from './BottomToTop';
 import LeftToRight from './LeftToRight';
 
 import {
-    action,
     connect,
-    PureComponent,
 } from "../../constants";
-
-
-const { width } = Dimensions.get("window");
 
 class ToastView extends Component {
 

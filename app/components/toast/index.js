@@ -1,11 +1,8 @@
 import React, {
-    Component,
 } from 'react';
-
 
 import RootView from '../RootView';
 import ToastView from './ToastView';
-
 
 class Toast {
 

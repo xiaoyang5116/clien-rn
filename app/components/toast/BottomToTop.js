@@ -1,5 +1,5 @@
-import React, { useRef, PureComponent, ReactDOM, useState } from 'react'
-import { View, Text, ImageBackground, Image, Animated, TouchableOpacity } from 'react-native';
+import React, { useRef } from 'react'
+import { View, Text, Animated, TouchableOpacity } from 'react-native';
 
 
 export default BottomToTop = (props) => {
