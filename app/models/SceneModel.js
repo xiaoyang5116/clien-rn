@@ -115,6 +115,8 @@ const SCENES_LIST = [
   'npc_1',
 ];
 
+let PROGRESS_UNIQUE_ID = 1230000;
+
 export default {
   namespace: 'SceneModel',
 
@@ -150,7 +152,24 @@ export default {
         const data = yield call(GetSceneDataApi, sceneId);
         if (data.scenes != undefined) {
           data.scenes.forEach((e) => {
+            // 标注NPC场景
             if (e.isNpc == undefined) e.isNpc = false;
+            // 标注进度条缺失的唯一ID
+            if (e.chats != undefined) {
+              for (let key in e.chats) {
+                const chat = e.chats[key];
+                if (chat.options != undefined) {
+                  chat.options.forEach(o => {
+                    if (o.duration != undefined 
+                      && o.duration > 0 
+                      && o.progressId == undefined) {
+                      o.progressId = PROGRESS_UNIQUE_ID++;
+                    }
+                  });
+                }
+              }
+            }
+            //
             scenes.push(e);
           });
         }
