@@ -21,8 +21,8 @@ import {
 } from './constants';
 
 import { name as appName } from '../app.json';
-import { View } from './constants/native-ui';
-import RootView from './components/RootView';
+// import { View } from './constants/native-ui';
+// import RootView from './components/RootView';
 import MainPage from './pages/MainPage';
 import RootView from './components/tooltip/RootView';
 
@@ -33,6 +33,7 @@ const models = [
   require('./models/StoryModel').default,
   require('./models/MaskModel').default,
   require('./models/PropsModel').default,
+  require('./models/FictionModel').default,
 ];
 
 const dva = dva_create();
