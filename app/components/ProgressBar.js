@@ -125,7 +125,7 @@ export default class ProgressBar extends Component {
                     }
                 }
             });
-        } else if (this._playAnimation()) {
+        } else if (this._playAnimation() && this.sequeue.length == 0) {
             this._prepare();
             this.setState({});
         } else {
