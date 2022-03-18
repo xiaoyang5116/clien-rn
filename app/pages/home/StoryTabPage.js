@@ -71,7 +71,8 @@ class StoryTabPage extends Component {
         const [ sceneId, varId ] = v.id.split('/');
         if (varId == e) {
           progressViewList.push(
-            <View key={uniqueId} style={{ height: 20, marginLeft: 10, marginRight: 10, marginBottom: 20 }}>
+            <View key={uniqueId} style={{ height: 40, marginLeft: 10, marginRight: 10, marginBottom: 20 }}>
+              <Text style={{ textAlign: 'center', color: '#555', padding: 3 }}>{v.alias}</Text>
               <ProgressBar percent={v.value} />
             </View>
           );

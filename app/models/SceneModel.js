@@ -344,7 +344,15 @@ export default {
       if (predefineActions.length > 0) {
         const validActions = sceneState.data._cfgReader.getSceneActions(sceneId, predefineActions);
         if (validActions != null && validActions.length > 0) {
-          allActions.push(...validActions);
+          // 将预定义动作里面的'变量修改指令'提前执行。
+          const varActions = validActions.filter(e => e.cmd == 'var');
+          if (varActions.length > 0) {
+            allActions.unshift(...varActions);
+            const otherActions = validActions.filter(e => e.cmd != 'var');
+            if (otherActions.length > 0) allActions.push(...otherActions);
+          } else {
+            allActions.push(...validActions);
+          }
         }
       }
 

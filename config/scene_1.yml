@@ -52,6 +52,7 @@
 #       min: 变量最小值
 #       max: 变量最大值
 #       defaultValue: 变量缺省值
+#       alias: 别名，用于显示名称
 #
 #     actions: 动作列表
 #       id: 动作ID
@@ -98,8 +99,8 @@ scenes: [
       { id: 'v3', min: 0, max: 1 },
       { id: 'v4', min: 0, max: 1 },
 
-      { id: '__progress1__', min: 0, max: 100, defaultValue: 30 },
-      { id: '__progress2__', min: 0, max: 100, defaultValue: 80 },
+      { id: '__progress1__', min: 0, max: 100, defaultValue: 30, alias: '【木瓜】上交进度' },
+      { id: '__progress2__', min: 0, max: 100, defaultValue: 100, alias: '【木瓜】采集进度' },
     ],
 
     # 动作定义
@@ -109,6 +110,7 @@ scenes: [
       { id: 't4', cmd: 'var', params: 'v4 = ON' },
 
       { id: 'a1', cmd: 'var', params: '__progress1__ += 10' },
+      { id: 'a2', cmd: 'var', params: '__progress2__ -= 10' },
     ],
 
     # 事件定义
@@ -165,7 +167,7 @@ scenes: [
         id: 'c6', desc: '道具测试', 
         options: [ 
           { title: '交付木瓜', nextChat: 'c1', useProps: '40,1', clickActions: ['a1'] }, 
-          { title: '获得木瓜', nextChat: 'c1', sendProps: '40,10' }, 
+          { title: '获得木瓜', nextChat: 'c1', sendProps: '40,10', clickActions: ['a2'] }, 
         ]
       },
     ],
