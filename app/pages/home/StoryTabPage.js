@@ -19,9 +19,6 @@ class StoryTabPage extends Component {
     this.progressViews = [];
   }
 
-  componentDidMount() {
-  }
-
   _onClickItem = (e) => {
     this.props.dispatch(action('StoryModel/click')(e.item));
   }
@@ -63,6 +60,35 @@ class StoryTabPage extends Component {
     );
   }
 
+  _renderSceneProgress() {
+    const checkVars = ['__PROGRESS1__', '__PROGRESS2__'];
+
+    let uniqueId = 0;
+    const progressViewList = [];
+    checkVars.forEach((e) => {
+      for (let key in this.props.sceneVars) {
+        const v = this.props.sceneVars[key];
+        const [ sceneId, varId ] = v.id.split('/');
+        if (varId == e) {
+          progressViewList.push(
+            <View key={uniqueId} style={{ height: 20, marginLeft: 10, marginRight: 10, marginBottom: 20 }}>
+              <ProgressBar percent={v.value} />
+            </View>
+          );
+          uniqueId++;
+        }
+      }
+    });
+
+    return (
+    <View style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'flex-end' }} pointerEvents="box-none">
+      <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
+        {progressViewList}
+      </View>
+    </View>
+    );
+  }
+
   render() {
     let dt = new Date();
     dt.setTime(this.props.time);
@@ -92,6 +118,7 @@ class StoryTabPage extends Component {
             renderSectionHeader={this._renderSectionHeader}
           />
         </View>
+        {this._renderSceneProgress()}
         <MaskModal />
       </View>
     );

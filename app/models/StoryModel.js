@@ -10,6 +10,7 @@ export default {
   state: {
     time: 0, // 时间信息
     position: '', // 位置信息
+    sceneVars: [], // 当前场景变量
     sectionData: [], // [{title:'', data:[{...title:'', action:''}]}]
   },
 
@@ -58,12 +59,16 @@ export default {
 
       // 获取当前场景的世界时间
       const worldTime = yield put.resolve(action('SceneModel/getWorldTime')({ worldId: userState.worldId }));
+
+      // 获取当前场景变量
+      const sceneVars = yield put.resolve(action('SceneModel/getSceneVars')({ sceneId: sceneId }));
   
       // 重新渲染
       yield put(action('updateState')({ 
         time: worldTime,
         position: scene.name,
         sectionData: newSectionData, 
+        sceneVars: sceneVars,
       }));
     }
   },

@@ -34,10 +34,77 @@ export default class ProgressBar extends Component {
         this.trans = false;
         this.state = {
             refWidth: new Animated.Value(0),
+            wrapWidth: 0,
             index: 0,
         };
         // [{toValue: xxx, duration: xxx, color: xxx}...]
         this.sequeue = [];
+    }
+
+    _playAnimation() {
+        return (this.props.percent != undefined
+                && this.props.toPercent != undefined
+                && this.props.percent != this.props.toPercent
+                && this.props.duration != undefined
+                && this.props.duration > 0);
+    }
+
+    _getBannerColor() {
+        const kv = this.sequeue[this.state.index];
+        if (kv != undefined) {
+            return { backgroundColor: kv.color };
+        } else if (!this._playAnimation() && this.props.percent != undefined) {
+            let defaultColor = '';
+            this.props.sections.forEach((e) => { if (this.props.percent >= e.x) defaultColor = e.color; });
+            return { backgroundColor: defaultColor };
+        } else {
+            return {};
+        }
+    }
+
+    _prepare() {
+        let percentage = this.props.percent;    // 当前百分比
+        let value = this.state.wrapWidth * percentage / 100;   // 设置启始宽度
+        const validWidth = this.state.wrapWidth *  Math.abs(this.props.percent - this.props.toPercent) / 100;  // 动画变化的有效宽度
+
+        this.state.refWidth.setValue(value);
+
+        if (this._playAnimation() && (this.props.toPercent > this.props.percent)) {
+            for (let key in this.props.sections) {
+                const section = this.props.sections[key];
+                if (percentage >= section.x && percentage <= section.y) {
+                    const diffPercent = (this.props.toPercent >= section.y) ? (section.y - percentage) : (this.props.toPercent - percentage);
+                    const diffWith = this.state.wrapWidth * diffPercent / 100;
+
+                    value += diffWith;
+                    percentage += diffPercent;
+
+                    this.sequeue.push({ 
+                        toValue: value, 
+                        duration: (diffWith / validWidth) * this.props.duration, 
+                        color: section.color 
+                    });
+                }
+            }
+        } else if (this._playAnimation() && (this.props.toPercent < this.props.percent)) {
+            for (let key in this.props.sections) {
+                const section = this.props.sections[(this.props.sections.length - 1) - key];
+                if (percentage >= section.x && percentage <= section.y) {
+                    const diffPercent = (this.props.toPercent <= section.x) ? (percentage - section.x) : (percentage - this.props.toPercent);
+                    const diffWith = this.state.wrapWidth * diffPercent / 100;
+
+                    value -= diffWith;
+                    value = (value < 0) ? 0 : value;
+                    percentage -= diffPercent;
+
+                    this.sequeue.push({ 
+                        toValue: value, 
+                        duration: (diffWith / validWidth) * this.props.duration, 
+                        color: section.color 
+                    });
+                }
+            }
+        }
     }
 
     componentDidUpdate() {
@@ -58,83 +125,22 @@ export default class ProgressBar extends Component {
                     }
                 }
             });
+        } else if (this._playAnimation()) {
+            this._prepare();
+            this.setState({});
+        } else {
+            this.state.refWidth.setValue(this.state.wrapWidth * this.props.percent / 100);
         }
-    }
-
-    playAnimation() {
-        return (this.props.percent != undefined
-                && this.props.toPercent != undefined
-                && this.props.percent != this.props.toPercent
-                && this.props.duration != undefined
-                && this.props.duration > 0);
     }
 
     onLayout = (e) => {
-        const { width } = e.nativeEvent.layout;
-        let percentage = this.props.percent;    // 当前百分比
-        let value = width * percentage / 100;   // 设置启始宽度
-        const validWidth = width *  Math.abs(this.props.percent - this.props.toPercent) / 100;  // 动画变化的有效宽度
-
-        this.state.refWidth.setValue(value);
-
-        if (this.playAnimation() && (this.props.toPercent > this.props.percent)) {
-            for (let key in this.props.sections) {
-                const section = this.props.sections[key];
-                if (percentage >= section.x && percentage <= section.y) {
-                    const diffPercent = (this.props.toPercent >= section.y) ? (section.y - percentage) : (this.props.toPercent - percentage);
-                    const diffWith = width * diffPercent / 100;
-
-                    value += diffWith;
-                    percentage += diffPercent;
-
-                    this.sequeue.push({ 
-                        toValue: value, 
-                        duration: (diffWith / validWidth) * this.props.duration, 
-                        color: section.color 
-                    });
-                }
-            }
-        } else if (this.playAnimation() && (this.props.toPercent < this.props.percent)) {
-            for (let key in this.props.sections) {
-                const section = this.props.sections[(this.props.sections.length - 1) - key];
-                if (percentage >= section.x && percentage <= section.y) {
-                    const diffPercent = (this.props.toPercent <= section.x) ? (percentage - section.x) : (percentage - this.props.toPercent);
-                    const diffWith = width * diffPercent / 100;
-
-                    value -= diffWith;
-                    value = (value < 0) ? 0 : value;
-                    percentage -= diffPercent;
-
-                    this.sequeue.push({ 
-                        toValue: value, 
-                        duration: (diffWith / validWidth) * this.props.duration, 
-                        color: section.color 
-                    });
-                }
-            }
-        }
-
-        // console.debug(this.sequeue);
-        this.setState({ ...this.state });
-    }
-
-    getBannerColor() {
-        const kv = this.sequeue[this.state.index];
-        if (kv != undefined) {
-            return { backgroundColor: kv.color };
-        } else if (!this.playAnimation() && this.props.percent != undefined) {
-            let defaultColor = '';
-            this.props.sections.forEach((e) => { if (this.props.percent >= e.x) defaultColor = e.color; });
-            return { backgroundColor: defaultColor };
-        } else {
-            return {};
-        }
+        this.setState({ wrapWidth: e.nativeEvent.layout.width });
     }
 
     render() {
         return (
         <View style={{ flex: 1, height: 10, justifyContent: 'flex-start', backgroundColor: '#e1e1e1' }} onLayout={this.onLayout} >
-            <Animated.View style={[this.getBannerColor(), { height: '100%', width: this.state.refWidth }]}></Animated.View>
+            <Animated.View style={[this._getBannerColor(), { height: '100%', width: this.state.refWidth }]}></Animated.View>
         </View>
         );
     }

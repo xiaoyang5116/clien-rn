@@ -97,6 +97,9 @@ scenes: [
       { id: 'v2', min: 0, max: 1 },
       { id: 'v3', min: 0, max: 1 },
       { id: 'v4', min: 0, max: 1 },
+
+      { id: '__progress1__', min: 0, max: 100, defaultValue: 30 },
+      { id: '__progress2__', min: 0, max: 100, defaultValue: 80 },
     ],
 
     # 动作定义
@@ -104,6 +107,8 @@ scenes: [
       { id: 't2', cmd: 'var', params: 'v2 = ON' },
       { id: 't3', cmd: 'var', params: 'v3 = ON' },
       { id: 't4', cmd: 'var', params: 'v4 = ON' },
+
+      { id: 'a1', cmd: 'var', params: '__progress1__ += 10' },
     ],
 
     # 事件定义
@@ -159,7 +164,7 @@ scenes: [
       { 
         id: 'c6', desc: '道具测试', 
         options: [ 
-          { title: '交付木瓜', nextChat: 'c1', useProps: '40,1' }, 
+          { title: '交付木瓜', nextChat: 'c1', useProps: '40,1', clickActions: ['a1'] }, 
           { title: '获得木瓜', nextChat: 'c1', sendProps: '40,10' }, 
         ]
       },

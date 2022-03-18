@@ -18,7 +18,7 @@ import SceneConfigReader from "../utils/SceneConfigReader";
 
 class VarUtils {
   static generateVarUniqueId(sceneId, varId) {
-    return "{0}_{1}".format(sceneId, varId).toUpperCase();
+    return "{0}/{1}".format(sceneId, varId).toUpperCase();
   }
 
   static getVar(vars, sceneId, varId) {
@@ -189,7 +189,7 @@ export default {
         if (vars != null) {
           vars.forEach((e) => {
             let value = (e.defaultValue != undefined) ? e.defaultValue : 0;
-            const uniVarId = "{0}_{1}".format(sceneId, e.id).toUpperCase();
+            const uniVarId = VarUtils.generateVarUniqueId(sceneId, e.id);
             if (sceneCache != null && sceneCache.vars != null) {
               const varCache = VarUtils.getVar(sceneCache.vars, sceneId, e.id);
               if (varCache != null && varCache.min >= e.min && varCache.max <= e.max) {
@@ -303,6 +303,14 @@ export default {
       const sceneId = payload.sceneId;
       const st = sceneState.data._time.scenes.find(e => e.sceneId == sceneId);
       return st != undefined ? st.time: undefined;
+    },
+
+    // 获取场景变量
+    // 参数：{ sceneId: xxx }
+    *getSceneVars({ payload }, { select }) {
+      const sceneState = yield select(state => state.SceneModel);
+      const { sceneId } = payload;
+      return sceneState.data._vars.filter(e => e.id.indexOf("{0}/".format(sceneId.toUpperCase())) == 0 );
     },
 
     // 事件动作处理
