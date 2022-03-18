@@ -18,7 +18,7 @@ import SceneConfigReader from "../utils/SceneConfigReader";
 
 class VarUtils {
   static generateVarUniqueId(sceneId, varId) {
-    return "{0}_{1}".format(sceneId, varId).toUpperCase();
+    return "{0}/{1}".format(sceneId, varId).toUpperCase();
   }
 
   static getVar(vars, sceneId, varId) {
@@ -62,6 +62,16 @@ class PropertyActionBuilder {
       allActions.push({ id: "__wtime_{0}".format(payload.alertWorldTime), cmd: 'wtime', params: payload.alertWorldTime });
     }
 
+    // 使用道具
+    if (payload.useProps != undefined && typeof(payload.useProps) == 'string') {
+      allActions.push({ id: "__useProps_{0}".format(payload.useProps), cmd: 'useProps', params: payload.useProps });
+    }
+
+    // 发送道具
+    if (payload.sendProps != undefined && typeof(payload.sendProps) == 'string') {
+      allActions.push({ id: "__sendProps_{0}".format(payload.sendProps), cmd: 'sendProps', params: payload.sendProps });
+    }
+
     // 生成对话框动作
     if (payload.dialogs != undefined && Array.isArray(payload.dialogs)) {
       let dialogActions = [];
@@ -94,6 +104,8 @@ const ACTIONS_MAP = [
   { cmd: 'copper',        handler: '__onCopperCommand'},
   { cmd: 'wtime',         handler: '__onWorldTimeCommand' },
   { cmd: 'var',           handler: '__onVarCommand'},
+  { cmd: 'useProps',      handler: '__onUsePropsCommand'},
+  { cmd: 'sendProps',     handler: '__onSendPropsCommand'},
 ];
 
 const SCENES_LIST = [
@@ -102,6 +114,8 @@ const SCENES_LIST = [
   'scene_7', 'scene_8',
   'npc_1',
 ];
+
+let PROGRESS_UNIQUE_ID = 1230000;
 
 export default {
   namespace: 'SceneModel',
@@ -138,7 +152,24 @@ export default {
         const data = yield call(GetSceneDataApi, sceneId);
         if (data.scenes != undefined) {
           data.scenes.forEach((e) => {
+            // 标注NPC场景
             if (e.isNpc == undefined) e.isNpc = false;
+            // 标注进度条缺失的唯一ID
+            if (e.chats != undefined) {
+              for (let key in e.chats) {
+                const chat = e.chats[key];
+                if (chat.options != undefined) {
+                  chat.options.forEach(o => {
+                    if (o.duration != undefined 
+                      && o.duration > 0 
+                      && o.progressId == undefined) {
+                      o.progressId = PROGRESS_UNIQUE_ID++;
+                    }
+                  });
+                }
+              }
+            }
+            //
             scenes.push(e);
           });
         }
@@ -158,7 +189,7 @@ export default {
         if (vars != null) {
           vars.forEach((e) => {
             let value = (e.defaultValue != undefined) ? e.defaultValue : 0;
-            const uniVarId = "{0}_{1}".format(sceneId, e.id).toUpperCase();
+            const uniVarId = VarUtils.generateVarUniqueId(sceneId, e.id);
             if (sceneCache != null && sceneCache.vars != null) {
               const varCache = VarUtils.getVar(sceneCache.vars, sceneId, e.id);
               if (varCache != null && varCache.min >= e.min && varCache.max <= e.max) {
@@ -274,6 +305,14 @@ export default {
       return st != undefined ? st.time: undefined;
     },
 
+    // 获取场景变量
+    // 参数：{ sceneId: xxx }
+    *getSceneVars({ payload }, { select }) {
+      const sceneState = yield select(state => state.SceneModel);
+      const { sceneId } = payload;
+      return sceneState.data._vars.filter(e => e.id.indexOf("{0}/".format(sceneId.toUpperCase())) == 0 );
+    },
+
     // 事件动作处理
     // 参数：{ actions=动作列表,如:['a1', 'a2' ...], ... }
     *processActions({ payload }, { put, select }) {
@@ -305,7 +344,15 @@ export default {
       if (predefineActions.length > 0) {
         const validActions = sceneState.data._cfgReader.getSceneActions(sceneId, predefineActions);
         if (validActions != null && validActions.length > 0) {
-          allActions.push(...validActions);
+          // 将预定义动作里面的'变量修改指令'提前执行。
+          const varActions = validActions.filter(e => e.cmd == 'var');
+          if (varActions.length > 0) {
+            allActions.unshift(...varActions);
+            const otherActions = validActions.filter(e => e.cmd != 'var');
+            if (otherActions.length > 0) allActions.push(...otherActions);
+          } else {
+            allActions.push(...validActions);
+          }
         }
       }
 
@@ -329,6 +376,11 @@ export default {
           yield put.resolve(action(result.handler)(item));
         }
       }
+    },
+
+    *processTimeoutActions({ payload }, { put }) {
+      const timeoutActions = { chatId: payload.chatId, actions: payload.timeoutActions };
+      yield put.resolve(action('processActions')(timeoutActions));
     },
 
     *raiseSceneEvents({ payload }, { put, select }) {
@@ -463,6 +515,18 @@ export default {
       }
     },
 
+    *__onUsePropsCommand({ payload }, { put, select }) {
+      const sceneState = yield select(state => state.SceneModel);
+      const [propsId, num] = payload.params.split(',');
+      yield put.resolve(action('PropsModel/use')({ propsId: parseInt(propsId), num: parseInt(num) }));
+    },
+
+    *__onSendPropsCommand({ payload }, { put, select }) {
+      const sceneState = yield select(state => state.SceneModel);
+      const [propsId, num] = payload.params.split(',');
+      yield put.resolve(action('PropsModel/sendProps')({ propsId: parseInt(propsId), num: parseInt(num) }));
+    },
+
     *syncData({ }, { select, call }) {
       const sceneState = yield select(state => state.SceneModel);
       yield call(LocalStorage.set, LocalCacheKeys.SCENES_DATA, { 
@@ -553,6 +617,10 @@ export default {
           } else if (id == '@scene_time_hours') {
             const value = yield put.resolve(action('getSceneTime')({ sceneId: userState.sceneId }));
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
+          } else if (id.indexOf('@props_') == 0) {
+            const [_k, v] = id.split('_');
+            const propsId = parseInt(v);
+            compareValue = yield put.resolve(action('PropsModel/getPropsNum')({ propsId: propsId }));
           } else if (id.indexOf('@') == 0) {
             debugMessage("Unknown '{0}' identifier!!!", id);
             continue;

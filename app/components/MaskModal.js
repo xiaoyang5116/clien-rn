@@ -10,7 +10,6 @@ import {
 import { Button, Text, View } from '../constants/native-ui';
 import GameOverModal from './GameOverModal';
 import ChapterTemplate from './ChapterTemplate';
-import ToastApi from './tooltip/ToastApi';
 
 // 遮挡层
 class MaskModal extends PureComponent {
@@ -47,13 +46,7 @@ class MaskModal extends PureComponent {
                         </View>
                         <View style={{ flex: 2 }}>
                             <View style={[currentStyles.dlgBottomBanner, { backgroundColor: currentStyles.button.backgroundColor }]}>
-                                {/* <Button title='确认' onPress={this._onDialogConfirm} color={currentStyles.button.color} /> */}
-                                <Button title='确认' onPress={() => {
-                                    // sss
-                                    ToastApi.addView("sssss")
-                                    // ToastApi.addView("sssss","")
-                                    // ToastApi.addView("sssss")
-                                }} color={currentStyles.button.color} />
+                                <Button title='确认' onPress={this._onDialogConfirm} color={currentStyles.button.color} />
                             </View>
                             <View style={[currentStyles.dlgBottomBanner, { backgroundColor: currentStyles.button.backgroundColor }]}>
                                 <Button title='取消' onPress={this._onDialogCancel} color={currentStyles.button.color} />
@@ -102,9 +95,6 @@ class MaskModal extends PureComponent {
                         <View style={currentStyles.asideBottomContainer}>
                             <View style={[currentStyles.asideBottomBanner, { backgroundColor: currentStyles.button.backgroundColor }]}>
                                 <Button title='>>>' onPress={this._onAsideNext} color={currentStyles.button.color} />
-                                {/* <Button title='>>>' onPress={() => {
-                                    ToastApi.show('我是rootView', 2000)
-                                }} color={currentStyles.button.color} /> */}
                             </View>
                         </View>
                     </View>

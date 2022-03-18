@@ -8,6 +8,7 @@ import {
 } from "../../constants";
 
 import { View, Text, Image, Button } from '../../constants/native-ui';
+import Toast from '../../components/toast';
 
 class ProfileTabPage extends Component {
 
@@ -34,6 +35,11 @@ class ProfileTabPage extends Component {
                 </View>
                 <View style={[styles.buttonContainer, {backgroundColor: this.props.currentStyles.button.backgroundColor}]}>
                     <Button title='皮肤2' onPress={() => { this._onChangeTheme(1) }} color={this.props.currentStyles.button.color} />
+                </View>
+                <View style={[styles.buttonContainer, {backgroundColor: this.props.currentStyles.button.backgroundColor}]}>
+                    <Button title='Toast' onPress={() => { 
+                        Toast.show('这是一段很长的对话');
+                     }} color={this.props.currentStyles.button.color} />
                 </View>
             </View>
         );

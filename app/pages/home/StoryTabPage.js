@@ -8,16 +8,26 @@ import {
 } from "../../constants";
 
 import MaskModal from '../../components/MaskModal';
+import ProgressBar from '../../components/ProgressBar';
 import * as DateTime from '../../utils/DateTimeUtils';
 import { Button, Text, View, SectionList } from '../../constants/native-ui';
 
 class StoryTabPage extends Component {
 
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.progressViews = [];
   }
 
   _onClickItem = (e) => {
     this.props.dispatch(action('StoryModel/click')(e.item));
+  }
+
+  _onProgressCompleted = (data) => {
+    if (data.item.progressId != undefined) {
+      this.progressViews = this.progressViews.filter(e => e.progressId != data.item.progressId);
+    }
+    this.props.dispatch(action('StoryModel/progressCompleted')(data.item));
   }
 
   _renderSectionHeader = ({ section: { title } }) => {
@@ -29,10 +39,54 @@ class StoryTabPage extends Component {
   }
 
   _renderItem = (data) => {
+    let progressView = <></>;
+    // 进度条记录起来，倒计时没完成前不影响。
+    if (data.item.progressId != undefined) {
+      const progress = this.progressViews.find(e => e.progressId == data.item.progressId);
+      if (progress != undefined) {
+        progressView = progress.view;
+      } else {
+        progressView = (<View style={{ position: 'absolute', left: 0, right: 0, top: 37, height: 4 }}>
+                          <ProgressBar percent={100} toPercent={0} duration={data.item.duration} onCompleted={() => this._onProgressCompleted(data)} />
+                        </View>);
+        this.progressViews.push({ progressId: data.item.progressId, view: progressView });
+      }
+    }
     return (
       <View style={this.props.currentStyles.chatItem}>
         <Button title={data.item.title} onPress={() => this._onClickItem(data)} color={this.props.currentStyles.button.color} />
+        {progressView}
       </View>
+    );
+  }
+
+  _renderSceneProgress() {
+    const checkVars = ['__PROGRESS1__', '__PROGRESS2__'];
+
+    let uniqueId = 0;
+    const progressViewList = [];
+    checkVars.forEach((e) => {
+      for (let key in this.props.sceneVars) {
+        const v = this.props.sceneVars[key];
+        const [ sceneId, varId ] = v.id.split('/');
+        if (varId == e) {
+          progressViewList.push(
+            <View key={uniqueId} style={{ height: 40, marginLeft: 10, marginRight: 10, marginBottom: 20 }}>
+              <Text style={{ textAlign: 'center', color: '#555', padding: 3 }}>{v.alias}</Text>
+              <ProgressBar percent={v.value} />
+            </View>
+          );
+          uniqueId++;
+        }
+      }
+    });
+
+    return (
+    <View style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', justifyContent: 'flex-end' }} pointerEvents="box-none">
+      <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
+        {progressViewList}
+      </View>
+    </View>
     );
   }
 
@@ -65,6 +119,7 @@ class StoryTabPage extends Component {
             renderSectionHeader={this._renderSectionHeader}
           />
         </View>
+        {this._renderSceneProgress()}
         <MaskModal />
       </View>
     );

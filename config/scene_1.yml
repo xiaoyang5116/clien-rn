@@ -36,6 +36,8 @@
 #       var:      变量修改
 #       copper:   增减铜币
 #       wtime:    修改世界时间
+#       useProps: 使用道具
+#       sendProps:发送道具
 #
 ###################################################################
 #
@@ -50,6 +52,7 @@
 #       min: 变量最小值
 #       max: 变量最大值
 #       defaultValue: 变量缺省值
+#       alias: 别名，用于显示名称
 #
 #     actions: 动作列表
 #       id: 动作ID
@@ -67,6 +70,8 @@
 #       desc:           对话框顶部描述
 #       options:        选项列表
 #         title:        选项名称
+#         progressId:   进度条唯一ID[可选]
+#         duration:     倒计时选项
 #         clickActions: 选项点击事件后触发的动作ID列表
 #         ...条件判断
 #         ...影响结果
@@ -90,10 +95,22 @@ scenes: [
     # 变量定义
     vars: [
       { id: 'v1', min: 0, max: 1 },
+      { id: 'v2', min: 0, max: 1 },
+      { id: 'v3', min: 0, max: 1 },
+      { id: 'v4', min: 0, max: 1 },
+
+      { id: '__progress1__', min: 0, max: 100, defaultValue: 30, alias: '【木瓜】上交进度' },
+      { id: '__progress2__', min: 0, max: 100, defaultValue: 100, alias: '【木瓜】采集进度' },
     ],
 
     # 动作定义
     actions: [
+      { id: 't2', cmd: 'var', params: 'v2 = ON' },
+      { id: 't3', cmd: 'var', params: 'v3 = ON' },
+      { id: 't4', cmd: 'var', params: 'v4 = ON' },
+
+      { id: 'a1', cmd: 'var', params: '__progress1__ += 10' },
+      { id: 'a2', cmd: 'var', params: '__progress2__ -= 10' },
     ],
 
     # 事件定义
@@ -111,6 +128,10 @@ scenes: [
           { title: '【乞丐】', andVarsOn: ['v1'], nextChat: 'c3' }, 
           { title: '【没有名额了】', nextChat: 'c4' }, 
           { title: '【真没有名额了】', nextChat: 'c5' }, 
+          { title: '【背包存在木瓜】', nextChat: 'c6', andVarsValue: ['@props_40 >= 1'] }, 
+          { title: '【测试倒计时选项1】', nextChat: 'c6', andVarsOff: ['v2'], duration: 10000, timeoutActions: ['t2'] }, 
+          { title: '【测试倒计时选项2】', nextChat: 'c6', andVarsOff: ['v3'], duration: 5000, timeoutActions: ['t3'] }, 
+          { title: '【测试倒计时选项3】', nextChat: 'c6', andVarsOff: ['v4'], duration: 2000, timeoutActions: ['t4'] }, 
         ],
       },
       # 乞丐第一次点击出现
@@ -139,6 +160,14 @@ scenes: [
         id: 'c5', desc: '没有名额是什么鬼', 
         options: [ 
           { title: '返回', nextChat: 'c1' }, 
+        ]
+      },
+      # 
+      { 
+        id: 'c6', desc: '道具测试', 
+        options: [ 
+          { title: '交付木瓜', nextChat: 'c1', useProps: '40,1', clickActions: ['a1'] }, 
+          { title: '获得木瓜', nextChat: 'c1', sendProps: '40,10', clickActions: ['a2'] }, 
         ]
       },
     ],
