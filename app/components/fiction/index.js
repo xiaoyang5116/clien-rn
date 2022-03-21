@@ -19,7 +19,7 @@ import {
     action,
 } from "../../constants";
 import Template from './Template';
-import ToastApi from '../RootView'
+import ToastApi from '../toast/index'
 
 let viewHightList = []
 let blockIndex = 0
@@ -94,7 +94,7 @@ class Fiction extends Component {
         if (changed[0].index - 1 >= 0 && (viewHightList[changed[0].index - 1].template === 'popUp')) {
             // viewHightList[changed[0].index - 1].isShow = true
             if (!viewHightList[changed[0].index - 1].isShow) {
-                ToastApi.addView('弹出弹窗')
+                ToastApi.show('弹出弹窗')
                 viewHightList[changed[0].index - 1].isShow = true
             }
 
