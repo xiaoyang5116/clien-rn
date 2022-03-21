@@ -114,6 +114,5 @@ async function getListForFiction(chapter) {
                 }
         }
     })
-    console.log("list",list);
     return list
 }
