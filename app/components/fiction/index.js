@@ -19,7 +19,7 @@ import {
     action,
 } from "../../constants";
 import Template from './Template';
-import ToastApi from '../tooltip/ToastApi'
+import ToastApi from '../RootView'
 
 let viewHightList = []
 let blockIndex = 0

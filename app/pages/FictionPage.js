@@ -25,17 +25,6 @@ import Fiction from '../components/fiction'
 // * 葛巾紫 #E9EBFE rgb(233, 235, 254)
 // * 极光灰 #EAEAEF rgb(234, 234, 239)
 
-const data = {
-    title: "序章",
-    content: "穿越做乞丐",
-    backgroundColor: "#E3EDCD",
-    titleFontSize: 24,
-    contentFontSize: 20,
-    color: "black",
-    // imgUrl: require('../../assets/lace2.png'),
-}
-
-
 function FictionPage(props) {
     const currentStyles = props.currentStyles;
     const window = useWindowDimensions();
