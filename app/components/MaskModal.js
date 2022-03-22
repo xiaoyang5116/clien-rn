@@ -78,7 +78,6 @@ class MaskModal extends PureComponent {
                 </Modal>
             )
         }
-        console.debug(this.props);
         return (
             <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
                 <View style={[currentStyles.asideCenter]}>
