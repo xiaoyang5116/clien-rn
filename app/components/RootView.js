@@ -20,7 +20,7 @@ export default class RootView extends Component {
     }
 
     render() {
-        return (<View style={styles.rootView} pointerEvents="box-none">
+        return (<View style={styles.viewContainer} pointerEvents="box-none">
                     {this.state.views}
                 </View>);
     }
@@ -44,18 +44,11 @@ export default class RootView extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        position: 'relative',
-    },
-    rootView: {
+    viewContainer: {
         position: "absolute",
         left: 0,
         right: 0,
         top: 0,
         bottom: 0,
-    },
-    viewContainer: {
-        flex: 1,
     },
 });

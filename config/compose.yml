@@ -1,0 +1,18 @@
+# ===========================================
+# 合成规则
+# ===========================================
+rules: [
+  { id: 1 , name: '西瓜拼盘配方', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合' },
+  { id: 2 , name: '西瓜拼盘配方2', tags: [], attrs: ['材料'], quality: 1, stuffs: [{ id: 20, num: 1000 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合2' },
+  { id: 3 , name: '西瓜拼盘配方3', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合3' },
+  { id: 4 , name: '西瓜拼盘配方4', tags: [], attrs: ['材料'], quality: 3, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合4' },
+  { id: 5 , name: '西瓜拼盘配方5', tags: [], attrs: ['药品'], quality: 1, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合5' },
+  { id: 6 , name: '西瓜拼盘配方6', tags: [], attrs: ['药品'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合6' },
+  { id: 7 , name: '西瓜拼盘配方7', tags: [], attrs: ['药品'], quality: 3, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合7' },
+  { id: 8 , name: '西瓜拼盘配方8', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合8' },
+  { id: 9 , name: '西瓜拼盘配方9', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合9' },
+  { id: 10 , name: '西瓜拼盘配方10', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合10' },
+  { id: 11 , name: '西瓜拼盘配方11', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合11' },
+  { id: 12 , name: '西瓜拼盘配方12', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合12' },
+  { id: 13 , name: '西瓜拼盘配方13', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合13' },
+]

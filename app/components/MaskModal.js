@@ -83,11 +83,9 @@ class MaskModal extends PureComponent {
                 <View style={[currentStyles.asideCenter]}>
                     <View style={[currentStyles.asideCenter]}>
                         <View style={[this.props.subStype == 1 ? currentStyles.asideParent1 : currentStyles.asideParent2,]}>
-                            {
-                                this.props.title && <View style={currentStyles.asideTitleContainer}>
-                                    <Text style={currentStyles.asideTitle}>{this.props.title}</Text>
-                                </View>
-                            }
+                            <View style={currentStyles.asideTitleContainer}>
+                                <Text style={currentStyles.asideTitle}>{this.props.title}</Text>
+                            </View>
                             <View style={currentStyles.asideContentContainer}>
                                 <Text style={currentStyles.asideContent}>{this.props.content}</Text>
                             </View>
