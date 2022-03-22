@@ -12,7 +12,13 @@ export default {
   namespace: 'ComposeModel',
 
   state: {
+    // 合成首页
     listData: [],
+
+    // 合成详细页
+    selectComposeId: -1,
+    selectComposeDetail: null,
+
     data: {
       composeConfig: [],  // 配方配置
     },
@@ -26,6 +32,17 @@ export default {
       if (data != null) {
         composeState.data.composeConfig.push(...data.rules);
       }
+    },
+
+    *composeSelected({ payload }, { put, select }) {
+      const composeState = yield select(state => state.ComposeModel);
+      const { composeId } = payload;
+      const detail = composeState.data.composeConfig.find(e => e.id == composeId);
+
+      yield put(action('updateState')({ 
+        selectComposeId: composeId,
+        selectComposeDetail: detail,
+      }));
     },
 
     *filter({ payload }, { put, select }) {
