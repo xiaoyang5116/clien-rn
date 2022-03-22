@@ -52,6 +52,7 @@ const sharedStyles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'center',
         alignItems: 'center',
+        padding: 4,
     },
     // 道具图片
     tooltipImg: {
@@ -62,10 +63,8 @@ const sharedStyles = StyleSheet.create({
     },
     tooltipText: {
         fontSize: 18,
-        paddingTop: 4,
-        paddingBottom: 4,
-        textAlign: 'center',
-        marginLeft: 12,
+        // textAlign: 'center',
+        paddingLeft: 12,
     },
     // ----追加弹出提示 end
 
@@ -91,17 +90,17 @@ const sharedStyles = StyleSheet.create({
         paddingLeft: 12,
         justifyContent: 'flex-start'
     },
-    GameOverModalContent_Text:{
+    GameOverModalContent_Text: {
         fontSize: 24,
         paddingTop: 24,
     },
-    GameOverModalButtonContainer:{
+    GameOverModalButtonContainer: {
         flex: 1,
         paddingLeft: 40,
         paddingRight: 40,
         justifyContent: 'flex-start',
     },
-    GameOverModalButtonContainer_Button:{
+    GameOverModalButtonContainer_Button: {
         paddingTop: 24,
     },
     // ----Game over end
