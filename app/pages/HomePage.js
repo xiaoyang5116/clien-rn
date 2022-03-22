@@ -13,6 +13,7 @@ import {
 import StoryTabPage from './home/StoryTabPage';
 import ProfileTabPage from './home/ProfileTabPage';
 import PropsTabPage from './home/PropsTabPage';
+import ComposeTabPage from './home/ComposeTabPage';
 import ArenaTabPage from './home/ArenaTabPage';
 
 const Tab = createBottomTabNavigator();
@@ -26,13 +27,13 @@ class HomePage extends Component {
         tabBarLabel: "世界",
         headerTitle: "世界",
       }} />
-      <Tab.Screen name="tab2" component={StoryTabPage} options={{
-        tabBarLabel: "活动",
-        headerTitle: "活动",
-      }} />
       <Tab.Screen name="tab3" component={ArenaTabPage} options={{
         tabBarLabel: "竞技场",
         headerTitle: "竞技场",
+      }} />
+      <Tab.Screen name="tab2" component={ComposeTabPage} options={{
+        tabBarLabel: "制作",
+        headerTitle: "制作",
       }} />
       <Tab.Screen name="tab4" component={PropsTabPage} options={{
         tabBarLabel: "道具",

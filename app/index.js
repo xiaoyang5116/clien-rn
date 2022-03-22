@@ -32,6 +32,7 @@ const models = [
   require('./models/MaskModel').default,
   require('./models/PropsModel').default,
   require('./models/FictionModel').default,
+  require('./models/ComposeModel').default,
 ];
 
 const dva = dva_create();
