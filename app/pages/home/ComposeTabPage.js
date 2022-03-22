@@ -15,11 +15,19 @@ import {
 } from '../../constants/native-ui';
 
 import {
+    createNativeStackNavigator
+} from '@react-navigation/native-stack';
+
+import {
     TabButton,
     NormalButton,
 } from '../../constants/custom-ui';
 
-class ComposeTabPage extends Component {
+import * as RootNavigation from '../../utils/RootNavigation';
+
+const Stack = createNativeStackNavigator();
+
+class ComposeMainTabPage extends Component {
 
     constructor(props) {
         super(props);
@@ -55,7 +63,9 @@ class ComposeTabPage extends Component {
                     <Text style={[{ marginLeft: 20, fontSize: 22 }, data.item.valid ? styles.valid : styles.notValid ]}>{data.item.name}</Text>
                 </View>
                 <View style={{ width: 100 }}>
-                    <NormalButton title="选择配方" {...this.props} onPress={() => {  }} />
+                    <NormalButton title="选择配方" {...this.props} onPress={()=> {
+                        this.props.navigation.navigate('tab2', { screen: 'ComposeMain' }) 
+                    }} />
                 </View>
             </View>
         </TouchableHighlight>
@@ -99,6 +109,17 @@ class ComposeTabPage extends Component {
     }
 }
 
+class ComposeTabPage extends Component {
+    render() {
+        return (
+        <Stack.Navigator initialRouteName='ComposeMain'>
+          <Stack.Screen name='ComposeMain' options={{ headerShown: false }} component={ComposeMainTabPage} />
+          <Stack.Screen name='ComposeDetail' options={{ headerShown: false }} component={ComposeMainTabPage} />
+        </Stack.Navigator>
+        );
+    }
+}
+
 const styles = StyleSheet.create({
     composeContainer: {
         flex: 1,
@@ -130,4 +151,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default connect((state) => ({ ...state.AppModel, ...state.ComposeModel, user: { ...state.UserModel } }))(ComposeTabPage);
+export default connect((state) => ({ ...state.AppModel, ...state.ComposeModel, user: { ...state.UserModel } }))(ComposeMainTabPage);
