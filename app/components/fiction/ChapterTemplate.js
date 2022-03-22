@@ -39,7 +39,7 @@ export default function Template1(props) {
                 <Text style={{
                     fontSize: data.titleFontSize,
                 }}>
-                    {props.data}
+                    {props.content}
                 </Text>
             </View>
             {/* <Button title='下一页' onPress={props.onAsideNext} /> */}

@@ -33,8 +33,8 @@ export default class Template extends PureComponent {
                 return <OptionTemplate  {...this.props}/>
             case "popUp":
                     return <PopUp  {...this.props}/>
-            default:
-                return<ChapterTemplate {...this.props} />
+            // default:
+            //     return<ChapterTemplate {...this.props} />
         }
     }
 }

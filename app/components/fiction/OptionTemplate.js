@@ -15,21 +15,19 @@ import {
 
 
 export default function OptionTemplate(props) {
-    if (props.data.length > 0) {
-        return (
-            <View>
-                {
-                    props.data.map((item, index) => {
-                        return <Button key={index} title={item} onPress={()=>{console.log("sss");}} />
-                    })
-                }
-            </View>
-        )
-    }
+    // if (props.data.length > 0) {
+    //     return (
+    //         <View>
+    //             {
+    //                 props.data.map((item, index) => {
+    //                     return <Button key={index} title={item} onPress={()=>{console.log("sss");}} />
+    //                 })
+    //             }
+    //         </View>
+    //     )
+    // }
 
     return (
-        <View>
-            {/* <Button title='' /> */}
-        </View>
+        <Button title={props.title} onPress={() => { console.log("sss"); }} />
     )
 }

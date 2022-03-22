@@ -19,7 +19,7 @@ import {
     action,
 } from "../../constants";
 import Template from './Template';
-import ToastApi from '../toast/index'
+import Toast from '../toast/index'
 
 let viewHightList = []
 let blockIndex = 0
@@ -94,12 +94,11 @@ class Fiction extends Component {
         if (changed[0].index - 1 >= 0 && (viewHightList[changed[0].index - 1].template === 'popUp')) {
             // viewHightList[changed[0].index - 1].isShow = true
             if (!viewHightList[changed[0].index - 1].isShow) {
-                ToastApi.show('弹出弹窗')
+                Toast.show('弹出弹窗')
                 viewHightList[changed[0].index - 1].isShow = true
             }
 
         }
-        console.log("changed", viewHightList[changed[0].index - 1]);
     }
 
     render() {
@@ -115,9 +114,7 @@ class Fiction extends Component {
                     extraData={this.props.fictionList}
                     onEndReachedThreshold={0.1}
                     onEndReached={this._nextChapter}
-                    keyExtractor={(item, index) => {
-                        return item.id + index
-                    }}
+                    keyExtractor={(item) => item.id}
                     ListEmptyComponent={() => {
                         return <Text>Loading...</Text>
                     }}
@@ -129,14 +126,14 @@ class Fiction extends Component {
                         return <></>
                     }}
                 />
-                <View style={{
+                {/* <View style={{
                     position: 'absolute',
                     bottom: 0,
                     width: "100%",
                     backgroundColor: "pink"
                 }}>
                     <Button title='下一块' onPress={this._navSelect} />
-                </View>
+                </View> */}
             </SafeAreaView>
         )
     }

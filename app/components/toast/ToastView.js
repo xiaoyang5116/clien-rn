@@ -5,14 +5,13 @@ import React, {
 // 导入不同的追加提示模板
 import BottomToTop from './BottomToTop';
 import LeftToRight from './LeftToRight';
+import BottomToTopSmooth from './BottomToTopSmooth';
 
 import {
     connect,
 } from "../../constants";
 
 class ToastView extends Component {
-
-    dismissHandler = null;
 
     onHide = () => {
         this.props.onHide()
@@ -21,7 +20,11 @@ class ToastView extends Component {
         switch (this.props.type) {
             case "BottomToTop":
                 return (
-                    <BottomToTop {...this.props} onHide={this.onHide}  timingDismiss={this.timingDismiss}/>
+                    <BottomToTop {...this.props} onHide={this.onHide} />
+                )
+            case "BottomToTopSmooth":
+                return (
+                    <BottomToTopSmooth {...this.props} onHide={this.onHide} />
                 )
             case "LeftToRight":
                 return (
