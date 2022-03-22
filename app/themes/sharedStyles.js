@@ -44,7 +44,6 @@ const sharedStyles = StyleSheet.create({
 
     // ----追加弹出提示
     tooltip: {
-        // position: 'absolute',
         backgroundColor: "#f2f6eb",
         borderColor: "black",
         borderWidth: 1,
