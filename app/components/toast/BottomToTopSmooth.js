@@ -58,16 +58,18 @@ export default BottomToTopSmooth = (props) => {
     }, [bottomAnim, opacityAnim])
 
     return (
-        <View style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            flexDirection: "row",
-            justifyContent: 'center',
-            alignItems: 'center',
-        }}>
+        <View
+            pointerEvents="box-none"
+            style={{
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: 0,
+                bottom: 0,
+                flexDirection: "row",
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}>
             <Animated.View                 // 使用专门的可动画化的View组件
                 style={{
                     ...currentStyles.tooltip,
