@@ -6,6 +6,7 @@ import React, {
 import BottomToTop from './BottomToTop';
 import LeftToRight from './LeftToRight';
 import BottomToTopSmooth from './BottomToTopSmooth';
+import CenterToTop from './CenterToTop';
 
 import {
     connect,
@@ -25,6 +26,10 @@ class ToastView extends Component {
             case "BottomToTopSmooth":
                 return (
                     <BottomToTopSmooth {...this.props} onHide={this.onHide} />
+                )
+            case "CenterToTop":
+                return (
+                    <CenterToTop {...this.props} onHide={this.onHide} />
                 )
             case "LeftToRight":
                 return (
