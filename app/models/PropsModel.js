@@ -67,12 +67,12 @@ export default {
       const props = propsState.data.bags.find((e) => e.id == propsId);
       const config = propsState.data.propsConfig.find((e) => e.id == propsId);
       if (props == undefined) {
-        Alert.alert('', '道具不存在！');
+        Toast.show('道具不存在！');
         return;
       }
 
       if (props.num < num) {
-        Alert.alert('', '道具数量不足！');
+        Toast.show('道具数量不足！');
         return;
       }
 
@@ -112,7 +112,7 @@ export default {
 
       const props = propsState.data.bags.find((e) => e.id == propsId);
       if (props == undefined) {
-        Alert.alert('', '道具不存在！');
+        Toast.show('道具不存在！');
         return;
       }
 
@@ -128,7 +128,7 @@ export default {
 
       const props = propsState.data.bags.find((e) => e.id == propsId);
       if (props == undefined) {
-        Alert.alert('', '道具不存在！');
+        Toast.show('道具不存在！');
         return;
       }
 
