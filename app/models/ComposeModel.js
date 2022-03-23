@@ -40,7 +40,7 @@ export default {
       const { composeId } = payload;
       const config = composeState.data.composeConfig.find(e => e.id == composeId);
 
-      const stuffsDetail = { title: '所需材料|需求|现有', data: [] };
+      const stuffsDetail = { title: '所需材料|需求|现有', type: 'stuffs', data: [] };
       for (let k in config.stuffs) {
         const stuff = config.stuffs[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: stuff.id }));
@@ -48,7 +48,7 @@ export default {
         stuffsDetail.data.push({ name: propConfig.name, reqNum: stuff.num, currNum: propNum });
       }
 
-      const propsDetail = { title: '工具/环境|需求|现有', data: [] };
+      const propsDetail = { title: '工具/环境|需求|现有', type: 'props', data: [] };
       for (let k in config.props) {
         const prop = config.props[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: prop.id }));

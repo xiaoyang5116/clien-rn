@@ -30,6 +30,12 @@ class ComposeDetailTabPage extends Component {
             selectNum: '',
         };
     }
+
+    componentDidMount() {
+        // 默认选择
+        this._numSelected('1');
+    }
+
     _numSelected(num) {
         this.setState({
             selectNum: num,
@@ -72,7 +78,7 @@ class ComposeDetailTabPage extends Component {
               <Text>{data.item.name}</Text>
             </View>
             <View style={{ flex: 1, height: 30, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}>
-              <Text>{data.item.reqNum}</Text>
+              <Text>{(data.section.type == 'stuffs' && this.state.selectNum != '最大') ? (data.item.reqNum * this.state.selectNum) : data.item.reqNum}</Text>
             </View>
             <View style={{ flex: 1, height: 30, justifyContent: 'center', alignItems: 'center' }}>
               <Text>{data.item.currNum}</Text>
@@ -173,7 +179,8 @@ const styles = StyleSheet.create({
         height: 40,
     },
     numSelected: {
-        backgroundColor: '#d6d6d6',
+        borderWidth: 2,
+        borderColor: '#555',
         opacity: 1,
     },
     notValid: {
