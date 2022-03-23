@@ -1,11 +1,11 @@
 
 import { 
   action,
-  LocalCacheKeys
 } from '../constants';
 
-import LocalStorage from '../utils/LocalStorage';
 import { GetComposeDataApi } from '../services/GetComposeDataApi';
+
+import lo, { range } from 'lodash';
 import Toast from '../components/toast';
 
 export default {
@@ -56,10 +56,118 @@ export default {
         propsDetail.data.push({ name: propConfig.name, reqNum: prop.num, currNum: propNum });
       }
 
+      const targets = [];
+      for (let k in config.targets) {
+        const item = config.targets[k];
+        const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.id }));
+        const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: item.id }));
+        targets.push({ name: propConfig.name, desc: propConfig.desc, currNum: propNum, productNum: item.num });
+      }
+
       yield put(action('updateState')({ 
         selectComposeId: composeId,
-        selectComposeDetail: { ...config, requirements: [stuffsDetail, propsDetail] },
+        selectComposeDetail: { 
+          ...config, 
+          requirements: [stuffsDetail, propsDetail], 
+          targets: targets 
+        },
       }));
+    },
+
+    *compose({ payload }, { put, select }) {
+      const composeState = yield select(state => state.ComposeModel);
+      const { selectNum, composeId } = payload;
+      
+      let actuallyNum = 0;
+      const config = composeState.data.composeConfig.find(e => e.id == composeId);
+
+      if (lo.isEqual(selectNum, '最大')) {
+        const currentStuffs = [];
+        for (let k in config.stuffs) {
+          const stuff = config.stuffs[k];
+          const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: stuff.id }));
+          currentStuffs.push({ ...stuff, currNum: propNum});
+        }
+
+        const currentProps = [];
+        for (let k in config.props) {
+          const prop = config.props[k];
+          const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: prop.id }));
+          currentProps.push({ ...prop, currNum: propNum});
+        }
+
+        // 检查工具是否足够
+        for (let k in currentProps) {
+          const prop = currentProps[k];
+          if (prop.currNum < prop.num) {
+            Toast.show('工具不足!!!');
+            return;
+          }
+        }
+
+        // 计算最大合成数量
+        while (true) {
+          currentStuffs.forEach(e => {
+            e.currNum -= e.num;
+          });
+          if (currentStuffs.find(e => e.currNum < 0) != undefined)
+            break;
+          actuallyNum++;
+        }
+      } else {
+        actuallyNum = parseInt(selectNum);
+
+        // 判断是否足够材料
+        for (let k in config.stuffs) {
+          const stuff = config.stuffs[k];
+          const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: stuff.id }));
+          if (propNum < (stuff.num * actuallyNum)) {
+            Toast.show('材料不足!!!');
+            return;
+          }
+        }
+
+        // 判断工具是否存在
+        for (let k in config.props) {
+          const prop = config.props[k];
+          const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: prop.id }));
+          if (propNum < (prop.num * actuallyNum)) {
+            Toast.show('工具不足!!!');
+            return;
+          }
+        }
+      }
+
+      if (actuallyNum <= 0) {
+        Toast.show('材料或工具不足!!!');
+        return;
+      }
+
+      const sortTargets = config.targets.map(e => ({ ...e }))
+      sortTargets.sort((a, b) => b.rate - a.rate);
+      let prevRange = 0;
+      sortTargets.forEach(e => {
+        e.range = [prevRange, prevRange + e.rate];
+        prevRange = e.rate;
+      });
+
+      // 扣除材料
+      for (let k in config.stuffs) {
+        const stuff = config.stuffs[k];
+        yield put.resolve(action('PropsModel/use')({ propId: stuff.id, num: (stuff.num * actuallyNum), quiet: true }));
+      }
+
+      // 发放道具
+      for (let i in range(actuallyNum)) {
+        const randValue = lo.random(0, 100, false);
+        const hit = sortTargets.find(e => randValue >= e.range[0] && randValue < e.range[1]);
+        if (hit == undefined) hit = sortTargets[sortTargets.length - 1];
+        yield put.resolve(action('PropsModel/sendProps')({ propId: hit.id, num: hit.num }));
+      }
+
+      Toast.show('制作成功，产出{0}个道具!!!'.format(actuallyNum));
+
+      yield put.resolve(action('composeSelected')({ composeId: composeState.selectComposeId }));
     },
 
     *filter({ payload }, { put, select }) {
