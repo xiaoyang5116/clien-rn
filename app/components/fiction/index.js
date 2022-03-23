@@ -27,7 +27,7 @@ class Fiction extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            componentStateList: []
+            stateList: []
         };
     }
 
@@ -47,7 +47,6 @@ class Fiction extends Component {
     }
 
     renderItem = ({ item, index }) => {
-        // console.log("index", index);
         return (
             <View
                 onLayout={event => {
@@ -55,7 +54,7 @@ class Fiction extends Component {
                         height: event.nativeEvent.layout.height,
                         id: item.id,
                         template: item.template,
-                        isShow: false,
+                        isShow: item.isShow,
                     });
                 }}
             >
@@ -64,20 +63,22 @@ class Fiction extends Component {
         );
     };
     _navSelect = () => {
-        let layoutHeight = 0;
-        // 需要导航的行数
-        let allLines = this.props.fictionList.length;
-        viewHightList.map((item, Index) => {
-            if (blockIndex > Index) {
-                layoutHeight += item.height;
-            }
-        });
-        this.flatlist.scrollToOffset({ offset: layoutHeight, animated: true });
-        if (allLines > blockIndex) {
-            blockIndex++
-        } else {
-            blockIndex = 0
-        }
+        // console.log("viewHightList", viewHightList);
+        console.log("fictionList", this.state.stateList);
+        // let layoutHeight = 0;
+        // // 需要导航的行数
+        // let allLines = this.props.fictionList.length;
+        // viewHightList.map((item, Index) => {
+        //     if (blockIndex > Index) {
+        //         layoutHeight += item.height;
+        //     }
+        // });
+        // this.flatlist.scrollToOffset({ offset: layoutHeight, animated: true });
+        // if (allLines > blockIndex) {
+        //     blockIndex++
+        // } else {
+        //     blockIndex = 0
+        // }
 
     }
 
@@ -95,24 +96,24 @@ class Fiction extends Component {
         // console.log('viewableItems', viewableItems)
         // console.log('changed', changed)
         changed.map((item) => {
-            if ((item.item.template === "popUp") && item.isViewable) {
-                // console.log("item.key", item.key);
-                // console.log("viewHightList", viewHightList);
+            if ((item.item.template === "popUp") && item.isViewable && !item.item.isShow) {
+                console.log("item", item);
                 // console.log("this.props.fictionList", this.props.fictionList);
             }
         })
     }
 
     render() {
+        this.state.stateList = [...this.props.fictionList]
         return (
             <SafeAreaView style={styles.container}>
                 <FlatList
                     ref={(e) =>
                         this.flatlist = e
                     }
-                    data={this.props.fictionList}
+                    data={this.state.stateList}
                     renderItem={this.renderItem}
-                    initialNumToRender={1}
+                    initialNumToRender={2}
                     extraData={this.props.fictionList}
                     onEndReachedThreshold={0.1}
                     onEndReached={this._nextChapter}
@@ -128,14 +129,14 @@ class Fiction extends Component {
                         return <></>
                     }}
                 />
-                {/* <View style={{
+                <View style={{
                     position: 'absolute',
                     bottom: 0,
                     width: "100%",
                     backgroundColor: "pink"
                 }}>
                     <Button title='下一块' onPress={this._navSelect} />
-                </View> */}
+                </View>
             </SafeAreaView>
         )
     }

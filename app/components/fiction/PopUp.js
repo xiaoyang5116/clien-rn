@@ -13,8 +13,16 @@ import {
     StatusBar
 } from 'react-native';
 
-export default function PopUp() {
-    return (
-        <View><Text>popUp</Text></View>
-    )
+export default function PopUp(props) {
+
+    // console.log("props", props.isShow);
+    if (props.isShow) {
+        return (
+            <View>
+                <Text>popUp</Text>
+            </View>
+        )
+
+    }
+    return null
 }
