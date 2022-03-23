@@ -40,13 +40,15 @@ class ComposeMainTabPage extends Component {
     }
 
     _composeSelected(item) {
-        this.props.navigation.navigate('Home', { 
-            screen: 'tab2',
-            params: {
-                screen: 'ComposeDetail',
-            }
+        this.props.dispatch(action('ComposeModel/composeSelected')({ composeId: item.id }))
+        .then(r => {
+            this.props.navigation.navigate('Home', { 
+                screen: 'tab2',
+                params: {
+                    screen: 'ComposeDetail',
+                }
+            });
         });
-        this.props.dispatch(action('ComposeModel/composeSelected')({ composeId: item.id }));
     }
 
     _typeFilter(type) {

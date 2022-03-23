@@ -48,11 +48,11 @@ class PropsTabPage extends Component {
     }
 
     _useProps() {
-        this.props.dispatch(action('PropsModel/use')({ propsId: this.state.selectId, num: 1 }));
+        this.props.dispatch(action('PropsModel/use')({ propId: this.state.selectId, num: 1 }));
     }
 
     _discardProps() {
-        this.props.dispatch(action('PropsModel/discard')({ propsId: this.state.selectId }));
+        this.props.dispatch(action('PropsModel/discard')({ propId: this.state.selectId }));
     }
 
     _renderItem = (data) => {

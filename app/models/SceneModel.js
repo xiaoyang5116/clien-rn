@@ -517,14 +517,14 @@ export default {
 
     *__onUsePropsCommand({ payload }, { put, select }) {
       const sceneState = yield select(state => state.SceneModel);
-      const [propsId, num] = payload.params.split(',');
-      yield put.resolve(action('PropsModel/use')({ propsId: parseInt(propsId), num: parseInt(num) }));
+      const [propId, num] = payload.params.split(',');
+      yield put.resolve(action('PropsModel/use')({ propId: parseInt(propId), num: parseInt(num) }));
     },
 
     *__onSendPropsCommand({ payload }, { put, select }) {
       const sceneState = yield select(state => state.SceneModel);
-      const [propsId, num] = payload.params.split(',');
-      yield put.resolve(action('PropsModel/sendProps')({ propsId: parseInt(propsId), num: parseInt(num) }));
+      const [propId, num] = payload.params.split(',');
+      yield put.resolve(action('PropsModel/sendProps')({ propId: parseInt(propId), num: parseInt(num) }));
     },
 
     *syncData({ }, { select, call }) {
@@ -619,8 +619,8 @@ export default {
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
           } else if (id.indexOf('@props_') == 0) {
             const [_k, v] = id.split('_');
-            const propsId = parseInt(v);
-            compareValue = yield put.resolve(action('PropsModel/getPropsNum')({ propsId: propsId }));
+            const propId = parseInt(v);
+            compareValue = yield put.resolve(action('PropsModel/getPropNum')({ propId: propId }));
           } else if (id.indexOf('@') == 0) {
             debugMessage("Unknown '{0}' identifier!!!", id);
             continue;

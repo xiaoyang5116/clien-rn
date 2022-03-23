@@ -11,30 +11,12 @@ import {
     View, 
     Text, 
     SectionList, 
+    TouchableHighlight,
 } from '../../constants/native-ui';
 
 import {
     NormalButton,
 } from '../../constants/custom-ui';
-
-const DATA = [
-    {
-        title: '所需材料|需求|现有',
-        data: [
-            { name: 'aaaa', requireNum: 100, currNum: 80 },
-            { name: 'bbbb', requireNum: 200, currNum: 60 },
-            { name: 'cccc', requireNum: 300, currNum: 50 },
-        ]
-    },
-    {
-        title: '工具/环境|需求|现有',
-        data: [
-            { name: 'aaaa', requireNum: 100, currNum: 80 },
-            { name: 'bbbb', requireNum: 200, currNum: 60 },
-            { name: 'cccc', requireNum: 300, currNum: 50 },
-        ]
-    }
-];
 
 class ComposeDetailTabPage extends Component {
 
@@ -88,7 +70,7 @@ class ComposeDetailTabPage extends Component {
               <Text>{data.item.name}</Text>
             </View>
             <View style={{ flex: 1, height: 30, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}>
-              <Text>{data.item.requireNum}</Text>
+              <Text>{data.item.reqNum}</Text>
             </View>
             <View style={{ flex: 1, height: 30, justifyContent: 'center', alignItems: 'center' }}>
               <Text>{data.item.currNum}</Text>
@@ -99,10 +81,25 @@ class ComposeDetailTabPage extends Component {
 
     render() {
         const selectedProp = this.props.listData.find(e => e.id == this.state.selectId);
+
+        const numbersView = [];
+        const numberTypes = ['1', '2', '5', '10', '50', '最大'];
+        let key = 0;
+        numberTypes.forEach(e => {
+            numbersView.push(
+            <TouchableHighlight key={key} onPress={() => {}} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: 30, backgroundColor: '#fff', borderWidth: 1, borderColor: '#999', margin: 5 }} underlayColor='#a9a9a9' activeOpacity={0.7}>
+                <View>
+                    <Text>{e}</Text>
+                </View>
+            </TouchableHighlight>
+            );
+            key++;
+        });
+
         return (
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={styles.composeContainer}>
-                    <View style={{ height: 55, justifyContent: 'center', flexDirection: 'row', justifyContent: 'flex-start', paddingLeft: 10, alignItems: 'center' }}>
+                    <View style={{ height: 35, justifyContent: 'center', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
                         <NormalButton title="返回" {...this.props} onPress={()=> {
                             this.props.navigation.navigate('Home', { 
                                 screen: 'tab2',
@@ -124,13 +121,28 @@ class ComposeDetailTabPage extends Component {
                         <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}><Text>0</Text></View>
                         <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center' }}><Text>0</Text></View>
                     </View>
+                    <View style={{ height: 60, justifyContent: 'flex-start', flexDirection: 'column',  padding: 10, marginBottom: 5, borderWidth: 1, borderColor: '#999' }}>
+                        <Text style={{ lineHeight: 20 }}>目标道具说明：</Text>
+                        <Text style={{ color: '#999' }}>    XXXXXxxxxxx</Text>
+                    </View>
                     <View style={{ flex: 1 }}>
                         <SectionList
-                            sections={DATA}
+                            sections={this.props.selectComposeDetail.requirements}
                             keyExtractor={(item, index) => item + index}
                             renderItem={this._renderItem}
                             renderSectionHeader={this._renderSectionHeader}
                         />
+                    </View>
+                    <View style={{ height: 80, justifyContent: 'center', flexDirection: 'column', justifyContent: 'space-around', marginBottom: 5, borderWidth: 1, borderColor: '#999', backgroundColor: '#eee', alignItems: 'center' }}>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text>制作数量</Text>
+                        </View>
+                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around', height: 30, padding: 5, alignItems: 'center' }}>
+                            {numbersView}
+                        </View>
+                    </View>
+                    <View style={{ height: 80, justifyContent: 'center', paddingLeft: 30, paddingRight: 30, marginTop: 5, marginBottom: 5 }}>
+                        <NormalButton title="确认制作" {...this.props} />
                     </View>
                 </View>
             </View>

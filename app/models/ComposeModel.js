@@ -30,6 +30,7 @@ export default {
       const data = yield call(GetComposeDataApi);
 
       if (data != null) {
+        composeState.data.composeConfig.length = 0;
         composeState.data.composeConfig.push(...data.rules);
       }
     },
@@ -37,11 +38,27 @@ export default {
     *composeSelected({ payload }, { put, select }) {
       const composeState = yield select(state => state.ComposeModel);
       const { composeId } = payload;
-      const detail = composeState.data.composeConfig.find(e => e.id == composeId);
+      const config = composeState.data.composeConfig.find(e => e.id == composeId);
+
+      const stuffsDetail = { title: '所需材料|需求|现有', data: [] };
+      for (let k in config.stuffs) {
+        const stuff = config.stuffs[k];
+        const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: stuff.id }));
+        const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: stuff.id }));
+        stuffsDetail.data.push({ name: propConfig.name, reqNum: stuff.num, currNum: propNum });
+      }
+
+      const propsDetail = { title: '工具/环境|需求|现有', data: [] };
+      for (let k in config.props) {
+        const prop = config.props[k];
+        const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: prop.id }));
+        const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: prop.id }));
+        propsDetail.data.push({ name: propConfig.name, reqNum: prop.num, currNum: propNum });
+      }
 
       yield put(action('updateState')({ 
         selectComposeId: composeId,
-        selectComposeDetail: detail,
+        selectComposeDetail: { ...config, requirements: [stuffsDetail, propsDetail] },
       }));
     },
 
@@ -59,8 +76,8 @@ export default {
         // 判断原料
         for (let k in item.stuffs) {
           const stuff = item.stuffs[k];
-          const propsNum = yield put.resolve(action('PropsModel/getPropsNum')({ propsId: stuff.id }));
-          if (propsNum < stuff.num) {
+          const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: stuff.id }));
+          if (propNum < stuff.num) {
             enough = false;
             break;
           }
@@ -69,8 +86,8 @@ export default {
         if (enough) {
           for (let k in item.props) {
             const prop = item.props[k];
-            const propsNum = yield put.resolve(action('PropsModel/getPropsNum')({ propsId: prop.id }));
-            if (propsNum < prop.num) {
+            const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: prop.id }));
+            if (propNum < prop.num) {
               enough = false;
               break;
             }
