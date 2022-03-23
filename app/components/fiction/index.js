@@ -25,9 +25,12 @@ let viewHightList = []
 let blockIndex = 0
 class Fiction extends Component {
     constructor(props) {
-        super(props)
-        // this.onViewableItemsChanged.bind(this)
+        super(props);
+        this.state = {
+            componentStateList: []
+        };
     }
+
     componentDidMount() {
         if (this.props.fictionList.length === 0) {
             this.props.dispatch({
@@ -43,7 +46,8 @@ class Fiction extends Component {
         }
     }
 
-    renderItem = ({ item }) => {
+    renderItem = ({ item, index }) => {
+        // console.log("index", index);
         return (
             <View
                 onLayout={event => {
@@ -90,15 +94,13 @@ class Fiction extends Component {
     onViewableItemsChanged = ({ viewableItems, changed }) => {
         // console.log('viewableItems', viewableItems)
         // console.log('changed', changed)
-        // console.log("viewHightList", viewHightList);
-        if (changed[0].index - 1 >= 0 && (viewHightList[changed[0].index - 1].template === 'popUp')) {
-            // viewHightList[changed[0].index - 1].isShow = true
-            if (!viewHightList[changed[0].index - 1].isShow) {
-                Toast.show('弹出弹窗')
-                viewHightList[changed[0].index - 1].isShow = true
+        changed.map((item) => {
+            if ((item.item.template === "popUp") && item.isViewable) {
+                // console.log("item.key", item.key);
+                // console.log("viewHightList", viewHightList);
+                // console.log("this.props.fictionList", this.props.fictionList);
             }
-
-        }
+        })
     }
 
     render() {
