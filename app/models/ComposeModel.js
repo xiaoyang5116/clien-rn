@@ -165,7 +165,7 @@ export default {
         yield put.resolve(action('PropsModel/sendProps')({ propId: hit.id, num: hit.num, quiet: true }));
       }
 
-      Toast.show('制作成功，产出{0}个道具!!!'.format(actuallyNum));
+      Toast.show('制作成功，产出{0}个道具!!!'.format(actuallyNum), 'CenterToTop');
 
       yield put.resolve(action('composeSelected')({ composeId: composeState.selectComposeId }));
     },
