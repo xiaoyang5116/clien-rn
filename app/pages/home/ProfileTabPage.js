@@ -38,7 +38,7 @@ class ProfileTabPage extends Component {
                 </View>
                 <View style={[styles.buttonContainer, {backgroundColor: this.props.currentStyles.button.backgroundColor}]}>
                     <Button title='Toast' onPress={() => { 
-                        Toast.show('这是一段很长的对话',"BottomToTopSmooth")
+                        Toast.show('这是一段很长的对话','BottomToTopSmooth')
                      }} color={this.props.currentStyles.button.color} />
                 </View>
             </View>
