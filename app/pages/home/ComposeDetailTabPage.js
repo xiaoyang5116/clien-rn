@@ -72,13 +72,14 @@ class ComposeDetailTabPage extends Component {
       }
 
     _renderItem = (data) => {
+        const totalReqNum = (data.section.type == 'stuffs' && this.state.selectNum != '最大') ? (data.item.reqNum * this.state.selectNum) : data.item.reqNum;
         return (
         <View style={{ flexDirection: 'row', height: 30, justifyContent: 'space-around', alignItems: 'center', borderLeftWidth: 1, borderRightWidth: 1, borderBottomWidth: 1, borderColor: '#999' }}>
             <View style={{ flex: 2, height: 30, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}>
               <Text>{data.item.name}</Text>
             </View>
             <View style={{ flex: 1, height: 30, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}>
-              <Text>{(data.section.type == 'stuffs' && this.state.selectNum != '最大') ? (data.item.reqNum * this.state.selectNum) : data.item.reqNum}</Text>
+              <Text style={(data.item.currNum < totalReqNum) ? styles.numNotEnough : {}}>{totalReqNum}</Text>
             </View>
             <View style={{ flex: 1, height: 30, justifyContent: 'center', alignItems: 'center' }}>
               <Text>{data.item.currNum}</Text>
@@ -183,6 +184,9 @@ const styles = StyleSheet.create({
         borderColor: '#555',
         opacity: 1,
     },
+    numNotEnough: {
+        color: '#ff2600',
+    }, 
     notValid: {
         color: '#929292'
     },
