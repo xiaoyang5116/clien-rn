@@ -117,10 +117,11 @@ export default {
       const propsState = yield select(state => state.PropsModel);
       const propId = parseInt(payload.propId);
       const num = parseInt(payload.num);
+      const quiet = payload.quiet != undefined && payload.quiet;
 
       const config = propsState.data.propsConfig.find((e) => e.id == propId);
       if (config == undefined) {
-        Toast.show('道具不存在！');
+        if (!quiet) Toast.show('道具不存在！');
         return;
       }
 
@@ -133,7 +134,8 @@ export default {
         propsState.data.bags.push(item);
       }
 
-      Toast.show('获得道具！');
+      if (!quiet)  Toast.show('获得道具！');
+      
       yield put(action('updateState')({}));
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.data.bags);
     },

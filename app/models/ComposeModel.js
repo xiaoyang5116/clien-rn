@@ -162,7 +162,7 @@ export default {
         const randValue = lo.random(0, 100, false);
         const hit = sortTargets.find(e => randValue >= e.range[0] && randValue < e.range[1]);
         if (hit == undefined) hit = sortTargets[sortTargets.length - 1];
-        yield put.resolve(action('PropsModel/sendProps')({ propId: hit.id, num: hit.num }));
+        yield put.resolve(action('PropsModel/sendProps')({ propId: hit.id, num: hit.num, quiet: true }));
       }
 
       Toast.show('制作成功，产出{0}个道具!!!'.format(actuallyNum));
