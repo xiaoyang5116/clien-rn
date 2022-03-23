@@ -18,30 +18,6 @@ import {
     NormalButton,
 } from '../../constants/custom-ui';
 
-const DATA = [
-    {
-        title: '所需材料|需求|现有',
-        data: [
-            { name: 'aaaa', requireNum: 100, currNum: 80 },
-            { name: 'bbbb', requireNum: 200, currNum: 60 },
-            { name: 'cccc', requireNum: 300, currNum: 50 },
-            { name: 'cccc', requireNum: 300, currNum: 50 },
-            { name: 'cccc', requireNum: 300, currNum: 50 },
-            { name: 'cccc', requireNum: 300, currNum: 50 },
-        ]
-    },
-    {
-        title: '工具/环境|需求|现有',
-        data: [
-            { name: 'aaaa', requireNum: 100, currNum: 80 },
-            { name: 'bbbb', requireNum: 200, currNum: 60 },
-            { name: 'cccc', requireNum: 300, currNum: 50 },
-            { name: 'cccc', requireNum: 300, currNum: 50 },
-            { name: 'cccc', requireNum: 300, currNum: 50 },
-        ]
-    }
-];
-
 class ComposeDetailTabPage extends Component {
 
     constructor(props) {
@@ -94,7 +70,7 @@ class ComposeDetailTabPage extends Component {
               <Text>{data.item.name}</Text>
             </View>
             <View style={{ flex: 1, height: 30, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}>
-              <Text>{data.item.requireNum}</Text>
+              <Text>{data.item.reqNum}</Text>
             </View>
             <View style={{ flex: 1, height: 30, justifyContent: 'center', alignItems: 'center' }}>
               <Text>{data.item.currNum}</Text>
@@ -151,7 +127,7 @@ class ComposeDetailTabPage extends Component {
                     </View>
                     <View style={{ flex: 1 }}>
                         <SectionList
-                            sections={DATA}
+                            sections={this.props.selectComposeDetail.requirements}
                             keyExtractor={(item, index) => item + index}
                             renderItem={this._renderItem}
                             renderSectionHeader={this._renderSectionHeader}

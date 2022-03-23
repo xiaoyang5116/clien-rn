@@ -61,11 +61,11 @@ export default {
 
     *use({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
-      const propsId = parseInt(payload.propsId);
+      const propId = parseInt(payload.propId);
       const num = parseInt(payload.num);
 
-      const props = propsState.data.bags.find((e) => e.id == propsId);
-      const config = propsState.data.propsConfig.find((e) => e.id == propsId);
+      const props = propsState.data.bags.find((e) => e.id == propId);
+      const config = propsState.data.propsConfig.find((e) => e.id == propId);
       if (props == undefined) {
         Toast.show('道具不存在！');
         return;
@@ -97,20 +97,26 @@ export default {
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.data.bags);
     },
 
-    *getPropsNum({ payload }, { put, call, select }) {
+    *getPropNum({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
-      const { propsId } = payload;
+      const { propId } = payload;
 
-      const props = propsState.data.bags.find((e) => e.id == propsId);
+      const props = propsState.data.bags.find((e) => e.id == propId);
       return (props != undefined) ? props.num : 0;
+    },
+
+    *getPropConfig({ payload }, { put, call, select }) {
+      const propsState = yield select(state => state.PropsModel);
+      const { propId } = payload;
+      return propsState.data.propsConfig.find((e) => e.id == propId);
     },
 
     *sendProps({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
-      const propsId = parseInt(payload.propsId);
+      const propId = parseInt(payload.propId);
       const num = parseInt(payload.num);
 
-      const props = propsState.data.bags.find((e) => e.id == propsId);
+      const props = propsState.data.bags.find((e) => e.id == propId);
       if (props == undefined) {
         Toast.show('道具不存在！');
         return;
@@ -124,9 +130,9 @@ export default {
 
     *discard({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
-      const { propsId } = payload;
+      const { propId } = payload;
 
-      const props = propsState.data.bags.find((e) => e.id == propsId);
+      const props = propsState.data.bags.find((e) => e.id == propId);
       if (props == undefined) {
         Toast.show('道具不存在！');
         return;
