@@ -58,6 +58,8 @@ export default {
 
       yield call(LocalStorage.clear);
       yield put.resolve(action('SceneModel/reload')({}));
+      yield put.resolve(action('PropsModel/reload')({}));
+      yield put.resolve(action('UserModel/reload')({}));
       RootNavigation.navigate('First');
     },
   },

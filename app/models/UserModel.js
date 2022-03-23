@@ -21,6 +21,13 @@ export default {
       const userCache = yield call(LocalStorage.get, LocalCacheKeys.USER_DATA);
       if (userCache != null) {
         yield put(action('updateState')({ ...userCache }));
+      } else {
+        yield put(action('updateState')({
+          copper: 0,
+          sceneId: '',
+          prevSceneId: '',
+          worldId: 0,
+        }));
       }
     },
 
