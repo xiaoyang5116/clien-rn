@@ -21,12 +21,7 @@ class ArenaTabPage extends Component {
 
         this.refList = React.createRef();
         this.listData = [];
-
-        // 战报
-        this.state = {
-            report: [],
-            index: 0,
-        };
+        this.reportIndex = 0; // 战报播放INDEX
     }
 
     _renderPKMsg(data) {
@@ -37,18 +32,17 @@ class ArenaTabPage extends Component {
             );
     }
 
-    componentDidMount() {
-        this.props.dispatch(action('ChallengeModel/challenge')({ myself: this.props.myself, enemy: this.props.enemy }))
-        .then(r => {
-            this.setState({ report: r, index: 0 });
-        });
-    }
-
     componentDidUpdate() {
-        if (this.state.report.length > 0 && this.state.index < this.state.report.length) {
-            setTimeout(() => {
-                this.setState({});
-            }, 600);
+        if (this.props.report.length > 0) {
+            if (this.reportIndex < this.props.report.length) {
+                setTimeout(() => {
+                    this.setState({});
+                }, 600);
+            } else {
+                this.listData.length = 0;
+                this.reportIndex = 0;
+                this.props.dispatch(action('ArenaModel/over')());
+            }
         }
     }
 
@@ -56,8 +50,8 @@ class ArenaTabPage extends Component {
         let myLifePercent = 0;
         let enemyLifePercent = 0;
 
-        if (this.state.report.length > 0 && this.state.index < this.state.report.length) {
-            const item = this.state.report[this.state.index];
+        if (this.props.report.length > 0 && this.reportIndex < this.props.report.length) {
+            const item = this.props.report[this.reportIndex];
             this.listData.push({ id: this.listData.length + 1, msg: '<li style="color: #ffffff">{0}</li>'.format(item.msg) });
 
             if (this.props.myself.uid == item.attackerUid) {
@@ -67,7 +61,7 @@ class ArenaTabPage extends Component {
                 myLifePercent = (item.defenderLife / item.defenderOrgLife) * 100;
                 enemyLifePercent = (item.attackerLife / item.attackerOrgLife) * 100;
             }
-            this.state.index += 1;
+            this.reportIndex += 1;
         }
 
         return (
@@ -105,7 +99,9 @@ class ArenaTabPage extends Component {
                             {length: 20, offset: 20 * index, index}
                         )}
                         onContentSizeChange={() => {
-                            this.refList.current.scrollToIndex({ index: this.listData.length - 1 });
+                            if (this.listData.length > 0) {
+                                this.refList.current.scrollToIndex({ index: this.listData.length - 1 });
+                            }
                         }}
                     />
                 </View>

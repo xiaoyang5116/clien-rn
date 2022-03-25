@@ -11,10 +11,6 @@ import {
   GetSceneDataApi,
 } from "../services/GetSceneDataApi";
 
-import {
-  GetSeqDataApi,
-} from "../services/GetSeqDataApi";
-
 import LocalStorage from '../utils/LocalStorage';
 import * as DateTime from '../utils/DateTimeUtils';
 import * as RootNavigation from '../utils/RootNavigation';
@@ -143,11 +139,6 @@ export default {
           { worldId: 1, time: 884478240000000 }, 
           { worldId: 2, time: 1515617280000000 }
         ],
-      },
-
-      // 挂机数据
-      _seq: {
-        config: null,
       },
 
       // 场景配置访问器
@@ -542,17 +533,9 @@ export default {
       yield put.resolve(action('PropsModel/sendProps')({ propId: parseInt(propId), num: parseInt(num) }));
     },
 
-    *__onSeqIdCommand({ payload }, { put, call, select }) {
-      const sceneState = yield select(state => state.SceneModel);
-      const data = yield call(GetSeqDataApi, payload.params);
-      if (data != null && data.sequeues != undefined) {
-        const config = data.sequeues.find(e => e.id == payload.params);
-        if (config != undefined) {
-          sceneState.data._seq.config = config;
-          yield put.resolve(action('ArenaModel/start')({}));
-          RootNavigation.navigate('Arena');
-        }
-      }
+    *__onSeqIdCommand({ payload }, { put }) {
+      yield put.resolve(action('ArenaModel/start')({ seqId: payload.params }));
+      RootNavigation.navigate('Arena');
     },
 
     *syncData({ }, { select, call }) {

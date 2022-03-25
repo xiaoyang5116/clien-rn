@@ -3,8 +3,9 @@ import {
   action,
 } from "../constants";
 
-import lo from 'lodash';
-import * as DateTime from '../utils/DateTimeUtils';
+import {
+  GetSeqDataApi
+} from '../services/GetSeqDataApi';
 
 export default {
   namespace: 'ArenaModel',
@@ -35,10 +36,55 @@ export default {
       dodge: 15, // 闪避
       skillIds: [1, 3],
     },
+
+    // 战报数据
+    report: [],
+
+    data: {
+      seqConfig: null,
+      enemyQueue: [],
+      enemyIndex: 0,
+    },
   },
 
   effects: {
-    *start({ payload }, { }) {
+    *start({ payload }, { put, select, call }) {
+      const arenaState = yield select(state => state.ArenaModel);
+      const { seqId } = payload;
+
+      arenaState.data.seqConfig = null;
+      arenaState.data.enemyQueue.length = 0;
+      arenaState.data.enemyIndex = 0;
+
+      const data = yield call(GetSeqDataApi, seqId);
+      const config = data.sequences.find(e => e.id == seqId);
+      if (config != undefined) {
+        arenaState.data.seqConfig = config;
+        arenaState.data.enemyQueue.length = 0;
+
+        config.enemies.forEach(e => {
+          arenaState.data.enemyQueue.push(...e.items);
+        });
+      }
+
+      yield put.resolve(action('next')({}));
+    },
+
+    *next({ }, { put, select }) {
+      const arenaState = yield select(state => state.ArenaModel);
+
+      if (arenaState.data.enemyQueue.length > 0
+        && arenaState.data.enemyIndex < arenaState.data.enemyQueue.length) {
+        const enemy = arenaState.data.enemyQueue[arenaState.data.enemyIndex];
+        const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: arenaState.myself, enemy: enemy }));
+
+        yield put(action('updateState')({ enemy, report }));
+        arenaState.data.enemyIndex += 1;
+      }
+    },
+
+    *over({ }, { put }) {
+      yield put.resolve(action('next')({}));
     },
   },
   
