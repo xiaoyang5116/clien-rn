@@ -127,7 +127,9 @@ export default {
   effects: {
 
     *challenge({ payload }, { }) {
-      const { myself, enemy } = payload;
+      const myself = { ...payload.myself };
+      const enemy = { ...payload.enemy };
+
       // 初始化技能
       myself.skills = [];
       myself.skillIds.forEach(e => {
@@ -151,7 +153,7 @@ export default {
       myself.orgLife = myself.life;
       myself.userName = '<span style="color:#73fdff">{0}</span>'.format(myself.userName);
       myself.prepare = false;
-      
+
       enemy.orgLife = enemy.life;
       enemy.userName = '<span style="color:#7a81ff">{0}</span>'.format(enemy.userName);
       enemy.prepare = false;

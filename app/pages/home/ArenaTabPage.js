@@ -19,6 +19,8 @@ class ArenaTabPage extends Component {
     constructor(props) {
         super(props);
 
+        this.refList = React.createRef();
+
         this.myself = {
             uid: 1,
             userName: '光头强',
@@ -37,7 +39,7 @@ class ArenaTabPage extends Component {
             userName: '熊大',
             life: 8000,//生命
             speed: 80,  // 速度
-            power: 500, // 灵力
+            power: 450, // 灵力
             agile: 350, // 敏捷
             defense: 80, // 防御
             crit: 10, // 暴击
@@ -73,7 +75,7 @@ class ArenaTabPage extends Component {
         if (this.state.report.length > 0 && this.state.index < this.state.report.length) {
             setTimeout(() => {
                 this.setState({});
-            }, 1500);
+            }, 600);
         }
     }
 
@@ -92,7 +94,6 @@ class ArenaTabPage extends Component {
                 myLifePercent = (item.defenderLife / item.defenderOrgLife) * 100;
                 enemyLifePercent = (item.attackerLife / item.attackerOrgLife) * 100;
             }
-
             this.state.index += 1;
         }
 
@@ -100,7 +101,7 @@ class ArenaTabPage extends Component {
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }}>
                     <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  backgroundColor: '#ccc' }}>
-                        <Text>大BOSS</Text>
+                        <Text>{this.enemy.userName}</Text>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', height: '100%' }}>
                         <View style={{ height: 20, marginTop: 6, marginRight: 6, marginBottom: 3 }}>
@@ -110,28 +111,34 @@ class ArenaTabPage extends Component {
                             <ProgressBar percent={this.enemy.power / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <Text style={{ color: '#fff' }}>体力: 100</Text>
-                            <Text style={{ color: '#fff' }}>灵力: 120</Text>
+                            <Text style={{ color: '#fff' }}>灵力: {this.enemy.power}</Text>
+                            <Text style={{ color: '#fff' }}>速度: {this.enemy.speed}</Text>
+                            <Text style={{ color: '#fff' }}>暴击: {this.enemy.crit}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <Text style={{ color: '#fff' }}>攻击力: 80</Text>
-                            <Text style={{ color: '#fff' }}>回避: 900</Text>
+                            <Text style={{ color: '#fff' }}>敏捷: {this.enemy.agile}</Text>
+                            <Text style={{ color: '#fff' }}>防御: {this.enemy.defense}</Text>
+                            <Text style={{ color: '#fff' }}>闪避: {this.enemy.dodge}</Text>
                         </View>
                     </View>
                 </View>
                 <View style={{ flex: 1, flexDirection: 'row', backgroundColor: '#5a5a70' }}>
                     <FlatList
+                        ref={this.refList}
                         data={this.data}
                         renderItem={this._renderPKMsg}
                         keyExtractor={item => item.id}
                         getItemLayout={(_data, index) => (
-                            {length: 28, offset: 28 * index, index}
-                          )}
+                            {length: 20, offset: 20 * index, index}
+                        )}
+                        onContentSizeChange={() => {
+                            this.refList.current.scrollToIndex({ index: this.data.length - 1 });
+                        }}
                     />
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }}>
                     <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  backgroundColor: '#ccc' }}>
-                        <Text>我是MT</Text>
+                        <Text>{this.myself.userName}</Text>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', height: '100%' }}>
                         <View style={{ height: 20, marginTop: 6, marginRight: 6, marginBottom: 3 }}>
@@ -141,12 +148,14 @@ class ArenaTabPage extends Component {
                             <ProgressBar percent={this.myself.power / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <Text style={{ color: '#fff' }}>体力: 100</Text>
-                            <Text style={{ color: '#fff' }}>灵力: 120</Text>
+                            <Text style={{ color: '#fff' }}>灵力: {this.myself.power}</Text>
+                            <Text style={{ color: '#fff' }}>速度: {this.myself.speed}</Text>
+                            <Text style={{ color: '#fff' }}>暴击: {this.myself.crit}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <Text style={{ color: '#fff' }}>攻击力: 80</Text>
-                            <Text style={{ color: '#fff' }}>回避: 900</Text>
+                            <Text style={{ color: '#fff' }}>敏捷: {this.myself.agile}</Text>
+                            <Text style={{ color: '#fff' }}>防御: {this.myself.defense}</Text>
+                            <Text style={{ color: '#fff' }}>闪避: {this.myself.dodge}</Text>
                         </View>
                     </View>
                 </View>
