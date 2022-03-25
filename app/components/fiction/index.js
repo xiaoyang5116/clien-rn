@@ -23,11 +23,12 @@ import Toast from '../toast/index'
 
 let viewHightList = []
 let blockIndex = 0
+
 class Fiction extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            stateList: []
+            showId: null,
         };
     }
 
@@ -46,7 +47,8 @@ class Fiction extends Component {
         }
     }
 
-    renderItem = ({ item, index }) => {
+    renderItem = ({ item }) => {
+        const currentShow = (item.id === this.state.showId) ? true : false
         return (
             <View
                 onLayout={event => {
@@ -54,31 +56,31 @@ class Fiction extends Component {
                         height: event.nativeEvent.layout.height,
                         id: item.id,
                         template: item.template,
-                        isShow: item.isShow,
+                        isShow: item.template === 'popUp' ? false : true,
+                        showCount: 0,
                     });
                 }}
             >
-                <Template currentStyles={this.props.currentStyles} {...item} />
+                <Template currentStyles={this.props.currentStyles} {...item} currentShow={currentShow} />
             </View>
         );
     };
     _navSelect = () => {
         // console.log("viewHightList", viewHightList);
-        console.log("fictionList", this.state.stateList);
-        // let layoutHeight = 0;
-        // // 需要导航的行数
-        // let allLines = this.props.fictionList.length;
-        // viewHightList.map((item, Index) => {
-        //     if (blockIndex > Index) {
-        //         layoutHeight += item.height;
-        //     }
-        // });
-        // this.flatlist.scrollToOffset({ offset: layoutHeight, animated: true });
-        // if (allLines > blockIndex) {
-        //     blockIndex++
-        // } else {
-        //     blockIndex = 0
-        // }
+        let layoutHeight = 0;
+        // 需要导航的行数
+        let allLines = this.props.fictionList.length;
+        viewHightList.map((item, Index) => {
+            if (blockIndex > Index) {
+                layoutHeight += item.height;
+            }
+        });
+        this.flatlist.scrollToOffset({ offset: layoutHeight, animated: true });
+        if (allLines > blockIndex) {
+            blockIndex++
+        } else {
+            blockIndex = 0
+        }
 
     }
 
@@ -96,34 +98,35 @@ class Fiction extends Component {
         // console.log('viewableItems', viewableItems)
         // console.log('changed', changed)
         changed.map((item) => {
-            if ((item.item.template === "popUp") && item.isViewable && !item.item.isShow) {
-                console.log("item", item);
-                // console.log("this.props.fictionList", this.props.fictionList);
+            const currentItem = viewHightList.filter(i => i.id === item.item.id)[0].showCount
+            if ((item.item.template === "popUp") && item.isViewable && (currentItem === 0)) {
+                const preViewHightList = [...viewHightList]
+                viewHightList = preViewHightList.map((n) => n.id == item.item.id ? { ...n, showCount: n.showCount + 1 } : n)
+                this.setState({ showId: item.item.id })
             }
         })
     }
 
     render() {
-        this.state.stateList = [...this.props.fictionList]
         return (
             <SafeAreaView style={styles.container}>
                 <FlatList
                     ref={(e) =>
                         this.flatlist = e
                     }
-                    data={this.state.stateList}
+                    data={this.props.fictionList}
+                    extraData={this.state.showId}
                     renderItem={this.renderItem}
                     initialNumToRender={2}
-                    extraData={this.props.fictionList}
                     onEndReachedThreshold={0.1}
                     onEndReached={this._nextChapter}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item, index) => item.id + index}
                     ListEmptyComponent={() => {
                         return <Text>Loading...</Text>
                     }}
                     onViewableItemsChanged={this.onViewableItemsChanged}
                     ListFooterComponent={() => {
-                        if (this.props.latestChapter) {
+                        if (this.props.isLatestChapter) {
                             return <Text>我也是有底线的！！！</Text>
                         }
                         return <></>

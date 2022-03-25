@@ -8,13 +8,20 @@ export default {
     state: {
         fictionList: [],
         chapter: 1,
-        latestChapter: false,
+        isLatestChapter: false,
     },
     reducers: {
         changeList(prevState, action) {
             return {
                 ...prevState,
                 fictionList: action.payload
+            }
+        },
+        nxtChapter(prevState, action) {
+            return {
+                ...prevState.fictionList,
+                fictionList: action.payload,
+                chapter: prevState.chapter + 1
             }
         },
         addChapter(prevState, action) {
@@ -26,7 +33,7 @@ export default {
         noData(prevState, action) {
             return {
                 ...prevState,
-                latestChapter: action.payload
+                isLatestChapter: action.payload
             }
         }
     },

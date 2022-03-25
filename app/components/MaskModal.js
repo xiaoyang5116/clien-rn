@@ -60,8 +60,18 @@ class MaskModal extends PureComponent {
 
     _renderForAside() {
         const currentStyles = this.props.currentStyles;
-        // 3 代表 game over
-        if (this.props.style === 3) {
+        // 7 代表 game over
+        if (this.props.style === 7) {
+            return (
+                <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
+                    <View style={currentStyles.gameOverPage}>
+                        <GameOverModal onDialogCancel={this._onDialogCancel} {...this.props} />
+                    </View>
+                </Modal>
+            )
+        }
+        // 5  代表 game over
+        if (this.props.style === 5) {
             return (
                 <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
                     <View style={currentStyles.gameOverPage}>

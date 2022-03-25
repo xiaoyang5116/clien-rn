@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import {
     View,
     Text,
@@ -12,17 +12,21 @@ import {
     SectionList,
     StatusBar
 } from 'react-native';
+import Dialog from '../dialog'
 
-export default function PopUp(props) {
 
-    // console.log("props", props.isShow);
-    if (props.isShow) {
-        return (
-            <View>
-                <Text>popUp</Text>
-            </View>
-        )
-
+export default class PopUp extends Component {
+    timer = null
+    componentWillUnmount() {
+        clearTimeout(this.timer)
     }
-    return null
+    render() {
+        if (this.props.currentShow) {
+            this.timer = setTimeout(() => {
+                Dialog.halfScreenDialog()
+            }, 100);
+            return null
+        }
+        return null
+    }
 }
