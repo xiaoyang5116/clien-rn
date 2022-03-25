@@ -83,7 +83,16 @@ export default {
       }
     },
 
-    *over({ }, { put }) {
+    *over({ }, { put, select }) {
+      const arenaState = yield select(state => state.ArenaModel);
+      if (arenaState.data.enemyQueue.length > 0
+        && arenaState.data.enemyIndex >= arenaState.data.enemyQueue.length) {
+        // 序列完毕，清理现场
+        arenaState.data.seqConfig = null;
+        arenaState.data.enemyQueue.length = 0;
+        arenaState.data.enemyIndex = 0;
+        arenaState.report.length = 0;
+      }
       yield put.resolve(action('next')({}));
     },
   },
