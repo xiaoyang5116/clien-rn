@@ -63,16 +63,17 @@ export default {
       const propsState = yield select(state => state.PropsModel);
       const propId = parseInt(payload.propId);
       const num = parseInt(payload.num);
+      const quiet = payload.quiet != undefined && payload.quiet;
 
       const props = propsState.data.bags.find((e) => e.id == propId);
       const config = propsState.data.propsConfig.find((e) => e.id == propId);
       if (props == undefined) {
-        Toast.show('道具不存在！');
+        if (!quiet) Toast.show('道具不存在！');
         return;
       }
 
       if (props.num < num) {
-        Toast.show('道具数量不足！');
+        if (!quiet) Toast.show('道具数量不足！');
         return;
       }
 
@@ -92,7 +93,8 @@ export default {
         propsState.listData = propsState.listData.filter((e) => e.num > 0);
       }
 
-      Toast.show('使用成功！');
+      if (!quiet) Toast.show('使用成功！');
+      
       yield put(action('updateState')({}));
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.data.bags);
     },
@@ -115,15 +117,25 @@ export default {
       const propsState = yield select(state => state.PropsModel);
       const propId = parseInt(payload.propId);
       const num = parseInt(payload.num);
+      const quiet = payload.quiet != undefined && payload.quiet;
 
-      const props = propsState.data.bags.find((e) => e.id == propId);
-      if (props == undefined) {
-        Toast.show('道具不存在！');
+      const config = propsState.data.propsConfig.find((e) => e.id == propId);
+      if (config == undefined) {
+        if (!quiet) Toast.show('道具不存在！');
         return;
       }
 
-      props.num += num;
-      Toast.show('获得道具！');
+      const props = propsState.data.bags.find((e) => e.id == propId);
+      if (props != undefined) {
+        props.num += num;
+      } else {
+        const item = { ...config };
+        item.num = num;
+        propsState.data.bags.push(item);
+      }
+
+      if (!quiet)  Toast.show('获得道具！');
+      
       yield put(action('updateState')({}));
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.data.bags);
     },

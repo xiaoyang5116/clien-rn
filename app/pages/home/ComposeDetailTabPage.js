@@ -18,32 +18,40 @@ import {
     NormalButton,
 } from '../../constants/custom-ui';
 
+import lo from 'lodash';
+import Toast from '../../components/toast';
+
 class ComposeDetailTabPage extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            selectId: -1, // 当前选择的道具ID
+            selectNum: '',
         };
     }
 
     componentDidMount() {
-        this.props.dispatch(action('ComposeModel/filter')({ type: '' }));
+        // 默认选择
+        this._numSelected('1');
     }
 
-    _alertCopper(value) {
-        this.props.dispatch(action('UserModel/alertCopper')({ value: value }));
-    }
-
-    _composeSelected(item) {
+    _numSelected(num) {
         this.setState({
-            selectId: item.id,
+            selectNum: num,
         });
     }
 
-    _typeFilter(type) {
-        this.props.dispatch(action('ComposeModel/filter')({ type: type }));
+    _compose() {
+        if (lo.isEmpty(this.state.selectNum)) {
+            Toast.show("请选择制作数量！");
+            return;
+        }
+        
+        this.props.dispatch(action('ComposeModel/compose')({ 
+            selectNum: this.state.selectNum,
+            composeId: this.props.selectComposeId,
+        }));
     }
 
     _renderSectionHeader = ({ section: { title } }) => {
@@ -64,13 +72,14 @@ class ComposeDetailTabPage extends Component {
       }
 
     _renderItem = (data) => {
+        const totalReqNum = (data.section.type == 'stuffs' && this.state.selectNum != '最大') ? (data.item.reqNum * this.state.selectNum) : data.item.reqNum;
         return (
         <View style={{ flexDirection: 'row', height: 30, justifyContent: 'space-around', alignItems: 'center', borderLeftWidth: 1, borderRightWidth: 1, borderBottomWidth: 1, borderColor: '#999' }}>
             <View style={{ flex: 2, height: 30, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}>
               <Text>{data.item.name}</Text>
             </View>
             <View style={{ flex: 1, height: 30, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}>
-              <Text>{data.item.reqNum}</Text>
+              <Text style={(data.item.currNum < totalReqNum) ? styles.numNotEnough : {}}>{totalReqNum}</Text>
             </View>
             <View style={{ flex: 1, height: 30, justifyContent: 'center', alignItems: 'center' }}>
               <Text>{data.item.currNum}</Text>
@@ -87,7 +96,8 @@ class ComposeDetailTabPage extends Component {
         let key = 0;
         numberTypes.forEach(e => {
             numbersView.push(
-            <TouchableHighlight key={key} onPress={() => {}} style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: 30, backgroundColor: '#fff', borderWidth: 1, borderColor: '#999', margin: 5 }} underlayColor='#a9a9a9' activeOpacity={0.7}>
+            <TouchableHighlight key={key} onPress={() => { this._numSelected(e) }} underlayColor='#a9a9a9' activeOpacity={0.7}
+                style={[{ flex: 1, justifyContent: 'center', alignItems: 'center', height: 30, backgroundColor: '#fff', borderWidth: 1, borderColor: '#999', margin: 5 }, (this.state.selectNum == e) ? styles.numSelected : {}]}>
                 <View>
                     <Text>{e}</Text>
                 </View>
@@ -118,12 +128,12 @@ class ComposeDetailTabPage extends Component {
                     <View style={{ height: 35, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', padding: 10, marginBottom: 5, borderLeftWidth: 1, borderBottomWidth: 1, borderRightWidth: 1, 
                         borderColor: '#999', alignItems: 'center' }}>
                         <View style={{ flex: 3, height: 35, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}><Text>{this.props.selectComposeDetail.name}</Text></View>
-                        <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}><Text>0</Text></View>
-                        <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center' }}><Text>0</Text></View>
+                        <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}><Text>{this.props.selectComposeDetail.targets[0].productNum}</Text></View>
+                        <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center' }}><Text>{this.props.selectComposeDetail.targets[0].currNum}</Text></View>
                     </View>
                     <View style={{ height: 60, justifyContent: 'flex-start', flexDirection: 'column',  padding: 10, marginBottom: 5, borderWidth: 1, borderColor: '#999' }}>
                         <Text style={{ lineHeight: 20 }}>目标道具说明：</Text>
-                        <Text style={{ color: '#999' }}>    XXXXXxxxxxx</Text>
+                        <Text style={{ color: '#999' }}>    {this.props.selectComposeDetail.targets[0].name} - {this.props.selectComposeDetail.targets[0].desc}</Text>
                     </View>
                     <View style={{ flex: 1 }}>
                         <SectionList
@@ -142,7 +152,7 @@ class ComposeDetailTabPage extends Component {
                         </View>
                     </View>
                     <View style={{ height: 80, justifyContent: 'center', paddingLeft: 30, paddingRight: 30, marginTop: 5, marginBottom: 5 }}>
-                        <NormalButton title="确认制作" {...this.props} />
+                        <NormalButton title="确认制作" {...this.props} onPress={() => { this._compose() }} />
                     </View>
                 </View>
             </View>
@@ -169,10 +179,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#ebebeb',
         height: 40,
     },
-    composeSelected: {
-        backgroundColor: '#d6d6d6',
+    numSelected: {
+        borderWidth: 2,
+        borderColor: '#555',
         opacity: 1,
     },
+    numNotEnough: {
+        color: '#ff2600',
+    }, 
     notValid: {
         color: '#929292'
     },

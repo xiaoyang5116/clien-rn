@@ -7,7 +7,6 @@ props: [
   { id: 3, name: '狼牙', num: 666, quality: 1, type: 0, tags: [], attrs: [], capacity: 1, desc: '' },
   { id: 4, name: '护腕', num: 100, quality: 3, type: 0, tags: [], attrs: ['装备'], capacity: 1, desc: '' },
   { id: 5, name: '护膝', num: 9, quality: 1, type: 0, tags: [], attrs: ['装备'], capacity: 1, desc: ''},
-  { id: 6, name: '苹果', num: 999, quality: 1, type: 0, tags: [], attrs: [], capacity: 1, desc: '' },
   { id: 20 , name: '西瓜', num: 100, quality: 1, type: 0, tags: ['普通'], attrs: ['材料'], capacity: 100, desc: '墨绿色 清香 沁甜爽口。' }, 
   { id: 21 , name: '苹果', num: 100, quality: 1, type: 0, tags: ['普通'], attrs: ['材料'], capacity: 100, desc: '口感酸甜清香。' }, 
   { id: 22 , name: '樱桃', num: 100, quality: 1, type: 0, tags: ['普通'], attrs: ['材料'], capacity: 100, desc: '甜中带酸,香气浓郁。' }, 
