@@ -67,8 +67,8 @@ scenes: [
         options: [ 
           { title: '【大声怪叫】', andVarsOff: ['v7'], dialogs: ['d1'] }, 
           { title: '【询问  这是在哪】', andVarsOn: ['v7'], andVarsOff: ['v8'], dialogs: ['d2'] }, 
-          { title: '【承认】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p13'] }, 
-          { title: '【拒绝】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p14'] }, 
+          { title: '【承认伤到脑袋】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p13'] }, 
+          { title: '【拒绝承认】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p14'] }, 
           { title: '【离开破庙】', andVarsOn: ['v9'], varsOn: ['v10'], toScene: 'pomiaomk' }, 
         ],
       },

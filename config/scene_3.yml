@@ -22,9 +22,8 @@ scenes: [
       { 
         id: 'c1', desc: '请选择移动', 
         options: [ 
-          { title: '【进入破庙】', toScene: 'pomiao' }, 
-          { title: '【落月镇西-胡同口】', toScene: 'hutongkou' }, 
-          { title: '>> 老者NPC <<', toScene: 'npc1' }, 
+          { title: '【>>>落月镇西-胡同口】', toScene: 'hutongkou' }, 
+         { title: '【>>>进入破庙】', toScene: 'pomiao' }, 
         ],
       }
     ],

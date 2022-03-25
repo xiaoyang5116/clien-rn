@@ -76,9 +76,26 @@ scenes: [
       { 
         id: 'c2', desc: '路人露出鄙视的眼神', 
         options: [
+          { title: '敷衍的乞讨', nextChat: 'c3' }, 
+          { title: '真诚的乞讨', nextChat: 'c4' }, 
           { title: '返回', varsOn: ['v2'], nextChat: 'c1' }, 
         ],
       },
+     { 
+        id: 'c3', desc: '路人偶尔经过，但都无视了你', 
+        options: [
+          { title: '返回', nextChat: 'c2' }, 
+        ],
+      },
+     { 
+        id: 'c4', desc: '没人搭理，一阵冷风吹过', 
+        options: [
+          { title: '返回', nextChat: 'c2' }, 
+        ],
+      },
+
+
+
     ],
 
     # 对话框

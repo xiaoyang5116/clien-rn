@@ -90,7 +90,7 @@
 scenes: [
   # 新手村场景
   {
-    id: 'wzkj', name: '未知空间',
+    id: 'S_00Test01', name: '测试功能用场景',
 
     # 变量定义
     vars: [
@@ -98,9 +98,9 @@ scenes: [
       { id: 'v2', min: 0, max: 1 },
       { id: 'v3', min: 0, max: 1 },
       { id: 'v4', min: 0, max: 1 },
-      { id: 'v10', min: 0, max: 1 },
-      { id: 'v20', min: 0, max: 1 },
 
+      { id: '__progress1__', min: 0, max: 100, defaultValue: 30, alias: '【木瓜】上交进度' },
+      { id: '__progress2__', min: 0, max: 100, defaultValue: 100, alias: '【木瓜】采集进度' },
     ],
 
     # 动作定义
@@ -108,6 +108,9 @@ scenes: [
       { id: 't2', cmd: 'var', params: 'v2 = ON' },
       { id: 't3', cmd: 'var', params: 'v3 = ON' },
       { id: 't4', cmd: 'var', params: 'v4 = ON' },
+
+      { id: 'a1', cmd: 'var', params: '__progress1__ += 10' },
+      { id: 'a2', cmd: 'var', params: '__progress2__ -= 10' },
     ],
 
     # 事件定义
@@ -121,19 +124,19 @@ scenes: [
       { 
         id: 'c1', desc: '你穿越了, 请选择穿越开局', 
         options: [ 
-          { title: '【乞丐】', andVarsOff: ['v10'], nextChat: 'c2' }, 
-          { title: '【乞丐】', andVarsOn: ['v10','v20'], nextChat: 'c3' }, 
-          { title: '【没有名额了】', nextChat: 'c4' }, 
-          { title: '【真没有名额了】', nextChat: 'c5' }, 
-          { title: '【★进入测试场景】', toScene: 'S_00Test01' }, 
-          { title: '【测试战斗】', nextChat: 'c6', andVarsOff: ['v4'], duration: 2000, timeoutActions: ['t4'] }, 
+          { title: '>> 好感度测试老者NPC <<', toScene: 'npc1' }, 
+          { title: '【背包存在木瓜】', nextChat: 'c6', andVarsValue: ['@props_40 >= 1'] }, 
+          { title: '【测试倒计时选项1】', nextChat: 'c6', andVarsOff: ['v2'], duration: 10000, timeoutActions: ['t2'] }, 
+          { title: '【测试倒计时选项2】', nextChat: 'c6', andVarsOff: ['v3'], duration: 5000, timeoutActions: ['t3'] }, 
+          { title: '【测试倒计时选项3】', nextChat: 'c6', andVarsOff: ['v4'], duration: 2000, timeoutActions: ['t4'] }, 
+          { title: '【★退出测试场景】', toScene: 'wzkj' }, 
         ],
       },
       # 乞丐第一次点击出现
       { 
         id: 'c2', desc: '再等等', 
         options: [ 
-          { title: '<<< 返回',  nextChat: 'c1' }, 
+          { title: '<<< 返回', varsOn: ['v1'], nextChat: 'c1' }, 
         ]
       },
       # 乞丐第二次点击出现
@@ -148,23 +151,29 @@ scenes: [
       { 
         id: 'c4', desc: '为什么只能选最差开局', 
         options: [ 
-          { title: '<<<返回', varsOn: ['v10'], nextChat: 'c1' }, 
+          { title: '<<<返回', nextChat: 'c1' }, 
         ]
       },
       # 
       { 
         id: 'c5', desc: '没有名额是什么鬼', 
         options: [ 
-          { title: '<<<返回', varsOn: ['v20'], nextChat: 'c1' }, 
+          { title: '<<<返回', nextChat: 'c1' }, 
         ]
       },
       # 
-
+      { 
+        id: 'c6', desc: '道具测试', 
+        options: [ 
+          { title: '交付木瓜', nextChat: 'c1', useProps: '40,1', clickActions: ['a1'] }, 
+          { title: '获得木瓜', nextChat: 'c1', sendProps: '40,10', clickActions: ['a2'] }, 
+        ]
+      },
     ],
 
     # 对话框
     dialogs: [
-      { id: 'p0', style: 1, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], nextChat: 'c1' },
+      { id: 'p0', style: 1, sections: ['进入测试场景'], nextChat: 'c1' },
     ],
   },
 ]
