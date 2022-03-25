@@ -112,7 +112,7 @@ class ComposeDetailTabPage extends Component {
                     <View style={{ height: 35, justifyContent: 'center', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
                         <NormalButton title="返回" {...this.props} onPress={()=> {
                             this.props.navigation.navigate('Home', { 
-                                screen: 'tab2',
+                                screen: 'Compose',
                                 params: {
                                     screen: 'ComposeMain',
                                 }

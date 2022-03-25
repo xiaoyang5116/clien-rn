@@ -11,6 +11,10 @@ import {
   GetSceneDataApi,
 } from "../services/GetSceneDataApi";
 
+import {
+  GetSeqDataApi,
+} from "../services/GetSeqDataApi";
+
 import LocalStorage from '../utils/LocalStorage';
 import * as DateTime from '../utils/DateTimeUtils';
 import * as RootNavigation from '../utils/RootNavigation';
@@ -72,6 +76,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__sendProps_{0}".format(payload.sendProps), cmd: 'sendProps', params: payload.sendProps });
     }
 
+    // 挂机序列
+    if (payload.seqId != undefined && typeof(payload.seqId) == 'string') {
+      allActions.push({ id: "__seqId_{0}".format(payload.seqId), cmd: 'seqId', params: payload.seqId });
+    }
+
     // 生成对话框动作
     if (payload.dialogs != undefined && Array.isArray(payload.dialogs)) {
       let dialogActions = [];
@@ -96,16 +105,17 @@ class PropertyActionBuilder {
 }
 
 const ACTIONS_MAP = [
-  { cmd: 'dialog',        handler: '__onDialogCommand'},
-  { cmd: 'navigate',      handler: '__onNavigateCommand'},
-  { cmd: 'chat',          handler: '__onChatCommand'},
-  { cmd: 'scene',         handler: '__onSceneCommand'},
-  { cmd: 'delay',         handler: '__onDelayCommand'},
-  { cmd: 'copper',        handler: '__onCopperCommand'},
+  { cmd: 'dialog',        handler: '__onDialogCommand' },
+  { cmd: 'navigate',      handler: '__onNavigateCommand' },
+  { cmd: 'chat',          handler: '__onChatCommand' },
+  { cmd: 'scene',         handler: '__onSceneCommand' },
+  { cmd: 'delay',         handler: '__onDelayCommand' },
+  { cmd: 'copper',        handler: '__onCopperCommand' },
   { cmd: 'wtime',         handler: '__onWorldTimeCommand' },
-  { cmd: 'var',           handler: '__onVarCommand'},
-  { cmd: 'useProps',      handler: '__onUsePropsCommand'},
-  { cmd: 'sendProps',     handler: '__onSendPropsCommand'},
+  { cmd: 'var',           handler: '__onVarCommand' },
+  { cmd: 'useProps',      handler: '__onUsePropsCommand' },
+  { cmd: 'sendProps',     handler: '__onSendPropsCommand' },
+  { cmd: 'seqId',         handler: '__onSeqIdCommand' },
 ];
 
 const SCENES_LIST = [
@@ -133,6 +143,11 @@ export default {
           { worldId: 1, time: 884478240000000 }, 
           { worldId: 2, time: 1515617280000000 }
         ],
+      },
+
+      // 挂机数据
+      _seq: {
+        config: null,
       },
 
       // 场景配置访问器
@@ -525,6 +540,19 @@ export default {
       const sceneState = yield select(state => state.SceneModel);
       const [propId, num] = payload.params.split(',');
       yield put.resolve(action('PropsModel/sendProps')({ propId: parseInt(propId), num: parseInt(num) }));
+    },
+
+    *__onSeqIdCommand({ payload }, { put, call, select }) {
+      const sceneState = yield select(state => state.SceneModel);
+      const data = yield call(GetSeqDataApi, payload.params);
+      if (data != null && data.sequeues != undefined) {
+        const config = data.sequeues.find(e => e.id == payload.params);
+        if (config != undefined) {
+          sceneState.data._seq.config = config;
+          yield put.resolve(action('ArenaModel/start')({}));
+          RootNavigation.navigate('Arena');
+        }
+      }
     },
 
     *syncData({ }, { select, call }) {

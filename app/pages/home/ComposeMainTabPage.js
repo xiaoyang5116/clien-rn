@@ -43,7 +43,7 @@ class ComposeMainTabPage extends Component {
         this.props.dispatch(action('ComposeModel/composeSelected')({ composeId: item.id }))
         .then(r => {
             this.props.navigation.navigate('Home', { 
-                screen: 'tab2',
+                screen: 'Compose',
                 params: {
                     screen: 'ComposeDetail',
                 }
