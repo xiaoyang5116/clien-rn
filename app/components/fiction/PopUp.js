@@ -21,12 +21,12 @@ export default class PopUp extends Component {
         clearTimeout(this.timer)
     }
     render() {
-        if (this.props.currentShow) {
-            this.timer = setTimeout(() => {
-                Dialog.halfScreenDialog()
-            }, 100);
-            return null
-        }
+        // if (this.props.currentShow) {
+        //     this.timer = setTimeout(() => {
+        //         Dialog.halfScreenDialog()
+        //     }, 100);
+        //     return null
+        // }
         return null
     }
 }

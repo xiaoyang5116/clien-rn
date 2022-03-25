@@ -10,10 +10,11 @@ import {
 import { Button, Text, View } from '../constants/native-ui';
 import GameOverModal from './GameOverModal';
 import ChapterTemplate from './ChapterTemplate';
+import Dialog from './dialog'
+import HalfScreenDialog from './dialog/HalfScreenDialog'
 
 // 遮挡层
 class MaskModal extends PureComponent {
-
     _onDialogConfirm = () => {
         this.props.dispatch(action('MaskModel/onDialogConfirm')());
     }
@@ -60,6 +61,36 @@ class MaskModal extends PureComponent {
 
     _renderForAside() {
         const currentStyles = this.props.currentStyles;
+        // 4 代表章节模板
+        if (this.props.style === 4) {
+            return (
+                <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
+                    <ChapterTemplate onAsideNext={this._onAsideNext} {...this.props} />
+                </Modal>
+            )
+        }
+
+        // // 5  代表 toast 追加提示
+        // if (this.props.style === 5) {
+        //     return (
+        //         <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
+        //             <View style={currentStyles.gameOverPage}>
+        //                 <GameOverModal onDialogCancel={this._onDialogCancel} {...this.props} />
+        //             </View>
+        //         </Modal>
+        //     )
+        // }
+
+        // 6  代表 popUp dialog 弹出对话框
+        if (this.props.style === 6) {
+            // console.log("this.props", this.props);
+            return (
+                <Modal isVisible={this.props.visible} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
+                    <HalfScreenDialog isGame={true} onDialogCancel={this._onDialogCancel} onAsideNext={this._onAsideNext} popUpComplex={this.props.data._current.popUpComplex} />
+                </Modal>
+            )
+        }
+
         // 7 代表 game over
         if (this.props.style === 7) {
             return (
@@ -67,24 +98,6 @@ class MaskModal extends PureComponent {
                     <View style={currentStyles.gameOverPage}>
                         <GameOverModal onDialogCancel={this._onDialogCancel} {...this.props} />
                     </View>
-                </Modal>
-            )
-        }
-        // 5  代表 game over
-        if (this.props.style === 5) {
-            return (
-                <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
-                    <View style={currentStyles.gameOverPage}>
-                        <GameOverModal onDialogCancel={this._onDialogCancel} {...this.props} />
-                    </View>
-                </Modal>
-            )
-        }
-        // 4 代表章节模板
-        if (this.props.style === 4) {
-            return (
-                <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
-                    <ChapterTemplate onAsideNext={this._onAsideNext} {...this.props} />
                 </Modal>
             )
         }

@@ -1,9 +1,11 @@
-import React from 'react';
+import { set } from 'lodash';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
     TouchableHighlight,
     TouchableWithoutFeedback,
+    FlatList,
     ImageBackground,
     Image,
     Button,
@@ -17,21 +19,57 @@ import { getWindowSize } from '../../constants';
 
 const size = getWindowSize();
 
-const HalfScreenDialog = (props) => {
+const HalfScreenDialog = props => {
+    const [currentIndex, setCurrentIndex] = useState(0)
+    const [currentTextList, setShowList] = useState(props.popUpComplex[0].content)
+    const [showBtnList, setShowBtnList] = useState(props.popUpComplex[0].btn)
+
+    let totalDialogueLength = props.popUpComplex.length
+    let currentDialogueLength = currentTextList.length - 1
+
+    // console.log("props", props);
+    console.log("props", showBtnList);
+
+    const nextParagraph = () => {
+        if (currentIndex < currentDialogueLength) {
+            setCurrentIndex(currentIndex + 1)
+        }
+        console.log("这段对话结束");
+    }
+    const nextDialogue = (tokey) => {
+        console.log(tokey);
+        const newDialogue = props.popUpComplex.filter(item => item.key === tokey)
+        console.log("newDialogue", newDialogue);
+        if (newDialogue.length > 0) {
+            setShowList(newDialogue[0].content)
+            setShowBtnList(newDialogue[0].btn)
+            setCurrentIndex(0)
+        }
+        else {
+            props.onAsideNext()
+        }
+
+    }
+
+    const renderText = ({ item, index }) => {
+        console.log('item', item);
+        if (index <= currentIndex) {
+            return (
+                <Text>{item}</Text>
+            )
+        }
+        return null
+    }
+    const renderBtn = ({ item }) => {
+        if (currentIndex === currentDialogueLength) {
+            return (
+                <Button title={item.title} onPress={() => { nextDialogue(item.tokey) }} />
+            )
+        }
+    }
+
     return (
-        <View
-            style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                bottom: 0,
-                right: 0,
-                justifyContent: 'center',
-                alignContent: 'center',
-                alignItems: 'center',
-                // opacity: 0.5,
-                // backgroundColor: '#fff'
-            }}>
+        <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, justifyContent: 'center', alignContent: 'center', alignItems: 'center', }}>
             <View
                 style={{
                     width: 380,
@@ -72,7 +110,7 @@ const HalfScreenDialog = (props) => {
                     </View>
                     {/* 关闭按钮 */}
                     <TouchableHighlight
-                        onPress={props.onHide}
+                        onPress={() => { props.isGame ? props.onDialogCancel() : props.onHide() }}
                         style={{
                             position: 'absolute',
                             right: 12,
@@ -92,9 +130,8 @@ const HalfScreenDialog = (props) => {
 
                 {/* 显示区域 */}
 
-                <TouchableWithoutFeedback onPress={()=>{
-                    console.log("显示区域");
-                }}>
+                <TouchableWithoutFeedback
+                    onPress={nextParagraph}>
                     <View
                         style={{
                             flex: 1,
@@ -108,18 +145,37 @@ const HalfScreenDialog = (props) => {
                                 marginTop: 12,
                                 backgroundColor: '#ddd1ab',
                             }}>
-                            <Text>sss</Text>
+                            <FlatList
+
+                                data={currentTextList}
+                                // extraData={this.state.showId}
+                                renderItem={renderText}
+                                keyExtractor={(item, index) => item + index}
+                            // ListEmptyComponent={() => {
+                            //     return <Text>Loading...</Text>
+                            // }}
+                            />
                         </View>
 
                         {/* 按钮区域 */}
-                        <View style={{
-                            marginTop: 20,
-                        }}>
-                            <Button title='转动左侧玉瓶' onPress={() => { console.log("点击"); }} />
+                        <View
+                            style={{
+                                marginTop: 20,
+                            }}>
+                            {
+                                <FlatList
+                                    data={showBtnList}
+                                    // extraData={this.state.showId}
+                                    renderItem={renderBtn}
+                                    keyExtractor={(item, index) => item.title + index}
+                                // ListEmptyComponent={() => {
+                                //     return <Text>Loading...</Text>
+                                // }}
+                                />
+                            }
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-
             </View>
         </View>
     );
