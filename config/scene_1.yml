@@ -132,6 +132,7 @@ scenes: [
           { title: '【测试倒计时选项1】', nextChat: 'c6', andVarsOff: ['v2'], duration: 10000, timeoutActions: ['t2'] }, 
           { title: '【测试倒计时选项2】', nextChat: 'c6', andVarsOff: ['v3'], duration: 5000, timeoutActions: ['t3'] }, 
           { title: '【测试倒计时选项3】', nextChat: 'c6', andVarsOff: ['v4'], duration: 2000, timeoutActions: ['t4'] }, 
+          { title: '开始挂机', seqId: 'x1' }, 
         ],
       },
       # 乞丐第一次点击出现

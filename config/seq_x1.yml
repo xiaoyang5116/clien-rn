@@ -1,0 +1,45 @@
+# ===========================================
+# 战斗挂机配置
+# ===========================================
+sequeue: [
+
+  # 挂机序列ID
+  id: 'x1',
+
+  # 所有分组打完后是否循环
+  loop: false,
+
+  # 敌方
+  enemies: [
+    {
+      group: 'A',
+      items: [
+        { uid: 100000, userName: '熊大', life: 8000, speed: 80, power: 450, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
+        { uid: 100001, userName: '熊二', life: 8000, speed: 80, power: 450, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
+      ]
+    },
+    {
+      group: 'B',
+      items: [
+        { uid: 100000, userName: '熊大', life: 8000, speed: 80, power: 450, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
+        { uid: 100001, userName: '熊二', life: 8000, speed: 80, power: 450, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
+      ]
+    },
+  ],
+
+  # 奖励列表
+  awards: [
+    # 总共有效时间(单位秒)
+    expire: 60,
+
+    # 物品列表
+    items: [
+      { uid: [100000, 100001], propId: 20, num: 1 },
+      { uid: [100001], propId: 51, num: 1 },
+      { uid: [100001], propId: 24, num: 2 },
+      { uid: [100001], propId: 2, num: 2  },
+      { uid: [100000, 100001], propId: 36, num: 1 },
+    }
+  ]
+
+]

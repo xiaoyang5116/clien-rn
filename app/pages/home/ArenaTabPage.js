@@ -26,7 +26,7 @@ class ArenaTabPage extends Component {
             userName: '光头强',
             life: 8000,// 生命
             speed: 100, // 速度
-            power: 600, // 灵力
+            power: 600, // 攻击力
             agile: 300, // 敏捷
             defense: 100, // 防御
             crit: 10, // 暴击
@@ -39,7 +39,7 @@ class ArenaTabPage extends Component {
             userName: '熊大',
             life: 8000,//生命
             speed: 80,  // 速度
-            power: 450, // 灵力
+            power: 450, // 攻击力
             agile: 350, // 敏捷
             defense: 80, // 防御
             crit: 10, // 暴击
@@ -111,7 +111,7 @@ class ArenaTabPage extends Component {
                             <ProgressBar percent={this.enemy.power / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <Text style={{ color: '#fff' }}>灵力: {this.enemy.power}</Text>
+                            <Text style={{ color: '#fff' }}>攻击: {this.enemy.power}</Text>
                             <Text style={{ color: '#fff' }}>速度: {this.enemy.speed}</Text>
                             <Text style={{ color: '#fff' }}>暴击: {this.enemy.crit}</Text>
                         </View>
@@ -148,7 +148,7 @@ class ArenaTabPage extends Component {
                             <ProgressBar percent={this.myself.power / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <Text style={{ color: '#fff' }}>灵力: {this.myself.power}</Text>
+                            <Text style={{ color: '#fff' }}>攻击: {this.myself.power}</Text>
                             <Text style={{ color: '#fff' }}>速度: {this.myself.speed}</Text>
                             <Text style={{ color: '#fff' }}>暴击: {this.myself.crit}</Text>
                         </View>
