@@ -14,54 +14,88 @@ import {
 import ProgressBar from '../../components/ProgressBar';
 import { View, Text, FlatList } from '../../constants/native-ui';
 
-const DATA = [
-    {id: 1, msg: '<li style="color: #ffffff">你攻击了<span style="color: #46e4e9">BOSS</span>一下</li>'},
-    {id: 2, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 3, msg: '<li style="color: #ffffff">你躲避了攻击@@</li>'},
-    {id: 4, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 5, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>没命中你</li>'},
-    {id: 6, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 7, msg: '<li style="color: #ffffff">你攻击了<span style="color: #46e4e9">BOSS</span>一下</li>'},
-    {id: 8, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 9, msg: '<li style="color: #ffffff">你击杀了<span style="color: #46e4e9">BOSS</span></li>'},
-    {id: 10, msg: '<li style="color: #ffffff">获得<span style="color: #dd6f4d">大米</span>一箩筐<span style="color: #3fde04"><strong>(100斤)</strong></span>!!!</li>'},
-
-    {id: 11, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 12, msg: '<li style="color: #ffffff">你攻击了<span style="color: #46e4e9">BOSS</span>一下</li>'},
-    {id: 13, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 14, msg: '<li style="color: #ffffff">你击杀了<span style="color: #46e4e9">BOSS</span></li>'},
-    {id: 15, msg: '<li style="color: #ffffff">获得<span style="color: #dd6f4d">大米</span>一箩筐<span style="color: #3fde04"><strong>(100斤)</strong></span>!!!</li>'},
-
-    {id: 16, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 17, msg: '<li style="color: #ffffff">你攻击了<span style="color: #46e4e9">BOSS</span>一下</li>'},
-    {id: 18, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 19, msg: '<li style="color: #ffffff">你击杀了<span style="color: #46e4e9">BOSS</span></li>'},
-    {id: 20, msg: '<li style="color: #ffffff">获得<span style="color: #dd6f4d">大米</span>一箩筐<span style="color: #3fde04"><strong>(100斤)</strong></span>!!!</li>'},
-];
-
 class ArenaTabPage extends Component {
 
     constructor(props) {
         super(props);
-        this.refFlatList = React.createRef();
-    }
 
-    _alertCopper(value) {
-        this.props.dispatch(action('UserModel/alertCopper')({ value: value }));
+        this.myself = {
+            uid: 1,
+            userName: '光头强',
+            life: 8000,// 生命
+            speed: 100, // 速度
+            power: 600, // 灵力
+            agile: 300, // 敏捷
+            defense: 100, // 防御
+            crit: 10, // 暴击
+            dodge: 15, // 闪避
+            skillIds: [1, 2],
+        };
+
+        this.enemy = {
+            uid: 100000,
+            userName: '熊大',
+            life: 8000,//生命
+            speed: 80,  // 速度
+            power: 500, // 灵力
+            agile: 350, // 敏捷
+            defense: 80, // 防御
+            crit: 10, // 暴击
+            dodge: 15, // 闪避
+            skillIds: [1, 3],
+        };
+
+        this.data = [];
+
+        // 战报
+        this.state = {
+            report: [],
+            index: 0,
+        };
     }
 
     _renderPKMsg(data) {
         return (
-            <View style={{ height: 28, justifyContent: 'center', margin: 5, paddingLeft: 5, borderBottomWidth: 1, borderBottomColor: '#999' }}>
+            <View style={{ height: 20, justifyContent: 'center', margin: 5, paddingLeft: 5 }}>
                 <RenderHTML contentWidth={100} source={{html: data.item.msg}} />
             </View>
             );
     }
 
     componentDidMount() {
+        this.props.dispatch(action('ChallengeModel/challenge')({ myself: this.myself, enemy: this.enemy }))
+        .then(r => {
+            this.setState({ report: r, index: 0 });
+        });
+    }
+
+    componentDidUpdate() {
+        if (this.state.report.length > 0 && this.state.index < this.state.report.length) {
+            setTimeout(() => {
+                this.setState({});
+            }, 1500);
+        }
     }
 
     render() {
+        let myLifePercent = 0;
+        let enemyLifePercent = 0;
+
+        if (this.state.report.length > 0 && this.state.index < this.state.report.length) {
+            const item = this.state.report[this.state.index];
+            this.data.push({ id: this.data.length + 1, msg: '<li style="color: #ffffff">{0}</li>'.format(item.msg) });
+
+            if (this.myself.uid == item.attackerUid) {
+                myLifePercent = (item.attackerLife / item.attackerOrgLife) * 100;
+                enemyLifePercent = (item.defenderLife / item.defenderOrgLife) * 100;
+            } else {
+                myLifePercent = (item.defenderLife / item.defenderOrgLife) * 100;
+                enemyLifePercent = (item.attackerLife / item.attackerOrgLife) * 100;
+            }
+
+            this.state.index += 1;
+        }
+
         return (
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }}>
@@ -70,10 +104,10 @@ class ArenaTabPage extends Component {
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', height: '100%' }}>
                         <View style={{ height: 20, marginTop: 6, marginRight: 6, marginBottom: 3 }}>
-                            <ProgressBar percent={100} toPercent={0} duration={10000} />
+                            <ProgressBar percent={enemyLifePercent} />
                         </View>
                         <View style={{ height: 20, marginTop: 3, marginRight: 6, marginBottom: 6 }}>
-                            <ProgressBar percent={100} toPercent={0} duration={6000} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+                            <ProgressBar percent={this.enemy.power / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                             <Text style={{ color: '#fff' }}>体力: 100</Text>
@@ -87,11 +121,10 @@ class ArenaTabPage extends Component {
                 </View>
                 <View style={{ flex: 1, flexDirection: 'row', backgroundColor: '#5a5a70' }}>
                     <FlatList
-                        ref={this.refFlatList}
-                        data={DATA}
+                        data={this.data}
                         renderItem={this._renderPKMsg}
                         keyExtractor={item => item.id}
-                        getItemLayout={(data, index) => (
+                        getItemLayout={(_data, index) => (
                             {length: 28, offset: 28 * index, index}
                           )}
                     />
@@ -102,10 +135,10 @@ class ArenaTabPage extends Component {
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', height: '100%' }}>
                         <View style={{ height: 20, marginTop: 6, marginRight: 6, marginBottom: 3 }}>
-                            <ProgressBar percent={100} toPercent={20} duration={10000} />
+                            <ProgressBar percent={myLifePercent} />
                         </View>
                         <View style={{ height: 20, marginTop: 3, marginRight: 6, marginBottom: 6 }}>
-                            <ProgressBar percent={100} toPercent={30} duration={6000} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+                            <ProgressBar percent={this.myself.power / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                             <Text style={{ color: '#fff' }}>体力: 100</Text>
