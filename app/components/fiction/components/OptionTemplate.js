@@ -1,4 +1,3 @@
-import Item from '@ant-design/react-native/lib/list/ListItem';
 import React from 'react'
 import {
     View,

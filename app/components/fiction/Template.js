@@ -11,7 +11,7 @@ import {
     SectionList,
     StatusBar
 } from 'react-native';
-// import ChapterTemplate from '../ChapterTemplate'
+
 import ChapterTemplate from './components/ChapterTemplate';
 import TextTemplate from './components/TextTemplate';
 import OptionTemplate from './components/OptionTemplate';

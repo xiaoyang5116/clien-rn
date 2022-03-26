@@ -3,20 +3,18 @@ import React, {
 } from 'react';
 
 import {
+    connect,
     BOTTOM_TOP_SMOOTH,
     BOTTOM_TOP,
     CENTER_TOP,
     LEFT_RIGHT
 } from '../../constants'
 // 导入不同的追加提示模板
-import BottomToTop from './BottomToTop';
-import LeftToRight from './LeftToRight';
-import BottomToTopSmooth from './BottomToTopSmooth';
-import CenterToTop from './CenterToTop';
+import BottomToTop from './components/BottomToTop';
+import LeftToRight from './components/LeftToRight';
+import BottomToTopSmooth from './components/BottomToTopSmooth';
+import CenterToTop from './components/CenterToTop';
 
-import {
-    connect,
-} from "../../constants";
 
 class ToastView extends Component {
 

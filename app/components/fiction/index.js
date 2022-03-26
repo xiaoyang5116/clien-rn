@@ -16,7 +16,10 @@ import {
 } from 'react-native';
 import {
     connect,
-    action,
+    BOTTOM_TOP_SMOOTH,
+    BOTTOM_TOP,
+    CENTER_TOP,
+    LEFT_RIGHT
 } from "../../constants";
 import Template from './Template';
 import Toast from '../toast/index'
@@ -100,7 +103,7 @@ class Fiction extends Component {
         changed.map((item) => {
             const currentItem = viewHightList.filter(i => i.id === item.item.id)[0].showCount
             if ((item.item.template === "popUp") && item.isViewable && (currentItem === 0)) {
-                Toast.show('这是一段很长的对话', 'BottomToTopSmooth')
+                Toast.show('这是一段很长的对话', BOTTOM_TOP)
                 const preViewHightList = [...viewHightList]
                 viewHightList = preViewHightList.map((n) => n.id == item.item.id ? { ...n, showCount: n.showCount + 1 } : n)
                 this.setState({ showId: item.item.id })
