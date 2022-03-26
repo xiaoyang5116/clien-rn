@@ -101,9 +101,17 @@ class Fiction extends Component {
         // console.log('viewableItems', viewableItems)
         // console.log('changed', changed)
         changed.map((item) => {
+            // 获取当前模板显示的次数
             const currentItem = viewHightList.filter(i => i.id === item.item.id)[0].showCount
+            // 判断 popUp 弹窗是否显示
             if ((item.item.template === "popUp") && item.isViewable && (currentItem === 0)) {
-                Toast.show('这是一段很长的对话', BOTTOM_TOP)
+                const preViewHightList = [...viewHightList]
+                viewHightList = preViewHightList.map((n) => n.id == item.item.id ? { ...n, showCount: n.showCount + 1 } : n)
+                this.setState({ showId: item.item.id })
+            }
+
+            // 判断 toast 是否显示
+            if ((item.item.template === "toast") && item.isViewable && (currentItem === 0)) {
                 const preViewHightList = [...viewHightList]
                 viewHightList = preViewHightList.map((n) => n.id == item.item.id ? { ...n, showCount: n.showCount + 1 } : n)
                 this.setState({ showId: item.item.id })

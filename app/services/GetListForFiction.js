@@ -1,3 +1,6 @@
+import { toastType } from '../constants'
+
+
 // 异步请求小说章节数据
 export async function GetListForFiction(chapter) {
     function checkStatus(response) {
@@ -69,6 +72,18 @@ export async function GetListForFiction(chapter) {
                                         currentIndex.toString(),
                                     template: 'popUp',
                                     title: current.title,
+                                    content: current.content,
+                                    // isShow: false,
+                                });
+                            case 'toast':
+                                return list.push({
+                                    id:
+                                        chapter.toString() +
+                                        index.toString() +
+                                        currentIndex.toString(),
+                                    template: 'toast',
+                                    toastType: toastType(current.toastType),
+                                    time: current.time ? current.time : 600,
                                     content: current.content,
                                     // isShow: false,
                                 });
