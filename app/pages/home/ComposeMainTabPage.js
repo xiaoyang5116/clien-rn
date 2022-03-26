@@ -16,7 +16,7 @@ import {
 
 import {
     TabButton,
-    NormalButton,
+    TextButton,
 } from '../../constants/custom-ui';
 
 class ComposeMainTabPage extends Component {
@@ -63,7 +63,7 @@ class ComposeMainTabPage extends Component {
                     <Text style={[{ marginLeft: 20, fontSize: 22 }, data.item.valid ? styles.valid : styles.notValid ]}>{data.item.name}</Text>
                 </View>
                 <View style={{ width: 100 }}>
-                    <NormalButton title="选择配方" {...this.props} onPress={() => { this._composeSelected(data.item); }} />
+                    <TextButton title="选择配方" {...this.props} onPress={() => { this._composeSelected(data.item); }} />
                 </View>
             </View>
         </TouchableHighlight>

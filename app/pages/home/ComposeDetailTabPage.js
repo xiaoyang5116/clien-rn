@@ -15,7 +15,7 @@ import {
 } from '../../constants/native-ui';
 
 import {
-    NormalButton,
+    TextButton,
 } from '../../constants/custom-ui';
 
 import lo from 'lodash';
@@ -110,7 +110,7 @@ class ComposeDetailTabPage extends Component {
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={styles.composeContainer}>
                     <View style={{ height: 35, justifyContent: 'center', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                        <NormalButton title="返回" {...this.props} onPress={()=> {
+                        <TextButton title="返回" {...this.props} onPress={()=> {
                             this.props.navigation.navigate('Home', { 
                                 screen: 'Compose',
                                 params: {
@@ -152,7 +152,7 @@ class ComposeDetailTabPage extends Component {
                         </View>
                     </View>
                     <View style={{ height: 80, justifyContent: 'center', paddingLeft: 30, paddingRight: 30, marginTop: 5, marginBottom: 5 }}>
-                        <NormalButton title="确认制作" {...this.props} onPress={() => { this._compose() }} />
+                        <TextButton title="确认制作" {...this.props} onPress={() => { this._compose() }} />
                     </View>
                 </View>
             </View>

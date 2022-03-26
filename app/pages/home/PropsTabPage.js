@@ -16,7 +16,7 @@ import {
 
 import {
     TabButton,
-    NormalButton,
+    TextButton,
 } from '../../constants/custom-ui';
 
 class PropsTabPage extends Component {
@@ -124,8 +124,8 @@ class PropsTabPage extends Component {
                             <Text>{(selectedProp != undefined && selectedProp.desc != undefined) ? selectedProp.desc : ''}</Text>
                         </View>
                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <NormalButton title="使用" {...this.props} onPress={() => { this._useProps(); }} />
-                            <NormalButton title="丢弃" {...this.props} onPress={() => { this._discardProps(); }} />
+                            <TextButton title="使用" {...this.props} onPress={() => { this._useProps(); }} />
+                            <TextButton title="丢弃" {...this.props} onPress={() => { this._discardProps(); }} />
                         </View>
                     </View>
                 </View>
