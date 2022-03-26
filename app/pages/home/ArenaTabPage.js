@@ -14,106 +14,117 @@ import {
 import ProgressBar from '../../components/ProgressBar';
 import { View, Text, FlatList } from '../../constants/native-ui';
 
-const DATA = [
-    {id: 1, msg: '<li style="color: #ffffff">你攻击了<span style="color: #46e4e9">BOSS</span>一下</li>'},
-    {id: 2, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 3, msg: '<li style="color: #ffffff">你躲避了攻击@@</li>'},
-    {id: 4, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 5, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>没命中你</li>'},
-    {id: 6, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 7, msg: '<li style="color: #ffffff">你攻击了<span style="color: #46e4e9">BOSS</span>一下</li>'},
-    {id: 8, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 9, msg: '<li style="color: #ffffff">你击杀了<span style="color: #46e4e9">BOSS</span></li>'},
-    {id: 10, msg: '<li style="color: #ffffff">获得<span style="color: #dd6f4d">大米</span>一箩筐<span style="color: #3fde04"><strong>(100斤)</strong></span>!!!</li>'},
-
-    {id: 11, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 12, msg: '<li style="color: #ffffff">你攻击了<span style="color: #46e4e9">BOSS</span>一下</li>'},
-    {id: 13, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 14, msg: '<li style="color: #ffffff">你击杀了<span style="color: #46e4e9">BOSS</span></li>'},
-    {id: 15, msg: '<li style="color: #ffffff">获得<span style="color: #dd6f4d">大米</span>一箩筐<span style="color: #3fde04"><strong>(100斤)</strong></span>!!!</li>'},
-
-    {id: 16, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 17, msg: '<li style="color: #ffffff">你攻击了<span style="color: #46e4e9">BOSS</span>一下</li>'},
-    {id: 18, msg: '<li style="color: #ffffff"><span style="color: #46e4e9">BOSS</span>打了你一下</li>'},
-    {id: 19, msg: '<li style="color: #ffffff">你击杀了<span style="color: #46e4e9">BOSS</span></li>'},
-    {id: 20, msg: '<li style="color: #ffffff">获得<span style="color: #dd6f4d">大米</span>一箩筐<span style="color: #3fde04"><strong>(100斤)</strong></span>!!!</li>'},
-];
-
 class ArenaTabPage extends Component {
 
     constructor(props) {
         super(props);
-        this.refFlatList = React.createRef();
-    }
 
-    _alertCopper(value) {
-        this.props.dispatch(action('UserModel/alertCopper')({ value: value }));
+        this.refList = React.createRef();
+        this.listData = [];
+        this.reportIndex = 0; // 战报播放INDEX
     }
 
     _renderPKMsg(data) {
         return (
-            <View style={{ height: 28, justifyContent: 'center', margin: 5, paddingLeft: 5, borderBottomWidth: 1, borderBottomColor: '#999' }}>
+            <View style={{ height: 20, justifyContent: 'center', margin: 5, paddingLeft: 5 }}>
                 <RenderHTML contentWidth={100} source={{html: data.item.msg}} />
             </View>
             );
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
+        if (this.props.report.length > 0) {
+            if (this.reportIndex < this.props.report.length) {
+                setTimeout(() => {
+                    this.setState({});
+                }, 600);
+            } else {
+                this.listData.length = 0;
+                this.reportIndex = 0;
+                this.props.dispatch(action('ArenaModel/over')());
+            }
+        }
     }
 
     render() {
+        let myLifePercent = 0;
+        let enemyLifePercent = 0;
+
+        if (this.props.report.length > 0 && this.reportIndex < this.props.report.length) {
+            const item = this.props.report[this.reportIndex];
+            this.listData.push({ id: this.listData.length + 1, msg: '<li style="color: #ffffff">{0}</li>'.format(item.msg) });
+
+            if (this.props.myself.uid == item.attackerUid) {
+                myLifePercent = (item.attackerLife / item.attackerOrgLife) * 100;
+                enemyLifePercent = (item.defenderLife / item.defenderOrgLife) * 100;
+            } else {
+                myLifePercent = (item.defenderLife / item.defenderOrgLife) * 100;
+                enemyLifePercent = (item.attackerLife / item.attackerOrgLife) * 100;
+            }
+            this.reportIndex += 1;
+        }
+
         return (
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }}>
                     <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  backgroundColor: '#ccc' }}>
-                        <Text>大BOSS</Text>
+                        <Text>{this.props.enemy.userName}</Text>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', height: '100%' }}>
                         <View style={{ height: 20, marginTop: 6, marginRight: 6, marginBottom: 3 }}>
-                            <ProgressBar percent={100} toPercent={0} duration={10000} />
+                            <ProgressBar percent={enemyLifePercent} />
                         </View>
                         <View style={{ height: 20, marginTop: 3, marginRight: 6, marginBottom: 6 }}>
-                            <ProgressBar percent={100} toPercent={0} duration={6000} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+                            <ProgressBar percent={this.props.enemy.power / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <Text style={{ color: '#fff' }}>体力: 100</Text>
-                            <Text style={{ color: '#fff' }}>灵力: 120</Text>
+                            <Text style={{ color: '#fff' }}>攻击: {this.props.enemy.power}</Text>
+                            <Text style={{ color: '#fff' }}>速度: {this.props.enemy.speed}</Text>
+                            <Text style={{ color: '#fff' }}>暴击: {this.props.enemy.crit}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <Text style={{ color: '#fff' }}>攻击力: 80</Text>
-                            <Text style={{ color: '#fff' }}>回避: 900</Text>
+                            <Text style={{ color: '#fff' }}>敏捷: {this.props.enemy.agile}</Text>
+                            <Text style={{ color: '#fff' }}>防御: {this.props.enemy.defense}</Text>
+                            <Text style={{ color: '#fff' }}>闪避: {this.props.enemy.dodge}</Text>
                         </View>
                     </View>
                 </View>
                 <View style={{ flex: 1, flexDirection: 'row', backgroundColor: '#5a5a70' }}>
                     <FlatList
-                        ref={this.refFlatList}
-                        data={DATA}
+                        ref={this.refList}
+                        data={this.listData}
                         renderItem={this._renderPKMsg}
                         keyExtractor={item => item.id}
-                        getItemLayout={(data, index) => (
-                            {length: 28, offset: 28 * index, index}
-                          )}
+                        getItemLayout={(_data, index) => (
+                            {length: 20, offset: 20 * index, index}
+                        )}
+                        onContentSizeChange={() => {
+                            if (this.listData.length > 0) {
+                                this.refList.current.scrollToIndex({ index: this.listData.length - 1 });
+                            }
+                        }}
                     />
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }}>
                     <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  backgroundColor: '#ccc' }}>
-                        <Text>我是MT</Text>
+                        <Text>{this.props.myself.userName}</Text>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', height: '100%' }}>
                         <View style={{ height: 20, marginTop: 6, marginRight: 6, marginBottom: 3 }}>
-                            <ProgressBar percent={100} toPercent={20} duration={10000} />
+                            <ProgressBar percent={myLifePercent} />
                         </View>
                         <View style={{ height: 20, marginTop: 3, marginRight: 6, marginBottom: 6 }}>
-                            <ProgressBar percent={100} toPercent={30} duration={6000} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+                            <ProgressBar percent={this.props.myself.power / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <Text style={{ color: '#fff' }}>体力: 100</Text>
-                            <Text style={{ color: '#fff' }}>灵力: 120</Text>
+                            <Text style={{ color: '#fff' }}>攻击: {this.props.myself.power}</Text>
+                            <Text style={{ color: '#fff' }}>速度: {this.props.myself.speed}</Text>
+                            <Text style={{ color: '#fff' }}>暴击: {this.props.myself.crit}</Text>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <Text style={{ color: '#fff' }}>攻击力: 80</Text>
-                            <Text style={{ color: '#fff' }}>回避: 900</Text>
+                            <Text style={{ color: '#fff' }}>敏捷: {this.props.myself.agile}</Text>
+                            <Text style={{ color: '#fff' }}>防御: {this.props.myself.defense}</Text>
+                            <Text style={{ color: '#fff' }}>闪避: {this.props.myself.dodge}</Text>
                         </View>
                     </View>
                 </View>
@@ -134,4 +145,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect((state) => ({ ...state.AppModel, user: { ...state.UserModel } }))(ArenaTabPage);
+export default connect((state) => ({ ...state.AppModel, ...state.ArenaModel, user: { ...state.UserModel } }))(ArenaTabPage);

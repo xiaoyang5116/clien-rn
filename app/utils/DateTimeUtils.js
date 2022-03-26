@@ -74,3 +74,7 @@ export function toDays(now, days, hours) {
     const str = "{0}/{1}/{2} {3}:00:00".format(dt.getFullYear(), dt.getMonth() + 1, dt.getDate(), hours);
     return Date.parse(str);
 }
+
+export function now() {
+    return new Date().getTime();
+}

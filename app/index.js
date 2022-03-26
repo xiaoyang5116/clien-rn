@@ -33,6 +33,8 @@ const models = [
   require('./models/PropsModel').default,
   require('./models/FictionModel').default,
   require('./models/ComposeModel').default,
+  require('./models/ChallengeModel').default,
+  require('./models/ArenaModel').default,
 ];
 
 const dva = dva_create();
