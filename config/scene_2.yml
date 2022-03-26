@@ -76,7 +76,12 @@ scenes: [
 
     # 对话框
     dialogs: [
-      { id: 'p1', style: 2, sections: ['这是一个小破庙，大概不到二十平米，由土垒成，而不是砖建造的这种建筑即使是农村也几乎见不到了。'], varsOn: ['v1'], nextChat: 'c1' },
+      # { id: 'p1', style: 2, sections: ['这是一个小破庙，大概不到二十平米，由土垒成，而不是砖建造的这种建筑即使是农村也几乎见不到了。'], varsOn: ['v1'], nextChat: 'c1' },
+      { id: 'p1', style: 6, varsOn: ['v1'], nextChat: 'c1', sections: [''] , popUpComplex: [
+        { key: 'p1', style: 2, content: ['你迅速跑过去，地面有些东西。', '走开走开，马夫大喝， 正从远处拨开人群走来。', '获得几颗石头珠子，看起来能卖不少钱。'],btn: [{title: '去拿菜刀',tokey: "p2"},{title: '去拿画轴', tokey: "p3"}]},
+        { key: 'p2', style: 2, content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。','动不了','动不了','动不了'],btn: [{title: '退出',tokey: "next"}]},
+        { key: 'p3', style: 2, content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。','动不了','动不了','动不了'], btn: [{title: '退出',tokey: "next"}]},
+      ]},
       { id: 'p2', style: 2, sections: ['破庙的房顶是木头和茅草，有些漏风'], varsOn: ['v2'], nextChat: 'c1' },
       { id: 'p3', style: 2, sections: ['一身酸痛袭来，怎么回事？'], varsOn: ['v3'], nextChat: 'c1' },
       { id: 'p4', style: 2, sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。'], varsOn: ['v4'], nextChat: 'c1' },

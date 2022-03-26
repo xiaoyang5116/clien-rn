@@ -86,6 +86,22 @@
 #       ...条件判断
 #       ...影响结果
 #
+#     模板配置：
+#       style:                   代表对应的模板：4（章节模板）、5（toast 追加提示）、6（popUp dialog 弹出对话框）、7(game over 游戏结束模板)
+#         章节模板:               4（章节模板）
+#           title: ''            第几章
+#           sections: ['']       章节名
+#         toast 追加提示：         5（toast 追加提示）
+#           time:                时间可选
+#           toastType: ''        toast 类型
+#             下到上平滑:          BottomToTopSmooth
+#             下到上停顿:          BottomToTop
+#             中间到上:            CenterToTop
+#             左到右:             LeftToRight
+#
+#
+#
+#
 # ===========================================
 scenes: [
   # 新手村场景

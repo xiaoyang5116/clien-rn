@@ -5,16 +5,16 @@ import {
     ImageBackground,
     Image,
     Button,
-    getWindowSize,
-    Dimensions,
+    useWindowDimensions,
     StyleSheet,
     SafeAreaView,
     SectionList,
     StatusBar
 } from 'react-native';
 
-export default function PopUp() {
+
+export default function OptionTemplate(props) {
     return (
-        <View><Text>popUp</Text></View>
+        <Button title={props.title} onPress={() => { console.log("sss"); }} />
     )
 }

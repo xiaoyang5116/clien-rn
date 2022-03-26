@@ -24,7 +24,7 @@ const data = {
     color: "black",
 }
 
-export default function Template1(props) {
+export default function ChapterTemplate(props) {
     return (
         <View style={[props.currentStyles.prologueContainer, { height: Dimensions.get('window').height }]}>
             <View style={[props.currentStyles.prologueWrap, {
@@ -42,7 +42,6 @@ export default function Template1(props) {
                     {props.content}
                 </Text>
             </View>
-            {/* <Button title='下一页' onPress={props.onAsideNext} /> */}
         </View >
     )
 }

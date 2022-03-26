@@ -27,7 +27,7 @@ class MainPage extends Component {
   render() {
     return (
       <NavigationContainer theme={{ colors: this.props.currentStyles.navigation }} ref={navigationRef}>
-        <Stack.Navigator initialRouteName='First'>
+        <Stack.Navigator initialRouteName='Fiction'>
           <Stack.Screen name='Home' options={{ headerShown: false }} component={HomePage} />
           <Stack.Screen name='Article' options={{ headerShown: false }} component={ArticlePage} />
           <Stack.Screen name="First" options={{ headerShown: false }} component={FirstPage} />

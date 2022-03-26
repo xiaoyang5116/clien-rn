@@ -11,30 +11,27 @@ import {
     SectionList,
     StatusBar
 } from 'react-native';
-// import ChapterTemplate from '../ChapterTemplate'
-import ChapterTemplate from './ChapterTemplate';
-import TextTemplate from './TextTemplate';
-import OptionTemplate from './OptionTemplate';
-import PopUp from './PopUp';
+
+import ChapterTemplate from './components/ChapterTemplate';
+import TextTemplate from './components/TextTemplate';
+import OptionTemplate from './components/OptionTemplate';
+import PopUp from './components/PopUp';
+import ToastTemplate from './components/ToastTemplate'
 
 
 export default class Template extends PureComponent {
     render() {
         switch (this.props.template) {
             case "ChapterTemplate":
-                return (
-                    <ChapterTemplate {...this.props} />
-                )
+                return <ChapterTemplate {...this.props} />
             case "TextTemplate":
-                return (
-                    <TextTemplate {...this.props} />
-                )
+                return <TextTemplate {...this.props} />
             case "OptionTemplate":
-                return <OptionTemplate  {...this.props}/>
+                return <OptionTemplate  {...this.props} />
             case "popUp":
-                    return <PopUp  {...this.props}/>
-            // default:
-            //     return<ChapterTemplate {...this.props} />
+                return <PopUp  {...this.props} />
+            case "toast":
+                return <ToastTemplate  {...this.props} />
         }
     }
 }

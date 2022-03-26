@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { View, Text, Animated, TouchableOpacity, Easing } from 'react-native';
-import { getWindowSize } from "../../constants";
+import { getWindowSize } from "../../../constants";
 
 
 const size = getWindowSize().height;

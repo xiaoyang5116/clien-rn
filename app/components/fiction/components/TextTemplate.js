@@ -11,7 +11,6 @@ import {
     SectionList,
     StatusBar
 } from 'react-native';
-import { getWindowSize } from "../../constants";
 import { RenderHTML } from 'react-native-render-html';
 
 
