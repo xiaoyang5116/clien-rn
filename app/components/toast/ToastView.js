@@ -2,6 +2,12 @@ import React, {
     Component,
 } from 'react';
 
+import {
+    BOTTOM_TOP_SMOOTH,
+    BOTTOM_TOP,
+    CENTER_TOP,
+    LEFT_RIGHT
+} from '../../constants'
 // 导入不同的追加提示模板
 import BottomToTop from './BottomToTop';
 import LeftToRight from './LeftToRight';
@@ -19,19 +25,19 @@ class ToastView extends Component {
     }
     render() {
         switch (this.props.type) {
-            case "BottomToTop":
+            case BOTTOM_TOP:
                 return (
                     <BottomToTop {...this.props} onHide={this.onHide} />
                 )
-            case "BottomToTopSmooth":
+            case BOTTOM_TOP_SMOOTH:
                 return (
                     <BottomToTopSmooth {...this.props} onHide={this.onHide} />
                 )
-            case "CenterToTop":
+            case CENTER_TOP:
                 return (
                     <CenterToTop {...this.props} onHide={this.onHide} />
                 )
-            case "LeftToRight":
+            case LEFT_RIGHT:
                 return (
                     <LeftToRight {...this.props} onHide={this.onHide} />
                 )

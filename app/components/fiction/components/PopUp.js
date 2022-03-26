@@ -12,7 +12,7 @@ import {
     SectionList,
     StatusBar
 } from 'react-native';
-import Dialog from '../dialog'
+import Dialog from '../../dialog'
 
 
 export default class PopUp extends Component {

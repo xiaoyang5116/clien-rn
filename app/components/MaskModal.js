@@ -5,6 +5,7 @@ import {
     action,
     connect,
     PureComponent,
+    toastType
 } from "../constants";
 
 import { Button, Text, View } from '../constants/native-ui';
@@ -12,6 +13,7 @@ import GameOverModal from './GameOverModal';
 import ChapterTemplate from './ChapterTemplate';
 import Dialog from './dialog'
 import HalfScreenDialog from './dialog/HalfScreenDialog'
+import Toast from './toast'
 
 // 遮挡层
 class MaskModal extends PureComponent {
@@ -72,13 +74,10 @@ class MaskModal extends PureComponent {
 
         // // 5  代表 toast 追加提示
         // if (this.props.style === 5) {
-        //     return (
-        //         <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
-        //             <View style={currentStyles.gameOverPage}>
-        //                 <GameOverModal onDialogCancel={this._onDialogCancel} {...this.props} />
-        //             </View>
-        //         </Modal>
-        //     )
+        //     Toast.show(this.props.content, toastType(this.props.data._current.toastType), 600, () => {
+        //         console.debug('fuck');
+        //     });
+        //     return <></>;
         // }
 
         // 6  代表 popUp dialog 弹出对话框
