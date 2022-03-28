@@ -10,10 +10,10 @@ import {
     LEFT_RIGHT
 } from '../../constants'
 // 导入不同的追加提示模板
-import BottomToTop from './components/BottomToTop';
-import LeftToRight from './components/LeftToRight';
-import BottomToTopSmooth from './components/BottomToTopSmooth';
-import CenterToTop from './components/CenterToTop';
+import BottomToTop from './behaviors/BottomToTop';
+import LeftToRight from './behaviors/LeftToRight';
+import BottomToTopSmooth from './behaviors/BottomToTopSmooth';
+import CenterToTop from './behaviors/CenterToTop';
 
 
 class ToastView extends Component {
