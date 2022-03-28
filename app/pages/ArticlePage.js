@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center', 
     justifyContent: "flex-start", 
-    backgroundColor: "#CCE8CF"
+    backgroundColor: "#eee7dd"
   },
   topBarContainer: {
     height: 40,

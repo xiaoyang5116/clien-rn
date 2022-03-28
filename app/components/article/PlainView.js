@@ -18,8 +18,8 @@ class PlainView extends PureComponent {
 
     render() {
         return (
-            <View style={{ backgroundColor: '#669900' }} onLayout={this.layoutHandler} >
-                <Text style={{ fontSize: 20, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text>
+            <View style={{ }} onLayout={this.layoutHandler} >
+                <Text style={{ fontSize: 20, lineHeight: 28, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text>
             </View>
         );
     }

@@ -15,6 +15,7 @@ import LocalStorage from '../utils/LocalStorage';
 import * as DateTime from '../utils/DateTimeUtils';
 import * as RootNavigation from '../utils/RootNavigation';
 import SceneConfigReader from "../utils/SceneConfigReader";
+import Modal from "../components/modal";
 
 class VarUtils {
   static generateVarUniqueId(sceneId, varId) {
@@ -412,14 +413,9 @@ export default {
     *__onDialogCommand({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const sceneState = yield select(state => state.SceneModel);   
-      let dialog = sceneState.data._cfgReader.getSceneDialog(userState.sceneId, payload.params);
-      // // 5  代表 toast 追加提示
-      // if (dialog.style === 5) {
-      //   Toast.show(dialog.sections, toastType(dialog.toastType))
-      //   return;
-      // }
+      const dialog = sceneState.data._cfgReader.getSceneDialog(userState.sceneId, payload.params);
       if (dialog != null) {
-        yield put.resolve(action('MaskModel/showDialog')({ ...dialog }));
+        Modal.show(dialog);
       }
     },
 

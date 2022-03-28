@@ -188,11 +188,20 @@ scenes: [
           { title: '获得木瓜', nextChat: 'c1', sendProps: '40,10', clickActions: ['a2'] }, 
         ]
       },
+      # 
+      { 
+        id: 'c7', desc: '文章按钮测试', 
+        options: [ 
+          { title: '交付木瓜' }, 
+          { title: '获得木瓜', dialogs: ['p1'] }, 
+        ]
+      },
     ],
 
     # 对话框
     dialogs: [
       { id: 'p0', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], nextChat: 'c1' },
+      { id: 'p1', style: 2, title: 'xxx', content: '内容' },
     ],
   },
 ]

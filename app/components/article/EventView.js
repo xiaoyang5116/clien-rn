@@ -18,7 +18,7 @@ class EventView extends PureComponent {
 
     render() {
         return (
-            <View style={{ backgroundColor: '#ff7e79' }} onLayout={this.layoutHandler} >
+            <View style={{ }} onLayout={this.layoutHandler} >
                 {/* <Text style={{ fontSize: 20, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text> */}
             </View>
         );

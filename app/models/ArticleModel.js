@@ -31,6 +31,24 @@ export default {
       const articleState = yield select(state => state.ArticleModel);
       const { id } = payload;
       const data = yield call(GetArticleDataApi, id);
+
+      for (let k in data) {
+        const item = data[k];
+        // 预生成选项数据
+        if (item.type == 'code' && item.object != null) {
+          if (item.object.sceneId != undefined && item.object.chatId != undefined) {
+            const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: item.object.sceneId, chatId: item.object.chatId }));
+            const optionsData = [];
+            for (let k in chat.options) {
+              const option = chat.options[k];
+              if (yield put.resolve(action('SceneModel/testCondition')(option))) {
+                optionsData.push(option);
+              }
+            }
+            item.object.options = optionsData;
+          }
+        }
+      }
       
       articleState.sections.length = 0;
       yield put(action('updateState')({ sections: data }));
