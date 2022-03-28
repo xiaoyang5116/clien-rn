@@ -35,6 +35,7 @@ const models = [
   require('./models/ComposeModel').default,
   require('./models/ChallengeModel').default,
   require('./models/ArenaModel').default,
+  require('./models/ArticleModel').default,
 ];
 
 const dva = dva_create();

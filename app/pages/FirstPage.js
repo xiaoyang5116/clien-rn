@@ -22,7 +22,7 @@ class FirstPage extends Component {
         <ImageBackground  style={{ flex: 1, justifyContent: 'center', flexDirection: 'row', alignItems: 'center' }} source={require('../../assets/bg.jpg')}>
           <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
             <ImageButton height={60} source={require('../../assets/story_button.png')} selectedSource={require('../../assets/story_button_selected.png')} onPress={() => { 
-              RootNavigation.navigate('Fiction');
+              RootNavigation.navigate('Article');
              }} />
             <ImageButton height={60} source={require('../../assets/archive_button.png')} selectedSource={require('../../assets/archive_button_selected.png')} onPress={() => { 
               RootNavigation.navigate('Home', { 
