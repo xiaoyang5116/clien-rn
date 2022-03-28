@@ -6,7 +6,7 @@ import {
     action,
 } from "../../constants";
 
-class ToastView extends PureComponent {
+class EventView extends PureComponent {
 
     layoutHandler = (e) => {
         this.props.dispatch(action('ArticleModel/layout')({ 
@@ -26,4 +26,4 @@ class ToastView extends PureComponent {
 
 }
 
-export default connect((state) => ({ ...state.ArticleModel }))(ToastView);
+export default connect((state) => ({ ...state.ArticleModel }))(EventView);

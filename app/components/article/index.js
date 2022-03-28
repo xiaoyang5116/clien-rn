@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, Text } from 'react-native';
 import HeaderView from './HeaderView';
 import PlainView from './PlainView';
-import ToastView from './ToastView';
+import EventView from './EventView';
 
 export default class ArticleBlock extends PureComponent {
 
@@ -15,7 +15,7 @@ export default class ArticleBlock extends PureComponent {
             if (header != undefined) {
                 return (<HeaderView itemKey={this.props.data.key} content={header} />);
             } else if (toast != undefined) {
-                return (<ToastView itemKey={this.props.data.key} content={toast} />);
+                return (<EventView itemKey={this.props.data.key} content={toast} />);
             } else if (ref != undefined) {
             }
         }
