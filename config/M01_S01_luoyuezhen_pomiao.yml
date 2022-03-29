@@ -1,0 +1,138 @@
+
+scenes: [
+  # 新手村落月镇场景
+  {
+    id: 'M01_S01_luoyuezhen_pomiao', name: '破庙',
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1 },
+      { id: 'v2', min: 0, max: 1 },
+      { id: 'v3', min: 0, max: 1 },
+      { id: 'v4', min: 0, max: 1 },
+      { id: 'v5', min: 0, max: 1 },
+      { id: 'v6', min: 0, max: 1 },
+      { id: 'v7', min: 0, max: 1 },
+      { id: 'v8', min: 0, max: 1 },
+      { id: 'v9', min: 0, max: 1 },
+      { id: 'v10', min: 0, max: 1 },
+      { id: 'Event01_1DayOpenThrough', min: 0, max: 1 },
+      { id: 'v12', min: 0, max: 1 },
+      { id: 'v13', min: 0, max: 1 },
+      { id: 'v14', min: 0, max: 1 },
+      { id: 'v15', min: 0, max: 1 },
+      { id: 'v16', min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day0',],nextChat: 'pomiao_Event01Day0A', dialogs: ['start_dialog01'] },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day1',],nextChat: 'pomiao_Event01Day1' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day2',],nextChat: 'pomiao_Event01Day2' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day3',],nextChat: 'pomiao_Event01Day3' },
+    ],
+
+    # 对话选项
+    chats: [
+    
+ 
+  # 接续开局对话，第0天事件
+      { 
+        id: 'pomiao_Event01Day0A', desc: '一座简陋的破庙内', 
+        options: [ 
+          { title: '【查看四周】', andVarsOff: ['v10'], dialogs: ['p1'] }, 
+          { title: '【查看头顶】', andVarsOff: ['v10'], dialogs: ['p2'] }, 
+          { title: '【动动身子】', andVarsOn: ['v1', 'v2'], andVarsOff: ['v10'], dialogs: ['p3'] }, 
+          { title: '【看看自己的手】', andVarsOn: ['v1', 'v2', 'v3'], andVarsOff: ['v10'], dialogs: ['p4'] }, 
+          { title: '【询问周围的乞丐】', andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v6', 'v10'], dialogs: ['p5'] }, 
+          { title: '【尝试起身】', andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v5', 'v10'], dialogs: ['p6'] }, 
+          # 以下选项在【询问周围的乞丐】&【尝试起身】点击后替换
+          { title: '【询问周围的乞丐】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v6'], andVarsOff: ['v10'], dialogs: ['p7'] }, 
+          { title: '【尝试起身】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v5'], andVarsOff: ['v10'], dialogs: ['p7'] }, 
+          { title: '【睡觉】', andVarsOn: ['v10'], andVarsOff: ['v11'], varsOn: ['Event01_1DayOpenThrough'], alertWorldTime: '@day/1/6', nextChat: 'pomiao_Event01Day1' }, 
+        ], 
+      },
+       #清屏后，后续对话
+      {
+        id: 'pomiao_Event01Day0B', desc: '你在一座破庙里面', 
+        options: [ 
+          { title: '【大声怪叫】', andVarsOff: ['v7'], dialogs: ['d1'] }, 
+          { title: '【询问  这是在哪】', andVarsOn: ['v7'], andVarsOff: ['v8'], varsOn: ['M01_S01_luoyuezhen_Time/Event01Day1'], dialogs: ['d2'] }, 
+          { title: '【承认伤到脑袋】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p13'] }, 
+          { title: '【拒绝承认】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p14'] }, 
+          { title: '>>>【离开破庙】', andVarsOn: ['v9'], toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
+        ],
+      },
+    # 对话选项2
+     {
+        id: 'pomiao_Event01Day1', desc: '这里是乞丐临时休息的居所，能遮风挡雨', 
+        options: [ 
+          { title: '>>>【走出破庙】', andVarsOn: ['v_1DayOpenThrough'], andVarsOff: ['v12'], toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
+          { title: '【睡觉到下一天】', andVarsOn: ['hutongkou/v3'], andVarsOff: ['v12'], alertWorldTime: '@day/1/6', nextChat:'c3' }, 
+        ],
+      },
+
+     # 对话选项2
+     {
+        id: 'pomiao_Event01Day3', desc: '这里是乞丐临时休息的居所，能遮风挡雨', 
+        options: [ 
+          # 在集市一角拿到菜刀或画后
+          { title: '【商量花钱】', andVarsOn: ['jishiyijiao/v21'], andVarsOff: ['v12'], dialogs: ['p17']},
+          { title: '【听大哥的话，大吃大喝先花光】', andVarsOn: ['v12'], andVarsOff: ['v13'], dialogs: ['p19'],},
+          { title: '【决定买一身新衣服】', andVarsOn: ['v12'], andVarsOff: ['v13'], dialogs: ['p20'],}, 
+          { title: '【我决定了，要去做正常工作养活自己】', andVarsOn: ['v13'], andVarsOff: ['v15', 'v14'], dialogs: ['p21'],}, 
+          { title: '【做乞丐也不错】', andVarsOn: ['v13'], andVarsOff: ['v14', 'v15'], dialogs: ['p22'],}, 
+          { title: '【镇口大门】', andVarsOn: ['v14'], andVarsOff: ['v15']}, 
+          { title: '【……】', andVarsOn: ['v15'], andVarsOff: ['v16'], dialogs: ['p26']}, 
+          { title: '【现在也许不行，今后会说服你的。】', andVarsOn: ['v15'], andVarsOff: ['v16'],dialogs: ['p27']}, 
+          { title: '【不说了，睡觉】', andVarsOn: ['v16'], alertWorldTime: '@day/1/6', nextChat: 'c1'}, 
+          { title: '>>>【走出破庙】', andVarsOn: ['v_2DayOpenThrough'], andVarsOff: ['v12'], toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
+          { title: '【睡觉到下一天】', andVarsOn: ['hutongkou/v3'], andVarsOff: ['v12'], alertWorldTime: '@day/1/6', nextChat:'c3' }, 
+        ],
+      },
+
+      #
+    ],
+    # 对话框
+    dialogs: [
+    
+      { id: 'start_dialog01', style: 1, sections: ['一阵风刮过', '……', '周围的一切都变了', '你发现你在一个破落的小庙内', '周围躺着一个年龄不大的乞丐，正在熟睡'], nextChat: 'pomiao_Event01Day0A' },
+      { id: 'p1', style: 2, sections: ['这是一个小破庙，大概不到二十平米，由土垒成，而不是砖建造的这种建筑即使是农村也几乎见不到了。'], varsOn: ['v1'], nextChat: 'pomiao_Event01Day0A' },
+      { id: 'p2', style: 2, sections: ['破庙的房顶是木头和茅草，有些漏风'], varsOn: ['v2'], nextChat: 'pomiao_Event01Day0A' },
+      { id: 'p3', style: 2, sections: ['一身酸痛袭来，怎么回事？'], varsOn: ['v3'], nextChat: 'pomiao_Event01Day0A' },
+      { id: 'p4', style: 2, sections: ['这是一只稚嫩的手，不过脏兮兮的，手上还有些瘀伤。'], varsOn: ['v4'], nextChat: 'pomiao_Event01Day0A' },
+      { id: 'p5', style: 2, sections: ['乞丐在睡觉，没有理你'], varsOn: ['v5'], nextChat: 'pomiao_Event01Day0A' },
+      { id: 'p6', style: 2, sections: ['动不了'], varsOn: ['v6'], nextChat: 'pomiao_Event01Day0A' },
+      #
+      { id: 'p7', style: 2, sections: ['总得想个办法'], varsOn: ['v5', 'v6'], nextChat: 'pomiao_Event01Day0B' },
+      { id: 'p10', style: 1, sections: ['周围本来睡着的乞丐出声'], dialogs: ['p11'] },
+      { id: 'p11', style: 2, sections: ['你发现乞丐说的是一种没听过的语音，但是你竟然可以听懂。', '一股关于语言的记忆涌上脑海', '看来交流没问题', '那么'], varsOn: ['v7'], nextChat: 'pomiao_Event01Day0B' },
+      { id: 'p12', style: 2, sections: ['……完全没听过的名字。', '你是不是被打后伤到脑袋了，乞丐问。'], varsOn: ['v8'], nextChat: 'pomiao_Event01Day0B' },
+      { id: 'p13', style: 2, sections: ['那这几天好好休息，乞丐说'], dialogs: ['p15'] },
+      { id: 'p14', style: 2, sections: ['还行，那你知道我是谁吗？', '……', '看来病的不轻……好好休息。'], nextChat: 'pomiao_Event01Day0B' },
+      { id: 'p15', style: 2, sections: ['在闲聊中，你知道旁边的乞丐是你以前认的乞丐李大哥，两人都是从更远的地方流浪而来。', '你知道了全身的伤是因为讨乞的时候被村里的王员外打的。', '起因只是因为挡了人家的道，被嫌弃晦气。', '看来……到了一个不得了的世界啊。'], dialogs: ['p16'] },
+      { id: 'p16', style: 2, sections: ['一晃几天过去了', '经过几天修养，现在可以走路了', '乞丐的生活是很清苦的，能吃饱饭已经谢天谢地。', '在小村镇当中，也没有那么多富裕人家。', '奇怪的是，全身的伤，在半饥饿的状态好了个七七八八。', '询问乞丐李大哥，对方说大概是因为这片土地的天地灵气比较充沛的缘故。', '大多数人都受到恩惠。', '既然能够行动，李大哥决定带你一起讨乞。'], dialogs: ['d3'] },
+      #
+      { id: 'p17', style: 2, sections: ['得到一笔不义之财，两个乞丐在想着如何花钱。', '想了想，如果只是吃，那么的短时间都是足够的。不过，也许能把这次意外当作改变命运的机会。', '这些钱，虽然能买不少吃的，但也够买一身衣服了。很多地方乞丐是去不了的，就算去找工作，乞丐人家更是不会要，要是换一身行头，也许就有更好的机会。', ], dialogs: ['p18'] },
+      { id: 'p18', style: 2, title: '乞丐李大哥：', sections: ['这东西卖了，够我们吃半个月了吧。'], varsOn: ['v12'], nextChat: 'pomiao_Event01Day3' },
+      { id: 'p19', style: 2, sections: ['之后，两人四处吃喝很快被别的乞丐注意到，没吃两顿，钱就被别人抢光了，重新回到苦日子中去。'], nextChat: 'pomiao_Event01Day3' },
+      { id: 'p20', style: 2, title: '乞丐李大哥：', sections: ['你要是买了新衣服，这镇里的其他乞丐怕是要眼红。这样的话你在镇子里就不好混。'], varsOn: ['v13'], nextChat: 'pomiao_Event01Day3' },
+      { id: 'p21', style: 2, title: '', sections: ['新位置，城镇大门解锁。'], varsOn: ['v14'], nextChat: 'pomiao_Event01Day3' },
+      { id: 'p22', style: 2, title: '乞丐李大哥：', sections: ['既然你有心，那是好事，别勉强。'], dialogs: ['p23'],},
+      { id: 'p23', style: 1, title: '', sections: ['你不跟我一起吗。'], dialogs: ['p24'] },   
+      { id: 'p24', style: 2, title: '乞丐李大哥：', sections: ['我都习惯了，什么都不会做。'], dialogs: ['p25'] },
+      { id: 'p25', style: 2, title: '乞丐李大哥：', sections: ['或者说，你有什么能说服我的地方吗？'], varsOn: ['v15'], nextChat: 'pomiao_Event01Day3'},
+      { id: 'p26', style: 2, title: '', sections: ['……','但愿吧'],varsOn: ['v16'], nextChat: 'pomiao_Event01Day3'},
+      #
+      { id: 'd1', title: '附近的声音：', content: '吵死了', dialogs: ['p10'] },
+      { id: 'd2', title: '乞丐：', content: '这是落月镇的土地庙啊', dialogs: ['p12'] },
+      { id: 'd3', title: '乞丐李大哥：', content: '平时讨乞的位置是在附近的东街市，我们一起走',  varsOn: ['v9'], varsOff: ['M01_S01_luoyuezhen_Time/Event01Day0'], nextChat: 'pomiao_Event01Day0B'},
+    ],
+  },
+
+
+]
+

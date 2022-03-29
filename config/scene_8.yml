@@ -76,9 +76,26 @@ scenes: [
       { 
         id: 'c2', desc: '路人露出鄙视的眼神', 
         options: [
+          { title: '敷衍的乞讨', nextChat: 'c3' }, 
+          { title: '真诚的乞讨', nextChat: 'c4' }, 
           { title: '返回', varsOn: ['v2'], nextChat: 'c1' }, 
         ],
       },
+     { 
+        id: 'c3', desc: '路人偶尔经过，但都无视了你', 
+        options: [
+          { title: '返回', nextChat: 'c2' }, 
+        ],
+      },
+     { 
+        id: 'c4', desc: '没人搭理，一阵冷风吹过', 
+        options: [
+          { title: '返回', nextChat: 'c2' }, 
+        ],
+      },
+
+
+
     ],
 
     # 对话框
@@ -88,11 +105,11 @@ scenes: [
       { id: 'p3', style: 2, sections: ['能看到不少人带着武器，像是武者的打扮。'], varsOn: ['v4'], nextChat: 'c1' },
       { id: 'p4', style: 2, sections: ['李大哥，你有没有发现，这里拿兵器的人不少，这是正常的吗。', '因为城镇外野兽精怪出没，这些跑商路的通常会雇佣一些佣兵防身，你看到的这些人估计都是些做这种活计的武者。'], varsOn: ['v5'], nextChat: 'c1' },
       { id: 'p5', style: 2, title: '乞丐李大哥', sections: ['如果有两个铜币就够一个包子钱，加油'], varsOn: ['v6', 'v17'], andVarsOff: ['v6'], nextChat: 'c1' },
-      { id: 'p6', style: 1, title: '帮派小弟：', sections: ['今日的份子交了吧'], varsOn: ['v7'], nextChat: 'c1' },
+      { id: 'p6', style: 1, title: '帮派小弟：', sections: ['天色已晚，今日的份子交了吧'], varsOn: ['v7'], nextChat: 'c1' },
       { id: 'p7', style: 1, title: '', sections: ['已扣除身上两成的铜币'], varsOn: ['v8'], nextChat: 'c1' },
       { id: 'p8', style: 2, title: '', sections: ['获得2个铜币'], nextChat: 'c1' },
-      { id: 'p9', style: 1, title: '', sections: ['帮派小弟来收保护费。'], dialogs: ['p10'] },
-      { id: 'p10', style: 2, title: '', sections: ['今日的份子交了吧'], varsOn: ['v11'], nextChat: 'c1' },
+      { id: 'p9', style: 1, title: '', sections: ['第二天，帮派小弟来收保护费。'], dialogs: ['p10'] },
+      { id: 'p10', style: 2, title: '', sections: ['又到晚上了，今日的份子交了吧'], varsOn: ['v11'], nextChat: 'c1' },
       { id: 'p11', style: 2, title: '', sections: ['已扣除身上两成的铜币', '还是你们识相，我们老大可是真本事，有修为的，你们要是有心，以后可以加入我们帮派。', '帮派小弟离开了。'] },
       { id: 'p12', style: 1, title: '', sections: ['有修为是什么意思，难道是武侠，或者是修仙？'], varsOn: ['v12'], nextChat: 'c1' },
       { id: 'p13', style: 2, title: '乞丐哥：', sections: ['我一个乞丐，哪里知道那么多，估计你要自己去问了，我们吃了上顿没下顿，别想那么多。'], dialogs: ['p14'] },
