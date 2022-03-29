@@ -22,9 +22,9 @@ scenes: [
       { 
         id: 'c1', desc: '', 
         options: [ 
-          { title: '【选择主线1】' }, 
-          { title: '【选择主线2】' }, 
-          { title: '【选择主线3】' }, 
+          { title: '【选择主线1】', toChapter: 'XX/M1' }, 
+          { title: '【选择主线2】', toChapter: 'XX/M2' }, 
+          { title: '【选择主线3】', toChapter: 'XX/M3' }, 
         ],
       },
     ],

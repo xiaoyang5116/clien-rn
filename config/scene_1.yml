@@ -20,6 +20,7 @@
 #       alertCopper:    增减铜币数量(可指定百分比)
 #       alertWorldTime: 增减世界时间(单位毫秒)
 #       toScene:        切换到某个场景
+#       toChapter:      切换到某个章节
 #
 #     特殊标识符：
 #       @world_time_hours:  当前世界时间的小时数

@@ -97,6 +97,12 @@ class PropertyActionBuilder {
       allActions.push({ id: "__scene_{0}".format(payload.toScene), cmd: 'scene', params: payload.toScene });
     }
 
+    // 生成切换章节动作
+    if (payload.toChapter != undefined && typeof(payload.toChapter) == 'string') {
+      allActions.push({ id: "__chapter_{0}".format(payload.toChapter), cmd: 'chapter', params: payload.toChapter });
+    }
+
+
     return allActions;
   }
 }
@@ -113,6 +119,7 @@ const ACTIONS_MAP = [
   { cmd: 'useProps',      handler: '__onUsePropsCommand' },
   { cmd: 'sendProps',     handler: '__onSendPropsCommand' },
   { cmd: 'seqId',         handler: '__onSeqIdCommand' },
+  { cmd: 'chapter',       handler: '__onChapterCommand' },
 ];
 
 const SCENES_LIST = [
@@ -538,6 +545,11 @@ export default {
     *__onSeqIdCommand({ payload }, { put }) {
       yield put.resolve(action('ArenaModel/start')({ seqId: payload.params }));
       RootNavigation.navigate('Arena');
+    },
+
+    *__onChapterCommand({ payload }, { put }) {
+      const [id, path] = payload.params.split('/');
+      yield put.resolve(action('ArticleModel/show')({ id, path }));
     },
 
     *syncData({ }, { select, call }) {
