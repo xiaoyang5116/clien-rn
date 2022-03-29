@@ -32,8 +32,6 @@ export async function GetArticleDataApi(id) {
             }
         });
 
-        console.debug(sectionData);
-
         return sectionData;
     });
 }
