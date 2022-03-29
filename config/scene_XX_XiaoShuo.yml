@@ -27,6 +27,13 @@ scenes: [
           { title: '【选择主线3】', toChapter: 'XX/M3' }, 
         ],
       },
+      #
+      { 
+        id: 'c2', desc: '', 
+        options: [ 
+          { title: '【选择分支1】', toChapter: 'XX/M1_N1' }, 
+        ],
+      },
     ],
 
     # 对话框
