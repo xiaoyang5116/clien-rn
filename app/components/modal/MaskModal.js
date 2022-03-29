@@ -5,18 +5,22 @@ import {
     action,
     connect,
     PureComponent,
-    toastType
-} from "../constants";
+} from "../../constants";
 
-import { Button, Text, View } from '../constants/native-ui';
-import GameOverModal from './GameOverModal';
-import ChapterTemplate from './ChapterTemplate';
-import Dialog from './dialog'
-import HalfScreenDialog from './dialog/HalfScreenDialog'
-import Toast from './toast'
+import { Button, Text, View } from '../../constants/native-ui';
+import GameOverModal from '../GameOverModal';
+import ChapterTemplate from '../ChapterTemplate';
+import HalfScreenDialog from '../dialog/HalfScreenDialog';
+
+import lo from 'lodash';
 
 // 遮挡层
 class MaskModal extends PureComponent {
+
+    componentDidMount() {
+        this.props.dispatch(action('MaskModel/showDialog')(this.props.viewData));
+    }
+
     _onDialogConfirm = () => {
         this.props.dispatch(action('MaskModel/onDialogConfirm')());
     }
@@ -26,7 +30,12 @@ class MaskModal extends PureComponent {
     }
 
     _onModalHide = () => {
-        this.props.dispatch(action('MaskModel/onActionsAfterModalHidden')());
+        this.props.dispatch(action('MaskModel/onActionsAfterModalHidden')())
+        .then(r => {
+            if (this.props.onModalHide != undefined && lo.isFunction(this.props.onModalHide)) {
+                this.props.onModalHide();
+            }
+        });
     }
 
     _onAsideNext = () => {
