@@ -490,7 +490,9 @@ export default {
         params.push(s.trim().toUpperCase()); 
       });
     
-      const varRef = VarUtils.getVar(sceneState.data._vars, userState.sceneId, params[0]);
+      const [v1, v2] = params[0].split('/');
+      const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
+      const varRef = VarUtils.getVar(sceneState.data._vars, sceneId, varId);
       if (varRef == null)
         return;
 
