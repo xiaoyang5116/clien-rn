@@ -2,8 +2,8 @@
 import yaml from 'js-yaml';
 import lo from 'lodash';
 
-export async function GetArticleDataApi(id) {
-    let url = `http://localhost:8081/config/${id}.txt`;
+export async function GetArticleDataApi(id, path) {
+    let url = `http://localhost:8081/config/${id}/${id}_${path}.txt`;
     return fetch(url)
     .then(r => r.text(url))
     .then(text => {

@@ -120,6 +120,7 @@ const SCENES_LIST = [
   'scene_4', 'scene_5', 'scene_6', 
   'scene_7', 'scene_8',
   'npc_1',
+  'scene_XX_XiaoShuo',
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;

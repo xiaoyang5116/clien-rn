@@ -27,7 +27,7 @@ import Block from '../components/article';
 class ArticlePage extends Component {
 
   componentDidMount() {
-    this.props.dispatch(action('ArticleModel/show')({ id: 'article_1' }));
+    this.props.dispatch(action('ArticleModel/show')({ id: 'XX', path: '[START]' }));
   }
 
   renderItem = (data) => {
@@ -35,7 +35,6 @@ class ArticlePage extends Component {
   }
 
   viewableItemsChangedhandler = (payload) => {
-    // console.debug(payload);
   }
 
   scrollHandler = (payload) => {

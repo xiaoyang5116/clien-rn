@@ -1,0 +1,36 @@
+scenes: [
+  #
+  {
+    id: 'XX_XiaoShuo', name: '小说专属场景',
+
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'c1', desc: '', 
+        options: [ 
+          { title: '【选择主线1】' }, 
+          { title: '【选择主线2】' }, 
+          { title: '【选择主线3】' }, 
+        ],
+      },
+    ],
+
+    # 对话框
+    dialogs: [
+    ],
+  },
+]

@@ -27,8 +27,8 @@ export default {
       const userState = yield select(state => state.UserModel);
       const articleState = yield select(state => state.ArticleModel);
 
-      const { id } = payload;
-      const data = yield call(GetArticleDataApi, id);
+      const { id, path } = payload;
+      const data = yield call(GetArticleDataApi, id, path);
       let sceneId = userState.sceneId;
 
       for (let k in data) {
