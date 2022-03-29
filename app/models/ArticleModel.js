@@ -1,17 +1,13 @@
 
 import { 
   action,
-  delay,
-  LocalCacheKeys,
   getWindowSize,
   toastType,
 } from "../constants";
 
-import LocalStorage from '../utils/LocalStorage';
-import * as RootNavigation from '../utils/RootNavigation';
-import * as Themes from '../themes';
 import { GetArticleDataApi } from '../services/GetArticleDataApi';
 import Toast from "../components/toast";
+import lo from 'lodash';
 
 const WIN_SIZE = getWindowSize();
 
@@ -28,25 +24,33 @@ export default {
     },
 
     *show({ payload }, { call, put, select }) {
+      const userState = yield select(state => state.UserModel);
       const articleState = yield select(state => state.ArticleModel);
+
       const { id } = payload;
       const data = yield call(GetArticleDataApi, id);
+      let sceneId = userState.sceneId;
 
       for (let k in data) {
         const item = data[k];
-        // 预生成选项数据
-        if (item.type == 'code' && item.object != null) {
-          if (item.object.sceneId != undefined && item.object.chatId != undefined) {
-            const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: item.object.sceneId, chatId: item.object.chatId }));
-            const optionsData = [];
-            for (let k in chat.options) {
-              const option = chat.options[k];
-              if (yield put.resolve(action('SceneModel/testCondition')(option))) {
-                optionsData.push(option);
-              }
+        if (!lo.isEqual(item.type, 'code') || item.object == null)
+          continue;
+
+        if (item.object.enterScene != undefined) {
+          // 切换文章所属场景
+          yield put.resolve(action('SceneModel/enterScene')({ sceneId: item.object.enterScene }));
+          sceneId = item.object.enterScene;
+        } else if (item.object.chatId != undefined) {
+          // 预生成选项数据
+          const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: sceneId, chatId: item.object.chatId }));
+          const optionsData = [];
+          for (let k in chat.options) {
+            const option = chat.options[k];
+            if (yield put.resolve(action('SceneModel/testCondition')(option))) {
+              optionsData.push(option);
             }
-            item.object.options = optionsData;
           }
+          item.object.options = optionsData;
         }
       }
       
@@ -77,6 +81,7 @@ export default {
         if (item.object.completed != undefined && item.object.completed)
           continue;
 
+        // 触发按区域激活提示
         const { toast } = item.object;
         if (toast != undefined) {
           // 计算总偏移量

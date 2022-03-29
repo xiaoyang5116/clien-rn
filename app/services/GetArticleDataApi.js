@@ -22,7 +22,14 @@ export async function GetArticleDataApi(id) {
             if (lo.isEqual(e, 'BEGIN')) {
                 begin = true;
             } else if (lo.isEqual(e, 'END')) {
-                sectionData.push({ key: key++, type: 'code', content: lo.replace(code, /[\n]/g, ''), object: yaml.load(code) });
+                const obj = yaml.load(code);
+                if (lo.isArray(obj)) {
+                    obj.forEach(v => {
+                        sectionData.push({ key: key++, type: 'code', object: v });
+                    });
+                } else {
+                    sectionData.push({ key: key++, type: 'code', object: obj });
+                }
                 begin = false;
                 code = '';
             } else if (begin) {

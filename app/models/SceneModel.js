@@ -222,8 +222,6 @@ export default {
         return;
       }
 
-      // 场景必须在这里
-      RootNavigation.navigate('Home');
       if (sceneId !== userState.sceneId) {
         // 只有场景发生变化才更新记录的上一个场景。
         userState.prevSceneId = userState.sceneId;
