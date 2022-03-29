@@ -7,7 +7,6 @@ import {
   Component,
 } from "../../constants";
 
-import MaskModal from '../../components/MaskModal';
 import ProgressBar from '../../components/ProgressBar';
 import * as DateTime from '../../utils/DateTimeUtils';
 import { Button, Text, View, SectionList } from '../../constants/native-ui';
@@ -120,7 +119,6 @@ class StoryTabPage extends Component {
           />
         </View>
         {this._renderSceneProgress()}
-        <MaskModal />
       </View>
     );
   }

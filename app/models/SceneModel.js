@@ -15,6 +15,7 @@ import LocalStorage from '../utils/LocalStorage';
 import * as DateTime from '../utils/DateTimeUtils';
 import * as RootNavigation from '../utils/RootNavigation';
 import SceneConfigReader from "../utils/SceneConfigReader";
+import Modal from "../components/modal";
 
 class VarUtils {
   static generateVarUniqueId(sceneId, varId) {
@@ -72,6 +73,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__sendProps_{0}".format(payload.sendProps), cmd: 'sendProps', params: payload.sendProps });
     }
 
+    // 挂机序列
+    if (payload.seqId != undefined && typeof(payload.seqId) == 'string') {
+      allActions.push({ id: "__seqId_{0}".format(payload.seqId), cmd: 'seqId', params: payload.seqId });
+    }
+
     // 生成对话框动作
     if (payload.dialogs != undefined && Array.isArray(payload.dialogs)) {
       let dialogActions = [];
@@ -96,16 +102,17 @@ class PropertyActionBuilder {
 }
 
 const ACTIONS_MAP = [
-  { cmd: 'dialog',        handler: '__onDialogCommand'},
-  { cmd: 'navigate',      handler: '__onNavigateCommand'},
-  { cmd: 'chat',          handler: '__onChatCommand'},
-  { cmd: 'scene',         handler: '__onSceneCommand'},
-  { cmd: 'delay',         handler: '__onDelayCommand'},
-  { cmd: 'copper',        handler: '__onCopperCommand'},
+  { cmd: 'dialog',        handler: '__onDialogCommand' },
+  { cmd: 'navigate',      handler: '__onNavigateCommand' },
+  { cmd: 'chat',          handler: '__onChatCommand' },
+  { cmd: 'scene',         handler: '__onSceneCommand' },
+  { cmd: 'delay',         handler: '__onDelayCommand' },
+  { cmd: 'copper',        handler: '__onCopperCommand' },
   { cmd: 'wtime',         handler: '__onWorldTimeCommand' },
-  { cmd: 'var',           handler: '__onVarCommand'},
-  { cmd: 'useProps',      handler: '__onUsePropsCommand'},
-  { cmd: 'sendProps',     handler: '__onSendPropsCommand'},
+  { cmd: 'var',           handler: '__onVarCommand' },
+  { cmd: 'useProps',      handler: '__onUsePropsCommand' },
+  { cmd: 'sendProps',     handler: '__onSendPropsCommand' },
+  { cmd: 'seqId',         handler: '__onSeqIdCommand' },
 ];
 
 const SCENES_LIST = [
@@ -406,9 +413,9 @@ export default {
     *__onDialogCommand({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const sceneState = yield select(state => state.SceneModel);   
-      let dialog = sceneState.data._cfgReader.getSceneDialog(userState.sceneId, payload.params);
+      const dialog = sceneState.data._cfgReader.getSceneDialog(userState.sceneId, payload.params);
       if (dialog != null) {
-        yield put.resolve(action('MaskModel/showDialog')({ ...dialog }));
+        Modal.show(dialog);
       }
     },
 
@@ -483,7 +490,9 @@ export default {
         params.push(s.trim().toUpperCase()); 
       });
     
-      const varRef = VarUtils.getVar(sceneState.data._vars, userState.sceneId, params[0]);
+      const [v1, v2] = params[0].split('/');
+      const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
+      const varRef = VarUtils.getVar(sceneState.data._vars, sceneId, varId);
       if (varRef == null)
         return;
 
@@ -525,6 +534,11 @@ export default {
       const sceneState = yield select(state => state.SceneModel);
       const [propId, num] = payload.params.split(',');
       yield put.resolve(action('PropsModel/sendProps')({ propId: parseInt(propId), num: parseInt(num) }));
+    },
+
+    *__onSeqIdCommand({ payload }, { put }) {
+      yield put.resolve(action('ArenaModel/start')({ seqId: payload.params }));
+      RootNavigation.navigate('Arena');
     },
 
     *syncData({ }, { select, call }) {

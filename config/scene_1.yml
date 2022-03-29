@@ -86,6 +86,22 @@
 #       ...条件判断
 #       ...影响结果
 #
+#     模板配置：
+#       style:                   代表对应的模板：4（章节模板）、5（toast 追加提示）、6（popUp dialog 弹出对话框）、7(game over 游戏结束模板)
+#         章节模板:               4（章节模板）
+#           title: ''            第几章
+#           sections: ['']       章节名
+#         toast 追加提示：         5（toast 追加提示）
+#           time:                时间可选
+#           toastType: ''        toast 类型
+#             下到上平滑:          BottomToTopSmooth
+#             下到上停顿:          BottomToTop
+#             中间到上:            CenterToTop
+#             左到右:             LeftToRight
+#
+#
+#
+#
 # ===========================================
 scenes: [
   # 新手村场景
@@ -125,8 +141,12 @@ scenes: [
           { title: '【乞丐】', andVarsOn: ['v10','v20'], nextChat: 'c3' }, 
           { title: '【没有名额了】', nextChat: 'c4' }, 
           { title: '【真没有名额了】', nextChat: 'c5' }, 
-          { title: '【★进入测试场景】', toScene: 'S_00Test01' }, 
-          { title: '【测试战斗】', nextChat: 'c6', andVarsOff: ['v4'], duration: 2000, timeoutActions: ['t4'] }, 
+          { title: '【背包存在木瓜】', nextChat: 'c6', andVarsValue: ['@props_40 >= 1'] }, 
+          { title: '【测试倒计时选项1】', nextChat: 'c6', andVarsOff: ['v2'], duration: 10000, timeoutActions: ['t2'] }, 
+          { title: '【测试倒计时选项2】', nextChat: 'c6', andVarsOff: ['v3'], duration: 5000, timeoutActions: ['t3'] }, 
+          { title: '【测试倒计时选项3】', nextChat: 'c6', andVarsOff: ['v4'], duration: 2000, timeoutActions: ['t4'] }, 
+          { title: '开始挂机1', seqId: 'x1' }, 
+          { title: '开始挂机2', seqId: 'x2' }, 
         ],
       },
       # 乞丐第一次点击出现
@@ -159,12 +179,28 @@ scenes: [
         ]
       },
       # 
-
+      { 
+        id: 'c6', desc: '道具测试', 
+        options: [ 
+          { title: '交付木瓜', nextChat: 'c1', useProps: '40,1', clickActions: ['a1'] }, 
+          { title: '获得木瓜', nextChat: 'c1', sendProps: '40,10', clickActions: ['a2'] }, 
+        ]
+      },
+      # 
+      { 
+        id: 'c7', desc: '文章按钮测试', 
+        options: [ 
+          { title: '交付木瓜', dialogs: ['p1'] }, 
+          { title: '获得木瓜', dialogs: ['p2'] }, 
+        ]
+      },
     ],
 
     # 对话框
     dialogs: [
-      { id: 'p0', style: 1, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], nextChat: 'c1' },
+      { id: 'p0', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], nextChat: 'c1' },
+      { id: 'p1', style: 2, title: 'xxx', content: '内容' },
+      { id: 'p2', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'] },
     ],
   },
 ]

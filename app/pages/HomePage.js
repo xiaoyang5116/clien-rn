@@ -23,23 +23,23 @@ class HomePage extends Component {
   render() {
     return (
       <Tab.Navigator>
-        <Tab.Screen name="tabWorld" component={StoryTabPage} options={{
+        <Tab.Screen name="World" component={StoryTabPage} options={{
           tabBarLabel: "世界",
           headerTitle: "世界",
         }} />
-        <Tab.Screen name="tab3" component={ArenaTabPage} options={{
+        <Tab.Screen name="Arena" component={ArenaTabPage} options={{
           tabBarLabel: "竞技场",
           headerTitle: "竞技场",
         }} />
-        <Tab.Screen name="tab2" component={ComposeTabPage} options={{
+        <Tab.Screen name="Compose" component={ComposeTabPage} options={{
           tabBarLabel: "制作",
           headerTitle: "制作",
         }} />
-        <Tab.Screen name="tab4" component={PropsTabPage} options={{
+        <Tab.Screen name="Props" component={PropsTabPage} options={{
           tabBarLabel: "道具",
           headerTitle: "道具",
         }} />
-        <Tab.Screen name="tab5" component={ProfileTabPage} options={{
+        <Tab.Screen name="Profile" component={ProfileTabPage} options={{
           tabBarLabel: "我的",
           headerTitle: "我的",
         }} />
