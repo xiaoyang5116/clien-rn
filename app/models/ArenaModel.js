@@ -40,7 +40,7 @@ export default {
     // 战报数据
     report: [],
 
-    data: {
+    __data: {
       seqConfig: null,
       enemyQueue: [],
       enemyIndex: 0,
@@ -52,18 +52,18 @@ export default {
       const arenaState = yield select(state => state.ArenaModel);
       const { seqId } = payload;
 
-      arenaState.data.seqConfig = null;
-      arenaState.data.enemyQueue.length = 0;
-      arenaState.data.enemyIndex = 0;
+      arenaState.__data.seqConfig = null;
+      arenaState.__data.enemyQueue.length = 0;
+      arenaState.__data.enemyIndex = 0;
 
       const data = yield call(GetSeqDataApi, seqId);
       const config = data.sequences.find(e => e.id == seqId);
       if (config != undefined) {
-        arenaState.data.seqConfig = config;
-        arenaState.data.enemyQueue.length = 0;
+        arenaState.__data.seqConfig = config;
+        arenaState.__data.enemyQueue.length = 0;
 
         config.enemies.forEach(e => {
-          arenaState.data.enemyQueue.push(...e.items);
+          arenaState.__data.enemyQueue.push(...e.items);
         });
       }
 
@@ -73,24 +73,24 @@ export default {
     *next({ }, { put, select }) {
       const arenaState = yield select(state => state.ArenaModel);
 
-      if (arenaState.data.enemyQueue.length > 0
-        && arenaState.data.enemyIndex < arenaState.data.enemyQueue.length) {
-        const enemy = arenaState.data.enemyQueue[arenaState.data.enemyIndex];
+      if (arenaState.__data.enemyQueue.length > 0
+        && arenaState.__data.enemyIndex < arenaState.__data.enemyQueue.length) {
+        const enemy = arenaState.__data.enemyQueue[arenaState.__data.enemyIndex];
         const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: arenaState.myself, enemy: enemy }));
 
         yield put(action('updateState')({ enemy, report }));
-        arenaState.data.enemyIndex += 1;
+        arenaState.__data.enemyIndex += 1;
       }
     },
 
     *over({ }, { put, select }) {
       const arenaState = yield select(state => state.ArenaModel);
-      if (arenaState.data.enemyQueue.length > 0
-        && arenaState.data.enemyIndex >= arenaState.data.enemyQueue.length) {
+      if (arenaState.__data.enemyQueue.length > 0
+        && arenaState.__data.enemyIndex >= arenaState.__data.enemyQueue.length) {
         // 序列完毕，清理现场
-        arenaState.data.seqConfig = null;
-        arenaState.data.enemyQueue.length = 0;
-        arenaState.data.enemyIndex = 0;
+        arenaState.__data.seqConfig = null;
+        arenaState.__data.enemyQueue.length = 0;
+        arenaState.__data.enemyIndex = 0;
         arenaState.report.length = 0;
       }
       yield put.resolve(action('next')({}));

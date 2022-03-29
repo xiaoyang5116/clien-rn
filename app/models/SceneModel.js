@@ -128,12 +128,12 @@ export default {
   namespace: 'SceneModel',
 
   state: {
-    data: {
+    __data: {
       // 场景自定义变量
-      _vars: [],
+      vars: [],
 
       // 时间线
-      _time: {
+      time: {
         scenes: [], // 场景时间(副本)
         worlds: [   // 世界出生点时间(2012/29998/49998)
           { worldId: 0, time: 1325376000000 }, 
@@ -143,7 +143,7 @@ export default {
       },
 
       // 场景配置访问器
-      _cfgReader: null,
+      cfgReader: null,
     }
   },
 
@@ -185,14 +185,14 @@ export default {
       // 加载本地缓存
       const sceneCache = yield call(LocalStorage.get, LocalCacheKeys.SCENES_DATA);
       if (sceneCache != null && sceneCache.time != null) {
-        sceneState.data._time = sceneCache.time;
+        sceneState.__data.time = sceneCache.time;
       }
       
       // 加载匹配的变量缓存
-      sceneState.data._vars.length = 0;
-      sceneState.data._cfgReader = new SceneConfigReader(scenes);
-      sceneState.data._cfgReader.getSceneIds().forEach((sceneId) => {
-        const vars = sceneState.data._cfgReader.getSceneVars(sceneId);
+      sceneState.__data.vars.length = 0;
+      sceneState.__data.cfgReader = new SceneConfigReader(scenes);
+      sceneState.__data.cfgReader.getSceneIds().forEach((sceneId) => {
+        const vars = sceneState.__data.cfgReader.getSceneVars(sceneId);
         if (vars != null) {
           vars.forEach((e) => {
             let value = (e.defaultValue != undefined) ? e.defaultValue : 0;
@@ -203,7 +203,7 @@ export default {
                 value = varCache.value;
               }
             }
-            sceneState.data._vars.push({ ...e, value: value, id: uniVarId });
+            sceneState.__data.vars.push({ ...e, value: value, id: uniVarId });
           });
         }
       });
@@ -216,7 +216,7 @@ export default {
       const sceneState = yield select(state => state.SceneModel);
       const sceneId = payload.sceneId;
       
-      const scene = sceneState.data._cfgReader.getScene(sceneId);
+      const scene = sceneState.__data.cfgReader.getScene(sceneId);
       if (scene == null) {
         errorMessage("SceneId={0} not found.", sceneId);
         return;
@@ -241,11 +241,11 @@ export default {
       const worldId = payload.worldId;
       const time = parseInt(payload.time);
 
-      const wt = sceneState.data._time.worlds.find(e => e.worldId == worldId);
+      const wt = sceneState.__data.time.worlds.find(e => e.worldId == worldId);
       if (wt != undefined) {
         wt.time = time;
       } else {
-        sceneState.data._time.worlds.push({ worldId: worldId, time: time });
+        sceneState.__data.time.worlds.push({ worldId: worldId, time: time });
       }
     },
 
@@ -256,11 +256,11 @@ export default {
       const worldId = payload.worldId;
       const alertValue = parseInt(payload.alertValue);
 
-      const wt = sceneState.data._time.worlds.find(e => e.worldId == worldId);
+      const wt = sceneState.__data.time.worlds.find(e => e.worldId == worldId);
       if (wt != undefined) {
         wt.time += alertValue;
       } else {
-        sceneState.data._time.worlds.push({ worldId: worldId, time: alertValue });
+        sceneState.__data.time.worlds.push({ worldId: worldId, time: alertValue });
       }
     },
 
@@ -269,7 +269,7 @@ export default {
     *getWorldTime({ payload }, { put, select }) {
       const sceneState = yield select(state => state.SceneModel);
       const worldId = payload.worldId;
-      const wt = sceneState.data._time.worlds.find(e => e.worldId == worldId);
+      const wt = sceneState.__data.time.worlds.find(e => e.worldId == worldId);
       return wt != undefined ? wt.time: undefined;
     },
 
@@ -280,11 +280,11 @@ export default {
       const sceneId = payload.sceneId;
       const time = payload.time;
 
-      const st = sceneState.data._time.scenes.find(e => e.sceneId == sceneId);
+      const st = sceneState.__data.time.scenes.find(e => e.sceneId == sceneId);
       if (st != undefined) {
         st.time = time;
       } else {
-        sceneState.data._time.scenes.push({ sceneId: sceneId, time: time });
+        sceneState.__data.time.scenes.push({ sceneId: sceneId, time: time });
       }
     },
 
@@ -295,11 +295,11 @@ export default {
       const sceneId = payload.sceneId;
       const alertValue = payload.alertValue;
 
-      const st = sceneState.data._time.scenes.find(e => e.sceneId == sceneId);
+      const st = sceneState.__data.time.scenes.find(e => e.sceneId == sceneId);
       if (st != undefined) {
         st.time += alertValue;
       } else {
-        sceneState.data._time.scenes.push({ sceneId: sceneId, time: alertValue });
+        sceneState.__data.time.scenes.push({ sceneId: sceneId, time: alertValue });
       }
     },
 
@@ -308,7 +308,7 @@ export default {
     *getSceneTime({ payload }, { put, select }) {
       const sceneState = yield select(state => state.SceneModel);
       const sceneId = payload.sceneId;
-      const st = sceneState.data._time.scenes.find(e => e.sceneId == sceneId);
+      const st = sceneState.__data.time.scenes.find(e => e.sceneId == sceneId);
       return st != undefined ? st.time: undefined;
     },
 
@@ -317,7 +317,7 @@ export default {
     *getSceneVars({ payload }, { select }) {
       const sceneState = yield select(state => state.SceneModel);
       const { sceneId } = payload;
-      return sceneState.data._vars.filter(e => e.id.indexOf("{0}/".format(sceneId.toUpperCase())) == 0 );
+      return sceneState.__data.vars.filter(e => e.id.indexOf("{0}/".format(sceneId.toUpperCase())) == 0 );
     },
 
     // 事件动作处理
@@ -349,7 +349,7 @@ export default {
         predefineActions.push(...payload.eventActions);
 
       if (predefineActions.length > 0) {
-        const validActions = sceneState.data._cfgReader.getSceneActions(sceneId, predefineActions);
+        const validActions = sceneState.__data.cfgReader.getSceneActions(sceneId, predefineActions);
         if (validActions != null && validActions.length > 0) {
           // 将预定义动作里面的'变量修改指令'提前执行。
           const varActions = validActions.filter(e => e.cmd == 'var');
@@ -394,7 +394,7 @@ export default {
       const sceneId = payload.sceneId;
       const eventType = payload.eventType;
       const sceneState = yield select(state => state.SceneModel);
-      const events = sceneState.data._cfgReader.getSceneEvents(sceneId);
+      const events = sceneState.__data.cfgReader.getSceneEvents(sceneId);
       if (events == null)
         return;
 
@@ -413,7 +413,7 @@ export default {
     *__onDialogCommand({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const sceneState = yield select(state => state.SceneModel);   
-      const dialog = sceneState.data._cfgReader.getSceneDialog(userState.sceneId, payload.params);
+      const dialog = sceneState.__data.cfgReader.getSceneDialog(userState.sceneId, payload.params);
       if (dialog != null) {
         Modal.show(dialog);
       }
@@ -492,7 +492,7 @@ export default {
     
       const [v1, v2] = params[0].split('/');
       const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
-      const varRef = VarUtils.getVar(sceneState.data._vars, sceneId, varId);
+      const varRef = VarUtils.getVar(sceneState.__data.vars, sceneId, varId);
       if (varRef == null)
         return;
 
@@ -544,8 +544,8 @@ export default {
     *syncData({ }, { select, call }) {
       const sceneState = yield select(state => state.SceneModel);
       yield call(LocalStorage.set, LocalCacheKeys.SCENES_DATA, { 
-        vars: sceneState.data._vars, 
-        time: sceneState.data._time,
+        vars: sceneState.__data.vars, 
+        time: sceneState.__data.time,
       });
     },
 
@@ -553,8 +553,8 @@ export default {
     // 参数: { sceneId: xxx}
     *getScene({ payload }, { select }) {
       const sceneState = yield select(state => state.SceneModel);
-      return (sceneState.data._cfgReader != null)
-                ? sceneState.data._cfgReader.getScene(payload.sceneId)
+      return (sceneState.__data.cfgReader != null)
+                ? sceneState.__data.cfgReader.getScene(payload.sceneId)
                 : null;
     },
 
@@ -562,8 +562,8 @@ export default {
     // 参数: { sceneId: xxx, chatId: xxx }
     *getChat({ payload }, { call, put, select }) {
       const sceneState = yield select(state => state.SceneModel);
-      return (sceneState.data._cfgReader != null)
-                ? sceneState.data._cfgReader.getSceneChat(payload.sceneId, payload.chatId)
+      return (sceneState.__data.cfgReader != null)
+                ? sceneState.__data.cfgReader.getSceneChat(payload.sceneId, payload.chatId)
                 : null;
     },
 
@@ -571,8 +571,8 @@ export default {
     // 参数: { sceneId: xxx, dialogId: xxx }
     *getDialog({ payload }, { select }) {
       const sceneState = yield select(state => state.SceneModel);
-      return (sceneState.data._cfgReader != null)
-                ? sceneState.data._cfgReader.getSceneDialog(payload.sceneId, payload.dialogId)
+      return (sceneState.__data.cfgReader != null)
+                ? sceneState.__data.cfgReader.getSceneDialog(payload.sceneId, payload.dialogId)
                 : null;
     },
 
@@ -583,8 +583,8 @@ export default {
       const sceneState = yield select(state => state.SceneModel);
 
       const varFinder = (id) => {
-        for (let key in sceneState.data._vars) {
-          const item = sceneState.data._vars[key];
+        for (let key in sceneState.__data.vars) {
+          const item = sceneState.__data.vars[key];
           if (item.id == id)
             return item;
         }
@@ -596,7 +596,7 @@ export default {
         for (let key in payload.andVarsOn) {
           const [v1, v2] = payload.andVarsOn[key].split('/');
           const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
-          const varRef = VarUtils.getVar(sceneState.data._vars, sceneId, varId);
+          const varRef = VarUtils.getVar(sceneState.__data.vars, sceneId, varId);
           if (varRef.value <= 0) {
             failure = true;
             break;
@@ -607,7 +607,7 @@ export default {
         for (let key in payload.andVarsOff) {
           const [v1, v2] = payload.andVarsOff[key].split('/');
           const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
-          const varRef = VarUtils.getVar(sceneState.data._vars, sceneId, varId);
+          const varRef = VarUtils.getVar(sceneState.__data.vars, sceneId, varId);
           if (varRef.value > 0) {
             failure = true;
             break;
@@ -641,7 +641,7 @@ export default {
           } else {
             const [v1, v2] = id.split('/');
             const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
-            const varRef = VarUtils.getVar(sceneState.data._vars, sceneId, varId);
+            const varRef = VarUtils.getVar(sceneState.__data.vars, sceneId, varId);
             compareValue = varRef.value;
           }
 

@@ -81,20 +81,12 @@ class MaskModal extends PureComponent {
             )
         }
 
-        // // 5  代表 toast 追加提示
-        // if (this.props.style === 5) {
-        //     Toast.show(this.props.content, toastType(this.props.data._current.toastType), 600, () => {
-        //         console.debug('fuck');
-        //     });
-        //     return <></>;
-        // }
-
         // 6  代表 popUp dialog 弹出对话框
         if (this.props.style === 6) {
             // console.log("this.props", this.props);
             return (
                 <Modal isVisible={this.props.visible} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
-                    <HalfScreenDialog isGame={true} onDialogCancel={this._onDialogCancel} onAsideNext={this._onAsideNext} popUpComplex={this.props.data._current.popUpComplex} />
+                    <HalfScreenDialog isGame={true} onDialogCancel={this._onDialogCancel} onAsideNext={this._onAsideNext} popUpComplex={this.props.__data.current.popUpComplex} />
                 </Modal>
             )
         }
