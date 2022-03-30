@@ -1,0 +1,50 @@
+scenes: [
+  #
+  {
+    id: 'XX_XiaoShuo', name: '小说专属场景',
+
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'c1', desc: '', 
+        options: [ 
+          { title: '【选择主线1】', toChapter: 'XX/M1' }, 
+          { title: '【选择主线2】', toChapter: 'XX/M2' }, 
+          { title: '【选择主线3】', toChapter: 'XX/M3' }, 
+        ],
+      },
+      #
+      { 
+        id: 'c2', desc: '', 
+        options: [ 
+          { title: '【选择分支1】', toChapter: 'XX/M1_N1' }, 
+        ],
+      },
+      #
+      { 
+        id: 'c3', desc: '', 
+        options: [ 
+          { title: '【返回主线1】', varsOn: ['v1'], toChapter: 'XX/M1' }, 
+        ],
+      },
+    ],
+
+    # 对话框
+    dialogs: [
+    ],
+  },
+]

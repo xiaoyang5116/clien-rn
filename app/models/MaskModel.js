@@ -31,9 +31,9 @@ export default {
   namespace: 'MaskModel',
 
   state: {
-    data: {
-      _queue: new Queue(),
-      _current: null,
+    __data: {
+      queue: new Queue(), // 支持：一次性添加多个弹窗
+      current: null,
     },
     primaryType: 0, // 主类: 1: 对话框, 2: 旁白
     style: 0, // 样式ID
@@ -55,7 +55,7 @@ export default {
         primaryType = ASIDE_TYPE;
       //
       if (primaryType != 0) {
-        maskState.data._queue.add(payload, primaryType);
+        maskState.__data.queue.add(payload, primaryType);
         yield put.resolve(action('_checkNext')({}));
       }
     },
@@ -63,7 +63,7 @@ export default {
     // 响应确认按钮
     *onDialogConfirm({ }, { put, select }) {
       const maskState = yield select(state => state.MaskModel);
-      const current = maskState.data._current;
+      const current = maskState.__data.current;
       if (current != null && current.primaryType == DIALOG_TYPE) {
         current.confirm = true;
         yield put.resolve(action('hide')());
@@ -73,7 +73,7 @@ export default {
     // 响应下一段旁白
     *onNextAside({ }, { put, select }) {
       const maskState = yield select(state => state.MaskModel);
-      const current = maskState.data._current;
+      const current = maskState.__data.current;
       if (current != null && current.primaryType == ASIDE_TYPE) {
         const nextSectionId = current.sectionId + 1;
         if (nextSectionId >= current.sections.length) {
@@ -91,26 +91,31 @@ export default {
     // Modal隐藏后执行, 多Modal同时存在iOS会出现卡s
     *onActionsAfterModalHidden({ }, { put, select }) {
       const maskState = yield select(state => state.MaskModel);
-      const current = maskState.data._current;
+      const current = maskState.__data.current;
 
       if (current != null && !current.hidden) { // Modal回调2次？啥原因
         current.hidden = true;
         if (current.primaryType == ASIDE_TYPE || (current.primaryType == DIALOG_TYPE && current.confirm)) {
           yield put.resolve(action('SceneModel/processActions')(current));
         }
-        maskState.data._current = null;
+
+        maskState.__data.current = null;
+        maskState.primaryType = 0;
+        maskState.style = 0;
+        maskState.title = '';
+        maskState.content = '';
         yield put.resolve(action('_checkNext')({}));
       }
     },
 
     *_checkNext({}, { put, select }) {
       const maskState = yield select(state => state.MaskModel);
-      if (maskState.data._current != null)
+      if (maskState.__data.current != null)
         return;
 
-      const next = maskState.data._queue.next();
+      const next = maskState.__data.queue.next();
       if (next != undefined) {
-        maskState.data._current = next;
+        maskState.__data.current = next;
 
         let content = '';
         if (next.primaryType == DIALOG_TYPE)

@@ -20,6 +20,7 @@
 #       alertCopper:    增减铜币数量(可指定百分比)
 #       alertWorldTime: 增减世界时间(单位毫秒)
 #       toScene:        切换到某个场景
+#       toChapter:      切换到某个章节
 #
 #     特殊标识符：
 #       @world_time_hours:  当前世界时间的小时数
@@ -188,21 +189,11 @@ scenes: [
           { title: '获得木瓜', nextChat: 'c1', sendProps: '40,10', clickActions: ['a2'] }, 
         ]
       },
-      # 
-      { 
-        id: 'c7', desc: '文章按钮测试', 
-        options: [ 
-          { title: '交付木瓜', dialogs: ['p1'] }, 
-          { title: '获得木瓜', dialogs: ['p2'] }, 
-        ]
-      },
     ],
 
     # 对话框
     dialogs: [
       { id: 'p0', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'], nextChat: 'c1' },
-      { id: 'p1', style: 2, title: 'xxx', content: '内容' },
-      { id: 'p2', style: 2, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '你穿越了', '请选择穿越开局'] },
     ],
   },
 ]

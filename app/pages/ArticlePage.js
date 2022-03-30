@@ -27,7 +27,7 @@ import Block from '../components/article';
 class ArticlePage extends Component {
 
   componentDidMount() {
-    this.props.dispatch(action('ArticleModel/show')({ id: 'article_1' }));
+    this.props.dispatch(action('ArticleModel/show')({ id: 'XX', path: '[START]' }));
   }
 
   renderItem = (data) => {
@@ -35,7 +35,6 @@ class ArticlePage extends Component {
   }
 
   viewableItemsChangedhandler = (payload) => {
-    // console.debug(payload);
   }
 
   scrollHandler = (payload) => {
@@ -43,6 +42,10 @@ class ArticlePage extends Component {
       offsetX: payload.nativeEvent.contentOffset.x,
       offsetY: payload.nativeEvent.contentOffset.y,
     }));
+  }
+
+  endReachedHandler = () => {
+    this.props.dispatch(action('ArticleModel/end')({}));
   }
 
   render() {
@@ -57,13 +60,14 @@ class ArticlePage extends Component {
             keyExtractor={item => item.key}
             onViewableItemsChanged={this.viewableItemsChangedhandler}
             onScroll={this.scrollHandler}
+            onEndReached={this.endReachedHandler}
           />
         </View>
-        {/* <View style={styles.debugContainer} pointerEvents="box-none" >
+        <View style={styles.debugContainer} pointerEvents="box-none" >
           <View style={{ borderWidth: 1, borderColor: '#999', width: '100%', height: 200, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', opacity: 0.5, backgroundColor: '#ccc' }} pointerEvents="box-none">
             <Text>事件触发区域</Text>
           </View>
-        </View> */}
+        </View>
       </View>
     );
   }
