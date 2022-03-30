@@ -1,7 +1,7 @@
 import React from 'react';
 
-export { CButton } from '../components/CButton';
-import { CButton } from './custom-ui';
+import { CButton } from '../components/CButton';
+// import { CButton } from './custom-ui';
 
 /** 选项按钮 */
 export const TabButton = (props) => {
