@@ -31,7 +31,6 @@ const models = [
   require('./models/StoryModel').default,
   require('./models/MaskModel').default,
   require('./models/PropsModel').default,
-  require('./models/FictionModel').default,
   require('./models/ComposeModel').default,
   require('./models/ChallengeModel').default,
   require('./models/ArenaModel').default,

@@ -9,7 +9,6 @@ import {
 
 import { Button, Text, View } from '../../constants/native-ui';
 import GameOverModal from '../GameOverModal';
-import ChapterTemplate from '../ChapterTemplate';
 import HalfScreenDialog from '../dialog/HalfScreenDialog';
 
 import lo from 'lodash';
@@ -72,15 +71,6 @@ class MaskModal extends PureComponent {
 
     _renderForAside() {
         const currentStyles = this.props.currentStyles;
-        // 4 代表章节模板
-        if (this.props.style === 4) {
-            return (
-                <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
-                    <ChapterTemplate onAsideNext={this._onAsideNext} {...this.props} />
-                </Modal>
-            )
-        }
-
         // 6  代表 popUp dialog 弹出对话框
         if (this.props.style === 6) {
             // console.log("this.props", this.props);
