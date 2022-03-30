@@ -2,6 +2,9 @@
 import yaml from 'js-yaml';
 import lo from 'lodash';
 
+// 确保每一个段落都有唯一的KEY，使得onLayout每次都re-render。
+let UNIQUE_KEY = 1;
+
 export async function GetArticleDataApi(id, path) {
     let url = `http://localhost:8081/config/${id}/${id}_${path}.txt`;
     return fetch(url)
@@ -25,17 +28,17 @@ export async function GetArticleDataApi(id, path) {
                 const obj = yaml.load(code);
                 if (lo.isArray(obj)) {
                     obj.forEach(v => {
-                        sectionData.push({ key: key++, type: 'code', object: v });
+                        sectionData.push({ key: UNIQUE_KEY++, type: 'code', object: v });
                     });
                 } else {
-                    sectionData.push({ key: key++, type: 'code', object: obj });
+                    sectionData.push({ key: UNIQUE_KEY++, type: 'code', object: obj });
                 }
                 begin = false;
                 code = '';
             } else if (begin) {
                 code = e;
             } else {
-                sectionData.push({ key: key++, type: 'plain', content: e });
+                sectionData.push({ key: UNIQUE_KEY++, type: 'plain', content: e });
             }
         });
 

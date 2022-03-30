@@ -85,7 +85,7 @@ export default {
         const { toast } = item.object;
         if (toast != undefined) {
           // 计算总偏移量
-          const prevSections = articleState.sections.filter(e => e.key <= k);
+          const prevSections = articleState.sections.filter(e => e.key <= item.key);
           let totalOffsetY = 0;
           prevSections.forEach(e => totalOffsetY += e.height);
           const validY = offsetY + WIN_SIZE.height / 2 - 60 + 100; // 60: iOS顶部空间, 100: 透明框一半
