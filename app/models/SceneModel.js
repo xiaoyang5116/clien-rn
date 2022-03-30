@@ -222,7 +222,7 @@ export default {
     *enterScene({ payload }, { put, call, select }) {
       const userState = yield select(state => state.UserModel);
       const sceneState = yield select(state => state.SceneModel);
-      const sceneId = payload.sceneId;
+      const {sceneId, quiet} = payload;
       
       const scene = sceneState.__data.cfgReader.getScene(sceneId);
       if (scene == null) {
@@ -230,14 +230,20 @@ export default {
         return;
       }
 
+      let needSync = false;
       if (sceneId !== userState.sceneId) {
         // 只有场景发生变化才更新记录的上一个场景。
         userState.prevSceneId = userState.sceneId;
+        needSync = true;
       }
       userState.sceneId = sceneId;
       
-      yield put.resolve(action('raiseSceneEvents')({ sceneId: sceneId, eventType: 'enter' }));
-      yield put.resolve(action('UserModel/syncData')({}));
+      if (quiet == undefined || !quiet) {
+        yield put.resolve(action('raiseSceneEvents')({ sceneId: sceneId, eventType: 'enter' }));
+      }
+      if (needSync) {
+        yield put.resolve(action('UserModel/syncData')({}));
+      }
     },
 
     // 设置世界时间

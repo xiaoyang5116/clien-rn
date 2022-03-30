@@ -86,7 +86,10 @@ export default {
                   continue;
 
                 // 切换小分支所属场景
-                yield put.resolve(action('SceneModel/enterScene')({ sceneId: sceneItem.object.enterScene }));
+                yield put.resolve(action('SceneModel/enterScene')({ 
+                  sceneId: sceneItem.object.enterScene,
+                  quiet: ((sceneItem.object.quiet != undefined) ? sceneItem.object.quiet : true),
+                }));
                 sceneId = sceneItem.object.enterScene;
 
                 // 小分支根据变量判断
@@ -117,7 +120,10 @@ export default {
 
         if (item.object.enterScene != undefined) {
           // 切换文章所属场景
-          yield put.resolve(action('SceneModel/enterScene')({ sceneId: item.object.enterScene }));
+          yield put.resolve(action('SceneModel/enterScene')({ 
+            sceneId: item.object.enterScene,
+            quiet: ((item.object.quiet != undefined) ? item.object.quiet : true),
+          }));
           sceneId = item.object.enterScene;
         } else if (item.object.chatId != undefined) {
           // 预生成选项数据
@@ -195,9 +201,12 @@ export default {
         // 寻找下一个分支
         const currentIndex = lo.indexOf(indexData.files, `${last.id}_${last.path}.txt`);
         if (indexData.files.length > (currentIndex + 1)) {
-          const next = indexData.files[currentIndex + 1];
-          if (next.indexOf(`${last.id}_${splits[0]}_N`) != -1) {
-            yield put.resolve(action('show')({ file: next, continue: true }));
+          for (let i = currentIndex + 1; i < indexData.files.length; i++) {
+            const next = indexData.files[i];
+            if (next.match(/^[^_]+[_]{1}[^_]+[_]{1}[^_]+\.txt$/) != null) {
+              yield put.resolve(action('show')({ file: next, continue: true }));
+              break;
+            }
           }
         }
       }
