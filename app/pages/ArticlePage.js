@@ -26,8 +26,19 @@ import Block from '../components/article';
 
 class ArticlePage extends Component {
 
+  constructor(props) {
+    super(props);
+    this.refList = React.createRef();
+  }
+
   componentDidMount() {
     this.props.dispatch(action('ArticleModel/show')({ file: 'XX_[START].txt' }));
+  }
+
+  componentDidUpdate() {
+    if (!this.props.continueView) {
+      this.refList.current.scrollToIndex({ index: 0, animated: false });
+    }
   }
 
   renderItem = (data) => {
@@ -55,6 +66,7 @@ class ArticlePage extends Component {
         </View>
         <View style={styles.bodyContainer}>
           <FlatList
+            ref={this.refList}
             data={this.props.sections}
             renderItem={this.renderItem}
             keyExtractor={item => item.key}

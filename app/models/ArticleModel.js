@@ -40,6 +40,9 @@ export default {
 
     // 展现用段落数据 [{ key: xxx, type: 'plain|code', content: xxx, object: xxx, height: xxx }, ...]
     sections: [],
+    
+    // 是否续章
+    continueView: false,
   },
 
   effects: {
@@ -123,10 +126,10 @@ export default {
       }
       
       if (payload.continue != undefined && payload.continue) {
-        yield put(action('updateState')({ sections: [...articleState.sections, ...data] }));
+        yield put(action('updateState')({ sections: [...articleState.sections, ...data], continueView: true }));
       } else {
         articleState.sections.length = 0;
-        yield put(action('updateState')({ sections: data }));
+        yield put(action('updateState')({ sections: data, continueView: false }));
       }
     },
 
