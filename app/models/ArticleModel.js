@@ -13,32 +13,60 @@ import lo from 'lodash';
 
 const WIN_SIZE = getWindowSize();
 
+const AddLoadedListHandler = (list, obj) => {
+  if (lo.isEqual(obj.path, '[START]')) {
+    list.length = 0;
+  }
+  list.push(obj);
+}
+
+const ParseFileDesc = (fileName) => {
+  const splits = fileName.replace('.txt', '').split('_');
+  const path = lo.join(lo.slice(splits, 1), '_');
+  return { id: splits[0], path: path };
+}
+
 export default {
   namespace: 'ArticleModel',
 
   state: {
-    // [{ key: xxx, type: 'plain|code', content: xxx, object: xxx, height: xxx }, ...]
+    __data: {
+      // 记录已加载的文件
+      loadedList: [],
+
+      // 记录小说描述索引[{ id: '小说ID'， files: 数据 }]
+      indexes: [],
+    },
+
+    // 展现用段落数据 [{ key: xxx, type: 'plain|code', content: xxx, object: xxx, height: xxx }, ...]
     sections: [],
   },
 
   effects: {
-    *reload({ }, { call, put }) {
-    },
 
     *show({ payload }, { call, put, select }) {
       const userState = yield select(state => state.UserModel);
       const articleState = yield select(state => state.ArticleModel);
       let sceneId = userState.sceneId;
 
-      const { id, path } = payload;
+      const { id, path } = (payload.file != undefined) ? ParseFileDesc(payload.file) : payload;
       const data = yield call(GetArticleDataApi, id, path);
+      if (data != null) AddLoadedListHandler(articleState.__data.loadedList, { id, path });
+
+      // 首次加载索引文件
+      if (articleState.__data.indexes.find(e => e.id == id) == undefined) {
+        const indexData = yield call(GetArticleIndexDataApi, id);
+        if (indexData != null) {
+          articleState.__data.indexes.push({ id: id, files: indexData.files });
+        }
+      }
 
       // 按需加载小分支
       if (path.indexOf('_') != -1) {
-        const fileIndexs = yield call(GetArticleIndexDataApi, id);
-        if (fileIndexs != null) {
+        const indexData = articleState.__data.indexes.find(e => e.id == id);
+        if (indexData != undefined) {
           const prefix = `${id}_${path}_`;
-          const smallBranches = fileIndexs.files.filter(e => e.indexOf(prefix) != -1);
+          const smallBranches = indexData.files.filter(e => e.indexOf(prefix) != -1);
           if (lo.isArray(smallBranches)) {
             for (let k in smallBranches) {
               const splits = smallBranches[k].split('_');
@@ -61,7 +89,9 @@ export default {
                 // 只有满足条件的才会合并小分支
                 const result = yield put.resolve(action('SceneModel/testCondition')({ ...firstItem.object }));
                 if (!result) continue;
+
                 data.push(...subData);
+                AddLoadedListHandler(articleState.__data.loadedList, { id: id, path: subPath });
               }
             }
           }
@@ -92,8 +122,12 @@ export default {
         }
       }
       
-      articleState.sections.length = 0;
-      yield put(action('updateState')({ sections: data }));
+      if (payload.continue != undefined && payload.continue) {
+        yield put(action('updateState')({ sections: [...articleState.sections, ...data] }));
+      } else {
+        articleState.sections.length = 0;
+        yield put(action('updateState')({ sections: data }));
+      }
     },
 
     *layout({ payload }, { call, put, select }) {
@@ -139,7 +173,23 @@ export default {
     },
 
     *end({ payload }, { call, put, select }) {
-      console.debug('end');
+      const articleState = yield select(state => state.ArticleModel);
+
+      // 当前分支的情况下自动续章
+      const last = lo.last(articleState.__data.loadedList);
+      const indexData = articleState.__data.indexes.find(e => e.id == last.id);
+
+      const splits = last.path.split('_');
+      if (splits.length > 1) {
+        // 寻找下一个分支
+        const currentIndex = lo.indexOf(indexData.files, `${last.id}_${last.path}.txt`);
+        if (indexData.files.length > (currentIndex + 1)) {
+          const next = indexData.files[currentIndex + 1];
+          if (next.indexOf(`${last.id}_${splits[0]}_N`) != -1) {
+            yield put.resolve(action('show')({ file: next, continue: true }));
+          }
+        }
+      }
     },
   },
   
@@ -154,7 +204,6 @@ export default {
 
   subscriptions: {
     setup({ dispatch }) {
-      dispatch({ 'type':  'reload'});
     },
   }
 }

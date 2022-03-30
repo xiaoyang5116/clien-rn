@@ -27,7 +27,7 @@ import Block from '../components/article';
 class ArticlePage extends Component {
 
   componentDidMount() {
-    this.props.dispatch(action('ArticleModel/show')({ id: 'XX', path: '[START]' }));
+    this.props.dispatch(action('ArticleModel/show')({ file: 'XX_[START].txt' }));
   }
 
   renderItem = (data) => {
