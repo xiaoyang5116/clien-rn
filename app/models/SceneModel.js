@@ -608,7 +608,7 @@ export default {
           const [v1, v2] = payload.andVarsOn[key].split('/');
           const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
           const varRef = VarUtils.getVar(sceneState.__data.vars, sceneId, varId);
-          if (varRef.value <= 0) {
+          if (varRef == null || varRef.value <= 0) {
             failure = true;
             break;
           }
@@ -619,7 +619,7 @@ export default {
           const [v1, v2] = payload.andVarsOff[key].split('/');
           const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
           const varRef = VarUtils.getVar(sceneState.__data.vars, sceneId, varId);
-          if (varRef.value > 0) {
+          if (varRef == null || varRef.value > 0) {
             failure = true;
             break;
           }
@@ -653,6 +653,10 @@ export default {
             const [v1, v2] = id.split('/');
             const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
             const varRef = VarUtils.getVar(sceneState.__data.vars, sceneId, varId);
+            if (varRef == null) {
+              failure = true;
+              break;
+            }
             compareValue = varRef.value;
           }
 

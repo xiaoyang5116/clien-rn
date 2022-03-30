@@ -1,11 +1,13 @@
 
 import { 
   action,
+  errorMessage,
   getWindowSize,
   toastType,
 } from "../constants";
 
 import { GetArticleDataApi } from '../services/GetArticleDataApi';
+import { GetArticleIndexDataApi } from '../services/GetArticleIndexDataApi';
 import Toast from "../components/toast";
 import lo from 'lodash';
 
@@ -26,11 +28,47 @@ export default {
     *show({ payload }, { call, put, select }) {
       const userState = yield select(state => state.UserModel);
       const articleState = yield select(state => state.ArticleModel);
+      let sceneId = userState.sceneId;
 
       const { id, path } = payload;
       const data = yield call(GetArticleDataApi, id, path);
-      let sceneId = userState.sceneId;
 
+      if (path.indexOf('_') != -1) {
+        // 显示分支时需要按条件加载小分支
+        const fileIndexs = yield call(GetArticleIndexDataApi, id);
+        if (fileIndexs != null) {
+          const prefix = `${id}_${path}_`;
+          const smallBranches = fileIndexs.files.filter(e => e.indexOf(prefix) != -1);
+          if (lo.isArray(smallBranches)) {
+            for (let k in smallBranches) {
+              const splits = smallBranches[k].split('_');
+              const smallBranch = splits[3].replace('.txt', '');
+              const subPath = `${splits[1]}_${splits[2]}_${smallBranch}`;
+
+              // 加载并按条件合并小分支内容
+              const subData = yield call(GetArticleDataApi, id, subPath);
+              if (lo.isArray(subData) && subData.length > 0) {
+                const firstItem = subData[0];
+                if (!lo.isEqual(firstItem.type, 'code'))
+                  continue; // 小分支第一行必须为指定条件
+                const conds = lo.keys(firstItem.object);
+                const inters = lo.intersection([...conds], ['andVarsOn', 'andVarsOff', 'andVarsValue']);
+                if (inters.length != conds.length) {
+                  errorMessage('Invalid article config: ' + conds);
+                  continue; // 仅允许指定条件判断语句
+                }
+
+                // 只有满足条件的才会合并小分支
+                const result = yield put.resolve(action('SceneModel/testCondition')({ ...firstItem.object }));
+                if (!result) continue;
+                data.push(...subData);
+              }
+            }
+          }
+        }
+      }
+
+      // 预处理
       for (let k in data) {
         const item = data[k];
         if (!lo.isEqual(item.type, 'code') || item.object == null)

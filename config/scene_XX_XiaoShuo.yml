@@ -34,6 +34,13 @@ scenes: [
           { title: '【选择分支1】', toChapter: 'XX/M1_N1' }, 
         ],
       },
+      #
+      { 
+        id: 'c3', desc: '', 
+        options: [ 
+          { title: '【返回主线1】', varsOn: ['v1'], toChapter: 'XX/M1' }, 
+        ],
+      },
     ],
 
     # 对话框
