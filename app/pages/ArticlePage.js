@@ -44,6 +44,10 @@ class ArticlePage extends Component {
     }));
   }
 
+  endReachedHandler = () => {
+    this.props.dispatch(action('ArticleModel/end')({}));
+  }
+
   render() {
     return (
       <View style={styles.viewContainer}>
@@ -56,6 +60,7 @@ class ArticlePage extends Component {
             keyExtractor={item => item.key}
             onViewableItemsChanged={this.viewableItemsChangedhandler}
             onScroll={this.scrollHandler}
+            onEndReached={this.endReachedHandler}
           />
         </View>
         <View style={styles.debugContainer} pointerEvents="box-none" >

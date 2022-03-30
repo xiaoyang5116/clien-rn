@@ -33,8 +33,8 @@ export default {
       const { id, path } = payload;
       const data = yield call(GetArticleDataApi, id, path);
 
+      // 按需加载小分支
       if (path.indexOf('_') != -1) {
-        // 显示分支时需要按条件加载小分支
         const fileIndexs = yield call(GetArticleIndexDataApi, id);
         if (fileIndexs != null) {
           const prefix = `${id}_${path}_`;
@@ -136,6 +136,10 @@ export default {
           }
         }
       }
+    },
+
+    *end({ payload }, { call, put, select }) {
+      console.debug('end');
     },
   },
   
