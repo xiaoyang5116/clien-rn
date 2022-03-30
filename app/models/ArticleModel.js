@@ -76,23 +76,31 @@ export default {
               const smallBranch = splits[3].replace('.txt', '');
               const subPath = `${splits[1]}_${splits[2]}_${smallBranch}`;
 
-              // 加载并按条件合并小分支内容
+              // 按条件加载小分支
               const subData = yield call(GetArticleDataApi, id, subPath);
-              if (lo.isArray(subData) && subData.length > 0) {
-                const firstItem = subData[0];
-                if (!lo.isEqual(firstItem.type, 'code'))
-                  continue; // 小分支第一行必须为指定条件
-                const conds = lo.keys(firstItem.object);
+              if (lo.isArray(subData) && subData.length > 1) {
+                const [sceneItem, condItem] = lo.slice(subData, 0, 2);
+
+                // 小分支前两行分别为场景、条件指令
+                if (!lo.isEqual(sceneItem.type, 'code') || !lo.isEqual(condItem.type, 'code'))
+                  continue;
+
+                // 切换小分支所属场景
+                yield put.resolve(action('SceneModel/enterScene')({ sceneId: sceneItem.object.enterScene }));
+                sceneId = sceneItem.object.enterScene;
+
+                // 小分支根据变量判断
+                const conds = lo.keys(condItem.object);
                 const inters = lo.intersection([...conds], ['andVarsOn', 'andVarsOff', 'andVarsValue']);
                 if (inters.length != conds.length) {
                   errorMessage('Invalid article config: ' + conds);
-                  continue; // 仅允许指定条件判断语句
+                  continue;
                 }
 
-                // 只有满足条件的才会合并小分支
-                const result = yield put.resolve(action('SceneModel/testCondition')({ ...firstItem.object }));
+                const result = yield put.resolve(action('SceneModel/testCondition')({ ...condItem.object }));
                 if (!result) continue;
 
+                // 合并数据
                 data.push(...subData);
                 AddLoadedListHandler(articleState.__data.loadedList, { id: id, path: subPath });
               }

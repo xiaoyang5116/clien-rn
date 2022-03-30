@@ -75,11 +75,11 @@ class ArticlePage extends Component {
             onEndReached={this.endReachedHandler}
           />
         </View>
-        <View style={styles.debugContainer} pointerEvents="box-none" >
+        {/* <View style={styles.debugContainer} pointerEvents="box-none" >
           <View style={{ borderWidth: 1, borderColor: '#999', width: '100%', height: 200, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', opacity: 0.5, backgroundColor: '#ccc' }} pointerEvents="box-none">
             <Text>事件触发区域</Text>
           </View>
-        </View>
+        </View> */}
       </View>
     );
   }
