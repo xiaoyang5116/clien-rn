@@ -7,6 +7,7 @@ scenes: [
     isNpc: true,
     # 变量定义
     vars: [
+     # 用这个变量定义落月镇经过的剧情天数，第0天为接续开局事件
       { id: 'Event01Day0', min: 0, max: 1 ,defaultValue: 1,},
       { id: 'Event01Day1', min: 0, max: 1 ,defaultValue: 0,},
       { id: 'Event01Day2', min: 0, max: 1 ,defaultValue: 0,},

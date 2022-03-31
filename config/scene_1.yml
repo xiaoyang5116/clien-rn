@@ -122,7 +122,7 @@ scenes: [
         id: 'c0', desc: '洁白的未知空间内', 
         options: [ 
           { title: '【查看四周】', andVarsOff: ['v5'], nextChat: 'c6' }, 
-          { title: '【思考】', andVarsOn: ['v5'], nextChat: 'c7'}, 
+          { title: '【思考】', andVarsOn: ['v5'], nextChat: 'c7' }, 
           { title: '【查看选项】', andVarsOn: ['v5'], nextChat: 'c1' }, 
         ],
       },
@@ -187,7 +187,7 @@ scenes: [
     # 对话框
     dialogs: [
       { id: 'p0', style: 1, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '……', '一个奇怪的雪白色空间内','听不出音调的声音响起', '你穿越了', '请选择穿越开局' ], nextChat: 'c0' },
-      { id: 'p1', style: 1, sections: ['我正在聊天，这就把我送到了这种奇怪空间里了', '不是有大能力，也办不到这种事吧', '不就是说乞丐也能翻盘而已，怎么那么小心眼', '……' ], nextChat: 'c7' },
+      { id: 'p1', style: 1, sections: ['我正在聊天，这就把我送到了这种奇怪空间里了', '不是有大神通的仙人，也办不到这种事吧', '不就是说乞丐也能翻盘而已，怎么那么小心眼', '……' ], nextChat: 'c7' },
       { id: 'p2', style: 1, sections: ['按照理论，既然会有名额不够', '那么是不是就意味着，之前还有其他名额……', '……', '知道真相了!但貌似又没什么用', '……'], nextChat: 'c7' },
     ],
   },

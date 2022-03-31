@@ -29,10 +29,10 @@ scenes: [
 
     # 事件定义
     events: [
-      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day0',],nextChat: 'pomiao_Event01Day0A', dialogs: ['start_dialog01'] },
-      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day1',],nextChat: 'pomiao_Event01Day1' },
-      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day2',],nextChat: 'pomiao_Event01Day2' },
-      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day3',],nextChat: 'pomiao_Event01Day3' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day0',], nextChat: 'pomiao_Event01Day0A', dialogs: ['start_dialog01'] },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day1',], nextChat: 'pomiao_Event01Day1' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day2',], nextChat: 'pomiao_Event01Day2' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day3',], nextChat: 'pomiao_Event01Day3' },
     ],
 
     # 对话选项
@@ -63,15 +63,22 @@ scenes: [
           { title: '【询问  这是在哪】', andVarsOn: ['v7'], andVarsOff: ['v8'], varsOn: ['M01_S01_luoyuezhen_Time/Event01Day1'], dialogs: ['d2'] }, 
           { title: '【承认伤到脑袋】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p13'] }, 
           { title: '【拒绝承认】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p14'] }, 
-          { title: '>>>【离开破庙】', andVarsOn: ['v9'], toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
+          { title: '>>>【离开破庙】', andVarsOn: ['v9'], varsOff: ['M01_S01_luoyuezhen_Time/Event01Day0'],toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
         ],
       },
     # 对话选项2
      {
         id: 'pomiao_Event01Day1', desc: '这里是乞丐临时休息的居所，能遮风挡雨', 
         options: [ 
-          { title: '>>>【走出破庙】', andVarsOn: ['v_1DayOpenThrough'], andVarsOff: ['v12'], toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
-          { title: '【睡觉到下一天】', andVarsOn: ['hutongkou/v3'], andVarsOff: ['v12'], alertWorldTime: '@day/1/6', nextChat:'c3' }, 
+          { title: '>>>【走出破庙】', andVarsOn: ['v1'], toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
+          { title: '【睡觉到下一天】', andVarsOn: ['v1'], alertWorldTime: '@day/1/6', toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
+        ],
+      },
+     {
+        id: 'pomiao_Event01Day2', desc: '这里是乞丐临时休息的居所，能遮风挡雨', 
+        options: [ 
+          { title: '>>>【走出破庙】', andVarsOn: ['v1'], toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
+          { title: '【睡觉到下一天】', andVarsOn: ['v1'], varsOn: ['Event01_1DayOpenThrough'], alertWorldTime: '@day/1/6', toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
         ],
       },
 
@@ -88,9 +95,9 @@ scenes: [
           { title: '【镇口大门】', andVarsOn: ['v14'], andVarsOff: ['v15']}, 
           { title: '【……】', andVarsOn: ['v15'], andVarsOff: ['v16'], dialogs: ['p26']}, 
           { title: '【现在也许不行，今后会说服你的。】', andVarsOn: ['v15'], andVarsOff: ['v16'],dialogs: ['p27']}, 
-          { title: '【不说了，睡觉】', andVarsOn: ['v16'], alertWorldTime: '@day/1/6', nextChat: 'c1'}, 
+          { title: '【不说了，睡觉】', andVarsOn: ['v16'], alertWorldTime: '@day/1/6', nextChat: 'pomiao_Event01Day3'}, 
           { title: '>>>【走出破庙】', andVarsOn: ['v_2DayOpenThrough'], andVarsOff: ['v12'], toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
-          { title: '【睡觉到下一天】', andVarsOn: ['hutongkou/v3'], andVarsOff: ['v12'], alertWorldTime: '@day/1/6', nextChat:'c3' }, 
+          { title: '【睡觉到下一天】', andVarsOn: ['hutongkou/v3'], andVarsOff: ['v12'], alertWorldTime: '@day/1/6', toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
         ],
       },
 

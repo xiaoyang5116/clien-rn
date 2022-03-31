@@ -1,0 +1,37 @@
+scenes: [
+  # 破庙门口场景
+  {
+    id: 'M01_S07_luoyuezhen_beijieshi', name: '北街集市',
+
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c1' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'c1', desc: '繁华的商业街道。', 
+        options: [ 
+          { title: '【观察街市内】', andVarsOff: ['v1'], dialogs: ['p1'] }, 
+          { title: '>>>【集市一角】', andVarsOn: ['v1'], toScene: 'jishiyijiao'}, 
+        ],
+      },
+    ],
+
+    # 对话框
+    dialogs: [
+      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['这里是外来的一般商家来的市场，一般为了图个彩头，不会有多寒酸 我们就在这附近讨乞。不出这条路就行。', '讨乞后每天晚上要给帮派利钱，不然被记住会被帮派打走。', '记住不要去北街，那是富人才能去的地方，乞丐是去不了的。会被打。'], varsOn: ['v1'], nextChat: 'c1' },
+    ],
+  },
+]

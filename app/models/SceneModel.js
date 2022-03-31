@@ -120,6 +120,8 @@ const SCENES_LIST = [
   'scene_4', 'scene_5', 'scene_6', 
   'scene_7', 'scene_8',
   'npc_1',
+  'M01_S01_luoyuezhen_pomiao', 'M01_S01_luoyuezhen_Time','M01_S01_luoyuezhen_pomiaomenko','M01_S02_luoyuezhen_hutongkou','M01_S03_luoyuezhen_juminjie',
+  'M01_S04_luoyuezhen_dalukou',  'M01_S05_luoyuezhen_nanjieshi','M01_S06_luoyuezhen_jishiyijiao',
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;

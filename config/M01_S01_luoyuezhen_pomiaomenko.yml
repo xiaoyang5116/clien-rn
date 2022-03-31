@@ -28,24 +28,25 @@ scenes: [
       { 
         id: 'pomiaomenko_Event01Day1', desc: '请选择移动', 
         options: [ 
-         { title: '【>>>落月镇西-胡同口】', toScene: 'hutongkou' }, 
-         { title: '【>>>进入破庙】', toScene: 'pomiao' }, 
+         { title: '>>>【落月镇西-胡同口】', toScene: 'M01_S02_luoyuezhen_hutongkou' }, 
+         { title: '>>>【回到破庙】', dialogs: ['p1']}, 
+         { title: '>>>【TEST进入破庙】', toScene: 'M01_S01_luoyuezhen_pomiao' }, 
         ],
       },
     #
       { 
         id: 'pomiaomenko_Event01Day2', desc: '请选择移动', 
         options: [ 
-         { title: '【>>>落月镇西-胡同口】', toScene: 'hutongkou' }, 
-         { title: '【>>>进入破庙】', toScene: 'pomiao' }, 
+         { title: '>>>【落月镇西-胡同口】', toScene: 'M01_S02_luoyuezhen_hutongkou' }, 
+         { title: '>>>【进入破庙】', toScene: 'M01_S01_luoyuezhen_pomiao' }, 
         ],
       },
      #
       { 
         id: 'pomiaomenko_Event01Day3', desc: '请选择移动', 
         options: [ 
-         { title: '【>>>落月镇西-胡同口】', toScene: 'hutongkou' }, 
-         { title: '【>>>进入破庙】', toScene: 'pomiao' }, 
+         { title: '>>>【落月镇西-胡同口】', toScene: 'M01_S02_luoyuezhen_hutongkou' }, 
+         { title: '>>>【进入破庙】', toScene: 'M01_S01_luoyuezhen_pomiao' }, 
         ],
       },
       { 
@@ -76,6 +77,7 @@ scenes: [
 
     # 对话框
     dialogs: [
+   { id: 'p1', style: 2, title: '乞丐李大哥：',sections: ['你准备往哪呢，现在不是回去的时候'],  nextChat: 'pomiaomenko_Event01Day1' },
     ]
   },
 ]
