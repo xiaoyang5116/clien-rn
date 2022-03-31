@@ -1,0 +1,14 @@
+# ===========================================
+# 文件索引表
+# ===========================================
+files: [
+  'WZXX_[START].txt',
+  'WZXX_M1.txt',
+  'WZXX_M2.txt',
+  'WZXX_M3.txt',
+  'WZXX_M1_N1.txt',
+  'WZXX_M1_N1_[A1].txt',
+  'WZXX_M1_N1_[A2].txt',
+  'WZXX_M1_N2.txt',
+  'WZXX_M1_N3.txt',
+]

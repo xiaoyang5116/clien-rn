@@ -1,0 +1,10 @@
+books: {
+
+  # 有效书的列表
+  list: [
+    'QGXX',
+    'WZXX',
+    'TEST',
+  ],
+
+}

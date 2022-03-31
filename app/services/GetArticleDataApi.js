@@ -26,14 +26,14 @@ import fs from "react-native-fs";
 let UNIQUE_KEY = 1;
 
 export async function GetArticleDataApi(id, path) {
-    let url = `http://localhost:8081/config/${id}/${id}_${path}.txt`;
+    let url = `http://localhost:8081/config/${id}/TXT/${id}_${path}.txt`;
     return fetch(url)
     .then(r => r.text(url))
     .then(text => {
         // 返回格式化的段落数据
         const sectionData = [];
 
-        const items = text.split(/#(BEGIN|END)[=]{1,}[\n]+/);
+        const items = text.split(/#(BEGIN|END)[=]{1,}[\r\n]+/);
 
         let begin = false;
         let code = '';

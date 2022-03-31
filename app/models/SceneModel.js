@@ -11,6 +11,14 @@ import {
   GetSceneDataApi,
 } from "../services/GetSceneDataApi";
 
+import {
+  GetBooksDataApi,
+} from "../services/GetBooksDataApi";
+
+import {
+  GetBookConfigDataApi,
+} from "../services/GetBookConfigDataApi";
+
 import LocalStorage from '../utils/LocalStorage';
 import * as DateTime from '../utils/DateTimeUtils';
 import * as RootNavigation from '../utils/RootNavigation';
@@ -102,7 +110,6 @@ class PropertyActionBuilder {
       allActions.push({ id: "__chapter_{0}".format(payload.toChapter), cmd: 'chapter', params: payload.toChapter });
     }
 
-
     return allActions;
   }
 }
@@ -120,15 +127,6 @@ const ACTIONS_MAP = [
   { cmd: 'sendProps',     handler: '__onSendPropsCommand' },
   { cmd: 'seqId',         handler: '__onSeqIdCommand' },
   { cmd: 'chapter',       handler: '__onChapterCommand' },
-];
-
-const SCENES_LIST = [
-  'scene_1', 'scene_2', 'scene_3', 
-  'scene_4', 'scene_5', 'scene_6', 
-  'scene_7', 'scene_8',
-  'npc_1', 'scene_XX_XiaoShuo',
-  'M01_S01_luoyuezhen_pomiao', 'M01_S01_luoyuezhen_Time','M01_S01_luoyuezhen_pomiaomenko','M01_S02_luoyuezhen_hutongkou','M01_S03_luoyuezhen_juminjie',
-  'M01_S04_luoyuezhen_dalukou',  'M01_S05_luoyuezhen_nanjieshi','M01_S06_luoyuezhen_jishiyijiao',
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;
@@ -151,6 +149,9 @@ export default {
         ],
       },
 
+      // 场景列表
+      sceneList: [],
+
       // 场景配置访问器
       cfgReader: null,
     }
@@ -161,10 +162,22 @@ export default {
     *reload({ }, { call, put, select }) {
       const sceneState = yield select(state => state.SceneModel);
 
+      if (sceneState.__data.scenesConfig == null) {
+        const booksConfig = yield call(GetBooksDataApi);
+        for (let k in booksConfig.books.list) {
+          const bookId = booksConfig.books.list[k];
+          const bookConfig = yield call(GetBookConfigDataApi, bookId);
+          if (bookConfig != null) {
+            const sceneList = bookConfig.book.scene_list.map(e => `${bookId}/SCENE/${e}`);
+            sceneState.__data.sceneList.push(...sceneList);
+          }
+        }
+      }
+
       // 获取场景配置
       let scenes = [];
-      for (let key in SCENES_LIST) {
-        const sceneId = SCENES_LIST[key];
+      for (let key in sceneState.__data.sceneList) {
+        const sceneId = sceneState.__data.sceneList[key];
         const data = yield call(GetSceneDataApi, sceneId);
         if (data.scenes != undefined) {
           data.scenes.forEach((e) => {
