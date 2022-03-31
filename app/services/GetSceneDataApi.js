@@ -1,8 +1,8 @@
 
 import yaml from 'js-yaml';
 
-export async function GetSceneDataApi(params) {
-    let url = "http://localhost:8081/config/{0}.yml".format(params);
+export async function GetSceneDataApi(path) {
+    let url = "http://localhost:8081/config/{0}.yml".format(path);
     return fetch(url)
     .then(r => r.text(url))
     .then(text => {

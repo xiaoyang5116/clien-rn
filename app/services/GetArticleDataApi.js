@@ -6,7 +6,7 @@ import lo from 'lodash';
 let UNIQUE_KEY = 1;
 
 export async function GetArticleDataApi(id, path) {
-    let url = `http://localhost:8081/config/${id}/${id}_${path}.txt`;
+    let url = `http://localhost:8081/config/${id}/TXT/${id}_${path}.txt`;
     return fetch(url)
     .then(r => r.text(url))
     .then(text => {

@@ -1,0 +1,18 @@
+book: {
+  # 起始场景
+  init: '',
+
+  # 场景列表
+  scene_list: [
+    'scene_1', 
+    'scene_2', 
+    'scene_3', 
+    'scene_4', 
+    'scene_5', 
+    'scene_6', 
+    'scene_7', 
+    'scene_8',
+    'npc_1', 
+  ],
+
+}

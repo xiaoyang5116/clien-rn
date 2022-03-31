@@ -1,0 +1,165 @@
+scenes: [
+  # 破庙门口场景
+  {
+    id: 'M01_S06_luoyuezhen_jishiyijiao', name: '集市一角',
+
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1 },
+      { id: 'v2', min: 0, max: 1 },
+      { id: 'v3', min: 0, max: 1 },
+      { id: 'v4', min: 0, max: 1 },
+      { id: 'v5', min: 0, max: 1 },
+      { id: 'v6', min: 0, max: 1 },
+      { id: 'v7', min: 0, max: 1 },
+      { id: 'v8', min: 0, max: 1 },
+      { id: 'v9', min: 0, max: 1 },
+      { id: 'v10', min: 0, max: 1 },
+      { id: 'v11', min: 0, max: 1 },
+      { id: 'v12', min: 0, max: 1 },
+      { id: 'v13', min: 0, max: 1 },
+      { id: 'v14', min: 0, max: 1 },
+      { id: 'v15', min: 0, max: 1 },
+      { id: 'v16', min: 0, max: 1 },
+      { id: 'v17', min: 0, max: 1 },
+      { id: 'v18', min: 0, max: 1 },
+      { id: 'v19', min: 0, max: 1 },
+      { id: 'v20', min: 0, max: 1 },
+      { id: 'v21', min: 0, max: 1 },
+      { id: 'v22', min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day1'], nextChat: 'jishiyijiao_Event01Day1' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day2'], nextChat: 'jishiyijiao_Event01Day2' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day3'], nextChat: 'jishiyijiao_Event01Day3' },
+
+      { type: 'repeat', andVarsOn: ['v9'], andVarsOff: ['v10'], andVarsValue: ['@world_time_hours >= 17'], varsOn: ['v10'], dialogs: ['p9'] },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'jishiyijiao_Event01Day1', desc: '这里是经常讨乞的地方', 
+        options: [ 
+          # 第一天
+          { title: '【和乞丐李大哥对话】', andVarsOff: ['v1'], dialogs: ['p0'] }, 
+          { title: '【学着大哥乞讨】', andVarsOn: ['v1'], andVarsOff: ['v5', 'v7', 'v8'], nextChat: 'jishiyijiao_Event01Day1B' }, 
+          { title: '【观察周围】', andVarsOn: ['v2'], andVarsOff: ['v5', 'v7', 'v8'], dialogs: ['p2'] }, 
+          { title: '【再次观察周围】', andVarsOn: ['v3'], andVarsOff: ['v5', 'v7', 'v8'], dialogs: ['p3'] }, 
+          { title: '【提问】', andVarsOn: ['v4'], andVarsOff: ['v5', 'v7', 'v8'], dialogs: ['p4'] }, 
+          { title: '【继续乞讨一段时间】 ', andVarsOn: ['v5'], andVarsOff: ['v7', 'v8','v17'], andVarsValue: ['@world_time_hours < 17'], dialogs: ['p5'], nextChat: 'jishiyijiao_Event01Day1', alertCopper: '1', alertWorldTime: '10800000' }, 
+          { title: '【继续乞讨一段时间】 ', andVarsOn: ['v5', 'v17'], andVarsOff: ['v7', 'v8'], andVarsValue: ['@world_time_hours < 17'], nextChat: 'jishiyijiao_Event01Day1', alertCopper: '1', alertWorldTime: '10800000' },
+          { title: '【继续乞讨一段时间】 ', andVarsOn: ['v5',], andVarsOff: ['v7', 'v8'], andVarsValue: ['@world_time_hours >= 17'], dialogs: ['p6'], nextChat: 'jishiyijiao_Event01Day1' }, 
+          { title: '【支付】', andVarsOn: ['v7'], andVarsOff: ['v8'], dialogs: ['p7'], alertCopper: '-20%' }, 
+          { title: '【今天已经累了，先回去破庙】', andVarsOn: ['v8'], andVarsOff: ['v9'], varsOn: ['v9'], toScene: 'M01_S01_luoyuezhen_pomiao' }, 
+         # { title: '今天已经累了，先回去吧', andVarsOn: ['v8'], andVarsOff: ['v9'], varsOn: ['v9'], toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
+        ],
+      },
+      { 
+        id: 'jishiyijiao_Event01Day1B', desc: '路人露出鄙视的眼神', 
+        options: [
+          { title: '敷衍的乞讨', nextChat: 'jishiyijiao_Event01Day1C' }, 
+          { title: '真诚的乞讨', nextChat: 'jishiyijiao_Event01Day1D' }, 
+          { title: '返回', varsOn: ['v2'], nextChat: 'jishiyijiao_Event01Day1' }, 
+        ],
+      },
+     { 
+        id: 'jishiyijiao_Event01Day1C', desc: '路人偶尔经过，但都无视了你', 
+        options: [
+          { title: '返回', nextChat: 'jishiyijiao_Event01Day1B' }, 
+        ],
+      },
+     { 
+        id: 'jishiyijiao_Event01Day1D', desc: '没人搭理，一阵冷风吹过', 
+        options: [
+          { title: '返回', nextChat: 'jishiyijiao_Event01Day1B' }, 
+        ],
+      },
+      #
+      { 
+        id: 'jishiyijiao_Event01Day2', desc: '这里是经常讨乞的地方', 
+        options: [ 
+          # 第二天
+          { title: '【学着大哥乞讨】', andVarsOn: ['v9'], andVarsOff: ['v10'], dialogs: ['p8'], alertCopper: '2', alertWorldTime: '10800000' }, 
+          { title: '【支付】', andVarsOn: ['v11'], andVarsOff: ['v12'], varsOn: ['v12'], dialogs: ['p11', 'p12'], alertCopper: '-20%' }, 
+          { title: '【问乞丐哥】', andVarsOn: ['v12'], andVarsOff: ['v13'], dialogs: ['p13'] }, 
+          { title: '>>>【离开集市】', andVarsOn: ['v13'], varsOn: ['v14',], andVarsOff: ['v18'], },
+          # 第三天
+          { title: '【观察周围】', andVarsOn: ['v14'], andVarsOff: ['v18'], dialogs: ['p15'] ,}, 
+          { title: '【继续乞讨】', andVarsOn: ['v15'], andVarsOff: ['v16', 'v18'], alertCopper: '1', dialogs: ['p16'],}, 
+          { title: '【继续乞讨】', andVarsOn: ['v16'], andVarsOff: ['v18'], dialogs: ['p17'],}, 
+          { title: '【去拿菜刀】', andVarsOn: ['v18'], andVarsOff: ['v19'], dialogs: ['d1'],}, 
+          { title: '【去拿画轴】', andVarsOn: ['v18'], andVarsOff: ['v19'], dialogs: ['d2'],}, 
+          { title: '【再拿一件先】', andVarsOn: ['v19'],  andVarsOff: ['v20'], dialogs: ['p21'],}, 
+          { title: '【再拿……】', andVarsOn: ['v20'], andVarsOff: ['v21'], dialogs: ['p22'],}, 
+          { title: '【赶快走】', andVarsOn: ['v20'], andVarsOff: ['v21'], varsOn: ['v21'], dialogs: ['p23'],}, 
+          { title: '>>>【回到破庙】', andVarsOn: ['v21'], toScene: 'M01_S01_luoyuezhen_pomiao' }, 
+        ],
+     },
+      #
+      { 
+        id: 'jishiyijiao_Event01Day3', desc: '这里是经常讨乞的地方', 
+        options: [ 
+          # 第二天
+          { title: '【学着大哥乞讨】', andVarsOn: ['v9'], andVarsOff: ['v10'], dialogs: ['p8'], alertCopper: '2', alertWorldTime: '10800000' }, 
+          { title: '【支付】', andVarsOn: ['v11'], andVarsOff: ['v12'], varsOn: ['v12'], dialogs: ['p11', 'p12'], alertCopper: '-20%' }, 
+          { title: '【问乞丐哥】', andVarsOn: ['v12'], andVarsOff: ['v13'], dialogs: ['p13'] }, 
+          { title: '>>>【回到破庙】', andVarsOn: ['v13'], varsOn: ['v14',], andVarsOff: ['v18'], toScene: 'M01_S01_luoyuezhen_pomiao' },
+          # 第三天
+          { title: '【观察周围】', andVarsOn: ['v14'], andVarsOff: ['v18'], dialogs: ['p15'] ,}, 
+          { title: '【继续乞讨】', andVarsOn: ['v15'], andVarsOff: ['v16', 'v18'], alertCopper: '1', dialogs: ['p16'],}, 
+          { title: '【继续乞讨】', andVarsOn: ['v16'], andVarsOff: ['v18'], dialogs: ['p17'],}, 
+          { title: '【去拿菜刀】', andVarsOn: ['v18'], andVarsOff: ['v19'], dialogs: ['d1'],}, 
+          { title: '【去拿画轴】', andVarsOn: ['v18'], andVarsOff: ['v19'], dialogs: ['d2'],}, 
+          { title: '【再拿一件先】', andVarsOn: ['v19'],  andVarsOff: ['v20'], dialogs: ['p21'],}, 
+          { title: '【再拿……】', andVarsOn: ['v20'], andVarsOff: ['v21'], dialogs: ['p22'],}, 
+          { title: '【赶快走】', andVarsOn: ['v20'], andVarsOff: ['v21'], varsOn: ['v21'], dialogs: ['p23'],}, 
+          { title: '>>>【回到破庙】', andVarsOn: ['v21'], toScene: 'M01_S01_luoyuezhen_pomiao' }, 
+        ],
+     },
+    ],
+
+    # 对话框
+    dialogs: [
+      { id: 'p0', style: 2, title: '乞丐李大哥：', sections: ['这里是平常乞讨的位置，记住讨乞后每天晚上要给帮派利钱，不然被记住会被帮派赶走。'], varsOn: ['v1'], nextChat: 'jishiyijiao_Event01Day1' },
+      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['各位老爷行行好，给点赏赐，大吉大利……'], varsOn: ['v1'], andVarsOff: ['v1'], nextChat: 'jishiyijiao_Event01Day1' },
+      { id: 'p2', style: 2, sections: ['周围形形色色的人川流而过，各种面孔，大多数人的衣着都还不错，能看出不少人带着行李商品，各种驴车马车偶尔带着商品经过。'], varsOn: ['v3'], nextChat: 'jishiyijiao_Event01Day1' },
+      { id: 'p3', style: 2, sections: ['能看到不少人带着武器，像是武者的打扮。'], varsOn: ['v4'], nextChat: 'jishiyijiao_Event01Day1' },
+      { id: 'p4', style: 2, sections: ['李大哥，你有没有发现，这里拿兵器的人不少，这是正常的吗。', '因为城镇外野兽精怪出没，这些跑商路的通常会雇佣一些佣兵防身，你看到的这些人估计都是些做这种活计的武者。'], varsOn: ['v5'], nextChat: 'jishiyijiao_Event01Day1' },
+      { id: 'p5', style: 2, title: '乞丐李大哥', sections: ['如果有两个铜币就够一个包子钱，加油'], varsOn: ['v6', 'v17'], andVarsOff: ['v6'], nextChat: 'jishiyijiao_Event01Day1' },
+      { id: 'p6', style: 1, title: '帮派小弟：', sections: ['天色已晚，今日的份子交了吧'], varsOn: ['v7'], nextChat: 'jishiyijiao_Event01Day1' },
+      { id: 'p7', style: 1, title: '', sections: ['已扣除身上两成的铜币'], varsOn: ['v8'], nextChat: 'jishiyijiao_Event01Day1' },
+      { id: 'p8', style: 2, title: '', sections: ['获得2个铜币'], nextChat: 'jishiyijiao_Event01Day1' },
+      { id: 'p9', style: 1, title: '', sections: ['第二天，帮派小弟来收保护费。'], dialogs: ['p10'] },
+      { id: 'p10', style: 2, title: '', sections: ['又到晚上了，今日的份子交了吧'], varsOn: ['v11'], nextChat: 'jishiyijiao_Event01Day2' },
+      { id: 'p11', style: 2, title: '', sections: ['已扣除身上两成的铜币', '还是你们识相，我们老大可是真本事，有修为的，你们要是有心，以后可以加入我们帮派。', '帮派小弟离开了。'] },
+      { id: 'p12', style: 1, title: '', sections: ['有修为是什么意思，难道是武侠，或者是修仙？'], varsOn: ['v12'], nextChat: 'jishiyijiao_Event01Day2' },
+      { id: 'p13', style: 2, title: '乞丐哥：', sections: ['我一个乞丐，哪里知道那么多，估计你要自己去问了，我们吃了上顿没下顿，别想那么多。'], dialogs: ['p14'] },
+      { id: 'p14', style: 2, title: '', sections: ['来到这个世界，莫非真做乞丐一辈子？既然到了一个可能有修仙的世界，就一定要打听清楚。'], varsOn: ['v13'], nextChat: 'jishiyijiao_Event01Day2' },
+      { id: 'p15', style: 2, title: '', sections: ['今天人依旧热闹，比昨天的人更多。','有听说吗，隔壁镇子好像来了大人物，收购大宗物资，不少商家都准备临时去碰碰运气。'], varsOn: ['v15'], nextChat: 'jishiyijiao_Event01Day2' },
+      { id: 'p16', style: 2, title: '', sections: ['获得1个铜币'], varsOn: ['v16'], nextChat: 'c1' },
+      { id: 'p17', style: 1, title: '', sections: ['正在无聊的乞讨中，在十字路口边，两架马车撞在了一起，马车一路颠簸一些货物掉了下来,这些东西引起了尤其是附近乞丐的哄抢。'], dialogs: ['p18'], },
+      { id: 'p18', style: 2, title: '', sections: ['都当乞丐了，在生存面前，可不是做善人的时候，这机会可不要放过。'], dialogs: ['p19'], },
+      { id: 'p19', style: 1, title: '', sections: ['你迅速跑过去，地面有些东西。'], varsOn: ['v18'], nextChat: 'jishiyijiao_Event01Day2'},
+      { id: 'p20', style: 2, title: '', sections: ['走开走开，马夫大喝， 正从远处拨开人群走来。'], varsOn: ['v19'], nextChat: 'jishiyijiao_Event01Day2'},
+      { id: 'p21', style: 1, title: '', sections: ['获得几颗石头珠子，看起来能卖不少钱。'], varsOn: ['v20'], nextChat: 'jishiyijiao_Event01Day2'},
+      { id: 'p22', style: 1, title: '', sections: ['你被抓住了，进了大牢，虽然几个月就出狱了，但总觉得好像错过了什么。'], dialogs: ['p24']},
+      { id: 'p23', style: 1, title: '', sections: ['……', '负责市场的卫队来了，事件很快平息，来不得走的乞丐都被抓起来打了一顿。'], nextChat: 'jishiyijiao_Event01Day2'},
+      { id: 'p24', style: 2, title: '', sections: ['游戏结束页面'], nextChat: 'jishiyijiao_Event01Day3'},
+
+      #
+      { id: 'd1', title: '', content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。', dialogs: ['p20'], varsOn: ['v19'], nextChat: 'jishiyijiao_Event01Day2'},
+      { id: 'd2', title: '', content: '那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。', dialogs: ['p20'], varsOn: ['v19'], nextChat: 'jishiyijiao_Event01Day2' },
+
+     { id: 'd1', title: '乞丐李大哥：', content: '天黑了，今天该回去了', toScene: 'M01_S01_luoyuezhen_pomiao' },
+
+    ],
+  },
+]
