@@ -126,8 +126,9 @@ const SCENES_LIST = [
   'scene_1', 'scene_2', 'scene_3', 
   'scene_4', 'scene_5', 'scene_6', 
   'scene_7', 'scene_8',
-  'npc_1',
-  'scene_XX_XiaoShuo',
+  'npc_1', 'scene_XX_XiaoShuo',
+  'M01_S01_luoyuezhen_pomiao', 'M01_S01_luoyuezhen_Time','M01_S01_luoyuezhen_pomiaomenko','M01_S02_luoyuezhen_hutongkou','M01_S03_luoyuezhen_juminjie',
+  'M01_S04_luoyuezhen_dalukou',  'M01_S05_luoyuezhen_nanjieshi','M01_S06_luoyuezhen_jishiyijiao',
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;
@@ -222,7 +223,7 @@ export default {
     *enterScene({ payload }, { put, call, select }) {
       const userState = yield select(state => state.UserModel);
       const sceneState = yield select(state => state.SceneModel);
-      const sceneId = payload.sceneId;
+      const {sceneId, quiet} = payload;
       
       const scene = sceneState.__data.cfgReader.getScene(sceneId);
       if (scene == null) {
@@ -230,14 +231,20 @@ export default {
         return;
       }
 
+      let needSync = false;
       if (sceneId !== userState.sceneId) {
         // 只有场景发生变化才更新记录的上一个场景。
         userState.prevSceneId = userState.sceneId;
+        needSync = true;
       }
       userState.sceneId = sceneId;
       
-      yield put.resolve(action('raiseSceneEvents')({ sceneId: sceneId, eventType: 'enter' }));
-      yield put.resolve(action('UserModel/syncData')({}));
+      if (quiet == undefined || !quiet) {
+        yield put.resolve(action('raiseSceneEvents')({ sceneId: sceneId, eventType: 'enter' }));
+      }
+      if (needSync) {
+        yield put.resolve(action('UserModel/syncData')({}));
+      }
     },
 
     // 设置世界时间

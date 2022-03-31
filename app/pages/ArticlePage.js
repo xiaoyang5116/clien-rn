@@ -26,8 +26,19 @@ import Block from '../components/article';
 
 class ArticlePage extends Component {
 
+  constructor(props) {
+    super(props);
+    this.refList = React.createRef();
+  }
+
   componentDidMount() {
-    this.props.dispatch(action('ArticleModel/show')({ id: 'XX', path: '[START]' }));
+    this.props.dispatch(action('ArticleModel/show')({ file: 'XX_[START].txt' }));
+  }
+
+  componentDidUpdate() {
+    if (!this.props.continueView) {
+      this.refList.current.scrollToIndex({ index: 0, animated: false });
+    }
   }
 
   renderItem = (data) => {
@@ -55,6 +66,7 @@ class ArticlePage extends Component {
         </View>
         <View style={styles.bodyContainer}>
           <FlatList
+            ref={this.refList}
             data={this.props.sections}
             renderItem={this.renderItem}
             keyExtractor={item => item.key}
@@ -63,11 +75,11 @@ class ArticlePage extends Component {
             onEndReached={this.endReachedHandler}
           />
         </View>
-        <View style={styles.debugContainer} pointerEvents="box-none" >
+        {/* <View style={styles.debugContainer} pointerEvents="box-none" >
           <View style={{ borderWidth: 1, borderColor: '#999', width: '100%', height: 200, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', opacity: 0.5, backgroundColor: '#ccc' }} pointerEvents="box-none">
             <Text>事件触发区域</Text>
           </View>
-        </View>
+        </View> */}
       </View>
     );
   }

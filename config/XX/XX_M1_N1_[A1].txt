@@ -1,5 +1,6 @@
 #BEGIN========================================
 [
+{ enterScene: 'XX_XiaoShuo' },
 { andVarsOff: ['v1'] }, 
 { header: '小分支A1: XXXXXXXX' },
 ]

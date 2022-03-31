@@ -13,55 +13,99 @@ import lo from 'lodash';
 
 const WIN_SIZE = getWindowSize();
 
+const AddLoadedListHandler = (list, obj) => {
+  if (lo.isEqual(obj.path, '[START]')) {
+    list.length = 0;
+  }
+  list.push(obj);
+}
+
+const ParseFileDesc = (fileName) => {
+  const splits = fileName.replace('.txt', '').split('_');
+  const path = lo.join(lo.slice(splits, 1), '_');
+  return { id: splits[0], path: path };
+}
+
 export default {
   namespace: 'ArticleModel',
 
   state: {
-    // [{ key: xxx, type: 'plain|code', content: xxx, object: xxx, height: xxx }, ...]
+    __data: {
+      // 记录已加载的文件
+      loadedList: [],
+
+      // 记录小说描述索引[{ id: '小说ID'， files: 数据 }]
+      indexes: [],
+    },
+
+    // 展现用段落数据 [{ key: xxx, type: 'plain|code', content: xxx, object: xxx, height: xxx }, ...]
     sections: [],
+    
+    // 是否续章
+    continueView: false,
   },
 
   effects: {
-    *reload({ }, { call, put }) {
-    },
 
     *show({ payload }, { call, put, select }) {
       const userState = yield select(state => state.UserModel);
       const articleState = yield select(state => state.ArticleModel);
       let sceneId = userState.sceneId;
 
-      const { id, path } = payload;
+      const { id, path } = (payload.file != undefined) ? ParseFileDesc(payload.file) : payload;
       const data = yield call(GetArticleDataApi, id, path);
+      if (data != null) AddLoadedListHandler(articleState.__data.loadedList, { id, path });
+
+      // 首次加载索引文件
+      if (articleState.__data.indexes.find(e => e.id == id) == undefined) {
+        const indexData = yield call(GetArticleIndexDataApi, id);
+        if (indexData != null) {
+          articleState.__data.indexes.push({ id: id, files: indexData.files });
+        }
+      }
 
       // 按需加载小分支
       if (path.indexOf('_') != -1) {
-        const fileIndexs = yield call(GetArticleIndexDataApi, id);
-        if (fileIndexs != null) {
+        const indexData = articleState.__data.indexes.find(e => e.id == id);
+        if (indexData != undefined) {
           const prefix = `${id}_${path}_`;
-          const smallBranches = fileIndexs.files.filter(e => e.indexOf(prefix) != -1);
+          const smallBranches = indexData.files.filter(e => e.indexOf(prefix) != -1);
           if (lo.isArray(smallBranches)) {
             for (let k in smallBranches) {
               const splits = smallBranches[k].split('_');
               const smallBranch = splits[3].replace('.txt', '');
               const subPath = `${splits[1]}_${splits[2]}_${smallBranch}`;
 
-              // 加载并按条件合并小分支内容
+              // 按条件加载小分支
               const subData = yield call(GetArticleDataApi, id, subPath);
-              if (lo.isArray(subData) && subData.length > 0) {
-                const firstItem = subData[0];
-                if (!lo.isEqual(firstItem.type, 'code'))
-                  continue; // 小分支第一行必须为指定条件
-                const conds = lo.keys(firstItem.object);
+              if (lo.isArray(subData) && subData.length > 1) {
+                const [sceneItem, condItem] = lo.slice(subData, 0, 2);
+
+                // 小分支前两行分别为场景、条件指令
+                if (!lo.isEqual(sceneItem.type, 'code') || !lo.isEqual(condItem.type, 'code'))
+                  continue;
+
+                // 切换小分支所属场景
+                yield put.resolve(action('SceneModel/enterScene')({ 
+                  sceneId: sceneItem.object.enterScene,
+                  quiet: ((sceneItem.object.quiet != undefined) ? sceneItem.object.quiet : true),
+                }));
+                sceneId = sceneItem.object.enterScene;
+
+                // 小分支根据变量判断
+                const conds = lo.keys(condItem.object);
                 const inters = lo.intersection([...conds], ['andVarsOn', 'andVarsOff', 'andVarsValue']);
                 if (inters.length != conds.length) {
                   errorMessage('Invalid article config: ' + conds);
-                  continue; // 仅允许指定条件判断语句
+                  continue;
                 }
 
-                // 只有满足条件的才会合并小分支
-                const result = yield put.resolve(action('SceneModel/testCondition')({ ...firstItem.object }));
+                const result = yield put.resolve(action('SceneModel/testCondition')({ ...condItem.object }));
                 if (!result) continue;
+
+                // 合并数据
                 data.push(...subData);
+                AddLoadedListHandler(articleState.__data.loadedList, { id: id, path: subPath });
               }
             }
           }
@@ -76,7 +120,10 @@ export default {
 
         if (item.object.enterScene != undefined) {
           // 切换文章所属场景
-          yield put.resolve(action('SceneModel/enterScene')({ sceneId: item.object.enterScene }));
+          yield put.resolve(action('SceneModel/enterScene')({ 
+            sceneId: item.object.enterScene,
+            quiet: ((item.object.quiet != undefined) ? item.object.quiet : true),
+          }));
           sceneId = item.object.enterScene;
         } else if (item.object.chatId != undefined) {
           // 预生成选项数据
@@ -92,8 +139,12 @@ export default {
         }
       }
       
-      articleState.sections.length = 0;
-      yield put(action('updateState')({ sections: data }));
+      if (payload.continue != undefined && payload.continue) {
+        yield put(action('updateState')({ sections: [...articleState.sections, ...data], continueView: true }));
+      } else {
+        articleState.sections.length = 0;
+        yield put(action('updateState')({ sections: data, continueView: false }));
+      }
     },
 
     *layout({ payload }, { call, put, select }) {
@@ -139,7 +190,26 @@ export default {
     },
 
     *end({ payload }, { call, put, select }) {
-      console.debug('end');
+      const articleState = yield select(state => state.ArticleModel);
+
+      // 当前分支的情况下自动续章
+      const last = lo.last(articleState.__data.loadedList);
+      const indexData = articleState.__data.indexes.find(e => e.id == last.id);
+
+      const splits = last.path.split('_');
+      if (splits.length > 1) {
+        // 寻找下一个分支
+        const currentIndex = lo.indexOf(indexData.files, `${last.id}_${last.path}.txt`);
+        if (indexData.files.length > (currentIndex + 1)) {
+          for (let i = currentIndex + 1; i < indexData.files.length; i++) {
+            const next = indexData.files[i];
+            if (next.match(/^[^_]+[_]{1}[^_]+[_]{1}[^_]+\.txt$/) != null) {
+              yield put.resolve(action('show')({ file: next, continue: true }));
+              break;
+            }
+          }
+        }
+      }
     },
   },
   
@@ -154,7 +224,6 @@ export default {
 
   subscriptions: {
     setup({ dispatch }) {
-      dispatch({ 'type':  'reload'});
     },
   }
 }

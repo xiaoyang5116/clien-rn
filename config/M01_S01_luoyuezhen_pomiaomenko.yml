@@ -1,0 +1,83 @@
+scenes: [
+  # 破庙门口场景
+  {
+    id: 'M01_S01_luoyuezhen_pomiaomenko', name: '破庙门口',
+
+    # 变量定义
+    vars: [
+     { id: 'v1', min: 0, max: 1 },
+     { id: 'v2', min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day1'], nextChat: 'pomiaomenko_Event01Day1' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day2'], nextChat: 'pomiaomenko_Event01Day2' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day3'], nextChat: 'pomiaomenko_Event01Day3' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event02Day1'], nextChat: 'pomiaomenko_Event02Day1' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event02Day2'], nextChat: 'pomiaomenko_Event02Day2' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'pomiaomenko_Event01Day1', desc: '请选择移动', 
+        options: [ 
+         { title: '>>>【落月镇西-胡同口】', toScene: 'M01_S02_luoyuezhen_hutongkou' }, 
+         { title: '>>>【回到破庙】', dialogs: ['p1']}, 
+         { title: '>>>【TEST进入破庙】', toScene: 'M01_S01_luoyuezhen_pomiao' }, 
+        ],
+      },
+    #
+      { 
+        id: 'pomiaomenko_Event01Day2', desc: '请选择移动', 
+        options: [ 
+         { title: '>>>【落月镇西-胡同口】', toScene: 'M01_S02_luoyuezhen_hutongkou' }, 
+         { title: '>>>【进入破庙】', toScene: 'M01_S01_luoyuezhen_pomiao' }, 
+        ],
+      },
+     #
+      { 
+        id: 'pomiaomenko_Event01Day3', desc: '请选择移动', 
+        options: [ 
+         { title: '>>>【落月镇西-胡同口】', toScene: 'M01_S02_luoyuezhen_hutongkou' }, 
+         { title: '>>>【进入破庙】', toScene: 'M01_S01_luoyuezhen_pomiao' }, 
+        ],
+      },
+      { 
+         id: 'pomiaomenko_Event02Day1', desc: '去哪里好呢', 
+        options: [ 
+         # 
+         { title: '>>>【落月镇西-胡同口】', toScene: 'hutongkou' }, 
+         { title: '>>>【落月镇西-民居街】', andVarsOn: ['v2'], toScene: 'xizhenminjujie' }, 
+         { title: '>>>【落月镇西-大路口】', andVarsOn: ['v1'], toScene: 'dalukou' }, 
+         { title: '>>>【落月镇南-南街市】', andVarsOn: ['v1'], toScene: 'nanjieshi' }, 
+         { title: '>>>【落月镇北-北街市】', andVarsOn: ['v1'], toScene: 'nanjieshi' }, 
+         { title: '>>>【进入破庙】', toScene: 'pomiao' }, 
+        ],
+      },
+      { 
+         id: 'pomiaomenko_Event02Day2', desc: '去哪里好呢', 
+        options: [ 
+         # 
+         { title: '>>>【落月镇西-胡同口】', toScene: 'hutongkou' }, 
+         { title: '>>>【落月镇西-民居街】', andVarsOn: ['v2'], toScene: 'xizhenminjujie' }, 
+         { title: '>>>【落月镇西-大路口】', andVarsOn: ['v1'], toScene: 'dalukou' }, 
+         { title: '>>>【落月镇南-南街市】', andVarsOn: ['v1'], toScene: 'nanjieshi' }, 
+         { title: '>>>【落月镇北-北街市】', andVarsOn: ['v1'], toScene: 'nanjieshi' }, 
+         { title: '>>>【进入破庙】', toScene: 'pomiao' }, 
+        ],
+      }
+    ],
+
+    # 对话框
+    dialogs: [
+   { id: 'p1', style: 2, title: '乞丐李大哥：',sections: ['你准备往哪呢，现在不是回去的时候'],  nextChat: 'pomiaomenko_Event01Day1' },
+    ]
+  },
+]

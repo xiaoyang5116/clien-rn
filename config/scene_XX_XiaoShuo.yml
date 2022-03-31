@@ -14,6 +14,7 @@ scenes: [
 
     # 事件定义
     events: [
+      { type: 'enter', nextChat: 'c1' },
     ],
 
     # 对话选项
@@ -41,10 +42,21 @@ scenes: [
           { title: '【返回主线1】', varsOn: ['v1'], toChapter: 'XX/M1' }, 
         ],
       },
+      #
+      { 
+        id: 'c4', desc: '', 
+        options: [ 
+          { title: '弹出对话框', dialogs: ['p1'] }, 
+          { title: '弹出旁白', dialogs: ['p2'] }, 
+          { title: '领取木瓜*10', sendProps: '40,10' }, 
+        ],
+      },
     ],
 
     # 对话框
     dialogs: [
+      { id: 'p1', title: '附近的声音：', content: '吵死了' },
+      { id: 'p2', style: 2, title: '', sections: ['旁白开始', '旁白继续', '旁白结束'] },
     ],
   },
 ]
