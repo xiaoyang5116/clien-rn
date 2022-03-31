@@ -9,4 +9,5 @@ export {
     TouchableHighlight,
     TouchableOpacity,
     Alert,
+    TouchableWithoutFeedback,
 } from 'react-native';

@@ -125,35 +125,38 @@ const styles = StyleSheet.create({
     /**             旁白                 */
     /** ================================ */
     asideCenter: {
-        // display:"flex",
-        // flexFlow: "column nowrap",
-        // justifyContent: '',
-        // alignItems: 'center',
-        // justifyContent: 'center',
-        // alignItems: 'center',
-
-        flexDirection: "column",
-        flexWrap: "nowrap",
+        flex: 1,
         justifyContent: "center",
         alignContent: "center",
         alignItems: 'center',
-
     },
+    // 黑旁白 begin
     asideParent1: {
-        // width:300,
-        // height:300,
-        // backgroundColor: '#CCC',
-        // borderRadius: 10,
-        display: "flex",
-        justifyContent: "space-around",
-        alignItems: "center",
+        backgroundColor: '#0b0b0b',
+        paddingTop: 30,
+        paddingBottom: 30,
+        paddingLeft: 20,
+        paddingRight: 20,
+        justifyContent: 'flex-start',
         flexFlow: "column wrap",
-
     },
+    asideTitle1: {
+        fontSize: 20,
+        color: '#dfe4ea',
+        textAlign: 'left',
+    },
+    asideContent1: {
+        fontSize: 20,
+        color: '#dfe4ea',
+        textAlign: 'center',
+    },
+    // 黑旁白 end
+    // 白旁白 begin
     asideParent2: {
         flexDirection: "column",
         justifyContent: "flex-end",
-        padding: 10,
+        paddingLeft: 50,
+        paddingRight: 50,
         marginBottom: 15,
     },
     asideTitleContainer: {
@@ -161,9 +164,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
     asideContentContainer: {
-        // flex: 3, 
-        // padding: 10, 
-        // justifyContent: "space-around"
+
     },
     asideBottomContainer: {
         justifyContent: "flex-start",
@@ -179,9 +180,10 @@ const styles = StyleSheet.create({
     },
     asideContent: {
         fontSize: 24,
-        color: 'black',
+        color: '#000',
         textAlign: 'center'
     },
+    // 白旁白 end
 });
 
 export default styles;
