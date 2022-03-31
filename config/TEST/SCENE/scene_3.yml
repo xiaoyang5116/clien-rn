@@ -1,0 +1,35 @@
+scenes: [
+  # 破庙门口场景
+  {
+    id: 'pomiaomk', name: '破庙门口',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c1' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'c1', desc: '请选择移动', 
+        options: [ 
+         { title: '【>>>落月镇西-胡同口】', toScene: 'hutongkou' }, 
+         { title: '【>>>进入破庙】', toScene: 'pomiao' }, 
+        ],
+      }
+    ],
+
+    # 对话框
+    dialogs: [
+    ]
+  },
+]
