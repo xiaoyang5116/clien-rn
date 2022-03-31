@@ -14,6 +14,7 @@ import {
 import { View } from '../constants/native-ui';
 import { ImageButton } from '../constants/custom-ui';
 import * as RootNavigation from '../utils/RootNavigation';
+import Shock from '../components/shock';
 
 class FirstPage extends Component {
 
@@ -41,6 +42,7 @@ class FirstPage extends Component {
               });
              }} />
             <ImageButton height={60} source={require('../../assets/test_button.png')} selectedSource={require('../../assets/test_button_selected.png')} onPress={() => { 
+              Shock.shockShow('bigShock')
              }} />
           </View>
         </ImageBackground>
