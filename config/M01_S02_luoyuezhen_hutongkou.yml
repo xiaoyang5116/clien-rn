@@ -1,0 +1,85 @@
+scenes: [
+  # 破庙门口场景
+  {
+    id: 'M01_S02_luoyuezhen_hutongkou', name: '落月镇西-胡同口',
+
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1 },
+      { id: 'v2', min: 0, max: 1 },
+      { id: 'v3', min: 0, max: 1 },
+      { id: 'v4', min: 0, max: 1 },
+      { id: 'v5', min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day1'], dialogs: ['p0'], nextChat: 'hutongkou_Event01Day1' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day2'], nextChat: 'hutongkou_Event01Day2' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day3'], nextChat: 'hutongkou_Event01Day3' },
+    ],
+
+    # 对话选项
+    chats: [
+          #
+      { 
+        id: 'hutongkou_Event01Day1', desc: '现在的胡同口没什么人，很安静', 
+        options: [ 
+         { title: '>>>【落月镇西-民居街】', andVarsOn: ['v2','v3'], toScene: 'M01_S03_luoyuezhen_juminjie' }, 
+         { title: '【听乞丐李大哥介绍】', andVarsOn: ['v1'], andVarsOff: ['v2'], dialogs: ['p1'] }, 
+         { title: '【观察四周】', andVarsOn: ['v1'], andVarsOff: ['v3'], nextChat: 'hutongkou_Event01Day1B' }, 
+        ],
+      },
+        #
+      { 
+        id: 'hutongkou_Event01Day1B', desc: '路边摆放着一些石头桌凳，是闲谈下棋的场所', 
+        options: [ 
+        { title: '【询问这里的环境】', andVarsOn: ['v1'], dialogs: ['p2']}, 
+        { title: '<<<返回', nextChat: 'hutongkou_Event01Day1' }, 
+        ],
+      },
+      
+      #
+      { 
+        id: 'hutongkou_Event01Day2', desc: '附近没什么人，不需要久留', 
+        options: [ 
+          { title: '>>>【落月镇西-民居街】', toScene: 'M01_S03_luoyuezhen_juminjie' }, 
+          { title: '>>>【破庙门口】', toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
+        ],
+      },
+       #
+      { 
+        id: 'hutongkou_Event01Day3', desc: '一些老人在路边石凳闲坐，闲聊下棋打发时间', 
+        options: [ 
+          { title: '>>>【落月镇西-民居街】', toScene: 'M01_S03_luoyuezhen_juminjie' }, 
+          { title: '<<<【破庙门口】', toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
+          { title: '☯【和善的老人】', toScene: 'hutongkou_Event01Day3B' }, 
+        ],
+      },
+
+      { 
+        id: 'hutongkou_Event01Day3B', desc: '老人正在座椅上休息，打发时间', 
+        options: [ 
+         { title: '【提问】', andVarsOff: ['v4'],  dialogs: ['p3'] }, 
+         { title: '【能讲讲修行者的消息吗】', andVarsOn: ['v4'], dialogs: ['p4'] }, 
+         { title: '<<<返回', nextChat: 'hutongkou_Event01Day3' }, 
+        ],
+      },
+    ],
+
+    # 对话框
+    dialogs: [
+      { id: 'p0', style: 2, sections: ['离开破庙后，眼前是一个通向小河边的胡同','在路上，乞丐李大哥很有耐心的介绍周围的环境'], varsOn: ['v1'], nextChat: 'hutongkou_Event01Day1' },
+
+      { id: 'p1', style: 2, title: '乞丐李大哥：',sections: ['落月镇是个几千人口的镇子，但对比其他镇子，人数也算不多……'], varsOn: ['v2'], nextChat: 'hutongkou_Event01Day1' },
+      { id: 'p2', style: 2, title: '乞丐李大哥：', sections: ['如果是下午，这里有不少人下棋闲逛，现在没人是因为没到时间。','对我们来说这里没什么用，附近都是寻常人家，不会搭理乞丐的。' ], varsOn: ['v3'], nextChat: 'hutongkou_Event01Day1B' },
+      #
+      { id: 'p3', style: 2, title: '和善的老人：', sections: ['你有什么要问的？'], varsOn: ['v4'], nextChat: 'hutongkou_Event01Day3B' },
+      { id: 'p4', style: 2, title: '和善的老人：', sections: ['你说修行之人，这个的确是有的，每隔几十年，据说修行者会在各地探访有资质的孩童收徒，但具体是那一天谁也不知道，完全看运气。另外修行之人脱离世俗，大都远离城市，就是有些世俗想法的，也不会在我们这小地方……'], nextChat: 'hutongkou_Event01Day3B', },
+    ],
+  },
+]

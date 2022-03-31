@@ -23,15 +23,19 @@ scenes: [
       { 
         id: 'c1', desc: '有些少许行人在路边，匆匆而过', 
         options: [ 
+          #第一次进入
           { title: '【观察路边状况】', andVarsOff: ['v1'], dialogs: ['p1'] }, 
-          { title: '【南街市】', andVarsOn: ['v1'], toScene: 'nanjieshi' }, 
+          { title: '>>>【南街市】', andVarsOn: ['v1'], toScene: 'nanjieshi' }, 
+ #通行
+       #    { title: '>>>【南街市】', andVarsOn: ['var_tongxing1'], toScene: 'nanjieshi' }, 
+
         ],
       },
     ],
 
     # 对话框
     dialogs: [
-      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['这里是马车路，记得要走两边，被马撞到的话只能认栽，一起也有被马撞死的乞丐，或者应该是被踩死的吧。'], varsOn: ['v1'], nextChat: 'c1' },
+      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['这里是马车路，记得要走两边，被马撞到的话只能认栽，以前也有被马撞死的乞丐……或者应该是被踩死的吧。'], varsOn: ['v1'], nextChat: 'c1' },
     ],
   },
 ]

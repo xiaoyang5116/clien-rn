@@ -15,7 +15,7 @@ scenes: [
       { id: 'v8', min: 0, max: 1 },
       { id: 'v9', min: 0, max: 1 },
       { id: 'v10', min: 0, max: 1 },
-      { id: 'v11', min: 0, max: 1 },
+      { id: 'v_2DayOpenThrough', min: 0, max: 1 },
       { id: 'v12', min: 0, max: 1 },
       { id: 'v13', min: 0, max: 1 },
       { id: 'v14', min: 0, max: 1 },
@@ -47,9 +47,9 @@ scenes: [
           # 以下选项在【询问周围的乞丐】&【尝试起身】点击后替换
           { title: '【询问周围的乞丐】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v6'], andVarsOff: ['v10'], dialogs: ['p7'] }, 
           { title: '【尝试起身】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v5'], andVarsOff: ['v10'], dialogs: ['p7'] }, 
-          { title: '【睡觉】', andVarsOn: ['v10'], andVarsOff: ['v11'], varsOn: ['v11'], alertWorldTime: '@day/1/6', nextChat: 'c1' }, 
-          { title: '【走出破庙】', andVarsOn: ['v11'], andVarsOff: ['v12'], toScene: 'pomiaomk' }, 
-          { title: '【睡觉到下一天】', andVarsOn: ['hutongkou/v3'], andVarsOff: ['v12'], alertWorldTime: '@day/1/6', nextChat: 'c1' }, 
+          { title: '【睡觉】', andVarsOn: ['v10'], andVarsOff: ['v11'], varsOn: ['v_2DayOpenThrough'], alertWorldTime: '@day/1/6', nextChat: 'c3' }, 
+          { title: '>>>【走出破庙】', andVarsOn: ['v_2DayOpenThrough'], andVarsOff: ['v12'], toScene: 'pomiaomk' }, 
+          { title: '【睡觉到下一天】', andVarsOn: ['hutongkou/v3'], andVarsOff: ['v12'], alertWorldTime: '@day/1/6', nextChat: 'c3' }, 
           # 在集市一角拿到菜刀或画后
           { title: '【商量花钱】', andVarsOn: ['jishiyijiao/v21'], andVarsOff: ['v12'], dialogs: ['p17']},
           { title: '【听大哥的话，大吃大喝先花光】', andVarsOn: ['v12'], andVarsOff: ['v13'], dialogs: ['p19'],},
@@ -67,8 +67,8 @@ scenes: [
         options: [ 
           { title: '【大声怪叫】', andVarsOff: ['v7'], dialogs: ['d1'] }, 
           { title: '【询问  这是在哪】', andVarsOn: ['v7'], andVarsOff: ['v8'], dialogs: ['d2'] }, 
-          { title: '【承认】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p13'] }, 
-          { title: '【拒绝】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p14'] }, 
+          { title: '【承认伤到脑袋】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p13'] }, 
+          { title: '【拒绝承认】', andVarsOn: ['v8'], andVarsOff: ['v9'], dialogs: ['p14'] }, 
           { title: '【离开破庙】', andVarsOn: ['v9'], varsOn: ['v10'], toScene: 'pomiaomk' }, 
         ],
       },
@@ -76,15 +76,10 @@ scenes: [
 
     # 对话框
     dialogs: [
-      # { id: 'p1', style: 2, sections: ['这是一个小破庙，大概不到二十平米，由土垒成，而不是砖建造的这种建筑即使是农村也几乎见不到了。'], varsOn: ['v1'], nextChat: 'c1' },
-      { id: 'p1', style: 6, varsOn: ['v1'], nextChat: 'c1', sections: [''] , popUpComplex: [
-        { key: 'p1', style: 2, content: ['你迅速跑过去，地面有些东西。', '走开走开，马夫大喝， 正从远处拨开人群走来。', '获得几颗石头珠子，看起来能卖不少钱。'],btn: [{title: '去拿菜刀',tokey: "p2"},{title: '去拿画轴', tokey: "p3"}]},
-        { key: 'p2', style: 2, content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。','动不了','动不了','动不了'],btn: [{title: '退出',tokey: "next"}]},
-        { key: 'p3', style: 2, content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。','动不了','动不了','动不了'], btn: [{title: '退出',tokey: "next"}]},
-      ]},
+      { id: 'p1', style: 2, sections: ['这是一个小破庙，大概不到二十平米，由土垒成，而不是砖建造的这种建筑即使是农村也几乎见不到了。'], varsOn: ['v1'], nextChat: 'c1' },
       { id: 'p2', style: 2, sections: ['破庙的房顶是木头和茅草，有些漏风'], varsOn: ['v2'], nextChat: 'c1' },
       { id: 'p3', style: 2, sections: ['一身酸痛袭来，怎么回事？'], varsOn: ['v3'], nextChat: 'c1' },
-      { id: 'p4', style: 2, sections: ['这是一只稚嫩的手，不过脏兮兮的，指甲还有点血丝。'], varsOn: ['v4'], nextChat: 'c1' },
+      { id: 'p4', style: 2, sections: ['这是一只稚嫩的手，不过脏兮兮的，手上还有些瘀伤。'], varsOn: ['v4'], nextChat: 'c1' },
       { id: 'p5', style: 2, sections: ['乞丐在睡觉，没有理你'], varsOn: ['v5'], nextChat: 'c1' },
       { id: 'p6', style: 2, sections: ['动不了'], varsOn: ['v6'], nextChat: 'c1' },
       { id: 'p7', style: 2, sections: ['总得想个办法'], varsOn: ['v5', 'v6'], nextChat: 'c2' },

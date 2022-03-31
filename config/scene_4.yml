@@ -26,9 +26,10 @@ scenes: [
       { 
         id: 'c1', desc: '这里是荒凉的地方，没人经过', 
         options: [ 
+          { title: '【破庙门口】', andVarsOn: ['xizhenminjujie/v3'], varsOn: ['v3'], toScene: 'pomiaomk' }, 
           { title: '【观察四周】', andVarsOn: ['v1'], andVarsOff: ['v2'], dialogs: ['p2'], nextChat: 'c2' }, 
-          { title: '【西镇民居街】', andVarsOn: ['v2'], toScene: 'xizhenminjujie' }, 
-          { title: '<<<【跑庙门口】', andVarsOn: ['xizhenminjujie/v3'], varsOn: ['v3'], toScene: 'pomiaomk' }, 
+          { title: '>>>【西镇民居街】', andVarsOn: ['v2'], toScene: 'xizhenminjujie' }, 
+          { title: '>>>【破庙门口】', andVarsOn: ['xizhenminjujie/v3'], varsOn: ['v3'], toScene: 'pomiaomk' }, 
         ],
       },
       { 
