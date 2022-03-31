@@ -13,7 +13,7 @@ export async function GetArticleDataApi(id, path) {
         // 返回格式化的段落数据
         const sectionData = [];
 
-        const items = text.split(/#(BEGIN|END)[=]{1,}[\n]+/);
+        const items = text.split(/#(BEGIN|END)[=]{1,}[\r\n]+/);
 
         let begin = false;
         let code = '';
