@@ -19,7 +19,7 @@ export default {
     selectComposeId: -1,
     selectComposeDetail: null,
 
-    data: {
+    __data: {
       composeConfig: [],  // 配方配置
     },
   },
@@ -30,15 +30,15 @@ export default {
       const data = yield call(GetComposeDataApi);
 
       if (data != null) {
-        composeState.data.composeConfig.length = 0;
-        composeState.data.composeConfig.push(...data.rules);
+        composeState.__data.composeConfig.length = 0;
+        composeState.__data.composeConfig.push(...data.rules);
       }
     },
 
     *composeSelected({ payload }, { put, select }) {
       const composeState = yield select(state => state.ComposeModel);
       const { composeId } = payload;
-      const config = composeState.data.composeConfig.find(e => e.id == composeId);
+      const config = composeState.__data.composeConfig.find(e => e.id == composeId);
 
       const stuffsDetail = { title: '所需材料|需求|现有', type: 'stuffs', data: [] };
       for (let k in config.stuffs) {
@@ -79,7 +79,7 @@ export default {
       const { selectNum, composeId } = payload;
       
       let actuallyNum = 0;
-      const config = composeState.data.composeConfig.find(e => e.id == composeId);
+      const config = composeState.__data.composeConfig.find(e => e.id == composeId);
 
       if (lo.isEqual(selectNum, '最大')) {
         const currentStuffs = [];
@@ -175,8 +175,8 @@ export default {
       const { type } = payload;
 
       composeState.listData.length = 0;
-      for (let k in composeState.data.composeConfig) {
-        const item = composeState.data.composeConfig[k];
+      for (let k in composeState.__data.composeConfig) {
+        const item = composeState.__data.composeConfig[k];
         if ((item.attrs.indexOf(type) == -1) && (type != '全部') && (type != ''))
           continue;
 

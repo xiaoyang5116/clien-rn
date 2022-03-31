@@ -38,7 +38,7 @@ class OptionView extends PureComponent {
             }
         }
         return (
-            <View style={{ flexDirection: 'column', paddingLeft: 10, paddingRight: 10 }} onLayout={this.layoutHandler} >
+            <View key={this.props.itemKey} style={{ flexDirection: 'column', paddingLeft: 10, paddingRight: 10 }} onLayout={this.layoutHandler} >
                 {buttonChilds}
             </View>
         );

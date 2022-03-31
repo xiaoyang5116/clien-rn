@@ -13,7 +13,7 @@ export default {
 
   state: {
     listData: [],
-    data: {
+    __data: {
       propsConfig: [],  // 道具配置
       bags: [],         // 玩家背包
     },
@@ -26,21 +26,21 @@ export default {
       const data = yield call(GetPropsDataApi);
 
       propsState.listData.length = 0;
-      propsState.data.bags.length = 0;
-      propsState.data.propsConfig.length = 0;
+      propsState.__data.bags.length = 0;
+      propsState.__data.propsConfig.length = 0;
 
       if (data != undefined) {
-        propsState.data.propsConfig.push(...data.props);
+        propsState.__data.propsConfig.push(...data.props);
       }
 
       if (propsCache != null) {
-        propsState.data.bags.push(...propsCache);
+        propsState.__data.bags.push(...propsCache);
       } else {
-        for (let key in propsState.data.propsConfig) {
-          const item = propsState.data.propsConfig[key];
-          propsState.data.bags.push(item);
+        for (let key in propsState.__data.propsConfig) {
+          const item = propsState.__data.propsConfig[key];
+          propsState.__data.bags.push(item);
         }
-        yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.data.bags);
+        yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
       }
     },
 
@@ -49,8 +49,8 @@ export default {
       const { type } = payload;
 
       propsState.listData.length = 0;
-      for (let key in propsState.data.bags) {
-        const item = propsState.data.bags[key];
+      for (let key in propsState.__data.bags) {
+        const item = propsState.__data.bags[key];
         if ((item.attrs.indexOf(type) != -1) || (type == '全部') || type == '') {
           propsState.listData.push(item);
         }
@@ -65,8 +65,8 @@ export default {
       const num = parseInt(payload.num);
       const quiet = payload.quiet != undefined && payload.quiet;
 
-      const props = propsState.data.bags.find((e) => e.id == propId);
-      const config = propsState.data.propsConfig.find((e) => e.id == propId);
+      const props = propsState.__data.bags.find((e) => e.id == propId);
+      const config = propsState.__data.propsConfig.find((e) => e.id == propId);
       if (props == undefined) {
         if (!quiet) Toast.show('道具不存在！');
         return;
@@ -89,28 +89,28 @@ export default {
       }
 
       if (props.num <= 0) {
-        propsState.data.bags = propsState.data.bags.filter((e) => e.num > 0);
+        propsState.__data.bags = propsState.__data.bags.filter((e) => e.num > 0);
         propsState.listData = propsState.listData.filter((e) => e.num > 0);
       }
 
       if (!quiet) Toast.show('使用成功！');
       
       yield put(action('updateState')({}));
-      yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.data.bags);
+      yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
     },
 
     *getPropNum({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
       const { propId } = payload;
 
-      const props = propsState.data.bags.find((e) => e.id == propId);
+      const props = propsState.__data.bags.find((e) => e.id == propId);
       return (props != undefined) ? props.num : 0;
     },
 
     *getPropConfig({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
       const { propId } = payload;
-      return propsState.data.propsConfig.find((e) => e.id == propId);
+      return propsState.__data.propsConfig.find((e) => e.id == propId);
     },
 
     *sendProps({ payload }, { put, call, select }) {
@@ -119,44 +119,44 @@ export default {
       const num = parseInt(payload.num);
       const quiet = payload.quiet != undefined && payload.quiet;
 
-      const config = propsState.data.propsConfig.find((e) => e.id == propId);
+      const config = propsState.__data.propsConfig.find((e) => e.id == propId);
       if (config == undefined) {
         if (!quiet) Toast.show('道具不存在！');
         return;
       }
 
-      const props = propsState.data.bags.find((e) => e.id == propId);
+      const props = propsState.__data.bags.find((e) => e.id == propId);
       if (props != undefined) {
         props.num += num;
       } else {
         const item = { ...config };
         item.num = num;
-        propsState.data.bags.push(item);
+        propsState.__data.bags.push(item);
       }
 
       if (!quiet)  Toast.show('获得道具！');
       
       yield put(action('updateState')({}));
-      yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.data.bags);
+      yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
     },
 
     *discard({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
       const { propId } = payload;
 
-      const props = propsState.data.bags.find((e) => e.id == propId);
+      const props = propsState.__data.bags.find((e) => e.id == propId);
       if (props == undefined) {
         Toast.show('道具不存在！');
         return;
       }
 
       props.num = 0;
-      propsState.data.bags = propsState.data.bags.filter((e) => e.num > 0);
+      propsState.__data.bags = propsState.__data.bags.filter((e) => e.num > 0);
       propsState.listData = propsState.listData.filter((e) => e.num > 0);
 
       Toast.show('道具已丢弃!');
       yield put(action('updateState')({}));
-      yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.data.bags);
+      yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
     },
   },
   

@@ -1,0 +1,62 @@
+scenes: [
+  #
+  {
+    id: 'XX_XiaoShuo', name: '小说专属场景',
+
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c1' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'c1', desc: '', 
+        options: [ 
+          { title: '【选择主线1】', toChapter: 'XX/M1' }, 
+          { title: '【选择主线2】', toChapter: 'XX/M2' }, 
+          { title: '【选择主线3】', toChapter: 'XX/M3' }, 
+        ],
+      },
+      #
+      { 
+        id: 'c2', desc: '', 
+        options: [ 
+          { title: '【选择分支1】', toChapter: 'XX/M1_N1' }, 
+        ],
+      },
+      #
+      { 
+        id: 'c3', desc: '', 
+        options: [ 
+          { title: '【返回主线1】', varsOn: ['v1'], toChapter: 'XX/M1' }, 
+        ],
+      },
+      #
+      { 
+        id: 'c4', desc: '', 
+        options: [ 
+          { title: '弹出对话框', dialogs: ['p1'] }, 
+          { title: '弹出旁白', dialogs: ['p2'] }, 
+          { title: '领取木瓜*10', sendProps: '40,10' }, 
+        ],
+      },
+    ],
+
+    # 对话框
+    dialogs: [
+      { id: 'p1', title: '附近的声音：', content: '吵死了' },
+      { id: 'p2', style: 2, title: '', sections: ['旁白开始', '旁白继续', '旁白结束'] },
+    ],
+  },
+]

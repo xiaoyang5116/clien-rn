@@ -1,5 +1,5 @@
 
-import RNFS, { stat } from 'react-native-fs';
+import RNFS from 'react-native-fs';
 import CryptoJS from 'crypto-js';
 
 export default class LocalStorage {
