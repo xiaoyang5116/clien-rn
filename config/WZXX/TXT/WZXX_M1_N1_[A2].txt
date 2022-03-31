@@ -1,7 +1,6 @@
 #BEGIN========================================
 [
-{ enterScene: 'wzxx' },
-{ andVarsOn: ['v1'] }, 
+{ andVarsOn: ['wzxx/v1'] },
 { header: '小分支A2: YYYYYYY' },
 ]
 #END==========================================

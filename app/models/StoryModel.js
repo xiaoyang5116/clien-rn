@@ -31,17 +31,16 @@ export default {
     *selectChat({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const chatId = payload.chatId;
-      const sceneId = userState.sceneId;
 
-      if (chatId == '' || sceneId == '') {
+      if (chatId == '' || payload.__sceneId == '') {
         errorMessage("ChatId or SceneId not specified!");
         return;
       }
 
-      const scene = yield put.resolve(action('SceneModel/getScene')({ sceneId: sceneId }));
-      const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: sceneId, chatId: chatId }));
+      const scene = yield put.resolve(action('SceneModel/getScene')({ sceneId: payload.__sceneId }));
+      const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: payload.__sceneId, chatId: chatId }));
       if (scene == null || chat == null) {
-        errorMessage("Scene or Chat is null!, sceneId={0}, chatId={1}", sceneId, chatId);
+        errorMessage("Scene or Chat is null!, sceneId={0}, chatId={1}", payload.__sceneId, chatId);
         return;
       }
     
@@ -61,7 +60,7 @@ export default {
       const worldTime = yield put.resolve(action('SceneModel/getWorldTime')({ worldId: userState.worldId }));
 
       // 获取当前场景变量
-      const sceneVars = yield put.resolve(action('SceneModel/getSceneVars')({ sceneId: sceneId }));
+      const sceneVars = yield put.resolve(action('SceneModel/getSceneVars')({ sceneId: payload.__sceneId }));
   
       // 重新渲染
       yield put(action('updateState')({ 
