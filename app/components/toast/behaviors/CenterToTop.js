@@ -62,18 +62,7 @@ export default CenterToTop = (props) => {
     }, [bottomAnim, opacityAnim])
 
     return (
-        <View
-            pointerEvents="box-none"
-            style={{
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                flexDirection: "row",
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}>
+        <View pointerEvents="box-none" style={currentStyles.tooltipWrap}>
             <Animated.View                 // 使用专门的可动画化的View组件
                 style={{
                     ...currentStyles.tooltip,
