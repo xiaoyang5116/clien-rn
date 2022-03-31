@@ -50,7 +50,6 @@ export default {
     *show({ payload }, { call, put, select }) {
       const userState = yield select(state => state.UserModel);
       const articleState = yield select(state => state.ArticleModel);
-      let sceneId = userState.sceneId;
 
       const { id, path } = (payload.file != undefined) ? ParseFileDesc(payload.file) : payload;
       const data = yield call(GetArticleDataApi, id, path);
@@ -78,19 +77,10 @@ export default {
 
               // 按条件加载小分支
               const subData = yield call(GetArticleDataApi, id, subPath);
-              if (lo.isArray(subData) && subData.length > 1) {
-                const [sceneItem, condItem] = lo.slice(subData, 0, 2);
-
-                // 小分支前两行分别为场景、条件指令
-                if (!lo.isEqual(sceneItem.type, 'code') || !lo.isEqual(condItem.type, 'code'))
+              if (lo.isArray(subData) && subData.length > 0) {
+                const condItem = lo.head(subData);
+                if (!lo.isEqual(condItem.type, 'code'))
                   continue;
-
-                // 切换小分支所属场景
-                yield put.resolve(action('SceneModel/enterScene')({ 
-                  sceneId: sceneItem.object.enterScene,
-                  quiet: ((sceneItem.object.quiet != undefined) ? sceneItem.object.quiet : true),
-                }));
-                sceneId = sceneItem.object.enterScene;
 
                 // 小分支根据变量判断
                 const conds = lo.keys(condItem.object);
@@ -99,6 +89,13 @@ export default {
                   errorMessage('Invalid article config: ' + conds);
                   continue;
                 }
+
+                lo.keys(condItem.object).forEach(x => {
+                  condItem.object[x].forEach(y => {
+                    if (y.indexOf('/') == -1)
+                      errorMessage("变量请指定场景ID前缀格式: 场景ID/变量ID");
+                  })
+                });
 
                 const result = yield put.resolve(action('SceneModel/testCondition')({ ...condItem.object }));
                 if (!result) continue;
@@ -118,16 +115,9 @@ export default {
         if (!lo.isEqual(item.type, 'code') || item.object == null)
           continue;
 
-        if (item.object.enterScene != undefined) {
-          // 切换文章所属场景
-          yield put.resolve(action('SceneModel/enterScene')({ 
-            sceneId: item.object.enterScene,
-            quiet: ((item.object.quiet != undefined) ? item.object.quiet : true),
-          }));
-          sceneId = item.object.enterScene;
-        } else if (item.object.chatId != undefined) {
+        if (item.object.chatId != undefined) {
           // 预生成选项数据
-          const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: sceneId, chatId: item.object.chatId }));
+          const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: item.object.sceneId, chatId: item.object.chatId }));
           const optionsData = [];
           for (let k in chat.options) {
             const option = chat.options[k];
