@@ -32,7 +32,7 @@ class ArticlePage extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START].txt' }));
+    this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
   }
 
   componentDidUpdate() {
