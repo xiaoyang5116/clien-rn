@@ -67,16 +67,14 @@ export default {
       if (path.indexOf('_') != -1) {
         const indexData = articleState.__data.indexes.find(e => e.id == id);
         if (indexData != undefined) {
-          const prefix = `${id}_${path}_`;
-          const smallBranches = indexData.files.filter(e => e.indexOf(prefix) != -1);
+          const expr = new RegExp(`^${id}_${path}_\\[[^\\[\\]]+\\]\\.txt$`);
+          const smallBranches = indexData.files.filter(e => e.match(expr) != null);
           if (lo.isArray(smallBranches)) {
             for (let k in smallBranches) {
-              const splits = smallBranches[k].split('_');
-              const smallBranch = splits[3].replace('.txt', '');
-              const subPath = `${splits[1]}_${splits[2]}_${smallBranch}`;
+              const kv = ParseFileDesc(smallBranches[k]);
 
               // 按条件加载小分支
-              const subData = yield call(GetArticleDataApi, id, subPath);
+              const subData = yield call(GetArticleDataApi, kv.id, kv.path);
               if (lo.isArray(subData) && subData.length > 0) {
                 const condItem = lo.head(subData);
                 if (!lo.isEqual(condItem.type, 'code'))
@@ -102,7 +100,7 @@ export default {
 
                 // 合并数据
                 data.push(...subData);
-                AddLoadedListHandler(articleState.__data.loadedList, { id: id, path: subPath });
+                AddLoadedListHandler(articleState.__data.loadedList, kv);
               }
             }
           }
@@ -187,15 +185,25 @@ export default {
       const indexData = articleState.__data.indexes.find(e => e.id == last.id);
 
       const splits = last.path.split('_');
-      if (splits.length > 1) {
+      if (splits.length >= 2) {
+        const skipSize = (lo.last(splits).match(/^\[[^\[\]]+\]$/) != null) ? 2 : 1;
+        const srcArray = lo.slice(splits, 0, splits.length - skipSize);
+
         // 寻找下一个分支
         const currentIndex = lo.indexOf(indexData.files, `${last.id}_${last.path}.txt`);
         if (indexData.files.length > (currentIndex + 1)) {
           for (let i = currentIndex + 1; i < indexData.files.length; i++) {
             const next = indexData.files[i];
-            if (next.match(/^[^_]+[_]{1}[^_]+[_]{1}[^_]+\.txt$/) != null) {
-              yield put.resolve(action('show')({ file: next, continue: true }));
-              break;
+            if (next.match(/\[[^\[\]]+\]/) != null)
+              continue; // 小章节不能续章
+
+            const splits2 = next.split('_');
+            if (splits2.length >= 3) {
+              const targetArray = lo.slice(splits2, 0, splits2.length - 1);
+              if (lo.isEqual(lo.join([last.id, ...srcArray], '_'), lo.join(targetArray, '_'))) {
+                yield put.resolve(action('show')({ file: next, continue: true }));
+                break;
+              }
             }
           }
         }
