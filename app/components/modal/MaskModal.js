@@ -7,9 +7,11 @@ import {
     PureComponent,
 } from "../../constants";
 
-import { Button, Text, View } from '../../constants/native-ui';
+import { Button, Text, View, TouchableWithoutFeedback, } from '../../constants/native-ui';
 import GameOverModal from '../GameOverModal';
 import HalfScreenDialog from '../dialog/HalfScreenDialog';
+import BlackNarration from './BlackNarration';
+import Narration from './Narration'
 
 import lo from 'lodash';
 
@@ -30,11 +32,11 @@ class MaskModal extends PureComponent {
 
     _onModalHide = () => {
         this.props.dispatch(action('MaskModel/onActionsAfterModalHidden')())
-        .then(r => {
-            if (this.props.onModalHide != undefined && lo.isFunction(this.props.onModalHide)) {
-                this.props.onModalHide();
-            }
-        });
+            .then(r => {
+                if (this.props.onModalHide != undefined && lo.isFunction(this.props.onModalHide)) {
+                    this.props.onModalHide();
+                }
+            });
     }
 
     _onAsideNext = () => {
@@ -92,24 +94,15 @@ class MaskModal extends PureComponent {
             )
         }
         return (
-            <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
+            <Modal isVisible={this.props.visible} style={{ padding: 0, margin: 0, flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
+                {/* <TouchableWithoutFeedback onPress={this._onAsideNext}> */}
+                {/* <View style={[currentStyles.asideCenter,{ flex:1,padding:20,}]}> */}
                 <View style={[currentStyles.asideCenter]}>
-                    <View style={[currentStyles.asideCenter]}>
-                        <View style={[this.props.subStype == 1 ? currentStyles.asideParent1 : currentStyles.asideParent2,]}>
-                            <View style={currentStyles.asideTitleContainer}>
-                                <Text style={currentStyles.asideTitle}>{this.props.title}</Text>
-                            </View>
-                            <View style={currentStyles.asideContentContainer}>
-                                <Text style={currentStyles.asideContent}>{this.props.content}</Text>
-                            </View>
-                        </View>
-                        <View style={currentStyles.asideBottomContainer}>
-                            <View style={[currentStyles.asideBottomBanner, { backgroundColor: currentStyles.button.backgroundColor }]}>
-                                <Button title='>>>' onPress={this._onAsideNext} color={currentStyles.button.color} />
-                            </View>
-                        </View>
-                    </View>
+                    {
+                        this.props.viewData.style == 1 ? <BlackNarration {...this.props} onAsideNext={this._onAsideNext} /> : <Narration {...this.props} onAsideNext={this._onAsideNext} />
+                    }
                 </View>
+                {/* </TouchableWithoutFeedback> */}
             </Modal>
         );
     }

@@ -12,17 +12,18 @@ import {
   AppRegistry,
 } from 'react-native';
 
-import { 
+import {
   dva_create,
-  Provider, 
-  Component, 
-  StyleSheet 
+  Provider,
+  Component,
+  StyleSheet
 } from './constants';
 
 import { name as appName } from '../app.json';
 import { View } from './constants/native-ui';
 import MainPage from './pages/MainPage';
 import RootView from './components/RootView';
+import Shock from './components/shock'
 
 const models = [
   require('./models/AppModel').default,
@@ -48,8 +49,10 @@ class App extends Component {
     return (
       <Provider store={dva._store}>
         <View style={styles.rootContainer}>
-          <MainPage />
-          <RootView />
+          <Shock>
+            <MainPage />
+            <RootView />
+          </Shock>
         </View>
       </Provider>
     );
@@ -58,9 +61,9 @@ class App extends Component {
 
 const styles = StyleSheet.create({
   rootContainer: {
-      flex: 1,
-      position: 'relative',
-  }
+    flex: 1,
+    position: 'relative',
+  },
 });
 
 export default App;

@@ -27,19 +27,13 @@ const HalfScreenDialog = props => {
     let totalDialogueLength = props.popUpComplex.length
     let currentDialogueLength = currentTextList.length - 1
 
-    // console.log("props", props);
-    console.log("props", showBtnList);
-
     const nextParagraph = () => {
         if (currentIndex < currentDialogueLength) {
             setCurrentIndex(currentIndex + 1)
         }
-        console.log("这段对话结束");
     }
     const nextDialogue = (tokey) => {
-        console.log(tokey);
         const newDialogue = props.popUpComplex.filter(item => item.key === tokey)
-        console.log("newDialogue", newDialogue);
         if (newDialogue.length > 0) {
             setShowList(newDialogue[0].content)
             setShowBtnList(newDialogue[0].btn)
@@ -52,7 +46,6 @@ const HalfScreenDialog = props => {
     }
 
     const renderText = ({ item, index }) => {
-        console.log('item', item);
         if (index <= currentIndex) {
             return (
                 <Text>{item}</Text>
