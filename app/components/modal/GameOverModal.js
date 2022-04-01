@@ -1,6 +1,5 @@
 import React from 'react'
-import { View, Text, ImageBackground, Image, Animated, TouchableOpacity, Button } from 'react-native';
-import * as RootNavigation from '../utils/RootNavigation';
+import { View, Text, Button } from 'react-native';
 
 // import {
 //     action,
