@@ -1,6 +1,7 @@
 
 import yaml from 'js-yaml';
 import lo from 'lodash';
+import { errorMessage } from '../constants';
 
 let UNIQUE_KEY = 1;
 
@@ -24,16 +25,20 @@ export async function GetArticleDataApi(id, path) {
             if (lo.isEqual(e, 'START')) {
                 begin = true;
             } else if (lo.isEqual(e, 'END')) {
-                const obj = yaml.load(code);
-                if (lo.isArray(obj)) {
-                    obj.forEach(v => {
-                        sectionData.push({ key: UNIQUE_KEY++, type: 'code', object: v });
-                    });
-                } else {
-                    sectionData.push({ key: UNIQUE_KEY++, type: 'code', object: obj });
+                try {
+                    const obj = yaml.load(code);
+                    if (lo.isArray(obj)) {
+                        obj.forEach(v => {
+                            sectionData.push({ key: UNIQUE_KEY++, type: 'code', object: v });
+                        });
+                    } else {
+                        sectionData.push({ key: UNIQUE_KEY++, type: 'code', object: obj });
+                    }
+                    begin = false;
+                    code = '';
+                } catch (except) {
+                    errorMessage(`Yaml配置异常, 请检查文章指令区域语法. (${except.reason})`);
                 }
-                begin = false;
-                code = '';
             } else if (begin) {
                 code = e;
             } else {
