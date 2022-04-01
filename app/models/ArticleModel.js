@@ -180,17 +180,25 @@ export default {
     *end({ payload }, { call, put, select }) {
       const articleState = yield select(state => state.ArticleModel);
 
-      // 当前分支的情况下自动续章
-      const last = lo.last(articleState.__data.loadedList);
-      const indexData = articleState.__data.indexes.find(e => e.id == last.id);
+      // 出现stop指令时停止自动续章
+      const lastSection = lo.last(articleState.sections);
+      if (lo.isObject(lastSection) 
+        && lo.isObject(lastSection.object) 
+        && lo.isBoolean(lastSection.object.stop) 
+        && lastSection.object.stop)
+        return;
 
-      const splits = last.path.split('_');
+      // 当前分支的情况下自动续章
+      const lastLoaded = lo.last(articleState.__data.loadedList);
+      const indexData = articleState.__data.indexes.find(e => e.id == lastLoaded.id);
+
+      const splits = lastLoaded.path.split('_');
       if (splits.length >= 2) {
         const skipSize = (lo.last(splits).match(/^\[[^\[\]]+\]$/) != null) ? 2 : 1;
         const srcArray = lo.slice(splits, 0, splits.length - skipSize);
 
         // 寻找下一个分支
-        const currentIndex = lo.indexOf(indexData.files, `${last.id}_${last.path}.txt`);
+        const currentIndex = lo.indexOf(indexData.files, `${lastLoaded.id}_${lastLoaded.path}.txt`);
         if (indexData.files.length > (currentIndex + 1)) {
           for (let i = currentIndex + 1; i < indexData.files.length; i++) {
             const next = indexData.files[i];
@@ -200,7 +208,7 @@ export default {
             const splits2 = next.split('_');
             if (splits2.length >= 3) {
               const targetArray = lo.slice(splits2, 0, splits2.length - 1);
-              if (lo.isEqual(lo.join([last.id, ...srcArray], '_'), lo.join(targetArray, '_'))) {
+              if (lo.isEqual(lo.join([lastLoaded.id, ...srcArray], '_'), lo.join(targetArray, '_'))) {
                 yield put.resolve(action('show')({ file: next, continue: true }));
                 break;
               }
