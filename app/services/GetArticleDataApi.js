@@ -12,7 +12,7 @@ export async function GetArticleDataApi(id, path) {
         // 返回格式化的段落数据
         const sectionData = [];
 
-        const items = text.split(/#(START|END)[=]{1,}.*?[=]{1,}[\r\n]+/);
+        const items = text.split(/#(START|END)[=]{1,}.*?[=]{1,}[\r\n]*/);
 
         let begin = false;
         let code = '';
@@ -41,7 +41,13 @@ export async function GetArticleDataApi(id, path) {
                 let i = 0;
                 const splits = e.split(/(.*?[\r\n]+)/).filter(e => !lo.isEmpty(e));
                 while (i < splits.length) {
+                  // N行为一个小块
                   const lines = lo.slice(splits, i, i + 10);
+
+                  // 去掉尾行换行符
+                  const last = lo.last(lines);
+                  lines[lines.length - 1] = last.substring(0, last.length - 1);
+
                   i += lines.length;
                   sectionData.push({ key: UNIQUE_KEY++, type: 'plain', content: lines.join('') });
                 }
