@@ -94,6 +94,8 @@ class ArticlePage extends Component {
               onViewableItemsChanged={this.viewableItemsChangedhandler}
               onScroll={this.scrollHandler}
               onEndReached={this.endReachedHandler}
+              initialNumToRender={2}
+              maxToRenderPerBatch={5}
             />
           </View>
           {/* <View style={styles.debugContainer} pointerEvents="box-none" >
