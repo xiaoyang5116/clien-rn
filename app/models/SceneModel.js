@@ -19,6 +19,7 @@ import {
   GetBookConfigDataApi,
 } from "../services/GetBookConfigDataApi";
 
+import lo from 'lodash';
 import LocalStorage from '../utils/LocalStorage';
 import * as DateTime from '../utils/DateTimeUtils';
 import * as RootNavigation from '../utils/RootNavigation';
@@ -41,6 +42,7 @@ class VarUtils {
   }
 }
 
+// 提供便捷的属性指定动作配置, 如: { varsOn: [...] }
 class PropertyActionBuilder {
   static build(payload) {
     let allActions = [];
@@ -114,6 +116,49 @@ class PropertyActionBuilder {
   }
 }
 
+// 场景配置注入相应的属性
+class ScenePropertyInjectBuilder {
+
+  static injectProgressId(scene) {
+    // 标注进度条缺失的唯一ID
+    if (scene.chats != undefined) {
+      for (let key in scene.chats) {
+        const chat = scene.chats[key];
+        if (chat.options != undefined) {
+          chat.options.forEach(o => {
+            if (o.duration != undefined 
+              && o.duration > 0 
+              && o.progressId == undefined) {
+              o.progressId = PROGRESS_UNIQUE_ID++;
+            }
+          });
+        }
+      }
+    }
+  }
+
+  static injectSceneId(scene) {
+    const sceneId = scene.id;
+    if (lo.isArray(scene.events)) {
+      scene.events.forEach(e => e.__sceneId = sceneId);
+    }
+    if (lo.isArray(scene.actions)) {
+      scene.actions.forEach(e => e.__sceneId = sceneId);
+    }
+    if (lo.isArray(scene.chats)) {
+      scene.chats.forEach(e => {
+        if (lo.isArray(e.options)) {
+          e.options.forEach(x => x.__sceneId = sceneId);
+        }
+      });
+    }
+    if (lo.isArray(scene.dialogs)) {
+      scene.dialogs.forEach(e => e.__sceneId = sceneId);
+    }
+  }
+
+}
+
 const ACTIONS_MAP = [
   { cmd: 'dialog',        handler: '__onDialogCommand' },
   { cmd: 'navigate',      handler: '__onNavigateCommand' },
@@ -162,6 +207,7 @@ export default {
     *reload({ }, { call, put, select }) {
       const sceneState = yield select(state => state.SceneModel);
 
+      // 从书本目录获取场景列表
       if (sceneState.__data.scenesConfig == null) {
         const booksConfig = yield call(GetBooksDataApi);
         for (let k in booksConfig.books.list) {
@@ -183,21 +229,13 @@ export default {
           data.scenes.forEach((e) => {
             // 标注NPC场景
             if (e.isNpc == undefined) e.isNpc = false;
-            // 标注进度条缺失的唯一ID
-            if (e.chats != undefined) {
-              for (let key in e.chats) {
-                const chat = e.chats[key];
-                if (chat.options != undefined) {
-                  chat.options.forEach(o => {
-                    if (o.duration != undefined 
-                      && o.duration > 0 
-                      && o.progressId == undefined) {
-                      o.progressId = PROGRESS_UNIQUE_ID++;
-                    }
-                  });
-                }
-              }
-            }
+
+            // 进度条自动注入唯一ID
+            ScenePropertyInjectBuilder.injectProgressId(e);
+
+            // 动作条目注入当前场景ID
+            ScenePropertyInjectBuilder.injectSceneId(e);
+
             //
             scenes.push(e);
           });
@@ -349,12 +387,9 @@ export default {
     // 事件动作处理
     // 参数：{ actions=动作列表,如:['a1', 'a2' ...], ... }
     *processActions({ payload }, { put, select }) {
-      const userState = yield select(state => state.UserModel);
       const sceneState = yield select(state => state.SceneModel);
-      const sceneId = userState.sceneId;
 
       let allActions = [];
-      
       // 属性动作: item.property
       const propertyActions = PropertyActionBuilder.build(payload);
       if (propertyActions.length > 0) {
@@ -375,7 +410,7 @@ export default {
         predefineActions.push(...payload.eventActions);
 
       if (predefineActions.length > 0) {
-        const validActions = sceneState.__data.cfgReader.getSceneActions(sceneId, predefineActions);
+        const validActions = sceneState.__data.cfgReader.getSceneActions(payload.__sceneId, predefineActions);
         if (validActions != null && validActions.length > 0) {
           // 将预定义动作里面的'变量修改指令'提前执行。
           const varActions = validActions.filter(e => e.cmd == 'var');
@@ -398,10 +433,11 @@ export default {
 
       let actionIdList = [];
       allActions.forEach(e => { actionIdList.push(e.id) });
-      debugMessage("processActions: scene={0} action_list={1}", sceneId, actionIdList.join(', '));
+      debugMessage("processActions: scene={0} action_list={1}", payload.__sceneId, actionIdList.join(', '));
 
       for (let key in allActions) {
         const item = allActions[key];
+        item.__sceneId = payload.__sceneId;
         debugMessage("---> detail: cmd={0} params=({1})", item.cmd, item.params);
         
         const result = ACTIONS_MAP.find(e => e.cmd == item.cmd);
@@ -436,10 +472,9 @@ export default {
       }
     },
 
-    *__onDialogCommand({ payload }, { put, select }) {
-      const userState = yield select(state => state.UserModel);
+    *__onDialogCommand({ payload }, { select }) {
       const sceneState = yield select(state => state.SceneModel);   
-      const dialog = sceneState.__data.cfgReader.getSceneDialog(userState.sceneId, payload.params);
+      const dialog = sceneState.__data.cfgReader.getSceneDialog(payload.__sceneId, payload.params);
       if (dialog != null) {
         Modal.show(dialog);
       }
@@ -449,10 +484,9 @@ export default {
       RootNavigation.navigate(payload.params);
     },
 
-    *__onChatCommand({ payload }, { put, select }) {
-      const userState = yield select(state => state.UserModel);
-      yield put.resolve(action('raiseSceneEvents')({ sceneId: userState.sceneId, eventType: 'repeat' }));
-      yield put.resolve(action('StoryModel/selectChat')({ chatId: payload.params }));
+    *__onChatCommand({ payload }, { put }) {
+      yield put.resolve(action('raiseSceneEvents')({ sceneId: payload.__sceneId, eventType: 'repeat' }));
+      yield put.resolve(action('StoryModel/selectChat')({ chatId: payload.params, ...payload }));
     },
 
     *__onSceneCommand({ payload }, { put, select }) {
@@ -508,7 +542,6 @@ export default {
     },
 
     *__onVarCommand({ payload }, { put, select }) {
-      const userState = yield select(state => state.UserModel);
       const sceneState = yield select(state => state.SceneModel);
 
       const params = [];
@@ -517,7 +550,7 @@ export default {
       });
     
       const [v1, v2] = params[0].split('/');
-      const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
+      const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, payload.__sceneId];
       const varRef = VarUtils.getVar(sceneState.__data.vars, sceneId, varId);
       if (varRef == null)
         return;
@@ -568,7 +601,9 @@ export default {
     },
 
     *__onChapterCommand({ payload }, { put }) {
-      const [id, path] = payload.params.split('/');
+      const index = payload.params.indexOf('_');
+      const id = payload.params.substring(0, index);
+      const path = payload.params.substring(index + 1);
       yield put.resolve(action('ArticleModel/show')({ id, path }));
     },
 
@@ -626,7 +661,7 @@ export default {
       if (payload.andVarsOn != undefined) {
         for (let key in payload.andVarsOn) {
           const [v1, v2] = payload.andVarsOn[key].split('/');
-          const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
+          const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, payload.__sceneId];
           const varRef = VarUtils.getVar(sceneState.__data.vars, sceneId, varId);
           if (varRef == null || varRef.value <= 0) {
             failure = true;
@@ -637,7 +672,7 @@ export default {
       if (!failure && (payload.andVarsOff != undefined)) {
         for (let key in payload.andVarsOff) {
           const [v1, v2] = payload.andVarsOff[key].split('/');
-          const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
+          const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, payload.__sceneId];
           const varRef = VarUtils.getVar(sceneState.__data.vars, sceneId, varId);
           if (varRef == null || varRef.value > 0) {
             failure = true;
@@ -660,7 +695,7 @@ export default {
             const value = yield put.resolve(action('getWorldTime')({ worldId: userState.worldId }));
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
           } else if (id == '@scene_time_hours') {
-            const value = yield put.resolve(action('getSceneTime')({ sceneId: userState.sceneId }));
+            const value = yield put.resolve(action('getSceneTime')({ sceneId: payload.__sceneId }));
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
           } else if (id.indexOf('@props_') == 0) {
             const [_k, v] = id.split('_');
@@ -671,7 +706,7 @@ export default {
             continue;
           } else {
             const [v1, v2] = id.split('/');
-            const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, userState.sceneId];
+            const [varId, sceneId] = (v2 != undefined) ? [v2, v1] : [v1, payload.__sceneId];
             const varRef = VarUtils.getVar(sceneState.__data.vars, sceneId, varId);
             if (varRef == null) {
               failure = true;

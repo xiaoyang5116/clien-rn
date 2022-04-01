@@ -33,7 +33,7 @@ export async function GetArticleDataApi(id, path) {
         // 返回格式化的段落数据
         const sectionData = [];
 
-        const items = text.split(/#(BEGIN|END)[=]{1,}[\r\n]+/);
+        const items = text.split(/#(START|END)[=]{1,}.*?[=]{1,}[\r\n]+/);
 
         let begin = false;
         let code = '';
@@ -42,7 +42,7 @@ export async function GetArticleDataApi(id, path) {
             if (lo.isEmpty(e))
                 return;
 
-            if (lo.isEqual(e, 'BEGIN')) {
+            if (lo.isEqual(e, 'START')) {
                 begin = true;
             } else if (lo.isEqual(e, 'END')) {
                 const obj = yaml.load(code);

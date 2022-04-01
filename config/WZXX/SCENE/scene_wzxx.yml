@@ -23,23 +23,23 @@ scenes: [
       { 
         id: 'c1', desc: '', 
         options: [ 
-          { title: '【选择主线1】', toChapter: 'WZXX/M1' }, 
-          { title: '【选择主线2】', toChapter: 'WZXX/M2' }, 
-          { title: '【选择主线3】', toChapter: 'WZXX/M3' }, 
+          { title: '【选择主线1】', toChapter: 'WZXX_M1' }, 
+          { title: '【选择主线2】', toChapter: 'WZXX_M2' }, 
+          { title: '【选择主线3】', toChapter: 'WZXX_M3' }, 
         ],
       },
       #
       { 
         id: 'c2', desc: '', 
         options: [ 
-          { title: '【选择分支1】', toChapter: 'WZXX/M1_N1' }, 
+          { title: '【选择分支1】', toChapter: 'WZXX_M1_N1' }, 
         ],
       },
       #
       { 
         id: 'c3', desc: '', 
         options: [ 
-          { title: '【返回主线1】', varsOn: ['v1'], toChapter: 'WZXX/M1' }, 
+          { title: '【返回主线1】', varsOn: ['v1'], toChapter: 'WZXX_M1' }, 
         ],
       },
       #
@@ -48,7 +48,7 @@ scenes: [
         options: [ 
           { title: '弹出对话框', dialogs: ['p1'] }, 
           { title: '弹出旁白', dialogs: ['p2'] }, 
-          { title: '领取木瓜*10', sendProps: '40,10' }, 
+          { title: '领取木瓜*10', sendProps: '40,10', once: true }, 
         ],
       },
     ],

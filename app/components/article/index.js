@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
 import HeaderView from './HeaderView';
 import PlainView from './PlainView';
 import EventView from './EventView';
@@ -17,8 +16,6 @@ export default class ArticleBlock extends PureComponent {
                 return (<HeaderView itemKey={this.props.data.key} content={header} />);
             } else if (toast != undefined) {
                 return (<EventView itemKey={this.props.data.key} content={toast} />);
-            } else if (enterScene != undefined) {
-                return (<EventView itemKey={this.props.data.key} content={enterScene} />);
             } else if (chatId != undefined) {
                 return (<OptionView itemKey={this.props.data.key} {...this.props.data.object} />);
             }
