@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { View, Text } from 'react-native';
 
 import { TextButton } from '../../constants/custom-ui';
+import lo from 'lodash';
 
 import {
     connect,
@@ -31,7 +32,14 @@ class OptionView extends PureComponent {
                 const option = this.props.options[k];
                 buttonChilds.push(
                     <View key={key} style={{ marginTop: 5, marginBottom: 5 }}>
-                        <TextButton {...this.props} title={option.title} onPress={()=>{ this.optionPressHandler(option) }} />
+                        <TextButton {...this.props} title={option.title} onPress={()=>{ 
+                            this.optionPressHandler(option);
+                            
+                            // 一次性按钮点击后置灰
+                            if (lo.isBoolean(option.once)) {
+                                return ({ disabled: true });
+                            }
+                        }} />
                     </View>
                 );
                 key += 1;

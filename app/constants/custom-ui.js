@@ -18,7 +18,7 @@ export const TextButton = (props) => {
         : {};
     
     return (
-        <CButton title={props.title} fontSize={18} {...customProps} onPress={props.onPress} />
+        <CButton fontSize={18} {...props} {...customProps} onPress={props.onPress} />
     );
 }
 
