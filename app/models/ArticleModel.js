@@ -26,6 +26,13 @@ const ParseFileDesc = (fileName) => {
   return { id: splits[0], path: path };
 }
 
+const HasStopDirective = (data) => {
+  if (lo.isArray(data)) {
+    return (data.find(e => (lo.isEqual(e.type, 'code') && lo.isObject(e.object) && lo.isBoolean(e.object.stop) && e.object.stop)) != undefined);
+  }
+  return false;
+}
+
 export default {
   namespace: 'ArticleModel',
 
@@ -53,7 +60,7 @@ export default {
 
       const { id, path } = (payload.file != undefined) ? ParseFileDesc(payload.file) : payload;
       const data = yield call(GetArticleDataApi, id, path);
-      if (data != null) AddLoadedListHandler(articleState.__data.loadedList, { id, path });
+      if (data != null) AddLoadedListHandler(articleState.__data.loadedList, { id, path, stop: HasStopDirective(data) });
 
       // 首次加载索引文件
       if (articleState.__data.indexes.find(e => e.id == id) == undefined) {
@@ -100,7 +107,7 @@ export default {
 
                 // 合并数据
                 data.push(...subData);
-                AddLoadedListHandler(articleState.__data.loadedList, kv);
+                AddLoadedListHandler(articleState.__data.loadedList, { ...kv, stop: HasStopDirective(subData) });
               }
             }
           }
@@ -180,17 +187,12 @@ export default {
     *end({ payload }, { call, put, select }) {
       const articleState = yield select(state => state.ArticleModel);
 
-      // 出现stop指令时停止自动续章
-      const lastSection = lo.last(articleState.sections);
-      if (lo.isObject(lastSection) 
-        && lo.isObject(lastSection.object) 
-        && lo.isBoolean(lastSection.object.stop) 
-        && lastSection.object.stop)
-        return;
-
       // 当前分支的情况下自动续章
       const lastLoaded = lo.last(articleState.__data.loadedList);
       const indexData = articleState.__data.indexes.find(e => e.id == lastLoaded.id);
+
+      // 出现stop指令时停止自动续章
+      if (lastLoaded.stop) return;
 
       const splits = lastLoaded.path.split('_');
       if (splits.length >= 2) {
