@@ -1,14 +1,29 @@
 # ===========================================
 # 文件索引表
+# 文件名说明 举例："WZXX_M1_N1_C001_[A1].txt",
+# 内容分别代表 书本_主线_支线_章节_[章节内选择出的小章节]
 # ===========================================
-files: [
-  'WZXX_[START].txt',
-  'WZXX_M1.txt',
-  'WZXX_M2.txt',
-  'WZXX_M3.txt',
-  'WZXX_M1_N1.txt',
-  'WZXX_M1_N1_[A1].txt',
-  'WZXX_M1_N1_[A2].txt',
-  'WZXX_M1_N2.txt',
-  'WZXX_M1_N3.txt',
-]
+files:
+  [
+  #第一章
+    "WZXX_[START].txt",
+    "WZXX_M1_N1_C001.txt",
+    "WZXX_M1_N1_C001_[A1].txt",
+    "WZXX_M1_N1_C001_[A2].txt",
+    "WZXX_M1_N1_C001_[A3].txt",
+ 
+  #选择身份
+    "WZXX_M1_N1_C002.txt",
+    "WZXX_M1_N1_C003.txt",
+ 
+
+
+
+
+
+
+
+  #选择身份
+    "WZXX_M1_N1_C999.txt",
+#
+  ]
