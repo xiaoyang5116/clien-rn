@@ -2,7 +2,6 @@
 import yaml from 'js-yaml';
 import lo from 'lodash';
 
-// 确保每一个段落都有唯一的KEY，使得onLayout每次都re-render。
 let UNIQUE_KEY = 1;
 
 export async function GetArticleDataApi(id, path) {
@@ -38,7 +37,14 @@ export async function GetArticleDataApi(id, path) {
             } else if (begin) {
                 code = e;
             } else {
-                sectionData.push({ key: UNIQUE_KEY++, type: 'plain', content: e });
+                // 长文本拆分成若干段小文本
+                let i = 0;
+                const splits = e.split(/(.*?[\r\n]+)/).filter(e => !lo.isEmpty(e));
+                while (i < splits.length) {
+                  const lines = lo.slice(splits, i, i + 10);
+                  i += lines.length;
+                  sectionData.push({ key: UNIQUE_KEY++, type: 'plain', content: lines.join('') });
+                }
             }
         });
 

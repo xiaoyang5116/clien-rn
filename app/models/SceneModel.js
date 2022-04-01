@@ -25,6 +25,7 @@ import * as DateTime from '../utils/DateTimeUtils';
 import * as RootNavigation from '../utils/RootNavigation';
 import SceneConfigReader from "../utils/SceneConfigReader";
 import Modal from "../components/modal";
+import Shock from '../components/shock';
 
 class VarUtils {
   static generateVarUniqueId(sceneId, varId) {
@@ -112,6 +113,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__chapter_{0}".format(payload.toChapter), cmd: 'chapter', params: payload.toChapter });
     }
 
+    // 生成震屏动作
+    if (payload.shock != undefined && typeof(payload.shock) == 'string') {
+      allActions.push({ id: "__shock_{0}".format(payload.shock), cmd: 'shock', params: payload.shock });
+    }
+
     return allActions;
   }
 }
@@ -172,6 +178,7 @@ const ACTIONS_MAP = [
   { cmd: 'sendProps',     handler: '__onSendPropsCommand' },
   { cmd: 'seqId',         handler: '__onSeqIdCommand' },
   { cmd: 'chapter',       handler: '__onChapterCommand' },
+  { cmd: 'shock',         handler: '__onShockCommand' },
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;
@@ -605,6 +612,13 @@ export default {
       const id = payload.params.substring(0, index);
       const path = payload.params.substring(index + 1);
       yield put.resolve(action('ArticleModel/show')({ id, path }));
+    },
+
+    *__onShockCommand({ payload }, { put }) {
+      let [type, delay, count] = payload.params.split('/');
+      count = count == undefined ? 4 : parseInt(count)
+      delay = delay == undefined ? 4 : parseInt(delay)
+      Shock.shockShow(type, delay, count);
     },
 
     *syncData({ }, { select, call }) {
