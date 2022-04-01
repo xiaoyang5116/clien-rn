@@ -5,15 +5,9 @@ import {
     Text,
     TouchableHighlight,
     TouchableWithoutFeedback,
+    TouchableOpacity,
     FlatList,
-    ImageBackground,
-    Image,
     Button,
-    Dimensions,
-    StyleSheet,
-    SafeAreaView,
-    SectionList,
-    StatusBar,
 } from 'react-native';
 import { getWindowSize } from '../../constants';
 
@@ -24,7 +18,6 @@ const HalfScreenDialog = props => {
     const [currentTextList, setShowList] = useState(props.popUpComplex[0].content)
     const [showBtnList, setShowBtnList] = useState(props.popUpComplex[0].btn)
 
-    let totalDialogueLength = props.popUpComplex.length
     let currentDialogueLength = currentTextList.length - 1
 
     const nextParagraph = () => {
@@ -40,7 +33,7 @@ const HalfScreenDialog = props => {
             setCurrentIndex(0)
         }
         else {
-            props.onAsideNext()
+            props.isGame ? props.onDialogCancel() : props.onHide()
         }
 
     }
@@ -98,11 +91,11 @@ const HalfScreenDialog = props => {
                                 fontSize: 24,
                                 color: '#6b4e28',
                             }}>
-                            神秘阵盘
+                            {props.title}
                         </Text>
                     </View>
                     {/* 关闭按钮 */}
-                    <TouchableHighlight
+                    <TouchableOpacity
                         onPress={() => { props.isGame ? props.onDialogCancel() : props.onHide() }}
                         style={{
                             position: 'absolute',
@@ -118,7 +111,7 @@ const HalfScreenDialog = props => {
                                 ×
                             </Text>
                         </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
 
                 {/* 显示区域 */}
@@ -139,14 +132,9 @@ const HalfScreenDialog = props => {
                                 backgroundColor: '#ddd1ab',
                             }}>
                             <FlatList
-
                                 data={currentTextList}
-                                // extraData={this.state.showId}
                                 renderItem={renderText}
                                 keyExtractor={(item, index) => item + index}
-                            // ListEmptyComponent={() => {
-                            //     return <Text>Loading...</Text>
-                            // }}
                             />
                         </View>
 
@@ -158,12 +146,8 @@ const HalfScreenDialog = props => {
                             {
                                 <FlatList
                                     data={showBtnList}
-                                    // extraData={this.state.showId}
                                     renderItem={renderBtn}
                                     keyExtractor={(item, index) => item.title + index}
-                                // ListEmptyComponent={() => {
-                                //     return <Text>Loading...</Text>
-                                // }}
                                 />
                             }
                         </View>
