@@ -14,16 +14,24 @@ export default class Shock extends Component {
       shockType: '',
       // 执行次数
       count: 0,
+      delay: 0,
     }
   }
 
   index = 0
+  timer = null
 
   componentDidUpdate() {
     // 判断是否有震动动画
     if (this.state.shockType !== '') {
-      this.vibrationAnimation(this.state.shockType)
+      this.timer = setTimeout(() => {
+        this.vibrationAnimation(this.state.shockType)
+      }, this.state.delay);
+
     }
+  }
+  componentWillUnmount() {
+    clearTimeout(this.timer)
   }
 
   vibrationAnimation = (type) => {
@@ -34,6 +42,7 @@ export default class Shock extends Component {
     }
     else {
       Animated.parallel([
+
         Animated.timing(this.state.valueX, { toValue: 0, duration: 50, useNativeDriver: false, easing: Easing.ease }),
         Animated.timing(this.state.valueY, { toValue: 0, duration: 50, useNativeDriver: false, easing: Easing.ease }),
       ]).start()
@@ -88,9 +97,10 @@ export default class Shock extends Component {
     )
   }
 
-  static shockShow(type, count = 4) {
+  static shockShow(type, delay = 0, count = 4) {
     shockRoot.setState({
       shockType: type,
+      delay,
       count,
     })
   };
