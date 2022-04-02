@@ -2,29 +2,20 @@
 import React from 'react';
 
 import {
-  RenderHTML
-} from 'react-native-render-html';
-
-import {
   connect,
   Component,
   StyleSheet,
-  getWindowSize,
-  ScrollView,
   action
 } from "../constants";
 
-import * as RootNavigation from '../utils/RootNavigation'
 import { 
-  Button, 
-  Text, 
   View,
+  Text,
   FlatList,
-  TouchableOpacity,
 } from '../constants/native-ui';
 
 import Block from '../components/article';
-import { Animated, TouchableWithoutFeedback } from 'react-native';
+import { Animated } from 'react-native';
 
 class ArticlePage extends Component {
 

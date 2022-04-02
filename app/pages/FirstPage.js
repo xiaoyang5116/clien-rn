@@ -42,7 +42,7 @@ class FirstPage extends Component {
               });
              }} />
             <ImageButton height={60} source={require('../../assets/test_button.png')} selectedSource={require('../../assets/test_button_selected.png')} onPress={() => { 
-              Shock.shockShow('bigShock',)
+              Shock.shockShow('bigShock');
              }} />
           </View>
         </ImageBackground>
