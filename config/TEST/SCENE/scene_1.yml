@@ -73,6 +73,7 @@
 #         title:        选项名称
 #         progressId:   进度条唯一ID[可选]
 #         duration:     倒计时选项
+#         alwayDisplay: 指定是否强制显示，条件不满足的时候置灰。
 #         clickActions: 选项点击事件后触发的动作ID列表
 #         ...条件判断
 #         ...影响结果

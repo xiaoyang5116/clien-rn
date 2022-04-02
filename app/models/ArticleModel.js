@@ -123,14 +123,7 @@ export default {
         if (item.object.chatId != undefined) {
           // 预生成选项数据
           const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: item.object.sceneId, chatId: item.object.chatId }));
-          const optionsData = [];
-          for (let k in chat.options) {
-            const option = chat.options[k];
-            if (yield put.resolve(action('SceneModel/testCondition')(option))) {
-              optionsData.push(option);
-            }
-          }
-          item.object.options = optionsData;
+          item.object.options = yield put.resolve(action('getValidOptions')({ options: chat.options }));
         }
       }
       
@@ -140,6 +133,22 @@ export default {
         articleState.sections.length = 0;
         yield put(action('updateState')({ sections: data, continueView: false }));
       }
+    },
+
+    *getValidOptions({ payload }, { call, put, select }) {
+      const optionsData = [];
+      for (let k in payload.options) {
+        const option = payload.options[k];
+        const match = yield put.resolve(action('SceneModel/testCondition')(option));
+        if (lo.isBoolean(option.alwayDisplay) && option.alwayDisplay) {
+          option.disabled = !match;
+          optionsData.push(option);
+        } else if (match) {
+          option.disabled = false;
+          optionsData.push(option);
+        }
+      }
+      return optionsData;
     },
 
     *layout({ payload }, { call, put, select }) {
