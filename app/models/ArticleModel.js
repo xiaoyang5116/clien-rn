@@ -9,6 +9,7 @@ import {
 import { GetArticleDataApi } from '../services/GetArticleDataApi';
 import { GetArticleIndexDataApi } from '../services/GetArticleIndexDataApi';
 import Toast from "../components/toast";
+import Modal from "../components/modal";
 import lo from 'lodash';
 
 const WIN_SIZE = getWindowSize();
@@ -123,7 +124,7 @@ export default {
         if (item.object.chatId != undefined) {
           // 预生成选项数据
           const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: item.object.sceneId, chatId: item.object.chatId }));
-          item.object.options = yield put.resolve(action('getOptionsGroup')({ options: chat.options }));
+          item.object.options = yield put.resolve(action('getValidOptions')({ options: chat.options }));
         }
       }
       
@@ -135,7 +136,7 @@ export default {
       }
     },
 
-    *getOptionsGroup({ payload }, { call, put, select }) {
+    *getValidOptions({ payload }, { call, put, select }) {
       const optionsData = [];
       for (let k in payload.options) {
         const option = payload.options[k];
@@ -175,20 +176,24 @@ export default {
           continue;
 
         // 触发按区域激活提示
-        const { toast } = item.object;
-        if (toast != undefined) {
-          // 计算总偏移量
-          const prevSections = articleState.sections.filter(e => e.key <= item.key);
-          let totalOffsetY = 0;
-          prevSections.forEach(e => totalOffsetY += e.height);
-          const validY = offsetY + WIN_SIZE.height / 2 - 60 + 100; // 60: iOS顶部空间, 100: 透明框一半
-          if (validY > totalOffsetY && (validY - 200) < totalOffsetY) {
-            // 在事件触发区域
-            if (item.object.completed == undefined || !item.object.completed) {
-              Toast.show(toast, toastType(item.object.type));
-              item.object.completed = true;
-            }
+        const { toast, pop } = item.object;
+        if (toast == undefined && pop == undefined)
+          continue;
+
+        // 计算总偏移量
+        const prevSections = articleState.sections.filter(e => e.key <= item.key);
+        let totalOffsetY = 0;
+        prevSections.forEach(e => totalOffsetY += e.height);
+        const validY = offsetY + WIN_SIZE.height / 2 - 40 + 100; // 40: iOS顶部空间, 100: 透明框一半
+        if (validY > totalOffsetY && (validY - 200) < totalOffsetY) {
+          // 在事件触发区域
+          if (toast != undefined) {
+            Toast.show(toast, toastType(item.object.type));
           }
+          if (pop != undefined) {
+            Modal.show(pop);
+          }
+          item.object.completed = true;
         }
       }
     },

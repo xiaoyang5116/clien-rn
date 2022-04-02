@@ -9,7 +9,7 @@ import {
 
 import { Button, Text, View } from '../../constants/native-ui';
 import GameOverModal from './GameOverModal';
-import HalfScreenDialog from '../dialog/HalfScreenDialog';
+import DialogTemple from '../dialog/DialogTemple';
 import BlackNarration from './BlackNarration';
 import Narration from './Narration'
 
@@ -75,10 +75,9 @@ class MaskModal extends PureComponent {
         const currentStyles = this.props.currentStyles;
         // 6  代表 popUp dialog 弹出对话框
         if (this.props.style === 6) {
-            // console.log("this.props", this.props);
             return (
                 <Modal isVisible={this.props.visible} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
-                    <HalfScreenDialog isGame={true} onDialogCancel={this._onDialogCancel} onAsideNext={this._onAsideNext} popUpComplex={this.props.__data.current.popUpComplex} />
+                    <DialogTemple type={this.props.__data.current.dialogType} isGame={true} title={this.props.title} onDialogCancel={this._onDialogCancel} popUpComplex={this.props.__data.current.sections} />
                 </Modal>
             )
         }

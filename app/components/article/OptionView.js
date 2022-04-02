@@ -30,7 +30,7 @@ class OptionView extends PureComponent {
         .then(e => {
             // 仅在不切换章节时刷新
             if (data.toChapter == undefined) {
-                this.props.dispatch(action('ArticleModel/getOptionsGroup')({ options: this.state.options }))
+                this.props.dispatch(action('ArticleModel/getValidOptions')({ options: this.state.options }))
                 .then(r => {
                     this.setState({ options: r });
                 });
