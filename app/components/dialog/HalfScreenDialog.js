@@ -1,16 +1,14 @@
-import { set } from 'lodash';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
     View,
     Text,
-    TouchableHighlight,
     TouchableWithoutFeedback,
-    TouchableOpacity,
     FlatList,
     Button,
 } from 'react-native';
 import { getWindowSize } from '../../constants';
 import TextAnimation from '../textAnimation';
+import { TextButton } from '../../constants/custom-ui';
 
 const size = getWindowSize();
 
@@ -34,7 +32,7 @@ const HalfScreenDialog = props => {
             setCurrentIndex(0)
         }
         else {
-            props.isGame ? props.onDialogCancel() : props.onHide()
+            props.onDialogCancel()
         }
 
     }
@@ -42,7 +40,9 @@ const HalfScreenDialog = props => {
     const renderText = ({ item, index }) => {
         if (index <= currentIndex) {
             return (
-                <TextAnimation>{item}</TextAnimation>
+                <TextAnimation style={{ marginTop: 12, marginBottom: 12, }} index={index}>
+                    {item}{(currentIndex === index) && (currentIndex < currentDialogueLength) ? "▼" : ''}
+                </TextAnimation>
             )
         }
         return null
@@ -50,7 +50,9 @@ const HalfScreenDialog = props => {
     const renderBtn = ({ item }) => {
         if (currentIndex === currentDialogueLength) {
             return (
-                <Button title={item.title} onPress={() => { nextDialogue(item.tokey) }} />
+                <View style={{ marginTop: 12 }}>
+                    <TextButton currentStyles={props.currentStyles} title={item.title} onPress={() => { nextDialogue(item.tokey) }} />
+                </View>
             )
         }
     }
@@ -59,16 +61,16 @@ const HalfScreenDialog = props => {
         <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, justifyContent: 'center', alignContent: 'center', alignItems: 'center', }}>
             <View style={{ width: 380, height: 600, backgroundColor: '#fff', }}>
                 {/* head */}
-                <View style={{ position: 'relative', overflow: 'hidden', paddingLeft: 12, paddingRight: 12, backgroundColor: '#5f7157', height: 50, flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center', alignItems: 'center', }}>
+                <View style={{ paddingLeft: 12, paddingRight: 12, backgroundColor: '#5f7157', height: 50, flexDirection: 'row', justifyContent: 'center', alignContent: 'center', alignItems: 'center', }}>
                     {/* 标题 */}
-                    <View style={{ borderRadius: 5, backgroundColor: '#e5d8ab', justifyContent: 'center', alignContent: 'center', alignItems: 'center', width: 150, }}>
-                        <Text style={{ fontSize: 24, color: '#6b4e28', }}>
+                    <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 24, color: '#ede0b6', }}>
                             {props.title}
                         </Text>
                     </View>
                     {/* 关闭按钮 */}
-                    <TouchableOpacity
-                        onPress={() => { props.isGame ? props.onDialogCancel() : props.onHide() }}
+                    {/* <TouchableOpacity
+                        onPress={props.onDialogCancel}
                         style={{ position: 'absolute', right: 12, top: -18, overflow: 'hidden', }}
                     >
                         <View>
@@ -76,7 +78,7 @@ const HalfScreenDialog = props => {
                                 ×
                             </Text>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                 </View>
 
                 {/* 显示区域 */}
@@ -84,7 +86,7 @@ const HalfScreenDialog = props => {
                 <TouchableWithoutFeedback
                     onPress={nextParagraph}>
                     <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, backgroundColor: '#ede0b6', }}>
-                        <View style={{ height: 350, marginTop: 12, backgroundColor: '#ddd1ab', }}>
+                        <View style={{ height: 350, marginTop: 12, paddingLeft: 12, paddingRight: 12, backgroundColor: '#ddd1ab', }}>
                             <FlatList
                                 data={currentTextList}
                                 renderItem={renderText}

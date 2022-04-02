@@ -1,5 +1,4 @@
-import { set } from 'lodash';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
     View,
     Text,
@@ -10,9 +9,10 @@ import {
 
 } from 'react-native';
 
-import { getWindowSize } from '../../constants';
+import { TextButton } from '../../constants/custom-ui';
+import TextAnimation from '../textAnimation';
 
-const size = getWindowSize();
+
 
 const FullScreenDialog = props => {
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -34,7 +34,7 @@ const FullScreenDialog = props => {
             setCurrentIndex(0)
         }
         else {
-            props.isGame ? props.onDialogCancel() : props.onHide()
+            props.onDialogCancel()
         }
 
     }
@@ -42,9 +42,7 @@ const FullScreenDialog = props => {
     const renderText = ({ item, index }) => {
         if (index <= currentIndex) {
             return (
-              <View style={{marginTop:12}}>
-                <Text style={{fontSize:24}}>{item}</Text>
-              </View>
+                <TextAnimation index={index}>{item}{(currentIndex === index) && (currentIndex < currentDialogueLength) ? "▼" : ''}</TextAnimation>
             )
         }
         return null
@@ -52,86 +50,26 @@ const FullScreenDialog = props => {
     const renderBtn = ({ item }) => {
         if (currentIndex === currentDialogueLength) {
             return (
-                <Button title={item.title} onPress={() => { nextDialogue(item.tokey) }} />
+                <View style={{ marginTop: 12 }}>
+                    <TextButton currentStyles={props.currentStyles} title={item.title} onPress={() => { nextDialogue(item.tokey) }} />
+                </View>
             )
         }
     }
 
     return (
-        <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, justifyContent: 'center', alignContent: 'center', alignItems: 'center', }}>
-            <View
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    backgroundColor: '#eee7dd',
-                }}>
-                {/* head */}
-                <View
-                    style={{
-                        position: 'relative',
-                        overflow: 'hidden',
-                        paddingLeft: 12,
-                        paddingRight: 12,
-                        height: 50,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignContent: 'center',
-                        alignItems: 'center',
-                    }}>
-                    {/* 标题 */}
-                    <View
-                        style={{
-                            // width: 150,
-                            // borderRadius: 5,
-                            // backgroundColor: '#e5d8ab',
-                            justifyContent: 'center',
-                            alignContent: 'center',
-                            alignItems: 'center',
-
-                        }}>
-                        <Text
-                            style={{
-                                fontSize: 24,
-                                color: '#6b4e28',
-                            }}>
-                            {props.title}
-                        </Text>
-                    </View>
-                    {/* 关闭按钮 */}
-                    <TouchableOpacity
-                        onPress={() => { props.isGame ? props.onDialogCancel() : props.onHide() }}
-                        style={{
-                            position: 'absolute',
-                            right: 12,
-                            top: -18,
-                            overflow: 'hidden',
-                        }}>
-                        <View>
-                            <Text
-                                style={{
-                                    fontSize: 60,
-                                }}>
-                                ×
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-
-                {/* 显示区域 */}
-
-                <TouchableWithoutFeedback
-                    onPress={nextParagraph}>
-                    <View
-                        style={{
-                            flex: 1,
-                            paddingLeft: 12,
-                            paddingRight: 12,
-                        }}>
-                        <View
-                            style={{
-                                height: 350,
-                                marginTop: 12,
-                            }}>
+        <View style={{ backgroundColor: '#eee7dd', flex: 1, opacity: 1, paddingTop: 10 }}>
+            {/* 标题 */}
+            <View style={{ height: 40, backgroundColor: '#e3d8c8', justifyContent: 'center', alignContent: 'center', alignItems: 'center', borderBottomColor: '#6d6a65', borderBottomWidth: 1, borderTopColor: '#6d6a65', borderTopWidth: 1, }}>
+                <Text style={{ fontSize: 20, textAlign: 'center' }}>
+                    {props.title}
+                </Text>
+            </View>
+            {/* 显示区域 */}
+            <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12 }}>
+                <TouchableWithoutFeedback onPress={nextParagraph} >
+                    <View style={{ flex: 1 }}>
+                        <View style={{ height: 350 }}>
                             <FlatList
                                 data={currentTextList}
                                 renderItem={renderText}
@@ -140,17 +78,12 @@ const FullScreenDialog = props => {
                         </View>
 
                         {/* 按钮区域 */}
-                        <View
-                            style={{
-                                marginTop: 20,
-                            }}>
-                            {
-                                <FlatList
-                                    data={showBtnList}
-                                    renderItem={renderBtn}
-                                    keyExtractor={(item, index) => item.title + index}
-                                />
-                            }
+                        <View style={{ marginTop: 20 }}>
+                            <FlatList
+                                data={showBtnList}
+                                renderItem={renderBtn}
+                                keyExtractor={(item, index) => item.title + index}
+                            />
                         </View>
                     </View>
                 </TouchableWithoutFeedback>

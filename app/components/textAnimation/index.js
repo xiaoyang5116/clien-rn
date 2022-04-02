@@ -4,7 +4,6 @@ import React, { PureComponent } from 'react';
 export default class TextAnimation extends PureComponent {
   state = {
     opacity: new Animated.Value(0),
-    // opacity: new Animated.Value(0),
   };
   componentDidMount() {
 
@@ -13,11 +12,12 @@ export default class TextAnimation extends PureComponent {
     ]).start()
   }
   render() {
-    console.log("props.children", this.props.children, this.props.children.length);
+    // console.log("props.children", this.props.children, this.props.children.length);
 
     return (
-      <View>
-        <Animated.Text style={{ opacity: this.state.opacity }}>{this.props.children}
+      <View style={{ marginTop: 12 }}>
+        <Animated.Text style={{ opacity: this.state.opacity, fontSize: 20 }}>
+          {this.props.children}
         </Animated.Text>
       </View>
     )
