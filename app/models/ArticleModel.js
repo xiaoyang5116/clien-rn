@@ -123,7 +123,7 @@ export default {
         if (item.object.chatId != undefined) {
           // 预生成选项数据
           const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: item.object.sceneId, chatId: item.object.chatId }));
-          item.object.options = yield put.resolve(action('getOptionsGroup')({ options: chat.options }));
+          item.object.options = yield put.resolve(action('getValidOptions')({ options: chat.options }));
         }
       }
       
@@ -135,7 +135,7 @@ export default {
       }
     },
 
-    *getOptionsGroup({ payload }, { call, put, select }) {
+    *getValidOptions({ payload }, { call, put, select }) {
       const optionsData = [];
       for (let k in payload.options) {
         const option = payload.options[k];
