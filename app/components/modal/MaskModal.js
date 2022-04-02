@@ -8,7 +8,7 @@ import {
 } from "../../constants";
 
 import { Button, Text, View } from '../../constants/native-ui';
-import GameOverModal from '../modal/GameOverModal';
+import GameOverModal from './GameOverModal';
 import DialogTemple from '../dialog/DialogTemple';
 import BlackNarration from './BlackNarration';
 import Narration from './Narration'
