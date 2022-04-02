@@ -8,9 +8,14 @@ import {
     connect,
     action,
 } from "../../constants";
-import Modal from '../modal';
-
 class OptionView extends PureComponent {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            options: this.props.options,
+        }
+    }
 
     layoutHandler = (e) => {
         this.props.dispatch(action('ArticleModel/layout')({ 
@@ -21,25 +26,27 @@ class OptionView extends PureComponent {
     }
 
     optionPressHandler = (data) => {
-        this.props.dispatch(action('SceneModel/processActions')(data));
+        this.props.dispatch(action('SceneModel/processActions')(data))
+        .then(e => {
+            // 仅在不切换章节时刷新
+            if (data.toChapter == undefined) {
+                this.props.dispatch(action('ArticleModel/getOptionsGroup')({ options: this.state.options }))
+                .then(r => {
+                    this.setState({ options: r });
+                });
+            }
+        });
     }
 
     render() {
         const buttonChilds = [];
-        if (this.props.options != undefined) {
+        if (this.state.options != undefined) {
             let key = 0;
-            for (let k in this.props.options) {
-                const option = this.props.options[k];
+            for (let k in this.state.options) {
+                const option = this.state.options[k];
                 buttonChilds.push(
                     <View key={key} style={{ marginTop: 5, marginBottom: 5 }}>
-                        <TextButton {...this.props} title={option.title} onPress={()=>{ 
-                            this.optionPressHandler(option);
-                            
-                            // 一次性按钮点击后置灰
-                            if (lo.isBoolean(option.once)) {
-                                return ({ disabled: true });
-                            }
-                        }} />
+                        <TextButton {...this.props} title={option.title} disabled={option.disabled} onPress={()=>{ this.optionPressHandler(option); }} />
                     </View>
                 );
                 key += 1;
