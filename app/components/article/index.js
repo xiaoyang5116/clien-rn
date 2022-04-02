@@ -11,11 +11,13 @@ export default class ArticleBlock extends PureComponent {
         if (dataType == 'plain') {
             return (<PlainView itemKey={this.props.data.key} content={this.props.data.content} />)
         } else if (dataType == 'code' && this.props.data.object != null) {
-            const { header, toast, enterScene, chatId } = this.props.data.object;
+            const { header, toast, pop, chatId } = this.props.data.object;
             if (header != undefined) {
                 return (<HeaderView itemKey={this.props.data.key} content={header} />);
             } else if (toast != undefined) {
                 return (<EventView itemKey={this.props.data.key} content={toast} />);
+            } else if (pop != undefined) {
+                return (<EventView itemKey={this.props.data.key} content={pop.title} />);
             } else if (chatId != undefined) {
                 return (<OptionView itemKey={this.props.data.key} {...this.props.data.object} />);
             }
