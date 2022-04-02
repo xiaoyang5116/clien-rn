@@ -7,8 +7,8 @@ import {
     PureComponent,
 } from "../../constants";
 
-import { Button, Text, View, TouchableWithoutFeedback, } from '../../constants/native-ui';
-import GameOverModal from '../GameOverModal';
+import { Button, Text, View } from '../../constants/native-ui';
+import GameOverModal from '../modal/GameOverModal';
 import DialogTemple from '../dialog/DialogTemple';
 import BlackNarration from './BlackNarration';
 import Narration from './Narration'

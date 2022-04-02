@@ -46,9 +46,10 @@ scenes: [
       { 
         id: 'c4', desc: '', 
         options: [ 
+         #  { title: '回开头', toChapter: "WZXX_M1_N1_C001" },
           { title: '弹出对话框', dialogs: ['p1'] }, 
           { title: '弹出旁白', dialogs: ['p2'] }, 
-          { title: '领取木瓜*10', sendProps: '40,10', shock: 'slightShock/100/4', once: true }, 
+          { title: '领取木瓜*10', sendProps: '40,10' }, 
         ],
       },
     ],
