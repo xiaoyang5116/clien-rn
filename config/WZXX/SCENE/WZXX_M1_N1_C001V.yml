@@ -5,7 +5,11 @@ scenes: [
       name: "小说专属场景",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 }],
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "v2", min: 0, max: 1 } ,
+      { id: "v3", min: 0, max: 1 } ,
+      ],
 
       # 动作定义
       actions: [],
@@ -21,13 +25,21 @@ scenes: [
         id: 'WZXX_M1_N1_C001V', desc: '选项', 
         options: [ 
         #  { title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
-          { title: "【去最近的城市，生存重要】", toChapter: "WZXX_M1_N1_C001_[A1]" },
-          { title: "【去穿越的地点，也许能找到什么】", toChapter: "WZXX_M1_N1_C001_[A2]" },
-          { title: "【跟踪对手，找到更多线索】", toChapter: "WZXX_M1_N1_C001_[A3]" },
+          { title: "【去最近的城市，生存重要】", andVarsOff: ['v3'], varsOn: ['v1'], alwayDisplay: true, },
+          { title: "【去穿越的地点，也许能找到什么】", andVarsOff: ['v3'], varsOn: ['v2'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A2]" },
+          { title: "【跟踪对手，找到更多线索】", andVarsOff: ['V2,v3 '], varsOn: ['v3'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A3]" },
         ],
       },
-
-
+      #
+      { 
+        id: 'WZXX_M1_N1_C001_[A1]V', desc: '选择穿越的出身', 
+        options: [ 
+          { title: "【想起自己是“被灭门修真世家的逃难者”】", andVarsOff: ['v1'], varsOn: ['v2,v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001_[A1]" },
+          { title: "【想起自己是“经营包子铺的穷小子”】", andVarsOff: ['v2'], varsOn: ['v1,v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001_[A2]" },
+          { title: "【想起自己是“富贵白府千金的私生子”】", andVarsOff: ['v3'], varsOn: ['v1,v2'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001_[A3]" },
+        ],
+      },
+ 
 
       #
         ],
