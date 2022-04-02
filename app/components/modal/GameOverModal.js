@@ -11,7 +11,7 @@ export default function GameOverModal(props) {
     return (
         <View style={currentStyles.GameOverModal}>
             <View style={currentStyles.GameOverModalContent}>
-                <Text style={currentStyles.GameOverModalContent_Text}>结局{title}饿死了</Text>
+                <Text style={currentStyles.GameOverModalContent_Text}>{title}</Text>
                 <Text style={currentStyles.GameOverModalContent_Text}>{content}</Text>
             </View>
             <View style={currentStyles.GameOverModalButtonContainer}>
