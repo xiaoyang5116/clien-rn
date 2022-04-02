@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Animated, Easing } from 'react-native'
-import React, { useRef, Component } from 'react'
+import { StyleSheet, Animated, Easing } from 'react-native'
+import React, { Component } from 'react'
 
 
 let shockRoot = null;
@@ -42,7 +42,6 @@ export default class Shock extends Component {
     }
     else {
       Animated.parallel([
-
         Animated.timing(this.state.valueX, { toValue: 0, duration: 50, useNativeDriver: false, easing: Easing.ease }),
         Animated.timing(this.state.valueY, { toValue: 0, duration: 50, useNativeDriver: false, easing: Easing.ease }),
       ]).start()
