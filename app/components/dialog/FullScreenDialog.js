@@ -42,7 +42,16 @@ const FullScreenDialog = props => {
     const renderText = ({ item, index }) => {
         if (index <= currentIndex) {
             return (
-                <TextAnimation index={index}>{item}{(currentIndex === index) && (currentIndex < currentDialogueLength) ? "▼" : ''}</TextAnimation>
+                <View style={{ marginTop: 12 }}>
+                    <TextAnimation
+                        icon={(currentIndex === index) && (currentIndex < currentDialogueLength) ? "▼" : ''}
+                        fontSize={20}
+                        type={props.textAnimationType}
+                    >
+                        {item}
+                    </TextAnimation>
+                </View>
+
             )
         }
         return null
@@ -55,6 +64,7 @@ const FullScreenDialog = props => {
                 </View>
             )
         }
+        return null
     }
 
     return (
@@ -69,6 +79,7 @@ const FullScreenDialog = props => {
             <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12 }}>
                 <TouchableWithoutFeedback onPress={nextParagraph} >
                     <View style={{ flex: 1 }}>
+                        {/* 内容显示区域 */}
                         <View style={{ height: 350 }}>
                             <FlatList
                                 data={currentTextList}

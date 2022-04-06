@@ -40,9 +40,16 @@ const HalfScreenDialog = props => {
     const renderText = ({ item, index }) => {
         if (index <= currentIndex) {
             return (
-                <TextAnimation style={{ marginTop: 12, marginBottom: 12, }} index={index}>
-                    {item}{(currentIndex === index) && (currentIndex < currentDialogueLength) ? "▼" : ''}
-                </TextAnimation>
+                <View style={{ marginTop: 12 }}>
+                    <TextAnimation
+                        fontSize={20}
+                        icon={(currentIndex === index) && (currentIndex < currentDialogueLength) ? "▼" : ''}
+                        type={props.textAnimationType}
+                    >
+                        {item}
+                    </TextAnimation>
+                </View>
+
             )
         }
         return null
@@ -58,13 +65,13 @@ const HalfScreenDialog = props => {
     }
 
     return (
-        <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, justifyContent: 'center', alignContent: 'center', alignItems: 'center', }}>
-            <View style={{ width: 380, height: 600, backgroundColor: '#fff', }}>
+        <View style={{ position: 'absolute', top: 0, left: 0, bottom: 0, right: 0, justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+            <View style={{ width: 360, height: 600, }}>
                 {/* head */}
-                <View style={{ paddingLeft: 12, paddingRight: 12, backgroundColor: '#5f7157', height: 50, flexDirection: 'row', justifyContent: 'center', alignContent: 'center', alignItems: 'center', }}>
+                <View style={{ paddingLeft: 12, paddingRight: 12, backgroundColor: '#e3d5c1', height: 50, flexDirection: 'row', justifyContent: 'center', alignContent: 'center', alignItems: 'center', borderTopLeftRadius: 10, borderTopRightRadius: 10, }}>
                     {/* 标题 */}
                     <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 24, color: '#ede0b6', }}>
+                        <Text style={{ fontSize: 24, color: '#696451', }}>
                             {props.title}
                         </Text>
                     </View>
@@ -82,11 +89,11 @@ const HalfScreenDialog = props => {
                 </View>
 
                 {/* 显示区域 */}
-
                 <TouchableWithoutFeedback
                     onPress={nextParagraph}>
-                    <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, backgroundColor: '#ede0b6', }}>
-                        <View style={{ height: 350, marginTop: 12, paddingLeft: 12, paddingRight: 12, backgroundColor: '#ddd1ab', }}>
+                    <View style={{ flex: 1, paddingLeft: 2, paddingRight: 2, paddingTop: 2, backgroundColor: '#eee7dd', borderBottomRightRadius: 10, borderBottomLeftRadius: 10, }}>
+                        {/* 内容显示区域 */}
+                        <View style={{ height: 350, paddingLeft: 12, paddingRight: 12, backgroundColor: '#e8ddcc', }}>
                             <FlatList
                                 data={currentTextList}
                                 renderItem={renderText}
