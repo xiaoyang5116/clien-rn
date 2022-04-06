@@ -29,6 +29,9 @@ export default class TextSingle extends PureComponent {
             }, 200);
         }
     };
+    componentWillUnmount(){
+        clearInterval(this.timer);
+    }
 
     render() {
         this.single();

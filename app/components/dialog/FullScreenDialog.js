@@ -3,10 +3,7 @@ import {
     View,
     Text,
     TouchableWithoutFeedback,
-    TouchableOpacity,
     FlatList,
-    Button,
-
 } from 'react-native';
 
 import { TextButton } from '../../constants/custom-ui';
