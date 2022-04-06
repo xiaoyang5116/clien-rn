@@ -148,6 +148,16 @@ export default {
           option.disabled = false;
           optionsData.push(option);
         }
+        // 角标处理
+        if (lo.isObject(option.icon)) {
+          const { bindVar } = option.icon;
+          if (bindVar != undefined) {
+            const checkVar = { andVarsOn: [bindVar], __sceneId: option.__sceneId };
+            if (yield put.resolve(action('SceneModel/testCondition')(checkVar))) {
+              option.icon = { ...option.icon, show: true };
+            }
+          }
+        }
       }
       return optionsData;
     },

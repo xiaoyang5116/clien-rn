@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
+import { View, Image } from 'react-native';
 
 import { TextButton } from '../../constants/custom-ui';
 import lo from 'lodash';
@@ -8,6 +8,15 @@ import {
     connect,
     action,
 } from "../../constants";
+
+const ICONS = [
+    { id: 1, img: require('../../../assets/button_icon/1.png'), top: 0, left: 10 },
+    { id: 2, img: require('../../../assets/button_icon/2.png'), top: -1, left: 10 },
+    { id: 3, img: require('../../../assets/button_icon/3.png'), top: 0, left: 10 },
+    { id: 4, img: require('../../../assets/button_icon/4.png'), top: 0, left: 10 },
+    { id: 5, img: require('../../../assets/button_icon/5.png'), top: 0, right: 0 },
+];
+
 class OptionView extends PureComponent {
 
     constructor(props) {
@@ -44,9 +53,22 @@ class OptionView extends PureComponent {
             let key = 0;
             for (let k in this.state.options) {
                 const option = this.state.options[k];
+                let iconComponent = <></>;
+                if (lo.isObject(option.icon) && lo.isBoolean(option.icon.show) && option.icon.show) {
+                    const icon = ICONS.find(e => e.id == option.icon.id);
+                    const attrs = {};
+                    if (icon.top != undefined) attrs.top = icon.top;
+                    if (icon.left != undefined) attrs.left = icon.left;
+                    if (icon.right != undefined) attrs.right = icon.right;
+
+                    iconComponent = (<View style={{ position: 'absolute', height: 5, ...attrs }}>
+                                        <Image source={icon.img} style={{ width: 30, height: 30 }} />
+                                    </View>);
+                }
                 buttonChilds.push(
                     <View key={key} style={{ marginTop: 5, marginBottom: 5 }}>
                         <TextButton {...this.props} title={option.title} disabled={option.disabled} onPress={()=>{ this.optionPressHandler(option); }} />
+                        {iconComponent}
                     </View>
                 );
                 key += 1;
