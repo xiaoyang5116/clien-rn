@@ -9,6 +9,7 @@ import {
 
 import { View, Text, Image, Button } from '../../constants/native-ui';
 import Toast from '../../components/toast';
+import LocalStorage from '../../utils/LocalStorage';
 
 class ProfileTabPage extends Component {
 
@@ -22,6 +23,10 @@ class ProfileTabPage extends Component {
         }
     }
 
+    _onArchive() {
+        LocalStorage.archive();
+    }
+
     render() {
         return (
             <View style={this.props.currentStyles.viewContainer}>
@@ -29,6 +34,9 @@ class ProfileTabPage extends Component {
                 <Image style={styles.logo} source={{ uri: 'https://imgo.928vbi.com/img2020/6/11/15/2020061162540848.jpg' }} />
                 <View style={[styles.buttonContainer, { backgroundColor: this.props.currentStyles.button.backgroundColor }]}>
                     <Button title='清档' onPress={this._onClearArchive} color={this.props.currentStyles.button.color} />
+                </View>
+                <View style={[styles.buttonContainer, { backgroundColor: this.props.currentStyles.button.backgroundColor }]}>
+                    <Button title='存档' onPress={() => { this._onArchive() }} color={this.props.currentStyles.button.color} />
                 </View>
                 <View style={[styles.buttonContainer, { backgroundColor: this.props.currentStyles.button.backgroundColor }]}>
                     <Button title='皮肤1' onPress={() => { this._onChangeTheme(0) }} color={this.props.currentStyles.button.color} />
