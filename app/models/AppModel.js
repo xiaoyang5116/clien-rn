@@ -57,6 +57,12 @@ export default {
       yield put(action('updateState')({ archiveList: lo.reverse([...LocalStorage.metadata.descriptors]) }));
     },
 
+    *selectArchive({ payload }, { call, put, select }) {
+      const { archiveId } = payload;
+      yield call(LocalStorage.selectArchive, archiveId);
+      Toast.show(`已切换存档`, 'CenterToTop');
+    },
+
     *firstStep({ }, { put, select }) {
       yield put.resolve(action('SceneModel/enterScene')({ sceneId: 'wzkj' }));
     },

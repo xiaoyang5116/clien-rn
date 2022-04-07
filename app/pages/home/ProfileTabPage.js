@@ -7,7 +7,7 @@ import {
     StyleSheet,
 } from "../../constants";
 
-import { View, Text, FlatList } from '../../constants/native-ui';
+import { View, Text, FlatList, TouchableOpacity } from '../../constants/native-ui';
 import { TextButton } from '../../constants/custom-ui';
 import * as DateTime from '../../utils/DateTimeUtils';
 
@@ -15,6 +15,8 @@ class ProfileTabPage extends Component {
 
     constructor(props) {
         super(props);
+        this.times = 0;
+        this.timer = null;
     }
 
     _onClearArchive() {
@@ -31,15 +33,28 @@ class ProfileTabPage extends Component {
         this.props.dispatch(action('AppModel/archive')({ title: '手动存档' }));
     }
 
+    _onDoubleClick = (item) => {
+        clearTimeout(this.timer);
+        if (++this.times >= 2) { // 双击触发
+            this.times = 0;
+            this.props.dispatch(action('AppModel/selectArchive')({ archiveId: item.id }));
+        }
+        this.timer = setTimeout(() => {
+            this.times = 0;
+        }, 500);
+    }
+
     _renderItem = (data) => {
         const item = data.item;
         return (
-            <View style={{ width: '100%', height: 50, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',
-                            marginTop: 5, marginBottom: 5, borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd' }}>
-                <Text style={{ width: 60, textAlign: 'center' }}>ID：{item.id}</Text>
-                <Text style={{ flex: 1, paddingLeft: 5, color: '#669900' }}>{item.desc.title}</Text>
-                <Text style={{ width: 160, textAlign: 'center' }}>{DateTime.format(item.dt, 'yyyy-MM-dd hh:mm:ss')}</Text>
-            </View>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => this._onDoubleClick(item)}>
+                <View style={{ width: '100%', height: 50, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',
+                                marginTop: 5, marginBottom: 5, borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd' }}>
+                    <Text style={{ width: 60, textAlign: 'center' }}>ID：{item.id}</Text>
+                    <Text style={{ flex: 1, paddingLeft: 5, color: '#669900' }}>{item.desc.title}</Text>
+                    <Text style={{ width: 160, textAlign: 'center' }}>{DateTime.format(item.dt, 'yyyy-MM-dd hh:mm:ss')}</Text>
+                </View>
+            </TouchableOpacity>
         )
     }
 
@@ -47,7 +62,7 @@ class ProfileTabPage extends Component {
         return (
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={{ alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#ddd' }}>
-                    <Text style={{ lineHeight: 20, fontWeight: 'bold', margin: 10 }}>存档列表:</Text>
+                    <Text style={{ lineHeight: 20, fontWeight: 'bold', margin: 10 }}>存档列表:（双击选择）</Text>
                 </View>
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', padding: 10 }}>
                     <FlatList
