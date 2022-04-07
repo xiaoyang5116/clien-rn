@@ -75,6 +75,12 @@ export function toDays(now, days, hours) {
     return Date.parse(str);
 }
 
+export function format(millis, fmt) {
+    const d = new Date();
+    d.setTime(millis);
+    return d.format(fmt);
+}
+
 export function now() {
     return new Date().getTime();
 }

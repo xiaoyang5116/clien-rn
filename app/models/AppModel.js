@@ -1,13 +1,14 @@
 
 import { 
   action,
-  delay,
   LocalCacheKeys,
 } from "../constants";
 
 import LocalStorage from '../utils/LocalStorage';
 import * as RootNavigation from '../utils/RootNavigation';
+import Toast from '../components/toast';
 import * as Themes from '../themes';
+import lo from 'lodash';
 
 export default {
   namespace: 'AppModel',
@@ -17,14 +18,19 @@ export default {
     // 视图相关
     themeId: 0,
     currentStyles: Themes.default.Normal,
+    archiveList: {},
   },
 
   effects: {
-    *reload({ }, { call, put }) {
+    *reload({ }, { call, put, select }) {
+      const appState = yield select(state => state.AppModel);
       const themeId = yield call(LocalStorage.get, LocalCacheKeys.THEME_ID);
       if (themeId != null) {
         yield put.resolve(action('changeTheme')({ themeId: parseInt(themeId) }));
       }
+
+      yield call(LocalStorage.init);
+      yield put(action('updateState')({ archiveList: lo.reverse([...LocalStorage.metadata.descriptors]) }));
     },
 
     *changeTheme({ payload }, { call, put, select }) {
@@ -42,6 +48,13 @@ export default {
         currentStyles: selectStyles 
       }));
       yield call(LocalStorage.set, LocalCacheKeys.THEME_ID, themeId);
+    },
+
+    *archive({ payload }, { call, put, select }) {
+      const appState = yield select(state => state.AppModel);
+      const archiveId = yield call(LocalStorage.archive, payload);
+      Toast.show(`存档成功！！！ID=${archiveId}`, 'CenterToTop');
+      yield put(action('updateState')({ archiveList: lo.reverse([...LocalStorage.metadata.descriptors]) }));
     },
 
     *firstStep({ }, { put, select }) {

@@ -49,14 +49,14 @@ export default class LocalStorage {
     return await LocalStorage._set(metadataFilePath, data);
   }
 
-  static async _ensureInit() {
+  static async init() {
     if (LocalStorage.metadata != null)
       return;
     LocalStorage.metadata = await LocalStorage._loadMetadata();
   }
 
   static async archive(desc = {}) {
-    await LocalStorage._ensureInit();
+    await LocalStorage.init();
 
     // 创建新存档目录
     const archiveIndexes = await LocalStorage._getArchiveIndexes();
@@ -125,19 +125,19 @@ export default class LocalStorage {
   }
 
   static async get(key, defaultValue = null) {
-    await LocalStorage._ensureInit();
+    await LocalStorage.init();
     const path = LocalStorage._getFullFileName(key);
     return await LocalStorage._get(path, defaultValue);
   }
 
   static async set(key, value) {
-    await LocalStorage._ensureInit();
+    await LocalStorage.init();
     const fullName = LocalStorage._getFullFileName(key);
     return await LocalStorage._set(fullName, value);
   }
 
   static async clear() {
-    await LocalStorage._ensureInit();
+    await LocalStorage.init();
     const path = LocalStorage._getSavePath();
     RNFS.unlink(path)
       .then(() => {

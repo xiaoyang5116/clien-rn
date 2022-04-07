@@ -7,13 +7,17 @@ import {
     StyleSheet,
 } from "../../constants";
 
-import { View, Text, Image, Button } from '../../constants/native-ui';
-import Toast from '../../components/toast';
-import LocalStorage from '../../utils/LocalStorage';
+import { View, Text, FlatList } from '../../constants/native-ui';
+import { TextButton } from '../../constants/custom-ui';
+import * as DateTime from '../../utils/DateTimeUtils';
 
 class ProfileTabPage extends Component {
 
-    _onClearArchive = (e) => {
+    constructor(props) {
+        super(props);
+    }
+
+    _onClearArchive() {
         this.props.dispatch(action('AppModel/clearArchive')());
     }
 
@@ -24,33 +28,45 @@ class ProfileTabPage extends Component {
     }
 
     _onArchive() {
-        LocalStorage.archive({ })
-        .then(archiveId => {
-            Toast.show(`存档成功，存档ID=${archiveId}`, 'CenterToTop');
-        })
+        this.props.dispatch(action('AppModel/archive')({ title: '手动存档' }));
+    }
+
+    _renderItem = (data) => {
+        const item = data.item;
+        return (
+            <View style={{ width: '100%', height: 50, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',
+                            marginTop: 5, marginBottom: 5, borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd' }}>
+                <Text style={{ width: 60, textAlign: 'center' }}>ID：{item.id}</Text>
+                <Text style={{ flex: 1, paddingLeft: 5, color: '#669900' }}>{item.desc.title}</Text>
+                <Text style={{ width: 160, textAlign: 'center' }}>{DateTime.format(item.dt, 'yyyy-MM-dd hh:mm:ss')}</Text>
+            </View>
+        )
     }
 
     render() {
         return (
             <View style={this.props.currentStyles.viewContainer}>
-                <Text>个人信息页面</Text>
-                <Image style={styles.logo} source={{ uri: 'https://imgo.928vbi.com/img2020/6/11/15/2020061162540848.jpg' }} />
-                <View style={[styles.buttonContainer, { backgroundColor: this.props.currentStyles.button.backgroundColor }]}>
-                    <Button title='清档' onPress={this._onClearArchive} color={this.props.currentStyles.button.color} />
+                <View style={{ alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#ddd' }}>
+                    <Text style={{ lineHeight: 20, fontWeight: 'bold', margin: 10 }}>存档列表:</Text>
                 </View>
-                <View style={[styles.buttonContainer, { backgroundColor: this.props.currentStyles.button.backgroundColor }]}>
-                    <Button title='存档' onPress={() => { this._onArchive() }} color={this.props.currentStyles.button.color} />
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', padding: 10 }}>
+                    <FlatList
+                        data={this.props.archiveList}
+                        renderItem={this._renderItem}
+                        keyExtractor={item => item.id}
+                    />
                 </View>
-                <View style={[styles.buttonContainer, { backgroundColor: this.props.currentStyles.button.backgroundColor }]}>
-                    <Button title='皮肤1' onPress={() => { this._onChangeTheme(0) }} color={this.props.currentStyles.button.color} />
+                <View style={{ margin: 10, paddingTop: 10, paddingBottom: 10, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', 
+                    borderColor: '#999', borderWidth: 1, backgroundColor: '#ede7db' }}>
+                    <Text>状态:</Text>
+                    <TextButton {...this.props} title="存档" onPress={() => { this._onArchive() }} />
+                    <TextButton {...this.props} title="清档" onPress={() => { this._onClearArchive() }} />
                 </View>
-                <View style={[styles.buttonContainer, { backgroundColor: this.props.currentStyles.button.backgroundColor }]}>
-                    <Button title='皮肤2' onPress={() => { this._onChangeTheme(1) }} color={this.props.currentStyles.button.color} />
-                </View>
-                <View style={[styles.buttonContainer, { backgroundColor: this.props.currentStyles.button.backgroundColor }]}>
-                    <Button title='Toast' onPress={() => {
-                        Toast.show('这是一段很长的对话', 'LeftToRight')
-                    }} color={this.props.currentStyles.button.color} />
+                <View style={{ marginLeft: 10, marginRight: 10, marginBottom: 20, paddingTop: 10, paddingBottom: 10, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', 
+                    borderColor: '#999', borderWidth: 1, backgroundColor: '#ede7db' }}>
+                    <Text>选择风格：</Text>
+                    <TextButton {...this.props} title="白天模式" onPress={() => { this._onChangeTheme(0) }} />
+                    <TextButton {...this.props} title="夜晚模式" onPress={() => { this._onChangeTheme(1) }} />
                 </View>
             </View>
         );
@@ -63,10 +79,6 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80
     },
-    buttonContainer: {
-        width: 100,
-        marginTop: 25,
-    }
 });
 
 export default connect((state) => ({ ...state.AppModel }))(ProfileTabPage);
