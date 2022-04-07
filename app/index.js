@@ -36,6 +36,7 @@ const models = [
   require('./models/ChallengeModel').default,
   require('./models/ArenaModel').default,
   require('./models/ArticleModel').default,
+  require('./models/FigureModel').default,
 ];
 
 const dva = dva_create();

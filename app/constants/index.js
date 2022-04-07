@@ -30,7 +30,7 @@ import { Dimensions } from 'react-native';
 export const DEBUG_MODE = true;
 
 // 输出调试信息
-export const debugMessage = (s, ...args) => { if (DEBUG_MODE) console.debug('' + ((typeof (s) == 'string') ?  s.format(args) : s)); };
+export const debugMessage = (s, ...args) => { if (DEBUG_MODE) console.debug('' + ((typeof (s) == 'string') ? s.format(args) : s)); };
 
 // 输出错误信息
 export const errorMessage = (s, ...args) => { if (DEBUG_MODE) console.error('' + ((typeof (s) == 'string') ? '' + s.format(args) : s)); };
@@ -66,3 +66,14 @@ export const toastType = (type) => {
             return BOTTOM_TOP
     }
 }
+
+// 获取 assets/avatar 中的头像
+export const getAvatar = (avatar) => {
+    const avatarList = [
+        { id: "1", img: '1.jpg'},
+        { id: "2", img: '2.jpg'},
+    ]
+    return avatarList.find(a => a.id === avatar).img
+}
+
+
