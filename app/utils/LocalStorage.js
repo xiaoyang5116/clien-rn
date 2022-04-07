@@ -2,18 +2,19 @@
 import RNFS from 'react-native-fs';
 import CryptoJS from 'crypto-js';
 import lo from 'lodash';
+import * as DateTime from '../utils/DateTimeUtils';
 
 export default class LocalStorage {
 
-  // 当前使用的存档索引
-  static _currentArchiveIndex = 0;
+  // 当前本地存储元数据
+  static metadata = null;
 
   static _getRootPath() {
     return `${RNFS.DocumentDirectoryPath}/LocalStorage`;
   }
 
   static _getSavePath() {
-    return `${LocalStorage._getRootPath()}/${LocalStorage._currentArchiveIndex}`;
+    return `${LocalStorage._getRootPath()}/${LocalStorage.metadata.currentArchiveIndex}`;
   }
 
   static _getFullFileName(key) {
@@ -35,7 +36,28 @@ export default class LocalStorage {
     return dirList.map(e => parseInt(e));
   }
 
-  static async archive() {
+  static async _loadMetadata() {
+    const metadataFilePath = `${LocalStorage._getRootPath()}/metadata.data`;
+    return await LocalStorage._get(metadataFilePath, { 
+      currentArchiveIndex: 0, 
+      descriptors: [],
+    });
+  }
+
+  static async _writeMetadata(data) {
+    const metadataFilePath = `${LocalStorage._getRootPath()}/metadata.data`;
+    return await LocalStorage._set(metadataFilePath, data);
+  }
+
+  static async _ensureInit() {
+    if (LocalStorage.metadata != null)
+      return;
+    LocalStorage.metadata = await LocalStorage._loadMetadata();
+  }
+
+  static async archive(desc = {}) {
+    await LocalStorage._ensureInit();
+
     // 创建新存档目录
     const archiveIndexes = await LocalStorage._getArchiveIndexes();
     const newArchiveIndex = lo.max(archiveIndexes) + 1;
@@ -68,7 +90,17 @@ export default class LocalStorage {
       return successFiles;
     });
 
-    console.debug(successFiles);
+    const descriptor = {
+      id: newArchiveIndex,
+      dt: DateTime.now(),
+      files: successFiles,
+      desc: desc,
+    };
+
+    LocalStorage.metadata.currentArchiveIndex = newArchiveIndex;
+    LocalStorage.metadata.descriptors.push(descriptor);
+    await LocalStorage._writeMetadata(LocalStorage.metadata);
+    return newArchiveIndex;
   }
 
   static async _get(path, defaultValue = null) {
@@ -93,33 +125,25 @@ export default class LocalStorage {
   }
 
   static async get(key, defaultValue = null) {
+    await LocalStorage._ensureInit();
     const path = LocalStorage._getFullFileName(key);
     return await LocalStorage._get(path, defaultValue);
   }
 
   static async set(key, value) {
+    await LocalStorage._ensureInit();
     const fullName = LocalStorage._getFullFileName(key);
     return await LocalStorage._set(fullName, value);
   }
 
   static async clear() {
+    await LocalStorage._ensureInit();
     const path = LocalStorage._getSavePath();
     RNFS.unlink(path)
       .then(() => {
       })
       .catch((err) => {
       });
-  }
-
-  static async remove(...keys) {
-    keys.forEach((s) => {
-      const path = LocalStorage._getFullFileName(s);
-      RNFS.unlink(path)
-        .then(() => {
-        })
-        .catch((err) => {
-        });
-    });
   }
 
 }

@@ -24,7 +24,10 @@ class ProfileTabPage extends Component {
     }
 
     _onArchive() {
-        LocalStorage.archive();
+        LocalStorage.archive({ })
+        .then(archiveId => {
+            Toast.show(`存档成功，存档ID=${archiveId}`, 'CenterToTop');
+        })
     }
 
     render() {
