@@ -14,6 +14,7 @@ import {
     getAvatar
 } from "../../constants";
 import TextAnimation from '../textAnimation'
+import { TextButton } from '../../constants/custom-ui';
 
 
 // 获取头像路径
@@ -88,19 +89,28 @@ const MultiplayerDialog = (props) => {
         // 判断当前对话是否有下一段
         if ((currentContentIndex === currentContentLength) && currentDialogIndex < currentDialogData.dialog.length - 1) {
             addHistoryDialog({ id: currentDialogData.dialog[currentDialogIndex + 1].id, content: currentDialogData.dialog[currentDialogIndex + 1].content[0] })
-            console.log("currentDialogIndex + 1");
             setCurrentDialogIndex(currentDialogIndex + 1)
             setCurrentContentIndex(0)
         }
-        // 判断是否显示按钮
-        if (currentDialogIndex === currentDialogData.dialog.length - 1) {
+    }
+    console.log("currentData", currentData.content[currentContentIndex]);
+    console.log("currentContentLength", currentContentLength);
 
+    //  点击按钮
+    const nextDialog = (tokey) => {
+        console.log('tokey', tokey);
+        const newDialogData = viewData.sections.filter(s => s.key === tokey)
+        if (newDialogData.length > 0) {
+            addHistoryDialog({ id: newDialogData[0].dialog[0].id, content: newDialogData[0].dialog[0].content[0] })
+            setCurrentDialogIndex(0)
+            setCurrentContentIndex(0)
+            setCurrentDialogData(newDialogData[0])
+        }
+        else {
+            onDialogCancel()
         }
 
     }
-    // console.log("currentData", currentData.content[currentContentIndex]);
-    // console.log("currentContentLength", currentContentLength);
-
 
     // 渲染对话
     const renderDialog = ({ item }) => {
@@ -114,7 +124,9 @@ const MultiplayerDialog = (props) => {
                         <Image source={changeAvatar(figure.avatar)} style={{ height: 50, width: 50, borderRadius: 5 }} />
                     </View>
                     <View style={item.id === '01' ? styles.paddingRight : styles.paddingLeft}>
-                        <Text>{figure.name}</Text>
+                        <Text style={{ textAlign: item.id === '01' ? 'right' : 'left' }}>
+                            {figure.name}
+                        </Text>
                         <View style={{ maxWidth: 270, padding: 5, backgroundColor: "#fff", borderRadius: 4, position: 'relative' }}>
                             <View style={item.id === '01' ? styles.tipRightTriangle : styles.tipLeftTriangle}></View>
                             <TextAnimation
@@ -130,6 +142,17 @@ const MultiplayerDialog = (props) => {
             )
         }
 
+    }
+
+    // 渲染按钮
+    const renderBtn = ({ item }) => {
+        if ((currentDialogIndex === currentDialogData.dialog.length - 1) && (currentContentIndex === currentContentLength)) {
+            return (
+                <View style={{ marginTop: 12 }}>
+                    <TextButton currentStyles={props.currentStyles} title={item.title} onPress={() => { nextDialog(item.tokey) }} />
+                </View>
+            )
+        }
     }
 
     return (
@@ -154,13 +177,12 @@ const MultiplayerDialog = (props) => {
                         </View>
 
                         {/* 按钮区域 */}
-                        <View>
-                            {/* <FlatList
-                                ref={refFlatList}
-                                data={historyDialogData}
-                                renderItem={renderDialog}
+                        <View style={{ marginTop: 12 }}>
+                            <FlatList
+                                data={currentDialogData.btn}
+                                renderItem={renderBtn}
                                 keyExtractor={(item, index) => item + index}
-                            /> */}
+                            />
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
