@@ -16,6 +16,12 @@ export default {
 
   effects: {
 
+     // 场景重入
+    *reEnter({ }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+      yield put.resolve(action('SceneModel/enterScene')({ sceneId: userState.sceneId }));
+    },
+
     // 对话选项选中
     *click({ payload }, { put }) {
       yield put.resolve(action('SceneModel/processActions')(payload));
