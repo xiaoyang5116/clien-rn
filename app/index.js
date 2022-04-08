@@ -24,6 +24,7 @@ import { View } from './constants/native-ui';
 import MainPage from './pages/MainPage';
 import RootView from './components/RootView';
 import Shock from './components/shock'
+import EventListeners from './utils/EventListeners';
 
 const models = [
   require('./models/AppModel').default,
@@ -63,6 +64,8 @@ models.forEach((o) => {
 });
 dva.start();
 
+EventListeners.raise('reload');
+
 class App extends Component {
   render() {
     return (
@@ -75,6 +78,10 @@ class App extends Component {
         </View>
       </Provider>
     );
+  }
+
+  componentWillUnmount() {
+    EventListeners.removeAllListeners();
   }
 }
 

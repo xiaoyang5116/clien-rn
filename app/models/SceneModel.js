@@ -4,7 +4,7 @@ import {
   delay,
   debugMessage,
   errorMessage,
-  LocalCacheKeys
+  LocalCacheKeys,
 } from "../constants";
 
 import {
@@ -22,6 +22,7 @@ import {
 import lo from 'lodash';
 import LocalStorage from '../utils/LocalStorage';
 import * as DateTime from '../utils/DateTimeUtils';
+import EventListeners from '../utils/EventListeners';
 import * as RootNavigation from '../utils/RootNavigation';
 import SceneConfigReader from "../utils/SceneConfigReader";
 import Modal from "../components/modal";
@@ -755,8 +756,10 @@ export default {
   },
 
   subscriptions: {
-    setup({ dispatch }) {
-      dispatch({ 'type':  'reload'});
+    registerReloadEvent({ dispatch }) {
+      EventListeners.register('reload', (msg) => {
+        dispatch({ 'type':  'reload'});
+      });
     },
   }
 }

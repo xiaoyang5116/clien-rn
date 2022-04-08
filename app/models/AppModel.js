@@ -6,6 +6,7 @@ import {
 
 import LocalStorage from '../utils/LocalStorage';
 import * as RootNavigation from '../utils/RootNavigation';
+import EventListeners from '../utils/EventListeners';
 import Toast from '../components/toast';
 import * as Themes from '../themes';
 import lo from 'lodash';
@@ -51,7 +52,6 @@ export default {
     },
 
     *archive({ payload }, { call, put, select }) {
-      const appState = yield select(state => state.AppModel);
       const archiveId = yield call(LocalStorage.archive, payload);
       Toast.show(`存档成功！！！ID=${archiveId}`, 'CenterToTop');
       yield put(action('updateState')({ archiveList: lo.reverse([...LocalStorage.metadata.descriptors]) }));
@@ -60,6 +60,7 @@ export default {
     *selectArchive({ payload }, { call, put, select }) {
       const { archiveId } = payload;
       yield call(LocalStorage.select, archiveId);
+      EventListeners.raise('reload');
       Toast.show(`已切换存档`, 'CenterToTop');
     },
 
@@ -73,9 +74,7 @@ export default {
       userState.prevSceneId = '';
 
       yield call(LocalStorage.clear);
-      yield put.resolve(action('SceneModel/reload')({}));
-      yield put.resolve(action('PropsModel/reload')({}));
-      yield put.resolve(action('UserModel/reload')({}));
+      EventListeners.raise('reload');
       RootNavigation.navigate('First');
     },
   },
@@ -90,8 +89,10 @@ export default {
   },
 
   subscriptions: {
-    setup({ dispatch }) {
-      dispatch({ 'type':  'reload'});
+    registerReloadEvent({ dispatch }) {
+      EventListeners.register('reload', (msg) => {
+        dispatch({ 'type':  'reload'});
+      });
     },
   }
 }

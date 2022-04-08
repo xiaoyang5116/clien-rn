@@ -1,11 +1,12 @@
 
 import { 
   action,
-  LocalCacheKeys
+  LocalCacheKeys,
 } from '../constants';
 
 import LocalStorage from '../utils/LocalStorage';
 import { GetPropsDataApi } from '../services/GetPropsDataApi';
+import EventListeners from '../utils/EventListeners';
 import Toast from '../components/toast';
 
 export default {
@@ -170,8 +171,10 @@ export default {
   },
 
   subscriptions: {
-    setup({ dispatch }) {
-      dispatch({ 'type':  'reload'});
+    registerReloadEvent({ dispatch }) {
+      EventListeners.register('reload', (msg) => {
+        dispatch({ 'type':  'reload'});
+      });
     },
   }
 }
