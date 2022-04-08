@@ -29,15 +29,22 @@ export default class TextSingle extends PureComponent {
             }, 200);
         }
     };
-    componentWillUnmount(){
+    componentWillUnmount() {
         clearInterval(this.timer);
     }
 
     render() {
         this.single();
+        if (this.props.icon) {
+            return (
+                <Text style={{ fontSize: this.props.fontSize || 18, ...this.props.style }}>
+                    {this.state.currentText + (this.state.iconShow ? this.props.icon : '')}
+                </Text>
+            );
+        }
         return (
             <Text style={{ fontSize: this.props.fontSize || 18, ...this.props.style }}>
-                {this.state.currentText + (this.state.iconShow ? this.props.icon : '')}
+                {this.state.currentText}
             </Text>
         );
     }

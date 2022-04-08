@@ -1,7 +1,7 @@
 import { Text, View, Animated, Easing } from 'react-native';
 import React, { PureComponent } from 'react';
 
-export default class TextAnimation extends PureComponent {
+export default class TextFadeIn extends PureComponent {
     state = {
         opacity: new Animated.Value(0),
     };

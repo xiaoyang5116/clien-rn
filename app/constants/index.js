@@ -67,13 +67,5 @@ export const toastType = (type) => {
     }
 }
 
-// 获取 assets/avatar 中的头像
-export const getAvatar = (avatar) => {
-    const avatarList = [
-        { id: "1", img: '1.jpg'},
-        { id: "2", img: '2.jpg'},
-    ]
-    return avatarList.find(a => a.id === avatar).img
-}
 
 
