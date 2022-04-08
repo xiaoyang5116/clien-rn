@@ -4,6 +4,8 @@ import {
   errorMessage
 } from "../constants";
 
+import lo from 'lodash';
+
 export default {
   namespace: 'StoryModel',
 
@@ -19,7 +21,9 @@ export default {
      // 场景重入
     *reEnter({ }, { put, select }) {
       const userState = yield select(state => state.UserModel);
-      yield put.resolve(action('SceneModel/enterScene')({ sceneId: userState.sceneId }));
+      if (!lo.isEmpty(userState.sceneId)) {
+        yield put.resolve(action('SceneModel/enterScene')({ sceneId: userState.sceneId }));
+      }
     },
 
     // 对话选项选中
