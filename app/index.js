@@ -43,11 +43,11 @@ const ActionHook = ({ dispatch, getState }) => next => action => {
   next(action);
 
   // 打印日志
-  if (action.type.indexOf('@@') == -1) {
-    const kv = { type: action.type };
-    if (action.payload) kv.payload = action.payload;
-    console.debug('Dva Action: ', kv);
-  }
+  // if (action.type.indexOf('@@') == -1) {
+  //   const kv = { type: action.type };
+  //   if (action.payload) kv.payload = action.payload;
+  //   console.debug('Dva Action: ', kv);
+  // }
 }
 
 const ErrorHook = (e) => {
@@ -58,6 +58,9 @@ const dva = dva_create({
   onError: ErrorHook,
   onAction: ActionHook,
 });
+
+// DEV环境下刷新时清空已有监听器
+EventListeners.removeAllListeners();
 
 models.forEach((o) => {
   dva.model(o);
@@ -78,10 +81,6 @@ class App extends Component {
         </View>
       </Provider>
     );
-  }
-
-  componentWillUnmount() {
-    EventListeners.removeAllListeners();
   }
 }
 

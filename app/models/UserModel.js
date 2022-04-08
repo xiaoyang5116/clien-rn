@@ -2,7 +2,6 @@
 import { 
   action,
   LocalCacheKeys,
-  DeviceEventEmitter,
 } from "../constants";
 
 import LocalStorage from '../utils/LocalStorage';
