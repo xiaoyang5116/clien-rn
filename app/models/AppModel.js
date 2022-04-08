@@ -16,10 +16,17 @@ export default {
 
   // 所有Model都接收到
   state: {
-    // 视图相关
+    // 风格ID
     themeId: 0,
+
+    // 当前风格
     currentStyles: Themes.default.Normal,
+
+    // 存档列表
     archiveList: {},
+
+    // 当前存档ID
+    currentArchiveIndex: 0,
   },
 
   effects: {
@@ -31,7 +38,10 @@ export default {
       }
 
       yield call(LocalStorage.init);
-      yield put(action('updateState')({ archiveList: lo.reverse([...LocalStorage.metadata.descriptors]) }));
+      yield put(action('updateState')({ 
+        archiveList: lo.reverse([...LocalStorage.metadata.descriptors]),
+        currentArchiveIndex: LocalStorage.metadata.currentArchiveIndex,
+      }));
     },
 
     *changeTheme({ payload }, { call, put, select }) {
@@ -54,7 +64,11 @@ export default {
     *archive({ payload }, { call, put, select }) {
       const archiveId = yield call(LocalStorage.archive, payload);
       Toast.show(`存档成功！！！ID=${archiveId}`, 'CenterToTop');
-      yield put(action('updateState')({ archiveList: lo.reverse([...LocalStorage.metadata.descriptors]) }));
+      
+      yield put(action('updateState')({ 
+        archiveList: lo.reverse([...LocalStorage.metadata.descriptors]),
+        currentArchiveIndex: LocalStorage.metadata.currentArchiveIndex,
+      }));
     },
 
     *selectArchive({ payload }, { call, put, select }) {
