@@ -49,7 +49,7 @@ export default class LocalStorage {
     return await LocalStorage._set(metadataFilePath, data);
   }
 
-  static async selectArchive(archiveId) {
+  static async select(archiveId) {
     await LocalStorage.init();
     const archiveIndexes = await LocalStorage._getArchiveIndexes();
     if (archiveIndexes.find(e => e == archiveId) != undefined) {

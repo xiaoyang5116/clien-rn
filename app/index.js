@@ -16,7 +16,7 @@ import {
   dva_create,
   Provider,
   Component,
-  StyleSheet
+  StyleSheet,
 } from './constants';
 
 import { name as appName } from '../app.json';
@@ -38,7 +38,26 @@ const models = [
   require('./models/ArticleModel').default,
 ];
 
-const dva = dva_create();
+const ActionHook = ({ dispatch, getState }) => next => action => {
+  next(action);
+
+  // 打印日志
+  if (action.type.indexOf('@@') == -1) {
+    const kv = { type: action.type };
+    if (action.payload) kv.payload = action.payload;
+    console.debug('Dva Action: ', kv);
+  }
+}
+
+const ErrorHook = (e) => {
+  console.error(e);
+}
+
+const dva = dva_create({
+  onError: ErrorHook,
+  onAction: ActionHook,
+});
+
 models.forEach((o) => {
   dva.model(o);
 });

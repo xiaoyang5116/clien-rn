@@ -59,7 +59,7 @@ export default {
 
     *selectArchive({ payload }, { call, put, select }) {
       const { archiveId } = payload;
-      yield call(LocalStorage.selectArchive, archiveId);
+      yield call(LocalStorage.select, archiveId);
       Toast.show(`已切换存档`, 'CenterToTop');
     },
 
