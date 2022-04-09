@@ -75,7 +75,7 @@ const MultiplayerDialog = (props) => {
     // 点击下一段
     const nextParagraph = () => {
         // 滚动到 FlatList 底部
-        refFlatList.current.scrollToEnd({ animated: false })
+        // refFlatList.current.scrollToEnd({ animated: false })
 
         // 判断当前内容是否有下一段
         if (currentContentIndex < currentContentLength) {
@@ -84,7 +84,6 @@ const MultiplayerDialog = (props) => {
             const currentDialogContent = currentData.content[currentContentIndex + 1]
             addHistoryDialog({ id: currentData.id, content: currentDialogContent })
             setCurrentContentIndex(currentContentIndex + 1)
-
         }
         // 判断当前对话是否有下一段
         if ((currentContentIndex === currentContentLength) && currentDialogIndex < currentDialogData.dialog.length - 1) {
@@ -115,26 +114,27 @@ const MultiplayerDialog = (props) => {
             // 当前说话人的信息
             const figure = figureInfo.find(f => f.id === item.id)
             return (
-                <View style={{ flexDirection: item.id === '01' ? 'row-reverse' : 'row', justifyContent: 'flex-start', flexWrap: 'nowrap', marginTop: 18, }}>
-                    <View>
-                        <Image source={changeAvatar(figure.avatar)} style={{ height: 50, width: 50, borderRadius: 5 }} />
-                    </View>
-                    <View style={item.id === '01' ? styles.paddingRight : styles.paddingLeft}>
-                        <Text style={{ textAlign: item.id === '01' ? 'right' : 'left' }}>
-                            {figure.name}
-                        </Text>
-                        <View style={{ maxWidth: 270, padding: 5, backgroundColor: "#fff", borderRadius: 4, position: 'relative' }}>
-                            <View style={item.id === '01' ? styles.tipRightTriangle : styles.tipLeftTriangle}></View>
-                            <TextAnimation
-                                fontSize={18}
-                                type={textAnimationType}
-                            >
-                                {item.content}
-                            </TextAnimation>
+                <TouchableWithoutFeedback onPress={nextParagraph} >
+                    <View style={{ flexDirection: item.id === '01' ? 'row-reverse' : 'row', justifyContent: 'flex-start', flexWrap: 'nowrap', marginTop: 18, }}>
+                        <View>
+                            <Image source={changeAvatar(figure.avatar)} style={{ height: 50, width: 50, borderRadius: 5 }} />
+                        </View>
+                        <View style={item.id === '01' ? styles.paddingRight : styles.paddingLeft}>
+                            <Text style={{ textAlign: item.id === '01' ? 'right' : 'left' }}>
+                                {figure.name}
+                            </Text>
+                            <View style={{ maxWidth: 270, padding: 5, backgroundColor: "#fff", borderRadius: 4, position: 'relative' }}>
+                                <View style={item.id === '01' ? styles.tipRightTriangle : styles.tipLeftTriangle}></View>
+                                <TextAnimation
+                                    fontSize={18}
+                                    type={textAnimationType}
+                                >
+                                    {item.content}
+                                </TextAnimation>
+                            </View>
                         </View>
                     </View>
-
-                </View>
+                </TouchableWithoutFeedback>
             )
         }
 
@@ -156,19 +156,28 @@ const MultiplayerDialog = (props) => {
             <View style={[styles.halfContainer, currentStyles.bgColor]}>
                 {/* header */}
                 <View style={styles.dialogHeader}>
-                    <Text onPress={onDialogCancel} style={styles.titleFontSize}>返回</Text>
-                    <Text style={styles.titleFontSize}>{viewData.title}</Text>
-                    <Text style={styles.titleFontSize}>多功能</Text>
+                    <Text onPress={onDialogCancel} style={[styles.titleFontSize, styles.back]}>返回</Text>
+                    <Text style={[styles.titleFontSize, styles.title]}>{viewData.title}</Text>
+                    <Text style={[styles.titleFontSize, styles.multifunction]}>多功能</Text>
                 </View>
                 <TouchableWithoutFeedback onPress={nextParagraph}>
-                    <View style={{ flex: 1 }}>
+                    <View style={{
+                        flex: 1,
+                        paddingLeft: 12,
+                        paddingRight: 12,
+                    }}>
                         {/* content */}
-                        <View style={{ width: "100%", height: '70%' }}>
+                        <View style={{ width: "100%", height: '70%' }} >
                             <FlatList
                                 ref={refFlatList}
                                 data={historyDialogData}
                                 renderItem={renderDialog}
                                 keyExtractor={(item, index) => item + index}
+                                onContentSizeChange={() => {
+                                    if (historyDialogData.length > 0) {
+                                        refFlatList.current.scrollToEnd({ animated: true })
+                                    }
+                                }}
                             />
                         </View>
 
@@ -206,16 +215,28 @@ const styles = StyleSheet.create({
     halfContainer: {
         width: 360,
         height: 600,
-        paddingLeft: 12,
-        paddingRight: 12,
     },
     dialogHeader: {
         height: 40,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
         borderBottomColor: '#6a655e',
         borderBottomWidth: 1,
+        marginLeft: 12,
+        marginRight: 12,
+    },
+    back: {
+        textAlign: 'left',
+        flex: 1,
+    },
+    title: {
+        textAlign: 'center',
+        flex: 2,
+    },
+    multifunction: {
+        textAlign: 'right',
+        flex: 1,
     },
     paddingLeft: {
         paddingLeft: 12,

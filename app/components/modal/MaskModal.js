@@ -103,7 +103,7 @@ class MaskModal extends PureComponent {
             )
         }
         return (
-            <Modal isVisible={this.props.visible} style={{ padding: 0, margin: 0, flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={0.5}>
+            <Modal isVisible={this.props.visible} style={{ padding: 0, margin: 0, flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
                 {/* <TouchableWithoutFeedback onPress={this._onAsideNext}> */}
                 {/* <View style={[currentStyles.asideCenter,{ flex:1,padding:20,}]}> */}
                 <View style={[currentStyles.asideCenter]}>
