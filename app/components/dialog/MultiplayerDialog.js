@@ -65,7 +65,7 @@ const MultiplayerDialog = (props) => {
             props.dispatch(action('FigureModel/getFigureList')());
         }
 
-        // 初始对话
+        // 初始化对话
         if (currentData.content.length > 0) {
             const currentDialogContent = currentData.content[0]
             addHistoryDialog({ id: currentData.id, content: currentDialogContent })
@@ -93,12 +93,9 @@ const MultiplayerDialog = (props) => {
             setCurrentContentIndex(0)
         }
     }
-    console.log("currentData", currentData.content[currentContentIndex]);
-    console.log("currentContentLength", currentContentLength);
 
     //  点击按钮
     const nextDialog = (tokey) => {
-        console.log('tokey', tokey);
         const newDialogData = viewData.sections.filter(s => s.key === tokey)
         if (newDialogData.length > 0) {
             addHistoryDialog({ id: newDialogData[0].dialog[0].id, content: newDialogData[0].dialog[0].content[0] })
@@ -114,7 +111,6 @@ const MultiplayerDialog = (props) => {
 
     // 渲染对话
     const renderDialog = ({ item }) => {
-        // console.log("item", item);
         if (figureInfo.length > 0) {
             // 当前说话人的信息
             const figure = figureInfo.find(f => f.id === item.id)
@@ -187,7 +183,6 @@ const MultiplayerDialog = (props) => {
                     </View>
                 </TouchableWithoutFeedback>
             </View>
-
         </View>
     )
 }

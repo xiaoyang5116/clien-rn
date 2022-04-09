@@ -26,7 +26,7 @@ export default class TextSingle extends PureComponent {
                         });
                     }
                 }, 18);
-            }, 200);
+            }, 0);
         }
     };
     componentWillUnmount() {
