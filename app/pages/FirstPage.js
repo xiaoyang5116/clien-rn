@@ -45,7 +45,7 @@ class FirstPage extends Component {
             <ImageButton height={60} source={require('../../assets/test_button.png')} selectedSource={require('../../assets/test_button_selected.png')} onPress={() => { 
               // Shock.shockShow('bigShock');
               Modal.show({ 
-                style: 8, title: '神秘阵盘', textAnimationType: 'TextSingle',
+                style: 8, title: '神秘阵盘', textAnimationType: 'TextSingle', dialogType: 'FullScreen',
                 sections: [
                   { 
                     key: 'p1',

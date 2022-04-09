@@ -6,9 +6,9 @@ import FullScreenDialog from './FullScreenDialog';
 
 export default function DialogTemple(props) {
     switch (props.type) {
-        case 'HalfScreenDialog':
+        case 'HalfScreen':
             return <HalfScreenDialog textAnimationType={props.textAnimationType} currentStyles={props.currentStyles} onDialogCancel={props.onDialogCancel} title={props.title} popUpComplex={props.popUpComplex} />
-        case 'FullScreenDialog':
+        case 'FullScreen':
             return <FullScreenDialog textAnimationType={props.textAnimationType} currentStyles={props.currentStyles} onDialogCancel={props.onDialogCancel} title={props.title} popUpComplex={props.popUpComplex} />
     }
 }

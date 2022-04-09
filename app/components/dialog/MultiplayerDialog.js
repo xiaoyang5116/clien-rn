@@ -30,8 +30,10 @@ function changeAvatar(avatar) {
 const MultiplayerDialog = (props) => {
     // 样式， 配置数据， 关闭对话框方法
     const { currentStyles, viewData, onDialogCancel } = props;
-    //文字动画类型
+    // 文字动画类型
     const textAnimationType = viewData.textAnimationType;
+    // 对话框外观类型
+    const dialogType = viewData.dialogType;
 
     // FlatList
     const refFlatList = React.createRef();
@@ -124,13 +126,21 @@ const MultiplayerDialog = (props) => {
                                 {figure.name}
                             </Text>
                             <View style={{ maxWidth: 270, padding: 5, backgroundColor: "#fff", borderRadius: 4, position: 'relative' }}>
+                                {/* 三角形 */}
                                 <View style={item.id === '01' ? styles.tipRightTriangle : styles.tipLeftTriangle}></View>
-                                <TextAnimation
-                                    fontSize={18}
-                                    type={textAnimationType}
-                                >
-                                    {item.content}
-                                </TextAnimation>
+
+                                {/* 隐藏的内容 */}
+                                <Text style={{ fontSize: 18, opacity: 0 }}> {item.content}</Text>
+                                <View style={{ position: 'absolute', top: 5, left: 5,}}>
+                                    <TextAnimation
+                                        fontSize={18}
+                                        duration={200}
+                                        opacity={0.8}
+                                        type={textAnimationType}
+                                    >
+                                        {item.content}
+                                    </TextAnimation>
+                                </View>
                             </View>
                         </View>
                     </View>
@@ -153,12 +163,12 @@ const MultiplayerDialog = (props) => {
 
     return (
         <View style={styles.fullscreenContainer}>
-            <View style={[styles.halfContainer, currentStyles.bgColor]}>
+            <View style={[dialogType === "HalfScreen" ? styles.halfContainer : styles.fullContainer, currentStyles.bgColor]}>
                 {/* header */}
                 <View style={styles.dialogHeader}>
                     <Text onPress={onDialogCancel} style={[styles.titleFontSize, styles.back]}>返回</Text>
                     <Text style={[styles.titleFontSize, styles.title]}>{viewData.title}</Text>
-                    <Text style={[styles.titleFontSize, styles.multifunction]}>多功能</Text>
+                    <Text style={[styles.titleFontSize, styles.multifunction]}></Text>
                 </View>
                 <TouchableWithoutFeedback onPress={nextParagraph}>
                     <View style={{

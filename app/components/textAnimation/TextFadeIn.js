@@ -3,13 +3,13 @@ import React, { PureComponent } from 'react';
 
 export default class TextFadeIn extends PureComponent {
     state = {
-        opacity: new Animated.Value(0),
+        opacity: new Animated.Value(this.props.opacity || 0),
     };
     componentDidMount() {
         Animated.parallel([
             Animated.timing(this.state.opacity, {
                 toValue: 1,
-                duration: 500,
+                duration: this.props.duration || 500,
                 useNativeDriver: false,
                 easing: Easing.ease,
             }),
