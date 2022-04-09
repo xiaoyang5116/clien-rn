@@ -28,7 +28,7 @@ sequences: [
     ],
 
     # 奖励列表
-    awards: [
+    awards: {
       # 总共有效时间(单位秒)
       expire: 60,
 
@@ -40,6 +40,6 @@ sequences: [
         { uid: [100001], propId: 2, num: 2  },
         { uid: [100000, 100001], propId: 36, num: 1 },
       ]
-    ]
+    }
   },
 ]
