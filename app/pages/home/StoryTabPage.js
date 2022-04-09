@@ -16,6 +16,7 @@ class StoryTabPage extends Component {
   constructor(props) {
     super(props);
     this.progressViews = [];
+    this.unsubscribe = null;
   }
 
   _onClickItem = (e) => {
@@ -87,6 +88,17 @@ class StoryTabPage extends Component {
       </View>
     </View>
     );
+  }
+
+  componentDidMount() {
+    this.unsubscribe = this.props.navigation.addListener('tabPress', (e) => {
+      this.props.dispatch(action('StoryModel/reEnter')({}));
+    });
+    this.props.dispatch(action('StoryModel/reEnter')({}));
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   render() {

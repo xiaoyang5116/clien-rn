@@ -261,8 +261,10 @@ export default {
   },
 
   subscriptions: {
-    setup({ dispatch }) {
-      dispatch({ 'type':  'test'});
+    registerReloadEvent({ dispatch }) {
+      // EventListeners.register('reload', (msg) => {
+      //   dispatch({ 'type':  'reload'});
+      // });
     },
   }
 }

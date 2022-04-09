@@ -4,6 +4,7 @@ import {
 } from '../constants';
 
 import { GetComposeDataApi } from '../services/GetComposeDataApi';
+import EventListeners from '../utils/EventListeners';
 
 import lo, { range } from 'lodash';
 import Toast from '../components/toast';
@@ -218,8 +219,10 @@ export default {
   },
 
   subscriptions: {
-    setup({ dispatch }) {
-      dispatch({ 'type':  'reload'});
+    registerReloadEvent({ dispatch }) {
+      EventListeners.register('reload', (msg) => {
+        dispatch({ 'type':  'reload'});
+      });
     },
   }
 }

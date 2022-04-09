@@ -4,6 +4,8 @@ import {
   errorMessage
 } from "../constants";
 
+import lo from 'lodash';
+
 export default {
   namespace: 'StoryModel',
 
@@ -15,6 +17,14 @@ export default {
   },
 
   effects: {
+
+     // 场景重入
+    *reEnter({ }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+      if (!lo.isEmpty(userState.sceneId)) {
+        yield put.resolve(action('SceneModel/enterScene')({ sceneId: userState.sceneId }));
+      }
+    },
 
     // 对话选项选中
     *click({ payload }, { put }) {
@@ -80,4 +90,12 @@ export default {
       };
     },
   },
+
+  subscriptions: {
+    registerReloadEvent({ dispatch }) {
+      // EventListeners.register('reload', (msg) => {
+      //   dispatch({ 'type':  'reload'});
+      // });
+    },
+  }
 }
