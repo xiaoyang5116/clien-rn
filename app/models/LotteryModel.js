@@ -11,9 +11,12 @@ export default {
   namespace: 'LotteryModel',
 
   state: {
+    prop1Num: 123,
+    prop2Num: 456,
   },
 
   effects: {
+
     *reload({ }, { call, put }) {
     },
 

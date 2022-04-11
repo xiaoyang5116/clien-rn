@@ -78,7 +78,8 @@ class Lottery10Times extends Component {
                         <Text style={{ fontSize: 24, fontWeight: 'bold' }}>十连抽</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>卷轴: 1000</Text>
+                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>消费券: {this.props.prop1Num}</Text>
+                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>白嫖券: {this.props.prop2Num}</Text>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Text>背景展示</Text>
@@ -142,7 +143,7 @@ class LotteryBaoZang extends Component {
 }
 
 // 抽奖弹出页
-export class LotteryPopPage extends Component {
+class LotteryPopPage extends Component {
 
     constructor(props) {
         super(props);
@@ -188,4 +189,4 @@ export class LotteryPopPage extends Component {
 const styles = StyleSheet.create({
 });
 
-export default connect((state) => ({ ...state.AppModel }))(LotteryPopPage);
+export default connect((state) => ({ ...state.LotteryModel, ...state.AppModel }))(LotteryPopPage);

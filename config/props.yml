@@ -34,4 +34,7 @@ props: [
   { id: 51 , name: '西瓜刀', num: 100, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '比正常水果刀要长，使用需要一些小技巧' }, 
   { id: 52 , name: '西瓜拼盘', num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '样式漂亮的水果拼盘' }, 
   { id: 53 , name: '优秀的西瓜拼盘', num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '样式漂亮的水果拼盘' }, 
+  # 抽奖专用
+  { id: 54 , name: '消费券', num: 100, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
+  { id: 55 , name: '白嫖券', num: 200, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
 ]
