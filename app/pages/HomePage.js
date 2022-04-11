@@ -23,7 +23,7 @@ class HomePage extends Component {
 
   render() {
     return (
-      <Tab.Navigator>
+      <Tab.Navigator initialRouteName='World'>
         <Tab.Screen name="World" component={StoryTabPage} options={{
           tabBarLabel: "世界",
           headerTitle: "世界",
