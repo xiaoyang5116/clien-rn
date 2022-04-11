@@ -13,6 +13,7 @@ import {
 import StoryTabPage from './home/StoryTabPage';
 import ProfileTabPage from './home/ProfileTabPage';
 import PropsTabPage from './home/PropsTabPage';
+import LotteryTabPage from './home/LotteryTabPage';
 import ComposeTabPage from './home/ComposeTabPage';
 import ArenaTabPage from './home/ArenaTabPage';
 
@@ -22,7 +23,7 @@ class HomePage extends Component {
 
   render() {
     return (
-      <Tab.Navigator>
+      <Tab.Navigator initialRouteName='World'>
         <Tab.Screen name="World" component={StoryTabPage} options={{
           tabBarLabel: "世界",
           headerTitle: "世界",
@@ -38,6 +39,10 @@ class HomePage extends Component {
         <Tab.Screen name="Props" component={PropsTabPage} options={{
           tabBarLabel: "道具",
           headerTitle: "道具",
+        }} />
+        <Tab.Screen name="Lottery" component={LotteryTabPage} options={{
+          tabBarLabel: "抽奖",
+          headerTitle: "抽奖",
         }} />
         <Tab.Screen name="Profile" component={ProfileTabPage} options={{
           tabBarLabel: "我的",
