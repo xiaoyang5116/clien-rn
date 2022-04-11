@@ -12,6 +12,8 @@ import {
   AppRegistry,
 } from 'react-native';
 
+import SplashScreen from 'react-native-splash-screen'  // 启动页插件
+
 import {
   dva_create,
   Provider,
@@ -82,6 +84,10 @@ class App extends Component {
         </View>
       </Provider>
     );
+  }
+  componentDidMount() {
+    // hide 启动页
+    SplashScreen.hide();
   }
 }
 
