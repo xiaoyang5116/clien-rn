@@ -1,0 +1,7 @@
+# ===========================================
+# 合成规则
+# ===========================================
+rules: [
+  { id: 1 , name: '西瓜拼盘配方', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合' },
+  { id: 2 , name: '[豪华]西瓜拼盘配方', tags: [], attrs: ['材料'], quality: 1, stuffs: [{ id: 20, num: 1000 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], desc: '西瓜和苹果组合2' },
+]

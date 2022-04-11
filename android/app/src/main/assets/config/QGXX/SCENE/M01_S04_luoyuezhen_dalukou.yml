@@ -1,0 +1,58 @@
+scenes: [
+  # 破庙门口场景
+  {
+    id: 'M01_S04_luoyuezhen_dalukou', name: '落月镇西-大路口',
+
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day1'], nextChat: 'dalukou_Event01Day1' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day2'], nextChat: 'dalukou_Event01Day2' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day3'], nextChat: 'dalukou_Event01Day3' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'dalukou_Event01Day1', desc: '有些少许行人在路边，匆匆而过', 
+        options: [ 
+          #第一次进入
+          { title: '【观察路边状况】', andVarsOff: ['v1'], dialogs: ['p1'] }, 
+          { title: '>>>【南街集市】', andVarsOn: ['v1'], toScene: 'M01_S05_luoyuezhen_nanjieshi' }, 
+        ],
+      },
+      #
+      { 
+        id: 'dalukou_Event01Day2', desc: '民居院落依着斜坡而建，路边有一条小河沟，桥头有一些小吃摊位', 
+        options: [ 
+          { title: '>>>【落月镇西-大路口】', andVarsOn: ['v1'], toScene: 'M01_S03_luoyuezhen_juminjie' }, 
+          { title: '<<<【落月镇西-胡同口】', andVarsOn: ['v1'], toScene: 'hutongkou' }, 
+        ],
+      },
+      #
+      { 
+        id: 'dalukou_Event01Day3', desc: '民居院落依着斜坡而建，路边有一条小河沟，桥头有一些小吃摊位', 
+        options: [ 
+          { title: '>>>【落月镇西-大路口】', andVarsOn: ['v1'], toScene: 'dalukou' }, 
+          { title: '<<<【落月镇西-胡同口】', andVarsOn: ['v1'], toScene: 'hutongkou' }, 
+        ],
+      },
+
+
+    ],
+
+    # 对话框
+    dialogs: [
+      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['这里是马车路，记得要走两边，被马撞到的话只能认栽，以前也有被马撞死的乞丐……'], varsOn: ['v1'], nextChat: 'dalukou_Event01Day1' },
+    ],
+  },
+]

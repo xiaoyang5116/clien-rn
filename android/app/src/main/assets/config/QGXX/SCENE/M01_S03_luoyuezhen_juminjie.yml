@@ -1,0 +1,66 @@
+scenes: [
+  # 破庙门口场景
+  {
+    id: 'M01_S03_luoyuezhen_juminjie', name: '落月镇西-民居街',
+
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1 },
+      { id: 'v2', min: 0, max: 1, defaultValue: 1,},
+      { id: 'v3', min: 0, max: 1 },
+      { id: 'v4', min: 0, max: 1 },
+      
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day1'], nextChat: 'juminjie_Event01Day1' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day2'], nextChat: 'juminjie_Event01Day2' },
+      { type: 'enter', andVarsOn: ['M01_S01_luoyuezhen_Time/Event01Day3'], nextChat: 'juminjie_Event01Day3' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'juminjie_Event01Day1', desc: '民居街依着斜坡而建，路边有一条小河，尤其是靠近桥头的位置，有不少小吃摊位', 
+        options: [ 
+        
+          { title: '【观察路边的小吃摊】', andVarsOff: ['v1'],dialogs: ['p1'] }, 
+          { title: '>>>【落月镇西-大路口】', andVarsOn: ['v1'], toScene: 'M01_S04_luoyuezhen_dalukou' }, 
+        ],
+      },
+       #
+      { 
+        id: 'juminjie_Event01Day2', desc: '民居院落依着斜坡而建，路边有一条小河沟，桥头有一些小吃摊位', 
+        options: [ 
+          { title: '>>>【落月镇西-大路口】', toScene: 'M01_S04_luoyuezhen_dalukou' }, 
+          { title: '<<<【落月镇西-胡同口】', toScene: 'M01_S02_luoyuezhen_hutongkou' }, 
+        ],
+      },
+       #
+      { 
+        id: 'juminjie_Event01Day3', desc: '民居院落依着斜坡而建，路边有一条小河沟，桥头有一些小吃摊位', 
+        options: [ 
+          { title: '>>>【落月镇西-大路口】', toScene: 'M01_S04_luoyuezhen_dalukou' }, 
+          { title: '<<<【落月镇西-胡同口】', toScene: 'M01_S02_luoyuezhen_hutongkou' }, 
+        ],
+      },
+  
+
+
+
+
+    ],
+
+    # 对话框
+    dialogs: [
+      { id: 'p1', style: 2, title: '乞丐李大哥：', sections: ['价钱还行，运气好了讨到钱，我们也可以买东西吃，但不要在人多的时候打扰生意。'], varsOn: ['v1'], nextChat: 'juminjie_Event01Day1' },
+      { id: 'p2', style: 2, title: '乞丐李大哥：', sections: ['价钱还行，运气好了讨到钱，我们也可以买东西吃，但不要在人多的时候打扰生意。'], varsOn: ['v2'], nextChat: 'juminjie_Event01Day1' },
+    ],
+  },
+]

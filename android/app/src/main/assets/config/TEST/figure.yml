@@ -1,0 +1,11 @@
+# 剧情人物配置
+data:
+  {
+    figure:
+      [
+        { id: "01", name: "李森炎", avatar: "1" },
+        { id: "02", name: "乞丐李大哥", avatar: "1" },
+        { id: "03", name: "掌门", avatar: "1" },
+        { id: "04", name: "师姐", avatar: "2" },
+      ],
+  }
