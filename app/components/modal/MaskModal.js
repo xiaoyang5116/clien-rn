@@ -10,6 +10,7 @@ import {
 import { Button, Text, View } from '../../constants/native-ui';
 import GameOverModal from './GameOverModal';
 import DialogTemple from '../dialog/DialogTemple';
+import MultiplayerDialog from '../dialog/MultiplayerDialog';
 import BlackNarration from './BlackNarration';
 import Narration from './Narration'
 
@@ -76,8 +77,8 @@ class MaskModal extends PureComponent {
         // 6  代表 popUp dialog 弹出对话框
         if (this.props.style === 6) {
             return (
-                <Modal isVisible={this.props.visible} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
-                    <DialogTemple type={this.props.__data.current.dialogType} isGame={true} title={this.props.title} onDialogCancel={this._onDialogCancel} popUpComplex={this.props.__data.current.sections} />
+                <Modal isVisible={this.props.visible} style={{ padding: 0, margin: 0, flex: 1 }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
+                    <DialogTemple textAnimationType={this.props.__data.current.textAnimationType} currentStyles={this.props.currentStyles} type={this.props.__data.current.dialogType} title={this.props.title} onDialogCancel={this._onDialogCancel} popUpComplex={this.props.__data.current.sections} />
                 </Modal>
             )
         }
@@ -89,6 +90,15 @@ class MaskModal extends PureComponent {
                     <View style={currentStyles.gameOverPage}>
                         <GameOverModal onDialogCancel={this._onDialogCancel} {...this.props} />
                     </View>
+                </Modal>
+            )
+        }
+
+        // 8 代表 多人对话框
+        if (this.props.style === 8) {
+            return (
+                <Modal isVisible={this.props.visible} style={{ padding: 0, margin: 0, flex: 1 }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
+                    <MultiplayerDialog {...this.props} onDialogCancel={this._onDialogCancel} />
                 </Modal>
             )
         }

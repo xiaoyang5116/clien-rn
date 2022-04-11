@@ -20,6 +20,13 @@ const sharedStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+
+    /* 背景颜色 */
+    // 米白色 e8ddcc
+    bgColor: {
+        backgroundColor: '#e8ddcc',
+    },
+
     /** ================================ */
     /**             选择框                */
     /** ================================ */
