@@ -37,6 +37,7 @@ const models = [
   require('./models/ChallengeModel').default,
   require('./models/ArenaModel').default,
   require('./models/ArticleModel').default,
+  require('./models/FigureModel').default,
 ];
 
 const ActionHook = ({ dispatch, getState }) => next => action => {
