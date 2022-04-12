@@ -4,7 +4,7 @@ import {
     StyleSheet,
     FlatList,
     Image,
-    TouchableWithoutFeedback,
+    TouchableOpacity,
 } from 'react-native'
 import React, { useEffect } from 'react'
 
@@ -12,8 +12,8 @@ import { TextButton } from '../../constants/custom-ui';
 import {
     action,
     connect,
-    changeAvatar,
 } from "../../constants";
+import { changeAvatar } from '../../constants/source'
 
 
 const data = [
@@ -61,11 +61,11 @@ const MailBox = (props) => {
             const figureInfo = figureList.find(f => f.id === item.id);
             if (figureInfo !== undefined) {
                 return (
-                    <TouchableWithoutFeedback onPress={() => { letter(item.id) }}>
-                        <View style={{ width: 80, marginLeft: 30 }}>
+                    <View style={{ width: 80, marginLeft: 30 }}>
+                        <TouchableOpacity onPress={() => { letter(item.id) }}>
                             <Image source={changeAvatar(figureInfo.avatar)} style={{ height: 100, width: 80, borderRadius: 5 }} />
-                        </View>
-                    </TouchableWithoutFeedback>
+                        </TouchableOpacity>
+                    </View>
                 )
             }
         }

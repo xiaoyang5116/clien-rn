@@ -11,8 +11,8 @@ import {
 import {
     action,
     connect,
-    changeAvatar
 } from "../../constants";
+import { changeAvatar } from '../../constants/source'
 import TextAnimation from '../textAnimation'
 import { TextButton } from '../../constants/custom-ui';
 
