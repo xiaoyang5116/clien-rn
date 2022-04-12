@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+    action,
     connect,
     Component,
     StyleSheet,
@@ -10,12 +11,23 @@ import {
 import { View, Text, FlatList, SafeAreaView } from '../../constants/native-ui';
 import { TextButton } from '../../constants/custom-ui';
 import ProgressBar from '../../components/ProgressBar';
+import RootView from '../../components/RootView';
+import { Image, TouchableNativeFeedback } from 'react-native';
+import lo from 'lodash';
 
 const DATA = [
     [{ id: 1, title: '天地宝箱', reqNum: 100, currentNum: 70 },],
     [{ id: 2, title: '时光宝箱', reqNum: 120, currentNum: 100 }, { id: 3, title: '岁月宝箱', reqNum: 120, currentNum: 300 },],
     [{ id: 4, title: '采药宝箱', reqNum: 150, currentNum: 400 }, { id: 5, title: '炼丹宝箱', reqNum: 150, currentNum: 80 },],
     [{ id: 6, title: '穿越宝箱', reqNum: 200, currentNum: 500 }, { id: 7, title: '复活宝箱', reqNum: 200, currentNum: 150 },],
+];
+
+const PROPS_ICON = [
+    { iconId: 1, img: require('../../../assets/props/prop_1.png') },
+    { iconId: 2, img: require('../../../assets/props/prop_2.png') },
+    { iconId: 3, img: require('../../../assets/props/prop_3.png') },
+    { iconId: 4, img: require('../../../assets/props/prop_4.png') },
+    { iconId: 5, img: require('../../../assets/props/prop_5.png') },
 ];
 
 // 宝藏箱子组件
@@ -63,10 +75,74 @@ const BottomBar = (props) => {
     );
 }
 
+const RewardItem = (props) => {
+    const icon = PROPS_ICON.find(e => e.iconId == props.iconId);
+    return (
+    <View style={{ flexDirection: 'column', margin: 10, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ width: 68, height: 68 }}>
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#333' }}>
+                <Image source={icon.img} />
+                <Text style={{ position: 'absolute', top: 53, right: 0, color: '#fff' }}>{props.num}</Text>
+            </View>
+        </View>
+        <Text style={{ color: '#000', marginTop: 3 }}>{props.name}</Text>
+    </View>
+    );
+}
+
+const RewardsPage = (props) => {
+    const childs = [];
+    let key = 0;
+    props.data.forEach(e => {
+        childs.push(<RewardItem key={key++} propId={e.propId} iconId={e.iconId} num={e.num} name={e.name} />);
+    });
+    return (
+        <TouchableNativeFeedback onPress={() => { props.onClose() }}>
+            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: '#000', opacity: 0.85 }}>
+                <View>
+                    <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>获得奖励</Text>
+                </View>
+                <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#a6c2cb' }}>
+                    {childs}
+                </View>
+                <View>
+                    <Text style={{ marginTop: 20, color: '#fff', fontSize: 20 }}>点击任意区域关闭</Text>
+                </View>
+            </View>
+        </TouchableNativeFeedback>
+    );
+}
+
 // 十连抽页面
 class Lottery10Times extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            propsInfo: [],
+        };
+    }
+
+    refreshQuanNum() {
+        this.props.dispatch(action('PropsModel/getPropsNum')({ propsId: [54, 55] }))
+        .then(result => {
+            this.setState({ propsInfo: result });
+        });
+    }
+
+    componentDidMount() {
+        this.refreshQuanNum();
+    }
+
+    lottery(id) {
+        this.props.dispatch(action('LotteryModel/lottery')({ id }))
+        .then(data => {
+            if (lo.isArray(data)) {
+                const key = RootView.add(<RewardsPage data={data} onClose={() => {
+                    RootView.remove(key);
+                    this.refreshQuanNum();
+                }} />);
+            }
+        });
     }
 
     render() {
@@ -78,18 +154,18 @@ class Lottery10Times extends Component {
                         <Text style={{ fontSize: 24, fontWeight: 'bold' }}>十连抽</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>消费券: {this.props.prop1Num}</Text>
-                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>白嫖券: {this.props.prop2Num}</Text>
+                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>白嫖券: {(this.state.propsInfo[0] != undefined) ? this.state.propsInfo[0].num : 0}</Text>
+                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>消费券: {(this.state.propsInfo[1] != undefined) ? this.state.propsInfo[1].num : 0}</Text>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                        <Text>背景展示</Text>
+                        <Text></Text>
                     </View>
                     <View style={{ height: 200, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <View style={{ marginLeft: 20, marginRight: 20 }}>
-                            <TextButton title='抽1次' {...this.props} />
+                            <TextButton title='抽1次' {...this.props} onPress={() => { this.lottery(1); }} />
                         </View>
                         <View style={{ marginLeft: 20, marginRight: 20 }}>
-                            <TextButton title='抽10次' {...this.props} />
+                            <TextButton title='抽10次' {...this.props} onPress={() => { this.lottery(2); }} />
                         </View>
                     </View>
                     <BottomBar {...this.props} />

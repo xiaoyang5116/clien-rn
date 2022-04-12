@@ -1,0 +1,145 @@
+# ===========================================
+# 抽奖配置
+# ===========================================
+lotteries: [
+  {
+    # 名称
+    name: '天地宝箱',
+
+    # 抽奖次数
+    times: 1,
+
+    # 消耗道具
+    useProps: { propId: 56, num: 1 },
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+        p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+        p10000: [ { propId: 30, num: 1, rate: 800 } ],
+      }
+    },
+  },
+  {
+    # 名称
+    name: '时光宝箱',
+
+    # 抽奖次数
+    times: 1,
+
+    # 消耗道具
+    useProps: { propId: 57, num: 1 },
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+        p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+        p10000: [ { propId: 30, num: 1, rate: 800 } ],
+      }
+    },
+  },
+  {
+    # 名称
+    name: '岁月宝箱',
+
+    # 抽奖次数
+    times: 1,
+
+    # 消耗道具
+    useProps: { propId: 58, num: 1 },
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+        p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+        p10000: [ { propId: 30, num: 1, rate: 800 } ],
+      }
+    },
+  },
+  {
+    # 名称
+    name: '采药宝箱',
+
+    # 抽奖次数
+    times: 1,
+
+    # 消耗道具
+    useProps: { propId: 59, num: 1 },
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+        p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+        p10000: [ { propId: 30, num: 1, rate: 800 } ],
+      }
+    },
+  },
+  {
+    # 名称
+    name: '炼丹宝箱',
+
+    # 抽奖次数
+    times: 1,
+
+    # 消耗道具
+    useProps: { propId: 60, num: 1 },
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+        p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+        p10000: [ { propId: 30, num: 1, rate: 800 } ],
+      }
+    },
+  },
+  {
+    # 名称
+    name: '穿越宝箱',
+
+    # 抽奖次数
+    times: 1,
+
+    # 消耗道具
+    useProps: { propId: 61, num: 1 },
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+        p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+        p10000: [ { propId: 30, num: 1, rate: 800 } ],
+      }
+    },
+  },
+  {
+    # 名称
+    name: '复活宝箱',
+
+    # 抽奖次数
+    times: 1,
+
+    # 消耗道具
+    useProps: { propId: 62, num: 1 },
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+        p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+        p10000: [ { propId: 30, num: 1, rate: 800 } ],
+      }
+    },
+  },
+]
