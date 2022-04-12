@@ -15,13 +15,6 @@ import RootView from '../../components/RootView';
 import { Image, TouchableNativeFeedback } from 'react-native';
 import lo from 'lodash';
 
-const DATA = [
-    [{ id: 1, title: '天地宝箱', reqNum: 100, currentNum: 70 },],
-    [{ id: 2, title: '时光宝箱', reqNum: 120, currentNum: 100 }, { id: 3, title: '岁月宝箱', reqNum: 120, currentNum: 300 },],
-    [{ id: 4, title: '采药宝箱', reqNum: 150, currentNum: 400 }, { id: 5, title: '炼丹宝箱', reqNum: 150, currentNum: 80 },],
-    [{ id: 6, title: '穿越宝箱', reqNum: 200, currentNum: 500 }, { id: 7, title: '复活宝箱', reqNum: 200, currentNum: 150 },],
-];
-
 const PROPS_ICON = [
     { iconId: 1, img: require('../../../assets/props/prop_1.png') },
     { iconId: 2, img: require('../../../assets/props/prop_2.png') },
@@ -180,6 +173,18 @@ class Lottery10Times extends Component {
 class LotteryBaoZang extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            boxes: [],
+        };
+    }
+
+    componentDidMount() {
+        this.props.dispatch(action('LotteryModel/getBoxes')({ }))
+        .then(data => {
+            if (lo.isArray(data)) {
+                this.setState({ boxes: data });
+            }
+        });
     }
 
     renderItem = (data) => {
@@ -206,7 +211,7 @@ class LotteryBaoZang extends Component {
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <FlatList
                         style={{ alignSelf: 'stretch', margin: 10 }}
-                        data={DATA}
+                        data={this.state.boxes}
                         renderItem={this.renderItem}
                         />
                     </View>

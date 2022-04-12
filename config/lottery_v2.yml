@@ -3,14 +3,17 @@
 # ===========================================
 lotteries: [
   {
+    # ID
+    id: 11,
+
     # 名称
     name: '天地宝箱',
 
-    # 抽奖次数
-    times: 1,
+    # 是否宝箱类型
+    box: true,
 
     # 消耗道具
-    useProps: { propId: 56, num: 1 },
+    useProps: { propId: 56, num: 10 },
 
     # 产出配置
     products: {
@@ -23,14 +26,17 @@ lotteries: [
     },
   },
   {
+    # ID
+    id: 12,
+
     # 名称
     name: '时光宝箱',
 
-    # 抽奖次数
-    times: 1,
+    # 是否宝箱类型
+    box: true,
 
     # 消耗道具
-    useProps: { propId: 57, num: 1 },
+    useProps: { propId: 57, num: 10 },
 
     # 产出配置
     products: {
@@ -43,14 +49,17 @@ lotteries: [
     },
   },
   {
+    # ID
+    id: 13,
+
     # 名称
     name: '岁月宝箱',
 
-    # 抽奖次数
-    times: 1,
+    # 是否宝箱类型
+    box: true,
 
     # 消耗道具
-    useProps: { propId: 58, num: 1 },
+    useProps: { propId: 58, num: 20 },
 
     # 产出配置
     products: {
@@ -63,14 +72,17 @@ lotteries: [
     },
   },
   {
+    # ID
+    id: 14,
+
     # 名称
     name: '采药宝箱',
 
-    # 抽奖次数
-    times: 1,
+    # 是否宝箱类型
+    box: true,
 
     # 消耗道具
-    useProps: { propId: 59, num: 1 },
+    useProps: { propId: 59, num: 30 },
 
     # 产出配置
     products: {
@@ -83,14 +95,17 @@ lotteries: [
     },
   },
   {
+    # ID
+    id: 15,
+
     # 名称
     name: '炼丹宝箱',
 
-    # 抽奖次数
-    times: 1,
+    # 是否宝箱类型
+    box: true,
 
     # 消耗道具
-    useProps: { propId: 60, num: 1 },
+    useProps: { propId: 60, num: 40 },
 
     # 产出配置
     products: {
@@ -103,14 +118,17 @@ lotteries: [
     },
   },
   {
+    # ID
+    id: 16,
+
     # 名称
     name: '穿越宝箱',
 
-    # 抽奖次数
-    times: 1,
+    # 是否宝箱类型
+    box: true,
 
     # 消耗道具
-    useProps: { propId: 61, num: 1 },
+    useProps: { propId: 61, num: 220 },
 
     # 产出配置
     products: {
@@ -123,14 +141,17 @@ lotteries: [
     },
   },
   {
+    # ID
+    id: 17,
+
     # 名称
     name: '复活宝箱',
 
-    # 抽奖次数
-    times: 1,
+    # 是否宝箱类型
+    box: true,
 
     # 消耗道具
-    useProps: { propId: 62, num: 1 },
+    useProps: { propId: 62, num: 500 },
 
     # 产出配置
     products: {

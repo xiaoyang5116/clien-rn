@@ -36,7 +36,7 @@ props: [
   { id: 53 , name: '优秀的西瓜拼盘', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '样式漂亮的水果拼盘' }, 
   # 抽奖专用
   { id: 54 , name: '白嫖券', iconId: 3, num: 100, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
-  { id: 55 , name: '消费券', iconId: 4, num: 200, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
+  { id: 55 , name: '消费券', iconId: 4, num: 20000, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
   { id: 56 , name: '天地宝箱', iconId: 5, num: 200, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
   { id: 57 , name: '时光宝箱', iconId: 1, num: 200, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
   { id: 58 , name: '岁月宝箱', iconId: 2, num: 200, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 

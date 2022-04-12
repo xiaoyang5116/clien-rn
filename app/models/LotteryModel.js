@@ -22,10 +22,14 @@ export default {
     *reload({ }, { select, call, put }) {
       const lotteryState = yield select(state => state.LotteryModel);
       const data_v1 = yield call(GetLotteryDataApi, 'v1');
+      const data_v2 = yield call(GetLotteryDataApi, 'v2');
       
       lotteryState.__data.lotteries_config.length = 0;
       if (lo.isArray(data_v1.lotteries)) {
         lotteryState.__data.lotteries_config.push(...data_v1.lotteries);
+      }
+      if (lo.isArray(data_v2.lotteries)) {
+        lotteryState.__data.lotteries_config.push(...data_v2.lotteries);
       }
     },
 
@@ -71,6 +75,33 @@ export default {
         yield put.resolve(action('PropsModel/sendPropsBatch')({ props: rewards }));
         return rewards;
       }
+    },
+
+    *getBoxes({ payload }, { select, call, put }) {
+      const lotteryState = yield select(state => state.LotteryModel);
+      const boxes = lotteryState.__data.lotteries_config.filter(e => (e.box != undefined && e.box));
+
+      const data = [];
+      for (let i = 0; i < boxes.length;) {
+        const array = [];
+        if (i == 0) {
+          array.push(boxes[i++]);
+        } else {
+          array.push(boxes[i++]);
+          if (i < boxes.length) array.push(boxes[i++]);
+        }
+
+        //
+        const row = [];
+        for (let k in array) {
+          const box = array[k];
+          const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: box.useProps.propId }));
+          row.push({ id: box.id, title: box.name, reqNum: box.useProps.num, currentNum: propNum });
+        }
+        data.push(row);
+      }
+
+      return data;
     },
 
   },
