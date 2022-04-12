@@ -1,10 +1,8 @@
 
 import { 
   action,
-  LocalCacheKeys,
 } from "../constants";
 
-import LocalStorage from '../utils/LocalStorage';
 import { GetLotteryDataApi } from '../services/GetLotteryDataApi';
 import EventListeners from '../utils/EventListeners';
 import lo from 'lodash';
@@ -69,6 +67,8 @@ export default {
           });
         }
 
+        // 批量发放道具
+        yield put.resolve(action('PropsModel/sendPropsBatch')({ props: rewards }));
         return rewards;
       }
     },

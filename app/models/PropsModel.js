@@ -193,9 +193,9 @@ export default {
         return;
       }
 
-      const props = propsState.__data.bags.find((e) => e.id == propId);
-      if (props != undefined) {
-        props.num += num;
+      const prop = propsState.__data.bags.find((e) => e.id == propId);
+      if (prop != undefined) {
+        prop.num += num;
       } else {
         const item = { ...config };
         item.num = num;
@@ -203,6 +203,30 @@ export default {
       }
 
       if (!quiet)  Toast.show('获得道具！');
+      
+      yield put(action('updateState')({}));
+      yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
+    },
+
+    *sendPropsBatch({ payload }, { put, call, select }) {
+      const propsState = yield select(state => state.PropsModel);
+      const { props } = payload; // [{ propId: xxx, num: xxx }, ...]
+
+      if (lo.isArray(props)) {
+        props.forEach(p => {
+          const config = propsState.__data.propsConfig.find((e) => e.id == p.propId);
+          if (config == undefined) return;
+
+          const prop = propsState.__data.bags.find((e) => e.id == p.propId);
+          if (prop != undefined) {
+            prop.num += p.num;
+          } else {
+            const item = { ...config };
+            item.num = p.num;
+            propsState.__data.bags.push(item);
+          }
+        })
+      }
       
       yield put(action('updateState')({}));
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
