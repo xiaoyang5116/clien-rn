@@ -65,7 +65,10 @@ export const toastType = (type) => {
         default:
             return BOTTOM_TOP
     }
-}
+};
+
+export * from './source';
+
 
 
 

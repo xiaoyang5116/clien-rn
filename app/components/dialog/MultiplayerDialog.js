@@ -12,7 +12,7 @@ import {
     action,
     connect,
 } from "../../constants";
-import { changeAvatar } from '../../constants/source'
+import { changeAvatar } from '../../constants'
 import TextAnimation from '../textAnimation'
 import { TextButton } from '../../constants/custom-ui';
 

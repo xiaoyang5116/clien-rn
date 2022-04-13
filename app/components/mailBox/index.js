@@ -13,7 +13,7 @@ import {
     action,
     connect,
 } from "../../constants";
-import { changeAvatar } from '../../constants/source'
+import { changeAvatar } from '../../constants'
 
 
 const data = [
@@ -88,7 +88,10 @@ const MailBox = (props) => {
                         renderItem={renderMail}
                         keyExtractor={(item, index) => item + index}
                         ListFooterComponent={() => <View style={{ height: 18 }} />}
-                        showsVerticalScrollIndicator={false}
+                        showsVerticalScrollIndicator={false}  // 隐藏滚动条
+                        getItemLayout={(_data, index) => (
+                            { length: 100, offset: 100 * index, index }
+                        )}
                         numColumns={3}
                         columnWrapperStyle={{
                             justifyContent: 'flex-start',
