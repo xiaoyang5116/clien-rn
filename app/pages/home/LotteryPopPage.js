@@ -20,6 +20,7 @@ import {
 import { TextButton } from '../../constants/custom-ui';
 import ProgressBar from '../../components/ProgressBar';
 import RootView from '../../components/RootView';
+import FastImage from 'react-native-fast-image';
 import lo from 'lodash';
 
 const PROPS_ICON = [
@@ -231,8 +232,8 @@ class Lottery10Times extends Component {
 
     render() {
         return (
-            <>
-            <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+            <FastImage style={{ flex: 1 }} source={require('../../../assets/lottery_bg.jpg')}>
+            <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 24, fontWeight: 'bold' }}>十连抽</Text>
@@ -255,7 +256,7 @@ class Lottery10Times extends Component {
                     <BottomBar {...this.props} />
                 </View>
             </SafeAreaView>
-            </>
+            </FastImage>
         );
     }
 }
@@ -297,8 +298,8 @@ class LotteryBaoZang extends Component {
 
     render() {
         return (
-            <>
-            <SafeAreaView style={{ flex: 1, backgroundColor: '#f6efe5' }}>
+            <FastImage style={{ flex: 1 }} source={require('../../../assets/lottery_bg2.jpg')}>
+            <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 24, fontWeight: 'bold' }}>宝藏</Text>
@@ -313,7 +314,7 @@ class LotteryBaoZang extends Component {
                     <BottomBar {...this.props} />
                 </View>
             </SafeAreaView>
-            </>
+            </FastImage>
         );
     }
 }
@@ -358,7 +359,7 @@ class LotteryPopPage extends Component {
                 subView = <Lottery10Times {...this.props} />
                 break;
         }
-        return (<>{subView}</>);
+        return (<View style={{ flex: 1, backgroundColor: '#fff' }} >{subView}</View>);
     }
 }
 
