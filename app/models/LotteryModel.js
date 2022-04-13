@@ -35,15 +35,40 @@ export default {
 
     *lottery({ payload }, { select, call, put }) {
       const lotteryState = yield select(state => state.LotteryModel);
-      const { id } = payload;
+      const { id, max } = payload;
 
       const lottery = lotteryState.__data.lotteries_config.find(e => e.id == id);
       if (lottery == undefined) {
         Toast.show('抽奖配置异常！');
-        return;
+        return
       }
 
-      const result = yield put.resolve(action('PropsModel/reduce')({ ...lottery.useProps, mode: 1 }));
+      let rewardTimes = 0;
+      let isBox = false;
+      if (lo.isBoolean(lottery.box) && lottery.box) {
+        // 宝箱按1次或者最大10次抽取
+        isBox = true;
+        if (max != undefined && lo.isBoolean(max) && max) {
+          const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: lottery.useProps.propId }));
+          const maxTimes = Math.floor(propNum / lottery.useProps.num);
+          rewardTimes = maxTimes > 10 ? 10 : maxTimes;
+        } else {
+          rewardTimes = 1;
+        }        
+      } else {
+        // 非宝箱形式按配置设定抽取固定次数
+        rewardTimes = lottery.times;
+      }
+
+      // 适配2种数据结构
+      let checkProps = {};
+      if (isBox) {
+        checkProps = { propsId: [lottery.useProps.propId], num: lottery.useProps.num * rewardTimes };
+      } else {
+        checkProps = lottery.useProps;
+      }
+
+      const result = yield put.resolve(action('PropsModel/reduce')({ ...checkProps, mode: 1 }));
       if (result && lo.isObject(lottery.products) && lo.isObject(lottery.products.props)) {
         const rateTargets = [];
         if (lottery.products.props.p100 != undefined) rateTargets.push(...lottery.products.props.p100.map(e => ({ ...e, rate: e.rate * 100 })));
@@ -58,7 +83,7 @@ export default {
         });
 
         const rewards = []; // 记录获得的奖励
-        for (let i = 0; i < lottery.times; i++) {
+        for (let i = 0; i < rewardTimes; i++) {
           const randValue = lo.random(0, prevRange, false);
           let hit = rateTargets.find(e => randValue >= e.range[0] && randValue < e.range[1]);
           if (hit == undefined) hit = rateTargets[rateTargets.length - 1];
@@ -96,7 +121,8 @@ export default {
         for (let k in array) {
           const box = array[k];
           const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: box.useProps.propId }));
-          row.push({ id: box.id, title: box.name, reqNum: box.useProps.num, currentNum: propNum });
+          const maxTimes = Math.floor(propNum / box.useProps.num);
+          row.push({ id: box.id, title: box.name, reqNum: box.useProps.num, currentNum: propNum, maxTimes: (maxTimes > 10 ? 10 : maxTimes) });
         }
         data.push(row);
       }

@@ -8,11 +8,18 @@ import {
     DeviceEventEmitter,
 } from "../../constants";
 
-import { View, Text, FlatList, SafeAreaView } from '../../constants/native-ui';
+import { 
+    View, 
+    Text, 
+    FlatList, 
+    SafeAreaView, 
+    Image, 
+    TouchableWithoutFeedback 
+} from '../../constants/native-ui';
+
 import { TextButton } from '../../constants/custom-ui';
 import ProgressBar from '../../components/ProgressBar';
 import RootView from '../../components/RootView';
-import { Image, TouchableNativeFeedback } from 'react-native';
 import lo from 'lodash';
 
 const PROPS_ICON = [
@@ -23,27 +30,109 @@ const PROPS_ICON = [
     { iconId: 5, img: require('../../../assets/props/prop_5.png') },
 ];
 
+// 点击宝箱二次确认框
+const BoxConfirmDialog = (props) => {
+    return (
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+            <View style={{ width: '90%', height: 440, borderColor: '#999', borderWidth: 1, backgroundColor: '#fff'}}>
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ lineHeight: 80, fontSize: 32, fontWeight: 'bold' }}>{props.title}</Text>
+                </View>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ width: 160, height: 100, borderColor: '#666', borderWidth: 1 }}>
+                        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', backgroundColor: '#e0f6ff' }} >
+                            <Text>{props.title}</Text>
+                        </View>
+                        <View style={{ flex: 1, backgroundColor: '#fff' }} >
+                            <View style={{ position: 'absolute', top: 7, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                <Text style={{ color: '#000' }}>{props.currentNum}/{props.reqNum}</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                <View style={{ height: 100, margin: 10, height: 100, justifyContent: 'space-evenly' }}>
+                    {
+                    // 默认抽一次
+                    (props.maxTimes > 0)
+                    ?
+                    (
+                    <TextButton {...props} title='开启1次' onPress={() => {
+                        props.dispatch(action('LotteryModel/lottery')({ id: props.id, times: 1 }))
+                        .then(data => {
+                            if (lo.isArray(data)) {
+                                const key = RootView.add(<RewardsPage data={data} onClose={() => {
+                                    RootView.remove(key);
+                                }} />);
+                            }
+                            props.onClose();
+                        });
+                    }} />
+                    )
+                    : (<TextButton {...props} title='数量不足' disabled={true} />)
+                    }
+                    {
+                    // 最大连抽次数
+                    (props.maxTimes > 1)
+                    ?
+                    (
+                    <TextButton {...props} title={`开启${props.maxTimes}次`} onPress={() => {
+                        props.dispatch(action('LotteryModel/lottery')({ id: props.id, max: true }))
+                        .then(data => {
+                            if (lo.isArray(data)) {
+                                const key = RootView.add(<RewardsPage data={data} onClose={() => {
+                                    RootView.remove(key);
+                                }} />);
+                            }
+                            props.onClose();
+                        });
+                    }} />
+                    )
+                    : (<></>)
+                    }
+                </View>
+                <View style={{ margin: 10 }}>
+                    <TextButton {...props} title='返回' onPress={() => {
+                        props.onClose();
+                    }} />
+                </View>
+            </View>
+        </View>
+        </SafeAreaView>
+    );
+}
+
 // 宝藏箱子组件
 const Box = (props) => {
     const percent = (props.currentNum >= props.reqNum) ? 100 : Math.ceil((props.currentNum / props.reqNum) * 100);
+
+    const onPressHandler = () => {
+        const key = RootView.add(<BoxConfirmDialog {...props} onClose={() => {
+            RootView.remove(key);
+            props.onClose();
+        }} />);
+    }
+
     return (
-    <View style={{ width: 160, height: 100, borderColor: '#666', borderWidth: 1 }}>
-        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', backgroundColor: '#e0f6ff' }} >
-            <Text>{props.title}</Text>
-        </View>
-        <View style={{ flex: 1, backgroundColor: '#fff' }} >
-            <View style={{ flex: 1, marginLeft: 10, marginRight: 10, marginTop: 8, marginBottom: 8 }}>
-                <ProgressBar percent={percent} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+    <TouchableWithoutFeedback onPress={onPressHandler} >
+        <View style={{ width: 160, height: 100, borderColor: '#666', borderWidth: 1 }}>
+            <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', backgroundColor: '#e0f6ff' }} >
+                <Text>{props.title}</Text>
             </View>
-            <View style={{ position: 'absolute', top: 7, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: '#fff' }}>{props.currentNum}/{props.reqNum}</Text>
+            <View style={{ flex: 1, backgroundColor: '#fff' }} >
+                <View style={{ flex: 1, marginLeft: 10, marginRight: 10, marginTop: 8, marginBottom: 8 }}>
+                    <ProgressBar percent={percent} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+                </View>
+                <View style={{ position: 'absolute', top: 7, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ color: '#fff' }}>{props.currentNum}/{props.reqNum}</Text>
+                </View>
             </View>
         </View>
-    </View>
+    </TouchableWithoutFeedback>
     );
 };
 
-// 底部工具栏
+// 底部工具栏组件
 const BottomBar = (props) => {
     return (
     <View style={{ height: 80, flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-around' }}>
@@ -68,6 +157,7 @@ const BottomBar = (props) => {
     );
 }
 
+// 奖励物品组件
 const RewardItem = (props) => {
     const icon = PROPS_ICON.find(e => e.iconId == props.iconId);
     return (
@@ -83,6 +173,7 @@ const RewardItem = (props) => {
     );
 }
 
+// 奖励显示页面
 const RewardsPage = (props) => {
     const childs = [];
     let key = 0;
@@ -90,8 +181,8 @@ const RewardsPage = (props) => {
         childs.push(<RewardItem key={key++} propId={e.propId} iconId={e.iconId} num={e.num} name={e.name} />);
     });
     return (
-        <TouchableNativeFeedback onPress={() => { props.onClose() }}>
-            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: '#000', opacity: 0.85 }}>
+        <TouchableWithoutFeedback onPress={() => { props.onClose() }}>
+            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.85)' }}>
                 <View>
                     <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>获得奖励</Text>
                 </View>
@@ -102,7 +193,7 @@ const RewardsPage = (props) => {
                     <Text style={{ marginTop: 20, color: '#fff', fontSize: 20 }}>点击任意区域关闭</Text>
                 </View>
             </View>
-        </TouchableNativeFeedback>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -178,7 +269,7 @@ class LotteryBaoZang extends Component {
         };
     }
 
-    componentDidMount() {
+    refreshBoxes() {
         this.props.dispatch(action('LotteryModel/getBoxes')({ }))
         .then(data => {
             if (lo.isArray(data)) {
@@ -187,11 +278,15 @@ class LotteryBaoZang extends Component {
         });
     }
 
+    componentDidMount() {
+        this.refreshBoxes();
+    }
+
     renderItem = (data) => {
         const item = data.item;
         const boxs = [];
         item.forEach(e => {
-            boxs.push(<Box key={e.id} {...e} />);
+            boxs.push(<Box key={e.id} {...e} {...this.props} onClose={() => { this.refreshBoxes() }} />);
         });
         return (
         <View style={{ height: 100, flexDirection: 'row', justifyContent: 'space-around', marginTop: 10, marginBottom: 10 }} >
