@@ -1,4 +1,4 @@
-import { GetFigureDataApi } from '../services/GetFigureDataApi';
+import { GetMailDataApi } from '../services/GetMailDataApi';
 
 import { LocalCacheKeys } from "../constants";
 import LocalStorage from '../utils/LocalStorage';
@@ -8,15 +8,17 @@ export default {
     namespace: 'MailBoxModel',
 
     state: {
-        mailBoxList: [],
+        // 信箱数据
+        mailBoxData: [],
     },
 
     effects: {
         *reload({ }, { call, put, select }) {
             const mailData = yield call(LocalStorage.get, LocalCacheKeys.MAIL_DATA);
-            console.log('mailData', mailData);
+            const mailConfigData = yield call(GetMailDataApi);
+            console.log('mailData', mailConfigData);
             if (mailData != null) {
-                
+
             }
         },
         *getFigureList({ }, { call, put }) {
