@@ -12,13 +12,13 @@ import {
     Text, 
     FlatList, 
     SafeAreaView, 
-    Image, 
     TouchableWithoutFeedback 
 } from '../../constants/native-ui';
 
 import { TextButton } from '../../constants/custom-ui';
 import ProgressBar from '../../components/ProgressBar';
 import FastImage from 'react-native-fast-image';
+import Toast from '../../components/toast';
 
 const DATA = [
     [{ id: 1, title: '新手村', desc: '新手村新手村新手村新手村新手村新手村' }, { id: 2, title: '邻家树林', desc: '邻家树林邻家树林邻家树林邻家树林邻家树林' }],
@@ -76,7 +76,8 @@ class ExplorePopPage extends Component {
         super(props);
 
         this.state = {
-            desc: '请选择区域',
+            desc: '请选择探索区域',
+            selectAreaId: 0,
         };
     }
 
@@ -85,10 +86,10 @@ class ExplorePopPage extends Component {
         return (
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 10, marginBottom: 10 }} >
                 <AreaBlock item={item[0]} onSelected={() => {
-                    this.setState({ desc: item[0].desc });
+                    this.setState({ desc: item[0].desc, selectAreaId: item[0].id });
                 }} />
                 <AreaBlock item={item[1]} onSelected={() => {
-                    this.setState({ desc: item[1].desc });
+                    this.setState({ desc: item[1].desc, selectAreaId: item[0].id });
                 }} />
             </View>
         );
@@ -117,7 +118,9 @@ class ExplorePopPage extends Component {
                             this.props.onClose();
                         }} />
                         <TextButton {...this.props} title={'开始探索'} onPress={() => {
-                            this.props.onClose();
+                            if (this.state.selectAreaId <= 0) {
+                                Toast.show('请选择探索区域', 'CenterToTop');
+                            }
                         }} />
                         <TextButton {...this.props} title={'调整补给'} disabled={true} />
                     </View>
