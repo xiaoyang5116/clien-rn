@@ -14,22 +14,24 @@ import {
     connect,
 } from "../../constants";
 import { changeAvatar } from '../../constants'
+import RootView from '../RootView'
+import Letter from './Letter';
 
 
-const data = [
-    { id: "02", time: "2019-01-01", content: "这是一封测试邮件", isEmpty: false },
-    { id: "04", time: "2019-01-01", content: "这是一封测试邮件", isEmpty: false },
-    { isEmpty: true },
-    { isEmpty: true },
-    { isEmpty: true },
-    { isEmpty: true },
-    { isEmpty: true },
-    { isEmpty: true },
-    { isEmpty: true },
-    { isEmpty: true },
-    { isEmpty: true },
-    { isEmpty: true },
-]
+// const data = [
+//     { id: "02", time: "2019-01-01", content: "这是一封测试邮件", isEmpty: false },
+//     { id: "04", time: "2019-01-01", content: "这是一封测试邮件", isEmpty: false },
+//     { isEmpty: true },
+//     { isEmpty: true },
+//     { isEmpty: true },
+//     { isEmpty: true },
+//     { isEmpty: true },
+//     { isEmpty: true },
+//     { isEmpty: true },
+//     { isEmpty: true },
+//     { isEmpty: true },
+//     { isEmpty: true },
+// ]
 
 const MailBox = (props) => {
 
@@ -37,22 +39,26 @@ const MailBox = (props) => {
      * currentStyles: 主题样式
      * onClose: 关闭弹窗
      * figureList: 人物列表
+     * mailHistoryData: 邮件历史数据
      */
-    const { currentStyles, onClose, figureList } = props;
+    const { currentStyles, onClose, figureList, mailHistoryData } = props;
 
     useEffect(() => {
         if (figureList.length === 0) {
             props.dispatch(action('FigureModel/getFigureList')());
         }
+        if (props.mailConfigData.length === 0) {
+            props.dispatch(action('MailBoxModel/getMailConfigData')());
+        }
     }, [])
 
     // 信件
     const letter = (id) => {
-        console.log("id", id);
+        const key = RootView.add(<Letter id={id} onClose={() => { RootView.remove(key) }} />);
     }
 
     const renderMail = ({ item }) => {
-        if (item.isEmpty) {
+        if (item.isFinish) {
             return (
                 <View style={{ width: 80, height: 100, marginLeft: 30, backgroundColor: 'green' }}></View>
             )
@@ -70,7 +76,7 @@ const MailBox = (props) => {
             }
         }
     }
-
+    // console.log("mailHistoryData", mailHistoryData);
     return (
         <View style={styles.mailBox}>
             <View style={[currentStyles.bgColor, {
@@ -80,11 +86,11 @@ const MailBox = (props) => {
                 {/* head */}
                 <View style={{ paddingBottom: 8, paddingTop: 8, paddingLeft: 12, backgroundColor: '#e3d5c1', alignItems: 'flex-start', }}>
                     <Text style={{ fontSize: 24 }}>新信件</Text>
-                    <Text style={{ fontSize: 18 }}>共有{data.filter(i => i.isEmpty === false).length}位来访者</Text>
+                    <Text style={{ fontSize: 18 }}>共有{mailHistoryData.filter(m => m.isFinish === false).length}位来访者</Text>
                 </View>
                 <View style={{ flex: 1 }}>
                     <FlatList
-                        data={data}
+                        data={mailHistoryData}
                         renderItem={renderMail}
                         keyExtractor={(item, index) => item + index}
                         ListFooterComponent={() => <View style={{ height: 18 }} />}
@@ -108,7 +114,7 @@ const MailBox = (props) => {
     )
 }
 
-export default connect((state) => ({ ...state.AppModel, ...state.FigureModel }))(MailBox)
+export default connect((state) => ({ ...state.AppModel, ...state.FigureModel, ...state.MailBoxModel }))(MailBox)
 
 const styles = StyleSheet.create({
     mailBox: {
