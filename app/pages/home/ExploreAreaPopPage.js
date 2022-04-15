@@ -120,6 +120,9 @@ class ExplorePopPage extends Component {
                         <TextButton {...this.props} title={'开始探索'} onPress={() => {
                             if (this.state.selectAreaId <= 0) {
                                 Toast.show('请选择探索区域', 'CenterToTop');
+                            } else {
+                                this.props.onClose();
+                                DeviceEventEmitter.emit('ExploreTabPage.show', 'ExploreMainPopPage');
                             }
                         }} />
                         <TextButton {...this.props} title={'调整补给'} disabled={true} />
