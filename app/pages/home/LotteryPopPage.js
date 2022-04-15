@@ -17,7 +17,7 @@ import {
     TouchableWithoutFeedback 
 } from '../../constants/native-ui';
 
-import { TextButton } from '../../constants/custom-ui';
+import { TextButton, ImageButton } from '../../constants/custom-ui';
 import ProgressBar from '../../components/ProgressBar';
 import RootView from '../../components/RootView';
 import FastImage from 'react-native-fast-image';
@@ -245,13 +245,9 @@ class Lottery10Times extends Component {
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Text></Text>
                     </View>
-                    <View style={{ height: 200, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={{ marginLeft: 20, marginRight: 20 }}>
-                            <TextButton title='抽1次' {...this.props} onPress={() => { this.lottery(1); }} />
-                        </View>
-                        <View style={{ marginLeft: 20, marginRight: 20 }}>
-                            <TextButton title='抽10次' {...this.props} onPress={() => { this.lottery(2); }} />
-                        </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginBottom: 60 }}>
+                        <ImageButton width={150} height={50} source={require('../../../assets/button/xunbao10.png')} selectedSource={require('../../../assets/button/xunbao10_selected.png')} onPress={() => { this.lottery(1); }} />
+                        <ImageButton width={150} height={50} source={require('../../../assets/button/xunbao10.png')} selectedSource={require('../../../assets/button/xunbao10_selected.png')} onPress={() => { this.lottery(2); }} />
                     </View>
                     <BottomBar {...this.props} />
                 </View>
