@@ -13,7 +13,10 @@ import {
     action,
     connect,
 } from "../../../constants";
+import RootView from '../../RootView'
 import NewLetter from './NewLetter'
+import HistoryLetter from './HistoryLetter';
+import Reply from './Reply';
 
 
 const Letter = (props) => {
@@ -52,8 +55,8 @@ const Letter = (props) => {
     }
 
     // 回信
-    const replyLetter = (key) => {
-        console.log("sss");
+    const replyLetter = () => {
+        const key = RootView.add(<Reply onClose={() => { RootView.remove(key) }} />);
     }
 
     // 信件
@@ -62,8 +65,7 @@ const Letter = (props) => {
             case 'receive':
                 return <NewLetter item={item} figureInfo={figureInfo} openLetter={openLetter} replyLetter={replyLetter} />
             case 'reply':
-                if (item.isOpen) return <></>
-                else return <></>
+                return <HistoryLetter item={item} figureInfo={figureInfo} />
         }
     }
 

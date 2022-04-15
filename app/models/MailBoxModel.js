@@ -6,7 +6,7 @@ import {
 } from "../constants";
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
-import { now, toDays } from '../utils/DateTimeUtils';
+import { now } from '../utils/DateTimeUtils';
 
 
 export default {
@@ -15,14 +15,18 @@ export default {
     state: {
         //  当前人物id
         figureId: '',
+
         // 当前的邮件key
         currentKey: '',
-        // 当前的邮件数据
-        currentMailData: [],
+
         // 当前的邮件是否完成
         currentIsFinish: false,
+
+        // 当前的邮件数据
+        currentMailData: [],
         // 邮件历史数据
         mailHistoryData: [],
+
         // 邮件配置文件
         mailConfigData: [],
     },
@@ -44,13 +48,11 @@ export default {
             }
             yield put(action('updateMailHistoryData')(mailData));
         },
-
         // 获取邮件配置数据
         *getMailConfigData({ }, { call, put }) {
             const { mailData } = yield call(GetMailDataApi);
             yield put(action('updataMailConfigData')(mailData));
         },
-
         // 更改当前人物的邮件信息
         *changeCurrentFigureMailData({ payload }, { call, put }) {
             yield put(action('updateCurrentFigureMailData')(payload));
@@ -76,13 +78,22 @@ export default {
             const newMailData = mailHistoryData.map(i => i.id === payload.id ? { ...i, historyData: [currentMail, ...i.historyData] } : i)
             yield put(action('updateMailHistoryData')(newMailData));
         },
-
         // 打开邮件
         *openLetter({ payload }, { call, put, select }) {
             const { currentMailData } = yield select(state => state.MailBoxModel);
             const currentMail = currentMailData.map(m => m.key === payload.key ? { ...m, isOpen: true } : m);
             yield put(action('updateCurrentMailData')(currentMail));
             yield put.resolve(action('saveHistory')(currentMail));
+        },
+        // 回信
+        *replyLetter({ payload }, { call, put, select }) {
+            // {"content": "去拿菜刀", "nextTime": "5", "tokey": "p2"}
+            const { currentMailData, currentKey } = yield select(state => state.MailBoxModel);
+            const currentMail = currentMailData.map(m => m.key === currentKey ? { ...m, replyContent: payload.content, status: "reply" } : m);
+            console.log("currentMail", currentMail);
+            yield put(action('updateCurrentMailData')(currentMail));
+            yield put.resolve(action('saveHistory')(currentMail));
+
         },
         // 保存历史记录
         *saveHistory({ payload }, { call, put, select }) {
