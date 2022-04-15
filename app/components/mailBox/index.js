@@ -15,7 +15,7 @@ import {
 } from "../../constants";
 import { changeAvatar } from '../../constants'
 import RootView from '../RootView'
-import Letter from './Letter';
+import Letter from './letter';
 
 
 // const data = [
@@ -40,8 +40,9 @@ const MailBox = (props) => {
      * onClose: 关闭弹窗
      * figureList: 人物列表
      * mailHistoryData: 邮件历史数据
+     * mailConfigData: 邮件配置数据
      */
-    const { currentStyles, onClose, figureList, mailHistoryData } = props;
+    const { currentStyles, onClose, figureList, mailHistoryData, mailConfigData } = props;
 
     useEffect(() => {
         if (figureList.length === 0) {
@@ -53,8 +54,12 @@ const MailBox = (props) => {
     }, [])
 
     // 信件
-    const letter = (id) => {
-        const key = RootView.add(<Letter id={id} onClose={() => { RootView.remove(key) }} />);
+    const letter = (item) => {
+        // const currentFigureMailData = mailConfigData.find(m => m.id === id);
+        // const newMailData = currentFigureMailData.mail.find(m => m.key === currentKey);
+        // props.dispatch(action('MailBoxModel/addNewMail')({ newMailData, id }));
+        props.dispatch(action('MailBoxModel/changeCurrentFigureMailData')(item));
+        const key = RootView.add(<Letter onClose={() => { RootView.remove(key) }} />);
     }
 
     const renderMail = ({ item }) => {
@@ -68,7 +73,7 @@ const MailBox = (props) => {
             if (figureInfo !== undefined) {
                 return (
                     <View style={{ width: 80, marginLeft: 30 }}>
-                        <TouchableOpacity onPress={() => { letter(item.id) }}>
+                        <TouchableOpacity onPress={() => { letter(item) }}>
                             <Image source={changeAvatar(figureInfo.avatar)} style={{ height: 100, width: 80, borderRadius: 5 }} />
                         </TouchableOpacity>
                     </View>
@@ -76,7 +81,7 @@ const MailBox = (props) => {
             }
         }
     }
-    // console.log("mailHistoryData", mailHistoryData);
+
     return (
         <View style={styles.mailBox}>
             <View style={[currentStyles.bgColor, {

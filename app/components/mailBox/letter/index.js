@@ -8,12 +8,12 @@ import {
 } from 'react-native'
 import React, { useEffect } from 'react'
 
-import { TextButton } from '../../constants/custom-ui';
+import { TextButton } from '../../../constants/custom-ui';
 import {
     action,
     connect,
-} from "../../constants";
-import { changeAvatar } from '../../constants'
+} from "../../../constants";
+import NewLetter from './NewLetter'
 
 
 const Letter = (props) => {
@@ -24,10 +24,18 @@ const Letter = (props) => {
      * figureList: 人物列表
      * mailHistoryData: 邮件历史数据
      * mailConfigData: 邮件配置数据
+     * figureId: 当前人物id
+     * currentKey: 当前邮件key
+     * currentMailData: 当前邮件数据
+     * currentIsFinish: 当前邮件是否完成
      * id: 发件人id
      */
-    const { currentStyles, onClose, figureList, mailHistoryData, mailConfigData, id } = props;
-    const figureInfo = figureList.find(f => f.id === id);
+    const { currentStyles, onClose, figureList, mailHistoryData, mailConfigData, figureId, currentKey, currentMailData, currentIsFinish } = props;
+
+    // 当前人物信息
+    const figureInfo = figureList.find(f => f.id === figureId);
+    // const mailData = mailHistoryData.find(m => m.id === id);
+    // console.log(mailData);
 
     useEffect(() => {
         // if (figureList.length === 0) {
@@ -37,6 +45,27 @@ const Letter = (props) => {
         //     props.dispatch(action('MailBoxModel/getMailConfigData')());
         // }
     }, [])
+
+    // 打开信件
+    const openLetter = (key) => {
+        props.dispatch(action('MailBoxModel/openLetter')({ key }));
+    }
+
+    // 回信
+    const replyLetter = (key) => {
+        console.log("sss");
+    }
+
+    // 信件
+    const renderMail = ({ item }) => {
+        switch (item.status) {
+            case 'receive':
+                return <NewLetter item={item} figureInfo={figureInfo} openLetter={openLetter} replyLetter={replyLetter} />
+            case 'reply':
+                if (item.isOpen) return <></>
+                else return <></>
+        }
+    }
 
     return (
         <View style={styles.mailBox}>
@@ -49,21 +78,13 @@ const Letter = (props) => {
                     <Text style={{ fontSize: 24 }}>{figureInfo.name}来信</Text>
                 </View>
                 <View style={{ flex: 1 }}>
-                    {/* 新信件 */}
-                    <View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 8, marginBottom: 8 }}>
-                            <Text style={{ paddingTop: 2, paddingBottom: 2, paddingLeft: 24, paddingRight: 24, textAlign: 'center', fontSize: 14, backgroundColor: '#d3c2aa', borderRadius: 12, }}>你收到了一封新信笺！</Text>
-                        </View>
-                        <View style={{ height: 80, flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center', backgroundColor: '#e8d2b0', marginLeft: 18, marginRight: 18, borderRadius: 10, paddingLeft: 15 }}>
-                            <View>
-                                <Image source={changeAvatar(figureInfo.avatar)} style={{ height: 50, width: 50, borderRadius: 5 }} />
-                            </View>
-                            <View>
-                                <Text style={{ fontSize: 18, marginLeft: 8, color: '#d86362' }}>新信笺！</Text>
-                                <Text style={{ fontSize: 14, marginLeft: 8 }}>请点击信笺，阅读内容~</Text>
-                            </View>
-                        </View>
-                    </View>
+                    <FlatList
+                        data={currentMailData}
+                        renderItem={renderMail}
+                        keyExtractor={(item, index) => item + index}
+                        ListFooterComponent={() => <View style={{ height: 18 }} />}
+                        showsVerticalScrollIndicator={false}  // 隐藏滚动条
+                    />
                 </View>
             </View>
 
