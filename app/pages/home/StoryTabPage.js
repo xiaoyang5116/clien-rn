@@ -94,6 +94,7 @@ class StoryTabPage extends Component {
     this.unsubscribe = this.props.navigation.addListener('tabPress', (e) => {
       this.props.dispatch(action('StoryModel/reEnter')({}));
     });
+    this.props.dispatch(action('StoryModel/reEnter')({}));
   }
 
   componentWillUnmount() {
