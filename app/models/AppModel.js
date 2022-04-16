@@ -38,8 +38,9 @@ export default {
       }
 
       yield call(LocalStorage.init);
+
       yield put(action('updateState')({ 
-        archiveList: lo.reverse([...LocalStorage.metadata.descriptors]),
+        archiveList: lo.reverse([...LocalStorage.metadata.descriptors].filter(e => e.archived)),
         currentArchiveIndex: LocalStorage.metadata.currentArchiveIndex,
       }));
     },
@@ -62,11 +63,18 @@ export default {
     },
 
     *archive({ payload }, { call, put, select }) {
-      const archiveId = yield call(LocalStorage.archive, payload);
-      Toast.show(`存档成功！！！ID=${archiveId}`, 'CenterToTop');
+      const userState = yield select(state => state.UserModel);
+      let sceneName = '';
+      if (!lo.isEmpty(userState.sceneId)) {
+        const sceneConfig = yield put.resolve(action('SceneModel/getScene')({ sceneId: userState.sceneId }));
+        sceneName = (sceneConfig != null) ? sceneConfig.name : '';
+      }
+
+      const archiveId = yield call(LocalStorage.archive, { ...payload, sceneName });
+      Toast.show('存档成功！！！', 'CenterToTop');
       
       yield put(action('updateState')({ 
-        archiveList: lo.reverse([...LocalStorage.metadata.descriptors]),
+        archiveList: lo.reverse([...LocalStorage.metadata.descriptors].filter(e => e.archived)),
         currentArchiveIndex: LocalStorage.metadata.currentArchiveIndex,
       }));
     },
