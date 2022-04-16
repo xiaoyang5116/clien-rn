@@ -51,6 +51,7 @@ const models = [
   require('./models/ArticleModel').default,
   require('./models/FigureModel').default,
   require('./models/LotteryModel').default,
+  require('./models/ExploreModel').default,
 ];
 
 const ActionHook = ({ dispatch, getState }) => next => action => {
