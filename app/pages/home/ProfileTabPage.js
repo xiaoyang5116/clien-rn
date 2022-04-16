@@ -52,7 +52,7 @@ class ProfileTabPage extends Component {
                 <View style={{ width: '100%', height: 50, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',
                                 marginTop: 5, marginBottom: 5, borderColor: '#999', borderWidth: 1, backgroundColor: bgColor }}>
                     <Text style={{ width: 60, textAlign: 'center' }}>ID：{item.id}</Text>
-                    <Text style={{ flex: 1, paddingLeft: 5, color: '#669900' }}>{item.desc.title}</Text>
+                    <Text style={{ flex: 1, paddingLeft: 5, color: '#669900' }}>{item.desc.sceneName}</Text>
                     <Text style={{ width: 160, textAlign: 'center' }}>{DateTime.format(item.dt, 'yyyy-MM-dd hh:mm:ss')}</Text>
                 </View>
             </TouchableOpacity>

@@ -246,7 +246,7 @@ class Lottery10Times extends Component {
                         <Text></Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginBottom: 60 }}>
-                        <ImageButton width={150} height={50} source={require('../../../assets/button/xunbao10.png')} selectedSource={require('../../../assets/button/xunbao10_selected.png')} onPress={() => { this.lottery(1); }} />
+                        <ImageButton width={150} height={50} source={require('../../../assets/button/xunbao1.png')} selectedSource={require('../../../assets/button/xunbao1_selected.png')} onPress={() => { this.lottery(1); }} />
                         <ImageButton width={150} height={50} source={require('../../../assets/button/xunbao10.png')} selectedSource={require('../../../assets/button/xunbao10_selected.png')} onPress={() => { this.lottery(2); }} />
                     </View>
                     <BottomBar {...this.props} />
