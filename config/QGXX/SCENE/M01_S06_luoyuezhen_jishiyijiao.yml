@@ -134,7 +134,7 @@ scenes: [
       { id: 'p3', style: 2, sections: ['能看到不少人带着武器，像是武者的打扮。'], varsOn: ['v4'], nextChat: 'jishiyijiao_Event01Day1' },
       { id: 'p4', style: 2, sections: ['李大哥，你有没有发现，这里拿兵器的人不少，这是正常的吗。', '因为城镇外野兽精怪出没，这些跑商路的通常会雇佣一些佣兵防身，你看到的这些人估计都是些做这种活计的武者。'], varsOn: ['v5'], nextChat: 'jishiyijiao_Event01Day1' },
       { id: 'p5', style: 2, title: '乞丐李大哥', sections: ['如果有两个铜币就够一个包子钱，加油'], varsOn: ['v6', 'v17'], andVarsOff: ['v6'], nextChat: 'jishiyijiao_Event01Day1' },
-      { id: 'p6', style: 1, title: '帮派小弟：', sections: ['天色已晚，今日的份子交了吧'], varsOn: ['v7'], nextChat: 'jishiyijiao_Event01Day1' },
+      { id: 'p6', style: 2, title: '帮派小弟：', sections: ['天色已晚，今日的份子交了吧'], varsOn: ['v7'], nextChat: 'jishiyijiao_Event01Day1' },
       { id: 'p7', style: 1, title: '', sections: ['已扣除身上两成的铜币'], varsOn: ['v8'], nextChat: 'jishiyijiao_Event01Day1' },
       { id: 'p8', style: 2, title: '', sections: ['获得2个铜币'], nextChat: 'jishiyijiao_Event01Day1' },
       { id: 'p9', style: 1, title: '', sections: ['第二天，帮派小弟来收保护费。'], dialogs: ['p10'] },

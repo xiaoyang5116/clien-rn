@@ -15,6 +15,7 @@ scenes: [
       { id: 'v8', min: 0, max: 1 },
       { id: 'v9', min: 0, max: 1 },
       { id: 'v10', min: 0, max: 1 },
+      { id: 'Event01_1DayEnd', min: 0, max: 1 },
       { id: 'Event01_1DayOpenThrough', min: 0, max: 1 },
       { id: 'v12', min: 0, max: 1 },
       { id: 'v13', min: 0, max: 1 },
@@ -70,8 +71,8 @@ scenes: [
      {
         id: 'pomiao_Event01Day1', desc: '这里是乞丐临时休息的居所，能遮风挡雨', 
         options: [ 
-          { title: '>>>【走出破庙】', andVarsOn: ['v1'], toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
-          { title: '【睡觉到下一天】', andVarsOn: ['v1'], alertWorldTime: '@day/1/6', toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
+          { title: '>>>【走出破庙】', andVarsOff: ['Event01_1DayEnd'], toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
+          { title: '【睡觉到下一天】', andVarsOff: ['Event01_1DayEnd'],  varsOn: ['Event01_1DayEnd'], alertWorldTime: '@day/1/6', toScene: 'M01_S01_luoyuezhen_pomiaomenko' }, 
         ],
       },
      {

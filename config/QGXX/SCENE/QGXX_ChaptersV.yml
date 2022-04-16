@@ -1,0 +1,33 @@
+scenes: [
+    #策划手动配的
+    {
+      id: 'QGXX_ChaptersV',
+      name: "一些章节的变量放在这里集中管理",
+
+      # 变量定义 ，每个章节默认对应一个变量，主要用于分支检测
+      vars: [
+          #
+          { id: "WZXX_M1_N1_C001", min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C001_[A1]", min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C001_[A2]", min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C001_[A3]", min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C002", min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C003", min: 0, max: 1 },
+        ],
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [],
+
+      # 对话选项
+      chats: [
+          #
+          { id: "WZXX_ChaptersVar ", desc: "选项", options: [] },
+        ],
+
+      # 对话框
+      dialogs: [],
+    },
+  ]

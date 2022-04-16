@@ -1,0 +1,51 @@
+scenes: [
+    #
+    {
+      id: 'QGXX_M1_N1_C002V',
+      name: "小说专属场景",
+
+      # 变量定义
+      vars: [{ id: "v1", min: 0, max: 1 }],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [],
+
+      # 对话选项
+      chats: [
+      #
+      { 
+        id: 'WZXX_M1_N1_C002V', desc: '选项', 
+        options: [ 
+        #  { title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
+          { title: "【2去最近的城市，生存重要】", toChapter: "WZXX_M1_N1_C001_[A1]" },
+          { title: "【2去穿越的地点，也许能找到什么】", toChapter: "WZXX_M1_N1_C001_[A2]" },
+          { title: "【2跟踪对手，找到更多线索】", toChapter: "WZXX_M1_N1_C001_[A3]" },
+        ],
+      },
+   #
+      { 
+        id: 'WZXX_M1_N1_C001_[A1]V0000', desc: '选项', 
+        options: [ 
+        #  { title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
+          { title: "【你想起，这个身体原身是修真世家出身】", toChapter: "WZXX_M1_N1_C001_[A1]" },
+          { title: "【你想起，这个身体原身是个贫穷包子铺小子】", toChapter: "WZXX_M1_N1_C001_[A2]" },
+          { title: "【你想起，这个身体原身是白府富户的私生子】", toChapter: "WZXX_M1_N1_C001_[A3]" },
+        ],
+      },
+
+
+
+      #
+        ],
+
+      # 对话框
+      dialogs:
+        [
+ 
+        ],
+    },
+  ]
