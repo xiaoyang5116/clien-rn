@@ -10,4 +10,5 @@ export {
     TouchableOpacity,
     Alert,
     TouchableWithoutFeedback,
+    SafeAreaView,
 } from 'react-native';

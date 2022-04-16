@@ -7,16 +7,20 @@ import {
 
 import { View } from '../constants/native-ui';
 
-let viewRoot = null;
-
 export default class RootView extends Component {
+
+    static instance = null;
+    static key = 0;
+
     constructor(props) {
         super(props);
-        viewRoot = this;
+
         this.state = {
             views: [],
-            key: 0,
         }
+
+        this.removeList = []; // 记录移除列表，setState是异步执行。
+        RootView.instance = this;
     }
 
     render() {
@@ -25,20 +29,18 @@ export default class RootView extends Component {
                 </View>);
     }
 
-    static add(view) {
-        const key = viewRoot.state.key;
-        let container = (<View style={styles.viewContainer} key={key} pointerEvents="box-none">{view}</View>);
-        viewRoot.setState({
-            views: [...viewRoot.state.views, container],
-            key:  key + 1
-        })
+    static add(view) {        
+        const key = RootView.key++;
+        const container = (<View style={styles.viewContainer} key={key} pointerEvents="box-none">{view}</View>);
+        const validList = RootView.instance.state.views.filter(e => (RootView.instance.removeList.indexOf(parseInt(e.key)) == -1));
+        RootView.instance.setState({ views: [...validList, container] });
         return key;
     };
 
     static remove(key) {
-        viewRoot.setState({
-            views: viewRoot.state.views.filter(e => e.key != key),
-            key: viewRoot.state.key
+        RootView.instance.removeList.push(key);
+        RootView.instance.setState({
+            views: RootView.instance.state.views.filter(e => parseInt(e.key) != key),
         })
     }
 }

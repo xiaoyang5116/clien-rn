@@ -1,0 +1,54 @@
+# ===========================================
+# 抽奖配置
+# ===========================================
+lotteries: [
+  {
+    # ID
+    id: 1,
+
+    # 名称
+    name: '抽1次',
+
+    # 抽奖次数
+    times: 1,
+
+    # 消耗道具
+    useProps: { propsId: [54, 55], num: 1 },
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+        p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+        p10000: [ { propId: 30, num: 1, rate: 800 } ],
+      }
+    },
+  },
+  {
+    # ID
+    id: 2,
+
+    # 名称
+    name: '抽10次',
+
+    # 抽奖次数
+    times: 10,
+
+    # 消耗道具
+    useProps: { propsId: [54, 55], num: 10 },
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+        p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+        p10000: [ { propId: 30, num: 1, rate: 800 } ],
+      },
+
+      # 保底获得
+      guarantee: { propId: 51, num: 1 },
+    },
+  },
+]

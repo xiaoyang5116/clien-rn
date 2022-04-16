@@ -1,25 +1,18 @@
-import { Text, View, Animated, Easing } from 'react-native';
 import React, { PureComponent } from 'react';
 
-export default class TextAnimation extends PureComponent {
-  state = {
-    opacity: new Animated.Value(0),
-    // opacity: new Animated.Value(0),
-  };
-  componentDidMount() {
+import TextSingle from './TextSingle';
+import TextFadeIn from './TextFadeIn'
 
-    Animated.parallel([
-      Animated.timing(this.state.opacity, { toValue: 1, duration: 500, useNativeDriver: false, easing: Easing.ease }),
-    ]).start()
-  }
-  render() {
-    console.log("props.children", this.props.children, this.props.children.length);
 
-    return (
-      <View>
-        <Animated.Text style={{ opacity: this.state.opacity }}>{this.props.children}
-        </Animated.Text>
-      </View>
-    )
-  }
+export default class TextAnimation extends PureComponent { 
+    render() { 
+        switch (this.props.type) {
+            case 'TextSingle':
+                return <TextSingle {...this.props} />
+            case 'TextFadeIn':
+                return <TextFadeIn {...this.props} />
+            default:
+                return <TextFadeIn {...this.props} />
+        }
+    }
 }

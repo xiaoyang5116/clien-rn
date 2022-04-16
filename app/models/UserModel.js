@@ -5,6 +5,7 @@ import {
 } from "../constants";
 
 import LocalStorage from '../utils/LocalStorage';
+import EventListeners from '../utils/EventListeners';
 
 export default {
   namespace: 'UserModel',
@@ -61,8 +62,10 @@ export default {
   },
 
   subscriptions: {
-    setup({ dispatch }) {
-      dispatch({ 'type':  'reload'});
+    registerReloadEvent({ dispatch }) {
+      EventListeners.register('reload', (msg) => {
+        dispatch({ 'type':  'reload'});
+      });
     },
   }
 }

@@ -255,7 +255,10 @@ export default {
   },
 
   subscriptions: {
-    setup({ dispatch }) {
+    registerReloadEvent({ dispatch }) {
+      // EventListeners.register('reload', (msg) => {
+      //   dispatch({ 'type':  'reload'});
+      // });
     },
   }
 }
