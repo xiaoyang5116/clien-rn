@@ -78,10 +78,6 @@ export default {
       Toast.show(`已切换存档`, 'CenterToTop');
     },
 
-    *firstStep({ }, { put, select }) {
-      yield put.resolve(action('SceneModel/enterScene')({ sceneId: 'wzkj' }));
-    },
-
     *clearArchive({ }, { call, put, select }) {
       const userState = yield select(state => state.UserModel);
       userState.sceneId = '';

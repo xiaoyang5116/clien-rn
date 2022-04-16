@@ -32,10 +32,7 @@ class FirstPage extends Component {
               });
              }} />
             <ImageButton height={60} source={require('../../assets/home_button.png')} selectedSource={require('../../assets/home_button_selected.png')} onPress={() => { 
-              this.props.dispatch(action('AppModel/firstStep')())
-                .then(r => {
-                  RootNavigation.navigate('Home');
-                });
+              RootNavigation.navigate('Home');
              }} />
             <ImageButton height={60} source={require('../../assets/profile_button.png')} selectedSource={require('../../assets/profile_button_selected.png')} onPress={() => { 
               RootNavigation.navigate('Home', { 
