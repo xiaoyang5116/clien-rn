@@ -1,0 +1,233 @@
+# ===========================================
+# 探索配置
+# ===========================================
+explore: [
+  {
+    # ID
+    id: 1,
+
+    name: '新手村',
+
+    desc: '新手村,新手村,新手村,新手村,新手村,新手村,新手村',
+
+    areas: [
+      {
+        name: '区域1',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 10, action: 'challenge' },
+          { offset: 20, action: 'challenge' },
+        ]
+      },
+      {
+        name: '区域2',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 15, action: 'challenge' },
+          { offset: 30, action: 'challenge' },
+        ]
+      },
+      {
+        name: '区域3',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 30, action: 'challenge' },
+          { offset: 50, action: 'challenge' },
+        ]
+      },
+    ],
+  },
+  {
+    # ID
+    id: 2,
+
+    name: '邻家树林',
+
+    desc: '邻家树林,邻家树林,邻家树林,邻家树林,邻家树林,邻家树林',
+
+    areas: [
+      {
+        name: '区域1',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 10, action: 'challenge' },
+          { offset: 20, action: 'challenge' },
+        ]
+      },
+      {
+        name: '区域2',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 15, action: 'challenge' },
+          { offset: 30, action: 'challenge' },
+        ]
+      },
+      {
+        name: '区域3',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 30, action: 'challenge' },
+          { offset: 50, action: 'challenge' },
+        ]
+      },
+    ],
+  },
+  {
+    # ID
+    id: 3,
+
+    name: '隔壁山上',
+
+    desc: '隔壁山上,隔壁山上,隔壁山上,隔壁山上,隔壁山上,隔壁山上',
+
+    areas: [
+      {
+        name: '区域1',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 10, action: 'challenge' },
+          { offset: 20, action: 'challenge' },
+        ]
+      },
+      {
+        name: '区域2',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 15, action: 'challenge' },
+          { offset: 30, action: 'challenge' },
+        ]
+      },
+      {
+        name: '区域3',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 30, action: 'challenge' },
+          { offset: 50, action: 'challenge' },
+        ]
+      },
+    ],
+  },
+  {
+    # ID
+    id: 4,
+
+    name: '隔壁后院',
+
+    desc: '隔壁后院,隔壁后院,隔壁后院,隔壁后院,隔壁后院,隔壁后院',
+
+    areas: [
+      {
+        name: '区域1',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 10, action: 'challenge' },
+          { offset: 20, action: 'challenge' },
+        ]
+      },
+      {
+        name: '区域2',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 15, action: 'challenge' },
+          { offset: 30, action: 'challenge' },
+        ]
+      },
+      {
+        name: '区域3',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 30, action: 'challenge' },
+          { offset: 50, action: 'challenge' },
+        ]
+      },
+    ],
+  },
+  {
+    # ID
+    id: 5,
+
+    name: '隔壁屋顶',
+
+    desc: '隔壁屋顶,隔壁屋顶,隔壁屋顶,隔壁屋顶,隔壁屋顶,隔壁屋顶',
+
+    areas: [
+      {
+        name: '区域1',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 10, action: 'challenge' },
+          { offset: 20, action: 'challenge' },
+        ]
+      },
+      {
+        name: '区域2',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 15, action: 'challenge' },
+          { offset: 30, action: 'challenge' },
+        ]
+      },
+      {
+        name: '区域3',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 30, action: 'challenge' },
+          { offset: 50, action: 'challenge' },
+        ]
+      },
+    ],
+  },
+  {
+    # ID
+    id: 6,
+
+    name: '隔壁创下',
+
+    desc: '隔壁创下,隔壁创下,隔壁创下,隔壁创下,隔壁创下',
+
+    areas: [
+      {
+        name: '区域1',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 10, action: 'challenge' },
+          { offset: 20, action: 'challenge' },
+        ]
+      },
+      {
+        name: '区域2',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 15, action: 'challenge' },
+          { offset: 30, action: 'challenge' },
+        ]
+      },
+      {
+        name: '区域3',
+        time: 1800,
+        interval: 50,
+        points: [
+          { offset: 30, action: 'challenge' },
+          { offset: 50, action: 'challenge' },
+        ]
+      },
+    ],
+  },
+]

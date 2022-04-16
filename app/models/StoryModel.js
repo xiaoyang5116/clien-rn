@@ -23,6 +23,8 @@ export default {
       const userState = yield select(state => state.UserModel);
       if (!lo.isEmpty(userState.sceneId)) {
         yield put.resolve(action('SceneModel/enterScene')({ sceneId: userState.sceneId }));
+      } else {
+        yield put.resolve(action('SceneModel/enterScene')({ sceneId: 'wzkj' }));
       }
     },
 

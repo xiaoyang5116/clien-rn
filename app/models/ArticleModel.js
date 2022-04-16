@@ -153,9 +153,8 @@ export default {
           const { bindVar } = option.icon;
           if (bindVar != undefined) {
             const checkVar = { andVarsOn: [bindVar], __sceneId: option.__sceneId };
-            if (yield put.resolve(action('SceneModel/testCondition')(checkVar))) {
-              option.icon = { ...option.icon, show: true };
-            }
+            const match = yield put.resolve(action('SceneModel/testCondition')(checkVar));
+            option.icon = { ...option.icon, show: match };
           }
         }
       }
