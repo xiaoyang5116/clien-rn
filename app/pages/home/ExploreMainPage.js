@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import {
+    action,
     connect,
     Component,
     StyleSheet,
@@ -20,7 +21,7 @@ import { Animated, Easing } from 'react-native';
 const CONFIG = {
     // 事件的间隔
     space: 100,
-    
+
     // 事件起始偏移
     startOffset: 200,
 }
@@ -116,6 +117,7 @@ class TimeBanner extends Component {
 class MessageList extends Component {
     constructor(props) {
         super(props);
+        this.refList = React.createRef();
         this.state = {
             messages: [],
         };
@@ -137,9 +139,18 @@ class MessageList extends Component {
     render() {
         return (
         <FlatList
+            ref={this.refList}
             style={{ alignSelf: 'stretch', margin: 10, borderColor: '#999', borderWidth: 1, backgroundColor: '#fff' }}
             data={this.state.messages}
             renderItem={this.renderItem}
+            getItemLayout={(_data, index) => (
+                {length: 22, offset: 22 * index, index}
+            )}
+            onContentSizeChange={() => {
+                if (this.state.messages.length > 0) {
+                    this.refList.current.scrollToIndex({ index: this.state.messages.length - 1 });
+                }
+            }}
           />
         );
     }
@@ -155,24 +166,25 @@ class ExploreMainPopPage extends Component {
 
     // 时间滚动条-事件触发
     onStep = (idx) => {
-        // 事件到达后消失
-        this.refTimeBanner.current.hide(idx);
-        this.refMsgList.current.addMsg(`事件 ${idx}`);
-        this.refTimeBanner.current.resume();
+        this.props.dispatch(action('ExploreModel/onTimeEvent')({
+            idx,
+            refTimeBanner: this.refTimeBanner.current, 
+            refMsgList: this.refMsgList.current, 
+        }));
     }
 
     render() {
         const allMaps = [];
         this.props.maps.forEach(e => allMaps.push(...e));
         const mapSelected = allMaps.find(e => e.id == this.props.mapId);
-        const currentArea = mapSelected.areas.find(e => e.id == this.props.areaId)
+        const currentArea = mapSelected.areas.find(e => e.id == this.props.areaId);
 
         return (
             <FastImage style={{ flex: 1 }} source={require('../../../assets/explore_bg.jpg')} >
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', marginLeft: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
-                        <Text style={styles.textBox}>地图名</Text>
+                        <Text style={styles.textBox}>{mapSelected.name}</Text>
                     </View>
                     <View style={{ flexDirection: 'column', borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', margin: 10, height: 160, justifyContent: 'center', alignItems: 'center' }} >
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -194,7 +206,7 @@ class ExploreMainPopPage extends Component {
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row', marginLeft: 10, marginBottom: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
-                        <Text style={styles.textBox}>地区名称</Text>
+                        <Text style={styles.textBox}>{currentArea.name}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', marginLeft: 10, marginBottom: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
                         <Text style={styles.textBox}>探索度 100/100</Text>
@@ -215,7 +227,8 @@ class ExploreMainPopPage extends Component {
                         <TextButton {...this.props} title={'储物袋'} onPress={() => {
                             this.props.onClose();
                         }} />
-                        <TextButton {...this.props} title={'预留'} onPress={() => {
+                        <TextButton {...this.props} title={'恢复'} onPress={() => {
+                            this.refTimeBanner.current.resume();
                         }} />
                     </View>
                     <View style={{ flexDirection: 'row', height: 60, justifyContent: 'space-around', alignItems: 'center' }} >

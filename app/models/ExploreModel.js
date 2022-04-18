@@ -30,6 +30,20 @@ export default {
     *reload({ }, { select, call, put }) {
       const exploreState = yield select(state => state.ExploreModel);
       const data = yield call(GetExploreDataApi);
+
+      if (data != null) {
+        data.explore.forEach(e => {
+          e.areas.forEach(a => {
+            const eventNum = Math.floor(a.time / a.interval);
+            for (let i = 0; i < eventNum; i++) {
+              if (a.points.find(e => e.idx == i) == undefined) {
+                a.points.push({ idx: i, event: 'slot' });
+              }
+            }
+            a.points.sort((_a, _b) => _a.idx - _b.idx);
+          });
+        });
+      }
       
       exploreState.__data.config.length = 0;
       exploreState.__data.config.push(...data.explore);
@@ -49,6 +63,23 @@ export default {
       }
 
       yield put(action('updateState')({ maps }));
+    },
+
+    *onTimeEvent({ payload }, { select, put }) {
+      const exploreState = yield select(state => state.ExploreModel);
+      const { idx, refTimeBanner, refMsgList } = payload;
+
+      const currentMap = exploreState.__data.config.find(e => e.id == exploreState.mapId);
+      const currentArea = currentMap.areas.find(e => e.id == exploreState.areaId);
+      const currentEvent = currentArea.points.find(e => e.idx == idx);
+
+      refTimeBanner.hide(idx);
+      refMsgList.addMsg(`触发 ${currentEvent.event} 事件`);
+
+      // 战斗类事件暂停
+      if (['boss', 'pk'].indexOf(currentEvent.event) == -1) {
+        refTimeBanner.resume();
+      }
     },
 
     *start({ payload }, { select, put }) {

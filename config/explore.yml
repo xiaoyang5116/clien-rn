@@ -14,11 +14,14 @@ explore: [
       {
         id: 1,
         name: '区域1',
-        time: 10,
+        time: 30,
         interval: 1,
         points: [
-          { offset: 10, action: 'challenge' },
-          { offset: 20, action: 'challenge' },
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
         ]
       },
       {
@@ -27,8 +30,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 15, action: 'challenge' },
-          { offset: 30, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
       {
@@ -37,8 +40,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 30, action: 'challenge' },
-          { offset: 50, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
     ],
@@ -58,8 +61,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 10, action: 'challenge' },
-          { offset: 20, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
       {
@@ -68,8 +71,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 15, action: 'challenge' },
-          { offset: 30, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
       {
@@ -78,8 +81,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 30, action: 'challenge' },
-          { offset: 50, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
     ],
@@ -96,12 +99,12 @@ explore: [
       {
         id: 1,
         name: '区域1',
-        time: 10,
-        interval: 1,
+        time: 120,
+        interval: 3,
         points: [
-          { offset: 10, action: 'challenge' },
-          { offset: 20, action: 'challenge' },
-        ]
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
+        ],
       },
       {
         id: 2,
@@ -109,8 +112,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 15, action: 'challenge' },
-          { offset: 30, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
       {
@@ -119,8 +122,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 30, action: 'challenge' },
-          { offset: 50, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
     ],
@@ -140,8 +143,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 10, action: 'challenge' },
-          { offset: 20, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
       {
@@ -150,8 +153,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 15, action: 'challenge' },
-          { offset: 30, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
       {
@@ -160,8 +163,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 30, action: 'challenge' },
-          { offset: 50, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
     ],
@@ -181,8 +184,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 10, action: 'challenge' },
-          { offset: 20, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
       {
@@ -191,8 +194,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 15, action: 'challenge' },
-          { offset: 30, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
       {
@@ -201,8 +204,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 30, action: 'challenge' },
-          { offset: 50, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
     ],
@@ -222,8 +225,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 10, action: 'challenge' },
-          { offset: 20, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
       {
@@ -232,8 +235,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 15, action: 'challenge' },
-          { offset: 30, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
       {
@@ -242,8 +245,8 @@ explore: [
         time: 10,
         interval: 1,
         points: [
-          { offset: 30, action: 'challenge' },
-          { offset: 50, action: 'challenge' },
+          { idx: 10, action: 'challenge' },
+          { idx: 15, action: 'challenge' },
         ]
       },
     ],
