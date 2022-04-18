@@ -55,9 +55,6 @@ const MailBox = (props) => {
 
     // 信件
     const letter = (item) => {
-        // const currentFigureMailData = mailConfigData.find(m => m.id === id);
-        // const newMailData = currentFigureMailData.mail.find(m => m.key === currentKey);
-        // props.dispatch(action('MailBoxModel/addNewMail')({ newMailData, id }));
         props.dispatch(action('MailBoxModel/changeCurrentFigureMailData')(item));
         const key = RootView.add(<Letter onClose={() => { RootView.remove(key) }} />);
     }

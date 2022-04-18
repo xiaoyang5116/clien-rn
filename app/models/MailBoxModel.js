@@ -65,7 +65,7 @@ export default {
                 status: 'receive',
                 isOpen: false,
                 mailContent: mailConfigData.find(f => f.id === payload.id).mail.find(m => m.key === payload.tokey).content,
-                time: now(),
+                time: now() + (parseInt(payload.nextTime) * 1000),
             }
             const newCurrentMailData = [currentMail, ...currentMailData];
             // 更新
@@ -96,7 +96,7 @@ export default {
             }
             else {
                 yield put(action('updateCurrentFigureMailData')({ id: figureId, historyData: currentMail, currentKey, isFinish: true }));
-                yield put.resolve(action('saveHistory')({ currentMail, currentKey, }));
+                yield put.resolve(action('saveHistory')({ currentMail, currentKey, isFinish: true }));
             }
 
         },
@@ -107,7 +107,8 @@ export default {
             const newHistory = mailHistoryData.map(m => m.id === figureId ? {
                 ...m,
                 historyData: payload.currentMail,
-                currentKey: payload.currentKey
+                currentKey: payload.currentKey,
+                isFinish: payload.isFinish !== undefined ? payload.isFinish : false
             } : m);
             yield call(LocalStorage.set, LocalCacheKeys.MAIL_DATA, newHistory);
             yield put(action('updateMailHistoryData')(newHistory));

@@ -4,12 +4,37 @@ import {
     Image,
     TouchableOpacity,
 } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { changeAvatar } from '../../../constants'
 import TextAnimation from '../../textAnimation'
+import { now } from '../../../utils/DateTimeUtils'
+
 
 const NewLetter = (props) => {
     const { item, openLetter, replyLetter, figureInfo } = props
+    const [currentTime, setCurrentTime] = useState(now())
+    let timer = null
+    useEffect(() => {
+        if (currentTime < item.time) {
+            timer = setInterval(() => {
+                setCurrentTime((currentTime) => currentTime + 1000)
+            }, 1000);
+        }
+        return () => {
+            clearInterval(timer)
+        }
+    }, [])
+    if (currentTime < item.time) {
+        return (
+            <View>
+                <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 8, marginBottom: 8 }}>
+                    <Text style={{ paddingTop: 2, paddingBottom: 2, paddingLeft: 24, paddingRight: 24, textAlign: 'center', fontSize: 14, backgroundColor: '#d3c2aa', borderRadius: 12, }}>
+                        你的信笺已发出，等待他回信！
+                    </Text>
+                </View>
+            </View >
+        )
+    }
     return (
         <View>
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 8, marginBottom: 8 }}>
