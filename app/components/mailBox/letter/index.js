@@ -37,16 +37,9 @@ const Letter = (props) => {
 
     // 当前人物信息
     const figureInfo = figureList.find(f => f.id === figureId);
-    // const mailData = mailHistoryData.find(m => m.id === id);
-    // console.log(mailData);
 
     useEffect(() => {
-        // if (figureList.length === 0) {
-        //     props.dispatch(action('FigureModel/getFigureList')());
-        // }
-        // if (props.mailConfigData.length === 0) {
-        //     props.dispatch(action('MailBoxModel/getMailConfigData')());
-        // }
+
     }, [])
 
     // 打开信件

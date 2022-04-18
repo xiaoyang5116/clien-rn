@@ -46,7 +46,7 @@ export default {
                 const initSuccess = yield call(LocalStorage.set, LocalCacheKeys.MAIL_DATA, initMaildata);
                 mailData = yield call(LocalStorage.get, LocalCacheKeys.MAIL_DATA);
             }
-            yield put(action('updateMailHistoryData')(mailData));
+            yield put.resolve(action('updateMailHistoryData')(mailData));
         },
         // 获取邮件配置数据
         *getMailConfigData({ }, { call, put }) {
@@ -59,46 +59,56 @@ export default {
         },
         // 添加新邮件
         *addNewMail({ payload }, { call, put, select }) {
-            const { mailHistoryData } = yield select(state => state.MailBoxModel);
-            // 更新当前的邮件历史数据
-            const currentMailData = mailHistoryData.find(f => f.id === payload.id)
-            yield put(action('updateCurrentFigureMailData')(currentMailData));
-
-            const oldMailData = currentMailData.historyData.filter(f => f.key === payload.newMailData.key)
-            if (oldMailData.length > 0) return
+            const { currentMailData, mailConfigData } = yield select(state => state.MailBoxModel);
             const currentMail = {
-                key: payload.newMailData.key,
+                key: payload.tokey,
                 status: 'receive',
                 isOpen: false,
-                mailContent: payload.newMailData.content,
+                mailContent: mailConfigData.find(f => f.id === payload.id).mail.find(m => m.key === payload.tokey).content,
                 time: now(),
             }
-
-            // 更新邮件历史数据
-            const newMailData = mailHistoryData.map(i => i.id === payload.id ? { ...i, historyData: [currentMail, ...i.historyData] } : i)
-            yield put(action('updateMailHistoryData')(newMailData));
+            const newCurrentMailData = [currentMail, ...currentMailData];
+            // 更新
+            yield put(action('updateCurrentMailData')(newCurrentMailData));
+            yield put.resolve(action('saveHistory')({ currentMail: newCurrentMailData, currentKey: payload.tokey }));
         },
+
         // 打开邮件
         *openLetter({ payload }, { call, put, select }) {
             const { currentMailData } = yield select(state => state.MailBoxModel);
             const currentMail = currentMailData.map(m => m.key === payload.key ? { ...m, isOpen: true } : m);
             yield put(action('updateCurrentMailData')(currentMail));
-            yield put.resolve(action('saveHistory')(currentMail));
+            yield put.resolve(action('saveHistory')({ currentMail, currentKey: payload.key }));
         },
+
         // 回信
         *replyLetter({ payload }, { call, put, select }) {
             // {"content": "去拿菜刀", "nextTime": "5", "tokey": "p2"}
-            const { currentMailData, currentKey } = yield select(state => state.MailBoxModel);
+            // { content: "退出", tokey: "finish" }
+            const { currentMailData, currentKey, figureId } = yield select(state => state.MailBoxModel);
+            // 当前邮件添加回信
             const currentMail = currentMailData.map(m => m.key === currentKey ? { ...m, replyContent: payload.content, status: "reply" } : m);
-            console.log("currentMail", currentMail);
-            yield put(action('updateCurrentMailData')(currentMail));
-            yield put.resolve(action('saveHistory')(currentMail));
+            if (payload.tokey !== 'finish') {
+                // 更新
+                yield put(action('updateCurrentFigureMailData')({ id: figureId, historyData: currentMail, currentKey: payload.tokey, isFinish: false }));
+                yield put.resolve(action('saveHistory')({ currentMail, currentKey: payload.tokey }));
+                yield put(action('addNewMail')({ tokey: payload.tokey, nextTime: payload.nextTime, id: figureId }));
+            }
+            else {
+                yield put(action('updateCurrentFigureMailData')({ id: figureId, historyData: currentMail, currentKey, isFinish: true }));
+                yield put.resolve(action('saveHistory')({ currentMail, currentKey, }));
+            }
 
         },
+
         // 保存历史记录
         *saveHistory({ payload }, { call, put, select }) {
             const { mailHistoryData, figureId } = yield select(state => state.MailBoxModel);
-            const newHistory = mailHistoryData.map(m => m.id === figureId ? { ...m, historyData: payload } : m);
+            const newHistory = mailHistoryData.map(m => m.id === figureId ? {
+                ...m,
+                historyData: payload.currentMail,
+                currentKey: payload.currentKey
+            } : m);
             yield call(LocalStorage.set, LocalCacheKeys.MAIL_DATA, newHistory);
             yield put(action('updateMailHistoryData')(newHistory));
         },
@@ -136,6 +146,14 @@ export default {
                 currentMailData: payload
             }
         },
+        // 回信
+        // changeReplyLetter(prevState, { payload }) {
+        //     return {
+        //         ...prevState,
+        //         currentMailData: payload.currentMail,
+        //         currentKey: payload.currentKey
+        //     }
+        // }
 
     },
     subscriptions: {
