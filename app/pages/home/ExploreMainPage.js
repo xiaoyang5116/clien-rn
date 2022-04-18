@@ -18,7 +18,10 @@ import FastImage from 'react-native-fast-image';
 import { Animated, Easing } from 'react-native';
 
 const CONFIG = {
+    // 事件的间隔
     space: 100,
+    
+    // 事件起始偏移
     startOffset: 200,
 }
 
