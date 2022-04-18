@@ -12,6 +12,7 @@ explore: [
 
     areas: [
       {
+        id: 1,
         name: '区域1',
         time: 1800,
         interval: 50,
@@ -21,6 +22,7 @@ explore: [
         ]
       },
       {
+        id: 2,
         name: '区域2',
         time: 1800,
         interval: 50,
@@ -30,6 +32,7 @@ explore: [
         ]
       },
       {
+        id: 3,
         name: '区域3',
         time: 1800,
         interval: 50,
@@ -50,6 +53,7 @@ explore: [
 
     areas: [
       {
+        id: 1,
         name: '区域1',
         time: 1800,
         interval: 50,
@@ -59,6 +63,7 @@ explore: [
         ]
       },
       {
+        id: 2,
         name: '区域2',
         time: 1800,
         interval: 50,
@@ -68,6 +73,7 @@ explore: [
         ]
       },
       {
+        id: 3,
         name: '区域3',
         time: 1800,
         interval: 50,
@@ -88,15 +94,17 @@ explore: [
 
     areas: [
       {
+        id: 1,
         name: '区域1',
-        time: 1800,
-        interval: 50,
+        time: 10,
+        interval: 1,
         points: [
           { offset: 10, action: 'challenge' },
           { offset: 20, action: 'challenge' },
         ]
       },
       {
+        id: 2,
         name: '区域2',
         time: 1800,
         interval: 50,
@@ -106,6 +114,7 @@ explore: [
         ]
       },
       {
+        id: 3,
         name: '区域3',
         time: 1800,
         interval: 50,
@@ -126,6 +135,7 @@ explore: [
 
     areas: [
       {
+        id: 1,
         name: '区域1',
         time: 1800,
         interval: 50,
@@ -135,6 +145,7 @@ explore: [
         ]
       },
       {
+        id: 2,
         name: '区域2',
         time: 1800,
         interval: 50,
@@ -144,6 +155,7 @@ explore: [
         ]
       },
       {
+        id: 3,
         name: '区域3',
         time: 1800,
         interval: 50,
@@ -164,6 +176,7 @@ explore: [
 
     areas: [
       {
+        id: 1,
         name: '区域1',
         time: 1800,
         interval: 50,
@@ -173,6 +186,7 @@ explore: [
         ]
       },
       {
+        id: 2,
         name: '区域2',
         time: 1800,
         interval: 50,
@@ -182,6 +196,7 @@ explore: [
         ]
       },
       {
+        id: 3,
         name: '区域3',
         time: 1800,
         interval: 50,
@@ -202,6 +217,7 @@ explore: [
 
     areas: [
       {
+        id: 1,
         name: '区域1',
         time: 1800,
         interval: 50,
@@ -211,6 +227,7 @@ explore: [
         ]
       },
       {
+        id: 2,
         name: '区域2',
         time: 1800,
         interval: 50,
@@ -220,6 +237,7 @@ explore: [
         ]
       },
       {
+        id: 3,
         name: '区域3',
         time: 1800,
         interval: 50,

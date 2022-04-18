@@ -4,7 +4,6 @@ import {
     connect,
     Component,
     StyleSheet,
-    DeviceEventEmitter,
 } from "../../constants";
 
 import { 
@@ -12,39 +11,162 @@ import {
     Text, 
     FlatList, 
     SafeAreaView, 
-    TouchableWithoutFeedback 
 } from '../../constants/native-ui';
 
 import { TextButton } from '../../constants/custom-ui';
-import ProgressBar from '../../components/ProgressBar';
 import FastImage from 'react-native-fast-image';
-import Toast from '../../components/toast';
+import { Animated, Easing } from 'react-native';
 
-const DATA = [
-    { id: 1, title: 'aaaaa' },
-    { id: 2, title: 'bbbbb' },
-    { id: 3, title: 'ccccc' },
-];
+const CONFIG = {
+    // 事件的间隔
+    space: 100,
+    
+    // 事件起始偏移
+    startOffset: 200,
+}
 
-class ExploreMainPopPage extends Component {
-
+class BannerEvent extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
+            opacity: 1,
+        }
+    }
+
+    hide() {
+        this.setState({ opacity: 0 });
+    }
+
+    render() {
+        return (
+        <View style={[styles.mxPoint, { left:  this.props.id * CONFIG.space, opacity: this.state.opacity }]}>
+            <Text>{this.props.id}</Text>
+        </View>
+        );
+    }
+}
+
+class TimeBanner extends Component {
+    constructor(props) {
+        super(props);
+        this.eventNum = props.time / props.interval;
+        this.bannerLeftValue = new Animated.Value(CONFIG.startOffset);
+        this.events = [];
+        this.pause = false;
+
+        const animations = [];
+        let offset = CONFIG.startOffset;
+        for (let i = 0; i < this.eventNum; i++) {
+            offset -= CONFIG.space;
+            const item = Animated.timing(this.bannerLeftValue, {
+                toValue: offset,
+                duration: (props.interval * 1000),
+                easing: Easing.linear,
+                useNativeDriver: false,
+            });
+            animations.push(item);
+            animations.push({
+                start: cb => {
+                    if (!this.pause) {
+                        props.onStep(i);
+                        this.pause = true;
+                        cb({ finished: false });
+                    } else {
+                        this.pause = false;
+                        cb({ finished: true });
+                    }
+                },
+            })
+        }
+        this.sequence = Animated.sequence(animations);
+    }
+
+    resume() {
+        setTimeout(() => {
+            this.sequence.start();
+        }, 0);
+    }
+
+    hide(idx) {
+        const currentEvent = this.events.find(e => e.id == idx);
+        if (currentEvent != undefined) {
+            currentEvent.ref.current.hide();
+        }
+    }
+
+    componentDidMount() {
+        this.sequence.start();
+    }
+
+    render() {
+        const childs = [];
+        for (let i = 0; i < this.eventNum; i++) {
+            const ref = React.createRef();
+            childs.push(<BannerEvent ref={ref} key={i} id={i} />);
+            this.events.push({ id: i, ref: ref });
+        }
+        return (
+            <Animated.View style={{ position: 'absolute', left: this.bannerLeftValue, top: 0 }}>
+                {childs}
+            </Animated.View>
+        );
+    }
+}
+
+class MessageList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            messages: [],
         };
     }
 
     renderItem = (data) => {
         const item = data.item;
         return (
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 10, marginBottom: 10 }} >
-                <Text>{item.title}</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
+                <Text style={{ lineHeight: 22 }}>{item.msg}</Text>
             </View>
         );
     }
 
+    addMsg(msg) {
+        this.setState({ messages: [...this.state.messages, { msg }] });
+    }
+
     render() {
+        return (
+        <FlatList
+            style={{ alignSelf: 'stretch', margin: 10, borderColor: '#999', borderWidth: 1, backgroundColor: '#fff' }}
+            data={this.state.messages}
+            renderItem={this.renderItem}
+          />
+        );
+    }
+}
+
+class ExploreMainPopPage extends Component {
+
+    constructor(props) {
+        super(props);
+        this.refMsgList = React.createRef();
+        this.refTimeBanner = React.createRef();
+    }
+
+    // 时间滚动条-事件触发
+    onStep = (idx) => {
+        // 事件到达后消失
+        this.refTimeBanner.current.hide(idx);
+        this.refMsgList.current.addMsg(`事件 ${idx}`);
+        this.refTimeBanner.current.resume();
+    }
+
+    render() {
+        const allMaps = [];
+        this.props.maps.forEach(e => allMaps.push(...e));
+        const mapSelected = allMaps.find(e => e.id == this.props.mapId);
+        const currentArea = mapSelected.areas.find(e => e.id == this.props.areaId)
+
         return (
             <FastImage style={{ flex: 1 }} source={require('../../../assets/explore_bg.jpg')} >
             <SafeAreaView style={{ flex: 1 }}>
@@ -81,14 +203,11 @@ class ExploreMainPopPage extends Component {
                         <Text style={styles.textBox}>补给[预留位置]</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <FlatList
-                          style={{ alignSelf: 'stretch', margin: 10, borderColor: '#999', borderWidth: 1, backgroundColor: '#fff' }}
-                          data={DATA}
-                          renderItem={this.renderItem}
-                        />
+                        <MessageList ref={this.refMsgList} />
                     </View>
-                    <View style={{ flexDirection: 'row', borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', marginLeft: 10, marginRight: 10, height: 60, justifyContent: 'space-around', alignItems: 'center' }} >
-                        <Text>搜索进度</Text>
+                    <View style={{ flexDirection: 'row', borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', overflow: 'hidden', marginLeft: 10, marginRight: 10, height: 60, justifyContent: 'space-around', alignItems: 'center' }} >
+                        <TimeBanner ref={this.refTimeBanner} time={currentArea.time} interval={currentArea.interval} onStep={this.onStep} />
+                        <View style={{ position: 'absolute', left: 100, top: 0, width: 10, height: '100%', backgroundColor: '#669900', opacity: 0.75 }} />
                     </View>
                     <View style={{ flexDirection: 'row', height: 80, justifyContent: 'space-around', alignItems: 'center' }} >
                         <TextButton {...this.props} title={'预留'} onPress={() => {
@@ -124,6 +243,10 @@ const styles = StyleSheet.create({
     textBox: {
         borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5,
     },
+    mxPoint: {
+        position: 'absolute', left: 330, top: 20,
+        width: 20, height: 20, borderColor: '#666', borderWidth: 1, justifyContent: 'center', alignItems: 'center',
+    }
 });
 
 export default connect((state) => ({ ...state.ExploreModel, ...state.AppModel }))(ExploreMainPopPage);
