@@ -5,7 +5,7 @@ import {
 
 import EventListeners from '../utils/EventListeners';
 import { GetExploreDataApi } from '../services/GetExploreDataApi';
-import lo from 'lodash';
+import lo, { map } from 'lodash';
 
 export default {
   namespace: 'ExploreModel',
@@ -15,11 +15,14 @@ export default {
       config: [],
     },
 
-    // 探索区域列表
-    areas: [],
+    // 探索地图列表
+    maps: [],
 
-    // 当前进入哪个地区
-    areaId: -1,
+    // 当前进入哪个地图
+    mapId: -1,
+
+    // 地图里面的那个区域
+    areaId: 1,
   },
 
   effects: {
@@ -32,24 +35,26 @@ export default {
       exploreState.__data.config.push(...data.explore);
     },
 
-    *getAreas({ }, { select, put }) {
+    *getMaps({ }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
 
-      const areas = [];
+      const maps = [];
       for (let i = 0; i < exploreState.__data.config.length; i += 2) {
         const first = exploreState.__data.config[i];
         const second = exploreState.__data.config[i+1];
         const item = [];
         if (lo.isObject(first)) item.push(first);
         if (lo.isObject(second)) item.push(second);
-        areas.push(item);
+        maps.push(item);
       }
 
-      yield put(action('updateState')({ areas }));
+      yield put(action('updateState')({ maps }));
     },
 
     *start({ payload }, { select, put }) {
-      console.debug(payload);
+      const exploreState = yield select(state => state.ExploreModel);
+      const { mapId } = payload;
+      exploreState.mapId = mapId;
     },
 
   },
