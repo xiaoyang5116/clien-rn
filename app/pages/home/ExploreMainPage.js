@@ -228,7 +228,6 @@ class ExploreMainPopPage extends Component {
                             this.props.onClose();
                         }} />
                         <TextButton {...this.props} title={'恢复'} onPress={() => {
-                            this.refTimeBanner.current.resume();
                         }} />
                     </View>
                     <View style={{ flexDirection: 'row', height: 60, justifyContent: 'space-around', alignItems: 'center' }} >
