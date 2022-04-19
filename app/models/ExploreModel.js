@@ -5,7 +5,7 @@ import {
 
 import EventListeners from '../utils/EventListeners';
 import { GetExploreDataApi } from '../services/GetExploreDataApi';
-import lo, { map } from 'lodash';
+import lo from 'lodash';
 
 const EVENT_NAME = [
   { event: 'slot', name: '获得一次自动抽奖机会' },
@@ -77,6 +77,21 @@ export default {
       }
 
       yield put(action('updateState')({ maps }));
+    },
+
+    *showBag({ }, { select, put }) {
+      const exploreState = yield select(state => state.ExploreModel);
+      const rewards = [];
+      for (let key in exploreState.rewards) {
+        const item = exploreState.rewards[key];
+        // 道具信息
+        const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.propId }));
+        rewards.push({ 
+          propId: item.propId, num: item.num, 
+          name: propConfig.name, quality: propConfig.quality, iconId: propConfig.iconId 
+        });
+      }
+      return rewards;
     },
 
     // 间隔时间事件
@@ -152,6 +167,29 @@ export default {
 
     // 抽奖事件
     *onSlotEvent({ payload }, { select, put }) {
+      const exploreState = yield select(state => state.ExploreModel);
+      const { map, area } = payload;
+
+      const rateTargets = [];
+      if (area.slots.props.p100 != undefined) rateTargets.push(...area.slots.props.p100.map(e => ({ ...e, rate: e.rate * 100 })));
+      if (area.slots.props.p1000 != undefined) rateTargets.push(...area.slots.props.p1000.map(e => ({ ...e, rate: e.rate * 10 })));
+      if (area.slots.props.p10000 != undefined) rateTargets.push(...area.slots.props.p10000.map(e => ({ ...e })));
+
+      rateTargets.sort((a, b) => b.rate - a.rate);
+      let prevRange = 0;
+      rateTargets.forEach(e => {
+        e.range = [prevRange, prevRange + e.rate];
+        prevRange = e.range[1];
+      });
+
+      for (let i = 0; i < 1; i++) {
+        const randValue = lo.random(0, prevRange, false);
+        let hit = rateTargets.find(e => randValue >= e.range[0] && randValue < e.range[1]);
+        if (hit == undefined) hit = rateTargets[rateTargets.length - 1];
+
+        // 将命中道具放入储物袋
+        yield put.resolve(action('addReward')(hit));
+      }
     },
 
     // 寻宝事件
@@ -174,12 +212,37 @@ export default {
     *onPKEvent({ payload }, { select, put }) {
     },
 
+    // 添加奖励到储物袋
+    *addReward({ payload }, { select, put }) {
+      const exploreState = yield select(state => state.ExploreModel);
+      const { propId, num } = payload;
+
+      const prop = exploreState.rewards.find(e => e.propId == propId);
+      if (prop != undefined) {
+        prop.num += num;
+      } else {
+        exploreState.rewards.push({ propId, num });
+      }
+    },
+
+    // 获得奖励并放入背包
+    *getRewards({ }, { select, put }) {
+      const exploreState = yield select(state => state.ExploreModel);
+
+      // 复制一份
+      const rewards = [...exploreState.rewards];
+      exploreState.rewards.length = 0;
+
+      yield put.resolve(action('PropsModel/sendPropsBatch')(rewards));
+    },
+
     // 开始探索
     *start({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
       const { mapId } = payload;
       exploreState.mapId = mapId;
       exploreState.areaId = 1;
+      exploreState.rewards.length = 0;
     },
 
   },
