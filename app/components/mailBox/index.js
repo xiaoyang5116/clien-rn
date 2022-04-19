@@ -6,7 +6,7 @@ import {
     Image,
     TouchableOpacity,
 } from 'react-native'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -29,37 +29,44 @@ const MailBoxPage = (props) => {
      * mailConfigData: 邮件配置数据
      */
     const { currentStyles, onClose, figureList, mailHistoryData, mailConfigData } = props;
-    const Tab = createBottomTabNavigator();
+    const [currentTab, setCurrentTab] = useState('MailBox')
+    const [isHide, setIsHide] = useState(false)
+
 
     return (
-        <View style={styles.mailBox}>
+        <View style={[styles.mailBox]}>
             <View style={[currentStyles.bgColor, {
                 width: 360,
                 height: 500,
                 position: "relative",
             }]}>
-                <NavigationContainer>
-                    <Tab.Navigator screenOptions={()=>{
-                    }}>
-                        <Tab.Screen name="新信笺" options={{ headerShown: false,tabBarBadge: '' }} component={MailBox} />
-                        <Tab.Screen name="已完成信件" options={{ headerShown: false }} component={CompletedLetter} />
-                    </Tab.Navigator>
-                </NavigationContainer>
+                {currentTab === 'MailBox' ? <MailBox hideMailBoxPage={setIsHide} /> : <CompletedLetter hideMailBoxPage={setIsHide} />}
                 <View style={{
                     position: 'absolute',
                     bottom: -30,
                     height: 50,
-                    // width:100,
-                    // backgroundColor: 'pink',
                     flexDirection: 'row',
-
+                    alignItems: 'center',
+                    display: isHide ? 'none' : 'flex',
                 }}>
-                    <View style={{ backgroundColor: "pink", height: 50, width: 50 }}>
-                        <Text>新信件</Text>
-                    </View>
-                    <View>
-                        <Text>已完成</Text>
-                    </View>
+                    <TouchableOpacity
+                        onPress={() => {
+                            setCurrentTab('MailBox')
+                        }}
+                        style={{ width: 60, height: 50, backgroundColor: currentTab === 'MailBox' ? "#003964" : "#e8ddcc", flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
+                        <View style={{}}>
+                            <Text style={{ color: currentTab === 'MailBox' ? "#fff" : '#868076' }}>新信件</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            setCurrentTab('CompletedLetter')
+                        }}
+                        style={{ width: 60, height: 50, backgroundColor: currentTab === 'CompletedLetter' ? "#003964" : "#e8ddcc", flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginLeft: 20, }}>
+                        <View style={{}}>
+                            <Text style={{ color: currentTab === 'CompletedLetter' ? "#fff" : '#868076' }}>已完成</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </View>
             <View style={{ width: 360, marginTop: 24, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>

@@ -23,6 +23,7 @@ mailData:
                 {
                   content: "我没有最近要送东西的朋友，你认错人了",
                   tokey: "p3",
+                  nextTime: 5,
                 },
                 { content: "是谁送的东西", tokey: "p3", nextTime: 5 },
               ],
@@ -30,8 +31,11 @@ mailData:
           {
             key: "p3",
             content: "要不要看看",
-            { content: "是谁送的东西", tokey: "p4", nextTime: 5 },
-            btn: [{ content: "免了", tokey: "finish" }],
+            btn:
+              [
+                { content: "是谁送的东西", tokey: "p4", nextTime: 5 },
+                { content: "免了", tokey: "finish" },
+              ],
           },
           {
             key: "p4",

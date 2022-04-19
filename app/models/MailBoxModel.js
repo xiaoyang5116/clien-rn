@@ -38,11 +38,13 @@ export default {
 
             const mailData = yield call(LocalStorage.get, LocalCacheKeys.MAIL_DATA);
             if (mailData === null) {
-                const initMaildata = [{
-                    id: '02', currentKey: "p1", isFinish: false, historyData: [
-                        { key: 'p1', status: 'receive', isOpen: false, mailContent: '你好啊', time: now() },
-                    ]
-                }]
+                const initMaildata = [
+                    {
+                        id: '02', currentKey: "p1", isFinish: false, historyData: [
+                            { key: 'p1', status: 'receive', isOpen: false, mailContent: '你好啊', time: now() },
+                        ]
+                    },
+                ]
                 const initSuccess = yield call(LocalStorage.set, LocalCacheKeys.MAIL_DATA, initMaildata);
                 mailData = yield call(LocalStorage.get, LocalCacheKeys.MAIL_DATA);
             }

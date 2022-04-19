@@ -26,8 +26,9 @@ const MailBox = (props) => {
      * figureList: 人物列表
      * mailHistoryData: 邮件历史数据
      * mailConfigData: 邮件配置数据
+     * hideMailBoxPage: 隐藏邮箱页面
      */
-    const { currentStyles, onClose, figureList, mailHistoryData, mailConfigData } = props;
+    const { currentStyles, onClose, figureList, mailHistoryData, mailConfigData, hideMailBoxPage } = props;
 
     useEffect(() => {
         if (figureList.length === 0) {
@@ -40,16 +41,13 @@ const MailBox = (props) => {
 
     // 信件
     const letter = (item) => {
+        hideMailBoxPage(true)
         props.dispatch(action('MailBoxModel/changeCurrentFigureMailData')(item));
-        const key = RootView.add(<Letter onClose={() => { RootView.remove(key) }} />);
+        const key = RootView.add(<Letter onClose={() => { RootView.remove(key) }} hideMailBoxPage={hideMailBoxPage} />);
     }
 
     const renderMail = ({ item }) => {
-        if (item.isFinish) {
-            return (
-                <View style={{ width: 80, height: 100, marginLeft: 30, backgroundColor: 'green' }}></View>
-            )
-        } else {
+        if (!item.isFinish) {
             // 当前人物信息
             const figureInfo = figureList.find(f => f.id === item.id);
             if (figureInfo !== undefined) {
@@ -93,10 +91,10 @@ const MailBox = (props) => {
                     />
                 </View>
             </View>
-            <View style={{ width: 360, marginTop: 24, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>
+            {/* <View style={{ width: 360, marginTop: 24, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>
                 <View></View>
                 <TextButton style={{ width: 100 }} currentStyles={currentStyles} title={"返回"} onPress={onClose} />
-            </View>
+            </View> */}
         </View>
     )
 }

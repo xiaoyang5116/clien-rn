@@ -32,8 +32,9 @@ const Letter = (props) => {
      * currentMailData: 当前邮件数据
      * currentIsFinish: 当前邮件是否完成
      * id: 发件人id
+     * hideMailBoxPage: 隐藏邮箱页面
      */
-    const { currentStyles, onClose, figureList, mailHistoryData, mailConfigData, figureId, currentKey, currentMailData, currentIsFinish } = props;
+    const { currentStyles, onClose, figureList, mailHistoryData, mailConfigData, figureId, currentKey, currentMailData, currentIsFinish, hideMailBoxPage } = props;
 
     // 当前人物信息
     const figureInfo = figureList.find(f => f.id === figureId);
@@ -86,7 +87,10 @@ const Letter = (props) => {
             {/* 返回 */}
             <View style={{ width: 360, marginTop: 24, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>
                 <View></View>
-                <TextButton style={{ width: 100 }} currentStyles={currentStyles} title={"返回"} onPress={onClose} />
+                <TextButton style={{ width: 100 }} currentStyles={currentStyles} title={"返回"} onPress={() => {
+                    onClose()
+                    hideMailBoxPage(false)
+                }} />
             </View>
         </View>
     )
