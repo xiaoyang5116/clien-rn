@@ -65,19 +65,19 @@ const AreaBlock = (props) => {
     );
 }
 
-class ExplorePopPage extends Component {
+class ExploreMapsPage extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            desc: '请选择探索区域',
-            selectAreaId: 0,
+            desc: '请选择探索地图',
+            selectMapId: 0,
         };
     }
 
     componentDidMount() {
-        this.props.dispatch(action('ExploreModel/getAreas')({}));
+        this.props.dispatch(action('ExploreModel/getMaps')({}));
     }
 
     renderItem = (data) => {
@@ -85,12 +85,12 @@ class ExplorePopPage extends Component {
         return (
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 10, marginBottom: 10 }} >
                 <AreaBlock item={item[0]} onSelected={() => {
-                    this.setState({ desc: item[0].desc, selectAreaId: item[0].id });
+                    this.setState({ desc: item[0].desc, selectMapId: item[0].id });
                 }} />
                 { (item.length > 1) ? 
                 (
                     <AreaBlock item={item[1]} onSelected={() => {
-                        this.setState({ desc: item[1].desc, selectAreaId: item[0].id });
+                        this.setState({ desc: item[1].desc, selectMapId: item[1].id });
                     }} />
                 )
                 : <></>
@@ -113,7 +113,7 @@ class ExplorePopPage extends Component {
                     <View style={{ flex: 1 }}>
                         <FlatList
                           style={{ alignSelf: 'stretch', margin: 10 }}
-                          data={this.props.areas}
+                          data={this.props.maps}
                           renderItem={this.renderItem}
                         />
                     </View>
@@ -122,12 +122,12 @@ class ExplorePopPage extends Component {
                             this.props.onClose();
                         }} />
                         <TextButton {...this.props} title={'开始探索'} onPress={() => {
-                            if (this.state.selectAreaId <= 0) {
-                                Toast.show('请选择探索区域', 'CenterToTop');
+                            if (this.state.selectMapId <= 0) {
+                                Toast.show('请选择探索地图', 'CenterToTop');
                             } else {
                                 this.props.onClose();
-                                this.props.dispatch(action('ExploreModel/start')({ areaId: this.state.selectAreaId }));
-                                DeviceEventEmitter.emit('ExploreTabPage.show', 'ExploreMainPopPage');
+                                this.props.dispatch(action('ExploreModel/start')({ mapId: this.state.selectMapId }));
+                                DeviceEventEmitter.emit('ExploreTabPage.show', 'ExploreMainPage');
                             }
                         }} />
                         <TextButton {...this.props} title={'调整补给'} disabled={true} />
@@ -142,4 +142,4 @@ class ExplorePopPage extends Component {
 const styles = StyleSheet.create({
 });
 
-export default connect((state) => ({ ...state.ExploreModel, ...state.AppModel }))(ExplorePopPage);
+export default connect((state) => ({ ...state.ExploreModel, ...state.AppModel }))(ExploreMapsPage);

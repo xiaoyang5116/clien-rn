@@ -12,31 +12,67 @@ explore: [
 
     areas: [
       {
+        id: 1,
         name: '区域1',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 10, action: 'challenge' },
-          { offset: 20, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
       {
+        id: 2,
         name: '区域2',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 15, action: 'challenge' },
-          { offset: 30, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
       {
+        id: 3,
         name: '区域3',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 30, action: 'challenge' },
-          { offset: 50, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
     ],
   },
@@ -50,31 +86,67 @@ explore: [
 
     areas: [
       {
+        id: 1,
         name: '区域1',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 10, action: 'challenge' },
-          { offset: 20, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
       {
+        id: 2,
         name: '区域2',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 15, action: 'challenge' },
-          { offset: 30, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
       {
+        id: 3,
         name: '区域3',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 30, action: 'challenge' },
-          { offset: 50, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
     ],
   },
@@ -88,31 +160,67 @@ explore: [
 
     areas: [
       {
+        id: 1,
         name: '区域1',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 10, action: 'challenge' },
-          { offset: 20, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
       {
+        id: 2,
         name: '区域2',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 15, action: 'challenge' },
-          { offset: 30, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
       {
+        id: 3,
         name: '区域3',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 30, action: 'challenge' },
-          { offset: 50, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
     ],
   },
@@ -126,31 +234,67 @@ explore: [
 
     areas: [
       {
+        id: 1,
         name: '区域1',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 10, action: 'challenge' },
-          { offset: 20, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
       {
+        id: 2,
         name: '区域2',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 15, action: 'challenge' },
-          { offset: 30, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
       {
+        id: 3,
         name: '区域3',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 30, action: 'challenge' },
-          { offset: 50, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
     ],
   },
@@ -164,31 +308,67 @@ explore: [
 
     areas: [
       {
+        id: 1,
         name: '区域1',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 10, action: 'challenge' },
-          { offset: 20, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
       {
+        id: 2,
         name: '区域2',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 15, action: 'challenge' },
-          { offset: 30, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
       {
+        id: 3,
         name: '区域3',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 30, action: 'challenge' },
-          { offset: 50, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
     ],
   },
@@ -202,31 +382,67 @@ explore: [
 
     areas: [
       {
+        id: 1,
         name: '区域1',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 10, action: 'challenge' },
-          { offset: 20, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
       {
+        id: 2,
         name: '区域2',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 15, action: 'challenge' },
-          { offset: 30, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
       {
+        id: 3,
         name: '区域3',
-        time: 1800,
-        interval: 50,
+        time: 30,
+        interval: 1,
         points: [
-          { offset: 30, action: 'challenge' },
-          { offset: 50, action: 'challenge' },
-        ]
+          { idx: 5, event: 'xunbao' },
+          { idx: 10, event: 'boss' },
+          { idx: 15, event: 'xiansuo' },
+          { idx: 20, event: 'qiyu' },
+          { idx: 25, event: 'pk' },
+        ],
+        slots: {
+          # 随机道具
+          props: {
+            p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+            p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+            p10000: [ { propId: 30, num: 1, rate: 800 } ],
+          }
+        },
       },
     ],
   },

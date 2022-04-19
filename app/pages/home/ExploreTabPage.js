@@ -7,8 +7,8 @@ import {
 } from "../../constants";
 
 import RootView from '../../components/RootView';
-import ExploreAreaPopPage from './ExploreAreaPopPage';
-import ExploreMainPopPage from './ExploreMainPopPage';
+import ExploreMapsPage from './ExploreMapsPage';
+import ExploreMainPage from './ExploreMainPage';
 
 class ExploreTabPage extends Component {
 
@@ -18,8 +18,8 @@ class ExploreTabPage extends Component {
         this.eventListener = null;
     }
 
-    _showExploreArea() {
-        let key = RootView.add(<ExploreAreaPopPage {...this.props} onClose={() => {
+    _showExploreMaps() {
+        let key = RootView.add(<ExploreMapsPage {...this.props} onClose={() => {
             RootView.remove(key);
             this.props.navigation.navigate('Home', { 
                 screen: 'Profile'
@@ -28,7 +28,7 @@ class ExploreTabPage extends Component {
     }
 
     _showExploreMain() {
-        let key = RootView.add(<ExploreMainPopPage {...this.props} onClose={() => {
+        let key = RootView.add(<ExploreMainPage {...this.props} onClose={() => {
             RootView.remove(key);
             this.props.navigation.navigate('Home', { 
                 screen: 'Profile'
@@ -39,22 +39,22 @@ class ExploreTabPage extends Component {
     componentDidMount() {
         this.eventListener = DeviceEventEmitter.addListener('ExploreTabPage.show', (payload) => {
             switch (payload) {
-                case 'ExploreMainPopPage':
+                case 'ExploreMainPage':
                     this._showExploreMain();
                     break;
                     
-                case 'ExploreAreaPopPage':
-                    this._showExploreArea();
+                case 'ExploreMapsPage':
+                    this._showExploreMaps();
                     break;
             }
         });
 
         this.unsubscribe = this.props.navigation.addListener('tabPress', (e) => {
-            DeviceEventEmitter.emit('ExploreTabPage.show', 'ExploreAreaPopPage');
+            DeviceEventEmitter.emit('ExploreTabPage.show', 'ExploreMapsPage');
         });
 
         //
-        DeviceEventEmitter.emit('ExploreTabPage.show', 'ExploreAreaPopPage');
+        DeviceEventEmitter.emit('ExploreTabPage.show', 'ExploreMapsPage');
     }
     
     componentWillUnmount() {
