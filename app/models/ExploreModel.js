@@ -42,6 +42,7 @@ export default {
             }
             a.points.sort((_a, _b) => _a.idx - _b.idx);
           });
+          e.areas.sort((_a, _b) => _a.id - _b.id);
         });
       }
       
@@ -72,13 +73,38 @@ export default {
       const currentMap = exploreState.__data.config.find(e => e.id == exploreState.mapId);
       const currentArea = currentMap.areas.find(e => e.id == exploreState.areaId);
       const currentEvent = currentArea.points.find(e => e.idx == idx);
+      const eventNum = Math.floor(currentArea.time / currentArea.interval);
 
       refTimeBanner.hide(idx);
       refMsgList.addMsg(`触发 ${currentEvent.event} 事件`);
 
       // 战斗类事件暂停
-      if (['boss', 'pk'].indexOf(currentEvent.event) == -1) {
+      // if (['boss', 'pk'].indexOf(currentEvent.event) == -1) {
         refTimeBanner.resume();
+      // }
+
+      // 是否结束
+      if ((idx + 1) >= eventNum) {
+        yield put.resolve(action('onTimeEnd')({ map: currentMap, areaId: exploreState.areaId, refMsgList }));
+      }
+    },
+
+    *onTimeEnd({ payload }, { select, put }) {
+      const { map, areaId, refMsgList } = payload;
+
+      let nextArea = null;
+      for (let key in map.areas) {
+        const area = map.areas[key];
+        if (area.id > areaId) {
+          nextArea = area;
+          break;
+        }
+      }
+
+      // 开启下一个区域
+      if (nextArea != null) {
+        refMsgList.addMsg(` ====== 进入${nextArea.name} ======`);
+        yield put(action('updateState')({ areaId: nextArea.id }));
       }
     },
 

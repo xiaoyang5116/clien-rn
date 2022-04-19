@@ -218,7 +218,7 @@ class ExploreMainPopPage extends Component {
                         <MessageList ref={this.refMsgList} />
                     </View>
                     <View style={{ flexDirection: 'row', borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', overflow: 'hidden', marginLeft: 10, marginRight: 10, height: 60, justifyContent: 'space-around', alignItems: 'center' }} >
-                        <TimeBanner ref={this.refTimeBanner} time={currentArea.time} interval={currentArea.interval} onStep={this.onStep} />
+                        <TimeBanner key={this.props.areaId * 100} ref={this.refTimeBanner} time={currentArea.time} interval={currentArea.interval} onStep={this.onStep} />
                         <View style={{ position: 'absolute', left: 100, top: 0, width: 10, height: '100%', backgroundColor: '#669900', opacity: 0.75 }} />
                     </View>
                     <View style={{ flexDirection: 'row', height: 80, justifyContent: 'space-around', alignItems: 'center' }} >
