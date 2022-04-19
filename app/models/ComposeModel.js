@@ -149,7 +149,7 @@ export default {
       let prevRange = 0;
       sortTargets.forEach(e => {
         e.range = [prevRange, prevRange + e.rate];
-        prevRange = e.rate;
+        prevRange = e.range[1];
       });
 
       // 扣除材料
@@ -161,7 +161,7 @@ export default {
       // 发放道具
       for (let i in range(actuallyNum)) {
         const randValue = lo.random(0, 100, false);
-        const hit = sortTargets.find(e => randValue >= e.range[0] && randValue < e.range[1]);
+        let hit = sortTargets.find(e => randValue >= e.range[0] && randValue < e.range[1]);
         if (hit == undefined) hit = sortTargets[sortTargets.length - 1];
         yield put.resolve(action('PropsModel/sendProps')({ propId: hit.id, num: hit.num, quiet: true }));
       }

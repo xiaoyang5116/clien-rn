@@ -1,84 +1,289 @@
 import React from 'react';
 
 import {
+    action,
     connect,
     Component,
     StyleSheet,
+    DeviceEventEmitter,
 } from "../../constants";
 
-import { View, Text, FlatList } from '../../constants/native-ui';
-import { TextButton } from '../../constants/custom-ui';
+import { 
+    View, 
+    Text, 
+    FlatList, 
+    SafeAreaView, 
+    Image, 
+    TouchableWithoutFeedback 
+} from '../../constants/native-ui';
+
+import { TextButton, ImageButton } from '../../constants/custom-ui';
 import ProgressBar from '../../components/ProgressBar';
+import RootView from '../../components/RootView';
+import FastImage from 'react-native-fast-image';
+import lo from 'lodash';
+
+const PROPS_ICON = [
+    { iconId: 1, img: require('../../../assets/props/prop_1.png') },
+    { iconId: 2, img: require('../../../assets/props/prop_2.png') },
+    { iconId: 3, img: require('../../../assets/props/prop_3.png') },
+    { iconId: 4, img: require('../../../assets/props/prop_4.png') },
+    { iconId: 5, img: require('../../../assets/props/prop_5.png') },
+];
+
+// 点击宝箱二次确认框
+const BoxConfirmDialog = (props) => {
+    return (
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
+            <View style={{ width: '90%', height: 440, borderColor: '#999', borderWidth: 1, backgroundColor: '#fff'}}>
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ lineHeight: 80, fontSize: 32, fontWeight: 'bold' }}>{props.title}</Text>
+                </View>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ width: 160, height: 100, borderColor: '#666', borderWidth: 1 }}>
+                        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', backgroundColor: '#e0f6ff' }} >
+                            <Text>{props.title}</Text>
+                        </View>
+                        <View style={{ flex: 1, backgroundColor: '#fff' }} >
+                            <View style={{ position: 'absolute', top: 7, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                <Text style={{ color: '#000' }}>{props.currentNum}/{props.reqNum}</Text>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                <View style={{ height: 100, margin: 10, height: 100, justifyContent: 'space-evenly' }}>
+                    {
+                    // 默认抽一次
+                    (props.maxTimes > 0)
+                    ?
+                    (
+                    <TextButton {...props} title='开启1次' onPress={() => {
+                        props.dispatch(action('LotteryModel/lottery')({ id: props.id, times: 1 }))
+                        .then(data => {
+                            if (lo.isArray(data)) {
+                                const key = RootView.add(<RewardsPage data={data} onClose={() => {
+                                    RootView.remove(key);
+                                }} />);
+                            }
+                            props.onClose();
+                        });
+                    }} />
+                    )
+                    : (<TextButton {...props} title='数量不足' disabled={true} />)
+                    }
+                    {
+                    // 最大连抽次数
+                    (props.maxTimes > 1)
+                    ?
+                    (
+                    <TextButton {...props} title={`开启${props.maxTimes}次`} onPress={() => {
+                        props.dispatch(action('LotteryModel/lottery')({ id: props.id, max: true }))
+                        .then(data => {
+                            if (lo.isArray(data)) {
+                                const key = RootView.add(<RewardsPage data={data} onClose={() => {
+                                    RootView.remove(key);
+                                }} />);
+                            }
+                            props.onClose();
+                        });
+                    }} />
+                    )
+                    : (<></>)
+                    }
+                </View>
+                <View style={{ margin: 10 }}>
+                    <TextButton {...props} title='返回' onPress={() => {
+                        props.onClose();
+                    }} />
+                </View>
+            </View>
+        </View>
+        </SafeAreaView>
+    );
+}
+
+// 宝藏箱子组件
+const Box = (props) => {
+    const percent = (props.currentNum >= props.reqNum) ? 100 : Math.ceil((props.currentNum / props.reqNum) * 100);
+
+    const onPressHandler = () => {
+        const key = RootView.add(<BoxConfirmDialog {...props} onClose={() => {
+            RootView.remove(key);
+            props.onClose();
+        }} />);
+    }
+
+    return (
+    <TouchableWithoutFeedback onPress={onPressHandler} >
+        <View style={{ width: 160, height: 100, borderColor: '#666', borderWidth: 1 }}>
+            <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', backgroundColor: '#e0f6ff' }} >
+                <Text>{props.title}</Text>
+            </View>
+            <View style={{ flex: 1, backgroundColor: '#fff' }} >
+                <View style={{ flex: 1, marginLeft: 10, marginRight: 10, marginTop: 8, marginBottom: 8 }}>
+                    <ProgressBar percent={percent} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+                </View>
+                <View style={{ position: 'absolute', top: 7, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ color: '#fff' }}>{props.currentNum}/{props.reqNum}</Text>
+                </View>
+            </View>
+        </View>
+    </TouchableWithoutFeedback>
+    );
+};
+
+// 底部工具栏组件
+const BottomBar = (props) => {
+    return (
+    <View style={{ height: 80, flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-around' }}>
+        <View style={{ width: 100, marginTop: 10, marginLeft: 20, marginRight: 30, backgroundColor: '#000' }}>
+            <TextButton title='返回' {...props} onPress={() => {
+                props.onClose();
+            }} />
+        </View>
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
+            <View style={{ marginLeft: 10, marginRight: 10 }}>
+                <TextButton title='十连抽' {...props} onPress={() => {
+                    DeviceEventEmitter.emit('LotteryPopPage.showView', 'Lottery10Times');
+                }} />
+            </View>
+            <View style={{ marginLeft: 10, marginRight: 10 }}>
+                <TextButton title='宝藏' {...props} onPress={() => {
+                    DeviceEventEmitter.emit('LotteryPopPage.showView', 'LotteryBaoZang');
+                }} />
+            </View>
+        </View>
+    </View>
+    );
+}
+
+// 奖励物品组件
+const RewardItem = (props) => {
+    const icon = PROPS_ICON.find(e => e.iconId == props.iconId);
+    return (
+    <View style={{ flexDirection: 'column', margin: 10, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ width: 68, height: 68 }}>
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#333' }}>
+                <Image source={icon.img} />
+                <Text style={{ position: 'absolute', top: 53, right: 0, color: '#fff' }}>{props.num}</Text>
+            </View>
+        </View>
+        <Text style={{ color: '#000', marginTop: 3 }}>{props.name}</Text>
+    </View>
+    );
+}
+
+// 奖励显示页面
+const RewardsPage = (props) => {
+    const childs = [];
+    let key = 0;
+    props.data.forEach(e => {
+        childs.push(<RewardItem key={key++} propId={e.propId} iconId={e.iconId} num={e.num} name={e.name} />);
+    });
+    return (
+        <TouchableWithoutFeedback onPress={() => { props.onClose() }}>
+            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.85)' }}>
+                <View>
+                    <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>获得奖励</Text>
+                </View>
+                <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#a6c2cb' }}>
+                    {childs}
+                </View>
+                <View>
+                    <Text style={{ marginTop: 20, color: '#fff', fontSize: 20 }}>点击任意区域关闭</Text>
+                </View>
+            </View>
+        </TouchableWithoutFeedback>
+    );
+}
 
 // 十连抽页面
 class Lottery10Times extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            propsInfo: [],
+        };
+    }
+
+    refreshQuanNum() {
+        this.props.dispatch(action('PropsModel/getPropsNum')({ propsId: [54, 55] }))
+        .then(result => {
+            this.setState({ propsInfo: result });
+        });
+    }
+
+    componentDidMount() {
+        this.refreshQuanNum();
+    }
+
+    lottery(id) {
+        this.props.dispatch(action('LotteryModel/lottery')({ id }))
+        .then(data => {
+            if (lo.isArray(data)) {
+                const key = RootView.add(<RewardsPage data={data} onClose={() => {
+                    RootView.remove(key);
+                    this.refreshQuanNum();
+                }} />);
+            }
+        });
     }
 
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center' }}>
-                <View style={{ marginTop: 40, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontSize: 24, fontWeight: 'bold' }}>十连抽</Text>
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                    <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>卷轴: 1000</Text>
-                </View>
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>背景展示</Text>
-                </View>
-                <View style={{ height: 200, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={{ marginLeft: 20, marginRight: 20 }}>
-                        <TextButton title='抽1次' {...this.props} />
+            <FastImage style={{ flex: 1 }} source={require('../../../assets/lottery_bg.jpg')}>
+            <SafeAreaView style={{ flex: 1 }}>
+                <View style={{ flex: 1, justifyContent: 'center' }}>
+                    <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 24, fontWeight: 'bold' }}>十连抽</Text>
                     </View>
-                    <View style={{ marginLeft: 20, marginRight: 20 }}>
-                        <TextButton title='抽10次' {...this.props} />
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>白嫖券: {(this.state.propsInfo[0] != undefined) ? this.state.propsInfo[0].num : 0}</Text>
+                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>消费券: {(this.state.propsInfo[1] != undefined) ? this.state.propsInfo[1].num : 0}</Text>
                     </View>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        <Text></Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginBottom: 60 }}>
+                        <ImageButton width={150} height={50} source={require('../../../assets/button/xunbao1.png')} selectedSource={require('../../../assets/button/xunbao1_selected.png')} onPress={() => { this.lottery(1); }} />
+                        <ImageButton width={150} height={50} source={require('../../../assets/button/xunbao10.png')} selectedSource={require('../../../assets/button/xunbao10_selected.png')} onPress={() => { this.lottery(2); }} />
+                    </View>
+                    <BottomBar {...this.props} />
                 </View>
-            </View>
+            </SafeAreaView>
+            </FastImage>
         );
     }
 }
-
-const DATA = [
-    [{ id: 1, title: '天地宝箱', reqNum: 100, currentNum: 70 },],
-    [{ id: 2, title: '时光宝箱', reqNum: 120, currentNum: 100 }, { id: 3, title: '岁月宝箱', reqNum: 120, currentNum: 300 },],
-    [{ id: 4, title: '采药宝箱', reqNum: 150, currentNum: 400 }, { id: 5, title: '炼丹宝箱', reqNum: 150, currentNum: 80 },],
-    [{ id: 6, title: '穿越宝箱', reqNum: 200, currentNum: 500 }, { id: 7, title: '复活宝箱', reqNum: 200, currentNum: 150 },],
-];
-
-// 宝藏箱子组件
-const Box = (props) => {
-    const percent = (props.currentNum >= props.reqNum) ? 100 : Math.ceil((props.currentNum / props.reqNum) * 100);
-    return (
-    <View style={{ width: 160, height: 100, borderColor: '#666', borderWidth: 1 }}>
-        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', backgroundColor: '#e0f6ff' }} >
-            <Text>{props.title}</Text>
-        </View>
-        <View style={{ flex: 1, backgroundColor: '#fff' }} >
-            <View style={{ flex: 1, marginLeft: 10, marginRight: 10, marginTop: 8, marginBottom: 8 }}>
-                <ProgressBar percent={percent} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
-            </View>
-            <View style={{ position: 'absolute', top: 7, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: '#fff' }}>{props.currentNum}/{props.reqNum}</Text>
-            </View>
-        </View>
-    </View>
-    );
-};
 
 // 宝藏页面
 class LotteryBaoZang extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            boxes: [],
+        };
+    }
+
+    refreshBoxes() {
+        this.props.dispatch(action('LotteryModel/getBoxes')({ }))
+        .then(data => {
+            if (lo.isArray(data)) {
+                this.setState({ boxes: data });
+            }
+        });
+    }
+
+    componentDidMount() {
+        this.refreshBoxes();
     }
 
     renderItem = (data) => {
         const item = data.item;
         const boxs = [];
         item.forEach(e => {
-            boxs.push(<Box key={e.id} {...e} />);
+            boxs.push(<Box key={e.id} {...e} {...this.props} onClose={() => { this.refreshBoxes() }} />);
         });
         return (
         <View style={{ height: 100, flexDirection: 'row', justifyContent: 'space-around', marginTop: 10, marginBottom: 10 }} >
@@ -89,30 +294,52 @@ class LotteryBaoZang extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'center', backgroundColor: '#f6efe5' }}>
-                <View style={{ marginTop: 40, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontSize: 24, fontWeight: 'bold' }}>宝藏</Text>
+            <FastImage style={{ flex: 1 }} source={require('../../../assets/lottery_bg2.jpg')}>
+            <SafeAreaView style={{ flex: 1 }}>
+                <View style={{ flex: 1, justifyContent: 'center' }}>
+                    <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 24, fontWeight: 'bold' }}>宝藏</Text>
+                    </View>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        <FlatList
+                        style={{ alignSelf: 'stretch', margin: 10 }}
+                        data={this.state.boxes}
+                        renderItem={this.renderItem}
+                        />
+                    </View>
+                    <BottomBar {...this.props} />
                 </View>
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                    <FlatList
-                      style={{ alignSelf: 'stretch', margin: 10 }}
-                      data={DATA}
-                      renderItem={this.renderItem}
-                    />
-                </View>
-            </View>
+            </SafeAreaView>
+            </FastImage>
         );
     }
 }
 
 // 抽奖弹出页
-export class LotteryPopPage extends Component {
+class LotteryPopPage extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = {
             type: 'Lottery10Times',
         };
+
+        this.eventListener = null;
+    }
+
+    showView(type) {
+        this.setState({ type });
+    }
+
+    componentDidMount() {
+        this.eventListener = DeviceEventEmitter.addListener('LotteryPopPage.showView', (type) => {
+            this.showView(type);
+        });
+    }
+
+    componentWillUnmount() {
+        this.eventListener.remove();
     }
 
     render() {
@@ -128,34 +355,11 @@ export class LotteryPopPage extends Component {
                 subView = <Lottery10Times {...this.props} />
                 break;
         }
-        return (
-            <View style={{ flex: 1, justifyContent: 'center', backgroundColor: '#fff' }}>
-                {subView}
-                <View style={{ height: 80, flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-around' }}>
-                    <View style={{ width: 100, marginTop: 10, marginLeft: 20, marginRight: 30, backgroundColor: '#000' }}>
-                        <TextButton title='返回' {...this.props} onPress={() => {
-                            this.props.onClose();
-                        }} />
-                    </View>
-                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
-                        <View style={{ marginLeft: 10, marginRight: 10 }}>
-                            <TextButton title='十连抽' {...this.props} onPress={() => {
-                                this.setState({ type: 'Lottery10Times' });
-                            }} />
-                        </View>
-                        <View style={{ marginLeft: 10, marginRight: 10 }}>
-                            <TextButton title='宝藏' {...this.props} onPress={() => {
-                                this.setState({ type: 'LotteryBaoZang' });
-                            }} />
-                        </View>
-                    </View>
-                </View>
-            </View>
-        );
+        return (<View style={{ flex: 1, backgroundColor: '#fff' }} >{subView}</View>);
     }
 }
 
 const styles = StyleSheet.create({
 });
 
-export default connect((state) => ({ ...state.AppModel }))(LotteryPopPage);
+export default connect((state) => ({ ...state.LotteryModel, ...state.AppModel }))(LotteryPopPage);

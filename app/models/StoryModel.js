@@ -4,6 +4,7 @@ import {
   errorMessage
 } from "../constants";
 
+import * as RootNavigation from '../utils/RootNavigation';
 import lo from 'lodash';
 
 export default {
@@ -18,11 +19,23 @@ export default {
 
   effects: {
 
+    // 进入场景
+    *enter({ payload }, { put, select }) {
+      const { sceneId } = payload;
+      RootNavigation.navigate('Home');
+      
+      yield put.resolve(action('SceneModel/enterScene')({ sceneId }));
+    },
+
      // 场景重入
     *reEnter({ }, { put, select }) {
       const userState = yield select(state => state.UserModel);
+      RootNavigation.navigate('Home');
+
       if (!lo.isEmpty(userState.sceneId)) {
         yield put.resolve(action('SceneModel/enterScene')({ sceneId: userState.sceneId }));
+      } else {
+        yield put.resolve(action('SceneModel/enterScene')({ sceneId: 'wzkj' })); // 默认场景
       }
     },
 

@@ -22,11 +22,23 @@ import {
 } from './constants';
 
 import { name as appName } from '../app.json';
-import { View } from './constants/native-ui';
+import { View, Image } from './constants/native-ui';
 import MainPage from './pages/MainPage';
 import RootView from './components/RootView';
 import Shock from './components/shock'
 import EventListeners from './utils/EventListeners';
+import FastImage from 'react-native-fast-image';
+import { images } from './constants/preload';
+
+function preloadImages(images) {
+  const uris = images.map(image => ({
+    uri: Image.resolveAssetSource(image).uri
+  }));
+
+  FastImage.preload(uris);
+};
+
+preloadImages(images);
 
 const models = [
   require('./models/AppModel').default,
@@ -41,6 +53,8 @@ const models = [
   require('./models/ArticleModel').default,
   require('./models/FigureModel').default,
   require('./models/MailBoxModel').default,
+  require('./models/LotteryModel').default,
+  require('./models/ExploreModel').default,
 ];
 
 const ActionHook = ({ dispatch, getState }) => next => action => {

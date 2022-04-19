@@ -53,7 +53,15 @@ export default class LocalStorage {
     await LocalStorage.init();
     const archiveIndexes = await LocalStorage._getArchiveIndexes();
     if (archiveIndexes.find(e => e == archiveId) != undefined) {
+      const unDescriptor = LocalStorage.metadata.descriptors.find(e => !e.archived);
+      if (unDescriptor != undefined) {
+        // 删除尚未存档就切换的目录
+        RNFS.unlink(LocalStorage._getSavePath());
+      }
+
+      // 切换到已选择的存档
       LocalStorage.metadata.currentArchiveIndex = archiveId;
+      LocalStorage.metadata.descriptors = LocalStorage.metadata.descriptors.filter(e => e.archived);
       await LocalStorage._writeMetadata(LocalStorage.metadata);
     }
   }
@@ -61,7 +69,20 @@ export default class LocalStorage {
   static async init() {
     if (LocalStorage.metadata != null)
       return;
+
     LocalStorage.metadata = await LocalStorage._loadMetadata();
+    if (LocalStorage.metadata.currentArchiveIndex == 0) {
+      // 初始档位
+      LocalStorage.metadata.descriptors.push({
+        id: 1,
+        dt: DateTime.now(),
+        files: [],
+        desc: '',
+        archived: false,
+      });
+      LocalStorage.metadata.currentArchiveIndex = 1;
+      await LocalStorage._writeMetadata(LocalStorage.metadata);
+    }
   }
 
   static async archive(desc = {}) {
@@ -99,15 +120,22 @@ export default class LocalStorage {
       return successFiles;
     });
 
-    const descriptor = {
+    const currDescriptor = LocalStorage.metadata.descriptors.find(e => e.id == LocalStorage.metadata.currentArchiveIndex);
+    if (currDescriptor != undefined) {
+      currDescriptor.desc = desc;
+      currDescriptor.archived = true;
+    }
+
+    const newDescriptor = {
       id: newArchiveIndex,
       dt: DateTime.now(),
       files: successFiles,
-      desc: desc,
+      desc: '',
+      archived: false,
     };
 
     LocalStorage.metadata.currentArchiveIndex = newArchiveIndex;
-    LocalStorage.metadata.descriptors.push(descriptor);
+    LocalStorage.metadata.descriptors.push(newDescriptor);
     await LocalStorage._writeMetadata(LocalStorage.metadata);
     return newArchiveIndex;
   }
