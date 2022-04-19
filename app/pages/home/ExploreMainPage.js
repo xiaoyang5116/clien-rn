@@ -4,6 +4,7 @@ import {
     action,
     connect,
     Component,
+    PureComponent,
     StyleSheet,
 } from "../../constants";
 
@@ -181,7 +182,7 @@ class TimeBanner extends Component {
 }
 
 // 消息列表，用于展现探索的各种信息
-class MessageList extends Component {
+class MessageList extends PureComponent {
     constructor(props) {
         super(props);
         this.refList = React.createRef();
@@ -207,7 +208,7 @@ class MessageList extends Component {
         return (
         <FlatList
             ref={this.refList}
-            style={{ alignSelf: 'stretch', margin: 10, borderColor: '#999', borderWidth: 1, backgroundColor: '#fff' }}
+            style={{ alignSelf: 'stretch', margin: 10, borderColor: '#999', borderWidth: 1, backgroundColor: 'rgba(255,255,255,0.85)' }}
             data={this.state.messages}
             renderItem={this.renderItem}
             getItemLayout={(_data, index) => (
@@ -223,6 +224,30 @@ class MessageList extends Component {
     }
 }
 
+// 寻宝、战斗、线索、奇遇等事件按钮
+class EventBox extends PureComponent {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            num: 0,
+        }
+    }
+
+    setNum(num) {
+        this.setState({ num });
+    }
+
+    render() {
+        return (
+        <View style={styles.eventBox}>
+            <TextButton title={this.props.title} {...this.props} style={styles.eventButton} />
+            <Text style={{ lineHeight: 24, color: '#fff' }}>{this.state.num}</Text>
+        </View>
+        );
+    }
+}
+
 // 探索主页面
 class ExploreMainPopPage extends Component {
 
@@ -230,6 +255,11 @@ class ExploreMainPopPage extends Component {
         super(props);
         this.refMsgList = React.createRef();
         this.refTimeBanner = React.createRef();
+
+        this.refXunBaoEventBox = React.createRef();
+        this.refBossEventBox = React.createRef();
+        this.refXianSuoEventBox = React.createRef();
+        this.refQiYuEventBox = React.createRef();
     }
 
     // 时间滚动条-事件触发
@@ -238,6 +268,11 @@ class ExploreMainPopPage extends Component {
             idx,
             refTimeBanner: this.refTimeBanner.current, 
             refMsgList: this.refMsgList.current, 
+            //
+            refXunBaoEventBox: this.refXunBaoEventBox.current,
+            refBossEventBox: this.refBossEventBox.current,
+            refXianSuoEventBox: this.refXianSuoEventBox.current,
+            refQiYuEventBox: this.refQiYuEventBox.current,
         }));
     }
 
@@ -270,24 +305,16 @@ class ExploreMainPopPage extends Component {
                     <View style={{ flexDirection: 'row', marginLeft: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
                         <Text style={styles.textBox}>{mapSelected.name}</Text>
                     </View>
-                    <View style={{ flexDirection: 'column', borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', margin: 10, height: 160, justifyContent: 'center', alignItems: 'center' }} >
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text>背景图</Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', width: '100%',  height: 60, justifyContent: 'space-around', alignItems: 'center' }} >
-                            <View style={styles.eventBox}>
-                                <Text>寻宝</Text>
+                    <View style={{ flexDirection: 'column', margin: 10, height: 160, justifyContent: 'center', alignItems: 'center' }} >
+                        <FastImage style={{ flex: 1, overflow: 'hidden' }} source={require('../../../assets/lottery_bg2.jpg')} resizeMode='stretch' >
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />
+                            <View style={{ flexDirection: 'row', width: '100%',  height: 80, justifyContent: 'space-around', alignItems: 'center' }} >
+                                <EventBox ref={this.refXunBaoEventBox} title={'寻宝'} {...this.props} />
+                                <EventBox ref={this.refBossEventBox} title={'战斗'} {...this.props} />
+                                <EventBox ref={this.refXianSuoEventBox} title={'线索'} {...this.props} />
+                                <EventBox ref={this.refQiYuEventBox} title={'奇遇'} {...this.props} />
                             </View>
-                            <View style={styles.eventBox}>
-                                <Text>战斗</Text>
-                            </View>
-                            <View style={styles.eventBox}>
-                                <Text>线索</Text>
-                            </View>
-                            <View style={styles.eventBox}>
-                                <Text>奇遇</Text>
-                            </View>
-                        </View>
+                        </FastImage>
                     </View>
                     <View style={{ flexDirection: 'row', marginLeft: 10, marginBottom: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
                         <Text style={styles.textBox}>{currentArea.name}</Text>
@@ -314,12 +341,8 @@ class ExploreMainPopPage extends Component {
                         <TextButton {...this.props} title={'结束探索'} onPress={() => {
                             this.props.onClose();
                         }} />
-                        <TextButton {...this.props} title={'加速'} onPress={() => {
-                            this.props.onClose();
-                        }} />
-                        <TextButton {...this.props} title={'全部加速'} onPress={() => {
-                            this.props.onClose();
-                        }} />
+                        <TextButton {...this.props} title={'加速'} onPress={() => {}} disabled={true} />
+                        <TextButton {...this.props} title={'全部加速'} onPress={() => { }} disabled={true} />
                     </View>
                 </View>
             </SafeAreaView>
@@ -330,7 +353,10 @@ class ExploreMainPopPage extends Component {
 
 const styles = StyleSheet.create({
     eventBox: {
-        width: 50, height: 50, justifyContent: 'center', alignItems: 'center', borderColor: '#999', borderWidth: 1, backgroundColor: '#eee',
+        width: 80, height: 80, justifyContent: 'center', alignItems: 'center',
+    },
+    eventButton: {
+        width: 60, height: 60, justifyContent: 'center', alignItems: 'center',
     },
     textBox: {
         borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5,

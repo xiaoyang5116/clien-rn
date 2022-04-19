@@ -35,6 +35,12 @@ export default {
 
     // 当前探索获得道具
     rewards: [],
+
+    // 寻宝、战斗、线索、奇遇事件
+    event_xunbao: [],
+    event_boss: [],
+    event_xiansuo: [],
+    event_qiyu: [],
   },
 
   effects: {
@@ -97,7 +103,7 @@ export default {
     // 间隔时间事件
     *onTimeEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { idx, refTimeBanner, refMsgList } = payload;
+      const { idx, refTimeBanner, refMsgList, refXunBaoEventBox, refBossEventBox, refXianSuoEventBox, refQiYuEventBox } = payload;
 
       const currentMap = exploreState.__data.config.find(e => e.id == exploreState.mapId);
       const currentArea = currentMap.areas.find(e => e.id == exploreState.areaId);
@@ -108,29 +114,30 @@ export default {
       const eventName = EVENT_NAME.find(e => e.event == currentEvent.event).name;
       refMsgList.addMsg(eventName);
 
+      const parameters = { map: currentMap, area: currentArea, event: currentEvent };
       switch (currentEvent.event) {
         case 'slot':
-          yield put.resolve(action('onSlotEvent')({ map: currentMap, area: currentArea }));
+          yield put.resolve(action('onSlotEvent')({ ...parameters }));
           refTimeBanner.resume();
           break;
         case 'xunbao':
-          yield put.resolve(action('onXunBaoEvent')({ }));
+          yield put.resolve(action('onXunBaoEvent')({ ...parameters, refXunBaoEventBox }));
           refTimeBanner.resume();
           break;
         case 'boss':
-          yield put.resolve(action('onBossEvent')({ }));
+          yield put.resolve(action('onBossEvent')({ ...parameters, refBossEventBox }));
           refTimeBanner.resume();
           break;
         case 'xiansuo':
-          yield put.resolve(action('onXianSuoEvent')({ }));
+          yield put.resolve(action('onXianSuoEvent')({ ...parameters, refXianSuoEventBox }));
           refTimeBanner.resume();
           break;
         case 'qiyu':
-          yield put.resolve(action('onQiYuEvent')({ }));
+          yield put.resolve(action('onQiYuEvent')({ ...parameters, refQiYuEventBox }));
           refTimeBanner.resume();
           break;
         case 'pk':
-          yield put.resolve(action('onPKEvent')({ }));
+          yield put.resolve(action('onPKEvent')({ ...parameters }));
           refTimeBanner.resume();
           break;
       }
@@ -168,7 +175,7 @@ export default {
     // 抽奖事件
     *onSlotEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area } = payload;
+      const { map, area, event } = payload;
 
       const rateTargets = [];
       if (area.slots.props.p100 != undefined) rateTargets.push(...area.slots.props.p100.map(e => ({ ...e, rate: e.rate * 100 })));
@@ -194,22 +201,40 @@ export default {
 
     // 寻宝事件
     *onXunBaoEvent({ payload }, { select, put }) {
+      const exploreState = yield select(state => state.ExploreModel);
+      const { map, area, event, refXunBaoEventBox } = payload;
+      exploreState.event_xunbao.push(event);
+      refXunBaoEventBox.setNum(exploreState.event_xunbao.length);
     },
 
     // 挑战BOSS事件
     *onBossEvent({ payload }, { select, put }) {
+      const exploreState = yield select(state => state.ExploreModel);
+      const { map, area, event, refBossEventBox } = payload;
+      exploreState.event_boss.push(event);
+      refBossEventBox.setNum(exploreState.event_boss.length);
     },
 
     // 线索事件
     *onXianSuoEvent({ payload }, { select, put }) {
+      const exploreState = yield select(state => state.ExploreModel);
+      const { map, area, event, refXianSuoEventBox } = payload;
+      exploreState.event_xiansuo.push(event);
+      refXianSuoEventBox.setNum(exploreState.event_xiansuo.length);
     },
 
     // 奇遇事件
     *onQiYuEvent({ payload }, { select, put }) {
+      const exploreState = yield select(state => state.ExploreModel);
+      const { map, area, event, refQiYuEventBox } = payload;
+      exploreState.event_qiyu.push(event);
+      refQiYuEventBox.setNum(exploreState.event_qiyu.length);
     },
 
     // 挑战杂鱼
     *onPKEvent({ payload }, { select, put }) {
+      const exploreState = yield select(state => state.ExploreModel);
+      const { map, area, event } = payload;
     },
 
     // 添加奖励到储物袋
@@ -240,9 +265,15 @@ export default {
     *start({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
       const { mapId } = payload;
+      //
       exploreState.mapId = mapId;
       exploreState.areaId = 1;
       exploreState.rewards.length = 0;
+      //
+      exploreState.event_xunbao.length = 0;
+      exploreState.event_boss.length = 0;
+      exploreState.event_xiansuo.length = 0;
+      exploreState.event_qiyu.length = 0;
     },
 
   },
