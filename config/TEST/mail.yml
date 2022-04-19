@@ -8,22 +8,48 @@ mailData:
         [
           {
             key: "p1",
-            content: "你迅速跑过去，地面有些东西。",
+            content: "你好啊",
             btn:
               [
-                { content: "去拿菜刀", tokey: "p2", nextTime: 5 },
-                { content: "去拿画轴", tokey: "p3", nextTime: 5 },
+                { content: "你是谁啊", tokey: "p2", nextTime: 5 },
+                { content: "你好啊", tokey: "p3", nextTime: 5 },
               ],
           },
           {
             key: "p2",
-            content: "来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。",
-            btn: [{ content: "退出", tokey: "finish" }],
+            content: "我来给送东西",
+            btn:
+              [
+                {
+                  content: "我没有最近要送东西的朋友，你认错人了",
+                  tokey: "p3",
+                },
+                { content: "是谁送的东西", tokey: "p3", nextTime: 5 },
+              ],
           },
           {
             key: "p3",
-            content: "那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。",
-            btn: [{ content: "退出", tokey: "finish" }],
+            content: "要不要看看",
+            { content: "是谁送的东西", tokey: "p4", nextTime: 5 },
+            btn: [{ content: "免了", tokey: "finish" }],
+          },
+          {
+            key: "p4",
+            content: "是一个叫名字里代笑的人送的，他说你应该知道",
+            btn:
+              [
+                { content: "我知道个毛", tokey: "p5", nextTime: 5 },
+                { content: "不知道，看看礼物再说", tokey: "p5", nextTime: 5 },
+              ],
+          },
+          {
+            key: "p5",
+            content: "你好啊",
+            btn:
+              [
+                { content: "打开礼物获得道具",  tokey: "finish", nextTime: 5 },
+                { content: "还是算了", tokey: "finish" },
+              ],
           },
         ],
     },
