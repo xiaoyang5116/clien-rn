@@ -65,7 +65,11 @@ export const toastType = (type) => {
         default:
             return BOTTOM_TOP
     }
-}
+};
+
+export * from './source';
+
+
 
 export function AppDispath(params) {
     DeviceEventEmitter.emit('App.dispatch', params);

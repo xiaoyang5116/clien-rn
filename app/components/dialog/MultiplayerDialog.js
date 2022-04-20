@@ -11,20 +11,37 @@ import {
 import {
     action,
     connect,
-    getAvatar
 } from "../../constants";
+import { changeAvatar } from '../../constants'
 import TextAnimation from '../textAnimation'
 import { TextButton } from '../../constants/custom-ui';
 
 
-// 获取头像路径
-function changeAvatar(avatar) {
-    const avatarList = [
-        { id: "1", img: require('../../../assets/avatar/1.jpg'), },
-        { id: "2", img: require('../../../assets/avatar/2.jpg'), },
+/**
+ * 配置设置
+Modal.show({ 
+    style: 8, title: '神秘阵盘', textAnimationType: 'TextSingle', dialogType: 'FullScreen',
+    sections: [
+      { 
+        key: 'p1',
+        dialog: [
+          {id: '02',content: ['这里是外来的一般商家来的市场，一般为了图个彩头，不会有多寒酸 我们就在这附近讨乞。不出这条路就行。', '讨乞后每天晚上要给帮派利钱，不然被记住会被帮派打走。', ],},
+          {id: '01',content: ['好的',],},
+          {id: '04',content: ['好的',],},
+        ],
+        btn:[{title: '开始乞讨',tokey: "p2"},{title: '退出',tokey: "next"}]
+      },
+      { 
+        key: 'p2',
+        dialog: [
+          {id:'02',content: ['记住不要去北街，那是富人才能去的地方，乞丐是去不了的。会被打。']}
+        ],
+        btn: [{title: '退出',tokey: "next"}]
+      },
     ]
-    return avatarList.find(a => a.id === avatar).img
-}
+  })
+ */
+
 
 // 思路：历史对话 => 当前对话 => 点击之后，就当前的对话，push 到历史对话中 => 显示历史对话
 const MultiplayerDialog = (props) => {
@@ -131,7 +148,7 @@ const MultiplayerDialog = (props) => {
 
                                 {/* 隐藏的内容 */}
                                 <Text style={{ fontSize: 18, opacity: 0 }}> {item.content}</Text>
-                                <View style={{ position: 'absolute', top: 5, left: 5,}}>
+                                <View style={{ position: 'absolute', top: 5, left: 5, }}>
                                     <TextAnimation
                                         fontSize={18}
                                         duration={200}

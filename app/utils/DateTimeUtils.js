@@ -84,3 +84,43 @@ export function format(millis, fmt) {
 export function now() {
     return new Date().getTime();
 }
+
+export function formatDateTime(obj) {
+    if (obj == null) {
+        return null
+    }
+    const date = new Date(obj);
+    const y = 1900 + date.getYear();
+    const m = "0" + (date.getMonth() + 1);
+    const d = "0" + date.getDate();
+    return y + "-" + m.substring(m.length - 2, m.length) + "-" + d.substring(d.length - 2, d.length);
+}
+
+// 时间差
+export function timeDiff(pre, current) {
+    const preDate = new Date(pre);
+    const currentDate = new Date(current);
+    const Difference_In_Time = currentDate.getTime() - preDate.getTime()
+    // 总秒数
+    const s = Math.floor(Difference_In_Time / 1000);
+    // 得到天数
+    const day = Math.floor(s / (24 * 60 * 60));
+    // 得到不满一天的小时数
+    const hour = Math.floor((s % (24 * 60 * 60)) / (60 * 60));
+    // 得到不满一小时的分钟数
+    const min = Math.floor((s % (60 * 60)) / 60);
+    // 得到不满一分钟的秒数
+    const second = s % 60;
+
+    let returnStr = second + "秒";
+    if (min > 0) {
+        returnStr = min + "分"
+    }
+    if (hour > 0) {
+        returnStr = hour + "小时"
+    }
+    if (day > 0) {
+        returnStr = day + "天"
+    }
+    return returnStr
+}

@@ -8,5 +8,6 @@ export class LocalCacheKeys {
     static USER_DATA = 'USER_DATA';
 
     static PROPS_DATA = 'PROPS_DATA';
-    
+
+    static MAIL_DATA = 'MAIL_DATA';
 }
