@@ -10,8 +10,10 @@ import {
 } from '@react-navigation/native-stack';
 
 import {
+  action,
   connect,
-  Component
+  Component,
+  DeviceEventEmitter,
 } from '../constants';
 
 import HomePage from './/HomePage';
@@ -23,6 +25,23 @@ import { navigationRef } from '../utils/RootNavigation';
 const Stack = createNativeStackNavigator();
 
 class MainPage extends Component {
+
+  constructor(props) {
+    super(props);
+    // 全局dispath监听器
+    this.dispatchListener = null;
+  }
+
+  componentDidMount() {
+    this.dispatchListener = DeviceEventEmitter.addListener('App.dispatch', (params) => {
+      this.props.dispatch(action(params.type)(params.payload));
+    });
+  }
+
+  componentWillUnmount() {
+    this.dispatchListener.remove();
+  }
+
   render() {
     return (
       <NavigationContainer theme={{ colors: this.props.currentStyles.navigation }} ref={navigationRef}>
