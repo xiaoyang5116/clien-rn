@@ -118,7 +118,7 @@ export default {
     // 间隔时间事件
     *onTimeEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { idx, refTimeBanner, refMsgList, refXunBaoEventBox, refBossEventBox, refXianSuoEventBox, refQiYuEventBox } = payload;
+      const { idx, refTimeBanner, refMsgList, refXunBaoButton, refBossButton, refXianSuoButton, refQiYuButton } = payload;
 
       const currentMap = exploreState.__data.config.find(e => e.id == exploreState.mapId);
       const currentArea = currentMap.areas.find(e => e.id == exploreState.areaId);
@@ -136,19 +136,19 @@ export default {
           refTimeBanner.resume();
           break;
         case 'xunbao':
-          yield put.resolve(action('onXunBaoEvent')({ ...parameters, refXunBaoEventBox }));
+          yield put.resolve(action('onXunBaoEvent')({ ...parameters, refXunBaoButton }));
           refTimeBanner.resume();
           break;
         case 'boss':
-          yield put.resolve(action('onBossEvent')({ ...parameters, refBossEventBox }));
+          yield put.resolve(action('onBossEvent')({ ...parameters, refBossButton }));
           refTimeBanner.resume();
           break;
         case 'xiansuo':
-          yield put.resolve(action('onXianSuoEvent')({ ...parameters, refXianSuoEventBox }));
+          yield put.resolve(action('onXianSuoEvent')({ ...parameters, refXianSuoButton }));
           refTimeBanner.resume();
           break;
         case 'qiyu':
-          yield put.resolve(action('onQiYuEvent')({ ...parameters, refQiYuEventBox }));
+          yield put.resolve(action('onQiYuEvent')({ ...parameters, refQiYuButton }));
           refTimeBanner.resume();
           break;
         case 'pk':
@@ -217,33 +217,33 @@ export default {
     // 寻宝事件
     *onXunBaoEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refXunBaoEventBox } = payload;
+      const { map, area, event, refXunBaoButton } = payload;
       exploreState.event_xunbao.push(event);
-      refXunBaoEventBox.setNum(exploreState.event_xunbao.length);
+      refXunBaoButton.setNum(exploreState.event_xunbao.length);
     },
 
     // 挑战BOSS事件
     *onBossEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refBossEventBox } = payload;
+      const { map, area, event, refBossButton } = payload;
       exploreState.event_boss.push(event);
-      refBossEventBox.setNum(exploreState.event_boss.length);
+      refBossButton.setNum(exploreState.event_boss.length);
     },
 
     // 线索事件
     *onXianSuoEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refXianSuoEventBox } = payload;
+      const { map, area, event, refXianSuoButton } = payload;
       exploreState.event_xiansuo.push(event);
-      refXianSuoEventBox.setNum(exploreState.event_xiansuo.length);
+      refXianSuoButton.setNum(exploreState.event_xiansuo.length);
     },
 
     // 奇遇事件
     *onQiYuEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refQiYuEventBox } = payload;
+      const { map, area, event, refQiYuButton } = payload;
       exploreState.event_qiyu.push(event);
-      refQiYuEventBox.setNum(exploreState.event_qiyu.length);
+      refQiYuButton.setNum(exploreState.event_qiyu.length);
     },
 
     // 挑战杂鱼

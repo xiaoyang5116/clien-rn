@@ -28,6 +28,11 @@ import RootView from '../../components/RootView';
 import Toast from '../../components/toast';
 import lo from 'lodash';
 
+import ExploreXunBaoPage from './ExploreXunBaoPage';
+import ExploreBossPage from './ExploreBossPage';
+import ExploreXianSuoPage from './ExploreXianSuoPage';
+import ExploreQiYuPage from './ExploreQiYuPage';
+
 const CONFIG = {
     // 事件的间隔
     space: 100,
@@ -96,7 +101,7 @@ const RewardsPage = (props) => {
 }
 
 // 事件单元
-class BannerEvent extends Component {
+class BannerBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -180,7 +185,7 @@ class TimeBanner extends Component {
         const childs = [];
         for (let i = 0; i < this.eventNum; i++) {
             const ref = React.createRef();
-            childs.push(<BannerEvent ref={ref} key={i} id={i} />);
+            childs.push(<BannerBox ref={ref} key={i} id={i} />);
             this.events.push({ id: i, ref: ref });
         }
         return (
@@ -258,7 +263,7 @@ class MessageList extends PureComponent {
 }
 
 // 寻宝、战斗、线索、奇遇等事件按钮
-class EventBox extends PureComponent {
+class EventButton extends PureComponent {
 
     constructor(props) {
         super(props);
@@ -274,7 +279,7 @@ class EventBox extends PureComponent {
     render() {
         return (
         <View style={styles.eventBox}>
-            <TextButton title={this.props.title} {...this.props} style={styles.eventButton} />
+            <TextButton title={this.props.title} {...this.props} style={styles.eventButton} onPress={() => { this.props.onPress(); }} />
             <Text style={{ lineHeight: 24, color: '#fff' }}>{this.state.num}</Text>
         </View>
         );
@@ -289,10 +294,10 @@ class ExploreMainPopPage extends Component {
         this.refMsgList = React.createRef();
         this.refTimeBanner = React.createRef();
 
-        this.refXunBaoEventBox = React.createRef();
-        this.refBossEventBox = React.createRef();
-        this.refXianSuoEventBox = React.createRef();
-        this.refQiYuEventBox = React.createRef();
+        this.refXunBaoButton = React.createRef();
+        this.refBossButton = React.createRef();
+        this.refXianSuoButton = React.createRef();
+        this.refQiYuButton = React.createRef();
     }
 
     // 时间滚动条-事件触发
@@ -302,10 +307,10 @@ class ExploreMainPopPage extends Component {
             refTimeBanner: this.refTimeBanner.current, 
             refMsgList: this.refMsgList.current, 
             //
-            refXunBaoEventBox: this.refXunBaoEventBox.current,
-            refBossEventBox: this.refBossEventBox.current,
-            refXianSuoEventBox: this.refXianSuoEventBox.current,
-            refQiYuEventBox: this.refQiYuEventBox.current,
+            refXunBaoButton: this.refXunBaoButton.current,
+            refBossButton: this.refBossButton.current,
+            refXianSuoButton: this.refXianSuoButton.current,
+            refQiYuButton: this.refQiYuButton.current,
         }));
     }
 
@@ -325,6 +330,30 @@ class ExploreMainPopPage extends Component {
         });
     }
 
+    showXunBao() {
+        const key = RootView.add(<ExploreXunBaoPage onClose={() => {
+            RootView.remove(key);
+        }} />);
+    }
+
+    showBoss() {
+        const key = RootView.add(<ExploreBossPage onClose={() => {
+            RootView.remove(key);
+        }} />);
+    }
+
+    showXianSuo() {
+        const key = RootView.add(<ExploreXianSuoPage onClose={() => {
+            RootView.remove(key);
+        }} />);
+    }
+
+    showQiYu() {
+        const key = RootView.add(<ExploreQiYuPage onClose={() => {
+            RootView.remove(key);
+        }} />);
+    }
+
     render() {
         const allMaps = [];
         this.props.maps.forEach(e => allMaps.push(...e));
@@ -342,10 +371,10 @@ class ExploreMainPopPage extends Component {
                         <FastImage style={{ flex: 1, overflow: 'hidden' }} source={require('../../../assets/lottery_bg2.jpg')} resizeMode='stretch' >
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />
                             <View style={{ flexDirection: 'row', width: '100%',  height: 80, justifyContent: 'space-around', alignItems: 'center' }} >
-                                <EventBox ref={this.refXunBaoEventBox} title={'寻宝'} {...this.props} />
-                                <EventBox ref={this.refBossEventBox} title={'战斗'} {...this.props} />
-                                <EventBox ref={this.refXianSuoEventBox} title={'线索'} {...this.props} />
-                                <EventBox ref={this.refQiYuEventBox} title={'奇遇'} {...this.props} />
+                                <EventButton ref={this.refXunBaoButton} title={'寻宝'} {...this.props} onPress={() => { this.showXunBao() }} />
+                                <EventButton ref={this.refBossButton} title={'战斗'} {...this.props} onPress={() => { this.showBoss() }} />
+                                <EventButton ref={this.refXianSuoButton} title={'线索'} {...this.props} onPress={() => { this.showXianSuo() }} />
+                                <EventButton ref={this.refQiYuButton} title={'奇遇'} {...this.props} onPress={() => { this.showQiYu() }} />
                             </View>
                         </FastImage>
                     </View>
