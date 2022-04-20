@@ -31,7 +31,6 @@ const HalfScreenDialog = props => {
         const newDialogue = props.popUpComplex.filter(i => i.key === item.tokey)
 
         if (item.props!==undefined) {
-            console.log("item.props",item.props);
             AppDispath({ type: 'PropsModel/sendPropsBatch', payload: { props: item.props } });
         }
         if (newDialogue.length > 0) {
