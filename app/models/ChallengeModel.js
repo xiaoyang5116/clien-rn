@@ -151,7 +151,7 @@ export default {
 
       // 初始化属性
       myself.orgLife = myself.life;
-      myself.userName = '<span style="color:#73fdff">{0}</span>'.format(myself.userName);
+      myself.userName = '<span style="color:#36b7b5">{0}</span>'.format(myself.userName);
       myself.prepare = false;
 
       enemy.orgLife = enemy.life;
@@ -182,8 +182,11 @@ export default {
         if (now > (startMillis + 60000 * 5))
           break;
 
-        if (myself.life <= 0 || enemy.life <= 0)
+        if (myself.life <= 0 || enemy.life <= 0) {
+          if (myself.life <= 0) report.push({ msg: '战斗结束, {0}被{1}击败!'.format(myself.userName, enemy.userName) });
+          if (enemy.life <= 0) report.push({ msg: '战斗结束, {0}击败了{1}!'.format(myself.userName, enemy.userName) });
           break;
+        }
 
         for (let k in allSkills) {
           const { owner, skill } = allSkills[k];

@@ -17,6 +17,10 @@ import {
     TouchableWithoutFeedback,
 } from '../../constants/native-ui';
 
+import {
+    RenderHTML
+} from 'react-native-render-html';
+
 import { TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import { Animated, Easing } from 'react-native';
@@ -144,6 +148,8 @@ class TimeBanner extends Component {
                         cb({ finished: true });
                     }
                 },
+                stop: () => {
+                },
             })
         }
         this.sequence = Animated.sequence(animations);
@@ -166,6 +172,10 @@ class TimeBanner extends Component {
         this.sequence.start();
     }
 
+    componentWillUnmount() {
+        this.sequence.stop();
+    }
+
     render() {
         const childs = [];
         for (let i = 0; i < this.eventNum; i++) {
@@ -185,6 +195,8 @@ class TimeBanner extends Component {
 class MessageList extends PureComponent {
     constructor(props) {
         super(props);
+        this.timer = null;
+        this.queue = [];
         this.refList = React.createRef();
         this.state = {
             messages: [],
@@ -194,14 +206,35 @@ class MessageList extends PureComponent {
     renderItem = (data) => {
         const item = data.item;
         return (
-            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }} >
-                <Text style={{ lineHeight: 24 }}>{item.msg}</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 24 }} >
+                <RenderHTML contentWidth={100} source={{html: item.msg}} />
             </View>
         );
     }
 
     addMsg(msg) {
         this.setState({ messages: [...this.state.messages, { msg }] });
+    }
+
+    addMsgs(list, interval = 600, cb = null) {
+        this.queue.push(...list);
+        if (this.timer == null) {
+            this.timer = setInterval(() => {
+                if (this.queue.length > 0) {
+                    this.addMsg(this.queue.shift());
+                } else {
+                    clearInterval(this.timer);
+                    this.timer = null;
+                    if (cb != null) cb();
+                }
+            }, interval);
+        }
+    }
+
+    componentWillUnmount() {
+        if (this.timer != null) {
+            clearInterval(this.timer);
+        }
     }
 
     render() {

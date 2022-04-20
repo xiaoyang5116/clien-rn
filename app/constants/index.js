@@ -24,7 +24,7 @@ export {
 
 export * from './keys';
 
-import { Dimensions } from 'react-native';
+import { Dimensions, DeviceEventEmitter } from 'react-native';
 
 // 是否调试模式
 export const DEBUG_MODE = true;
@@ -67,5 +67,6 @@ export const toastType = (type) => {
     }
 }
 
-
-
+export function AppDispath(params) {
+    DeviceEventEmitter.emit('App.dispatch', params);
+}
