@@ -22,13 +22,11 @@ const MailBox = (props) => {
 
     /**
      * currentStyles: 主题样式
-     * onClose: 关闭弹窗
      * figureList: 人物列表
      * mailHistoryData: 邮件历史数据
-     * mailConfigData: 邮件配置数据
      * hideMailBoxPage: 隐藏邮箱页面
      */
-    const { currentStyles, onClose, figureList, mailHistoryData, mailConfigData, hideMailBoxPage } = props;
+    const { currentStyles, figureList, mailHistoryData, hideMailBoxPage } = props;
 
     useEffect(() => {
         if (figureList.length === 0) {
@@ -73,7 +71,7 @@ const MailBox = (props) => {
                     <Text style={{ fontSize: 24 }}>新信件</Text>
                     <Text style={{ fontSize: 18 }}>共有{mailHistoryData.filter(m => m.isFinish === false).length}位来访者</Text>
                 </View>
-                <View style={{ flex: 1 }}>
+                <View style={{ flex: 1, marginBottom: 30 }}>
                     <FlatList
                         data={mailHistoryData}
                         renderItem={renderMail}
@@ -91,10 +89,6 @@ const MailBox = (props) => {
                     />
                 </View>
             </View>
-            {/* <View style={{ width: 360, marginTop: 24, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>
-                <View></View>
-                <TextButton style={{ width: 100 }} currentStyles={currentStyles} title={"返回"} onPress={onClose} />
-            </View> */}
         </View>
     )
 }

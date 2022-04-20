@@ -28,7 +28,7 @@ const Reply = (props) => {
     */
     const { currentStyles, onClose, figureList, mailConfigData, figureId, currentKey } = props;
     // 当前邮件配置数据
-    const currentMailConfigData = mailConfigData.find(m => m.id === figureId).mail.find(f => f.key === currentKey);
+    const currentMailConfigData = mailConfigData.find(m => m.figureId === figureId).mail.find(f => f.key === currentKey);
     // 是否显示确认回复弹窗
     const [confirm, setConfirm] = useState(false)
     // 确认弹窗信息

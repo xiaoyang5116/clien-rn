@@ -26,22 +26,16 @@ const Letter = (props) => {
      * onClose: 关闭弹窗
      * figureList: 人物列表
      * mailHistoryData: 邮件历史数据
-     * mailConfigData: 邮件配置数据
      * figureId: 当前人物id
-     * currentKey: 当前邮件key
-     * currentMailData: 当前邮件数据
-     * currentIsFinish: 当前邮件是否完成
-     * id: 发件人id
      * hideMailBoxPage: 隐藏邮箱页面
      */
-    const { currentStyles, onClose, figureList, mailHistoryData, mailConfigData, figureId, currentKey, currentMailData, currentIsFinish, hideMailBoxPage } = props;
+    const { currentStyles, onClose, figureList, mailHistoryData, figureId, hideMailBoxPage } = props;
 
     // 当前人物信息
     const figureInfo = figureList.find(f => f.id === figureId);
 
-    useEffect(() => {
-
-    }, [])
+    // 当前信件数据
+    const mailData = mailHistoryData.find(m => m.id === figureId);
 
     // 打开信件
     const openLetter = (key) => {
@@ -71,11 +65,11 @@ const Letter = (props) => {
             }]}>
                 {/* head */}
                 <View style={{ height: 50, backgroundColor: '#e3d5c1', alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 24 }}>{figureInfo.name}来信</Text>
+                    <Text style={{ fontSize: 24 }}>{mailData.title}</Text>
                 </View>
                 <View style={{ flex: 1 }}>
                     <FlatList
-                        data={currentMailData}
+                        data={mailData.historyData}
                         renderItem={renderMail}
                         keyExtractor={(item, index) => item + index}
                         ListFooterComponent={() => <View style={{ height: 18 }} />}
@@ -101,7 +95,6 @@ export default connect((state) => ({ ...state.AppModel, ...state.FigureModel, ..
 const styles = StyleSheet.create({
     mailBox: {
         flex: 1,
-        // backgroundColor: "rgba(102, 102, 102, 0.5)",
         justifyContent: 'center',
         alignItems: 'center',
     },

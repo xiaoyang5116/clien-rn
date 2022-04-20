@@ -25,13 +25,11 @@ import { formatDateTime, timeDiff, now } from '../../utils/DateTimeUtils';
 const CompletedLetter = (props) => {
     /**
  * currentStyles: 主题样式
- * onClose: 关闭弹窗
  * figureList: 人物列表
  * mailHistoryData: 邮件历史数据
- * mailConfigData: 邮件配置数据
  * hideMailBoxPage: 隐藏邮箱页面
  */
-    const { currentStyles, onClose, figureList, mailHistoryData, mailConfigData, hideMailBoxPage } = props;
+    const { currentStyles, figureList, mailHistoryData, hideMailBoxPage } = props;
 
     useEffect(() => {
         if (figureList.length === 0) {
@@ -55,7 +53,7 @@ const CompletedLetter = (props) => {
             const figureInfo = figureList.find(f => f.id === item.id);
             if (figureInfo !== undefined) {
                 return (
-                    <View style={{ flex: 1, marginLeft: 30, marginRight: 30 }}>
+                    <View style={{ flex: 1, marginLeft: 30, marginRight: 30,marginBottom:12 }}>
                         <TouchableOpacity onPress={() => { letter(item) }}>
                             <View style={{ paddingBottom: 12, borderBottomWidth: 1, borderBottomColor: "gray", flexDirection: 'row', justifyContent: 'flex-start' }}>
                                 <View>
@@ -91,21 +89,9 @@ const CompletedLetter = (props) => {
                         keyExtractor={(item, index) => item + index}
                         ListFooterComponent={() => <View style={{ height: 18 }} />}
                         showsVerticalScrollIndicator={false}  // 隐藏滚动条
-                    // getItemLayout={(_data, index) => (
-                    //     { length: 100, offset: 100 * index, index }
-                    // )}
-                    // numColumns={3}
-                    // columnWrapperStyle={{
-                    //     justifyContent: 'flex-start',
-                    //     marginTop: 18,
-                    // }}
                     />
                 </View>
             </View>
-            {/* <View style={{ width: 360, marginTop: 24, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>
-                <View></View>
-                <TextButton style={{ width: 100 }} currentStyles={currentStyles} title={"返回"} onPress={onClose} />
-            </View> */}
         </View>
     )
 }

@@ -24,11 +24,8 @@ const MailBoxPage = (props) => {
     /**
      * currentStyles: 主题样式
      * onClose: 关闭弹窗
-     * figureList: 人物列表
-     * mailHistoryData: 邮件历史数据
-     * mailConfigData: 邮件配置数据
      */
-    const { currentStyles, onClose, figureList, mailHistoryData, mailConfigData } = props;
+    const { currentStyles, onClose } = props;
     const [currentTab, setCurrentTab] = useState('MailBox')
     const [isHide, setIsHide] = useState(false)
 
