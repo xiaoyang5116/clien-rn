@@ -23,18 +23,19 @@ const Reply = (props) => {
     * onClose: 关闭弹窗
     * figureList: 人物列表
     * mailConfigData: 邮件配置数据
-    * figureId: 当前人物id
+    * currentFigureId: 当前人物id
+    * currentMailId: 当前邮件id
     * currentKey: 当前邮件key
     */
-    const { currentStyles, onClose, figureList, mailConfigData, figureId, currentKey } = props;
+    const { currentStyles, onClose, figureList, mailConfigData, currentFigureId, currentMailId, currentKey } = props;
     // 当前邮件配置数据
-    const currentMailConfigData = mailConfigData.find(m => m.figureId === figureId).mail.find(f => f.key === currentKey);
+    const currentMailConfigData = mailConfigData.find(m => m.mailId === currentMailId).mail.find(f => f.key === currentKey);
     // 是否显示确认回复弹窗
     const [confirm, setConfirm] = useState(false)
     // 确认弹窗信息
     const [confirmInfo, setConfirmInfo] = useState({})
     // 当前人物信息
-    const figureInfo = figureList.find(f => f.id === figureId);
+    const figureInfo = figureList.find(f => f.id === currentFigureId);
 
 
     // 回信选择
@@ -83,7 +84,9 @@ const Reply = (props) => {
                                 </View>
                             </View>
                             <ScrollView>
-                                <Text type={'TextSingle'} style={{ fontSize: 18, paddingBottom: 12, paddingRight: 15, }} >{currentMailConfigData.content}</Text>
+                                <Text type={'TextSingle'} style={{ fontSize: 18, paddingBottom: 12, paddingRight: 15, }} >
+                                    {currentMailConfigData.content}
+                                </Text>
                             </ScrollView>
                         </View>
                     </View>
