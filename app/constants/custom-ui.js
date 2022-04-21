@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '.';
 
 import { CButton } from '../components/CButton';
-// import { CButton } from './custom-ui';
 
 /** 选项按钮 */
 export const TabButton = (props) => {
@@ -12,13 +12,15 @@ export const TabButton = (props) => {
 
 /** 文字按钮 */
 export const TextButton = (props) => {
-    const { currentStyles } = props;
-    const customProps = (currentStyles != undefined) 
-        ? { color: currentStyles.button.backgroundColor, fontColor: currentStyles.button.color } 
-        : {};
-    
+    const themeStyle = useContext(ThemeContext);
     return (
-        <CButton fontSize={18} {...props} {...customProps} onPress={props.onPress} />
+        <CButton 
+            fontSize={18} 
+            color={themeStyle.button.backgroundColor}
+            fontColor={themeStyle.button.color}
+            {...props}
+            onPress={props.onPress}
+        />
     );
 }
 
