@@ -20,6 +20,7 @@ import {
   Provider,
   Component,
   StyleSheet,
+  ThemeContext,
 } from './constants';
 
 import { name as appName } from '../app.json';
@@ -30,6 +31,7 @@ import Shock from './components/shock'
 import EventListeners from './utils/EventListeners';
 import FastImage from 'react-native-fast-image';
 import { images } from './constants/preload';
+import * as Themes from './themes';
 
 function preloadImages(images) {
   const uris = images.map(image => ({
@@ -88,7 +90,7 @@ dva.start();
 
 EventListeners.raise('reload')
 .then(() => {
-  DeviceEventEmitter.emit('App.loading', false);
+  DeviceEventEmitter.emit('App.setState', { loading: false });
 });
 
 class LoadingPage extends Component {
@@ -125,13 +127,14 @@ class App extends Component {
     super(props);
     this.state = {
       loading: true,
+      themeStyle: Themes.default.Normal,
     };
     this.listener = null;
   }
   
   componentDidMount() {
-    this.listener = DeviceEventEmitter.addListener('App.loading', (status) => {
-      this.setState({ loading: status });
+    this.listener = DeviceEventEmitter.addListener('App.setState', (payload) => {
+      this.setState({ ...payload });
     });
     SplashScreen.hide();
   }
@@ -149,12 +152,14 @@ class App extends Component {
   renderBody() {
     return (
       <Provider store={dva._store}>
-        <View style={styles.rootContainer}>
-          <Shock>
-            <MainPage />
-            <RootView />
-          </Shock>
-        </View>
+        <ThemeContext.Provider value={this.state.themeStyle}>
+          <View style={styles.rootContainer}>
+            <Shock>
+              <MainPage />
+              <RootView />
+            </Shock>
+          </View>
+        </ThemeContext.Provider>
       </Provider>
     );
   }

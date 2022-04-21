@@ -2,6 +2,7 @@
 import { 
   action,
   LocalCacheKeys,
+  DeviceEventEmitter,
 } from "../constants";
 
 import LocalStorage from '../utils/LocalStorage';
@@ -33,6 +34,7 @@ export default {
     *reload({ }, { call, put, select }) {
       const appState = yield select(state => state.AppModel);
       const themeId = yield call(LocalStorage.get, LocalCacheKeys.THEME_ID);
+      
       if (themeId != null) {
         yield put.resolve(action('changeTheme')({ themeId: parseInt(themeId) }));
       }
@@ -50,15 +52,19 @@ export default {
       const themeId = payload.themeId;
       let selectStyles = appState.currentStyles;
 
-      if (themeId == 0)
+      if (themeId == 0) {
+        DeviceEventEmitter.emit('App.setState', { themeStyle: Themes.default.Normal });
         selectStyles = Themes.default.Normal;
-      else if (themeId == 1) {
+      } else if (themeId == 1) {
+        DeviceEventEmitter.emit('App.setState', { themeStyle: Themes.default.Dark });
         selectStyles = Themes.default.Dark;
       }
+
       yield put(action('updateState')({ 
         themeId: payload.themeId, 
         currentStyles: selectStyles 
       }));
+
       yield call(LocalStorage.set, LocalCacheKeys.THEME_ID, themeId);
     },
 
