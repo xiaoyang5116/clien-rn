@@ -161,7 +161,7 @@ export default {
     subscriptions: {
         registerReloadEvent({ dispatch }) {
             EventListeners.register('reload', (msg) => {
-                dispatch({ 'type': 'reload' });
+                return dispatch({ 'type': 'reload' });
             });
         },
     }
