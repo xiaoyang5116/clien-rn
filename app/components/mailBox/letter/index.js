@@ -26,16 +26,17 @@ const Letter = (props) => {
      * onClose: 关闭弹窗
      * figureList: 人物列表
      * mailHistoryData: 邮件历史数据
-     * figureId: 当前人物id
+     * currentFigureId: 当前人物id
+     * currentMailId: 当前邮件id
      * hideMailBoxPage: 隐藏邮箱页面
      */
-    const { currentStyles, onClose, figureList, mailHistoryData, figureId, hideMailBoxPage } = props;
+    const { currentStyles, onClose, figureList, mailHistoryData, currentFigureId, currentMailId, hideMailBoxPage } = props;
 
     // 当前人物信息
-    const figureInfo = figureList.find(f => f.id === figureId);
+    const figureInfo = figureList.find(f => f.id === currentFigureId);
 
     // 当前信件数据
-    const mailData = mailHistoryData.find(m => m.id === figureId);
+    const mailData = mailHistoryData.find(m => m.mailId === currentMailId);
 
     // 打开信件
     const openLetter = (key) => {

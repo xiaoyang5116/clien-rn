@@ -19,8 +19,12 @@ const HistoryLetter = (props) => {
                         <Image source={changeAvatar(figureInfo.avatar)} style={{ height: 50, width: 50, borderRadius: 5 }} />
                     </View>
                     <View>
-                        <Text style={{ fontSize: 20, marginLeft: 8, color: '#7690d2' }}>{figureInfo.name}</Text>
-                        <Text style={{ fontSize: 14, marginLeft: 8 }}>{formatDateTime(item.time)}</Text>
+                        <Text style={{ fontSize: 20, marginLeft: 8, color: '#7690d2' }}>
+                            {figureInfo.name}
+                        </Text>
+                        <Text style={{ fontSize: 14, marginLeft: 8 }}>
+                            {formatDateTime(item.time)}
+                        </Text>
                     </View>
                 </View>
                 <View>
@@ -28,7 +32,9 @@ const HistoryLetter = (props) => {
                 </View>
                 <View style={{ marginTop: 8, marginBottom: 12, marginRight: 18, padding: 12, backgroundColor: '#e5ddcc', borderRadius: 8 }}>
                     <Text style={{ fontSize: 14, color: '#f9837b' }} >穿越者0000</Text>
-                    <Text style={{ fontSize: 14 }} >{item.replyContent}</Text>
+                    <Text style={{ fontSize: 14 }} >
+                        {item.replyContent}
+                    </Text>
                 </View>
             </View>
         </View >
