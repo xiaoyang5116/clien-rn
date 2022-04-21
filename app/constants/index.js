@@ -24,6 +24,7 @@ export {
 
 export * from './keys';
 
+import React from 'react';
 import { Dimensions, DeviceEventEmitter } from 'react-native';
 
 // 是否调试模式
@@ -69,7 +70,7 @@ export const toastType = (type) => {
 
 export * from './source';
 
-
+export const ThemeContext = React.createContext();
 
 export function AppDispath(params) {
     DeviceEventEmitter.emit('App.dispatch', params);
