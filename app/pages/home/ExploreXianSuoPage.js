@@ -17,6 +17,7 @@ import {
 } from '../../constants/native-ui';
 
 import { TextButton } from '../../constants/custom-ui';
+import ImageCapInset from 'react-native-image-capinsets';
 
 // 探索线索页面
 class ExploreXianSuoPage extends Component {
@@ -32,7 +33,12 @@ class ExploreXianSuoPage extends Component {
                 <View>
                     <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>线索</Text>
                 </View>
-                <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#a6c2cb' }}>
+                <View style={{ width: '90%', height: 500, backgroundColor: '#a6c2cb' }}>
+                    <ImageCapInset
+                        style={{ width: '100%', height: '100%', position: 'absolute' }}
+                        source={require('../../../assets/9patch.png')}
+                        capInsets={{ top: 80, right: 80, bottom: 80, left: 80 }}
+                    />
                 </View>
                 <View>
                     <Text style={{ color: '#fff', lineHeight: 35, }}>点击任意区域领取奖励</Text>
