@@ -14,6 +14,19 @@ import { TextButton } from '../../constants/custom-ui';
 const data = [
     { title: "白天模式", id: 0, img: require('../../../assets/lottery_bg.jpg'), checked: true },
     { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
 ]
 
 const windowWidth = Dimensions.get('window').width;
@@ -35,8 +48,8 @@ const Theme = (props) => {
             <View style={{ marginLeft: (windowWidth - (120 * 3)) / 4, width: 120 }}>
                 <TouchableWithoutFeedback onPress={() => { changeHandler(item, index) }} >
                     <View style={{ position: 'relative', overflow: 'hidden' }}>
-                        <Image source={item.img} style={{ height: 140, width: 120, borderRadius: 5 }} />
-                        <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 30, flexDirection: 'row', justifyContent: "center", alignItems: 'center', backgroundColor: "#e8ddcc", borderBottomLeftRadius: 5, borderBottomRightRadius: 5 }}>
+                        <Image source={item.img} style={{ height: 170, width: 120, borderRadius: 3 }} />
+                        <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 30, flexDirection: 'row', justifyContent: "center", alignItems: 'center', backgroundColor: "#e8ddcc", borderBottomLeftRadius: 3, borderBottomRightRadius: 3 }}>
                             <Text style={{ fontSize: 18 }}>
                                 {item.title}
                             </Text>
@@ -55,7 +68,7 @@ const Theme = (props) => {
     }
     return (
         <View style={{ flex: 1, backgroundColor: "#fff", position: 'relative' }}>
-            <View style={{ height: 50, width: '100%', backgroundColor: "#e8ddcc", justifyContent: 'center', flexDirection: "row", alignItems: "center" }}>
+            <View style={{ height: 50, width: '100%', backgroundColor: "#e8ddcc", justifyContent: 'center', flexDirection: "row", alignItems: "center",marginTop:20,marginBottom:30 }}>
                 <Text style={{ fontSize: 24 }}>选择界面风格</Text>
             </View>
             <View>
@@ -63,7 +76,7 @@ const Theme = (props) => {
                     data={themeData}
                     renderItem={renderTheme}
                     keyExtractor={(item, index) => item + index}
-                    ListFooterComponent={() => <View style={{ height: 118 }} />}
+                    ListFooterComponent={() => <View style={{ height: 200 }} />}
                     getItemLayout={(_data, index) => (
                         { length: 158, offset: 158 * index, index }
                     )}
@@ -76,7 +89,7 @@ const Theme = (props) => {
                     }}
                 />
             </View>
-            <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 50, backgroundColor: "#e8ddcc", flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+            <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 70, backgroundColor: "#e8ddcc", flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                 <View>
                     <TextButton title="退出" onPress={props.onClose} />
                 </View>
