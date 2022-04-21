@@ -3973,6 +3973,11 @@
   "resolved" "https://registry.npmmirror.com/inherits/-/inherits-2.0.4.tgz"
   "version" "2.0.4"
 
+"install@^0.13.0":
+  "integrity" "sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA=="
+  "resolved" "https://registry.npmmirror.com/install/-/install-0.13.0.tgz"
+  "version" "0.13.0"
+
 "internal-slot@^1.0.3":
   "integrity" "sha512-O0DB1JC/sPyZl7cIo78n5dR7eUSwwpYPiXRhTzNxZVAMUuB8vlnRFyLxdrVToks6XPLVnFfbzaVd5WLjhgg+vA=="
   "resolved" "https://registry.npmmirror.com/internal-slot/-/internal-slot-1.0.3.tgz"
@@ -6081,6 +6086,11 @@
     "invariant" "^2.2.4"
     "lodash" "^4.17.21"
     "prop-types" "^15.7.2"
+
+"react-native-image-capinsets@^0.5.0":
+  "integrity" "sha512-cvJMldl0iju8bS1NAWL2Up1sBW4wlXdnlgmLhqom4hTOfhKqHdlDfuUmhixCR0vbb5pLgbEn/09T2X5IhQ9HYQ=="
+  "resolved" "https://registry.npmmirror.com/react-native-image-capinsets/-/react-native-image-capinsets-0.5.0.tgz"
+  "version" "0.5.0"
 
 "react-native-modal-popover@^2.0.1":
   "integrity" "sha512-t7KMk1q5Hi3jkk3/0fpa3mA7E3TJLL/Uz48Fa07AlocjMbG3okim9fNPLf5dJGw4JlcYWxLMYeswEcTjKr0M1g=="
