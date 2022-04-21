@@ -10,6 +10,7 @@ import React from 'react';
 
 import {
   AppRegistry,
+  DeviceEventEmitter,
 } from 'react-native';
 
 import SplashScreen from 'react-native-splash-screen'  // 启动页插件
@@ -22,7 +23,7 @@ import {
 } from './constants';
 
 import { name as appName } from '../app.json';
-import { View, Image } from './constants/native-ui';
+import { View, Text, Image } from './constants/native-ui';
 import MainPage from './pages/MainPage';
 import RootView from './components/RootView';
 import Shock from './components/shock'
@@ -85,10 +86,41 @@ models.forEach((o) => {
 });
 dva.start();
 
-EventListeners.raise('reload');
+EventListeners.raise('reload')
+.then(() => {
+  DeviceEventEmitter.emit('App.loading', false);
+});
 
 class App extends Component {
-  render() {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+    };
+    this.listener = null;
+  }
+  
+  componentDidMount() {
+    this.listener = DeviceEventEmitter.addListener('App.loading', (status) => {
+      this.setState({ loading: status });
+    });
+    SplashScreen.hide();
+  }
+
+  componentWillUnmount() {
+    this.listener.remove();
+  }
+
+  renderLoading() {
+    return (
+      <View style={styles.loadingPage}>
+        <Text style={styles.loadingText}>Loading...</Text>
+      </View>
+    );
+  }
+
+  renderBody() {
     return (
       <Provider store={dva._store}>
         <View style={styles.rootContainer}>
@@ -100,16 +132,31 @@ class App extends Component {
       </Provider>
     );
   }
-  componentDidMount() {
-    // hide 启动页
-    SplashScreen.hide();
+
+  render() {
+    if (this.state.loading) {
+      return this.renderLoading();
+    } else {
+      return this.renderBody();
+    }
   }
+
 }
 
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     position: 'relative',
+  },
+  loadingPage: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#eee7dd',
+  },
+  loadingText: {
+    fontSize: 24,
   },
 });
 
