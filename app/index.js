@@ -91,6 +91,34 @@ EventListeners.raise('reload')
   DeviceEventEmitter.emit('App.loading', false);
 });
 
+class LoadingPage extends Component {
+  constructor(props) {
+    super(props);
+    this.timer = null;
+    this.state = {
+      txt: 'Loading',
+    }
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      this.setState({ txt: this.state.txt + '.' });
+    }, 500);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  render() {
+    return (
+      <View style={styles.loadingPage}>
+        <Text style={styles.loadingText}>{this.state.txt}</Text>
+      </View>
+    );
+  }
+}
+
 class App extends Component {
 
   constructor(props) {
@@ -114,9 +142,7 @@ class App extends Component {
 
   renderLoading() {
     return (
-      <View style={styles.loadingPage}>
-        <Text style={styles.loadingText}>Loading...</Text>
-      </View>
+      <LoadingPage />
     );
   }
 
