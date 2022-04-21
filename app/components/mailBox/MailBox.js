@@ -40,14 +40,14 @@ const MailBox = (props) => {
     // 信件
     const letter = (item) => {
         hideMailBoxPage(true)
-        props.dispatch(action('MailBoxModel/changeCurrentFigureMailData')(item));
+        props.dispatch(action('MailBoxModel/changeCurrentMailData')(item));
         const key = RootView.add(<Letter onClose={() => { RootView.remove(key) }} hideMailBoxPage={hideMailBoxPage} />);
     }
 
     const renderMail = ({ item }) => {
         if (!item.isFinish) {
             // 当前人物信息
-            const figureInfo = figureList.find(f => f.id === item.id);
+            const figureInfo = figureList.find(f => f.id === item.figureId);
             if (figureInfo !== undefined) {
                 return (
                     <View style={{ width: 80, marginLeft: 30 }}>

@@ -50,7 +50,7 @@ const CompletedLetter = (props) => {
     const renderMail = ({ item }) => {
         if (item.isFinish) {
             // 当前人物信息
-            const figureInfo = figureList.find(f => f.id === item.id);
+            const figureInfo = figureList.find(f => f.id === item.figureId);
             if (figureInfo !== undefined) {
                 return (
                     <View style={{ flex: 1, marginLeft: 30, marginRight: 30,marginBottom:12 }}>

@@ -17,7 +17,8 @@ import {
 } from '../../constants/native-ui';
 
 import { TextButton } from '../../constants/custom-ui';
-import ImageCapInset from 'react-native-image-capinsets';
+// import ImageCapInset from 'react-native-image-capinsets';
+import ImageCapInset from 'react-native-image-capinsets-next';
 
 // 探索线索页面
 class ExploreXianSuoPage extends Component {

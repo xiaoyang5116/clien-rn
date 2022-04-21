@@ -23,8 +23,11 @@ const FullScreenDialog = props => {
             setCurrentIndex(currentIndex + 1)
         }
     }
-    const nextDialogue = (tokey) => {
-        const newDialogue = props.popUpComplex.filter(item => item.key === tokey)
+    const nextDialogue = (item) => {
+        const newDialogue = props.popUpComplex.filter(i => i.key === item.tokey)
+        if (item.props !== undefined) {
+            AppDispath({ type: 'PropsModel/sendPropsBatch', payload: { props: item.props } });
+        }
         if (newDialogue.length > 0) {
             setShowList(newDialogue[0].content)
             setShowBtnList(newDialogue[0].btn)
@@ -57,7 +60,7 @@ const FullScreenDialog = props => {
         if (currentIndex === currentDialogueLength) {
             return (
                 <View style={{ marginTop: 12 }}>
-                    <TextButton currentStyles={props.currentStyles} title={item.title} onPress={() => { nextDialogue(item.tokey) }} />
+                    <TextButton currentStyles={props.currentStyles} title={item.title} onPress={() => { nextDialogue(item) }} />
                 </View>
             )
         }
