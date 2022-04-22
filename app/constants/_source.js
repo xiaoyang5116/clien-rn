@@ -1,4 +1,6 @@
-// 获取头像
+// ===============================
+// 获得头像
+// ===============================
 export const changeAvatar = (avatar) => {
     const avatarList = [
         { id: "1", img: require('../../assets/avatar/1.jpg'), },

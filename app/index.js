@@ -21,6 +21,7 @@ import {
   Component,
   StyleSheet,
   ThemeContext,
+  currentTheme,
 } from './constants';
 
 import { name as appName } from '../app.json';
@@ -127,7 +128,7 @@ class App extends Component {
     super(props);
     this.state = {
       loading: true,
-      themeStyle: Themes.default.Normal,
+      themeStyle: currentTheme().style,
     };
     this.listener = null;
   }

@@ -1,14 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 
-import React from 'react';
-
-import { StyleSheet } from '../constants';
+import { StyleSheet } from 'react-native';
 import sharedStyles from './sharedStyles';
 
 // 按钮颜色
@@ -19,8 +10,6 @@ const bgColor = '#003964';  // 蓝色
 const bgColor2 = '#e8ddcc';  // 米白色
 // 文字颜色
 const textColor = '#000';  // 黑色
-
-
 
 
 const styles = StyleSheet.create({

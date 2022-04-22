@@ -3,6 +3,7 @@ import {
   action,
   LocalCacheKeys,
   DeviceEventEmitter,
+  getTheme,
 } from "../constants";
 
 import LocalStorage from '../utils/LocalStorage';
@@ -17,11 +18,8 @@ export default {
 
   // 所有Model都接收到
   state: {
-    // 风格ID
-    themeId: 0,
-
     // 当前风格
-    currentStyles: Themes.default.Normal,
+    currentStyles: null,
 
     // 存档列表
     archiveList: {},
@@ -34,17 +32,18 @@ export default {
     *reload({ }, { call, put, select }) {
       const appState = yield select(state => state.AppModel);
       const themeId = yield call(LocalStorage.get, LocalCacheKeys.THEME_ID);
-      
+
       if (themeId != null) {
-        yield put.resolve(action('changeTheme')({ themeId: parseInt(themeId) }));
+        const theme = getTheme(parseInt(themeId));
+        if (theme != undefined) {
+          Themes.default.themeId = theme.id;
+          appState.currentStyles = theme.style;
+        }
       }
 
-      yield call(LocalStorage.init);
-
-      yield put(action('updateState')({ 
-        archiveList: lo.reverse([...LocalStorage.metadata.descriptors].filter(e => e.archived)),
-        currentArchiveIndex: LocalStorage.metadata.currentArchiveIndex,
-      }));
+      // 存档相关
+      appState.archiveList = lo.reverse([...LocalStorage.metadata.descriptors].filter(e => e.archived));
+      appState.currentArchiveIndex = LocalStorage.metadata.currentArchiveIndex;
     },
 
     *changeTheme({ payload }, { call, put, select }) {
@@ -52,20 +51,20 @@ export default {
       const themeId = payload.themeId;
       let selectStyles = appState.currentStyles;
 
-      if (themeId == 0) {
-        DeviceEventEmitter.emit('App.setState', { themeStyle: Themes.default.Normal });
-        selectStyles = Themes.default.Normal;
-      } else if (themeId == 1) {
-        DeviceEventEmitter.emit('App.setState', { themeStyle: Themes.default.Dark });
-        selectStyles = Themes.default.Dark;
+      if (themeId >= 0) {
+        const selectTheme = getTheme(themeId);
+        if (selectTheme != undefined) {
+          Themes.default.themeId = themeId;
+          selectStyles = selectTheme.style;
+
+          DeviceEventEmitter.emit('App.setState', { themeStyle: selectTheme.style });
+          yield call(LocalStorage.set, LocalCacheKeys.THEME_ID, themeId);
+        }
       }
 
       yield put(action('updateState')({ 
-        themeId: payload.themeId, 
         currentStyles: selectStyles 
       }));
-
-      yield call(LocalStorage.set, LocalCacheKeys.THEME_ID, themeId);
     },
 
     *archive({ payload }, { call, put, select }) {
