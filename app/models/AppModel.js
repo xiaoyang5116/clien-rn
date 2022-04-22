@@ -33,12 +33,10 @@ export default {
       const appState = yield select(state => state.AppModel);
       const themeId = yield call(LocalStorage.get, LocalCacheKeys.THEME_ID);
 
-      if (themeId != null) {
-        const theme = getTheme(parseInt(themeId));
-        if (theme != undefined) {
-          Themes.default.themeId = theme.id;
-          appState.currentStyles = theme.style;
-        }
+      const theme = getTheme(themeId != null ? parseInt(themeId) : Themes.default.themeId);
+      if (theme != undefined) {
+        Themes.default.themeId = theme.id;
+        appState.currentStyles = theme.style;
       }
 
       // 存档相关
