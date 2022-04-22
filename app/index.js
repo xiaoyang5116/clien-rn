@@ -78,7 +78,7 @@ const ErrorHook = (e) => {
 
 const dva = dva_create({
   onError: ErrorHook,
-  onAction: ActionHook,
+  // onAction: ActionHook,
 });
 
 // DEV环境下刷新时清空已有监听器

@@ -9,31 +9,20 @@ import {
 } from 'react-native'
 import React from 'react'
 import { TextButton } from '../../constants/custom-ui';
+import * as Themes from '../../themes';
 
-
-const data = [
-    { title: "白天模式", id: 0, img: require('../../../assets/lottery_bg.jpg'), checked: true },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-    { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
-]
+// const data = [
+//     { title: "白天模式", id: 0, img: require('../../../assets/lottery_bg.jpg'), checked: true },
+//     { title: "夜晚模式", id: 1, img: require('../../../assets/lottery_bg2.jpg'), checked: false },
+// ]
 
 const windowWidth = Dimensions.get('window').width;
 
 const Theme = (props) => {
-
+    let data = Themes.default.themes.map(t => t.id === Themes.default.themeId ? { ...t, checked: true } : { ...t, checked: false })
+    const preThemeId = Themes.default.themeId;
     const [themeData, setThemeData] = React.useState(data);
+
 
     const changeHandler = (item, index) => {
         if (themeData[index].checked) {
@@ -68,7 +57,7 @@ const Theme = (props) => {
     }
     return (
         <View style={{ flex: 1, backgroundColor: "#fff", position: 'relative' }}>
-            <View style={{ height: 50, width: '100%', backgroundColor: "#e8ddcc", justifyContent: 'center', flexDirection: "row", alignItems: "center",marginTop:20,marginBottom:30 }}>
+            <View style={{ height: 50, width: '100%', backgroundColor: "#e8ddcc", justifyContent: 'center', flexDirection: "row", alignItems: "center", marginTop: 20, marginBottom: 30 }}>
                 <Text style={{ fontSize: 24 }}>选择界面风格</Text>
             </View>
             <View>

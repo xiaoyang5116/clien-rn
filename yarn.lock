@@ -5694,7 +5694,7 @@ react-native-gesture-handler@^2.3.1:
 
 react-native-image-capinsets-next@^0.6.1:
   version "0.6.1"
-  resolved "https://registry.npmmirror.com/react-native-image-capinsets-next/-/react-native-image-capinsets-next-0.6.1.tgz"
+  resolved "https://registry.yarnpkg.com/react-native-image-capinsets-next/-/react-native-image-capinsets-next-0.6.1.tgz#d87a6cef540b971609c3138cedab923bfa1b5518"
   integrity sha512-4QwzwqvOjumaBD5or+fbyYheBI0SLiuKto3SXpoP+m2PFAxEvhrE9lI4xd4ajcuNnj4TQPwp9XUs+HOpPtJR1w==
 
 react-native-modal-popover@^2.0.1:
