@@ -1,14 +1,5 @@
-/**
- * Layout stlye
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 
-import React from 'react';
-
-import { StyleSheet } from '../constants';
+import { StyleSheet } from 'react-native';
 
 const sharedStyles = StyleSheet.create({
     // /** ================================ */

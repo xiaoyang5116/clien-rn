@@ -218,7 +218,7 @@ export default {
     *onXunBaoEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
       const { map, area, event, refXunBaoButton } = payload;
-      exploreState.event_xunbao.push(event);
+      exploreState.event_xunbao.push({ id: (exploreState.event_xunbao.length + 1), ...event });
       refXunBaoButton.setNum(exploreState.event_xunbao.length);
     },
 
@@ -226,7 +226,7 @@ export default {
     *onBossEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
       const { map, area, event, refBossButton } = payload;
-      exploreState.event_boss.push(event);
+      exploreState.event_boss.push({ id: (exploreState.event_boss.length + 1), ...event });
       refBossButton.setNum(exploreState.event_boss.length);
     },
 
@@ -242,7 +242,7 @@ export default {
     *onQiYuEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
       const { map, area, event, refQiYuButton } = payload;
-      exploreState.event_qiyu.push(event);
+      exploreState.event_qiyu.push({ id: (exploreState.event_qiyu.length + 1), ...event });
       refQiYuButton.setNum(exploreState.event_qiyu.length);
     },
 

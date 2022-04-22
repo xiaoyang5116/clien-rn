@@ -36,7 +36,7 @@ class ExploreXunBaoPage extends Component {
         return (
         <TouchableHighlight activeOpacity={0.85} underlayColor='#666' onPress={() => {}} style={{ margin: 5 }} >
             <View style={{ height: 50, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd' }}>
-                <Text>{item.title}</Text>
+                <Text>寻宝事件</Text>
             </View>
         </TouchableHighlight>
         );
@@ -51,7 +51,7 @@ class ExploreXunBaoPage extends Component {
             <View style={{ width: '90%', height: 550, flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#a6c2cb' }}>
                 <FlatList 
                     style={{ alignSelf: 'stretch' }}
-                    data={DATA}
+                    data={this.props.event_xunbao}
                     renderItem={this.renderItem}
                     keyExtractor={item => item.id}
                 />
