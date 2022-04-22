@@ -1,16 +1,11 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
-
-import { StyleSheet } from '../constants';
 
 export default {
-    Normal: require('./style_normal').default,
-    Dark: require('./style_dark').default,
+    // 当前风格ID
+    themeId: 0,
+
+    // 风格列表
+    themes: [
+        { id: 0, name: '白天模式', style: require('./style_normal').default },
+        { id: 1, name: '夜晚模式', style: require('./style_dark').default },
+    ],
 }

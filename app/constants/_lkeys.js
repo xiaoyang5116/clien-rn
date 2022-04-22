@@ -1,4 +1,6 @@
-
+// ===============================
+// 本地存储KEYS
+// ===============================
 export class LocalCacheKeys {
 
     static SCENES_DATA = 'SCENES_DATA';

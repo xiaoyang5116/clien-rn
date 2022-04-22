@@ -1,15 +1,8 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
 
-import React from 'react';
-
-import { StyleSheet } from '../constants';
+import { StyleSheet } from 'react-native';
 import sharedStyles from './sharedStyles';
+
+StyleSheet
 
 const styles = StyleSheet.create({
     /** ================================ */
