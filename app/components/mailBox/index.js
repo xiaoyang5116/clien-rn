@@ -2,18 +2,14 @@ import {
     View,
     Text,
     StyleSheet,
-    FlatList,
-    Image,
     TouchableOpacity,
 } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React, { useState, useContext } from 'react'
 
 import { TextButton } from '../../constants/custom-ui';
 import {
-    action,
     connect,
+    theme,
 } from "../../constants";
 import MailBox from './MailBox'
 import CompletedLetter from './CompletedLetter'
@@ -29,6 +25,8 @@ const MailBoxPage = (props) => {
     const [currentTab, setCurrentTab] = useState('MailBox')
     const [isHide, setIsHide] = useState(false)
 
+    // 主题样式
+    const theme = useContext(ThemeContext);
 
     return (
         <View style={[styles.mailBox]}>

@@ -136,7 +136,7 @@ class App extends Component {
     this.listener = DeviceEventEmitter.addListener('App.setState', (payload) => {
       this.setState({ ...payload });
     });
-    SplashScreen.hide();
+    SplashScreen.hide();  // 隐藏安卓启动页
   }
 
   componentWillUnmount() {
