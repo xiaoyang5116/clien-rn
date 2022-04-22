@@ -9,7 +9,7 @@ import React, { useState, useContext } from 'react'
 import { TextButton } from '../../constants/custom-ui';
 import {
     connect,
-    theme,
+    ThemeContext,
 } from "../../constants";
 import MailBox from './MailBox'
 import CompletedLetter from './CompletedLetter'
