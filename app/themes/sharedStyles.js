@@ -263,6 +263,24 @@ const sharedStyles = StyleSheet.create({
         paddingTop: 24,
     },
     /* Game over end*/
+
+    /** ================================ */
+    /**            弹窗样式               */
+    /** ================================ */
+
+    popUpPage: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        ustifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center'
+    }
+    /* 半屏 1 begin */
+
+    /* 半屏 1 end */
 });
 
 export default sharedStyles;

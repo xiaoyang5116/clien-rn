@@ -11,6 +11,18 @@ import React from 'react';
 import { StyleSheet } from '../constants';
 import sharedStyles from './sharedStyles';
 
+// 按钮颜色
+const btnColor = '#bcfefe';  // 青色
+const btnColor2 = '#ede7db';  // 淡米白色
+// 背景颜色
+const bgColor = '#003964';  // 蓝色
+const bgColor2 = '#e8ddcc';  // 米白色
+// 文字颜色
+const textColor = '#000';  // 黑色
+
+
+
+
 const styles = StyleSheet.create({
     /** ================================ */
     /**             公用                 */
@@ -20,15 +32,15 @@ const styles = StyleSheet.create({
 
     /* 按钮样式 */
     button: {
-        color: '#bcfefe',
-        backgroundColor: '#003964',
+        color: btnColor,
+        backgroundColor: bgColor,
     },
     /** ================================ */
     /**             选择框                */
     /** ================================ */
     /* 对话选项框条目 */
     chatItem: {
-        backgroundColor: "#003964",
+        backgroundColor: bgColor,
         paddingTop: 2,
         paddingBottom: 2,
         marginVertical: 2
