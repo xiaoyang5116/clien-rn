@@ -11,6 +11,7 @@ import React from 'react';
 import {
   AppRegistry,
   DeviceEventEmitter,
+  Platform,
 } from 'react-native';
 
 import SplashScreen from 'react-native-splash-screen'  // 启动页插件
@@ -32,7 +33,6 @@ import Shock from './components/shock'
 import EventListeners from './utils/EventListeners';
 import FastImage from 'react-native-fast-image';
 import { images } from './constants/preload';
-import * as Themes from './themes';
 
 function preloadImages(images) {
   const uris = images.map(image => ({
@@ -78,7 +78,7 @@ const ErrorHook = (e) => {
 
 const dva = dva_create({
   onError: ErrorHook,
-  // onAction: ActionHook,
+  onAction: ActionHook,
 });
 
 // DEV环境下刷新时清空已有监听器
@@ -88,11 +88,6 @@ models.forEach((o) => {
   dva.model(o);
 });
 dva.start();
-
-EventListeners.raise('reload')
-.then(() => {
-  DeviceEventEmitter.emit('App.setState', { loading: false });
-});
 
 class LoadingPage extends Component {
   constructor(props) {
@@ -134,10 +129,21 @@ class App extends Component {
   }
   
   componentDidMount() {
+    // 注册事件监听
     this.listener = DeviceEventEmitter.addListener('App.setState', (payload) => {
       this.setState({ ...payload });
     });
-    SplashScreen.hide();
+
+    // 触发reload事件加载基础数据
+    EventListeners.raise('reload')
+    .then(() => {
+      DeviceEventEmitter.emit('App.setState', { loading: false });
+    });
+
+    // 启动页
+    if (Platform.OS == 'android') {
+      SplashScreen.hide();
+    }
   }
 
   componentWillUnmount() {
