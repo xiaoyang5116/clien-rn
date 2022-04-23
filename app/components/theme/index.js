@@ -83,7 +83,7 @@ const Theme = props => {
         );
     };
     return (
-        <View style={{ flex: 1, backgroundColor: '#fff', position: 'relative' }}>
+        <View style={[theme.pageContainer, theme.pageBg]}>
             <View style={{ position: 'relative', }}>
                 <TitleHeader
                     style={[theme.rowCenter, theme.header]}
@@ -128,16 +128,9 @@ const Theme = props => {
                 />
             </View>
             <View
-                style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    width: '100%',
-                    height: 70,
-                    backgroundColor: '#e8ddcc',
-                    flexDirection: 'row',
-                    justifyContent: 'space-around',
-                    alignItems: 'center',
-                }}>
+                style={[theme.rowSpaceAround, {
+                    position: 'absolute', bottom: 0, width: '100%', height: 70, backgroundColor: '#e8ddcc',
+                }]}>
                 <View>
                     <TextButton title="退出" onPress={props.onClose} style={{ width: 100 }} />
                 </View>

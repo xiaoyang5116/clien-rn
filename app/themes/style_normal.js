@@ -19,6 +19,8 @@ const btnColor2 = '#ede7db';  // 淡米白色
  */
 const bgColor = '#003964';  // 蓝色
 const bgColor2 = '#e8ddcc';  // 米白色
+const bgColor3 = '#fff';  // 白色
+const pageBgColor = '#f2f2f2' // 灰白色
 
 /**
  * header 样式
@@ -28,9 +30,6 @@ const bgColor2 = '#e8ddcc';  // 米白色
 const headerTextColor = '#6a655e';  // 深灰色
 const headerBgColor = '#e8ddcc';  // 米白色
 
-
-
-
 const styles = StyleSheet.create({
     /** ================================ */
     /**             公用                 */
@@ -38,11 +37,16 @@ const styles = StyleSheet.create({
     /* 通用样式 */
     ...sharedStyles,
 
+    /* 页面背景颜色 */
+    pageBg: {
+        backgroundColor: pageBgColor,
+    },
+
     /* header */
     headerBg: {
         backgroundColor: headerBgColor,
     },
-    headerText: {
+    headerTextColor: {
         color: headerTextColor,
     },
 
@@ -51,6 +55,11 @@ const styles = StyleSheet.create({
         color: btnColor,
         backgroundColor: btnBgColor,
     },
+
+    /** ================================ */
+    /**             我的 页面             */
+    /** ================================ */
+
     /** ================================ */
     /**             选择框                */
     /** ================================ */

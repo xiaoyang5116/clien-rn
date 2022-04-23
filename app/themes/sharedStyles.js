@@ -8,9 +8,9 @@ const contentSize = 18
 
 
 const sharedStyles = StyleSheet.create({
-    // /** ================================ */
-    // /**             公用                 */
-    // /** ================================ */
+    /** ================================ */
+    /**             公用                 */
+    /** ================================ */
     // /* 通用视图容器 */
     viewContainer: {
         flex: 1,
@@ -24,10 +24,17 @@ const sharedStyles = StyleSheet.create({
         backgroundColor: '#e8ddcc',
     },
 
-    /* row居中 */
+    //  ---行样式 
+    /* row 居中 */
     rowCenter: {
-        justifyContent: 'center',
         flexDirection: "row",
+        justifyContent: 'center',
+        alignItems: "center",
+    },
+    /* row 平分 */
+    rowSpaceAround: {
+        flexDirection: "row",
+        justifyContent: 'space-around',
         alignItems: "center",
     },
 
@@ -37,6 +44,22 @@ const sharedStyles = StyleSheet.create({
         marginBottom: 30,
     },
 
+    /** ================================ */
+    /**             page 容器             */
+    /** ================================ */
+    /* page 容器 */
+    pageContainer: {
+        flex: 1,
+        position: 'relative',
+    },
+
+    /** ================================ */
+    /**             底部              */
+    /** ================================ */
+    footerContainer: {
+        position: 'absolute',
+        bottom: 0,
+    },
 
     /** ================================ */
     /**             选择框                */

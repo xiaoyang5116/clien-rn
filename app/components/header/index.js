@@ -21,7 +21,7 @@ const Header = (props) => {
                 source={source}
                 capInsets={{ top: cropSize, right: cropSize, bottom: cropSize, left: cropSize }}
             />
-            <Text style={{ fontSize: fontSize }}>{props.title}</Text>
+            <Text style={[{ fontSize: fontSize },theme.headerTextColor]}>{props.title}</Text>
         </View>
     )
 }
