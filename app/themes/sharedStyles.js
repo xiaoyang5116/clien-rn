@@ -285,7 +285,7 @@ const sharedStyles = StyleSheet.create({
         left: 0,
         bottom: 0,
         right: 0,
-        ustifyContent: 'center',
+        justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center'
     }
