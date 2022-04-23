@@ -14,9 +14,9 @@ import {
 import { View } from '../constants/native-ui';
 import { ImageButton } from '../constants/custom-ui';
 import * as RootNavigation from '../utils/RootNavigation';
-import Modal from '../components/modal'
 import RootView from '../components/RootView';
 import MailBox from '../components/mailBox';
+import ArchivePage from './ArchivePage';
 
 class FirstPage extends Component {
 
@@ -37,9 +37,9 @@ class FirstPage extends Component {
               this.props.dispatch(action('StoryModel/reEnter')({ }));
              }} />
             <ImageButton height={60} source={require('../../assets/archive_button.png')} selectedSource={require('../../assets/archive_button_selected.png')} onPress={() => { 
-              RootNavigation.navigate('Home', { 
-                screen: 'Profile',
-              });
+              const key = RootView.add(<ArchivePage onClose={() => {
+                RootView.remove(key);
+              }} />);
              }} />
             <ImageButton height={60} source={require('../../assets/profile_button.png')} selectedSource={require('../../assets/profile_button_selected.png')} onPress={() => { 
               RootNavigation.navigate('Home', { 
