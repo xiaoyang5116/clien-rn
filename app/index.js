@@ -123,7 +123,7 @@ class App extends Component {
     super(props);
     this.state = {
       loading: true,
-      themeStyle: currentTheme().style,
+      themeStyle: null,
     };
     this.listener = null;
   }
@@ -137,7 +137,10 @@ class App extends Component {
     // 触发reload事件加载基础数据
     EventListeners.raise('reload')
     .then(() => {
-      DeviceEventEmitter.emit('App.setState', { loading: false });
+      DeviceEventEmitter.emit('App.setState', { 
+        loading: false, 
+        themeStyle: currentTheme().style 
+      });
     });
 
     // 启动页
