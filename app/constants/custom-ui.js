@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from '.';
 import { CButton } from '../components/CButton';
+import Header from '../components/header'
 
 /** 选项按钮 */
 export const TabButton = (props) => {
@@ -13,8 +14,8 @@ export const TabButton = (props) => {
 export const TextButton = (props) => {
     const themeStyle = useContext(ThemeContext);
     return (
-        <CButton 
-            fontSize={18} 
+        <CButton
+            fontSize={18}
             color={themeStyle.button.backgroundColor}
             fontColor={themeStyle.button.color}
             {...props}
@@ -31,3 +32,9 @@ export const ImageButton = (props) => {
         <CButton {...props} onPress={props.onPress} />
     );
 }
+
+/** 标题 header */
+export const TitleHeader = (props) => {
+    return <Header {...props} />;
+}
+

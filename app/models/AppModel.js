@@ -19,7 +19,7 @@ export default {
   // 所有Model都接收到
   state: {
     // 当前风格
-    currentStyles: null,
+    currentStyles: Themes.default.themes[0].style,
 
     // 存档列表
     archiveList: {},

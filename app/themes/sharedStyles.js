@@ -1,10 +1,16 @@
 
 import { StyleSheet } from 'react-native';
 
+
+/* 字体大小 */
+const titleSize = 24
+const contentSize = 18
+
+
 const sharedStyles = StyleSheet.create({
-    // /** ================================ */
-    // /**             公用                 */
-    // /** ================================ */
+    /** ================================ */
+    /**             公用                 */
+    /** ================================ */
     // /* 通用视图容器 */
     viewContainer: {
         flex: 1,
@@ -13,9 +19,46 @@ const sharedStyles = StyleSheet.create({
     },
 
     /* 背景颜色 */
-    // 米白色 e8ddcc
+    // 米白色 #e8ddcc
     bgColor: {
         backgroundColor: '#e8ddcc',
+    },
+
+    //  ---行样式 
+    /* row 居中 */
+    rowCenter: {
+        flexDirection: "row",
+        justifyContent: 'center',
+        alignItems: "center",
+    },
+    /* row 平分 */
+    rowSpaceAround: {
+        flexDirection: "row",
+        justifyContent: 'space-around',
+        alignItems: "center",
+    },
+
+    /* header */
+    header: {
+        marginTop: 20,
+        marginBottom: 30,
+    },
+
+    /** ================================ */
+    /**             page 容器             */
+    /** ================================ */
+    /* page 容器 */
+    pageContainer: {
+        flex: 1,
+        position: 'relative',
+    },
+
+    /** ================================ */
+    /**             底部              */
+    /** ================================ */
+    footerContainer: {
+        position: 'absolute',
+        bottom: 0,
     },
 
     /** ================================ */
@@ -254,6 +297,24 @@ const sharedStyles = StyleSheet.create({
         paddingTop: 24,
     },
     /* Game over end*/
+
+    /** ================================ */
+    /**            弹窗样式               */
+    /** ================================ */
+
+    popUpPage: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        justifyContent: 'center',
+        alignContent: 'center',
+        alignItems: 'center'
+    }
+    /* 半屏 1 begin */
+
+    /* 半屏 1 end */
 });
 
 export default sharedStyles;
