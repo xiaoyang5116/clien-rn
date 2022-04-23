@@ -85,6 +85,11 @@ const Theme = props => {
     return (
         <View style={{ flex: 1, backgroundColor: '#fff', position: 'relative' }}>
             <View style={{ position: 'relative', }}>
+                <TitleHeader
+                    style={[theme.rowCenter, theme.header]}
+                    source={require('../../../assets/frame/titleFrame.png')}
+                    title={'选择界面风格'}
+                />
                 <Image
                     style={{ width: 30, height: 30, position: 'absolute', top: -10, left: 0 }}
                     source={require('../../../assets/frame/auxiliaryBorder.png')}
@@ -92,11 +97,6 @@ const Theme = props => {
                 <Image
                     style={{ width: 30, height: 30, position: 'absolute', top: -10, right: 0, transform: [{ rotate: "-90deg" }] }}
                     source={require('../../../assets/frame/auxiliaryBorder.png')}
-                />
-                <TitleHeader
-                    style={[theme.rowCenter, theme.header]}
-                    source={require('../../../assets/frame/titleFrame.png')}
-                    title={'选择界面风格'}
                 />
                 <Image
                     style={{ width: 30, height: 30, position: 'absolute', bottom: 0, left: 0, transform: [{ rotate: "90deg" }] }}
@@ -139,10 +139,10 @@ const Theme = props => {
                     alignItems: 'center',
                 }}>
                 <View>
-                    <TextButton title="退出" onPress={props.onClose} style={{width:100}} />
+                    <TextButton title="退出" onPress={props.onClose} style={{ width: 100 }} />
                 </View>
                 <View>
-                    <TextButton title="确认" onPress={props.onClose} style={{width:100}} />
+                    <TextButton title="确认" onPress={props.onClose} style={{ width: 100 }} />
                 </View>
             </View>
         </View>
