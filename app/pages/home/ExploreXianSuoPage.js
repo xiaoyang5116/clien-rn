@@ -34,6 +34,16 @@ class ExploreXianSuoPage extends Component {
                 <View>
                     <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>线索</Text>
                 </View>
+                {/* <View style={{ width: '90%', height: 500 }}>
+                    <ImageCapInset
+                        style={{ width: '100%', height: '100%', position: 'absolute' }}
+                        source={require('../../../assets/tab_icon.png')}
+                        capInsets={{ top: 100, right: 100, bottom: 100, left: 100 }}
+                    />
+                    <View style={{ position: 'absolute', left: 155, bottom: 30, width: 70  }}>
+                        <Text style={{ fontFamily: 'SourceHanSerifCN-Bold', fontSize: 38, color: '#ff1e0c' }}>恭喜发财</Text>
+                    </View>
+                </View> */}
                 <View style={{ width: '90%', height: 500, backgroundColor: '#a6c2cb' }}>
                     <ImageCapInset
                         style={{ width: '100%', height: '100%', position: 'absolute' }}
