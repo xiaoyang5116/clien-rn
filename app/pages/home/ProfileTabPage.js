@@ -7,9 +7,8 @@ import {
     StyleSheet,
 } from "../../constants";
 
-import { View, Text, FlatList, TouchableOpacity } from '../../constants/native-ui';
+import { View, Text } from '../../constants/native-ui';
 import { TextButton } from '../../constants/custom-ui';
-import * as DateTime from '../../utils/DateTimeUtils';
 
 class ProfileTabPage extends Component {
 

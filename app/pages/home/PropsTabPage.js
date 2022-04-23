@@ -19,6 +19,8 @@ import {
     TextButton,
 } from '../../constants/custom-ui';
 
+import { confirm } from '../../components/dialog';
+
 class PropsTabPage extends Component {
 
     constructor(props) {
@@ -48,11 +50,17 @@ class PropsTabPage extends Component {
     }
 
     _useProps() {
-        this.props.dispatch(action('PropsModel/use')({ propId: this.state.selectId, num: 1 }));
+        confirm('确认使用？', 
+        () => {
+            this.props.dispatch(action('PropsModel/use')({ propId: this.state.selectId, num: 1 }));
+        });
     }
 
     _discardProps() {
-        this.props.dispatch(action('PropsModel/discard')({ propId: this.state.selectId }));
+        confirm('确认丢弃？',
+        () => {
+            this.props.dispatch(action('PropsModel/discard')({ propId: this.state.selectId }));
+        });
     }
 
     _renderItem = (data) => {
