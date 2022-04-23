@@ -7,7 +7,8 @@ import {
 
 import {
   connect,
-  Component
+  Component,
+  StyleSheet,
 } from "../constants";
 
 import {
@@ -23,12 +24,13 @@ import ComposeTabPage from './home/ComposeTabPage';
 import ArenaTabPage from './home/ArenaTabPage';
 import ExploreTabPage from './home/ExploreTabPage';
 import FastImage from 'react-native-fast-image';
+import { Platform } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
 const TabIcon = (props) => {
   return (
-    <View style={{  }}>
+    <View style={{ }}>
       <View style={{ borderWidth: 1, borderColor: '#ccc',  marginTop: 20, padding: 1, transform: [{ scale: 0.5 }] }}>
         <FastImage style={{ width: 56, height: 90 }} source={require('../../assets/tab_icon.png')} />
       </View>
@@ -39,11 +41,17 @@ const TabIcon = (props) => {
   );
 }
 
+const defaultScreenOptions = {
+  tabBarStyle: {
+    height: (Platform.OS == 'android' ? 70 : 90),
+  }
+}
+
 class HomePage extends Component {
 
   render() {
     return (
-      <Tab.Navigator initialRouteName='World'>
+      <Tab.Navigator initialRouteName='World' screenOptions={defaultScreenOptions} >
         <Tab.Screen name="World" component={StoryTabPage} options={{
           tabBarLabel: "",
           headerTitle: "世界",
@@ -84,5 +92,8 @@ class HomePage extends Component {
   }
   
 }
+
+const styles = StyleSheet.create({
+});
 
 export default connect((state) => ({ ...state.AppModel }))(HomePage);

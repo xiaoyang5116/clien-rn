@@ -71,7 +71,7 @@ class ArchivePage extends Component {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <View style={{ margin: 10, padding: 5, height: '70%', backgroundColor: '#eee' }}>
+          <View style={{ margin: 10, padding: 5, width: '90%', height: '70%', backgroundColor: '#eee' }}>
             <View style={{ alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#999' }}>
               <Text style={{ lineHeight: 26, fontWeight: 'bold', margin: 10 }}>存档列表:（双击选择）</Text>
             </View>
