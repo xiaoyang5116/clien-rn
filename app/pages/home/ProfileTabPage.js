@@ -8,8 +8,6 @@ import {
 } from "../../constants";
 
 import { View, Text, TouchableOpacity } from '../../constants/native-ui';
-// import { TextButton } from '../../constants/custom-ui';
-// import * as DateTime from '../../utils/DateTimeUtils';
 import RootView from '../../components/RootView';
 import Theme from '../../components/theme';
 
