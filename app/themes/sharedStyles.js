@@ -1,6 +1,12 @@
 
 import { StyleSheet } from 'react-native';
 
+
+/* 字体大小 */
+const titleSize = 24
+const contentSize = 18
+
+
 const sharedStyles = StyleSheet.create({
     // /** ================================ */
     // /**             公用                 */
@@ -13,10 +19,24 @@ const sharedStyles = StyleSheet.create({
     },
 
     /* 背景颜色 */
-    // 米白色 e8ddcc
+    // 米白色 #e8ddcc
     bgColor: {
         backgroundColor: '#e8ddcc',
     },
+
+    /* row居中 */
+    rowCenter: {
+        justifyContent: 'center',
+        flexDirection: "row",
+        alignItems: "center",
+    },
+
+    /* header */
+    header: {
+        marginTop: 20,
+        marginBottom: 30,
+    },
+
 
     /** ================================ */
     /**             选择框                */
