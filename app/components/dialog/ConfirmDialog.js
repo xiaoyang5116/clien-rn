@@ -24,11 +24,11 @@ class ConfirmDialog extends React.Component {
                 </View>
                 <View style={{ height: 50, marginBottom: 10, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                     <TextButton title="确认" onPress={() => { 
-                        this.props.yes();
+                        if (this.props.yes != undefined) this.props.yes();
                         this.props.onClose();
                     }} />
-                    <TextButton title="取消" onPress={() => { 
-                        this.props.no(); 
+                    <TextButton title="取消" onPress={() => {
+                        if (this.props.no != undefined) this.props.no();
                         this.props.onClose();
                     }} />
                 </View>
@@ -39,7 +39,7 @@ class ConfirmDialog extends React.Component {
     }
 }
 
-export default function confirm(msg, yes, no) {
+export function confirm(msg, yes, no) {
     const key = RootView.add(<ConfirmDialog msg={msg} yes={yes} no = {no} onClose={() => {
         RootView.remove(key);
     }} />);

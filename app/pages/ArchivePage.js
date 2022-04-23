@@ -17,7 +17,7 @@ import {
 
 import { TextButton } from '../constants/custom-ui';
 import * as DateTime from '../utils/DateTimeUtils';
-import confirm from '../components/dialog/ConfirmDialog';
+import { confirm } from '../components/dialog';
 
 class ArchivePage extends Component {
 
@@ -46,8 +46,6 @@ class ArchivePage extends Component {
     confirm('确认清档？', 
     () => {
       this.props.dispatch(action('AppModel/clearArchive')());
-    }, 
-    () => {
     });
   }
 
@@ -55,8 +53,6 @@ class ArchivePage extends Component {
     confirm('确认存档？', 
     () => {
       this.props.dispatch(action('AppModel/archive')({ title: '手动存档' }));
-    }, 
-    () => {
     });
   }
 
