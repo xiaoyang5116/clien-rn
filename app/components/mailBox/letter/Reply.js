@@ -64,7 +64,7 @@ const Reply = (props) => {
         <View style={styles.mailBox}>
             <View style={[currentStyles.bgColor, {
                 width: 360,
-                height: 500,
+                height: 550,
             }]}>
                 <View style={{ flex: 1 }}>
                     <View style={{ flex: 1 }}>

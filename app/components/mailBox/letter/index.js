@@ -62,7 +62,7 @@ const Letter = (props) => {
         <View style={styles.mailBox}>
             <View style={[currentStyles.bgColor, {
                 width: 360,
-                height: 500,
+                height: 550,
             }]}>
                 {/* head */}
                 <View style={{ height: 50, backgroundColor: '#e3d5c1', alignItems: 'center', justifyContent: 'center' }}>

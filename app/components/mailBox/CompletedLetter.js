@@ -75,7 +75,7 @@ const CompletedLetter = (props) => {
         <View style={styles.mailBox}>
             <View style={[currentStyles.bgColor, {
                 width: 360,
-                height: 500,
+                height: 550,
             }]}>
                 {/* head */}
                 <View style={{ marginBottom: 12, paddingBottom: 8, paddingTop: 8, paddingLeft: 12, backgroundColor: '#e3d5c1', alignItems: 'flex-start', }}>

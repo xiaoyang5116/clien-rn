@@ -32,7 +32,7 @@ const MailBoxPage = (props) => {
         <View style={[styles.mailBox]}>
             <View style={[currentStyles.bgColor, {
                 width: 360,
-                height: 500,
+                height: 550,
                 position: "relative",
             }]}>
                 {currentTab === 'MailBox' ? <MailBox hideMailBoxPage={setIsHide} /> : <CompletedLetter hideMailBoxPage={setIsHide} />}
