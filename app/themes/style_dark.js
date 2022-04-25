@@ -2,18 +2,29 @@
 import { StyleSheet } from 'react-native';
 import sharedStyles from './sharedStyles';
 
-/**
- * 背景颜色
- */
-const pageBgColor = '#5e5e5e' // 灰白色
+/** 主题色：黑色 */
 
 /**
- * header 样式
- * headerTextColor 文字颜色
- * headerBgColor 背景颜色
+ * 背景颜色
+ *      页面背景 bgColor1: #5e5e5e
+ *      区块背景 bgColor2: #4d4d4d
  */
- const headerTextColor = '#fff';  // 深灰色
- const headerBgColor = '#212121';  // 米白色
+const bgColor1 = '#5e5e5e';
+const bgColor2 = '#4d4d4d';
+
+
+/**
+ * 文字颜色
+ *      标题
+ *          一级标题 titleColor: #f0f0f0
+ *      内容
+ *          一级内容 contentColor: #f0f0f0
+ */
+// 标题
+const titleColor1 = '#f0f0f0';
+
+// 内容
+const contentColor = '#f0f0f0';
 
 
 const styles = StyleSheet.create({
@@ -25,20 +36,30 @@ const styles = StyleSheet.create({
 
     /* 页面背景颜色 */
     pageBg: {
-        backgroundColor: pageBgColor,
+        backgroundColor: bgColor1,
     },
 
     /* header */
-    headerBg: {
-        backgroundColor: headerBgColor,
+    headerBgColor: {
+        backgroundColor: bgColor2,
     },
     headerTextColor: {
-        color: headerTextColor,
+        color: contentColor,
+    },
+
+    /** ================================ */
+    /**             底部                 */
+    /** ================================ */
+    footerBgColor: {
+        backgroundColor: bgColor2,
+    },
+    footerTextColor: {
+        color: contentColor,
     },
 
     /* 按钮样式 */
     button: {
-        color: '#424242',
+        color: '#f0f0f0',
         backgroundColor: '#CCC'
     },
     /** ================================ */
