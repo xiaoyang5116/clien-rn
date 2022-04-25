@@ -16,6 +16,7 @@ import RootView from '../../components/RootView';
 import ThemeComponent from '../../components/theme';
 import Panel from '../../components/panel';
 import { ImageButton } from '../../constants/custom-ui';
+import * as RootNavigation from '../../utils/RootNavigation';
 
 class ProfileTabPage extends React.Component {
 
@@ -32,8 +33,17 @@ class ProfileTabPage extends React.Component {
                     const key = RootView.add(<ThemeComponent updateTheme={this._onChangeTheme} onClose={() => { RootView.remove(key) }} />); 
                 } 
             },
-            { id: 2, title: '...' },
-            { id: 3, title: '...' },
+            { 
+                id: 2, 
+                title: '...', 
+                cb: () => { 
+                    RootNavigation.navigate('Settings');
+                } 
+            },
+            { 
+                id: 3, 
+                title: '...', 
+            },
         ];
     }
 
