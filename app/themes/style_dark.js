@@ -10,7 +10,7 @@ const pageBgColor = '#5e5e5e' // 灰白色
 /**
  * 通用按钮
  */
- const btnFontColor = '#bcfefe';
+ const btnFontColor = '#eee';
  const btnBackgroundColor = '#003964';
 
 /**

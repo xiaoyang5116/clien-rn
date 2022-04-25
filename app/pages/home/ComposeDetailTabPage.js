@@ -108,7 +108,7 @@ class ComposeDetailTabPage extends Component {
         });
 
         return (
-            <Panel>
+            <Panel patternId={3}>
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={styles.composeContainer}>
                     <View style={{ height: 35, justifyContent: 'center', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>

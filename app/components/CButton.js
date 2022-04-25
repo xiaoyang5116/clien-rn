@@ -4,6 +4,7 @@ import lo from 'lodash';
 
 import {
     Component,
+    StyleSheet,
 } from "../constants";
 
 import ImageCapInset from 'react-native-image-capinsets-next';
@@ -68,7 +69,7 @@ export class CButton extends Component {
         if (this.isTextStyle()) {
             const defaultStyle = {
                 backgroundColor: (this.props.disabled ? '#999' : this.props.color),
-                borderColor: '#666', borderWidth: 1, borderRadius: 3,
+                ...styles.border,
             };
             const imgBg = this.props.disabled ? TEXT_BUTTON_BG[1] : TEXT_BUTTON_BG[0];
             return (
@@ -79,7 +80,7 @@ export class CButton extends Component {
                             source={imgBg}
                             capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
                         />
-                        <Text key={0} style={[{ paddingTop: 5, paddingBottom: 5, paddingLeft: 12, paddingRight: 12, fontSize: this.props.fontSize, textAlign: 'center' }]} >{this.props.title}</Text>
+                        <Text key={0} style={[styles.text, { fontSize: this.props.fontSize, color: this.props.fontColor }]} >{this.props.title}</Text>
                     </View>
                 </TouchableHighlight>
             );
@@ -96,6 +97,16 @@ export class CButton extends Component {
         return (<></>);
     }
 }
+
+const styles = StyleSheet.create({
+    text: {
+        paddingTop: 5, paddingBottom: 5, paddingLeft: 12, paddingRight: 12,
+        textAlign: 'center',
+    },
+    border: {
+        borderColor: '#666', borderWidth: 1, borderRadius: 3,
+    },
+});
 
 CButton.propTypes = {
     title: PropTypes.string,

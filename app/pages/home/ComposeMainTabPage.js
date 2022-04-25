@@ -75,7 +75,7 @@ class ComposeMainTabPage extends Component {
     render() {
         const selectedProp = this.props.listData.find(e => e.id == this.state.selectId);
         return (
-            <Panel>
+            <Panel patternId={3}>
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={styles.composeContainer}>
                     <View style={{ height: 40, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>

@@ -44,7 +44,12 @@ const TabIcon = (props) => {
 const defaultScreenOptions = {
   tabBarStyle: {
     height: (Platform.OS == 'android' ? 70 : 90),
-  }
+  },
+  tabBarBackground: () => {
+    return (
+      <FastImage style={{ width: '100%', height: '100%' }} resizeMode='cover' source={require('../../assets/tab/tab_banner_bg.png')} />
+    );
+  },
 }
 
 class HomePage extends Component {
