@@ -3,37 +3,72 @@ import React from 'react';
 import {
     action,
     connect,
-    Component,
-    ThemeContext,
 } from "../../constants";
 
-import { View, Text, TouchableOpacity } from '../../constants/native-ui';
+import { 
+    View, 
+    Text, 
+    FlatList,
+} from '../../constants/native-ui';
+
 import RootView from '../../components/RootView';
 import ThemeComponent from '../../components/theme';
+import Panel from '../../components/panel';
+import { ImageButton } from '../../constants/custom-ui';
 
-const ProfileTabPage = (props) => {
-    const theme = React.useContext(ThemeContext);
+class ProfileTabPage extends React.Component {
 
-    const _onChangeTheme = (themeId) => {
+    constructor(props) {
+        super(props);
+
+        this.data = [
+            { 
+                id: 1, 
+                title: '界面风格设置', 
+                cb: () => { 
+                    const key = RootView.add(<ThemeComponent updateTheme={this._onChangeTheme} onClose={() => { RootView.remove(key) }} />); 
+                } 
+            },
+            { id: 2, title: '...' },
+            { id: 3, title: '...' },
+        ];
+    }
+
+    _onChangeTheme = (themeId) => {
         if (themeId >= 0) {
-            props.dispatch(action('AppModel/changeTheme')({ themeId: themeId }));
+            this.props.dispatch(action('AppModel/changeTheme')({ themeId: themeId }));
         }
     }
 
-
-    return (
-        <TouchableOpacity
-            style={{ marginLeft: 10, marginRight: 10, marginBottom: 20, }}
-            onPress={() => {
-                const key = RootView.add(<ThemeComponent updateTheme={_onChangeTheme} onClose={() => { RootView.remove(key) }} />);
-            }}
-        >
-            <View style={[{ width: "100%", paddingTop: 10, paddingBottom: 10, borderColor: '#999', borderWidth: 1, backgroundColor: '#ede7db' }, theme.rowCenter]}>
-                <Text style={{ fontSize: 18 }}>选择风格</Text>
+    _renderItem = (data) => {
+        const item = data.item;
+        return (
+            <View style={{ flex: 1, flexDirection: 'row',  justifyContent: 'center', height: 80 }}>
+                <ImageButton height={80} 
+                    source={require('../../../assets/button/profile_item.png')} 
+                    selectedSource={require('../../../assets/button/profile_item_selected.png')} 
+                    onPress={() => { if (item.cb != undefined) item.cb(); }}
+                />
+                <View style={{ position: 'absolute', left: 0, top: 30, width: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents='none' >
+                    <Text style={{ color: '#000', fontSize: 20 }}>{item.title}</Text>
+                </View>
             </View>
-        </TouchableOpacity>
-    );
+        );
+    }
 
+    render() {
+        return (
+            <Panel>
+                <View style={{ flex: 1, marginTop: 10 }}>
+                    <FlatList
+                        data={this.data}
+                        renderItem={this._renderItem}
+                        keyExtractor={item => item.id}
+                    />
+                </View>
+            </Panel>
+        );
+    }
 }
 
 

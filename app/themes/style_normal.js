@@ -5,14 +5,11 @@ import sharedStyles from './sharedStyles';
 // 文字颜色
 const textColor = '#000';  // 黑色 6a655e
 
-/**
- * 按钮颜色
- * btnColor: 字体颜色,
- * btnBgColor: 背景颜色,
+ /**
+ * 通用按钮
  */
-const btnColor = '#bcfefe';  // 青色
-const btnBgColor = '#003964';  // 蓝色
-const btnColor2 = '#ede7db';  // 淡米白色
+const btnFontColor = '#424242';
+const btnBackgroundColor = '#eee';
 
 /**
  * 背景颜色
@@ -60,8 +57,8 @@ const styles = StyleSheet.create({
 
     /* 按钮样式 */
     button: {
-        color: btnColor,
-        backgroundColor: btnBgColor,
+        color: btnFontColor,
+        backgroundColor: btnBackgroundColor,
     },
 
     /** ================================ */

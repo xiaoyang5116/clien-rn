@@ -19,6 +19,7 @@ import {
     TextButton,
 } from '../../constants/custom-ui';
 
+import Panel from '../../components/panel';
 import { confirm } from '../../components/dialog';
 
 class PropsTabPage extends Component {
@@ -91,6 +92,7 @@ class PropsTabPage extends Component {
     render() {
         const selectedProp = this.props.listData.find(e => e.id == this.state.selectId);
         return (
+            <Panel patternId={2}>
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={styles.propsContainer}>
                     <View style={{ height: 80, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
@@ -138,6 +140,7 @@ class PropsTabPage extends Component {
                     </View>
                 </View>
             </View>
+            </Panel>
         );
     }
 }
@@ -145,7 +148,7 @@ class PropsTabPage extends Component {
 const styles = StyleSheet.create({
     propsContainer: {
         flex: 1,
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
         margin: 10,
         alignSelf: 'stretch',
     },
@@ -158,7 +161,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ccc',
         borderTopWidth: 1,
         borderTopColor: '#fff',
-        backgroundColor: '#ebebeb',
+        // backgroundColor: '#ebebeb',
         height: 40,
     },
     propSelected: {

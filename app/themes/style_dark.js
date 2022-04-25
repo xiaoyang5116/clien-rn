@@ -9,9 +9,14 @@ import sharedStyles from './sharedStyles';
  *      页面背景 bgColor1: #5e5e5e
  *      区块背景 bgColor2: #4d4d4d
  */
-const bgColor1 = '#5e5e5e';
-const bgColor2 = '#4d4d4d';
+ const bgColor1 = '#5e5e5e';
+ const bgColor2 = '#4d4d4d';
 
+/**
+ * 通用按钮
+ */
+ const btnFontColor = '#eee';
+ const btnBackgroundColor = '#003964';
 
 /**
  * 文字颜色
@@ -59,8 +64,8 @@ const styles = StyleSheet.create({
 
     /* 按钮样式 */
     button: {
-        color: '#f0f0f0',
-        backgroundColor: '#CCC'
+        color: btnFontColor,
+        backgroundColor: btnBackgroundColor,
     },
     /** ================================ */
     /**             选择框                */
