@@ -31,7 +31,7 @@ const TabIcon = (props) => {
   return (
     <View style={{ position: 'absolute', left: 0, top: -52 }}>
       <View style={{ borderWidth: 1, borderColor: '#ccc',  marginTop: 20, padding: 1, transform: [{ scale: 0.5 }] }}>
-        <FastImage style={{ width: 56, height: 90 }} source={require('../../assets/tab_icon.png')} />
+        <FastImage style={{ width: 56, height: 90 }} source={require('../../assets/tab/tab_icon.png')} />
       </View>
       <View style={{ position: 'absolute', left: 25, top: 55, width: 20 }}>
         <Text style={{ fontSize: 12, color: props.color }}>{props.title}</Text>

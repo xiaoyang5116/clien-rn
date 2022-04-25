@@ -232,7 +232,7 @@ class Lottery10Times extends Component {
 
     render() {
         return (
-            <FastImage style={{ flex: 1 }} source={require('../../../assets/lottery_bg.jpg')}>
+            <FastImage style={{ flex: 1 }} source={require('../../../assets/bg/lottery_bg.jpg')}>
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -294,7 +294,7 @@ class LotteryBaoZang extends Component {
 
     render() {
         return (
-            <FastImage style={{ flex: 1 }} source={require('../../../assets/lottery_bg2.jpg')}>
+            <FastImage style={{ flex: 1 }} source={require('../../../assets/bg/lottery_bg2.jpg')}>
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
