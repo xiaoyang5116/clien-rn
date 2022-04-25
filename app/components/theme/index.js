@@ -11,7 +11,8 @@ import {
 import React, { useEffect } from 'react';
 import { TextButton, TitleHeader } from '../../constants/custom-ui';
 import * as Themes from '../../themes';
-import ImageCapInset from 'react-native-image-capinsets-next';
+import Panel from '../panel'
+
 // const data = [
 //     { id: 0, title: '白天模式', style: require('./style_normal').default, img: require('../../assets/lottery_bg2.jpg'), checked: true  },
 //     { id: 1, title: '夜晚模式', style: require('./style_dark').default, img: require('../../assets/lottery_bg.jpg'), checked: false  },
@@ -84,42 +85,43 @@ const Theme = props => {
         );
     };
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
-            <View style={{ flex: 1 }}>
-                <View style={[theme.pageContainer, theme.pageBg]}>
-                    <View style={{ position: 'relative', }}>
-                        <TitleHeader
-                            style={[theme.rowCenter,]}
-                            source={require('../../../assets/frame/titleFrame.png')}
-                            title={'选择界面风格'}
-                        />
-                    </View>
+        <Panel>
+            <SafeAreaView style={{ flex: 1 }}>
+                <View style={{ flex: 1 }}>
+                    <View style={[theme.pageContainer,]}>
+                        <View style={{ position: 'relative', }}>
+                            <TitleHeader
+                                style={[theme.rowCenter,]}
+                                source={require('../../../assets/frame/titleFrame.png')}
+                                title={'选择界面风格'}
+                            />
+                        </View>
 
-                    <View>
-                        <FlatList
-                            data={themeData}
-                            renderItem={renderTheme}
-                            keyExtractor={(item, index) => item + index}
-                            ListFooterComponent={() => <View style={{ height: 200 }} />}
-                            getItemLayout={(_data, index) => ({
-                                length: 158,
-                                offset: 158 * index,
-                                index,
-                            })}
-                            numColumns={3}
-                            columnWrapperStyle={{
-                                justifyContent: 'flex-start',
-                                marginTop: 18,
-                                alignItems: 'center',
-                            }}
-                        />
-                    </View>
-                    <View style={[theme.footerContainer, theme.rowCenter]}>
-                        <Image
-                            style={[{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0, zIndex: 1 }]}
-                            source={require('../../../assets/frame/frame6.png')}
-                        />
-                        {/* <Image
+                        <View>
+                            <FlatList
+                                data={themeData}
+                                renderItem={renderTheme}
+                                keyExtractor={(item, index) => item + index}
+                                ListFooterComponent={() => <View style={{ height: 200 }} />}
+                                getItemLayout={(_data, index) => ({
+                                    length: 158,
+                                    offset: 158 * index,
+                                    index,
+                                })}
+                                numColumns={3}
+                                columnWrapperStyle={{
+                                    justifyContent: 'flex-start',
+                                    marginTop: 18,
+                                    alignItems: 'center',
+                                }}
+                            />
+                        </View>
+                        <View style={[theme.footerContainer, theme.rowCenter]}>
+                            <Image
+                                style={[{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0, zIndex: 1 }]}
+                                source={require('../../../assets/frame/frame6.png')}
+                            />
+                            {/* <Image
                             style={[{ width: "100%", height: "100%", position: "absolute", top: 10, left: 0, zIndex: 1 }]}
                             source={require('../../../assets/frame/frame4_top.png')}
                         />
@@ -127,20 +129,21 @@ const Theme = props => {
                             style={[{ width: "100%", height: "100%", position: "absolute", bottom: 10, left: 0, zIndex: 1 }]}
                             source={require('../../../assets/frame/frame4_bottom.png')}
                         /> */}
-                        <View style={[theme.rowSpaceAround, theme.footerBgColor, { height: 40, width: "100%", position: "absolute", zIndex: 0 },]}>
-                        </View>
-                        <View style={[theme.rowSpaceAround, { flex: 1, zIndex: 2 }]}>
-                            <View>
-                                <TextButton title="退出" onPress={props.onClose} style={{ width: 120 }} />
-                            </View>
-                            <View>
-                                <TextButton title="确认" onPress={props.onClose} style={{ width: 120 }} />
+                            {/* <View style={[theme.rowSpaceAround, theme.footerBgColor, { height: 40, width: "100%", position: "absolute", zIndex: 0 },]}>
+                            </View> */}
+                            <View style={[theme.rowSpaceAround, { flex: 1, zIndex: 2 }]}>
+                                <View>
+                                    <TextButton title="退出" onPress={props.onClose} style={{ width: 120 }} />
+                                </View>
+                                <View>
+                                    <TextButton title="确认" onPress={props.onClose} style={{ width: 120 }} />
+                                </View>
                             </View>
                         </View>
                     </View>
                 </View>
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
+        </Panel>
     );
 };
 
