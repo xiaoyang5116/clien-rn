@@ -11,6 +11,7 @@ import {
     RenderHTML
 } from 'react-native-render-html';
 
+import Panel from '../../components/panel';
 import ProgressBar from '../../components/ProgressBar';
 import { View, Text, FlatList } from '../../constants/native-ui';
 
@@ -65,6 +66,7 @@ class ArenaTabPage extends Component {
         }
 
         return (
+            <Panel patternId={3}>
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }}>
                     <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  backgroundColor: '#ccc' }}>
@@ -129,6 +131,7 @@ class ArenaTabPage extends Component {
                     </View>
                 </View>
             </View>
+            </Panel>
         );
     }
 
