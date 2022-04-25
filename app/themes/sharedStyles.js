@@ -39,10 +39,6 @@ const sharedStyles = StyleSheet.create({
     },
 
     /* header */
-    header: {
-        marginTop: 20,
-        marginBottom: 30,
-    },
 
     /** ================================ */
     /**             page 容器             */
@@ -54,11 +50,13 @@ const sharedStyles = StyleSheet.create({
     },
 
     /** ================================ */
-    /**             底部              */
+    /**             底部                 */
     /** ================================ */
     footerContainer: {
         position: 'absolute',
         bottom: 0,
+        height: 100,
+        width: '100%',
     },
 
     /** ================================ */

@@ -27,6 +27,14 @@ const pageBgColor = '#f2f2f2' // 灰白色
 const headerTextColor = '#6a655e';  // 深灰色
 const headerBgColor = '#e8ddcc';  // 米白色
 
+/**
+ * footer 底部样式
+ * footerTextColor 文字颜色
+ * footerBgColor 背景颜色
+ */
+ const footerTextColor = '#fff';  // 白色
+ const footerBgColor = '#e8ddcc';  // 灰黑色
+
 const styles = StyleSheet.create({
     /** ================================ */
     /**             公用                 */
@@ -40,7 +48,7 @@ const styles = StyleSheet.create({
     },
 
     /* header */
-    headerBg: {
+    headerBgColor: {
         backgroundColor: headerBgColor,
     },
     headerTextColor: {
@@ -54,8 +62,14 @@ const styles = StyleSheet.create({
     },
 
     /** ================================ */
-    /**             我的 页面             */
+    /**             底部                 */
     /** ================================ */
+    footerBgColor: {
+        backgroundColor: footerBgColor,
+    },
+    footerTextColor: {
+        color: footerTextColor,
+    },
 
     /** ================================ */
     /**             选择框                */
