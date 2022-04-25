@@ -105,7 +105,7 @@ class ArenaTabPage extends Component {
                         }}
                     />
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginBottom: 10, height: 100, backgroundColor: '#403340' }}>
                     <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  backgroundColor: '#ccc' }}>
                         <Text>{this.props.myself.userName}</Text>
                     </View>
