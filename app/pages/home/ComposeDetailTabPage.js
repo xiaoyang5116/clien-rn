@@ -20,6 +20,7 @@ import {
 
 import lo from 'lodash';
 import Toast from '../../components/toast';
+import Panel from '../../components/panel';
 
 class ComposeDetailTabPage extends Component {
 
@@ -107,6 +108,7 @@ class ComposeDetailTabPage extends Component {
         });
 
         return (
+            <Panel>
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={styles.composeContainer}>
                     <View style={{ height: 35, justifyContent: 'center', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
@@ -156,6 +158,7 @@ class ComposeDetailTabPage extends Component {
                     </View>
                 </View>
             </View>
+            </Panel>
         );
     }
 }
@@ -163,7 +166,7 @@ class ComposeDetailTabPage extends Component {
 const styles = StyleSheet.create({
     composeContainer: {
         flex: 1,
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
         margin: 10,
         alignSelf: 'stretch',
     },

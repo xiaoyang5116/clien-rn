@@ -3,13 +3,18 @@ import React from 'react';
 import {
     action,
     connect,
-    Component,
     ThemeContext,
 } from "../../constants";
 
-import { View, Text, TouchableOpacity } from '../../constants/native-ui';
+import { 
+    View, 
+    Text, 
+    TouchableOpacity,
+} from '../../constants/native-ui';
+
 import RootView from '../../components/RootView';
 import ThemeComponent from '../../components/theme';
+import Panel from '../../components/panel';
 
 const ProfileTabPage = (props) => {
     const theme = React.useContext(ThemeContext);
@@ -20,18 +25,19 @@ const ProfileTabPage = (props) => {
         }
     }
 
-
     return (
-        <TouchableOpacity
-            style={{ marginLeft: 10, marginRight: 10, marginBottom: 20, }}
-            onPress={() => {
-                const key = RootView.add(<ThemeComponent updateTheme={_onChangeTheme} onClose={() => { RootView.remove(key) }} />);
-            }}
-        >
+        <Panel>
+            <TouchableOpacity
+                style={{ marginLeft: 10, marginRight: 10, marginBottom: 20, }}
+                onPress={() => {
+                    const key = RootView.add(<ThemeComponent updateTheme={_onChangeTheme} onClose={() => { RootView.remove(key) }} />);
+                }}
+            >
             <View style={[{ width: "100%", paddingTop: 10, paddingBottom: 10, borderColor: '#999', borderWidth: 1, backgroundColor: '#ede7db' }, theme.rowCenter]}>
                 <Text style={{ fontSize: 18 }}>选择风格</Text>
             </View>
-        </TouchableOpacity>
+            </TouchableOpacity>
+        </Panel>
     );
 
 }

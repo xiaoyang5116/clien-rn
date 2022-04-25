@@ -19,6 +19,8 @@ import {
     TextButton,
 } from '../../constants/custom-ui';
 
+import Panel from '../../components/panel';
+
 class ComposeMainTabPage extends Component {
 
     constructor(props) {
@@ -73,6 +75,7 @@ class ComposeMainTabPage extends Component {
     render() {
         const selectedProp = this.props.listData.find(e => e.id == this.state.selectId);
         return (
+            <Panel>
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={styles.composeContainer}>
                     <View style={{ height: 40, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
@@ -103,6 +106,7 @@ class ComposeMainTabPage extends Component {
                     </View>
                 </View>
             </View>
+            </Panel>
         );
     }
 }
@@ -110,7 +114,7 @@ class ComposeMainTabPage extends Component {
 const styles = StyleSheet.create({
     composeContainer: {
         flex: 1,
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
         margin: 10,
         alignSelf: 'stretch',
     },

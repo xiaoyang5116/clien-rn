@@ -8,6 +8,12 @@ import sharedStyles from './sharedStyles';
 const pageBgColor = '#5e5e5e' // 灰白色
 
 /**
+ * 通用按钮
+ */
+ const btnFontColor = '#bcfefe';
+ const btnBackgroundColor = '#003964';
+
+/**
  * header 样式
  * headerTextColor 文字颜色
  * headerBgColor 背景颜色
@@ -38,8 +44,8 @@ const styles = StyleSheet.create({
 
     /* 按钮样式 */
     button: {
-        color: '#424242',
-        backgroundColor: '#CCC'
+        color: btnFontColor,
+        backgroundColor: btnBackgroundColor,
     },
     /** ================================ */
     /**             选择框                */
