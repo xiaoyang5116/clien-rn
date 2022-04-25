@@ -22,31 +22,31 @@ class FirstPage extends Component {
 
   render() {
     return (
-        <ImageBackground  style={{ flex: 1, justifyContent: 'center', flexDirection: 'row', alignItems: 'center' }} source={require('../../assets/bg.jpg')}>
+        <ImageBackground  style={{ flex: 1, justifyContent: 'center', flexDirection: 'row', alignItems: 'center' }} source={require('../../assets/bg/first_bg.jpg')}>
           <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
-            <ImageButton height={60} source={require('../../assets/story_button.png')} selectedSource={require('../../assets/story_button_selected.png')} onPress={() => { 
+            <ImageButton height={60} source={require('../../assets/button/story_button.png')} selectedSource={require('../../assets/button/story_button_selected.png')} onPress={() => { 
               RootNavigation.navigate('Article');
              }} />
-            <ImageButton height={60} source={require('../../assets/continue_button.png')} selectedSource={require('../../assets/continue_button_selected.png')} onPress={() => { 
+            <ImageButton height={60} source={require('../../assets/button/continue_button.png')} selectedSource={require('../../assets/button/continue_button_selected.png')} onPress={() => { 
               RootNavigation.navigate('Article');
              }} />
-            <ImageButton height={60} source={require('../../assets/home_button.png')} selectedSource={require('../../assets/home_button_selected.png')} onPress={() => { 
+            <ImageButton height={60} source={require('../../assets/button/home_button.png')} selectedSource={require('../../assets/button/home_button_selected.png')} onPress={() => { 
               this.props.dispatch(action('StoryModel/enter')({ sceneId: 'wzkj' }));
              }} />
-            <ImageButton height={60} source={require('../../assets/continue_button.png')} selectedSource={require('../../assets/continue_button_selected.png')} onPress={() => { 
+            <ImageButton height={60} source={require('../../assets/button/continue_button.png')} selectedSource={require('../../assets/button/continue_button_selected.png')} onPress={() => { 
               this.props.dispatch(action('StoryModel/reEnter')({ }));
              }} />
-            <ImageButton height={60} source={require('../../assets/archive_button.png')} selectedSource={require('../../assets/archive_button_selected.png')} onPress={() => { 
+            <ImageButton height={60} source={require('../../assets/button/archive_button.png')} selectedSource={require('../../assets/button/archive_button_selected.png')} onPress={() => { 
               const key = RootView.add(<ArchivePage onClose={() => {
                 RootView.remove(key);
               }} />);
              }} />
-            <ImageButton height={60} source={require('../../assets/profile_button.png')} selectedSource={require('../../assets/profile_button_selected.png')} onPress={() => { 
+            <ImageButton height={60} source={require('../../assets/button/profile_button.png')} selectedSource={require('../../assets/button/profile_button_selected.png')} onPress={() => { 
               RootNavigation.navigate('Home', { 
                 screen: 'Profile',
               });
              }} />
-            <ImageButton height={60} source={require('../../assets/test_button.png')} selectedSource={require('../../assets/test_button_selected.png')} onPress={() => { 
+            <ImageButton height={60} source={require('../../assets/button/test_button.png')} selectedSource={require('../../assets/button/test_button_selected.png')} onPress={() => { 
               // Shock.shockShow('bigShock');
               const key = RootView.add(<MailBox onClose={() => { RootView.remove(key) }} />);
             }} />
