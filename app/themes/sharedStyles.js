@@ -55,7 +55,7 @@ const sharedStyles = StyleSheet.create({
     footerContainer: {
         position: 'absolute',
         bottom: 0,
-        height: 70,
+        height: 100,
         width: '100%',
     },
 

@@ -114,17 +114,28 @@ const Theme = props => {
                             }}
                         />
                     </View>
-                    <View style={[theme.footerContainer, theme.footerBgColor, theme.rowSpaceAround]}>
-                        <ImageCapInset
-                            style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
-                            source={require('../../../assets/button/40dpi.png')}
-                            capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                    <View style={[theme.footerContainer, theme.rowCenter]}>
+                        <Image
+                            style={[{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0, zIndex: 1 }]}
+                            source={require('../../../assets/frame/frame6.png')}
                         />
-                        <View>
-                            <TextButton title="退出" onPress={props.onClose} style={{ width: 100 }} />
+                        {/* <Image
+                            style={[{ width: "100%", height: "100%", position: "absolute", top: 10, left: 0, zIndex: 1 }]}
+                            source={require('../../../assets/frame/frame4_top.png')}
+                        />
+                        <Image
+                            style={[{ width: "100%", height: "100%", position: "absolute", bottom: 10, left: 0, zIndex: 1 }]}
+                            source={require('../../../assets/frame/frame4_bottom.png')}
+                        /> */}
+                        <View style={[theme.rowSpaceAround, theme.footerBgColor, { height: 40, width: "100%", position: "absolute", zIndex: 0 },]}>
                         </View>
-                        <View>
-                            <TextButton title="确认" onPress={props.onClose} style={{ width: 100 }} />
+                        <View style={[theme.rowSpaceAround, { flex: 1, zIndex: 2 }]}>
+                            <View>
+                                <TextButton title="退出" onPress={props.onClose} style={{ width: 120 }} />
+                            </View>
+                            <View>
+                                <TextButton title="确认" onPress={props.onClose} style={{ width: 120 }} />
+                            </View>
                         </View>
                     </View>
                 </View>
