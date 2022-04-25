@@ -53,7 +53,7 @@ const Reply = (props) => {
     const renderBtn = ({ item }) => {
         return (
             <TouchableOpacity onPress={() => { confirmReply(item) }}>
-                <View style={{ height: 80, backgroundColor: '#e3d5c1', marginTop: 12, borderRadius: 12, padding: 12, justifyContent: 'space-between' }}>
+                <View style={{ backgroundColor: '#e3d5c1', marginTop: 12, borderRadius: 12, padding: 12, justifyContent: 'center' }}>
                     <Text style={{ fontSize: 18 }}>{item.content}</Text>
                     <Text style={{ fontSize: 18 }}>{item.tokey === 'finish' ? '来信流程结束' : "预计耗时" + item.nextTime + "s"}</Text>
                 </View>
