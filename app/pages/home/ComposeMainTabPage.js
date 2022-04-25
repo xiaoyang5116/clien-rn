@@ -20,6 +20,7 @@ import {
 } from '../../constants/custom-ui';
 
 import Panel from '../../components/panel';
+import ImageCapInset from 'react-native-image-capinsets-next';
 
 class ComposeMainTabPage extends Component {
 
@@ -98,8 +99,13 @@ class ComposeMainTabPage extends Component {
                             keyExtractor={item => item.id}
                         />
                     </View>
-                    <View style={{ height: 100, flexDirection: 'column'}}>
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#ccc', backgroundColor: '#eee', margin: 10 }}>
+                    <View style={{ height: 100, marginBottom: 10, flexDirection: 'column'}}>
+                        <ImageCapInset
+                            style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.3 }}
+                            source={require('../../../assets/bg/area.png')}
+                            capInsets={{ top: 30, right: 30, bottom: 30, left: 30 }}
+                        />
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#ccc', backgroundColor: 'rgba(0,0,0,0.08)', margin: 10 }}>
                             <Text>{selectedProp != undefined ? (selectedProp.name + ':') : ''}</Text>
                             <Text>{(selectedProp != undefined && selectedProp.desc != undefined) ? selectedProp.desc : ''}</Text>
                         </View>
