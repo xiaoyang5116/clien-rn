@@ -101,7 +101,7 @@ class ExploreMapsPage extends Component {
 
     render() {
         return (
-            <FastImage style={{ flex: 1 }} source={require('../../../assets/explore_bg.jpg')} >
+            <FastImage style={{ flex: 1 }} source={require('../../../assets/bg/explore_bg.jpg')} >
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>

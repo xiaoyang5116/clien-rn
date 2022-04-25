@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ccc',
         borderTopWidth: 1,
         borderTopColor: '#fff',
-        backgroundColor: '#ebebeb',
+        // backgroundColor: '#ebebeb',
         height: 40,
     },
     composeSelected: {

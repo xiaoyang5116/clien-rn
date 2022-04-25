@@ -361,14 +361,14 @@ class ExploreMainPopPage extends Component {
         const currentArea = mapSelected.areas.find(e => e.id == this.props.areaId);
 
         return (
-            <FastImage style={{ flex: 1 }} source={require('../../../assets/explore_bg.jpg')} >
+            <FastImage style={{ flex: 1 }} source={require('../../../assets/bg/explore_bg.jpg')} >
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', marginLeft: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
                         <Text style={styles.textBox}>{mapSelected.name}</Text>
                     </View>
                     <View style={{ flexDirection: 'column', margin: 10, height: 160, justifyContent: 'center', alignItems: 'center' }} >
-                        <FastImage style={{ flex: 1, overflow: 'hidden' }} source={require('../../../assets/lottery_bg2.jpg')} resizeMode='stretch' >
+                        <FastImage style={{ flex: 1, overflow: 'hidden' }} source={require('../../../assets/bg/lottery_bg2.jpg')} resizeMode='stretch' >
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />
                             <View style={{ flexDirection: 'row', width: '100%',  height: 80, justifyContent: 'space-around', alignItems: 'center' }} >
                                 <EventButton ref={this.refXunBaoButton} title={'寻宝'} {...this.props} onPress={() => { this.showXunBao() }} />

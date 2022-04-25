@@ -11,11 +11,6 @@ import React from 'react';
 import { TextButton, TitleHeader } from '../../constants/custom-ui';
 import * as Themes from '../../themes';
 
-// const data = [
-//     { id: 0, title: '白天模式', style: require('./style_normal').default, img: require('../../assets/lottery_bg2.jpg'), checked: true  },
-//     { id: 1, title: '夜晚模式', style: require('./style_dark').default, img: require('../../assets/lottery_bg.jpg'), checked: false  },
-// ]
-
 const windowWidth = Dimensions.get('window').width;
 
 const Theme = props => {
