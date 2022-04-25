@@ -5,12 +5,13 @@ import {
     TouchableWithoutFeedback,
     SafeAreaView,
     Image,
+    ImageBackground,
     Dimensions,
 } from 'react-native';
 import React, { useEffect } from 'react';
 import { TextButton, TitleHeader } from '../../constants/custom-ui';
 import * as Themes from '../../themes';
-
+import ImageCapInset from 'react-native-image-capinsets-next';
 // const data = [
 //     { id: 0, title: '白天模式', style: require('./style_normal').default, img: require('../../assets/lottery_bg2.jpg'), checked: true  },
 //     { id: 1, title: '夜晚模式', style: require('./style_dark').default, img: require('../../assets/lottery_bg.jpg'), checked: false  },
@@ -113,7 +114,12 @@ const Theme = props => {
                             }}
                         />
                     </View>
-                    <View style={[theme.rowSpaceAround,theme.footerContainer,theme.footerBgColor]}>
+                    <View style={[theme.footerContainer, theme.footerBgColor, theme.rowSpaceAround]}>
+                        <ImageCapInset
+                            style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
+                            source={require('../../../assets/button/40dpi.png')}
+                            capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                        />
                         <View>
                             <TextButton title="退出" onPress={props.onClose} style={{ width: 100 }} />
                         </View>
