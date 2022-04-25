@@ -44,6 +44,7 @@ const defaultScreenOptions = {
   tabBarStyle: {
     height: 70,
     borderTopWidth: 0, // 去掉底部边框
+    backgroundColor: '#fff',
   },
   tabBarBackground: () => {
     return (

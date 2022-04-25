@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     /* 按钮样式 */
     button: {
         color: btnFontColor,
+        fontColor: btnFontColor,
         backgroundColor: btnBackgroundColor,
     },
 
@@ -90,6 +91,11 @@ const styles = StyleSheet.create({
         border: '#c7c7cc',
         notification: '#ff453a',
     },
+    /** ================================ */
+    /**            图片资源               */
+    /** ================================ */
+    profileItemImage: require('../../assets/button/profile_item.png'),
+    profileItemImageSelected: require('../../assets/button/profile_item_selected.png'),
 });
 
 export default styles;

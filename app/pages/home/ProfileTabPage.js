@@ -3,6 +3,7 @@ import React from 'react';
 import {
     action,
     connect,
+    ThemeContext,
 } from "../../constants";
 
 import { 
@@ -15,12 +16,15 @@ import RootView from '../../components/RootView';
 import ThemeComponent from '../../components/theme';
 import Panel from '../../components/panel';
 import { ImageButton } from '../../constants/custom-ui';
+import * as RootNavigation from '../../utils/RootNavigation';
 
 class ProfileTabPage extends React.Component {
 
+    static contextType = ThemeContext;
+
     constructor(props) {
         super(props);
-
+        this.flatListKey = 1; // 用于强制刷新
         this.data = [
             { 
                 id: 1, 
@@ -29,8 +33,17 @@ class ProfileTabPage extends React.Component {
                     const key = RootView.add(<ThemeComponent updateTheme={this._onChangeTheme} onClose={() => { RootView.remove(key) }} />); 
                 } 
             },
-            { id: 2, title: '...' },
-            { id: 3, title: '...' },
+            { 
+                id: 2, 
+                title: '...', 
+                cb: () => { 
+                    RootNavigation.navigate('Settings');
+                } 
+            },
+            { 
+                id: 3, 
+                title: '...', 
+            },
         ];
     }
 
@@ -45,12 +58,12 @@ class ProfileTabPage extends React.Component {
         return (
             <View style={{ flex: 1, flexDirection: 'row',  justifyContent: 'center', height: 80 }}>
                 <ImageButton height={80} 
-                    source={require('../../../assets/button/profile_item.png')} 
-                    selectedSource={require('../../../assets/button/profile_item_selected.png')} 
+                    source={this.context.profileItemImage} 
+                    selectedSource={this.context.profileItemImageSelected} 
                     onPress={() => { if (item.cb != undefined) item.cb(); }}
                 />
                 <View style={{ position: 'absolute', left: 0, top: 30, width: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents='none' >
-                    <Text style={{ color: '#000', fontSize: 20 }}>{item.title}</Text>
+                    <Text style={{ color: this.context.button.fontColor, fontSize: 20 }}>{item.title}</Text>
                 </View>
             </View>
         );
@@ -61,6 +74,7 @@ class ProfileTabPage extends React.Component {
             <Panel>
                 <View style={{ flex: 1, marginTop: 10 }}>
                     <FlatList
+                        key={this.flatListKey++}
                         data={this.data}
                         renderItem={this._renderItem}
                         keyExtractor={item => item.id}

@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
     footerBgColor: {
         backgroundColor: bgColor2,
     },
+    
     footerTextColor: {
         color: contentColor,
     },
@@ -65,8 +66,10 @@ const styles = StyleSheet.create({
     /* 按钮样式 */
     button: {
         color: btnFontColor,
+        fontColor: btnFontColor,
         backgroundColor: btnBackgroundColor,
     },
+
     /** ================================ */
     /**             选择框                */
     /** ================================ */
@@ -86,6 +89,11 @@ const styles = StyleSheet.create({
         border: '#c7c7cc',
         notification: '#ff453a',
     },
+    /** ================================ */
+    /**            图片资源               */
+    /** ================================ */
+    profileItemImage: require('../../assets/button/profile_item.2.png'),
+    profileItemImageSelected: require('../../assets/button/profile_item_selected.2.png'),
 });
 
 export default styles;
