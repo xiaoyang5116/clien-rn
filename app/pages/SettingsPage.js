@@ -1,32 +1,17 @@
 
 import React from 'react';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { 
-  Image, ImageBackground
-} from 'react-native';
+import AppearancePage from './settings/AppearancePage';
 
-import {
-  action,
-  connect,
-  Component,
-} from "../constants";
+const Stack = createNativeStackNavigator();
 
-import { View } from '../constants/native-ui';
-import { ImageButton } from '../constants/custom-ui';
-import * as RootNavigation from '../utils/RootNavigation';
-import RootView from '../components/RootView';
-import MailBox from '../components/mailBox';
-import ArchivePage from './ArchivePage';
-
-class SettingsPage extends Component {
-
-  render() {
-    return (
-        <ImageBackground  style={{ flex: 1, justifyContent: 'center', flexDirection: 'row', alignItems: 'center' }} source={require('../../assets/bg/first_bg.jpg')}>
-        </ImageBackground>
-    );
-  }
-
+const SettingsPage = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name='Appearance' options={{ headerShown: false }} component={AppearancePage} />
+    </Stack.Navigator>
+  );
 }
 
-export default connect((state) => ({ ...state.AppModel }))(SettingsPage);
+export default SettingsPage;

@@ -6,9 +6,9 @@ import {
     ThemeContext,
 } from "../../constants";
 
-import { 
-    View, 
-    Text, 
+import {
+    View,
+    Text,
     FlatList,
 } from '../../constants/native-ui';
 
@@ -26,23 +26,23 @@ class ProfileTabPage extends React.Component {
         super(props);
         this.flatListKey = 1; // 用于强制刷新
         this.data = [
-            { 
-                id: 1, 
-                title: '界面风格设置', 
-                cb: () => { 
-                    const key = RootView.add(<ThemeComponent updateTheme={this._onChangeTheme} onClose={() => { RootView.remove(key) }} />); 
-                } 
+            {
+                id: 1,
+                title: '界面风格设置',
+                cb: () => {
+                    const key = RootView.add(<ThemeComponent updateTheme={this._onChangeTheme} onClose={() => { RootView.remove(key) }} />);
+                }
             },
-            { 
-                id: 2, 
-                title: '...', 
-                cb: () => { 
-                    RootNavigation.navigate('Settings');
-                } 
+            {
+                id: 2,
+                title: '...',
+                cb: () => {
+                    RootNavigation.navigate('Settings', { screen: 'Appearance',});
+                }
             },
-            { 
-                id: 3, 
-                title: '...', 
+            {
+                id: 3,
+                title: '...',
             },
         ];
     }
@@ -56,10 +56,10 @@ class ProfileTabPage extends React.Component {
     _renderItem = (data) => {
         const item = data.item;
         return (
-            <View style={{ flex: 1, flexDirection: 'row',  justifyContent: 'center', height: 80 }}>
-                <ImageButton height={80} 
-                    source={this.context.profileItemImage} 
-                    selectedSource={this.context.profileItemImageSelected} 
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', height: 80 }}>
+                <ImageButton height={80}
+                    source={this.context.profileItemImage}
+                    selectedSource={this.context.profileItemImageSelected}
                     onPress={() => { if (item.cb != undefined) item.cb(); }}
                 />
                 <View style={{ position: 'absolute', left: 0, top: 30, width: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents='none' >
