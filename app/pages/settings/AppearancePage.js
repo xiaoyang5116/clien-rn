@@ -84,7 +84,7 @@ const AppearancePage = props => {
                     <View style={{ position: 'relative', }}>
                         <TitleHeader
                             style={[theme.rowCenter,]}
-                            source={require('../../../assets/frame/titleFrame.png')}
+                            source={require('../../../assets/frame/titleFrame3.png')}
                             title={'选择界面风格'}
                         />
                     </View>
