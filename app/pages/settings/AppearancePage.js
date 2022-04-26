@@ -11,7 +11,7 @@ import React, { useEffect } from 'react';
 import { TextButton, TitleHeader } from '../../constants/custom-ui';
 import * as Themes from '../../themes';
 import { connect, action } from "../../constants";
-import Panel from '../../components/panel'
+import { Panel } from '../../components/panel'
 
 
 const AppearancePage = props => {

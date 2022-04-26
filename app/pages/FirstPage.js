@@ -17,6 +17,7 @@ import * as RootNavigation from '../utils/RootNavigation';
 import RootView from '../components/RootView';
 import MailBox from '../components/mailBox';
 import ArchivePage from './ArchivePage';
+import MailBoxPage from './MailBoxPage';
 
 class FirstPage extends Component {
 
@@ -48,7 +49,10 @@ class FirstPage extends Component {
              }} />
             <ImageButton height={60} source={require('../../assets/button/test_button.png')} selectedSource={require('../../assets/button/test_button_selected.png')} onPress={() => { 
               // Shock.shockShow('bigShock');
-              const key = RootView.add(<MailBox onClose={() => { RootView.remove(key) }} />);
+              const key = RootView.add(<MailBoxPage onClose={() => { RootView.remove(key) }} />);
+              // RootNavigation.navigate('MailBox', { 
+              //   screen: 'NewMail',
+              // });
             }} />
           </View>
         </ImageBackground>

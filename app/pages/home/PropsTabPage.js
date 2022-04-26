@@ -19,7 +19,7 @@ import {
     TextButton,
 } from '../../constants/custom-ui';
 
-import Panel from '../../components/panel';
+import { Panel } from '../../components/panel';
 import { confirm } from '../../components/dialog';
 
 class PropsTabPage extends Component {

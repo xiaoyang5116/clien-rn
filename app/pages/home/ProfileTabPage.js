@@ -14,7 +14,7 @@ import {
 
 import RootView from '../../components/RootView';
 import ThemeComponent from '../../components/theme';
-import Panel from '../../components/panel';
+import { Panel } from '../../components/panel';
 import { ImageButton } from '../../constants/custom-ui';
 import * as RootNavigation from '../../utils/RootNavigation';
 
@@ -30,7 +30,7 @@ class ProfileTabPage extends React.Component {
                 id: 1,
                 title: '界面风格设置',
                 cb: () => {
-                    RootNavigation.navigate('Settings', { screen: 'Appearance',});
+                    RootNavigation.navigate('Settings', { screen: 'Appearance', });
                 }
             },
             {

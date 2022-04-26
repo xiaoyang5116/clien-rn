@@ -12,7 +12,7 @@ import {
     View
 } from '../../constants/native-ui';
 
-import Panel from '../../components/panel';
+import { Panel } from '../../components/panel';
 import ComposeMainTabPage from './ComposeMainTabPage';
 import ComposeDetailTabPage from './ComposeDetailTabPage';
 

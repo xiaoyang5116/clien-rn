@@ -20,7 +20,7 @@ import {
 
 import lo from 'lodash';
 import Toast from '../../components/toast';
-import Panel from '../../components/panel';
+import { Panel } from '../../components/panel';
 import ImageCapInset from 'react-native-image-capinsets-next';
 
 class ComposeDetailTabPage extends Component {

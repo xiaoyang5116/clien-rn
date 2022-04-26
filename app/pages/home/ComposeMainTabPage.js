@@ -19,7 +19,7 @@ import {
     TextButton,
 } from '../../constants/custom-ui';
 
-import Panel from '../../components/panel';
+import { Panel } from '../../components/panel';
 import ImageCapInset from 'react-native-image-capinsets-next';
 
 class ComposeMainTabPage extends Component {
