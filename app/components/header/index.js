@@ -8,8 +8,7 @@ const Header = props => {
     const theme = useContext(ThemeContext);
     const height = props.height ? props.height : 130;
     const width = props.width ? props.width : '100%';
-    // const source = props.source ? props.source : require('../../../assets/frame/titleFrame.png')
-    const cropSize = props.cropSize ? props.cropSize : 25;
+    const source = props.source ? props.source : require('../../../assets/frame/titleFrame3.png')
     const fontSize = props.fontSize ? props.fontSize : 24;
 
     return (
@@ -24,7 +23,7 @@ const Header = props => {
             ]}>
             <Image
                 style={[{ position: 'absolute', width: "100%", height: "100%", zIndex: 1 }, theme.rowCenter]}
-                source={require('../../../assets/frame/titleFrame3.png')}
+                source={source}
             />
             <View style={[{ height: 50, width: width }, theme.headerBgColor, theme.rowCenter]}>
                 <Text style={[{ fontSize: fontSize }, theme.headerTextColor,]}>
