@@ -30,15 +30,12 @@ class ProfileTabPage extends React.Component {
                 id: 1,
                 title: '界面风格设置',
                 cb: () => {
-                    const key = RootView.add(<ThemeComponent updateTheme={this._onChangeTheme} onClose={() => { RootView.remove(key) }} />);
+                    RootNavigation.navigate('Settings', { screen: 'Appearance',});
                 }
             },
             {
                 id: 2,
                 title: '...',
-                cb: () => {
-                    RootNavigation.navigate('Settings', { screen: 'Appearance',});
-                }
             },
             {
                 id: 3,
