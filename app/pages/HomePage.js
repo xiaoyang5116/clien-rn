@@ -31,7 +31,7 @@ const Tab = createBottomTabNavigator();
 
 const TabIcon = (props) => {
   return (
-    <View style={{ position: 'absolute', width: 30, height: 48, left: 10, top: -8, borderWidth: 1, borderColor: '#ccc' }}>
+    <View style={{ position: 'absolute', width: 30, height: 48, left: 12, top: -8, borderWidth: 1, borderColor: '#ccc' }}>
         <View style={{ position: 'absolute', left: 0, top: 0, transform: [{ scale: 0.5 }] }}>
           <FastImage style={{ position: 'absolute', width: 56, height: 90 }} source={require('../../assets/tab/tab_icon.png')} />
         </View>
