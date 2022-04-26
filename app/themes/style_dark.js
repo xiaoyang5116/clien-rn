@@ -70,6 +70,11 @@ const styles = StyleSheet.create({
         backgroundColor: btnBackgroundColor,
     },
 
+    /* 选项样式 */
+    options: {
+        fontColor: btnFontColor,
+    },
+
     /** ================================ */
     /**             选择框                */
     /** ================================ */

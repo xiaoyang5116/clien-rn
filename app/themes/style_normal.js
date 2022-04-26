@@ -62,6 +62,11 @@ const styles = StyleSheet.create({
         backgroundColor: btnBackgroundColor,
     },
 
+    /* 选项样式 */
+    options: {
+        fontColor: '#8addff',
+    },
+
     /** ================================ */
     /**             底部                 */
     /** ================================ */

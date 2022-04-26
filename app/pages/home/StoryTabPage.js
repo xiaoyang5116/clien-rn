@@ -5,6 +5,7 @@ import {
   action,
   connect,
   Component,
+  ThemeContext,
 } from "../../constants";
 
 import ProgressBar from '../../components/ProgressBar';
@@ -12,6 +13,8 @@ import * as DateTime from '../../utils/DateTimeUtils';
 import { Button, Text, View, SectionList } from '../../constants/native-ui';
 
 class StoryTabPage extends Component {
+
+  static contextType = ThemeContext;
 
   constructor(props) {
     super(props);
@@ -33,7 +36,7 @@ class StoryTabPage extends Component {
   _renderSectionHeader = ({ section: { title } }) => {
     return (
       <View>
-        <Text style={this.props.currentStyles.chatHeader}>{title}</Text>
+        <Text style={this.context.chatHeader}>{title}</Text>
       </View>
     );
   }
@@ -53,8 +56,8 @@ class StoryTabPage extends Component {
       }
     }
     return (
-      <View style={this.props.currentStyles.chatItem}>
-        <Button title={data.item.title} onPress={() => this._onClickItem(data)} color={this.props.currentStyles.button.color} />
+      <View style={this.context.chatItem}>
+        <Button title={data.item.title} onPress={() => this._onClickItem(data)} color={this.context.options.fontColor} />
         {progressView}
       </View>
     );
