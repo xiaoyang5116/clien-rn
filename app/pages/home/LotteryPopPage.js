@@ -163,10 +163,10 @@ const RewardItem = (props) => {
     const icon = PROPS_ICON.find(e => e.iconId == props.iconId);
     return (
     <View style={{ flexDirection: 'column', margin: 10, justifyContent: 'center', alignItems: 'center' }}>
-        <View style={{ width: 68, height: 68 }}>
+        <View style={{ width: 64, height: 64 }}>
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#333', borderRadius: 10 }}>
                 <Image source={icon.img} />
-                <Text style={{ position: 'absolute', top: 50, right: 5, color: '#fff' }}>{props.num}</Text>
+                <Text style={{ position: 'absolute', top: 46, right: 5, color: '#fff' }}>{props.num}</Text>
             </View>
         </View>
         <Text style={{ color: '#000', marginTop: 3 }}>{props.name}</Text>
