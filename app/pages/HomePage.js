@@ -16,6 +16,9 @@ import {
   Text,
 } from '../constants/native-ui';
 
+import FastImage from 'react-native-fast-image';
+import ImageCapInset from 'react-native-image-capinsets-next';
+
 import StoryTabPage from './home/StoryTabPage';
 import ProfileTabPage from './home/ProfileTabPage';
 import PropsTabPage from './home/PropsTabPage';
@@ -23,24 +26,38 @@ import LotteryTabPage from './home/LotteryTabPage';
 import ComposeTabPage from './home/ComposeTabPage';
 import ArenaTabPage from './home/ArenaTabPage';
 import ExploreTabPage from './home/ExploreTabPage';
-import FastImage from 'react-native-fast-image';
 
 const Tab = createBottomTabNavigator();
 
 const TabIcon = (props) => {
   return (
-    <View style={{ position: 'absolute', left: 0, top: -52 }}>
-      <View style={{ borderWidth: 1, borderColor: '#ccc',  marginTop: 20, padding: 1, transform: [{ scale: 0.5 }] }}>
-        <FastImage style={{ width: 56, height: 90 }} source={require('../../assets/tab/tab_icon.png')} />
-      </View>
-      <View style={{ position: 'absolute', left: 25, top: 55, width: 20 }}>
-        <Text style={{ fontSize: 12, color: props.color }}>{props.title}</Text>
-      </View>
+    <View style={{ position: 'absolute', width: 30, height: 48, left: 12, top: -8, borderWidth: 1, borderColor: '#ccc' }}>
+        <View style={{ position: 'absolute', left: 0, top: 0, transform: [{ scale: 0.5 }] }}>
+          <FastImage style={{ position: 'absolute', width: 56, height: 90 }} source={require('../../assets/tab/tab_icon.png')} />
+        </View>
+        <View style={{ position: 'absolute', left: 8, top: 10, width: 20 }}>
+          <Text style={{ fontSize: 12, color: props.color }}>{props.title}</Text>
+        </View>
     </View>
   );
 }
 
 const defaultScreenOptions = {
+  headerTitleStyle: {
+    color: '#666',
+  },
+  
+  headerBackground: () => {
+    return (
+      <View style={{ marginTop: 45, backgroundColor: '#fff', width: '100%', height: 50 }}>
+        <ImageCapInset
+          style={{ width: '100%', height: '100%' }}
+          source={require('../../assets/tab/tab_header_bg.png')}
+          capInsets={{ top: 25, right: 25, bottom: 25, left: 25 }}
+        />
+      </View>
+    );
+  },
   tabBarStyle: {
     height: 70,
     borderTopWidth: 0, // 去掉底部边框
@@ -90,8 +107,8 @@ class HomePage extends Component {
         }} />
         <Tab.Screen name="Profile" component={ProfileTabPage} options={{
           tabBarLabel: "",
-          headerTitle: "我的",
-          tabBarIcon: ({ color }) => (<TabIcon color={color} title={'我的'} />),
+          headerTitle: "设置",
+          tabBarIcon: ({ color }) => (<TabIcon color={color} title={'设置'} />),
         }} />
       </Tab.Navigator>
     );

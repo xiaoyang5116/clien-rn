@@ -105,7 +105,7 @@ class ComposeMainTabPage extends Component {
                             source={require('../../../assets/bg/area.png')}
                             capInsets={{ top: 30, right: 30, bottom: 30, left: 30 }}
                         />
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#ccc', backgroundColor: 'rgba(0,0,0,0.08)', margin: 10 }}>
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#ccc', backgroundColor: 'rgba(,0,0,0.85)', margin: 10 }}>
                             <Text>{selectedProp != undefined ? (selectedProp.name + ':') : ''}</Text>
                             <Text>{(selectedProp != undefined && selectedProp.desc != undefined) ? selectedProp.desc : ''}</Text>
                         </View>
