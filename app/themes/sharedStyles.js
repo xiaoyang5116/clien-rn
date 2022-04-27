@@ -37,6 +37,12 @@ const sharedStyles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: "center",
     },
+    /* row 平分 */
+    rowSpaceBetween: {
+        flexDirection: "row",
+        justifyContent: 'space-between',
+        alignItems: "center",
+    },
 
     /* header */
 

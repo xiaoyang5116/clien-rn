@@ -50,9 +50,6 @@ class FirstPage extends Component {
             <ImageButton height={60} source={require('../../assets/button/test_button.png')} selectedSource={require('../../assets/button/test_button_selected.png')} onPress={() => { 
               // Shock.shockShow('bigShock');
               const key = RootView.add(<MailBoxPage onClose={() => { RootView.remove(key) }} />);
-              // RootNavigation.navigate('MailBox', { 
-              //   screen: 'NewMail',
-              // });
             }} />
           </View>
         </ImageBackground>
