@@ -11,7 +11,7 @@ import {
     View, 
     Text, 
     FlatList, 
-    TouchableHighlight,
+    TouchableOpacity,
 } from '../../constants/native-ui';
 
 import {
@@ -61,7 +61,7 @@ class ComposeMainTabPage extends Component {
 
     _renderItem = (data) => {
         return (
-        <TouchableHighlight onPress={() => this._itemSelected(data.item)} underlayColor='#a9a9a9' activeOpacity={0.7}>
+        <TouchableOpacity onPress={() => this._itemSelected(data.item)} activeOpacity={1}>
             <View style={styles.composeItem}>
                 <FastImage
                     style={{ width: '100%', height: '100%', position: 'absolute', opacity: (this.state.selectId == data.item.id) ? 1 : 0 }}
@@ -79,7 +79,7 @@ class ComposeMainTabPage extends Component {
                     <TextButton title="选择配方" {...this.props} fontSize={14} onPress={() => { this._composeSelected(data.item); }} />
                 </View>
             </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
         );
     }
 
