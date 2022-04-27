@@ -20,7 +20,7 @@ const MailBoxPage = (props) => {
 
     return (
         <MailPanel onClose={props.onClose}>
-            
+            <NewMailPage />
         </MailPanel>
     )
 }
