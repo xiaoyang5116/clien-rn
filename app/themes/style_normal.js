@@ -2,38 +2,34 @@
 import { StyleSheet } from 'react-native';
 import sharedStyles from './sharedStyles';
 
-// 文字颜色
-const textColor = '#000';  // 黑色 6a655e
-
- /**
- * 通用按钮
- */
+/**
+* 通用按钮
+*/
 const btnFontColor = '#424242';
 const btnBackgroundColor = '#eee';
 
-/**
- * 背景颜色
- */
-const bgColor = '#003964';  // 蓝色
-const bgColor2 = '#e8ddcc';  // 米白色
-const bgColor3 = '#fff';  // 白色
-const pageBgColor = '#f2f2f2' // 灰白色
 
-/**
- * header 样式
- * headerTextColor 文字颜色
- * headerBgColor 背景颜色
- */
-const headerTextColor = '#6a655e';  // 深灰色
-const headerBgColor = '#e8ddcc';  // 米白色
+/** ================================ */
+/**             背景颜色              */
+/** ================================ */
+/* 页面背景 */
+const pageColor1 = '#f2f2f2';  // 淡灰色
+/* 区块背景 */
+const blockColor1 = '#e8ddcc';  // 米白色
+const blockColor2 = '#003964';  // 蓝色
 
-/**
- * footer 底部样式
- * footerTextColor 文字颜色
- * footerBgColor 背景颜色
- */
- const footerTextColor = '#fff';  // 白色
- const footerBgColor = '#e8ddcc';  // 灰黑色
+
+/** ================================ */
+/**             文字颜色              */
+/** ================================ */
+/* 标题 */
+const titleColor1 = '#6a655e';  // 深棕色
+const titleColor2 = '#6a655e';  // 深棕色
+/* 内容 */
+const contentColor1 = '#fff';  // 白色
+const contentColor2 = '#868076';  // 淡棕色
+
+
 
 const styles = StyleSheet.create({
     /** ================================ */
@@ -44,15 +40,18 @@ const styles = StyleSheet.create({
 
     /* 页面背景颜色 */
     pageBg: {
-        backgroundColor: pageBgColor,
+        backgroundColor: pageColor1,
     },
 
     /* header */
     headerBgColor: {
-        backgroundColor: headerBgColor,
+        backgroundColor: blockColor1,
     },
-    headerTextColor: {
-        color: headerTextColor,
+    headerTextColor1: {
+        color: titleColor1,
+    },
+    headerTextColor2: {
+        color: titleColor2,
     },
 
     /* 按钮样式 */
@@ -61,15 +60,22 @@ const styles = StyleSheet.create({
         fontColor: btnFontColor,
         backgroundColor: btnBackgroundColor,
     },
-
     /** ================================ */
-    /**             底部                 */
+    /**             邮件样式              */
     /** ================================ */
-    footerBgColor: {
-        backgroundColor: footerBgColor,
+    /* 邮件tab 选中 */
+    mailTabBgSelected: {
+        backgroundColor: blockColor2,
     },
-    footerTextColor: {
-        color: footerTextColor,
+    mailTabTextSelected: {
+        color: contentColor1,
+    },
+    /* 邮件tab 未选中 */
+    mailTabBgUnselected: {
+        backgroundColor: blockColor1,
+    },
+    mailTabTextUnselected: {
+        color: contentColor2,
     },
 
     /** ================================ */
@@ -77,7 +83,7 @@ const styles = StyleSheet.create({
     /** ================================ */
     /* 对话选项框条目 */
     chatItem: {
-        backgroundColor: bgColor,
+        backgroundColor: blockColor2,
         paddingTop: 2,
         paddingBottom: 2,
         marginVertical: 2

@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native';
 
 
 /* 字体大小 */
-const titleSize = 24
-const contentSize = 18
+const titleSize1 = 24
+const titleSize2 = 18
 
 
 const sharedStyles = StyleSheet.create({
@@ -45,6 +45,12 @@ const sharedStyles = StyleSheet.create({
     },
 
     /* header */
+    headerTitle1: {
+        fontSize: titleSize1,
+    },
+    headerTitle2: {
+        fontSize: titleSize2,
+    },
 
     /** ================================ */
     /**             page 容器             */

@@ -5,31 +5,31 @@ import sharedStyles from './sharedStyles';
 /** 主题色：黑色 */
 
 /**
- * 背景颜色
- *      页面背景 bgColor1: #5e5e5e
- *      区块背景 bgColor2: #4d4d4d
- */
- const bgColor1 = '#5e5e5e';
- const bgColor2 = '#4d4d4d';
-
-/**
  * 通用按钮
  */
- const btnFontColor = '#eee';
- const btnBackgroundColor = '#003964';
+const btnFontColor = '#eee';
+const btnBackgroundColor = '#003964';
 
-/**
- * 文字颜色
- *      标题
- *          一级标题 titleColor: #f0f0f0
- *      内容
- *          一级内容 contentColor: #f0f0f0
- */
-// 标题
-const titleColor1 = '#f0f0f0';
 
-// 内容
-const contentColor = '#f0f0f0';
+/** ================================ */
+/**             背景颜色              */
+/** ================================ */
+/* 页面背景 */
+const pageColor1 = '#5e5e5e';  // 灰色
+/* 区块背景 */
+const blockColor1 = '#4d4d4d';  // 深灰色
+const blockColor2 = '#4d4d4d';  // 深灰色
+
+
+/** ================================ */
+/**             文字颜色              */
+/** ================================ */
+/* 标题 */
+const titleColor1 = '#f0f0f0';  //淡灰色
+const titleColor2 = '#f0f0f0';  //淡灰色
+/* 内容 */
+const contentColor1 = '#f0f0f0';  //淡灰色
+const contentColor2 = '#989898';  //暗灰色
 
 
 const styles = StyleSheet.create({
@@ -41,26 +41,18 @@ const styles = StyleSheet.create({
 
     /* 页面背景颜色 */
     pageBg: {
-        backgroundColor: bgColor1,
+        backgroundColor: pageColor1,
     },
 
     /* header */
     headerBgColor: {
-        backgroundColor: bgColor2,
+        backgroundColor: blockColor1,
     },
-    headerTextColor: {
-        color: contentColor,
+    headerTextColor1: {
+        color: titleColor1,
     },
-
-    /** ================================ */
-    /**             底部                 */
-    /** ================================ */
-    footerBgColor: {
-        backgroundColor: bgColor2,
-    },
-    
-    footerTextColor: {
-        color: contentColor,
+    headerTextColor2: {
+        color: titleColor2,
     },
 
     /* 按钮样式 */
@@ -68,6 +60,24 @@ const styles = StyleSheet.create({
         color: btnFontColor,
         fontColor: btnFontColor,
         backgroundColor: btnBackgroundColor,
+    },
+
+    /** ================================ */
+    /**             邮件样式              */
+    /** ================================ */
+    /* 邮件tab 选中 */
+    mailTabBgSelected: {
+        backgroundColor: blockColor2,
+    },
+    mailTabTextSelected: {
+        color: contentColor1,
+    },
+    /* 邮件tab 未选中 */
+    mailTabBgUnselected: {
+        backgroundColor: blockColor1,
+    },
+    mailTabTextUnselected: {
+        color: contentColor2,
     },
 
     /** ================================ */
