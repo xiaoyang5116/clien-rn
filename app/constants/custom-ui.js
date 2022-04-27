@@ -6,8 +6,15 @@ import { CButton } from '../components/CButton';
 
 /** 选项按钮 */
 export const TabButton = (props) => {
+    const themeStyle = React.useContext(ThemeContext);
     return (
-        <CButton title={props.title} fontSize={16} color='#ccc' onPress={props.onPress} style={{ borderWidth: 1, borderColor: '#797979' }} />
+        <CButton 
+            title={props.title} 
+            fontSize={16} 
+            color={themeStyle.button.backgroundColor}
+            fontColor={themeStyle.button.color}
+            onPress={props.onPress}
+        />
     );
 }
 

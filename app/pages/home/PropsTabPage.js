@@ -11,7 +11,7 @@ import {
     View, 
     Text, 
     FlatList, 
-    TouchableHighlight,
+    TouchableOpacity,
 } from '../../constants/native-ui';
 
 import {
@@ -21,6 +21,8 @@ import {
 
 import Panel from '../../components/panel';
 import { confirm } from '../../components/dialog';
+import ImageCapInset from 'react-native-image-capinsets-next';
+import FastImage from 'react-native-fast-image';
 
 class PropsTabPage extends Component {
 
@@ -76,8 +78,17 @@ class PropsTabPage extends Component {
             }
         }
         return (
-        <TouchableHighlight onPress={() => this._propSelected(data.item)} underlayColor='#a9a9a9' activeOpacity={0.7}>
-            <View style={[styles.propsItem, (this.state.selectId == data.item.id ? styles.propSelected : {})]}>
+        <TouchableOpacity onPress={() => this._propSelected(data.item)} activeOpacity={1}>
+            <View style={styles.propsItem}>
+                <FastImage
+                    style={{ width: '100%', height: '100%', position: 'absolute', opacity: (this.state.selectId == data.item.id) ? 1 : 0 }}
+                    source={require('../../../assets/button/prop_item_bg.png')}
+                />
+                <ImageCapInset
+                    style={{ width: '100%', height: 43, position: 'absolute', top: -3, opacity: (this.state.selectId == data.item.id) ? 0.5 : 0 }}
+                    source={require('../../../assets/button/prop_item_patch.png')}
+                    capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                />
                 <View style={{ flex: 1, flexDirection: 'row' }} >
                     <Text style={[{ marginLeft: 20, fontSize: 22 }, color]}>{data.item.name}</Text>
                 </View>
@@ -85,7 +96,7 @@ class PropsTabPage extends Component {
                     <Text style={{ marginRight: 20, fontSize: 22, color: '#424242', textAlign: 'right' }}>x{data.item.num}</Text>
                 </View>
             </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
         );
     }
 
@@ -148,7 +159,6 @@ class PropsTabPage extends Component {
 const styles = StyleSheet.create({
     propsContainer: {
         flex: 1,
-        // backgroundColor: '#fff',
         margin: 10,
         alignSelf: 'stretch',
     },
@@ -161,7 +171,7 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ccc',
         borderTopWidth: 1,
         borderTopColor: '#fff',
-        // backgroundColor: '#ebebeb',
+        marginTop: 1,
         height: 40,
     },
     propSelected: {
