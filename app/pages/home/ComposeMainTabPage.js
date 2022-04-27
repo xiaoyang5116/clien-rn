@@ -67,17 +67,19 @@ class ComposeMainTabPage extends Component {
                     style={{ width: '100%', height: '100%', position: 'absolute', opacity: (this.state.selectId == data.item.id) ? 1 : 0 }}
                     source={require('../../../assets/button/prop_item_bg.png')}
                 />
+                <View style={styles.composeBorder}>
+                    <View style={{ flex: 1, flexDirection: 'row' }} >
+                        <Text style={[{ marginLeft: 20, fontSize: 22 }, data.item.valid ? styles.valid : styles.notValid ]}>{data.item.name}</Text>
+                    </View>
+                    <View style={{ width: 80, marginRight: 10 }}>
+                        <TextButton title="选择配方" {...this.props} fontSize={14} onPress={() => { this._composeSelected(data.item); }} />
+                    </View>
+                </View>
                 <ImageCapInset
-                    style={{ width: '100%', height: 43, position: 'absolute', top: -3, opacity: (this.state.selectId == data.item.id) ? 0.5 : 0 }}
+                    style={{ width: '100%', height: 43, position: 'absolute', top: -2, opacity: (this.state.selectId == data.item.id) ? 0.5 : 0 }}
                     source={require('../../../assets/button/prop_item_patch.png')}
                     capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
                 />
-                <View style={{ flex: 1, flexDirection: 'row' }} >
-                    <Text style={[{ marginLeft: 20, fontSize: 22 }, data.item.valid ? styles.valid : styles.notValid ]}>{data.item.name}</Text>
-                </View>
-                <View style={{ width: 80, marginRight: 10 }}>
-                    <TextButton title="选择配方" {...this.props} fontSize={14} onPress={() => { this._composeSelected(data.item); }} />
-                </View>
             </View>
         </TouchableOpacity>
         );
@@ -104,6 +106,7 @@ class ComposeMainTabPage extends Component {
                     </View>
                     <View style={{ flex: 1, paddingLeft: 10, paddingRight: 10 }}>
                         <FlatList
+                            style={{ paddingTop: 2 }}
                             data={this.props.listData}
                             renderItem={this._renderItem}
                             keyExtractor={item => item.id}
@@ -139,13 +142,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
+        height: 40,
+    },
+    composeBorder: {
+        flex: 1, 
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
-        borderTopWidth: 1,
-        borderTopColor: '#fff',
-        // backgroundColor: '#ebebeb',
-        marginTop: 1,
-        height: 40,
+        marginLeft: 1,
+        marginRight: 1,
     },
     composeSelected: {
         backgroundColor: '#d6d6d6',
