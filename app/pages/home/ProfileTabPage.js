@@ -12,7 +12,6 @@ import {
     FlatList,
 } from '../../constants/native-ui';
 
-import RootView from '../../components/RootView';
 import { Panel } from '../../components/panel';
 import { ImageButton } from '../../constants/custom-ui';
 import * as RootNavigation from '../../utils/RootNavigation';
