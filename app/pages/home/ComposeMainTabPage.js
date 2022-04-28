@@ -71,15 +71,15 @@ class ComposeMainTabPage extends Component {
                     <View style={{ flex: 1, flexDirection: 'row' }} >
                         <Text style={[{ marginLeft: 20, fontSize: 22 }, data.item.valid ? styles.valid : styles.notValid ]}>{data.item.name}</Text>
                     </View>
-                    <View style={{ width: 80, marginRight: 10 }}>
-                        <TextButton title="选择配方" {...this.props} fontSize={14} onPress={() => { this._composeSelected(data.item); }} />
-                    </View>
                 </View>
                 <ImageCapInset
                     style={{ width: '100%', height: 43, position: 'absolute', top: -2, opacity: (this.state.selectId == data.item.id) ? 0.5 : 0 }}
                     source={require('../../../assets/button/prop_item_patch.png')}
                     capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
                 />
+                <View style={{ position: 'absolute', right: 10, width: 85 }}>
+                    <TextButton title="选择配方" {...this.props} fontSize={14} onPress={() => { this._composeSelected(data.item); }} />
+                </View>
             </View>
         </TouchableOpacity>
         );
