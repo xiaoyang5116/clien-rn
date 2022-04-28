@@ -1,8 +1,6 @@
-import { View, Text, ImageBackground, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import React, { useContext } from 'react';
-import { connect, ThemeContext } from '../../constants';
-import ImageCapInset from 'react-native-image-capinsets-next';
-import { slice } from 'lodash';
+import { ThemeContext } from '../../constants';
 
 const Header = props => {
     const theme = useContext(ThemeContext);
@@ -25,7 +23,7 @@ const Header = props => {
                 style={[{ position: 'absolute', width: "100%", height: "100%", zIndex: 1 }, theme.rowCenter]}
                 source={source}
             />
-            <View style={[{ height: 50, width: width }, theme.headerBgColor, theme.rowCenter]}>
+            <View style={[{ height: 50, width: width }, theme.blockBgColor1, theme.rowCenter]}>
                 <Text style={[{ fontSize: fontSize }, theme.headerTextColor,]}>
                     {props.title}
                 </Text>

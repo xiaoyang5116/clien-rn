@@ -15,11 +15,21 @@ const btnBackgroundColor = '#003964';
 /**             背景颜色              */
 /** ================================ */
 /* 页面背景 */
-const pageColor1 = '#5e5e5e';  // 灰色
-/* 区块背景 */
-const blockColor1 = '#4d4d4d';  // 深灰色
-const blockColor2 = '#4d4d4d';  // 深灰色
+const pageBgColor1 = '#5e5e5e';  // 灰色
 
+/* 区块背景 */
+const blockBgColor1 = '#4d4d4d';  // 深灰色
+const blockBgColor2 = '#616161';  // 深灰色
+
+/* 按钮背景 */
+const btnBgColor1 = '#525252';  // 深灰色
+const btnBgColor2 = '#4d4d4d';  // 深灰色
+
+/* 提示背景 */
+const tipBgColor1 = '#525252';  // 暗灰色
+
+/* 边框背景 */
+// const lineColor1 = '#';  // 
 
 /** ================================ */
 /**             文字颜色              */
@@ -27,9 +37,13 @@ const blockColor2 = '#4d4d4d';  // 深灰色
 /* 标题 */
 const titleColor1 = '#f0f0f0';  //淡灰色
 const titleColor2 = '#f0f0f0';  //淡灰色
+const titleColor3 = '#d86362';  //淡红色
+
 /* 内容 */
 const contentColor1 = '#f0f0f0';  //淡灰色
 const contentColor2 = '#989898';  //暗灰色
+const contentColor3 = '#f0f0f0';  //暗灰色
+
 
 
 const styles = StyleSheet.create({
@@ -40,19 +54,51 @@ const styles = StyleSheet.create({
     ...sharedStyles,
 
     /* 页面背景颜色 */
-    pageBg: {
-        backgroundColor: pageColor1,
+    pageBgColor1: {
+        backgroundColor: pageBgColor1,
     },
 
-    /* header */
-    headerBgColor: {
-        backgroundColor: blockColor1,
+    /* 区块背景 */
+    blockBgColor1: {
+        backgroundColor: blockBgColor1,
     },
-    headerTextColor1: {
+    blockBgColor2: {
+        backgroundColor: blockBgColor2,
+    },
+
+    /* 按钮背景 */
+    btnBgColor1: {
+        backgroundColor: btnBgColor1,
+    },
+    btnBgColor2: {
+        backgroundColor: btnBgColor2,
+    },
+
+    /* 提示背景 */
+    tipBgColor1: {
+        backgroundColor: tipBgColor1,
+    },
+
+    /* 标题颜色 */
+    titleColor1: {
         color: titleColor1,
     },
-    headerTextColor2: {
+    titleColor2: {
         color: titleColor2,
+    },    
+    titleColor3: {
+        color: titleColor3,
+    },
+
+    /* 内容颜色 */
+    contentColor1: {
+        color: contentColor1,
+    },
+    contentColor2: {
+        color: contentColor2,
+    },
+    contentColor3: {
+        color: contentColor3,
     },
 
     /* 按钮样式 */
@@ -65,19 +111,9 @@ const styles = StyleSheet.create({
     /** ================================ */
     /**             邮件样式              */
     /** ================================ */
-    /* 邮件tab 选中 */
-    mailTabBgSelected: {
-        backgroundColor: blockColor2,
-    },
-    mailTabTextSelected: {
-        color: contentColor1,
-    },
-    /* 邮件tab 未选中 */
-    mailTabBgUnselected: {
-        backgroundColor: blockColor1,
-    },
-    mailTabTextUnselected: {
+    mailTips: {
         color: contentColor2,
+        backgroundColor: blockBgColor2,
     },
 
     /** ================================ */

@@ -32,14 +32,14 @@ const MailBoxPage = props => {
                 }}
                 style={[
                     theme.rowCenter,
-                    currentTab === props.tab ? theme.mailTabBgSelected : theme.mailTabBgUnselected,
+                    currentTab === props.tab ? theme.btnBgColor1 : theme.btnBgColor2,
                     {
                         width: 60,
                         height: 50,
                     },
                 ]}>
                 <View style={{}}>
-                    <Text style={[currentTab === props.tab ? theme.mailTabTextSelected : theme.mailTabTextUnselected]}>
+                    <Text style={[currentTab === props.tab ? theme.contentColor1 : theme.contentColor2]}>
                         {props.title}
                     </Text>
                 </View>
@@ -48,7 +48,7 @@ const MailBoxPage = props => {
     };
 
     return (
-        <MailPanel onClose={onClose}>
+        <MailPanel onClose={onClose} style={{ display: isHide ? 'none' : 'flex', backgroundColor: 'rgba(0,0,0,0.5)' }}>
             <View style={[{ position: 'relative', flex: 1 }]}>
                 {/* 当前tab内容 */}
                 {currentTab === 'NewMailPage' ? (
@@ -67,7 +67,6 @@ const MailBoxPage = props => {
                             bottom: -40,
                             height: 50,
                             width: 130,
-                            display: isHide ? 'none' : 'flex',
                         },
                     ]}>
                     <BottomTab title={'新信件'} tab={'NewMailPage'} />

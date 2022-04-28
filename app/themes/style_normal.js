@@ -13,11 +13,22 @@ const btnBackgroundColor = '#eee';
 /**             背景颜色              */
 /** ================================ */
 /* 页面背景 */
-const pageColor1 = '#f2f2f2';  // 淡灰色
-/* 区块背景 */
-const blockColor1 = '#e8ddcc';  // 米白色
-const blockColor2 = '#003964';  // 蓝色
+const pageBgColor1 = '#f2f2f2';  // 淡灰色
 
+/* 区块背景 */
+const blockBgColor1 = '#e8d2b0';  // 深米白色
+const blockBgColor2 = '#e8ddcc';  // 米白色
+const blockBgColor3 = '#003964';  // 蓝色
+
+/* 按钮背景 */
+const btnBgColor1 = '#003964';  // 蓝色
+const btnBgColor2 = '#e8ddcc';  // 米白色
+
+/* 提示背景 */
+const tipBgColor1 = '#d3c2aa';  // 淡米色
+
+/* 边框背景 */
+// const lineColor1 = 'gray';  // 灰色
 
 /** ================================ */
 /**             文字颜色              */
@@ -25,9 +36,13 @@ const blockColor2 = '#003964';  // 蓝色
 /* 标题 */
 const titleColor1 = '#6a655e';  // 深棕色
 const titleColor2 = '#6a655e';  // 深棕色
+const titleColor3 = '#d86362';  // 淡红色
+
 /* 内容 */
-const contentColor1 = '#fff';  // 白色
+const contentColor1 = '#f2f2f2';  // 淡灰色
 const contentColor2 = '#868076';  // 淡棕色
+const contentColor3 = '#6a655e';  // 深棕色
+
 
 
 
@@ -39,19 +54,51 @@ const styles = StyleSheet.create({
     ...sharedStyles,
 
     /* 页面背景颜色 */
-    pageBg: {
-        backgroundColor: pageColor1,
+    pageBgColor1: {
+        backgroundColor: pageBgColor1,
     },
 
-    /* header */
-    headerBgColor: {
-        backgroundColor: blockColor1,
+    /* 区块背景 */
+    blockBgColor1: {
+        backgroundColor: blockBgColor1,
     },
-    headerTextColor1: {
+    blockBgColor2: {
+        backgroundColor: blockBgColor2,
+    },
+
+    /* 按钮背景 */
+    btnBgColor1: {
+        backgroundColor: btnBgColor1,
+    },
+    btnBgColor2: {
+        backgroundColor: btnBgColor2,
+    },
+
+    /* 提示背景 */
+    tipBgColor1: {
+        backgroundColor: tipBgColor1,
+    },
+
+    /* 标题颜色 */
+    titleColor1: {
         color: titleColor1,
     },
-    headerTextColor2: {
+    titleColor2: {
         color: titleColor2,
+    },
+    titleColor3: {
+        color: titleColor3,
+    },
+
+    /* 内容颜色 */
+    contentColor1: {
+        color: contentColor1,
+    },
+    contentColor2: {
+        color: contentColor2,
+    },
+    contentColor3: {
+        color: contentColor3,
     },
 
     /* 按钮样式 */
@@ -63,19 +110,9 @@ const styles = StyleSheet.create({
     /** ================================ */
     /**             邮件样式              */
     /** ================================ */
-    /* 邮件tab 选中 */
-    mailTabBgSelected: {
-        backgroundColor: blockColor2,
-    },
-    mailTabTextSelected: {
-        color: contentColor1,
-    },
-    /* 邮件tab 未选中 */
-    mailTabBgUnselected: {
-        backgroundColor: blockColor1,
-    },
-    mailTabTextUnselected: {
+    mailTips: {
         color: contentColor2,
+        backgroundColor: blockBgColor2,
     },
 
     /** ================================ */
@@ -83,7 +120,7 @@ const styles = StyleSheet.create({
     /** ================================ */
     /* 对话选项框条目 */
     chatItem: {
-        backgroundColor: blockColor2,
+        backgroundColor: blockBgColor3,
         paddingTop: 2,
         paddingBottom: 2,
         marginVertical: 2

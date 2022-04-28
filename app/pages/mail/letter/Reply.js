@@ -1,23 +1,22 @@
 import {
     View,
     Text,
-    StyleSheet,
     Image,
     ScrollView,
     FlatList,
     TouchableOpacity,
 } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
     action,
     connect,
-    changeAvatar
+    changeAvatar,
+    ThemeContext
 } from "../../../constants";
-import { TextButton } from '../../../constants/custom-ui';
-import TextAnimation from '../../textAnimation'
-import RootView from '../../RootView';
+import MailPanel from '../components/MailPanel';
 
 const Reply = (props) => {
+    const theme = React.useContext(ThemeContext);
     /**
     * currentStyles: 主题样式
     * onClose: 关闭弹窗
@@ -53,60 +52,49 @@ const Reply = (props) => {
     const renderBtn = ({ item }) => {
         return (
             <TouchableOpacity onPress={() => { confirmReply(item) }}>
-                <View style={{ backgroundColor: '#e3d5c1', marginTop: 12, borderRadius: 12, padding: 12, justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 18 }}>{item.content}</Text>
-                    <Text style={{ fontSize: 18 }}>{item.tokey === 'finish' ? '来信流程结束' : "预计耗时" + item.nextTime + "s"}</Text>
+                <View style={[theme.blockBgColor2, { marginTop: 12, borderRadius: 12, padding: 12, justifyContent: 'center' }]}>
+                    <Text style={[theme.contentColor3, { fontSize: 18 }]}>{item.content}</Text>
+                    <Text style={[theme.contentColor3, { fontSize: 18 }]}>{item.tokey === 'finish' ? '来信流程结束' : "预计耗时" + item.nextTime + "s"}</Text>
                 </View>
             </TouchableOpacity>
         )
     }
     return (
-        <View style={styles.mailBox}>
-            <View style={[currentStyles.bgColor, {
-                width: 360,
-                height: 550,
-            }]}>
+        <MailPanel onClose={onClose}>
+            <View style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
-                    <View style={{ flex: 1 }}>
-                        {/* head */}
-                        <View style={{ height: 50, backgroundColor: '#e3d5c1', alignItems: 'center', justifyContent: 'center' }}>
-                            <Text style={{ fontSize: 24 }}>给它回信</Text>
-                        </View>
-                        {/* 内容 */}
-                        <View style={{ height: 175, backgroundColor: '#e8d2b0', marginTop: 12, marginLeft: 18, marginRight: 18, borderRadius: 10, paddingLeft: 15, }}>
-                            <View style={{ height: 80, flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center', }}>
-                                <View>
-                                    <Image source={changeAvatar(figureInfo.avatar)} style={{ height: 50, width: 50, borderRadius: 5 }} />
-                                </View>
-                                <View>
-                                    <Text style={{ fontSize: 20, marginLeft: 8, color: '#d86362' }}>{figureInfo.name}</Text>
-                                    <Text style={{ fontSize: 14, marginLeft: 8 }}>请选择回信内容!</Text>
-                                </View>
-                            </View>
-                            <ScrollView>
-                                <Text type={'TextSingle'} style={{ fontSize: 18, paddingBottom: 12, paddingRight: 15, }} >
-                                    {currentMailConfigData.content}
-                                </Text>
-                            </ScrollView>
-                        </View>
+                    {/* head */}
+                    <View style={[theme.blockBgColor1, { height: 50, alignItems: 'center', justifyContent: 'center' }]}>
+                        <Text style={[theme.titleColor1, { fontSize: 24 }]}>给它回信</Text>
                     </View>
-                    <View style={{ flex: 1, marginLeft: 18, marginRight: 18, }}>
-                        <Text style={{ fontSize: 24, marginTop: 12 }}>请选择一项</Text>
-                        <View>
-                            <FlatList
-                                data={currentMailConfigData.btn}
-                                renderItem={renderBtn}
-                                keyExtractor={(item, index) => item + index}
-                            />
+                    {/* 内容 */}
+                    <View style={[theme.blockBgColor1, { height: 175, marginTop: 12, marginLeft: 18, marginRight: 18, borderRadius: 10, paddingLeft: 15, paddingRight: 15, }]}>
+                        <View style={{ height: 80, flexDirection: 'row', justifyContent: "flex-start", alignItems: 'center', }}>
+                            <View>
+                                <Image source={changeAvatar(figureInfo.avatar)} style={{ height: 50, width: 50, borderRadius: 5 }} />
+                            </View>
+                            <View>
+                                <Text style={[theme.titleColor3, { fontSize: 20, marginLeft: 8 }]}>{figureInfo.name}</Text>
+                                <Text style={[theme.titleColor2, { fontSize: 14, marginLeft: 8 }]}>请选择回信内容!</Text>
+                            </View>
                         </View>
+                        <ScrollView>
+                            <Text type={'TextSingle'} style={[theme.contentColor3, { fontSize: 18, paddingBottom: 12, paddingRight: 15, }]} >
+                                {currentMailConfigData.content}
+                            </Text>
+                        </ScrollView>
                     </View>
                 </View>
-            </View>
-
-            {/* 返回 */}
-            <View style={{ width: 360, marginTop: 24, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>
-                <View></View>
-                <TextButton style={{ width: 100 }} currentStyles={currentStyles} title={"返回"} onPress={onClose} />
+                <View style={{ flex: 1, marginLeft: 18, marginRight: 18, }}>
+                    <Text style={[theme.titleColor3, { fontSize: 24, marginTop: 12 }]}>请选择一项</Text>
+                    <View>
+                        <FlatList
+                            data={currentMailConfigData.btn}
+                            renderItem={renderBtn}
+                            keyExtractor={(item, index) => item + index}
+                        />
+                    </View>
+                </View>
             </View>
 
             {/* 确认弹窗 */}
@@ -114,18 +102,18 @@ const Reply = (props) => {
                 confirm && (
                     <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, }}>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "rgba(102, 102, 102, 0.5)", }}>
-                            <View style={[currentStyles.bgColor, {
-                                width: 360,
+                            <View style={[theme.blockBgColor1, {
+                                width: "100%",
                                 height: 350,
                                 position: 'relative',
                                 justifyContent: 'center',
                                 alignItems: 'center',
                             }]}>
-                                <View style={{ position: 'absolute', top: 0, height: 50, width: '100%', backgroundColor: '#e3d5c1', alignItems: 'center', justifyContent: 'center', }}>
-                                    <Text style={{ fontSize: 24 }}>回信内容</Text>
+                                <View style={[theme.blockBgColor2, { position: 'absolute', top: 0, height: 50, width: '100%', alignItems: 'center', justifyContent: 'center', }]}>
+                                    <Text style={[theme.titleColor2, { fontSize: 24 }]}>回信内容</Text>
                                 </View>
-                                <View style={{ backgroundColor: "#e8d2b0", height: 150, width: 340, justifyContent: 'center', alignItems: 'center', }}>
-                                    <Text style={{ fontSize: 18 }}>
+                                <View style={[theme.blockBgColor2, { height: 150, width: 340, justifyContent: 'center', alignItems: 'center', }]}>
+                                    <Text style={[theme.contentColor2, { fontSize: 18 }]}>
                                         {confirmInfo.content}
                                     </Text>
                                     <Text style={{ fontSize: 18, color: "#7690d2", marginTop: 4 }}>(预计{confirmInfo.nextTime}秒后，访客再次来信)</Text>
@@ -149,17 +137,8 @@ const Reply = (props) => {
                     </View>
                 )
             }
-
-        </View>
+        </MailPanel>
     )
 }
 
 export default connect((state) => ({ ...state.AppModel, ...state.FigureModel, ...state.MailBoxModel }))(Reply)
-
-const styles = StyleSheet.create({
-    mailBox: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-})

@@ -8,7 +8,6 @@ import {
 } from 'react-native'
 import React, { useEffect } from 'react'
 
-import { TextButton } from '../../constants/custom-ui';
 import {
     action,
     connect,
@@ -16,8 +15,7 @@ import {
     ThemeContext
 } from "../../constants";
 import RootView from '../../components/RootView'
-import themes from '../../themes';
-// import Letter from './letter';
+import Letter from './letter';
 
 const NewMailPage = (props) => {
     const theme = React.useContext(ThemeContext);
@@ -41,9 +39,9 @@ const NewMailPage = (props) => {
 
     // 信件
     const letter = (item) => {
-        // hideMailBoxPage(true)
-        // props.dispatch(action('MailBoxModel/changeCurrentMailData')(item));
-        // const key = RootView.add(<Letter onClose={() => { RootView.remove(key) }} hideMailBoxPage={hideMailBoxPage} />);
+        hideMailBoxPage(true)
+        props.dispatch(action('MailBoxModel/changeCurrentMailData')(item));
+        const key = RootView.add(<Letter onClose={() => { RootView.remove(key) }} hideMailBoxPage={hideMailBoxPage} />);
     }
 
     const renderMail = ({ item }) => {
@@ -65,9 +63,9 @@ const NewMailPage = (props) => {
     return (
         <View style={{ flex: 1, }}>
             {/* head */}
-            <View style={[theme.headerBgColor, { paddingBottom: 8, paddingTop: 8, paddingLeft: 12, alignItems: 'flex-start' }]}>
-                <Text style={[theme.headerTextColor1, theme.headerTitle1]}>新信件</Text>
-                <Text style={[theme.headerTextColor2, theme.headerTitle2]}>共有{mailHistoryData.filter(m => m.isFinish === false).length}位来访者</Text>
+            <View style={[theme.blockBgColor1, { paddingBottom: 8, paddingTop: 8, paddingLeft: 12, alignItems: 'flex-start' }]}>
+                <Text style={[theme.titleColor1, theme.headerTitle1]}>新信件</Text>
+                <Text style={[theme.titleColor2, theme.headerTitle2]}>共有{mailHistoryData.filter(m => m.isFinish === false).length}位来访者</Text>
             </View>
             <View style={{ flex: 1, marginBottom: 30, marginLeft: -12 }}>
                 <FlatList
