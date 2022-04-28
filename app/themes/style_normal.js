@@ -18,7 +18,8 @@ const pageBgColor1 = '#f2f2f2';  // 淡灰色
 /* 区块背景 */
 const blockBgColor1 = '#e8d2b0';  // 深米白色
 const blockBgColor2 = '#e8ddcc';  // 米白色
-const blockBgColor3 = '#003964';  // 蓝色
+const blockBgColor3 = '#d3c2aa';  // 淡米色
+
 
 /* 按钮背景 */
 const btnBgColor1 = '#003964';  // 蓝色
@@ -73,6 +74,9 @@ const styles = StyleSheet.create({
     btnBgColor2: {
         backgroundColor: btnBgColor2,
     },
+    blockBgColor3:{
+        backgroundColor: blockBgColor3,
+    },
 
     /* 提示背景 */
     tipBgColor1: {
@@ -126,7 +130,7 @@ const styles = StyleSheet.create({
     /** ================================ */
     /* 对话选项框条目 */
     chatItem: {
-        backgroundColor: blockBgColor3,
+        backgroundColor: btnBgColor1,
         paddingTop: 2,
         paddingBottom: 2,
         marginVertical: 2

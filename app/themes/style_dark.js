@@ -20,9 +20,10 @@ const pageBgColor1 = '#5e5e5e';  // 灰色
 /* 区块背景 */
 const blockBgColor1 = '#4d4d4d';  // 深灰色
 const blockBgColor2 = '#616161';  // 深灰色
+const blockBgColor3 = '#525252';  // 暗灰色
 
 /* 按钮背景 */
-const btnBgColor1 = '#525252';  // 深灰色
+const btnBgColor1 = '#525252';  // 暗灰色
 const btnBgColor2 = '#4d4d4d';  // 深灰色
 
 /* 提示背景 */
@@ -35,14 +36,14 @@ const tipBgColor1 = '#525252';  // 暗灰色
 /**             文字颜色              */
 /** ================================ */
 /* 标题 */
-const titleColor1 = '#f0f0f0';  //淡灰色
-const titleColor2 = '#f0f0f0';  //淡灰色
-const titleColor3 = '#d86362';  //淡红色
+const titleColor1 = '#f0f0f0';  // 偏白色
+const titleColor2 = '#f0f0f0';  // 偏白色
+const titleColor3 = '#d86362';  // 淡红色
 
 /* 内容 */
-const contentColor1 = '#f0f0f0';  //淡灰色
-const contentColor2 = '#989898';  //暗灰色
-const contentColor3 = '#f0f0f0';  //暗灰色
+const contentColor1 = '#f0f0f0';  //偏白色
+const contentColor2 = '#989898';  //淡灰色
+const contentColor3 = '#f0f0f0';  //偏白色
 
 
 
@@ -65,6 +66,9 @@ const styles = StyleSheet.create({
     blockBgColor2: {
         backgroundColor: blockBgColor2,
     },
+    blockBgColor3: {
+        backgroundColor: blockBgColor3,
+    },
 
     /* 按钮背景 */
     btnBgColor1: {
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
     },
     titleColor2: {
         color: titleColor2,
-    },    
+    },
     titleColor3: {
         color: titleColor3,
     },
