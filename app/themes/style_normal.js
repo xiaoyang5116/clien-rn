@@ -107,6 +107,12 @@ const styles = StyleSheet.create({
         fontColor: btnFontColor,
         backgroundColor: btnBackgroundColor,
     },
+
+    /* 选项样式 */
+    options: {
+        fontColor: '#8addff',
+    },
+
     /** ================================ */
     /**             邮件样式              */
     /** ================================ */

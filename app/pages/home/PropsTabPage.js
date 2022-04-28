@@ -11,7 +11,7 @@ import {
     View, 
     Text, 
     FlatList, 
-    TouchableHighlight,
+    TouchableOpacity,
 } from '../../constants/native-ui';
 
 import {
@@ -21,6 +21,8 @@ import {
 
 import { Panel } from '../../components/panel';
 import { confirm } from '../../components/dialog';
+import ImageCapInset from 'react-native-image-capinsets-next';
+import FastImage from 'react-native-fast-image';
 
 class PropsTabPage extends Component {
 
@@ -76,16 +78,27 @@ class PropsTabPage extends Component {
             }
         }
         return (
-        <TouchableHighlight onPress={() => this._propSelected(data.item)} underlayColor='#a9a9a9' activeOpacity={0.7}>
-            <View style={[styles.propsItem, (this.state.selectId == data.item.id ? styles.propSelected : {})]}>
-                <View style={{ flex: 1, flexDirection: 'row' }} >
-                    <Text style={[{ marginLeft: 20, fontSize: 22 }, color]}>{data.item.name}</Text>
+        <TouchableOpacity onPress={() => this._propSelected(data.item)} activeOpacity={1}>
+            <View style={styles.propsItem}>
+                <FastImage
+                    style={{ width: '100%', height: '100%', position: 'absolute', opacity: (this.state.selectId == data.item.id) ? 1 : 0 }}
+                    source={require('../../../assets/button/prop_item_bg.png')}
+                />
+                <View style={styles.propsBorder}>
+                    <View style={{ flex: 1, flexDirection: 'row' }} >
+                        <Text style={[{ marginLeft: 20, fontSize: 22 }, color]}>{data.item.name}</Text>
+                    </View>
+                    <View style={{ flex: 1 }}>
+                        <Text style={{ marginRight: 20, fontSize: 22, color: '#424242', textAlign: 'right' }}>x{data.item.num}</Text>
+                    </View>
                 </View>
-                <View style={{ flex: 1 }}>
-                    <Text style={{ marginRight: 20, fontSize: 22, color: '#424242', textAlign: 'right' }}>x{data.item.num}</Text>
-                </View>
+                <ImageCapInset
+                    style={{ width: '100%', height: 43, position: 'absolute', top: -2, opacity: (this.state.selectId == data.item.id) ? 0.5 : 0 }}
+                    source={require('../../../assets/button/prop_item_patch.png')}
+                    capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                />
             </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
         );
     }
 
@@ -123,6 +136,7 @@ class PropsTabPage extends Component {
                     </View>
                     <View style={{ flex: 1, paddingLeft: 10, paddingRight: 10 }}>
                         <FlatList
+                            style={{ paddingTop: 2 }}
                             data={this.props.listData}
                             renderItem={this._renderItem}
                             keyExtractor={item => item.id}
@@ -148,7 +162,6 @@ class PropsTabPage extends Component {
 const styles = StyleSheet.create({
     propsContainer: {
         flex: 1,
-        // backgroundColor: '#fff',
         margin: 10,
         alignSelf: 'stretch',
     },
@@ -157,12 +170,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
+        height: 40,
+    },
+    propsBorder: {
+        flex: 1, 
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
-        borderTopWidth: 1,
-        borderTopColor: '#fff',
-        // backgroundColor: '#ebebeb',
-        height: 40,
+        marginLeft: 1,
+        marginRight: 1,
     },
     propSelected: {
         backgroundColor: '#d6d6d6',
