@@ -42,22 +42,22 @@ const TabIcon = (props) => {
   );
 }
 
+const HeaderTitle = (props) => {
+  console.log("HeaderTitle", props);
+  return (
+    <View style={[{ height: 50, width: '100%', backgroundColor: '#fff', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }]}>
+      <ImageCapInset
+        style={{ width: '100%', height: '100%', position: 'absolute', }}
+        source={require('../../assets/tab/tab_header_bg.png')}
+        capInsets={{ top: 25, right: 25, bottom: 25, left: 25 }}
+      />
+      <Text>{props.options.title}</Text>
+    </View>
+  )
+}
+
 const defaultScreenOptions = {
-  headerTitleStyle: {
-    color: '#666',
-  },
-  
-  headerBackground: () => {
-    return (
-      <View style={{ marginTop: 45, backgroundColor: '#fff', width: '100%', height: 50 }}>
-        <ImageCapInset
-          style={{ width: '100%', height: '100%' }}
-          source={require('../../assets/tab/tab_header_bg.png')}
-          capInsets={{ top: 25, right: 25, bottom: 25, left: 25 }}
-        />
-      </View>
-    );
-  },
+  header: (props)=> <HeaderTitle {...props} />,
   tabBarStyle: {
     height: 70,
     borderTopWidth: 0, // 去掉底部边框
@@ -77,37 +77,37 @@ class HomePage extends Component {
       <Tab.Navigator initialRouteName='World' screenOptions={defaultScreenOptions}>
         <Tab.Screen name="World" component={StoryTabPage} options={{
           tabBarLabel: "",
-          headerTitle: "世界",
+          title: "世界",
           tabBarIcon: ({ color }) => (<TabIcon color={color} title={'世界'} />),
         }} />
         <Tab.Screen name="Explore" component={ExploreTabPage} options={{
           tabBarLabel: "",
-          headerTitle: "探索",
+          title: "探索",
           tabBarIcon: ({ color }) => (<TabIcon color={color} title={'探索'} />),
         }} />
         <Tab.Screen name="Arena" component={ArenaTabPage} options={{
           tabBarLabel: "",
-          headerTitle: "竞技",
+          title: "竞技",
           tabBarIcon: ({ color }) => (<TabIcon color={color} title={'竞技'} />),
         }} />
         <Tab.Screen name="Compose" component={ComposeTabPage} options={{
           tabBarLabel: "",
-          headerTitle: "制作",
+          title: "制作",
           tabBarIcon: ({ color }) => (<TabIcon color={color} title={'制作'} />),
         }} />
         <Tab.Screen name="Props" component={PropsTabPage} options={{
           tabBarLabel: "",
-          headerTitle: "道具",
+          title: "道具",
           tabBarIcon: ({ color }) => (<TabIcon color={color} title={'道具'} />),
         }} />
         <Tab.Screen name="Lottery" component={LotteryTabPage} options={{
           tabBarLabel: "",
-          headerTitle: "抽奖",
+          title: "抽奖",
           tabBarIcon: ({ color }) => (<TabIcon color={color} title={'抽奖'} />),
         }} />
         <Tab.Screen name="Profile" component={ProfileTabPage} options={{
           tabBarLabel: "",
-          headerTitle: "设置",
+          title: '设置',
           tabBarIcon: ({ color }) => (<TabIcon color={color} title={'设置'} />),
         }} />
       </Tab.Navigator>
