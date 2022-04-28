@@ -15,7 +15,6 @@ import { View } from '../constants/native-ui';
 import { ImageButton } from '../constants/custom-ui';
 import * as RootNavigation from '../utils/RootNavigation';
 import RootView from '../components/RootView';
-// import MailBox from '../components/mailBox';
 import ArchivePage from './ArchivePage';
 import MailBoxPage from './MailBoxPage';
 
