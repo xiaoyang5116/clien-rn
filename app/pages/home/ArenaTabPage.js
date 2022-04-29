@@ -11,7 +11,7 @@ import {
     RenderHTML
 } from 'react-native-render-html';
 
-import Panel from '../../components/panel';
+import { Panel } from '../../components/panel';
 import ProgressBar from '../../components/ProgressBar';
 import { View, Text, FlatList } from '../../constants/native-ui';
 

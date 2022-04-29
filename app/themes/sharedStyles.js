@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native';
 
 
 /* 字体大小 */
-const titleSize = 24
-const contentSize = 18
+const titleSize1 = 24
+const titleSize2 = 18
 
 
 const sharedStyles = StyleSheet.create({
@@ -37,8 +37,20 @@ const sharedStyles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: "center",
     },
+    /* row 平分 */
+    rowSpaceBetween: {
+        flexDirection: "row",
+        justifyContent: 'space-between',
+        alignItems: "center",
+    },
 
     /* header */
+    headerTitle1: {
+        fontSize: titleSize1,
+    },
+    headerTitle2: {
+        fontSize: titleSize2,
+    },
 
     /** ================================ */
     /**             page 容器             */

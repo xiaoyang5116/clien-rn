@@ -19,7 +19,7 @@ import {
     TextButton,
 } from '../../constants/custom-ui';
 
-import Panel from '../../components/panel';
+import { Panel } from '../../components/panel';
 import FastImage from 'react-native-fast-image';
 import ImageCapInset from 'react-native-image-capinsets-next';
 

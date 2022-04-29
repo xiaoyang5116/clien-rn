@@ -5,31 +5,46 @@ import sharedStyles from './sharedStyles';
 /** 主题色：黑色 */
 
 /**
- * 背景颜色
- *      页面背景 bgColor1: #5e5e5e
- *      区块背景 bgColor2: #4d4d4d
- */
- const bgColor1 = '#5e5e5e';
- const bgColor2 = '#4d4d4d';
-
-/**
  * 通用按钮
  */
- const btnFontColor = '#eee';
- const btnBackgroundColor = '#003964';
+const btnFontColor = '#eee';
+const btnBackgroundColor = '#003964';
 
-/**
- * 文字颜色
- *      标题
- *          一级标题 titleColor: #f0f0f0
- *      内容
- *          一级内容 contentColor: #f0f0f0
- */
-// 标题
-const titleColor1 = '#f0f0f0';
 
-// 内容
-const contentColor = '#f0f0f0';
+/** ================================ */
+/**             背景颜色              */
+/** ================================ */
+/* 页面背景 */
+const pageBgColor1 = '#5e5e5e';  // 灰色
+
+/* 区块背景 */
+const blockBgColor1 = '#4d4d4d';  // 深灰色
+const blockBgColor2 = '#616161';  // 深灰色
+const blockBgColor3 = '#525252';  // 暗灰色
+
+/* 按钮背景 */
+const btnBgColor1 = '#525252';  // 暗灰色
+const btnBgColor2 = '#4d4d4d';  // 深灰色
+
+/* 提示背景 */
+const tipBgColor1 = '#525252';  // 暗灰色
+
+/* 边框背景 */
+// const lineColor1 = '#';  // 
+
+/** ================================ */
+/**             文字颜色              */
+/** ================================ */
+/* 标题 */
+const titleColor1 = '#f0f0f0';  // 偏白色
+const titleColor2 = '#f0f0f0';  // 偏白色
+const titleColor3 = '#d86362';  // 淡红色
+
+/* 内容 */
+const contentColor1 = '#f0f0f0';  //偏白色
+const contentColor2 = '#989898';  //淡灰色
+const contentColor3 = '#f0f0f0';  //偏白色
+
 
 
 const styles = StyleSheet.create({
@@ -40,27 +55,54 @@ const styles = StyleSheet.create({
     ...sharedStyles,
 
     /* 页面背景颜色 */
-    pageBg: {
-        backgroundColor: bgColor1,
+    pageBgColor1: {
+        backgroundColor: pageBgColor1,
     },
 
-    /* header */
-    headerBgColor: {
-        backgroundColor: bgColor2,
+    /* 区块背景 */
+    blockBgColor1: {
+        backgroundColor: blockBgColor1,
     },
-    headerTextColor: {
-        color: contentColor,
+    blockBgColor2: {
+        backgroundColor: blockBgColor2,
+    },
+    blockBgColor3: {
+        backgroundColor: blockBgColor3,
     },
 
-    /** ================================ */
-    /**             底部                 */
-    /** ================================ */
-    footerBgColor: {
-        backgroundColor: bgColor2,
+    /* 按钮背景 */
+    btnBgColor1: {
+        backgroundColor: btnBgColor1,
     },
-    
-    footerTextColor: {
-        color: contentColor,
+    btnBgColor2: {
+        backgroundColor: btnBgColor2,
+    },
+
+    /* 提示背景 */
+    tipBgColor1: {
+        backgroundColor: tipBgColor1,
+    },
+
+    /* 标题颜色 */
+    titleColor1: {
+        color: titleColor1,
+    },
+    titleColor2: {
+        color: titleColor2,
+    },
+    titleColor3: {
+        color: titleColor3,
+    },
+
+    /* 内容颜色 */
+    contentColor1: {
+        color: contentColor1,
+    },
+    contentColor2: {
+        color: contentColor2,
+    },
+    contentColor3: {
+        color: contentColor3,
     },
 
     /* 按钮样式 */
@@ -73,6 +115,14 @@ const styles = StyleSheet.create({
     /* 选项样式 */
     options: {
         fontColor: btnFontColor,
+    },
+
+    /** ================================ */
+    /**             邮件样式              */
+    /** ================================ */
+    mailTips: {
+        color: contentColor2,
+        backgroundColor: blockBgColor2,
     },
 
     /** ================================ */
