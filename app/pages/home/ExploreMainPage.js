@@ -382,7 +382,7 @@ class ExploreMainPopPage extends Component {
                         <Text style={styles.textBox}>{currentArea.name}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', marginLeft: 10, marginBottom: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
-                        <Text style={styles.textBox}>探索度 100/100</Text>
+                        <Text style={styles.textBox}>探索度 ???/100</Text>
                     </View>
                     <View style={{ flexDirection: 'row', marginLeft: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
                         <Text style={styles.textBox}>补给[预留位置]</Text>
@@ -394,15 +394,15 @@ class ExploreMainPopPage extends Component {
                         <TimeBanner key={this.props.areaId * 100} ref={this.refTimeBanner} time={currentArea.time} interval={currentArea.interval} onStep={this.onStep} />
                         <View style={{ position: 'absolute', left: 100, top: 0, width: 10, height: '100%', backgroundColor: '#669900', opacity: 0.75 }} />
                     </View>
-                    <View style={{ flexDirection: 'row', height: 80, justifyContent: 'space-around', alignItems: 'center' }} >
-                        <TextButton {...this.props} title={'预留'} onPress={() => { }} disabled={true} />
+                    <View style={{ flexDirection: 'row', height: 80, justifyContent: 'space-evenly', alignItems: 'center' }} >
+                        <TextButton {...this.props} title={'终止'} onPress={() => {
+                            this.props.onClose();
+                        }} />
                         <TextButton {...this.props} title={'储物袋'} onPress={() => { this.showBag(); }} />
                         <TextButton {...this.props} title={'预留'} onPress={() => {}} disabled={true} />
                     </View>
-                    <View style={{ flexDirection: 'row', height: 60, justifyContent: 'space-around', alignItems: 'center' }} >
-                        <TextButton {...this.props} title={'结束探索'} onPress={() => {
-                            this.props.onClose();
-                        }} />
+                    <View style={{ flexDirection: 'row', height: 60, justifyContent: 'space-evenly', alignItems: 'center' }} >
+                        <TextButton {...this.props} title={'返回'} onPress={() => { }} disabled={true} />
                         <TextButton {...this.props} title={'加速'} onPress={() => {}} disabled={true} />
                         <TextButton {...this.props} title={'全部加速'} onPress={() => { }} disabled={true} />
                     </View>
