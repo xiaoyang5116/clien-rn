@@ -11,10 +11,12 @@ import {
 import {
     action,
     connect,
+    ThemeContext,
 } from "../../constants";
 import { changeAvatar } from '../../constants'
 import TextAnimation from '../textAnimation'
 import { TextButton } from '../../constants/custom-ui';
+import { HalfPanel } from '../panel'
 
 
 /**
@@ -45,8 +47,9 @@ Modal.show({
 
 // 思路：历史对话 => 当前对话 => 点击之后，就当前的对话，push 到历史对话中 => 显示历史对话
 const MultiplayerDialog = (props) => {
+    const theme = React.useContext(ThemeContext);
     // 样式， 配置数据， 关闭对话框方法
-    const { currentStyles, viewData, onDialogCancel } = props;
+    const { viewData, onDialogCancel } = props;
     // 文字动画类型
     const textAnimationType = viewData.textAnimationType;
     // 对话框外观类型
@@ -172,7 +175,7 @@ const MultiplayerDialog = (props) => {
         if ((currentDialogIndex === currentDialogData.dialog.length - 1) && (currentContentIndex === currentContentLength)) {
             return (
                 <View style={{ marginTop: 12 }}>
-                    <TextButton currentStyles={props.currentStyles} title={item.title} onPress={() => { nextDialog(item.tokey) }} />
+                    <TextButton title={item.title} onPress={() => { nextDialog(item.tokey) }} />
                 </View>
             )
         }
@@ -180,8 +183,7 @@ const MultiplayerDialog = (props) => {
 
     return (
         <View style={styles.fullscreenContainer}>
-            <View style={[dialogType === "HalfScreen" ? styles.halfContainer : styles.fullContainer, currentStyles.bgColor]}>
-                {/* header */}
+            <View style={[dialogType === "HalfScreen" ? styles.halfContainer : styles.fullContainer, theme.blockBgColor2]}>
                 <View style={styles.dialogHeader}>
                     <Text onPress={onDialogCancel} style={[styles.titleFontSize, styles.back]}>返回</Text>
                     <Text style={[styles.titleFontSize, styles.title]}>{viewData.title}</Text>
@@ -226,11 +228,11 @@ export default connect((state) => ({ ...state.FigureModel }))(MultiplayerDialog)
 
 const styles = StyleSheet.create({
     fullscreenContainer: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
+        // position: 'absolute',
+        // top: 0,
+        // left: 0,
+        // bottom: 0,
+        // right: 0,
         justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',

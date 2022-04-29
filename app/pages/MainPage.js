@@ -19,6 +19,7 @@ import {
 import HomePage from './/HomePage';
 import ArticlePage from './ArticlePage';
 import FirstPage from './FirstPage';
+import SettingsPage from './SettingsPage';
 
 import { navigationRef } from '../utils/RootNavigation';
 
@@ -49,6 +50,7 @@ class MainPage extends Component {
           <Stack.Screen name='Home' options={{ headerShown: false }} component={HomePage} />
           <Stack.Screen name='Article' options={{ headerShown: false }} component={ArticlePage} />
           <Stack.Screen name="First" options={{ headerShown: false }} component={FirstPage} />
+          <Stack.Screen name="Settings" options={{ headerShown: false }} component={SettingsPage} />
         </Stack.Navigator>
       </NavigationContainer>
     );

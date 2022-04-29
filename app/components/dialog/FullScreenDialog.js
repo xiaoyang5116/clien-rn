@@ -5,6 +5,10 @@ import {
     TouchableWithoutFeedback,
     FlatList,
 } from 'react-native';
+import {
+    AppDispath,
+    ThemeContext,
+} from '../../constants';
 
 import { TextButton } from '../../constants/custom-ui';
 import TextAnimation from '../textAnimation';
@@ -12,6 +16,7 @@ import TextAnimation from '../textAnimation';
 
 
 const FullScreenDialog = props => {
+    const theme = React.useContext(ThemeContext);
     const [currentIndex, setCurrentIndex] = useState(0)
     const [currentTextList, setShowList] = useState(props.popUpComplex[0].content)
     const [showBtnList, setShowBtnList] = useState(props.popUpComplex[0].btn)
@@ -47,6 +52,7 @@ const FullScreenDialog = props => {
                         icon={(currentIndex === index) && (currentIndex < currentDialogueLength) ? "▼" : ''}
                         fontSize={20}
                         type={props.textAnimationType}
+                        style={theme.contentColor3}
                     >
                         {item}
                     </TextAnimation>
@@ -68,10 +74,10 @@ const FullScreenDialog = props => {
     }
 
     return (
-        <View style={{ backgroundColor: '#eee7dd', flex: 1, opacity: 1, paddingTop: 10 }}>
+        <View style={[theme.blockBgColor3, { flex: 1, opacity: 1, paddingTop: 10 }]}>
             {/* 标题 */}
-            <View style={{ height: 40, backgroundColor: '#e3d8c8', justifyContent: 'center', alignContent: 'center', alignItems: 'center', borderBottomColor: '#6d6a65', borderBottomWidth: 1, borderTopColor: '#6d6a65', borderTopWidth: 1, }}>
-                <Text style={{ fontSize: 20, textAlign: 'center' }}>
+            <View style={[theme.rowCenter, theme.blockBgColor1, { height: 40, borderBottomColor: '#6d6a65', borderBottomWidth: 1, borderTopColor: '#6d6a65', borderTopWidth: 1, }]}>
+                <Text style={[theme.titleColor1, { fontSize: 20, textAlign: 'center' }]}>
                     {props.title}
                 </Text>
             </View>
@@ -80,7 +86,7 @@ const FullScreenDialog = props => {
                 <TouchableWithoutFeedback onPress={nextParagraph} >
                     <View style={{ flex: 1 }}>
                         {/* 内容显示区域 */}
-                        <View style={{ height: 350 }}>
+                        <View style={{ height: "60%" }}>
                             <FlatList
                                 data={currentTextList}
                                 renderItem={renderText}

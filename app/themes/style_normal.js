@@ -2,33 +2,50 @@
 import { StyleSheet } from 'react-native';
 import sharedStyles from './sharedStyles';
 
-// 文字颜色
-const textColor = '#000';  // 黑色 6a655e
-
 /**
- * 按钮颜色
- * btnColor: 字体颜色,
- * btnBgColor: 背景颜色,
- */
-const btnColor = '#bcfefe';  // 青色
-const btnBgColor = '#003964';  // 蓝色
-const btnColor2 = '#ede7db';  // 淡米白色
+* 通用按钮
+*/
+const btnFontColor = '#424242';
+const btnBackgroundColor = '#eee';
 
-/**
- * 背景颜色
- */
-const bgColor = '#003964';  // 蓝色
-const bgColor2 = '#e8ddcc';  // 米白色
-const bgColor3 = '#fff';  // 白色
-const pageBgColor = '#f2f2f2' // 灰白色
 
-/**
- * header 样式
- * headerTextColor 文字颜色
- * headerBgColor 背景颜色
- */
-const headerTextColor = '#6a655e';  // 深灰色
-const headerBgColor = '#e8ddcc';  // 米白色
+/** ================================ */
+/**             背景颜色              */
+/** ================================ */
+/* 页面背景 */
+const pageBgColor1 = '#f2f2f2';  // 淡灰色
+
+/* 区块背景 */
+const blockBgColor1 = '#e8d2b0';  // 深米白色
+const blockBgColor2 = '#e8ddcc';  // 米白色
+const blockBgColor3 = '#d3c2aa';  // 淡米色
+
+
+/* 按钮背景 */
+const btnBgColor1 = '#003964';  // 蓝色
+const btnBgColor2 = '#e8ddcc';  // 米白色
+
+/* 提示背景 */
+const tipBgColor1 = '#d3c2aa';  // 淡米色
+
+/* 边框背景 */
+// const lineColor1 = 'gray';  // 灰色
+
+/** ================================ */
+/**             文字颜色              */
+/** ================================ */
+/* 标题 */
+const titleColor1 = '#6a655e';  // 深棕色
+const titleColor2 = '#6a655e';  // 深棕色
+const titleColor3 = '#d86362';  // 淡红色
+
+/* 内容 */
+const contentColor1 = '#f2f2f2';  // 淡灰色
+const contentColor2 = '#868076';  // 淡棕色
+const contentColor3 = '#6a655e';  // 深棕色
+
+
+
 
 const styles = StyleSheet.create({
     /** ================================ */
@@ -38,34 +55,82 @@ const styles = StyleSheet.create({
     ...sharedStyles,
 
     /* 页面背景颜色 */
-    pageBg: {
-        backgroundColor: pageBgColor,
+    pageBgColor1: {
+        backgroundColor: pageBgColor1,
     },
 
-    /* header */
-    headerBg: {
-        backgroundColor: headerBgColor,
+    /* 区块背景 */
+    blockBgColor1: {
+        backgroundColor: blockBgColor1,
     },
-    headerTextColor: {
-        color: headerTextColor,
+    blockBgColor2: {
+        backgroundColor: blockBgColor2,
+    },
+
+    /* 按钮背景 */
+    btnBgColor1: {
+        backgroundColor: btnBgColor1,
+    },
+    btnBgColor2: {
+        backgroundColor: btnBgColor2,
+    },
+    blockBgColor3:{
+        backgroundColor: blockBgColor3,
+    },
+
+    /* 提示背景 */
+    tipBgColor1: {
+        backgroundColor: tipBgColor1,
+    },
+
+    /* 标题颜色 */
+    titleColor1: {
+        color: titleColor1,
+    },
+    titleColor2: {
+        color: titleColor2,
+    },
+    titleColor3: {
+        color: titleColor3,
+    },
+
+    /* 内容颜色 */
+    contentColor1: {
+        color: contentColor1,
+    },
+    contentColor2: {
+        color: contentColor2,
+    },
+    contentColor3: {
+        color: contentColor3,
     },
 
     /* 按钮样式 */
     button: {
-        color: btnColor,
-        backgroundColor: btnBgColor,
+        color: btnFontColor,
+        fontColor: btnFontColor,
+        backgroundColor: btnBackgroundColor,
+    },
+
+    /* 选项样式 */
+    options: {
+        fontColor: '#8addff',
     },
 
     /** ================================ */
-    /**             我的 页面             */
+    /**             邮件样式              */
     /** ================================ */
+    mailTips: {
+        color: contentColor2,
+        backgroundColor: blockBgColor2,
+    },
 
     /** ================================ */
     /**             选择框                */
     /** ================================ */
     /* 对话选项框条目 */
     chatItem: {
-        backgroundColor: bgColor,
+        backgroundColor: btnBgColor1,
         paddingTop: 2,
         paddingBottom: 2,
         marginVertical: 2
@@ -79,6 +144,11 @@ const styles = StyleSheet.create({
         border: '#c7c7cc',
         notification: '#ff453a',
     },
+    /** ================================ */
+    /**            图片资源               */
+    /** ================================ */
+    profileItemImage: require('../../assets/button/profile_item.png'),
+    profileItemImageSelected: require('../../assets/button/profile_item_selected.png'),
 });
 
 export default styles;
