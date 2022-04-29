@@ -1,16 +1,15 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
-
-import { StyleSheet } from '../constants';
 
 export default {
-    Normal: require('./style_normal').default,
-    Dark: require('./style_dark').default,
+    // 当前风格ID
+    themeId: 0,
+
+    // 风格列表
+    themes: [
+        { id: 0, title: '莎草纸', style: require('./style_normal').default, img: require('../../assets/bg/lottery_bg2.jpg') },
+        { id: 1, title: '蓝色云纹', style: require('./style_dark').default, img: require('../../assets/bg/lottery_bg.jpg') },
+        { id: 2, title: '黑白水墨', style: require('./style_dark').default, img: require('../../assets/bg/lottery_bg.jpg') },
+        { id: 3, title: '夜间风格', style: require('./style_dark').default, img: require('../../assets/bg/lottery_bg.jpg') },
+        { id: 4, title: '竹林绿色', style: require('./style_dark').default, img: require('../../assets/bg/lottery_bg.jpg') },
+        { id: 5, title: '红檀木', style: require('./style_dark').default, img: require('../../assets/bg/lottery_bg.jpg') },
+    ],
 }

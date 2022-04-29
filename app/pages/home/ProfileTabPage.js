@@ -3,98 +3,82 @@ import React from 'react';
 import {
     action,
     connect,
-    Component,
-    StyleSheet,
+    ThemeContext,
 } from "../../constants";
 
-import { View, Text, FlatList, TouchableOpacity } from '../../constants/native-ui';
-import { TextButton } from '../../constants/custom-ui';
-import * as DateTime from '../../utils/DateTimeUtils';
+import {
+    View,
+    Text,
+    FlatList,
+} from '../../constants/native-ui';
 
-class ProfileTabPage extends Component {
+import { Panel } from '../../components/panel';
+import { ImageButton } from '../../constants/custom-ui';
+import * as RootNavigation from '../../utils/RootNavigation';
+
+class ProfileTabPage extends React.Component {
+
+    static contextType = ThemeContext;
 
     constructor(props) {
         super(props);
-        this.times = 0;
-        this.timer = null;
+        this.flatListKey = 1; // 用于强制刷新
+        this.data = [
+            {
+                id: 1,
+                title: '界面风格设置',
+                cb: () => {
+                    RootNavigation.navigate('Settings', { screen: 'Appearance', });
+                }
+            },
+            {
+                id: 2,
+                title: '...',
+            },
+            {
+                id: 3,
+                title: '...',
+            },
+        ];
     }
 
-    _onClearArchive() {
-        this.props.dispatch(action('AppModel/clearArchive')());
-    }
-
-    _onChangeTheme(themeId) {
+    _onChangeTheme = (themeId) => {
         if (themeId >= 0) {
             this.props.dispatch(action('AppModel/changeTheme')({ themeId: themeId }));
         }
     }
 
-    _onArchive() {
-        this.props.dispatch(action('AppModel/archive')({ title: '手动存档' }));
-    }
-
-    _onDoubleClick = (item) => {
-        clearTimeout(this.timer);
-        if (++this.times >= 2) { // 双击触发
-            this.times = 0;
-            this.props.dispatch(action('AppModel/selectArchive')({ archiveId: item.id }));
-        }
-        this.timer = setTimeout(() => {
-            this.times = 0;
-        }, 500);
-    }
-
     _renderItem = (data) => {
         const item = data.item;
-        const bgColor = (this.props.currentArchiveIndex == item.id) ? '#ffa997' : '#ddd';
         return (
-            <TouchableOpacity activeOpacity={0.7} onPress={() => this._onDoubleClick(item)}>
-                <View style={{ width: '100%', height: 50, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center',
-                                marginTop: 5, marginBottom: 5, borderColor: '#999', borderWidth: 1, backgroundColor: bgColor }}>
-                    <Text style={{ width: 60, textAlign: 'center' }}>ID：{item.id}</Text>
-                    <Text style={{ flex: 1, paddingLeft: 5, color: '#669900' }}>{item.desc.sceneName}</Text>
-                    <Text style={{ width: 160, textAlign: 'center' }}>{DateTime.format(item.dt, 'yyyy-MM-dd hh:mm:ss')}</Text>
-                </View>
-            </TouchableOpacity>
-        )
-    }
-
-    render() {
-        return (
-            <View style={this.props.currentStyles.viewContainer}>
-                <View style={{ alignSelf: 'stretch', flexDirection: 'row', backgroundColor: '#ddd' }}>
-                    <Text style={{ lineHeight: 20, fontWeight: 'bold', margin: 10 }}>存档列表:（双击选择）</Text>
-                </View>
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', padding: 10 }}>
-                    <FlatList
-                        data={this.props.archiveList}
-                        renderItem={this._renderItem}
-                        keyExtractor={item => item.id}
-                    />
-                </View>
-                <View style={{ margin: 10, paddingTop: 10, paddingBottom: 10, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', 
-                    borderColor: '#999', borderWidth: 1, backgroundColor: '#ede7db' }}>
-                    <Text>状态:</Text>
-                    <TextButton {...this.props} title="存档" onPress={() => { this._onArchive() }} />
-                    <TextButton {...this.props} title="清档" onPress={() => { this._onClearArchive() }} />
-                </View>
-                <View style={{ marginLeft: 10, marginRight: 10, marginBottom: 20, paddingTop: 10, paddingBottom: 10, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', 
-                    borderColor: '#999', borderWidth: 1, backgroundColor: '#ede7db' }}>
-                    <Text>选择风格：</Text>
-                    <TextButton {...this.props} title="白天模式" onPress={() => { this._onChangeTheme(0) }} />
-                    <TextButton {...this.props} title="夜晚模式" onPress={() => { this._onChangeTheme(1) }} />
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', height: 80 }}>
+                <ImageButton height={80}
+                    source={this.context.profileItemImage}
+                    selectedSource={this.context.profileItemImageSelected}
+                    onPress={() => { if (item.cb != undefined) item.cb(); }}
+                />
+                <View style={{ position: 'absolute', left: 0, top: 30, width: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents='none' >
+                    <Text style={{ color: this.context.button.fontColor, fontSize: 20 }}>{item.title}</Text>
                 </View>
             </View>
         );
     }
 
+    render() {
+        return (
+            <Panel>
+                <View style={{ flex: 1, marginTop: 10 }}>
+                    <FlatList
+                        key={this.flatListKey++}
+                        data={this.data}
+                        renderItem={this._renderItem}
+                        keyExtractor={item => item.id}
+                    />
+                </View>
+            </Panel>
+        );
+    }
 }
 
-const styles = StyleSheet.create({
-    logo: {
-        width: 80,
-        height: 80
-    },
-});
 
 export default connect((state) => ({ ...state.AppModel }))(ProfileTabPage);

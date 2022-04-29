@@ -1,24 +1,34 @@
 import React from 'react';
+import { ThemeContext } from '.';
 
+import Header from '../components/header'
 import { CButton } from '../components/CButton';
-// import { CButton } from './custom-ui';
 
 /** 选项按钮 */
 export const TabButton = (props) => {
+    const themeStyle = React.useContext(ThemeContext);
     return (
-        <CButton title={props.title} fontSize={16} color='#c0c0c0' fontColor='#000' onPress={props.onPress} style={{ borderWidth: 1, borderColor: '#797979' }} />
+        <CButton 
+            title={props.title} 
+            fontSize={16} 
+            color={themeStyle.button.backgroundColor}
+            fontColor={themeStyle.button.color}
+            onPress={props.onPress}
+        />
     );
 }
 
 /** 文字按钮 */
 export const TextButton = (props) => {
-    const { currentStyles } = props;
-    const customProps = (currentStyles != undefined) 
-        ? { color: currentStyles.button.backgroundColor, fontColor: currentStyles.button.color } 
-        : {};
-    
+    const themeStyle = React.useContext(ThemeContext);
     return (
-        <CButton fontSize={18} {...props} {...customProps} onPress={props.onPress} />
+        <CButton
+            fontSize={18}
+            color={themeStyle.button.backgroundColor}
+            fontColor={themeStyle.button.color}
+            {...props}
+            onPress={props.onPress}
+        />
     );
 }
 
@@ -29,4 +39,9 @@ export const ImageButton = (props) => {
     return (
         <CButton {...props} onPress={props.onPress} />
     );
+}
+
+/** 标题 header */
+export const TitleHeader = (props) => {
+    return <Header {...props} />;
 }

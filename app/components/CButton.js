@@ -4,9 +4,16 @@ import lo from 'lodash';
 
 import {
     Component,
+    StyleSheet,
 } from "../constants";
 
+import ImageCapInset from 'react-native-image-capinsets-next';
 import { Text, Image, View, TouchableHighlight, TouchableOpacity } from '../constants/native-ui';
+
+const TEXT_BUTTON_BG = [
+    require('../../assets/button/40dpi.png'), // 正常状态
+    require('../../assets/button/40dpi_gray.png'), // 无效状态
+];
 
 // 通用按钮实现
 // onPress 回调函数可返回 对象指定 disabled 属性控制按钮是否禁用。
@@ -59,20 +66,29 @@ export class CButton extends Component {
     }
 
     render() {
-        const style = {};
         if (this.isTextStyle()) {
-            style.backgroundColor = this.props.disabled ? '#999' : this.props.color;
+            const defaultStyle = {
+                backgroundColor: (this.props.disabled ? '#999' : this.props.color),
+                ...styles.border,
+            };
+            const imgBg = this.props.disabled ? TEXT_BUTTON_BG[1] : TEXT_BUTTON_BG[0];
             return (
                 <TouchableHighlight underlayColor={this.props.underlayColor} activeOpacity={0.75} disabled={this.props.disabled} onPressIn={this.onPressIn} onPressOut={this.onPressOut} onPress={this.onPress} >
-                    <View style={[style, {...this.props.style}]}>
-                        <Text key={0} style={[{ paddingTop: 3, paddingBottom: 3, paddingLeft: 8, paddingRight: 8, fontSize: this.props.fontSize, color: this.props.fontColor, textAlign: 'center' }]} >{this.props.title}</Text>
+                    <View style={[defaultStyle, {...this.props.style}]}>
+                        <ImageCapInset
+                            style={{ width: '100%', height: '100%', position: 'absolute' }}
+                            source={imgBg}
+                            capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                        />
+                        <Text key={0} style={[styles.text, { fontSize: this.props.fontSize, color: this.props.fontColor }]} >{this.props.title}</Text>
                     </View>
                 </TouchableHighlight>
             );
         } else if (this.isImageStyle()) {
+            const defaultStyle = {};
             return (
                 <TouchableOpacity disabled={this.props.disabled} activeOpacity={1} onPressIn={this.onPressIn} onPressOut={this.onPressOut} onPress={this.onPress} >
-                    <View style={[style, {...this.props.style}]}>
+                    <View style={[defaultStyle, {...this.props.style}]}>
                         {this.state.onPressing ? this.state.selectedImage : this.state.normalImage}
                     </View>
                 </TouchableOpacity>
@@ -81,6 +97,16 @@ export class CButton extends Component {
         return (<></>);
     }
 }
+
+const styles = StyleSheet.create({
+    text: {
+        paddingTop: 5, paddingBottom: 5, paddingLeft: 12, paddingRight: 12,
+        textAlign: 'center',
+    },
+    border: {
+        borderColor: '#666', borderWidth: 1, borderRadius: 3,
+    },
+});
 
 CButton.propTypes = {
     title: PropTypes.string,

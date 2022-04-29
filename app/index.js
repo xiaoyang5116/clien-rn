@@ -10,17 +10,23 @@ import React from 'react';
 
 import {
   AppRegistry,
+  DeviceEventEmitter,
+  Platform,
 } from 'react-native';
+
+import SplashScreen from 'react-native-splash-screen'  // 启动页插件
 
 import {
   dva_create,
   Provider,
   Component,
   StyleSheet,
+  ThemeContext,
+  currentTheme,
 } from './constants';
 
 import { name as appName } from '../app.json';
-import { View, Image } from './constants/native-ui';
+import { View, Text, Image } from './constants/native-ui';
 import MainPage from './pages/MainPage';
 import RootView from './components/RootView';
 import Shock from './components/shock'
@@ -50,6 +56,7 @@ const models = [
   require('./models/ArenaModel').default,
   require('./models/ArticleModel').default,
   require('./models/FigureModel').default,
+  require('./models/MailBoxModel').default,
   require('./models/LotteryModel').default,
   require('./models/ExploreModel').default,
 ];
@@ -82,27 +89,115 @@ models.forEach((o) => {
 });
 dva.start();
 
-EventListeners.raise('reload');
+class LoadingPage extends Component {
+  constructor(props) {
+    super(props);
+    this.timer = null;
+    this.state = {
+      txt: 'Loading',
+    }
+  }
 
-class App extends Component {
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      this.setState({ txt: this.state.txt + '.' });
+    }, 500);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   render() {
     return (
+      <View style={styles.loadingPage}>
+        <Text style={styles.loadingText}>{this.state.txt}</Text>
+      </View>
+    );
+  }
+}
+
+class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      themeStyle: null,
+    };
+    this.listener = null;
+  }
+  
+  componentDidMount() {
+    // 注册事件监听
+    this.listener = DeviceEventEmitter.addListener('App.setState', (payload) => {
+      this.setState({ ...payload });
+    });
+
+    // 触发reload事件加载基础数据
+    EventListeners.raise('reload')
+    .then(() => {
+      DeviceEventEmitter.emit('App.setState', { 
+        loading: false, 
+        themeStyle: currentTheme().style 
+      });
+    });
+
+    // 启动页
+    if (Platform.OS == 'android') {
+      SplashScreen.hide();
+    }
+  }
+
+  componentWillUnmount() {
+    this.listener.remove();
+  }
+
+  renderLoading() {
+    return (
+      <LoadingPage />
+    );
+  }
+
+  renderBody() {
+    return (
       <Provider store={dva._store}>
-        <View style={styles.rootContainer}>
-          <Shock>
-            <MainPage />
-            <RootView />
-          </Shock>
-        </View>
+        <ThemeContext.Provider value={this.state.themeStyle}>
+          <View style={styles.rootContainer}>
+            <Shock>
+              <MainPage />
+              <RootView />
+            </Shock>
+          </View>
+        </ThemeContext.Provider>
       </Provider>
     );
   }
+
+  render() {
+    if (this.state.loading) {
+      return this.renderLoading();
+    } else {
+      return this.renderBody();
+    }
+  }
+
 }
 
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     position: 'relative',
+  },
+  loadingPage: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#eee7dd',
+  },
+  loadingText: {
+    fontSize: 24,
   },
 });
 

@@ -5,6 +5,10 @@ import {
     TouchableWithoutFeedback,
     FlatList,
 } from 'react-native';
+import {
+    AppDispath,
+    ThemeContext,
+} from '../../constants';
 
 import { TextButton } from '../../constants/custom-ui';
 import TextAnimation from '../textAnimation';
@@ -12,6 +16,7 @@ import TextAnimation from '../textAnimation';
 
 
 const FullScreenDialog = props => {
+    const theme = React.useContext(ThemeContext);
     const [currentIndex, setCurrentIndex] = useState(0)
     const [currentTextList, setShowList] = useState(props.popUpComplex[0].content)
     const [showBtnList, setShowBtnList] = useState(props.popUpComplex[0].btn)
@@ -23,8 +28,11 @@ const FullScreenDialog = props => {
             setCurrentIndex(currentIndex + 1)
         }
     }
-    const nextDialogue = (tokey) => {
-        const newDialogue = props.popUpComplex.filter(item => item.key === tokey)
+    const nextDialogue = (item) => {
+        const newDialogue = props.popUpComplex.filter(i => i.key === item.tokey)
+        if (item.props !== undefined) {
+            AppDispath({ type: 'PropsModel/sendPropsBatch', payload: { props: item.props } });
+        }
         if (newDialogue.length > 0) {
             setShowList(newDialogue[0].content)
             setShowBtnList(newDialogue[0].btn)
@@ -44,6 +52,7 @@ const FullScreenDialog = props => {
                         icon={(currentIndex === index) && (currentIndex < currentDialogueLength) ? "▼" : ''}
                         fontSize={20}
                         type={props.textAnimationType}
+                        style={theme.contentColor3}
                     >
                         {item}
                     </TextAnimation>
@@ -57,7 +66,7 @@ const FullScreenDialog = props => {
         if (currentIndex === currentDialogueLength) {
             return (
                 <View style={{ marginTop: 12 }}>
-                    <TextButton currentStyles={props.currentStyles} title={item.title} onPress={() => { nextDialogue(item.tokey) }} />
+                    <TextButton currentStyles={props.currentStyles} title={item.title} onPress={() => { nextDialogue(item) }} />
                 </View>
             )
         }
@@ -65,10 +74,10 @@ const FullScreenDialog = props => {
     }
 
     return (
-        <View style={{ backgroundColor: '#eee7dd', flex: 1, opacity: 1, paddingTop: 10 }}>
+        <View style={[theme.blockBgColor3, { flex: 1, opacity: 1, paddingTop: 10 }]}>
             {/* 标题 */}
-            <View style={{ height: 40, backgroundColor: '#e3d8c8', justifyContent: 'center', alignContent: 'center', alignItems: 'center', borderBottomColor: '#6d6a65', borderBottomWidth: 1, borderTopColor: '#6d6a65', borderTopWidth: 1, }}>
-                <Text style={{ fontSize: 20, textAlign: 'center' }}>
+            <View style={[theme.rowCenter, theme.blockBgColor1, { height: 40, borderBottomColor: '#6d6a65', borderBottomWidth: 1, borderTopColor: '#6d6a65', borderTopWidth: 1, }]}>
+                <Text style={[theme.titleColor1, { fontSize: 20, textAlign: 'center' }]}>
                     {props.title}
                 </Text>
             </View>
@@ -77,7 +86,7 @@ const FullScreenDialog = props => {
                 <TouchableWithoutFeedback onPress={nextParagraph} >
                     <View style={{ flex: 1 }}>
                         {/* 内容显示区域 */}
-                        <View style={{ height: 350 }}>
+                        <View style={{ height: "60%" }}>
                             <FlatList
                                 data={currentTextList}
                                 renderItem={renderText}

@@ -7,11 +7,16 @@ export default class EventListeners {
     }
 
     static raise(event, payload) {
+        const waitObjects = [];
         EventListeners._listeners.forEach(listener => {
             if (listener.event == event) {
-                listener.f(payload);
+                const ret = listener.f(payload);
+                if (ret != undefined && ret instanceof Promise) {
+                    waitObjects.push(ret);
+                }
             }
         });
+        return Promise.all(waitObjects);
     }
 
     static removeAllListeners() {

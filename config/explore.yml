@@ -17,11 +17,12 @@ explore: [
         time: 30,
         interval: 1,
         points: [
+          { idx: 1, event: 'pk', seqId: 'explore', group: 'A' },
           { idx: 5, event: 'xunbao' },
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -42,7 +43,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -63,7 +64,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -95,7 +96,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -116,7 +117,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -137,7 +138,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -169,7 +170,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -190,7 +191,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -211,7 +212,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -243,7 +244,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -264,7 +265,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -285,7 +286,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -317,7 +318,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -338,7 +339,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -359,7 +360,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -391,7 +392,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -412,7 +413,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具
@@ -433,7 +434,7 @@ explore: [
           { idx: 10, event: 'boss' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
-          { idx: 25, event: 'pk' },
+          { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
           # 随机道具

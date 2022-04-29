@@ -163,10 +163,10 @@ const RewardItem = (props) => {
     const icon = PROPS_ICON.find(e => e.iconId == props.iconId);
     return (
     <View style={{ flexDirection: 'column', margin: 10, justifyContent: 'center', alignItems: 'center' }}>
-        <View style={{ width: 68, height: 68 }}>
-            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#333' }}>
+        <View style={{ width: 64, height: 64 }}>
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#333', borderRadius: 10 }}>
                 <Image source={icon.img} />
-                <Text style={{ position: 'absolute', top: 53, right: 0, color: '#fff' }}>{props.num}</Text>
+                <Text style={{ position: 'absolute', top: 46, right: 5, color: '#fff' }}>{props.num}</Text>
             </View>
         </View>
         <Text style={{ color: '#000', marginTop: 3 }}>{props.name}</Text>
@@ -183,12 +183,14 @@ const RewardsPage = (props) => {
     });
     return (
         <TouchableWithoutFeedback onPress={() => { props.onClose() }}>
-            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.85)' }}>
+            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.65)' }}>
                 <View>
                     <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>获得奖励</Text>
                 </View>
                 <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#a6c2cb' }}>
+                    <FastImage style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: 2 }} resizeMode='stretch' source={require('../../../assets/bg/dialog_line.png')} />
                     {childs}
+                    <FastImage style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: 2 }} resizeMode='stretch' source={require('../../../assets/bg/dialog_line.png')} />
                 </View>
                 <View>
                     <Text style={{ marginTop: 20, color: '#fff', fontSize: 20 }}>点击任意区域关闭</Text>
@@ -232,7 +234,7 @@ class Lottery10Times extends Component {
 
     render() {
         return (
-            <FastImage style={{ flex: 1 }} source={require('../../../assets/lottery_bg.jpg')}>
+            <FastImage style={{ flex: 1 }} source={require('../../../assets/bg/lottery_bg.jpg')}>
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -294,7 +296,7 @@ class LotteryBaoZang extends Component {
 
     render() {
         return (
-            <FastImage style={{ flex: 1 }} source={require('../../../assets/lottery_bg2.jpg')}>
+            <FastImage style={{ flex: 1 }} source={require('../../../assets/bg/lottery_bg2.jpg')}>
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>

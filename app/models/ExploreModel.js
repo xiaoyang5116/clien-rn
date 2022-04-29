@@ -1,10 +1,12 @@
 
 import { 
   action,
+  AppDispath,
 } from "../constants";
 
 import EventListeners from '../utils/EventListeners';
 import { GetExploreDataApi } from '../services/GetExploreDataApi';
+import { GetSeqDataApi } from '../services/GetSeqDataApi';
 import lo from 'lodash';
 
 const EVENT_NAME = [
@@ -15,6 +17,19 @@ const EVENT_NAME = [
   { event: 'qiyu', name: '随机获得一张奇遇卡片' },
   { event: 'pk', name: '你遇到一个轻而易举就能必败的对手' },
 ];
+
+const MYSELF_ATTRS = {
+  uid: 1,
+  userName: '你',
+  life: 8000,// 生命
+  speed: 100, // 速度
+  power: 600, // 攻击力
+  agile: 300, // 敏捷
+  defense: 100, // 防御
+  crit: 10, // 暴击
+  dodge: 15, // 闪避
+  skillIds: [1, 2],
+};
 
 export default {
   namespace: 'ExploreModel',
@@ -103,7 +118,7 @@ export default {
     // 间隔时间事件
     *onTimeEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { idx, refTimeBanner, refMsgList, refXunBaoEventBox, refBossEventBox, refXianSuoEventBox, refQiYuEventBox } = payload;
+      const { idx, refTimeBanner, refMsgList, refXunBaoButton, refBossButton, refXianSuoButton, refQiYuButton } = payload;
 
       const currentMap = exploreState.__data.config.find(e => e.id == exploreState.mapId);
       const currentArea = currentMap.areas.find(e => e.id == exploreState.areaId);
@@ -114,37 +129,37 @@ export default {
       const eventName = EVENT_NAME.find(e => e.event == currentEvent.event).name;
       refMsgList.addMsg(eventName);
 
-      const parameters = { map: currentMap, area: currentArea, event: currentEvent };
+      const parameters = { map: currentMap, area: currentArea, event: currentEvent, refTimeBanner, refMsgList };
       switch (currentEvent.event) {
         case 'slot':
           yield put.resolve(action('onSlotEvent')({ ...parameters }));
           refTimeBanner.resume();
           break;
         case 'xunbao':
-          yield put.resolve(action('onXunBaoEvent')({ ...parameters, refXunBaoEventBox }));
+          yield put.resolve(action('onXunBaoEvent')({ ...parameters, refXunBaoButton }));
           refTimeBanner.resume();
           break;
         case 'boss':
-          yield put.resolve(action('onBossEvent')({ ...parameters, refBossEventBox }));
+          yield put.resolve(action('onBossEvent')({ ...parameters, refBossButton }));
           refTimeBanner.resume();
           break;
         case 'xiansuo':
-          yield put.resolve(action('onXianSuoEvent')({ ...parameters, refXianSuoEventBox }));
+          yield put.resolve(action('onXianSuoEvent')({ ...parameters, refXianSuoButton }));
           refTimeBanner.resume();
           break;
         case 'qiyu':
-          yield put.resolve(action('onQiYuEvent')({ ...parameters, refQiYuEventBox }));
+          yield put.resolve(action('onQiYuEvent')({ ...parameters, refQiYuButton }));
           refTimeBanner.resume();
           break;
         case 'pk':
           yield put.resolve(action('onPKEvent')({ ...parameters }));
-          refTimeBanner.resume();
+          // refTimeBanner.resume();
           break;
       }
 
       // 是否结束
       if ((idx + 1) >= eventNum) {
-        yield put.resolve(action('onTimeEnd')({ map: currentMap, area: currentArea, refMsgList }));
+        yield put.resolve(action('onTimeEnd')({ ...parameters }));
       }
     },
 
@@ -202,39 +217,61 @@ export default {
     // 寻宝事件
     *onXunBaoEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refXunBaoEventBox } = payload;
-      exploreState.event_xunbao.push(event);
-      refXunBaoEventBox.setNum(exploreState.event_xunbao.length);
+      const { map, area, event, refXunBaoButton } = payload;
+      exploreState.event_xunbao.push({ id: (exploreState.event_xunbao.length + 1), ...event });
+      refXunBaoButton.setNum(exploreState.event_xunbao.length);
     },
 
     // 挑战BOSS事件
     *onBossEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refBossEventBox } = payload;
-      exploreState.event_boss.push(event);
-      refBossEventBox.setNum(exploreState.event_boss.length);
+      const { map, area, event, refBossButton } = payload;
+      exploreState.event_boss.push({ id: (exploreState.event_boss.length + 1), ...event });
+      refBossButton.setNum(exploreState.event_boss.length);
     },
 
     // 线索事件
     *onXianSuoEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refXianSuoEventBox } = payload;
+      const { map, area, event, refXianSuoButton } = payload;
       exploreState.event_xiansuo.push(event);
-      refXianSuoEventBox.setNum(exploreState.event_xiansuo.length);
+      refXianSuoButton.setNum(exploreState.event_xiansuo.length);
     },
 
     // 奇遇事件
     *onQiYuEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refQiYuEventBox } = payload;
-      exploreState.event_qiyu.push(event);
-      refQiYuEventBox.setNum(exploreState.event_qiyu.length);
+      const { map, area, event, refQiYuButton } = payload;
+      exploreState.event_qiyu.push({ id: (exploreState.event_qiyu.length + 1), ...event });
+      refQiYuButton.setNum(exploreState.event_qiyu.length);
     },
 
     // 挑战杂鱼
-    *onPKEvent({ payload }, { select, put }) {
+    *onPKEvent({ payload }, { select, put, call }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event } = payload;
+      const { map, area, event, refTimeBanner, refMsgList } = payload;
+
+      const seqData = yield call(GetSeqDataApi, event.seqId);
+      const seqConfig = seqData.sequences.find(e => e.id == event.seqId);
+      const enemiesGroup = seqConfig.enemies.find(e => e.group == event.group);
+
+      // 单打一个杂鱼
+      const enemy = enemiesGroup.items[0];
+      const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: MYSELF_ATTRS, enemy}));
+      if (lo.isArray(report)) {
+        // 播放战报
+        const msgList = report.map(e => e.msg);
+        refMsgList.addMsgs(msgList, 600, () => {
+          refTimeBanner.resume();
+
+          // 提前发放奖励-后续优化
+          const reward = seqConfig.awards.items.find(e => e.uid.indexOf(enemy.uid) != -1);
+          if (reward != undefined) {
+            AppDispath({ type: 'ExploreModel/addReward', payload: reward });
+          }
+        });
+
+      }
     },
 
     // 添加奖励到储物袋
@@ -290,7 +327,7 @@ export default {
   subscriptions: {
     registerReloadEvent({ dispatch }) {
       EventListeners.register('reload', (msg) => {
-        dispatch({ 'type':  'reload'});
+        return dispatch({ 'type':  'reload'});
       });
     },
   }

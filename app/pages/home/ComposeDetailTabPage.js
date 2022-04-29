@@ -20,6 +20,8 @@ import {
 
 import lo from 'lodash';
 import Toast from '../../components/toast';
+import { Panel } from '../../components/panel';
+import ImageCapInset from 'react-native-image-capinsets-next';
 
 class ComposeDetailTabPage extends Component {
 
@@ -107,55 +109,60 @@ class ComposeDetailTabPage extends Component {
         });
 
         return (
-            <View style={this.props.currentStyles.viewContainer}>
-                <View style={styles.composeContainer}>
-                    <View style={{ height: 35, justifyContent: 'center', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                        <TextButton title="返回" {...this.props} onPress={()=> {
-                            this.props.navigation.navigate('Home', { 
-                                screen: 'Compose',
-                                params: {
-                                    screen: 'ComposeMain',
-                                }
-                            }) 
-                        }} />
-                    </View>
-                    <View style={{ height: 35, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', padding: 10, borderWidth: 1, 
-                        borderColor: '#999', backgroundColor: '#eee', alignItems: 'center' }}>
-                        <View style={{ flex: 3, height: 35, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}><Text>制作目标</Text></View>
-                        <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}><Text>产出</Text></View>
-                        <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center' }}><Text>现有</Text></View>
-                    </View>
-                    <View style={{ height: 35, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', padding: 10, marginBottom: 5, borderLeftWidth: 1, borderBottomWidth: 1, borderRightWidth: 1, 
-                        borderColor: '#999', alignItems: 'center' }}>
-                        <View style={{ flex: 3, height: 35, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}><Text>{this.props.selectComposeDetail.name}</Text></View>
-                        <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}><Text>{this.props.selectComposeDetail.targets[0].productNum}</Text></View>
-                        <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center' }}><Text>{this.props.selectComposeDetail.targets[0].currNum}</Text></View>
-                    </View>
-                    <View style={{ height: 60, justifyContent: 'flex-start', flexDirection: 'column',  padding: 10, marginBottom: 5, borderWidth: 1, borderColor: '#999' }}>
-                        <Text style={{ lineHeight: 20 }}>目标道具说明：</Text>
-                        <Text style={{ color: '#999' }}>    {this.props.selectComposeDetail.targets[0].name} - {this.props.selectComposeDetail.targets[0].desc}</Text>
-                    </View>
-                    <View style={{ flex: 1 }}>
-                        <SectionList
-                            sections={this.props.selectComposeDetail.requirements}
-                            keyExtractor={(item, index) => item + index}
-                            renderItem={this._renderItem}
-                            renderSectionHeader={this._renderSectionHeader}
-                        />
-                    </View>
-                    <View style={{ height: 80, justifyContent: 'center', flexDirection: 'column', justifyContent: 'space-around', marginBottom: 5, borderWidth: 1, borderColor: '#999', backgroundColor: '#eee', alignItems: 'center' }}>
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text>制作数量</Text>
+            <Panel patternId={2}>
+                <View style={[this.props.currentStyles.viewContainer]}>
+                    <ImageCapInset
+                        style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.3 }}
+                        source={require('../../../assets/bg/area.png')}
+                        capInsets={{ top: 30, right: 30, bottom: 30, left: 30 }}
+                    />
+                    <View style={styles.composeContainer}>
+                        <View style={{ height: 35, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', padding: 10, borderWidth: 1, 
+                            borderColor: '#999', backgroundColor: '#eee', alignItems: 'center' }}>
+                            <View style={{ flex: 3, height: 35, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}><Text>制作目标</Text></View>
+                            <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}><Text>产出</Text></View>
+                            <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center' }}><Text>现有</Text></View>
                         </View>
-                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around', height: 30, padding: 5, alignItems: 'center' }}>
-                            {numbersView}
+                        <View style={{ height: 35, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', padding: 10, marginBottom: 5, borderLeftWidth: 1, borderBottomWidth: 1, borderRightWidth: 1, 
+                            borderColor: '#999', alignItems: 'center' }}>
+                            <View style={{ flex: 3, height: 35, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}><Text>{this.props.selectComposeDetail.name}</Text></View>
+                            <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center', borderRightWidth: 1, borderColor: '#999' }}><Text>{this.props.selectComposeDetail.targets[0].productNum}</Text></View>
+                            <View style={{ flex: 1, height: 35, justifyContent: 'center', alignItems: 'center' }}><Text>{this.props.selectComposeDetail.targets[0].currNum}</Text></View>
                         </View>
-                    </View>
-                    <View style={{ height: 80, justifyContent: 'center', paddingLeft: 30, paddingRight: 30, marginTop: 5, marginBottom: 5 }}>
-                        <TextButton title="确认制作" {...this.props} onPress={() => { this._compose() }} />
+                        <View style={{ height: 60, justifyContent: 'flex-start', flexDirection: 'column',  padding: 10, marginBottom: 5, borderWidth: 1, borderColor: '#999' }}>
+                            <Text style={{ lineHeight: 20 }}>目标道具说明：</Text>
+                            <Text style={{ color: '#999' }}>    {this.props.selectComposeDetail.targets[0].name} - {this.props.selectComposeDetail.targets[0].desc}</Text>
+                        </View>
+                        <View style={{ flex: 1 }}>
+                            <SectionList
+                                sections={this.props.selectComposeDetail.requirements}
+                                keyExtractor={(item, index) => item + index}
+                                renderItem={this._renderItem}
+                                renderSectionHeader={this._renderSectionHeader}
+                            />
+                        </View>
+                        <View style={{ height: 80, justifyContent: 'center', flexDirection: 'column', justifyContent: 'space-around', marginBottom: 5, borderWidth: 1, borderColor: '#999', backgroundColor: '#eee', alignItems: 'center' }}>
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                <Text>制作数量</Text>
+                            </View>
+                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around', height: 30, padding: 5, alignItems: 'center' }}>
+                                {numbersView}
+                            </View>
+                        </View>
                     </View>
                 </View>
-            </View>
+                <View style={{ height: 60, flexDirection: 'row', justifyContent: 'space-around',  paddingLeft: 30, paddingRight: 30, marginTop: 5, marginBottom: 5 }}>
+                    <TextButton title="返回" {...this.props} style={{ width: 100 }} onPress={()=> {
+                        this.props.navigation.navigate('Home', { 
+                            screen: 'Compose',
+                            params: {
+                                screen: 'ComposeMain',
+                            }
+                        }) 
+                    }} />
+                    <TextButton title="确认" {...this.props} style={{ width: 100 }}  onPress={() => { this._compose() }} />
+                </View>
+            </Panel>
         );
     }
 }
@@ -163,8 +170,9 @@ class ComposeDetailTabPage extends Component {
 const styles = StyleSheet.create({
     composeContainer: {
         flex: 1,
-        backgroundColor: '#fff',
+        // backgroundColor: '#fff',
         margin: 10,
+        padding: 5,
         alignSelf: 'stretch',
     },
     composeItem: {

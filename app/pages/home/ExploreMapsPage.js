@@ -16,8 +16,8 @@ import {
     TouchableWithoutFeedback 
 } from '../../constants/native-ui';
 
+import ImageCapInset from 'react-native-image-capinsets-next';
 import { TextButton } from '../../constants/custom-ui';
-import ProgressBar from '../../components/ProgressBar';
 import FastImage from 'react-native-fast-image';
 import Toast from '../../components/toast';
 
@@ -42,15 +42,42 @@ const AreaBlock = (props) => {
             DeviceEventEmitter.emit('AreaBlock.selected', props.item);
             props.onSelected();
         }}>
-        <View style={{ width: 150, height: 100, borderColor: '#666', borderWidth: 1, backgroundColor: '#e0f6ff', justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ backgroundColor: '#669900', width: '90%', height: 35, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ color: '#fff', fontWeight: 'bold' }}>{props.item.name}</Text>
+        <View style={{ width: 150, height: 120, borderColor: '#666', borderWidth: 1, backgroundColor: '#f2ede7', justifyContent: 'center', alignItems: 'center' }}>
+            <FastImage
+                source={require('../../../assets/bg/area_block_bg.png')}
+                style={{ width: '100%', height: '100%', position: 'absolute' }}
+            />
+            <ImageCapInset
+                style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.5 }}
+                source={require('../../../assets/bg/area_block_border.png')}
+                capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
+            />
+            <View style={{ backgroundColor: '#e2d3c0', width: '75%', height: 30, justifyContent: 'center', alignItems: 'center' }}>
+                <ImageCapInset
+                    style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.5 }}
+                    source={require('../../../assets/bg/area_block_title.png')}
+                    capInsets={{ top: 15, right: 15, bottom: 15, left: 15 }}
+                />
+                <Text style={{ color: '#666', fontSize: 14, fontWeight: 'bold' }}>{props.item.name}</Text>
             </View>
-            <View style={{ height: 24, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ lineHeight: 24, fontSize: 12 }}>探索度</Text>
+            <View style={{ width: '100%', height: 24, marginTop: 15, paddingLeft: 20, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                <Text style={{ lineHeight: 24, fontSize: 12, color: '#b48b63' }}>探索度</Text>
             </View>
             <View style={{ width: '80%', height: 15 }}>
-                <ProgressBar percent={60} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+                <View style={{ position: 'absolute', width: 116, backgroundColor: '#669900', height: 15 }}>
+                    <FastImage
+                        source={require('../../../assets/progress/progress_bg.png')}
+                        style={{ width: '100%', height: '100%', position: 'absolute' }}
+                        resizeMode='stretch'
+                    />
+                </View>
+                <View style={{ position: 'absolute', width: 58, backgroundColor: '#669900', height: 15 }}>
+                    <FastImage
+                        source={require('../../../assets/progress/progress_front.png')}
+                        style={{ width: '100%', height: '100%', position: 'absolute' }}
+                        resizeMode='stretch'
+                    />
+                </View>
                 <View style={{ position: 'absolute', top: -2, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={{ color: '#fff' }}>50/100</Text>
                 </View>
@@ -101,7 +128,7 @@ class ExploreMapsPage extends Component {
 
     render() {
         return (
-            <FastImage style={{ flex: 1 }} source={require('../../../assets/explore_bg.jpg')} >
+            <FastImage style={{ flex: 1 }} source={require('../../../assets/bg/explore_bg.jpg')} >
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>

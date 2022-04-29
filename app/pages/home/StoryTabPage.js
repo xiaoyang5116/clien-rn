@@ -5,13 +5,17 @@ import {
   action,
   connect,
   Component,
+  ThemeContext,
 } from "../../constants";
 
 import ProgressBar from '../../components/ProgressBar';
 import * as DateTime from '../../utils/DateTimeUtils';
 import { Button, Text, View, SectionList } from '../../constants/native-ui';
+import FastImage from 'react-native-fast-image';
 
 class StoryTabPage extends Component {
+
+  static contextType = ThemeContext;
 
   constructor(props) {
     super(props);
@@ -33,7 +37,7 @@ class StoryTabPage extends Component {
   _renderSectionHeader = ({ section: { title } }) => {
     return (
       <View>
-        <Text style={this.props.currentStyles.chatHeader}>{title}</Text>
+        <Text style={this.context.chatHeader}>{title}</Text>
       </View>
     );
   }
@@ -53,8 +57,8 @@ class StoryTabPage extends Component {
       }
     }
     return (
-      <View style={this.props.currentStyles.chatItem}>
-        <Button title={data.item.title} onPress={() => this._onClickItem(data)} color={this.props.currentStyles.button.color} />
+      <View style={this.context.chatItem}>
+        <Button title={data.item.title} onPress={() => this._onClickItem(data)} color={this.context.options.fontColor} />
         {progressView}
       </View>
     );
@@ -118,6 +122,11 @@ class StoryTabPage extends Component {
         <View style={[this.props.currentStyles.positionBar, { flexDirection: 'row', justifyContent: 'space-between' }]}>
           <Text style={[this.props.currentStyles.positionLabel, {color: this.props.currentStyles.navigation.text}]}>位置: {this.props.position}</Text>
           <Text style={this.props.currentStyles.datetimeLabel}>{fmtDateTime}</Text>
+        </View>
+        <View style={{ width: '100%', height: 100 }}>
+          <View style={{ flex: 1, marginLeft: 10, marginRight: 10, borderColor: '#999', borderWidth: 2 }}>
+            <FastImage style={{ width: '100%', height: '100%' }} source={require('../../../assets/bg/story.jpg')} resizeMode='cover'  />
+          </View>
         </View>
         <View style={this.props.currentStyles.chatContainer}>
           <SectionList

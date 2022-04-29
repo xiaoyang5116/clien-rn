@@ -176,11 +176,14 @@ export default class LocalStorage {
   static async clear() {
     await LocalStorage.init();
     const path = LocalStorage._getSavePath();
-    RNFS.unlink(path)
+    await RNFS.exists(path)
+    .then(() => {
+      RNFS.unlink(path)
       .then(() => {
       })
       .catch((err) => {
       });
+    });
   }
 
 }
