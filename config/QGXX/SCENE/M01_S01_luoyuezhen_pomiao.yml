@@ -22,6 +22,9 @@ scenes: [
       { id: 'v14', min: 0, max: 1 },
       { id: 'v15', min: 0, max: 1 },
       { id: 'v16', min: 0, max: 1 },
+ 
+
+
     ],
 
     # 动作定义
@@ -48,10 +51,10 @@ scenes: [
           { title: '【查看头顶】', andVarsOff: ['v10'], dialogs: ['p2'] }, 
           { title: '【动动身子】', andVarsOn: ['v1', 'v2'], andVarsOff: ['v10'], dialogs: ['p3'] }, 
           { title: '【看看自己的手】', andVarsOn: ['v1', 'v2', 'v3'], andVarsOff: ['v10'], dialogs: ['p4'] }, 
-          { title: '【询问周围的乞丐】', andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v6', 'v10'], dialogs: ['p5'] }, 
-          { title: '【尝试起身】', andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v5', 'v10'], dialogs: ['p6'] }, 
           # 以下选项在【询问周围的乞丐】&【尝试起身】点击后替换
+          { title: '【询问周围的乞丐】', andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v6', 'v10'], dialogs: ['p5'] }, 
           { title: '【询问周围的乞丐】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v6'], andVarsOff: ['v10'], dialogs: ['p7'] }, 
+          { title: '【尝试起身】', andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v5', 'v10'], dialogs: ['p6'] }, 
           { title: '【尝试起身】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v5'], andVarsOff: ['v10'], dialogs: ['p7'] }, 
           { title: '【睡觉】', andVarsOn: ['v10'], andVarsOff: ['v11'], varsOn: ['Event01_1DayOpenThrough'], alertWorldTime: '@day/1/6', nextChat: 'pomiao_Event01Day1' }, 
         ], 
@@ -120,7 +123,7 @@ scenes: [
       { id: 'p11', style: 2, sections: ['你发现乞丐说的是一种没听过的语音，但是你竟然可以听懂。', '一股关于语言的记忆涌上脑海', '看来交流没问题', '那么'], varsOn: ['v7'], nextChat: 'pomiao_Event01Day0B' },
       { id: 'p12', style: 2, sections: ['……完全没听过的名字。', '你是不是被打后伤到脑袋了，乞丐问。'], varsOn: ['v8'], nextChat: 'pomiao_Event01Day0B' },
       { id: 'p13', style: 2, sections: ['那这几天好好休息，乞丐说'], dialogs: ['p15'] },
-      { id: 'p14', style: 2, sections: ['还行，那你知道我是谁吗？', '……', '看来病的不轻……好好休息。'], nextChat: 'pomiao_Event01Day0B' },
+      { id: 'p14', style: 2, sections: ['还行，那你知道我是谁吗？', '……', '看来病的不轻……好好休息。'], dialogs: ['p15']  },
       { id: 'p15', style: 2, sections: ['在闲聊中，你知道旁边的乞丐是你以前认的乞丐李大哥，两人都是从更远的地方流浪而来。', '你知道了全身的伤是因为讨乞的时候被村里的王员外打的。', '起因只是因为挡了人家的道，被嫌弃晦气。', '看来……到了一个不得了的世界啊。'], dialogs: ['p16'] },
       { id: 'p16', style: 2, sections: ['一晃几天过去了', '经过几天修养，现在可以走路了', '乞丐的生活是很清苦的，能吃饱饭已经谢天谢地。', '在小村镇当中，也没有那么多富裕人家。', '奇怪的是，全身的伤，在半饥饿的状态好了个七七八八。', '询问乞丐李大哥，对方说大概是因为这片土地的天地灵气比较充沛的缘故。', '大多数人都受到恩惠。', '既然能够行动，李大哥决定带你一起讨乞。'], dialogs: ['d3'] },
       #

@@ -21,6 +21,14 @@ scenes: [
       { id: 'v14', min: 0, max: 1 },
       { id: 'v15', min: 0, max: 1 },
       { id: 'v16', min: 0, max: 1 },
+#尝试第二次配置
+      { id: 'VAR1', min: 0, max: 1 },
+      { id: 'VAR2', min: 0, max: 1 },
+      { id: 'VAR3', min: 0, max: 1 },
+      { id: 'VAR4', min: 0, max: 1 },
+
+
+
     ],
 
     # 动作定义
@@ -38,12 +46,14 @@ scenes: [
       { 
         id: 'c1', desc: '你在一座破庙里面', 
         options: [ 
-          { title: '【查看四周】', andVarsOff: ['v10'], dialogs: ['p1'] }, 
-          { title: '【查看头顶】', andVarsOff: ['v10'], dialogs: ['p2'] }, 
-          { title: '【动动身子】', andVarsOn: ['v1', 'v2'], andVarsOff: ['v10'], dialogs: ['p3'] }, 
-          { title: '【看看自己的手】', andVarsOn: ['v1', 'v2', 'v3'], andVarsOff: ['v10'], dialogs: ['p4'] }, 
-          { title: '【询问周围的乞丐】', andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v6', 'v10'], dialogs: ['p5'] }, 
-          { title: '【尝试起身】', andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v5', 'v10'], dialogs: ['p6'] }, 
+          { title: '【查看四周】', andVarsOff: ['VAR1'], dialogs: ['p1'] }, 
+          { title: '【查看头顶】', andVarsOff: ['VAR1'], dialogs: ['p2'] }, 
+          { title: '【动动身子】', andVarsOff: ['VAR2'], dialogs: ['p3'] }, 
+          { title: '【看看自己的手】',andVarsOff: ['VAR3'], dialogs: ['p4'] }, 
+          { title: '【询问周围的乞丐】', andVarsOff: ['VAR4'], dialogs: ['p5'] }, 
+          { title: '【尝试起身】', andVarsOff: ['VAR5'], dialogs: ['p6'] }, 
+
+          
           # 以下选项在【询问周围的乞丐】&【尝试起身】点击后替换
           { title: '【询问周围的乞丐】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v6'], andVarsOff: ['v10'], dialogs: ['p7'] }, 
           { title: '【尝试起身】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v5'], andVarsOff: ['v10'], dialogs: ['p7'] }, 

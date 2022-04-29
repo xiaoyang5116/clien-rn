@@ -25,9 +25,9 @@ scenes: [
         id: 'WZXX_M1_N1_C001V', desc: '选项', 
         options: [ 
         #  { title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
-          { title: "【去最近的城市，生存重要】", andVarsOff: ['v3'], varsOn: ['v1'], alwayDisplay: true, },
-          { title: "【去穿越的地点，也许能找到什么】", andVarsOff: ['v3'], varsOn: ['v2'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A2]" },
-          { title: "【跟踪对手，找到更多线索】", andVarsOff: ['V2,v3 '], varsOn: ['v3'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A3]" },
+          { title: "【去最近的城市，生存重要】", andVarsOff: ['v1'], varsOn: ['v1'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A1]" , icon: { id: 1, bindVar: 'WZXX_M1_N1_C001_[A1]' }},
+          { title: "【去穿越的地点，也许能找到什么】", andVarsOff: ['v2'], varsOn: ['v2'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A2]" },
+          { title: "【跟踪对手，找到更多线索】", andVarsOff: ['V3 '], varsOn: ['v3'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A3]" },
         ],
       },
       #
