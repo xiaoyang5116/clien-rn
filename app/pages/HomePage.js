@@ -26,6 +26,7 @@ import LotteryTabPage from './home/LotteryTabPage';
 import ComposeTabPage from './home/ComposeTabPage';
 import ArenaTabPage from './home/ArenaTabPage';
 import ExploreTabPage from './home/ExploreTabPage';
+import { Platform } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,15 +44,14 @@ const TabIcon = (props) => {
 }
 
 const HeaderTitle = (props) => {
-  console.log("HeaderTitle", props);
   return (
-    <View style={[{ height: 50, width: '100%', backgroundColor: '#fff', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }]}>
+    <View style={[{ marginTop: (Platform.OS == 'android' ? 0 : 45),  height: 50, width: '100%', backgroundColor: '#fff', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }]}>
       <ImageCapInset
         style={{ width: '100%', height: '100%', position: 'absolute', }}
         source={require('../../assets/tab/tab_header_bg.png')}
         capInsets={{ top: 25, right: 25, bottom: 25, left: 25 }}
       />
-      <Text>{props.options.title}</Text>
+      <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{props.options.title}</Text>
     </View>
   )
 }
