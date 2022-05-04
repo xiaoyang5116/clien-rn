@@ -12,4 +12,7 @@ export class LocalCacheKeys {
     static PROPS_DATA = 'PROPS_DATA';
 
     static MAIL_DATA = 'MAIL_DATA';
+
+    // 已完成的奇遇事件CompletedQiYuEvent_DATA
+    static QYEVENT_DATA = 'QYEVENT_DATA';
 }

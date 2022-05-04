@@ -11,6 +11,7 @@ import {
 import {
     action,
     connect,
+    AppDispath,
     ThemeContext,
 } from "../../constants";
 import { changeAvatar } from '../../constants'
@@ -96,17 +97,13 @@ const MultiplayerDialog = (props) => {
 
     // 点击下一段
     const nextParagraph = () => {
-        // 滚动到 FlatList 底部
-        // refFlatList.current.scrollToEnd({ animated: false })
-
         // 判断当前内容是否有下一段
         if (currentContentIndex < currentContentLength) {
-            // console.log("length", currentContentIndex, currentContentLength);
-            console.log("currentContentIndex+1");
             const currentDialogContent = currentData.content[currentContentIndex + 1]
             addHistoryDialog({ id: currentData.id, content: currentDialogContent })
             setCurrentContentIndex(currentContentIndex + 1)
         }
+
         // 判断当前对话是否有下一段
         if ((currentContentIndex === currentContentLength) && currentDialogIndex < currentDialogData.dialog.length - 1) {
             addHistoryDialog({ id: currentDialogData.dialog[currentDialogIndex + 1].id, content: currentDialogData.dialog[currentDialogIndex + 1].content[0] })
@@ -116,8 +113,14 @@ const MultiplayerDialog = (props) => {
     }
 
     //  点击按钮
-    const nextDialog = (tokey) => {
-        const newDialogData = viewData.sections.filter(s => s.key === tokey)
+    const nextDialog = (item) => {
+        const newDialogData = viewData.sections.filter(s => s.key === item.tokey)
+
+        // 发道具
+        if (item.props !== undefined) {
+            AppDispath({ type: 'PropsModel/sendPropsBatch', payload: { props: item.props } });
+        }
+
         if (newDialogData.length > 0) {
             addHistoryDialog({ id: newDialogData[0].dialog[0].id, content: newDialogData[0].dialog[0].content[0] })
             setCurrentDialogIndex(0)
@@ -175,7 +178,7 @@ const MultiplayerDialog = (props) => {
         if ((currentDialogIndex === currentDialogData.dialog.length - 1) && (currentContentIndex === currentContentLength)) {
             return (
                 <View style={{ marginTop: 12 }}>
-                    <TextButton title={item.title} onPress={() => { nextDialog(item.tokey) }} />
+                    <TextButton title={item.title} onPress={() => { nextDialog(item) }} />
                 </View>
             )
         }
