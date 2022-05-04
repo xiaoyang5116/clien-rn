@@ -4,7 +4,7 @@ import React from 'react'
 import HalfScreenDialog from './HalfScreenDialog';
 import FullScreenDialog from './FullScreenDialog';
 import SingleDialog from './singleDialog';
-import GameOverModal from '../modal/GameOverModal';
+import GameOverDialog from './gameOverDialog';
 import MultiplayerDialog from './MultiplayerDialog';
 
 export default function DialogTemple(props) {
