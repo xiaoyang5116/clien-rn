@@ -265,7 +265,7 @@ export default {
 
         // 播放战报
         const msgList = report.map(e => e.msg);
-        refMsgList.addMsgs(msgList, 60, () => {
+        refMsgList.addMsgs(msgList, 600, () => {
           refTimeBanner.resume();
 
           // 提前发放奖励-后续优化

@@ -4,6 +4,7 @@ import {
   LocalCacheKeys,
   DeviceEventEmitter,
   getTheme,
+  EventKeys,
 } from "../constants";
 
 import LocalStorage from '../utils/LocalStorage';
@@ -55,7 +56,7 @@ export default {
           Themes.default.themeId = themeId;
           selectStyles = selectTheme.style;
 
-          DeviceEventEmitter.emit('App.setState', { themeStyle: selectTheme.style });
+          DeviceEventEmitter.emit(EventKeys.APP_SET_STATE, { themeStyle: selectTheme.style });
           yield call(LocalStorage.set, LocalCacheKeys.THEME_ID, themeId);
         }
       }
