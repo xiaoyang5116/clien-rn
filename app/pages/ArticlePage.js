@@ -12,10 +12,82 @@ import {
   View,
   Text,
   FlatList,
+  Image,
 } from '../constants/native-ui';
 
 import Block from '../components/article';
-import { Animated } from 'react-native';
+import { Animated, Dimensions } from 'react-native';
+import Carousel from 'react-native-snap-carousel'
+
+const data = [
+  {
+    title: "现实",
+    body: "现实场景，这里添加更多描述",
+    imgUrl: "https://picsum.photos/id/11/200/300",
+  },
+  {
+    title: "灵修界",
+    body: "灵修场景，这里添加更多描述 ",
+    imgUrl: "https://picsum.photos/id/10/200/300",
+  },
+  {
+    title: "尘界",
+    body: "尘界场景，这里添加更多描述",
+    imgUrl: "https://picsum.photos/id/12/200/300",
+  },
+];
+
+const SLIDER_WIDTH = Dimensions.get('window').width
+const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7)
+
+const CarouselCardItem = ({ item, index }) => {
+  return (
+    <View style={styles2.container} key={index}>
+      <Image
+        source={{ uri: item.imgUrl }}
+        style={styles2.image}
+      />
+      <Text style={styles2.header}>{item.title}</Text>
+      <Text style={styles2.body}>{item.body}</Text>
+    </View>
+  )
+}
+
+const CarouselCards = () => {
+  const isCarousel = React.useRef(null)
+
+  return (
+    <View style={{ flex: 1 }}>
+      <Carousel
+        layout="default"
+        layoutCardOffset={9}
+        ref={isCarousel}
+        data={data}
+        renderItem={CarouselCardItem}
+        sliderWidth={SLIDER_WIDTH}
+        itemWidth={ITEM_WIDTH}
+        inactiveSlideShift={0}
+        useScrollView={false}
+      />
+    </View>
+  )
+}
+
+class SlideWorld extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <View style={{ position: 'absolute', top: 150, width: '100%', height: 550, backgroundColor: '#eee' }}>
+        <CarouselCards />
+      </View>
+    );
+  }
+
+}
 
 class ArticlePage extends Component {
 
@@ -89,6 +161,7 @@ class ArticlePage extends Component {
               maxToRenderPerBatch={5}
             />
           </View>
+          <SlideWorld />
           {/* <View style={styles.debugContainer} pointerEvents="box-none" >
             <View style={{ borderWidth: 1, borderColor: '#999', width: '100%', height: 200, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', opacity: 0.5, backgroundColor: '#ccc' }} pointerEvents="box-none">
               <Text>事件触发区域</Text>
@@ -140,5 +213,40 @@ const styles = StyleSheet.create({
   //   alignItems: 'center',
   // },
 });
+
+const styles2 = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+    borderRadius: 8,
+    width: ITEM_WIDTH,
+    paddingBottom: 40,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+    elevation: 7,
+  },
+  image: {
+    width: ITEM_WIDTH,
+    height: 300,
+  },
+  header: {
+    color: "#222",
+    fontSize: 28,
+    fontWeight: "bold",
+    paddingLeft: 20,
+    paddingTop: 20
+  },
+  body: {
+    color: "#222",
+    fontSize: 18,
+    paddingLeft: 20,
+    paddingLeft: 20,
+    paddingRight: 20
+  }
+})
 
 export default connect((state) => ({ ...state.ArticleModel }))(ArticlePage);
