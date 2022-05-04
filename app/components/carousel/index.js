@@ -23,17 +23,55 @@ import FastImage from 'react-native-fast-image';
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 
-const CarouselCardItem = ({ item, index }) => {
+const EnterButton = (props) => {
+  const [visable, setVisable] = React.useState('none');
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.CAROUSEL_ENTER_SHOW, ({ index, status }) => {
+      if ((props.index == index) || (index < 0)) {
+        setVisable(status);
+      }
+    });
+    return () => {
+      listener.remove();
+    };
+  }, []);
+
   return (
-    <TouchableOpacity activeOpacity={1} onPress={() => { DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item, index }); }}>
-        <View style={styles.cardItem} key={index}>
-        <FastImage
-            source={{ uri: item.imgUrl }}
-            style={styles.image}
-        />
+    <View style={{ height: 40, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+      <View style={{ width: 80, display: visable }}>
+        <TextButton title='进入' onPress={() => {
+          DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
+        }} />
+      </View>
+    </View>
+  );
+}
+
+const CarouselCardItem = ({ item, index }) => {
+  let contentView = null;
+  if (item.imgUrl != undefined) {
+    contentView = (
+      <View style={styles.cardItem} key={index}>
+        <FastImage source={{ uri: item.imgUrl }} style={styles.image} />
         <Text style={styles.header}>{item.title}</Text>
-        <Text style={styles.body}>{item.body}</Text>
-        </View>
+        <Text style={styles.imgBody}>{item.body}</Text>
+      </View>
+    );
+  } else {
+    contentView = (
+      <View style={styles.cardItem} key={index}>
+        <Text style={styles.header}>{item.title}</Text>
+        <Text style={styles.textBody}>{item.body}</Text>
+      </View>
+    );
+  }
+  return (
+    <TouchableOpacity activeOpacity={1} onPress={() => { 
+        DeviceEventEmitter.emit(EventKeys.CAROUSEL_ENTER_SHOW, { index, status: '' });
+      }}>
+      {contentView}
+      <EnterButton item={item} index={index} />
     </TouchableOpacity>
   );
 }
@@ -49,6 +87,7 @@ export default class CarouselView extends Component {
     this.listener = DeviceEventEmitter.addListener(EventKeys.CAROUSEL_SELECT_ITEM, (params) => {
         if (this.props.onSelect != undefined) {
             this.props.onSelect(params);
+            this.props.onClose();
         }
     });
   }
@@ -57,12 +96,16 @@ export default class CarouselView extends Component {
       this.listener.remove();
   }
 
+  onSnapToItem = (index) => {
+    DeviceEventEmitter.emit(EventKeys.CAROUSEL_ENTER_SHOW, { index: -1, status: 'none' }); 
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <Carousel
             layout="default"
-            layoutCardOffset={9}
+            layoutCardOffset={0}
             ref={this.refCarousel}
             data={this.props.data}
             renderItem={CarouselCardItem}
@@ -71,6 +114,7 @@ export default class CarouselView extends Component {
             inactiveSlideShift={0}
             useScrollView={false}
             firstItem={this.props.initialIndex}
+            onSnapToItem={this.onSnapToItem}
         />
         <View style={styles.bottomBar}>
             <TextButton title='退出' onPress={() => {
@@ -139,11 +183,20 @@ const styles = StyleSheet.create({
       paddingLeft: 20,
       paddingTop: 20
     },
-    body: {
+    imgBody: {
       color: "#222",
       fontSize: 18,
       paddingLeft: 20,
       paddingLeft: 20,
       paddingRight: 20
-    }
+    },
+    textBody: {
+      height: 300,
+      marginTop: 10,
+      color: "#222",
+      fontSize: 18,
+      paddingLeft: 20,
+      paddingLeft: 20,
+      paddingRight: 20
+    },
 });

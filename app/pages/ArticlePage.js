@@ -96,13 +96,13 @@ class ArticlePage extends Component {
           <View style={styles.topBarContainer}>
           </View>
           <View style={styles.bodyContainer}>
-            <TextButton title="选择世界" style={{ marginTop: 100 }} 
+            {/* <TextButton title="选择世界" style={{ marginTop: 100 }} 
               onPress={() => {
                 CarouselUtils.show({ data: DATA, initialIndex: 1, onSelect: (params) => {
                   console.debug(params);
                 } });
               }}
-            />
+            /> */}
             <FlatList
               ref={this.refList}
               data={this.props.sections}
@@ -115,7 +115,6 @@ class ArticlePage extends Component {
               maxToRenderPerBatch={5}
             />
           </View>
-          {/* <CarouselView data={DATA} /> */}
           {/* <View style={styles.debugContainer} pointerEvents="box-none" >
             <View style={{ borderWidth: 1, borderColor: '#999', width: '100%', height: 200, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', opacity: 0.5, backgroundColor: '#ccc' }} pointerEvents="box-none">
               <Text>事件触发区域</Text>

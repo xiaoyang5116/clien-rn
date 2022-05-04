@@ -5,6 +5,7 @@ import {
   debugMessage,
   errorMessage,
   LocalCacheKeys,
+  AppDispath,
 } from "../constants";
 
 import {
@@ -27,6 +28,7 @@ import * as RootNavigation from '../utils/RootNavigation';
 import SceneConfigReader from "../utils/SceneConfigReader";
 import Modal from "../components/modal";
 import Shock from '../components/shock';
+import { CarouselUtils } from "../components/carousel";
 
 class VarUtils {
   static generateVarUniqueId(sceneId, varId) {
@@ -114,6 +116,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__chapter_{0}".format(payload.toChapter), cmd: 'chapter', params: payload.toChapter });
     }
 
+    // 选择框动作
+    if (payload.selector != undefined && typeof(payload.selector) == 'object') {
+      allActions.push({ id: "__selector", cmd: 'selector', params: payload.selector });
+    }
+
     // 生成震屏动作
     if (payload.shock != undefined && typeof(payload.shock) == 'string') {
       allActions.push({ id: "__shock_{0}".format(payload.shock), cmd: 'shock', params: payload.shock });
@@ -179,6 +186,7 @@ const ACTIONS_MAP = [
   { cmd: 'sendProps',     handler: '__onSendPropsCommand' },
   { cmd: 'seqId',         handler: '__onSeqIdCommand' },
   { cmd: 'chapter',       handler: '__onChapterCommand' },
+  { cmd: 'selector',      handler: '__onSelectorCommand' },
   { cmd: 'shock',         handler: '__onShockCommand' },
 ];
 
@@ -613,6 +621,19 @@ export default {
       const id = payload.params.substring(0, index);
       const path = payload.params.substring(index + 1);
       yield put.resolve(action('ArticleModel/show')({ id, path }));
+    },
+
+    *__onSelectorCommand({ payload }, { put }) {
+      const data = payload.params.data;
+      CarouselUtils.show({ 
+        data, 
+        initialIndex: Math.floor(data.length / 2), 
+        onSelect: (p) => {
+          if (p.item.toChapter != undefined) {
+            AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: p.item.toChapter, __sceneId: payload.__sceneId } });
+          }
+        }
+      });
     },
 
     *__onShockCommand({ payload }, { put }) {
