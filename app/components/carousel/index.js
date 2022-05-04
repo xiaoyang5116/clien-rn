@@ -7,6 +7,7 @@ import {
     Text,
     TouchableOpacity,
     DeviceEventEmitter,
+    SafeAreaView,
 } from 'react-native';
 
 import {
@@ -38,7 +39,7 @@ const EnterButton = (props) => {
   }, []);
 
   return (
-    <View style={{ height: 40, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 10 }}>
+    <View style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: 60, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
       <View style={{ width: 80, display: visable }}>
         <TextButton title='进入' onPress={() => {
           DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
@@ -48,9 +49,35 @@ const EnterButton = (props) => {
   );
 }
 
+const WorldPreview = (props) => {
+  const { item } = props;
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#eee7dd' }}>
+      <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <View><Text style={{ fontSize: 24, fontWeight: 'bold' }}>{item.title}</Text></View>
+        <View style={{ margin: 20, padding: 10, borderWidth: 1, borderColor: '#999', backgroundColor: '#eee' }}>
+          <Text style={{ fontSize: 20 }}>{item.body}</Text>
+        </View>
+        <View style={{ width: 150, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <TextButton title={'进入'} onPress={() => {
+            setTimeout(() => {
+              DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
+            }, 0);
+            props.onClose();
+          }} />
+          <TextButton title={'返回'} onPress={() => {
+            props.onClose();
+          }} />
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+}
+
 const CarouselCardItem = ({ item, index }) => {
   let contentView = null;
-  if (item.imgUrl != undefined) {
+  const isWorldSelector = item.imgUrl != undefined;
+  if (isWorldSelector) {
     contentView = (
       <View style={styles.cardItem} key={index}>
         <FastImage source={{ uri: item.imgUrl }} style={styles.image} />
@@ -63,15 +90,21 @@ const CarouselCardItem = ({ item, index }) => {
       <View style={styles.cardItem} key={index}>
         <Text style={styles.header}>{item.title}</Text>
         <Text style={styles.textBody}>{item.body}</Text>
+        <EnterButton item={item} index={index} />
       </View>
     );
   }
   return (
     <TouchableOpacity activeOpacity={1} onPress={() => { 
-        DeviceEventEmitter.emit(EventKeys.CAROUSEL_ENTER_SHOW, { index, status: '' });
+        if (isWorldSelector) {
+          const key = RootView.add(<WorldPreview item={item} index={index} onClose={() => {
+            RootView.remove(key);
+          }} />);
+        } else {
+          DeviceEventEmitter.emit(EventKeys.CAROUSEL_ENTER_SHOW, { index, status: '' });
+        }
       }}>
       {contentView}
-      <EnterButton item={item} index={index} />
     </TouchableOpacity>
   );
 }
@@ -198,5 +231,15 @@ const styles = StyleSheet.create({
       paddingLeft: 20,
       paddingLeft: 20,
       paddingRight: 20
+    },
+    enterButton: {
+      position: 'absolute', 
+      left: 0, 
+      bottom: 0, 
+      width: '100%', 
+      height: 60, 
+      flexDirection: 'row', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
     },
 });
