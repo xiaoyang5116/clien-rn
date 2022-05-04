@@ -78,7 +78,7 @@ class MaskModal extends PureComponent {
         if (this.props.style === 6) {
             return (
                 <Modal isVisible={this.props.visible} style={{ padding: 0, margin: 0, flex: 1 }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
-                    <DialogTemple style={this.props.style} textAnimationType={this.props.__data.current.textAnimationType} type={this.props.__data.current.dialogType} title={this.props.title} onDialogCancel={this._onDialogCancel} popUpComplex={this.props.__data.current.sections} />
+                    <DialogTemple viewData={this.props.viewData}  style={this.props.style} textAnimationType={this.props.__data.current.textAnimationType} type={this.props.__data.current.dialogType} title={this.props.title} onDialogCancel={this._onDialogCancel} popUpComplex={this.props.__data.current.sections} />
                 </Modal>
             )
         }
