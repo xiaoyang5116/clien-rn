@@ -1,6 +1,8 @@
 import React from 'react'
 import { View, Text, Button } from 'react-native';
 
+import * as RootNavigation from '../../utils/RootNavigation';
+
 // import {
 //     action,
 //     connect,
@@ -17,7 +19,6 @@ export default function GameOverModal(props) {
             <View style={currentStyles.GameOverModalButtonContainer}>
                 <Button style={currentStyles.GameOverModalButtonContainer_Button} title='返回'
                     onPress={() => {
-
                         props.onDialogCancel();
                         // RootNavigation.navigate('First');
                     }}
@@ -26,4 +27,3 @@ export default function GameOverModal(props) {
         </View>
     )
 }
-// export default connect((state) => ({ ...state.MaskModel, ...state.AppModel }))(GameOverModal)

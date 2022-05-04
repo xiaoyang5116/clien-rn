@@ -97,17 +97,13 @@ const MultiplayerDialog = (props) => {
 
     // 点击下一段
     const nextParagraph = () => {
-        // 滚动到 FlatList 底部
-        // refFlatList.current.scrollToEnd({ animated: false })
-
         // 判断当前内容是否有下一段
         if (currentContentIndex < currentContentLength) {
-            // console.log("length", currentContentIndex, currentContentLength);
-            console.log("currentContentIndex+1");
             const currentDialogContent = currentData.content[currentContentIndex + 1]
             addHistoryDialog({ id: currentData.id, content: currentDialogContent })
             setCurrentContentIndex(currentContentIndex + 1)
         }
+
         // 判断当前对话是否有下一段
         if ((currentContentIndex === currentContentLength) && currentDialogIndex < currentDialogData.dialog.length - 1) {
             addHistoryDialog({ id: currentDialogData.dialog[currentDialogIndex + 1].id, content: currentDialogData.dialog[currentDialogIndex + 1].content[0] })
