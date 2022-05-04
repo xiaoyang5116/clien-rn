@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 
 import { View, Text, TouchableWithoutFeedback, FlatList } from 'react-native';
-import { AppDispath, ThemeContext } from '../../../constants';
+import {
+    AppDispath,
+    ThemeContext,
+    action,
+    connect,
+} from '../../../constants';
 
 import { TextButton } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
@@ -39,6 +44,16 @@ const SingleDialog = props => {
         } else {
             props.onDialogCancel();
         }
+
+        if (item.dialogs !== undefined) {
+            props.dispatch(action('SceneModel/__onDialogCommand')({ __sceneId: props.viewData.__sceneId, params: item.dialogs }))
+        }
+
+        if (item.toChapter !== undefined) {
+            console.log("props.viewData.__sceneId", props.viewData.__sceneId);
+            AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: item.toChapter, __sceneId: props.viewData.__sceneId } });
+        }
+
     };
 
     const renderText = ({ item, index }) => {
@@ -105,4 +120,4 @@ const SingleDialog = props => {
     return null;
 };
 
-export default SingleDialog;
+export default connect((state) => ({ ...state.SceneModel }))(SingleDialog);

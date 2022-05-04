@@ -8,7 +8,6 @@ import GameOverDialog from './gameOverDialog';
 import MultiplayerDialog from './MultiplayerDialog';
 
 export default function DialogTemple(props) {
-    // console.log("props", props);
     switch (props.style) {
         case 6:
             return <SingleDialog {...props} />
