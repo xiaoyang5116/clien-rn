@@ -5,6 +5,7 @@ import {
     connect,
     Component,
     StyleSheet,
+    AppDispath,
 } from "../../constants";
 
 import { 
@@ -28,7 +29,10 @@ class ExploreBossPage extends Component {
     renderItem = (data) => {
         const item = data.item;
         return (
-        <TouchableHighlight activeOpacity={0.85} underlayColor='#666' onPress={() => {}} style={{ margin: 5 }} >
+        <TouchableHighlight activeOpacity={0.85} underlayColor='#666' style={{ margin: 5 }} onPress={() => {
+            AppDispath({ type: 'ExploreModel/challengeBoss', payload: item });
+            this.props.onClose();
+        }} >
             <View style={{ height: 50, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd' }}>
                 <Text>战斗事件</Text>
             </View>

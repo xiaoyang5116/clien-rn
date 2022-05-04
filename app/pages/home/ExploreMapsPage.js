@@ -6,6 +6,7 @@ import {
     Component,
     StyleSheet,
     DeviceEventEmitter,
+    EventKeys,
 } from "../../constants";
 
 import { 
@@ -25,7 +26,7 @@ const AreaBlock = (props) => {
     const [ selected, onSelected ] = useState(false);
 
     useEffect(() => {
-        const listener = DeviceEventEmitter.addListener('AreaBlock.selected', (payload) => {
+        const listener = DeviceEventEmitter.addListener(EventKeys.AREA_BLOCK_SELECTED, (payload) => {
             if (payload.id == props.item.id) {
                 onSelected(true);
             } else {
@@ -39,7 +40,7 @@ const AreaBlock = (props) => {
 
     return (
         <TouchableWithoutFeedback onPress={() => {
-            DeviceEventEmitter.emit('AreaBlock.selected', props.item);
+            DeviceEventEmitter.emit(EventKeys.AREA_BLOCK_SELECTED, props.item);
             props.onSelected();
         }}>
         <View style={{ width: 150, height: 120, borderColor: '#666', borderWidth: 1, backgroundColor: '#f2ede7', justifyContent: 'center', alignItems: 'center' }}>
@@ -154,7 +155,7 @@ class ExploreMapsPage extends Component {
                             } else {
                                 this.props.onClose();
                                 this.props.dispatch(action('ExploreModel/start')({ mapId: this.state.selectMapId }));
-                                DeviceEventEmitter.emit('ExploreTabPage.show', 'ExploreMainPage');
+                                DeviceEventEmitter.emit(EventKeys.EXPLORETABPAGE_SHOW, 'ExploreMainPage');
                             }
                         }} />
                         <TextButton {...this.props} title={'调整补给'} disabled={true} />

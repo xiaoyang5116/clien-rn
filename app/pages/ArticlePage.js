@@ -10,12 +10,31 @@ import {
 
 import { 
   View,
-  Text,
   FlatList,
 } from '../constants/native-ui';
 
 import Block from '../components/article';
 import { Animated } from 'react-native';
+import { CarouselUtils } from '../components/carousel';
+import { TextButton } from '../constants/custom-ui';
+
+const DATA = [
+  {
+    title: "现实",
+    body: "现实场景，这里添加更多描述",
+    imgUrl: "https://picsum.photos/id/11/200/300",
+  },
+  {
+    title: "灵修界",
+    body: "灵修场景，这里添加更多描述 ",
+    imgUrl: "https://picsum.photos/id/10/200/300",
+  },
+  {
+    title: "尘界",
+    body: "尘界场景，这里添加更多描述",
+    imgUrl: "https://picsum.photos/id/12/200/300",
+  },
+];
 
 class ArticlePage extends Component {
 
@@ -77,6 +96,13 @@ class ArticlePage extends Component {
           <View style={styles.topBarContainer}>
           </View>
           <View style={styles.bodyContainer}>
+            {/* <TextButton title="选择世界" style={{ marginTop: 100 }} 
+              onPress={() => {
+                CarouselUtils.show({ data: DATA, initialIndex: 1, onSelect: (params) => {
+                  console.debug(params);
+                } });
+              }}
+            /> */}
             <FlatList
               ref={this.refList}
               data={this.props.sections}
