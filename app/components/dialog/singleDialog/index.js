@@ -6,11 +6,16 @@ import {
     ThemeContext,
     action,
     connect,
+    animationAction,
+    SHCOK,
+    EDGE_LIGHT
 } from '../../../constants';
 
 import { TextButton } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 import Shock from '../../shock';
+import EdgeLightModal from '../../animation/EdgeLight';
+
 
 import FullSingle from './FullSingle';
 import HalfSingle from './HalfSingle';
@@ -26,7 +31,16 @@ const SingleDialog = props => {
     const nextParagraph = () => {
         if (currentIndex < currentDialogueLength) {
             if (Array.isArray(currentTextList[currentIndex + 1])) {
-                Shock.shockShow('slightShock')
+                const animationList = currentTextList[currentIndex + 1]
+                animationList.forEach(item => {
+                    const acitonObj = animationAction(item)
+                    switch (acitonObj.type) {
+                        case SHCOK:
+                            return Shock.shockShow(acitonObj.action)
+                        case EDGE_LIGHT:
+                            return EdgeLightModal.show(acitonObj.action)
+                    }
+                });
                 setCurrentIndex(currentIndex + 2);
             }
             else {
