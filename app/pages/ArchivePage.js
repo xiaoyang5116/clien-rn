@@ -18,6 +18,8 @@ import {
 import { TextButton } from '../constants/custom-ui';
 import * as DateTime from '../utils/DateTimeUtils';
 import { confirm } from '../components/dialog';
+import SpriteSheet from '../components/SpriteSheet';
+import { range } from 'lodash';
 
 class ArchivePage extends Component {
 
@@ -25,6 +27,7 @@ class ArchivePage extends Component {
     super(props);
     this.times = 0;
     this.timer = null;
+    this.mummy = null;
   }
 
   _renderItem = (data) => {
@@ -67,6 +70,19 @@ class ArchivePage extends Component {
     }, 500);
   }
 
+  componentDidMount() {
+    const play = type => {
+      this.mummy.play({
+        type,
+        fps: Number(30),
+        loop: true,
+        resetAfterFinish: () => {},
+        onFinish: () => console.log('hi')
+      });
+    };
+    play('walk');
+  }
+
   render() {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
@@ -81,6 +97,20 @@ class ArchivePage extends Component {
                     renderItem={this._renderItem}
                     keyExtractor={item => item.id}
                 />
+            </View>
+            <View style={{ position: 'absolute', top: -100, left: 80, transform: [{ scale: 1.4 }] }}>
+              <SpriteSheet
+                ref={ref => (this.mummy = ref)}
+                source={require('../../assets/animations/effect.png')}
+                columns={10}
+                rows={6}
+                // height={200} // set either, none, but not both
+                // width={200}
+                imageStyle={{ marginTop: -1 }}
+                animations={{
+                  walk: range(60),
+                }}
+              />
             </View>
             <View style={{ paddingTop: 10, paddingBottom: 10, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', 
                 borderColor: '#999', borderWidth: 1, backgroundColor: '#ede7db' }}>
