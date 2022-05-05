@@ -17,4 +17,6 @@ export class EventKeys {
 
     static LOTTERYPOPPAGE_SHOW = 'LOTTERYPOPPAGE_SHOW';
 
+    static ARTICLE_PAGE_LONG_PRESS = 'ARTICLE_PAGE_LONG_PRESS';
+
 }
