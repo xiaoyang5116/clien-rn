@@ -23,7 +23,7 @@ const EdgeLight = (props) => {
         ]).start(props.onClose);
     }, [])
     return (
-        <View style={{ flex: 1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }}>
+        <View style={{ flex: 1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 99 }}>
             <Animated.Image
                 resizeMode='stretch'
                 style={{ width: '100%', height: '100%', opacity: fadeAnim }}
@@ -33,8 +33,8 @@ const EdgeLight = (props) => {
     )
 }
 
-class EdgeLightModal{
-    static show(img){
+class EdgeLightModal {
+    static show(img) {
         const key = RootView.add(
             <EdgeLight img={img} onClose={() => {
                 RootView.remove(key);
