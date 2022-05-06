@@ -23,4 +23,6 @@ export class EventKeys {
 
     static ARTICLE_PAGE_SCROLL = 'ARTICLE_PAGE_SCROLL';
 
+    static ARTICLE_PAGE_HIDE_BANNER = 'ARTICLE_PAGE_HIDE_BANNER';
+
 }

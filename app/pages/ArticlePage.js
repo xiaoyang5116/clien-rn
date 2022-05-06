@@ -12,14 +12,15 @@ import {
 
 import { 
   View,
-  Text,
   FlatList,
 } from '../constants/native-ui';
 
 import Block from '../components/article';
-import { DeviceEventEmitter, Animated } from 'react-native';
+import { DeviceEventEmitter } from 'react-native';
 import { CarouselUtils } from '../components/carousel';
 import { TextButton } from '../constants/custom-ui';
+import HeaderContainer from '../components/article/HeaderContainer';
+import FooterContainer from '../components/article/FooterContainer';
 
 const data = [
   {
@@ -55,130 +56,6 @@ const worldSelector = () => {
       }
     }
   });
-}
-
-const Header = (props) => {
-  const maxHeight = 100;
-  const [display, setDisplay] = React.useState(false);
-  const status = React.useRef({ animating: false, closing: false }).current;
-  const switcAnimation = React.useRef(null);
-  const posBottom = React.useRef(new Animated.Value(display ? 0 : -maxHeight)).current;
-
-  React.useEffect(() => {
-    // 点击滑出
-    const pressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_PRESS, (e) => {
-      if (status.animating)
-        return; // 动画进行中，禁止重入。
-
-      status.animating = true;
-      const animation = Animated.timing(posBottom, {
-        toValue: display ? -maxHeight : 0,
-        duration: 350,
-        useNativeDriver: false,
-      });
-      animation.start(() => {
-        setDisplay((v) => !v);
-        status.animating = false;
-      });
-      switcAnimation.current = animation;
-    });
-
-    // 文章滑动时隐藏
-    const scrollListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_SCROLL, (e) => {
-      // 停止正在播放的动画
-      if (status.animating && switcAnimation.current != null) {
-        switcAnimation.current.stop();
-        switcAnimation.current = null;
-        status.closing = false;
-      }
-
-      // 隐藏功能区
-      if (display && status.closing == false) {
-        status.closing = true;
-        const animation = Animated.timing(posBottom, {
-          toValue: -maxHeight,
-          duration: 350,
-          useNativeDriver: false,
-        });
-        animation.start(() => {
-          setDisplay(false);
-          status.closing = false;
-          status.animating = false;
-        });
-      }
-    });
-    return () => {
-      pressListener.remove();
-      scrollListener.remove();
-    };
-  }, [display]);
-  return (
-    <Animated.View style={{ position: 'absolute', left: 0, top: posBottom, zIndex: 100, width: '100%', height: maxHeight, backgroundColor: '#a49f99' }}>
-      {props.children}
-    </Animated.View>
-  );
-}
-
-const Footer = (props) => {
-  const maxHeight = 100;
-  const [display, setDisplay] = React.useState(false);
-  const status = React.useRef({ animating: false, closing: false }).current;
-  const switcAnimation = React.useRef(null);
-  const posBottom = React.useRef(new Animated.Value(display ? 0 : -maxHeight)).current;
-
-  React.useEffect(() => {
-    // 点击滑出
-    const pressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_PRESS, (e) => {
-      if (status.animating)
-        return; // 动画进行中，禁止重入。
-
-      status.animating = true;
-      const animation = Animated.timing(posBottom, {
-        toValue: display ? -maxHeight : 0,
-        duration: 350,
-        useNativeDriver: false,
-      });
-      animation.start(() => {
-        setDisplay((v) => !v);
-        status.animating = false;
-      });
-      switcAnimation.current = animation;
-    });
-
-    // 文章滑动时隐藏
-    const scrollListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_SCROLL, (e) => {
-      // 停止正在播放的动画
-      if (status.animating && switcAnimation.current != null) {
-        switcAnimation.current.stop();
-        switcAnimation.current = null;
-        status.closing = false;
-      }
-
-      // 隐藏功能区
-      if (display && status.closing == false) {
-        status.closing = true;
-        const animation = Animated.timing(posBottom, {
-          toValue: -maxHeight,
-          duration: 350,
-          useNativeDriver: false,
-        });
-        animation.start(() => {
-          setDisplay(false);
-          status.closing = false;
-          status.animating = false;
-        });
-      }
-    });
-    return () => {
-      pressListener.remove();
-      scrollListener.remove();
-    };
-  }, [display]);
-  return (
-    <Animated.View style={{ position: 'absolute', left: 0, bottom: posBottom, zIndex: 100, width: '100%', height: maxHeight, backgroundColor: '#a49f99' }}>
-      {props.children}
-    </Animated.View>
-  );
 }
 
 class ArticlePage extends Component {
@@ -227,13 +104,15 @@ class ArticlePage extends Component {
   render() {
     return (
         <View style={styles.viewContainer}>
-          <Header>
+          <HeaderContainer>
             <View style={[styles.bannerStyle, { marginTop: 20, }]}>
-              <TextButton title='X' />
+              <TextButton title='X' onPress={() => {
+                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+              }} />
               <TextButton title='选择世界' onPress={worldSelector} />
               <TextButton title='...' />
             </View>
-          </Header>
+          </HeaderContainer>
           <View style={styles.topBarContainer}>
           </View>
           <View style={styles.bodyContainer}>
@@ -249,13 +128,13 @@ class ArticlePage extends Component {
               maxToRenderPerBatch={5}
             />
           </View>
-          <Footer>
+          <FooterContainer>
             <View style={styles.bannerStyle}>
               <TextButton title='目录' />
               <TextButton title='夜间' />
               <TextButton title='设置' />
             </View>
-          </Footer>
+          </FooterContainer>
         </View>
     );
   }
