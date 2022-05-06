@@ -10,3 +10,4 @@ export * from './_events';
 export * from './_theme';
 export * from './_source';
 export * from './_others';
+export * from './_animation';

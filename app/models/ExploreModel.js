@@ -2,11 +2,13 @@
 import { 
   action,
   AppDispath,
+  LocalCacheKeys,
 } from "../constants";
-
+import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 import { GetExploreDataApi } from '../services/GetExploreDataApi';
 import { GetSeqDataApi } from '../services/GetSeqDataApi';
+import { GetQiYuApi } from '../services/GetQiYuApi';
 import lo from 'lodash';
 
 const EVENTS_CONFIG = [
@@ -240,12 +242,42 @@ export default {
     },
 
     // 奇遇事件
-    *onQiYuEvent({ payload }, { select, put }) {
+    *onQiYuEvent({ payload }, { select, put, call }) {
       const exploreState = yield select(state => state.ExploreModel);
       const { map, area, event, refQiYuButton } = payload;
-      exploreState.event_qiyu.push({ id: (exploreState.event_qiyu.length + 1), ...event });
+      const { data } = yield call(GetQiYuApi, event.action)
+      exploreState.event_qiyu.push({ id: (exploreState.event_qiyu.length + 1), ...event, ...data });
       refQiYuButton.setNum(exploreState.event_qiyu.length);
     },
+    // 改变奇遇事件状态
+    *changeQiYuStatus({ payload }, { select, put, call }) {
+      // [ {id: "qiyu_1_XXX", isFinish: true} ]  奇遇事件状态存储格式
+      const oldData = yield call(LocalStorage.get, LocalCacheKeys.QYEVENT_DATA);
+      // const { id, refQiYuButton } = payload;
+      // console.log('oldData', oldData, payload);
+      const newData = {
+        id: payload.id,
+        isFinish: true
+      }
+
+      if (oldData !== null) {
+        yield call(LocalStorage.set, LocalCacheKeys.QYEVENT_DATA, [...oldData, newData]);
+      }
+      else {
+        yield call(LocalStorage.set, LocalCacheKeys.QYEVENT_DATA, [newData]);
+      }
+
+      const exploreState = yield select(state => state.ExploreModel);
+      console.log("exploreState", exploreState.event_qiyu);
+      const newQiyuData= exploreState.event_qiyu.filter(e => e.id !== payload.id);
+      console.log("newQiyuData", newQiyuData.length);
+      exploreState.event_qiyu = newQiyuData;
+      // refQiYuButton.setNum(exploreState.event_qiyu.length);
+    },
+    // 已完成的奇遇事件
+    // *getCompletedQiYuEvent({ payload }, { select, put, call }) {
+    //   return yield call(LocalStorage.get, LocalCacheKeys.QYEVENT_DATA);
+    // },
 
     // 挑战
     *onPKEvent({ payload }, { select, put, call }) {

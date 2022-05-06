@@ -101,7 +101,7 @@ const CarouselCardItem = ({ item, index }) => {
             RootView.remove(key);
           }} />);
         } else {
-          DeviceEventEmitter.emit(EventKeys.CAROUSEL_ENTER_SHOW, { index, status: '' });
+          DeviceEventEmitter.emit(EventKeys.CAROUSEL_ENTER_SHOW, { index, status: 'flex' });
         }
       }}>
       {contentView}

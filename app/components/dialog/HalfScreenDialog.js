@@ -99,7 +99,7 @@ const HalfScreenDialog = props => {
                 onPress={nextParagraph}>
                 <View style={[theme.blockBgColor2, { flex: 1, paddingLeft: 2, paddingRight: 2, paddingTop: 2, }]}>
                     {/* 内容显示区域 */}
-                    <View style={[theme.blockBgColor3, { height: 350, paddingLeft: 12, paddingRight: 12, }]}>
+                    <View style={[theme.blockBgColor3, { height: "70%", paddingLeft: 12, paddingRight: 12, }]}>
                         <FlatList
                             data={currentTextList}
                             renderItem={renderText}
@@ -108,7 +108,7 @@ const HalfScreenDialog = props => {
                     </View>
 
                     {/* 按钮区域 */}
-                    <View style={{ marginTop: 20, }}>
+                    <View style={{ padding: 12, height: "30%" }}>
                         <FlatList
                             data={showBtnList}
                             renderItem={renderBtn}

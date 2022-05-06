@@ -77,8 +77,8 @@ class MaskModal extends PureComponent {
         // 6  代表 popUp dialog 弹出对话框
         if (this.props.style === 6) {
             return (
-                <Modal isVisible={this.props.visible} style={{ padding: 0, margin: 0, flex: 1 }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
-                    <DialogTemple textAnimationType={this.props.__data.current.textAnimationType} currentStyles={this.props.currentStyles} type={this.props.__data.current.dialogType} title={this.props.title} onDialogCancel={this._onDialogCancel} popUpComplex={this.props.__data.current.sections} />
+                <Modal isVisible={this.props.visible} coverScreen={false} style={{ padding: 0, margin: 0, flex: 1, zIndex: 1 }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
+                    <DialogTemple viewData={this.props.viewData} style={this.props.style} textAnimationType={this.props.__data.current.textAnimationType} type={this.props.__data.current.dialogType} title={this.props.title} onDialogCancel={this._onDialogCancel} popUpComplex={this.props.__data.current.sections} />
                 </Modal>
             )
         }
