@@ -21,4 +21,6 @@ export class EventKeys {
 
     static ARTICLE_PAGE_LONG_PRESS = 'ARTICLE_PAGE_LONG_PRESS';
 
+    static ARTICLE_PAGE_SCROLL = 'ARTICLE_PAGE_SCROLL';
+
 }
