@@ -42,29 +42,71 @@ const data = [
   },
 ];
 
+const worldSelector = () => {
+  CarouselUtils.show({ 
+    data, 
+    initialIndex: Math.floor(data.length / 2), 
+    onSelect: (p) => {
+      if (p.item.toChapter != undefined) {
+        AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: p.item.toChapter, __sceneId: '' } });
+      }
+    }
+  });
+}
+
 const Header = (props) => {
-  const maxHeight = 80;
+  const maxHeight = 100;
   const [display, setDisplay] = React.useState(false);
-  const status = React.useRef({ animating: false }).current;
+  const status = React.useRef({ animating: false, closing: false }).current;
+  const switcAnimation = React.useRef(null);
   const posBottom = React.useRef(new Animated.Value(display ? 0 : -maxHeight)).current;
 
   React.useEffect(() => {
+    // 点击滑出
     const pressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_PRESS, (e) => {
       if (status.animating)
         return; // 动画进行中，禁止重入。
 
       status.animating = true;
-      Animated.timing(posBottom, {
+      const animation = Animated.timing(posBottom, {
         toValue: display ? -maxHeight : 0,
-        duration: 600,
+        duration: 350,
         useNativeDriver: false,
-      }).start(() => {
+      });
+      animation.start(() => {
         setDisplay((v) => !v);
         status.animating = false;
       });
+      switcAnimation.current = animation;
+    });
+
+    // 文章滑动时隐藏
+    const scrollListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_SCROLL, (e) => {
+      // 停止正在播放的动画
+      if (status.animating && switcAnimation.current != null) {
+        switcAnimation.current.stop();
+        switcAnimation.current = null;
+        status.closing = false;
+      }
+
+      // 隐藏功能区
+      if (display && status.closing == false) {
+        status.closing = true;
+        const animation = Animated.timing(posBottom, {
+          toValue: -maxHeight,
+          duration: 350,
+          useNativeDriver: false,
+        });
+        animation.start(() => {
+          setDisplay(false);
+          status.closing = false;
+          status.animating = false;
+        });
+      }
     });
     return () => {
       pressListener.remove();
+      scrollListener.remove();
     };
   }, [display]);
   return (
@@ -75,28 +117,58 @@ const Header = (props) => {
 }
 
 const Footer = (props) => {
-  const maxHeight = 80;
+  const maxHeight = 100;
   const [display, setDisplay] = React.useState(false);
-  const status = React.useRef({ animating: false }).current;
+  const status = React.useRef({ animating: false, closing: false }).current;
+  const switcAnimation = React.useRef(null);
   const posBottom = React.useRef(new Animated.Value(display ? 0 : -maxHeight)).current;
 
   React.useEffect(() => {
+    // 点击滑出
     const pressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_PRESS, (e) => {
       if (status.animating)
         return; // 动画进行中，禁止重入。
 
       status.animating = true;
-      Animated.timing(posBottom, {
+      const animation = Animated.timing(posBottom, {
         toValue: display ? -maxHeight : 0,
-        duration: 600,
+        duration: 350,
         useNativeDriver: false,
-      }).start(() => {
+      });
+      animation.start(() => {
         setDisplay((v) => !v);
         status.animating = false;
       });
+      switcAnimation.current = animation;
+    });
+
+    // 文章滑动时隐藏
+    const scrollListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_SCROLL, (e) => {
+      // 停止正在播放的动画
+      if (status.animating && switcAnimation.current != null) {
+        switcAnimation.current.stop();
+        switcAnimation.current = null;
+        status.closing = false;
+      }
+
+      // 隐藏功能区
+      if (display && status.closing == false) {
+        status.closing = true;
+        const animation = Animated.timing(posBottom, {
+          toValue: -maxHeight,
+          duration: 350,
+          useNativeDriver: false,
+        });
+        animation.start(() => {
+          setDisplay(false);
+          status.closing = false;
+          status.animating = false;
+        });
+      }
     });
     return () => {
       pressListener.remove();
+      scrollListener.remove();
     };
   }, [display]);
   return (
@@ -119,16 +191,7 @@ class ArticlePage extends Component {
 
     // 长按监听器
     this.longPressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
-      // 测试代码...
-      CarouselUtils.show({ 
-        data, 
-        initialIndex: Math.floor(data.length / 2), 
-        onSelect: (p) => {
-          if (p.item.toChapter != undefined) {
-            AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: p.item.toChapter, __sceneId: '' } });
-          }
-        }
-      });
+      worldSelector();
     });
   }
 
@@ -150,6 +213,8 @@ class ArticlePage extends Component {
       offsetX: payload.nativeEvent.contentOffset.x,
       offsetY: payload.nativeEvent.contentOffset.y,
     }));
+
+    DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_SCROLL, payload);
   }
 
   endReachedHandler = () => {
@@ -159,7 +224,13 @@ class ArticlePage extends Component {
   render() {
     return (
         <View style={styles.viewContainer}>
-          <Header />
+          <Header>
+            <View style={[styles.bannerStyle, { marginTop: 20, }]}>
+              <TextButton title='X' />
+              <TextButton title='选择世界' onPress={worldSelector} />
+              <TextButton title='...' />
+            </View>
+          </Header>
           <View style={styles.topBarContainer}>
           </View>
           <View style={styles.bodyContainer}>
@@ -175,7 +246,13 @@ class ArticlePage extends Component {
               maxToRenderPerBatch={5}
             />
           </View>
-          <Footer />
+          <Footer>
+            <View style={styles.bannerStyle}>
+              <TextButton title='目录' />
+              <TextButton title='夜间' />
+              <TextButton title='设置' />
+            </View>
+          </Footer>
         </View>
     );
   }
@@ -204,6 +281,12 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bannerStyle: {
+    flex: 1, 
+    flexDirection: 'row', 
+    justifyContent: 'space-around', 
     alignItems: 'center',
   },
 });
