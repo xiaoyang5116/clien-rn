@@ -25,18 +25,21 @@ const data = [
   {
     title: "现实",
     body: "现实场景，这里添加更多描述",
+    desc: "现实场景，这里添加更多描述, 现实场景，这里添加更多描述, 现实场景，这里添加更多描述, 现实场景，这里添加更多描述",
     imgUrl: "https://picsum.photos/id/11/200/300",
     toChapter: "WZXX_M1_N1_C001",
   },
   {
-    title: "灵修",
+    title: "灵修界",
     body: "灵修场景，这里添加更多描述",
+    desc: "灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述",
     imgUrl: "https://picsum.photos/id/10/200/300",
     toChapter: "WZXX_M1_N1_C002",
   },
   {
     title: "尘界",
     body: "尘界场景，这里添加更多描述",
+    desc: "尘界场景，这里添加更多描述，尘界场景，这里添加更多描述，尘界场景，这里添加更多描述，尘界场景，这里添加更多描述",
     imgUrl: "https://picsum.photos/id/12/200/300",
     toChapter: "WZXX_M1_N1_C003",
   },
