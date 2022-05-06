@@ -12,12 +12,14 @@ import {
 
 import { 
   View,
+  Text,
   FlatList,
 } from '../constants/native-ui';
 
 import Block from '../components/article';
-import { DeviceEventEmitter } from 'react-native';
+import { DeviceEventEmitter, Animated } from 'react-native';
 import { CarouselUtils } from '../components/carousel';
+import { TextButton } from '../constants/custom-ui';
 
 const data = [
   {
@@ -40,6 +42,70 @@ const data = [
   },
 ];
 
+const Header = (props) => {
+  const maxHeight = 80;
+  const [display, setDisplay] = React.useState(false);
+  const status = React.useRef({ animating: false }).current;
+  const posBottom = React.useRef(new Animated.Value(display ? 0 : -maxHeight)).current;
+
+  React.useEffect(() => {
+    const pressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_PRESS, (e) => {
+      if (status.animating)
+        return; // 动画进行中，禁止重入。
+
+      status.animating = true;
+      Animated.timing(posBottom, {
+        toValue: display ? -maxHeight : 0,
+        duration: 600,
+        useNativeDriver: false,
+      }).start(() => {
+        setDisplay((v) => !v);
+        status.animating = false;
+      });
+    });
+    return () => {
+      pressListener.remove();
+    };
+  }, [display]);
+  return (
+    <Animated.View style={{ position: 'absolute', left: 0, top: posBottom, zIndex: 100, width: '100%', height: maxHeight, backgroundColor: '#a49f99' }}>
+      {props.children}
+    </Animated.View>
+  );
+}
+
+const Footer = (props) => {
+  const maxHeight = 80;
+  const [display, setDisplay] = React.useState(false);
+  const status = React.useRef({ animating: false }).current;
+  const posBottom = React.useRef(new Animated.Value(display ? 0 : -maxHeight)).current;
+
+  React.useEffect(() => {
+    const pressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_PRESS, (e) => {
+      if (status.animating)
+        return; // 动画进行中，禁止重入。
+
+      status.animating = true;
+      Animated.timing(posBottom, {
+        toValue: display ? -maxHeight : 0,
+        duration: 600,
+        useNativeDriver: false,
+      }).start(() => {
+        setDisplay((v) => !v);
+        status.animating = false;
+      });
+    });
+    return () => {
+      pressListener.remove();
+    };
+  }, [display]);
+  return (
+    <Animated.View style={{ position: 'absolute', left: 0, bottom: posBottom, zIndex: 100, width: '100%', height: maxHeight, backgroundColor: '#a49f99' }}>
+      {props.children}
+    </Animated.View>
+  );
+}
+
 class ArticlePage extends Component {
 
   constructor(props) {
@@ -50,6 +116,8 @@ class ArticlePage extends Component {
 
   componentDidMount() {
     this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
+
+    // 长按监听器
     this.longPressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
       // 测试代码...
       CarouselUtils.show({ 
@@ -74,10 +142,6 @@ class ArticlePage extends Component {
     }
   }
 
-  renderItem = (data) => {
-    return (<Block data={data.item} />);
-  }
-
   viewableItemsChangedhandler = (payload) => {
   }
 
@@ -95,13 +159,14 @@ class ArticlePage extends Component {
   render() {
     return (
         <View style={styles.viewContainer}>
+          <Header />
           <View style={styles.topBarContainer}>
           </View>
           <View style={styles.bodyContainer}>
             <FlatList
               ref={this.refList}
               data={this.props.sections}
-              renderItem={this.renderItem}
+              renderItem={(data) => <Block data={data.item} />}
               keyExtractor={item => item.key}
               onViewableItemsChanged={this.viewableItemsChangedhandler}
               onScroll={this.scrollHandler}
@@ -110,6 +175,7 @@ class ArticlePage extends Component {
               maxToRenderPerBatch={5}
             />
           </View>
+          <Footer />
         </View>
     );
   }
@@ -140,15 +206,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  // floatContainer: {
-  //   position: 'absolute',
-  //   left: 0,
-  //   top: 200,
-  //   width: '100%',
-  //   height: '100%',
-  //   justifyContent: 'flex-end',
-  //   alignItems: 'center',
-  // },
 });
 
 export default connect((state) => ({ ...state.ArticleModel }))(ArticlePage);

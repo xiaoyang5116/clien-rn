@@ -17,13 +17,17 @@ class PlainView extends PureComponent {
         }));
     }
 
+    onPressHandler = (e) => {
+        DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_PRESS, e);
+    }
+
     onLongPressHandler = (e) => {
         DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_LONG_PRESS, e);
     }
 
     render() {
         return (
-            <TouchableWithoutFeedback onLongPress={this.onLongPressHandler}>
+            <TouchableWithoutFeedback onLongPress={this.onLongPressHandler} onPress={this.onPressHandler}>
                 <View key={this.props.itemKey} style={{ }} onLayout={this.layoutHandler} >
                     <Text style={{ fontSize: 20, lineHeight: 28, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text>
                 </View>
