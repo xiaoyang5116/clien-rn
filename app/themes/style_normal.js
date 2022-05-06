@@ -18,7 +18,7 @@ const pageBgColor1 = '#f2f2f2';  // 淡灰色
 /* 区块背景 */
 const blockBgColor1 = '#e8d2b0';  // 深米白色
 const blockBgColor2 = '#e8ddcc';  // 米白色
-const blockBgColor3 = '#d3c2aa';  // 淡米色
+const blockBgColor3 = '#eee7dd';  // 淡米色
 
 
 /* 按钮背景 */
