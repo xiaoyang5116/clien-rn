@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, DeviceEventEmitter } from 'react-native';
 
 import {
     connect,
     action,
+    EventKeys,
 } from "../../constants";
 
 class PlainView extends PureComponent {
@@ -16,11 +17,17 @@ class PlainView extends PureComponent {
         }));
     }
 
+    onLongPressHandler = (e) => {
+        DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_LONG_PRESS, e);
+    }
+
     render() {
         return (
-            <View key={this.props.itemKey} style={{ }} onLayout={this.layoutHandler} >
-                <Text style={{ fontSize: 20, lineHeight: 28, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text>
-            </View>
+            <TouchableWithoutFeedback onLongPress={this.onLongPressHandler}>
+                <View key={this.props.itemKey} style={{ }} onLayout={this.layoutHandler} >
+                    <Text style={{ fontSize: 20, lineHeight: 28, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text>
+                </View>
+            </TouchableWithoutFeedback>
         );
     }
 

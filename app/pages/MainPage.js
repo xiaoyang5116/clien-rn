@@ -14,6 +14,7 @@ import {
   connect,
   Component,
   DeviceEventEmitter,
+  EventKeys,
 } from '../constants';
 
 import HomePage from './/HomePage';
@@ -34,7 +35,7 @@ class MainPage extends Component {
   }
 
   componentDidMount() {
-    this.dispatchListener = DeviceEventEmitter.addListener('App.dispatch', (params) => {
+    this.dispatchListener = DeviceEventEmitter.addListener(EventKeys.APP_DISPATCH, (params) => {
       this.props.dispatch(action(params.type)(params.payload));
     });
   }
