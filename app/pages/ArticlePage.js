@@ -20,6 +20,8 @@ import Block from '../components/article';
 import { DeviceEventEmitter, Animated } from 'react-native';
 import { CarouselUtils } from '../components/carousel';
 import { TextButton } from '../constants/custom-ui';
+import RootView from '../components/RootView';
+import ReaderSettings from '../components/readerSettings';
 
 const data = [
   {
@@ -250,7 +252,9 @@ class ArticlePage extends Component {
             <View style={styles.bannerStyle}>
               <TextButton title='目录' />
               <TextButton title='夜间' />
-              <TextButton title='设置' />
+              <TextButton title='设置' onPress={()=>{
+                const key =RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
+              }} />
             </View>
           </Footer>
         </View>
