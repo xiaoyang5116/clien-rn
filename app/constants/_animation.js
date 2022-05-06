@@ -17,7 +17,7 @@ const shcok_1 = 'slightShock';
 const edge_light_red = require('../../assets/edge_light/red.png');
 // 边缘闪烁绿
 const edge_light_green = require('../../assets/edge_light/green.png');
-//边缘闪烁蓝
+// 边缘闪烁蓝
 const edge_light_blue = require('../../assets/edge_light/blue.png');
 // 边缘闪烁白
 const edge_light_white = require('../../assets/edge_light/white.png');

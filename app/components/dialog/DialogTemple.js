@@ -1,14 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-import HalfScreenDialog from './HalfScreenDialog';
-import FullScreenDialog from './FullScreenDialog';
 import SingleDialog from './singleDialog';
 import GameOverDialog from './gameOverDialog';
 import MultiplayerDialog from './MultiplayerDialog';
 
-export default function DialogTemple(props) {
-    switch (props.style) {
+export function DialogTemple(props) {
+    switch (props.viewData.style) {
         case 6:
             return <SingleDialog {...props} />
         case 7:

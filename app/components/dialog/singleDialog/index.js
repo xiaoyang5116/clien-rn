@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
 import { View, Text, TouchableWithoutFeedback, FlatList } from 'react-native';
+
 import {
     AppDispath,
     ThemeContext,
@@ -16,15 +16,23 @@ import TextAnimation from '../../textAnimation';
 import Shock from '../../shock';
 import EdgeLightModal from '../../animation/EdgeLight';
 
-
 import FullSingle from './FullSingle';
 import HalfSingle from './HalfSingle';
 
+
 const SingleDialog = props => {
+    /**
+     * dialogType: 对话框屏幕类型
+     * textAnimationType: 文字显示类型
+     * title: 标题
+     * sections: 对话内容
+     */
+    const { dialogType, textAnimationType, title, sections } = props.viewData;
+
     const theme = React.useContext(ThemeContext);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [currentTextList, setCurrentTextList] = useState(props.popUpComplex[0].content);
-    const [showBtnList, setShowBtnList] = useState(props.popUpComplex[0].btn);
+    const [currentTextList, setCurrentTextList] = useState(sections[0].content);
+    const [showBtnList, setShowBtnList] = useState(sections[0].btn);
 
     let currentDialogueLength = currentTextList.length - 1;
 
@@ -52,7 +60,7 @@ const SingleDialog = props => {
 
     const nextDialogue = item => {
         // 显示下一个对话
-        const newDialogue = props.popUpComplex.filter(i => i.key === item.tokey);
+        const newDialogue = sections.filter(i => i.key === item.tokey);
         if (newDialogue.length > 0) {
             setCurrentTextList(newDialogue[0].content);
             setShowBtnList(newDialogue[0].btn);
@@ -96,7 +104,7 @@ const SingleDialog = props => {
                                 : ''
                         }
                         fontSize={20}
-                        type={props.textAnimationType}
+                        type={textAnimationType}
                         style={theme.contentColor3}
                     >
                         {item}
@@ -111,7 +119,7 @@ const SingleDialog = props => {
             return (
                 <View style={{ marginTop: 8 }}>
                     <TextButton
-                        currentStyles={props.currentStyles}
+                        // currentStyles={props.currentStyles}
                         title={item.title}
                         onPress={() => {
                             nextDialogue(item);
@@ -123,10 +131,10 @@ const SingleDialog = props => {
         return null;
     };
 
-    if (props.type === 'HalfScreen') {
+    if (dialogType === 'HalfScreen') {
         return (
             <HalfSingle
-                title={props.title}
+                title={title}
                 nextParagraph={nextParagraph}
                 currentTextList={currentTextList}
                 renderText={renderText}
@@ -135,10 +143,10 @@ const SingleDialog = props => {
             />
         );
     }
-    if (props.type === 'FullScreen') {
+    if (dialogType === 'FullScreen') {
         return (
             <FullSingle
-                title={props.title}
+                title={title}
                 nextParagraph={nextParagraph}
                 currentTextList={currentTextList}
                 renderText={renderText}

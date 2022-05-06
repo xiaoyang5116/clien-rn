@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { 
+import {
   Image, ImageBackground
 } from 'react-native';
 
@@ -24,75 +24,80 @@ class FirstPage extends Component {
 
   render() {
     return (
-        <ImageBackground  style={{ flex: 1, justifyContent: 'center', flexDirection: 'row', alignItems: 'center' }} source={require('../../assets/bg/first_bg.jpg')}>
-          <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
-            <ImageButton height={60} source={require('../../assets/button/story_button.png')} selectedSource={require('../../assets/button/story_button_selected.png')} onPress={() => { 
-              RootNavigation.navigate('Article');
-             }} />
-            <ImageButton height={60} source={require('../../assets/button/continue_button.png')} selectedSource={require('../../assets/button/continue_button_selected.png')} onPress={() => { 
-              RootNavigation.navigate('Article');
-             }} />
-            <ImageButton height={60} source={require('../../assets/button/home_button.png')} selectedSource={require('../../assets/button/home_button_selected.png')} onPress={() => { 
-              this.props.dispatch(action('StoryModel/enter')({ sceneId: 'wzkj' }));
-             }} />
-            <ImageButton height={60} source={require('../../assets/button/continue_button.png')} selectedSource={require('../../assets/button/continue_button_selected.png')} onPress={() => { 
-              this.props.dispatch(action('StoryModel/reEnter')({ }));
-             }} />
-            <ImageButton height={60} source={require('../../assets/button/archive_button.png')} selectedSource={require('../../assets/button/archive_button_selected.png')} onPress={() => { 
-              const key = RootView.add(<ArchivePage onClose={() => {
-                RootView.remove(key);
-              }} />);
-             }} />
-            <ImageButton height={60} source={require('../../assets/button/profile_button.png')} selectedSource={require('../../assets/button/profile_button_selected.png')} onPress={() => { 
-              RootNavigation.navigate('Home', { 
-                screen: 'Profile',
-              });
-             }} />
-            <ImageButton height={60} source={require('../../assets/button/test_button.png')} selectedSource={require('../../assets/button/test_button_selected.png')} onPress={() => { 
-              // 震屏
-              // Shock.shockShow('bigShock');
+      <ImageBackground style={{ flex: 1, justifyContent: 'center', flexDirection: 'row', alignItems: 'center' }} source={require('../../assets/bg/first_bg.jpg')}>
+        <View style={{ flex: 1, flexDirection: 'column', alignItems: 'center' }}>
+          <ImageButton height={60} source={require('../../assets/button/story_button.png')} selectedSource={require('../../assets/button/story_button_selected.png')} onPress={() => {
+            RootNavigation.navigate('Article');
+          }} />
+          <ImageButton height={60} source={require('../../assets/button/continue_button.png')} selectedSource={require('../../assets/button/continue_button_selected.png')} onPress={() => {
+            RootNavigation.navigate('Article');
+          }} />
+          <ImageButton height={60} source={require('../../assets/button/home_button.png')} selectedSource={require('../../assets/button/home_button_selected.png')} onPress={() => {
+            this.props.dispatch(action('StoryModel/enter')({ sceneId: 'wzkj' }));
+          }} />
+          <ImageButton height={60} source={require('../../assets/button/continue_button.png')} selectedSource={require('../../assets/button/continue_button_selected.png')} onPress={() => {
+            this.props.dispatch(action('StoryModel/reEnter')({}));
+          }} />
+          <ImageButton height={60} source={require('../../assets/button/archive_button.png')} selectedSource={require('../../assets/button/archive_button_selected.png')} onPress={() => {
+            const key = RootView.add(<ArchivePage onClose={() => {
+              RootView.remove(key);
+            }} />);
+          }} />
+          <ImageButton height={60} source={require('../../assets/button/profile_button.png')} selectedSource={require('../../assets/button/profile_button_selected.png')} onPress={() => {
+            RootNavigation.navigate('Home', {
+              screen: 'Profile',
+            });
+          }} />
+          <ImageButton height={60} source={require('../../assets/button/test_button.png')} selectedSource={require('../../assets/button/test_button_selected.png')} onPress={() => {
+            // 震屏
+            // Shock.shockShow('bigShock');
 
-              // 邮箱
-              // const key = RootView.add(<MailBoxPage onClose={() => { RootView.remove(key) }} />);
+            // 邮箱
+            // const key = RootView.add(<MailBoxPage onClose={() => { RootView.remove(key) }} />);
 
-              // GameOverModal
-              // Modal.show({ style: 7, title: '神秘阵盘', sections: ['上帝发誓'] })
+            // GameOverModal 7
+            Modal.show({
+              style: 7, title: '神秘阵盘', dialogType: 'FullScreen', textAnimationType: 'TextSingle',
+              sections: [
+                { content: ['你迅速跑过去，地面有些东西。'], btn: [{ title: '去拿菜刀', tokey: "p2", props: [{ propId: 20, num: 10 }] }, { title: '去拿画轴', tokey: "p3" }] },
+              ]
+            })
 
-              // 单人对话框
-              Modal.show({ 
-                style: 6, title: '神秘阵盘', dialogType: 'HalfScreen', textAnimationType: 'TextSingle',
-                sections: [
-                  { key: 'p1', content: ['你迅速跑过去，地面有些东西。', ['边缘闪烁红'], '走开走开，马夫大喝， 正从远处拨开人群走来。', ['边缘闪烁绿'], '获得几颗石头珠子，看起来能卖不少钱。' ],btn: [{title: '去拿菜刀',tokey: "p2", props: [{ propId: 20, num: 10 }]},{title: '去拿画轴', tokey: "p3"}]},
-                  { key: 'p2', content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。','动不了','动不了','动不了'],btn: [{title: '退出',tokey: "next"}]},
-                  { key: 'p3', content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。','动不了','动不了','动不了'], btn: [{title: '退出',tokey: "next"}]},
-                ]
-              },)
+            // 单人对话框
+            // Modal.show({ 
+            //   style: 6, title: '神秘阵盘', dialogType: 'HalfScreen', textAnimationType: 'TextSingle',
+            //   sections: [
+            //     { key: 'p1', content: ['你迅速跑过去，地面有些东西。', ['边缘闪烁红'], '走开走开，马夫大喝， 正从远处拨开人群走来。', ['边缘闪烁绿'], '获得几颗石头珠子，看起来能卖不少钱。' ],btn: [{title: '去拿菜刀',tokey: "p2", props: [{ propId: 20, num: 10 }]},{title: '去拿画轴', tokey: "p3"}]},
+            //     { key: 'p2', content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。','动不了','动不了','动不了'],btn: [{title: '退出',tokey: "next"}]},
+            //     { key: 'p3', content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。','动不了','动不了','动不了'], btn: [{title: '退出',tokey: "next"}]},
+            //   ]
+            // },)
 
-              // 多人对话框
-              // Modal.show({ 
-              //   style: 8, title: '神秘阵盘', textAnimationType: 'TextSingle', dialogType: 'HalfScreen',
-              //   sections: [
-              //     { 
-              //       key: 'p1',
-              //       dialog: [
-              //         {id: '02',content: ['这里是外来的一般商家来的市场，一般为了图个彩头，不会有多寒酸 我们就在这附近讨乞。不出这条路就行。', '讨乞后每天晚上要给帮派利钱，不然被记住会被帮派打走。', ],},
-              //         {id: '01',content: ['好的',],},
-              //         {id: '04',content: ['好的',],},
-              //       ],
-              //       btn:[{title: '开始乞讨',tokey: "p2"},{title: '退出',tokey: "next"}]
-              //     },
-              //     { 
-              //       key: 'p2',
-              //       dialog: [
-              //         {id:'02',content: ['记住不要去北街，那是富人才能去的地方，乞丐是去不了的。会被打。']}
-              //       ],
-              //       btn: [{title: '退出',tokey: "next"}]
-              //     },
-              //   ]
-              // })
-            }} />
-          </View>
-        </ImageBackground>
+            // 多人对话框
+            // Modal.show({
+            //   style: 8, title: '神秘阵盘', textAnimationType: 'TextSingle', dialogType: 'HalfScreen',
+            //   sections: [
+            //     { 
+            //       key: 'p1',
+            //       dialog: [
+            //         {id: '02',content: ['这里是外来的一般商家来的市场，一般为了图个彩头，不会有多寒酸 我们就在这附近讨乞。不出这条路就行。', '讨乞后每天晚上要给帮派利钱，不然被记住会被帮派打走。', ],},
+            //         {id: '01',content: ['好的',],},
+            //         {id: '04',content: ['好的',],},
+            //       ],
+            //       btn:[{title: '开始乞讨',tokey: "p2"},{title: '退出',tokey: "next"}]
+            //     },
+            //     { 
+            //       key: 'p2',
+            //       dialog: [
+            //         {id:'02',content: ['记住不要去北街，那是富人才能去的地方，乞丐是去不了的。会被打。']}
+            //       ],
+            //       btn: [{title: '退出',tokey: "next"}]
+            //     },
+            //   ]
+            // })
+          }} />
+        </View>
+      </ImageBackground>
     );
   }
 
