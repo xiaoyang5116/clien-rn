@@ -14,13 +14,17 @@ import {
     Component,
     EventKeys,
     StyleSheet,
+    getWindowSize,
 } from "../../constants";
 
+import Modal from 'react-native-modal';
 import Carousel from 'react-native-snap-carousel'
 import RootView from '../../components/RootView';
 import { TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
+import ImageCapInset from 'react-native-image-capinsets-next';
 
+const winSize = getWindowSize();
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 
@@ -52,25 +56,52 @@ const EnterButton = (props) => {
 const WorldPreview = (props) => {
   const { item } = props;
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#eee7dd' }}>
-      <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <View><Text style={{ fontSize: 24, fontWeight: 'bold' }}>{item.title}</Text></View>
-        <View style={{ margin: 20, padding: 10, borderWidth: 1, borderColor: '#999', backgroundColor: '#eee' }}>
-          <Text style={{ fontSize: 20 }}>{item.body}</Text>
+    <Modal isVisible={true} animationIn='fadeIn' animationOut='fadeOut' animationInTiming={2000} backdropColor="#fff" backdropOpacity={1}>
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+          <View style={styles2.bodyContainer}>
+              <View style={styles2.viewContainer}>
+                <View style={styles2.titleContainer}>
+                  <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{item.title}</Text>
+                </View>
+                <View style={styles2.descContainer}>
+                  <FastImage style={{ width: '100%', height: 200, borderBottomWidth: 1, borderColor: '#999' }}
+                    resizeMode='cover'
+                    source={require('../../../assets/world/world_1.jpg')}
+                  />
+                  <Text style={{ fontSize: 14, padding: 6, lineHeight: 20 }}>{(item.desc != undefined ? item.desc : item.body)}</Text>
+                </View>
+                <View style={{ marginTop: 20, height: 100, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center' }}>
+                  <View style={{ width: 200 }}>
+                    <TextButton title={'进入'} onPress={() => {
+                        setTimeout(() => {
+                          DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
+                        }, 0);
+                        props.onClose();
+                      }} />
+                  </View>
+                  <View style={{ width: 200 }}>
+                    <TextButton title={'返回'} onPress={() => {
+                        props.onClose();
+                      }} />
+                  </View>
+                </View>
+                <View style={styles2.tipsContainer}>
+                  <Text style={{ color: '#999' }}>* 道具数量不足</Text>
+                </View>
+              </View>
+              <ImageCapInset
+                  style={{ width: '100%', height: '100%', position: 'absolute', zIndex: -1 }}
+                  source={require('../../../assets/bg/world_preview_border.png')}
+                  capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                />
+              <FastImage style={{ position: 'absolute', left: 0, bottom: -100, zIndex: -1, width: winSize.width, height: 250, opacity: 0.1 }} 
+                resizeMode='cover' 
+                source={require('../../../assets/bg/panel_c.png')} />
+          </View>
         </View>
-        <View style={{ width: 150, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <TextButton title={'进入'} onPress={() => {
-            setTimeout(() => {
-              DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
-            }, 0);
-            props.onClose();
-          }} />
-          <TextButton title={'返回'} onPress={() => {
-            props.onClose();
-          }} />
-        </View>
-      </View>
-    </SafeAreaView>
+      </SafeAreaView>
+    </Modal>
   );
 }
 
@@ -242,4 +273,70 @@ const styles = StyleSheet.create({
       justifyContent: 'center', 
       alignItems: 'center', 
     },
+});
+
+const styles2 = StyleSheet.create({
+  bodyContainer: {
+    width: '94%', 
+    height: '100%', 
+    overflow: 'hidden',
+    backgroundColor: '#fff',
+  },
+  viewContainer: {
+    flex: 1, 
+    flexDirection: 'column', 
+    justifyContent: 'flex-start', 
+    alignItems: 'center',
+  },
+  titleContainer: {
+    width: '96%', 
+    height: 40, 
+    marginTop: 20, 
+    borderWidth: 1, 
+    borderColor: '#999', 
+    backgroundColor: '#efe2d2', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+  }, 
+  descContainer: {
+    width: '96%', 
+    marginTop: 10, 
+    borderWidth: 1, 
+    borderColor: '#999', 
+    backgroundColor: '#eee',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+  },
+  tipsContainer: {
+    width: '96%', 
+    marginTop: 10, 
+    borderRadius: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderWidth: 1, 
+    borderColor: '#eee', 
+    backgroundColor: '#fff',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    display: 'none',
+  },
 });
