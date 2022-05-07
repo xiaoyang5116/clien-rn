@@ -19,7 +19,6 @@ export default class RootView extends Component {
             views: [],
         }
 
-        this.removeList = []; // 记录移除列表，setState是异步执行。
         RootView.instance = this;
     }
 
@@ -32,16 +31,12 @@ export default class RootView extends Component {
     static add(view) {        
         const key = RootView.key++;
         const container = (<View style={styles.viewContainer} key={key} pointerEvents="box-none">{view}</View>);
-        const validList = RootView.instance.state.views.filter(e => (RootView.instance.removeList.indexOf(parseInt(e.key)) == -1));
-        RootView.instance.setState({ views: [...validList, container] });
+        RootView.instance.setState((state) => ({ views: [...state.views, container] }));
         return key;
     };
 
     static remove(key) {
-        RootView.instance.removeList.push(key);
-        RootView.instance.setState({
-            views: RootView.instance.state.views.filter(e => parseInt(e.key) != key),
-        })
+        RootView.instance.setState((state) => ({ views: state.views.filter(e => parseInt(e.key) != key) }));
     }
 }
 

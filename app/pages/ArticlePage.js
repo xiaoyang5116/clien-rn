@@ -26,6 +26,7 @@ import FooterContainer from '../components/article/FooterContainer';
 
 const data = [
   {
+    worldId: 0,
     title: "现实",
     body: "现实场景，这里添加更多描述",
     desc: "现实场景，这里添加更多描述, 现实场景，这里添加更多描述, 现实场景，这里添加更多描述, 现实场景，这里添加更多描述",
@@ -33,6 +34,7 @@ const data = [
     toChapter: "WZXX_M1_N1_C001",
   },
   {
+    worldId: 1,
     title: "灵修界",
     body: "灵修场景，这里添加更多描述",
     desc: "灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述",
@@ -40,6 +42,7 @@ const data = [
     toChapter: "WZXX_M1_N1_C002",
   },
   {
+    worldId: 2,
     title: "尘界",
     body: "尘界场景，这里添加更多描述",
     desc: "尘界场景，这里添加更多描述，尘界场景，这里添加更多描述，尘界场景，这里添加更多描述，尘界场景，这里添加更多描述",
