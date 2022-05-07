@@ -26,6 +26,7 @@ import FastImage from 'react-native-fast-image';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import { confirm } from '../dialog/ConfirmDialog';
 import Toast from '../../components/toast';
+import TransAnimation from './TransAnimation';
 
 const winSize = getWindowSize();
 const SLIDER_WIDTH = Dimensions.get('window').width;
@@ -104,7 +105,10 @@ const WorldPreview = (props) => {
                             confirm(`进入${item.title}消耗道具：时空宝玉x1`, () => {
                               props.onClose();
                               AppDispath({ type: 'PropsModel/reduce', payload: { propsId: [PROP_ID], num: 1, mode: 1 } });
-                              DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
+                              const key = RootView.add(<TransAnimation onCompleted={() => {
+                                DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
+                                RootView.remove(key);
+                              }} />);
                             });
                           }
                         }} />
@@ -314,8 +318,10 @@ const styles2 = StyleSheet.create({
   bodyContainer: {
     width: '94%', 
     height: '100%', 
-    overflow: 'hidden',
+    // overflow: 'hidden',
     backgroundColor: '#fff',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
   viewContainer: {
     flex: 1, 
