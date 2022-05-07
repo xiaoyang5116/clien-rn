@@ -17,6 +17,8 @@ import {
   EventKeys,
 } from '../constants';
 
+import lo from 'lodash';
+
 import HomePage from './/HomePage';
 import ArticlePage from './ArticlePage';
 import FirstPage from './FirstPage';
@@ -36,7 +38,9 @@ class MainPage extends Component {
 
   componentDidMount() {
     this.dispatchListener = DeviceEventEmitter.addListener(EventKeys.APP_DISPATCH, (params) => {
-      this.props.dispatch(action(params.type)(params.payload));
+      this.props.dispatch(action(params.type)(params.payload)).then((result) => {
+        if (lo.isFunction(params.cb)) params.cb(result);
+      });
     });
   }
 
