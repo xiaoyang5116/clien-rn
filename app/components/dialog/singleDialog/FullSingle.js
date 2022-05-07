@@ -31,7 +31,7 @@ const FullSingle = props => {
                 <TouchableWithoutFeedback onPress={props.nextParagraph}>
                     <View style={{ flex: 1 }}>
                         {/* 内容显示区域 */}
-                        <View style={{ height: '60%' }}>
+                        <View style={{ height: '50%' }}>
                             <FlatList
                                 ref={refFlatList}
                                 data={props.currentTextList}
@@ -48,7 +48,7 @@ const FullSingle = props => {
 
                         {/* 按钮区域 */}
                         <View
-                            style={{ marginTop: 12, height: '40%', justifyContent: 'center' }}>
+                            style={{ marginTop: 12, height: '50%', justifyContent: 'center' }}>
                             <FlatList
                                 data={props.showBtnList}
                                 renderItem={props.renderBtn}
