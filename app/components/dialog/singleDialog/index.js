@@ -6,15 +6,11 @@ import {
     ThemeContext,
     action,
     connect,
-    animationAction,
-    SHCOK,
-    EDGE_LIGHT
 } from '../../../constants';
 
 import { TextButton } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
-import Shock from '../../shock';
-import EdgeLightModal from '../../animation/EdgeLight';
+import Animation from '../../animation';
 
 import FullSingle from './FullSingle';
 import HalfSingle from './HalfSingle';
@@ -40,15 +36,7 @@ const SingleDialog = props => {
         if (currentIndex < currentDialogueLength) {
             if (Array.isArray(currentTextList[currentIndex + 1])) {
                 const animationList = currentTextList[currentIndex + 1]
-                animationList.forEach(item => {
-                    const acitonObj = animationAction(item)
-                    switch (acitonObj.type) {
-                        case SHCOK:
-                            return Shock.shockShow(acitonObj.action)
-                        case EDGE_LIGHT:
-                            return EdgeLightModal.show(acitonObj.action)
-                    }
-                });
+                Animation(animationList)
                 setCurrentIndex(currentIndex + 2);
             }
             else {
@@ -115,11 +103,10 @@ const SingleDialog = props => {
         return null;
     };
     const renderBtn = ({ item }) => {
-        if (currentIndex === currentDialogueLength) {
+        if (currentIndex >= currentDialogueLength) {
             return (
                 <View style={{ marginTop: 8 }}>
                     <TextButton
-                        // currentStyles={props.currentStyles}
                         title={item.title}
                         onPress={() => {
                             nextDialogue(item);

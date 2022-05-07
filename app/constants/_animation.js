@@ -5,6 +5,7 @@
 // 动效类型
 export const SHCOK = 'shock';
 export const EDGE_LIGHT = 'edge_light';
+export const SCREEN_CENTER_STRETCH = 'screen_center_stretch';
 
 // 震屏
 const shcok_1 = 'slightShock';
@@ -21,6 +22,10 @@ const edge_light_green = require('../../assets/edge_light/green.png');
 const edge_light_blue = require('../../assets/edge_light/blue.png');
 // 边缘闪烁白
 const edge_light_white = require('../../assets/edge_light/white.png');
+
+// ========= 屏幕中心 图片伸缩
+// 通关1
+const pass_1 = require('../../assets/notice/pass_1.png');
 
 // ==========动画动作
 export const animationAction = type => {
@@ -49,6 +54,11 @@ export const animationAction = type => {
             return {
                 type: EDGE_LIGHT,
                 action: edge_light_white,
+            };
+        case "过关1":
+            return {
+                type: SCREEN_CENTER_STRETCH,
+                action: pass_1,
             };
     }
 };
