@@ -15,6 +15,7 @@ import {
     EventKeys,
     StyleSheet,
     getWindowSize,
+    AppDispath,
 } from "../../constants";
 
 import Modal from 'react-native-modal';
@@ -23,10 +24,19 @@ import RootView from '../../components/RootView';
 import { TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import ImageCapInset from 'react-native-image-capinsets-next';
+import { confirm } from '../dialog/ConfirmDialog';
+import Toast from '../../components/toast';
 
 const winSize = getWindowSize();
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+const PROP_ID = 44; // 时空宝玉
+
+const previewImages = [
+  { worldId: 0, img: require('../../../assets/world/world_0.jpg') },
+  { worldId: 1, img: require('../../../assets/world/world_1.jpg') },
+  { worldId: 2, img: require('../../../assets/world/world_2.jpg') },
+];
 
 const EnterButton = (props) => {
   const [visable, setVisable] = React.useState('none');
@@ -55,54 +65,79 @@ const EnterButton = (props) => {
 
 const WorldPreview = (props) => {
   const { item } = props;
-  return (
-    <Modal isVisible={true} animationIn='fadeIn' animationOut='fadeOut' animationInTiming={2000} backdropColor="#fff" backdropOpacity={1}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-          <View style={styles2.bodyContainer}>
-              <View style={styles2.viewContainer}>
-                <View style={styles2.titleContainer}>
-                  <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{item.title}</Text>
+  const [propNum, setPropNum] = React.useState(-1);
+
+  React.useEffect(() => {
+    AppDispath({ 
+      type: 'PropsModel/getPropNum', 
+      payload: { propId: PROP_ID },
+      cb: (result) => {
+        setPropNum(result);
+      }
+    });
+  }, []);
+
+  if (propNum >= 0) {
+    const prevImg = previewImages.find(e => e.worldId == item.worldId).img;
+    const propEnough = propNum > 0;
+    return (
+      <Modal isVisible={true} coverScreen={false} style={{padding: 0, margin: 0, flex: 1, zIndex: 1}} animationIn='fadeIn' animationOut='fadeOut' animationInTiming={2000} backdropColor="#fff" backdropOpacity={1}>
+        <SafeAreaView style={{ flex: 1 }}>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={styles2.bodyContainer}>
+                <View style={styles2.viewContainer}>
+                  <View style={styles2.titleContainer}>
+                    <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{item.title}</Text>
+                  </View>
+                  <View style={styles2.descContainer}>
+                    <FastImage style={{ width: '100%', height: 200, borderBottomWidth: 1, borderColor: '#999' }}
+                      resizeMode='cover' source={prevImg}
+                    />
+                    <Text style={{ fontSize: 14, padding: 6, lineHeight: 20 }}>{(item.desc != undefined ? item.desc : item.body)}</Text>
+                  </View>
+                  <View style={{ marginTop: 20, height: 100, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center' }}>
+                    <View style={{ width: 200 }}>
+                      <TextButton title={'进入'} onPress={() => {
+                          if (!propEnough) {
+                            Toast.show('时空宝玉不足！', 'CenterToTop');
+                          } else {
+                            confirm(`进入${item.title}消耗道具：时空宝玉x1`, () => {
+                              props.onClose();
+                              AppDispath({ type: 'PropsModel/reduce', payload: { propsId: [PROP_ID], num: 1, mode: 1 } });
+                              DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
+                            });
+                          }
+                        }} />
+                    </View>
+                    <View style={{ width: 200 }}>
+                      <TextButton title={'返回'} onPress={() => { props.onClose(); }} />
+                    </View>
+                  </View>
+                  {
+                    (!propEnough)
+                    ? (
+                    <View style={styles2.tipsContainer}>
+                      <Text style={{ color: '#ff1112' }}>* 木瓜数量不足，当前数量={propNum}</Text>
+                    </View>
+                    ) : (<></>)
+                  }
                 </View>
-                <View style={styles2.descContainer}>
-                  <FastImage style={{ width: '100%', height: 200, borderBottomWidth: 1, borderColor: '#999' }}
-                    resizeMode='cover'
-                    source={require('../../../assets/world/world_1.jpg')}
+                <ImageCapInset
+                    style={{ width: '100%', height: '100%', position: 'absolute', zIndex: -1 }}
+                    source={require('../../../assets/bg/world_preview_border.png')}
+                    capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
                   />
-                  <Text style={{ fontSize: 14, padding: 6, lineHeight: 20 }}>{(item.desc != undefined ? item.desc : item.body)}</Text>
-                </View>
-                <View style={{ marginTop: 20, height: 100, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center' }}>
-                  <View style={{ width: 200 }}>
-                    <TextButton title={'进入'} onPress={() => {
-                        setTimeout(() => {
-                          DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
-                        }, 0);
-                        props.onClose();
-                      }} />
-                  </View>
-                  <View style={{ width: 200 }}>
-                    <TextButton title={'返回'} onPress={() => {
-                        props.onClose();
-                      }} />
-                  </View>
-                </View>
-                <View style={styles2.tipsContainer}>
-                  <Text style={{ color: '#999' }}>* 道具数量不足</Text>
-                </View>
-              </View>
-              <ImageCapInset
-                  style={{ width: '100%', height: '100%', position: 'absolute', zIndex: -1 }}
-                  source={require('../../../assets/bg/world_preview_border.png')}
-                  capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
-                />
-              <FastImage style={{ position: 'absolute', left: 0, bottom: -100, zIndex: -1, width: winSize.width, height: 250, opacity: 0.1 }} 
-                resizeMode='cover' 
-                source={require('../../../assets/bg/panel_c.png')} />
+                <FastImage style={{ position: 'absolute', left: 0, bottom: -100, zIndex: -1, width: winSize.width, height: 250, opacity: 0.1 }} 
+                  resizeMode='cover' 
+                  source={require('../../../assets/bg/panel_c.png')} />
+            </View>
           </View>
-        </View>
-      </SafeAreaView>
-    </Modal>
-  );
+        </SafeAreaView>
+      </Modal>
+    );
+  } else {
+    return (<></>);
+  }
 }
 
 const CarouselCardItem = ({ item, index }) => {
@@ -337,6 +372,6 @@ const styles2 = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 3,
-    display: 'none',
+    // display: 'none',
   },
 });
