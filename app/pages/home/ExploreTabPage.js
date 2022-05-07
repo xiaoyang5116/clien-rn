@@ -4,6 +4,7 @@ import {
     connect,
     Component,
     DeviceEventEmitter,
+    EventKeys,
 } from "../../constants";
 
 import RootView from '../../components/RootView';
@@ -37,7 +38,7 @@ class ExploreTabPage extends Component {
     }
 
     componentDidMount() {
-        this.eventListener = DeviceEventEmitter.addListener('ExploreTabPage.show', (payload) => {
+        this.eventListener = DeviceEventEmitter.addListener(EventKeys.EXPLORETABPAGE_SHOW, (payload) => {
             switch (payload) {
                 case 'ExploreMainPage':
                     this._showExploreMain();
@@ -50,11 +51,11 @@ class ExploreTabPage extends Component {
         });
 
         this.unsubscribe = this.props.navigation.addListener('tabPress', (e) => {
-            DeviceEventEmitter.emit('ExploreTabPage.show', 'ExploreMapsPage');
+            DeviceEventEmitter.emit(EventKeys.EXPLORETABPAGE_SHOW, 'ExploreMapsPage');
         });
 
         //
-        DeviceEventEmitter.emit('ExploreTabPage.show', 'ExploreMapsPage');
+        DeviceEventEmitter.emit(EventKeys.EXPLORETABPAGE_SHOW, 'ExploreMapsPage');
     }
     
     componentWillUnmount() {

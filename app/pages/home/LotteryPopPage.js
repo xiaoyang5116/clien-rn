@@ -6,6 +6,7 @@ import {
     Component,
     StyleSheet,
     DeviceEventEmitter,
+    EventKeys,
 } from "../../constants";
 
 import { 
@@ -145,12 +146,12 @@ const BottomBar = (props) => {
         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
             <View style={{ marginLeft: 10, marginRight: 10 }}>
                 <TextButton title='十连抽' {...props} onPress={() => {
-                    DeviceEventEmitter.emit('LotteryPopPage.showView', 'Lottery10Times');
+                    DeviceEventEmitter.emit(EventKeys.LOTTERYPOPPAGE_SHOW, 'Lottery10Times');
                 }} />
             </View>
             <View style={{ marginLeft: 10, marginRight: 10 }}>
                 <TextButton title='宝藏' {...props} onPress={() => {
-                    DeviceEventEmitter.emit('LotteryPopPage.showView', 'LotteryBaoZang');
+                    DeviceEventEmitter.emit(EventKeys.LOTTERYPOPPAGE_SHOW, 'LotteryBaoZang');
                 }} />
             </View>
         </View>
@@ -335,7 +336,7 @@ class LotteryPopPage extends Component {
     }
 
     componentDidMount() {
-        this.eventListener = DeviceEventEmitter.addListener('LotteryPopPage.showView', (type) => {
+        this.eventListener = DeviceEventEmitter.addListener(EventKeys.LOTTERYPOPPAGE_SHOW, (type) => {
             this.showView(type);
         });
     }

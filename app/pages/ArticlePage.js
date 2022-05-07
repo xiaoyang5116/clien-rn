@@ -5,40 +5,86 @@ import {
   connect,
   Component,
   StyleSheet,
-  action
+  action,
+  EventKeys,
+  AppDispath
 } from "../constants";
 
 import { 
   View,
-  Text,
   FlatList,
 } from '../constants/native-ui';
 
 import Block from '../components/article';
-import { Animated } from 'react-native';
+import { DeviceEventEmitter } from 'react-native';
+import { CarouselUtils } from '../components/carousel';
+import { TextButton } from '../constants/custom-ui';
+import RootView from '../components/RootView';
+import ReaderSettings from '../components/readerSettings';
+import HeaderContainer from '../components/article/HeaderContainer';
+import FooterContainer from '../components/article/FooterContainer';
+
+const data = [
+  {
+    title: "现实",
+    body: "现实场景，这里添加更多描述",
+    desc: "现实场景，这里添加更多描述, 现实场景，这里添加更多描述, 现实场景，这里添加更多描述, 现实场景，这里添加更多描述",
+    imgUrl: "https://picsum.photos/id/11/200/300",
+    toChapter: "WZXX_M1_N1_C001",
+  },
+  {
+    title: "灵修界",
+    body: "灵修场景，这里添加更多描述",
+    desc: "灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述",
+    imgUrl: "https://picsum.photos/id/10/200/300",
+    toChapter: "WZXX_M1_N1_C002",
+  },
+  {
+    title: "尘界",
+    body: "尘界场景，这里添加更多描述",
+    desc: "尘界场景，这里添加更多描述，尘界场景，这里添加更多描述，尘界场景，这里添加更多描述，尘界场景，这里添加更多描述",
+    imgUrl: "https://picsum.photos/id/12/200/300",
+    toChapter: "WZXX_M1_N1_C003",
+  },
+];
+
+const worldSelector = () => {
+  CarouselUtils.show({ 
+    data, 
+    initialIndex: Math.floor(data.length / 2), 
+    onSelect: (p) => {
+      if (p.item.toChapter != undefined) {
+        AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: p.item.toChapter, __sceneId: '' } });
+      }
+    }
+  });
+}
 
 class ArticlePage extends Component {
 
   constructor(props) {
     super(props);
     this.refList = React.createRef();
-    this.funcAreaRefTop = new Animated.Value(200);
-    this.funcAreaMoving = false;
-    this.funcAreaShow = false;
+    this.longPressListener = null;
   }
 
   componentDidMount() {
     this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
+
+    // 长按监听器
+    this.longPressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
+      worldSelector();
+    });
+  }
+
+  componentWillUnmount() {
+    this.longPressListener.remove();
   }
 
   componentDidUpdate() {
     if (!this.props.continueView) {
       this.refList.current.scrollToIndex({ index: 0, animated: false });
     }
-  }
-
-  renderItem = (data) => {
-    return (<Block data={data.item} />);
   }
 
   viewableItemsChangedhandler = (payload) => {
@@ -49,38 +95,33 @@ class ArticlePage extends Component {
       offsetX: payload.nativeEvent.contentOffset.x,
       offsetY: payload.nativeEvent.contentOffset.y,
     }));
+
+    DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_SCROLL, payload);
   }
 
   endReachedHandler = () => {
     this.props.dispatch(action('ArticleModel/end')({}));
   }
 
-  pageTouchHandler = () => {
-    if (!this.funcAreaMoving) {
-      this.funcAreaMoving = true;
-      const toValue = this.funcAreaShow ? 200 : 0;
-      Animated.timing(this.funcAreaRefTop, {
-        toValue: toValue,
-        duration: 300,
-        useNativeDriver: false,
-      }).start((r) => {
-        this.funcAreaMoving = false;
-        this.funcAreaShow = !this.funcAreaShow;
-      });
-    }
-  }
-
   render() {
     return (
-      // <TouchableWithoutFeedback onPress={this.pageTouchHandler}>
         <View style={styles.viewContainer}>
+          <HeaderContainer>
+            <View style={[styles.bannerStyle, { marginTop: 20, }]}>
+              <TextButton title='X' onPress={() => {
+                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+              }} />
+              <TextButton title='选择世界' onPress={worldSelector} />
+              <TextButton title='...' />
+            </View>
+          </HeaderContainer>
           <View style={styles.topBarContainer}>
           </View>
           <View style={styles.bodyContainer}>
             <FlatList
               ref={this.refList}
               data={this.props.sections}
-              renderItem={this.renderItem}
+              renderItem={(data) => <Block data={data.item} />}
               keyExtractor={item => item.key}
               onViewableItemsChanged={this.viewableItemsChangedhandler}
               onScroll={this.scrollHandler}
@@ -89,18 +130,17 @@ class ArticlePage extends Component {
               maxToRenderPerBatch={5}
             />
           </View>
-          {/* <View style={styles.debugContainer} pointerEvents="box-none" >
-            <View style={{ borderWidth: 1, borderColor: '#999', width: '100%', height: 200, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', opacity: 0.5, backgroundColor: '#ccc' }} pointerEvents="box-none">
-              <Text>事件触发区域</Text>
+          <FooterContainer>
+            <View style={styles.bannerStyle}>
+              <TextButton title='目录' />
+              <TextButton title='夜间' />
+              <TextButton title='设置' onPress={()=>{
+                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+                const key =RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
+              }} />
             </View>
-          </View> */}
-          {/* <Animated.View style={[styles.floatContainer, { top: this.funcAreaRefTop }]} pointerEvents='none'>
-              <View style={{ borderWidth: 1, borderColor: '#999', width: '100%', height: 200, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', opacity: 0.75, backgroundColor: '#d9c7b4' }} pointerEvents="box-none">
-                <Text>阅读器功能区域</Text>
-              </View>
-          </Animated.View> */}
+          </FooterContainer>
         </View>
-      // </TouchableWithoutFeedback>
     );
   }
 
@@ -130,15 +170,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  // floatContainer: {
-  //   position: 'absolute',
-  //   left: 0,
-  //   top: 200,
-  //   width: '100%',
-  //   height: '100%',
-  //   justifyContent: 'flex-end',
-  //   alignItems: 'center',
-  // },
+  bannerStyle: {
+    flex: 1, 
+    flexDirection: 'row', 
+    justifyContent: 'space-around', 
+    alignItems: 'center',
+  },
 });
 
 export default connect((state) => ({ ...state.ArticleModel }))(ArticlePage);

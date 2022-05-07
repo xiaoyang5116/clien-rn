@@ -23,6 +23,7 @@ import {
   StyleSheet,
   ThemeContext,
   currentTheme,
+  EventKeys,
 } from './constants';
 
 import { name as appName } from '../app.json';
@@ -130,14 +131,14 @@ class App extends Component {
   
   componentDidMount() {
     // 注册事件监听
-    this.listener = DeviceEventEmitter.addListener('App.setState', (payload) => {
+    this.listener = DeviceEventEmitter.addListener(EventKeys.APP_SET_STATE, (payload) => {
       this.setState({ ...payload });
     });
 
     // 触发reload事件加载基础数据
     EventListeners.raise('reload')
     .then(() => {
-      DeviceEventEmitter.emit('App.setState', { 
+      DeviceEventEmitter.emit(EventKeys.APP_SET_STATE, { 
         loading: false, 
         themeStyle: currentTheme().style 
       });
