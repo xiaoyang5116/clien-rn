@@ -32,11 +32,11 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001AV', desc: '选项', 
         options: [ 
-        #{ title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
-          { title: "【去最近的城市，生存重要】", andVarsOff: ['v1'], varsOn: ['v1'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A1]" , icon: { id: 1, bindVar: 'WZXX_M1_N1_C001_[A1]' }},
-          { title: "【去穿越的地点，也许能找到什么】", andVarsOff: ['v2'], varsOn: ['v2'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A2]" },
-          { title: "【跟踪对手，找到更多线索】", andVarsOff: ['V3 '], varsOn: ['v3'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A3]" },
-          { title: "【弹出对话】",  toChapter: "WZXX_M1_N1_C001_[A3]" , dialogs: ['Screen1']},
+        { title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
+        { title: "【去最近的城市，生存重要】", andVarsOff: ['v1'], varsOn: ['v1'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A1]" , icon: { id: 1, bindVar: 'WZXX_M1_N1_C001_[A1]' }},
+        { title: "【去穿越的地点，也许能找到什么】", andVarsOff: ['v2'], varsOn: ['v2'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A2]" },
+        { title: "【跟踪对手，找到更多线索】", andVarsOff: ['V3 '], varsOn: ['v3'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A3]" },
+ 
         ],
       },
       #
@@ -52,6 +52,18 @@ scenes: [
        #
         ],
 
+  #
+      { 
+        id: 'WZXX_M1_N1_C001AV000', desc: '选项', 
+        options: [ 
+        #{ title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
+        # { title: "【去最近的城市，生存重要】", andVarsOff: ['v1'], varsOn: ['v1'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A1]" , icon: { id: 1, bindVar: 'WZXX_M1_N1_C001_[A1]' }},
+        #  { title: "【去穿越的地点，也许能找到什么】", andVarsOff: ['v2'], varsOn: ['v2'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A2]" },
+        # { title: "【跟踪对手，找到更多线索】", andVarsOff: ['V3 '], varsOn: ['v3'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A3]" },
+ 
+        ],
+      },
+      #
 
 
 
@@ -61,7 +73,7 @@ scenes: [
            #选项对话
           { id: 'Screen1',style: 6, title: '急中生智的选择', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'p1', content: ['卧槽，这回可不能再死了。','李森炎的求生本能发动，脑子飞快运转。','从自己看过的符合类似情节的电影片段里找啊找啊。','灵机一动。', '李森炎下意识的想到，这时候最合适的台词是什么。'],
+          { key: 'p1', content: ['卧槽，这回可不能再死了。','卧槽，这回可不能再死了。','卧槽，这回可不能再死了。','卧槽，这回可不能再死了。','卧槽，这回可不能再死了。','卧槽，这回可不能再死了。','卧槽，这回可不能再死了。','卧槽，这回可不能再死了。','卧槽，这回可不能再死了。','卧槽，这回可不能再死了。','卧槽，这回可不能再死了。','李森炎的求生本能发动，脑子飞快运转。','从自己看过的符合类似情节的电影片段里找啊找啊。','灵机一动。', '李森炎下意识的想到，这时候最合适的台词是什么。'],
           btn: [{title: '草，想不出来！（理直气壮）',tokey: "p1A"},{title: '兄台何必执着杀人！', tokey: "p1B"},{title: '等一下！', tokey: "p1C"},{title: '说个毛线，拔腿就跑！', tokey: "p1D"},]},
 
           { key: 'p1A', content: ['李森炎露出自信的笑容，牙齿仿佛在闪闪发光！','剑光一闪',['震屏1','边缘闪烁红'],'李森炎挂了','…………',], 
