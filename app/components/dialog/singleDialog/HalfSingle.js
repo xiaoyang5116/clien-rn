@@ -10,6 +10,8 @@ import { HalfPanel } from '../../panel';
 
 const HalfSingle = (props) => {
     const theme = React.useContext(ThemeContext);
+    // FlatList
+    const refFlatList = React.createRef();
     return (
         <HalfPanel>
             {/* head */}
@@ -27,11 +29,18 @@ const HalfSingle = (props) => {
                 onPress={props.nextParagraph}>
                 <View style={[theme.blockBgColor2, { flex: 1, paddingLeft: 2, paddingRight: 2, paddingTop: 2, }]}>
                     {/* 内容显示区域 */}
-                    <View style={[theme.blockBgColor3, { height: "70%", paddingLeft: 12, paddingRight: 12, }]}>
+                    <View style={[theme.blockBgColor3, { height: "70%" }]}>
                         <FlatList
+                            ref={refFlatList}
                             data={props.currentTextList}
                             renderItem={props.renderText}
                             keyExtractor={(item, index) => item + index}
+                            ListFooterComponent={() => <View style={{ height: 12 }} />}
+                            onContentSizeChange={() => {
+                                if (props.currentTextList.length > 0) {
+                                    refFlatList.current.scrollToEnd({ animated: true })
+                                }
+                            }}
                         />
                     </View>
 

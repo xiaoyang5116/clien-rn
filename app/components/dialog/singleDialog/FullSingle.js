@@ -5,6 +5,8 @@ import { ThemeContext } from '../../../constants';
 
 const FullSingle = props => {
     const theme = React.useContext(ThemeContext);
+    // FlatList
+    const refFlatList = React.createRef();
     return (
         <View style={[theme.blockBgColor3, { flex: 1, opacity: 1, paddingTop: 10 }]}>
             {/* 标题 */}
@@ -29,21 +31,29 @@ const FullSingle = props => {
                 <TouchableWithoutFeedback onPress={props.nextParagraph}>
                     <View style={{ flex: 1 }}>
                         {/* 内容显示区域 */}
-                        <View style={{ height: '50%' }}>
+                        <View style={{ height: '60%' }}>
                             <FlatList
+                                ref={refFlatList}
                                 data={props.currentTextList}
                                 renderItem={props.renderText}
                                 keyExtractor={(item, index) => item + index}
+                                ListFooterComponent={() => <View style={{ height: 12 }} />}
+                                onContentSizeChange={() => {
+                                    if (props.currentTextList.length > 0) {
+                                        refFlatList.current.scrollToEnd({ animated: true })
+                                    }
+                                }}
                             />
                         </View>
 
                         {/* 按钮区域 */}
                         <View
-                            style={{ marginTop: 12, height: '50%', justifyContent: 'center' }}>
+                            style={{ marginTop: 12, height: '40%', justifyContent: 'center' }}>
                             <FlatList
                                 data={props.showBtnList}
                                 renderItem={props.renderBtn}
                                 keyExtractor={(item, index) => item.title + index}
+                                ListFooterComponent={() => <View style={{ height: 24 }} />}
                             />
                         </View>
                     </View>

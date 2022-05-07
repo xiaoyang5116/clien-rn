@@ -84,20 +84,22 @@ const SingleDialog = props => {
                 return null
             }
             return (
-                <View style={{ marginTop: 12 }}>
-                    <TextAnimation
-                        icon={
-                            currentIndex === index && currentIndex < currentDialogueLength
-                                ? '▼'
-                                : ''
-                        }
-                        fontSize={20}
-                        type={textAnimationType}
-                        style={theme.contentColor3}
-                    >
-                        {item}
-                    </TextAnimation>
-                </View>
+                <TouchableWithoutFeedback onPress={nextParagraph}>
+                    <View style={{ marginTop: 12, paddingLeft: 12, paddingRight: 12, }}>
+                        <TextAnimation
+                            icon={
+                                currentIndex === index && currentIndex < currentDialogueLength
+                                    ? '▼'
+                                    : ''
+                            }
+                            fontSize={20}
+                            type={textAnimationType}
+                            style={theme.contentColor3}
+                        >
+                            {item}
+                        </TextAnimation>
+                    </View>
+                </TouchableWithoutFeedback>
             );
         }
         return null;
