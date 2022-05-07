@@ -10,12 +10,10 @@ import { HalfPanel } from '../../panel';
 
 const HalfSingle = (props) => {
     const theme = React.useContext(ThemeContext);
-    // FlatList
-    const refFlatList = React.createRef();
     return (
         <HalfPanel>
             {/* head */}
-            <View style={[theme.rowCenter, theme.blockBgColor1, { paddingLeft: 12, paddingRight: 12, height: 50 }]}>
+            <View style={[theme.rowCenter, { paddingLeft: 12, paddingRight: 12, height: 50, backgroundColor: '#fff' }]}>
                 {/* 标题 */}
                 <View style={[theme.rowCenter]}>
                     <Text style={[theme.titleColor1, { fontSize: 24, }]}>
@@ -27,20 +25,13 @@ const HalfSingle = (props) => {
             {/* 显示区域 */}
             <TouchableWithoutFeedback
                 onPress={props.nextParagraph}>
-                <View style={[theme.blockBgColor2, { flex: 1, paddingLeft: 2, paddingRight: 2, paddingTop: 2, }]}>
+                <View style={[{ flex: 1, paddingLeft: 2, paddingRight: 2, paddingTop: 2, backgroundColor: '#fff' }]}>
                     {/* 内容显示区域 */}
-                    <View style={[theme.blockBgColor3, { height: "70%" }]}>
+                    <View style={[{ backgroundColor: '#fff', height: "70%", paddingLeft: 12, paddingRight: 12, }]}>
                         <FlatList
-                            ref={refFlatList}
                             data={props.currentTextList}
                             renderItem={props.renderText}
                             keyExtractor={(item, index) => item + index}
-                            ListFooterComponent={() => <View style={{ height: 12 }} />}
-                            onContentSizeChange={() => {
-                                if (props.currentTextList.length > 0) {
-                                    refFlatList.current.scrollToEnd({ animated: true })
-                                }
-                            }}
                         />
                     </View>
 

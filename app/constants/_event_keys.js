@@ -25,4 +25,7 @@ export class EventKeys {
 
     static ARTICLE_PAGE_HIDE_BANNER = 'ARTICLE_PAGE_HIDE_BANNER';
 
+    // 动画结束
+    static ANIMATION_END = 'ANIMATION_END';
+
 }

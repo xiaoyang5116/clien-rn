@@ -19,6 +19,8 @@ import Block from '../components/article';
 import { DeviceEventEmitter } from 'react-native';
 import { CarouselUtils } from '../components/carousel';
 import { TextButton } from '../constants/custom-ui';
+import RootView from '../components/RootView';
+import ReaderSettings from '../components/readerSettings';
 import HeaderContainer from '../components/article/HeaderContainer';
 import FooterContainer from '../components/article/FooterContainer';
 
@@ -135,7 +137,10 @@ class ArticlePage extends Component {
             <View style={styles.bannerStyle}>
               <TextButton title='目录' />
               <TextButton title='夜间' />
-              <TextButton title='设置' />
+              <TextButton title='设置' onPress={()=>{
+                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+                const key =RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
+              }} />
             </View>
           </FooterContainer>
         </View>

@@ -1,46 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, TouchableWithoutFeedback, FlatList, DeviceEventEmitter } from 'react-native';
 
-import { View, Text, TouchableWithoutFeedback, FlatList } from 'react-native';
 import {
     AppDispath,
     ThemeContext,
     action,
     connect,
-    animationAction,
-    SHCOK,
-    EDGE_LIGHT
+    EventKeys
 } from '../../../constants';
 
 import { TextButton } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
-import Shock from '../../shock';
-import EdgeLightModal from '../../animation/EdgeLight';
-
+import Animation from '../../animation';
 
 import FullSingle from './FullSingle';
 import HalfSingle from './HalfSingle';
 
+
 const SingleDialog = props => {
+    /**
+     * dialogType: 对话框屏幕类型
+     * textAnimationType: 文字显示类型
+     * title: 标题
+     * sections: 对话内容
+     */
+    const { dialogType, textAnimationType, title, sections } = props.viewData;
+
     const theme = React.useContext(ThemeContext);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [currentTextList, setCurrentTextList] = useState(props.popUpComplex[0].content);
-    const [showBtnList, setShowBtnList] = useState(props.popUpComplex[0].btn);
+    const [currentTextList, setCurrentTextList] = useState(sections[0].content);
+    const [showBtnList, setShowBtnList] = useState(sections[0].btn);
+    const animationEndListener = useRef(null)
 
     let currentDialogueLength = currentTextList.length - 1;
+
+    useEffect(() => {
+        return () => {
+            if (animationEndListener.current !== null) {
+                animationEndListener.current.remove();
+            }
+        }
+    }, [])
 
     const nextParagraph = () => {
         if (currentIndex < currentDialogueLength) {
             if (Array.isArray(currentTextList[currentIndex + 1])) {
                 const animationList = currentTextList[currentIndex + 1]
-                animationList.forEach(item => {
-                    const acitonObj = animationAction(item)
-                    switch (acitonObj.type) {
-                        case SHCOK:
-                            return Shock.shockShow(acitonObj.action)
-                        case EDGE_LIGHT:
-                            return EdgeLightModal.show(acitonObj.action)
-                    }
-                });
+                Animation(animationList)
                 setCurrentIndex(currentIndex + 2);
             }
             else {
@@ -52,13 +58,23 @@ const SingleDialog = props => {
 
     const nextDialogue = item => {
         // 显示下一个对话
-        const newDialogue = props.popUpComplex.filter(i => i.key === item.tokey);
+        const newDialogue = sections.filter(i => i.key === item.tokey);
+
+        if (item.animation !== undefined) {
+            Animation(item.animation)
+        }
+
         if (newDialogue.length > 0) {
             setCurrentTextList(newDialogue[0].content);
             setShowBtnList(newDialogue[0].btn);
             setCurrentIndex(0);
         } else {
-            props.onDialogCancel();
+            if (item.animation !== undefined) {
+                animationEndListener.current = DeviceEventEmitter.addListener(EventKeys.ANIMATION_END, props.onDialogCancel);
+            }
+            else {
+                props.onDialogCancel();
+            }
         }
 
         // 发送道具
@@ -88,30 +104,31 @@ const SingleDialog = props => {
                 return null
             }
             return (
-                <View style={{ marginTop: 12 }}>
-                    <TextAnimation
-                        icon={
-                            currentIndex === index && currentIndex < currentDialogueLength
-                                ? '▼'
-                                : ''
-                        }
-                        fontSize={20}
-                        type={props.textAnimationType}
-                        style={theme.contentColor3}
-                    >
-                        {item}
-                    </TextAnimation>
-                </View>
+                <TouchableWithoutFeedback onPress={nextParagraph}>
+                    <View style={{ marginTop: 12, paddingLeft: 12, paddingRight: 12, }}>
+                        <TextAnimation
+                            icon={
+                                currentIndex === index && currentIndex < currentDialogueLength
+                                    ? '▼'
+                                    : ''
+                            }
+                            fontSize={20}
+                            type={textAnimationType}
+                            style={theme.contentColor3}
+                        >
+                            {item}
+                        </TextAnimation>
+                    </View>
+                </TouchableWithoutFeedback>
             );
         }
         return null;
     };
     const renderBtn = ({ item }) => {
-        if (currentIndex === currentDialogueLength) {
+        if (currentIndex >= currentDialogueLength) {
             return (
                 <View style={{ marginTop: 8 }}>
                     <TextButton
-                        currentStyles={props.currentStyles}
                         title={item.title}
                         onPress={() => {
                             nextDialogue(item);
@@ -123,10 +140,10 @@ const SingleDialog = props => {
         return null;
     };
 
-    if (props.type === 'HalfScreen') {
+    if (dialogType === 'HalfScreen') {
         return (
             <HalfSingle
-                title={props.title}
+                title={title}
                 nextParagraph={nextParagraph}
                 currentTextList={currentTextList}
                 renderText={renderText}
@@ -135,10 +152,10 @@ const SingleDialog = props => {
             />
         );
     }
-    if (props.type === 'FullScreen') {
+    if (dialogType === 'FullScreen') {
         return (
             <FullSingle
-                title={props.title}
+                title={title}
                 nextParagraph={nextParagraph}
                 currentTextList={currentTextList}
                 renderText={renderText}

@@ -8,8 +8,7 @@ import {
 } from "../../constants";
 
 import { Button, Text, View } from '../../constants/native-ui';
-import GameOverModal from './GameOverModal';
-import DialogTemple from '../dialog/DialogTemple';
+import { DialogTemple } from '../dialog';
 import MultiplayerDialog from '../dialog/MultiplayerDialog';
 import BlackNarration from './BlackNarration';
 import Narration from './Narration'
@@ -74,34 +73,30 @@ class MaskModal extends PureComponent {
 
     _renderForAside() {
         const currentStyles = this.props.currentStyles;
+
+        const style = parseInt(this.props.style);
+
         // 6  代表 popUp dialog 弹出对话框
-        if (this.props.style === 6) {
+        if (style >= 6 && style <= 7) {
             return (
                 <Modal isVisible={this.props.visible} coverScreen={false} style={{ padding: 0, margin: 0, flex: 1, zIndex: 1 }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
-                    <DialogTemple viewData={this.props.viewData} style={this.props.style} textAnimationType={this.props.__data.current.textAnimationType} type={this.props.__data.current.dialogType} title={this.props.title} onDialogCancel={this._onDialogCancel} popUpComplex={this.props.__data.current.sections} />
-                </Modal>
-            )
-        }
-
-        // 7 代表 game over
-        if (this.props.style === 7) {
-            return (
-                <Modal isVisible={this.props.visible} style={{ flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
-                    <View style={currentStyles.gameOverPage}>
-                        <GameOverModal onDialogCancel={this._onDialogCancel} {...this.props} />
-                    </View>
+                    <DialogTemple
+                        viewData={this.props.viewData}
+                        onDialogCancel={this._onDialogCancel}
+                    />
                 </Modal>
             )
         }
 
         // 8 代表 多人对话框
-        if (this.props.style === 8) {
+        if (style === 8) {
             return (
                 <Modal isVisible={this.props.visible} style={{ padding: 0, margin: 0, flex: 1 }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#666" backdropOpacity={0.5}>
                     <MultiplayerDialog {...this.props} onDialogCancel={this._onDialogCancel} />
                 </Modal>
             )
         }
+
         return (
             <Modal isVisible={this.props.visible} style={{ padding: 0, margin: 0, flex: 1, }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropColor="#fff" backdropOpacity={1}>
                 {/* <TouchableWithoutFeedback onPress={this._onAsideNext}> */}
