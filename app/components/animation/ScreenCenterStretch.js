@@ -1,5 +1,7 @@
-import { View, Text, Image, Animated, Easing } from 'react-native'
+import { View, Text, Image, Animated, Easing, DeviceEventEmitter } from 'react-native'
 import React, { useRef, useEffect } from 'react'
+
+import { EventKeys } from '../../constants';
 
 import RootView from '../RootView';
 
@@ -8,6 +10,10 @@ const ScreenCenterStretch = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
     const transformAnim = useRef(new Animated.Value(1)).current;
 
+    const animEnd = () => {
+        DeviceEventEmitter.emit(EventKeys.ANIMATION_END,true);
+        props.onClose()
+    }
 
     useEffect(() => {
         Animated.sequence([
@@ -37,7 +43,7 @@ const ScreenCenterStretch = (props) => {
                 useNativeDriver: false,
                 easing: Easing.ease,
             }),
-        ]).start(props.onClose);
+        ]).start(animEnd);
     }, [])
     return (
         <View

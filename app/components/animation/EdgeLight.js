@@ -1,10 +1,17 @@
-import { View, Text, Image, Animated, Easing } from 'react-native'
+import { View, Text, Image, Animated, Easing, DeviceEventEmitter } from 'react-native'
 import React, { useRef, useEffect } from 'react'
+
+import { EventKeys } from '../../constants';
 
 import RootView from '../RootView';
 
 const EdgeLight = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
+
+    const animEnd = () => {
+        DeviceEventEmitter.emit(EventKeys.ANIMATION_END, true);
+        props.onClose()
+    }
 
     useEffect(() => {
         Animated.sequence([
@@ -20,7 +27,7 @@ const EdgeLight = (props) => {
                 useNativeDriver: false,
                 easing: Easing.ease,
             }),
-        ]).start(props.onClose);
+        ]).start(animEnd);
     }, [])
     return (
         <View style={{ flex: 1, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 99 }}>
