@@ -2,7 +2,7 @@ scenes: [
     #
     {
       id: 'WZXX_M1_N1_C002V',
-      name: "小说专属场景",
+      name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
       vars: [{ id: "v1", min: 0, max: 1 }],

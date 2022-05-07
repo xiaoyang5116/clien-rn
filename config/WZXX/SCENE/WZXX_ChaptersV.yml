@@ -8,6 +8,8 @@ scenes: [
       vars: [
           #
           { id: "WZXX_M1_N1_C001", min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C001A", min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C001B", min: 0, max: 1 },
           { id: "WZXX_M1_N1_C001_[A1]", min: 0, max: 1 },
           { id: "WZXX_M1_N1_C001_[A2]", min: 0, max: 1 },
           { id: "WZXX_M1_N1_C001_[A3]", min: 0, max: 1 },

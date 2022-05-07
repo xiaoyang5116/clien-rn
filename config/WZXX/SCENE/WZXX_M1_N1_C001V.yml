@@ -2,7 +2,7 @@ scenes: [
     #
     {
       id: 'WZXX_M1_N1_C001V',
-      name: "小说专属场景",
+      name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
       vars: [
@@ -24,13 +24,23 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001V', desc: '选项', 
         options: [ 
-        #  { title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
-          { title: "【去最近的城市，生存重要】", andVarsOff: ['v1'], varsOn: ['v1'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A1]" , icon: { id: 1, bindVar: 'WZXX_M1_N1_C001_[A1]' }},
-          { title: "【去穿越的地点，也许能找到什么】", andVarsOff: ['v2'], varsOn: ['v2'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A2]" },
-          { title: "【跟踪对手，找到更多线索】", andVarsOff: ['V3 '], varsOn: ['v3'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A3]" },
+          { title: "【急中生智！】", dialogs: ['Screen1']},
         ],
       },
       #
+      #
+      { 
+        id: 'WZXX_M1_N1_C001AV', desc: '选项', 
+        options: [ 
+        #{ title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
+          { title: "【去最近的城市，生存重要】", andVarsOff: ['v1'], varsOn: ['v1'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A1]" , icon: { id: 1, bindVar: 'WZXX_M1_N1_C001_[A1]' }},
+          { title: "【去穿越的地点，也许能找到什么】", andVarsOff: ['v2'], varsOn: ['v2'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A2]" },
+          { title: "【跟踪对手，找到更多线索】", andVarsOff: ['V3 '], varsOn: ['v3'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A3]" },
+          { title: "【弹出对话】",  toChapter: "WZXX_M1_N1_C001_[A3]" , dialogs: ['Screen1']},
+        ],
+      },
+      #
+
       { 
         id: 'WZXX_M1_N1_C001_[A1]V', desc: '选择穿越的出身', 
         options: [ 
@@ -39,15 +49,108 @@ scenes: [
           { title: "【想起自己是“富贵白府千金的私生子”】", andVarsOff: ['v3'], varsOn: ['v1,v2'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001_[A3]" },
         ],
       },
- 
-
-      #
+       #
         ],
 
-      # 对话框
+
+
+
+      # 对话框 FullScreen全屏 HalfScreen 半屏
       dialogs:
         [
+           #选项对话
+          { id: 'Screen1',style: 6, title: '急中生智的选择', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'p1', content: ['卧槽，这回可不能再死了。','李森炎的求生本能发动，脑子飞快运转。','从自己看过的符合类似情节的电影片段里找啊找啊。','灵机一动。', '李森炎下意识的想到，这时候最合适的台词是什么。'],
+          btn: [{title: '草，想不出来！（理直气壮）',tokey: "p1A"},{title: '兄台何必执着杀人！', tokey: "p1B"},{title: '等一下！', tokey: "p1C"},{title: '说个毛线，拔腿就跑！', tokey: "p1D"},]},
+
+          { key: 'p1A', content: ['李森炎露出自信的笑容，牙齿仿佛在闪闪发光！','剑光一闪',['震屏1','边缘闪烁红'],'李森炎挂了','…………',], 
+          btn: [{title: '…………!', dialogs: ['gameover00'] },], },   
+
+          { key: 'p1B', content: ['听我一言！','你可要听好了!','…………', ],
+            btn: [{title: '一言之善，重于千金',tokey: 'p1B1'},{title: '人而好善，福虽未至，祸其远矣',tokey: "p1B2"},{title: '尽量多来几句，以量取胜',tokey: "p1B3"}, ]},   
+
+          { key: 'p1B1', content: ['一言之善，重于千金','这句话的说的是善意重于千金','何必打打杀杀……','……','等下？，你把剑放下？！……',['震屏1'],'……',  ],
+          btn: [{title: '我觉得我还能抢救一下!',dialogs: ['gameover00'] }]},    
+          
+          { key: 'p1B2', content: ['对方无视了你的话语','并扇了你了一巴掌！！',['震屏1'],'说人话！','……',],
+          btn: [{title: '我说，我说…………（重选）',tokey: "p1"}]}, 
+
+          { key: 'p1B3', content: ['名誉与生命，哪个更值得爱惜？','生命与财富，哪个更为珍贵？','获得与丧失，哪个更有害？','救人一命，胜过……','这话还没说完，剑光一闪',['边缘闪烁红'],'李森炎挂了','…………',],
+          btn: [{title: '…………',dialogs: ['gameover00']}]},
+
+           { key: 'p1D', content: ['李森炎纵身一跃，大步飞奔。','刚跑两步，听背后风声呼啸。','扭头查看',['边缘闪烁红'],'只看到剑光一闪','李森炎挂了','…………',], 
+             btn: [{title: '…………',dialogs: ['gameover00']}]},   
+
+           { key: 'p1C', content: ['头脑一阵清明，灵感爆发，你飞快的说出'],
+           btn: [{title: '大侠饶命！我上有老，下有小……',tokey: "p2A"},{title: '别杀我，我有钱',dialogs: ['gameover02']},{title: '别杀我，我有秘籍',tokey: "ok1"},{title: '别杀我，我有美女',tokey: "gg1"},{title: '别杀我，我有藏宝线索',tokey: "gg2"},{title: '别杀我，我有能保命的情报',tokey: "gg3"},]},
  
+           { key: 'p2A', content: ['大侠饶命！我上有八十老母，下有三岁小儿！','句句是真！句句属实啊！','对方点了点头笑了，那你几岁？', ],
+            btn: [{title: '80?',tokey: "p2B1"},{title: '而立之年啊',tokey: "p2B1"},{title: '风华正茂啊',tokey: "p2B1"},{title: '随便编一个',tokey: "gg1"},{title: '照实说',tokey: "p2B2"}]},   
+
+           { key: 'p2B1', content: ['我管你上有老，我管你几岁。','我就是来杀你的！','剑光一闪',['边缘闪烁红'],'…………',], 
+             btn: [{title: '我觉得我还能抢救一下!',dialogs: ['gameover00'] }]},   
+         
+           { key: 'p2B2', content: ['那对了，杀的就是你','剑光一闪',['边缘闪烁红'],'…………',],
+            btn: [{title: '…………!',dialogs: ['gameover00'] }]},   
+
+           { key: 'gg1', content: ['早就调查清楚了','你就是一个单身小屁孩','这么小就撒谎',['边缘闪烁红'],'让你活着何用',],
+            btn: [{title: '…………',dialogs: ['gameover00'] }]},   
+
+           { key: 'gg2', content: ['就你那种穷样','我可不信','剑光一闪',['边缘闪烁红'],'…………',],
+            btn: [{title: '…………',dialogs: ['gameover00'] }]},   
+            
+           { key: 'gg3', content: ['我一个杀手是不需要情报的','你的脑袋更值钱','剑光一闪',['边缘闪烁红'],'…………',],
+            btn: [{title: '…………!',dialogs: ['gameover00'] }]},   
+
+
+           { key: 'ok1', content: ['你小子会有什么秘籍？说来看看。','杀手好像有点兴趣的样子','怎么办',],
+           btn: [{title: '你还当我真的有啊……',tokey: "ok1A"},{title: '没有，现编一个怎么样',tokey: "ok1C"},{title: '记得原身家里就有',tokey: "ok1D"},]},
+
+           { key: 'ok1A', content: ['你还当我真的有啊……','李森炎露出尴尬而不失礼貌笑容','…………','剑光一闪',['边缘闪烁红'],'李森炎挂了','…………',], 
+            btn: [{title: '…………',dialogs: ['gameover00'],}]},   
+
+           { key: 'ok1C', content: ['那么多本武侠小说总看过……','就算没有我也给你忽悠一本','就这么定了'],
+            btn: [{title: '就这么办', toChapter: "WZXX_M1_N1_C001A" }]},    
+
+           { key: 'ok1D', content: ['虽然没怎么修炼过……','确实有点秘籍的印象','先稳住对方再说',],
+            btn: [{title: '就这么办', toChapter: "WZXX_M1_N1_C001A" }]},    
+
+          ]  
+
+        },
+
+         #死亡1
+          { id: 'p1DGG',style: 6,title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',sections: [
+          { key: 'p1', content: ['临死前听到一句话，距离这么近你还敢跑……'],btn: [{title: '不放弃，再来',tokey: "p1"},{title: '啊我死了（回章节开头）',tokey: "next", toChapter: "WZXX_M1_N1_C001"}]},
+          ], },
+        #死亡2
+         { id: 'gameover00',
+           style: 6, 
+           title: '你挂了',
+           dialogType: 'FullScreen', 
+           textAnimationType: 'TextFadeIn', 
+           sections: [
+           { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来',dialogs: ['Screen1'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001",}]},
+           ],
+         },
+       #死亡3
+         { id: 'gameover01',style: 6, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p3', content: ['临死前听到一句话','我一个学武的，最讨厌你们这帮文人……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001"}]},
+         ], },
+       #死亡3
+          { id: 'gameover02',style: 6, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { key: 'p4', content: ['临死前听到一句话','我把你宰了，也能拿钱……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001"}]},
+          ], },
+
+
+
         ],
+
+
+
     },
+
+
+
   ]

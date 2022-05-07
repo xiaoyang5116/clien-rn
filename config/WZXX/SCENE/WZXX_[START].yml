@@ -29,6 +29,7 @@ scenes: [
         id: 'WZXX_[START]', desc: '选项', 
         options: [ 
           { title: "【开始阅读】", toChapter: "WZXX_M1_N1_C001" },
+          { title: "【DEBUG阶段2】", toChapter: "WZXX_M1_N1_C001A" },
         ],
       },
       #

@@ -11,10 +11,11 @@ files:
     "WZXX_M1_N1_C001_[A1].txt",
     "WZXX_M1_N1_C001_[A2].txt",
     "WZXX_M1_N1_C001_[A3].txt",
- 
-  "WZXX_M1_N1_C001A_[A1].txt",
-  "WZXX_M1_N1_C001A_[A2].txt",
-  "WZXX_M1_N1_C001A_[A3].txt",
+    "WZXX_M1_N1_C001A.txt",
+
+    "WZXX_M1_N1_C001A_[A1].txt",
+    "WZXX_M1_N1_C001A_[A2].txt",
+    "WZXX_M1_N1_C001A_[A3].txt",
 
   #选择身份
     "WZXX_M1_N1_C002.txt",
