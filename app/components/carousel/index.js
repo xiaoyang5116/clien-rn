@@ -25,10 +25,12 @@ import { TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import { confirm } from '../dialog/ConfirmDialog';
+import Toast from '../../components/toast';
 
 const winSize = getWindowSize();
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+const PROP_ID = 44; // 时空宝玉
 
 const previewImages = [
   { worldId: 0, img: require('../../../assets/world/world_0.jpg') },
@@ -68,7 +70,7 @@ const WorldPreview = (props) => {
   React.useEffect(() => {
     AppDispath({ 
       type: 'PropsModel/getPropNum', 
-      payload: { propId: 40 },
+      payload: { propId: PROP_ID },
       cb: (result) => {
         setPropNum(result);
       }
@@ -96,11 +98,15 @@ const WorldPreview = (props) => {
                   <View style={{ marginTop: 20, height: 100, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center' }}>
                     <View style={{ width: 200 }}>
                       <TextButton title={'进入'} onPress={() => {
-                          confirm(`进入${item.title}消耗道具：木瓜x1`, () => {
-                            props.onClose();
-                            AppDispath({ type: 'PropsModel/reduce', payload: { propsId: [40], num: 1, mode: 1 } });
-                            DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
-                          });
+                          if (!propEnough) {
+                            Toast.show('时空宝玉不足！', 'CenterToTop');
+                          } else {
+                            confirm(`进入${item.title}消耗道具：时空宝玉x1`, () => {
+                              props.onClose();
+                              AppDispath({ type: 'PropsModel/reduce', payload: { propsId: [PROP_ID], num: 1, mode: 1 } });
+                              DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
+                            });
+                          }
                         }} />
                     </View>
                     <View style={{ width: 200 }}>

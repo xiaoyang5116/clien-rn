@@ -31,6 +31,7 @@ props: [
   { id: 41 , name: '柠檬', iconId: 2, num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '柠檬本酸涩，美香钻人心。' }, 
   { id: 42 , name: '山楂', iconId: 3, num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '封君莫羡传柑宠，清爽何如山楂香。' }, 
   { id: 43 , name: '树莓', iconId: 4, num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '雪模糊小树莓苔,月朦陇近水楼台。' }, 
+  { id: 44 , name: '时空宝玉', iconId: 4, num: 1000, quality: 1, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '用于切换世界。' }, 
   { id: 51 , name: '西瓜刀', iconId: 5, num: 100, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '比正常水果刀要长，使用需要一些小技巧' }, 
   { id: 52 , name: '西瓜拼盘', iconId: 1, num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '样式漂亮的水果拼盘' }, 
   { id: 53 , name: '优秀的西瓜拼盘', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '样式漂亮的水果拼盘' }, 
