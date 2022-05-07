@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableWithoutFeedback, FlatList } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, TouchableWithoutFeedback, FlatList, DeviceEventEmitter } from 'react-native';
 
 import {
     AppDispath,
     ThemeContext,
     action,
     connect,
+    EventKeys
 } from '../../../constants';
 
 import { TextButton } from '../../../constants/custom-ui';
@@ -29,8 +30,17 @@ const SingleDialog = props => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [currentTextList, setCurrentTextList] = useState(sections[0].content);
     const [showBtnList, setShowBtnList] = useState(sections[0].btn);
+    const animationEndListener = useRef(null)
 
     let currentDialogueLength = currentTextList.length - 1;
+
+    useEffect(() => {
+        return () => {
+            if (animationEndListener.current !== null) {
+                animationEndListener.current.remove();
+            }
+        }
+    }, [])
 
     const nextParagraph = () => {
         if (currentIndex < currentDialogueLength) {
@@ -49,12 +59,22 @@ const SingleDialog = props => {
     const nextDialogue = item => {
         // 显示下一个对话
         const newDialogue = sections.filter(i => i.key === item.tokey);
+
+        if (item.animation !== undefined) {
+            Animation(item.animation)
+        }
+
         if (newDialogue.length > 0) {
             setCurrentTextList(newDialogue[0].content);
             setShowBtnList(newDialogue[0].btn);
             setCurrentIndex(0);
         } else {
-            props.onDialogCancel();
+            if (item.animation !== undefined) {
+                animationEndListener.current = DeviceEventEmitter.addListener(EventKeys.ANIMATION_END, props.onDialogCancel);
+            }
+            else {
+                props.onDialogCancel();
+            }
         }
 
         // 发送道具
