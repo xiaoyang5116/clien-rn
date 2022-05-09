@@ -1,9 +1,14 @@
-import { View, Text, TouchableWithoutFeedback, FlatList, Dimensions } from 'react-native';
+import {
+    View,
+    Text,
+    TouchableWithoutFeedback,
+    FlatList,
+    Dimensions,
+} from 'react-native';
 import React, { useState } from 'react';
 import { ThemeContext } from '../../../constants';
 import { TextButton } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
-
 
 const FullSingle = props => {
     const windowHeight = Dimensions.get('window').height;
@@ -17,7 +22,7 @@ const FullSingle = props => {
         showBtnList,
         currentIndex,
         currentDialogueLength,
-        nextDialogue
+        nextDialogue,
     } = props;
 
     // FlatList
@@ -53,9 +58,7 @@ const FullSingle = props => {
     const renderBtn = ({ item }) => {
         if (currentIndex >= currentDialogueLength) {
             return (
-                <View
-                    style={{ marginTop: 8, height: 40, justifyContent: 'center' }}
-                >
+                <View style={{ marginTop: 8, height: 40, justifyContent: 'center' }}>
                     <TextButton
                         title={item.title}
                         onPress={() => {
@@ -92,7 +95,19 @@ const FullSingle = props => {
                 <TouchableWithoutFeedback onPress={nextParagraph}>
                     <View style={{ flex: 1 }}>
                         {/* 内容显示区域 */}
-                        <View style={{ height: "50%" }}>
+                        <View
+                            style={{
+                                height:
+                                    currentIndex >= currentDialogueLength
+                                        ? showBtnList.length > 4
+                                            ? '50%'
+                                            : '60%'
+                                        : '100%',
+                            }}
+                        // onLayout={(event) => {
+                        //     console.log("event", event.nativeEvent.layout.height);
+                        // }}
+                        >
                             <FlatList
                                 ref={refFlatList}
                                 data={currentTextList}
@@ -108,16 +123,17 @@ const FullSingle = props => {
                         </View>
 
                         {/* 按钮区域 */}
-                        <View
-                            style={{ marginTop: 12, height: "50%", justifyContent: 'center' }}>
+                        <View style={{ marginTop: 12, }}>
                             <FlatList
                                 data={showBtnList}
                                 renderItem={renderBtn}
                                 keyExtractor={(item, index) => item.title + index}
                                 ListFooterComponent={() => <View style={{ height: 24 }} />}
-                                getItemLayout={(data, index) => (
-                                    { length: 48, offset: 48 * index, index }
-                                )}
+                                getItemLayout={(data, index) => ({
+                                    length: 48,
+                                    offset: 48 * index,
+                                    index,
+                                })}
                             />
                         </View>
                     </View>
