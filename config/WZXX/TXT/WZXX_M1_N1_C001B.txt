@@ -2,7 +2,7 @@
 #这个是吧之前文章第一章拆成两半
 [
 { andVarsOn: ['WZXX_ChaptersV/WZXX_M1_N1_C001_[L1]'] },
-{ header: '已选择：去穿越的地点，也许能找到什么' },
+{ header: '第一章下' },
 ]
 #END==========================================
 
@@ -79,7 +79,7 @@
 #
 
 [
-    { sceneId: 'WZXX_M1_N1_C001V', chatId: 'WZXX_M1_N1_C001AV' },
+    { sceneId: 'WZXX_M1_N1_C001V', chatId: 'WZXX_M1_N1_C001BV' },
     { stop: true }
 ]
 

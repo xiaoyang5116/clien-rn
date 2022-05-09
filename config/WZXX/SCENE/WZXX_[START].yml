@@ -85,6 +85,7 @@ scenes: [
           },
           { title: "【开始阅读】", toChapter: "WZXX_M1_N1_C001" },
           { title: "【DEBUG阶段2】", toChapter: "WZXX_M1_N1_C001A" },
+          { title: "【DEBUG阶段3】", toChapter: "WZXX_M1_N1_C001B" },
         ],
       },
       #
