@@ -97,70 +97,29 @@ const SingleDialog = props => {
         }
     };
 
-    const renderText = ({ item, index }) => {
-        if (index <= currentIndex) {
-            // 如果 item 是数组则是特效
-            if (Array.isArray(item)) {
-                return null
-            }
-            return (
-                <TouchableWithoutFeedback onPress={nextParagraph}>
-                    <View style={{ marginTop: 12, paddingLeft: 12, paddingRight: 12, }}>
-                        <TextAnimation
-                            icon={
-                                currentIndex === index && currentIndex < currentDialogueLength
-                                    ? '▼'
-                                    : ''
-                            }
-                            fontSize={20}
-                            type={textAnimationType}
-                            style={theme.contentColor3}
-                        >
-                            {item}
-                        </TextAnimation>
-                    </View>
-                </TouchableWithoutFeedback>
-            );
-        }
-        return null;
-    };
-    const renderBtn = ({ item }) => {
-        if (currentIndex >= currentDialogueLength) {
-            return (
-                <View style={{ marginTop: 8 }}>
-                    <TextButton
-                        title={item.title}
-                        onPress={() => {
-                            nextDialogue(item);
-                        }}
-                    />
-                </View>
-            );
-        }
-        return null;
-    };
-
     if (dialogType === 'HalfScreen') {
         return (
             <HalfSingle
-                title={title}
                 nextParagraph={nextParagraph}
+                nextDialogue={nextDialogue}
                 currentTextList={currentTextList}
-                renderText={renderText}
                 showBtnList={showBtnList}
-                renderBtn={renderBtn}
+                currentIndex={currentIndex}
+                currentDialogueLength={currentDialogueLength}
+                {...props.viewData}
             />
         );
     }
     if (dialogType === 'FullScreen') {
         return (
             <FullSingle
-                title={title}
                 nextParagraph={nextParagraph}
+                nextDialogue={nextDialogue}
                 currentTextList={currentTextList}
-                renderText={renderText}
                 showBtnList={showBtnList}
-                renderBtn={renderBtn}
+                currentIndex={currentIndex}
+                currentDialogueLength={currentDialogueLength}
+                {...props.viewData}
             />
         );
     }
