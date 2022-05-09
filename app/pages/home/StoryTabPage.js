@@ -8,9 +8,15 @@ import {
   ThemeContext,
 } from "../../constants";
 
+import { 
+  Text, 
+  View, 
+  SectionList, 
+  TouchableWithoutFeedback 
+} from '../../constants/native-ui';
+
 import ProgressBar from '../../components/ProgressBar';
 import * as DateTime from '../../utils/DateTimeUtils';
-import { Button, Text, View, SectionList } from '../../constants/native-ui';
 import FastImage from 'react-native-fast-image';
 
 class StoryTabPage extends Component {
@@ -58,7 +64,11 @@ class StoryTabPage extends Component {
     }
     return (
       <View style={this.context.chatItem}>
-        <Button title={data.item.title} onPress={() => this._onClickItem(data)} color={this.context.options.fontColor} />
+        <TouchableWithoutFeedback onPress={() => this._onClickItem(data)}>
+          <View style={{ height: 35, justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ fontSize: 18, color: this.context.options.fontColor }}>{data.item.title}</Text>
+          </View>
+        </TouchableWithoutFeedback>
         {progressView}
       </View>
     );
