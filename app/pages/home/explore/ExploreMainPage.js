@@ -85,21 +85,30 @@ const RewardsPage = (props) => {
 // 寻宝、战斗、线索、奇遇等事件按钮
 const EventButton = (props) => {
     const [ num, setNum ] = React.useState(0);
+    const [ disabled, setDisabled ] = React.useState(false);
 
     React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener(EventKeys.EXPLORE_UPDATE_EVENT_NUM, ({ type, num }) => {
+        const updateListener = DeviceEventEmitter.addListener(EventKeys.EXPLORE_UPDATE_EVENT_NUM, ({ type, num }) => {
             if (type == props.id) {
                 setNum(num);
             }
         });
+        const pkBeginListener = DeviceEventEmitter.addListener(EventKeys.EXPLORE_PK_BEGIN, () => {
+            setDisabled(true);
+        });
+        const pkEndListener = DeviceEventEmitter.addListener(EventKeys.EXPLORE_PK_END, () => {
+            setDisabled(false);
+        });
         return (() => {
-            listener.remove();
+            updateListener.remove();
+            pkBeginListener.remove();
+            pkEndListener.remove();
         });
     }, []);
 
     return (
         <View style={styles.eventBox}>
-            <TextButton title={props.title} {...props} style={styles.eventButton} onPress={() => { props.onPress(); }} />
+            <TextButton title={props.title} {...props} style={styles.eventButton} disabled={disabled} onPress={() => { props.onPress(); }} />
             <Text style={{ lineHeight: 24, color: '#fff' }}>{num}</Text>
         </View>
     );

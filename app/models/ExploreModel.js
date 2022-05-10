@@ -147,7 +147,7 @@ export default {
       // 处理等待挑战的BOSS
       if (exploreState.__data.pendingChallengeQueue.length > 0) {
         const challengeEvent = exploreState.__data.pendingChallengeQueue.shift();
-        refBossButton.setNum(exploreState.event_boss.length);
+        DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'boss', num: exploreState.event_boss.length });
         yield put.resolve(action('onPKEvent')({ ...parameters, event: challengeEvent }));
       } else if (currentEvent.event != 'pk') {
         DeviceEventEmitter.emit(EventKeys.EXPLORE_TIMEBANNER_RESUME);
@@ -279,6 +279,7 @@ export default {
       // 单打一个杂鱼
       const enemy = enemiesGroup.items[0];
       const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: MYSELF_ATTRS, enemy}));
+
       if (lo.isArray(report)) {
         // 战斗中
         exploreState.challenging = true;
@@ -296,8 +297,11 @@ export default {
 
           // 战斗结束
           exploreState.challenging = false;
+          DeviceEventEmitter.emit(EventKeys.EXPLORE_PK_END);
         };
-        DeviceEventEmitter.emit(EventKeys.EXPLORE_MSGLIST_ADDALL, { list: msgList, interval: 600, cb })
+
+        DeviceEventEmitter.emit(EventKeys.EXPLORE_MSGLIST_ADDALL, { list: msgList, interval: 600, cb });
+        DeviceEventEmitter.emit(EventKeys.EXPLORE_PK_BEGIN);
       }
     },
 
