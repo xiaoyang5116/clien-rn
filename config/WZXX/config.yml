@@ -5,7 +5,11 @@ book: {
 
     # 场景列表
     scene_list:
-      ["scene_wzxx", "WZXX_[START]", "WZXX_[Variables]", "WZXX_M1_N1_C001V", "WZXX_M1_N1_C001VA",
- 
+      [
+        "scene_wzxx",
+        "WZXX_[START]",
+        "WZXX_[Variables]",
+        "WZXX_M1_N1_C001V",
+        "WZXX_M1_N1_C001A_V",
       ],
   }
