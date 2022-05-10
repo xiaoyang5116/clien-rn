@@ -1,7 +1,7 @@
 #START========================================
-#这个是吧之前文章第一章拆成两半
+#接续第一章
 [
-{ andVarsOn: ['WZXX_ChaptersV/WZXX_M1_N1_C001A'] },
+{ andVarsOn: ['WZXX_ChaptersV01/WZXX_M1_N1_C001A'] },
 { header: '我有秘籍？！' },
 ]
 #END==========================================
@@ -26,7 +26,7 @@
 #START========================================
 #
 [
-    { sceneId: 'WZXX_M1_N1_C001VA', chatId: 'WZXX_M1_N1_C001VA' },
+    { sceneId: 'WZXX_M1_N1_C001A_V', chatId: 'WZXX_M1_N1_C001A_V' },
 ]
 #END==========================================
      
