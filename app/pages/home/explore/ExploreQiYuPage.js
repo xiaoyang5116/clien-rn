@@ -10,9 +10,7 @@ import {
 import {
     View,
     Text,
-    Image,
     FlatList,
-    SafeAreaView,
     TouchableHighlight,
 } from '../../../constants/native-ui';
 
@@ -32,7 +30,6 @@ class ExploreQiYuPage extends Component {
     }
 
     renderItem = (data) => {
-        // console.log("data",data);
         const item = data.item;
         return (
             <TouchableHighlight activeOpacity={0.85} underlayColor='#666' onPress={() => { this.changeQiYu(item.data, item.id) }} style={{ margin: 5 }} >

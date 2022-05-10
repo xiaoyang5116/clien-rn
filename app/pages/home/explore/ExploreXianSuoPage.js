@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-    action,
     connect,
     Component,
     StyleSheet,
@@ -10,9 +9,7 @@ import {
 import { 
     View, 
     Text, 
-    Image,
     FlatList, 
-    SafeAreaView, 
     TouchableHighlight,
 } from '../../../constants/native-ui';
 

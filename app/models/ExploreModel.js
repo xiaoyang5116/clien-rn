@@ -230,7 +230,7 @@ export default {
     *onXianSuoEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
       const { event } = payload;
-      exploreState.event_xiansuo.push(event);
+      exploreState.event_xiansuo.push({ id: (exploreState.event_xiansuo.length + 1), ...event });
       DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'xiansuo', num: exploreState.event_xiansuo.length });
     },
 

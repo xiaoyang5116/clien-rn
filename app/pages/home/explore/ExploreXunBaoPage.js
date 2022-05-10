@@ -15,12 +15,6 @@ import {
 
 import { TextButton } from '../../../constants/custom-ui';
 
-const DATA = [
-    { id: 1, title: '寻宝事件1' },
-    { id: 2, title: '寻宝事件2' },
-    { id: 3, title: '寻宝事件3' },
-]
-
 // 探索寻宝页面
 class ExploreXunBaoPage extends Component {
 
