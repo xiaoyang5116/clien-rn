@@ -1,4 +1,5 @@
 import React from 'react';
+import lo from 'lodash';
 
 import {
     action,
@@ -12,42 +13,22 @@ import {
     View, 
     Text, 
     Image,
-    FlatList, 
     SafeAreaView, 
     TouchableWithoutFeedback,
 } from '../../constants/native-ui';
 
-import {
-    RenderHTML
-} from 'react-native-render-html';
-
 import { TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
-import { Animated, Easing } from 'react-native';
 import RootView from '../../components/RootView';
 import Toast from '../../components/toast';
-import lo from 'lodash';
 
 import ExploreXunBaoPage from './ExploreXunBaoPage';
 import ExploreBossPage from './ExploreBossPage';
 import ExploreXianSuoPage from './ExploreXianSuoPage';
 import ExploreQiYuPage from './ExploreQiYuPage';
-
-const CONFIG = {
-    // 事件的间隔
-    space: 100,
-
-    // 事件起始偏移
-    startOffset: 200,
-}
-
-const PROPS_ICON = [
-    { iconId: 1, img: require('../../../assets/props/prop_1.png') },
-    { iconId: 2, img: require('../../../assets/props/prop_2.png') },
-    { iconId: 3, img: require('../../../assets/props/prop_3.png') },
-    { iconId: 4, img: require('../../../assets/props/prop_4.png') },
-    { iconId: 5, img: require('../../../assets/props/prop_5.png') },
-];
+import MessageList from './explore/MessageList';
+import TimeBanner from './explore/TimeBanner';
+import { PROPS_ICON } from './explore/config';
 
 // 奖励物品组件
 const RewardItem = (props) => {
@@ -100,168 +81,6 @@ const RewardsPage = (props) => {
     );
 }
 
-// 事件单元
-class BannerBox extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            opacity: 1,
-        }
-    }
-
-    hide() {
-        this.setState({ opacity: 0 });
-    }
-
-    render() {
-        return (
-        <View style={[styles.mxPoint, { left:  this.props.id * CONFIG.space, opacity: this.state.opacity }]}>
-            <Text>{this.props.id}</Text>
-        </View>
-        );
-    }
-}
-
-// 时间事件条，用于展现随时间播放的动效
-class TimeBanner extends Component {
-    constructor(props) {
-        super(props);
-        this.eventNum = props.time / props.interval;
-        this.bannerLeftValue = new Animated.Value(CONFIG.startOffset);
-        this.events = [];
-        this.pause = false;
-
-        const animations = [];
-        let offset = CONFIG.startOffset;
-        for (let i = 0; i < this.eventNum; i++) {
-            offset -= CONFIG.space;
-            const item = Animated.timing(this.bannerLeftValue, {
-                toValue: offset,
-                duration: (props.interval * 1000),
-                easing: Easing.linear,
-                useNativeDriver: false,
-            });
-            animations.push(item);
-            animations.push({
-                start: cb => {
-                    if (!this.pause) {
-                        props.onStep(i);
-                        this.pause = true;
-                        cb({ finished: false });
-                    } else {
-                        this.pause = false;
-                        cb({ finished: true });
-                    }
-                },
-                stop: () => {
-                },
-            })
-        }
-        this.sequence = Animated.sequence(animations);
-    }
-
-    resume() {
-        setTimeout(() => {
-            this.sequence.start();
-        }, 0);
-    }
-
-    hide(idx) {
-        const currentEvent = this.events.find(e => e.id == idx);
-        if (currentEvent != undefined) {
-            currentEvent.ref.current.hide();
-        }
-    }
-
-    componentDidMount() {
-        this.sequence.start();
-    }
-
-    componentWillUnmount() {
-        this.sequence.stop();
-    }
-
-    render() {
-        const childs = [];
-        for (let i = 0; i < this.eventNum; i++) {
-            const ref = React.createRef();
-            childs.push(<BannerBox ref={ref} key={i} id={i} />);
-            this.events.push({ id: i, ref: ref });
-        }
-        return (
-            <Animated.View style={{ position: 'absolute', left: this.bannerLeftValue, top: 0 }}>
-                {childs}
-            </Animated.View>
-        );
-    }
-}
-
-// 消息列表，用于展现探索的各种信息
-class MessageList extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.timer = null;
-        this.queue = [];
-        this.refList = React.createRef();
-        this.state = {
-            messages: [],
-        };
-    }
-
-    renderItem = (data) => {
-        const item = data.item;
-        return (
-            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: 24 }} >
-                <RenderHTML contentWidth={100} source={{html: item.msg}} />
-            </View>
-        );
-    }
-
-    addMsg(msg) {
-        this.setState({ messages: [...this.state.messages, { msg }] });
-    }
-
-    addMsgs(list, interval = 600, cb = null) {
-        this.queue.push(...list);
-        if (this.timer == null) {
-            this.timer = setInterval(() => {
-                if (this.queue.length > 0) {
-                    this.addMsg(this.queue.shift());
-                } else {
-                    clearInterval(this.timer);
-                    this.timer = null;
-                    if (cb != null) cb();
-                }
-            }, interval);
-        }
-    }
-
-    componentWillUnmount() {
-        if (this.timer != null) {
-            clearInterval(this.timer);
-        }
-    }
-
-    render() {
-        return (
-        <FlatList
-            ref={this.refList}
-            style={{ alignSelf: 'stretch', margin: 10, borderColor: '#999', borderWidth: 1, backgroundColor: 'rgba(255,255,255,0.85)' }}
-            data={this.state.messages}
-            renderItem={this.renderItem}
-            getItemLayout={(_data, index) => (
-                {length: 24, offset: 24 * index, index}
-            )}
-            onContentSizeChange={() => {
-                if (this.state.messages.length > 0) {
-                    this.refList.current.scrollToIndex({ index: this.state.messages.length - 1 });
-                }
-            }}
-          />
-        );
-    }
-}
-
 // 寻宝、战斗、线索、奇遇等事件按钮
 class EventButton extends PureComponent {
 
@@ -291,7 +110,6 @@ class ExploreMainPopPage extends Component {
 
     constructor(props) {
         super(props);
-        this.refMsgList = React.createRef();
         this.refTimeBanner = React.createRef();
 
         this.refXunBaoButton = React.createRef();
@@ -305,7 +123,6 @@ class ExploreMainPopPage extends Component {
         this.props.dispatch(action('ExploreModel/onTimeEvent')({
             idx,
             refTimeBanner: this.refTimeBanner.current, 
-            refMsgList: this.refMsgList.current, 
             //
             refXunBaoButton: this.refXunBaoButton.current,
             refBossButton: this.refBossButton.current,
@@ -388,7 +205,7 @@ class ExploreMainPopPage extends Component {
                         <Text style={styles.textBox}>补给[预留位置]</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <MessageList ref={this.refMsgList} />
+                        <MessageList />
                     </View>
                     <View style={styles.timeBannerContainer} >
                         <TimeBanner key={this.props.areaId * 100} ref={this.refTimeBanner} time={currentArea.time} interval={currentArea.interval} onStep={this.onStep} />
@@ -422,10 +239,6 @@ const styles = StyleSheet.create({
     },
     textBox: {
         borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5,
-    },
-    mxPoint: {
-        position: 'absolute', left: 330, top: 20,
-        width: 20, height: 20, borderColor: '#666', borderWidth: 1, justifyContent: 'center', alignItems: 'center',
     },
     timeBannerContainer: {
         flexDirection: 'row', borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', overflow: 'hidden', 

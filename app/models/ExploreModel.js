@@ -2,6 +2,8 @@
 import { 
   action,
   AppDispath,
+  DeviceEventEmitter,
+  EventKeys,
   LocalCacheKeys,
 } from "../constants";
 import LocalStorage from '../utils/LocalStorage';
@@ -144,7 +146,7 @@ export default {
 
       refTimeBanner.hide(idx);
       const eventCfg = EVENTS_CONFIG.find(e => e.eventName == currentEvent.event);
-      refMsgList.addMsg(eventCfg.desc);
+      DeviceEventEmitter.emit(EventKeys.EXPLORE_MSGLIST_ADD, eventCfg.desc);
 
       const parameters = { map: currentMap, area: currentArea, event: currentEvent, 
                           refTimeBanner, refMsgList, refXunBaoButton, refBossButton, refXianSuoButton, refQiYuButton };
@@ -182,11 +184,11 @@ export default {
 
       // 开启下一个区域
       if (nextArea != null) {
-        refMsgList.addMsg(` ====== 进入${nextArea.name} ======`);
+        DeviceEventEmitter.emit(EventKeys.EXPLORE_MSGLIST_ADD, ` ====== 进入${nextArea.name} ======`);
         yield put(action('updateState')({ areaId: nextArea.id }));
       } else {
         // 地图所有区域探索完毕
-        refMsgList.addMsg(' ====== 探索完毕 ====== ');
+        DeviceEventEmitter.emit(EventKeys.EXPLORE_MSGLIST_ADD, ' ====== 探索完毕 ====== ');
       }
     },
 
@@ -297,7 +299,7 @@ export default {
 
         // 播放战报
         const msgList = report.map(e => e.msg);
-        refMsgList.addMsgs(msgList, 600, () => {
+        const cb = () => {
           refTimeBanner.resume();
 
           // 提前发放奖励-后续优化
@@ -308,7 +310,8 @@ export default {
 
           // 战斗结束
           exploreState.challenging = false;
-        });
+        };
+        DeviceEventEmitter.emit(EventKeys.EXPLORE_MSGLIST_ADDALL, { list: msgList, interval: 600, cb })
       }
     },
 
