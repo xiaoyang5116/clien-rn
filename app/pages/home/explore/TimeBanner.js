@@ -82,7 +82,7 @@ class TimeBanner extends Component {
 
     hide(idx) {
         const currentEvent = this.events.find(e => e.id == idx);
-        if (currentEvent != undefined) {
+        if (currentEvent != undefined && currentEvent.ref.current != null) {
             currentEvent.ref.current.hide();
         }
     }
