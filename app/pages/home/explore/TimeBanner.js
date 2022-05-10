@@ -61,7 +61,7 @@ class TimeBanner extends Component {
             animations.push({
                 start: cb => {
                     if (!this.pause) {
-                        props.onStep(i);
+                        setTimeout(() => props.onStep(i), 0); // 必须放在下一个执行周期，否则无法保证finished:false 执行有效。
                         this.pause = true;
                         cb({ finished: false });
                     } else {
@@ -77,9 +77,7 @@ class TimeBanner extends Component {
     }
 
     resume() {
-        setTimeout(() => {
-            this.sequence.start();
-        }, 0);
+        this.sequence.start();
     }
 
     hide(idx) {
@@ -96,9 +94,9 @@ class TimeBanner extends Component {
     }
 
     componentWillUnmount() {
-        this.sequence.stop();
         this.listeners.forEach(e => e.remove());
         this.listeners.length = 0;
+        this.sequence.stop();
     }
 
     render() {

@@ -144,7 +144,7 @@ export default {
       const currentEvent = currentArea.points.find(e => e.idx == idx);
       const eventNum = Math.floor(currentArea.time / currentArea.interval);
 
-      refTimeBanner.hide(idx);
+      DeviceEventEmitter.emit(EventKeys.EXPLORE_TIMEBANNER_HIDE, idx);
       const eventCfg = EVENTS_CONFIG.find(e => e.eventName == currentEvent.event);
       DeviceEventEmitter.emit(EventKeys.EXPLORE_MSGLIST_ADD, eventCfg.desc);
 
@@ -159,7 +159,7 @@ export default {
         refBossButton.setNum(exploreState.event_boss.length);
         yield put.resolve(action('onPKEvent')({ ...parameters, event: challengeEvent }));
       } else if (currentEvent.event != 'pk') {
-        refTimeBanner.resume();
+        DeviceEventEmitter.emit(EventKeys.EXPLORE_TIMEBANNER_RESUME);
       }
 
       // 是否结束
