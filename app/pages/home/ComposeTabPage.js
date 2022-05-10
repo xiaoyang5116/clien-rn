@@ -13,8 +13,8 @@ import {
 } from '../../constants/native-ui';
 
 import { Panel } from '../../components/panel';
-import ComposeMainTabPage from './ComposeMainTabPage';
-import ComposeDetailTabPage from './ComposeDetailTabPage';
+import ComposeMainTabPage from './compose/ComposeMainTabPage';
+import ComposeDetailTabPage from './compose/ComposeDetailTabPage';
 
 const Stack = createNativeStackNavigator();
 

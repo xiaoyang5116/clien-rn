@@ -8,8 +8,8 @@ import {
 } from "../../constants";
 
 import RootView from '../../components/RootView';
-import ExploreMapsPage from './ExploreMapsPage';
-import ExploreMainPage from './ExploreMainPage';
+import ExploreMapsPage from './explore/ExploreMapsPage';
+import ExploreMainPage from './explore/ExploreMainPage';
 
 class ExploreTabPage extends Component {
 

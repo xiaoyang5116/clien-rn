@@ -8,7 +8,7 @@ import {
     StyleSheet,
     DeviceEventEmitter,
     EventKeys,
-} from "../../constants";
+} from "../../../constants";
 
 import { 
     View, 
@@ -16,20 +16,20 @@ import {
     Image,
     SafeAreaView, 
     TouchableWithoutFeedback,
-} from '../../constants/native-ui';
+} from '../../../constants/native-ui';
 
-import { TextButton } from '../../constants/custom-ui';
+import { TextButton } from '../../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
-import RootView from '../../components/RootView';
-import Toast from '../../components/toast';
+import RootView from '../../../components/RootView';
+import Toast from '../../../components/toast';
 
 import ExploreXunBaoPage from './ExploreXunBaoPage';
 import ExploreBossPage from './ExploreBossPage';
 import ExploreXianSuoPage from './ExploreXianSuoPage';
 import ExploreQiYuPage from './ExploreQiYuPage';
-import MessageList from './explore/MessageList';
-import TimeBanner from './explore/TimeBanner';
-import { PROPS_ICON } from './explore/config';
+import MessageList from './MessageList';
+import TimeBanner from './TimeBanner';
+import { PROPS_ICON } from './config';
 
 // 奖励物品组件
 const RewardItem = (props) => {
@@ -164,14 +164,14 @@ class ExploreMainPopPage extends Component {
         const currentArea = mapSelected.areas.find(e => e.id == this.props.areaId);
 
         return (
-            <FastImage style={{ flex: 1 }} source={require('../../../assets/bg/explore_bg.jpg')} >
+            <FastImage style={{ flex: 1 }} source={require('../../../../assets/bg/explore_bg.jpg')} >
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <View style={{ flexDirection: 'row', marginLeft: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
                         <Text style={styles.textBox}>{mapSelected.name}</Text>
                     </View>
                     <View style={{ flexDirection: 'column', margin: 10, height: 160, justifyContent: 'center', alignItems: 'center' }} >
-                        <FastImage style={{ flex: 1, overflow: 'hidden' }} source={require('../../../assets/bg/lottery_bg2.jpg')} resizeMode='stretch' >
+                        <FastImage style={{ flex: 1, overflow: 'hidden' }} source={require('../../../../assets/bg/lottery_bg2.jpg')} resizeMode='stretch' >
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />
                             <View style={{ flexDirection: 'row', width: '100%',  height: 80, justifyContent: 'space-around', alignItems: 'center' }} >
                                 <EventButton id={'xunbao'} title={'寻宝'} {...this.props} onPress={() => { this.showXunBao() }} />
