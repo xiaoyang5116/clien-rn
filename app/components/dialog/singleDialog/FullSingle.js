@@ -104,9 +104,6 @@ const FullSingle = props => {
                                             : '60%'
                                         : '100%',
                             }}
-                        // onLayout={(event) => {
-                        //     console.log("event", event.nativeEvent.layout.height);
-                        // }}
                         >
                             <FlatList
                                 ref={refFlatList}

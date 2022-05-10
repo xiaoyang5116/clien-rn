@@ -1,9 +1,10 @@
 
-import { 
+import {
   action,
   errorMessage,
   getWindowSize,
   toastType,
+  LocalCacheKeys
 } from "../constants";
 
 import { GetArticleDataApi } from '../services/GetArticleDataApi';
@@ -11,6 +12,9 @@ import { GetArticleIndexDataApi } from '../services/GetArticleIndexDataApi';
 import Toast from "../components/toast";
 import Modal from "../components/modal";
 import lo from 'lodash';
+import LocalStorage from '../utils/LocalStorage';
+import EventListeners from '../utils/EventListeners';
+import defaultReaderStyle from '../themes/readerStyle';
 
 const WIN_SIZE = getWindowSize();
 
@@ -48,9 +52,12 @@ export default {
 
     // 展现用段落数据 [{ key: xxx, type: 'plain|code', content: xxx, object: xxx, height: xxx }, ...]
     sections: [],
-    
+
     // 是否续章
     continueView: false,
+
+    // 阅读器样式
+    readerStyle: {},
   },
 
   effects: {
@@ -127,7 +134,7 @@ export default {
           item.object.options = yield put.resolve(action('getValidOptions')({ options: chat.options }));
         }
       }
-      
+
       if (payload.continue != undefined && payload.continue) {
         yield put(action('updateState')({ sections: [...articleState.sections, ...data], continueView: true }));
       } else {
@@ -242,11 +249,49 @@ export default {
         }
       }
     },
+
+    // 阅读器样式
+    *readerStyle({ payload }, { call, put, select }) {
+      let currentReaderStyle = yield call(LocalStorage.get, LocalCacheKeys.READER_STYLE);
+      if (currentReaderStyle === null) {
+        currentReaderStyle = defaultReaderStyle
+        yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, currentReaderStyle);
+        yield put(action('updateState')({ readerStyle: currentReaderStyle }));
+      }
+      else {
+        yield put(action('updateState')({ readerStyle: currentReaderStyle }));
+      }
+    },
+    // // 获取阅读器样式
+    // *getReaderStyle({ }, { call }) {
+    //   return currentReaderStyle = yield call(LocalStorage.get, LocalCacheKeys.READER_STYLE);
+    // },
+    // 修改字体大小
+    *changeFontSize({ payload }, { call, put, select }) {
+      const { readerStyle } = yield select(state => state.ArticleModel);
+      let newReaderStyle = {}
+      if (payload.type === 'reduce') {
+        newReaderStyle = {
+          ...readerStyle,
+          contentSize: (readerStyle.contentSize - 1) > 10 ? (readerStyle.contentSize - 1) : 10,
+          titleSize: readerStyle.titleSize - 1,
+        }
+      }
+      if (payload.type === 'increase') {
+        newReaderStyle = {
+          ...readerStyle,
+          contentSize: (readerStyle.contentSize + 1) > 40 ? 40 : (readerStyle.contentSize + 1),
+          titleSize: readerStyle.titleSize + 1,
+        }
+      }
+      yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, newReaderStyle);
+      yield put(action('updateState')({ readerStyle: newReaderStyle }));
+    },
   },
-  
+
   reducers: {
     updateState(state, { payload }) {
-      return { 
+      return {
         ...state,
         ...payload
       };
@@ -255,9 +300,9 @@ export default {
 
   subscriptions: {
     registerReloadEvent({ dispatch }) {
-      // EventListeners.register('reload', (msg) => {
-      //   return dispatch({ 'type':  'reload'});
-      // });
+      EventListeners.register('reload', (msg) => {
+        return dispatch({ 'type': 'readerStyle' });
+      });
     },
   }
 }

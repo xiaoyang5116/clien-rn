@@ -321,10 +321,20 @@ const sharedStyles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center'
-    }
-    /* 半屏 1 begin */
+    },
+    /** ================================ */
+    /**          阅读器设置 弹窗的样式      */
+    /** ================================ */
+    readerSettingContainer: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: 200,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
 
-    /* 半屏 1 end */
 });
 
 export default sharedStyles;

@@ -15,4 +15,7 @@ export class LocalCacheKeys {
 
     // 已完成的奇遇事件CompletedQiYuEvent_DATA
     static QYEVENT_DATA = 'QYEVENT_DATA';
+
+    // 阅读器样式
+    static READER_STYLE = 'READER_STYLE';
 }
