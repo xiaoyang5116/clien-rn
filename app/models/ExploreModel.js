@@ -67,14 +67,6 @@ export default {
     event_boss: [],
     event_xiansuo: [],
     event_qiyu: [],
-
-    // 组件引用
-    refTimeBanner: null,
-    refMsgList: null, 
-    refXunBaoButton: null, 
-    refBossButton: null, 
-    refXianSuoButton: null, 
-    refQiYuButton: null,
   },
 
   effects: {
@@ -137,7 +129,7 @@ export default {
     // 间隔时间事件
     *onTimeEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { idx, refTimeBanner, refMsgList, refXunBaoButton, refBossButton, refXianSuoButton, refQiYuButton } = payload;
+      const { idx } = payload;
 
       const currentMap = exploreState.__data.config.find(e => e.id == exploreState.mapId);
       const currentArea = currentMap.areas.find(e => e.id == exploreState.areaId);
@@ -148,9 +140,8 @@ export default {
       const eventCfg = EVENTS_CONFIG.find(e => e.eventName == currentEvent.event);
       DeviceEventEmitter.emit(EventKeys.EXPLORE_MSGLIST_ADD, eventCfg.desc);
 
-      const parameters = { map: currentMap, area: currentArea, event: currentEvent, 
-                          refTimeBanner, refMsgList, refXunBaoButton, refBossButton, refXianSuoButton, refQiYuButton };
       // 处理指定事件逻辑
+      const parameters = { map: currentMap, area: currentArea, event: currentEvent };
       yield put.resolve(action(eventCfg.handlerName)({ ...parameters }));
 
       // 处理等待挑战的BOSS
@@ -171,7 +162,7 @@ export default {
     // 时间事件结束
     *onTimeEnd({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, refMsgList } = payload;
+      const { map, area } = payload;
 
       let nextArea = null;
       for (let key in map.areas) {
@@ -222,41 +213,41 @@ export default {
     // 寻宝事件
     *onXunBaoEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refXunBaoButton } = payload;
+      const { event } = payload;
       exploreState.event_xunbao.push({ id: (exploreState.event_xunbao.length + 1), ...event });
-      refXunBaoButton.setNum(exploreState.event_xunbao.length);
+      DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'xunbao', num: exploreState.event_xunbao.length });
     },
 
     // 挑战BOSS事件
     *onBossEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refBossButton } = payload;
+      const { event } = payload;
       exploreState.event_boss.push({ id: (exploreState.event_boss.length + 1), ...event });
-      refBossButton.setNum(exploreState.event_boss.length);
+      DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'boss', num: exploreState.event_boss.length });
     },
 
     // 线索事件
     *onXianSuoEvent({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refXianSuoButton } = payload;
+      const { event } = payload;
       exploreState.event_xiansuo.push(event);
-      refXianSuoButton.setNum(exploreState.event_xiansuo.length);
+      DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'xiansuo', num: exploreState.event_xiansuo.length });
     },
 
     // 奇遇事件
     *onQiYuEvent({ payload }, { select, put, call }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refQiYuButton } = payload;
+      const { event } = payload;
       const { data } = yield call(GetQiYuApi, event.action)
       exploreState.event_qiyu.push({ id: (exploreState.event_qiyu.length + 1), ...event, ...data });
-      refQiYuButton.setNum(exploreState.event_qiyu.length);
+      DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'qiyu', num: exploreState.event_qiyu.length });
     },
+
     // 改变奇遇事件状态
     *changeQiYuStatus({ payload }, { select, put, call }) {
       // [ {id: "qiyu_1_XXX", isFinish: true} ]  奇遇事件状态存储格式
       const oldData = yield call(LocalStorage.get, LocalCacheKeys.QYEVENT_DATA);
-      // const { id, refQiYuButton } = payload;
-      // console.log('oldData', oldData, payload);
+
       const newData = {
         id: payload.id,
         isFinish: true
@@ -274,17 +265,12 @@ export default {
       const newQiyuData= exploreState.event_qiyu.filter(e => e.id !== payload.id);
       console.log("newQiyuData", newQiyuData.length);
       exploreState.event_qiyu = newQiyuData;
-      // refQiYuButton.setNum(exploreState.event_qiyu.length);
     },
-    // 已完成的奇遇事件
-    // *getCompletedQiYuEvent({ payload }, { select, put, call }) {
-    //   return yield call(LocalStorage.get, LocalCacheKeys.QYEVENT_DATA);
-    // },
 
     // 挑战
     *onPKEvent({ payload }, { select, put, call }) {
       const exploreState = yield select(state => state.ExploreModel);
-      const { map, area, event, refTimeBanner, refMsgList } = payload;
+      const { map, area, event } = payload;
 
       const seqData = yield call(GetSeqDataApi, event.seqId);
       const seqConfig = seqData.sequences.find(e => e.id == event.seqId);
@@ -300,7 +286,7 @@ export default {
         // 播放战报
         const msgList = report.map(e => e.msg);
         const cb = () => {
-          refTimeBanner.resume();
+          DeviceEventEmitter.emit(EventKeys.EXPLORE_TIMEBANNER_RESUME);
 
           // 提前发放奖励-后续优化
           const reward = seqConfig.awards.items.find(e => e.uid.indexOf(enemy.uid) != -1);

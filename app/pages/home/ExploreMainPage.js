@@ -5,8 +5,9 @@ import {
     action,
     connect,
     Component,
-    PureComponent,
     StyleSheet,
+    DeviceEventEmitter,
+    EventKeys,
 } from "../../constants";
 
 import { 
@@ -82,27 +83,26 @@ const RewardsPage = (props) => {
 }
 
 // 寻宝、战斗、线索、奇遇等事件按钮
-class EventButton extends PureComponent {
+const EventButton = (props) => {
+    const [ num, setNum ] = React.useState(0);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            num: 0,
-        }
-    }
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener(EventKeys.EXPLORE_UPDATE_EVENT_NUM, ({ type, num }) => {
+            if (type == props.id) {
+                setNum(num);
+            }
+        });
+        return (() => {
+            listener.remove();
+        });
+    }, []);
 
-    setNum(num) {
-        this.setState({ num });
-    }
-
-    render() {
-        return (
+    return (
         <View style={styles.eventBox}>
-            <TextButton title={this.props.title} {...this.props} style={styles.eventButton} onPress={() => { this.props.onPress(); }} />
-            <Text style={{ lineHeight: 24, color: '#fff' }}>{this.state.num}</Text>
+            <TextButton title={props.title} {...props} style={styles.eventButton} onPress={() => { props.onPress(); }} />
+            <Text style={{ lineHeight: 24, color: '#fff' }}>{num}</Text>
         </View>
-        );
-    }
+    );
 }
 
 // 探索主页面
@@ -110,25 +110,11 @@ class ExploreMainPopPage extends Component {
 
     constructor(props) {
         super(props);
-        this.refTimeBanner = React.createRef();
-
-        this.refXunBaoButton = React.createRef();
-        this.refBossButton = React.createRef();
-        this.refXianSuoButton = React.createRef();
-        this.refQiYuButton = React.createRef();
     }
 
     // 时间滚动条-事件触发
     onStep = (idx) => {
-        this.props.dispatch(action('ExploreModel/onTimeEvent')({
-            idx,
-            refTimeBanner: this.refTimeBanner.current, 
-            //
-            refXunBaoButton: this.refXunBaoButton.current,
-            refBossButton: this.refBossButton.current,
-            refXianSuoButton: this.refXianSuoButton.current,
-            refQiYuButton: this.refQiYuButton.current,
-        }));
+        this.props.dispatch(action('ExploreModel/onTimeEvent')({ idx }));
     }
 
     showBag() {
@@ -188,10 +174,10 @@ class ExploreMainPopPage extends Component {
                         <FastImage style={{ flex: 1, overflow: 'hidden' }} source={require('../../../assets/bg/lottery_bg2.jpg')} resizeMode='stretch' >
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />
                             <View style={{ flexDirection: 'row', width: '100%',  height: 80, justifyContent: 'space-around', alignItems: 'center' }} >
-                                <EventButton ref={this.refXunBaoButton} title={'寻宝'} {...this.props} onPress={() => { this.showXunBao() }} />
-                                <EventButton ref={this.refBossButton} title={'战斗'} {...this.props} onPress={() => { this.showBoss() }} />
-                                <EventButton ref={this.refXianSuoButton} title={'线索'} {...this.props} onPress={() => { this.showXianSuo() }} />
-                                <EventButton ref={this.refQiYuButton} title={'奇遇'} {...this.props} onPress={() => { this.showQiYu() }} />
+                                <EventButton id={'xunbao'} title={'寻宝'} {...this.props} onPress={() => { this.showXunBao() }} />
+                                <EventButton id={'boss'} title={'战斗'} {...this.props} onPress={() => { this.showBoss() }} />
+                                <EventButton id={'xiansuo'} title={'线索'} {...this.props} onPress={() => { this.showXianSuo() }} />
+                                <EventButton id={'qiyu'} title={'奇遇'} {...this.props} onPress={() => { this.showQiYu() }} />
                             </View>
                         </FastImage>
                     </View>
@@ -208,7 +194,7 @@ class ExploreMainPopPage extends Component {
                         <MessageList />
                     </View>
                     <View style={styles.timeBannerContainer} >
-                        <TimeBanner key={this.props.areaId * 100} ref={this.refTimeBanner} time={currentArea.time} interval={currentArea.interval} onStep={this.onStep} />
+                        <TimeBanner key={this.props.areaId * 100} time={currentArea.time} interval={currentArea.interval} onStep={this.onStep} />
                         <View style={{ position: 'absolute', left: 100, top: 0, width: 10, height: '100%', backgroundColor: '#669900', opacity: 0.75 }} />
                     </View>
                     <View style={{ flexDirection: 'row', height: 80, justifyContent: 'space-evenly', alignItems: 'center' }} >
