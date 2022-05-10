@@ -1,7 +1,7 @@
 #START========================================
 #接续第一章
 [
-{ andVarsOn: ['WZXX_ChaptersV01/WZXX_M1_N1_C001A'] },
+{ andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001A'] },
 { header: '我有秘籍？！' },
 ]
 #END==========================================

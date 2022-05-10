@@ -1,6 +1,6 @@
 #START========================================
 [
-{ andVarsOn: ['WZXX_ChaptersV/WZXX_M1_N1_C001_[A1]'] }, 
+{ andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001_[A1]'] }, 
 { header: '已选择：第一章 分支1' },
 ]
 #END==========================================
