@@ -22,34 +22,12 @@ scenes: [
       chats: [
       #
       { 
-        id: 'WZXX_M1_N1_C001VA', desc: '选项', 
+        id: 'WZXX_M1_N1_C001A_V', desc: '选项', 
         options: [ 
           { title: "【秘籍的解释】", dialogs: ['Screen1']},
         ],
       },
       #
-      #
-      { 
-        id: 'WZXX_M1_N1_C001AV', desc: '选项', 
-        options: [ 
-        #{ title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
-          { title: "【去最近的城市，生存重要】", andVarsOff: ['v1'], varsOn: ['v1'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A1]" , icon: { id: 1, bindVar: 'WZXX_M1_N1_C001_[A1]' }},
-          { title: "【去穿越的地点，也许能找到什么】", andVarsOff: ['v2'], varsOn: ['v2'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A2]" },
-          { title: "【跟踪对手，找到更多线索】", andVarsOff: ['V3 '], varsOn: ['v3'], alwayDisplay: true, toChapter: "WZXX_M1_N1_C001_[A3]" },
-          { title: "【弹出对话】",  toChapter: "WZXX_M1_N1_C001_[A3]" , dialogs: ['Screen1']},
-        ],
-      },
-      #
-
-      { 
-        id: 'WZXX_M1_N1_C001_[A1]V', desc: '选择穿越的出身', 
-        options: [ 
-          { title: "【想起自己是“被灭门修真世家的逃难者”】", andVarsOff: ['v1'], varsOn: ['v2,v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001_[A1]" },
-          { title: "【想起自己是“经营包子铺的穷小子”】", andVarsOff: ['v2'], varsOn: ['v1,v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001_[A2]" },
-          { title: "【想起自己是“富贵白府千金的私生子”】", andVarsOff: ['v3'], varsOn: ['v1,v2'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001_[A3]" },
-        ],
-      },
-       #
         ],
 
 
