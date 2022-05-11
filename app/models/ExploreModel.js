@@ -10,8 +10,10 @@ import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 import { GetExploreDataApi } from '../services/GetExploreDataApi';
 import { GetSeqDataApi } from '../services/GetSeqDataApi';
+import { GetXunBaoDataApi } from '../services/GetXunBaoDataApi';
 import { GetQiYuApi } from '../services/GetQiYuApi';
 import lo from 'lodash';
+import Modal from "../components/modal";
 
 const EVENTS_CONFIG = [
   { eventName: 'slot', handlerName: 'onSlotEvent', desc: '获得一次自动抽奖机会' },
@@ -333,6 +335,18 @@ export default {
           yield put.resolve(action('onPKEvent')({ map: eventData._map, event: eventData }));
         }
       }
+    },
+
+    // 寻宝
+    *toXunBao({ payload }, { select, put, call }) {
+      const exploreState = yield select(state => state.ExploreModel);
+      const { typeId } = payload;
+
+      exploreState.event_xunbao = exploreState.event_xunbao.filter(e => e.id != payload.id);
+      DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'xunbao', num: exploreState.event_xunbao.length });
+
+      const data = yield call(GetXunBaoDataApi, typeId);
+      Modal.show(data.xunbao);
     },
 
     // 添加奖励到储物袋
