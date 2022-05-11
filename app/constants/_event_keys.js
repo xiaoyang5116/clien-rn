@@ -7,6 +7,8 @@ export class EventKeys {
 
     static APP_DISPATCH = 'APP_DISPATCH';
 
+    static ENTER_SCENE = 'ENTER_SCENE';
+
     static CAROUSEL_SELECT_ITEM = 'CAROUSEL_SELECT_ITEM';
 
     static CAROUSEL_ENTER_SHOW = 'CAROUSEL_ENTER_SHOW';
