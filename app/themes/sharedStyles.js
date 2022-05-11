@@ -330,11 +330,47 @@ const sharedStyles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        height: 200,
-        justifyContent: 'flex-start',
+        height: 198,
+        justifyContent: 'space-evenly',
         alignItems: 'center',
     },
-
+    readerSettingRow: {
+        height: 50,
+        width: "100%",
+        paddingLeft: 12,
+        paddingRight: 12,
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
+        justifyContent: "space-between",
+        alignItems: 'center',
+    },
+    readerSettingRow_left_item: {
+        width: "16%",
+        height: "100%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    readerSettingRow_right_item: {
+        width: "26%",
+        height: "100%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    readerSettingRow_box: {
+        height: "100%",
+        width: "100%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    readerSetting_border_1: {
+        borderWidth: 1,
+        borderRadius: 8,
+        width: "100%",
+        height: 35,
+        lineHeight: 35,
+        fontSize: 14,
+        textAlign: 'center',
+    },
 });
 
 export default sharedStyles;

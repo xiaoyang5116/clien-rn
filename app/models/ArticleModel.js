@@ -262,10 +262,6 @@ export default {
         yield put(action('updateState')({ readerStyle: currentReaderStyle }));
       }
     },
-    // // 获取阅读器样式
-    // *getReaderStyle({ }, { call }) {
-    //   return currentReaderStyle = yield call(LocalStorage.get, LocalCacheKeys.READER_STYLE);
-    // },
     // 修改字体大小
     *changeFontSize({ payload }, { call, put, select }) {
       const { readerStyle } = yield select(state => state.ArticleModel);
