@@ -39,6 +39,10 @@ const AreaBlock = (props) => {
         };
     });
 
+    const progressMaxWidth = 116;
+    let progressCurrWidth = (props.item.progress / 100) * progressMaxWidth;
+    progressCurrWidth = progressCurrWidth > progressMaxWidth ? progressMaxWidth : progressCurrWidth;
+
     return (
         <TouchableWithoutFeedback onPress={() => {
             DeviceEventEmitter.emit(EventKeys.AREA_BLOCK_SELECTED, props.item);
@@ -66,14 +70,14 @@ const AreaBlock = (props) => {
                 <Text style={{ lineHeight: 24, fontSize: 12, color: '#b48b63' }}>探索度</Text>
             </View>
             <View style={{ width: '80%', height: 15 }}>
-                <View style={{ position: 'absolute', width: 116, backgroundColor: '#669900', height: 15 }}>
+                <View style={{ position: 'absolute', width: progressMaxWidth, backgroundColor: '#669900', height: 15 }}>
                     <FastImage
                         source={require('../../../../assets/progress/progress_bg.png')}
                         style={{ width: '100%', height: '100%', position: 'absolute' }}
                         resizeMode='stretch'
                     />
                 </View>
-                <View style={{ position: 'absolute', width: 58, backgroundColor: '#669900', height: 15 }}>
+                <View style={{ position: 'absolute', width: progressCurrWidth, backgroundColor: '#669900', height: 15 }}>
                     <FastImage
                         source={require('../../../../assets/progress/progress_front.png')}
                         style={{ width: '100%', height: '100%', position: 'absolute' }}
@@ -81,7 +85,7 @@ const AreaBlock = (props) => {
                     />
                 </View>
                 <View style={{ position: 'absolute', top: -2, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: '#fff' }}>50/100</Text>
+                    <Text style={{ color: '#fff' }}>{props.item.progress}/100</Text>
                 </View>
             </View>
             {

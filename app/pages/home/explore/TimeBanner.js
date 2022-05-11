@@ -16,25 +16,25 @@ import {
 import { TIME_BANNER_CONFIG } from './config';
 
 // 事件单元
-class BannerBox extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            opacity: 1,
-        }
-    }
+const BannerBox = (props) => {
+    const [ display, setDisplay ] = React.useState('flex');
 
-    hide() {
-        this.setState({ opacity: 0 });
-    }
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener(EventKeys.EXPLORE_BOX_HIDE, (idx) => {
+            if (props.id == idx) {
+                setDisplay('none');
+            }
+        });
+        return (() => {
+            listener.remove();
+        });
+    }, []);
 
-    render() {
-        return (
-        <View style={[styles.mxPoint, { left:  this.props.id * TIME_BANNER_CONFIG.space, opacity: this.state.opacity }]}>
-            <Text>{this.props.id}</Text>
+    return (
+        <View style={[styles.mxPoint, { left: props.id * TIME_BANNER_CONFIG.space, display: display }]}>
+            <Text>{props.id}</Text>
         </View>
-        );
-    }
+    );
 }
 
 // 时间事件条，用于展现随时间播放的动效
@@ -43,7 +43,6 @@ class TimeBanner extends Component {
         super(props);
         this.eventNum = props.time / props.interval;
         this.bannerLeftValue = new Animated.Value(TIME_BANNER_CONFIG.startOffset);
-        this.events = [];
         this.listeners = [];
         this.pause = false;
 
@@ -81,10 +80,7 @@ class TimeBanner extends Component {
     }
 
     hide(idx) {
-        const currentEvent = this.events.find(e => e.id == idx);
-        if (currentEvent != undefined && currentEvent.ref.current != null) {
-            currentEvent.ref.current.hide();
-        }
+        DeviceEventEmitter.emit(EventKeys.EXPLORE_BOX_HIDE, idx);
     }
 
     componentDidMount() {
@@ -102,9 +98,7 @@ class TimeBanner extends Component {
     render() {
         const childs = [];
         for (let i = 0; i < this.eventNum; i++) {
-            const ref = React.createRef();
-            childs.push(<BannerBox ref={ref} key={i} id={i} />);
-            this.events.push({ id: i, ref: ref });
+            childs.push(<BannerBox key={i} id={i} />);
         }
         return (
             <Animated.View style={{ position: 'absolute', left: this.bannerLeftValue, top: 0 }}>

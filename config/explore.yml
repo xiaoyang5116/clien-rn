@@ -18,7 +18,7 @@ explore: [
         interval: 1,
         points: [
           { idx: 1, event: 'pk', seqId: 'explore', group: 'A' },
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 1 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'B' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -39,7 +39,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 2 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'C' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -60,7 +60,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 3 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'D' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -92,7 +92,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 1 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'B' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -113,7 +113,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 2 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'C' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -134,7 +134,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 3 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'D' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -166,7 +166,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 1 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'B' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -187,7 +187,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 2 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'C' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -208,7 +208,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 3 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'D' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -240,7 +240,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 1 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'B' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -261,7 +261,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 2 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'C' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -282,7 +282,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 3 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'D' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -314,7 +314,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 1 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'B' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -335,7 +335,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 2 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'C' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -356,7 +356,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 3 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'D' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -388,7 +388,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 1 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'B' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -409,7 +409,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 2 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'B' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },
@@ -430,7 +430,7 @@ explore: [
         time: 30,
         interval: 1,
         points: [
-          { idx: 5, event: 'xunbao' },
+          { idx: 5, event: 'xunbao', typeId: 3 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'B' },
           { idx: 15, event: 'xiansuo' },
           { idx: 20, event: 'qiyu' },

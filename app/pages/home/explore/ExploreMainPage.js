@@ -114,6 +114,23 @@ const EventButton = (props) => {
     );
 }
 
+const ExploreProgress = (props) => {
+    const [ progress, setProgress ] = React.useState(props.progress);
+
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener(EventKeys.EXPLORE_UPDATE_PROGRESS, (v) => {
+            setProgress(v);
+        });
+        return (() => {
+            listener.remove();
+        });
+    }, []);
+
+    return (
+        <Text style={{ ...props.style }}>探索度 {progress}/100</Text>
+    );
+};
+
 // 探索主页面
 class ExploreMainPopPage extends Component {
 
@@ -194,7 +211,7 @@ class ExploreMainPopPage extends Component {
                         <Text style={styles.textBox}>{currentArea.name}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', marginLeft: 10, marginBottom: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
-                        <Text style={styles.textBox}>探索度 ???/100</Text>
+                        <ExploreProgress style={styles.textBox} progress={mapSelected.progress} />
                     </View>
                     <View style={{ flexDirection: 'row', marginLeft: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
                         <Text style={styles.textBox}>补给[预留位置]</Text>
