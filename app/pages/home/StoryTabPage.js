@@ -27,7 +27,7 @@ const SCENE_BG = [
 ];
 
 const SceneImage = (props) => {
-  const [ imageName, setImageName ] = React.useState('default');
+  const [ imageName, setImageName ] = React.useState('');
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener(EventKeys.ENTER_SCENE, (scene) => {
