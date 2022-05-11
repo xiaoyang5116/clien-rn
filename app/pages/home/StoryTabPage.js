@@ -20,26 +20,39 @@ import {
 import ProgressBar from '../../components/ProgressBar';
 import * as DateTime from '../../utils/DateTimeUtils';
 import FastImage from 'react-native-fast-image';
+import lo from 'lodash';
+
+const SCENE_BG = [
+  { name: 'default', img: require('../../../assets/scene/bg_default.jpg') },
+];
 
 const SceneImage = (props) => {
-  const [ display, setDisplay ] = React.useState('flex');
+  const [ imageName, setImageName ] = React.useState('default');
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener(EventKeys.ENTER_SCENE, (scene) => {
       // 这里添加功能代码
+      if (scene.sceneImage != undefined && lo.isString(scene.sceneImage)) {
+        setImageName(scene.sceneImage);
+      }
     });
     return () => {
       listener.remove();
     };
   }, []);
 
-  return (
-  <View style={{ width: '100%', height: 100, display: display }}>
-    <View style={{ flex: 1, marginLeft: 10, marginRight: 10, borderColor: '#999', borderWidth: 2 }}>
-      <FastImage style={{ width: '100%', height: '100%' }} source={require('../../../assets/bg/story.jpg')} resizeMode='cover'  />
-    </View>
-  </View>
-  );
+  if (lo.isEmpty(imageName)) {
+    return (<></>);
+  } else {
+    const img = SCENE_BG.find(e => e.name == imageName).img;
+    return (
+      <View style={{ width: '100%', height: 100 }}>
+        <View style={{ flex: 1, marginLeft: 10, marginRight: 10, borderColor: '#999', borderWidth: 2 }}>
+          <FastImage style={{ width: '100%', height: '100%' }} source={img} resizeMode='cover'  />
+        </View>
+      </View>
+      );
+  }
 }
 
 const SceneTimeLabel = (props) => {
@@ -49,6 +62,11 @@ const SceneTimeLabel = (props) => {
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener(EventKeys.ENTER_SCENE, (scene) => {
       // 这里添加功能代码
+      if (scene.worldTimeHidden != undefined && lo.isBoolean(scene.worldTimeHidden)) {
+        setDisplay(scene.worldTimeHidden ? 'none' : 'flex');
+      } else {
+        setDisplay('flex');
+      }
     });
     return () => {
       listener.remove();
