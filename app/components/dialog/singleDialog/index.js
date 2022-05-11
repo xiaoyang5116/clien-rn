@@ -95,6 +95,11 @@ const SingleDialog = props => {
             console.log("props.viewData.__sceneId", props.viewData.__sceneId);
             AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: item.toChapter, __sceneId: props.viewData.__sceneId } });
         }
+
+        // 探索事件是否完成
+        if (item.isFinish !== undefined) {
+            props.dispatch(action('ExploreModel/changeExploreStatus')({ id: item.isFinish.id, type: item.isFinish.type }));
+        }
     };
 
     if (dialogType === 'HalfScreen') {
@@ -126,4 +131,4 @@ const SingleDialog = props => {
     return null;
 };
 
-export default connect((state) => ({ ...state.SceneModel }))(SingleDialog);
+export default connect((state) => ({ ...state.SceneModel, ...state.ExploreModel }))(SingleDialog);

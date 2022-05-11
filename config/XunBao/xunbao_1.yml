@@ -1,5 +1,6 @@
 xunbao:
   {
+    id: "xunbao_1",
     style: 6,
     title: "寻宝",
     dialogType: "HalfScreen",
@@ -22,6 +23,7 @@ xunbao:
                 title: "领取奖励",
                 tokey: "",
                 props: [{ propId: 20, num: 10 }],
+                isFinish: { type: "xunbao", id: "xunbao_1" },
               },
             ],
         },

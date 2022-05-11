@@ -13,8 +13,8 @@ export class LocalCacheKeys {
 
     static MAIL_DATA = 'MAIL_DATA';
 
-    // 已完成的奇遇事件CompletedQiYuEvent_DATA
-    static QYEVENT_DATA = 'QYEVENT_DATA';
+    // 已完成的探索事件
+    static EXPLORE_FINISH_DATA = 'EXPLORE_FINISH_DATA';
 
     // 阅读器样式
     static READER_STYLE = 'READER_STYLE';
