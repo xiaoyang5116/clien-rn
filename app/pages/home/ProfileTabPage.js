@@ -31,14 +31,6 @@ class ProfileTabPage extends React.Component {
                     RootNavigation.navigate('Settings', { screen: 'Appearance', });
                 }
             },
-            {
-                id: 2,
-                title: '...',
-            },
-            {
-                id: 3,
-                title: '...',
-            },
         ];
     }
 

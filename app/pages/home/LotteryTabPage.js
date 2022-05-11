@@ -6,7 +6,7 @@ import {
 } from "../../constants";
 
 import RootView from '../../components/RootView';
-import LotteryPopPage from './LotteryPopPage';
+import LotteryPopPage from './lottery/LotteryPopPage';
 
 class LotteryTabPage extends Component {
 

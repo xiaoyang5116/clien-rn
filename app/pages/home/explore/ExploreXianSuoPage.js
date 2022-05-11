@@ -1,22 +1,19 @@
 import React from 'react';
 
 import {
-    action,
     connect,
     Component,
     StyleSheet,
-} from "../../constants";
+} from "../../../constants";
 
 import { 
     View, 
     Text, 
-    Image,
     FlatList, 
-    SafeAreaView, 
     TouchableHighlight,
-} from '../../constants/native-ui';
+} from '../../../constants/native-ui';
 
-import { TextButton } from '../../constants/custom-ui';
+import { TextButton } from '../../../constants/custom-ui';
 
 const DATA = [
     { id: 1, title: '寻宝事件1' },

@@ -1,23 +1,20 @@
 import React from 'react';
 
 import {
-    action,
     connect,
     Component,
     StyleSheet,
     AppDispath,
-} from "../../constants";
+} from "../../../constants";
 
 import { 
     View, 
     Text, 
-    Image,
     FlatList, 
-    SafeAreaView, 
     TouchableHighlight,
-} from '../../constants/native-ui';
+} from '../../../constants/native-ui';
 
-import { TextButton } from '../../constants/custom-ui';
+import { TextButton } from '../../../constants/custom-ui';
 
 // 探索挑战页面
 class ExploreBossPage extends Component {

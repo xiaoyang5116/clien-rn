@@ -5,22 +5,23 @@ import {
     connect,
     Component,
     StyleSheet,
-} from "../../constants";
+} from "../../../constants";
 
 import { 
     View, 
     Text, 
     SectionList, 
     TouchableHighlight,
-} from '../../constants/native-ui';
+} from '../../../constants/native-ui';
 
 import {
     TextButton,
-} from '../../constants/custom-ui';
+} from '../../../constants/custom-ui';
 
 import lo from 'lodash';
-import Toast from '../../components/toast';
-import { Panel } from '../../components/panel';
+import Toast from '../../../components/toast';
+import { Panel } from '../../../components/panel';
+
 import ImageCapInset from 'react-native-image-capinsets-next';
 
 class ComposeDetailTabPage extends Component {
@@ -113,7 +114,7 @@ class ComposeDetailTabPage extends Component {
                 <View style={[this.props.currentStyles.viewContainer]}>
                     <ImageCapInset
                         style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.3 }}
-                        source={require('../../../assets/bg/area.png')}
+                        source={require('../../../../assets/bg/area.png')}
                         capInsets={{ top: 30, right: 30, bottom: 30, left: 30 }}
                     />
                     <View style={styles.composeContainer}>

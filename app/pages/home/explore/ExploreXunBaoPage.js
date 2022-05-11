@@ -1,28 +1,19 @@
 import React from 'react';
 
 import {
-    action,
     connect,
     Component,
     StyleSheet,
-} from "../../constants";
+} from "../../../constants";
 
 import { 
     View, 
     Text, 
-    Image,
     FlatList, 
-    SafeAreaView, 
     TouchableHighlight,
-} from '../../constants/native-ui';
+} from '../../../constants/native-ui';
 
-import { TextButton } from '../../constants/custom-ui';
-
-const DATA = [
-    { id: 1, title: '寻宝事件1' },
-    { id: 2, title: '寻宝事件2' },
-    { id: 3, title: '寻宝事件3' },
-]
+import { TextButton } from '../../../constants/custom-ui';
 
 // 探索寻宝页面
 class ExploreXunBaoPage extends Component {

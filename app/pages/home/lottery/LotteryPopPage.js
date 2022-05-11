@@ -7,7 +7,7 @@ import {
     StyleSheet,
     DeviceEventEmitter,
     EventKeys,
-} from "../../constants";
+} from "../../../constants";
 
 import { 
     View, 
@@ -16,20 +16,20 @@ import {
     SafeAreaView, 
     Image, 
     TouchableWithoutFeedback 
-} from '../../constants/native-ui';
+} from '../../../constants/native-ui';
 
-import { TextButton, ImageButton } from '../../constants/custom-ui';
-import ProgressBar from '../../components/ProgressBar';
-import RootView from '../../components/RootView';
+import { TextButton, ImageButton } from '../../../constants/custom-ui';
+import ProgressBar from '../../../components/ProgressBar';
+import RootView from '../../../components/RootView';
 import FastImage from 'react-native-fast-image';
 import lo from 'lodash';
 
 const PROPS_ICON = [
-    { iconId: 1, img: require('../../../assets/props/prop_1.png') },
-    { iconId: 2, img: require('../../../assets/props/prop_2.png') },
-    { iconId: 3, img: require('../../../assets/props/prop_3.png') },
-    { iconId: 4, img: require('../../../assets/props/prop_4.png') },
-    { iconId: 5, img: require('../../../assets/props/prop_5.png') },
+    { iconId: 1, img: require('../../../../assets/props/prop_1.png') },
+    { iconId: 2, img: require('../../../../assets/props/prop_2.png') },
+    { iconId: 3, img: require('../../../../assets/props/prop_3.png') },
+    { iconId: 4, img: require('../../../../assets/props/prop_4.png') },
+    { iconId: 5, img: require('../../../../assets/props/prop_5.png') },
 ];
 
 // 点击宝箱二次确认框
@@ -189,9 +189,9 @@ const RewardsPage = (props) => {
                     <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>获得奖励</Text>
                 </View>
                 <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#a6c2cb' }}>
-                    <FastImage style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: 2 }} resizeMode='stretch' source={require('../../../assets/bg/dialog_line.png')} />
+                    <FastImage style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: 2 }} resizeMode='stretch' source={require('../../../../assets/bg/dialog_line.png')} />
                     {childs}
-                    <FastImage style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: 2 }} resizeMode='stretch' source={require('../../../assets/bg/dialog_line.png')} />
+                    <FastImage style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: 2 }} resizeMode='stretch' source={require('../../../../assets/bg/dialog_line.png')} />
                 </View>
                 <View>
                     <Text style={{ marginTop: 20, color: '#fff', fontSize: 20 }}>点击任意区域关闭</Text>
@@ -235,7 +235,7 @@ class Lottery10Times extends Component {
 
     render() {
         return (
-            <FastImage style={{ flex: 1 }} source={require('../../../assets/bg/lottery_bg.jpg')}>
+            <FastImage style={{ flex: 1 }} source={require('../../../../assets/bg/lottery_bg.jpg')}>
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -249,8 +249,8 @@ class Lottery10Times extends Component {
                         <Text></Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginBottom: 60 }}>
-                        <ImageButton width={150} height={50} source={require('../../../assets/button/xunbao1.png')} selectedSource={require('../../../assets/button/xunbao1_selected.png')} onPress={() => { this.lottery(1); }} />
-                        <ImageButton width={150} height={50} source={require('../../../assets/button/xunbao10.png')} selectedSource={require('../../../assets/button/xunbao10_selected.png')} onPress={() => { this.lottery(2); }} />
+                        <ImageButton width={150} height={50} source={require('../../../../assets/button/xunbao1.png')} selectedSource={require('../../../../assets/button/xunbao1_selected.png')} onPress={() => { this.lottery(1); }} />
+                        <ImageButton width={150} height={50} source={require('../../../../assets/button/xunbao10.png')} selectedSource={require('../../../../assets/button/xunbao10_selected.png')} onPress={() => { this.lottery(2); }} />
                     </View>
                     <BottomBar {...this.props} />
                 </View>
@@ -297,7 +297,7 @@ class LotteryBaoZang extends Component {
 
     render() {
         return (
-            <FastImage style={{ flex: 1 }} source={require('../../../assets/bg/lottery_bg2.jpg')}>
+            <FastImage style={{ flex: 1 }} source={require('../../../../assets/bg/lottery_bg2.jpg')}>
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>

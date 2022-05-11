@@ -5,20 +5,18 @@ import {
     connect,
     Component,
     StyleSheet,
-} from "../../constants";
+} from "../../../constants";
 
 import {
     View,
     Text,
-    Image,
     FlatList,
-    SafeAreaView,
     TouchableHighlight,
-} from '../../constants/native-ui';
+} from '../../../constants/native-ui';
 
-import Modal from '../../components/modal';
+import Modal from '../../../components/modal';
 
-import { TextButton } from '../../constants/custom-ui';
+import { TextButton } from '../../../constants/custom-ui';
 
 // 探索奇遇页面
 class ExploreQiYuPage extends Component {
@@ -32,7 +30,6 @@ class ExploreQiYuPage extends Component {
     }
 
     renderItem = (data) => {
-        // console.log("data",data);
         const item = data.item;
         return (
             <TouchableHighlight activeOpacity={0.85} underlayColor='#666' onPress={() => { this.changeQiYu(item.data, item.id) }} style={{ margin: 5 }} >
