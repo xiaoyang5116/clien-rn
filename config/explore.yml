@@ -21,7 +21,7 @@ explore: [
           { idx: 5, event: 'xunbao', typeId: 1 },
           { idx: 10, event: 'boss', seqId: 'explore', group: 'B' },
           { idx: 15, event: 'xiansuo' },
-          { idx: 20, event: 'qiyu' },
+          { idx: 20, event: 'qiyu', action: 'qiyu_1_XXX' },
           { idx: 25, event: 'pk', seqId: 'explore', group: 'A' },
         ],
         slots: {
