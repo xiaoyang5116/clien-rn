@@ -1,8 +1,8 @@
 
 import yaml from 'js-yaml';
 
-export async function GetXunBaoDataApi(typeId) {
-    let url = `http://localhost:8081/config/XunBao/xunbao_${typeId}.yml`;
+export async function GetXunBaoDataApi(acrion) {
+    let url = `http://localhost:8081/config/XunBao/${acrion}.yml`;
     return fetch(url)
     .then(r => r.text(url))
     .then(text => {

@@ -55,7 +55,7 @@ export const animationAction = type => {
                 type: EDGE_LIGHT,
                 action: edge_light_white,
             };
-        case "过关1":
+        case "盖章过关":
             return {
                 type: SCREEN_CENTER_STRETCH,
                 action: pass_1,

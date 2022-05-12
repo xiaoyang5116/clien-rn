@@ -24,6 +24,7 @@ data:
                     title: "去拿菜刀",
                     tokey: "p2",
                     props: [{ propId: 20, num: 10 }],
+                    isFinish: { type: "qiyu", id: "qiyu_1_XXX" },
                   },
                   { title: "去拿画轴", tokey: "p3" },
                 ],

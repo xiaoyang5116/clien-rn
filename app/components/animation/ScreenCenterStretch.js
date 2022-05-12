@@ -11,7 +11,7 @@ const ScreenCenterStretch = (props) => {
     const transformAnim = useRef(new Animated.Value(1)).current;
 
     const animEnd = () => {
-        DeviceEventEmitter.emit(EventKeys.ANIMATION_END,true);
+        DeviceEventEmitter.emit(EventKeys.ANIMATION_END, true);
         props.onClose()
     }
 
@@ -39,7 +39,7 @@ const ScreenCenterStretch = (props) => {
             }),
             Animated.timing(fadeAnim, {
                 toValue: 0,
-                duration: 90,
+                duration: 800,
                 useNativeDriver: false,
                 easing: Easing.ease,
             }),
@@ -62,6 +62,7 @@ const ScreenCenterStretch = (props) => {
         >
             <Animated.Image
                 style={{
+                    marginTop: -200,
                     opacity: fadeAnim,
                     transform: [{ scale: transformAnim }, { rotate: '-10deg' }]
 

@@ -15,9 +15,9 @@ const FullSingle = props => {
                     {
                         backgroundColor: '#fff',
                         height: 40,
-                        borderBottomColor: '#6d6a65',
+                        borderBottomColor: '#9e9a92',
                         borderBottomWidth: 1,
-                        borderTopColor: '#6d6a65',
+                        borderTopColor: '#9e9a92',
                         borderTopWidth: 1,
                     },
                 ]}>

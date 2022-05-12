@@ -1,5 +1,6 @@
 xunbao:
   {
+    id: "xunbao_1",
     style: 6,
     title: "寻宝",
     dialogType: "HalfScreen",
@@ -11,7 +12,7 @@ xunbao:
           content:
             [
               "你迅速跑过去，地面有些东西。",
-              ["过关1"],
+              ["盖章过关"],
               "走开走开，马夫大喝， 正从远处拨开人群走来。",
               ["边缘闪烁绿"],
               "获得几颗石头珠子，看起来能卖不少钱。",
@@ -22,6 +23,7 @@ xunbao:
                 title: "领取奖励",
                 tokey: "",
                 props: [{ propId: 20, num: 10 }],
+                isFinish: { type: "xunbao", id: "xunbao_1" },
               },
             ],
         },

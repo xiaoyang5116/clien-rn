@@ -321,10 +321,56 @@ const sharedStyles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center'
-    }
-    /* 半屏 1 begin */
-
-    /* 半屏 1 end */
+    },
+    /** ================================ */
+    /**          阅读器设置 弹窗的样式      */
+    /** ================================ */
+    readerSettingContainer: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+        height: 198,
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+    },
+    readerSettingRow: {
+        height: 50,
+        width: "100%",
+        paddingLeft: 12,
+        paddingRight: 12,
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
+        justifyContent: "space-between",
+        alignItems: 'center',
+    },
+    readerSettingRow_left_item: {
+        width: "16%",
+        height: "100%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    readerSettingRow_right_item: {
+        width: "26%",
+        height: "100%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    readerSettingRow_box: {
+        height: "100%",
+        width: "100%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    readerSetting_border_1: {
+        borderWidth: 1,
+        borderRadius: 8,
+        width: "100%",
+        height: 35,
+        lineHeight: 35,
+        fontSize: 14,
+        textAlign: 'center',
+    },
 });
 
 export default sharedStyles;

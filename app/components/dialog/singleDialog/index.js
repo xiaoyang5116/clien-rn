@@ -95,76 +95,40 @@ const SingleDialog = props => {
             console.log("props.viewData.__sceneId", props.viewData.__sceneId);
             AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: item.toChapter, __sceneId: props.viewData.__sceneId } });
         }
-    };
 
-    const renderText = ({ item, index }) => {
-        if (index <= currentIndex) {
-            // 如果 item 是数组则是特效
-            if (Array.isArray(item)) {
-                return null
-            }
-            return (
-                <TouchableWithoutFeedback onPress={nextParagraph}>
-                    <View style={{ marginTop: 12, paddingLeft: 12, paddingRight: 12, }}>
-                        <TextAnimation
-                            icon={
-                                currentIndex === index && currentIndex < currentDialogueLength
-                                    ? '▼'
-                                    : ''
-                            }
-                            fontSize={20}
-                            type={textAnimationType}
-                            style={theme.contentColor3}
-                        >
-                            {item}
-                        </TextAnimation>
-                    </View>
-                </TouchableWithoutFeedback>
-            );
+        // 探索事件是否完成
+        if (item.isFinish !== undefined) {
+            props.dispatch(action('ExploreModel/changeExploreStatus')({ id: item.isFinish.id, type: item.isFinish.type }));
         }
-        return null;
-    };
-    const renderBtn = ({ item }) => {
-        if (currentIndex >= currentDialogueLength) {
-            return (
-                <View style={{ marginTop: 8 }}>
-                    <TextButton
-                        title={item.title}
-                        onPress={() => {
-                            nextDialogue(item);
-                        }}
-                    />
-                </View>
-            );
-        }
-        return null;
     };
 
     if (dialogType === 'HalfScreen') {
         return (
             <HalfSingle
-                title={title}
                 nextParagraph={nextParagraph}
+                nextDialogue={nextDialogue}
                 currentTextList={currentTextList}
-                renderText={renderText}
                 showBtnList={showBtnList}
-                renderBtn={renderBtn}
+                currentIndex={currentIndex}
+                currentDialogueLength={currentDialogueLength}
+                {...props.viewData}
             />
         );
     }
     if (dialogType === 'FullScreen') {
         return (
             <FullSingle
-                title={title}
                 nextParagraph={nextParagraph}
+                nextDialogue={nextDialogue}
                 currentTextList={currentTextList}
-                renderText={renderText}
                 showBtnList={showBtnList}
-                renderBtn={renderBtn}
+                currentIndex={currentIndex}
+                currentDialogueLength={currentDialogueLength}
+                {...props.viewData}
             />
         );
     }
     return null;
 };
 
-export default connect((state) => ({ ...state.SceneModel }))(SingleDialog);
+export default connect((state) => ({ ...state.SceneModel, ...state.ExploreModel }))(SingleDialog);

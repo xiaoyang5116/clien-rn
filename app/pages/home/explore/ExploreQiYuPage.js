@@ -24,9 +24,8 @@ class ExploreQiYuPage extends Component {
     constructor(props) {
         super(props);
     }
-    changeQiYu = (data, id) => {
-        Modal.show(data)
-        this.props.dispatch(action('ExploreModel/changeQiYuStatus')({ id }));
+    changeQiYu = (data) => {
+        Modal.show(data);
     }
 
     renderItem = (data) => {

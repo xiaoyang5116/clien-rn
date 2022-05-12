@@ -1,5 +1,5 @@
 
-import { 
+import {
   action,
   AppDispath,
   DeviceEventEmitter,
@@ -44,7 +44,7 @@ export default {
     __data: {
       // 探索配置
       config: [],
-      
+
       // 挑战等待队列
       pendingChallengeQueue: [],
     },
@@ -95,7 +95,7 @@ export default {
           e.progress = 0; // 缺省探索度
         });
       }
-      
+
       exploreState.__data.config.length = 0;
       exploreState.__data.config.push(...data.explore);
     },
@@ -107,7 +107,7 @@ export default {
       const maps = [];
       for (let i = 0; i < exploreState.__data.config.length; i += 2) {
         const first = exploreState.__data.config[i];
-        const second = exploreState.__data.config[i+1];
+        const second = exploreState.__data.config[i + 1];
         const item = [];
         if (lo.isObject(first)) item.push(first);
         if (lo.isObject(second)) item.push(second);
@@ -124,9 +124,9 @@ export default {
         const item = exploreState.rewards[key];
         // 道具信息
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.propId }));
-        rewards.push({ 
-          propId: item.propId, num: item.num, 
-          name: propConfig.name, quality: propConfig.quality, iconId: propConfig.iconId 
+        rewards.push({
+          propId: item.propId, num: item.num,
+          name: propConfig.name, quality: propConfig.quality, iconId: propConfig.iconId
         });
       }
       return rewards;
@@ -220,11 +220,24 @@ export default {
     },
 
     // 寻宝事件
-    *onXunBaoEvent({ payload }, { select, put }) {
+    *onXunBaoEvent({ payload }, { select, put, call }) {
       const exploreState = yield select(state => state.ExploreModel);
+      const exploreFinishData = yield call(LocalStorage.get, LocalCacheKeys.EXPLORE_FINISH_DATA);
       const { map, event } = payload;
-      exploreState.event_xunbao.push({ id: (exploreState.event_xunbao.length + 1), ...event, _map: map });
-      DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'xunbao', num: exploreState.event_xunbao.length });
+
+      if (event.action === undefined) return null
+
+      const data = yield call(GetXunBaoDataApi, event.action);
+
+      if (exploreFinishData !== null) {
+        if (exploreFinishData.find(f => f.id === data.xunbao.id) === undefined) {
+          exploreState.event_xunbao.push({ id: (exploreState.event_xunbao.length + 1), ...event, ...data, _map: map });
+          DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'xunbao', num: exploreState.event_xunbao.length });
+        }
+      } else {
+        exploreState.event_xunbao.push({ id: (exploreState.event_xunbao.length + 1), ...event, ...data, _map: map });
+        DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'xunbao', num: exploreState.event_xunbao.length });
+      }
     },
 
     // 挑战BOSS事件
@@ -246,34 +259,50 @@ export default {
     // 奇遇事件
     *onQiYuEvent({ payload }, { select, put, call }) {
       const exploreState = yield select(state => state.ExploreModel);
+      const exploreFinishData = yield call(LocalStorage.get, LocalCacheKeys.EXPLORE_FINISH_DATA);
       const { map, event } = payload;
+
+      if (event.action === undefined) return null
+
       const { data } = yield call(GetQiYuApi, event.action)
-      exploreState.event_qiyu.push({ id: (exploreState.event_qiyu.length + 1), ...event, ...data, _map: map });
-      DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'qiyu', num: exploreState.event_qiyu.length });
+
+      if (exploreFinishData !== null) {
+        if (exploreFinishData.find(f => f.id === data.id) === undefined) {
+          exploreState.event_qiyu.push({ id: (exploreState.event_qiyu.length + 1), ...event, ...data, _map: map });
+          DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'qiyu', num: exploreState.event_qiyu.length });
+        }
+      } else {
+        exploreState.event_qiyu.push({ id: (exploreState.event_qiyu.length + 1), ...event, ...data, _map: map });
+        DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'qiyu', num: exploreState.event_qiyu.length });
+      }
     },
-
-    // 改变奇遇事件状态
-    *changeQiYuStatus({ payload }, { select, put, call }) {
+    // 探索事件状态
+    *changeExploreStatus({ payload }, { select, put, call }) {
       // [ {id: "qiyu_1_XXX", isFinish: true} ]  奇遇事件状态存储格式
-      const oldData = yield call(LocalStorage.get, LocalCacheKeys.QYEVENT_DATA);
-
+      const oldData = yield call(LocalStorage.get, LocalCacheKeys.EXPLORE_FINISH_DATA);
       const newData = {
         id: payload.id,
         isFinish: true
       }
 
       if (oldData !== null) {
-        yield call(LocalStorage.set, LocalCacheKeys.QYEVENT_DATA, [...oldData, newData]);
+        yield call(LocalStorage.set, LocalCacheKeys.EXPLORE_FINISH_DATA, [...oldData, newData]);
       }
       else {
-        yield call(LocalStorage.set, LocalCacheKeys.QYEVENT_DATA, [newData]);
+        yield call(LocalStorage.set, LocalCacheKeys.EXPLORE_FINISH_DATA, [newData]);
       }
 
       const exploreState = yield select(state => state.ExploreModel);
-      console.log("exploreState", exploreState.event_qiyu);
-      const newQiyuData= exploreState.event_qiyu.filter(e => e.id !== payload.id);
-      console.log("newQiyuData", newQiyuData.length);
-      exploreState.event_qiyu = newQiyuData;
+
+      if (payload.type === 'xunbao') {
+        exploreState.event_xunbao = exploreState.event_xunbao.filter(e => e.action != payload.id);
+        DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'xunbao', num: exploreState.event_xunbao.length });
+        console.log("exploreState.event_xunbao.length",exploreState.event_xunbao);
+      }
+      if (payload.type === 'qiyu') {
+        exploreState.event_qiyu = exploreState.event_qiyu.filter(e => e.action != payload.id);
+        DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'qiyu', num: exploreState.event_qiyu.length });
+      }
     },
 
     // 挑战
@@ -287,7 +316,7 @@ export default {
 
       // 单打一个杂鱼
       const enemy = enemiesGroup.items[0];
-      const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: MYSELF_ATTRS, enemy}));
+      const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: MYSELF_ATTRS, enemy }));
 
       if (lo.isArray(report)) {
         // 战斗中
@@ -337,18 +366,6 @@ export default {
       }
     },
 
-    // 寻宝
-    *toXunBao({ payload }, { select, put, call }) {
-      const exploreState = yield select(state => state.ExploreModel);
-      const { typeId } = payload;
-
-      exploreState.event_xunbao = exploreState.event_xunbao.filter(e => e.id != payload.id);
-      DeviceEventEmitter.emit(EventKeys.EXPLORE_UPDATE_EVENT_NUM, { type: 'xunbao', num: exploreState.event_xunbao.length });
-
-      const data = yield call(GetXunBaoDataApi, typeId);
-      Modal.show(data.xunbao);
-    },
-
     // 添加奖励到储物袋
     *addReward({ payload }, { select, put }) {
       const exploreState = yield select(state => state.ExploreModel);
@@ -390,10 +407,10 @@ export default {
       exploreState.__data.pendingChallengeQueue.length = 0;
     }
   },
-  
+
   reducers: {
     updateState(state, { payload }) {
-      return { 
+      return {
         ...state,
         ...payload
       };
@@ -403,7 +420,7 @@ export default {
   subscriptions: {
     registerReloadEvent({ dispatch }) {
       EventListeners.register('reload', (msg) => {
-        return dispatch({ 'type':  'reload'});
+        return dispatch({ 'type': 'reload' });
       });
     },
   }
