@@ -6,6 +6,8 @@ import {
   connect,
   Component,
   ThemeContext,
+  DeviceEventEmitter,
+  EventKeys,
 } from "../../constants";
 
 import { 
@@ -18,6 +20,63 @@ import {
 import ProgressBar from '../../components/ProgressBar';
 import * as DateTime from '../../utils/DateTimeUtils';
 import FastImage from 'react-native-fast-image';
+import lo from 'lodash';
+
+const SCENE_BG = [
+  { name: 'default', img: require('../../../assets/scene/bg_default.jpg') },
+];
+
+const SceneImage = (props) => {
+  const [ imageName, setImageName ] = React.useState('');
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.ENTER_SCENE, (scene) => {
+      // 这里添加功能代码
+      if (scene.sceneImage != undefined && lo.isString(scene.sceneImage)) {
+        setImageName(scene.sceneImage);
+      }
+    });
+    return () => {
+      listener.remove();
+    };
+  }, []);
+
+  if (lo.isEmpty(imageName)) {
+    return (<></>);
+  } else {
+    const img = SCENE_BG.find(e => e.name == imageName).img;
+    return (
+      <View style={{ width: '100%', height: 100 }}>
+        <View style={{ flex: 1, marginLeft: 10, marginRight: 10, borderColor: '#999', borderWidth: 2 }}>
+          <FastImage style={{ width: '100%', height: '100%' }} source={img} resizeMode='cover'  />
+        </View>
+      </View>
+      );
+  }
+}
+
+const SceneTimeLabel = (props) => {
+  const themeStyle = React.useContext(ThemeContext);
+  const [ display, setDisplay ] = React.useState('flex');
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.ENTER_SCENE, (scene) => {
+      // 这里添加功能代码
+      if (scene.worldTimeHidden != undefined && lo.isBoolean(scene.worldTimeHidden)) {
+        setDisplay(scene.worldTimeHidden ? 'none' : 'flex');
+      } else {
+        setDisplay('flex');
+      }
+    });
+    return () => {
+      listener.remove();
+    };
+  }, []);
+
+  return (
+    <Text style={[themeStyle.datetimeLabel, { display: display }]}>{props.datetime}</Text>
+  );
+}
 
 class StoryTabPage extends Component {
 
@@ -105,13 +164,17 @@ class StoryTabPage extends Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = this.props.navigation.addListener('tabPress', (e) => {
-      this.props.dispatch(action('StoryModel/reEnter')({}));
-    });
+    if (this.props.navigation != null) {
+      this.unsubscribe = this.props.navigation.addListener('tabPress', (e) => {
+        this.props.dispatch(action('StoryModel/reEnter')({}));
+      });
+    }
   }
 
   componentWillUnmount() {
-    this.unsubscribe();
+    if (this.unsubscribe != null) {
+      this.unsubscribe();
+    }
   }
 
   render() {
@@ -131,13 +194,9 @@ class StoryTabPage extends Component {
       <View style={this.props.currentStyles.viewContainer}>
         <View style={[this.props.currentStyles.positionBar, { flexDirection: 'row', justifyContent: 'space-between' }]}>
           <Text style={[this.props.currentStyles.positionLabel, {color: this.props.currentStyles.navigation.text}]}>位置: {this.props.position}</Text>
-          <Text style={this.props.currentStyles.datetimeLabel}>{fmtDateTime}</Text>
+          <SceneTimeLabel datetime={fmtDateTime} />
         </View>
-        <View style={{ width: '100%', height: 100 }}>
-          <View style={{ flex: 1, marginLeft: 10, marginRight: 10, borderColor: '#999', borderWidth: 2 }}>
-            <FastImage style={{ width: '100%', height: '100%' }} source={require('../../../assets/bg/story.jpg')} resizeMode='cover'  />
-          </View>
-        </View>
+        <SceneImage />
         <View style={this.props.currentStyles.chatContainer}>
           <SectionList
             style={this.props.currentStyles.chatList}

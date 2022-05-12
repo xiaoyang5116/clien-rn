@@ -3,9 +3,13 @@
 // ===============================
 export class EventKeys {
 
+    static MODAL_SHOW = 'MODAL_SHOW';
+
     static APP_SET_STATE = 'APP_SET_STATE';
 
     static APP_DISPATCH = 'APP_DISPATCH';
+
+    static ENTER_SCENE = 'ENTER_SCENE';
 
     static CAROUSEL_SELECT_ITEM = 'CAROUSEL_SELECT_ITEM';
 

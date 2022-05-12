@@ -6,6 +6,8 @@ import {
   errorMessage,
   LocalCacheKeys,
   AppDispath,
+  DeviceEventEmitter,
+  EventKeys,
 } from "../constants";
 
 import {
@@ -312,6 +314,9 @@ export default {
       if (needSync) {
         yield put.resolve(action('UserModel/syncData')({}));
       }
+
+      // 广播进入场景事件
+      DeviceEventEmitter.emit(EventKeys.ENTER_SCENE, scene);
     },
 
     // 设置世界时间

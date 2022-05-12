@@ -4,6 +4,8 @@ import Modal from 'react-native-modal';
 import {
     action,
     connect,
+    DeviceEventEmitter,
+    EventKeys,
     PureComponent,
 } from "../../constants";
 
@@ -19,7 +21,13 @@ import lo from 'lodash';
 class MaskModal extends PureComponent {
 
     componentDidMount() {
-        this.props.dispatch(action('MaskModel/showDialog')(this.props.viewData));
+        this.listener = DeviceEventEmitter.addListener(EventKeys.MODAL_SHOW, (payload) => {
+            this.props.dispatch(action('MaskModel/showDialog')(payload));
+        })
+    }
+
+    componentWillUnmount() {
+        this.listener.remove();
     }
 
     _onDialogConfirm = () => {
@@ -73,7 +81,6 @@ class MaskModal extends PureComponent {
 
     _renderForAside() {
         const currentStyles = this.props.currentStyles;
-
         const style = parseInt(this.props.style);
 
         // 6  代表 popUp dialog 弹出对话框
