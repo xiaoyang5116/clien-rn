@@ -1,14 +1,18 @@
 
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import { 
+  createStackNavigator, 
+  CardStyleInterpolators 
+} from '@react-navigation/stack';
 
 import AppearancePage from './settings/AppearancePage';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 const SettingsPage = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
       <Stack.Screen name='Appearance' options={{ headerShown: false }} component={AppearancePage} />
     </Stack.Navigator>
   );
