@@ -35,11 +35,13 @@ export default {
       queue: new Queue(), // 支持：一次性添加多个弹窗
       current: null,
     },
-    primaryType: 0, // 主类: 1: 对话框, 2: 旁白
-    style: 0, // 样式ID
+
+    primaryType: 0,   // 主类: 1: 对话框, 2: 旁白
+    style: 0,         // 样式ID
     title: '',
     content: '',
     visible: false,
+    viewData: null,   // 完整的视图数据
   },
 
   effects: {
@@ -104,6 +106,7 @@ export default {
         maskState.style = 0;
         maskState.title = '';
         maskState.content = '';
+        maskState.viewData = null;
         yield put.resolve(action('_checkNext')({}));
       }
     },
@@ -129,6 +132,7 @@ export default {
           content: content, 
           style: next.style,
           visible: true,
+          viewData: next,
         }));
       }
     },

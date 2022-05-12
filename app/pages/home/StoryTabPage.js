@@ -164,13 +164,17 @@ class StoryTabPage extends Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = this.props.navigation.addListener('tabPress', (e) => {
-      this.props.dispatch(action('StoryModel/reEnter')({}));
-    });
+    if (this.props.navigation != null) {
+      this.unsubscribe = this.props.navigation.addListener('tabPress', (e) => {
+        this.props.dispatch(action('StoryModel/reEnter')({}));
+      });
+    }
   }
 
   componentWillUnmount() {
-    this.unsubscribe();
+    if (this.unsubscribe != null) {
+      this.unsubscribe();
+    }
   }
 
   render() {
