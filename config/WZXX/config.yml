@@ -7,9 +7,15 @@ book: {
     scene_list:
       [
         "scene_wzxx",
+        "WZXX_[Chapters]",
         "WZXX_[START]",
-        "WZXX_[Variables]",
-        "WZXX_M1_N1_C001V",
         "WZXX_M1_N1_C001A_V",
+        "WZXX_M1_N1_C001B_V",
+        "WZXX_M1_N1_C001C_V",
+        "WZXX_M1_N1_C001V",
+        "WZXX_M1_N1_C002V",
+
+
+        
       ],
   }

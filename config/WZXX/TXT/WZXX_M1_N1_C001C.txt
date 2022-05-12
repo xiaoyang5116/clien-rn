@@ -1,7 +1,7 @@
 #START========================================
 #城门
 [
-{ andVarsOn: ['WZXX_ChaptersV/WZXX_M1_N1_C001_[L1]'] },
+{ andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001C'] }, 
 { header: '第一章 下篇 进入白城' },
 ]
 #END==========================================
@@ -91,7 +91,7 @@
 #START========================================
 #
 [
-    { sceneId: 'WZXX_M1_N1_C001V', chatId: 'WZXX_M1_N1_C001C2' },
+    { sceneId: 'WZXX_M1_N1_C001C', chatId: 'WZXX_M1_N1_C001C_CCXZ' },
 ]
 #END==========================================
      

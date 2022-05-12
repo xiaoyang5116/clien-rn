@@ -1,38 +1,90 @@
 scenes: [
-    #
+    #worldTimeHidden: true or false // 设定对话场景中是否显示世界时间。
+    #sceneImage: xxx // 设定对话场景中的背景图片名称
     {
-      id: 'WZXX_M1_N1_C001A_V',
-      name: "定义对应标题名当前章节内的选项和变量",
-
+      id: 'WZXX_M1_N1_C001B_V',
+      name: "城外密林",
+      #worldTimeHidden: true,
+      #sceneImage: SceneMap0001
       # 变量定义
       vars: [
       { id: "v1", min: 0, max: 1 },
-      { id: "v2", min: 0, max: 1 } ,
-      { id: "v3", min: 0, max: 1 } ,
+ 
       ],
 
       # 动作定义
-      actions: [],
+      actions: [
+      ],
 
       # 事件定义
       # 故事中的场景事件暂时没什么意义
-      events: [],
+      events: [
+      { type: 'enter', nextChat: 'C001B_EventSTART1' },
+      ],
 
       # 对话选项
       chats: [
+      #选择道路事件=================================================
+      { 
+        id: 'WZXX_M1_N1_C001B_VD', desc: '选项', 
+        options: [ 
+          { 
+          title: "选择道路",
+          #toScene: 'WZXX_M1_N1_C001B_V',
+          dialogs: ['pangbai1']
+          },
+        ],
+      }, 
+      #
       #
       { 
-        id: 'WZXX_M1_N1_C001B_V', desc: '选项', 
+        id: 'C001B_EventSTART1', desc: '一个分叉路在你眼前', 
         options: [ 
-          { title: "未配置", dialogs: ['Screen1']},
+          #第一次进入 
+          { title: '【向左走】',nextChat: 'L1'  }, 
+          { title: '【向右走】',nextChat: 'R1'  }, 
         ],
       },
       #
+      { 
+        id: 'L1', desc: '乱石挡住了去路，前面无法通行', 
+        options: [ 
+          { title: '【返回】',nextChat: 'L1'  }, 
+        ],
+      },
+
+
+
+
+      #
+      { 
+        id: 'dalukou_Event01Day3', desc: '民居院落依着斜坡而建，路边有一条小河沟，桥头有一些小吃摊位', 
+        options: [ 
+          { title: '>>>【落月镇西-大路口】', andVarsOn: ['v1'], toScene: 'dalukou' }, 
+          { title: '<<<【落月镇西-胡同口】', andVarsOn: ['v1'], toScene: 'hutongkou' }, 
+        ],
+      },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  
- 
+     #三合一分支界面
       { 
-        id: 'WZXX_M1_N1_C001BV', desc: '选项', 
+        id: 'WZXX_M1_N1_C001B_V', desc: '选项', 
         options: [ 
         { title: "【选择行动目标】", 
         #章节选择
@@ -41,30 +93,30 @@ scenes: [
                 {
                   title: "第一章 分支2",
                   body: " <<<<去寻找穿越带来的物品。>>>>\n终于摆脱了敌人，李森炎感觉自己身上一身轻松，这个时候终于能够好好的整理一下思路。\n现在的情况有些匪夷所思，看起来是遇到了一些小说中的穿越情况。",
-                  toChapter: "WZXX_M1_N1_C001_[A2]",
+                  toChapter: "WZXX_M1_N1_C001B_[B1]",
                 },
-              {
+               {
                   title: "第一章 分支1",
                   body: "<<<<去最近的城市,平川府白城>>>>\n明明不是自己所在的现实世界的逻辑，但记忆里，像是有两个截然不同的人生在交错缠杂，他甚至有些分不清谁是谁。说不定进城后能询问出更多线索。",
-                  toChapter: "WZXX_M1_N1_C001_[A1]",
+                  toChapter: "WZXX_M1_N1_C001B_[A1]",
                 },
                 {
                  title: "第一章 分支3",
                   body: " <<<<跟踪杀手，寻找线索>>>>\n不知为什么，李森炎在这个时候觉得特别的冷静。\n分明是刚刚穿越而来，却发现现在不但有了脑中特殊的记忆，还多了一身功夫。\n甚至现在。这具身躯中多出额外的力量来。",
                   # desc: "此段描述只有切换世界才用到",
-                  toChapter: "WZXX_M1_N1_C0011_[A3]",
+                  toChapter: "WZXX_M1_N1_C001B_[C1]",
                 },
               ]
             },
-        varsOn: ['WZXX_M1_N1_C001_[A1]'], 
+      
         },
 
  
         ],
       },
-      #
+     #三合一分支界面结束
 
-       #
+        
         ],
 
 
@@ -73,14 +125,51 @@ scenes: [
       # 对话框 FullScreen全屏 HalfScreen 半屏
       dialogs:
         [
-           #选项对话
-          { id: 'Screen1',style: 6, title: '证明自己有秘籍', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'p1', content: ['得想个办法','让这杀手知道我真有秘籍',],
-          btn: [{title: '草，想不出来！（理直气壮）',tokey: "p1A"},{title: '不如念一段道德经？', tokey: "p1B"},{title: '用小学课本的看到的诗句！', tokey: "p1C"},{title: '不行，再想想', tokey: "p1D"},{title: '做几个广播体操的动作', tokey: "p1E"},]},
+       #进入小道
 
-          { key: 'p1A', content: ['李森炎露出自信的笑容，牙齿仿佛在闪闪发光！','…………？','杀手：你傻笑什么？','李森炎：没事，我这是自信!'], 
-          btn: [{title: '我这是自信!别打我！', tokey: "p1"},], },   
+    { id: 'pangbai1', style: 1, title: '乞丐李大哥：', sections: ['地点，小树林。','李森炎小心翼翼的走着，生怕万一弄出太大动静，再把那倒霉的杀手引来。','不过，这还不是最大的问题','跑的时候不认识路，完全瞎跑。这想原路回去可就难了。','李森炎决定凭着模糊的印象摸索道路','……','一个分叉路口前',], nextChat: 'C001B_EventSTART1' },
+
+
+        #进入小道
+         { id: 'gameover00',
+           style: 6, 
+           title: '你挂了',
+           dialogType: 'FullScreen', 
+           textAnimationType: 'TextFadeIn', 
+           sections: [
+           { key: 'p1', content: ['地点，小树林。','李森炎小心翼翼的走着，生怕万一弄出太大动静，再把那倒霉的杀手引来。','不过，这还不是最大的问题','跑的时候不认识路，完全瞎跑。这想原路回去可就难了。','李森炎决定凭着模糊的印象摸索道路','……','一个分叉路口前',], 
+           btn: [{title: '选择道路',tokey: "next"}]},
+           ],
+
+         },
+
+
+
+
+
+
+
+
+
+
+
+
+          #选项对话
+          { id: 'Screen1',style: 6, title: '林间小道', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'p1', content: ['地点，小树林。','李森炎小心翼翼的走着，生怕万一弄出太大动静，再把那倒霉的杀手引来。','不过，这还不是最大的问题','跑的时候不认识路，完全瞎跑。这想原路回去可就难了。','李森炎决定凭着模糊的印象摸索道路','……','一个分叉路口前',],
+          btn: [{title: '走左边的路',tokey: "p1A"},{title: '走右边的路', tokey: "p1B"},],
+          },
+
+          { key: 'p1A', content: ['前面的路被堵死了。','只能原路返回。',], 
+          btn: [{title: '返回', tokey: "p1A2"},], },   
+
+          { key: 'p1A2', content: ['？','好像和之前的路口不一样',],
+          btn: [{title: '走左边的路',tokey: "p1A2A"},{title: '走右边的路', tokey: "p1A2B"},]},
+
+          { key: 'p1A2B', content: ['前面的路被堵死了','这里好像之前来过？',], 
+          btn: [{title: '返回', tokey: "p1A2"},], },   
+
 
           { key: 'p1B', content: ['记得不少穿越小说念了之后就天地变色！','我也来一段!','道可道，非常道；名可名，非常名', '然后呢，额，好像不记得了。','……','正常谁去背这个？？！',['边缘闪烁红'],'杀手：我就不该信你小子','……',],
             btn: [{title: '……', dialogs: ['gameover00'] ,},]},   
@@ -112,8 +201,8 @@ scenes: [
           { key: 'p1D3', content: ['秘籍在别人手里','但我可以带你去找他','……','杀手：那么这人是谁？','……','算了，夜长梦多',['边缘闪烁红'],'这么麻烦的话，你还是去死好了……'  ],
            btn: [{title: '…………',dialogs: ['gameover00'] }]},     
 
-          { key: 'p1D4', content: ['什么都不说','说多错多','干脆让对方脑补','……','杀手：这小子看起来这么自信，难道真有料不成？',['盖章过关'],'……'],
-          btn: [{title: '有戏',toChapter: "WZXX_M1_N1_C001B", }]},    
+          { key: 'p1D4', content: ['就这样','……'],
+          btn: [{title: '向着有声音的地方走',toChapter: "WZXX_M1_N1_C001B", }]},    
 
 
 
@@ -137,7 +226,7 @@ scenes: [
          { key: 'p3', content: ['临死前听到一句话','我一个学武的，最讨厌你们这帮文人……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001"}]},
          ], },
   
-
+ 
 
 
         ],

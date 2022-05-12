@@ -8,24 +8,49 @@ files:
   #第一章
     "WZXX_[START].txt",
     "WZXX_M1_N1_C001.txt",
-    "WZXX_M1_N1_C001_[A1].txt",
-    "WZXX_M1_N1_C001_[A2].txt",
-    "WZXX_M1_N1_C001_[A3].txt",
     "WZXX_M1_N1_C001A.txt",
+    "WZXX_M1_N1_C001B_[A1].txt",
+    "WZXX_M1_N1_C001B_[B1].txt",
+    "WZXX_M1_N1_C001B_[B2].txt",
+    "WZXX_M1_N1_C001B_[C1].txt",
     "WZXX_M1_N1_C001B.txt",
-    
-    "WZXX_M1_N1_C001A_[A1].txt",
-    "WZXX_M1_N1_C001A_[A2].txt",
-    "WZXX_M1_N1_C001A_[A3].txt",
-
-  #选择身份
+    "WZXX_M1_N1_C001C_[N1].txt",
+    "WZXX_M1_N1_C001C_[N2].txt",
+    "WZXX_M1_N1_C001C_[N3].txt",
+    "WZXX_M1_N1_C001C.txt",
+    #
     "WZXX_M1_N1_C002.txt",
     "WZXX_M1_N1_C003.txt",
- 
-
-
-
-#
+    "WZXX_M1_N1_C004.txt",
+    "WZXX_M1_N1_C005.txt",
+    "WZXX_M1_N1_C006.txt",
+    "WZXX_M1_N1_C007.txt",
+    "WZXX_M1_N1_C008.txt",
+    "WZXX_M1_N1_C009.txt",
+    "WZXX_M1_N1_C010.txt",
+   #
+    "WZXX_M1_N1_C011.txt",
+    "WZXX_M1_N1_C012.txt",
+    "WZXX_M1_N1_C013.txt",
+    "WZXX_M1_N1_C014.txt",
+    "WZXX_M1_N1_C015.txt",
+    "WZXX_M1_N1_C016.txt",
+    "WZXX_M1_N1_C017.txt",
+    "WZXX_M1_N1_C018.txt",
+    "WZXX_M1_N1_C019.txt",
+    "WZXX_M1_N1_C020.txt",
+     #
+    "WZXX_M1_N1_C021.txt",
+    "WZXX_M1_N1_C022.txt",
+    "WZXX_M1_N1_C023.txt",
+    "WZXX_M1_N1_C024.txt",
+    "WZXX_M1_N1_C025.txt",
+    "WZXX_M1_N1_C026.txt",
+    "WZXX_M1_N1_C027.txt",
+    "WZXX_M1_N1_C028.txt",
+    "WZXX_M1_N1_C029.txt",
+    "WZXX_M1_N1_C030.txt",
+    
 #
 #
 #

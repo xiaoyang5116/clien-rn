@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_C001VA',
+      id: 'WZXX_M1_N1_C001C',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -22,7 +22,7 @@ scenes: [
       chats: [
       #
       { 
-        id: 'WZXX_M1_N1_C001VA', desc: '选项', 
+        id: 'WZXX_M1_N1_C0015985958', desc: '选项', 
         options: [ 
           { title: "【秘籍的解释】", dialogs: ['Screen1']},
         ],

@@ -5,7 +5,7 @@ scenes: [
       name: "小说专属场景",
 
       # 变量定义
-    vars: [
+      vars: [
       { id: 'v1', min: 0, max: 1 },
 
       # 变量定义已读标签
