@@ -12,7 +12,7 @@ const RButton = (props) => {
     const { readerStyle } = props
     return (
         <TouchableOpacity
-            // disabled={props.disabled}
+            disabled={props.selected}
             style={[theme.readerSettingRow_box]}
             onPress={props.onPress}
         >
