@@ -5,7 +5,7 @@ scenes: [
       id: 'WZXX_M1_N1_C001B_V',
       name: "城外密林",
       worldTimeHidden: true,
-      #sceneImage: SceneMap0001
+      sceneImage: SceneMap0001,
       # 变量定义
       vars: [
       { id: "v1", min: 0, max: 1 },
@@ -17,7 +17,7 @@ scenes: [
 
       # 事件定义 阅读器中的场景事件暂时没什么意义
       events: [
-      { type: 'enter', nextChat: 'C001B_EventSTART1', dialogs: ['Screen1'] },
+      { type: 'enter', nextChat: 'C001B_EventSTART1',dialogs: ['C001B_START_shulin']},
       ],
 
       # 对话选项
@@ -28,7 +28,7 @@ scenes: [
         options: [ 
           { 
           title: "选择道路",
-          dialogs: ['C001B_START_shulin']
+          toScene: 'WZXX_M1_N1_C001B_V', 
           },
         ],
       }, 
