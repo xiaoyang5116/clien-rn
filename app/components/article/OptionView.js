@@ -7,6 +7,8 @@ import lo from 'lodash';
 import {
     connect,
     action,
+    DeviceEventEmitter,
+    EventKeys,
 } from "../../constants";
 
 import RootView from '../../components/RootView';
