@@ -7,7 +7,7 @@ import {
     StyleSheet,
     DeviceEventEmitter,
     EventKeys,
-} from "../../constants";
+} from "../../../constants";
 
 import { 
     View, 
@@ -15,12 +15,13 @@ import {
     FlatList, 
     SafeAreaView, 
     TouchableWithoutFeedback 
-} from '../../constants/native-ui';
+} from '../../../constants/native-ui';
 
-import ImageCapInset from 'react-native-image-capinsets-next';
-import { TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
-import Toast from '../../components/toast';
+import ImageCapInset from 'react-native-image-capinsets-next';
+
+import { TextButton } from '../../../constants/custom-ui';
+import Toast from '../../../components/toast';
 
 const AreaBlock = (props) => {
     const [ selected, onSelected ] = useState(false);
@@ -38,6 +39,10 @@ const AreaBlock = (props) => {
         };
     });
 
+    const progressMaxWidth = 116;
+    let progressCurrWidth = (props.item.progress / 100) * progressMaxWidth;
+    progressCurrWidth = progressCurrWidth > progressMaxWidth ? progressMaxWidth : progressCurrWidth;
+
     return (
         <TouchableWithoutFeedback onPress={() => {
             DeviceEventEmitter.emit(EventKeys.AREA_BLOCK_SELECTED, props.item);
@@ -45,18 +50,18 @@ const AreaBlock = (props) => {
         }}>
         <View style={{ width: 150, height: 120, borderColor: '#666', borderWidth: 1, backgroundColor: '#f2ede7', justifyContent: 'center', alignItems: 'center' }}>
             <FastImage
-                source={require('../../../assets/bg/area_block_bg.png')}
+                source={require('../../../../assets/bg/area_block_bg.png')}
                 style={{ width: '100%', height: '100%', position: 'absolute' }}
             />
             <ImageCapInset
                 style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.5 }}
-                source={require('../../../assets/bg/area_block_border.png')}
+                source={require('../../../../assets/bg/area_block_border.png')}
                 capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
             />
             <View style={{ backgroundColor: '#e2d3c0', width: '75%', height: 30, justifyContent: 'center', alignItems: 'center' }}>
                 <ImageCapInset
                     style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.5 }}
-                    source={require('../../../assets/bg/area_block_title.png')}
+                    source={require('../../../../assets/bg/area_block_title.png')}
                     capInsets={{ top: 15, right: 15, bottom: 15, left: 15 }}
                 />
                 <Text style={{ color: '#666', fontSize: 14, fontWeight: 'bold' }}>{props.item.name}</Text>
@@ -65,27 +70,27 @@ const AreaBlock = (props) => {
                 <Text style={{ lineHeight: 24, fontSize: 12, color: '#b48b63' }}>探索度</Text>
             </View>
             <View style={{ width: '80%', height: 15 }}>
-                <View style={{ position: 'absolute', width: 116, backgroundColor: '#669900', height: 15 }}>
+                <View style={{ position: 'absolute', width: progressMaxWidth, backgroundColor: '#669900', height: 15 }}>
                     <FastImage
-                        source={require('../../../assets/progress/progress_bg.png')}
+                        source={require('../../../../assets/progress/progress_bg.png')}
                         style={{ width: '100%', height: '100%', position: 'absolute' }}
                         resizeMode='stretch'
                     />
                 </View>
-                <View style={{ position: 'absolute', width: 58, backgroundColor: '#669900', height: 15 }}>
+                <View style={{ position: 'absolute', width: progressCurrWidth, backgroundColor: '#669900', height: 15 }}>
                     <FastImage
-                        source={require('../../../assets/progress/progress_front.png')}
+                        source={require('../../../../assets/progress/progress_front.png')}
                         style={{ width: '100%', height: '100%', position: 'absolute' }}
                         resizeMode='stretch'
                     />
                 </View>
                 <View style={{ position: 'absolute', top: -2, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: '#fff' }}>50/100</Text>
+                    <Text style={{ color: '#fff' }}>{props.item.progress}/100</Text>
                 </View>
             </View>
             {
             (selected)
-            ? (<FastImage style={{ position: 'absolute', bottom: -9, right: -3, width: 35, height: 35 }} source={require('../../../assets/button_icon/1.png')} />)
+            ? (<FastImage style={{ position: 'absolute', bottom: -9, right: -3, width: 35, height: 35 }} source={require('../../../../assets/button_icon/1.png')} />)
             : <></>
             }
         </View>
@@ -129,7 +134,7 @@ class ExploreMapsPage extends Component {
 
     render() {
         return (
-            <FastImage style={{ flex: 1 }} source={require('../../../assets/bg/explore_bg.jpg')} >
+            <FastImage style={{ flex: 1 }} source={require('../../../../assets/bg/explore_bg.jpg')} >
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>

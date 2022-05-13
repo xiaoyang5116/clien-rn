@@ -5,9 +5,10 @@ import {
   NavigationContainer
 } from '@react-navigation/native';
 
-import {
-  createNativeStackNavigator
-} from '@react-navigation/native-stack';
+import { 
+  createStackNavigator, 
+  CardStyleInterpolators 
+} from '@react-navigation/stack';
 
 import {
   action,
@@ -18,15 +19,13 @@ import {
 } from '../constants';
 
 import lo from 'lodash';
-
 import HomePage from './/HomePage';
 import ArticlePage from './ArticlePage';
 import FirstPage from './FirstPage';
 import SettingsPage from './SettingsPage';
-
 import { navigationRef } from '../utils/RootNavigation';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 class MainPage extends Component {
 
@@ -51,7 +50,7 @@ class MainPage extends Component {
   render() {
     return (
       <NavigationContainer theme={{ colors: this.props.currentStyles.navigation }} ref={navigationRef}>
-        <Stack.Navigator initialRouteName='First'>
+        <Stack.Navigator initialRouteName='First' screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
           <Stack.Screen name='Home' options={{ headerShown: false }} component={HomePage} />
           <Stack.Screen name='Article' options={{ headerShown: false }} component={ArticlePage} />
           <Stack.Screen name="First" options={{ headerShown: false }} component={FirstPage} />

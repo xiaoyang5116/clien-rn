@@ -10,7 +10,7 @@ import {
 class PlainView extends PureComponent {
 
     layoutHandler = (e) => {
-        this.props.dispatch(action('ArticleModel/layout')({ 
+        this.props.dispatch(action('ArticleModel/layout')({
             key: this.props.itemKey,
             width: e.nativeEvent.layout.width,
             height: e.nativeEvent.layout.height,
@@ -26,10 +26,20 @@ class PlainView extends PureComponent {
     }
 
     render() {
+        const { readerStyle } = this.props
+
         return (
             <TouchableWithoutFeedback onLongPress={this.onLongPressHandler} onPress={this.onPressHandler}>
-                <View key={this.props.itemKey} style={{ }} onLayout={this.layoutHandler} >
-                    <Text style={{ fontSize: 20, lineHeight: 28, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text>
+                <View key={this.props.itemKey} style={{}} onLayout={this.layoutHandler} >
+                    <Text style={{
+                        fontSize: readerStyle.contentSize,
+                        color: readerStyle.color,
+                        lineHeight: 28,
+                        paddingLeft: 10,
+                        paddingRight: 10
+                    }}>
+                        {this.props.content}
+                    </Text>
                 </View>
             </TouchableWithoutFeedback>
         );

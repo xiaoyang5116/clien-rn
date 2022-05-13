@@ -1,31 +1,23 @@
 import React from 'react';
 
 import {
-    action,
     connect,
     Component,
     StyleSheet,
-} from "../../constants";
+    AppDispath,
+} from "../../../constants";
 
 import { 
     View, 
     Text, 
-    Image,
     FlatList, 
-    SafeAreaView, 
     TouchableHighlight,
-} from '../../constants/native-ui';
+} from '../../../constants/native-ui';
 
-import { TextButton } from '../../constants/custom-ui';
+import { TextButton } from '../../../constants/custom-ui';
 
-const DATA = [
-    { id: 1, title: '寻宝事件1' },
-    { id: 2, title: '寻宝事件2' },
-    { id: 3, title: '寻宝事件3' },
-]
-
-// 探索寻宝页面
-class ExploreXunBaoPage extends Component {
+// 探索挑战页面
+class ExploreBossPage extends Component {
 
     constructor(props) {
         super(props);
@@ -34,9 +26,12 @@ class ExploreXunBaoPage extends Component {
     renderItem = (data) => {
         const item = data.item;
         return (
-        <TouchableHighlight activeOpacity={0.85} underlayColor='#666' onPress={() => {}} style={{ margin: 5 }} >
+        <TouchableHighlight activeOpacity={0.85} underlayColor='#666' style={{ margin: 5 }} onPress={() => {
+            AppDispath({ type: 'ExploreModel/challengeBoss', payload: item });
+            this.props.onClose();
+        }} >
             <View style={{ height: 50, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd' }}>
-                <Text>寻宝事件</Text>
+                <Text>战斗事件</Text>
             </View>
         </TouchableHighlight>
         );
@@ -46,12 +41,12 @@ class ExploreXunBaoPage extends Component {
         return (
         <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.85)' }}>
             <View>
-                <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>寻宝</Text>
+                <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>战斗</Text>
             </View>
             <View style={{ width: '90%', height: 550, flexDirection: 'row', justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#a6c2cb' }}>
                 <FlatList 
                     style={{ alignSelf: 'stretch' }}
-                    data={this.props.event_xunbao}
+                    data={this.props.event_boss}
                     renderItem={this.renderItem}
                     keyExtractor={item => item.id}
                 />
@@ -67,4 +62,4 @@ class ExploreXunBaoPage extends Component {
 const styles = StyleSheet.create({
 });
 
-export default connect((state) => ({ ...state.ExploreModel, ...state.AppModel }))(ExploreXunBaoPage);
+export default connect((state) => ({ ...state.ExploreModel, ...state.AppModel }))(ExploreBossPage);

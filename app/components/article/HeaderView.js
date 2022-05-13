@@ -9,7 +9,7 @@ import {
 class HeaderView extends PureComponent {
 
     layoutHandler = (e) => {
-        this.props.dispatch(action('ArticleModel/layout')({ 
+        this.props.dispatch(action('ArticleModel/layout')({
             key: this.props.itemKey,
             width: e.nativeEvent.layout.width,
             height: e.nativeEvent.layout.height,
@@ -17,9 +17,18 @@ class HeaderView extends PureComponent {
     }
 
     render() {
+        const { readerStyle } = this.props;
         return (
             <View key={this.props.itemKey} style={{ marginTop: 10, marginBottom: 10 }} onLayout={this.layoutHandler}>
-                <Text style={{ fontSize: 26, fontWeight: 'bold', paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text>
+                <Text style={{
+                    fontSize: readerStyle.titleSize,
+                    color: readerStyle.color,
+                    fontWeight: 'bold',
+                    paddingLeft: 10,
+                    paddingRight: 10
+                }}>
+                    {this.props.content}
+                </Text>
             </View>
         );
     }

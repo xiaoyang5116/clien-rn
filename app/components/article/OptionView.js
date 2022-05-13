@@ -7,7 +7,12 @@ import lo from 'lodash';
 import {
     connect,
     action,
+    DeviceEventEmitter,
+    EventKeys,
 } from "../../constants";
+
+import RootView from '../../components/RootView';
+import OptionsPage from '../../pages/OptionsPage';
 
 const ICONS = [
     { id: 1, img: require('../../../assets/button_icon/1.png'), top: 0, left: 10 },
@@ -43,6 +48,12 @@ class OptionView extends PureComponent {
                 .then(r => {
                     this.setState({ options: r });
                 });
+            }
+            // 如果是切换场景，显示选项页面
+            if (data.toScene != undefined) {
+                const key = RootView.add(<OptionsPage onClose={() => {
+                    RootView.remove(key);
+                  }} />);
             }
         });
     }
