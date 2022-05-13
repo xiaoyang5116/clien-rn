@@ -12,10 +12,11 @@ import {
 import {
   Animated,
 } from 'react-native';
+import Easing from 'react-native/Libraries/Animated/Easing';
 
 const winSize = getWindowSize();
 
-export default class RightContainer extends React.PureComponent {
+export default class PropertiesContainer extends React.PureComponent {
 
   constructor(props) {
     super(props);
@@ -27,16 +28,18 @@ export default class RightContainer extends React.PureComponent {
   }
 
   release() {
-    if (this.rightPos._value >= -winSize.width*7/10) {
+    if (this.rightPos._value >= -winSize.width*0.98) {
       Animated.timing(this.rightPos, {
         toValue: 0,
         duration: 300,
+        easing: Easing.cubic,
         useNativeDriver: false,
       }).start();
     } else {
       Animated.timing(this.rightPos, {
         toValue: -winSize.width,
         duration: 300,
+        easing: Easing.cubic,
         useNativeDriver: false,
       }).start();
     }
@@ -47,6 +50,7 @@ export default class RightContainer extends React.PureComponent {
     Animated.timing(this.rightPos, {
       toValue: -winSize.width,
       duration: 300,
+      easing: Easing.cubic,
       useNativeDriver: false,
     }).start();
   } 

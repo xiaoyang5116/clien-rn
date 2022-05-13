@@ -24,8 +24,7 @@ import RootView from '../components/RootView';
 import ReaderSettings from '../components/readerSettings';
 import HeaderContainer from '../components/article/HeaderContainer';
 import FooterContainer from '../components/article/FooterContainer';
-import LeftContainer from '../components/article/LeftContainer';
-import RightContainer from '../components/article/RightContainer';
+import PropertiesContainer from '../components/article/PropertiesContainer';
 
 const data = [
   {
@@ -73,8 +72,7 @@ class ArticlePage extends Component {
   constructor(props) {
     super(props);
     this.refList = React.createRef();
-    this.refLeftContainer = React.createRef();
-    this.refRightContainer = React.createRef();
+    this.refPropsContainer = React.createRef();
     this.longPressListener = null;
     this.startX = 0;
     this.startY = 0;
@@ -128,8 +126,6 @@ class ArticlePage extends Component {
               <TextButton title='...' />
             </View>
           </HeaderContainer>
-          <View style={styles.topBarContainer}>
-          </View>
           <View style={styles.bodyContainer}>
             <FlatList
               ref={this.refList}
@@ -150,17 +146,17 @@ class ArticlePage extends Component {
                 const dy = e.nativeEvent.pageY - this.startY;
 
                 if (Math.abs(dx) >= 10) {
-                  if (dx > 0) {
-                    this.refLeftContainer.current.offsetX(dx);
-                  } else {
-                    this.refRightContainer.current.offsetX(-dx);
+                  if (dx < 0) {
+                    this.refPropsContainer.current.offsetX(-dx);
+                    this.context.slideMoving = true;
                   }
-                  this.context.slideMoving = true;
                 }
               }}
               onTouchEnd={() => {
-                this.refLeftContainer.current.release();
-                this.refRightContainer.current.release();
+                this.refPropsContainer.current.release();
+              }}
+              onTouchCancel={() => {
+                this.refPropsContainer.current.release();
               }}
             />
           </View>
@@ -174,10 +170,8 @@ class ArticlePage extends Component {
               }} />
             </View>
           </FooterContainer>
-          <LeftContainer ref={this.refLeftContainer}>
-          </LeftContainer>
-          <RightContainer ref={this.refRightContainer}>
-          </RightContainer>
+          <PropertiesContainer ref={this.refPropsContainer}>
+          </PropertiesContainer>
         </View>
     );
   }
