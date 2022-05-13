@@ -18,7 +18,7 @@ class ConfirmDialog extends React.Component {
 
     render() {
         return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1, zIndex: 999999 }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <View style={{ width: 320, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(180,180,180, 1)', borderRadius: 3 }}>
                 <ImageCapInset
