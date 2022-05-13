@@ -11,3 +11,4 @@ export * from './_theme';
 export * from './_source';
 export * from './_others';
 export * from './_animation';
+export * from './_global_data';

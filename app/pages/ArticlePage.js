@@ -7,7 +7,8 @@ import {
   StyleSheet,
   action,
   EventKeys,
-  AppDispath
+  AppDispath,
+  DataContext
 } from "../constants";
 
 import { 
@@ -23,6 +24,8 @@ import RootView from '../components/RootView';
 import ReaderSettings from '../components/readerSettings';
 import HeaderContainer from '../components/article/HeaderContainer';
 import FooterContainer from '../components/article/FooterContainer';
+import LeftContainer from '../components/article/LeftContainer';
+import RightContainer from '../components/article/RightContainer';
 
 const data = [
   {
@@ -65,10 +68,16 @@ const worldSelector = () => {
 
 class ArticlePage extends Component {
 
+  static contextType = DataContext;
+
   constructor(props) {
     super(props);
     this.refList = React.createRef();
+    this.refLeftContainer = React.createRef();
+    this.refRightContainer = React.createRef();
     this.longPressListener = null;
+    this.startX = 0;
+    this.startY = 0;
   }
 
   componentDidMount() {
@@ -132,6 +141,27 @@ class ArticlePage extends Component {
               onEndReached={this.endReachedHandler}
               initialNumToRender={2}
               maxToRenderPerBatch={5}
+              onTouchStart={(e) => {
+                this.startX = e.nativeEvent.pageX;
+                this.startY = e.nativeEvent.pageY;
+              }}
+              onTouchMove={(e) => {
+                const dx = e.nativeEvent.pageX - this.startX;
+                const dy = e.nativeEvent.pageY - this.startY;
+
+                if (Math.abs(dx) >= 10) {
+                  if (dx > 0) {
+                    this.refLeftContainer.current.offsetX(dx);
+                  } else {
+                    this.refRightContainer.current.offsetX(-dx);
+                  }
+                  this.context.slideMoving = true;
+                }
+              }}
+              onTouchEnd={() => {
+                this.refLeftContainer.current.release();
+                this.refRightContainer.current.release();
+              }}
             />
           </View>
           <FooterContainer>
@@ -144,6 +174,10 @@ class ArticlePage extends Component {
               }} />
             </View>
           </FooterContainer>
+          <LeftContainer ref={this.refLeftContainer}>
+          </LeftContainer>
+          <RightContainer ref={this.refRightContainer}>
+          </RightContainer>
         </View>
     );
   }
