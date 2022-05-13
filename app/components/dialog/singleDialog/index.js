@@ -97,7 +97,7 @@ const SingleDialog = props => {
             AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: item.toChapter, __sceneId: props.viewData.__sceneId } });
         }
 
-        // 跳转到新的章节
+        // 跳转到场景
         if (item.toScene !== undefined) {
             console.debug(item)
             props.dispatch(action('SceneModel/processActions')(item))
