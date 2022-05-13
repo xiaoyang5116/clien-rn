@@ -10,12 +10,37 @@ import {
 
 import { RButton } from '../_components';
 
-const matchColor = (props) => {
+
+
+
+const CustomParagraph = (props) => {
     const theme = React.useContext(ThemeContext);
     const { readerStyle } = props
 
     const changeMatchColor = ({ color, bgColor }) => {
         props.dispatch(action('ArticleModel/changeMatchColor')({ color: color, bgColor: bgColor }));
+    }
+
+    const Wire = (props) => {
+        const Line = (props) => {
+            for (let index = 0; index < props.num; index++) {
+                return (
+                    <View style={{
+                        width: 20,
+                        height: 5,
+                        borderRadius: 2,
+                        marginTop: 12,
+                        backgroundColor: readerStyle.borderColor,
+                        overflow: 'hidden',
+                    }}></View>
+                )
+            }
+        }
+        return (
+            <View>
+                <Line num={3} />
+            </View>
+        )
     }
 
     return (
@@ -63,4 +88,4 @@ const matchColor = (props) => {
     )
 }
 
-export default connect(state => ({ ...state.ArticleModel }))(matchColor);
+export default connect(state => ({ ...state.ArticleModel }))(CustomParagraph);
