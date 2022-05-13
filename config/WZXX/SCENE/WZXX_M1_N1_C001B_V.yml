@@ -4,22 +4,20 @@ scenes: [
     {
       id: 'WZXX_M1_N1_C001B_V',
       name: "城外密林",
-      #worldTimeHidden: true,
+      worldTimeHidden: true,
       #sceneImage: SceneMap0001
       # 变量定义
       vars: [
       { id: "v1", min: 0, max: 1 },
- 
       ],
 
       # 动作定义
       actions: [
       ],
 
-      # 事件定义
-      # 故事中的场景事件暂时没什么意义
+      # 事件定义 阅读器中的场景事件暂时没什么意义
       events: [
-      { type: 'enter', nextChat: 'C001B_EventSTART1' },
+      { type: 'enter', nextChat: 'C001B_EventSTART1', dialogs: ['Screen1'] },
       ],
 
       # 对话选项
@@ -30,12 +28,10 @@ scenes: [
         options: [ 
           { 
           title: "选择道路",
-          #toScene: 'WZXX_M1_N1_C001B_V',
-          dialogs: ['pangbai1']
+          dialogs: ['C001B_START_shulin']
           },
         ],
       }, 
-      #
       #
       { 
         id: 'C001B_EventSTART1', desc: '一个分叉路在你眼前', 
@@ -49,9 +45,44 @@ scenes: [
       { 
         id: 'L1', desc: '乱石挡住了去路，前面无法通行', 
         options: [ 
-          { title: '【返回】',nextChat: 'L1'  }, 
+          { title: '【返回】',nextChat: 'C001B_EventSTART2'  }, 
         ],
       },
+      #
+      { 
+        id: 'C001B_EventSTART2', desc: '一个分叉路在你眼前，你感觉和之前有所不同', 
+        options: [ 
+          #第一次进入 
+          { title: '【向左走】',nextChat: 'L1'  }, 
+          { title: '【向右走】',nextChat: 'R1'  }, 
+        ],
+      },
+      { 
+        id: 'R1', desc: '这是一条一路通畅的小路', 
+        options: [ 
+          { title: '【前进】',nextChat: 'C001B_Event02'  }, 
+        ],
+      },
+
+      { 
+        id: 'C001B_EventR2', desc: '一个分叉路在你眼前', 
+        options: [ 
+          #第一次进入 
+          { title: '【向左走】',nextChat: 'L2'  }, 
+          { title: '【走中间】',nextChat: 'A2'  }, 
+          { title: '【向右走】',nextChat: 'R2'  }, 
+        ],
+      },
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -65,24 +96,7 @@ scenes: [
         ],
       },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-     #三合一分支界面
+     #三合一分支界面=======================================================
       { 
         id: 'WZXX_M1_N1_C001B_V', desc: '选项', 
         options: [ 
@@ -114,7 +128,7 @@ scenes: [
  
         ],
       },
-     #三合一分支界面结束
+     #三合一分支界面结束==========================
 
         
         ],
@@ -127,7 +141,7 @@ scenes: [
         [
        #进入小道
 
-    { id: 'pangbai1', style: 1, title: '乞丐李大哥：', sections: ['地点，小树林。','李森炎小心翼翼的走着，生怕万一弄出太大动静，再把那倒霉的杀手引来。','不过，这还不是最大的问题','跑的时候不认识路，完全瞎跑。这想原路回去可就难了。','李森炎决定凭着模糊的印象摸索道路','……','一个分叉路口前',], nextChat: 'C001B_EventSTART1' },
+    { id: 'C001B_START_shulin', style: 1,sections: ['地点，小树林。','李森炎小心翼翼的走着，生怕万一弄出太大动静，再把那倒霉的杀手引来。','不过，这还不是最大的问题','跑的时候不认识路，完全瞎跑。这想原路回去可就难了。','李森炎决定凭着模糊的印象摸索道路','……','一个分叉路口前',], nextChat: 'C001B_EventSTART1' },
 
 
         #进入小道
@@ -206,7 +220,7 @@ scenes: [
 
 
 
-          ]  
+          ],
 
         },
     

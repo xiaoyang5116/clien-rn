@@ -1,5 +1,4 @@
 scenes: [
-    #
     {
       id: 'WZXX_M1_N1_C001V',
       name: "定义对应标题名当前章节内的选项和变量",
@@ -27,8 +26,6 @@ scenes: [
         ],
       },
       #
- 
- 
       { 
         id: 'WZXX_M1_N1_C001C_CCXZ', desc: '选择穿越的出身', 
         options: [ 
@@ -37,9 +34,6 @@ scenes: [
           { title: "【想起自己是“富贵白府千金的私生子”】", andVarsOff: ['v3'], varsOn: ['v1,v2'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001_[A3]" },
         ],
       },
-       #
-        ],
-
       #
       { 
         id: 'WZXX_M1_N1_C001B_TO_C001C', desc: '选项', 
@@ -47,7 +41,8 @@ scenes: [
         { title: "【观察城门】", toChapter: "WZXX_M1_N1_C001C", },
         ],
       },
-      #
+
+        ],
 
 
 
@@ -111,7 +106,6 @@ scenes: [
 
            { key: 'ok1D', content: ['虽然没怎么修炼过……','确实有点秘籍的印象','先稳住对方再说','…………', ['盖章过关'] ],
             btn: [{title: '就这么办', toChapter: "WZXX_M1_N1_C001A" }]},    
-
           ]  
 
         },
@@ -147,6 +141,4 @@ scenes: [
 
     },
 
-
-
-  ]
+]

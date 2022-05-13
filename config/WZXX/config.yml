@@ -1,21 +1,18 @@
 book: {
     # 场景目录定位，YML新增必须在这里记录
     # 起始场景
-    init: "",
+    init: '',
 
     # 场景列表
     scene_list:
       [
-        "scene_wzxx",
-        "WZXX_[Chapters]",
-        "WZXX_[START]",
-        "WZXX_M1_N1_C001A_V",
-        "WZXX_M1_N1_C001B_V",
-        "WZXX_M1_N1_C001C_V",
-        "WZXX_M1_N1_C001V",
-        "WZXX_M1_N1_C002V",
-
-
-        
+        'scene_wzxx',
+        'WZXX_[Chapters]',
+        'WZXX_[START]',
+        'WZXX_M1_N1_C001A_V',
+        'WZXX_M1_N1_C001B_V',
+        'WZXX_M1_N1_C001C_V',
+        'WZXX_M1_N1_C001V',
+        'WZXX_M1_N1_C002V',
       ],
   }
