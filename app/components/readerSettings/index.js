@@ -11,6 +11,7 @@ import Modal from 'react-native-modal';
 
 import ChangeFont from './ChangeFont';
 import CustomColor from './customColor'
+import CustomParagraph from './customParagraph';
 
 
 const ReaderSettings = (props) => {
@@ -43,8 +44,8 @@ const ReaderSettings = (props) => {
         >
             <View style={[{ backgroundColor:readerStyle.popUpBgColor}, theme.readerSettingContainer]}>
                 <ChangeFont />
+                <CustomParagraph />
                 <CustomColor />
-                {/* <CustomColor /> */}
             </View>
         </Modal>
     );

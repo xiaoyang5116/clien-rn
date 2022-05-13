@@ -15,6 +15,8 @@ import Animation from '../../animation';
 
 import FullSingle from './FullSingle';
 import HalfSingle from './HalfSingle';
+import OptionsPage from '../../../pages/OptionsPage';
+import RootView from '../../RootView';
 
 
 const SingleDialog = props => {
@@ -92,8 +94,21 @@ const SingleDialog = props => {
 
         // 跳转到新的章节
         if (item.toChapter !== undefined) {
-            console.log("props.viewData.__sceneId", props.viewData.__sceneId);
             AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: item.toChapter, __sceneId: props.viewData.__sceneId } });
+        }
+
+        // 跳转到新的章节
+        if (item.toScene !== undefined) {
+            console.debug(item)
+            props.dispatch(action('SceneModel/processActions')(item))
+                .then(e => {
+                    // 如果是切换场景，显示选项页面
+                    if (item.toScene != undefined) {
+                        const key = RootView.add(<OptionsPage onClose={() => {
+                            RootView.remove(key);
+                        }} />);
+                    }
+                });
         }
 
         // 探索事件是否完成
