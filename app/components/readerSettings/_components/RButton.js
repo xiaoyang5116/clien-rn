@@ -6,20 +6,22 @@ import {
     ThemeContext,
 } from "../../../constants";
 
-const TButton = (props) => {
+
+const RButton = (props) => {
     const theme = React.useContext(ThemeContext);
     const { readerStyle } = props
     return (
         <TouchableOpacity
-            disabled={props.disabled}
+            disabled={props.selected}
             style={[theme.readerSettingRow_box]}
             onPress={props.onPress}
         >
             <Text style={[
-                theme.readerSetting_border_1,
+                theme.readerSetting_border_2,
                 {
-                    opacity: props.disabled ? 0.4 : 1,
-                    borderColor: readerStyle.borderColor
+                    // opacity: props.disabled ? 0.4 : 1,
+                    borderColor: props.selected ? readerStyle.selectedBorderColor : readerStyle.borderColor,
+                    backgroundColor: props.color
                 }
             ]}>
                 {props.title}
@@ -29,4 +31,4 @@ const TButton = (props) => {
     )
 }
 
-export default connect(state => ({ ...state.ArticleModel }))(TButton);
+export default connect(state => ({ ...state.ArticleModel }))(RButton);

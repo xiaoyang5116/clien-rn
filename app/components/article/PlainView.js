@@ -31,8 +31,15 @@ class PlainView extends PureComponent {
         return (
             <TouchableWithoutFeedback onLongPress={this.onLongPressHandler} onPress={this.onPressHandler}>
                 <View key={this.props.itemKey} style={{}} onLayout={this.layoutHandler} >
-                    <Text style={{ fontSize: readerStyle.contentSize, lineHeight: 28, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text>
-                    {/* <Text style={{ fontSize: 20, lineHeight: 28, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text> */}
+                    <Text style={{
+                        fontSize: readerStyle.contentSize,
+                        color: readerStyle.color,
+                        lineHeight: 28,
+                        paddingLeft: 10,
+                        paddingRight: 10
+                    }}>
+                        {this.props.content}
+                    </Text>
                 </View>
             </TouchableWithoutFeedback>
         );

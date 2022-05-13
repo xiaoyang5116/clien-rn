@@ -6,6 +6,7 @@ import {
     Dimensions,
 } from 'react-native';
 import React, { useState } from 'react';
+import { Panel } from '../../panel';
 import { ThemeContext } from '../../../constants';
 import { TextButton } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
@@ -72,71 +73,73 @@ const FullSingle = props => {
     };
 
     return (
-        <View style={[theme.blockBgColor3, { flex: 1, opacity: 1, paddingTop: 10 }]}>
-            {/* 标题 */}
-            <View
-                style={[
-                    theme.rowCenter,
-                    theme.blockBgColor1,
-                    {
-                        height: 40,
-                        borderBottomColor: '#6d6a65',
-                        borderBottomWidth: 1,
-                        borderTopColor: '#6d6a65',
-                        borderTopWidth: 1,
-                    },
-                ]}>
-                <Text style={[theme.titleColor1, { fontSize: 20, textAlign: 'center' }]}>
-                    {title}
-                </Text>
-            </View>
-            {/* 显示区域 */}
-            <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12 }}>
-                <TouchableWithoutFeedback onPress={nextParagraph}>
-                    <View style={{ flex: 1 }}>
-                        {/* 内容显示区域 */}
-                        <View
-                            style={{
-                                height:
-                                    currentIndex >= currentDialogueLength
-                                        ? showBtnList.length > 4
-                                            ? '50%'
-                                            : '60%'
-                                        : '100%',
-                            }}
-                        >
-                            <FlatList
-                                ref={refFlatList}
-                                data={currentTextList}
-                                renderItem={renderText}
-                                keyExtractor={(item, index) => item + index}
-                                ListFooterComponent={() => <View style={{ height: 12 }} />}
-                                onContentSizeChange={() => {
-                                    if (currentTextList.length > 0) {
-                                        refFlatList.current.scrollToEnd({ animated: true });
-                                    }
+        <Panel>
+            <View style={[theme.blockBgColor3, { flex: 1, opacity: 1, paddingTop: 10 }]}>
+                {/* 标题 */}
+                <View
+                    style={[
+                        theme.rowCenter,
+                        theme.blockBgColor1,
+                        {
+                            height: 40,
+                            borderBottomColor: '#6d6a65',
+                            borderBottomWidth: 1,
+                            borderTopColor: '#6d6a65',
+                            borderTopWidth: 1,
+                        },
+                    ]}>
+                    <Text style={[theme.titleColor1, { fontSize: 20, textAlign: 'center' }]}>
+                        {title}
+                    </Text>
+                </View>
+                {/* 显示区域 */}
+                <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12 }}>
+                    <TouchableWithoutFeedback onPress={nextParagraph}>
+                        <View style={{ flex: 1 }}>
+                            {/* 内容显示区域 */}
+                            <View
+                                style={{
+                                    height:
+                                        currentIndex >= currentDialogueLength
+                                            ? showBtnList.length > 4
+                                                ? '50%'
+                                                : '60%'
+                                            : '100%',
                                 }}
-                            />
-                        </View>
+                            >
+                                <FlatList
+                                    ref={refFlatList}
+                                    data={currentTextList}
+                                    renderItem={renderText}
+                                    keyExtractor={(item, index) => item + index}
+                                    ListFooterComponent={() => <View style={{ height: 12 }} />}
+                                    onContentSizeChange={() => {
+                                        if (currentTextList.length > 0) {
+                                            refFlatList.current.scrollToEnd({ animated: true });
+                                        }
+                                    }}
+                                />
+                            </View>
 
-                        {/* 按钮区域 */}
-                        <View style={{ marginTop: 12, }}>
-                            <FlatList
-                                data={showBtnList}
-                                renderItem={renderBtn}
-                                keyExtractor={(item, index) => item.title + index}
-                                ListFooterComponent={() => <View style={{ height: 24 }} />}
-                                getItemLayout={(data, index) => ({
-                                    length: 48,
-                                    offset: 48 * index,
-                                    index,
-                                })}
-                            />
+                            {/* 按钮区域 */}
+                            <View style={{ marginTop: 12, }}>
+                                <FlatList
+                                    data={showBtnList}
+                                    renderItem={renderBtn}
+                                    keyExtractor={(item, index) => item.title + index}
+                                    ListFooterComponent={() => <View style={{ height: 24 }} />}
+                                    getItemLayout={(data, index) => ({
+                                        length: 48,
+                                        offset: 48 * index,
+                                        index,
+                                    })}
+                                />
+                            </View>
                         </View>
-                    </View>
-                </TouchableWithoutFeedback>
+                    </TouchableWithoutFeedback>
+                </View>
             </View>
-        </View>
+        </Panel>
     );
 };
 

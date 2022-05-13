@@ -107,8 +107,9 @@ class ArticlePage extends Component {
   }
 
   render() {
+    const { readerStyle } = this.props
     return (
-        <View style={styles.viewContainer}>
+        <View style={[styles.viewContainer, { backgroundColor:readerStyle.bgColor }]}>
           <HeaderContainer>
             <View style={[styles.bannerStyle, { marginTop: 20, }]}>
               <TextButton title='X' onPress={() => {
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center', 
     justifyContent: "flex-start", 
-    backgroundColor: "#eee7dd"
+    // backgroundColor: "#eee7dd"
   },
   topBarContainer: {
     height: 40,

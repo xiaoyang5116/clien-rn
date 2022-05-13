@@ -371,6 +371,15 @@ const sharedStyles = StyleSheet.create({
         fontSize: 14,
         textAlign: 'center',
     },
+    readerSetting_border_2: {
+        borderWidth: 1,
+        borderRadius: 16,
+        width: "100%",
+        height: 35,
+        lineHeight: 35,
+        fontSize: 14,
+        textAlign: 'center',
+    },
 });
 
 export default sharedStyles;

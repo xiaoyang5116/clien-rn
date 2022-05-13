@@ -8,7 +8,9 @@ import {
     ThemeContext,
 } from "../../constants";
 import Modal from 'react-native-modal';
+
 import ChangeFont from './ChangeFont';
+import CustomColor from './customColor'
 
 
 const ReaderSettings = (props) => {
@@ -41,8 +43,8 @@ const ReaderSettings = (props) => {
         >
             <View style={[{ backgroundColor:readerStyle.popUpBgColor}, theme.readerSettingContainer]}>
                 <ChangeFont />
-                <ChangeFont />
-                <ChangeFont />
+                <CustomColor />
+                {/* <CustomColor /> */}
             </View>
         </Modal>
     );

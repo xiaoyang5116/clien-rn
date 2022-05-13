@@ -283,6 +283,17 @@ export default {
       yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, newReaderStyle);
       yield put(action('updateState')({ readerStyle: newReaderStyle }));
     },
+    // 修改配色
+    *changeMatchColor({ payload }, { call, put, select }) {
+      const { readerStyle } = yield select(state => state.ArticleModel);
+      const NewReaderStyle = {
+        ...readerStyle,
+        color: payload.color,
+        bgColor: payload.bgColor,
+      }
+      yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, NewReaderStyle);
+      yield put(action('updateState')({ readerStyle: NewReaderStyle }));
+    },
   },
 
   reducers: {
