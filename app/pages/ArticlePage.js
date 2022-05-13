@@ -126,6 +126,8 @@ class ArticlePage extends Component {
               <TextButton title='...' />
             </View>
           </HeaderContainer>
+          <View style={styles.topBarContainer}>
+          </View>
           <View style={styles.bodyContainer}>
             <FlatList
               ref={this.refList}
