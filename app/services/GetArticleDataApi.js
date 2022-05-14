@@ -47,7 +47,7 @@ export async function GetArticleDataApi(id, path) {
                 const splits = e.split(/(.*?[\r\n]+)/).filter(e => !lo.isEmpty(e));
                 while (i < splits.length) {
                   // N行为一个小块
-                  const lines = lo.slice(splits, i, i + 10);
+                  const lines = lo.slice(splits, i, i + 1);
 
                   // 去掉尾行换行符
                   const last = lo.last(lines);

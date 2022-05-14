@@ -14,7 +14,7 @@ export default {
     // 边框颜色
     borderColor: "#858585",
     // 行高
-    lineHeight: 24,
+    lineHeight: 28,
     // 段落间距
     paragraphSpacing: 8,
     // 左边空白
@@ -30,19 +30,19 @@ export default {
     // 排版间距
     typesetting_1: {
         lineHeight: null,
-        paragraphSpacing: -12,
+        paragraphSpacing: null,
     },
     typesetting_2: {
-        lineHeight: 24,
-        paragraphSpacing: 12,
+        lineHeight: 8,
+        paragraphSpacing: 8,
     },
     typesetting_3: {
-        lineHeight: 32,
-        paragraphSpacing: 24,
+        lineHeight: 16,
+        paragraphSpacing: 16,
     },
     typesetting_4: {
         lineHeight: null,
-        paragraphSpacing: null,
+        paragraphSpacing: 8,
     },
 
     // 配色

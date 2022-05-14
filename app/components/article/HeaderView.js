@@ -24,8 +24,8 @@ class HeaderView extends PureComponent {
                     fontSize: readerStyle.titleSize,
                     color: readerStyle.color,
                     fontWeight: 'bold',
-                    paddingLeft: 10,
-                    paddingRight: 10
+                    paddingLeft: readerStyle.leftPadding,
+                    paddingRight: readerStyle.rightPadding,
                 }}>
                     {this.props.content}
                 </Text>
