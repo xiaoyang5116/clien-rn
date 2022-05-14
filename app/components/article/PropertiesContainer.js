@@ -3,6 +3,7 @@ import React from 'react';
 
 import {
   getWindowSize,
+  StyleSheet,
 } from "../../constants";
 
 import {
@@ -15,12 +16,15 @@ import {
 import Easing from 'react-native/Libraries/Animated/Easing';
 
 const winSize = getWindowSize();
+const VIEW_WIDTH = winSize.width - 60;
+const VIEW_HEIGHT = winSize.height;
 
 export default class PropertiesContainer extends React.PureComponent {
 
   constructor(props) {
     super(props);
     this.rightPos = new Animated.Value(-winSize.width);
+    this.expanded = false;
   }
 
   offsetX(x) {
@@ -29,39 +33,52 @@ export default class PropertiesContainer extends React.PureComponent {
 
   release() {
     if (this.rightPos._value >= -winSize.width*0.98) {
-      Animated.timing(this.rightPos, {
-        toValue: 0,
-        duration: 300,
-        easing: Easing.cubic,
-        useNativeDriver: false,
-      }).start();
-    } else {
-      Animated.timing(this.rightPos, {
-        toValue: -winSize.width,
-        duration: 300,
-        easing: Easing.cubic,
-        useNativeDriver: false,
-      }).start();
+      if (!this.expanded) {
+        Animated.timing(this.rightPos, {
+          toValue: 0,
+          duration: 300,
+          easing: Easing.cubic,
+          useNativeDriver: false,
+        }).start(() => {
+          this.expanded = true;
+        });
+      } else {
+        this.closeHandle();
+      }
     }
   }
 
-  handlePress = (e) => {
+  closeHandle = () => {
     // 关闭界面
     Animated.timing(this.rightPos, {
       toValue: -winSize.width,
       duration: 300,
       easing: Easing.cubic,
       useNativeDriver: false,
-    }).start();
+    }).start(() => {
+      this.expanded = false;
+    });
   } 
 
   render() {
     return (
-      <TouchableWithoutFeedback onPress={this.handlePress}>
-        <Animated.View style={{ position: 'absolute', right: this.rightPos, top: 0, zIndex: 100, width: winSize.width, height: winSize.height, backgroundColor: '#a49f99' }}>
+      <TouchableWithoutFeedback onPress={this.closeHandle}>
+        <Animated.View style={[styles.viewContainer, { right: this.rightPos }]}>
           {this.props.children}
         </Animated.View>
       </TouchableWithoutFeedback>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  viewContainer: {
+    position: 'absolute', 
+    top: 0, 
+    zIndex: 100, 
+    width: VIEW_WIDTH, 
+    height: VIEW_HEIGHT, 
+    backgroundColor: '#a49f99',
+    borderRadius: 10,
+  }
+});

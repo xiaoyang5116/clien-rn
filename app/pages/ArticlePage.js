@@ -13,6 +13,7 @@ import {
 
 import { 
   View,
+  Text,
   FlatList,
 } from '../constants/native-ui';
 
@@ -25,8 +26,9 @@ import ReaderSettings from '../components/readerSettings';
 import HeaderContainer from '../components/article/HeaderContainer';
 import FooterContainer from '../components/article/FooterContainer';
 import PropertiesContainer from '../components/article/PropertiesContainer';
+import Collapse from '../components/collapse';
 
-const data = [
+const WORLD = [
   {
     worldId: 0,
     title: "现实",
@@ -53,10 +55,52 @@ const data = [
   },
 ];
 
+const PROPERTIES = [
+  {
+    title: '力量倾向',
+    collapsed: true,
+    data: [[
+      { title: '成神', value: 100 },
+      { title: '入魔', value: 80 },
+      { title: '变化', value: 90 },
+      { title: '自由', value: 60 },
+    ]],
+  },
+  {
+    title: '善恶',
+    data: [[
+      { title: '善良', value: 10 },
+      { title: '冷漠', value: 20 },
+    ]],
+  },
+  {
+    title: '武艺',
+    data: [[
+      { title: '身法', value: 70 },
+      { title: '速度', value: 85 },
+    ]],
+  },
+  {
+    title: '修行',
+    collapsed: true,
+    data: [[
+      { title: '神识', value: 120 },
+      { title: '鉴定', value: 111 },
+    ]],
+  },
+  {
+    title: '才华',
+    collapsed: true,
+    data: [[
+      { title: '学识', value: 86 },
+    ]],
+  },
+];
+
 const worldSelector = () => {
   CarouselUtils.show({ 
-    data, 
-    initialIndex: Math.floor(data.length / 2), 
+    data: WORLD, 
+    initialIndex: Math.floor(WORLD.length / 2), 
     onSelect: (p) => {
       if (p.item.toChapter != undefined) {
         AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: p.item.toChapter, __sceneId: '' } });
@@ -173,6 +217,22 @@ class ArticlePage extends Component {
             </View>
           </FooterContainer>
           <PropertiesContainer ref={this.refPropsContainer}>
+            <Collapse 
+              data={PROPERTIES}
+              renderItem={(item) => {
+                return (
+                  <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ width: 50 }}><Text>{item.title}:</Text></View>
+                    <View><Text style={{ color: '#666' }}>{item.value}</Text></View>
+                  </View>
+                );
+              }}
+              renderGroupHeader={(section) => {
+                return (
+                  <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
+                );
+              }}
+            />
           </PropertiesContainer>
         </View>
     );
