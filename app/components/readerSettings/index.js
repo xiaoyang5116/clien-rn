@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { useEffect } from 'react';
+import { Button } from '@ant-design/react-native'
 
 import {
     connect,
@@ -46,6 +47,7 @@ const ReaderSettings = (props) => {
                 <ChangeFont />
                 <CustomParagraph />
                 <CustomColor />
+                <Button type="primary">primary</Button>
             </View>
         </Modal>
     );
