@@ -7,6 +7,7 @@ import {
   LocalCacheKeys
 } from "../constants";
 
+import { GetAttrsDataApi } from '../services/GetAttrsDataApi';
 import { GetArticleDataApi } from '../services/GetArticleDataApi';
 import { GetArticleIndexDataApi } from '../services/GetArticleIndexDataApi';
 import Toast from "../components/toast";
@@ -50,6 +51,8 @@ export default {
       indexes: [],
     },
 
+    attrsConfig: null,
+
     // 展现用段落数据 [{ key: xxx, type: 'plain|code', content: xxx, object: xxx, height: xxx }, ...]
     sections: [],
 
@@ -63,8 +66,11 @@ export default {
   effects: {
 
     *show({ payload }, { call, put, select }) {
-      const userState = yield select(state => state.UserModel);
       const articleState = yield select(state => state.ArticleModel);
+
+      // 加载玩家属性配置
+      const attrs = yield call(GetAttrsDataApi);
+      articleState.attrsConfig = attrs.data.attrs;
 
       const { id, path } = (payload.file != undefined) ? ParseFileDesc(payload.file) : payload;
       const data = yield call(GetArticleDataApi, id, path);

@@ -1,6 +1,8 @@
 
 import React from 'react';
 
+import lo from 'lodash';
+
 import {
   connect,
   Component,
@@ -55,49 +57,7 @@ const WORLD = [
   },
 ];
 
-const PROPERTIES = [
-  {
-    title: '力量倾向',
-    collapsed: true,
-    data: [[
-      { title: '成神', value: 100 },
-      { title: '入魔', value: 80 },
-      { title: '变化', value: 90 },
-      { title: '自由', value: 60 },
-    ]],
-  },
-  {
-    title: '善恶',
-    data: [[
-      { title: '善良', value: 10 },
-      { title: '冷漠', value: 20 },
-    ]],
-  },
-  {
-    title: '武艺',
-    data: [[
-      { title: '身法', value: 70 },
-      { title: '速度', value: 85 },
-    ]],
-  },
-  {
-    title: '修行',
-    collapsed: true,
-    data: [[
-      { title: '神识', value: 120 },
-      { title: '鉴定', value: 111 },
-    ]],
-  },
-  {
-    title: '才华',
-    collapsed: true,
-    data: [[
-      { title: '学识', value: 86 },
-    ]],
-  },
-];
-
-const worldSelector = () => {
+const WorldSelector = () => {
   CarouselUtils.show({ 
     data: WORLD, 
     initialIndex: Math.floor(WORLD.length / 2), 
@@ -107,6 +67,60 @@ const worldSelector = () => {
       }
     }
   });
+}
+
+const UserAttributesHolder = (props) => {
+  const [ data, setData ] = React.useState(props.config);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.USER_ATTR_UPDATE, () => {
+      const cb = (result) => {
+        console.debug(result);
+        const newData = lo.cloneDeep(data);
+        result.forEach(e => {
+          const { key, value } = e;
+          newData.forEach(e => {
+            e.data.forEach(e => {
+              e.forEach(e => {
+                if (e.key == key) {
+                  e.value = value;
+                }
+              })
+            });
+          });
+        });
+        //
+        setData(newData);
+      };
+      AppDispath({ type: 'UserModel/getAttrs', cb });
+    });
+
+    // 更新角色属性
+    DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
+    
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  return (
+    <Collapse 
+      data={data}
+      renderItem={(item) => {
+        return (
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ width: 50 }}><Text>{item.title}:</Text></View>
+            <View><Text style={{ color: '#666' }}>{item.value}</Text></View>
+          </View>
+        );
+      }}
+      renderGroupHeader={(section) => {
+        return (
+          <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
+        );
+      }}
+    />
+  );
 }
 
 class ArticlePage extends Component {
@@ -127,7 +141,7 @@ class ArticlePage extends Component {
 
     // 长按监听器
     this.longPressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
-      worldSelector();
+      WorldSelector();
     });
   }
 
@@ -158,7 +172,7 @@ class ArticlePage extends Component {
   }
 
   render() {
-    const { readerStyle } = this.props
+    const { readerStyle, attrsConfig } = this.props;
     return (
         <View style={[styles.viewContainer, { backgroundColor:readerStyle.bgColor }]}>
           <HeaderContainer>
@@ -166,7 +180,7 @@ class ArticlePage extends Component {
               <TextButton title='X' onPress={() => {
                 DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
               }} />
-              <TextButton title='选择世界' onPress={worldSelector} />
+              <TextButton title='选择世界' onPress={WorldSelector} />
               <TextButton title='...' />
             </View>
           </HeaderContainer>
@@ -217,22 +231,7 @@ class ArticlePage extends Component {
             </View>
           </FooterContainer>
           <PropertiesContainer ref={this.refPropsContainer}>
-            <Collapse 
-              data={PROPERTIES}
-              renderItem={(item) => {
-                return (
-                  <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={{ width: 50 }}><Text>{item.title}:</Text></View>
-                    <View><Text style={{ color: '#666' }}>{item.value}</Text></View>
-                  </View>
-                );
-              }}
-              renderGroupHeader={(section) => {
-                return (
-                  <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
-                );
-              }}
-            />
+            {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
           </PropertiesContainer>
         </View>
     );
