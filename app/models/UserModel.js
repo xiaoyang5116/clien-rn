@@ -2,7 +2,11 @@
 import { 
   action,
   LocalCacheKeys,
+  DeviceEventEmitter,
+  EventKeys,
 } from "../constants";
+
+import lo from 'lodash';
 
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
@@ -15,6 +19,7 @@ export default {
     sceneId: '',  // 当前场景ID(该状态在异步操作中状态不确定，请使用__sceneId)
     prevSceneId: '',  // 前一个场景ID
     worldId: 0, // 用户当前世界ID
+    attrs: [], // 角色属性
   },
 
   effects: {
@@ -28,6 +33,7 @@ export default {
           sceneId: '',
           prevSceneId: '',
           worldId: 0,
+          attrs: [],
         }));
       }
     },
@@ -44,6 +50,36 @@ export default {
 
       yield put(action('updateState')({}));
       yield put.resolve(action('syncData')({}));
+    },
+
+    *alertAttrs({ payload }, { put, call, select }) {
+      const userState = yield select(state => state.UserModel);
+      
+      payload.forEach(e => {
+        const { key, value } = e;
+        if (lo.isEmpty(key) || value == 0)
+          return;
+
+          let entry = userState.attrs.find(x => x.key == key);
+          if (entry == undefined) {
+            entry = { key: key, value: 0 };
+            userState.attrs.push(entry);
+          }
+
+          entry.value += value;
+          entry.value = (entry.value < 0) ? 0 : entry.value;
+      });
+
+      yield put(action('updateState')({}));
+      yield put.resolve(action('syncData')({}));
+      
+      // 通知角色属性刷新
+      DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
+    },
+
+    *getAttrs({}, { select }) {
+      const userState = yield select(state => state.UserModel);
+      return userState.attrs;
     },
 
     *syncData({ }, { select, call }) {

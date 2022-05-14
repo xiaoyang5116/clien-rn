@@ -5,9 +5,12 @@ import {
     connect,
     action,
     EventKeys,
+    DataContext,
 } from "../../constants";
 
 class PlainView extends PureComponent {
+
+    static contextType = DataContext;
 
     layoutHandler = (e) => {
         this.props.dispatch(action('ArticleModel/layout')({
@@ -18,7 +21,12 @@ class PlainView extends PureComponent {
     }
 
     onPressHandler = (e) => {
-        DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_PRESS, e);
+        if (this.context.slideMoving == undefined 
+            || !this.context.slideMoving) {
+            DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_PRESS, e);
+        } else {
+            this.context.slideMoving = false;
+        }
     }
 
     onLongPressHandler = (e) => {

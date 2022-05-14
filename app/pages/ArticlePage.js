@@ -1,17 +1,21 @@
 
 import React from 'react';
 
+import lo from 'lodash';
+
 import {
   connect,
   Component,
   StyleSheet,
   action,
   EventKeys,
-  AppDispath
+  AppDispath,
+  DataContext
 } from "../constants";
 
 import { 
   View,
+  Text,
   FlatList,
 } from '../constants/native-ui';
 
@@ -23,8 +27,10 @@ import RootView from '../components/RootView';
 import ReaderSettings from '../components/readerSettings';
 import HeaderContainer from '../components/article/HeaderContainer';
 import FooterContainer from '../components/article/FooterContainer';
+import PropertiesContainer from '../components/article/PropertiesContainer';
+import Collapse from '../components/collapse';
 
-const data = [
+const WORLD = [
   {
     worldId: 0,
     title: "现实",
@@ -51,10 +57,10 @@ const data = [
   },
 ];
 
-const worldSelector = () => {
+const WorldSelector = () => {
   CarouselUtils.show({ 
-    data, 
-    initialIndex: Math.floor(data.length / 2), 
+    data: WORLD, 
+    initialIndex: Math.floor(WORLD.length / 2), 
     onSelect: (p) => {
       if (p.item.toChapter != undefined) {
         AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: p.item.toChapter, __sceneId: '' } });
@@ -63,12 +69,71 @@ const worldSelector = () => {
   });
 }
 
+const UserAttributesHolder = (props) => {
+  const [ data, setData ] = React.useState(props.config);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.USER_ATTR_UPDATE, () => {
+      const cb = (result) => {
+        console.debug(result);
+        const newData = lo.cloneDeep(data);
+        result.forEach(e => {
+          const { key, value } = e;
+          newData.forEach(e => {
+            e.data.forEach(e => {
+              e.forEach(e => {
+                if (e.key == key) {
+                  e.value = value;
+                }
+              })
+            });
+          });
+        });
+        //
+        setData(newData);
+      };
+      AppDispath({ type: 'UserModel/getAttrs', cb });
+    });
+
+    // 更新角色属性
+    DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
+    
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  return (
+    <Collapse 
+      data={data}
+      renderItem={(item) => {
+        return (
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ width: 50 }}><Text>{item.title}:</Text></View>
+            <View><Text style={{ color: '#666' }}>{item.value}</Text></View>
+          </View>
+        );
+      }}
+      renderGroupHeader={(section) => {
+        return (
+          <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
+        );
+      }}
+    />
+  );
+}
+
 class ArticlePage extends Component {
+
+  static contextType = DataContext;
 
   constructor(props) {
     super(props);
     this.refList = React.createRef();
+    this.refPropsContainer = React.createRef();
     this.longPressListener = null;
+    this.startX = 0;
+    this.startY = 0;
   }
 
   componentDidMount() {
@@ -76,7 +141,7 @@ class ArticlePage extends Component {
 
     // 长按监听器
     this.longPressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
-      worldSelector();
+      WorldSelector();
     });
   }
 
@@ -107,7 +172,7 @@ class ArticlePage extends Component {
   }
 
   render() {
-    const { readerStyle } = this.props
+    const { readerStyle, attrsConfig } = this.props;
     return (
         <View style={[styles.viewContainer, { backgroundColor:readerStyle.bgColor }]}>
           <HeaderContainer>
@@ -115,7 +180,7 @@ class ArticlePage extends Component {
               <TextButton title='X' onPress={() => {
                 DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
               }} />
-              <TextButton title='选择世界' onPress={worldSelector} />
+              <TextButton title='选择世界' onPress={WorldSelector} />
               <TextButton title='...' />
             </View>
           </HeaderContainer>
@@ -132,6 +197,27 @@ class ArticlePage extends Component {
               onEndReached={this.endReachedHandler}
               initialNumToRender={2}
               maxToRenderPerBatch={5}
+              onTouchStart={(e) => {
+                this.startX = e.nativeEvent.pageX;
+                this.startY = e.nativeEvent.pageY;
+              }}
+              onTouchMove={(e) => {
+                const dx = e.nativeEvent.pageX - this.startX;
+                const dy = e.nativeEvent.pageY - this.startY;
+
+                if (Math.abs(dx) >= 10) {
+                  if (dx < 0) {
+                    this.refPropsContainer.current.offsetX(-dx);
+                    this.context.slideMoving = true;
+                  }
+                }
+              }}
+              onTouchEnd={() => {
+                this.refPropsContainer.current.release();
+              }}
+              onTouchCancel={() => {
+                this.refPropsContainer.current.release();
+              }}
             />
           </View>
           <FooterContainer>
@@ -144,6 +230,9 @@ class ArticlePage extends Component {
               }} />
             </View>
           </FooterContainer>
+          <PropertiesContainer ref={this.refPropsContainer}>
+            {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
+          </PropertiesContainer>
         </View>
     );
   }

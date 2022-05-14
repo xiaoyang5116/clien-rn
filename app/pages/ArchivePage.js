@@ -76,7 +76,7 @@ class ArchivePage extends Component {
         type,
         fps: Number(30),
         loop: true,
-        resetAfterFinish: () => {},
+        resetAfterFinish: false,
         onFinish: () => console.log('hi')
       });
     };

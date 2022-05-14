@@ -1,0 +1,46 @@
+# ===========================================
+# 角色属性
+# ===========================================
+data: {
+  attrs: [
+    {
+      title: '力量倾向',
+      collapsed: true,
+      data: [[
+        { title: '成神', key: 1, value: 0 },
+        { title: '入魔', key: 2, value: 0 },
+        { title: '变化', key: 3, value: 0 },
+        { title: '自由', key: 4, value: 0 },
+      ]],
+    },
+    {
+      title: '善恶',
+      data: [[
+        { title: '善良', key: 5, value: 0 },
+        { title: '冷漠', key: 6, value: 0 },
+      ]],
+    },
+    {
+      title: '武艺',
+      data: [[
+        { title: '身法', key: 7, value: 0 },
+        { title: '速度', key: 8, value: 0 },
+      ]],
+    },
+    {
+      title: '修行',
+      collapsed: true,
+      data: [[
+        { title: '神识', key: 9, value: 0 },
+        { title: '鉴定', key: 10, value: 0 },
+      ]],
+    },
+    {
+      title: '才华',
+      collapsed: true,
+      data: [[
+        { title: '学识', key: 11, value: 0 },
+      ]],
+    },
+  ]
+}

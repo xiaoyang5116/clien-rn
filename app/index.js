@@ -24,6 +24,7 @@ import {
   ThemeContext,
   currentTheme,
   EventKeys,
+  DataContext,
 } from './constants';
 
 import { name as appName } from '../app.json';
@@ -165,13 +166,15 @@ class App extends Component {
     return (
       <Provider store={dva._store}>
         <ThemeContext.Provider value={this.state.themeStyle}>
-          <View style={styles.rootContainer}>
-            <Shock>
-              <MainPage />
-              <RootView />
-              <MaskModal />
-            </Shock>
-          </View>
+          <DataContext.Provider value={{}}>
+            <View style={styles.rootContainer}>
+              <Shock>
+                <MainPage />
+                <RootView />
+                <MaskModal />
+              </Shock>
+            </View>
+          </DataContext.Provider>
         </ThemeContext.Provider>
       </Provider>
     );
