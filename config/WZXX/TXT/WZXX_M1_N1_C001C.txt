@@ -91,7 +91,7 @@
 #START========================================
 #
 [
-    { sceneId: 'WZXX_M1_N1_C001C', chatId: 'WZXX_M1_N1_C001C_CCXZ' },
+    { sceneId: 'WZXX_M1_N1_C001C_V', chatId: 'WZXX_M1_N1_C001C_V_CCXZ' },
 ]
 #END==========================================
      

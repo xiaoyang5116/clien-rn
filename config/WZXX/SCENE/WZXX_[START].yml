@@ -7,7 +7,8 @@ scenes: [
       # 变量定义
       vars: [
       { id: 'v1', min: 0, max: 1 },
-
+      # 变量定义
+      { id: 'DEBUG', min: 0, max: 1 },
       # 变量定义已读标签
       { id: 'WZXX_001_Option_Already_Read_V1', min: 0, max: 1 },
 
@@ -28,7 +29,23 @@ scenes: [
       { 
         id: 'WZXX_[START]', desc: '选项', 
         options: [ 
-          { 
+          { title: "【开始阅读】", toChapter: "WZXX_M1_N1_C001" },
+        ],
+      },
+      #
+      { 
+        id: 'WZXX_[START]_DEBUG', desc: '选项', 
+        options: [ 
+
+          { title: "【世界选择功能】", varsOn: "WZXX_M1_N1_C001_[A1]", },
+          { title: "【DEBUG阶段2】", toChapter: "WZXX_M1_N1_C001A" },
+          { title: "【DEBUG阶段3】", toChapter: "WZXX_M1_N1_C001B" },
+        ],
+      },
+      { 
+        id: 'WZXX_[START]_DEBUG2', desc: '选项', 
+        options: [ 
+      { 
             title: "【选择章节】", 
             selector: {
               data: [
@@ -83,24 +100,9 @@ scenes: [
               ]
             }
           },
-          { title: "【开始阅读】", toChapter: "WZXX_M1_N1_C001" },
-          { title: "【DEBUG阶段2】", toChapter: "WZXX_M1_N1_C001A" },
-          { title: "【DEBUG阶段3】", toChapter: "WZXX_M1_N1_C001B" },
         ],
       },
-      #
-      { 
-        id: 'WZXX_001', desc: '选项', 
-        options: [ 
-        #  { title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
-          { title: "【去最近的城市，生存重要】", varsOn: "WZXX_M1_N1_C001_[A1]", },
-          { title: "【去穿越的地点，也许能找到什么】", varsOn: "WZXX_M1_N1_C001_[A2]" },
-          { title: "【跟踪对手，找到更多线索】", varsOn: "WZXX_M1_N1_C001_[A3]" },
 
-
-
-        ],
-      },
       { 
         id: 'WZXX_M1_N1_C999V', desc: '选项', 
         options: [ 
