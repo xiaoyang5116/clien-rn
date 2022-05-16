@@ -43,8 +43,6 @@ scenes: [
           { title: '【向右走】',nextChat: 'B1', varsOff: ["v1A","v2A",] }, 
           { title: '【DEBUG 到场景外】',toChapter:  'WZXX_M1_N1_C001B_[B2]'}, 
           { title: '【DEBUG 去结局】',nextChat: 'C001B_EventEND1'  }, 
-
-
         ],
       },
       #
@@ -206,14 +204,15 @@ scenes: [
       { 
         id: 'C4', desc: '你发现从树林里走了出来，眼前是不知名的大片平原草场', 
         options: [ 
-          { title: '【向前走】',nextChat: 'D2'  }, 
+          { title: '【向前走】',nextChat: 'E12'  }, 
+          { title: '【向左走】',nextChat: 'C5'  }, 
           { title: '【返回密林】',nextChat: 'C3'  }, 
         ],
       },
       { 
         id: 'C5', desc: '远处有什么动静？', 
         options: [ 
-          { title: '【一眼望去】',nextChat: 'D2'  }, 
+          { title: '【一眼望去】',dialogs: ['gameoverD5']  }, 
  
         ],
       },
@@ -503,7 +502,7 @@ scenes: [
          { key: 'p1', content: ['怪不得刚才有那种不好的预感','早知道就不该走这条路的','你慌忙惊吓跑路','跑啊跑','慌忙中越来越心跳加速','……',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
          ], },
            #死亡3
-         { id: 'gameoverC5',style: 7, title: '野狼', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+         { id: 'gameoverD5',style: 7, title: '野狼', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
          { key: 'p1', content: ['你看到了几只妖狼正向你的方向快速扑来','虽然你有一身跑路的本事','但两条腿跑不过四条腿的','……','你挂了',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
          ], },
            #死亡3
