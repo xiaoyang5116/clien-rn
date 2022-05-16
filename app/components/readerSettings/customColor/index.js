@@ -22,33 +22,33 @@ const matchColor = (props) => {
         <View style={theme.readerSettingRow}>
             <View style={theme.readerSettingRow_left_item}>
                 <RButton
-                    color={readerStyle.matchColor1.bgColor}
-                    selected={(readerStyle.bgColor === readerStyle.matchColor1.bgColor)}
-                    onPress={() => { changeMatchColor(readerStyle.matchColor1) }}
+                    color={readerStyle.matchColor_1.bgColor}
+                    selected={(readerStyle.bgColor === readerStyle.matchColor_1.bgColor)}
+                    onPress={() => { changeMatchColor(readerStyle.matchColor_1) }}
                 />
             </View>
 
             <View style={theme.readerSettingRow_left_item}>
                 <RButton
-                    color={readerStyle.matchColor2.bgColor}
-                    selected={(readerStyle.bgColor === readerStyle.matchColor2.bgColor)}
-                    onPress={() => { changeMatchColor(readerStyle.matchColor2) }}
+                    color={readerStyle.matchColor_2.bgColor}
+                    selected={(readerStyle.bgColor === readerStyle.matchColor_2.bgColor)}
+                    onPress={() => { changeMatchColor(readerStyle.matchColor_2) }}
                 />
             </View>
 
             <View style={theme.readerSettingRow_left_item}>
                 <RButton
-                    color={readerStyle.matchColor3.bgColor}
-                    selected={(readerStyle.bgColor === readerStyle.matchColor3.bgColor)}
-                    onPress={() => { changeMatchColor(readerStyle.matchColor3) }}
+                    color={readerStyle.matchColor_3.bgColor}
+                    selected={(readerStyle.bgColor === readerStyle.matchColor_3.bgColor)}
+                    onPress={() => { changeMatchColor(readerStyle.matchColor_3) }}
                 />
             </View>
 
             <View style={theme.readerSettingRow_left_item}>
                 <RButton
-                    color={readerStyle.matchColor4.bgColor}
-                    selected={(readerStyle.bgColor === readerStyle.matchColor4.bgColor)}
-                    onPress={() => { changeMatchColor(readerStyle.matchColor4) }}
+                    color={readerStyle.matchColor_4.bgColor}
+                    selected={(readerStyle.bgColor === readerStyle.matchColor_4.bgColor)}
+                    onPress={() => { changeMatchColor(readerStyle.matchColor_4) }}
                 />
             </View>
 

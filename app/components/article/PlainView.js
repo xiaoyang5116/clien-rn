@@ -21,7 +21,7 @@ class PlainView extends PureComponent {
     }
 
     onPressHandler = (e) => {
-        if (this.context.slideMoving == undefined 
+        if (this.context.slideMoving == undefined
             || !this.context.slideMoving) {
             DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_PRESS, e);
         } else {
@@ -42,9 +42,11 @@ class PlainView extends PureComponent {
                     <Text style={{
                         fontSize: readerStyle.contentSize,
                         color: readerStyle.color,
-                        lineHeight: 28,
-                        paddingLeft: 10,
-                        paddingRight: 10
+                        lineHeight: (readerStyle.contentSize + readerStyle.lineHeight),
+                        marginTop: readerStyle.paragraphSpacing,
+                        marginBottom: readerStyle.paragraphSpacing,
+                        paddingLeft: readerStyle.leftPadding,
+                        paddingRight: readerStyle.rightPadding,
                     }}>
                         {this.props.content}
                     </Text>
