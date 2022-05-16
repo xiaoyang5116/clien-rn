@@ -95,6 +95,8 @@ scenes: [
   # 新手村场景
   {
     id: 'wzkj', name: '未知空间',
+    worldTimeHidden: true,
+    sceneImage: 'default',
 
     # 变量定义
     vars: [

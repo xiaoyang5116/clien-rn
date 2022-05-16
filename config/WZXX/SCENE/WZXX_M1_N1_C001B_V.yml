@@ -5,7 +5,8 @@ scenes: [
       id: 'WZXX_M1_N1_C001B_V',
       name: "城外密林",
       worldTimeHidden: true,
-      sceneImage: SceneMap0001,
+      sceneImage: 'default',
+      
       # 变量定义
       vars: [
       { id: "v1A", min: 0, max: 1 },
@@ -18,7 +19,7 @@ scenes: [
 
       # 事件定义 阅读器中的场景事件暂时没什么意义
       events: [
-      { type: 'enter', nextChat: 'C001B_EventSTART1',dialogs: ['C001B_START_shulin']},
+      { type: 'enter', nextChat: 'C001B_EventSTART1',dialogs: ['C001B_START_shulin'],varsOff: ["v1A","v2A",],},
       ],
 
       # 对话选项
@@ -38,8 +39,8 @@ scenes: [
         id: 'C001B_EventSTART1', desc: '一个分叉路在你眼前', 
         options: [ 
           #第一次进入 
-          { title: '【向左走】',nextChat: 'B2'  }, 
-          { title: '【向右走】',nextChat: 'B1'  }, 
+          { title: '【向左走】',nextChat: 'B2', varsOff: ["v1A","v2A",] }, 
+          { title: '【向右走】',nextChat: 'B1', varsOff: ["v1A","v2A",] }, 
         ],
       },
       #
@@ -94,11 +95,72 @@ scenes: [
         id: 'B6', desc: '你发现这条道路是城市附近的官道', 
         options: [ 
           { title: '【沿路向前走】',nextChat: 'D1'  }, 
-          { title: '【向左走离开大道】',nextChat: 'D1'  }, 
+          { title: '【向左走离开大道】',nextChat: 'B2'  }, 
           { title: '【向右走离开大道】',nextChat: 'C2'  },  
-          { title: '【沿路向后走】',nextChat: 'D4'  }, 
+          { title: '【沿路向后走】',nextChat: 'B6A'  }, 
         ],
       },
+      { 
+        id: 'B6A', desc: '你感觉似乎距离城市更远了', 
+        options: [ 
+          { title: '【沿路向前走】',nextChat: 'D1'  }, 
+          { title: '【沿路向后走】',nextChat: 'B6'  }, 
+        ],
+      },
+      { 
+        id: 'B6B', desc: '你发现一位旅人大叔正在道路上走着，可算遇到了人了', 
+        options: [ 
+          { title: '【沿路向前走】',nextChat: 'D1'  }, 
+          { title: '【沿路向后走】',nextChat: 'B6'  }, 
+        ],
+      },
+      { 
+        id: 'B6B1', desc: '你发现一位旅人大叔正在道路上走着，可算遇到了人了', 
+        options: [ 
+          { title: '【沿路向前走】',nextChat: 'D1'  }, 
+          { title: '【沿路向后走】',nextChat: 'B6'  }, 
+        ],
+      },
+      { 
+        id: 'B6B2', desc: '你发现一位旅人正在道路上走着，可算遇到了人了', 
+        options: [ 
+          { title: '【问路】',nextChat: 'B6B2A'  }, 
+          { title: '【聊些别的】',nextChat: 'B6B2A'  }, 
+          { title: '【其他】',nextChat: 'B6B2B'  }, 
+          { title: '【谢过离开】',nextChat: 'B6'  }, 
+        ],
+      },
+     { 
+        id: 'B6B2A', desc: '你现在走的方向是去城外的路，要进城的话就是走反了', 
+        options: [ 
+          { title: '【返回】',nextChat: 'B6B2'  }, 
+ 
+        ],
+      },
+     { 
+        id: 'B6B2B', desc: '这条路最近没几个人敢走，因为传言附近有老虎出没', 
+        options: [ 
+          { title: '【若有所思】',nextChat: 'B6B2'  }, 
+ 
+        ],
+      },
+     { 
+        id: 'B6B2C', desc: '抱歉，我不知到你说的什么意思', 
+        options: [ 
+          { title: '【返回】',nextChat: 'B6B2'  }, 
+ 
+        ],
+      },
+
+
+
+
+
+
+
+
+
+      
        { 
         id: 'C0', desc: '普通的分岔道路', 
         options: [ 
@@ -155,25 +217,25 @@ scenes: [
         id: 'D1', desc: '一条林间大道，你看出这是直通城镇的官道', 
         options: [ 
  
-          { title: '【向前走】',nextChat: 'D5'  }, 
-          { title: '【向左走】',nextChat: 'D1'  }, 
-          { title: '【向右走】',nextChat: 'C2'  }, 
+          { title: '【向前走，顺着官道】',nextChat: 'D5'  }, 
+          { title: '【向左走，去路的左边森林】',nextChat: 'D1'  }, 
+          { title: '【向右走，去路右边的森林】',dialogs: ['gameover01']  }, 
         ],
       },
       { 
-        id: 'D2', desc: '一条林间大道，你看出这是直通城镇的官道', 
+        id: 'D2', desc: '前面是一个山洞', 
         options: [ 
  
-          { title: '【向前走】',nextChat: 'D5'  }, 
-          { title: '【向左走】',nextChat: 'D1'  }, 
-          { title: '【向右走】',nextChat: 'C2'  }, 
+          { title: '【去山洞查看】',nextChat: 'E8'  }, 
+          { title: '【向左走】',nextChat: 'C4'  }, 
+          { title: '【向右走】',nextChat: 'D3'  }, 
         ],
       },
       { 
         id: 'D3', desc: '一个分岔路出现，你发现旁边有个山洞口', 
         options: [ 
           { title: '【朝着树的方向走】',nextChat: 'E7'  }, 
-          { title: '【向山洞的位置走】',nextChat: ''  }, 
+          { title: '【向山洞的位置走】',nextChat: 'E8'  }, 
           { title: '【向右走】',nextChat: 'B2'  }, 
         ],
       },
@@ -184,6 +246,7 @@ scenes: [
         options: [ 
  
           { title: '【向前走】',nextChat: 'E4'  }, 
+          { title: '【向左走】',nextChat: 'D3'  }, 
           { title: '【向右走】',nextChat: 'D5'  }, 
         ],
       },
@@ -198,8 +261,8 @@ scenes: [
     { 
         id: 'D5_2', desc: '你觉得危险正在逼近，四周仿佛有什么一直注视你', 
         options: [ 
-          { title: '【向前走】',nextChat: 'gameoverD4'  }, 
-          { title: '【向右走】',nextChat: 'gameoverD4'  }, 
+          { title: '【向前走】',dialogs: ['gameoverD4'] }, 
+          { title: '【向右走】',dialogs: ['gameoverD4']  }, 
           { title: '【返回】',nextChat: 'D4'  }, 
         ],
       },
@@ -216,7 +279,7 @@ scenes: [
         id: 'E1', desc: '你觉得有种被注视的感觉', 
         options: [ 
          { title: '【向前走】',nextChat: 'E3'  }, 
-         { title: '【向左走】',nextChat: 'gameoverD3'  }, 
+         { title: '【向左走】',dialogs: ['gameoverD3'] }, 
          { title: '【向右走】',nextChat: 'E2'  }, 
          { title: '【返回】',nextChat: 'D5'  }, 
         ],
@@ -234,19 +297,19 @@ scenes: [
          { title: '【向前走】',nextChat: 'E3_2'  }, 
          { title: '【向左走】',nextChat: 'E3_2'  }, 
          { title: '【向右走】',nextChat: 'E3_2'  }, 
-         { title: '【返回】',nextChat: 'gameoverD3'  }, 
+         { title: '【返回】',dialogs: ['gameoverD3']  }, 
         ],
       },
       { 
-        id: 'E3_2', desc: '走了几步，却发现高大的石墙挡住去路，前面是死路！！，怎么办', 
+        id: 'E3_2', desc: '走了几步，却发现高大的石墙挡住去路，前面是死路！怎么办', 
         options: [ 
-         { title: '【转身】',nextChat: 'gameoverD2'  }, 
+         { title: '【转身】',dialogs: ['gameoverD3']  }, 
         ],
       },
       { 
         id: 'E4', desc: '四周安静，你觉得内心也平静了', 
         options: [ 
-         { title: '【向前走】',nextChat: 'E3_2'  }, 
+         { title: '【向前走】',nextChat: 'E5'  }, 
         ],
       },
       { 
@@ -261,39 +324,67 @@ scenes: [
       { 
         id: 'E6', desc: '这是距离大树很近的山坡', 
         options: [ 
-         { title: '【爬上山丘】',nextChat: 'E1'  }, 
-         { title: '【去大树下看看】',nextChat: 'C001B_EventEND1'  }, 
+         { title: '【爬到山丘上面】',dialogs: ['E6N1']  }, 
+         { title: '【去大树下看看】',dialogs: ['C001B_EventEND1']   }, 
          { title: '【山丘下好像有个山洞】',nextChat: 'D2'  }, 
         ],
       },
-
       { 
         id: 'E7', desc: '你清晰的看到了远方的大树', 
         options: [ 
          { title: '【向前走】',nextChat: 'E6'  }, 
-         { title: '【向左走】',nextChat: 'E4'  }, 
-         { title: '【向右走】',nextChat: 'E6'  }, 
+         { title: '【向左走】',nextChat: 'E8'  }, 
+         { title: '【向右走】',nextChat: 'D4'  }, 
         ],
       },
-
-
-
-
-
-          
       { 
-        id: 'B3', desc: '这是一条一路通畅的小路', 
+        id: 'E8', desc: '你到了山洞口，石壁的开凿痕迹，能看出这是有人居住过的，但现在已经早已荒废', 
         options: [ 
-          { title: '【前进】',nextChat: 'C001B_Event02'  }, 
+         { title: '【进入山洞】',nextChat: 'E10'  }, 
+         { title: '【离开】',nextChat: 'E7'  }, 
+        ],
+      },
+   { 
+        id: 'E9', desc: '山洞很昏暗', 
+        options: [ 
+         { title: '【沿石阶而上】',nextChat: 'E11'  }, 
+         { title: '【石阶附近搜寻】',nextChat: 'E9N2'  }, 
+         { title: '【墙壁附近搜寻】',nextChat: 'E9N3'  }, 
+         { title: '【返回入口】',nextChat: 'E7'  }, 
+        ],
+      },
+   { 
+        id: 'E9N2', desc: '什么都没有，你觉得这太傻了', 
+        options: [ 
+         { title: '【返回】',nextChat: 'E9'  }, 
+        ],
+      },
+   { 
+        id: 'E9N3', desc: '墙壁可以推动', 
+        options: [ 
+         { title: '【使劲推动】',nextChat: 'E10'  }, 
+        ],
+      },
+   { 
+        id: 'E10', desc: '这是一间密室，有一个闪烁微光的石门', 
+        options: [ 
+         { title: '【碰触石门】',dialogs: ['gameoverD6']  }, 
+         { title: '【离开】',nextChat: 'E9'  }, 
+        ],
+      },
+
+      { 
+        id: 'E11', desc: '前面是一个通向山下的窄道', 
+        options: [ 
+         { title: '【顺路走下来】',nextChat: 'E12'   }, 
+         { title: '【离开】',nextChat: 'E9'  }, 
         ],
       },
       { 
-        id: 'C001B_EventR2', desc: '一个分叉路在你眼前', 
+        id: 'E12', desc: '你出现在一个山坡上', 
         options: [ 
           #第一次进入 
-          { title: '【向左走】',nextChat: 'L2'  }, 
-          { title: '【走中间】',nextChat: 'A2'  }, 
-          { title: '【向右走】',nextChat: 'R2'  }, 
+          { title: '【走下山坡】',nextChat: 'C4'  }, 
         ],
       },
 
@@ -304,20 +395,6 @@ scenes: [
 
 
 
-
-
-
-
-
-
-      #
-      { 
-        id: 'dalukou_Event01Day3', desc: '民居院落依着斜坡而建，路边有一条小河沟，桥头有一些小吃摊位', 
-        options: [ 
-          { title: '>>>【落月镇西-大路口】', andVarsOn: ['v1'], toScene: 'dalukou' }, 
-          { title: '<<<【落月镇西-胡同口】', andVarsOn: ['v1'], toScene: 'hutongkou' }, 
-        ],
-      },
 
      #三合一分支界面=======================================================
       { 
@@ -368,6 +445,7 @@ scenes: [
     { id: 'C2N1', style: 1,sections: ['树枝被踢到远处','现在路可以走了',], nextChat: 'C001B_EventSTART1' },
     { id: 'C2N2', style: 1,sections: ['为了绕路，你倒霉的滑了一跤','现在可以继续走了',], nextChat: 'C001B_EventSTART1' },
     { id: 'C2N3', style: 1,sections: ['棍子打着圈被扔到了树上。','哗啦哗啦','哗啦哗啦','一大堆虫子乱飞',你急忙跑开，这条路不能走了。], nextChat: 'C001B_EventSTART1' },
+    { id: 'E6N1', style: 1,sections: ['在陡峭的山坡','随着山石滑落。','一个不小心','滑落到了山下，闹出一阵动静',],nextChat: 'E1' },
 
 
         #通关树林
@@ -377,11 +455,11 @@ scenes: [
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['树林大树下','你觉得这里似曾相识','仔细看去，这原来就是你最初和杀手遇见的地方','终于找对地方了！',['盖章过关'],'……',], btn: [{title: '高兴',toScene: 'WZXX_M1_N1_C001B_V',  },]},
+           { key: 'p1', content: ['树林大树下','你觉得这里似曾相识','仔细看去，这原来就是你最初藏东西的地方','终于找对了！',['盖章过关'],'……',], btn: [{title: '高兴',toChapter: "WZXX_M1_N1_C001B2",  },]},
            ],
          },
 
-
+                       
         #死亡0
          { id: 'gameover00',
            style: 6, 
@@ -389,21 +467,45 @@ scenes: [
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来',toScene: 'WZXX_M1_N1_C001B_V',  }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001B",}]},
+           { key: 'p1', content: ['你挂了……',请选择'], btn: [{title: '不放弃，再来',toScene: 'WZXX_M1_N1_C001B_V',  }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001B",}]},
            ],
          },
+
+
        #死亡3
-         { id: 'gameover01',style: 7, title: '迷路', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+         { id: 'gameover01',style: 7, title: '迷路',  dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
          { key: 'p1', content: ['和之前的森林不同','这部分森林似乎更加难以辨别道路……','原本的道路都不见了……','数天后，你依旧在树林里打转……','请选择'],btn: [{title: '不放弃，再来', toScene: 'WZXX_M1_N1_C001B_V', },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001"}]},
          ], },
   
-    { id: 'gameoverD1', style: 1,sections: ['怪不得刚才有那种不好的预感','早知道就不该走这条路的','慌忙惊吓跑路','跑啊跑','慌忙中越来越心跳加速','……',], nextChat: 'C001B_EventSTART1' },
-    { id: 'gameoverD2', style: 1,sections: ['你挂了','……',], nextChat: 'C001B_EventSTART1' },
-    { id: 'gameoverD3', style: 1,sections: ['正走着，你发现后背突然一凉','一阵剧痛袭来','你挂了','……',], nextChat: 'C001B_EventSTART1' },
-    { id: 'gameoverC5', style: 1,sections: ['你看到了几只妖狼正向你的方向快速扑来','虽然你有一身跑路的本事','但两条腿跑不过四条腿的','……',], nextChat: 'C001B_EventSTART1' },
 
 
+         #死亡3
+         { id: 'gameoverD1',style: 7, title: '迷路', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['怪不得刚才有那种不好的预感','早知道就不该走这条路的','你慌忙惊吓跑路','跑啊跑','慌忙中越来越心跳加速','……',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
+         ], },
+         #死亡3
+         { id: 'gameoverD2',style: 7, title: '遇袭',dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['正走着，你发现后背突然一凉','一阵剧痛袭来','你挂了','……'],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
+         ], },
+           #死亡3
+         { id: 'gameoverD3',style: 7, title: '迷路', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['怪不得刚才有那种不好的预感','早知道就不该走这条路的','你慌忙惊吓跑路','跑啊跑','慌忙中越来越心跳加速','……',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
+         ], },
+           #死亡3
+         { id: 'gameoverD4',style: 7, title: '迷路', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['怪不得刚才有那种不好的预感','早知道就不该走这条路的','你慌忙惊吓跑路','跑啊跑','慌忙中越来越心跳加速','……',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
+         ], },
+           #死亡3
+         { id: 'gameoverC5',style: 7, title: '迷路', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['你看到了几只妖狼正向你的方向快速扑来','虽然你有一身跑路的本事','但两条腿跑不过四条腿的','……',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
+         ], },
+           #死亡3
+         { id: 'gameoverD6',style: 7, title: '好奇心害死猫', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['碰触石门后','你觉得一阵眩晕','你被某个阵法杀死了','……',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
+         ], },
+ 
 
+ 
         ],
 
 
