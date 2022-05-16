@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, DeviceEventEmitter } from 'react-native';
 import React, { useEffect } from 'react';
 
 import { connect, action, EventKeys, ThemeContext } from '../../../constants';
@@ -15,6 +15,12 @@ const SetParagraph = props => {
     const changeTypesetting = (Typesetting, selectedTypesetting) => {
         props.dispatch(action('ArticleModel/changeTypesetting')({ Typesetting, selectedTypesetting }));
     };
+    let timer = null
+    React.useEffect(() => {
+        return () => {
+            // clearTimeout(timer)
+        }
+    })
 
     const Wire = props => {
         let line = [];
@@ -105,8 +111,11 @@ const SetParagraph = props => {
                     title={'自定义排版'}
                     selected={readerStyle.selectedTypesetting === '自定义排版'}
                     onPress={() => {
-                        props.openSecondaryMenu({ type: "CustomParagraph" })
-                        const key = RootView.add(<CustomParagraph onClose={() => { RootView.remove(key) }} />)
+                        // console.log("timer", timer);
+                        props.setVisible()
+                        timer = setTimeout(() => {
+                            const key = RootView.add(<CustomParagraph onClose={() => { RootView.remove(key) }} />)
+                        }, 100);
                     }}
                 />
             </View>

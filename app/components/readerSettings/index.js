@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, DeviceEventEmitter } from 'react-native';
 import React, { useEffect } from 'react';
 
 import {
@@ -26,25 +26,21 @@ const ReaderSettings = (props) => {
 
     useEffect(() => {
         setVisible(true);
+        const onCloseReaderSettings = DeviceEventEmitter.addListener(EventKeys.ANIMATION_END, () => { setVisible(false) });
         return () => {
-            setVisible(false);
+            onCloseReaderSettings.remove()
+            setVisible(false)
         };
     }, []);
 
     // const onModalHide = () => {
-    //     console.log("openSecondaryMenu", secondaryMenuType);
-    //     switch (secondaryMenuType) {
-    //         case "CustomParagraph":
-    //              const key = RootView.add(<CustomParagraph onClose={() => { RootView.remove(key) }} />)
-    //              return  null
-    //         default:
-    //             break;
-    //     }
+    //     // DeviceEventEmitter.emit(EventKeys.ANIMATION_END, true);
+    //     // props.onClose()
+    //     const key = RootView.add(<CustomParagraph onClose={() => { RootView.remove(key) }} />)
     // }
-    const openSecondaryMenu = ({ type }) => {
-        setVisible(false);
-        // setSecondaryMenuType(type)
-    }
+    // const openSecondaryMenu = () => {
+    //     setVisible(false)
+    // }
 
     return (
         <Modal
@@ -54,7 +50,9 @@ const ReaderSettings = (props) => {
             animationOut="slideOutDown"
             animationOutTiming={300}
             backdropOpacity={0}
-            // onModalHide={onModalHide}
+            backgroundTransitionOutTiming={0}
+            // onModalHide={openSecondaryMenu}
+            // hideModalContentWhileAnimating={true}
             onBackButtonPress={() => {
                 setVisible(false);
             }}
@@ -65,7 +63,7 @@ const ReaderSettings = (props) => {
         >
             <View style={[{ backgroundColor: readerStyle.popUpBgColor }, theme.readerSettingContainer]}>
                 <ChangeFont setVisible={setVisible} />
-                <SetParagraph openSecondaryMenu={openSecondaryMenu} />
+                <SetParagraph setVisible={() => { setVisible(false) }} />
                 <CustomColor setVisible={setVisible} />
             </View>
         </Modal>

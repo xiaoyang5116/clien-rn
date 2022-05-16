@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, DeviceEventEmitter } from 'react-native';
 import React, { useEffect } from 'react';
 import { Slider } from '@ant-design/react-native'
 
@@ -88,7 +88,7 @@ const CustomParagraph = (props) => {
     const theme = React.useContext(ThemeContext);
 
     useEffect(() => {
-        setVisible(true);
+        setVisible(true)
         return () => {
             setVisible(false);
         };
@@ -106,13 +106,15 @@ const CustomParagraph = (props) => {
             animationOut="slideOutDown"
             animationOutTiming={300}
             backdropOpacity={0}
+            backgroundTransitionOutTiming={0}
+            hideModalContentWhileAnimating={true}
             onBackButtonPress={() => {
                 setVisible(false);
             }}
             onBackdropPress={() => {
                 setVisible(false);
             }}
-            style={{ padding: 0, margin: 0, flex: 1, zIndex: 1 }}
+            style={{ padding: 0, margin: 0, flex: 1, zIndex: 2, }}
         >
             <View style={[{ backgroundColor: readerStyle.popUpBgColor }, theme.readerSettingContainer]}>
                 <Row
