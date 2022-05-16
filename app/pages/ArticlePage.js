@@ -75,7 +75,6 @@ const UserAttributesHolder = (props) => {
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener(EventKeys.USER_ATTR_UPDATE, () => {
       const cb = (result) => {
-        console.debug(result);
         const newData = lo.cloneDeep(data);
         result.forEach(e => {
           const { key, value } = e;

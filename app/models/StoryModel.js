@@ -13,6 +13,7 @@ export default {
   state: {
     time: 0, // 时间信息
     position: '', // 位置信息
+    scene: null,  // 当前场景
     sceneVars: [], // 当前场景变量
     sectionData: [], // [{title:'', data:[{...title:'', action:''}]}]
   },
@@ -89,6 +90,7 @@ export default {
       yield put(action('updateState')({ 
         time: worldTime,
         position: scene.name,
+        scene: scene,
         sectionData: newSectionData, 
         sceneVars: sceneVars,
       }));

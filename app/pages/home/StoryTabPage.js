@@ -27,26 +27,15 @@ const SCENE_BG = [
 ];
 
 const SceneImage = (props) => {
-  const [ imageName, setImageName ] = React.useState('');
+  const { scene } = props;
+  const sceneImage = (scene != null && lo.isString(scene.sceneImage)) ? scene.sceneImage : '';
 
-  React.useEffect(() => {
-    const listener = DeviceEventEmitter.addListener(EventKeys.ENTER_SCENE, (scene) => {
-      // 这里添加功能代码
-      if (scene.sceneImage != undefined && lo.isString(scene.sceneImage)) {
-        setImageName(scene.sceneImage);
-      }
-    });
-    return () => {
-      listener.remove();
-    };
-  }, []);
-
-  if (lo.isEmpty(imageName)) {
+  if (lo.isEmpty(sceneImage)) {
     return (<></>);
   } else {
-    const img = SCENE_BG.find(e => e.name == imageName).img;
+    const img = SCENE_BG.find(e => e.name == sceneImage).img;
     return (
-      <View style={{ width: '100%', height: 100 }}>
+      <View style={{ alignSelf: 'stretch', height: 100 }}>
         <View style={{ flex: 1, marginLeft: 10, marginRight: 10, borderColor: '#999', borderWidth: 2 }}>
           <FastImage style={{ width: '100%', height: '100%' }} source={img} resizeMode='cover'  />
         </View>
@@ -56,25 +45,12 @@ const SceneImage = (props) => {
 }
 
 const SceneTimeLabel = (props) => {
+  const { scene } = props;
   const themeStyle = React.useContext(ThemeContext);
-  const [ display, setDisplay ] = React.useState('flex');
-
-  React.useEffect(() => {
-    const listener = DeviceEventEmitter.addListener(EventKeys.ENTER_SCENE, (scene) => {
-      // 这里添加功能代码
-      if (scene.worldTimeHidden != undefined && lo.isBoolean(scene.worldTimeHidden)) {
-        setDisplay(scene.worldTimeHidden ? 'none' : 'flex');
-      } else {
-        setDisplay('flex');
-      }
-    });
-    return () => {
-      listener.remove();
-    };
-  }, []);
+  const worldTimeHidden = (scene != null && lo.isBoolean(scene.worldTimeHidden)) ? scene.worldTimeHidden : false;
 
   return (
-    <Text style={[themeStyle.datetimeLabel, { display: display }]}>{props.datetime}</Text>
+    <Text style={[themeStyle.datetimeLabel, { display: (worldTimeHidden ? 'none' : 'flex') }]}>{props.datetime}</Text>
   );
 }
 
@@ -183,11 +159,10 @@ class StoryTabPage extends Component {
     }
   }
 
-  render() {
+  _getFmtDateTime(time) {
     let dt = new Date();
-    dt.setTime(this.props.time);
-    
-    const fmtDateTime = "周{0} {1}年[{2}] {3}月{4}日 {5}".format(
+    dt.setTime(time);
+    return "周{0} {1}年[{2}] {3}月{4}日 {5}".format(
       DateTime.Week.format(dt.getDay()), 
       dt.getFullYear(), 
       DateTime.Seasons.format(dt.getMonth()), 
@@ -195,14 +170,19 @@ class StoryTabPage extends Component {
       dt.getDate(),
       DateTime.DayPeriod.format(dt.getHours())
     );
+  }
 
+  render() {
+    const fmtDateTime = (this.props.time > 0) 
+                          ? this._getFmtDateTime(this.props.time) 
+                          : '';
     return (
       <View style={this.props.currentStyles.viewContainer}>
         <View style={[this.props.currentStyles.positionBar, { flexDirection: 'row', justifyContent: 'space-between' }]}>
           <Text style={[this.props.currentStyles.positionLabel, {color: this.props.currentStyles.navigation.text}]}>位置: {this.props.position}</Text>
-          <SceneTimeLabel datetime={fmtDateTime} />
+          <SceneTimeLabel {...this.props} datetime={fmtDateTime} />
         </View>
-        <SceneImage />
+        <SceneImage {...this.props} />
         <View style={this.props.currentStyles.chatContainer}>
           <SectionList
             style={this.props.currentStyles.chatList}
