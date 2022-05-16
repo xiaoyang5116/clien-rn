@@ -74,6 +74,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__copper_{0}".format(payload.alertCopper), cmd: 'copper', params: payload.alertCopper });
     }
 
+    // 生成角色属性修改动作
+    if (payload.alertAttrs != undefined && Array.isArray(payload.alertAttrs)) {
+      allActions.push({ id: "__attrs_{0}".format(payload.alertAttrs), cmd: 'attrs', params: payload.alertAttrs });
+    }
+
     // 生成世界时间修改动作
     if (payload.alertWorldTime != undefined && typeof(payload.alertWorldTime) == 'string') {
       allActions.push({ id: "__wtime_{0}".format(payload.alertWorldTime), cmd: 'wtime', params: payload.alertWorldTime });
@@ -182,6 +187,7 @@ const ACTIONS_MAP = [
   { cmd: 'scene',         handler: '__onSceneCommand' },
   { cmd: 'delay',         handler: '__onDelayCommand' },
   { cmd: 'copper',        handler: '__onCopperCommand' },
+  { cmd: 'attrs',         handler: '__onAttrsCommand' },
   { cmd: 'wtime',         handler: '__onWorldTimeCommand' },
   { cmd: 'var',           handler: '__onVarCommand' },
   { cmd: 'useProps',      handler: '__onUsePropsCommand' },
@@ -535,6 +541,18 @@ export default {
       if (alertValue != 0) {
         yield put.resolve(action('UserModel/alertCopper')({ value: alertValue }));
       }
+    },
+
+    *__onAttrsCommand({ payload }, { put, select }) {
+      const affects = [];
+      payload.params.forEach(e => {
+        let [ key, value ] = e.split(',');
+        key = lo.trim(key);
+        value = parseInt(lo.trim(value));
+        affects.push({ key, value });
+      });
+
+      yield put.resolve(action('UserModel/alertAttrs')(affects));
     },
 
     *__onWorldTimeCommand({ payload }, { put, select }) {
