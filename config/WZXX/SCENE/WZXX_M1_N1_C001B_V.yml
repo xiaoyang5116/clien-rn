@@ -41,6 +41,10 @@ scenes: [
           #第一次进入 
           { title: '【向左走】',nextChat: 'B2', varsOff: ["v1A","v2A",] }, 
           { title: '【向右走】',nextChat: 'B1', varsOff: ["v1A","v2A",] }, 
+          { title: '【DEBUG 到场景外】',toChapter:  'WZXX_M1_N1_C001B_[B2]'}, 
+          { title: '【DEBUG 去结局】',nextChat: 'C001B_EventEND1'  }, 
+
+
         ],
       },
       #
@@ -223,10 +227,10 @@ scenes: [
         ],
       },
       { 
-        id: 'D2', desc: '前面是一个山洞', 
+        id: 'D2', desc: '前面能看见一个山洞', 
         options: [ 
  
-          { title: '【去山洞查看】',nextChat: 'E8'  }, 
+          { title: '【去山洞口】',nextChat: 'E8'  }, 
           { title: '【向左走】',nextChat: 'C4'  }, 
           { title: '【向右走】',nextChat: 'D3'  }, 
         ],
