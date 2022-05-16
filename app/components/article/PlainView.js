@@ -42,7 +42,7 @@ class PlainView extends PureComponent {
                     <Text style={{
                         fontSize: readerStyle.contentSize,
                         color: readerStyle.color,
-                        lineHeight: readerStyle.lineHeight,
+                        lineHeight: (readerStyle.contentSize + readerStyle.lineHeight),
                         marginTop: readerStyle.paragraphSpacing,
                         marginBottom: readerStyle.paragraphSpacing,
                         paddingLeft: readerStyle.leftPadding,

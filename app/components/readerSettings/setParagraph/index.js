@@ -2,10 +2,13 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import React, { useEffect } from 'react';
 
 import { connect, action, EventKeys, ThemeContext } from '../../../constants';
+import RootView from '../../RootView';
 
 import { RButton } from '../_components';
+import CustomParagraph from './CustomParagraph';
 
-const CustomParagraph = props => {
+
+const SetParagraph = props => {
     const theme = React.useContext(ThemeContext);
     const { readerStyle } = props;
 
@@ -101,14 +104,17 @@ const CustomParagraph = props => {
                 <RButton
                     title={'自定义排版'}
                     selected={readerStyle.selectedTypesetting === '自定义排版'}
-                    onPress={() => { }}
+                    onPress={() => {
+                        props.openSecondaryMenu({ type: "CustomParagraph" })
+                        const key = RootView.add(<CustomParagraph onClose={() => { RootView.remove(key) }} />)
+                    }}
                 />
             </View>
         </View>
     );
 };
 
-export default connect(state => ({ ...state.ArticleModel }))(CustomParagraph);
+export default connect(state => ({ ...state.ArticleModel }))(SetParagraph);
 
 const styles = StyleSheet.create({
     wire: {

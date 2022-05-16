@@ -271,7 +271,6 @@ export default {
           ...readerStyle,
           contentSize: (readerStyle.contentSize - 1) > 10 ? (readerStyle.contentSize - 1) : 10,
           titleSize: readerStyle.titleSize - 1,
-          lineHeight: readerStyle.lineHeight !== null ? (readerStyle.lineHeight - 1) : null,
         }
       }
       if (payload.type === 'increase') {
@@ -279,7 +278,6 @@ export default {
           ...readerStyle,
           contentSize: (readerStyle.contentSize + 1) > 40 ? 40 : (readerStyle.contentSize + 1),
           titleSize: readerStyle.titleSize + 1,
-          lineHeight: readerStyle.lineHeight !== null ? (readerStyle.lineHeight + 1) : null,
         }
       }
       yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, newReaderStyle);
@@ -299,12 +297,41 @@ export default {
     // 修改排版
     *changeTypesetting({ payload }, { call, put, select }) {
       const { readerStyle } = yield select(state => state.ArticleModel);
-      const NewReaderStyle = {
-        ...readerStyle,
-        selectedTypesetting: payload.selectedTypesetting,
-        lineHeight: payload.Typesetting.lineHeight !== null ? (readerStyle.contentSize + payload.Typesetting.lineHeight) : null,
-        paragraphSpacing: payload.Typesetting.paragraphSpacing,
+      let NewReaderStyle = {}
+
+      if (payload.type === undefined) {
+        NewReaderStyle = {
+          ...readerStyle,
+          selectedTypesetting: payload.selectedTypesetting,
+          lineHeight: payload.Typesetting.lineHeight,
+          paragraphSpacing: payload.Typesetting.paragraphSpacing,
+        }
       }
+      else if (payload.type === "paragraphSpacing") {
+        NewReaderStyle = {
+          ...readerStyle,
+          paragraphSpacing: payload.value,
+        }
+      }
+      else if (payload.type === "lineHeight") {
+        NewReaderStyle = {
+          ...readerStyle,
+          lineHeight: payload.value,
+        }
+      }
+      else if (payload.type === "leftPadding") {
+        NewReaderStyle = {
+          ...readerStyle,
+          leftPadding: payload.value,
+        }
+      }
+      else if (payload.type === "rightPadding") {
+        NewReaderStyle = {
+          ...readerStyle,
+          rightPadding: payload.value,
+        }
+      }
+
       yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, NewReaderStyle);
       yield put(action('updateState')({ readerStyle: NewReaderStyle }));
     },
