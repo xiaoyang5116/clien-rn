@@ -4,6 +4,7 @@ import {
     TouchableWithoutFeedback,
     FlatList,
     Dimensions,
+    SafeAreaView
 } from 'react-native';
 import React, { useState } from 'react';
 import { Panel } from '../../panel';
@@ -73,7 +74,7 @@ const FullSingle = props => {
     };
 
     return (
-        <Panel>
+        <SafeAreaView style={[theme.blockBgColor3, { flex: 1 }]}>
             <View style={[theme.blockBgColor3, { flex: 1, opacity: 1, paddingTop: 10 }]}>
                 {/* 标题 */}
                 <View
@@ -139,7 +140,7 @@ const FullSingle = props => {
                     </TouchableWithoutFeedback>
                 </View>
             </View>
-        </Panel>
+        </SafeAreaView>
     );
 };
 

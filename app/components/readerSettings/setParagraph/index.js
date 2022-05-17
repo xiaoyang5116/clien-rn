@@ -15,12 +15,6 @@ const SetParagraph = props => {
     const changeTypesetting = (Typesetting, selectedTypesetting) => {
         props.dispatch(action('ArticleModel/changeTypesetting')({ Typesetting, selectedTypesetting }));
     };
-    let timer = null
-    React.useEffect(() => {
-        return () => {
-            // clearTimeout(timer)
-        }
-    })
 
     const Wire = props => {
         let line = [];
@@ -111,11 +105,7 @@ const SetParagraph = props => {
                     title={'自定义排版'}
                     selected={readerStyle.selectedTypesetting === '自定义排版'}
                     onPress={() => {
-                        // console.log("timer", timer);
-                        props.setVisible()
-                        timer = setTimeout(() => {
-                            const key = RootView.add(<CustomParagraph onClose={() => { RootView.remove(key) }} />)
-                        }, 100);
+                        props.openSecondaryMenu("CustomParagraph")
                     }}
                 />
             </View>

@@ -51,7 +51,7 @@ const Row = (props) => {
                 justifyContent: 'center',
             }}>
                 <Slider
-                    defaultValue={props.defaultValue}
+                    value={props.defaultValue}
                     step={1}
                     maximumValue={props.max}
                     minimumValue={props.min}
@@ -90,12 +90,16 @@ const CustomParagraph = (props) => {
     useEffect(() => {
         setVisible(true)
         return () => {
-            setVisible(false);
+            modalHide()
         };
     }, []);
 
     const handleChange = (value, type) => {
         props.dispatch(action('ArticleModel/changeTypesetting')({ type, value }));
+    }
+
+    const modalHide = () => {
+        props.onClose()
     }
 
     return (
@@ -108,6 +112,7 @@ const CustomParagraph = (props) => {
             backdropOpacity={0}
             backgroundTransitionOutTiming={0}
             hideModalContentWhileAnimating={true}
+            onModalHide={modalHide}
             onBackButtonPress={() => {
                 setVisible(false);
             }}

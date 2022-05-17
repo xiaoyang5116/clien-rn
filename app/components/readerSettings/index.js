@@ -26,21 +26,21 @@ const ReaderSettings = (props) => {
 
     useEffect(() => {
         setVisible(true);
-        const onCloseReaderSettings = DeviceEventEmitter.addListener(EventKeys.ANIMATION_END, () => { setVisible(false) });
         return () => {
-            onCloseReaderSettings.remove()
             setVisible(false)
         };
     }, []);
 
-    // const onModalHide = () => {
-    //     // DeviceEventEmitter.emit(EventKeys.ANIMATION_END, true);
-    //     // props.onClose()
-    //     const key = RootView.add(<CustomParagraph onClose={() => { RootView.remove(key) }} />)
-    // }
-    // const openSecondaryMenu = () => {
-    //     setVisible(false)
-    // }
+    const modalHide = () => {
+        props.onClose()
+        if (secondaryMenuType === "CustomParagraph") {
+            const key = RootView.add(<CustomParagraph onClose={() => { RootView.remove(key) }} />)
+        }
+    }
+    const openSecondaryMenu = (type) => {
+        setVisible(false)
+        setSecondaryMenuType(type)
+    }
 
     return (
         <Modal
@@ -51,8 +51,8 @@ const ReaderSettings = (props) => {
             animationOutTiming={300}
             backdropOpacity={0}
             backgroundTransitionOutTiming={0}
-            // onModalHide={openSecondaryMenu}
-            // hideModalContentWhileAnimating={true}
+            onModalHide={modalHide}
+            hideModalContentWhileAnimating={true}
             onBackButtonPress={() => {
                 setVisible(false);
             }}
@@ -63,7 +63,7 @@ const ReaderSettings = (props) => {
         >
             <View style={[{ backgroundColor: readerStyle.popUpBgColor }, theme.readerSettingContainer]}>
                 <ChangeFont setVisible={setVisible} />
-                <SetParagraph setVisible={() => { setVisible(false) }} />
+                <SetParagraph openSecondaryMenu={openSecondaryMenu} />
                 <CustomColor setVisible={setVisible} />
             </View>
         </Modal>
