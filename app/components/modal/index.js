@@ -1,14 +1,16 @@
 import React from 'react';
 
-import {
-    DeviceEventEmitter,
-    EventKeys,
-} from "../../constants";
+import RootView from '../RootView';
+import MaskModal from './MaskModal';
 
 class Modal {
-    // 显示模态窗口
     static show(payload) {
-        DeviceEventEmitter.emit(EventKeys.MODAL_SHOW, payload);
+        const key = RootView.add(
+            <MaskModal data={payload} onModalHide={() => {
+                RootView.remove(key);
+            }} />
+        );
+
     }
 }
 

@@ -4,7 +4,9 @@ import {
   errorMessage,
   getWindowSize,
   toastType,
-  LocalCacheKeys
+  LocalCacheKeys,
+  DeviceEventEmitter,
+  EventKeys
 } from "../constants";
 
 import { GetAttrsDataApi } from '../services/GetAttrsDataApi';
@@ -137,7 +139,6 @@ export default {
         if (item.object.chatId != undefined) {
           // 预生成选项数据
           const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: item.object.sceneId, chatId: item.object.chatId }));
-          console.debug('@@@@@@@@@@@@@@@@@', chat, item.object)
           item.object.options = yield put.resolve(action('getValidOptions')({ options: chat.options }));
         }
       }
@@ -148,6 +149,10 @@ export default {
         articleState.sections.length = 0;
         yield put(action('updateState')({ sections: data, continueView: false }));
       }
+
+      setTimeout(() => {
+        DeviceEventEmitter.emit(EventKeys.OPTIONS_HIDE);
+      }, 0);
     },
 
     *getValidOptions({ payload }, { call, put, select }) {

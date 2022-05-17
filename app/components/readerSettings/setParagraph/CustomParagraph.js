@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity, DeviceEventEmitter } from 'react-native';
 import React, { useEffect } from 'react';
-import { Slider } from '@ant-design/react-native'
+import Slider from '@react-native-community/slider';
 
 import {
     connect,
@@ -51,13 +51,13 @@ const Row = (props) => {
                 justifyContent: 'center',
             }}>
                 <Slider
-                    defaultValue={props.defaultValue}
+                    value={props.defaultValue}
                     step={1}
-                    max={props.max}
-                    min={props.min}
+                    maximumValue={props.max}
+                    minimumValue={props.min}
                     minimumTrackTintColor="#088f7b"
                     maximumTrackTintColor="#3a3937"
-                    onChange={(value) => { props.onChange(value, props.type) }}
+                    onValueChange={(value) => { props.onChange(value, props.type) }}
                 />
             </View>
 
@@ -90,12 +90,16 @@ const CustomParagraph = (props) => {
     useEffect(() => {
         setVisible(true)
         return () => {
-            setVisible(false);
+            modalHide()
         };
     }, []);
 
     const handleChange = (value, type) => {
         props.dispatch(action('ArticleModel/changeTypesetting')({ type, value }));
+    }
+
+    const modalHide = () => {
+        props.onClose()
     }
 
     return (
@@ -108,6 +112,7 @@ const CustomParagraph = (props) => {
             backdropOpacity={0}
             backgroundTransitionOutTiming={0}
             hideModalContentWhileAnimating={true}
+            onModalHide={modalHide}
             onBackButtonPress={() => {
                 setVisible(false);
             }}

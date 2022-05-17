@@ -6,8 +6,6 @@ import {
   connect,
   Component,
   ThemeContext,
-  DeviceEventEmitter,
-  EventKeys,
 } from "../../constants";
 
 import { 
@@ -65,13 +63,7 @@ class StoryTabPage extends Component {
   }
 
   _onClickItem = (e) => {
-    this.props.dispatch(action('StoryModel/click')(e.item))
-      .then(() => {
-        // 切换章节时通知关闭模态框
-        if (e.item.toChapter != undefined) {
-          DeviceEventEmitter.emit(EventKeys.OPTIONS_HIDE);
-        }
-      });
+    this.props.dispatch(action('StoryModel/click')(e.item));
   }
 
   _onProgressCompleted = (data) => {
