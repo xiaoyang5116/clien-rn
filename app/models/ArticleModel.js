@@ -4,7 +4,9 @@ import {
   errorMessage,
   getWindowSize,
   toastType,
-  LocalCacheKeys
+  LocalCacheKeys,
+  DeviceEventEmitter,
+  EventKeys
 } from "../constants";
 
 import { GetAttrsDataApi } from '../services/GetAttrsDataApi';
@@ -148,6 +150,10 @@ export default {
         articleState.sections.length = 0;
         yield put(action('updateState')({ sections: data, continueView: false }));
       }
+
+      setTimeout(() => {
+        DeviceEventEmitter.emit(EventKeys.OPTIONS_HIDE);
+      }, 0);
     },
 
     *getValidOptions({ payload }, { call, put, select }) {
