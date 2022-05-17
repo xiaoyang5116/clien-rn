@@ -32,7 +32,6 @@ import { View, Text, Image } from './constants/native-ui';
 import MainPage from './pages/MainPage';
 import Shock from './components/shock'
 import RootView from './components/RootView';
-import MaskModal from './components/modal/MaskModal';
 import EventListeners from './utils/EventListeners';
 import FastImage from 'react-native-fast-image';
 import { images } from './constants/preload';
@@ -171,7 +170,6 @@ class App extends Component {
               <Shock>
                 <MainPage />
                 <RootView />
-                <MaskModal />
               </Shock>
             </View>
           </DataContext.Provider>

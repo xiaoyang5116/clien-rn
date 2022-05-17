@@ -4,8 +4,6 @@ import Modal from 'react-native-modal';
 import {
     action,
     connect,
-    DeviceEventEmitter,
-    EventKeys,
     PureComponent,
 } from "../../constants";
 
@@ -21,13 +19,7 @@ import lo from 'lodash';
 class MaskModal extends PureComponent {
 
     componentDidMount() {
-        this.listener = DeviceEventEmitter.addListener(EventKeys.MODAL_SHOW, (payload) => {
-            this.props.dispatch(action('MaskModel/showDialog')(payload));
-        })
-    }
-
-    componentWillUnmount() {
-        this.listener.remove();
+        this.props.dispatch(action('MaskModel/showDialog')(this.props.data));
     }
 
     _onDialogConfirm = () => {
