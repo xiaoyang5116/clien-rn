@@ -62,12 +62,24 @@ const GameOverDialog = props => {
     const nextDialogue = item => {
         // 显示下一个对话
         const newDialogue = sections.filter(i => i.key === item.tokey);
+
+        if (item.animation !== undefined) {
+            Animation(item.animation)
+        }
+
         if (newDialogue.length > 0) {
             setCurrentTextList(newDialogue[0].content);
             setShowBtnList(newDialogue[0].btn);
             setCurrentIndex(0);
         } else {
-            props.onDialogCancel();
+            if (item.animation !== undefined) {
+                animationEndListener.current = DeviceEventEmitter.addListener(EventKeys.ANIMATION_END, props.onDialogCancel);
+                props.dispatch(action('SceneModel/processActions')({ __sceneId: props.viewData.__sceneId, ...item }));
+            }
+            else {
+                props.onDialogCancel();
+                props.dispatch(action('SceneModel/processActions')({ __sceneId: props.viewData.__sceneId, ...item }));
+            }
         }
 
         // 发送道具
@@ -77,17 +89,31 @@ const GameOverDialog = props => {
                 payload: { props: item.props },
             });
         }
-
-        // 跳转到其他对话
-        if (item.dialogs !== undefined) {
-            props.dispatch(action('SceneModel/__onDialogCommand')({ __sceneId: props.viewData.__sceneId, params: item.dialogs }))
+        // 探索事件是否完成
+        if (item.isFinish !== undefined) {
+            props.dispatch(action('ExploreModel/changeExploreStatus')({ id: item.isFinish.id, type: item.isFinish.type }));
         }
 
-        // 跳转到新的章节
+        // // 跳转到其他对话
+        // if (item.dialogs !== undefined) {
+        //     props.dispatch(action('SceneModel/__onDialogCommand')({ __sceneId: props.viewData.__sceneId, params: item.dialogs }))
+        // }
+        // // 跳转到新的章节
         if (item.toChapter !== undefined) {
-            console.log("props.viewData.__sceneId", props.viewData.__sceneId);
             AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: item.toChapter, __sceneId: props.viewData.__sceneId } });
         }
+        // // 跳转到场景
+        // if (item.toScene !== undefined) {
+        //     props.dispatch(action('SceneModel/processActions')(item))
+        //         .then(e => {
+        //             // 如果是切换场景，显示选项页面
+        //             if (item.toScene != undefined) {
+        //                 const key = RootView.add(<OptionsPage onClose={() => {
+        //                     RootView.remove(key);
+        //                 }} />);
+        //             }
+        //         });
+        // }
     };
 
     const renderText = ({ item, index }) => {
@@ -159,4 +185,4 @@ const GameOverDialog = props => {
     return null;
 }
 
-export default connect((state) => ({ ...state.SceneModel }))(GameOverDialog);
+export default connect((state) => ({ ...state.SceneModel, ...state.ExploreModel }))(GameOverDialog);

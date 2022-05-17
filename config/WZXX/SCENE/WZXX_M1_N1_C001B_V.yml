@@ -41,8 +41,8 @@ scenes: [
           #第一次进入 
           { title: '【向左走】',nextChat: 'B2', varsOff: ["v1A","v2A",] }, 
           { title: '【向右走】',nextChat: 'B1', varsOff: ["v1A","v2A",] }, 
-          { title: '【DEBUG 到场景外】',toChapter:  'WZXX_M1_N1_C001B_[B2]'}, 
-          { title: '【DEBUG 去结局】',nextChat: 'C001B_EventEND1'  }, 
+          { title: '【DEBUG 到场景外】',toChapter: "WZXX_M1_N1_C001B" },
+          { title: '【DEBUG 去结局】',dialogs: ['C001B_EventEND1']},
         ],
       },
       #
@@ -448,25 +448,26 @@ scenes: [
       # 对话框 FullScreen全屏 HalfScreen 半屏
       dialogs:
         [
-       #进入小道
+          {id: 'ssssssssss'},
+          #进入小道
 
-    { id: 'C001B_START_shulin', style: 1,sections: ['地点，小树林。','李森炎小心翼翼的走着，生怕万一弄出太大动静，再把那倒霉的杀手引来。','不过，这还不是最大的问题','跑的时候不认识路，完全瞎跑。这想原路回去可就难了。','李森炎决定凭着模糊的印象摸索道路','……','一个分叉路口前',], nextChat: 'C001B_EventSTART1' },
-    { id: 'C2N1', style: 1,sections: ['树枝被踢到远处','现在路可以走了',], nextChat: 'C001B_EventSTART1' },
-    { id: 'C2N2', style: 1,sections: ['为了绕路，你倒霉的滑了一跤','现在可以继续走了',], nextChat: 'C001B_EventSTART1' },
-    { id: 'C2N3', style: 1,sections: ['棍子打着圈被扔到了树上。','哗啦哗啦','哗啦哗啦','一大堆虫子乱飞',你急忙跑开，这条路不能走了。], nextChat: 'C001B_EventSTART1' },
-    { id: 'E6N1', style: 1,sections: ['在陡峭的山坡','随着山石滑落。','一个不小心','滑落到了山下，闹出一阵动静',],nextChat: 'E1' },
+          { id: 'C001B_START_shulin', style: 1,sections: ['地点，小树林。','李森炎小心翼翼的走着，生怕万一弄出太大动静，再把那倒霉的杀手引来。','不过，这还不是最大的问题','跑的时候不认识路，完全瞎跑。这想原路回去可就难了。','李森炎决定凭着模糊的印象摸索道路','……','一个分叉路口前',], nextChat: 'C001B_EventSTART1' },
+          { id: 'C2N1', style: 1,sections: ['树枝被踢到远处','现在路可以走了',], nextChat: 'C001B_EventSTART1' },
+          { id: 'C2N2', style: 1,sections: ['为了绕路，你倒霉的滑了一跤','现在可以继续走了',], nextChat: 'C001B_EventSTART1' },
+          { id: 'C2N3', style: 1,sections: ['棍子打着圈被扔到了树上。','哗啦哗啦','哗啦哗啦','一大堆虫子乱飞',你急忙跑开，这条路不能走了。], nextChat: 'C001B_EventSTART1' },
+          { id: 'E6N1', style: 1,sections: ['在陡峭的山坡','随着山石滑落。','一个不小心','滑落到了山下，闹出一阵动静',],nextChat: 'E1' },
 
 
-        #通关树林
-         { id: 'C001B_EventEND1',
-           style: 6, 
-           title: '树林大树下',
-           dialogType: 'FullScreen', 
-           textAnimationType: 'TextFadeIn', 
-           sections: [
-           { key: 'p1', content: ['树林大树下','你觉得这里似曾相识','仔细看去，这原来就是你最初藏东西的地方','终于找对了！',['盖章过关'],'……',], btn: [{title: '高兴',toChapter: "WZXX_M1_N1_C001B2",  },]},
-           ],
-         },
+          #通关树林
+          { id: 'C001B_EventEND1',
+            style: 6, 
+            title: '树林大树下',
+            dialogType: 'FullScreen', 
+            textAnimationType: 'TextFadeIn', 
+            sections: [
+            { key: 'p1', content: ['树林大树下','你觉得这里似曾相识','仔细看去，这原来就是你最初藏东西的地方','终于找对了！',['盖章过关'],'……',], btn: [{title: '高兴', toChapter: "WZXX_M1_N1_C001B",},]},
+            ],
+          },
 
                        
         #死亡0
@@ -481,7 +482,7 @@ scenes: [
          },
 
 
-       #死亡3
+        #死亡3
          { id: 'gameover01',style: 7, title: '迷路',  dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
          { key: 'p1', content: ['和之前的森林不同','这部分森林似乎更加难以辨别道路……','原本的道路都不见了……','数天后，你依旧在树林里打转……','请选择'],btn: [{title: '不放弃，再来', toScene: 'WZXX_M1_N1_C001B_V', },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001"}]},
          ], },
