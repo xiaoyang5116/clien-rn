@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TouchableOpacity, DeviceEventEmitter } from 'react-native';
 import React, { useEffect } from 'react';
-import { Slider } from '@ant-design/react-native'
+import Slider from '@react-native-community/slider';
 
 import {
     connect,
@@ -53,11 +53,11 @@ const Row = (props) => {
                 <Slider
                     defaultValue={props.defaultValue}
                     step={1}
-                    max={props.max}
-                    min={props.min}
+                    maximumValue={props.max}
+                    minimumValue={props.min}
                     minimumTrackTintColor="#088f7b"
                     maximumTrackTintColor="#3a3937"
-                    onChange={(value) => { props.onChange(value, props.type) }}
+                    onValueChange={(value) => { props.onChange(value, props.type) }}
                 />
             </View>
 
