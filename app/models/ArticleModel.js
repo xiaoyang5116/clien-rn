@@ -306,42 +306,12 @@ export default {
       yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, NewReaderStyle);
       yield put(action('updateState')({ readerStyle: NewReaderStyle }));
     },
-    // 修改排版
-    *changeTypesetting({ payload }, { call, put, select }) {
+    // 修改阅读器样式
+    *changeReaderStyle({ payload }, { call, put, select }) {
       const { readerStyle } = yield select(state => state.ArticleModel);
-      let NewReaderStyle = {}
-
-      if (payload.type === undefined) {
-        NewReaderStyle = {
-          ...readerStyle,
-          selectedTypesetting: payload.selectedTypesetting,
-          lineHeight: payload.Typesetting.lineHeight,
-          paragraphSpacing: payload.Typesetting.paragraphSpacing,
-        }
-      }
-      else if (payload.type === "paragraphSpacing") {
-        NewReaderStyle = {
-          ...readerStyle,
-          paragraphSpacing: payload.value,
-        }
-      }
-      else if (payload.type === "lineHeight") {
-        NewReaderStyle = {
-          ...readerStyle,
-          lineHeight: payload.value,
-        }
-      }
-      else if (payload.type === "leftPadding") {
-        NewReaderStyle = {
-          ...readerStyle,
-          leftPadding: payload.value,
-        }
-      }
-      else if (payload.type === "rightPadding") {
-        NewReaderStyle = {
-          ...readerStyle,
-          rightPadding: payload.value,
-        }
+      let NewReaderStyle = {
+        ...readerStyle,
+        ...payload
       }
 
       yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, NewReaderStyle);

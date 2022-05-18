@@ -27,6 +27,23 @@ export default {
     // 默认选中的配色
     selectedMatchColor: "matchColor_1",
 
+    // 默认样式
+    defaultStyle: {
+        color: "#706a61",
+        bgColor: "#eee7dd",
+        popUpBgColor: "#d6d0c8",
+        contentSize: 20,
+        titleSize: 26,
+        selectedBorderColor: "#dd7b03",
+        borderColor: "#858585",
+        lineHeight: 8,
+        paragraphSpacing: 8,
+        leftPadding: 24,
+        rightPadding: 24,
+        selectedTypesetting: "typesetting_2",
+        selectedMatchColor: "matchColor_1",
+    },
+
     // 排版间距
     typesetting_1: {
         lineHeight: 4,

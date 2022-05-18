@@ -330,7 +330,7 @@ const sharedStyles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        height: 198,
+        height: 220,
         justifyContent: 'space-evenly',
         alignItems: 'center',
     },

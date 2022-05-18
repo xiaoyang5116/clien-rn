@@ -15,6 +15,7 @@ import CustomColor from './customColor'
 import SetParagraph from './setParagraph';
 
 import CustomParagraph from './setParagraph/CustomParagraph';
+import { TButton } from './_components';
 
 
 
@@ -42,6 +43,10 @@ const ReaderSettings = (props) => {
         setSecondaryMenuType(type)
     }
 
+    const reset = () => {
+        props.dispatch(action('ArticleModel/changeReaderStyle')(readerStyle.defaultStyle));
+    }
+
     return (
         <Modal
             isVisible={visible}
@@ -62,6 +67,20 @@ const ReaderSettings = (props) => {
             style={{ padding: 0, margin: 0, flex: 1, zIndex: 1 }}
         >
             <View style={[{ backgroundColor: readerStyle.popUpBgColor }, theme.readerSettingContainer]}>
+                <View style={theme.readerSettingRow}>
+                    <View style={{ width: "45%", height: "100%" }}>
+                        <TButton
+                            onPress={reset}
+                            title={"恢复"}
+                        />
+                    </View>
+                    <View style={{ width: "45%", height: "100%" }}>
+                        <TButton
+                            onPress={() => { setVisible(false); }}
+                            title={"退出"}
+                        />
+                    </View>
+                </View>
                 <ChangeFont setVisible={setVisible} />
                 <SetParagraph openSecondaryMenu={openSecondaryMenu} />
                 <CustomColor setVisible={setVisible} />
