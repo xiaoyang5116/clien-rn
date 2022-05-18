@@ -119,12 +119,10 @@ scenes: [
 
 
           { key: 'R1C', content: ['这个距离杀手已经看不到你了','你决定','……',],
-          btn: [{title: '距离更近一些', tokey: "R1A"},{title: '四周搜寻一下', tokey: "R1CP1"},{title: '距离更远些', dialogs: ['gameoverD5']},], },   
+          btn: [{title: '距离更近一些', tokey: "R1A"},{title: '四周搜寻一下', tokey: "R1C1"},{title: '距离更远些', dialogs: ['gameoverD5']},], },   
  
-
-
-          { key: 'R1D', content: ['这个距离杀手已经看不到你了','你决定','……',],
-          btn: [{title: '距离更近一些', tokey: "N1C1"},{title: '四周搜寻一下', tokey: "N1C2"},{title: '距离更远些', tokey: "N1C3"},], },   
+          { key: 'R1C1', content: ['你发现这是一条猎人小道','你你发现了一些猎人狩猎留下的残破的弓','但是没有弓箭','……',],
+          btn: [{title: '扔掉，继续前进', tokey: "N1C1"},{title: '继续搜寻一下', tokey: "N1C2"},{title: '把弓箭改造成弹弓', tokey: "N1C3"},], },   
  
 
 
