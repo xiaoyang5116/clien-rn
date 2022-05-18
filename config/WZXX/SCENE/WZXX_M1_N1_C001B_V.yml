@@ -236,7 +236,7 @@ scenes: [
         ],
       },
       { 
-        id: 'D2', desc: '前面能看见一个山洞', 
+        id: 'D2', desc: '距离前面的山洞越来越近了', 
         options: [ 
  
           { title: '【去山洞口】',nextChat: 'E8'  }, 
@@ -349,11 +349,11 @@ scenes: [
         ],
       },
       { 
-        id: 'E7', desc: '你清晰的看到了远方的大树', 
+        id: 'E7', desc: '这条小道，你清晰的看到了远方的大树', 
         options: [ 
-         { title: '【向前走】',nextChat: 'E6'  }, 
-         { title: '【向左走】',nextChat: 'E8'  }, 
-         { title: '【向右走】',nextChat: 'D4'  }, 
+         { title: '【向前走，山坡方向】',nextChat: 'E6'  }, 
+         { title: '【向左走，山洞方向】',nextChat: 'E8'  }, 
+         { title: '【向右走，树林方向】',nextChat: 'D4'  }, 
         ],
       },
       { 
@@ -369,7 +369,7 @@ scenes: [
          { title: '【沿石阶而上】',nextChat: 'E11'  }, 
          { title: '【石阶附近搜寻】',nextChat: 'E9N2'  }, 
          { title: '【墙壁附近搜寻】',nextChat: 'E9N3'  }, 
-         { title: '【返回入口】',nextChat: 'E7'  }, 
+         { title: '【返回入口】',nextChat: 'E8'  }, 
         ],
       },
    { 
