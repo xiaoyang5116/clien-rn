@@ -38,6 +38,7 @@ export async function GetArticleDataApi(id, path) {
                     code = '';
                 } catch (except) {
                     errorMessage(`Yaml配置异常, 请检查文章指令区域语法. (${except.reason})`);
+                    console.debug('fuck', code)
                 }
             } else if (begin) {
                 code = e;

@@ -12,8 +12,8 @@ const SetParagraph = props => {
     const theme = React.useContext(ThemeContext);
     const { readerStyle } = props;
 
-    const changeTypesetting = (Typesetting, selectedTypesetting) => {
-        props.dispatch(action('ArticleModel/changeTypesetting')({ Typesetting, selectedTypesetting }));
+    const changeTypesetting = (itme) => {
+        props.dispatch(action('ArticleModel/changeReaderStyle')(itme));
     };
 
     const Wire = props => {
@@ -65,7 +65,11 @@ const SetParagraph = props => {
                     num={4}
                     selected={readerStyle.selectedTypesetting === 'typesetting_1'}
                     onPress={() => {
-                        changeTypesetting(readerStyle.typesetting_1, 'typesetting_1');
+                        changeTypesetting({
+                            selectedTypesetting: "typesetting_1",
+                            lineHeight: readerStyle.typesetting_1.lineHeight,
+                            paragraphSpacing: readerStyle.typesetting_1.paragraphSpacing,
+                        });
                     }}
                 />
             </View>
@@ -75,7 +79,11 @@ const SetParagraph = props => {
                     num={3}
                     selected={readerStyle.selectedTypesetting === 'typesetting_2'}
                     onPress={() => {
-                        changeTypesetting(readerStyle.typesetting_2, 'typesetting_2');
+                        changeTypesetting({
+                            selectedTypesetting: "typesetting_2",
+                            lineHeight: readerStyle.typesetting_2.lineHeight,
+                            paragraphSpacing: readerStyle.typesetting_2.paragraphSpacing,
+                        });
                     }}
                 />
             </View>
@@ -85,7 +93,11 @@ const SetParagraph = props => {
                     num={2}
                     selected={readerStyle.selectedTypesetting === 'typesetting_3'}
                     onPress={() => {
-                        changeTypesetting(readerStyle.typesetting_3, 'typesetting_3');
+                        changeTypesetting({
+                            selectedTypesetting: "typesetting_3",
+                            lineHeight: readerStyle.typesetting_3.lineHeight,
+                            paragraphSpacing: readerStyle.typesetting_3.paragraphSpacing,
+                        });
                     }}
                 />
             </View>
@@ -95,19 +107,33 @@ const SetParagraph = props => {
                     title={'无'}
                     selected={readerStyle.selectedTypesetting === 'typesetting_4'}
                     onPress={() => {
-                        changeTypesetting(readerStyle.typesetting_4, 'typesetting_4');
+                        changeTypesetting({
+                            selectedTypesetting: "typesetting_4",
+                            lineHeight: readerStyle.typesetting_4.lineHeight,
+                            paragraphSpacing: readerStyle.typesetting_4.paragraphSpacing,
+                        });
                     }}
                 />
             </View>
 
             <View style={theme.readerSettingRow_right_item}>
-                <RButton
-                    title={'自定义排版'}
-                    selected={readerStyle.selectedTypesetting === '自定义排版'}
+                <TouchableOpacity
+                    style={[theme.readerSettingRow_box]}
                     onPress={() => {
                         props.openSecondaryMenu("CustomParagraph")
                     }}
-                />
+                >
+                    <Text style={[
+                        theme.readerSetting_border_2,
+                        {
+                            borderColor: readerStyle.selectedTypesetting === '自定义排版' ? readerStyle.selectedBorderColor : readerStyle.borderColor,
+                            backgroundColor: props.color,
+                            overflow: 'hidden'
+                        }
+                    ]}>
+                        自定义排版
+                    </Text>
+                </TouchableOpacity>
             </View>
         </View>
     );

@@ -2,26 +2,38 @@ scenes: [
     #
     {
       id: 'WZXX_M1_N1_C001C_V',
-      name: "定义对应标题名当前章节内的选项和变量",
-
+      name: "跟踪杀手",
+      worldTimeHidden: true,
+      sceneImage: 'default',
+      
       # 变量定义
       vars: [
       { id: "v1", min: 0, max: 1 },
       { id: "v2", min: 0, max: 1 } ,
       { id: "v3", min: 0, max: 1 } ,
+      { id: "v1A", min: 0, max: 1 },
+      { id: "v1A", min: 0, max: 1 },
+
       ],
 
       # 动作定义
       actions: [],
 
-      # 事件定义
-      # 故事中的场景事件暂时没什么意义
-      events: [],
+      # 事件定义 阅读器中的场景事件暂时没什么意义
+      events: [
+      { type: 'enter', nextChat: 'C001C_EventSTART1',dialogs: ['C001B_START'],varsOff: ["v1A","v2A",],},
+      ],
 
       # 对话选项
       chats: [
       #
-
+      { 
+        id: 'WZXX_M1_N1_C001C_V', desc: '选项', 
+        options: [ 
+          { title: "【跟踪杀手】", dialogs: ['Screen1']},
+        ],
+      },
+      #
       { 
         id: 'WZXX_M1_N1_C001C_V_CCXZ', desc: '选择穿越出身的记忆片段', 
         options: [ 
@@ -32,97 +44,204 @@ scenes: [
         ],
       },
 
-
-
-
-
-
-
-
-
-
       #章节跳转
       { 
         id: 'WZXX_M1_N1_C001C_TO_C002', desc: '选项', 
         options: [ 
-          { title: "【继续阅读 第二章】", toChapter: "WZXX_M1_N1_C002" },
+          { title: "【阅读下一章】", toChapter: "WZXX_M1_N1_C002" },
         ],
       },
       #
+
+
+
+
+
+      #===============================================
+      { 
+        id: 'C001C_EventSTART1', desc: '一个分叉路在你眼前', 
+        options: [ 
+          #第一次进入 
+          { title: '【向左走】',nextChat: 'B2', varsOff: ["v1A","v2A",] }, 
+          { title: '【向右走】',nextChat: 'B1', varsOff: ["v1A","v2A",] }, 
+          { title: '【DEBUG 到场景外】',toChapter:  'WZXX_M1_N1_C001B_[B2]'}, 
+          { title: '【DEBUG 去结局】',nextChat: 'C001B_EventEND1'  }, 
+        ],
+      },
+
+
+ 
+
  
        #
         ],
 
 
+ 
 
 
       # 对话框 FullScreen全屏 HalfScreen 半屏
       dialogs:
         [
            #选项对话
-          { id: 'Screen1',style: 6, title: '证明自己有秘籍', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen1',style: 6, title: '跟踪杀手', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'p1', content: ['得想个办法','让这杀手知道我真有秘籍',],
-          btn: [{title: '草，想不出来！（理直气壮）',tokey: "p1A"},{title: '不如念一段道德经？', tokey: "p1B"},{title: '用小学课本的看到的诗句！', tokey: "p1C"},{title: '不行，再想想', tokey: "p1D"},{title: '做几个广播体操的动作', tokey: "p1E"},]},
+          { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
+          btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
 
-          { key: 'p1A', content: ['李森炎露出自信的笑容，牙齿仿佛在闪闪发光！','…………？','杀手：你傻笑什么？','李森炎：没事，我这是自信!'], 
-          btn: [{title: '我这是自信!别打我！', tokey: "p1"},], },   
+           #分支1
+          { key: 'N1A', content: ['杀手好像没有异常','继续向前走',], 
+          btn: [{title: '继续跟踪！（本剧场还在制作中）', tokey: "N1B"},{title: '结束这次跟踪', tokey: "END01"},], },   
 
-          { key: 'p1B', content: ['记得不少穿越小说念了之后就天地变色！','我也来一段!','道可道，非常道；名可名，非常名', '然后呢，额，好像不记得了。','……','正常谁去背这个？？！',['边缘闪烁红'],'杀手：我就不该信你小子','……',],
-            btn: [{title: '……', dialogs: ['gameover00'] ,},]},   
+          { key: 'N1B', content: ['树下有很多落叶和枯枝','你不得不小心谨慎',], 
+          btn: [{title: '大胆下脚,JOJO思密达！', tokey: "N1B1"},{title: '想起一些小说情节', tokey: "N1B2"},], },   
 
-          { key: 'p1C', content: ['我这脑子，记得当时全开小差了','就选……这个！', ],
-            btn: [{title: '咏鹅',tokey: "p1C1"},{title: '望庐山瀑布',tokey: "p1C2"},{title: '写作业',tokey: "p1C3"},{title: '返回',tokey: "p1"}]},   
+          { key: 'N1B1', content: ['看到了一窝蚂蚁','我踩','几只蛐蛐被吓跑远','乐','我踩','嘿嘿嘿','李森炎起身','……','发现被杀手以奇怪的眼光扫视','乐死了，你说是吧，李森炎说到'], 
+          btn: [{title: '是啊，乐死了', dialogs: ['gameover00']}], },   
 
-          { key: 'p1C1', content: ['你看我给你背一首秘籍里的诗','鹅，鹅，鹅，曲项向天歌。','白毛浮绿水，红掌拨清波。', '李森炎……','……','杀手……','一阵尴尬……',['边缘闪烁红'],'……','李森炎挂了',],
-               btn: [{title: '…………',dialogs: ['gameover00']}]},
+          { key: 'N1B2', content: ['小说1','某个主角踩了树枝被敌人发现','被追了三条街','小说2','某个主角踩了树枝被敌人发现','不得不化身狂战士全灭敌人','……'], 
+          btn: [{title: '被剧情逗乐了呵呵笑起来', tokey: "N1C1"},{title: '这好像和现在差不多啊', tokey: "M1"},], },   
+
+          { key: 'N1C1', content: ['杀手正在走路','突然听见背后传来诡异的笑','呵呵呵呵呵啊哈哈哈','呵哈哈哈隔','嗯嗯嗯嗯噗……','杀手……？','不对劲','……'], 
+          btn: [{title: '杀手：不对劲，好奇去瞅一下', dialogs: ['gameoverD4']},{title: '杀手：错觉吗？', tokey: "M1"},], },   
+
+
+         #分支2
+          { key: 'R1', content: ['杀手好像没有异常','继续向前走','……',],
+          btn: [{title: '继续保持距离不变', tokey: "R1A"},{title: '距离更近些', tokey: "R1B"},{title: '距离更远些', tokey: "R1C"},], },   
  
-          { key: 'p1C2', content: ['你看我给你背一首秘籍里的诗','日照香炉生紫烟,李白来到烤鸭店。','口水直流三千尺,一摸口袋没带钱。', '李森炎：哈哈哈哈隔……','……','杀手……','一阵尴尬……',['边缘闪烁红'],'……','李森炎挂了',],
-               btn: [{title: '…………',dialogs: ['gameover00']}]},
+          { key: 'R1A', content: ['看起来杀手没有发现有人跟踪','就这样保持','……',],
+          btn: [{title: '继续保持距离不变', tokey: "M1"},{title: '距离更近些', tokey: "R1B"},{title: '距离更远些', tokey: "R1C"},], },   
  
-          { key: 'p1C3', content: ['你看我给你背一首秘籍里的诗',君子坦荡荡，小人写作业。,'人生自古谁无死，来生继续写作业。', '李森炎：哈哈哈哈……','……','杀手……','一阵尴尬……',['边缘闪烁红'],'李森炎挂了',],
-               btn: [{title: '…………',dialogs: ['gameover00']}]}, 
+          { key: 'R1B', content: ['如果靠太近会暴露','这个距离需要拿捏的很准','……',],
+          btn: [{title: '距离更近些', tokey: "N1D1"},{title: '继续保持距离不变', tokey: "R1A"},{title: '距离更远些', tokey: "R1A"},], },   
+
+
+
+          { key: 'R1C', content: ['这个距离杀手已经看不到你了','你决定','……',],
+          btn: [{title: '距离更近一些', tokey: "R1A"},{title: '四周搜寻一下', tokey: "R1C1"},{title: '距离更远些', dialogs: ['gameoverD5']},], },   
  
-          { key: 'p1D', content: ['得想个办法','让这杀手知道我真有秘籍','这秘籍肯定不能说放在身上，何况身上也没有。','那么就说放在家里或者藏起来？',],
-          btn: [{title: '秘籍放在家里',tokey: "p1D1"},{title: '秘籍藏起来了', tokey: "p1D2"},{title: '秘籍在别人手里', tokey: "p1D3"},{title: '干脆什么都不说', tokey: "p1D4"},]},
-
-          { key: 'p1E', content: ['我这功法有些奇特，主要打基础，只要习得人人可炼体小成。','你看我--时代在召唤','一二三四','二二三四', '李森炎……怎么样','……','……没看懂','两边一阵尴尬沉默后，李森炎猝。',],
-            btn: [{title: '……', dialogs: ['gameover00'] ,},]},   
+          { key: 'R1C1', content: ['你发现这是一条猎人小道','你你发现了一些猎人狩猎留下的残破的弓','但是没有弓箭','……',],
+          btn: [{title: '扔掉，继续前进', tokey: "N1C1"},{title: '继续搜寻一下', tokey: "N1C2"},{title: '把弓箭改造成弹弓', tokey: "N1C3"},], },   
  
-          { key: 'p1D1', content: ['我秘籍就放在家里。','我可以带你们去拿','……','杀手很高兴的样子，李森炎松了一口气。','可以，你带路，杀手说','李森炎转身，一步，两步，三步！','……！',['震屏1'],'……李森炎挂了','杀手：既然知道在你家，我自己去找就行了','……'  ],
-          btn: [{title: '…………',dialogs: ['gameover00'] }]},    
-
-          { key: 'p1D2', content: ['秘籍我藏起来了','我可以带你们去拿','……','杀手很高兴的样子，李森炎松了一口气。','可以，不过为了你不乱跑，先绑起来！','……！',['震屏1'],'被绑住的李森炎没法逃跑','……被毒打审问后没了利用价值','最后还是挂了','……'  ],
-          btn: [{title: '…………',dialogs: ['gameover00'] }]},    
-
-          { key: 'p1D3', content: ['秘籍在别人手里','但我可以带你去找他','……','杀手：那么这人是谁？','……','算了，夜长梦多',['边缘闪烁红'],'这么麻烦的话，你还是去死好了……'  ],
-           btn: [{title: '…………',dialogs: ['gameover00'] }]},     
-
-          { key: 'p1D4', content: ['什么都不说','说多错多','干脆让对方脑补','……','杀手：这小子看起来这么自信，难道真有料不成？',['盖章过关'],'……'],
-          btn: [{title: '有戏',toChapter: "WZXX_M1_N1_C001B", }]},    
 
 
+
+
+
+
+
+
+          { key: 'N1D1', content: ['杀手突然一转身','这下被看到个正照面','喔噢噢噢噢','李森炎决定', ],
+            btn: [{title: '大呼，风紧扯呼',dialogs: ['gameoverD2']},{title: '哎呀，就是路过嘛',dialogs: ['gameoverD3']},{title: '淡定的微笑',dialogs: ['gameoverD4']},]},   
+
+ 
+          { key: 'N1D2', content: ['没有异常','继续跟踪', ],
+            btn: [{title: '咏鹅',tokey: "p1C1"},{title: '望庐山瀑布',tokey: "p1C2"},]},   
+
+      
+
+          { key: 'N1D4', content: ['这是一条猎人所遗留的小道','说不定能有所收获', ],
+            btn: [{title: '咏鹅',tokey: "p1C1"},{title: '望庐山瀑布',tokey: "p1C2"},]},  
+ 
+         
+
+          #分支1、2合并后
+          { key: 'M1', content: ['走了一小段路','大概是觉得走烦了','杀手开始坐下来休息',], 
+          btn: [{title: '持续监视', tokey: "M1A"},{title: '他休息我也休息', tokey: "M1B"},{title: '稍微放松', tokey: "M1C"},{title: '靠近一点', tokey: "M1D"}], },   
+
+          { key: 'M1A', content: ['由于李森炎的监视','杀手直觉的有股被注视的感觉','杀手的警觉性提高了'], 
+          btn: [{title: '不妙', tokey: "M2"},], },   
+
+          { key: 'M1B', content: ['李森炎看着杀手休息，感觉十分无聊','我也累了','不如小睡一会？',], 
+          btn: [{title: '妙啊', dialogs: ['gameoverD1']},{title: '不至于', tokey: "M4"},  ], },   
+          
+          { key: 'M4', content: ['李森炎稍微放松了监视','由于隐藏的很好','杀手没有察觉',], 
+          btn: [{title: '不错', tokey: "M2"},  ], },   
+          { key: 'M5', content: ['对方有警戒范围','现在并不是靠近的好时候',], 
+          btn: [{title: '返回', tokey: "M1"},  ], },   
+
+
+
+          #分支1和2都结束
+          { key: 'M4', content: ['杀手休息完毕，开始继续走了','继续跟踪',], 
+          btn: [{title: '不错', tokey: "N2A1"},{title: '不错', tokey: "N2A2"},  ], },   
+
+
+  
+# 靠近一点
+# 继续保持距离
+
+# 无事发生
+# 杀手开始继续走了
+# 这时候啥时候开始慢慢的加速，大概是刚才已经进行了足够的休息，这时候就开始全速奔跑了
+# 想想看，毕竟这个人是学武的
+# 刚才那种慢慢悠悠的走动，还是比较有戒心的时候才会有的吧
+
+# 加快跟踪速度也一起跑起来
+# 加倍小心，
+# 不需要跟着杀手跑反正路是跑不了的
+# 小路逐渐变成了大路，这是一条通往城附近城附近城市的
+# 在这道路上基本上一览无余，没有什么可藏身的地方
+# 不过这样的话，14年的视野相对也比较开阔了
+# 能够在更远距离进行跟踪
+# 不是说在一个开阔的路上就必须要跟近距离的
+
+# 刺客没有往城门的方向去，而是一拐方向沿着外外长门进行移动其实城外也有一些民民居建筑这个是这个时候已经不是那种荒野地界了
+
+# 引起警觉
+# 这家伙不会是迷路了吧。
+# 杀手走的路线，
+
+# 最后找到城门的路上
+# 然后杀手去城外的一家小房子
+# 只要接近这个房子时，路线就是必死的，死了很多次之后，你决定不去触这个霉
+ 
+ 
+
+  
+
+          #合理退出
+          { key: 'END01', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
+          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "N1A", }]},    
+          { key: 'END02', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
+          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "p1D1", }]},    
 
           ]  
-
         },
-    
- 
+       #死亡3
+         { id: 'gameoverC01',style: 6, title: '结束跟踪', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p3', content: ['结束这次跟踪？','确认后，将从下段章节剧情继续',],btn: [{title: '确认', dialogs: ['Screen1']},{title: '取消',toChapter: "WZXX_M1_N1_C001"}]},
+         ], },
+  
         #死亡0
          { id: 'gameover00',
-           style: 6, 
-           title: '你挂了',
+           style: 7, 
+           title: '失败',
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来',dialogs: ['Screen1'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001A",}]},
+           { key: 'p1', content: ['失败，请选择'], btn: [{title: '不放弃，再来',dialogs: ['Screen1'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001A",}]},
            ],
          },
        #死亡3
-         { id: 'gameover01',style: 6, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p3', content: ['临死前听到一句话','我一个学武的，最讨厌你们这帮文人……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001"}]},
+         { id: 'gameoverD1',style: 7, title: '睡过头了', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['一阵冷风','李森炎起身','睡过头了，李森炎内心大呼','眼见发现天已经黄昏','杀手早就不知那里去了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
+         ], },
+         { id: 'gameoverD2',style: 7, title: '风紧扯呼', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['呼呼呼呼','杀手看到李森炎，拔腿就追','李森炎看到杀手追','大呼，来啊来啊','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
+         ], },
+         { id: 'gameoverD3',style: 7, title: '就是路过', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['李森炎：我就是路过','杀手：我读书少，你不要骗我','李森炎看到杀手追','大呼，我真是路过！','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
+         ], },
+         { id: 'gameoverD4',style: 7, title: '就是呵呵！', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['李森炎：呵呵，微笑可以解决一切问题','杀手：呵呵呵呵，然后快速跑来','李森炎看到杀手追','原本呵呵的脸仿佛发绿了！','跑，再不跑没救了！李森炎火速开溜','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
+         ], },
+         { id: 'gameoverD5',style: 7, title: '丢失目标', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['前面是一个分岔路','我倒，这杀手去哪条路我没看到啊','李森炎只能随便选一条路','没人！','走回来换另一条路！','李森炎：人呢？','这次跟踪算是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
          ], },
   
+
 
 
 

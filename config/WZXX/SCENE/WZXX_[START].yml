@@ -108,8 +108,7 @@ scenes: [
         options: [ 
         #  { title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
           { title: "【回到开头】", toChapter: "WZXX_M1_N1_C001",},
-          { title: "【去穿越的地点，也许能找到什么】", varsOn: "WZXX_M1_N1_C001_[A2]" },
-          { title: "【跟踪对手，找到更多线索】", varsOn: "WZXX_M1_N1_C001_[A3]" },
+ 
         ],
       },
 
