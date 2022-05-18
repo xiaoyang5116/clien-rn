@@ -86,8 +86,9 @@ scenes: [
            #选项对话
           { id: 'Screen1',style: 6, title: '跟踪杀手', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'p1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
-          btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "N1B"},]},
+          { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
+          btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
+
            #分支1
           { key: 'N1A', content: ['杀手好像没有异常','继续向前走',], 
           btn: [{title: '继续跟踪！（本剧场还在制作中）', tokey: "N1B"},{title: '结束这次跟踪', tokey: "END01"},], },   
@@ -106,19 +107,34 @@ scenes: [
 
 
          #分支2
-          { key: 'N1B', content: ['杀手好像没有异常','继续向前走','……',],
-          btn: [{title: '继续保持距离不变', tokey: "N1B1"},{title: '距离更近些', tokey: "N1B2"},{title: '距离更远些', tokey: "N1B3"},], },   
+          { key: 'R1', content: ['杀手好像没有异常','继续向前走','……',],
+          btn: [{title: '继续保持距离不变', tokey: "R1A"},{title: '距离更近些', tokey: "R1B"},{title: '距离更远些', tokey: "R1C"},], },   
  
-          { key: 'N1B1', content: ['看起来杀手没有发现有人跟踪','就这样保持','……',],
-          btn: [{title: '继续保持距离不变', tokey: "M1"},{title: '距离更近些', tokey: "N1B2"},{title: '距离更远些', tokey: "N1B3"},], },   
+          { key: 'R1A', content: ['看起来杀手没有发现有人跟踪','就这样保持','……',],
+          btn: [{title: '继续保持距离不变', tokey: "M1"},{title: '距离更近些', tokey: "R1B"},{title: '距离更远些', tokey: "R1C"},], },   
  
-          { key: 'N1B2', content: ['如果靠太近会暴露','这个距离需要拿捏的很准','……',],
-          btn: [{title: '继续保持距离不变', tokey: "N1B1"},{title: '距离更近些', tokey: "N1C2"},{title: '距离更远些', tokey: "N1B2"},], },   
+          { key: 'R1B', content: ['如果靠太近会暴露','这个距离需要拿捏的很准','……',],
+          btn: [{title: '距离更近些', tokey: "N1D1"},{title: '继续保持距离不变', tokey: "R1A"},{title: '距离更远些', tokey: "R1A"},], },   
 
-          { key: 'N1B3', content: ['这个距离杀手已经看不到你了','你决定','……',],
+
+
+          { key: 'R1C', content: ['这个距离杀手已经看不到你了','你决定','……',],
+          btn: [{title: '距离更近一些', tokey: "R1A"},{title: '四周搜寻一下', tokey: "R1CP1"},{title: '距离更远些', dialogs: ['gameoverD5']},], },   
+ 
+
+
+          { key: 'R1D', content: ['这个距离杀手已经看不到你了','你决定','……',],
           btn: [{title: '距离更近一些', tokey: "N1C1"},{title: '四周搜寻一下', tokey: "N1C2"},{title: '距离更远些', tokey: "N1C3"},], },   
  
-          { key: 'N1D1', content: ['杀手突然一转身','这下被看到个正照面','李森炎决定', ],
+
+
+
+
+
+
+
+
+          { key: 'N1D1', content: ['杀手突然一转身','这下被看到个正照面','喔噢噢噢噢','李森炎决定', ],
             btn: [{title: '大呼，风紧扯呼',dialogs: ['gameoverD2']},{title: '哎呀，就是路过嘛',dialogs: ['gameoverD3']},{title: '淡定的微笑',dialogs: ['gameoverD4']},]},   
 
  
@@ -223,7 +239,11 @@ scenes: [
          { id: 'gameoverD4',style: 7, title: '就是呵呵！', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
          { key: 'p1', content: ['李森炎：呵呵，微笑可以解决一切问题','杀手：呵呵呵呵，然后快速跑来','李森炎看到杀手追','原本呵呵的脸仿佛发绿了！','跑，再不跑没救了！李森炎火速开溜','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
          ], },
+         { id: 'gameoverD5',style: 7, title: '丢失目标', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['前面是一个分岔路','我倒，这杀手去哪条路我没看到啊','李森炎只能随便选一条路','没人！','走回来换另一条路！','李森炎：人呢？','这次跟踪算是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
+         ], },
   
+
 
 
 
