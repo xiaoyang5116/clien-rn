@@ -98,10 +98,10 @@ const GameOverDialog = props => {
         // if (item.dialogs !== undefined) {
         //     props.dispatch(action('SceneModel/__onDialogCommand')({ __sceneId: props.viewData.__sceneId, params: item.dialogs }))
         // }
-        // // 跳转到新的章节
-        if (item.toChapter !== undefined) {
-            AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: item.toChapter, __sceneId: props.viewData.__sceneId } });
-        }
+        // 跳转到新的章节
+        // if (item.toChapter !== undefined) {
+        //     AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: item.toChapter, __sceneId: props.viewData.__sceneId } });
+        // }
         // // 跳转到场景
         // if (item.toScene !== undefined) {
         //     props.dispatch(action('SceneModel/processActions')(item))
