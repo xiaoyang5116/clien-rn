@@ -94,7 +94,7 @@ class CustomParagraph extends React.Component {
                         max={20}
                         defaultValue={this.state.lineHeight}
                         value={readerStyle.lineHeight}
-                        title={`段间距(${readerStyle.lineHeight})`}
+                        title={`行间距(${readerStyle.lineHeight})`}
                         onChange={(value) => { this.handleChange({ lineHeight: value }) }}
                         updataState={(value) => { this.setState({ lineHeight: value }) }}
                     />
@@ -103,7 +103,7 @@ class CustomParagraph extends React.Component {
                         max={100}
                         defaultValue={this.state.leftPadding}
                         value={readerStyle.leftPadding}
-                        title={`段间距(${readerStyle.leftPadding})`}
+                        title={`左边空白(${readerStyle.leftPadding})`}
                         onChange={(value) => { this.handleChange({ leftPadding: value }) }}
                         updataState={(value) => { this.setState({ leftPadding: value }) }}
                     />
@@ -112,7 +112,7 @@ class CustomParagraph extends React.Component {
                         max={100}
                         defaultValue={this.state.rightPadding}
                         value={readerStyle.rightPadding}
-                        title={`段间距(${readerStyle.rightPadding})`}
+                        title={`右边空白(${readerStyle.rightPadding})`}
                         onChange={(value) => { this.handleChange({ rightPadding: value }) }}
                         updataState={(value) => { this.setState({ rightPadding: value }) }}
                     />
