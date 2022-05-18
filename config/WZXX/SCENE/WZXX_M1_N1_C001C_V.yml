@@ -118,16 +118,16 @@ scenes: [
           { key: 'N1B3', content: ['这个距离杀手已经看不到你了','你决定','……',],
           btn: [{title: '距离更近一些', tokey: "N1C1"},{title: '四周搜寻一下', tokey: "N1C2"},{title: '距离更远些', tokey: "N1C3"},], },   
  
-          { key: 'N1C1', content: ['杀手突然一转身','这下被看到个正照面','李森炎决定', ],
+          { key: 'N1D1', content: ['杀手突然一转身','这下被看到个正照面','李森炎决定', ],
             btn: [{title: '大呼，风紧扯呼',dialogs: ['gameoverD2']},{title: '哎呀，就是路过嘛',dialogs: ['gameoverD3']},{title: '淡定的微笑',dialogs: ['gameoverD4']},]},   
 
  
-          { key: 'N1C2', content: ['没有异常','继续跟踪', ],
+          { key: 'N1D2', content: ['没有异常','继续跟踪', ],
             btn: [{title: '咏鹅',tokey: "p1C1"},{title: '望庐山瀑布',tokey: "p1C2"},]},   
 
       
 
-          { key: 'N1B4', content: ['这是一条猎人所遗留的小道','说不定能有所收获', ],
+          { key: 'N1D4', content: ['这是一条猎人所遗留的小道','说不定能有所收获', ],
             btn: [{title: '咏鹅',tokey: "p1C1"},{title: '望庐山瀑布',tokey: "p1C2"},]},  
  
          
