@@ -359,7 +359,7 @@ scenes: [
       { 
         id: 'E8', desc: '你到了山洞口，石壁的开凿痕迹，能看出这是有人居住过的，但现在已经早已荒废', 
         options: [ 
-         { title: '【进入山洞】',nextChat: 'E10'  }, 
+         { title: '【进入山洞】',nextChat: 'E9'  }, 
          { title: '【离开】',nextChat: 'E7'  }, 
         ],
       },
