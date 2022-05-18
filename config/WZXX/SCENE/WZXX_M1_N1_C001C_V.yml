@@ -48,7 +48,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001C_TO_C002', desc: '选项', 
         options: [ 
-          { title: "【继续阅读 第二章】", toChapter: "WZXX_M1_N1_C002" },
+          { title: "【阅读下一章】", toChapter: "WZXX_M1_N1_C002" },
         ],
       },
       #
@@ -90,7 +90,7 @@ scenes: [
           btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "N1B"},]},
            #分支1
           { key: 'N1A', content: ['杀手好像没有异常','继续向前走',], 
-          btn: [{title: '继续跟踪！', tokey: "N1B"},{title: '结束这次跟踪', tokey: "END01"},], },   
+          btn: [{title: '继续跟踪！（本剧场还在制作中）', tokey: "N1B"},{title: '结束这次跟踪', tokey: "END01"},], },   
 
           { key: 'N1B', content: ['树下有很多落叶和枯枝','你不得不小心谨慎',], 
           btn: [{title: '大胆下脚,JOJO思密达！', tokey: "N1B1"},{title: '想起一些小说情节', tokey: "N1B2"},], },   
@@ -99,23 +99,10 @@ scenes: [
           btn: [{title: '是啊，乐死了', dialogs: ['gameover00']}], },   
 
           { key: 'N1B2', content: ['小说1','某个主角踩了树枝被敌人发现','被追了三条街','小说2','某个主角踩了树枝被敌人发现','不得不化身狂战士全灭敌人','……'], 
-          btn: [{title: '被剧情逗乐了呵呵笑起来', tokey: "N1C1"},{title: '这好像和现在差不多啊', tokey: "N1D"},], },   
+          btn: [{title: '被剧情逗乐了呵呵笑起来', tokey: "N1C1"},{title: '这好像和现在差不多啊', tokey: "M1"},], },   
 
           { key: 'N1C1', content: ['杀手正在走路','突然听见背后传来诡异的笑','呵呵呵呵呵啊哈哈哈','呵哈哈哈隔','嗯嗯嗯嗯噗……','杀手……？','不对劲','……'], 
-          btn: [{title: '……', tokey: "N1D"},], },   
-
-          { key: 'N1D', content: ['走了一小段路','大概是觉得走烦了','杀手开始坐下来休息',], 
-          btn: [{title: '持续监视', tokey: "N1D1"},{title: '他休息我也休息', tokey: "N1D2"},{title: '稍微放松', tokey: "N1D3"},{title: '靠近一点', tokey: "N1D3"}], },   
-
-          { key: 'N1D1', content: ['由于李森炎的监视','杀手直觉的有股被注视的感觉','杀手的警觉性提高了'], 
-          btn: [{title: '不妙', tokey: "M2"},], },   
-
-          { key: 'N1D2', content: ['李森炎看着杀手休息，感觉十分无聊','我也累了','不如小睡一会？',], 
-          btn: [{title: '妙啊', dialogs: ['gameoverD1']},], },   
-          { key: 'N1D3', content: ['李森炎稍微放松了监视','由于隐藏的很好','杀手没有察觉',], 
-          btn: [{title: '不错', tokey: "M2"},  ], },   
-          { key: 'N1D4', content: ['对方有警戒范围','现在并不是靠近的好时候',], 
-          btn: [{title: '返回', tokey: "N1D"},  ], },   
+          btn: [{title: '杀手：不对劲，好奇去瞅一下', dialogs: ['gameoverD4']},{title: '杀手：错觉吗？', tokey: "M1"},], },   
 
 
          #分支2
@@ -123,24 +110,23 @@ scenes: [
           btn: [{title: '继续保持距离不变', tokey: "N1B1"},{title: '距离更近些', tokey: "N1B2"},{title: '距离更远些', tokey: "N1B3"},], },   
  
           { key: 'N1B1', content: ['看起来杀手没有发现有人跟踪','就这样保持','……',],
-          btn: [{title: '继续保持距离不变', tokey: "N1C1"},{title: '距离更近些', tokey: "N1C2"},{title: '距离更远些', tokey: "N1C3"},], },   
+          btn: [{title: '继续保持距离不变', tokey: "M1"},{title: '距离更近些', tokey: "N1B2"},{title: '距离更远些', tokey: "N1B3"},], },   
  
           { key: 'N1B2', content: ['如果靠太近会暴露','这个距离需要拿捏的很准','……',],
-          btn: [{title: '继续保持距离不变', tokey: "N1C1"},{title: '距离更近些', tokey: "N1C2"},{title: '距离更远些', tokey: "N1C3"},], },   
+          btn: [{title: '继续保持距离不变', tokey: "N1B1"},{title: '距离更近些', tokey: "N1C2"},{title: '距离更远些', tokey: "N1C3"},], },   
 
-          { key: 'N1B3', content: ['如果靠太近会暴露','这个距离需要拿捏的很准','……',],
-          btn: [{title: '继续保持距离不变', tokey: "N1C1"},{title: '距离更近些', tokey: "N1C2"},{title: '距离更远些', tokey: "N1C3"},], },   
+          { key: 'N1B3', content: ['这个距离杀手已经看不到你了','你决定','……',],
+          btn: [{title: '距离更近一些', tokey: "N1C1"},{title: '四周搜寻一下', tokey: "N1C2"},{title: '距离更远些', tokey: "N1C3"},], },   
  
-          { key: 'N1B1', content: ['杀手突然一转身','李森炎决定', ],
+          { key: 'N1C1', content: ['杀手突然一转身','李森炎决定', ],
             btn: [{title: '大呼，风紧扯呼',tokey: "p1C1"},{title: '哎呀，就是路过嘛',tokey: "p1C2"},{title: '淡定的微笑',tokey: "p1C2"},]},   
 
 
 
+          { key: 'N1C1', content: ['没有异常','继续跟踪', ],
+            btn: [{title: '大呼，风紧扯呼', dialogs: ['gameoverD2']},{title: '哎呀，就是路过嘛',tokey: "p1C2"},{title: '淡定的微笑',tokey: "p1C2"},]},   
 
-          { key: 'N1B1', content: ['杀手突然一转身','李森炎决定', ],
-            btn: [{title: '大呼，风紧扯呼',tokey: "p1C1"},{title: '哎呀，就是路过嘛',tokey: "p1C2"},{title: '淡定的微笑',tokey: "p1C2"},]},   
-
-          { key: 'N1B1', content: ['没有异常','继续跟踪', ],
+          { key: 'N1C1', content: ['没有异常','继续跟踪', ],
             btn: [{title: '咏鹅',tokey: "p1C1"},{title: '望庐山瀑布',tokey: "p1C2"},]},   
 
      
@@ -152,11 +138,25 @@ scenes: [
  
          
 
+          #分支1、2合并后
+          { key: 'M1', content: ['走了一小段路','大概是觉得走烦了','杀手开始坐下来休息',], 
+          btn: [{title: '持续监视', tokey: "M1A"},{title: '他休息我也休息', tokey: "M1B"},{title: '稍微放松', tokey: "M1C"},{title: '靠近一点', tokey: "M1D"}], },   
+
+          { key: 'M1A', content: ['由于李森炎的监视','杀手直觉的有股被注视的感觉','杀手的警觉性提高了'], 
+          btn: [{title: '不妙', tokey: "M2"},], },   
+
+          { key: 'M1B', content: ['李森炎看着杀手休息，感觉十分无聊','我也累了','不如小睡一会？',], 
+          btn: [{title: '妙啊', dialogs: ['gameoverD1']},], },   
+          
+          { key: 'M4', content: ['李森炎稍微放松了监视','由于隐藏的很好','杀手没有察觉',], 
+          btn: [{title: '不错', tokey: "M2"},  ], },   
+          { key: 'M5', content: ['对方有警戒范围','现在并不是靠近的好时候',], 
+          btn: [{title: '返回', tokey: "M1"},  ], },   
 
 
 
           #分支1和2都结束
-          { key: 'M2', content: ['杀手休息完毕，开始继续走了','继续跟踪',], 
+          { key: 'M4', content: ['杀手休息完毕，开始继续走了','继续跟踪',], 
           btn: [{title: '不错', tokey: "N2A1"},{title: '不错', tokey: "N2A2"},  ], },   
 
 
@@ -217,8 +217,17 @@ scenes: [
            ],
          },
        #死亡3
-         { id: 'gameoverD1',style: 7, title: '睡过头了', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p3', content: ['一阵冷风','李森炎起身','睡过头了，李森炎内心大呼','眼见发现天已经黄昏','杀手早就不知那里去了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
+         { id: 'gameoverD1',style: 7, title: '睡过头了', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['一阵冷风','李森炎起身','睡过头了，李森炎内心大呼','眼见发现天已经黄昏','杀手早就不知那里去了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
+         ], },
+         { id: 'gameoverD2',style: 7, title: '风紧扯呼', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['呼呼呼呼','杀手看到李森炎，拔腿就追','李森炎看到杀手追','大呼，来啊来啊','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
+         ], },
+         { id: 'gameoverD3',style: 7, title: '就是路过', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['李森炎：我就是路过','杀手：我读书少，你不要骗我','李森炎看到杀手追','大呼，我真是路过！','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
+         ], },
+         { id: 'gameoverD4',style: 7, title: '就是呵呵！', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p1', content: ['李森炎：呵呵，微笑可以解决一切问题','杀手：呵呵呵呵，然后快速跑来','李森炎看到杀手追','原本呵呵的脸仿佛发绿了！','跑，再不跑没救了！李森炎火速开溜','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
          ], },
   
 
