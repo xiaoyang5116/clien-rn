@@ -1,7 +1,7 @@
 #START========================================
 [
-{ andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001B_[C1]'] }, 
-{ header: '第一章 分支C2 选择跟踪 },
+{ andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]'] }, 
+{ header: '第一章 分支C2 跟踪结束' },
 ]
 #END==========================================
  

@@ -500,7 +500,7 @@ scenes: [
 
         #死亡3
          { id: 'gameover01',style: 7, title: '迷路',  dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['和之前的森林不同','这部分森林似乎更加难以辨别道路……','原本的道路都不见了……','数天后，你依旧在树林里打转……','请选择'],btn: [{title: '不放弃，再来', toScene: 'WZXX_M1_N1_C001B_V', },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001"}]},
+         { key: 'p1', content: ['和之前的森林不同','这部分森林似乎更加难以辨别道路……','原本的道路都不见了……','数天后，你依旧在树林里打转……','请选择'],btn: [{title: '不放弃，再来', toScene: 'WZXX_M1_N1_C001B_V', },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
          ], },
          #死亡3
          { id: 'gameoverD1',style: 7, title: '逃跑', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
