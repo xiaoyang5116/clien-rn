@@ -122,7 +122,7 @@ scenes: [
             btn: [{title: '大呼，风紧扯呼',dialogs: ['gameoverD2']},{title: '哎呀，就是路过嘛',dialogs: ['gameoverD3']},{title: '淡定的微笑',dialogs: ['gameoverD4']},]},   
 
  
-          { key: 'N1C1', content: ['没有异常','继续跟踪', ],
+          { key: 'N1C2', content: ['没有异常','继续跟踪', ],
             btn: [{title: '咏鹅',tokey: "p1C1"},{title: '望庐山瀑布',tokey: "p1C2"},]},   
 
       
