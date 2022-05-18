@@ -27,8 +27,8 @@ import RootView from '../components/RootView';
 import ReaderSettings from '../components/readerSettings';
 import HeaderContainer from '../components/article/HeaderContainer';
 import FooterContainer from '../components/article/FooterContainer';
-import PropertiesContainer from '../components/article/PropertiesContainer';
 import Collapse from '../components/collapse';
+import Drawer from '../components/drawer';
 
 const WORLD = [
   {
@@ -229,9 +229,9 @@ class ArticlePage extends Component {
               }} />
             </View>
           </FooterContainer>
-          <PropertiesContainer ref={this.refPropsContainer}>
+          <Drawer ref={this.refPropsContainer}>
             {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
-          </PropertiesContainer>
+          </Drawer>
         </View>
     );
   }

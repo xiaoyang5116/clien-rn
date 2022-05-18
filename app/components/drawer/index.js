@@ -1,5 +1,6 @@
 
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   getWindowSize,
@@ -19,22 +20,22 @@ const winSize = getWindowSize();
 const VIEW_WIDTH = winSize.width - 60;
 const VIEW_HEIGHT = winSize.height;
 
-export default class PropertiesContainer extends React.PureComponent {
+export default class Drawer extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.rightPos = new Animated.Value(-winSize.width);
+    this.position = new Animated.Value(-winSize.width);
     this.expanded = false;
   }
 
   offsetX(x) {
-    this.rightPos.setValue(-winSize.width + x);
+    this.position.setValue(-winSize.width + Math.abs(x));
   }
 
   release() {
-    if (this.rightPos._value >= -winSize.width*0.98) {
+    if (this.position._value >= -winSize.width*0.98) {
       if (!this.expanded) {
-        Animated.timing(this.rightPos, {
+        Animated.timing(this.position, {
           toValue: 0,
           duration: 300,
           easing: Easing.cubic,
@@ -50,7 +51,7 @@ export default class PropertiesContainer extends React.PureComponent {
 
   closeHandle = () => {
     // 关闭界面
-    Animated.timing(this.rightPos, {
+    Animated.timing(this.position, {
       toValue: -winSize.width,
       duration: 300,
       easing: Easing.cubic,
@@ -63,13 +64,24 @@ export default class PropertiesContainer extends React.PureComponent {
   render() {
     return (
       <TouchableWithoutFeedback onPress={this.closeHandle}>
-        <Animated.View style={[styles.viewContainer, { right: this.rightPos }]}>
+        <Animated.View style={[
+          styles.viewContainer, 
+          (this.props.direction == 'left') ? { left: this.position } : { right: this.position },
+          ]}>
           {this.props.children}
         </Animated.View>
       </TouchableWithoutFeedback>
     );
   }
 }
+
+Drawer.propTypes = {
+  direction: PropTypes.string,
+};
+
+Drawer.defaultProps = {
+  direction: 'right',
+};
 
 const styles = StyleSheet.create({
   viewContainer: {
