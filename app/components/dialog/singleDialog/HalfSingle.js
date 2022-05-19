@@ -3,12 +3,15 @@ import {
     Text,
     TouchableWithoutFeedback,
     FlatList,
+    Image
 } from 'react-native';
 import React from 'react';
 import { ThemeContext } from '../../../constants';
 import { HalfPanel } from '../../panel';
 import { TextButton } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
+
+import ImageCapInset from 'react-native-image-capinsets-next';
 
 const HalfSingle = (props) => {
     const theme = React.useContext(ThemeContext);
@@ -107,6 +110,18 @@ const HalfSingle = (props) => {
                             renderItem={renderBtn}
                             keyExtractor={(item, index) => item.title + index}
                         />
+                        <View style={{ width: "100%", height: 50, position: 'relative', justifyContent: 'center', alignItems: 'center' }}>
+                            <ImageCapInset
+                                style={{ width: '100%', height: '100%', position: 'absolute', top: 0, zindex: 999 }}
+                                source={require('../../../../assets/button/40dpi.png')}
+                                capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                            />
+                            <Image resizeMode="stretch"
+                            style={{ width: '100%', height: '100%', zIndex: -1, position: "absolute" }}
+                                source={require('../../../../assets/frame/button_style1.png')} 
+                                />
+                            <Text style={{ zIndex: 1, fontSize: 20, color: "red" }}>sssss</Text>
+                        </View>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
