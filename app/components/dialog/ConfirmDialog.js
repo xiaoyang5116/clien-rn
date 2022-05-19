@@ -24,13 +24,13 @@ class ConfirmDialog extends React.Component {
                 <ImageCapInset
                         style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.5 }}
                         source={require('../../../assets/bg/confirm_dlg_patch.png')}
-                        capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                        capInsets={{ top: 10, right: 10, bottom: 10, left: 10 }}
                 />
                 <View style={{ width: 280, margin: 10, overflow: 'hidden' }}>
                     <ImageCapInset
                         style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.5 }}
                         source={require('../../../assets/bg/confirm_dlg_outter_patch.png')}
-                        capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                        capInsets={{ top: 10, right: 10, bottom: 10, left: 10 }}
                     />
                     <FastImage 
                         style={{ width: '100%', height: '100%', position: 'absolute', top: 80 }}
