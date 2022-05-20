@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     /** ================================ */
     /* 对话选项框条目 */
     chatItem: {
-        backgroundColor: btnBgColor1,
+        // backgroundColor: btnBgColor1,
         paddingTop: 2,
         paddingBottom: 2,
         marginVertical: 2

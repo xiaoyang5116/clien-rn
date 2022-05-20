@@ -27,17 +27,18 @@ import ComposeTabPage from './home/ComposeTabPage';
 import ArenaTabPage from './home/ArenaTabPage';
 import ExploreTabPage from './home/ExploreTabPage';
 import { Platform } from 'react-native';
+import { px2pd } from '../constants/resolution';
 
 const Tab = createBottomTabNavigator();
 
+const xxx = "../../assets/themes/yellow/button/tab_normal.png"
+
 const TabIcon = (props) => {
   return (
-    <View style={{ position: 'absolute', width: 30, height: 48, left: 12, top: -8, borderWidth: 1, borderColor: '#ccc' }}>
-        <View style={{ position: 'absolute', left: 0, top: 0, transform: [{ scale: 0.5 }] }}>
-          <FastImage style={{ position: 'absolute', width: 56, height: 90 }} source={require('../../assets/tab/tab_icon.png')} />
-        </View>
-        <View style={{ position: 'absolute', left: 8, top: 10, width: 20 }}>
-          <Text style={{ fontSize: 12, color: props.color }}>{props.title}</Text>
+    <View style={{ position: 'absolute', width: px2pd(135), height: px2pd(220), left: 5, top: -30 }}>
+        <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require(xxx)} />
+        <View style={{ position: 'absolute', left: 14, top: 10, width: 24 }}>
+          <Text style={{ fontSize: px2pd(60), color: props.color }}>{props.title}</Text>
         </View>
     </View>
   );
@@ -63,6 +64,7 @@ const defaultScreenOptions = {
     borderTopWidth: 0, // 去掉底部边框
     backgroundColor: '#fff',
   },
+  tabBarInactiveTintColor: '#fff',
   tabBarBackground: () => {
     return (
       <FastImage style={{ position: 'absolute', left: 0, top: -20, width: '100%', height: '100%' }} resizeMode='contain' source={require('../../assets/tab/tab_banner_bg.png')} />
