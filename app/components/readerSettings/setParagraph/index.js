@@ -128,7 +128,8 @@ const SetParagraph = props => {
                         {
                             borderColor: readerStyle.selectedTypesetting === '自定义排版' ? readerStyle.selectedBorderColor : readerStyle.borderColor,
                             backgroundColor: props.color,
-                            overflow: 'hidden'
+                            overflow: 'hidden',
+                            color: readerStyle.color,
                         }
                     ]}>
                         自定义排版

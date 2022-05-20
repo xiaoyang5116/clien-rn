@@ -70,14 +70,14 @@ const ReaderSettings = (props) => {
                 <View style={theme.readerSettingRow}>
                     <View style={{ width: "45%", height: "100%" }}>
                         <TButton
-                            onPress={reset}
-                            title={"恢复"}
+                            onPress={() => { setVisible(false); }}
+                            title={"退出"}
                         />
                     </View>
                     <View style={{ width: "45%", height: "100%" }}>
                         <TButton
-                            onPress={() => { setVisible(false); }}
-                            title={"退出"}
+                            onPress={reset}
+                            title={"全部重置"}
                         />
                     </View>
                 </View>

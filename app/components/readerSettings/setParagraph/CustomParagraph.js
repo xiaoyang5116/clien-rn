@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity, DeviceEventEmitter } from 'react-native';
 import React, { PureComponent } from 'react';
-import Slider from '@react-native-community/slider';
 
 import {
     connect,
