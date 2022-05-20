@@ -9,6 +9,7 @@ import {
   connect,
   Component,
   StyleSheet,
+  ThemeContext,
 } from "../constants";
 
 import {
@@ -31,12 +32,13 @@ import { px2pd } from '../constants/resolution';
 
 const Tab = createBottomTabNavigator();
 
-const xxx = "../../assets/themes/yellow/button/tab_normal.png"
-
 const TabIcon = (props) => {
+
+  const theme = React.useContext(ThemeContext);
+
   return (
     <View style={{ position: 'absolute', width: px2pd(135), height: px2pd(220), left: 5, top: -30 }}>
-        <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require(xxx)} />
+        <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={theme.tabBottomImage} />
         <View style={{ position: 'absolute', left: 14, top: 10, width: 24 }}>
           <Text style={{ fontSize: px2pd(60), color: props.color }}>{props.title}</Text>
         </View>

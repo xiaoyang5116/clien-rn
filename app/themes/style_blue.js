@@ -1,6 +1,6 @@
 
 import { StyleSheet } from 'react-native';
-import sharedStyles from '../../../app/themes/sharedStyles';
+import sharedStyles from './sharedStyles';
 
 /**
 * 通用按钮
@@ -149,6 +149,8 @@ const styles = StyleSheet.create({
     /** ================================ */
     profileItemImage: require('../../assets/button/profile_item.png'),
     profileItemImageSelected: require('../../assets/button/profile_item_selected.png'),
+    tabBottomImage: require('../../assets/themes/normal/button/tab_normal.png'),
+    optionButtonImage: require("../../assets/themes/normal/button/option_button_v1.png"),
 });
 
 export default styles;

@@ -102,7 +102,7 @@ class StoryTabPage extends Component {
       <View style={this.context.chatItem}>
         <TouchableWithoutFeedback onPress={() => this._onClickItem(data)}>
           <View style={{ height: px2pd(117), justifyContent: 'center', alignItems: 'center' }}>
-            <Image style={{ width: '100%', height: '100%', position: 'absolute' }} source={require('../../../assets/themes/yellow/button/option_button_v1.png')} />
+            <Image style={{ width: '100%', height: '100%', position: 'absolute' }} source={this.context.optionButtonImage} />
             <Text style={{ fontSize: 18, color: this.context.options.fontColor }}>{data.item.title}</Text>
           </View>
         </TouchableWithoutFeedback>
