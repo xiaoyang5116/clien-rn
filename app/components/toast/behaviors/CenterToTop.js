@@ -1,6 +1,8 @@
 import React, { useRef } from 'react'
 import { View, Text, Animated, TouchableOpacity, Easing } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { getWindowSize } from "../../../constants";
+import { px2pd } from '../../../constants/resolution';
 
 
 const size = getWindowSize().height;
@@ -65,7 +67,7 @@ export default CenterToTop = (props) => {
         <View pointerEvents="box-none" style={currentStyles.tooltipWrap}>
             <Animated.View                 // 使用专门的可动画化的View组件
                 style={{
-                    ...currentStyles.tooltip,
+                    // ...currentStyles.tooltip,
                     position: "absolute",
                     width: "80%",
                     bottom: bottomAnim,
@@ -75,6 +77,7 @@ export default CenterToTop = (props) => {
                 <TouchableOpacity onPress={props.onHide}>
                     <View style={currentStyles.tooltipContainer}>
                         <View style={currentStyles.tooltipImg}></View>
+                        <FastImage style={{ width: px2pd(1042), height: px2pd(84), position: 'absolute' }} source={require('../../../../assets/bg/toast.png')} />
                         <Text style={currentStyles.tooltipText}>
                             {message}
                         </Text>

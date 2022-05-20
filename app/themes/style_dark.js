@@ -150,7 +150,8 @@ const styles = StyleSheet.create({
     profileItemImage: require('../../assets/button/profile_item.2.png'),
     profileItemImageSelected: require('../../assets/button/profile_item_selected.2.png'),
     tabBottomImage: require('../../assets/themes/normal/button/tab_normal.png'),
-    optionButtonImage: require("../../assets/themes/normal/button/option_button_v1.png"),
+    optionButtonImage: require("../../assets/themes/normal/button/option_button.png"),
+    propSelectedImage: require("../../assets/themes/normal/button/prop_selected.png"),
 });
 
 export default styles;
