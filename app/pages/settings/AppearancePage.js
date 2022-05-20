@@ -12,11 +12,9 @@ import { TextButton, TitleHeader } from '../../constants/custom-ui';
 import * as Themes from '../../themes';
 import { connect, action } from "../../constants";
 import { Panel } from '../../components/panel'
-import { Appearance } from 'react-native';
+
 
 const AppearancePage = props => {
-    const colorScheme = Appearance.getColorScheme();  // 'dark light'
-    console.log("const", colorScheme);
     const windowWidth = Dimensions.get('window').width;
     const data = Themes.default.themes.map(t =>
         t.id === Themes.default.themeId
