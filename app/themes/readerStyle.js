@@ -2,11 +2,11 @@ export default {
     // 文字颜色
     color: "#262626",
     // 背景颜色
-    bgColor: "#f0f0f0",
+    bgColor: "#e8ddcc",
     // // 弹出框的文字颜色
     // popUpColor: "#706a61",
     // 弹出的框的背景颜色
-    popUpBgColor: "#fffffd",
+    popUpBgColor: "#e8d2b1",
     // 内容文字大小
     contentSize: 20,
     // 标题文字大小
@@ -32,8 +32,8 @@ export default {
     // 默认样式
     defaultStyle: {
         color: "#262626",
-        bgColor: "#f0f0f0",
-        popUpBgColor: "#fffffd",
+        bgColor: "#e8ddcc",
+        popUpBgColor: "#e8d2b1",
         contentSize: 20,
         titleSize: 26,
         selectedBorderColor: "#dd7b03",
@@ -67,8 +67,8 @@ export default {
     // 配色
     matchColor_1: {
         color: "#262626",
-        bgColor: "#f0f0f0",
-        popUpBgColor: "#fffffd",
+        bgColor: "#e8ddcc",
+        popUpBgColor: "#e8d2b1",
     },
     matchColor_2: {
         color: "#342101",
