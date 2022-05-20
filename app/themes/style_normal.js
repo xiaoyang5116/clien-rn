@@ -1,5 +1,6 @@
 
 import { StyleSheet } from 'react-native';
+import { px2pd } from '../constants/resolution';
 import sharedStyles from './sharedStyles';
 
 /**
@@ -115,6 +116,18 @@ const styles = StyleSheet.create({
     /* 选项样式 */
     options: {
         fontColor: '#8addff',
+    },
+
+    /* 选项按钮宽高 */
+    tabBottomImgStyle: {
+        width: px2pd(115),
+        height: px2pd(200),
+    },
+
+    /* 选项按钮文本 */
+    tabBottomLabelStyle: {
+        left: 10, 
+        top: 10
     },
 
     /** ================================ */

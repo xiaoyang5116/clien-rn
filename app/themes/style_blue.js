@@ -1,5 +1,6 @@
 
 import { StyleSheet } from 'react-native';
+import { px2pd } from '../constants/resolution';
 import sharedStyles from './sharedStyles';
 
 /**
@@ -117,6 +118,18 @@ const styles = StyleSheet.create({
         fontColor: '#8addff',
     },
 
+    /* 选项按钮宽高 */
+    tabBottomImgStyle: {
+        width: px2pd(115),
+        height: px2pd(200),
+    },
+
+    /* 选项按钮文本 */
+    tabBottomLabelStyle: {
+        left: 10, 
+        top: 10
+    },
+
     /** ================================ */
     /**             邮件样式              */
     /** ================================ */
@@ -149,9 +162,9 @@ const styles = StyleSheet.create({
     /** ================================ */
     profileItemImage: require('../../assets/button/profile_item.png'),
     profileItemImageSelected: require('../../assets/button/profile_item_selected.png'),
-    tabBottomImage: require('../../assets/themes/normal/button/tab_normal.png'),
-    optionButtonImage: require("../../assets/themes/normal/button/option_button.png"),
-    propSelectedImage: require("../../assets/themes/normal/button/prop_selected.png"),
+    tabBottomImage: require('../../assets/themes/blue/button/tab_normal.png'),
+    optionButtonImage: require("../../assets/themes/blue/button/option_button.png"),
+    propSelectedImage: require("../../assets/themes/blue/button/prop_selected.png"),
 });
 
 export default styles;
