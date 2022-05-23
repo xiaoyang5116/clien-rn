@@ -268,6 +268,7 @@ const sharedStyles = StyleSheet.create({
     tooltipText: {
         fontSize: 18,
         paddingLeft: 12,
+        color: '#fff',
     },
     /* 追加弹出提示 end */
 

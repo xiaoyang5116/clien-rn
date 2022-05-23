@@ -39,26 +39,40 @@ class FirstPage extends Component {
     this.refDrawer = React.createRef();
     this.startX = 0;
     this.startY = 0;
+    this.started = false;
   }
 
   render() {
     return (
       <View style={{ flex: 1 }} 
           onTouchStart={(e) => {
+            if (e.nativeEvent.pageX > 40)
+              return;
+
             this.startX = e.nativeEvent.pageX;
             this.startY = e.nativeEvent.pageY;
+            this.started = true;
           }}
           onTouchMove={(e) => {
+            if (!this.started)
+              return;
+
             const dx = e.nativeEvent.pageX - this.startX;
             const dy = e.nativeEvent.pageY - this.startY;
-            if (Math.abs(dx) >= 10) {
+            if (Math.abs(dx) >= 5) {
               if (dx > 0) this.refDrawer.current.offsetX(dx);
             }
           }}
-          onTouchEnd={(e) => this.refDrawer.current.release()}
-          onTouchCancel={(e) => this.refDrawer.current.release()}>
+          onTouchEnd={(e) => {
+            this.refDrawer.current.release();
+            this.started = false;
+          }}
+          onTouchCancel={(e) => {
+            this.refDrawer.current.release();
+            this.started = false;
+          }}>
         {/* 背景图片 */}
-        <ImageBackground style={styles.bgContainer} source={require('../../assets/bg/first_bg.jpg')}>
+        <ImageBackground style={styles.bgContainer} source={require('../../assets/bg/first_page.webp')}>
           <View style={styles.viewContainer}>
             {/* 开始剧情 */}
             <ImageButton {...BTN_STYLE} source={require('../../assets/button/story_button.png')} selectedSource={require('../../assets/button/story_button_selected.png')} onPress={() => {

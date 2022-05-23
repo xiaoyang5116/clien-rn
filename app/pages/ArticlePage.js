@@ -10,7 +10,8 @@ import {
   action,
   EventKeys,
   AppDispath,
-  DataContext
+  DataContext,
+  getWindowSize
 } from "../constants";
 
 import { 
@@ -29,6 +30,8 @@ import HeaderContainer from '../components/article/HeaderContainer';
 import FooterContainer from '../components/article/FooterContainer';
 import Collapse from '../components/collapse';
 import Drawer from '../components/drawer';
+
+const WIN_SIZE = getWindowSize();
 
 const WORLD = [
   {
@@ -197,10 +200,17 @@ class ArticlePage extends Component {
               initialNumToRender={2}
               maxToRenderPerBatch={5}
               onTouchStart={(e) => {
+                if (e.nativeEvent.pageX < WIN_SIZE.width - 40)
+                  return;
+
                 this.startX = e.nativeEvent.pageX;
                 this.startY = e.nativeEvent.pageY;
+                this.started = true;
               }}
               onTouchMove={(e) => {
+                if (!this.started)
+                  return;
+
                 const dx = e.nativeEvent.pageX - this.startX;
                 const dy = e.nativeEvent.pageY - this.startY;
 
@@ -213,9 +223,11 @@ class ArticlePage extends Component {
               }}
               onTouchEnd={() => {
                 this.refPropsContainer.current.release();
+                this.started = false;
               }}
               onTouchCancel={() => {
                 this.refPropsContainer.current.release();
+                this.started = false;
               }}
             />
           </View>

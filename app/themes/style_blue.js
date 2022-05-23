@@ -3,48 +3,48 @@ import { StyleSheet } from 'react-native';
 import { px2pd } from '../constants/resolution';
 import sharedStyles from './sharedStyles';
 
-/** 主题色：黑色 */
-
 /**
- * 通用按钮
- */
-const btnFontColor = '#eee';
-const btnBackgroundColor = '#003964';
+* 通用按钮
+*/
+const btnFontColor = '#424242';
+const btnBackgroundColor = '#eee';
 
 
 /** ================================ */
 /**             背景颜色              */
 /** ================================ */
 /* 页面背景 */
-const pageBgColor1 = '#5e5e5e';  // 灰色
+const pageBgColor1 = '#f2f2f2';  // 淡灰色
 
 /* 区块背景 */
-const blockBgColor1 = '#4d4d4d';  // 深灰色
-const blockBgColor2 = '#616161';  // 深灰色
-const blockBgColor3 = '#525252';  // 暗灰色
+const blockBgColor1 = '#e8d2b0';  // 深米白色
+const blockBgColor2 = '#e8ddcc';  // 米白色
+const blockBgColor3 = '#eee7dd';  // 淡米色
+
 
 /* 按钮背景 */
-const btnBgColor1 = '#525252';  // 暗灰色
-const btnBgColor2 = '#4d4d4d';  // 深灰色
+const btnBgColor1 = '#003964';  // 蓝色
+const btnBgColor2 = '#e8ddcc';  // 米白色
 
 /* 提示背景 */
-const tipBgColor1 = '#525252';  // 暗灰色
+const tipBgColor1 = '#d3c2aa';  // 淡米色
 
 /* 边框背景 */
-// const lineColor1 = '#';  // 
+// const lineColor1 = 'gray';  // 灰色
 
 /** ================================ */
 /**             文字颜色              */
 /** ================================ */
 /* 标题 */
-const titleColor1 = '#f0f0f0';  // 偏白色
-const titleColor2 = '#f0f0f0';  // 偏白色
+const titleColor1 = '#6a655e';  // 深棕色
+const titleColor2 = '#6a655e';  // 深棕色
 const titleColor3 = '#d86362';  // 淡红色
 
 /* 内容 */
-const contentColor1 = '#f0f0f0';  //偏白色
-const contentColor2 = '#989898';  //淡灰色
-const contentColor3 = '#f0f0f0';  //偏白色
+const contentColor1 = '#f2f2f2';  // 淡灰色
+const contentColor2 = '#868076';  // 淡棕色
+const contentColor3 = '#6a655e';  // 深棕色
+
 
 
 
@@ -67,9 +67,6 @@ const styles = StyleSheet.create({
     blockBgColor2: {
         backgroundColor: blockBgColor2,
     },
-    blockBgColor3: {
-        backgroundColor: blockBgColor3,
-    },
 
     /* 按钮背景 */
     btnBgColor1: {
@@ -77,6 +74,9 @@ const styles = StyleSheet.create({
     },
     btnBgColor2: {
         backgroundColor: btnBgColor2,
+    },
+    blockBgColor3:{
+        backgroundColor: blockBgColor3,
     },
 
     /* 提示背景 */
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
 
     /* 选项样式 */
     options: {
-        fontColor: btnFontColor,
+        fontColor: '#8addff',
     },
 
     /* 选项按钮宽高 */
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
 
     /* 选项按钮文本 */
     tabBottomLabelStyle: {
-        left: 20, 
+        left: 10, 
         top: 10
     },
 
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
     /** ================================ */
     /* 对话选项框条目 */
     chatItem: {
-        // backgroundColor: "#CCC",
+        // backgroundColor: btnBgColor1,
         paddingTop: 2,
         paddingBottom: 2,
         marginVertical: 2
@@ -151,20 +151,20 @@ const styles = StyleSheet.create({
     /* 导航栏样式 */
     navigation: {
         primary: '#ff2d55',
-        background: '#5e5e5e',
-        card: '#212121',
-        text: '#ffffff',
+        background: '#f2f2f2',
+        card: '#ffffff',
+        text: '#000000',
         border: '#c7c7cc',
         notification: '#ff453a',
     },
     /** ================================ */
     /**            图片资源               */
     /** ================================ */
-    profileItemImage: require('../../assets/button/profile_item.2.png'),
-    profileItemImageSelected: require('../../assets/button/profile_item_selected.2.png'),
-    tabBottomImage: require('../../assets/themes/dark/button/tab_normal.png'),
-    optionButtonImage: require("../../assets/themes/dark/button/option_button.png"),
-    propSelectedImage: require("../../assets/themes/dark/button/prop_selected.png"),
+    profileItemImage: require('../../assets/button/profile_item.png'),
+    profileItemImageSelected: require('../../assets/button/profile_item_selected.png'),
+    tabBottomImage: require('../../assets/themes/blue/button/tab_normal.png'),
+    optionButtonImage: require("../../assets/themes/blue/button/option_button.png"),
+    propSelectedImage: require("../../assets/themes/blue/button/prop_selected.png"),
 });
 
 export default styles;

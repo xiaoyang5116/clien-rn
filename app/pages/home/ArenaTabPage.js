@@ -14,6 +14,8 @@ import {
 import { Panel } from '../../components/panel';
 import ProgressBar from '../../components/ProgressBar';
 import { View, Text, FlatList } from '../../constants/native-ui';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../constants/resolution';
 
 class ArenaTabPage extends Component {
 
@@ -69,7 +71,8 @@ class ArenaTabPage extends Component {
             <Panel patternId={3}>
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }}>
-                    <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  backgroundColor: '#ccc' }}>
+                    <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  }}>
+                        <FastImage style={{ width: px2pd(218), height: px2pd(211), position: 'absolute' }} source={require('../../../assets/bg/arena_character_bg.png')} />
                         <Text>{this.props.enemy.userName}</Text>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', height: '100%' }}>
@@ -107,8 +110,9 @@ class ArenaTabPage extends Component {
                         }}
                     />
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginBottom: 10, height: 100, backgroundColor: '#403340' }}>
-                    <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  backgroundColor: '#ccc' }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', marginBottom: 30, height: 100, backgroundColor: '#403340' }}>
+                    <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center' }}>
+                        <FastImage style={{ width: px2pd(218), height: px2pd(211), position: 'absolute' }} source={require('../../../assets/bg/arena_character_bg.png')} />
                         <Text>{this.props.myself.userName}</Text>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'column', height: '100%' }}>

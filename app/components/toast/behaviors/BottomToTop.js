@@ -1,5 +1,7 @@
 import React, { useRef } from 'react'
 import { View, Text, Animated, TouchableOpacity } from 'react-native';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../../constants/resolution';
 
 
 export default BottomToTop = (props) => {
@@ -8,7 +10,7 @@ export default BottomToTop = (props) => {
 
     let dismissHandler = null
 
-    const bottomAnim = useRef(new Animated.Value(50)).current
+    const bottomAnim = useRef(new Animated.Value(100)).current
     const opacityAnim = useRef(new Animated.Value(0)).current
 
     React.useEffect(() => {
@@ -24,7 +26,7 @@ export default BottomToTop = (props) => {
             Animated.timing(
                 bottomAnim,
                 {
-                    toValue: 70,
+                    toValue: 120,
                     duration: 300,
                     useNativeDriver: false,
                 }
@@ -55,7 +57,7 @@ export default BottomToTop = (props) => {
             Animated.timing(
                 bottomAnim,
                 {
-                    toValue: 90,
+                    toValue: 150,
                     duration: 300,
                     useNativeDriver: false,
                 }
@@ -67,7 +69,6 @@ export default BottomToTop = (props) => {
         <View pointerEvents="box-none" style={currentStyles.tooltipWrap}>
             <Animated.View                 // 使用专门的可动画化的View组件
                 style={{
-                    ...currentStyles.tooltip,
                     position: "absolute",
                     width: "80%",
                     bottom: bottomAnim,
@@ -77,6 +78,7 @@ export default BottomToTop = (props) => {
                 <TouchableOpacity onPress={props.onHide}>
                     <View style={currentStyles.tooltipContainer}>
                         <View style={currentStyles.tooltipImg}></View>
+                        <FastImage style={{ width: px2pd(1042), height: px2pd(84), position: 'absolute' }} source={require('../../../../assets/bg/toast.png')} />
                         <Text style={currentStyles.tooltipText}>
                             {message}
                         </Text>
