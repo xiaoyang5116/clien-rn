@@ -29,6 +29,7 @@ import ArenaTabPage from './home/ArenaTabPage';
 import ExploreTabPage from './home/ExploreTabPage';
 import { Platform } from 'react-native';
 import { px2pd } from '../constants/resolution';
+import TownTabPage from './home/TownTabPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -89,10 +90,10 @@ class HomePage extends Component {
           title: "探索",
           tabBarIcon: ({ color }) => (<TabIcon color={color} title={'探索'} />),
         }} />
-        <Tab.Screen name="Arena" component={ArenaTabPage} options={{
+        <Tab.Screen name="Town" component={TownTabPage} options={{
           tabBarLabel: "",
-          title: "竞技",
-          tabBarIcon: ({ color }) => (<TabIcon color={color} title={'竞技'} />),
+          title: "城镇",
+          tabBarIcon: ({ color }) => (<TabIcon color={color} title={'城镇'} />),
         }} />
         <Tab.Screen name="Compose" component={ComposeTabPage} options={{
           tabBarLabel: "",
