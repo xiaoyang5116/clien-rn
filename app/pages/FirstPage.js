@@ -26,6 +26,7 @@ import MailBoxPage from './MailBoxPage';
 import Modal from '../components/modal';
 import Shock from '../components/shock';
 import Drawer from '../components/drawer';
+import Clues from '../components/cluesList';
 
 const BTN_STYLE = {
   width: 235, 
@@ -109,6 +110,9 @@ class FirstPage extends Component {
                 }} />
                 {/* 测试按钮 */}
                 <ImageButton {...BTN_STYLE} source={require('../../assets/button/test_button.png')} selectedSource={require('../../assets/button/test_button_selected.png')} onPress={() => {
+                  // // 线索列表
+                  // Clues.show();
+
                   // 震屏
                   // Shock.shockShow('bigShock');
 

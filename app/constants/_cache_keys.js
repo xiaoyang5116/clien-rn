@@ -18,4 +18,7 @@ export class LocalCacheKeys {
 
     // 阅读器样式
     static READER_STYLE = 'READER_STYLE';
+
+    // 线索列表
+    static CLUES_DATA = 'CLUES_DATA';
 }
