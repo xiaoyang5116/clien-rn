@@ -6,11 +6,13 @@ import {
   connect,
   Component,
   ThemeContext,
+  getWindowSize,
 } from "../../constants";
 
 import { 
   Text, 
   View, 
+  Image,
   SectionList, 
   TouchableWithoutFeedback 
 } from '../../constants/native-ui';
@@ -19,6 +21,7 @@ import ProgressBar from '../../components/ProgressBar';
 import * as DateTime from '../../utils/DateTimeUtils';
 import FastImage from 'react-native-fast-image';
 import lo from 'lodash';
+import { px2pd } from '../../constants/resolution';
 
 const SCENE_BG = [
   { name: 'default', img: require('../../../assets/scene/bg_default.jpg') },
@@ -98,7 +101,8 @@ class StoryTabPage extends Component {
     return (
       <View style={this.context.chatItem}>
         <TouchableWithoutFeedback onPress={() => this._onClickItem(data)}>
-          <View style={{ height: 35, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ height: px2pd(117), justifyContent: 'center', alignItems: 'center' }}>
+            <Image style={{ width: '100%', height: '100%', position: 'absolute' }} source={this.context.optionButtonImage} />
             <Text style={{ fontSize: 18, color: this.context.options.fontColor }}>{data.item.title}</Text>
           </View>
         </TouchableWithoutFeedback>

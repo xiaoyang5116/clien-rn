@@ -35,6 +35,7 @@
     "react-native-screens": "^3.13.1",
     "react-native-snap-carousel": "^3.9.1",
     "react-native-splash-screen": "^3.3.0",
+    "react-native-webp-format": "^1.1.2",
     "react-redux": "^7.2.6"
   },
   "devDependencies": {

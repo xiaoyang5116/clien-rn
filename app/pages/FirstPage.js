@@ -72,7 +72,7 @@ class FirstPage extends Component {
             this.started = false;
           }}>
         {/* 背景图片 */}
-        <ImageBackground style={styles.bgContainer} source={require('../../assets/bg/first_bg.jpg')}>
+        <ImageBackground style={styles.bgContainer} source={require('../../assets/bg/first_page.webp')}>
           <View style={styles.viewContainer}>
             {/* 开始剧情 */}
             <ImageButton {...BTN_STYLE} source={require('../../assets/button/story_button.png')} selectedSource={require('../../assets/button/story_button_selected.png')} onPress={() => {

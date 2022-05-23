@@ -9,6 +9,7 @@ import {
   connect,
   Component,
   StyleSheet,
+  ThemeContext,
 } from "../constants";
 
 import {
@@ -27,17 +28,19 @@ import ComposeTabPage from './home/ComposeTabPage';
 import ArenaTabPage from './home/ArenaTabPage';
 import ExploreTabPage from './home/ExploreTabPage';
 import { Platform } from 'react-native';
+import { px2pd } from '../constants/resolution';
 
 const Tab = createBottomTabNavigator();
 
 const TabIcon = (props) => {
+
+  const theme = React.useContext(ThemeContext);
+
   return (
-    <View style={{ position: 'absolute', width: 30, height: 48, left: 12, top: -8, borderWidth: 1, borderColor: '#ccc' }}>
-        <View style={{ position: 'absolute', left: 0, top: 0, transform: [{ scale: 0.5 }] }}>
-          <FastImage style={{ position: 'absolute', width: 56, height: 90 }} source={require('../../assets/tab/tab_icon.png')} />
-        </View>
-        <View style={{ position: 'absolute', left: 8, top: 10, width: 20 }}>
-          <Text style={{ fontSize: 12, color: props.color }}>{props.title}</Text>
+    <View style={[theme.tabBottomImgStyle, { position: 'absolute', left: 5, top: -30 }]}>
+        <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={theme.tabBottomImage} />
+        <View style={[theme.tabBottomLabelStyle, { position: 'absolute', width: 24 }]}>
+          <Text style={{ fontSize: px2pd(60), color: props.color }}>{props.title}</Text>
         </View>
     </View>
   );
@@ -63,6 +66,7 @@ const defaultScreenOptions = {
     borderTopWidth: 0, // 去掉底部边框
     backgroundColor: '#fff',
   },
+  tabBarInactiveTintColor: '#fff',
   tabBarBackground: () => {
     return (
       <FastImage style={{ position: 'absolute', left: 0, top: -20, width: '100%', height: '100%' }} resizeMode='contain' source={require('../../assets/tab/tab_banner_bg.png')} />
