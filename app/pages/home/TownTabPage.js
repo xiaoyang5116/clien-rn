@@ -3,9 +3,7 @@ import MapView from '../../components/map';
 
 const TownTabPage = (props) => {
     return (
-        <MapView>
-            
-        </MapView>
+        <MapView />
     );
 }
 
