@@ -130,6 +130,11 @@ const styles = StyleSheet.create({
         top: 10
     },
 
+    /* 城镇地图按钮标签样式 */
+    townMapButtonLabel: {
+        color: '#fff',
+    },
+
     /** ================================ */
     /**             邮件样式              */
     /** ================================ */
@@ -165,6 +170,7 @@ const styles = StyleSheet.create({
     tabBottomImage: require('../../assets/themes/dark/button/tab_normal.png'),
     optionButtonImage: require("../../assets/themes/dark/button/option_button.png"),
     propSelectedImage: require("../../assets/themes/dark/button/prop_selected.png"),
+    townMapButtonImage: require("../../assets/themes/dark/button/town_button.png"),
 });
 
 export default styles;

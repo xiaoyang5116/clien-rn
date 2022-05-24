@@ -14,7 +14,7 @@ import {
 
 import lo from 'lodash';
 import { px2pd } from '../../constants/resolution';
-import { getWindowSize } from '../../constants';
+import { getWindowSize, ThemeContext } from '../../constants';
 import { confirm } from '../../components/dialog/ConfirmDialog';
 
 const MAP_DATA = [
@@ -83,13 +83,15 @@ const MAP_DATA = [
 ];
 
 const EntryButton = (props) => {
+    const themeStyle = React.useContext(ThemeContext);
+
     return (
         <TouchableWithoutFeedback onPress={() => {
                 confirm('确认进入？');
             }}>
             <View style={{ ...props.style }}>
-                <FastImage style={{ width: px2pd(84), height: px2pd(211) }} source={require('../../../assets/themes/normal/button/town_button.png')} />
-                <Text style={{ position: 'absolute', left: 8, top: 12, width: 20, color: '#333' }}>{props.title}</Text>
+                <FastImage style={{ width: px2pd(84), height: px2pd(211) }} source={themeStyle.townMapButtonImage} />
+                <Text style={[{ position: 'absolute', left: 8, top: 12, width: 20 }, { ...themeStyle.townMapButtonLabel }]}>{props.title}</Text>
             </View>
         </TouchableWithoutFeedback>
     );
@@ -154,6 +156,7 @@ const MapView = (props) => {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 bounces={false}
+                overScrollMode='never'
                 onScrollBeginDrag={(e) => {
                     const { x } = e.nativeEvent.contentOffset;
                     status.startX = x;
