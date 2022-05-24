@@ -1,9 +1,9 @@
 import React from 'react';
-import MapView from '../../components/map';
+import TownMap from '../../components/maps/TownMap';
 
 const TownTabPage = (props) => {
     return (
-        <MapView />
+        <TownMap />
     );
 }
 

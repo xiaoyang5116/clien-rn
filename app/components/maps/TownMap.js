@@ -15,7 +15,7 @@ import {
 import lo from 'lodash';
 import { px2pd } from '../../constants/resolution';
 import { getWindowSize, ThemeContext } from '../../constants';
-import { confirm } from '../../components/dialog/ConfirmDialog';
+import { confirm } from '../dialog/ConfirmDialog';
 
 const MAP_DATA = [
     {
@@ -97,7 +97,7 @@ const EntryButton = (props) => {
     );
 }
 
-const MapView = (props) => {
+const TownMap = (props) => {
 
     const WIN_SIZE = getWindowSize();
     const fixedTop = WIN_SIZE.height / 2 - 380;
@@ -182,4 +182,4 @@ const MapView = (props) => {
     );
 }
 
-export default MapView;
+export default TownMap;
