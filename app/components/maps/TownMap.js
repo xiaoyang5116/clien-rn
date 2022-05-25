@@ -16,6 +16,7 @@ import lo from 'lodash';
 import { px2pd } from '../../constants/resolution';
 import { getWindowSize, ThemeContext } from '../../constants';
 import { confirm } from '../dialog/ConfirmDialog';
+import Flower from '../animation/Flower';
 
 const MAP_DATA = [
     {
@@ -25,10 +26,9 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_01.png'),
         },
         farPoints: [
-            { style: { left: 150, top: 200 }, title: '桃花岛' },
+            { style: { left: 70, top: 260 }, title: '百兽山' },
         ],
         nearPoints: [
-            { style: { left: 80, top: 300 }, title: '桃花岛' },
         ],
     },
     {
@@ -38,7 +38,8 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_02.png'),
         },
         farPoints: [
-            { style: { left: 150, top: 180 }, title: '桃花岛' },
+            { style: { left: 10, top: 380 }, title: '灵药田' },
+            { style: { left: 110, top: 200 }, title: '云雾峰' },
         ],
         nearPoints: [
         ],
@@ -50,10 +51,9 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_03.png'),
         },
         farPoints: [
-            { style: { left: 150, top: 200 }, title: '桃花岛' },
         ],
         nearPoints: [
-            { style: { left: 80, top: 300 }, title: '桃花岛' },
+            { style: { left: 75, top: 320 }, title: '练器峰' },
         ],
     },
     {
@@ -63,7 +63,7 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_04.png'),
         },
         farPoints: [
-            { style: { left: 150, top: 180 }, title: '桃花岛' },
+            { style: { left: 55, top: 280 }, title: '演武亭' },
         ],
         nearPoints: [
         ],
@@ -75,9 +75,10 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_05.png'),
         },
         farPoints: [
+            { style: { left: 70, top: 150 }, title: '镇妖塔' },
         ],
         nearPoints: [
-            { style: { left: 80, top: 300 }, title: '桃花岛' },
+            { style: { left: 160, top: 300 }, title: '炼丹房' },
         ],
     },
 ];
@@ -104,6 +105,7 @@ const TownMap = (props) => {
 
     const status = React.useRef({ startX: 0, prevLeftPos: 0 }).current;
     const leftPos = React.useRef(new Animated.Value(0)).current;
+    const refFall = React.useRef(null);
 
     const renderItem = (data) => {
         const { item } = data;
@@ -165,6 +167,7 @@ const TownMap = (props) => {
                 onScroll={(e) => {
                     const { x } = e.nativeEvent.contentOffset;
                     const diff = Math.abs(x - status.startX);
+                    refFall.current.setTranslateX(-x);
 
                     if (x <= 0) {
                         leftPos.setValue(0);
@@ -178,6 +181,7 @@ const TownMap = (props) => {
                     }
                 }}
             />
+            <Flower ref={(ref) => refFall.current = ref} />
         </View>
     );
 }
