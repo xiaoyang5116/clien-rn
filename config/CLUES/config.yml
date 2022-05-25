@@ -1,0 +1,23 @@
+## 配置线索
+
+clueConfig:
+  [
+    {
+      cluesType: "REDER",
+      cluesTypeName: "阅读器线索",
+      data:
+        [
+          "xiansuo1",
+          "xiansuo2",
+          "xiansuo3",
+          "xiansuo4",
+          "xiansuo5",
+          "xiansuo6",
+        ],
+    },
+    {
+      cluesType: "SCENE",
+      cluesTypeName: "场景线索",
+      data: ["xiansuo1", "xiansuo2"],
+    },
+  ]

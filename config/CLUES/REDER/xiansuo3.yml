@@ -2,7 +2,7 @@
 clue:
   {
     name: "xiansuo1",
-    title: "SCENE线索1",
-    content: "SCENE线索1...",
+    title: "REDER线索1",
+    content: "REDER线索1...",
     condition: { npcId: 1, scenes: "pomiao", prop: 20, andVarsOff: ["v7"] },
   }

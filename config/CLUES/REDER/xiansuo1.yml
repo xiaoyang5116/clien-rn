@@ -1,0 +1,8 @@
+# 线索1
+clue:
+  {
+    name: "xiansuo1",
+    title: "在发射点发生范德萨发士",
+    content: "REDER线索1...在发射点发生范德萨发士大夫萨芬，发生发，手动阀四分发士大夫，1",
+    condition: { npcId: 1, scenes: "pomiao", prop: 20, andVarsOff: ["v7"] },
+  }
