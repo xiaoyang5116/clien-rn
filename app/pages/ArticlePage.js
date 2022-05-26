@@ -30,6 +30,7 @@ import HeaderContainer from '../components/article/HeaderContainer';
 import FooterContainer from '../components/article/FooterContainer';
 import Collapse from '../components/collapse';
 import Drawer from '../components/drawer';
+import ReaderDrawer from '../components/drawer/ReaderDrawer';
 
 const WIN_SIZE = getWindowSize();
 
@@ -72,58 +73,58 @@ const WorldSelector = () => {
   });
 }
 
-const UserAttributesHolder = (props) => {
-  const [ data, setData ] = React.useState(props.config);
+// const UserAttributesHolder = (props) => {
+//   const [ data, setData ] = React.useState(props.config);
 
-  React.useEffect(() => {
-    const listener = DeviceEventEmitter.addListener(EventKeys.USER_ATTR_UPDATE, () => {
-      const cb = (result) => {
-        const newData = lo.cloneDeep(data);
-        result.forEach(e => {
-          const { key, value } = e;
-          newData.forEach(e => {
-            e.data.forEach(e => {
-              e.forEach(e => {
-                if (e.key == key) {
-                  e.value = value;
-                }
-              })
-            });
-          });
-        });
-        //
-        setData(newData);
-      };
-      AppDispath({ type: 'UserModel/getAttrs', cb });
-    });
+//   React.useEffect(() => {
+//     const listener = DeviceEventEmitter.addListener(EventKeys.USER_ATTR_UPDATE, () => {
+//       const cb = (result) => {
+//         const newData = lo.cloneDeep(data);
+//         result.forEach(e => {
+//           const { key, value } = e;
+//           newData.forEach(e => {
+//             e.data.forEach(e => {
+//               e.forEach(e => {
+//                 if (e.key == key) {
+//                   e.value = value;
+//                 }
+//               })
+//             });
+//           });
+//         });
+//         //
+//         setData(newData);
+//       };
+//       AppDispath({ type: 'UserModel/getAttrs', cb });
+//     });
 
-    // 更新角色属性
-    DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
+//     // 更新角色属性
+//     DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
     
-    return () => {
-      listener.remove();
-    }
-  }, []);
+//     return () => {
+//       listener.remove();
+//     }
+//   }, []);
 
-  return (
-    <Collapse 
-      data={data}
-      renderItem={(item) => {
-        return (
-          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ width: 50 }}><Text>{item.title}:</Text></View>
-            <View><Text style={{ color: '#666' }}>{item.value}</Text></View>
-          </View>
-        );
-      }}
-      renderGroupHeader={(section) => {
-        return (
-          <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
-        );
-      }}
-    />
-  );
-}
+//   return (
+//     <Collapse 
+//       data={data}
+//       renderItem={(item) => {
+//         return (
+//           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+//             <View style={{ width: 50 }}><Text>{item.title}:</Text></View>
+//             <View><Text style={{ color: '#666' }}>{item.value}</Text></View>
+//           </View>
+//         );
+//       }}
+//       renderGroupHeader={(section) => {
+//         return (
+//           <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
+//         );
+//       }}
+//     />
+//   );
+// }
 
 class ArticlePage extends Component {
 
@@ -242,7 +243,8 @@ class ArticlePage extends Component {
             </View>
           </FooterContainer>
           <Drawer ref={this.refPropsContainer}>
-            {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
+            <ReaderDrawer attrsConfig={attrsConfig}/>
+            {/* {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>} */}
           </Drawer>
         </View>
     );

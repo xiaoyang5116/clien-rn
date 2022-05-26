@@ -68,7 +68,6 @@ export default {
 
         // 保存线索
         *saveCluesList({ payload }, { call, put, select }) {
-            console.log(payload);
             yield call(LocalStorage.set, LocalCacheKeys.CLUES_DATA, payload);
             yield put(action('updateState')({ cluesList: payload }));
         }

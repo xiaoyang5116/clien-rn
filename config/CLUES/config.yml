@@ -3,8 +3,8 @@
 clueConfig:
   [
     {
-      cluesType: "REDER",
-      cluesTypeName: "阅读器线索",
+      cluesType: "CLUES",
+      cluesTypeName: "线索",
       data:
         [
           "xiansuo1",
@@ -16,8 +16,9 @@ clueConfig:
         ],
     },
     {
-      cluesType: "SCENE",
-      cluesTypeName: "场景线索",
+      cluesType: "INTELLIGENCE",
+      cluesTypeName: "情报",
       data: ["xiansuo1", "xiansuo2"],
     },
+    { cluesType: "GOSSIP", cluesTypeName: "流言", data: ["xiansuo1"] },
   ]
