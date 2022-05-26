@@ -25,7 +25,7 @@ import ArchivePage from './ArchivePage';
 import MailBoxPage from './MailBoxPage';
 import Modal from '../components/modal';
 import Shock from '../components/shock';
-import Drawer from '../components/drawer';
+import { Drawer } from '../components/drawer';
 import Clues from '../components/cluesList';
 
 const BTN_STYLE = {

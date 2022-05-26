@@ -29,7 +29,7 @@ import ReaderSettings from '../components/readerSettings';
 import HeaderContainer from '../components/article/HeaderContainer';
 import FooterContainer from '../components/article/FooterContainer';
 import Collapse from '../components/collapse';
-import Drawer from '../components/drawer';
+import { TabDrawer } from '../components/drawer';
 import ReaderDrawer from '../components/drawer/ReaderDrawer';
 
 const WIN_SIZE = getWindowSize();
@@ -242,10 +242,10 @@ class ArticlePage extends Component {
               }} />
             </View>
           </FooterContainer>
-          <Drawer ref={this.refPropsContainer}>
+          <TabDrawer ref={this.refPropsContainer}>
             <ReaderDrawer attrsConfig={attrsConfig}/>
             {/* {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>} */}
-          </Drawer>
+          </TabDrawer>
         </View>
     );
   }
