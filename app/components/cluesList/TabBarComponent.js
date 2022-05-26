@@ -6,11 +6,11 @@ import { ThemeContext } from '../../constants'
 
 const TabBarComponent = (props) => {
     const theme = useContext(ThemeContext)
-    const { cluesList, index, setIndex } = props
+    const { cluesList, index, setIndex, setSelectedId } = props
     const scrollRef = useRef()
 
     return (
-        <View style={[styles.container, theme.blockBgColor1]}>
+        <View style={[styles.container, { backgroundColor: "#656565" }]}>
             <ScrollView
                 style={{ flex: 1 }}
                 ref={scrollRef}
@@ -22,9 +22,12 @@ const TabBarComponent = (props) => {
                 {
                     cluesList.map((item, i) => {
                         return (
-                            <TouchableOpacity key={i} onPress={() => { setIndex(i) }}>
+                            <TouchableOpacity key={i} onPress={() => {
+                                setIndex(i)
+                                setSelectedId(null)
+                            }}>
                                 <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
-                                    <Text style={[styles.tabItem, index === i ? theme.titleColor3 : theme.titleColor1]} >
+                                    <Text style={[styles.tabItem, index === i ? theme.titleColor3 : { color: "#ffffff" }]} >
                                         {item.cluesTypeName}
                                     </Text>
                                 </View>

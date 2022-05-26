@@ -1,30 +1,48 @@
-import { View, Text, StyleSheet, FlatList } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import React, { useState } from 'react'
 import { ThemeContext } from '../../constants'
 import { TextButton } from '../../constants/custom-ui';
 
 
 
 const TabContent = (props) => {
-    const { data } = props
+    const { data, selectedId, setSelectedId } = props
     const theme = React.useContext(ThemeContext)
 
-    const renderItem = ({ item }) => {
+    const SelecteItem = ({ item }) => {
         return (
-            <View style={[styles.item, theme.blockBgColor1]}>
-                <View style={styles.header}>
-                    <Text style={styles.title}>{item.title}</Text>
-                    <View style={styles.btn}>
-                        <TextButton
-                            title={"使用"}
-                            onPress={() => {
-                                console.log(item.condition);
-                            }}
-                        />
-                    </View>
+            <View style={styles.item}>
+                <View style={{ position: "absolute", top: -12, left: 8, backgroundColor: "#656565", zIndex: 1, paddingLeft: 4, paddingRight: 4 }}>
+                    <Text style={[styles.title, { color: "#ffffff" }]}>{item.title}</Text>
                 </View>
-                <Text style={styles.content}>{item.content}</Text>
+
+                <View style={styles.selecteItem}>
+                    <Text style={styles.content}>{item.content}</Text>
+                </View>
             </View>
+        )
+    }
+    const UnselectedItem = ({ item }) => {
+        return (
+            <View style={styles.item}>
+                <View style={{ position: "absolute", top: -12, left: 8, zIndex: 1, paddingLeft: 4, paddingRight: 4 }}>
+                    <Text style={styles.title}>{item.title}</Text>
+                </View>
+
+                <View style={styles.Unselected}>
+                    <Text style={styles.content}>{item.content}</Text>
+                </View>
+            </View>
+        )
+    }
+
+    const renderItem = ({ item, index }) => {
+        return (
+            <TouchableOpacity onPress={() => { setSelectedId(index) }}>
+                {
+                    (selectedId === index) ? <SelecteItem item={item} /> : <UnselectedItem item={item} />
+                }
+            </TouchableOpacity>
         )
     }
 
@@ -47,28 +65,25 @@ const styles = StyleSheet.create({
         paddingLeft: 12,
         paddingRight: 12,
         marginBottom: 60,
+        backgroundColor: '#efefef'
     },
     item: {
-        marginTop: 12,
+        marginTop: 20,
         width: "100%",
-        padding: 16,
+        position: 'relative',
     },
-    header: {
-        position: "relative",
-        flexDirection: 'row',
-        alignItems: "center",
-        justifyContent: "space-between",
+    selecteItem: {
+        borderColor: "#656565",
+        borderWidth: 1,
+        padding: 11,
+    },
+    Unselected: {
+        padding: 12,
     },
     title: {
         fontSize: 18,
     },
     content: {
-        marginTop: 8,
         fontSize: 14,
-    },
-    btn: {
-        // position: 'absolute',
-        // right: 0,
-        width: "30%",
     },
 });

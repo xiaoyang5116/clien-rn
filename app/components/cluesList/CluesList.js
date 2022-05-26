@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Dimensions } from 'react-native'
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 
 import RootView from '../RootView'
 import {
@@ -19,34 +19,48 @@ const CluesList = (props) => {
     const theme = useContext(ThemeContext);
     const [index, setIndex] = React.useState(0);
     const { cluesList, onClose } = props
+    const [selectedId, setSelectedId] = useState(null);
 
     if (cluesList.length === 0) {
         return null
     }
 
     return (
-        <HalfPanel backgroundColor={'rgba(0,0,0, 0.7)'}>
-            <View style={[theme.blockBgColor2, { flex: 1, position: "relative" }]}>
-                <TabBarComponent {...props} index={index} setIndex={setIndex} />
-                <TabContent data={cluesList[index].data} />
-                <View style={styles.close}>
+        <View style={[{ flex: 1, position: "relative" }]}>
+            <TabBarComponent {...props}
+                index={index}
+                setIndex={setIndex}
+                setSelectedId={setSelectedId}
+            />
+            <TabContent
+                data={cluesList[index].data}
+                selectedId={selectedId}
+                setSelectedId={setSelectedId}
+            />
+            <View style={styles.btnBox}>
+                <View style={styles.btn}>
                     <TextButton
-                        title={"关闭"}
-                        onPress={onClose}
+                        title={"使用"}
+                        onPress={()=>{console.log("sss");}}
                     />
                 </View>
             </View>
-        </HalfPanel>
+        </View>
     )
 }
 
 export default connect(state => ({ ...state.CluesModel }))(CluesList)
 
 const styles = StyleSheet.create({
-    close: {
+    btnBox: {
         position: "absolute",
-        right: 12,
-        bottom: 12,
+        bottom: 0,
+        width: "100%",
+        height: 60,
+        justifyContent: "center",
+        alignItems: 'center'
+    },
+    btn: {
         width: "30%",
     },
 });

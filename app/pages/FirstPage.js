@@ -12,11 +12,11 @@ import {
   Component,
 } from "../constants";
 
-import { 
+import {
   View,
   Text,
   SafeAreaView,
- } from '../constants/native-ui';
+} from '../constants/native-ui';
 
 import { ImageButton } from '../constants/custom-ui';
 import * as RootNavigation from '../utils/RootNavigation';
@@ -25,11 +25,11 @@ import ArchivePage from './ArchivePage';
 import MailBoxPage from './MailBoxPage';
 import Modal from '../components/modal';
 import Shock from '../components/shock';
-import { Drawer } from '../components/drawer';
+import Drawer from '../components/drawer';
 import Clues from '../components/cluesList';
 
 const BTN_STYLE = {
-  width: 235, 
+  width: 235,
   height: 60,
 }
 
@@ -45,33 +45,33 @@ class FirstPage extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }} 
-          onTouchStart={(e) => {
-            if (e.nativeEvent.pageX > 40)
-              return;
+      <View style={{ flex: 1 }}
+        onTouchStart={(e) => {
+          if (e.nativeEvent.pageX > 40)
+            return;
 
-            this.startX = e.nativeEvent.pageX;
-            this.startY = e.nativeEvent.pageY;
-            this.started = true;
-          }}
-          onTouchMove={(e) => {
-            if (!this.started)
-              return;
+          this.startX = e.nativeEvent.pageX;
+          this.startY = e.nativeEvent.pageY;
+          this.started = true;
+        }}
+        onTouchMove={(e) => {
+          if (!this.started)
+            return;
 
-            const dx = e.nativeEvent.pageX - this.startX;
-            const dy = e.nativeEvent.pageY - this.startY;
-            if (Math.abs(dx) >= 5) {
-              if (dx > 0) this.refDrawer.current.offsetX(dx);
-            }
-          }}
-          onTouchEnd={(e) => {
-            this.refDrawer.current.release();
-            this.started = false;
-          }}
-          onTouchCancel={(e) => {
-            this.refDrawer.current.release();
-            this.started = false;
-          }}>
+          const dx = e.nativeEvent.pageX - this.startX;
+          const dy = e.nativeEvent.pageY - this.startY;
+          if (Math.abs(dx) >= 5) {
+            if (dx > 0) this.refDrawer.current.offsetX(dx);
+          }
+        }}
+        onTouchEnd={(e) => {
+          this.refDrawer.current.release();
+          this.started = false;
+        }}
+        onTouchCancel={(e) => {
+          this.refDrawer.current.release();
+          this.started = false;
+        }}>
         {/* 背景图片 */}
         <ImageBackground style={styles.bgContainer} source={require('../../assets/bg/first_page.webp')}>
           <View style={styles.viewContainer}>
@@ -96,9 +96,9 @@ class FirstPage extends Component {
               });
             }} />
           </View>
-          <Drawer ref={this.refDrawer} direction={'left'}>
+          <Drawer ref={this.refDrawer} direction={'left'} margin={60} style={{ backgroundColor: '#a49f99', borderRadius: 10, overflow: 'hidden' }}>
             <SafeAreaView style={{ flex: 1 }}>
-              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
                 <Text style={{ fontSize: 28, color: '#666', marginBottom: 20 }}>测试菜单</Text>
                 {/* 乞丐开局 */}
                 <ImageButton {...BTN_STYLE} source={require('../../assets/button/home_button.png')} selectedSource={require('../../assets/button/home_button_selected.png')} onPress={() => {
@@ -175,16 +175,16 @@ class FirstPage extends Component {
 
 const styles = StyleSheet.create({
   viewContainer: {
-    width: '100%', 
-    height: '100%', 
-    flexDirection: 'column', 
-    justifyContent: 'center', 
+    width: '100%',
+    height: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignItems: 'center'
   },
   bgContainer: {
-    flex: 1, 
-    justifyContent: 'center', 
-    flexDirection: 'row', 
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
     alignItems: 'center'
   },
 });
