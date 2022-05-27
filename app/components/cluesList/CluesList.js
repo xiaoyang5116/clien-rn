@@ -12,6 +12,7 @@ import {
 import { HalfPanel } from '../panel'
 import TabBarComponent from './TabBarComponent';
 import TabContent from './TabContent';
+import FilterClues from './FilterClues'
 import { TextButton } from '../../constants/custom-ui';
 
 
@@ -32,6 +33,7 @@ const CluesList = (props) => {
                 setIndex={setIndex}
                 setSelectedId={setSelectedId}
             />
+            <FilterClues />
             <TabContent
                 data={cluesList[index].data}
                 selectedId={selectedId}
@@ -41,7 +43,7 @@ const CluesList = (props) => {
                 <View style={styles.btn}>
                     <TextButton
                         title={"使用"}
-                        onPress={()=>{console.log("sss");}}
+                        onPress={() => { console.log("sss"); }}
                     />
                 </View>
             </View>
