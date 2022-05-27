@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 import { TextButton } from '../../constants/custom-ui';
 import { ButtonGroup } from "@rneui/themed";
 
-const FilterClues = (props) => {
+const FilterClues = (props: any) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
 
-    const Btn = (props) => {
+    const Btn = (props: any) => {
         return (
             <TouchableWithoutFeedback>
                 <View>
