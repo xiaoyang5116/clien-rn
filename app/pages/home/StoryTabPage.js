@@ -153,9 +153,9 @@ class StoryTabPage extends Component {
 
   _renderMap() {
     return (
-      <View style={{ position: 'absolute', left: 0, bottom: 0, width: '100%%', height: '100%%', justifyContent: 'flex-end', alignItems: 'center', zIndex: 10 }} pointerEvents='box-none'>
+      <View style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: '100%', justifyContent: 'flex-end', alignItems: 'center', zIndex: 10 }} pointerEvents='box-none'>
         <View style={{ width: px2pd(1064), height: px2pd(464), marginBottom: 45 }} pointerEvents='box-none'>
-          <View style={{ flex: 1 }}><SceneMap data={SCENE_MAP_DATA} initialCenterPoint={[0, 1]} mapSize={{ width: px2pd(1064), height: px2pd(464) }} /></View>
+          <View style={{ flex: 1 }}><SceneMap data={SCENE_MAP_DATA} mapSize={{ width: px2pd(1064), height: px2pd(464) }} /></View>
         </View>
       </View>
     );

@@ -2,9 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { 
-  Text, 
-  View, 
+import {
+  Text,
+  View,
   TouchableWithoutFeedback,
 } from '../../constants/native-ui';
 
@@ -13,8 +13,8 @@ import {
   PanResponder,
 } from 'react-native';
 
-import { 
-  getWindowSize 
+import {
+  getWindowSize
 } from '../../constants';
 
 import lo from 'lodash';
@@ -31,6 +31,8 @@ const GRID_SLASH_FIXED = 4;
 const GRID_PX_WIDTH = px2pd(290);
 // 格子高度
 const GRID_PX_HEIGHT = px2pd(84);
+// 地图magin值
+const MAP_MARGIN_VALUE = 4;
 
 const LINES = [
   { direction: 1, style: { width: px2pd(142), height: px2pd(142) }, img: require('../../../assets/bg/map_line1.png') },
@@ -54,9 +56,9 @@ const getLineConfig = (p1, p2) => {
 
 const SceneMap = (props) => {
   // 初始化起始坐标
-  const initialXY = { 
-    x: (props.mapSize.width / 2) - (GRID_PX_WIDTH / 2) - (props.initialCenterPoint[0] * (GRID_PX_WIDTH + GRID_SPACE)), 
-    y: (props.mapSize.height / 2) - (GRID_PX_HEIGHT / 2) + (props.initialCenterPoint[1] * (GRID_PX_HEIGHT + GRID_SPACE)), 
+  const initialXY = {
+    x: ((props.mapSize.width - MAP_MARGIN_VALUE * 2) / 2) - (GRID_PX_WIDTH / 2) - (props.initialCenterPoint[0] * (GRID_PX_WIDTH + GRID_SPACE)),
+    y: ((props.mapSize.height - MAP_MARGIN_VALUE * 2) / 2) - (GRID_PX_HEIGHT / 2) + (props.initialCenterPoint[1] * (GRID_PX_HEIGHT + GRID_SPACE)),
   };
 
   // 地图移动坐标
@@ -72,7 +74,7 @@ const SceneMap = (props) => {
       status.prevY = mapPos.y._value;
     },
     onPanResponderMove: (evt, gestureState) => {
-      mapPos.setValue({ x: status.prevX +  gestureState.dx, y: status.prevY + gestureState.dy});
+      mapPos.setValue({ x: status.prevX + gestureState.dx, y: status.prevY + gestureState.dy });
     },
     onPanResponderRelease: (evt, gestureState) => {
       status.prevX = mapPos.x._value;
@@ -98,9 +100,9 @@ const SceneMap = (props) => {
         //
         const line = LINES.find(e => e.direction == config.direction);
         lines.push((
-        <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}>
-          <FastImage key={idx++} style={[{ position: 'absolute', zIndex: -1 }, { ...config.style }, { ...line.style }]} source={line.img} />
-        </View>
+          <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}>
+            <FastImage key={idx++} style={[{ position: 'absolute', zIndex: -1 }, { ...config.style }, { ...line.style }]} source={line.img} />
+          </View>
         ));
       });
     }
@@ -111,21 +113,32 @@ const SceneMap = (props) => {
       }}>
         <View style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}>
           <FastImage style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} source={require('../../../assets/button/scene_map_button.png')} />
-          <Text style={{ zIndex: 1 }}>{e.title}</Text>
+          <Text style={{ color: '#000', zIndex: 1 }}>{e.title}</Text>
         </View>
       </TouchableWithoutFeedback>));
   });
 
   return (
-    <View style={{ flex: 1, overflow: 'hidden' }} {...panResponder.panHandlers}>
+    // <View style={{ flex: 1, overflow: 'hidden' }} {...panResponder.panHandlers}>
+    //   <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/bg/scene_map.png')} />
+    //   <Animated.View style={{ position: 'absolute', transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }}>
+    //     {lines}
+    //     {grids}
+    //   </Animated.View>
+    // </View>
+    <View style={{ flex: 1 }} {...panResponder.panHandlers}>
       <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/bg/scene_map.png')} />
-      <Animated.View style={{ position: 'absolute', transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }}>
-        {lines}
-        {grids}
-      </Animated.View>
+      <View style={{ flex: 1, margin: 4, overflow: 'hidden' }}>
+        <Animated.View style={{ position: 'absolute', transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }}>
+          {lines}
+          {grids}
+        </Animated.View>
+      </View>
     </View>
   );
 }
+
+
 
 SceneMap.propTypes = {
   // 地图数据
