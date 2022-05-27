@@ -6,7 +6,6 @@ import {
   connect,
   Component,
   ThemeContext,
-  getWindowSize,
 } from "../../constants";
 
 import { 
@@ -22,9 +21,20 @@ import * as DateTime from '../../utils/DateTimeUtils';
 import FastImage from 'react-native-fast-image';
 import lo from 'lodash';
 import { px2pd } from '../../constants/resolution';
+import SceneMap from '../../components/maps/SceneMap';
 
 const SCENE_BG = [
   { name: 'default', img: require('../../../assets/scene/bg_default.jpg') },
+];
+
+const SCENE_MAP_DATA = [
+  { point: [0, 0], title: '神兽', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
+  { point: [0, 1], title: '原神', links: [] },
+  { point: [1, 0], title: '天仙', links: [[0, -1], [0, 1]] },
+  { point: [0, -1], title: '五行', links: [] },
+  { point: [-1, 0], title: '天使', links: [[0, 1], [0, -1]] },
+  { point: [-2, 0], title: '老者', links: [[-1, 0]] },
+  { point: [-1, -1], title: '地主', links: [[-1, 0], [0, -1]] },
 ];
 
 const SceneImage = (props) => {
@@ -141,6 +151,16 @@ class StoryTabPage extends Component {
     );
   }
 
+  _renderMap() {
+    return (
+      <View style={{ position: 'absolute', left: 0, bottom: 0, width: '100%%', height: '100%%', justifyContent: 'flex-end', alignItems: 'center', zIndex: 10 }} pointerEvents='box-none'>
+        <View style={{ width: px2pd(1064), height: px2pd(464), marginBottom: 45 }} pointerEvents='box-none'>
+          <View style={{ flex: 1 }}><SceneMap data={SCENE_MAP_DATA} /></View>
+        </View>
+      </View>
+    );
+  }
+
   componentDidMount() {
     if (this.props.navigation != null) {
       this.unsubscribe = this.props.navigation.addListener('tabPress', (e) => {
@@ -190,6 +210,7 @@ class StoryTabPage extends Component {
           />
         </View>
         {this._renderSceneProgress()}
+        {this._renderMap()}
       </View>
     );
   }
