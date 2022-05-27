@@ -1,16 +1,21 @@
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { TextButton } from '../../constants/custom-ui';
+import { ButtonGroup } from "@rneui/themed";
 
 const FilterClues = (props) => {
+    const [selectedIndex, setSelectedIndex] = useState(0);
 
     const Btn = (props) => {
         return (
             <TouchableWithoutFeedback>
-                <TextButton title={props.title} />
+                <View>
+                    <TextButton title={props.title} />
+                </View>
             </TouchableWithoutFeedback>
         )
     }
+
     return (
         <View style={styles.container}>
             <View style={styles.row}>
@@ -18,6 +23,14 @@ const FilterClues = (props) => {
                 <Btn title={"李家村"} />
                 <Btn title={"王家村"} />
             </View>
+            <ButtonGroup
+                buttons={['SIMPLE', 'BUTTON', 'GROUP']}
+                selectedIndex={selectedIndex}
+                onPress={(value) => {
+                    setSelectedIndex(value);
+                }}
+                containerStyle={{ marginBottom: 20 }}
+            />
         </View>
     )
 }
