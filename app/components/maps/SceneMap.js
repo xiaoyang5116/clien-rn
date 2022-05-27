@@ -163,7 +163,7 @@ const SceneMap = (props) => {
 
       {/* 小地图网格 */}
       <View style={{ flex: 1, margin: 4, overflow: 'hidden' }}>
-        <Animated.View style={{ position: 'absolute', transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }}>
+        <Animated.View style={{ position: 'absolute', transform: [{ translateX: initialXY.x }, { translateY: initialXY.y }] }}>
           {lines}
           {grids}
         </Animated.View>
@@ -177,7 +177,14 @@ const SceneMap = (props) => {
       {/* 大地图 */}
       <View style={[{ position: 'absolute', bottom: 0, overflow: 'hidden' }, { width: MAP_BIG_SIZE.width, height: MAP_BIG_SIZE.height + 10 }]} pointerEvents={bigPointerEvent}>
         <Animated.View style={[{ position: 'absolute', bottom: 0 }, { transform: [{ translateY: bigMapTransY }] }, { ...MAP_BIG_SIZE }]}>
-          <FastImage style={[{ width: '100%', height: '100%' }]} source={require('../../../assets/bg/scene_map_big.png')} />
+          <FastImage style={[{ position: 'absolute', width: '100%', height: '100%' }]} source={require('../../../assets/bg/scene_map_big.png')} />
+          {/* 大地图网格 */}
+          <View style={{ flex: 1, margin: 4, overflow: 'hidden' }}>
+            <Animated.View style={{ position: 'absolute', transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }}>
+              {lines}
+              {grids}
+            </Animated.View>
+          </View>
           {/* 缩小按钮 */}
           <TouchableWithoutFeedback onPress={minMapHandler}>
             <FastImage style={{ position: 'absolute', right: 10, top: -6, width: px2pd(106), height: px2pd(46) }} source={require('../../../assets/button/map_min_button.png')} />
