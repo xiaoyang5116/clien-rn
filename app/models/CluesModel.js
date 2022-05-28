@@ -32,6 +32,7 @@ export default {
                     let clues = {
                         cluesType: clueConfig[index].cluesType,
                         cluesTypeName: clueConfig[index].cluesTypeName,
+                        filter: clueConfig[index].filter,
                         data: []
                     }
                     for (let d = 0; d < clueConfig[index].data.length; d++) {
@@ -40,8 +41,6 @@ export default {
                     }
                     newCluesList.push(clues)
                 }
-                // yield call(LocalStorage.set, LocalCacheKeys.CLUES_DATA, newCluesList);
-                // yield put(action('updateState')({ cluesList: newCluesList }));
                 yield put.resolve(action('saveCluesList')(newCluesList));
             }
         },
@@ -57,8 +56,6 @@ export default {
                 }
                 const newCluesList = [...cluesList, newClue];
                 yield put.resolve(action('saveCluesList')(newCluesList));
-                // yield call(LocalStorage.set, LocalCacheKeys.CLUES_DATA, newCluesList);
-                // yield put(action('updateState')({ cluesList: newCluesList }));
             }
             else {
                 const newCluesList = cluesList.map(f => f.cluesType === payload.cluesType ? { ...f, data: [clueData, ...f.data] } : f);

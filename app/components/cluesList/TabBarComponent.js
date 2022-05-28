@@ -6,7 +6,7 @@ import { ThemeContext } from '../../constants'
 
 const TabBarComponent = (props) => {
     const theme = useContext(ThemeContext)
-    const { cluesList, index, setIndex, setSelectedId } = props
+    const { cluesList, tabIndex, setTabIndex, setCheckedClue } = props
     const scrollRef = useRef()
 
     return (
@@ -23,11 +23,11 @@ const TabBarComponent = (props) => {
                     cluesList.map((item, i) => {
                         return (
                             <TouchableOpacity key={i} onPress={() => {
-                                setIndex(i)
-                                setSelectedId(null)
+                                setTabIndex(i)
+                                setCheckedClue(null)
                             }}>
                                 <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
-                                    <Text style={[styles.tabItem, index === i ? theme.titleColor3 : { color: "#ffffff" }]} >
+                                    <Text style={[styles.tabItem, tabIndex === i ? theme.titleColor3 : { color: "#ffffff" }]} >
                                         {item.cluesTypeName}
                                     </Text>
                                 </View>

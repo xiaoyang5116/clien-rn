@@ -1,7 +1,13 @@
 # 线索1
 clue:
   {
+    id: "xiansuo2",
     name: "xiansuo2",
+    filter:
+      [
+        { filterType: "location", filterTypeValue: "王家村" },
+        { filterType: "chapter", filterTypeValue: "第一章" },
+      ],
     title: "REDER线索2",
     content: "REDER线索2...",
     condition: { npcId: 1, scenes: "pomiao", prop: 20, andVarsOff: ["v7"] },

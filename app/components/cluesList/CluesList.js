@@ -12,41 +12,63 @@ import {
 import { HalfPanel } from '../panel'
 import TabBarComponent from './TabBarComponent';
 import TabContent from './TabContent';
-import FilterClues from './FilterClues'
+import FilterClueGroup from './FilterClueGroup'
 import { TextButton } from '../../constants/custom-ui';
 
 
 const CluesList = (props) => {
+    // 主题样式
     const theme = useContext(ThemeContext);
-    const [index, setIndex] = React.useState(0);
+    // 线索集合
     const { cluesList, onClose } = props
-    const [selectedId, setSelectedId] = useState(null);
+    // tab index
+    const [tabIndex, setTabIndex] = useState(0);
+    // 选中的线索
+    const [checkedClue, setCheckedClue] = useState(null);
 
+    // 默认过滤条件数组
+    const defaultFilterArray = cluesList[tabIndex].filter.map(m => ({
+        filterType: m.filterType,
+        filterTypeValue: "全部"
+    }))
+    const [filterArray, setFilterArray] = useState(defaultFilterArray)
+
+    // 线索集合为空时 不显示
     if (cluesList.length === 0) {
         return null
+    }
+
+    // 更改过滤条件数组
+    const updataFilterArray = ({ filterType, filterTypeValue }) => {
+        setFilterArray(filterArray.map(f => f.filterType === filterType ? { ...f, filterTypeValue } : f))
     }
 
     return (
         <View style={[{ flex: 1, position: "relative" }]}>
             <TabBarComponent {...props}
-                index={index}
-                setIndex={setIndex}
-                setSelectedId={setSelectedId}
+                tabIndex={tabIndex}
+                setTabIndex={setTabIndex}
+                setCheckedClue={setCheckedClue}
             />
-            <FilterClues />
+            {
+                cluesList[tabIndex].filter.map((f, index) => {
+                    return <FilterClueGroup key={index} filterType={f.filterType} filterOption={f.filterOption} updataFilterArray={updataFilterArray} />
+                })
+            }
             <TabContent
-                data={cluesList[index].data}
-                selectedId={selectedId}
-                setSelectedId={setSelectedId}
+                clueData={cluesList[tabIndex].data}
+                filterArray={filterArray}
+                checkedClue={checkedClue}
+                setCheckedClue={setCheckedClue}
             />
-            <View style={styles.btnBox}>
+            {/* <View style={styles.btnBox}>
                 <View style={styles.btn}>
                     <TextButton
                         title={"使用"}
                         onPress={() => { console.log("sss"); }}
                     />
                 </View>
-            </View>
+            </View> */}
         </View>
     )
 }
