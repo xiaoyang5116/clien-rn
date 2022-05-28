@@ -28,13 +28,13 @@ const SCENE_BG = [
 ];
 
 const SCENE_MAP_DATA = [
-  { point: [0, 0], title: '神兽', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
-  { point: [0, 1], title: '原神', links: [] },
-  { point: [1, 0], title: '天仙', links: [[0, -1], [0, 1]] },
-  { point: [0, -1], title: '五行', links: [] },
-  { point: [-1, 0], title: '天使', links: [[0, 1], [0, -1]] },
-  { point: [-2, 0], title: '老者', links: [[-1, 0]] },
-  { point: [-1, -1], title: '地主', links: [[-1, 0], [0, -1]] },
+  { point: [0, 0], title: '神兽', toScene: 'pomiao', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
+  { point: [0, 1], title: '原神', toScene: 'wzkj', links: [] },
+  { point: [1, 0], title: '天仙', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
+  { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
+  { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
+  { point: [-2, 0], title: '老者', toScene: 'pomiao', links: [[-1, 0]] },
+  { point: [-1, -1], title: '地主', toScene: 'pomiao', links: [[-1, 0], [0, -1]] },
 ];
 
 const SceneImage = (props) => {

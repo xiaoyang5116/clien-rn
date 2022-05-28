@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 
 import { 
+  AppDispath,
   getWindowSize
 } from '../../constants';
 
@@ -180,6 +181,11 @@ const SceneMap = (props) => {
     bigMapScale.setValue(value * 1.1);
   }
 
+  // 大地图缩放还原
+  const zoomRestoreBigMapHandler = (e) => {
+    bigMapScale.setValue(1);
+  }
+
   // 渲染格子
   const grids = [];
   // 渲染线条
@@ -212,7 +218,9 @@ const SceneMap = (props) => {
 
     grids.push((
       <TouchableWithoutFeedback key={idx++} onPress={() => {
-        console.debug('press ', e);
+        if (lo.isString(e.toScene)) {
+          AppDispath({ type: 'SceneModel/processActions', payload: { toScene: e.toScene } });
+        }
       }}>
         <View style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}>
           <FastImage style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} source={gridImg} />
@@ -271,6 +279,10 @@ const SceneMap = (props) => {
           {/* 大地图放大按钮 */}
           <TouchableWithoutFeedback onPress={zoomInBigMapHandler}>
             <FastImage style={{ position: 'absolute', left: 65, top: -6, width: px2pd(106), height: px2pd(46) }} source={require('../../../assets/button/map_zoom_in_button.png')} />
+          </TouchableWithoutFeedback>
+          {/* 大地图还原按钮 */}
+          <TouchableWithoutFeedback onPress={zoomRestoreBigMapHandler}>
+            <FastImage style={{ position: 'absolute', left: 110, top: -6, width: px2pd(106), height: px2pd(46) }} source={require('../../../assets/button/map_restore_button.png')} />
           </TouchableWithoutFeedback>
         </Animated.View>
       </View>
