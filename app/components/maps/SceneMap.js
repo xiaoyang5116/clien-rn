@@ -184,6 +184,7 @@ const SceneMap = (props) => {
   // 大地图缩放还原
   const zoomRestoreBigMapHandler = (e) => {
     bigMapScale.setValue(1);
+    bigMapPos.setValue(bigMapInitXY);
   }
 
   // 渲染格子
@@ -249,7 +250,7 @@ const SceneMap = (props) => {
 
       {/* 小地图最小化按钮 */}
       <TouchableWithoutFeedback onPress={hideSmallMapHandler}>
-        <FastImage style={{ position: 'absolute', right: 65, top: -6, width: px2pd(106), height: px2pd(46) }} source={require('../../../assets/button/map_hide_button.png')} />
+        <FastImage style={{ position: 'absolute', right: 65, top: -6, width: px2pd(106), height: px2pd(46) }} source={require('../../../assets/button/map_min_button.png')} />
       </TouchableWithoutFeedback>
 
       {/* 小地图最大化按钮 */}
