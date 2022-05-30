@@ -246,6 +246,7 @@ export default {
 
       // 获取场景配置
       let scenes = [];
+      let maps = [];
       for (let key in sceneState.__data.sceneList) {
         const sceneId = sceneState.__data.sceneList[key];
         const data = yield call(GetSceneDataApi, sceneId);
@@ -260,11 +261,24 @@ export default {
             // 动作条目注入当前场景ID
             ScenePropertyInjectBuilder.injectSceneId(e);
 
+            // 地图数据
+            if (lo.isArray(e.maps)) maps.push(...e.maps);
+
             //
             scenes.push(e);
           });
         }
       }
+
+      // 自动载入选用的地图数据(scene.mapData属性)
+      scenes.forEach(e => {
+        if (lo.isString(e.mapId)) {
+            const map = maps.find(m => m.id == e.mapId);
+            if (map != undefined) {
+              e.mapData = map.data;
+            }
+        }
+      });
 
       // 加载本地缓存
       const sceneCache = yield call(LocalStorage.get, LocalCacheKeys.SCENES_DATA);

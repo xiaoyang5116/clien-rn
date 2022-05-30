@@ -40,6 +40,9 @@ scenes: [
       { type: 'enter', nextChat: 'c1' },
     ],
 
+    # 当前场景地图
+    mapId: 'map2',
+
     # 对话选项
     chats: [
       # 新手对话主列表

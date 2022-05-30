@@ -29,7 +29,7 @@ console.debug(`
 屏幕适配信息：
     像素与dp比率: ${pxRatio}
     屏幕dp宽度: ${width}(dp)
-    屏幕db高度: ${height}(dp)
+    屏幕dp高度: ${height}(dp)
     屏幕像素宽度: ${pxWidth}(px)
     屏幕像素高度: ${pxHeight}(px)
     设计分辨率: ${designSize.width} X ${designSize.height}
