@@ -249,7 +249,9 @@ class NewArticlePage extends Component {
                 DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
               }} />
               <TextButton title='选择世界' onPress={WorldSelector} />
-              <TextButton title='...' />
+              <TextButton title='退出阅读' onPress={() => {
+                this.props.navigation.navigate('First');
+              }} />
             </View>
           </HeaderContainer>
           <View style={styles.topBarContainer}>
