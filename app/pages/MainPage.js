@@ -21,6 +21,7 @@ import {
 import lo from 'lodash';
 import HomePage from './/HomePage';
 import ArticlePage from './ArticlePage';
+import NewArticlePage from './NewArticlePage';
 import FirstPage from './FirstPage';
 import SettingsPage from './SettingsPage';
 import { navigationRef } from '../utils/RootNavigation';
@@ -52,7 +53,7 @@ class MainPage extends Component {
       <NavigationContainer theme={{ colors: this.props.currentStyles.navigation }} ref={navigationRef}>
         <Stack.Navigator initialRouteName='First' screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
           <Stack.Screen name='Home' options={{ headerShown: false }} component={HomePage} />
-          <Stack.Screen name='Article' options={{ headerShown: false }} component={ArticlePage} />
+          <Stack.Screen name='Article' options={{ headerShown: false }} component={NewArticlePage} />
           <Stack.Screen name="First" options={{ headerShown: false }} component={FirstPage} />
           <Stack.Screen name="Settings" options={{ headerShown: false }} component={SettingsPage} />
         </Stack.Navigator>
