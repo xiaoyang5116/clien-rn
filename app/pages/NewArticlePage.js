@@ -19,8 +19,11 @@ import {
   View,
   Text,
   FlatList,
-  SafeAreaView,
 } from '../constants/native-ui';
+
+import {
+  Platform,
+} from 'react-native';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
@@ -65,6 +68,8 @@ const WORLD = [
     toChapter: "WZXX_M1_N1_C003",
   },
 ];
+
+console.debug('@@@:' + statusBarHeight)
 
 const WorldSelector = () => {
   CarouselUtils.show({ 
@@ -161,8 +166,9 @@ const TheWorld = (props) => {
   }, [props.sections]);
 
   return (
-  <View style={[{ flex: 1 }, { backgroundColor: props.readerStyle.bgColor }]}>
+    <View style={[{ flex: 1 }, { backgroundColor: props.readerStyle.bgColor }]}>
       <FlatList
+        style={{ alignSelf: 'stretch' }}
         ref={(ref) => refList.current = ref}
         data={props.sections}
         renderItem={(data) => <Block data={data.item} />}
@@ -245,105 +251,95 @@ class NewArticlePage extends Component {
   render() {
     const { readerStyle, attrsConfig } = this.props;
     return (
-      <SafeAreaView style={[{ flex: 1 }, { backgroundColor:readerStyle.bgColor }]}>
-        <View style={[styles.viewContainer, {}]}>
-          <HeaderContainer>
-            <View style={{ flex: 1, marginTop: statusBarHeight, marginBottom: 5 }}>
-              <View style={styles.bannerStyle}>
-                <View style={styles.bannerButton}>
-                  <TextButton title='X' onPress={() => {
-                    DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
-                  }} />
-                </View>
-                <View style={styles.bannerButton}>
-                  <TextButton title='选择世界' onPress={WorldSelector} />
-                </View>
-                <View style={styles.bannerButton}>
-                  <TextButton title='退出阅读' onPress={() => {
-                    this.props.navigation.navigate('First');
-                  }} />
-                </View>
-              </View>
-              <View style={[styles.bannerStyle, {}]}>
-                <View style={styles.bannerButton}>
-                  <TextButton title='目录' />
-                </View>
-                <View style={styles.bannerButton}>
-                  <TextButton title='夜间' />
-                </View>
-                <View style={styles.bannerButton}>
-                  <TextButton title='设置' onPress={()=>{
-                    DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
-                    const key =RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
-                  }} />
-                </View>
-              </View>
+      <View style={[styles.viewContainer, { backgroundColor:readerStyle.bgColor }]}>
+        <HeaderContainer>
+          <View style={[styles.bannerStyle, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0) }]}>
+            <View style={styles.bannerButton}>
+              <TextButton title='X' onPress={() => {
+                  DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+                }} />
             </View>
-          </HeaderContainer>
-          <View style={styles.bodyContainer}>
-            <Tab.Navigator initialRouteName='PrimaryWorld' 
-              tabBar={(props) => <WorldTabBar {...props} />}
-              >
-              <Tab.Screen name="LeftWorld" options={{ tabBarLabel: '现实' }} children={() => <TheWorld {...this.props} />} />
-              <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '灵修界' }} children={() => <TheWorld {...this.props} />} />
-              <Tab.Screen name="RightWorld" options={{ tabBarLabel: '尘界' }} children={() => <TheWorld {...this.props} />} />
-            </Tab.Navigator>
+            <View style={styles.bannerButton}>
+              <TextButton title='选择世界' onPress={WorldSelector} />
+            </View>
+            <View style={styles.bannerButton}>
+              <TextButton title='退出阅读' onPress={() => {
+                this.props.navigation.navigate('First');
+              }} />
+            </View>
+            <View style={styles.bannerButton}>
+              <TextButton title='目录' />
+            </View>
+            <View style={styles.bannerButton}>
+              <TextButton title='夜间' />
+            </View>
+            <View style={styles.bannerButton}>
+              <TextButton title='设置' onPress={()=>{
+                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+                const key =RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
+              }} />
+            </View>
           </View>
-          <FooterContainer>
-            <View style={{ flex: 1,marginBottom: statusBarHeight }}>
-              <View style={styles.bannerStyle}>
-                <View style={styles.bannerButton}>
-                  <TextButton title='世界' onPress={() => {
-                    RootNavigation.navigate('Home', {
-                      screen: 'World',
-                    });
-                  }} />
-                </View>
-                <View style={styles.bannerButton}>
-                  <TextButton title='探索' onPress={() => {
-                    RootNavigation.navigate('Home', {
-                      screen: 'Explore',
-                    });
-                  }} />
-                </View>
-                <View style={styles.bannerButton}>
-                  <TextButton title='城镇' onPress={() => {
-                    RootNavigation.navigate('Home', {
-                      screen: 'Town',
-                    });
-                  }} />
-                </View>
-              </View>
-              <View style={styles.bannerStyle}>
-                <View style={styles.bannerButton}>
-                  <TextButton title='制作' onPress={() => {
-                    RootNavigation.navigate('Home', {
-                      screen: 'Compose',
-                    });
-                  }} />
-                </View>
-                <View style={styles.bannerButton}>
-                  <TextButton title='道具' onPress={() => {
-                    RootNavigation.navigate('Home', {
-                      screen: 'Props',
-                    });
-                  }} />
-                </View>
-                <View style={styles.bannerButton}>
-                  <TextButton title='抽奖' onPress={() => {
-                    RootNavigation.navigate('Home', {
-                      screen: 'Lottery',
-                    });
-                  }} />
-                </View>
-              </View>
-            </View>
-          </FooterContainer>
-          <Drawer ref={this.refPropsContainer}>
-            {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
-          </Drawer>
+        </HeaderContainer>
+        <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
+          <Tab.Navigator initialRouteName='PrimaryWorld' 
+            tabBar={(props) => <WorldTabBar {...props} />}
+            >
+            <Tab.Screen name="LeftWorld" options={{ tabBarLabel: '现实' }} children={() => <TheWorld {...this.props} />} />
+            <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '灵修界' }} children={() => <TheWorld {...this.props} />} />
+            <Tab.Screen name="RightWorld" options={{ tabBarLabel: '尘界' }} children={() => <TheWorld {...this.props} />} />
+          </Tab.Navigator>
         </View>
-      </SafeAreaView>
+        <FooterContainer>
+          <View style={[styles.bannerStyle, { marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
+            <View style={styles.bannerButton}>
+              <TextButton title='世界' onPress={() => {
+                RootNavigation.navigate('Home', {
+                  screen: 'World',
+                });
+              }} />
+            </View>
+            <View style={styles.bannerButton}>
+              <TextButton title='探索' onPress={() => {
+                RootNavigation.navigate('Home', {
+                  screen: 'Explore',
+                });
+              }} />
+            </View>
+            <View style={styles.bannerButton}>
+              <TextButton title='城镇' onPress={() => {
+                RootNavigation.navigate('Home', {
+                  screen: 'Town',
+                });
+              }} />
+            </View>
+            <View style={styles.bannerButton}>
+              <TextButton title='制作' onPress={() => {
+                RootNavigation.navigate('Home', {
+                  screen: 'Compose',
+                });
+              }} />
+            </View>
+            <View style={styles.bannerButton}>
+              <TextButton title='道具' onPress={() => {
+                RootNavigation.navigate('Home', {
+                  screen: 'Props',
+                });
+              }} />
+            </View>
+            <View style={styles.bannerButton}>
+              <TextButton title='抽奖' onPress={() => {
+                RootNavigation.navigate('Home', {
+                  screen: 'Lottery',
+                });
+              }} />
+            </View>
+          </View>
+        </FooterContainer>
+        <Drawer ref={this.refPropsContainer}>
+          {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
+        </Drawer>
+      </View>
     );
   }
 
@@ -370,15 +366,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bannerStyle: {
-    flex: 1,
-    flexDirection: 'row',
+    flex: 1, 
+    flexDirection: 'row', 
+    flexWrap: 'wrap', 
     justifyContent: 'center', 
-    alignItems: 'center',
+    alignItems: 'center', 
   },
   bannerButton: {
     width: 100,
     marginLeft: 10, 
     marginRight: 10,
+    marginTop: 0,
+    marginBottom: 10,
   },
 });
 

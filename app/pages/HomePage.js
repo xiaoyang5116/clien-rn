@@ -55,7 +55,7 @@ const HeaderTitle = (props) => {
         source={require('../../assets/tab/tab_header_bg.png')}
         capInsets={{ top: 25, right: 25, bottom: 25, left: 25 }}
       />
-      <Text style={{ fontWeight: 'bold', fontSize: 18 }}>{props.options.title}</Text>
+      <Text style={{ fontWeight: 'bold', color: '#333', fontSize: 18 }}>{props.options.title}</Text>
     </View>
   )
 }
