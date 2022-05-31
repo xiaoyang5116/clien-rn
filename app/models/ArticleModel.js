@@ -262,6 +262,12 @@ export default {
       }
     },
 
+    // 文章概述的option
+    *overViewOption({ payload }, { call, put, select }) {
+      const chat = yield put.resolve(action('SceneModel/getChat')(payload));
+      return yield put.resolve(action('getValidOptions')({ options: chat.options }));
+    },
+
     // 阅读器样式
     *readerStyle({ payload }, { call, put, select }) {
       let currentReaderStyle = yield call(LocalStorage.get, LocalCacheKeys.READER_STYLE);
