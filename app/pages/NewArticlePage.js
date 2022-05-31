@@ -69,8 +69,6 @@ const WORLD = [
   },
 ];
 
-console.debug('@@@:' + statusBarHeight)
-
 const WorldSelector = () => {
   CarouselUtils.show({ 
     data: WORLD, 
