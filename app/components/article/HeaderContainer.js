@@ -2,17 +2,17 @@
 import React from 'react';
 
 import {
-  EventKeys,
+  EventKeys, statusBarHeight,
 } from "../../constants";
 
 import { DeviceEventEmitter, Animated } from 'react-native';
 
 const HeaderContainer = (props) => {
-    const maxHeight = 100;
+    const maxHeight = 140;
     const [display, setDisplay] = React.useState(false);
     const status = React.useRef({ animating: false, closing: false }).current;
     const switcAnimation = React.useRef(null);
-    const posBottom = React.useRef(new Animated.Value(display ? 0 : -maxHeight)).current;
+    const posBottom = React.useRef(new Animated.Value(display ? 0 : -(maxHeight + statusBarHeight))).current;
   
     React.useEffect(() => {
       // 点击滑出
@@ -22,7 +22,7 @@ const HeaderContainer = (props) => {
   
         status.animating = true;
         const animation = Animated.timing(posBottom, {
-          toValue: display ? -maxHeight : 0,
+          toValue: display ? -(maxHeight + statusBarHeight) : -statusBarHeight,
           duration: 350,
           useNativeDriver: false,
         });
@@ -45,7 +45,7 @@ const HeaderContainer = (props) => {
         if (display && status.closing == false) {
           status.closing = true;
           const animation = Animated.timing(posBottom, {
-            toValue: -maxHeight,
+            toValue: -(maxHeight + statusBarHeight),
             duration: 350,
             useNativeDriver: false,
           });

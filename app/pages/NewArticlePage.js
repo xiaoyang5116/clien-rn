@@ -11,13 +11,15 @@ import {
   EventKeys,
   AppDispath,
   DataContext,
-  getWindowSize
+  getWindowSize,
+  statusBarHeight
 } from "../constants";
 
 import { 
   View,
   Text,
   FlatList,
+  SafeAreaView,
 } from '../constants/native-ui';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -30,6 +32,7 @@ import RootView from '../components/RootView';
 import ReaderSettings from '../components/readerSettings';
 import HeaderContainer from '../components/article/HeaderContainer';
 import FooterContainer from '../components/article/FooterContainer';
+import * as RootNavigation from '../utils/RootNavigation';
 import Collapse from '../components/collapse';
 import Drawer from '../components/drawer';
 
@@ -242,20 +245,41 @@ class NewArticlePage extends Component {
   render() {
     const { readerStyle, attrsConfig } = this.props;
     return (
-        <View style={[styles.viewContainer, { backgroundColor:readerStyle.bgColor }]}>
+      <SafeAreaView style={[{ flex: 1 }, { backgroundColor:readerStyle.bgColor }]}>
+        <View style={[styles.viewContainer, {}]}>
           <HeaderContainer>
-            <View style={[styles.bannerStyle, { marginTop: 20, }]}>
-              <TextButton title='X' onPress={() => {
-                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
-              }} />
-              <TextButton title='选择世界' onPress={WorldSelector} />
-              <TextButton title='退出阅读' onPress={() => {
-                this.props.navigation.navigate('First');
-              }} />
+            <View style={{ flex: 1, marginTop: statusBarHeight, marginBottom: 5 }}>
+              <View style={styles.bannerStyle}>
+                <View style={styles.bannerButton}>
+                  <TextButton title='X' onPress={() => {
+                    DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+                  }} />
+                </View>
+                <View style={styles.bannerButton}>
+                  <TextButton title='选择世界' onPress={WorldSelector} />
+                </View>
+                <View style={styles.bannerButton}>
+                  <TextButton title='退出阅读' onPress={() => {
+                    this.props.navigation.navigate('First');
+                  }} />
+                </View>
+              </View>
+              <View style={[styles.bannerStyle, {}]}>
+                <View style={styles.bannerButton}>
+                  <TextButton title='目录' />
+                </View>
+                <View style={styles.bannerButton}>
+                  <TextButton title='夜间' />
+                </View>
+                <View style={styles.bannerButton}>
+                  <TextButton title='设置' onPress={()=>{
+                    DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+                    const key =RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
+                  }} />
+                </View>
+              </View>
             </View>
           </HeaderContainer>
-          <View style={styles.topBarContainer}>
-          </View>
           <View style={styles.bodyContainer}>
             <Tab.Navigator initialRouteName='PrimaryWorld' 
               tabBar={(props) => <WorldTabBar {...props} />}
@@ -266,19 +290,60 @@ class NewArticlePage extends Component {
             </Tab.Navigator>
           </View>
           <FooterContainer>
-            <View style={styles.bannerStyle}>
-              <TextButton title='目录' />
-              <TextButton title='夜间' />
-              <TextButton title='设置' onPress={()=>{
-                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
-                const key =RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
-              }} />
+            <View style={{ flex: 1,marginBottom: statusBarHeight }}>
+              <View style={styles.bannerStyle}>
+                <View style={styles.bannerButton}>
+                  <TextButton title='世界' onPress={() => {
+                    RootNavigation.navigate('Home', {
+                      screen: 'World',
+                    });
+                  }} />
+                </View>
+                <View style={styles.bannerButton}>
+                  <TextButton title='探索' onPress={() => {
+                    RootNavigation.navigate('Home', {
+                      screen: 'Explore',
+                    });
+                  }} />
+                </View>
+                <View style={styles.bannerButton}>
+                  <TextButton title='城镇' onPress={() => {
+                    RootNavigation.navigate('Home', {
+                      screen: 'Town',
+                    });
+                  }} />
+                </View>
+              </View>
+              <View style={styles.bannerStyle}>
+                <View style={styles.bannerButton}>
+                  <TextButton title='制作' onPress={() => {
+                    RootNavigation.navigate('Home', {
+                      screen: 'Compose',
+                    });
+                  }} />
+                </View>
+                <View style={styles.bannerButton}>
+                  <TextButton title='道具' onPress={() => {
+                    RootNavigation.navigate('Home', {
+                      screen: 'Props',
+                    });
+                  }} />
+                </View>
+                <View style={styles.bannerButton}>
+                  <TextButton title='抽奖' onPress={() => {
+                    RootNavigation.navigate('Home', {
+                      screen: 'Lottery',
+                    });
+                  }} />
+                </View>
+              </View>
             </View>
           </FooterContainer>
           <Drawer ref={this.refPropsContainer}>
             {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
           </Drawer>
         </View>
+      </SafeAreaView>
     );
   }
 
@@ -290,10 +355,6 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: "flex-start", 
     // backgroundColor: "#eee7dd"
-  },
-  topBarContainer: {
-    height: 40,
-    backgroundColor: "#999"
   },
   bodyContainer: {
     flex: 1,
@@ -309,10 +370,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bannerStyle: {
-    flex: 1, 
-    flexDirection: 'row', 
-    justifyContent: 'space-around', 
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center', 
     alignItems: 'center',
+  },
+  bannerButton: {
+    width: 100,
+    marginLeft: 10, 
+    marginRight: 10,
   },
 });
 

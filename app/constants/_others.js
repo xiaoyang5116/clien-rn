@@ -3,6 +3,8 @@
 // ===============================
 import { 
     Dimensions, 
+    NativeModules, 
+    StatusBar,
 } from 'react-native';
 
 // 是否调试模式
@@ -16,3 +18,7 @@ export const errorMessage = (s, ...args) => { if (DEBUG_MODE) console.error('' +
 
 // 屏幕特性
 export const getWindowSize = () => { return Dimensions.get('window'); };
+
+// 获取状态栏高度
+const { StatusBarManager } = NativeModules;
+export const statusBarHeight = (Platform.OS == "ios") ? StatusBarManager.HEIGHT : StatusBar.currentHeight;
