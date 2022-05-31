@@ -8,11 +8,11 @@ import {
 import { DeviceEventEmitter, Animated } from 'react-native';
 
 const FooterContainer = (props) => {
-  const maxHeight = 100;
   const [display, setDisplay] = React.useState(false);
-  const status = React.useRef({ animating: false, closing: false }).current;
+  const maxHeight = React.useRef(0);
+  const status = React.useRef({ animating: false, closing: false, initLayout: false }).current;
   const switcAnimation = React.useRef(null);
-  const posBottom = React.useRef(new Animated.Value(display ? 0 : -maxHeight)).current;
+  const posBottom = React.useRef(new Animated.Value(0)).current;
 
   React.useEffect(() => {
     // 点击滑出
@@ -22,7 +22,7 @@ const FooterContainer = (props) => {
 
       status.animating = true;
       const animation = Animated.timing(posBottom, {
-        toValue: display ? -maxHeight : 0,
+        toValue: display ? -maxHeight.current : 0,
         duration: 350,
         useNativeDriver: false,
       });
@@ -45,7 +45,7 @@ const FooterContainer = (props) => {
       if (display && status.closing == false) {
         status.closing = true;
         const animation = Animated.timing(posBottom, {
-          toValue: -maxHeight,
+          toValue: -maxHeight.current,
           duration: 350,
           useNativeDriver: false,
         });
@@ -68,8 +68,20 @@ const FooterContainer = (props) => {
       activeListener.remove();
     };
   }, [display]);
+
+  const layoutHandler = (e) => {
+    if (status.initLayout)
+      return;
+
+    const width = e.nativeEvent.layout.width;
+    const height = e.nativeEvent.layout.height;
+    maxHeight.current = height;
+    posBottom.setValue(-height);
+    status.initLayout = true;
+  }
+
   return (
-    <Animated.View style={{ position: 'absolute', left: 0, bottom: posBottom, zIndex: 100, width: '100%', height: maxHeight, backgroundColor: '#a49f99' }}>
+    <Animated.View style={{ position: 'absolute', left: 0, bottom: posBottom, zIndex: 100, width: '100%', backgroundColor: '#a49f99' }} onLayout={layoutHandler}>
       {props.children}
     </Animated.View>
   );
