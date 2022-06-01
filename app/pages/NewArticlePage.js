@@ -23,6 +23,7 @@ import {
 
 import {
   Platform,
+  Animated,
 } from 'react-native';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -140,6 +141,14 @@ const TheWorld = (props) => {
   const started = React.useRef(false);
   const refList = React.useRef(null);
   const context = React.useContext(DataContext);
+  const maskOpacity = React.useRef(new Animated.Value(1)).current;
+  const fontOpacity = React.useRef(new Animated.Value(0)).current;
+
+  const { navigation } = props;
+  const state = navigation.getState();
+  const index = state.index;
+  const activeRouteName = state.routeNames[index];
+  const routeName = props.route.name;
 
   const scrollHandler = (payload) => {
     props.dispatch(action('ArticleModel/scroll')({ 
@@ -162,6 +171,56 @@ const TheWorld = (props) => {
       refList.current.scrollToIndex({ index: 0, animated: false });
     }
   }, [props.sections]);
+
+  // 首次进入
+  React.useEffect(() => {
+    if (lo.isEqual(routeName, activeRouteName)) {
+      maskOpacity.setValue(0);
+      fontOpacity.setValue(0);
+    } else {
+      maskOpacity.setValue(1);
+      fontOpacity.setValue(0);
+    }
+  }, []);
+
+  // 通过透明度播放过度效果
+  React.useEffect(() => {
+    if (!lo.isEqual(routeName, activeRouteName)) {
+      maskOpacity.setValue(1);
+      fontOpacity.setValue(0);
+      return;
+    }
+    //
+    if (lo.isEqual(routeName, 'RightWorld')) {
+      Animated.sequence([
+        Animated.timing(maskOpacity, {
+          toValue: 0,
+          duration: 2000,
+          useNativeDriver: false,
+        })
+      ]).start();
+    } else {
+      Animated.sequence([
+        Animated.delay(300),
+        Animated.timing(fontOpacity, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: false,
+        }),
+        Animated.delay(600),
+        Animated.timing(fontOpacity, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: false,
+        }),
+        Animated.timing(maskOpacity, {
+          toValue: 0,
+          duration: 2000,
+          useNativeDriver: false,
+        })
+      ]).start();
+    }
+  }, [props]);
 
   return (
     <View style={[{ flex: 1 }, { backgroundColor: props.readerStyle.bgColor }]}>
@@ -206,6 +265,13 @@ const TheWorld = (props) => {
           started.current = false;
         }}
       />
+      {/* 白色遮盖层 */}
+      <Animated.View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: '#fff', opacity: maskOpacity }} pointerEvents='none'>
+        <Animated.View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', opacity: fontOpacity }}>
+          {(lo.isEqual(routeName, 'LeftWorld')) ? (<Text style={{ fontSize: 24 }}>其实，修真可以改变现实。。。</Text>) : <></>}
+          {(lo.isEqual(routeName, 'PrimaryWorld')) ? (<Text style={{ fontSize: 24 }}>所念即所现，所思即所得。。。</Text>) : <></>}
+        </Animated.View>
+      </Animated.View>
   </View>
   );
 }
@@ -283,9 +349,9 @@ class NewArticlePage extends Component {
           <Tab.Navigator initialRouteName='PrimaryWorld' 
             tabBar={(props) => <WorldTabBar {...props} />}
             >
-            <Tab.Screen name="LeftWorld" options={{ tabBarLabel: '现实' }} children={() => <TheWorld {...this.props} />} />
-            <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '灵修界' }} children={() => <TheWorld {...this.props} />} />
-            <Tab.Screen name="RightWorld" options={{ tabBarLabel: '尘界' }} children={() => <TheWorld {...this.props} />} />
+            <Tab.Screen name="LeftWorld" options={{ tabBarLabel: '现实' }} children={(props) => <TheWorld {...this.props} {...props} />} />
+            <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '灵修界' }} children={(props) => <TheWorld {...this.props} {...props} />} />
+            <Tab.Screen name="RightWorld" options={{ tabBarLabel: '尘界' }} children={(props) => <TheWorld {...this.props} {...props} />} />
           </Tab.Navigator>
         </View>
         <FooterContainer>
