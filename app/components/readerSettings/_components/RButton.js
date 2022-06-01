@@ -22,7 +22,8 @@ const RButton = (props) => {
                     // opacity: props.disabled ? 0.4 : 1,
                     borderColor: props.selected ? readerStyle.selectedBorderColor : readerStyle.borderColor,
                     backgroundColor: props.color,
-                    overflow: 'hidden'
+                    overflow: 'hidden',
+                    color: readerStyle.color,
                 }
             ]}>
                 {props.title}

@@ -5,13 +5,18 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import React from 'react';
+import {
+    connect,
+} from "../../../constants";
 import Slider from '@react-native-community/slider';
-import { portal } from '@ant-design/react-native/lib/portal/portal-host';
+
 
 const RowLayout = props => {
+    const { readerStyle } = props
+
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>
+            <Text style={[styles.title, { color: readerStyle.color }]}>
                 {props.title}
             </Text>
 
@@ -22,7 +27,7 @@ const RowLayout = props => {
                     props.onChange(props.value - 1)
                 }}
             >
-                <Text style={styles.fuhao}>
+                <Text style={[styles.fuhao, { color: readerStyle.color }]}>
                     -
                 </Text>
             </TouchableOpacity>
@@ -34,7 +39,7 @@ const RowLayout = props => {
                     maximumValue={props.max}
                     minimumValue={props.min}
                     minimumTrackTintColor="#088f7b"
-                    maximumTrackTintColor="#3a3937"
+                    maximumTrackTintColor={readerStyle.color}
                     onValueChange={(value) => { props.onChange(value) }}
                     onSlidingComplete={(value) => { props.updataState(value) }}
                 />
@@ -47,7 +52,7 @@ const RowLayout = props => {
                     props.onChange(props.value + 1)
                 }}
             >
-                <Text style={styles.fuhao}>
+                <Text style={[styles.fuhao, { color: readerStyle.color }]}>
                     +
                 </Text>
             </TouchableOpacity>
@@ -55,7 +60,7 @@ const RowLayout = props => {
     );
 };
 
-export default RowLayout;
+export default connect(state => ({ ...state.ArticleModel }))(RowLayout);
 
 const styles = StyleSheet.create({
     container: {

@@ -262,6 +262,12 @@ export default {
       }
     },
 
+    // 文章概述的option
+    *overViewOption({ payload }, { call, put, select }) {
+      const chat = yield put.resolve(action('SceneModel/getChat')(payload));
+      return yield put.resolve(action('getValidOptions')({ options: chat.options }));
+    },
+
     // 阅读器样式
     *readerStyle({ payload }, { call, put, select }) {
       let currentReaderStyle = yield call(LocalStorage.get, LocalCacheKeys.READER_STYLE);
@@ -294,17 +300,6 @@ export default {
       }
       yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, newReaderStyle);
       yield put(action('updateState')({ readerStyle: newReaderStyle }));
-    },
-    // 修改配色
-    *changeMatchColor({ payload }, { call, put, select }) {
-      const { readerStyle } = yield select(state => state.ArticleModel);
-      const NewReaderStyle = {
-        ...readerStyle,
-        color: payload.color,
-        bgColor: payload.bgColor,
-      }
-      yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, NewReaderStyle);
-      yield put(action('updateState')({ readerStyle: NewReaderStyle }));
     },
     // 修改阅读器样式
     *changeReaderStyle({ payload }, { call, put, select }) {

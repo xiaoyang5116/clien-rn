@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity, DeviceEventEmitter } from 'react-native';
 import React, { PureComponent } from 'react';
-import Slider from '@react-native-community/slider';
 
 import {
     connect,
@@ -27,15 +26,11 @@ class CustomParagraph extends React.Component {
     static contextType = ThemeContext;
 
     handleChange = (itme) => {
-        this.props.dispatch(action('ArticleModel/changeReaderStyle')(itme));
-    }
-
-    modalHide = () => {
-        this.props.onClose()
-    }
-
-    handleIncrease = (type) => {
-
+        const newStatus = {
+            ...itme,
+            selectedTypesetting: "自定义排版"
+        }
+        this.props.dispatch(action('ArticleModel/changeReaderStyle')(newStatus));
     }
 
     reset = (readerStyle) => {
@@ -70,7 +65,7 @@ class CustomParagraph extends React.Component {
                 backdropOpacity={0}
                 backgroundTransitionOutTiming={0}
                 hideModalContentWhileAnimating={true}
-                onModalHide={this.modalHide}
+                onModalHide={() => { this.props.onClose() }}
                 onBackButtonPress={() => {
                     this.setState({ visible: false })
                 }}
