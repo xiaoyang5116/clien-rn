@@ -44,4 +44,9 @@ export class EventKeys {
     static EXPLORE_PK_END = 'EXPLORE_PK_END';
     static EXPLORE_BOX_HIDE = 'EXPLORE_BOX_HIDE';
     static EXPLORE_UPDATE_PROGRESS = 'EXPLORE_UPDATE_PROGRESS';
+
+    // 音乐音量设置
+    static SOUND_BG_VOLUME_UPDATE = 'SOUND_BG_VOLUME_UPDATE';
+    // 音效音量设置
+    static SOUND_EFFECT_VOLUME_UPDATE = 'SOUND_EFFECT_VOLUME_UPDATE';
 }
