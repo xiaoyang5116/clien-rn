@@ -76,7 +76,7 @@ class SoundSettings extends React.PureComponent {
                             value={this.state.sceneVolume}
                             default={10}
                             onValueChange={(value) => { }}
-                            updataState={(value) => { this.setState({ sceneVolume: value }) }}
+                            updataState={(value) => { this.setState({ sceneVolume: value }) }}背景音乐
                         />
                         <DividingLine />
                         <ItemRender
