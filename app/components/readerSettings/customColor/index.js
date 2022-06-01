@@ -8,47 +8,69 @@ import {
     ThemeContext,
 } from "../../../constants";
 
-import { RButton } from '../_components';
+import { RButton, TButton } from '../_components';
 
 const matchColor = (props) => {
     const theme = React.useContext(ThemeContext);
     const { readerStyle } = props
 
-    const changeMatchColor = ({ color, bgColor }) => {
-        props.dispatch(action('ArticleModel/changeMatchColor')({ color: color, bgColor: bgColor }));
+    const changeMatchColor = (itme) => {
+        props.dispatch(action('ArticleModel/changeReaderStyle')(itme));
     }
 
     return (
         <View style={theme.readerSettingRow}>
-            <View style={theme.readerSettingRow_left_item}>
-                <RButton
-                    color={readerStyle.matchColor_1.bgColor}
+            <View style={styles.colorItem}>
+                <TButton
+                    bg={readerStyle.matchColor_1.bgColor}
                     selected={(readerStyle.bgColor === readerStyle.matchColor_1.bgColor)}
                     onPress={() => { changeMatchColor(readerStyle.matchColor_1) }}
                 />
             </View>
 
-            <View style={theme.readerSettingRow_left_item}>
-                <RButton
-                    color={readerStyle.matchColor_2.bgColor}
+            <View style={styles.colorItem}>
+                <TButton
+                    bg={readerStyle.matchColor_2.bgColor}
                     selected={(readerStyle.bgColor === readerStyle.matchColor_2.bgColor)}
                     onPress={() => { changeMatchColor(readerStyle.matchColor_2) }}
                 />
             </View>
 
-            <View style={theme.readerSettingRow_left_item}>
-                <RButton
-                    color={readerStyle.matchColor_3.bgColor}
+            <View style={styles.colorItem}>
+                <TButton
+                    bg={readerStyle.matchColor_3.bgColor}
                     selected={(readerStyle.bgColor === readerStyle.matchColor_3.bgColor)}
                     onPress={() => { changeMatchColor(readerStyle.matchColor_3) }}
                 />
             </View>
 
-            <View style={theme.readerSettingRow_left_item}>
-                <RButton
-                    color={readerStyle.matchColor_4.bgColor}
+            <View style={styles.colorItem}>
+                <TButton
+                    bg={readerStyle.matchColor_4.bgColor}
                     selected={(readerStyle.bgColor === readerStyle.matchColor_4.bgColor)}
                     onPress={() => { changeMatchColor(readerStyle.matchColor_4) }}
+                />
+            </View>
+            <View style={styles.colorItem}>
+                <TButton
+                    bg={readerStyle.matchColor_5.bgColor}
+                    selected={(readerStyle.bgColor === readerStyle.matchColor_5.bgColor)}
+                    onPress={() => { changeMatchColor(readerStyle.matchColor_5) }}
+                />
+            </View>
+
+            <View style={styles.colorItem}>
+                <TButton
+                    bg={readerStyle.matchColor_6.bgColor}
+                    selected={(readerStyle.bgColor === readerStyle.matchColor_6.bgColor)}
+                    onPress={() => { changeMatchColor(readerStyle.matchColor_6) }}
+                />
+            </View>
+            <View style={styles.colorItem}>
+                <TButton
+                    bg={readerStyle.matchColor_7.bgColor}
+                    selected={(readerStyle.bgColor === readerStyle.matchColor_7.bgColor)}
+                    onPress={() => { changeMatchColor(readerStyle.matchColor_7) }}
                 />
             </View>
 
@@ -58,9 +80,17 @@ const matchColor = (props) => {
                     onPress={() => { }}
                 />
             </View>
-
         </View>
     )
 }
 
 export default connect(state => ({ ...state.ArticleModel }))(matchColor);
+
+const styles = StyleSheet.create({
+    colorItem: {
+        width: "6%",
+        height: "100%",
+        justifyContent: 'center',
+        alignItems: 'center',
+    }
+})

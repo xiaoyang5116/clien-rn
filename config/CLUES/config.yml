@@ -1,0 +1,36 @@
+## 配置线索
+
+clueConfig: [
+    {
+      cluesType: "CLUES",
+      cluesTypeName: "线索",
+      filter:
+        [
+          {
+            filterType: "location",
+            filterOption: ["全部", "李家村", "王家村"],
+          },
+          { filterType: "chapter", filterOption: ["全部", "第一章"] },
+        ],
+      data:
+        [
+          "xiansuo1",
+          "xiansuo2",
+          "xiansuo3",
+          "xiansuo4",
+          "xiansuo5",
+          "xiansuo6",
+        ],
+    },
+    {
+      cluesType: "INTELLIGENCE",
+      cluesTypeName: "情报",
+      filter:
+        [
+          { filterType: "location", filterOption: ["全部", "李家村"] },
+          { filterType: "chapter", filterOption: ["全部", "第一章"] },
+        ],
+      data: ["xiansuo1", "xiansuo2"],
+    },
+    { cluesType: "GOSSIP", cluesTypeName: "流言", data: ["xiansuo1"] },
+  ]

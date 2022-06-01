@@ -27,7 +27,7 @@ const ChangeFont = (props) => {
             </View>
 
             <View style={theme.readerSettingRow_left_item}>
-                <Text style={{ fontSize: 14 }}>
+                <Text style={{ fontSize: 14, color: readerStyle.color }}>
                     {readerStyle.contentSize}
                 </Text>
             </View>

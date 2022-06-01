@@ -18,8 +18,10 @@ const TButton = (props) => {
             <Text style={[
                 theme.readerSetting_border_1,
                 {
+                    borderColor: props.selected ? readerStyle.selectedBorderColor : readerStyle.borderColor,
                     opacity: props.disabled ? 0.4 : 1,
-                    borderColor: readerStyle.borderColor
+                    color: readerStyle.color,
+                    backgroundColor: props.bg ? props.bg : null,
                 }
             ]}>
                 {props.title}
