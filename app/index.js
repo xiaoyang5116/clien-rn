@@ -36,6 +36,7 @@ import RootView from './components/RootView';
 import EventListeners from './utils/EventListeners';
 import FastImage from 'react-native-fast-image';
 import { images } from './constants/preload';
+import Sound from './components/sound';
 
 function preloadImages(images) {
   const uris = images.map(image => ({
@@ -173,6 +174,7 @@ class App extends Component {
                 <Shock>
                   <MainPage />
                   <RootView />
+                  <Sound />
                 </Shock>
               </View>
             </DataContext.Provider>
