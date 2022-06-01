@@ -41,5 +41,10 @@ allprojects {
         }
         google()
         maven { url 'https://www.jitpack.io' }
+
+        // 添加存储库“jcenter()”
+        mavenCentral()
+        mavenLocal()
+        jcenter()
     }
 }

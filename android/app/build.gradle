@@ -207,6 +207,9 @@ dependencies {
 
     implementation project(':react-native-image-capinsets-next') // 手动加 react-native-image-capinsets-next
 
+    compile project(':react-native-video')  // 手动加 react-native-video
+    implementation "androidx.appcompat:appcompat:1.0.0"  // 手动加 react-native-video
+
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'
     }
