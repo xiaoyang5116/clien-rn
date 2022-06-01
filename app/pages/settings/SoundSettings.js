@@ -29,7 +29,7 @@ const ItemRender = (props) => {
                     <Text style={[styles.btn, { width: "50%" }]}>{props.title}</Text>
                 </View>
                 <View style={{ width: "20%", }}>
-                    <TouchableOpacity onPress={() => { console.log("fff"); }}>
+                    <TouchableOpacity onPress={() => { props.updataState(props.default) }}>
                         <Text style={[styles.btn, { width: "100%" }]}>复位</Text>
                     </TouchableOpacity>
                 </View>
@@ -47,42 +47,76 @@ const ItemRender = (props) => {
                     minimumValue={0}
                     minimumTrackTintColor={"#066dff"}
                     maximumTrackTintColor={"#b0b0b0"}
-                    onValueChange={(value) => { }}
-                    onSlidingComplete={(value) => { }}
+                    onValueChange={(value) => { props.onValueChange(value) }}
+                    onSlidingComplete={(value) => { props.updataState(value) }}
                 />
             </View>
         </View>
     )
 }
 
-const SoundSettings = (props) => {
-    return (
-        <Panel>
-            <SafeAreaView style={{ flex: 1 }}>
-                <View style={{ paddingLeft: 24, paddingRight: 24 }}>
-                    <TitleText>音量设置</TitleText>
-                    <DividingLine />
-                    <ItemRender title={"音量"} value={10} default={10} />
-                    <DividingLine />
-                    <ItemRender title={"音效"} value={10} default={10} />
-                    <DividingLine />
-                    <TitleText>阅读时音量设置</TitleText>
-                    <DividingLine />
-                    <ItemRender title={"音量"} value={10} default={10} />
-                    <DividingLine />
-                    <ItemRender title={"音效"} value={10} default={10} />
-                    <DividingLine />
-                    <View style={{ marginTop: 24, width: "40%" }}>
-                        <TouchableOpacity onPress={() => { props.navigation.goBack() }}>
-                            <Text style={styles.btn} >
-                                退出
-                            </Text>
-                        </TouchableOpacity>
+class SoundSettings extends React.PureComponent {
+    constructor(props) {
+        super(props)
+        this.state = {
+            sceneVolume: 10,
+            sceneSound: 10,
+            readerVolume: 10,
+            readerSound: 10,
+        }
+    }
+    render() {
+        return (
+            <Panel>
+                <SafeAreaView style={{ flex: 1 }}>
+                    <View style={{ paddingLeft: 24, paddingRight: 24 }}>
+                        <TitleText>音量设置</TitleText>
+                        <DividingLine />
+                        <ItemRender title={"音量"}
+                            value={this.state.sceneVolume}
+                            default={10}
+                            onValueChange={(value) => { }}
+                            updataState={(value) => { this.setState({ sceneVolume: value }) }}
+                        />
+                        <DividingLine />
+                        <ItemRender
+                            title={"音效"}
+                            value={this.state.sceneSound}
+                            default={10}
+                            onValueChange={(value) => { }}
+                            updataState={(value) => { this.setState({ sceneSound: value }) }}
+                        />
+                        <DividingLine />
+                        <TitleText>阅读时音量设置</TitleText>
+                        <DividingLine />
+                        <ItemRender
+                            title={"音量"}
+                            value={this.state.readerVolume}
+                            default={10}
+                            onValueChange={(value) => { }}
+                            updataState={(value) => { this.setState({ readerVolume: value }) }}
+                        />
+                        <DividingLine />
+                        <ItemRender
+                            title={"音效"}
+                            value={this.state.readerSound}
+                            default={10}
+                            onValueChange={(value) => { }}
+                            updataState={(value) => { this.setState({ readerSound: value }) }}
+                        />
+                        <DividingLine />
+                        <View style={{ marginTop: 24, width: "40%" }}>
+                            <TouchableOpacity onPress={() => { this.props.navigation.goBack() }}>
+                                <Text style={styles.btn} >
+                                    退出
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
-            </SafeAreaView>
-        </Panel>
-    )
+                </SafeAreaView>
+            </Panel>
+        )
+    }
 }
 
 export default SoundSettings
