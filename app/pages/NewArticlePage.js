@@ -156,7 +156,8 @@ const TheWorld = (props) => {
       offsetY: payload.nativeEvent.contentOffset.y,
     }));
 
-    DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_SCROLL, payload);
+    // 屏蔽：需求 --- 手动点击才隐藏上下功能区域。
+    // DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_SCROLL, payload);
   }
 
   const endReachedHandler = () => {
