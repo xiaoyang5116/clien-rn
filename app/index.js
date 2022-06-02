@@ -64,6 +64,7 @@ const models = [
   require('./models/LotteryModel').default,
   require('./models/ExploreModel').default,
   require('./models/CluesModel').default,
+  require('./models/SoundModel').default,
 ];
 
 const ActionHook = ({ dispatch, getState }) => next => action => {

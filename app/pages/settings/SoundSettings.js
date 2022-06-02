@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, DeviceEventEmitter } from 'react-native'
 import React from 'react'
 import Slider from '@react-native-community/slider';
 
-import { connect, action } from "../../constants";
+import { connect, action, EventKeys, } from "../../constants";
 import { Panel } from '../../components/panel'
 import { TextButton } from '../../constants/custom-ui';
 
@@ -29,7 +29,10 @@ const ItemRender = (props) => {
                     <Text style={[styles.btn, { width: "50%" }]}>{props.title}</Text>
                 </View>
                 <View style={{ width: "20%", }}>
-                    <TouchableOpacity onPress={() => { props.updataState(props.default) }}>
+                    <TouchableOpacity onPress={() => {
+                        props.updataState(props.default)
+                        props.onValueChange(props.default)
+                    }}>
                         <Text style={[styles.btn, { width: "100%" }]}>复位</Text>
                     </TouchableOpacity>
                 </View>
@@ -42,8 +45,8 @@ const ItemRender = (props) => {
             <View style={{ height: 60, width: "100%", justifyContent: 'center', }}>
                 <Slider
                     value={props.value}
-                    step={1}
-                    maximumValue={100}
+                    step={0.01}
+                    maximumValue={1}
                     minimumValue={0}
                     minimumTrackTintColor={"#066dff"}
                     maximumTrackTintColor={"#b0b0b0"}
@@ -59,13 +62,19 @@ class SoundSettings extends React.PureComponent {
     constructor(props) {
         super(props)
         this.state = {
-            sceneVolume: 10,
-            sceneSound: 10,
-            readerVolume: 10,
-            readerSound: 10,
+            sceneVolume: this.props.sceneVolume.bg,
+            sceneSound: this.props.sceneVolume.effct,
+            readerVolume: this.props.readerVolume.bg,
+            readerSound: this.props.readerVolume.effct,
         }
     }
+
+    // // 音乐音量设置
+    // static SOUND_BG_VOLUME_UPDATE = 'SOUND_BG_VOLUME_UPDATE';
+    // // 音效音量设置
+    // static SOUND_EFFECT_VOLUME_UPDATE = 'SOUND_EFFECT_VOLUME_UPDATE';
     render() {
+        console.log("sceneVolume", this.state.sceneVolume);
         return (
             <Panel>
                 <SafeAreaView style={{ flex: 1 }}>
@@ -74,16 +83,20 @@ class SoundSettings extends React.PureComponent {
                         <DividingLine />
                         <ItemRender title={"音量"}
                             value={this.state.sceneVolume}
-                            default={10}
-                            onValueChange={(value) => { }}
-                            updataState={(value) => { this.setState({ sceneVolume: value }) }}背景音乐
+                            default={0.5}
+                            onValueChange={(value) => {
+                                DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "sceneVolume", volume: value })
+                            }}
+                            updataState={(value) => { this.setState({ sceneVolume: value }) }}
                         />
                         <DividingLine />
                         <ItemRender
                             title={"音效"}
                             value={this.state.sceneSound}
-                            default={10}
-                            onValueChange={(value) => { }}
+                            default={0.5}
+                            onValueChange={(value) => {
+                                DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "sceneVolume", volume: value })
+                            }}
                             updataState={(value) => { this.setState({ sceneSound: value }) }}
                         />
                         <DividingLine />
@@ -92,16 +105,20 @@ class SoundSettings extends React.PureComponent {
                         <ItemRender
                             title={"音量"}
                             value={this.state.readerVolume}
-                            default={10}
-                            onValueChange={(value) => { }}
+                            default={0.5}
+                            onValueChange={(value) => {
+                                DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "readerVolume", volume: value })
+                            }}
                             updataState={(value) => { this.setState({ readerVolume: value }) }}
                         />
                         <DividingLine />
                         <ItemRender
                             title={"音效"}
                             value={this.state.readerSound}
-                            default={10}
-                            onValueChange={(value) => { }}
+                            default={0.5}
+                            onValueChange={(value) => {
+                                DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "readerVolume", volume: value })
+                            }}
                             updataState={(value) => { this.setState({ readerSound: value }) }}
                         />
                         <DividingLine />
@@ -119,7 +136,7 @@ class SoundSettings extends React.PureComponent {
     }
 }
 
-export default SoundSettings
+export default connect((state) => ({ ...state.SoundModel }))(SoundSettings)
 
 const styles = StyleSheet.create({
     container: {
