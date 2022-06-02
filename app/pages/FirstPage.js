@@ -27,6 +27,7 @@ import Modal from '../components/modal';
 import Shock from '../components/shock';
 import Drawer from '../components/drawer';
 import Clues from '../components/cluesList';
+import { playBGM } from '../components/sound/utils';
 
 const BTN_STYLE = {
   width: 235,
@@ -41,6 +42,10 @@ class FirstPage extends Component {
     this.startX = 0;
     this.startY = 0;
     this.started = false;
+  }
+
+  componentDidMount() {
+    playBGM('1');
   }
 
   render() {

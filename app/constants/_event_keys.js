@@ -49,4 +49,6 @@ export class EventKeys {
     static SOUND_BG_VOLUME_UPDATE = 'SOUND_BG_VOLUME_UPDATE';
     // 音效音量设置
     static SOUND_EFFECT_VOLUME_UPDATE = 'SOUND_EFFECT_VOLUME_UPDATE';
+    // 播放背景音乐
+    static SOUND_BGM_PLAY = 'SOUND_BGM_PLAY';
 }

@@ -36,7 +36,7 @@ import RootView from './components/RootView';
 import EventListeners from './utils/EventListeners';
 import FastImage from 'react-native-fast-image';
 import { images } from './constants/preload';
-import Sound from './components/sound';
+import SoundProvider from './components/sound';
 
 function preloadImages(images) {
   const uris = images.map(image => ({
@@ -167,30 +167,28 @@ class App extends Component {
 
   renderBody() {
     return (
+      <View style={styles.rootContainer}>
+        <Shock>
+          <MainPage />
+          <RootView />
+        </Shock>
+      </View>
+    );
+  }
+
+  render() {
+    return (
       <SafeAreaProvider>
         <Provider store={dva._store}>
+          <SoundProvider />
           <ThemeContext.Provider value={this.state.themeStyle}>
             <DataContext.Provider value={{}}>
-              <View style={styles.rootContainer}>
-                <Shock>
-                  <MainPage />
-                  <RootView />
-                  <Sound />
-                </Shock>
-              </View>
+              {(this.state.loading) ? this.renderLoading() : this.renderBody()}
             </DataContext.Provider>
           </ThemeContext.Provider>
         </Provider>
       </SafeAreaProvider>
     );
-  }
-
-  render() {
-    if (this.state.loading) {
-      return this.renderLoading();
-    } else {
-      return this.renderBody();
-    }
   }
 
 }
