@@ -69,10 +69,6 @@ scenes: [
         ],
       },
 
-
- 
-
- 
        #
         ],
 
@@ -105,7 +101,7 @@ scenes: [
           { key: 'N1C1', content: ['杀手正在走路','突然听见背后传来诡异的笑','呵呵呵呵呵啊哈哈哈','呵哈哈哈隔','嗯嗯嗯嗯噗……','杀手……？','不对劲','……'], 
           btn: [{title: '杀手：不对劲，好奇去瞅一下', dialogs: ['gameoverD4']},{title: '杀手：错觉吗？', tokey: "M1"},], },   
 
-
+              
          #分支2
           { key: 'R1', content: ['杀手好像没有异常','继续向前走','……',],
           btn: [{title: '继续保持距离不变', tokey: "R1A"},{title: '距离更近些', tokey: "R1B"},{title: '距离更远些', tokey: "R1C"},], },   
@@ -116,34 +112,79 @@ scenes: [
           { key: 'R1B', content: ['如果靠太近会暴露','这个距离需要拿捏的很准','……',],
           btn: [{title: '距离更近些', tokey: "N1D1"},{title: '继续保持距离不变', tokey: "R1A"},{title: '距离更远些', tokey: "R1A"},], },   
 
-
-
           { key: 'R1C', content: ['这个距离杀手已经看不到你了','你决定','……',],
-          btn: [{title: '距离更近一些', tokey: "R1A"},{title: '四周搜寻一下', tokey: "R1C1"},{title: '距离更远些', dialogs: ['gameoverD5']},], },   
- 
-          { key: 'R1C1', content: ['你发现这是一条猎人小道','你你发现了一些猎人狩猎留下的残破的弓','但是没有弓箭','……',],
-          btn: [{title: '扔掉，继续前进', tokey: "N1C1"},{title: '继续搜寻一下', tokey: "N1C2"},{title: '把弓箭改造成弹弓', tokey: "N1C3"},], },   
+          btn: [{title: '距离更近一些', tokey: "R1A"},{title: '四周搜寻一下', tokey: "R2"},{title: '距离更远些', dialogs: ['gameoverD5']},], },   
  
 
 
+          #分支2续
+          { key: 'R2', content: ['你发现这是一条猎人小道','你你发现了一些猎人狩猎留下的残破的弓','但是没有弓箭','……',],
+          btn: [{title: '扔掉，继续前进', tokey: "R2A"},{title: '继续搜寻一下', tokey: "R2B"},{title: '把弓箭改造成弹弓', tokey: "R2C"},], },   
+
+          { key: 'R2A', content: ['虽然花了些时间追赶','你发现杀手还在前方的路上','你决定继续跟踪','……',],
+          btn: [{title: '很好', tokey: "M1"},], },   
+
+          { key: 'R2B', content: ['你找到了一些可以吃野果子','没有其他收获了','……',],
+          btn: [{title: '赶紧吃', tokey: "R2B1"},{title: '随手扔掉', tokey: "R2B2"},], },   
+ 
+          { key: 'R2B1', content: ['味道不是那么好','但还行','……',],
+          btn: [{title: '这味道，要不再找点？', tokey: "R2B1A"},{title: '还是不要了', tokey: "R2B1B"},], },   
+
+          { key: 'R2B1B', content: ['好像没什么可做的事','你准备','……',],
+          btn: [{title: '继续跟踪', tokey: M1"},{title: '不陪你玩了，放弃跟踪', tokey: "END02"},], },   
+
+          { key: 'R2B1A', content: ['旁边的树林中就有不少同样的果子','你','……',],
+          btn: [{title: '找质量好点的红果子', tokey: R2B1A1"},{title: '就拿手边能看到的青果子', tokey: "R2B1A2"},], },   
+
+           { key: 'R2B1A1', content: ['红果子在树林的深处有不少','你稍微深入一下','……','草丛嗖嗖的响声突然从侧面传来',],
+          btn: [{title: '找质量好点的红果子', tokey: R2B1A2A"},{title: '就拿手边能看到的青果子', tokey: "R2B1A2B"},], },   
+
+           { key: 'R2B1A2', content: ['旁边的树林中就有不少同样的果子','你','……',],
+          btn: [{title: '找质量好点的红果子', tokey: R2B1A2A"},{title: '就拿手边能看到的青果子', tokey: "R2B1A2B"},], },   
 
 
 
 
+
+
+
+
+          { key: 'R2C', content: ['有了弹弓','你决定','……',],
+          btn: [{title: '弹弓当然是打鸟啦', tokey: "M1"},{title: '目标是杀手', tokey: "N1C3"},], },   
+ 
+          { key: 'K2', content: ['你使用了弹弓','鸟飞了','但发现你的准头还不至于能打到鸟的程度','……',],
+          btn: [{title: '返回', tokey: "N1C1"},], },   
+ 
+          { key: 'K3', content: ['有了弹弓','你决定','……',],
+          btn: [{title: '朝附近的树上为目标', tokey: "N1C2"},{title: '目标是杀手', tokey: "N1C3"},], },   
+ 
+
+          { key: 'K4', content: ['你重新走到了能看到杀手的位置','你决定使用弹弓','目标是','……',],
+          btn: [{title: '头', tokey: "N1C2"},{title: '背后', tokey: "N1C3"},{title: '四肢', tokey: "N1C3"},{title: '杀手旁边的树上', tokey: "N1C2"},], },   
+ 
+
+          { key: 'K5', content: ['杀手的武者危机直觉发动','稍微扭头','弹弓很轻易的就打偏了','……',],
+          btn: [{title: '不好', tokey: "N1C2"},  ] },   
+ 
+          { key: 'K6', content: ['你本来冲着杀手的背部瞄准','但你的准头太差了','弹弓落点到了杀手的屁股中央','……！','杀手，什么东西偷袭我菊花！','现在你发现杀手走路开始一瘸一拐起来',],
+          btn: [{title: '妙啊', tokey: "N1C2"},{title: '胸', tokey: "N1C3"},{title: '四肢', tokey: "N1C3"},{title: '杀手旁边的树上', tokey: "N1C2"},], },   
+          
+          { key: 'K7', content: ['因为屁股痛，杀手决定休息一下','你忍着笑继续跟踪',],
+            btn: [{title: '持续监视', tokey: "M1A"},{title: '他休息我也休息', tokey: "M1B"},{title: '稍微放松', tokey: "M1C"},{title: '靠近一点', tokey: "M1D"}], },   
 
 
           { key: 'N1D1', content: ['杀手突然一转身','这下被看到个正照面','喔噢噢噢噢','李森炎决定', ],
             btn: [{title: '大呼，风紧扯呼',dialogs: ['gameoverD2']},{title: '哎呀，就是路过嘛',dialogs: ['gameoverD3']},{title: '淡定的微笑',dialogs: ['gameoverD4']},]},   
 
  
-          { key: 'N1D2', content: ['没有异常','继续跟踪', ],
+          { key: 'R1', content: ['没有异常','继续跟踪', ],
             btn: [{title: '咏鹅',tokey: "p1C1"},{title: '望庐山瀑布',tokey: "p1C2"},]},   
 
       
 
           { key: 'N1D4', content: ['这是一条猎人所遗留的小道','说不定能有所收获', ],
             btn: [{title: '咏鹅',tokey: "p1C1"},{title: '望庐山瀑布',tokey: "p1C2"},]},  
- 
+  
          
 
           #分支1、2合并后
@@ -167,7 +208,8 @@ scenes: [
           { key: 'M4', content: ['杀手休息完毕，开始继续走了','继续跟踪',], 
           btn: [{title: '不错', tokey: "N2A1"},{title: '不错', tokey: "N2A2"},  ], },   
 
-
+          { key: 'M4', content: ['小路逐渐变成了大路，这是一条通往城附近城市的马路','不过这样的话，相应的视野相对也比较开阔了','在这道路上基本上一览无余，没有什么可藏身的地方'], 
+          btn: [{title: '不错', tokey: "N2A1"},{title: '不错', tokey: "N2A2"},  ], },   
   
 # 靠近一点
 # 继续保持距离
@@ -205,7 +247,7 @@ scenes: [
           { key: 'END01', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
           btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "N1A", }]},    
           { key: 'END02', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
-          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "p1D1", }]},    
+          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "R2B2", }]},    
 
           ]  
         },
