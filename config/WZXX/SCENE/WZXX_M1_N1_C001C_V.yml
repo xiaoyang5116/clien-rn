@@ -1,5 +1,5 @@
 scenes: [
-    #
+    #默认场景
     {
       id: 'WZXX_M1_N1_C001C_V',
       name: "跟踪杀手",
@@ -30,9 +30,16 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001C_V', desc: '选项', 
         options: [ 
-          { title: "【跟踪杀手】", dialogs: ['Screen1']},
+          { title: "【开始】",  andVarsOff: ['C001C_V_MAP_point_01/ONE_OPEN'], toScene: 'C001C_V_MAP_point_01' },
         ],
       },
+
+
+
+
+
+
+
       #
       { 
         id: 'WZXX_M1_N1_C001C_V_CCXZ', desc: '选择穿越出身的记忆片段', 
@@ -292,7 +299,182 @@ scenes: [
 
 
     },
+  #地图场景===========================================================
+  # NPC1
+  {
+    id: 'C001C_V_MAP_point_01', name: '林间小道，入口',
 
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
 
+    # 变量定义
+    vars: [
+    { id: "ONE_OPEN", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+        { type: 'enter', andVarsOff: ['ONE_OPEN'], nextChat: 'C1' },
+        { type: 'enter', andVarsOn: ['ONE_OPEN'], nextChat: 'C2' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '树林，起点位置', 
+        options: [ 
+         { title: '【开始跟踪杀手】', andVarsOff: ['v1'],dialogs: ['Screen1'] }, 
+        ],
+      },
+      #
+      { 
+        id: 'C2', desc: '这里已经调查过了', 
+        options: [ 
+        ],
+      },
+    ],
+
+    # 对话框
+    dialogs: [
+          { id: 'Screen1',style: 6, title: '跟踪杀手#1', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
+          btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
+           #分支1
+          { key: 'N1A', content: ['杀手好像没有异常','继续向前走',], 
+          btn: [{title: '继续跟踪！（本剧场还在制作中）', tokey: "N1B"},{title: '结束这次跟踪', tokey: "END01"},], },   
+
+          { key: 'N1B', content: ['树下有很多落叶和枯枝','你不得不小心谨慎',], 
+          btn: [{title: '大胆下脚,JOJO思密达！', tokey: "N1B1"},{title: '想起一些小说情节', tokey: "N1B2"},], },   
+
+          { key: 'N1B1', content: ['看到了一窝蚂蚁','我踩','几只蛐蛐被吓跑远','乐','我踩','嘿嘿嘿','李森炎起身','……','发现被杀手以奇怪的眼光扫视','乐死了，你说是吧，李森炎说到'], 
+          btn: [{title: '是啊，乐死了', dialogs: ['gameover00']}], },   
+
+          { key: 'N1B2', content: ['小说1','某个主角踩了树枝被敌人发现','被追了三条街','小说2','某个主角踩了树枝被敌人发现','不得不化身狂战士全灭敌人','……'], 
+          btn: [{title: '被剧情逗乐了呵呵笑起来', tokey: "N1C1"},{title: '这好像和现在差不多啊', tokey: "M1"},], },   
+
+          { key: 'N1C1', content: ['杀手正在走路','突然听见背后传来诡异的笑','呵呵呵呵呵啊哈哈哈','呵哈哈哈隔','嗯嗯嗯嗯噗……','杀手……？','不对劲','……'], 
+          btn: [{title: '杀手：不对劲，好奇去瞅一下', dialogs: ['gameoverD4']},{title: '杀手：错觉吗？', tokey: "M1"},], },   
+    
+    ],},],
+  },
+   {
+  # NPC2
+    id: 'C001C_V_MAP_point_02', name: '寻常窄道',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+
+    # 变量定义
+    vars: [
+    { id: "ONE_OPEN", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+        { type: 'enter', andVarsOff: ['ONE_OPEN'], nextChat: 'C1' },
+        { type: 'enter', andVarsOn: ['ONE_OPEN'], nextChat: 'C2' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '树林，起点位置', 
+        options: [ 
+         { title: '【继续跟踪杀手】', andVarsOff: ['v1'],dialogs: ['Screen1'] }, 
+        ],
+      },
+      #
+      { 
+        id: 'C2', desc: '这里已经调查过了', 
+        options: [ 
+        ],
+      },
+    ],
+
+    # 对话框
+    dialogs: [
+          { id: 'Screen1',style: 6, title: '跟踪杀手#1', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
+          btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
+
+    ],},],
+  },
+  # NPC3
+  {
+    id: 'npc1', name: '老者NPC',
+
+    # 指定场景为NPC场景
+    isNpc: true,
+
+    # 变量定义
+    vars: [
+      { id: 'hao_gan_du', min: 0, max: 10000000, defaultValue: 200 },
+    ],
+
+    # 动作定义
+    actions: [
+      { id: 'a1', cmd: 'var', params: 'hao_gan_du += 10' },
+      { id: 'a2', cmd: 'var', params: 'hao_gan_du -= 10' },
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c1' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'c1', desc: '', 
+        options: [ 
+          { title: '好感度 >= 200 显示', andVarsValue: ['hao_gan_du >= 200'] },
+          { title: '好感度 < 200 显示', andVarsValue: ['hao_gan_du < 200'] },
+          { title: '增加10点好感度', clickActions: ['a1'] },
+          { title: '减少10点好感度', clickActions: ['a2'] },
+          { title: '返回原场景', toScene: '@previous' },
+        ],
+      }
+    ],
+
+    # 对话框
+    dialogs: [
+    ],
+  },
+
+    maps: [
+      {
+        id: 'map1',
+        data: [
+          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_01', links: [[0, 1], ] },
+          { point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_02', links: [] },
+          
+          { point: [1, 0], title: '天仙', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
+          { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
+          { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
+          { point: [-2, 0], title: '老者', toScene: 'pomiao', links: [[-1, 0]] },
+          { point: [-1, -1], title: '地主', toScene: 'pomiao', links: [[-1, 0], [0, -1]] },
+        ]
+      },
+      {
+        id: 'map2',
+        data: [
+          { point: [0, 0], title: '神兽', toScene: 'pomiao', links: [[0, 1]] },
+          { point: [0, 1], title: '原神', toScene: 'wzkj', links: [] },
+        ]
+      },
+    ],
 
   ]
