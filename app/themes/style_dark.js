@@ -1,5 +1,6 @@
 
 import { StyleSheet } from 'react-native';
+import { px2pd } from '../constants/resolution';
 import sharedStyles from './sharedStyles';
 
 /** 主题色：黑色 */
@@ -117,6 +118,23 @@ const styles = StyleSheet.create({
         fontColor: btnFontColor,
     },
 
+    /* 选项按钮宽高 */
+    tabBottomImgStyle: {
+        width: px2pd(115),
+        height: px2pd(200),
+    },
+
+    /* 选项按钮文本 */
+    tabBottomLabelStyle: {
+        left: 20, 
+        top: 10
+    },
+
+    /* 城镇地图按钮标签样式 */
+    townMapButtonLabel: {
+        color: '#fff',
+    },
+
     /** ================================ */
     /**             邮件样式              */
     /** ================================ */
@@ -130,7 +148,7 @@ const styles = StyleSheet.create({
     /** ================================ */
     /* 对话选项框条目 */
     chatItem: {
-        backgroundColor: "#CCC",
+        // backgroundColor: "#CCC",
         paddingTop: 2,
         paddingBottom: 2,
         marginVertical: 2
@@ -149,6 +167,10 @@ const styles = StyleSheet.create({
     /** ================================ */
     profileItemImage: require('../../assets/button/profile_item.2.png'),
     profileItemImageSelected: require('../../assets/button/profile_item_selected.2.png'),
+    tabBottomImage: require('../../assets/themes/dark/button/tab_normal.png'),
+    optionButtonImage: require("../../assets/themes/dark/button/option_button.png"),
+    propSelectedImage: require("../../assets/themes/dark/button/prop_selected.png"),
+    townMapButtonImage: require("../../assets/themes/dark/button/town_button.png"),
 });
 
 export default styles;

@@ -56,7 +56,7 @@ const AreaBlock = (props) => {
             <ImageCapInset
                 style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.5 }}
                 source={require('../../../../assets/bg/area_block_border.png')}
-                capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                capInsets={{ top: 10, right: 10, bottom: 10, left: 10 }}
             />
             <View style={{ backgroundColor: '#e2d3c0', width: '75%', height: 30, justifyContent: 'center', alignItems: 'center' }}>
                 <ImageCapInset

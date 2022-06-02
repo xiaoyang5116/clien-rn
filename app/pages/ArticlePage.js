@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import lo from 'lodash';
+import lo, { set } from 'lodash';
 
 import {
   connect,
@@ -10,10 +10,11 @@ import {
   action,
   EventKeys,
   AppDispath,
-  DataContext
+  DataContext,
+  getWindowSize
 } from "../constants";
 
-import { 
+import {
   View,
   Text,
   FlatList,
@@ -29,6 +30,9 @@ import HeaderContainer from '../components/article/HeaderContainer';
 import FooterContainer from '../components/article/FooterContainer';
 import Collapse from '../components/collapse';
 import Drawer from '../components/drawer';
+import CluesList from '../components/cluesList/CluesList';
+
+const WIN_SIZE = getWindowSize();
 
 const WORLD = [
   {
@@ -58,9 +62,9 @@ const WORLD = [
 ];
 
 const WorldSelector = () => {
-  CarouselUtils.show({ 
-    data: WORLD, 
-    initialIndex: Math.floor(WORLD.length / 2), 
+  CarouselUtils.show({
+    data: WORLD,
+    initialIndex: Math.floor(WORLD.length / 2),
     onSelect: (p) => {
       if (p.item.toChapter != undefined) {
         AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: p.item.toChapter, __sceneId: '' } });
@@ -70,7 +74,7 @@ const WorldSelector = () => {
 }
 
 const UserAttributesHolder = (props) => {
-  const [ data, setData ] = React.useState(props.config);
+  const [data, setData] = React.useState(props.config);
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener(EventKeys.USER_ATTR_UPDATE, () => {
@@ -96,14 +100,14 @@ const UserAttributesHolder = (props) => {
 
     // 更新角色属性
     DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
-    
+
     return () => {
       listener.remove();
     }
   }, []);
 
   return (
-    <Collapse 
+    <Collapse
       data={data}
       renderItem={(item) => {
         return (
@@ -121,6 +125,36 @@ const UserAttributesHolder = (props) => {
     />
   );
 }
+
+const ReaderTab = (props) => {
+  const [tab, setTab] = React.useState("UserAttributesHolder")
+  const { attrsConfig } = props
+  const toggleTab = (tabkey) => {
+    if (tab === tabkey) return null
+    setTab(tabkey)
+  }
+
+  return (
+    <View style={styles.tabDrawer}>
+      <View style={styles.tabContainer}>
+        <TextButton title={"属性"} onPress={() => { toggleTab("UserAttributesHolder") }} />
+        <TextButton title={"线索"} onPress={() => { toggleTab("CluesList") }} />
+      </View>
+      <View style={styles.contentContainer}>
+        <View style={{ flex: 1, display: tab === "CluesList" ? "flex" : "none" }}>
+          <CluesList />
+        </View>
+        <View style={{ flex: 1, display: tab === "UserAttributesHolder" ? "flex" : "none" }}>
+          {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
+        </View>
+
+      </View>
+    </View>
+  )
+
+}
+
+
 
 class ArticlePage extends Component {
 
@@ -158,7 +192,7 @@ class ArticlePage extends Component {
   }
 
   scrollHandler = (payload) => {
-    this.props.dispatch(action('ArticleModel/scroll')({ 
+    this.props.dispatch(action('ArticleModel/scroll')({
       offsetX: payload.nativeEvent.contentOffset.x,
       offsetY: payload.nativeEvent.contentOffset.y,
     }));
@@ -173,66 +207,76 @@ class ArticlePage extends Component {
   render() {
     const { readerStyle, attrsConfig } = this.props;
     return (
-        <View style={[styles.viewContainer, { backgroundColor:readerStyle.bgColor }]}>
-          <HeaderContainer>
-            <View style={[styles.bannerStyle, { marginTop: 20, }]}>
-              <TextButton title='X' onPress={() => {
-                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
-              }} />
-              <TextButton title='选择世界' onPress={WorldSelector} />
-              <TextButton title='...' />
-            </View>
-          </HeaderContainer>
-          <View style={styles.topBarContainer}>
+      <View style={[styles.viewContainer, { backgroundColor: readerStyle.bgColor }]}>
+        <HeaderContainer>
+          <View style={[styles.bannerStyle, { marginTop: 20, }]}>
+            <TextButton title='X' onPress={() => {
+              DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+            }} />
+            <TextButton title='选择世界' onPress={WorldSelector} />
+            <TextButton title='...' />
           </View>
-          <View style={styles.bodyContainer}>
-            <FlatList
-              ref={this.refList}
-              data={this.props.sections}
-              renderItem={(data) => <Block data={data.item} />}
-              keyExtractor={item => item.key}
-              onViewableItemsChanged={this.viewableItemsChangedhandler}
-              onScroll={this.scrollHandler}
-              onEndReached={this.endReachedHandler}
-              initialNumToRender={2}
-              maxToRenderPerBatch={5}
-              onTouchStart={(e) => {
-                this.startX = e.nativeEvent.pageX;
-                this.startY = e.nativeEvent.pageY;
-              }}
-              onTouchMove={(e) => {
-                const dx = e.nativeEvent.pageX - this.startX;
-                const dy = e.nativeEvent.pageY - this.startY;
-
-                if (Math.abs(dx) >= 10) {
-                  if (dx < 0) {
-                    this.refPropsContainer.current.offsetX(-dx);
-                    this.context.slideMoving = true;
-                  }
-                }
-              }}
-              onTouchEnd={() => {
-                this.refPropsContainer.current.release();
-              }}
-              onTouchCancel={() => {
-                this.refPropsContainer.current.release();
-              }}
-            />
-          </View>
-          <FooterContainer>
-            <View style={styles.bannerStyle}>
-              <TextButton title='目录' />
-              <TextButton title='夜间' />
-              <TextButton title='设置' onPress={()=>{
-                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
-                const key =RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
-              }} />
-            </View>
-          </FooterContainer>
-          <Drawer ref={this.refPropsContainer}>
-            {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
-          </Drawer>
+        </HeaderContainer>
+        <View style={styles.topBarContainer}>
         </View>
+        <View style={styles.bodyContainer}>
+          <FlatList
+            ref={this.refList}
+            data={this.props.sections}
+            renderItem={(data) => <Block data={data.item} />}
+            keyExtractor={item => item.key}
+            onViewableItemsChanged={this.viewableItemsChangedhandler}
+            onScroll={this.scrollHandler}
+            onEndReached={this.endReachedHandler}
+            initialNumToRender={2}
+            maxToRenderPerBatch={5}
+            onTouchStart={(e) => {
+              if (e.nativeEvent.pageX < WIN_SIZE.width - 40)
+                return;
+
+              this.startX = e.nativeEvent.pageX;
+              this.startY = e.nativeEvent.pageY;
+              this.started = true;
+            }}
+            onTouchMove={(e) => {
+              if (!this.started)
+                return;
+
+              const dx = e.nativeEvent.pageX - this.startX;
+              const dy = e.nativeEvent.pageY - this.startY;
+
+              if (Math.abs(dx) >= 10) {
+                if (dx < 0) {
+                  this.refPropsContainer.current.offsetX(-dx);
+                  this.context.slideMoving = true;
+                }
+              }
+            }}
+            onTouchEnd={() => {
+              this.refPropsContainer.current.release();
+              this.started = false;
+            }}
+            onTouchCancel={() => {
+              this.refPropsContainer.current.release();
+              this.started = false;
+            }}
+          />
+        </View>
+        <FooterContainer>
+          <View style={styles.bannerStyle}>
+            <TextButton title='目录' />
+            <TextButton title='夜间' />
+            <TextButton title='设置' onPress={() => {
+              DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+              const key = RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
+            }} />
+          </View>
+        </FooterContainer>
+        <Drawer ref={this.refPropsContainer}>
+          <ReaderTab attrsConfig={attrsConfig} />
+          {/* {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>} */}
+        </Drawer>
+      </View>
     );
   }
 
@@ -241,8 +285,8 @@ class ArticlePage extends Component {
 const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
-    alignItems: 'center', 
-    justifyContent: "flex-start", 
+    alignItems: 'center',
+    justifyContent: "flex-start",
     // backgroundColor: "#eee7dd"
   },
   topBarContainer: {
@@ -263,11 +307,26 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bannerStyle: {
-    flex: 1, 
-    flexDirection: 'row', 
-    justifyContent: 'space-around', 
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
+  tabDrawer: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    flexWrap: "nowrap",
+  },
+  tabContainer: {
+    width: "18%",
+    height: "100%",
+  },
+  contentContainer: {
+    width: "80%",
+    height: "100%",
+    backgroundColor: "#a49f99"
+  }
 });
 
 export default connect((state) => ({ ...state.ArticleModel }))(ArticlePage);

@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import { View, Text, Animated, TouchableOpacity, Easing } from 'react-native';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../../constants/resolution';
 
 export default LeftToRight = props => {
   const { currentStyles, time, message } = props;
@@ -55,7 +57,7 @@ export default LeftToRight = props => {
   return (
     <Animated.View // 使用专门的可动画化的View组件
       style={{
-        ...currentStyles.tooltip,
+        // ...currentStyles.tooltip,
         position: 'absolute',
         bottom: 100,
         left: leftAnim,
@@ -64,6 +66,7 @@ export default LeftToRight = props => {
       <TouchableOpacity onPress={props.isHide}>
         <View style={currentStyles.tooltipContainer}>
           <View style={currentStyles.tooltipImg}></View>
+          <FastImage style={{ width: px2pd(1042), height: px2pd(84), position: 'absolute' }} source={require('../../../../assets/bg/toast.png')} />
           <Text style={currentStyles.tooltipText}>
             {message}
           </Text>

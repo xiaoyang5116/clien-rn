@@ -3,12 +3,14 @@ import {
     Text,
     TouchableWithoutFeedback,
     FlatList,
+    Image
 } from 'react-native';
 import React from 'react';
 import { ThemeContext } from '../../../constants';
 import { HalfPanel } from '../../panel';
 import { TextButton } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
+
 
 const HalfSingle = (props) => {
     const theme = React.useContext(ThemeContext);

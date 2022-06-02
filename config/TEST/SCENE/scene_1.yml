@@ -122,6 +122,32 @@ scenes: [
       { type: 'enter', dialogs: ['p0'] },
     ],
 
+    # 注册地图
+    maps: [
+      {
+        id: 'map1',
+        data: [
+          { point: [0, 0], title: '神兽', toScene: 'pomiao', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
+          { point: [0, 1], title: '原神', toScene: 'wzkj', links: [] },
+          { point: [1, 0], title: '天仙', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
+          { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
+          { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
+          { point: [-2, 0], title: '老者', toScene: 'pomiao', links: [[-1, 0]] },
+          { point: [-1, -1], title: '地主', toScene: 'pomiao', links: [[-1, 0], [0, -1]] },
+        ]
+      },
+      {
+        id: 'map2',
+        data: [
+          { point: [0, 0], title: '神兽', toScene: 'pomiao', links: [[0, 1]] },
+          { point: [0, 1], title: '原神', toScene: 'wzkj', links: [] },
+        ]
+      },
+    ],
+
+    # 当前场景地图
+    mapId: 'map1',
+
     # 对话选项
     chats: [
       # 新手对话主列表

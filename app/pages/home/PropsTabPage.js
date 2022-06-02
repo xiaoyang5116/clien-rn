@@ -5,6 +5,7 @@ import {
     connect,
     Component,
     StyleSheet,
+    ThemeContext,
 } from "../../constants";
 
 import { 
@@ -23,8 +24,11 @@ import { Panel } from '../../components/panel';
 import { confirm } from '../../components/dialog';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../constants/resolution';
 
 class PropsTabPage extends Component {
+
+    static contextType = ThemeContext;
 
     constructor(props) {
         super(props);
@@ -79,11 +83,8 @@ class PropsTabPage extends Component {
         }
         return (
         <TouchableOpacity onPress={() => this._propSelected(data.item)} activeOpacity={1}>
-            <View style={styles.propsItem}>
-                <FastImage
-                    style={{ width: '100%', height: '100%', position: 'absolute', opacity: (this.state.selectId == data.item.id) ? 1 : 0 }}
-                    source={require('../../../assets/button/prop_item_bg.png')}
-                />
+            <View style={[styles.propsItem, (data.item.id == 1) ? styles.propsTopBorder : {}]}>
+                {(this.state.selectId == data.item.id) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={this.context.propSelectedImage} /> : <></>}
                 <View style={styles.propsBorder}>
                     <View style={{ flex: 1, flexDirection: 'row' }} >
                         <Text style={[{ marginLeft: 20, fontSize: 22 }, color]}>{data.item.name}</Text>
@@ -92,11 +93,6 @@ class PropsTabPage extends Component {
                         <Text style={{ marginRight: 20, fontSize: 22, color: '#424242', textAlign: 'right' }}>x{data.item.num}</Text>
                     </View>
                 </View>
-                <ImageCapInset
-                    style={{ width: '100%', height: 43, position: 'absolute', top: -2, opacity: (this.state.selectId == data.item.id) ? 0.5 : 0 }}
-                    source={require('../../../assets/button/prop_item_patch.png')}
-                    capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
-                />
             </View>
         </TouchableOpacity>
         );
@@ -170,7 +166,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: 40,
+        height: px2pd(108),
     },
     propsBorder: {
         flex: 1, 
@@ -182,6 +178,10 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ccc',
         marginLeft: 1,
         marginRight: 1,
+    },
+    propsTopBorder: {
+        borderTopWidth: 1,
+        borderTopColor: '#ccc',
     },
     propSelected: {
         backgroundColor: '#d6d6d6',

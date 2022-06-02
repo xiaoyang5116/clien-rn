@@ -5,6 +5,7 @@ import {
     connect,
     Component,
     StyleSheet,
+    ThemeContext,
 } from "../../../constants";
 
 import { 
@@ -23,8 +24,11 @@ import { Panel } from '../../../components/panel';
 
 import FastImage from 'react-native-fast-image';
 import ImageCapInset from 'react-native-image-capinsets-next';
+import { px2pd } from '../../../constants/resolution';
 
 class ComposeMainTabPage extends Component {
+
+    static contextType = ThemeContext;
 
     constructor(props) {
         super(props);
@@ -64,20 +68,12 @@ class ComposeMainTabPage extends Component {
         return (
         <TouchableOpacity onPress={() => this._itemSelected(data.item)} activeOpacity={1}>
             <View style={styles.composeItem}>
-                <FastImage
-                    style={{ width: '100%', height: '100%', position: 'absolute', opacity: (this.state.selectId == data.item.id) ? 1 : 0 }}
-                    source={require('../../../../assets/button/prop_item_bg.png')}
-                />
-                <View style={styles.composeBorder}>
+                <View style={[styles.composeBorder, (data.item.id == 1) ? styles.composeTopBorder : {}]}>
                     <View style={{ flex: 1, flexDirection: 'row' }} >
                         <Text style={[{ marginLeft: 20, fontSize: 22 }, data.item.valid ? styles.valid : styles.notValid ]}>{data.item.name}</Text>
                     </View>
                 </View>
-                <ImageCapInset
-                    style={{ width: '100%', height: 43, position: 'absolute', top: -2, opacity: (this.state.selectId == data.item.id) ? 0.5 : 0 }}
-                    source={require('../../../../assets/button/prop_item_patch.png')}
-                    capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
-                />
+                {(this.state.selectId == data.item.id) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={this.context.propSelectedImage} /> : <></>}
                 <View style={{ position: 'absolute', right: 10, width: 85 }}>
                     <TextButton title="选择配方" {...this.props} fontSize={14} onPress={() => { this._composeSelected(data.item); }} />
                 </View>
@@ -143,7 +139,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: 40,
+        height: px2pd(108),
     },
     composeBorder: {
         flex: 1, 
@@ -155,6 +151,10 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ccc',
         marginLeft: 1,
         marginRight: 1,
+    },
+    composeTopBorder: {
+        borderTopWidth: 1,
+        borderTopColor: '#ccc',
     },
     composeSelected: {
         backgroundColor: '#d6d6d6',

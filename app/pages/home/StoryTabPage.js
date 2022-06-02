@@ -11,6 +11,7 @@ import {
 import { 
   Text, 
   View, 
+  Image,
   SectionList, 
   TouchableWithoutFeedback 
 } from '../../constants/native-ui';
@@ -19,9 +20,21 @@ import ProgressBar from '../../components/ProgressBar';
 import * as DateTime from '../../utils/DateTimeUtils';
 import FastImage from 'react-native-fast-image';
 import lo from 'lodash';
+import { px2pd } from '../../constants/resolution';
+import SceneMap from '../../components/maps/SceneMap';
 
 const SCENE_BG = [
   { name: 'default', img: require('../../../assets/scene/bg_default.jpg') },
+];
+
+const SCENE_MAP_DATA = [
+  { point: [0, 0], title: '神兽', toScene: 'pomiao', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
+  { point: [0, 1], title: '原神', toScene: 'wzkj', links: [] },
+  { point: [1, 0], title: '天仙', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
+  { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
+  { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
+  { point: [-2, 0], title: '老者', toScene: 'pomiao', links: [[-1, 0]] },
+  { point: [-1, -1], title: '地主', toScene: 'pomiao', links: [[-1, 0], [0, -1]] },
 ];
 
 const SceneImage = (props) => {
@@ -98,7 +111,8 @@ class StoryTabPage extends Component {
     return (
       <View style={this.context.chatItem}>
         <TouchableWithoutFeedback onPress={() => this._onClickItem(data)}>
-          <View style={{ height: 35, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ height: px2pd(117), justifyContent: 'center', alignItems: 'center' }}>
+            <Image style={{ width: '100%', height: '100%', position: 'absolute' }} source={this.context.optionButtonImage} />
             <Text style={{ fontSize: 18, color: this.context.options.fontColor }}>{data.item.title}</Text>
           </View>
         </TouchableWithoutFeedback>
@@ -134,6 +148,18 @@ class StoryTabPage extends Component {
         {progressViewList}
       </View>
     </View>
+    );
+  }
+
+  _renderMap() {
+    if (lo.isEmpty(this.props.scene) || !lo.isArray(this.props.scene.mapData))
+      return (<></>);
+    return (
+      <View style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: '100%', justifyContent: 'flex-end', alignItems: 'center', zIndex: 10 }} pointerEvents='box-none'>
+        <View style={{ marginBottom: 40 }} pointerEvents='box-none'>
+          <SceneMap data={this.props.scene.mapData} />
+        </View>
+      </View>
     );
   }
 
@@ -186,6 +212,7 @@ class StoryTabPage extends Component {
           />
         </View>
         {this._renderSceneProgress()}
+        {this._renderMap()}
       </View>
     );
   }

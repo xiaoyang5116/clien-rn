@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 
 import SplashScreen from 'react-native-splash-screen'  // 启动页插件
+import { SafeAreaProvider } from 'react-native-safe-area-context';  // React Native Elements
 
 import {
   dva_create,
@@ -35,6 +36,7 @@ import RootView from './components/RootView';
 import EventListeners from './utils/EventListeners';
 import FastImage from 'react-native-fast-image';
 import { images } from './constants/preload';
+import Sound from './components/sound';
 
 function preloadImages(images) {
   const uris = images.map(image => ({
@@ -61,6 +63,7 @@ const models = [
   require('./models/MailBoxModel').default,
   require('./models/LotteryModel').default,
   require('./models/ExploreModel').default,
+  require('./models/CluesModel').default,
 ];
 
 const ActionHook = ({ dispatch, getState }) => next => action => {
@@ -129,7 +132,7 @@ class App extends Component {
     };
     this.listener = null;
   }
-  
+
   componentDidMount() {
     // 注册事件监听
     this.listener = DeviceEventEmitter.addListener(EventKeys.APP_SET_STATE, (payload) => {
@@ -138,12 +141,12 @@ class App extends Component {
 
     // 触发reload事件加载基础数据
     EventListeners.raise('reload')
-    .then(() => {
-      DeviceEventEmitter.emit(EventKeys.APP_SET_STATE, { 
-        loading: false, 
-        themeStyle: currentTheme().style 
+      .then(() => {
+        DeviceEventEmitter.emit(EventKeys.APP_SET_STATE, {
+          loading: false,
+          themeStyle: currentTheme().style
+        });
       });
-    });
 
     // 启动页
     if (Platform.OS == 'android') {
@@ -163,18 +166,21 @@ class App extends Component {
 
   renderBody() {
     return (
-      <Provider store={dva._store}>
-        <ThemeContext.Provider value={this.state.themeStyle}>
-          <DataContext.Provider value={{}}>
-            <View style={styles.rootContainer}>
-              <Shock>
-                <MainPage />
-                <RootView />
-              </Shock>
-            </View>
-          </DataContext.Provider>
-        </ThemeContext.Provider>
-      </Provider>
+      <SafeAreaProvider>
+        <Provider store={dva._store}>
+          <ThemeContext.Provider value={this.state.themeStyle}>
+            <DataContext.Provider value={{}}>
+              <View style={styles.rootContainer}>
+                <Shock>
+                  <MainPage />
+                  <RootView />
+                  <Sound />
+                </Shock>
+              </View>
+            </DataContext.Provider>
+          </ThemeContext.Provider>
+        </Provider>
+      </SafeAreaProvider>
     );
   }
 

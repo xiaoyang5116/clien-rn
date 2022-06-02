@@ -97,7 +97,7 @@ const WorldPreview = (props) => {
                   <ImageCapInset
                       style={{ width: '100%', height: '100%', position: 'absolute', zIndex: -1 }}
                       source={require('../../../assets/bg/world_preview_border.png')}
-                      capInsets={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                      capInsets={{ top: 15, right: 15, bottom: 15, left: 15 }}
                     />
                   <FastImage style={{ position: 'absolute', left: 0, bottom: -100, zIndex: -1, width: winSize.width, height: 250, opacity: 0.1 }} 
                     resizeMode='cover' 
