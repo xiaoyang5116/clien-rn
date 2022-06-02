@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, DeviceEventEmitter } from 'react-native'
 import React from 'react'
 import Slider from '@react-native-community/slider';
 
-import { connect, action } from "../../constants";
+import { connect, action, EventKeys, } from "../../constants";
 import { Panel } from '../../components/panel'
 import { TextButton } from '../../constants/custom-ui';
 
@@ -29,7 +29,10 @@ const ItemRender = (props) => {
                     <Text style={[styles.btn, { width: "50%" }]}>{props.title}</Text>
                 </View>
                 <View style={{ width: "20%", }}>
-                    <TouchableOpacity onPress={() => { console.log("fff"); }}>
+                    <TouchableOpacity onPress={() => {
+                        props.updataState(props.default)
+                        props.onValueChange(props.default)
+                    }}>
                         <Text style={[styles.btn, { width: "100%" }]}>复位</Text>
                     </TouchableOpacity>
                 </View>
@@ -42,50 +45,98 @@ const ItemRender = (props) => {
             <View style={{ height: 60, width: "100%", justifyContent: 'center', }}>
                 <Slider
                     value={props.value}
-                    step={1}
-                    maximumValue={100}
+                    step={0.01}
+                    maximumValue={1}
                     minimumValue={0}
                     minimumTrackTintColor={"#066dff"}
                     maximumTrackTintColor={"#b0b0b0"}
-                    onValueChange={(value) => { }}
-                    onSlidingComplete={(value) => { }}
+                    onValueChange={(value) => { props.onValueChange(value) }}
+                    onSlidingComplete={(value) => { props.updataState(value) }}
                 />
             </View>
         </View>
     )
 }
 
-const SoundSettings = (props) => {
-    return (
-        <Panel>
-            <SafeAreaView style={{ flex: 1 }}>
-                <View style={{ paddingLeft: 24, paddingRight: 24 }}>
-                    <TitleText>音量设置</TitleText>
-                    <DividingLine />
-                    <ItemRender title={"音量"} value={10} default={10} />
-                    <DividingLine />
-                    <ItemRender title={"音效"} value={10} default={10} />
-                    <DividingLine />
-                    <TitleText>阅读时音量设置</TitleText>
-                    <DividingLine />
-                    <ItemRender title={"音量"} value={10} default={10} />
-                    <DividingLine />
-                    <ItemRender title={"音效"} value={10} default={10} />
-                    <DividingLine />
-                    <View style={{ marginTop: 24, width: "40%" }}>
-                        <TouchableOpacity onPress={() => { props.navigation.goBack() }}>
-                            <Text style={styles.btn} >
-                                退出
-                            </Text>
-                        </TouchableOpacity>
+class SoundSettings extends React.PureComponent {
+    constructor(props) {
+        super(props)
+        this.state = {
+            sceneVolume: this.props.sceneVolume.bg,
+            sceneSound: this.props.sceneVolume.effct,
+            readerVolume: this.props.readerVolume.bg,
+            readerSound: this.props.readerVolume.effct,
+        }
+    }
+
+    // // 音乐音量设置
+    // static SOUND_BG_VOLUME_UPDATE = 'SOUND_BG_VOLUME_UPDATE';
+    // // 音效音量设置
+    // static SOUND_EFFECT_VOLUME_UPDATE = 'SOUND_EFFECT_VOLUME_UPDATE';
+    render() {
+        console.log("sceneVolume", this.state.sceneVolume);
+        return (
+            <Panel>
+                <SafeAreaView style={{ flex: 1 }}>
+                    <View style={{ paddingLeft: 24, paddingRight: 24 }}>
+                        <TitleText>音量设置</TitleText>
+                        <DividingLine />
+                        <ItemRender title={"音量"}
+                            value={this.state.sceneVolume}
+                            default={0.5}
+                            onValueChange={(value) => {
+                                DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "sceneVolume", volume: value })
+                            }}
+                            updataState={(value) => { this.setState({ sceneVolume: value }) }}
+                        />
+                        <DividingLine />
+                        <ItemRender
+                            title={"音效"}
+                            value={this.state.sceneSound}
+                            default={0.5}
+                            onValueChange={(value) => {
+                                DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "sceneVolume", volume: value })
+                            }}
+                            updataState={(value) => { this.setState({ sceneSound: value }) }}
+                        />
+                        <DividingLine />
+                        <TitleText>阅读时音量设置</TitleText>
+                        <DividingLine />
+                        <ItemRender
+                            title={"音量"}
+                            value={this.state.readerVolume}
+                            default={0.5}
+                            onValueChange={(value) => {
+                                DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "readerVolume", volume: value })
+                            }}
+                            updataState={(value) => { this.setState({ readerVolume: value }) }}
+                        />
+                        <DividingLine />
+                        <ItemRender
+                            title={"音效"}
+                            value={this.state.readerSound}
+                            default={0.5}
+                            onValueChange={(value) => {
+                                DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "readerVolume", volume: value })
+                            }}
+                            updataState={(value) => { this.setState({ readerSound: value }) }}
+                        />
+                        <DividingLine />
+                        <View style={{ marginTop: 24, width: "40%" }}>
+                            <TouchableOpacity onPress={() => { this.props.navigation.goBack() }}>
+                                <Text style={styles.btn} >
+                                    退出
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
-            </SafeAreaView>
-        </Panel>
-    )
+                </SafeAreaView>
+            </Panel>
+        )
+    }
 }
 
-export default SoundSettings
+export default connect((state) => ({ ...state.SoundModel }))(SoundSettings)
 
 const styles = StyleSheet.create({
     container: {

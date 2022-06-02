@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { DeviceEventEmitter } from 'react-native';
 
 import Video from 'react-native-video';
-import { EventKeys } from '../../constants';
+import { EventKeys, connect, action } from '../../constants';
 
 const Sound = (props) => {
     const defaultSource = require('../../../assets/sound/bg.mp3');
@@ -13,7 +13,7 @@ const Sound = (props) => {
 
     React.useEffect(() => {
         const eventType = background ? EventKeys.SOUND_BG_VOLUME_UPDATE : EventKeys.SOUND_EFFECT_VOLUME_UPDATE;
-        const listener = DeviceEventEmitter.addListener(eventType, (type, volume) => {
+        const listener = DeviceEventEmitter.addListener(eventType, ({ type, volume }) => {
             setVolume(volume);
         });
         return () => {
@@ -43,4 +43,4 @@ Sound.defaultProps = {
     volume: 1,
 };
 
-export default Sound;
+export default connect((state) => ({ ...state.SoundModel }))(Sound);
