@@ -13,7 +13,7 @@ const Sound = (props) => {
 
     React.useEffect(() => {
         const eventType = background ? EventKeys.SOUND_BG_VOLUME_UPDATE : EventKeys.SOUND_EFFECT_VOLUME_UPDATE;
-        const listener = DeviceEventEmitter.addListener(eventType, (volume) => {
+        const listener = DeviceEventEmitter.addListener(eventType, (type, volume) => {
             setVolume(volume);
         });
         return () => {
