@@ -61,7 +61,10 @@ const SceneTimeLabel = (props) => {
   const worldTimeHidden = (scene != null && lo.isBoolean(scene.worldTimeHidden)) ? scene.worldTimeHidden : false;
 
   return (
-    <Text style={[themeStyle.datetimeLabel, { display: (worldTimeHidden ? 'none' : 'flex') }]}>{props.datetime}</Text>
+    <View style={{ display: (worldTimeHidden ? 'none' : 'flex') }}>
+      <Text style={[themeStyle.datetimeLabel]}>{props.datetimes[0]}</Text>
+      <Text style={[themeStyle.datetimeLabel, { textAlign: 'right' }]}>{props.datetimes[1]}</Text>
+    </View>
   );
 }
 
@@ -155,9 +158,9 @@ class StoryTabPage extends Component {
     if (lo.isEmpty(this.props.scene) || !lo.isArray(this.props.scene.mapData))
       return (<></>);
     return (
-      <View style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: '100%', justifyContent: 'flex-end', alignItems: 'center', zIndex: 10 }} pointerEvents='box-none'>
+      <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 'auto', justifyContent: 'flex-end', alignItems: 'center', zIndex: 10 }} pointerEvents='box-none'>
         <View style={{ marginBottom: 40 }} pointerEvents='box-none'>
-          <SceneMap data={this.props.scene.mapData} />
+          <SceneMap data={this.props.scene.mapData} initialCenterPoint={lo.isArray(this.props.scene.mapCenterPoint) ? this.props.scene.mapCenterPoint : [0,0]} />
         </View>
       </View>
     );
@@ -177,28 +180,29 @@ class StoryTabPage extends Component {
     }
   }
 
-  _getFmtDateTime(time) {
+  _getFmtDateTimes(time) {
     let dt = new Date();
     dt.setTime(time);
-    return "周{0} {1}年[{2}] {3}月{4}日 {5}".format(
-      DateTime.Week.format(dt.getDay()), 
-      dt.getFullYear(), 
-      DateTime.Seasons.format(dt.getMonth()), 
-      dt.getMonth() + 1, 
-      dt.getDate(),
-      DateTime.DayPeriod.format(dt.getHours())
-    );
+    return [
+      "{0}年[{1}] {2}月{3}日".format(dt.getFullYear(), DateTime.Seasons.format(dt.getMonth()), dt.getMonth() + 1, dt.getDate()),
+      "周{0} {1}".format(DateTime.Week.format(dt.getDay()), DateTime.DayPeriod.format(dt.getHours())),
+    ];
   }
 
   render() {
-    const fmtDateTime = (this.props.time > 0) 
-                          ? this._getFmtDateTime(this.props.time) 
-                          : '';
+    const fmtDateTimes = (this.props.time > 0) 
+                          ? this._getFmtDateTimes(this.props.time) 
+                          : [];
     return (
       <View style={this.props.currentStyles.viewContainer}>
         <View style={[this.props.currentStyles.positionBar, { flexDirection: 'row', justifyContent: 'space-between' }]}>
-          <Text style={[this.props.currentStyles.positionLabel, {color: this.props.currentStyles.navigation.text}]}>位置: {this.props.position}</Text>
-          <SceneTimeLabel {...this.props} datetime={fmtDateTime} />
+          <View>
+            <Text style={[this.props.currentStyles.positionLabel, {color: this.props.currentStyles.navigation.text}]}>位置:</Text>
+            <Text style={[this.props.currentStyles.positionLabel, {color: this.props.currentStyles.navigation.text}]}>{this.props.position}</Text>
+          </View>
+          <View>
+            <SceneTimeLabel {...this.props} datetimes={fmtDateTimes} />
+          </View>
         </View>
         <SceneImage {...this.props} />
         <View style={this.props.currentStyles.chatContainer}>

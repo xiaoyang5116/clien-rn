@@ -83,7 +83,7 @@
 #
 # ===========================================
 scenes: [
-  # NPC
+  # NPC1
   {
     id: 'npc1', name: '老者NPC',
 
@@ -125,4 +125,110 @@ scenes: [
     dialogs: [
     ],
   },
+  # NPC2
+  {
+    id: 'npc1', name: '老者NPC',
+
+    # 指定场景为NPC场景
+    isNpc: true,
+
+    # 变量定义
+    vars: [
+      { id: 'hao_gan_du', min: 0, max: 10000000, defaultValue: 200 },
+    ],
+
+    # 动作定义
+    actions: [
+      { id: 'a1', cmd: 'var', params: 'hao_gan_du += 10' },
+      { id: 'a2', cmd: 'var', params: 'hao_gan_du -= 10' },
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c1' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'c1', desc: '', 
+        options: [ 
+          { title: '好感度 >= 200 显示', andVarsValue: ['hao_gan_du >= 200'] },
+          { title: '好感度 < 200 显示', andVarsValue: ['hao_gan_du < 200'] },
+          { title: '增加10点好感度', clickActions: ['a1'] },
+          { title: '减少10点好感度', clickActions: ['a2'] },
+          { title: '返回原场景', toScene: '@previous' },
+        ],
+      }
+    ],
+
+    # 对话框
+    dialogs: [
+    ],
+  },
+  # NPC3
+  {
+    id: 'npc1', name: '老者NPC',
+
+    # 指定场景为NPC场景
+    isNpc: true,
+
+    # 变量定义
+    vars: [
+      { id: 'hao_gan_du', min: 0, max: 10000000, defaultValue: 200 },
+    ],
+
+    # 动作定义
+    actions: [
+      { id: 'a1', cmd: 'var', params: 'hao_gan_du += 10' },
+      { id: 'a2', cmd: 'var', params: 'hao_gan_du -= 10' },
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c1' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'c1', desc: '', 
+        options: [ 
+          { title: '好感度 >= 200 显示', andVarsValue: ['hao_gan_du >= 200'] },
+          { title: '好感度 < 200 显示', andVarsValue: ['hao_gan_du < 200'] },
+          { title: '增加10点好感度', clickActions: ['a1'] },
+          { title: '减少10点好感度', clickActions: ['a2'] },
+          { title: '返回原场景', toScene: '@previous' },
+        ],
+      }
+    ],
+
+    # 对话框
+    dialogs: [
+    ],
+  },
+
+    maps: [
+      {
+        id: 'map1',
+        data: [
+          { point: [0, 0], title: '神兽', toScene: 'pomiao', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
+          { point: [0, 1], title: '原神', toScene: 'wzkj', links: [] },
+          { point: [1, 0], title: '天仙', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
+          { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
+          { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
+          { point: [-2, 0], title: '老者', toScene: 'pomiao', links: [[-1, 0]] },
+          { point: [-1, -1], title: '地主', toScene: 'pomiao', links: [[-1, 0], [0, -1]] },
+        ]
+      },
+      {
+        id: 'map2',
+        data: [
+          { point: [0, 0], title: '神兽', toScene: 'pomiao', links: [[0, 1]] },
+          { point: [0, 1], title: '原神', toScene: 'wzkj', links: [] },
+        ]
+      },
+    ],
 ]

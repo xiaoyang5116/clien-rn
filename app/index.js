@@ -207,6 +207,7 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     fontSize: 24,
+    color: '#666',
   },
 });
 

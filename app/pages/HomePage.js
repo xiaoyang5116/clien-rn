@@ -49,7 +49,7 @@ const TabIcon = (props) => {
 
 const HeaderTitle = (props) => {
   return (
-    <View style={[{ marginTop: (Platform.OS == 'android' ? 0 : 45),  height: 50, width: '100%', backgroundColor: '#fff', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }]}>
+    <View style={[{ marginTop: (Platform.OS == 'android' ? 0 : 40),  height: 45, width: '100%', backgroundColor: '#fff', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }]}>
       <ImageCapInset
         style={{ width: '100%', height: '100%', position: 'absolute', }}
         source={require('../../assets/tab/tab_header_bg.png')}
