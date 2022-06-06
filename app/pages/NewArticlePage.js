@@ -269,8 +269,8 @@ const TheWorld = (props) => {
       {/* 白色遮盖层 */}
       <Animated.View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: '#fff', opacity: maskOpacity }} pointerEvents='none'>
         <Animated.View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', opacity: fontOpacity }}>
-          {(lo.isEqual(routeName, 'LeftWorld')) ? (<Text style={{ fontSize: 24 }}>其实，修真可以改变现实。。。</Text>) : <></>}
-          {(lo.isEqual(routeName, 'PrimaryWorld')) ? (<Text style={{ fontSize: 24 }}>所念即所现，所思即所得。。。</Text>) : <></>}
+          {(lo.isEqual(routeName, 'LeftWorld')) ? (<Text style={styles.tranSceneFontStyle}>其实，修真可以改变现实。。。</Text>) : <></>}
+          {(lo.isEqual(routeName, 'PrimaryWorld')) ? (<Text style={styles.tranSceneFontStyle}>所念即所现，所思即所得。。。</Text>) : <></>}
         </Animated.View>
       </Animated.View>
   </View>
@@ -444,6 +444,10 @@ const styles = StyleSheet.create({
     marginTop: 0,
     marginBottom: 10,
   },
+  tranSceneFontStyle: {
+    fontSize: 24, 
+    color: '#333',
+  }
 });
 
 export default connect((state) => ({ ...state.ArticleModel }))(NewArticlePage);
