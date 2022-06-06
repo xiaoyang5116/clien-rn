@@ -155,7 +155,7 @@ class StoryTabPage extends Component {
     if (lo.isEmpty(this.props.scene) || !lo.isArray(this.props.scene.mapData))
       return (<></>);
     return (
-      <View style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: '100%', justifyContent: 'flex-end', alignItems: 'center', zIndex: 10 }} pointerEvents='box-none'>
+      <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 'auto', justifyContent: 'flex-end', alignItems: 'center', zIndex: 10 }} pointerEvents='box-none'>
         <View style={{ marginBottom: 40 }} pointerEvents='box-none'>
           <SceneMap data={this.props.scene.mapData} />
         </View>
