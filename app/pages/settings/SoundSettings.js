@@ -1,15 +1,15 @@
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, DeviceEventEmitter } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, DeviceEventEmitter, ScrollView } from 'react-native'
 import React from 'react'
 import Slider from '@react-native-community/slider';
 
 import { connect, action, EventKeys, } from "../../constants";
 import { Panel } from '../../components/panel'
-import { TextButton } from '../../constants/custom-ui';
+import { Switch, ListItem } from '@rneui/themed';
 
 
 const TitleText = (props) => {
     return (
-        <View style={[styles.bgColor, { width: "60%", marginTop: 40, alignItems: 'center' }]}>
+        <View style={[styles.bgColor, { width: "55%", marginTop: 40, alignItems: 'center' }]}>
             <Text style={[styles.fontColor, styles.title]}>{props.children}</Text>
         </View>
     )
@@ -66,22 +66,33 @@ class SoundSettings extends React.PureComponent {
             sceneSound: this.props.sceneVolume.effct,
             readerVolume: this.props.readerVolume.bg,
             readerSound: this.props.readerVolume.effct,
+            isFollowMasterVolume: false,
         }
     }
 
-    // // 音乐音量设置
-    // static SOUND_BG_VOLUME_UPDATE = 'SOUND_BG_VOLUME_UPDATE';
-    // // 音效音量设置
-    // static SOUND_EFFECT_VOLUME_UPDATE = 'SOUND_EFFECT_VOLUME_UPDATE';
+    // 音量设置 key: SOUND_BG_VOLUME_UPDATE
+    // 音效设置 key: SOUND_EFFECT_VOLUME_UPDATE
+
+    handlerReaderVolume = (value) => {
+        if (value) {
+            DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "readerVolume", volume: this.state.sceneVolume })
+            DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "readerVolume", volume: this.state.sceneSound })
+        }
+        this.setState({ isFollowMasterVolume: value })
+    }
+
     render() {
-        console.log("sceneVolume", this.state.sceneVolume);
         return (
             <Panel>
                 <SafeAreaView style={{ flex: 1 }}>
-                    <View style={{ paddingLeft: 24, paddingRight: 24 }}>
-                        <TitleText>音量设置</TitleText>
+                    <ScrollView
+                        showsVerticalScrollIndicator={false}
+                        style={{ flex: 1, paddingLeft: 24, paddingRight: 24 }}
+                    >
+                        <TitleText>主音量设置</TitleText>
                         <DividingLine />
-                        <ItemRender title={"音量"}
+                        <ItemRender
+                            title={"音量"}
                             value={this.state.sceneVolume}
                             default={0.5}
                             onValueChange={(value) => {
@@ -100,28 +111,55 @@ class SoundSettings extends React.PureComponent {
                             updataState={(value) => { this.setState({ sceneSound: value }) }}
                         />
                         <DividingLine />
-                        <TitleText>阅读时音量设置</TitleText>
-                        <DividingLine />
-                        <ItemRender
-                            title={"音量"}
-                            value={this.state.readerVolume}
-                            default={0.5}
-                            onValueChange={(value) => {
-                                DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "readerVolume", volume: value })
+                        <ListItem.Accordion
+                            isExpanded={!this.state.isFollowMasterVolume}
+                            Component={() => {
+                                return (
+                                    <>
+                                        <View style={styles.readerVolumeContainer}>
+                                            <TitleText>阅读时音量设置</TitleText>
+                                            <View style={{
+                                                flexDirection: "row",
+                                                flexWrap: "nowrap",
+                                                justifyContent: "flex-end",
+                                                alignItems: "center",
+                                                marginTop: 40,
+                                            }}>
+                                                <Text style={styles.fontColor}>跟随主音量</Text>
+                                                <Switch
+                                                    color={"#bae8ff"}
+                                                    value={this.state.isFollowMasterVolume}
+                                                    onValueChange={(value) => this.handlerReaderVolume(value)}
+                                                />
+                                            </View>
+                                        </View>
+                                        <DividingLine />
+                                    </>
+                                )
                             }}
-                            updataState={(value) => { this.setState({ readerVolume: value }) }}
-                        />
-                        <DividingLine />
-                        <ItemRender
-                            title={"音效"}
-                            value={this.state.readerSound}
-                            default={0.5}
-                            onValueChange={(value) => {
-                                DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "readerVolume", volume: value })
-                            }}
-                            updataState={(value) => { this.setState({ readerSound: value }) }}
-                        />
-                        <DividingLine />
+                        >
+                            <ItemRender
+                                disabled={this.state.isFollowMasterVolume}
+                                title={"音量"}
+                                value={this.state.readerVolume}
+                                default={0.5}
+                                onValueChange={(value) => {
+                                    DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "readerVolume", volume: value })
+                                }}
+                                updataState={(value) => { this.setState({ readerVolume: value }) }}
+                            />
+                            <DividingLine />
+                            <ItemRender
+                                title={"音效"}
+                                value={this.state.readerSound}
+                                default={0.5}
+                                onValueChange={(value) => {
+                                    DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "readerVolume", volume: value })
+                                }}
+                                updataState={(value) => { this.setState({ readerSound: value }) }}
+                            />
+                            <DividingLine />
+                        </ListItem.Accordion>
                         <View style={{ marginTop: 24, width: "40%" }}>
                             <TouchableOpacity onPress={() => { this.props.navigation.goBack() }}>
                                 <Text style={styles.btn} >
@@ -129,7 +167,7 @@ class SoundSettings extends React.PureComponent {
                                 </Text>
                             </TouchableOpacity>
                         </View>
-                    </View>
+                    </ScrollView>
                 </SafeAreaView>
             </Panel>
         )
@@ -147,6 +185,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         paddingTop: 4,
         paddingBottom: 4
+    },
+    readerVolumeContainer: {
+        flexDirection: "row",
+        flexWrap: "nowrap",
+        justifyContent: "space-between",
+        alignItems: "center",
     },
     fontColor: {
         color: "#273136",
