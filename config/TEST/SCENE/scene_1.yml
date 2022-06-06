@@ -147,6 +147,8 @@ scenes: [
 
     # 当前场景地图
     mapId: 'map1',
+    # 地图中心点
+    mapCenterPoint: [-1, 0],
 
     # 对话选项
     chats: [

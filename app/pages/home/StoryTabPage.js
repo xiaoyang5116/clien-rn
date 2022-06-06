@@ -160,7 +160,7 @@ class StoryTabPage extends Component {
     return (
       <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 'auto', justifyContent: 'flex-end', alignItems: 'center', zIndex: 10 }} pointerEvents='box-none'>
         <View style={{ marginBottom: 40 }} pointerEvents='box-none'>
-          <SceneMap data={this.props.scene.mapData} />
+          <SceneMap data={this.props.scene.mapData} initialCenterPoint={lo.isArray(this.props.scene.mapCenterPoint) ? this.props.scene.mapCenterPoint : [0,0]} />
         </View>
       </View>
     );
