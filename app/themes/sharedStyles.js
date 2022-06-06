@@ -81,13 +81,15 @@ const sharedStyles = StyleSheet.create({
     /* 对话框内位置 */
     positionLabel: {
         fontSize: 18,
-        padding: 10,
+        paddingLeft: 10, 
+        paddingRight: 10,
         textAlign: 'left',
     },
     /* 对话框内位置 */
     datetimeLabel: {
         fontSize: 18,
-        padding: 10,
+        paddingLeft: 10,
+        paddingRight: 10,
     },
     /* 对话框 */
     chatContainer: {
