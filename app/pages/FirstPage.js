@@ -100,6 +100,10 @@ class FirstPage extends Component {
                 screen: 'Profile',
               });
             }} />
+            {/* 书城 */}
+            {/* <ImageButton {...BTN_STYLE} source={require('../../assets/button/profile_button.png')} selectedSource={require('../../assets/button/profile_button_selected.png')} onPress={() => {
+              RootNavigation.navigate('BookCity');
+            }} /> */}
           </View>
           <Drawer ref={this.refDrawer} direction={'left'} margin={60} style={{ backgroundColor: '#a49f99', borderRadius: 10, overflow: 'hidden' }}>
             <SafeAreaView style={{ flex: 1 }}>
