@@ -5,9 +5,9 @@ import {
   NavigationContainer
 } from '@react-navigation/native';
 
-import { 
-  createStackNavigator, 
-  CardStyleInterpolators 
+import {
+  createStackNavigator,
+  CardStyleInterpolators
 } from '@react-navigation/stack';
 
 import {
@@ -24,6 +24,7 @@ import ArticlePage from './ArticlePage';
 import NewArticlePage from './NewArticlePage';
 import FirstPage from './FirstPage';
 import SettingsPage from './SettingsPage';
+import BookCityPage from './BookCityPage'
 import { navigationRef } from '../utils/RootNavigation';
 import { playBGM } from '../components/sound/utils';
 
@@ -89,6 +90,7 @@ class MainPage extends Component {
           <Stack.Screen name='Article' options={{ headerShown: false }} component={NewArticlePage} />
           <Stack.Screen name="First" options={{ headerShown: false }} component={FirstPage} />
           <Stack.Screen name="Settings" options={{ headerShown: false }} component={SettingsPage} />
+          <Stack.Screen name="BookCity" options={{ headerShown: false }} component={BookCityPage} />
         </Stack.Navigator>
       </NavigationContainer>
     );
