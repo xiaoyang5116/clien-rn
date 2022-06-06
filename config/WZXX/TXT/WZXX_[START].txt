@@ -6,7 +6,7 @@
                 type: "仙侠",
                 author: "XXX",
                 imageUri: "",
-                options: { sceneId: 'WZXX_[START]', chatId: 'WZXX_[START]' }
+                options: { sceneId: 'WZXX_[START]', chatId: 'WZXX_[START]'}
         }
 }
 #END==========================================

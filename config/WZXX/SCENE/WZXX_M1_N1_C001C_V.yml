@@ -18,7 +18,7 @@ scenes: [
 
       # 动作定义
       actions: [],
-
+ 
       # 事件定义 阅读器中的场景事件暂时没什么意义
       events: [
       { type: 'enter', nextChat: 'C001C_EventSTART1',dialogs: ['C001B_START'],varsOff: ["v1A","v2A",],},
@@ -30,7 +30,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001C_V', desc: '选项', 
         options: [ 
-          { title: "【开始】",  andVarsOff: ['C001C_V_MAP_point_01/ONE_OPEN'], toScene: 'C001C_V_MAP_point_01' },
+          { title: "【DEBUG开始】",  varsOff: ['C001C_V_MAP_point_01/ONE_OPEN'], toScene: 'C001C_V_MAP_point_0_0' },
         ],
       },
 
@@ -87,7 +87,7 @@ scenes: [
       dialogs:
         [
            #选项对话
-          { id: 'Screen1',style: 6, title: '跟踪杀手', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen1',style: 6, title: '跟踪杀手', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
           btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
@@ -302,10 +302,12 @@ scenes: [
   #地图场景===========================================================
   # NPC1
   {
-    id: 'C001C_V_MAP_point_01', name: '林间小道，入口',
+    id: 'C001C_V_MAP_point_0_0', name: '林间小道，入口',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    # 当前场景地图
+    mapId: 'C001C_V_MAP_0_0',
 
     # 变量定义
     vars: [
@@ -326,9 +328,9 @@ scenes: [
     chats: [
       #
       { 
-        id: 'C1', desc: '树林，起点位置', 
+        id: 'C1', desc: '树林，起点位置，请选择', 
         options: [ 
-         { title: '【开始跟踪杀手】', andVarsOff: ['v1'],dialogs: ['Screen1'] }, 
+         { title: '【开始跟踪杀手】', varsOn: 'ONE_OPEN',dialogs: ['Screen1'] }, 
         ],
       },
       #
@@ -341,7 +343,7 @@ scenes: [
 
     # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '跟踪杀手#1', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen1',style: 6, title: '跟踪杀手#1', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
           btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
@@ -365,10 +367,12 @@ scenes: [
   },
    {
   # NPC2
-    id: 'C001C_V_MAP_point_02', name: '寻常窄道',
+    id: 'C001C_V_MAP_point_0_1', name: '寻常窄道',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    # 当前场景地图
+    mapId: 'C001C_V_MAP',
 
     # 变量定义
     vars: [
@@ -391,7 +395,7 @@ scenes: [
       { 
         id: 'C1', desc: '树林，起点位置', 
         options: [ 
-         { title: '【继续跟踪杀手】', andVarsOff: ['v1'],dialogs: ['Screen1'] }, 
+         { title: '【继续跟踪杀手】',dialogs: ['Screen2'] }, 
         ],
       },
       #
@@ -404,7 +408,7 @@ scenes: [
 
     # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '跟踪杀手#1', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen2',style: 6, title: '跟踪杀手#1', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
           btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
@@ -425,8 +429,6 @@ scenes: [
 
     # 动作定义
     actions: [
-      { id: 'a1', cmd: 'var', params: 'hao_gan_du += 10' },
-      { id: 'a2', cmd: 'var', params: 'hao_gan_du -= 10' },
     ],
 
     # 事件定义
@@ -456,25 +458,29 @@ scenes: [
 
     maps: [
       {
-        id: 'map1',
+        id: 'C001C_V_MAP_0_0',
         data: [
-          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_01', links: [[0, 1], ] },
-          { point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_02', links: [] },
-          
-          { point: [1, 0], title: '天仙', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
-          { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
-          { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
-          { point: [-2, 0], title: '老者', toScene: 'pomiao', links: [[-1, 0]] },
-          { point: [-1, -1], title: '地主', toScene: 'pomiao', links: [[-1, 0], [0, -1]] },
+          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
+          #{ point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_02', links: [] },
         ]
       },
       {
-        id: 'map2',
+        id: 'C001C_V_MAP_0_1',
         data: [
-          { point: [0, 0], title: '神兽', toScene: 'pomiao', links: [[0, 1]] },
-          { point: [0, 1], title: '原神', toScene: 'wzkj', links: [] },
+          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
+          { point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_0_1', links: [] },
         ]
       },
+      {
+        id: 'C001C_V_MAP_0_2',
+        data: [
+          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
+          { point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_0_1', links: [[0, 2], ] },
+          { point: [0, 2], title: '寻常窄道', toScene: 'C001C_V_MAP_point_0_2', links: [[0, 2], ] },
+        ]
+      },
+
+
     ],
 
   ]
