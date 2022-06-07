@@ -38,7 +38,6 @@ const Sound = (props) => {
         // 渐隐消失后通知下一个BGM
         if (fadeOut && volume <= 0) {
             DeviceEventEmitter.emit('__@Sound.nextBGM');
-            console.debug(`BGM fadeOut, SoundId=${props.soundId}`);
         }
     }
 
@@ -127,7 +126,6 @@ const SoundProvider = (props) => {
             setBGMViews((_list) => {
                 return [so]; // 同一时刻仅有一个BGM播放
             });
-            console.debug(`BGM Play, SoundId=${soundId}`);
         }, 0);
     }
 
@@ -140,7 +138,6 @@ const SoundProvider = (props) => {
         const so = <Sound key={ukey} type={type} id={ukey} soundId={soundId} isBGM={false} audioOnly={true} repeat={false} volume={volumeSettings.effect} source={source} onEnd={effectOnEnd} />;
 
         setEffectViews((list) => {
-            console.debug(list, effectPendingRemoveQueue);
             const validList = list.filter(e => (effectPendingRemoveQueue.current.indexOf(e.props.id) == -1));
             if (validList.length <= 0) effectPendingRemoveQueue.current.length = 0;
             return [...validList, so];

@@ -23,6 +23,8 @@ export default {
             bg: 0.5,
             effect: 0.5,
         },
+        // 跟随主音量
+        followMasterVolume: true,
     },
 
     effects: {
@@ -35,9 +37,13 @@ export default {
         },
 
         *setVolume({ payload }, { call, put, select }) {
-            const { category, type, volume } = payload;
+            const { category, type, volume, followMasterVolume } = payload;
             const soundState = yield select(state => state.SoundModel);
-            const newState = { masterVolume: lo.cloneDeep(soundState.masterVolume), readerVolume: lo.cloneDeep(soundState.readerVolume) };
+            const newState = { 
+                masterVolume: lo.cloneDeep(soundState.masterVolume), 
+                readerVolume: lo.cloneDeep(soundState.readerVolume),
+                followMasterVolume: followMasterVolume,
+            };
             const volumes = newState[type];
             volumes[category] = volume;
 
@@ -45,6 +51,12 @@ export default {
                 DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type, volume });
             } else if (lo.isEqual(category, 'effect')) {
                 DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type, volume });
+            }
+
+            // 跟随主音
+            if (followMasterVolume) {
+                newState.readerVolume.bg = newState.masterVolume.bg;
+                newState.readerVolume.effect = newState.masterVolume.effect;
             }
 
             yield put(action('updateSound')(newState));
