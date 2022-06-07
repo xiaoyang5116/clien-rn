@@ -2,10 +2,11 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ScrollView } fr
 import React from 'react'
 import Slider from '@react-native-community/slider';
 
+import lo from 'lodash';
 import { connect, action } from "../../constants";
 import { Panel } from '../../components/panel'
 import { Switch, ListItem } from '@rneui/themed';
-
+import { playBGM, playEffect } from '../../components/sound/utils';
 
 const TitleText = (props) => {
     return (
@@ -22,6 +23,17 @@ const DividingLine = () => {
 }
 
 const ItemRender = (props) => {
+    const testHandler = ({ category, type }) => {
+        if (lo.isEqual(category, 'effect')) {
+            playEffect('100', type);
+        } else if (lo.isEqual(category, 'bg')) {
+            if (lo.isEqual(type, 'masterVolume')) {
+                playBGM('5', type);
+            } else if (lo.isEqual(type, 'readerVolume')) {
+                playBGM('6', type);
+            }
+        }
+    }
     return (
         <View>
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
@@ -37,7 +49,9 @@ const ItemRender = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ width: "20%" }}>
-                    <TouchableOpacity onPress={() => { console.log("ccc"); }}>
+                    <TouchableOpacity onPress={() => { 
+                            testHandler(props);
+                        }}>
                         <Text style={[styles.btn, { width: "100%" }]}>测试</Text>
                     </TouchableOpacity>
                 </View>
@@ -107,6 +121,8 @@ class SoundSettings extends React.PureComponent {
                             title={"音量"}
                             value={this.state.masterVolume}
                             default={0.5}
+                            category={'bg'}
+                            type={'masterVolume'}
                             onValueChange={(value) => {
                                 this.props.dispatch(action('SoundModel/setVolume')({ 
                                     category: 'bg', 
@@ -126,6 +142,8 @@ class SoundSettings extends React.PureComponent {
                             title={"音效"}
                             value={this.state.masterSound}
                             default={0.5}
+                            category={'effect'}
+                            type={'masterVolume'}
                             onValueChange={(value) => {
                                 this.props.dispatch(action('SoundModel/setVolume')({ 
                                     category: 'effect', 
@@ -173,6 +191,8 @@ class SoundSettings extends React.PureComponent {
                                 title={"音量"}
                                 value={this.state.readerVolume}
                                 default={0.5}
+                                category={'bg'}
+                                type={'readerVolume'}
                                 onValueChange={(value) => {
                                     this.props.dispatch(action('SoundModel/setVolume')({ 
                                         category: 'bg', 
@@ -188,6 +208,8 @@ class SoundSettings extends React.PureComponent {
                                 title={"音效"}
                                 value={this.state.readerSound}
                                 default={0.5}
+                                category={'effect'}
+                                type={'readerVolume'}
                                 onValueChange={(value) => {
                                     this.props.dispatch(action('SoundModel/setVolume')({ 
                                         category: 'effect', 

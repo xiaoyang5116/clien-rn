@@ -66,19 +66,19 @@ class MainPage extends Component {
         playBGM('2');
         break;
       case 'Props':
-        playBGM('2');
+        playBGM('3');
         break;
       case 'Compose':
-        playBGM('2');
+        playBGM('4');
         break;
       case 'Town':
-        playBGM('2');
+        playBGM('5');
         break;
       case 'World':
-        playBGM('2');
+        playBGM('6');
         break;
       case 'Explore':
-        playEffect('4');
+        playEffect('100');
         break;
       case 'Article':
         playBGM('3', 'readerVolume');
