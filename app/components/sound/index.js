@@ -96,6 +96,12 @@ const SoundProvider = (props) => {
     const [bgmViews, setBGMViews] = React.useState([]);
     const [effectViews, setEffectViews] = React.useState([]);
 
+    // 同步至ref引用的状态变量，以便在副作用方法里面拿到最新值。
+    volumeState.current = { 
+        masterVolume: props.masterVolume,
+        readerVolume: props.readerVolume,
+    };
+
     const effectOnEnd = ({ id, soundId }) => {
         effectPendingRemoveQueue.current.push(id);
     }
@@ -131,7 +137,7 @@ const SoundProvider = (props) => {
         const ukey = uniqueKey.current++;
         const source = SOUNDS_CONFIG.find(e => lo.isEqual(e.id, soundId)).source;
         const volumeSettings = volumeState.current[type];
-        const so = <Sound key={ukey} type={type} id={ukey} soundId={soundId} isBGM={false} audioOnly={true} repeat={false} volume={volumeSettings.effct} source={source} onEnd={effectOnEnd} />;
+        const so = <Sound key={ukey} type={type} id={ukey} soundId={soundId} isBGM={false} audioOnly={true} repeat={false} volume={volumeSettings.effect} source={source} onEnd={effectOnEnd} />;
 
         setEffectViews((list) => {
             console.debug(list, effectPendingRemoveQueue);
@@ -144,12 +150,6 @@ const SoundProvider = (props) => {
     const fadeOutBGMAndPlayNext = () => {
         DeviceEventEmitter.emit('__@Sound.fadeOutBGM');
     }
-
-    // 同步至ref引用的状态变量，以便在副作用方法里面拿到最新值。
-    volumeState.current = { 
-        masterVolume: props.masterVolume,
-        readerVolume: props.readerVolume,
-    };
 
     React.useEffect(() => {
         const listener = DeviceEventEmitter.addListener(EventKeys.SOUND_BGM_PLAY, ({ type, soundId }) => {

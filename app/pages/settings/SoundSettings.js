@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, DeviceEventEmitter, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
 import Slider from '@react-native-community/slider';
 
-import { connect, action, EventKeys, } from "../../constants";
+import { connect, action } from "../../constants";
 import { Panel } from '../../components/panel'
 import { Switch, ListItem } from '@rneui/themed';
 
@@ -63,9 +63,9 @@ class SoundSettings extends React.PureComponent {
         super(props)
         this.state = {
             masterVolume: this.props.masterVolume.bg,
-            sceneSound: this.props.masterVolume.effct,
+            sceneSound: this.props.masterVolume.effect,
             readerVolume: this.props.readerVolume.bg,
-            readerSound: this.props.readerVolume.effct,
+            readerSound: this.props.readerVolume.effect,
             isFollowMasterVolume: false,
         }
     }
@@ -75,8 +75,8 @@ class SoundSettings extends React.PureComponent {
 
     handlerReaderVolume = (value) => {
         if (value) {
-            DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "readerVolume", volume: this.state.masterVolume })
-            DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "readerVolume", volume: this.state.sceneSound })
+            // DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "readerVolume", volume: this.state.masterVolume })
+            // DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "readerVolume", volume: this.state.sceneSound })
         }
         this.setState({ isFollowMasterVolume: value })
     }
@@ -96,7 +96,7 @@ class SoundSettings extends React.PureComponent {
                             value={this.state.masterVolume}
                             default={0.5}
                             onValueChange={(value) => {
-                                DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "masterVolume", volume: value })
+                                this.props.dispatch(action('SoundModel/setVolume')({ category: 'bg', type: "masterVolume", volume: value }));
                             }}
                             updataState={(value) => { this.setState({ masterVolume: value }) }}
                         />
@@ -106,13 +106,13 @@ class SoundSettings extends React.PureComponent {
                             value={this.state.sceneSound}
                             default={0.5}
                             onValueChange={(value) => {
-                                DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "masterVolume", volume: value })
+                                this.props.dispatch(action('SoundModel/setVolume')({ category: 'effect', type: "masterVolume", volume: value }));
                             }}
                             updataState={(value) => { this.setState({ sceneSound: value }) }}
                         />
                         <DividingLine />
                         <ListItem.Accordion
-                            isExpanded={!this.state.isFollowMasterVolume}
+                            isExpanded={this.state.isFollowMasterVolume}
                             Component={() => {
                                 return (
                                     <>
@@ -128,8 +128,8 @@ class SoundSettings extends React.PureComponent {
                                                 <Text style={styles.fontColor}>跟随主音量</Text>
                                                 <Switch
                                                     color={"#bae8ff"}
-                                                    value={this.state.isFollowMasterVolume}
-                                                    onValueChange={(value) => this.handlerReaderVolume(value)}
+                                                    value={!this.state.isFollowMasterVolume}
+                                                    onValueChange={(value) => this.handlerReaderVolume(!value)}
                                                 />
                                             </View>
                                         </View>
@@ -144,7 +144,7 @@ class SoundSettings extends React.PureComponent {
                                 value={this.state.readerVolume}
                                 default={0.5}
                                 onValueChange={(value) => {
-                                    DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "readerVolume", volume: value })
+                                    this.props.dispatch(action('SoundModel/setVolume')({ category: 'bg', type: "readerVolume", volume: value }));
                                 }}
                                 updataState={(value) => { this.setState({ readerVolume: value }) }}
                             />
@@ -154,7 +154,7 @@ class SoundSettings extends React.PureComponent {
                                 value={this.state.readerSound}
                                 default={0.5}
                                 onValueChange={(value) => {
-                                    DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "readerVolume", volume: value })
+                                    this.props.dispatch(action('SoundModel/setVolume')({ category: 'effect', type: "readerVolume", volume: value }));
                                 }}
                                 updataState={(value) => { this.setState({ readerSound: value }) }}
                             />

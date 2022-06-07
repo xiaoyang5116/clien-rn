@@ -1,48 +1,54 @@
 import {
     action,
     LocalCacheKeys,
+    DeviceEventEmitter,
+    EventKeys,
 } from "../constants";
+
+import lo from 'lodash';
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
-
-import {
-    GetSoundDataApi
-} from '../services/GetSoundDataApi';
 
 export default {
     namespace: 'SoundModel',
 
     state: {
-        masterVolume: {},
-        readerVolume: {},
+        // 主音量
+        masterVolume: {
+            bg: 0.5,
+            effect: 0.5,
+        },
+        // 阅读器音量（副音量）
+        readerVolume: {
+            bg: 0.5,
+            effect: 0.5,
+        },
     },
 
     effects: {
         *reload({ }, { call, put, select }) {
-            // 1. 加载本地配置
+            // 加载本地配置
             const soundData = yield call(LocalStorage.get, LocalCacheKeys.SOUND_DATA);
-            if (soundData == null) {
-                // 缺省音量
-                const defaultValues = {
-                    // 主音量
-                    masterVolume: {
-                        bg: 0.5,
-                        effct: 0.5,
-                    },
-                    // 阅读器音量（副音量）
-                    readerVolume: {
-                        bg: 0.5,
-                        effct: 0.5
-                    }
-                }
-                soundData = defaultValues;
-                yield call(LocalStorage.set, LocalCacheKeys.SOUND_DATA, soundData);
+            if (soundData != null) {
+                yield put(action('updateSound')(soundData));
             }
-            //
-            yield put(action('updateSound')(soundData));
         },
 
         *setVolume({ payload }, { call, put, select }) {
+            const { category, type, volume } = payload;
+            const soundState = yield select(state => state.SoundModel);
+            const newState = { masterVolume: lo.cloneDeep(soundState.masterVolume), readerVolume: lo.cloneDeep(soundState.readerVolume) };
+            const volumes = newState[type];
+            volumes[category] = volume;
+
+            if (lo.isEqual(category, 'bg')) {
+                DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type, volume });
+            } else if (lo.isEqual(category, 'effect')) {
+                DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type, volume });
+            }
+
+            yield put(action('updateSound')(newState));
+            yield call(LocalStorage.set, LocalCacheKeys.SOUND_DATA, newState);
         },
     },
     reducers: {
