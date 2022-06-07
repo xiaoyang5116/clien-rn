@@ -5,11 +5,7 @@ import { View, DeviceEventEmitter } from 'react-native';
 import lo from 'lodash';
 import Video from 'react-native-video';
 import { EventKeys, connect } from '../../constants';
-
-const SOUNDS_MAP = [
-    { id: '1', source: require('../../../assets/sound/bg.mp3') },
-    { id: '2', source: require('../../../assets/sound/bg2.mp3') },
-];
+import { SOUNDS_CONFIG } from './config';
 
 const Sound = (props) => {
     const refVideo = React.useRef(null);
@@ -46,6 +42,23 @@ const Sound = (props) => {
         }
     }
 
+    React.useEffect(() => {
+        const bgmListener = DeviceEventEmitter.addListener(EventKeys.SOUND_BG_VOLUME_UPDATE, ({ type, volume }) => {
+            if (props.isBGM && lo.isEqual(type, props.type)) {
+                setVolume(volume);
+            }
+        });
+        const efmListener = DeviceEventEmitter.addListener(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, ({ type, volume }) => {
+            if (!props.isBGM && lo.isEqual(type, props.type)) {
+                setVolume(volume);
+            }
+        });
+        return () => {
+            bgmListener.remove();
+            efmListener.remove();
+        }
+    }, []);
+
     return (
         <Video 
             ref={(ref) => refVideo.current = ref} 
@@ -53,6 +66,9 @@ const Sound = (props) => {
             source={props.source}
             repeat={props.repeat}
             volume={volume}
+            onEnd={() => {
+                if (props.onEnd != undefined) props.onEnd({ id: props.id, soundId: props.soundId });
+            }}
             />
     );
 }
@@ -74,8 +90,15 @@ Sound.defaultProps = {
 const SoundProvider = (props) => {
     const uniqueKey = React.useRef(0);
     const bgmPendingQueue = React.useRef([]);
+    const effectPendingRemoveQueue = React.useRef([]);
     const playingBGM = React.useRef(null);
+    const volumeState = React.useRef({});
     const [bgmViews, setBGMViews] = React.useState([]);
+    const [effectViews, setEffectViews] = React.useState([]);
+
+    const effectOnEnd = ({ id, soundId }) => {
+        effectPendingRemoveQueue.current.push(id);
+    }
 
     const playBGM = () => {
         const lastBGM = bgmPendingQueue.current.pop();
@@ -86,9 +109,12 @@ const SoundProvider = (props) => {
             return;
         }
 
-        const { soundId } = lastBGM;
-        const source = SOUNDS_MAP.find(e => lo.isEqual(e.id, soundId)).source;
-        const so = <Sound key={lastBGM.key} soundId={soundId} isBGM={true} audioOnly={true} repeat={true} volume={1} source={source} />;
+        // type: 主音，副音（阅读器）
+        // soundId: 声音ID
+        const { type, soundId } = lastBGM;
+        const source = SOUNDS_CONFIG.find(e => lo.isEqual(e.id, soundId)).source;
+        const volumeSettings = volumeState.current[type];
+        const so = <Sound key={lastBGM.key} id={lastBGM.key} type={type} soundId={soundId} isBGM={true} audioOnly={true} repeat={true} volume={volumeSettings.bg} source={source} />;
 
         playingBGM.current = soundId;
         setTimeout(() => {
@@ -99,14 +125,35 @@ const SoundProvider = (props) => {
         }, 0);
     }
 
+    const playEffect = ({ type, soundId }) => {
+        // type: 主音，副音（阅读器）
+        // soundId: 声音ID
+        const ukey = uniqueKey.current++;
+        const source = SOUNDS_CONFIG.find(e => lo.isEqual(e.id, soundId)).source;
+        const volumeSettings = volumeState.current[type];
+        const so = <Sound key={ukey} type={type} id={ukey} soundId={soundId} isBGM={false} audioOnly={true} repeat={false} volume={volumeSettings.effct} source={source} onEnd={effectOnEnd} />;
+
+        setEffectViews((list) => {
+            console.debug(list, effectPendingRemoveQueue);
+            const validList = list.filter(e => (effectPendingRemoveQueue.current.indexOf(e.props.id) == -1));
+            if (validList.length <= 0) effectPendingRemoveQueue.current.length = 0;
+            return [...validList, so];
+        });
+    }
+
     const fadeOutBGMAndPlayNext = () => {
         DeviceEventEmitter.emit('__@Sound.fadeOutBGM');
     }
 
-    React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener(EventKeys.SOUND_BGM_PLAY, ({ soundId }) => {
-            bgmPendingQueue.current.push({ key: uniqueKey.current++, soundId});
+    // 同步至ref引用的状态变量，以便在副作用方法里面拿到最新值。
+    volumeState.current = { 
+        masterVolume: props.masterVolume,
+        readerVolume: props.readerVolume,
+    };
 
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener(EventKeys.SOUND_BGM_PLAY, ({ type, soundId }) => {
+            bgmPendingQueue.current.push({ key: uniqueKey.current++, type, soundId});
             if (playingBGM.current == null) {
                 playBGM(); // 首次播放BGM
             } else if (lo.isEqual(soundId, playingBGM.current)) {
@@ -121,6 +168,13 @@ const SoundProvider = (props) => {
     }, []);
 
     React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener(EventKeys.SOUND_EFFECT_PLAY, playEffect);
+        return () => {
+            listener.remove();
+        }
+    }, []);
+
+    React.useEffect(() => {
         const listener = DeviceEventEmitter.addListener('__@Sound.nextBGM', () => {
             playBGM();
         });
@@ -129,7 +183,12 @@ const SoundProvider = (props) => {
         }
     }, []);
 
-    return (<View>{bgmViews}</View>);
+    return (
+    <View>
+        {bgmViews}
+        {effectViews}
+    </View>
+    );
 }
 
 export default connect((state) => ({ ...state.SoundModel }))(SoundProvider);

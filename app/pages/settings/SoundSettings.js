@@ -62,8 +62,8 @@ class SoundSettings extends React.PureComponent {
     constructor(props) {
         super(props)
         this.state = {
-            sceneVolume: this.props.sceneVolume.bg,
-            sceneSound: this.props.sceneVolume.effct,
+            masterVolume: this.props.masterVolume.bg,
+            sceneSound: this.props.masterVolume.effct,
             readerVolume: this.props.readerVolume.bg,
             readerSound: this.props.readerVolume.effct,
             isFollowMasterVolume: false,
@@ -75,7 +75,7 @@ class SoundSettings extends React.PureComponent {
 
     handlerReaderVolume = (value) => {
         if (value) {
-            DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "readerVolume", volume: this.state.sceneVolume })
+            DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "readerVolume", volume: this.state.masterVolume })
             DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "readerVolume", volume: this.state.sceneSound })
         }
         this.setState({ isFollowMasterVolume: value })
@@ -93,12 +93,12 @@ class SoundSettings extends React.PureComponent {
                         <DividingLine />
                         <ItemRender
                             title={"音量"}
-                            value={this.state.sceneVolume}
+                            value={this.state.masterVolume}
                             default={0.5}
                             onValueChange={(value) => {
-                                DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "sceneVolume", volume: value })
+                                DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "masterVolume", volume: value })
                             }}
-                            updataState={(value) => { this.setState({ sceneVolume: value }) }}
+                            updataState={(value) => { this.setState({ masterVolume: value }) }}
                         />
                         <DividingLine />
                         <ItemRender
@@ -106,7 +106,7 @@ class SoundSettings extends React.PureComponent {
                             value={this.state.sceneSound}
                             default={0.5}
                             onValueChange={(value) => {
-                                DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "sceneVolume", volume: value })
+                                DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "masterVolume", volume: value })
                             }}
                             updataState={(value) => { this.setState({ sceneSound: value }) }}
                         />

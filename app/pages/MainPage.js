@@ -26,7 +26,7 @@ import FirstPage from './FirstPage';
 import SettingsPage from './SettingsPage';
 import BookCityPage from './BookCityPage'
 import { navigationRef } from '../utils/RootNavigation';
-import { playBGM } from '../components/sound/utils';
+import { playBGM, playEffect } from '../components/sound/utils';
 
 const Stack = createStackNavigator();
 
@@ -62,9 +62,6 @@ class MainPage extends Component {
       case 'First':
         playBGM('1');
         break;
-      case 'Article':
-        playBGM('2');
-        break;
       case 'Profile':
         playBGM('2');
         break;
@@ -72,12 +69,19 @@ class MainPage extends Component {
         playBGM('2');
         break;
       case 'Compose':
+        playBGM('2');
         break;
       case 'Town':
+        playBGM('2');
         break;
       case 'World':
+        playBGM('2');
         break;
       case 'Explore':
+        playEffect('4');
+        break;
+      case 'Article':
+        playBGM('3', 'readerVolume');
         break;
     }
   }

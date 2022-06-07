@@ -1,41 +1,48 @@
 import {
     action,
     LocalCacheKeys,
-    EventKeys,
 } from "../constants";
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 
+import {
+    GetSoundDataApi
+} from '../services/GetSoundDataApi';
 
 export default {
     namespace: 'SoundModel',
+
     state: {
-        sceneVolume: {},
+        masterVolume: {},
         readerVolume: {},
     },
+
     effects: {
         *reload({ }, { call, put, select }) {
-            const soundData = yield call(LocalStorage.get, LocalCacheKeys.SOUND_DATA)
-            if (soundData !== null) {
-                yield put(action('updateSound')(soundData));
-            }
-            else {
-                const defaultSoundData = {
-                    sceneVolume: {
+            // 1. 加载本地配置
+            const soundData = yield call(LocalStorage.get, LocalCacheKeys.SOUND_DATA);
+            if (soundData == null) {
+                // 缺省音量
+                const defaultValues = {
+                    // 主音量
+                    masterVolume: {
                         bg: 0.5,
                         effct: 0.5,
                     },
+                    // 阅读器音量（副音量）
                     readerVolume: {
                         bg: 0.5,
                         effct: 0.5
                     }
                 }
-                yield call(LocalStorage.set, LocalCacheKeys.SOUND_DATA, defaultSoundData);
-                yield put(action('updateSound')(defaultSoundData));
+                soundData = defaultValues;
+                yield call(LocalStorage.set, LocalCacheKeys.SOUND_DATA, soundData);
             }
+            //
+            yield put(action('updateSound')(soundData));
         },
-        *changeSoundData({ payload }, { call, put, select }) { 
 
+        *setVolume({ payload }, { call, put, select }) {
         },
     },
     reducers: {
@@ -45,7 +52,6 @@ export default {
                 ...payload
             }
         },
-
     },
     subscriptions: {
         registerReloadEvent({ dispatch }) {
