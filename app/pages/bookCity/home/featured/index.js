@@ -1,29 +1,40 @@
-import { ScrollView, Text, View, FlatList, StyleSheet } from 'react-native'
+import { ScrollView, Text, View, FlatList, StyleSheet, Image } from 'react-native'
 import React, { useState } from 'react'
 
 import Classification from './Classification';
+
+import { px2pd } from '../../../../constants/resolution';
 
 
 const DATA = [
     {
         id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
         title: 'First Item',
+        img: require("../../../../../assets/linshi/linshi1.png")
     },
     {
         id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
         title: 'Second Item',
+        img: require("../../../../../assets/linshi/linshi2.png")
     },
     {
         id: '58694a0f-3da1-471f-bd96-145571e29d72',
         title: 'Third Item',
+        img: require("../../../../../assets/linshi/linshi3.png")
     },
 ];
 
 const FeaturedPage = (props) => {
 
-    const renderRecommend = () => {
+    const renderRecommend = ({ item }) => {
         return (
-            <View style={{ width: 150, height: 200, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
+            <View style={{ width: 150, height: 200, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12, overflow: 'hidden' }}>
+                <Image
+                    // style={{ width: px2pd(51), height: px2pd(38) }}
+                    style={{ width: "100%", height: "100%" }}
+                    source={item.img}
+                />
+            </View>
         )
     }
 
@@ -38,9 +49,27 @@ const FeaturedPage = (props) => {
                 showsHorizontalScrollIndicator={false}
                 style={{ width: "100%", height: 120, }}
             >
-                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
-                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
-                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', }}></View>
+                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12, overflow: "hidden" }}>
+                    {/* <Image
+                        // style={{ width: px2pd(51), height: px2pd(38) }}
+                        style={{ width: "100%", height: "100%" }}
+                        source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                    /> */}
+                </View>
+                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12, overflow: "hidden" }}>
+                    {/* <Image
+                        // style={{ width: px2pd(51), height: px2pd(38) }}
+                        style={{ width: "100%", height: "100%" }}
+                        source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                    /> */}
+                </View>
+                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                    {/* <Image
+                        // style={{ width: px2pd(51), height: px2pd(38) }}
+                        style={{ width: "100%", height: "100%" }}
+                        source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                    /> */}
+                </View>
             </ScrollView>
 
             {/* 为你推荐 */}
