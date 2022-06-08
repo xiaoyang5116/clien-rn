@@ -3,6 +3,7 @@ import {
     LocalCacheKeys,
     DeviceEventEmitter,
     EventKeys,
+    inReaderMode,
 } from "../constants";
 
 import lo from 'lodash';
@@ -43,13 +44,8 @@ export default {
             // 加载音乐配置
             const configData = yield call(GetSoundDataApi);
             soundState.__data.config.length = 0;
-            if (lo.isObject(configData.sound)) {
-                configData.sound.master.forEach(e => {
-                    soundState.__data.config.push({ ...e });
-                });
-                configData.sound.reader.forEach(e => {
-                    soundState.__data.config.push({ ...e, type: 'readerVolume' });
-                });
+            if (lo.isArray(configData.sound)) {
+                soundState.__data.config.push(...configData.sound);
             }
         },
 
@@ -61,10 +57,11 @@ export default {
             if (lo.isString(routeName)) {
                 const found = soundState.__data.config.find(e => (!lo.isUndefined(e.routeName) && lo.isEqual(e.routeName, routeName)));
                 if (!lo.isUndefined(found)) {
+                    const type = inReaderMode() ? 'readerVolume' : 'masterVolume';
                     if (lo.isBoolean(found.bgm) && found.bgm) {
-                        playBGM(found);
+                        playBGM({ ...found, type });
                     } else {
-                        playEffect(found);
+                        playEffect({ ...found, type });
                     }
                 }
             }

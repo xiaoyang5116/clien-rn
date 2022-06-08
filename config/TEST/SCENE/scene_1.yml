@@ -120,6 +120,7 @@ scenes: [
     # 事件定义
     events: [
       { type: 'enter', dialogs: ['p0'] },
+      { type: 'enter', sounds: [{ soundId: '100' }, { soundId: '8', bgm: true, seek: 30 }] },
     ],
 
     # 注册地图

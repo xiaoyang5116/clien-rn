@@ -8,6 +8,7 @@ import {
   AppDispath,
   DeviceEventEmitter,
   EventKeys,
+  inReaderMode,
 } from "../constants";
 
 import {
@@ -31,6 +32,7 @@ import SceneConfigReader from "../utils/SceneConfigReader";
 import Modal from "../components/modal";
 import Shock from '../components/shock';
 import { CarouselUtils } from "../components/carousel";
+import { playBGM, playEffect } from "../components/sound/utils";
 
 class VarUtils {
   static generateVarUniqueId(sceneId, varId) {
@@ -133,6 +135,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__shock_{0}".format(payload.shock), cmd: 'shock', params: payload.shock });
     }
 
+    // 生成声音播放动作
+    if (payload.sounds != undefined && lo.isArray(payload.sounds)) {
+      allActions.push({ id: "__sounds", cmd: 'sounds', params: payload.sounds });
+    }
+
     return allActions;
   }
 }
@@ -196,6 +203,7 @@ const ACTIONS_MAP = [
   { cmd: 'chapter',       handler: '__onChapterCommand' },
   { cmd: 'selector',      handler: '__onSelectorCommand' },
   { cmd: 'shock',         handler: '__onShockCommand' },
+  { cmd: 'sounds',        handler: '__onSoundsCommand' },
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;
@@ -678,6 +686,17 @@ export default {
       count = count == undefined ? 4 : parseInt(count)
       delay = delay == undefined ? 4 : parseInt(delay)
       Shock.shockShow(type, delay, count);
+    },
+
+    *__onSoundsCommand({ payload }, { put }) {
+      const type = inReaderMode() ? 'readerVolume' : 'masterVolume';
+      payload.params.forEach(e => {
+        if (lo.isBoolean(e.bgm) && e.bgm) {
+          playBGM({ ...e, type });
+        } else {
+          playEffect({ ...e, type });
+        }
+      });
     },
 
     *syncData({ }, { select, call }) {

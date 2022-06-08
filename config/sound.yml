@@ -5,9 +5,7 @@
 #  seek: 跳开多少秒
 #
 
-sound: {
-  # 主要的
-  master: [
+sound: [
     # 首页
     { routeName: 'First', soundId: '1', bgm: true, seek: 20 },
     # 设置页
@@ -20,11 +18,6 @@ sound: {
     { routeName: 'Town', soundId: '5', bgm: true },
     # 世界页
     { routeName: 'World', soundId: '6', bgm: true },
-  ],
-
-  # 阅读器
-  reader: [
-    # 默认
+    # 阅读器默认
     { routeName: 'Article', soundId: '3', bgm: true },
-  ],
-}
+]

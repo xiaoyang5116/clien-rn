@@ -72,7 +72,8 @@ export default class SceneConfigReader {
         || e.varsOff != undefined
         || e.eventActions != undefined 
         || e.nextChat != undefined 
-        || e.dialogs != undefined) {
+        || e.dialogs != undefined
+        || e.sounds != undefined) {
         validEvents.push(e);
       }
     });
