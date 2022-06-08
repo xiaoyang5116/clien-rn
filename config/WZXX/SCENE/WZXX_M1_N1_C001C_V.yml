@@ -346,7 +346,10 @@ scenes: [
           { id: 'Screen1',style: 6, title: '跟踪杀手#1', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
-          btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
+
+
+          #btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
+          btn: [{title: '在小路的两边用树来作掩护', toScene: 'C001C_V_MAP_point_0_1',},{title: '距离更远一点', tokey: "R1"},]},
            #分支1
           { key: 'N1A', content: ['杀手好像没有异常','继续向前走',], 
           btn: [{title: '继续跟踪！（本剧场还在制作中）', tokey: "N1B"},{title: '结束这次跟踪', tokey: "END01"},], },   
@@ -372,17 +375,17 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
     # 当前场景地图
-    mapId: 'C001C_V_MAP',
+    mapId: 'C001C_V_MAP_0_1',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 1],
 
     # 变量定义
     vars: [
     { id: "ONE_OPEN", min: 0, max: 1 },
     ],
-
     # 动作定义
     actions: [
     ],
-
     # 事件定义
     events: [
         { type: 'enter', andVarsOff: ['ONE_OPEN'], nextChat: 'C1' },
@@ -417,43 +420,53 @@ scenes: [
   },
   # NPC3
   {
-    id: 'npc1', name: '老者NPC',
+     id: 'C001C_V_MAP_point_0_2', name: '寻常窄道',
 
-    # 指定场景为NPC场景
+    # 指定场景为NPC或MAP场景
     isNpc: true,
+    # 当前场景地图
+    mapId: 'C001C_V_MAP_0_2',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 2],
 
     # 变量定义
     vars: [
-      { id: 'hao_gan_du', min: 0, max: 10000000, defaultValue: 200 },
+    { id: "ONE_OPEN", min: 0, max: 1 },
     ],
-
     # 动作定义
     actions: [
     ],
-
     # 事件定义
     events: [
-      { type: 'enter', nextChat: 'c1' },
+        { type: 'enter', andVarsOff: ['ONE_OPEN'], nextChat: 'C1' },
+        { type: 'enter', andVarsOn: ['ONE_OPEN'], nextChat: 'C2' },
     ],
 
     # 对话选项
     chats: [
       #
       { 
-        id: 'c1', desc: '', 
+        id: 'C1', desc: '树林，起点位置', 
         options: [ 
-          { title: '好感度 >= 200 显示', andVarsValue: ['hao_gan_du >= 200'] },
-          { title: '好感度 < 200 显示', andVarsValue: ['hao_gan_du < 200'] },
-          { title: '增加10点好感度', clickActions: ['a1'] },
-          { title: '减少10点好感度', clickActions: ['a2'] },
-          { title: '返回原场景', toScene: '@previous' },
+         { title: '【继续跟踪杀手】',dialogs: ['Screen2'] }, 
         ],
-      }
+      },
+      #
+      { 
+        id: 'C2', desc: '这里已经调查过了', 
+        options: [ 
+        ],
+      },
     ],
 
     # 对话框
     dialogs: [
-    ],
+          { id: 'Screen2',style: 6, title: '跟踪杀手#1', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
+          btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
+
+    ],},],
   },
 
     maps: [
@@ -465,10 +478,18 @@ scenes: [
         ]
       },
       {
+        id: 'C001C_V_MAP_0_0END',
+        data: [
+          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
+          { point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_02', links: [] },
+        ]
+      },
+      
+      {
         id: 'C001C_V_MAP_0_1',
         data: [
           { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
-          { point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_0_1', links: [] },
+          { point: [0, 1], title: '？？？', toScene: 'C001C_V_MAP_point_0_1', links: [] },
         ]
       },
       {
@@ -476,7 +497,7 @@ scenes: [
         data: [
           { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
           { point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_0_1', links: [[0, 2], ] },
-          { point: [0, 2], title: '寻常窄道', toScene: 'C001C_V_MAP_point_0_2', links: [[0, 2], ] },
+          { point: [0, 2], title: '？？？？', toScene: 'C001C_V_MAP_point_0_2', links: [[0, 2], ] },
         ]
       },
 
