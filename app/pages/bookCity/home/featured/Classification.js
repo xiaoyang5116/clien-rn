@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image } from 'react-native'
 import React, { useState } from 'react'
 
 import { Tab, TabView } from "@rneui/themed";
@@ -68,24 +68,111 @@ const Classification = (props) => {
             >
                 <TabView.Item style={styles.TabView_item_container}>
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', paddingLeft: 4, paddingRight: 4 }}>
-                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', }}></View>
-                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', }}></View>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                            {/* <Image
+                                // style={{ width: px2pd(51), height: px2pd(38) }}
+                                style={{ width: "100%", height: "100%" }}
+                                source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                            /> */}
+                        </View>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                            {/* <Image
+                                // style={{ width: px2pd(51), height: px2pd(38) }}
+                                style={{ width: "100%", height: "100%" }}
+                                source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                            /> */}
+                        </View>
                     </View>
                 </TabView.Item>
                 <TabView.Item style={styles.TabView_item_container}>
-                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', paddingLeft: 4, paddingRight: 4 }}>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                            {/* <Image
+                                // style={{ width: px2pd(51), height: px2pd(38) }}
+                                style={{ width: "100%", height: "100%" }}
+                                source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                            /> */}
+                        </View>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                            {/* <Image
+                                // style={{ width: px2pd(51), height: px2pd(38) }}
+                                style={{ width: "100%", height: "100%" }}
+                                source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                            /> */}
+                        </View>
+                    </View>
                 </TabView.Item>
                 <TabView.Item style={styles.TabView_item_container}>
-                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', paddingLeft: 4, paddingRight: 4 }}>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                            {/* <Image
+                                // style={{ width: px2pd(51), height: px2pd(38) }}
+                                style={{ width: "100%", height: "100%" }}
+                                source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                            /> */}
+                        </View>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                            {/* <Image
+                                // style={{ width: px2pd(51), height: px2pd(38) }}
+                                style={{ width: "100%", height: "100%" }}
+                                source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                            /> */}
+                        </View>
+                    </View>
                 </TabView.Item>
                 <TabView.Item style={styles.TabView_item_container}>
-                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', paddingLeft: 4, paddingRight: 4 }}>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                            {/* <Image
+                                // style={{ width: px2pd(51), height: px2pd(38) }}
+                                style={{ width: "100%", height: "100%" }}
+                                source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                            /> */}
+                        </View>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                            {/* <Image
+                                // style={{ width: px2pd(51), height: px2pd(38) }}
+                                style={{ width: "100%", height: "100%" }}
+                                source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                            /> */}
+                        </View>
+                    </View>
                 </TabView.Item>
                 <TabView.Item style={styles.TabView_item_container}>
-                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', paddingLeft: 4, paddingRight: 4 }}>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                            {/* <Image
+                                // style={{ width: px2pd(51), height: px2pd(38) }}
+                                style={{ width: "100%", height: "100%" }}
+                                source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                            /> */}
+                        </View>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                            {/* <Image
+                                // style={{ width: px2pd(51), height: px2pd(38) }}
+                                style={{ width: "100%", height: "100%" }}
+                                source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                            /> */}
+                        </View>
+                    </View>
                 </TabView.Item>
                 <TabView.Item style={styles.TabView_item_container}>
-                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', paddingLeft: 4, paddingRight: 4 }}>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                            {/* <Image
+                                // style={{ width: px2pd(51), height: px2pd(38) }}
+                                style={{ width: "100%", height: "100%" }}
+                                source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                            /> */}
+                        </View>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
+                            {/* <Image
+                                // style={{ width: px2pd(51), height: px2pd(38) }}
+                                style={{ width: "100%", height: "100%" }}
+                                source={require("../../../../../assets/bg/lottery_bg2.jpg")}
+                            /> */}
+                        </View>
+                    </View>
                 </TabView.Item>
             </TabView>
         </View>
