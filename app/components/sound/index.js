@@ -58,6 +58,12 @@ const Sound = (props) => {
         }
     }, []);
 
+    React.useEffect(() => {
+        if (props.seek > 0) {
+            refVideo.current.seek(props.seek);
+        }
+    }, []);
+
     return (
         <Video 
             ref={(ref) => refVideo.current = ref} 
@@ -116,10 +122,10 @@ const SoundProvider = (props) => {
 
         // type: 主音，副音（阅读器）
         // soundId: 声音ID
-        const { type, soundId } = lastBGM;
+        const { type, soundId, seek } = lastBGM;
         const source = SOUNDS_CONFIG.find(e => lo.isEqual(e.id, soundId)).source;
         const volumeSettings = volumeState.current[type];
-        const so = <Sound key={lastBGM.key} id={lastBGM.key} type={type} soundId={soundId} isBGM={true} audioOnly={true} repeat={true} volume={volumeSettings.bg} source={source} />;
+        const so = <Sound key={lastBGM.key} id={lastBGM.key} type={type} seek={seek} soundId={soundId} isBGM={true} audioOnly={true} repeat={true} volume={volumeSettings.bg} source={source} />;
 
         playingBGM.current = soundId;
         setTimeout(() => {
@@ -135,7 +141,7 @@ const SoundProvider = (props) => {
         const ukey = uniqueKey.current++;
         const source = SOUNDS_CONFIG.find(e => lo.isEqual(e.id, soundId)).source;
         const volumeSettings = volumeState.current[type];
-        const so = <Sound key={ukey} type={type} id={ukey} soundId={soundId} isBGM={false} audioOnly={true} repeat={false} volume={volumeSettings.effect} source={source} onEnd={effectOnEnd} />;
+        const so = <Sound key={ukey} id={ukey} type={type} seek={0} soundId={soundId} isBGM={false} audioOnly={true} repeat={false} volume={volumeSettings.effect} source={source} onEnd={effectOnEnd} />;
 
         setEffectViews((list) => {
             const validList = list.filter(e => (effectPendingRemoveQueue.current.indexOf(e.props.id) == -1));
@@ -149,8 +155,8 @@ const SoundProvider = (props) => {
     }
 
     React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener(EventKeys.SOUND_BGM_PLAY, ({ type, soundId }) => {
-            bgmPendingQueue.current.push({ key: uniqueKey.current++, type, soundId});
+        const listener = DeviceEventEmitter.addListener(EventKeys.SOUND_BGM_PLAY, ({ type, soundId, seek }) => {
+            bgmPendingQueue.current.push({ key: uniqueKey.current++, type, soundId, seek});
             if (playingBGM.current == null) {
                 playBGM(); // 首次播放BGM
             } else if (lo.isEqual(soundId, playingBGM.current)) {
