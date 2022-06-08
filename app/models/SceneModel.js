@@ -32,7 +32,7 @@ import SceneConfigReader from "../utils/SceneConfigReader";
 import Modal from "../components/modal";
 import Shock from '../components/shock';
 import { CarouselUtils } from "../components/carousel";
-import { playBGM, playEffect } from "../components/sound/utils";
+import { playSound } from "../components/sound/utils";
 
 class VarUtils {
   static generateVarUniqueId(sceneId, varId) {
@@ -691,11 +691,7 @@ export default {
     *__onSoundsCommand({ payload }, { put }) {
       const type = inReaderMode() ? 'readerVolume' : 'masterVolume';
       payload.params.forEach(e => {
-        if (lo.isBoolean(e.bgm) && e.bgm) {
-          playBGM({ ...e, type });
-        } else {
-          playEffect({ ...e, type });
-        }
+        playSound({ ...e, type });
       });
     },
 

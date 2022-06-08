@@ -10,7 +10,7 @@ import lo from 'lodash';
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 import { GetSoundDataApi } from "../services/GetSoundDataApi";
-import { playBGM, playEffect } from "../components/sound/utils";
+import { playSound } from "../components/sound/utils";
 
 export default {
     namespace: 'SoundModel',
@@ -58,11 +58,7 @@ export default {
                 const found = soundState.__data.config.find(e => (!lo.isUndefined(e.routeName) && lo.isEqual(e.routeName, routeName)));
                 if (!lo.isUndefined(found)) {
                     const type = inReaderMode() ? 'readerVolume' : 'masterVolume';
-                    if (lo.isBoolean(found.bgm) && found.bgm) {
-                        playBGM({ ...found, type });
-                    } else {
-                        playEffect({ ...found, type });
-                    }
+                    playSound({ ...found, type })
                 }
             }
         },

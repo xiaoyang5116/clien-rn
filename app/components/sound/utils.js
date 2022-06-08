@@ -1,6 +1,7 @@
 
 import { DeviceEventEmitter } from 'react-native';
 import { EventKeys } from '../../constants';
+import lo from 'lodash';
 
 // 参数: soundId, type, seek
 export function playBGM(config) {
@@ -15,4 +16,11 @@ export function playEffect(config) {
     const payload = { ...config };
     if (config.type == undefined) payload.type = 'masterVolume';
     DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_PLAY, payload);
+}
+
+// 自动选择BGM还是音效
+export function playSound(config) {
+    const { soundId } = config;
+    const bgm = lo.isBoolean(config.bgm) ? config.bgm : lo.startsWith(soundId, 'BGM');
+    bgm ? playBGM(config) : playEffect(config);
 }

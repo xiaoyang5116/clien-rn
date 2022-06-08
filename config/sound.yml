@@ -7,17 +7,17 @@
 
 sound: [
     # 首页
-    { routeName: 'First', soundId: '1', bgm: true, seek: 20 },
+    { routeName: 'First', soundId: 'BGM00001', seek: 20 },
     # 设置页
-    { routeName: 'Profile', soundId: '2', bgm: true },
+    { routeName: 'Profile', soundId: 'BGM00002' },
     # 道具页
-    { routeName: 'Props', soundId: '3', bgm: true },
+    { routeName: 'Props', soundId: 'BGM00003' },
     # 制作页
-    { routeName: 'Compose', soundId: '4', bgm: true },
+    { routeName: 'Compose', soundId: 'BGM00004' },
     # 城镇页
-    { routeName: 'Town', soundId: '5', bgm: true },
+    { routeName: 'Town', soundId: 'BGM00005' },
     # 世界页
-    { routeName: 'World', soundId: '6', bgm: true },
+    { routeName: 'World', soundId: 'BGM00006' },
     # 阅读器默认
-    { routeName: 'Article', soundId: '3', bgm: true },
+    { routeName: 'Article', soundId: 'BGM00003' },
 ]
