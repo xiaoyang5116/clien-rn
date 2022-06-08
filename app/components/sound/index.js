@@ -4,8 +4,8 @@ import { View, DeviceEventEmitter } from 'react-native';
 
 import lo from 'lodash';
 import Video from 'react-native-video';
-import { EventKeys, connect } from '../../constants';
-import { SOUNDS_CONFIG } from './config';
+import { EventKeys, connect, action } from '../../constants';
+import { SOUND_RESOURCES } from './config';
 
 const Sound = (props) => {
     const refVideo = React.useRef(null);
@@ -123,7 +123,7 @@ const SoundProvider = (props) => {
         // type: 主音，副音（阅读器）
         // soundId: 声音ID
         const { type, soundId, seek } = lastBGM;
-        const source = SOUNDS_CONFIG.find(e => lo.isEqual(e.id, soundId)).source;
+        const source = SOUND_RESOURCES.find(e => lo.isEqual(e.id, soundId)).source;
         const volumeSettings = volumeState.current[type];
         const so = <Sound key={lastBGM.key} id={lastBGM.key} type={type} seek={seek} soundId={soundId} isBGM={true} audioOnly={true} repeat={true} volume={volumeSettings.bg} source={source} />;
 
@@ -139,7 +139,7 @@ const SoundProvider = (props) => {
         // type: 主音，副音（阅读器）
         // soundId: 声音ID
         const ukey = uniqueKey.current++;
-        const source = SOUNDS_CONFIG.find(e => lo.isEqual(e.id, soundId)).source;
+        const source = SOUND_RESOURCES.find(e => lo.isEqual(e.id, soundId)).source;
         const volumeSettings = volumeState.current[type];
         const so = <Sound key={ukey} id={ukey} type={type} seek={0} soundId={soundId} isBGM={false} audioOnly={true} repeat={false} volume={volumeSettings.effect} source={source} onEnd={effectOnEnd} />;
 
@@ -180,6 +180,15 @@ const SoundProvider = (props) => {
     React.useEffect(() => {
         const listener = DeviceEventEmitter.addListener('__@Sound.nextBGM', () => {
             playBGM();
+        });
+        return () => {
+            listener.remove();
+        }
+    }, []);
+
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener(EventKeys.NAVIGATION_ROUTE_CHANGED, ({ routeName }) => {
+            props.dispatch(action('SoundModel/checkAudio')({ routeName }));
         });
         return () => {
             listener.remove();

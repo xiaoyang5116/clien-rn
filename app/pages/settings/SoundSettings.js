@@ -25,12 +25,12 @@ const DividingLine = () => {
 const ItemRender = (props) => {
     const testHandler = ({ category, type }) => {
         if (lo.isEqual(category, 'effect')) {
-            playEffect('100', type);
+            playEffect({ soundId: '100', type });
         } else if (lo.isEqual(category, 'bg')) {
             if (lo.isEqual(type, 'masterVolume')) {
-                playBGM('5', type);
+                playBGM({ soundId: '5', type });
             } else if (lo.isEqual(type, 'readerVolume')) {
-                playBGM('6', type);
+                playBGM({ soundId: '6', type });
             }
         }
     }

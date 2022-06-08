@@ -8,11 +8,16 @@ import {
 import lo from 'lodash';
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
+import { GetSoundDataApi } from "../services/GetSoundDataApi";
+import { playBGM, playEffect } from "../components/sound/utils";
 
 export default {
     namespace: 'SoundModel',
 
     state: {
+        __data: {
+            config: [],
+        },
         // 主音量
         masterVolume: {
             bg: 0.5,
@@ -29,10 +34,39 @@ export default {
 
     effects: {
         *reload({ }, { call, put, select }) {
+            const soundState = yield select(state => state.SoundModel);
             // 加载本地配置
             const soundData = yield call(LocalStorage.get, LocalCacheKeys.SOUND_DATA);
             if (soundData != null) {
                 yield put(action('updateSound')(soundData));
+            }
+            // 加载音乐配置
+            const configData = yield call(GetSoundDataApi);
+            soundState.__data.config.length = 0;
+            if (lo.isObject(configData.sound)) {
+                configData.sound.master.forEach(e => {
+                    soundState.__data.config.push({ ...e });
+                });
+                configData.sound.reader.forEach(e => {
+                    soundState.__data.config.push({ ...e, type: 'readerVolume' });
+                });
+            }
+        },
+
+        *checkAudio({ payload }, { call, put, select }) {
+            const soundState = yield select(state => state.SoundModel);
+            const { routeName } = payload;
+
+            // 监听导航路径切换
+            if (lo.isString(routeName)) {
+                const found = soundState.__data.config.find(e => (!lo.isUndefined(e.routeName) && lo.isEqual(e.routeName, routeName)));
+                if (!lo.isUndefined(found)) {
+                    if (lo.isBoolean(found.bgm) && found.bgm) {
+                        playBGM(found);
+                    } else {
+                        playEffect(found);
+                    }
+                }
             }
         },
 

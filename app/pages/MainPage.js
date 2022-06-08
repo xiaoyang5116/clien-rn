@@ -56,34 +56,8 @@ class MainPage extends Component {
     if (lo.isEqual(route.name, 'Home')) {
       route = route.state.routes[route.state.index];
     }
-
     // 拦截导航栏所有跳转
-    switch (route.name) {
-      case 'First':
-        playBGM('1');
-        break;
-      case 'Profile':
-        playBGM('2');
-        break;
-      case 'Props':
-        playBGM('3');
-        break;
-      case 'Compose':
-        playBGM('4');
-        break;
-      case 'Town':
-        playBGM('5');
-        break;
-      case 'World':
-        playBGM('6');
-        break;
-      case 'Explore':
-        playEffect('100');
-        break;
-      case 'Article':
-        playBGM('3', 'readerVolume');
-        break;
-    }
+    DeviceEventEmitter.emit(EventKeys.NAVIGATION_ROUTE_CHANGED, { routeName: route.name });
   }
 
   render() {

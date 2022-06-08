@@ -1,0 +1,30 @@
+#
+#  routeName: 导航栏切换的路径名称
+#  soundId: 音乐音效ID
+#  bgm: 是否为背景音乐，不指定为音效
+#  seek: 跳开多少秒
+#
+
+sound: {
+  # 主要的
+  master: [
+    # 首页
+    { routeName: 'First', soundId: '1', bgm: true, seek: 20 },
+    # 设置页
+    { routeName: 'Profile', soundId: '2', bgm: true },
+    # 道具页
+    { routeName: 'Props', soundId: '3', bgm: true },
+    # 制作页
+    { routeName: 'Compose', soundId: '4', bgm: true },
+    # 城镇页
+    { routeName: 'Town', soundId: '5', bgm: true },
+    # 世界页
+    { routeName: 'World', soundId: '6', bgm: true },
+  ],
+
+  # 阅读器
+  reader: [
+    # 默认
+    { routeName: 'Article', soundId: '3', bgm: true },
+  ],
+}
