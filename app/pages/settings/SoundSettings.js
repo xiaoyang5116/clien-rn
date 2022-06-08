@@ -1,11 +1,12 @@
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, DeviceEventEmitter, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ScrollView } from 'react-native'
 import React from 'react'
 import Slider from '@react-native-community/slider';
 
-import { connect, action, EventKeys, } from "../../constants";
+import lo from 'lodash';
+import { connect, action } from "../../constants";
 import { Panel } from '../../components/panel'
 import { Switch, ListItem } from '@rneui/themed';
-
+import { playBGM, playEffect } from '../../components/sound/utils';
 
 const TitleText = (props) => {
     return (
@@ -22,6 +23,17 @@ const DividingLine = () => {
 }
 
 const ItemRender = (props) => {
+    const testHandler = ({ category, type }) => {
+        if (lo.isEqual(category, 'effect')) {
+            playEffect({ soundId: 'SE000001', type });
+        } else if (lo.isEqual(category, 'bg')) {
+            if (lo.isEqual(type, 'masterVolume')) {
+                playBGM({ soundId: 'BGM00005', type });
+            } else if (lo.isEqual(type, 'readerVolume')) {
+                playBGM({ soundId: 'BGM00006', type });
+            }
+        }
+    }
     return (
         <View>
             <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
@@ -37,7 +49,9 @@ const ItemRender = (props) => {
                     </TouchableOpacity>
                 </View>
                 <View style={{ width: "20%" }}>
-                    <TouchableOpacity onPress={() => { console.log("ccc"); }}>
+                    <TouchableOpacity onPress={() => { 
+                            testHandler(props);
+                        }}>
                         <Text style={[styles.btn, { width: "100%" }]}>测试</Text>
                     </TouchableOpacity>
                 </View>
@@ -62,21 +76,33 @@ class SoundSettings extends React.PureComponent {
     constructor(props) {
         super(props)
         this.state = {
-            sceneVolume: this.props.sceneVolume.bg,
-            sceneSound: this.props.sceneVolume.effct,
+            masterVolume: this.props.masterVolume.bg,
+            masterSound: this.props.masterVolume.effect,
             readerVolume: this.props.readerVolume.bg,
-            readerSound: this.props.readerVolume.effct,
-            isFollowMasterVolume: false,
+            readerSound: this.props.readerVolume.effect,
+            isFollowMasterVolume: this.props.followMasterVolume,
         }
     }
 
     // 音量设置 key: SOUND_BG_VOLUME_UPDATE
     // 音效设置 key: SOUND_EFFECT_VOLUME_UPDATE
-
     handlerReaderVolume = (value) => {
         if (value) {
-            DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "readerVolume", volume: this.state.sceneVolume })
-            DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "readerVolume", volume: this.state.sceneSound })
+            this.props.dispatch(action('SoundModel/setVolume')({ 
+                category: 'bg', 
+                type: "readerVolume", 
+                volume: this.state.masterVolume, 
+                followMasterVolume: true
+            }));
+            this.props.dispatch(action('SoundModel/setVolume')({ 
+                category: 'effect', 
+                type: "readerVolume", 
+                volume: this.state.masterSound, 
+                followMasterVolume: true 
+            }));
+            //
+            this.state.readerVolume = this.state.masterVolume;
+            this.state.readerSound = this.state.masterSound;
         }
         this.setState({ isFollowMasterVolume: value })
     }
@@ -93,22 +119,44 @@ class SoundSettings extends React.PureComponent {
                         <DividingLine />
                         <ItemRender
                             title={"音量"}
-                            value={this.state.sceneVolume}
+                            value={this.state.masterVolume}
                             default={0.5}
+                            category={'bg'}
+                            type={'masterVolume'}
                             onValueChange={(value) => {
-                                DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "sceneVolume", volume: value })
+                                this.props.dispatch(action('SoundModel/setVolume')({ 
+                                    category: 'bg', 
+                                    type: "masterVolume", 
+                                    volume: value, 
+                                    followMasterVolume: this.state.isFollowMasterVolume 
+                                }));
                             }}
-                            updataState={(value) => { this.setState({ sceneVolume: value }) }}
+                            updataState={(value) => { 
+                                this.setState((this.state.isFollowMasterVolume 
+                                    ? { masterVolume: value, readerVolume: value } 
+                                    : { masterVolume: value }));
+                            }}
                         />
                         <DividingLine />
                         <ItemRender
                             title={"音效"}
-                            value={this.state.sceneSound}
+                            value={this.state.masterSound}
                             default={0.5}
+                            category={'effect'}
+                            type={'masterVolume'}
                             onValueChange={(value) => {
-                                DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "sceneVolume", volume: value })
+                                this.props.dispatch(action('SoundModel/setVolume')({ 
+                                    category: 'effect', 
+                                    type: "masterVolume", 
+                                    volume: value, 
+                                    followMasterVolume: this.state.isFollowMasterVolume 
+                                }));
                             }}
-                            updataState={(value) => { this.setState({ sceneSound: value }) }}
+                            updataState={(value) => { 
+                                this.setState((this.state.isFollowMasterVolume 
+                                    ? { masterSound: value, readerSound: value } 
+                                    : { masterSound: value }));
+                            }}
                         />
                         <DividingLine />
                         <ListItem.Accordion
@@ -143,8 +191,15 @@ class SoundSettings extends React.PureComponent {
                                 title={"音量"}
                                 value={this.state.readerVolume}
                                 default={0.5}
+                                category={'bg'}
+                                type={'readerVolume'}
                                 onValueChange={(value) => {
-                                    DeviceEventEmitter.emit(EventKeys.SOUND_BG_VOLUME_UPDATE, { type: "readerVolume", volume: value })
+                                    this.props.dispatch(action('SoundModel/setVolume')({ 
+                                        category: 'bg', 
+                                        type: "readerVolume", 
+                                        volume: value, 
+                                        followMasterVolume: this.state.isFollowMasterVolume 
+                                    }));
                                 }}
                                 updataState={(value) => { this.setState({ readerVolume: value }) }}
                             />
@@ -153,8 +208,15 @@ class SoundSettings extends React.PureComponent {
                                 title={"音效"}
                                 value={this.state.readerSound}
                                 default={0.5}
+                                category={'effect'}
+                                type={'readerVolume'}
                                 onValueChange={(value) => {
-                                    DeviceEventEmitter.emit(EventKeys.SOUND_EFFECT_VOLUME_UPDATE, { type: "readerVolume", volume: value })
+                                    this.props.dispatch(action('SoundModel/setVolume')({ 
+                                        category: 'effect', 
+                                        type: "readerVolume", 
+                                        volume: value, 
+                                        followMasterVolume: this.state.isFollowMasterVolume 
+                                    }));
                                 }}
                                 updataState={(value) => { this.setState({ readerSound: value }) }}
                             />

@@ -7,6 +7,8 @@ import {
     StatusBar,
 } from 'react-native';
 
+const _G = { readerMode: false };
+
 // 是否调试模式
 export const DEBUG_MODE = true;
 
@@ -18,6 +20,10 @@ export const errorMessage = (s, ...args) => { if (DEBUG_MODE) console.error('' +
 
 // 屏幕特性
 export const getWindowSize = () => { return Dimensions.get('window'); };
+
+// 阅读模式
+export const inReaderMode = () => { return _G.readerMode }
+export const setReaderMode = (v) => { _G.readerMode = v; }
 
 // 获取状态栏高度
 const { StatusBarManager } = NativeModules;

@@ -26,8 +26,10 @@ import {
   currentTheme,
   EventKeys,
   DataContext,
+  setReaderMode,
 } from './constants';
 
+import lo from 'lodash';
 import { name as appName } from '../app.json';
 import { View, Text, Image } from './constants/native-ui';
 import MainPage from './pages/MainPage';
@@ -131,14 +133,19 @@ class App extends Component {
       loading: true,
       themeStyle: null,
     };
-    this.listener = null;
+    this.listeners = [];
   }
 
   componentDidMount() {
     // 注册事件监听
-    this.listener = DeviceEventEmitter.addListener(EventKeys.APP_SET_STATE, (payload) => {
+    this.listeners.push(DeviceEventEmitter.addListener(EventKeys.APP_SET_STATE, (payload) => {
       this.setState({ ...payload });
-    });
+    }));
+
+    // 注册导航栏切换事件监听
+    this.listeners.push(DeviceEventEmitter.addListener(EventKeys.NAVIGATION_ROUTE_CHANGED, ({ routeName }) => {
+      setReaderMode(lo.isEqual(routeName, 'Article'));
+    }));
 
     // 触发reload事件加载基础数据
     EventListeners.raise('reload')
@@ -156,7 +163,8 @@ class App extends Component {
   }
 
   componentWillUnmount() {
-    this.listener.remove();
+    this.listeners.forEach(e => e.remove());
+    this.listeners.length = 0;
   }
 
   renderLoading() {

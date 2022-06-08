@@ -4,12 +4,14 @@ import React from 'react';
 import {
   StyleSheet,
   ImageBackground,
+  DeviceEventEmitter,
 } from 'react-native';
 
 import {
   action,
   connect,
   Component,
+  EventKeys,
 } from "../constants";
 
 import {
@@ -45,7 +47,7 @@ class FirstPage extends Component {
   }
 
   componentDidMount() {
-    playBGM('1');
+    DeviceEventEmitter.emit(EventKeys.NAVIGATION_ROUTE_CHANGED, { routeName: 'First' });
   }
 
   render() {
