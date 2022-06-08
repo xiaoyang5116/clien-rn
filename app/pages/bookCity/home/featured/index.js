@@ -23,7 +23,7 @@ const FeaturedPage = (props) => {
 
     const renderRecommend = () => {
         return (
-            <View style={{ width: 150, height: 200, borderRadius: 6, backgroundColor: 'pink', marginRight: 12 }}></View>
+            <View style={{ width: 150, height: 200, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
         )
     }
 
@@ -38,9 +38,9 @@ const FeaturedPage = (props) => {
                 showsHorizontalScrollIndicator={false}
                 style={{ width: "100%", height: 120, }}
             >
-                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: 'pink', marginRight: 12 }}></View>
-                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: 'pink', marginRight: 12 }}></View>
-                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: 'pink', }}></View>
+                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
+                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
+                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', }}></View>
             </ScrollView>
 
             {/* 为你推荐 */}

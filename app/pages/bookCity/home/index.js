@@ -15,7 +15,7 @@ const BookCityHome = (props) => {
     const [tabIndex, setTabIndex] = useState(0)
 
     return (
-        <View style={{ flex: 1, }}>
+        <View style={{ flex: 1, marginTop: 40 }}>
             <Tab
                 value={tabIndex}
                 onChange={(index) => setTabIndex(index)}
@@ -26,13 +26,13 @@ const BookCityHome = (props) => {
                 <Tab.Item
                     title={"精选"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 70 }}
+                    containerStyle={{ width: 70, backgroundColor: '#f2f2f2' }}
                     buttonStyle={{ padding: 0 }}
                 />
                 <Tab.Item
                     title={"动态"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 70 }}
+                    containerStyle={{ width: 70, backgroundColor: '#f2f2f2' }}
                     buttonStyle={{ padding: 0 }}
                 />
             </Tab>

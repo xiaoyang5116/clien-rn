@@ -18,37 +18,37 @@ const Classification = (props) => {
                 <Tab.Item
                     title={"精选"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 50 }}
+                    containerStyle={{ width: 50, backgroundColor: '#f2f2f2' }}
                     buttonStyle={{ padding: 0 }}
                 />
                 <Tab.Item
                     title={"动态"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 50 }}
+                    containerStyle={{ width: 50, backgroundColor: '#f2f2f2' }}
                     buttonStyle={{ padding: 0 }}
                 />
                 <Tab.Item
                     title={"文字开黑"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 80 }}
+                    containerStyle={{ width: 80, backgroundColor: '#f2f2f2' }}
                     buttonStyle={{ padding: 0 }}
                 />
                 <Tab.Item
                     title={"看比赛"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 70 }}
+                    containerStyle={{ width: 70, backgroundColor: '#f2f2f2' }}
                     buttonStyle={{ padding: 0 }}
                 />
                 <Tab.Item
                     title={"云顶上分"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 80 }}
+                    containerStyle={{ width: 80, backgroundColor: '#f2f2f2' }}
                     buttonStyle={{ padding: 0 }}
                 />
                 <Tab.Item
                     title={"看电影"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 70 }}
+                    containerStyle={{ width: 70, backgroundColor: '#f2f2f2' }}
                     buttonStyle={{ padding: 0 }}
                 />
             </Tab>
@@ -68,24 +68,24 @@ const Classification = (props) => {
             >
                 <TabView.Item style={styles.TabView_item_container}>
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-between", alignItems: 'center', paddingLeft: 4, paddingRight: 4 }}>
-                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: 'pink', }}></View>
-                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: 'pink', }}></View>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', }}></View>
+                        <View style={{ width: "48%", height: "100%", borderRadius: 6, backgroundColor: '#ccc', }}></View>
                     </View>
                 </TabView.Item>
                 <TabView.Item style={styles.TabView_item_container}>
-                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: 'pink', marginRight: 12 }}></View>
+                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
                 </TabView.Item>
                 <TabView.Item style={styles.TabView_item_container}>
-                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: 'pink', marginRight: 12 }}></View>
+                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
                 </TabView.Item>
                 <TabView.Item style={styles.TabView_item_container}>
-                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: 'pink', marginRight: 12 }}></View>
+                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
                 </TabView.Item>
                 <TabView.Item style={styles.TabView_item_container}>
-                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: 'pink', marginRight: 12 }}></View>
+                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
                 </TabView.Item>
                 <TabView.Item style={styles.TabView_item_container}>
-                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: 'pink', marginRight: 12 }}></View>
+                    <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12 }}></View>
                 </TabView.Item>
             </TabView>
         </View>
