@@ -1,7 +1,6 @@
 #
 #  routeName: 导航栏切换的路径名称
 #  soundId: 音乐音效ID
-#  bgm: 是否为背景音乐，不指定为音效
 #  seek: 跳开多少秒
 #
 
@@ -20,4 +19,12 @@ sound: [
     { routeName: 'World', soundId: 'BGM00006' },
     # 阅读器默认
     { routeName: 'Article', soundId: 'BGM00003' },
+    # 测试主音量
+    { test: 'masterBGM', soundId: 'BGM00003' },
+    # 测试主音效
+    { test: 'masterEffect', soundId: 'SE000001' },
+    # 测试阅读器音量
+    { test: 'readerBGM', soundId: 'BGM00004', seek: 60 },
+    # 测试阅读器音效
+    { test: 'readerEffect', soundId: 'SE000001' },
 ]

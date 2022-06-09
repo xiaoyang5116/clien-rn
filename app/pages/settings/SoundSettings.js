@@ -2,11 +2,9 @@ import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, ScrollView } fr
 import React from 'react'
 import Slider from '@react-native-community/slider';
 
-import lo from 'lodash';
-import { connect, action } from "../../constants";
+import { connect, action, AppDispath } from "../../constants";
 import { Panel } from '../../components/panel'
 import { Switch, ListItem } from '@rneui/themed';
-import { playBGM, playEffect } from '../../components/sound/utils';
 
 const TitleText = (props) => {
     return (
@@ -24,15 +22,7 @@ const DividingLine = () => {
 
 const ItemRender = (props) => {
     const testHandler = ({ category, type }) => {
-        if (lo.isEqual(category, 'effect')) {
-            playEffect({ soundId: 'SE000001', type });
-        } else if (lo.isEqual(category, 'bg')) {
-            if (lo.isEqual(type, 'masterVolume')) {
-                playBGM({ soundId: 'BGM00005', type });
-            } else if (lo.isEqual(type, 'readerVolume')) {
-                playBGM({ soundId: 'BGM00006', type });
-            }
-        }
+        AppDispath({ type: 'SoundModel/testAudio', payload: { category, type } });
     }
     return (
         <View>
