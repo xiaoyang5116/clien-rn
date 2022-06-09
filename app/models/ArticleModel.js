@@ -63,6 +63,9 @@ export default {
 
     // 阅读器样式
     readerStyle: {},
+
+    // 当前是否起始页
+    isStartPage: false,
   },
 
   effects: {
@@ -77,6 +80,7 @@ export default {
       const { id, path } = (payload.file != undefined) ? ParseFileDesc(payload.file) : payload;
       const data = yield call(GetArticleDataApi, id, path);
       if (data != null) AddLoadedListHandler(articleState.__data.loadedList, { id, path, stop: HasStopDirective(data) });
+      articleState.isStartPage = lo.isEqual(path, '[START]'); // 标注是否起始页
 
       // 首次加载索引文件
       if (articleState.__data.indexes.find(e => e.id == id) == undefined) {
@@ -280,6 +284,7 @@ export default {
         yield put(action('updateState')({ readerStyle: currentReaderStyle }));
       }
     },
+
     // 修改字体大小
     *changeFontSize({ payload }, { call, put, select }) {
       const { readerStyle } = yield select(state => state.ArticleModel);
@@ -301,6 +306,7 @@ export default {
       yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, newReaderStyle);
       yield put(action('updateState')({ readerStyle: newReaderStyle }));
     },
+
     // 修改阅读器样式
     *changeReaderStyle({ payload }, { call, put, select }) {
       const { readerStyle } = yield select(state => state.ArticleModel);
