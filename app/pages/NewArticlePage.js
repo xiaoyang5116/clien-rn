@@ -316,7 +316,7 @@ class NewArticlePage extends Component {
   render() {
     const { readerStyle, attrsConfig } = this.props;
     return (
-      <View style={[styles.viewContainer, { backgroundColor:readerStyle.bgColor }]}>
+      <View style={[styles.viewContainer, { backgroundColor: readerStyle.bgColor }]}>
         <HeaderContainer>
           <View style={[styles.bannerStyle, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0) }]}>
             <View style={styles.bannerButton}>
@@ -405,6 +405,11 @@ class NewArticlePage extends Component {
         <Drawer ref={this.refPropsContainer}>
           {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
         </Drawer>
+        {/* <View style={styles.debugContainer} pointerEvents="box-none" >
+          <View style={styles.debugView} pointerEvents="box-none">
+            <Text style={{ color: '#fff' }}>事件触发区域</Text>
+          </View>
+        </View> */}
       </View>
     );
   }
@@ -416,7 +421,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center', 
     justifyContent: "flex-start", 
-    // backgroundColor: "#eee7dd"
   },
   bodyContainer: {
     flex: 1,
@@ -430,6 +434,16 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  debugView: {
+    borderWidth: 1, 
+    borderColor: '#999', 
+    width: '100%', 
+    height: 200, 
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   bannerStyle: {
     flex: 1, 

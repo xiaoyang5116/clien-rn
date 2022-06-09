@@ -3,7 +3,8 @@ import HeaderView from './HeaderView';
 import PlainView from './PlainView';
 import EventView from './EventView';
 import OptionView from './OptionView';
-import CoverView from './CoverView';
+import OverView from './OverView';
+import ImageView from './ImageView';
 
 export default class ArticleBlock extends PureComponent {
 
@@ -12,7 +13,7 @@ export default class ArticleBlock extends PureComponent {
         if (dataType == 'plain') {
             return (<PlainView itemKey={this.props.data.key} content={this.props.data.content} />)
         } else if (dataType == 'code' && this.props.data.object != null) {
-            const { header, toast, pop, chatId, overview } = this.props.data.object;
+            const { header, toast, pop, chatId, overview, image } = this.props.data.object;
             if (header != undefined) {
                 return (<HeaderView itemKey={this.props.data.key} content={header} />);
             } else if (toast != undefined) {
@@ -22,7 +23,9 @@ export default class ArticleBlock extends PureComponent {
             } else if (chatId != undefined) {
                 return (<OptionView itemKey={this.props.data.key} {...this.props.data.object} />);
             } else if (overview != undefined) {
-                return (<CoverView itemKey={this.props.data.key} {...this.props.data.object} />);
+                return (<OverView itemKey={this.props.data.key} {...this.props.data.object} />);
+            } else if (image != undefined) {
+                return (<ImageView itemKey={this.props.data.key} {...this.props.data.object} />);
             }
         }
         return (<></>);

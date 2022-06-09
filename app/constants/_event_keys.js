@@ -43,4 +43,7 @@ export class EventKeys {
 
     // 导航路径发生变化
     static NAVIGATION_ROUTE_CHANGED = 'NAVIGATION_ROUTE_CHANGED';
+
+    // 图片视图进入事件检测区域
+    static IMAGE_VIEW_ENTER_EVENT_AREA = 'IMAGE_VIEW_ENTER_EVENT_AREA';
 }

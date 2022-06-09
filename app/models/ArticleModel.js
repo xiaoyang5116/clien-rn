@@ -208,15 +208,17 @@ export default {
           continue;
 
         // 触发按区域激活提示
-        const { toast, pop } = item.object;
-        if (toast == undefined && pop == undefined)
+        const { toast, pop, image } = item.object;
+        if (toast == undefined 
+          && pop == undefined 
+          && image == undefined)
           continue;
 
         // 计算总偏移量
-        const prevSections = articleState.sections.filter(e => e.key <= item.key);
+        const prevSections = articleState.sections.filter(e => e.key < item.key);
         let totalOffsetY = 0;
         prevSections.forEach(e => totalOffsetY += e.height);
-        const validY = offsetY + WIN_SIZE.height / 2 - 40 + 100; // 40: iOS顶部空间, 100: 透明框一半
+        const validY = offsetY + WIN_SIZE.height / 2 - 80 + 100; // 80: FlatList至顶部空间, 100: 透明框一半
         if (validY > totalOffsetY && (validY - 200) < totalOffsetY) {
           // 在事件触发区域
           if (toast != undefined) {
@@ -225,6 +227,10 @@ export default {
           if (pop != undefined) {
             Modal.show(pop);
           }
+          if (image != undefined) {
+            DeviceEventEmitter.emit(EventKeys.IMAGE_VIEW_ENTER_EVENT_AREA, item);
+          }
+          // 不重复触发
           item.object.completed = true;
         }
       }

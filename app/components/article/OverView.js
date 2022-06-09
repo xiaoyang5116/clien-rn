@@ -12,7 +12,7 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 // 封面View
-const CoverView = (props) => {
+const OverView = (props) => {
     // {
     // "itemKey": 6, 
     // "overview": {
@@ -116,7 +116,7 @@ const CoverView = (props) => {
     )
 }
 
-export default connect((state) => ({ ...state.AppModel, ...state.ArticleModel }))(CoverView);
+export default connect((state) => ({ ...state.AppModel, ...state.ArticleModel }))(OverView);
 
 const styles = StyleSheet.create({
     bigTitle: {
