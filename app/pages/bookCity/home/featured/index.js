@@ -49,27 +49,9 @@ const FeaturedPage = (props) => {
                 showsHorizontalScrollIndicator={false}
                 style={{ width: "100%", height: 120, }}
             >
-                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12, overflow: "hidden" }}>
-                    {/* <Image
-                        // style={{ width: px2pd(51), height: px2pd(38) }}
-                        style={{ width: "100%", height: "100%" }}
-                        source={require("../../../../../assets/bg/lottery_bg2.jpg")}
-                    /> */}
-                </View>
-                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12, overflow: "hidden" }}>
-                    {/* <Image
-                        // style={{ width: px2pd(51), height: px2pd(38) }}
-                        style={{ width: "100%", height: "100%" }}
-                        source={require("../../../../../assets/bg/lottery_bg2.jpg")}
-                    /> */}
-                </View>
-                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}>
-                    {/* <Image
-                        // style={{ width: px2pd(51), height: px2pd(38) }}
-                        style={{ width: "100%", height: "100%" }}
-                        source={require("../../../../../assets/bg/lottery_bg2.jpg")}
-                    /> */}
-                </View>
+                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12, overflow: "hidden" }}></View>
+                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12, overflow: "hidden" }}></View>
+                <View style={{ width: 200, height: 100, borderRadius: 6, backgroundColor: '#ccc', overflow: "hidden" }}></View>
             </ScrollView>
 
             {/* 为你推荐 */}
@@ -87,7 +69,7 @@ const FeaturedPage = (props) => {
             <Classification />
             {/* 分类 */}
             <Classification />
-            <View style={{ height: 50, }}></View>
+            <View style={{ height: 50 }}></View>
         </ScrollView>
     )
 }

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView } from 'react-native'
 import React, { useState } from 'react'
 
 import { Tab, TabView } from "@rneui/themed";
@@ -15,42 +15,44 @@ const BookCityHome = (props) => {
     const [tabIndex, setTabIndex] = useState(0)
 
     return (
-        <View style={{ flex: 1, marginTop: 40 }}>
-            <Tab
-                value={tabIndex}
-                onChange={(index) => setTabIndex(index)}
-                containerStyle={styles.TabContainerStyle}
-                disableIndicator={true}
-                scrollable={true}
-            >
-                <Tab.Item
-                    title={"精选"}
-                    titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 70, backgroundColor: '#f2f2f2' }}
-                    buttonStyle={{ padding: 0 }}
-                />
-                <Tab.Item
-                    title={"动态"}
-                    titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 70, backgroundColor: '#f2f2f2' }}
-                    buttonStyle={{ padding: 0 }}
-                />
-            </Tab>
-            <TabView
-                value={tabIndex}
-                onChange={setTabIndex}
-                animationType="timing"
-                disableSwipe={true}
-                animationConfig={{ duration: 200 }}
-            >
-                <TabView.Item style={styles.TabView_item_container}>
-                    <FeaturedPage />
-                </TabView.Item>
-                <TabView.Item style={styles.TabView_item_container}>
-                    <FeaturedPage />
-                </TabView.Item>
-            </TabView>
-        </View>
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={{ flex: 1 }}>
+                <Tab
+                    value={tabIndex}
+                    onChange={(index) => setTabIndex(index)}
+                    containerStyle={styles.TabContainerStyle}
+                    disableIndicator={true}
+                    scrollable={true}
+                >
+                    <Tab.Item
+                        title={"精选"}
+                        titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
+                        containerStyle={{ width: 70, backgroundColor: '#f2f2f2' }}
+                        buttonStyle={{ padding: 0 }}
+                    />
+                    <Tab.Item
+                        title={"动态"}
+                        titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
+                        containerStyle={{ width: 70, backgroundColor: '#f2f2f2' }}
+                        buttonStyle={{ padding: 0 }}
+                    />
+                </Tab>
+                <TabView
+                    value={tabIndex}
+                    onChange={setTabIndex}
+                    animationType="timing"
+                    disableSwipe={true}
+                    animationConfig={{ duration: 200 }}
+                >
+                    <TabView.Item style={styles.TabView_item_container}>
+                        <FeaturedPage />
+                    </TabView.Item>
+                    <TabView.Item style={styles.TabView_item_container}>
+                        <FeaturedPage />
+                    </TabView.Item>
+                </TabView>
+            </View>
+        </SafeAreaView>
     )
 }
 
