@@ -349,6 +349,7 @@ class NewArticlePage extends Component {
         <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
           <Tab.Navigator initialRouteName='PrimaryWorld' 
             tabBar={(props) => <WorldTabBar {...props} />}
+            screenOptions={{ swipeEnabled: !this.props.isStartPage }}
             >
             <Tab.Screen name="LeftWorld" options={{ tabBarLabel: '现实' }} children={(props) => <TheWorld {...this.props} {...props} />} />
             <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '灵修界' }} children={(props) => <TheWorld {...this.props} {...props} />} />

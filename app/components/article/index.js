@@ -3,7 +3,7 @@ import HeaderView from './HeaderView';
 import PlainView from './PlainView';
 import EventView from './EventView';
 import OptionView from './OptionView';
-import ArticleOverview from './ArticleOverview';
+import CoverView from './CoverView';
 
 export default class ArticleBlock extends PureComponent {
 
@@ -22,7 +22,7 @@ export default class ArticleBlock extends PureComponent {
             } else if (chatId != undefined) {
                 return (<OptionView itemKey={this.props.data.key} {...this.props.data.object} />);
             } else if (overview != undefined) {
-                return (<ArticleOverview itemKey={this.props.data.key} {...this.props.data.object} />);
+                return (<CoverView itemKey={this.props.data.key} {...this.props.data.object} />);
             }
         }
         return (<></>);
