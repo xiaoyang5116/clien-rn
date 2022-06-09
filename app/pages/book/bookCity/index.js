@@ -4,13 +4,8 @@ import {
     createBottomTabNavigator
 } from '@react-navigation/bottom-tabs';
 
-import {
-    connect,
-    Component,
-    StyleSheet,
-    ThemeContext,
-} from "../constants";
-import BookCityHome from './bookCity/home'
+import BookCityHome from './home'
+
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +18,7 @@ const defaultScreenOptions = {
     tabBarInactiveTintColor: '#666',
 }
 
-const BookCityPage = () => {
+const BookCityPage = (props) => {
     return (
         <Tab.Navigator initialRouteName='首页' screenOptions={defaultScreenOptions}>
             <Tab.Screen name="首页" component={BookCityHome} options={{ headerShown: false }} />
