@@ -10,10 +10,17 @@ import {
 import lo from 'lodash';
 import { px2pd } from '../../constants/resolution';
 
+const CHAPTER_IMAGES = [
+    { id: 'V1_1080', width: px2pd(1080), height: px2pd(1080), source: require('../../../assets/chapter/V1_1080.png') },
+    { id: 'V2_1080', width: px2pd(1080), height: px2pd(1799), source: require('../../../assets/chapter/V2_1080.png') },
+    { id: 'V3_1080', width: px2pd(1080), height: px2pd(703), source: require('../../../assets/chapter/V3_1080.png') },
+];
+
 const ImageView = (props) => {
     const { image, readerStyle } = props;
-    const imgWidth = px2pd(1080);
-    const imgHeight = px2pd(1080);
+
+    const found = CHAPTER_IMAGES.find(e => lo.isEqual(e.id, image.id));
+    const { width, height, source } = found;
 
     const opacity = React.useRef(new Animated.Value(0)).current;
     const translateX = React.useRef(new Animated.Value(0)).current;
@@ -26,17 +33,17 @@ const ImageView = (props) => {
         useNativeDriver: false,
     }));
     const translateXAnimation = React.useRef(Animated.timing(translateX, {
-        toValue: imgWidth,
+        toValue: width,
         duration: 1000,
         useNativeDriver: true,
     }));
     const translateY1Animation = React.useRef(Animated.timing(translateY1, {
-        toValue: -imgHeight/2,
+        toValue: -height/2,
         duration: 1000,
         useNativeDriver: true,
     }));
     const translateY2Animation = React.useRef(Animated.timing(translateY2, {
-        toValue: imgHeight/2,
+        toValue: height/2,
         duration: 1000,
         useNativeDriver: true,
     }));
@@ -67,30 +74,29 @@ const ImageView = (props) => {
         }));
     }
 
-    const commonStyle = { width: imgWidth, height: imgHeight };
-
     let animationView = <></>;
+    const commonStyle = { width, height };
+
     switch (image.animation) {
         case 'fadeIn':
-            animationView = <Animated.Image style={[commonStyle, { opacity: opacity }]} source={require('../../../assets/chapter/V1080.png')} />
+            animationView = <Animated.Image style={[commonStyle, { opacity: opacity }]} source={source} />
             break;
         case 'move':
-            animationView = <Animated.Image style={[commonStyle, { position: 'absolute', left: -imgWidth, transform: [{ translateX: translateX }] }]} 
-                                source={require('../../../assets/chapter/V1080.png')} />
+            animationView = <Animated.Image style={[commonStyle, { position: 'absolute', left: -width, transform: [{ translateX: translateX }] }]} source={source} />
             break;
         case 'open':
             animationView = (
                 <View style={{ overflow: 'hidden' }}>
-                    <Animated.Image style={[commonStyle, { }]} source={require('../../../assets/chapter/V1080.png')} />
-                    <Animated.View style={[{ position: 'absolute', top: 0, width: '100%', height: imgHeight/2, backgroundColor: readerStyle.bgColor }, { transform: [{ translateY: translateY1 }] }]} />
-                    <Animated.View style={[{ position: 'absolute', bottom: 0, width: '100%', height: imgHeight/2, backgroundColor: readerStyle.bgColor }, { transform: [{ translateY: translateY2 }] }]} />
+                    <Animated.Image style={[commonStyle, { }]} source={source} />
+                    <Animated.View style={[{ position: 'absolute', top: 0, width: '100%', height: height/2, backgroundColor: readerStyle.bgColor }, { transform: [{ translateY: translateY1 }] }]} />
+                    <Animated.View style={[{ position: 'absolute', bottom: 0, width: '100%', height: height/2, backgroundColor: readerStyle.bgColor }, { transform: [{ translateY: translateY2 }] }]} />
                 </View>
             );
             break;
     }
 
     return (
-        <View key={props.itemKey} style={{ justifyContent: 'center', alignItems: 'center', height: imgHeight }} onLayout={layoutHandler} >
+        <View key={props.itemKey} style={{ justifyContent: 'center', alignItems: 'center', height: height }} onLayout={layoutHandler} >
             {animationView}
         </View>
     );
