@@ -1,5 +1,16 @@
-import { ScrollView, Text, View, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import {
+    ScrollView,
+    Text,
+    View,
+    FlatList,
+    StyleSheet,
+    Image,
+    TouchableWithoutFeedback,
+    Dimensions,
+} from 'react-native'
 import React, { useState } from 'react'
+
+import { SwiperFlatList } from 'react-native-swiper-flatlist';
 
 import Classification from './Classification';
 
@@ -24,11 +35,19 @@ const DATA = [
     },
 ];
 
+const colors = ['', '', '', ''];
+
+const width = Dimensions.get('window').width - 24;
+
 const FeaturedPage = (props) => {
+
+    const showBookDetail = (id) => {
+        props.navigation.navigate('BookDetail', { id: id })
+    }
 
     const renderRecommend = ({ item }) => {
         return (
-            <TouchableOpacity onPress={() => { console.log("ssss"); }}>
+            <TouchableWithoutFeedback onPress={() => { showBookDetail(item.id) }}>
                 <View style={{ width: 150, height: 200, borderRadius: 6, backgroundColor: '#ccc', marginRight: 12, overflow: 'hidden' }}>
                     <Image
                         // style={{ width: px2pd(51), height: px2pd(38) }}
@@ -36,7 +55,7 @@ const FeaturedPage = (props) => {
                         source={item.img}
                     />
                 </View>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
 
         )
     }
@@ -47,6 +66,22 @@ const FeaturedPage = (props) => {
             style={{ flex: 1, }}
         >
             {/* 走马灯 */}
+            <View style={{ width: "100%", height: 200, marginBottom: 20 }}>
+                <SwiperFlatList
+                    autoplay
+                    autoplayDelay={2}
+                    autoplayLoop
+                    index={0}
+                    showPagination
+                    data={colors}
+                    renderItem={({ item }) => (
+                        <View style={[styles.child, { backgroundColor: item }]}>
+                            <Text style={styles.text}>{item}</Text>
+                        </View>
+                    )}
+                />
+            </View>
+
 
             {/* 小游戏 */}
             <ScrollView
@@ -80,3 +115,19 @@ const FeaturedPage = (props) => {
 }
 
 export default FeaturedPage
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'white'
+    },
+    child: {
+        width,
+        justifyContent: 'center'
+    },
+    text: {
+        fontSize: width * 0.5,
+        textAlign: 'center'
+    },
+})

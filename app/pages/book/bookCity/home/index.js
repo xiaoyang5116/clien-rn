@@ -45,10 +45,10 @@ const BookCityHome = (props) => {
                     animationConfig={{ duration: 200 }}
                 >
                     <TabView.Item style={styles.TabView_item_container}>
-                        <FeaturedPage />
+                        <FeaturedPage {...props} />
                     </TabView.Item>
                     <TabView.Item style={styles.TabView_item_container}>
-                        <FeaturedPage />
+                        <FeaturedPage {...props} />
                     </TabView.Item>
                 </TabView>
             </View>
