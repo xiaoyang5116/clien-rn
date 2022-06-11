@@ -35,7 +35,7 @@ const DATA = [
     },
 ];
 
-const colors = ['', '', '', ''];
+const colors = ['tomato', 'thistle', 'skyblue', 'teal'];
 
 const width = Dimensions.get('window').width - 24;
 
@@ -76,7 +76,6 @@ const FeaturedPage = (props) => {
                     data={colors}
                     renderItem={({ item }) => (
                         <View style={[styles.child, { backgroundColor: item }]}>
-                            <Text style={styles.text}>{item}</Text>
                         </View>
                     )}
                 />
@@ -125,9 +124,5 @@ const styles = StyleSheet.create({
     child: {
         width,
         justifyContent: 'center'
-    },
-    text: {
-        fontSize: width * 0.5,
-        textAlign: 'center'
     },
 })
