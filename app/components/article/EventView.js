@@ -1,29 +1,48 @@
-import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
+import React from 'react';
+
+import { 
+    View, 
+    StyleSheet, 
+    DeviceEventEmitter 
+} from 'react-native';
+
+import lo from 'lodash';
 
 import {
     connect,
     action,
+    EventKeys,
 } from "../../constants";
 
-class EventView extends PureComponent {
-
-    layoutHandler = (e) => {
-        this.props.dispatch(action('ArticleModel/layout')({ 
-            key: this.props.itemKey,
+const EventView = (props) => {
+    const layoutHandler = (e) => {
+        props.dispatch(action('ArticleModel/layout')({ 
+            key: props.itemKey,
             width: e.nativeEvent.layout.width,
             height: e.nativeEvent.layout.height,
         }));
     }
 
-    render() {
-        return (
-            <View key={this.props.itemKey} style={{ }} onLayout={this.layoutHandler} >
-                {/* <Text style={{ fontSize: 20, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text> */}
-            </View>
-        );
-    }
+    React.useEffect(() => {
+        const { backgroundImage } = props;
+        if (lo.isString(backgroundImage)) {
+            DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, backgroundImage);
+        }
+    }, []);
 
+    return (
+        <View key={props.itemKey} style={styles.debugView} onLayout={layoutHandler} >
+            {/* <Text style={{ fontSize: 20, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text> */}
+        </View>
+    );
 }
+
+const styles = StyleSheet.create({
+    debugView: {
+        width: '100%', 
+        height: 10, 
+        backgroundColor: '#669900'
+    }
+});
 
 export default connect((state) => ({ ...state.ArticleModel }))(EventView);

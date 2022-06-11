@@ -46,4 +46,7 @@ export class EventKeys {
 
     // 图片视图进入事件检测区域
     static IMAGE_VIEW_ENTER_EVENT_AREA = 'IMAGE_VIEW_ENTER_EVENT_AREA';
+
+    // 更换阅读器内容背景图片
+    static READER_BACKGROUND_IMG_UPDATE = 'READER_BACKGROUND_IMG_UPDATE';
 }

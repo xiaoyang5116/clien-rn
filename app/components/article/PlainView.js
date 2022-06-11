@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import { View, Text, TouchableWithoutFeedback, DeviceEventEmitter } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableWithoutFeedback, DeviceEventEmitter, Animated } from 'react-native';
 
 import {
     connect,
@@ -8,53 +8,48 @@ import {
     DataContext,
 } from "../../constants";
 
-class PlainView extends PureComponent {
+const PlainView = (props) => {
+    const { readerStyle } = props
+    const context = React.useContext(DataContext);
 
-    static contextType = DataContext;
-
-    layoutHandler = (e) => {
-        this.props.dispatch(action('ArticleModel/layout')({
-            key: this.props.itemKey,
+    const layoutHandler = (e) => {
+        props.dispatch(action('ArticleModel/layout')({
+            key: props.itemKey,
             width: e.nativeEvent.layout.width,
             height: e.nativeEvent.layout.height,
         }));
     }
 
-    onPressHandler = (e) => {
-        if (this.context.slideMoving == undefined
-            || !this.context.slideMoving) {
+    const onPressHandler = (e) => {
+        if (context.slideMoving == undefined
+            || !context.slideMoving) {
             DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_PRESS, e);
         } else {
-            this.context.slideMoving = false;
+            context.slideMoving = false;
         }
     }
 
-    onLongPressHandler = (e) => {
+    const onLongPressHandler = (e) => {
         DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_LONG_PRESS, e);
     }
 
-    render() {
-        const { readerStyle } = this.props
-
-        return (
-            <TouchableWithoutFeedback onLongPress={this.onLongPressHandler} onPress={this.onPressHandler}>
-                <View key={this.props.itemKey} style={{}} onLayout={this.layoutHandler} >
-                    <Text style={{
-                        fontSize: readerStyle.contentSize,
-                        color: readerStyle.color,
-                        lineHeight: (readerStyle.contentSize + readerStyle.lineHeight),
-                        marginTop: readerStyle.paragraphSpacing,
-                        marginBottom: readerStyle.paragraphSpacing,
-                        paddingLeft: readerStyle.leftPadding,
-                        paddingRight: readerStyle.rightPadding,
-                    }}>
-                        {this.props.content}
-                    </Text>
-                </View>
-            </TouchableWithoutFeedback>
-        );
-    }
-
+    return (
+        <TouchableWithoutFeedback onLongPress={onLongPressHandler} onPress={onPressHandler}>
+            <Animated.View key={props.itemKey} style={{ opacity: context.readerTextOpacity }} onLayout={layoutHandler} >
+                <Text style={{
+                    fontSize: readerStyle.contentSize,
+                    color: readerStyle.color,
+                    lineHeight: (readerStyle.contentSize + readerStyle.lineHeight),
+                    marginTop: readerStyle.paragraphSpacing,
+                    marginBottom: readerStyle.paragraphSpacing,
+                    paddingLeft: readerStyle.leftPadding,
+                    paddingRight: readerStyle.rightPadding,
+                }}>
+                    {props.content}
+                </Text>
+            </Animated.View>
+        </TouchableWithoutFeedback>
+    );
 }
 
 export default connect((state) => ({ ...state.ArticleModel }))(PlainView);

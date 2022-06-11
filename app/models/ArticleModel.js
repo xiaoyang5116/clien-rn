@@ -20,6 +20,7 @@ import EventListeners from '../utils/EventListeners';
 import defaultReaderStyle from '../themes/readerStyle';
 
 const WIN_SIZE = getWindowSize();
+const DETECTION_AREA_HEIGHT = 200;
 
 const AddLoadedListHandler = (list, obj) => {
   if (lo.isEqual(obj.path, '[START]')) {
@@ -51,6 +52,11 @@ export default {
 
       // 记录小说描述索引[{ id: '小说ID'， files: 数据 }]
       indexes: [],
+
+      // 事件监测起始位置
+      startOffsetY: 0,
+      // 触发的事件对象KEY
+      tiggerTargetKey: 0,
     },
 
     attrsConfig: null,
@@ -196,7 +202,7 @@ export default {
 
     *scroll({ payload }, { call, put, select }) {
       const articleState = yield select(state => state.ArticleModel);
-      const { offsetX, offsetY } = payload;
+      const { offsetX, offsetY, textOpacity, bgImgOpacity } = payload;
 
       for (let k in articleState.sections) {
         const item = articleState.sections[k];
@@ -208,30 +214,71 @@ export default {
           continue;
 
         // 触发按区域激活提示
-        const { toast, pop, image } = item.object;
+        const { toast, pop, image, effect } = item.object;
         if (toast == undefined 
           && pop == undefined 
-          && image == undefined)
+          && image == undefined
+          && effect == undefined)
           continue;
 
         // 计算总偏移量
-        const prevSections = articleState.sections.filter(e => e.key < item.key);
         let totalOffsetY = 0;
+        const prevSections = articleState.sections.filter(e => e.key < item.key);
         prevSections.forEach(e => totalOffsetY += e.height);
-        const validY = offsetY + WIN_SIZE.height / 2 - 80 + 100; // 80: FlatList至顶部空间, 100: 透明框一半
-        if (validY > totalOffsetY && (validY - 200) < totalOffsetY) {
-          // 在事件触发区域
+        const validY = offsetY + WIN_SIZE.height / 2 - 80 + (DETECTION_AREA_HEIGHT / 2); // 80: FlatList至顶部空间
+
+        // 在事件触发区域
+        if (validY > totalOffsetY && (validY - DETECTION_AREA_HEIGHT) < totalOffsetY) {
+          // 弹出提示
           if (toast != undefined) {
             Toast.show(toast, toastType(item.object.type));
+            item.object.completed = true;
           }
+          // 弹出对话框
           if (pop != undefined) {
             Modal.show(pop);
+            item.object.completed = true;
           }
+          // 内容间插图
           if (image != undefined) {
             DeviceEventEmitter.emit(EventKeys.IMAGE_VIEW_ENTER_EVENT_AREA, item);
           }
-          // 不重复触发
-          item.object.completed = true;
+          // 效果事件
+          if (effect != undefined) {
+            if (articleState.__data.startOffsetY <= 0 || !lo.isEqual(articleState.__data.tiggerTargetKey, item.key)) {
+              articleState.__data.startOffsetY = offsetY;
+              articleState.__data.tiggerTargetKey = item.key;
+              console.debug(`[start detect] key=${item.key} offsetY=${offsetY}`);
+            }
+          }
+        }
+
+        if (lo.isEqual(articleState.__data.tiggerTargetKey, item.key)
+          && (articleState.__data.startOffsetY > 0)) {
+          const value = 1 - (offsetY - articleState.__data.startOffsetY) / DETECTION_AREA_HEIGHT;
+          // console.debug(`>>> textOpacity=${value}`);
+          if (value < 0) {
+            if (value <= -2) {
+              textOpacity.setValue(1);
+            } else if (value <= -1) {
+              const ot = Math.abs(value) - 1;
+              let oi = 1 - ot;
+              // oi = oi <= 0.2 ? 0.2 : oi;
+
+              textOpacity.setValue(ot);
+              bgImgOpacity.setValue(oi);
+            } else {
+              textOpacity.setValue(0);
+            }
+          } else if (value > 1) {
+            textOpacity.setValue(1);
+          } else {
+            let oi = 1 - value;
+            // oi = oi <= 0.2 ? 0.2 : oi;
+
+            textOpacity.setValue(value);
+            bgImgOpacity.setValue(oi);
+          }
         }
       }
     },

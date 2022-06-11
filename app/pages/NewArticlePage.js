@@ -12,7 +12,8 @@ import {
   AppDispath,
   DataContext,
   getWindowSize,
-  statusBarHeight
+  statusBarHeight,
+  getChapterImage
 } from "../constants";
 
 import { 
@@ -39,6 +40,7 @@ import FooterContainer from '../components/article/FooterContainer';
 import * as RootNavigation from '../utils/RootNavigation';
 import Collapse from '../components/collapse';
 import Drawer from '../components/drawer';
+import { px2pd } from '../constants/resolution';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -80,6 +82,34 @@ const WorldSelector = () => {
       }
     }
   });
+}
+
+const ReaderBackgroundImageView = () => {
+  const context = React.useContext(DataContext);
+  const [image, setImage] = React.useState(<></>);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.READER_BACKGROUND_IMG_UPDATE, (imageId) => {
+      if (lo.isEmpty(imageId)) {
+        setTimeout(() => <></>, 0);
+      } else {
+        const res = getChapterImage(imageId);
+        setTimeout(() => {
+          setImage(<Animated.Image style={{ width: res.width, height: res.height, opacity: context.readerBgImgOpacity }} source={res.source} />);
+        }, 0);
+      }
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  const res = getChapterImage('V3_1080');
+  return (
+  <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+    {image}
+  </View>
+  );
 }
 
 const UserAttributesHolder = (props) => {
@@ -151,9 +181,11 @@ const TheWorld = (props) => {
   const routeName = props.route.name;
 
   const scrollHandler = (payload) => {
+    const { x, y } = payload.nativeEvent.contentOffset;
     props.dispatch(action('ArticleModel/scroll')({ 
-      offsetX: payload.nativeEvent.contentOffset.x,
-      offsetY: payload.nativeEvent.contentOffset.y,
+      offsetX: x, offsetY: y, 
+      textOpacity: context.readerTextOpacity,
+      bgImgOpacity: context.readerBgImgOpacity,
     }));
 
     // 屏蔽：需求 --- 手动点击才隐藏上下功能区域。
@@ -225,6 +257,7 @@ const TheWorld = (props) => {
 
   return (
     <View style={[{ flex: 1 }, { backgroundColor: props.readerStyle.bgColor }]}>
+      <ReaderBackgroundImageView />
       <FlatList
         style={{ alignSelf: 'stretch' }}
         ref={(ref) => refList.current = ref}
@@ -443,7 +476,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column', 
     justifyContent: 'center', 
     alignItems: 'center', 
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.1)',
   },
   bannerStyle: {
     flex: 1, 

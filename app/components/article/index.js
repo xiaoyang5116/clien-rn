@@ -1,19 +1,22 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import { DeviceEventEmitter } from 'react-native';
+
 import HeaderView from './HeaderView';
 import PlainView from './PlainView';
 import EventView from './EventView';
 import OptionView from './OptionView';
 import OverView from './OverView';
 import ImageView from './ImageView';
+import { EventKeys } from '../../constants';
 
-export default class ArticleBlock extends PureComponent {
+export default class ArticleBlock extends React.PureComponent {
 
     render() {
         const dataType = this.props.data.type;
         if (dataType == 'plain') {
             return (<PlainView itemKey={this.props.data.key} content={this.props.data.content} />)
         } else if (dataType == 'code' && this.props.data.object != null) {
-            const { header, toast, pop, chatId, overview, image } = this.props.data.object;
+            const { header, toast, pop, chatId, overview, image, effect, backgroundImage } = this.props.data.object;
             if (header != undefined) {
                 return (<HeaderView itemKey={this.props.data.key} content={header} />);
             } else if (toast != undefined) {
@@ -26,6 +29,10 @@ export default class ArticleBlock extends PureComponent {
                 return (<OverView itemKey={this.props.data.key} {...this.props.data.object} />);
             } else if (image != undefined) {
                 return (<ImageView itemKey={this.props.data.key} {...this.props.data.object} />);
+            } else if (effect != undefined) {
+                return (<EventView itemKey={this.props.data.key} {...this.props.data.object} />);
+            } else if (backgroundImage != undefined) {
+                return (<EventView itemKey={this.props.data.key} backgroundImage={backgroundImage} />);
             }
         }
         return (<></>);

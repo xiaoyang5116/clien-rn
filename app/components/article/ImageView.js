@@ -5,21 +5,29 @@ import {
     connect,
     action,
     EventKeys,
+    getChapterImage,
 } from "../../constants";
 
 import lo from 'lodash';
-import { px2pd } from '../../constants/resolution';
 
-const CHAPTER_IMAGES = [
-    { id: 'V1_1080', width: px2pd(1080), height: px2pd(1080), source: require('../../../assets/chapter/V1_1080.png') },
-    { id: 'V2_1080', width: px2pd(1080), height: px2pd(1799), source: require('../../../assets/chapter/V2_1080.png') },
-    { id: 'V3_1080', width: px2pd(1080), height: px2pd(703), source: require('../../../assets/chapter/V3_1080.png') },
-];
+/**
+ * 功能: 文章内图片插图
+ * 配置方式：
 
+#START========================================
+{
+    image: {
+        id: 'V3_1080',
+        animation: 'open',
+    }
+}
+#END==========================================
+
+ */
 const ImageView = (props) => {
     const { image, readerStyle } = props;
 
-    const found = CHAPTER_IMAGES.find(e => lo.isEqual(e.id, image.id));
+    const found = getChapterImage(image.id);
     const { width, height, source } = found;
 
     const opacity = React.useRef(new Animated.Value(0)).current;
