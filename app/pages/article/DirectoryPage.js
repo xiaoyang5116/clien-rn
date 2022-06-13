@@ -12,6 +12,8 @@ import {
   DeviceEventEmitter,
 } from 'react-native';
 import { EventKeys } from '../../constants';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../constants/resolution';
 
 const DATA = [
   { id: 1, title: '第一章' },
@@ -35,9 +37,10 @@ const DirectoryPage = (props) => {
   const renderItem = (data) => {
     const { id, title } = data.item;
     return (
-        <View style={{ width: '100%', height: 60 }}>
+        <View style={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center', marginBottom: 5 }}>
           <TouchableWithoutFeedback onPress={gotoDirMap}>
             <View style={styles.dirItem}>
+              <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/button/dir_button.png')} />
               <Text style={styles.dirItemText}>{title}</Text>
             </View>
           </TouchableWithoutFeedback>
@@ -75,14 +78,13 @@ const styles = StyleSheet.create({
 
   dirItem: {
     flex: 1, 
-    marginLeft: 5,
-    marginRight: 5, 
-    marginBottom: 5,
-    borderWidth: 1, 
-    borderColor: '#ccc', 
-    backgroundColor: '#666', 
+    width: px2pd(1018),
+    height: px2pd(135),
     justifyContent: 'center', 
-    alignItems: 'center'
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#333',
+    borderRadius: 3,
   },
 
   dirItemText: {

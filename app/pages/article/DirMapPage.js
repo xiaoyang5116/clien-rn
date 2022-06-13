@@ -7,16 +7,20 @@ import {
   View,
   Text,
   StyleSheet,
+  ImageBackground,
 } from 'react-native';
+import { px2pd } from '../../constants/resolution';
 
 const DirMapPage = (props) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1 }}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>章节地图</Text>
-        </View>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ImageBackground style={{ width: px2pd(1080), height: px2pd(1808) }} source={require('../../../assets/bg/dir_map.png')}>
+          <View style={styles.header}>
+            <Text style={styles.headerText}></Text>
+          </View>
+        </ImageBackground>
       </View>
     </SafeAreaView>
   );

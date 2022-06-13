@@ -64,7 +64,7 @@ export default class RightContainer extends React.PureComponent {
   render() {
     return (
       <TouchableWithoutFeedback onPress={() => this.close()}>
-        <Animated.View style={{ position: 'absolute', right: this.rightPos, top: 0, zIndex: 100, width: winSize.width, height: winSize.height, backgroundColor: '#a49f99' }}>
+        <Animated.View style={{ position: 'absolute', right: this.rightPos, top: 0, zIndex: 100, width: winSize.width, height: winSize.height, backgroundColor: '#bcc3bf' }}>
           {this.props.children}
         </Animated.View>
       </TouchableWithoutFeedback>
