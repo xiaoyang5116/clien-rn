@@ -53,10 +53,16 @@ export default {
       // 记录小说描述索引[{ id: '小说ID'， files: 数据 }]
       indexes: [],
 
-      // 事件监测起始位置
+      // 区域检测开始位置
       startOffsetY: 0,
-      // 触发的事件对象KEY
-      tiggerTargetKey: 0,
+      // 区域检测对象KEY
+      eventTargetKey: '',
+      // 区域检测目标区域
+      eventTargetAreaId: 0,
+      // 区域检测目标特效ID
+      eventTargetEffectId: '',
+      // 记录上一个滑动偏移量
+      prevOffsetY: 0,
     },
 
     attrsConfig: null,
@@ -225,10 +231,25 @@ export default {
         let totalOffsetY = 0;
         const prevSections = articleState.sections.filter(e => e.key < item.key);
         prevSections.forEach(e => totalOffsetY += e.height);
-        const validY = offsetY + WIN_SIZE.height / 2 - 80 + (DETECTION_AREA_HEIGHT / 2); // 80: FlatList至顶部空间
+        const direction = (articleState.__data.prevOffsetY > offsetY) ? 1 : -1;
 
-        // 在事件触发区域
-        if (validY > totalOffsetY && (validY - DETECTION_AREA_HEIGHT) < totalOffsetY) {
+        // 事件触发区域(顶部)
+        const validY1 = offsetY + WIN_SIZE.height / 2 - 80 - (DETECTION_AREA_HEIGHT / 2) - 35;
+        if (validY1 > totalOffsetY && (validY1 - DETECTION_AREA_HEIGHT) < totalOffsetY) {
+          if (effect != undefined) {
+            if (articleState.__data.startOffsetY <= 0 || articleState.__data.eventTargetAreaId != 1) {
+              articleState.__data.startOffsetY = (direction > 0) ? (offsetY - DETECTION_AREA_HEIGHT) : offsetY;
+              articleState.__data.eventTargetAreaId = 1;
+              articleState.__data.eventTargetKey = item.key;
+              articleState.__data.eventTargetEffectId = item.object.effect.id;
+              console.debug(`[enter 1] key=${item.key} offsetY=${articleState.__data.startOffsetY} direction=${direction}`);
+            }
+          }
+        }
+
+        // 事件触发区域(中心区域)
+        const validY2 = offsetY + WIN_SIZE.height / 2 - 80 + (DETECTION_AREA_HEIGHT / 2); // 80: FlatList至顶部空间
+        if (validY2 > totalOffsetY && (validY2 - DETECTION_AREA_HEIGHT) < totalOffsetY) {
           // 弹出提示
           if (toast != undefined) {
             Toast.show(toast, toastType(item.object.type));
@@ -245,41 +266,53 @@ export default {
           }
           // 效果事件
           if (effect != undefined) {
-            if (articleState.__data.startOffsetY <= 0 || !lo.isEqual(articleState.__data.tiggerTargetKey, item.key)) {
-              articleState.__data.startOffsetY = offsetY;
-              articleState.__data.tiggerTargetKey = item.key;
-              console.debug(`[start detect] key=${item.key} offsetY=${offsetY}`);
+            if (articleState.__data.startOffsetY <= 0 || articleState.__data.eventTargetAreaId != 2) {
+              articleState.__data.startOffsetY = (direction > 0) ? (offsetY - DETECTION_AREA_HEIGHT) : offsetY;
+              articleState.__data.eventTargetAreaId = 2;
+              articleState.__data.eventTargetKey = item.key;
+              articleState.__data.eventTargetEffectId = item.object.effect.id;
+              console.debug(`[enter 2] key=${item.key} offsetY=${articleState.__data.startOffsetY} direction=${direction}`);
             }
           }
         }
 
-        if (lo.isEqual(articleState.__data.tiggerTargetKey, item.key)
+        // 事件触发区域(底部)
+        const validY3 = offsetY + WIN_SIZE.height / 2 - 80 + (DETECTION_AREA_HEIGHT * 1.5) + 35
+        if (validY3 > totalOffsetY && (validY3 - DETECTION_AREA_HEIGHT) < totalOffsetY) {
+          if (effect != undefined) {
+            if (articleState.__data.startOffsetY <= 0 || articleState.__data.eventTargetAreaId != 3) {
+              articleState.__data.startOffsetY = (direction > 0) ? (offsetY - DETECTION_AREA_HEIGHT) : offsetY;
+              articleState.__data.eventTargetAreaId = 3;
+              articleState.__data.eventTargetKey = item.key;
+              articleState.__data.eventTargetEffectId = item.object.effect.id;
+              console.debug(`[enter 3] key=${item.key} offsetY=${articleState.__data.startOffsetY} direction=${direction}`);
+            }
+          }
+        }
+
+        if (articleState.__data.eventTargetAreaId > 0
+          && lo.isEqual(articleState.__data.eventTargetKey, item.key)
+          && lo.isEqual(articleState.__data.eventTargetEffectId, 'BackgroundArt')
           && (articleState.__data.startOffsetY > 0)) {
           const value = 1 - (offsetY - articleState.__data.startOffsetY) / DETECTION_AREA_HEIGHT;
-          // console.debug(`>>> textOpacity=${value}`);
-          if (value < 0) {
-            if (value <= -2) {
-              textOpacity.setValue(1);
-            } else if (value <= -1) {
-              const ot = Math.abs(value) - 1;
-              let oi = 1 - ot;
-              // oi = oi <= 0.2 ? 0.2 : oi;
-
-              textOpacity.setValue(ot);
-              bgImgOpacity.setValue(oi);
-            } else {
-              textOpacity.setValue(0);
+          if (value >= 0) {
+            switch (articleState.__data.eventTargetAreaId) {
+              case 1:
+                textOpacity.setValue(1 - value);
+                bgImgOpacity.setValue(value);
+                break;
+              case 2:
+                textOpacity.setValue(value);
+                bgImgOpacity.setValue(1 - value);
+                break;
+              case 3:
+                break;
             }
-          } else if (value > 1) {
-            textOpacity.setValue(1);
-          } else {
-            let oi = 1 - value;
-            // oi = oi <= 0.2 ? 0.2 : oi;
-
-            textOpacity.setValue(value);
-            bgImgOpacity.setValue(oi);
           }
         }
+
+        //
+        articleState.__data.prevOffsetY = offsetY;
       }
     },
 

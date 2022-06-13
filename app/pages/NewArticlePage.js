@@ -40,7 +40,6 @@ import FooterContainer from '../components/article/FooterContainer';
 import * as RootNavigation from '../utils/RootNavigation';
 import Collapse from '../components/collapse';
 import Drawer from '../components/drawer';
-import { px2pd } from '../constants/resolution';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -86,25 +85,31 @@ const WorldSelector = () => {
 
 const ReaderBackgroundImageView = () => {
   const context = React.useContext(DataContext);
+  const currentImageId = React.useRef('');
   const [image, setImage] = React.useState(<></>);
 
   React.useEffect(() => {
-    const listener = DeviceEventEmitter.addListener(EventKeys.READER_BACKGROUND_IMG_UPDATE, (imageId) => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.READER_BACKGROUND_IMG_UPDATE, ({ imageId, defaultOpacity }) => {
+      if (lo.isEqual(currentImageId.current, imageId))
+        return;
+      //
       if (lo.isEmpty(imageId)) {
         setTimeout(() => <></>, 0);
       } else {
         const res = getChapterImage(imageId);
         setTimeout(() => {
+          context.readerBgImgOpacity.setValue(defaultOpacity);
           setImage(<Animated.Image style={{ width: res.width, height: res.height, opacity: context.readerBgImgOpacity }} source={res.source} />);
         }, 0);
       }
+      //
+      currentImageId.current = imageId;
     });
     return () => {
       listener.remove();
     }
   }, []);
 
-  const res = getChapterImage('V3_1080');
   return (
   <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
     {image}
@@ -439,8 +444,14 @@ class NewArticlePage extends Component {
           {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
         </Drawer>
         {/* <View style={styles.debugContainer} pointerEvents="box-none" >
-          <View style={styles.debugView} pointerEvents="box-none">
-            <Text style={{ color: '#fff' }}>事件触发区域</Text>
+          <View style={styles.debugView1} pointerEvents="box-none">
+            <Text style={{ color: '#fff' }}>事件触发区域1</Text>
+          </View>
+          <View style={styles.debugView2} pointerEvents="box-none">
+            <Text style={{ color: '#fff' }}>事件触发区域2</Text>
+          </View>
+          <View style={styles.debugView3} pointerEvents="box-none">
+            <Text style={{ color: '#fff' }}>事件触发区域3</Text>
           </View>
         </View> */}
       </View>
@@ -468,7 +479,29 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  debugView: {
+  debugView1: {
+    marginBottom: 35,
+    borderWidth: 1, 
+    borderColor: '#999', 
+    width: '100%', 
+    height: 200, 
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(0,0,0,0.1)',
+  },
+  debugView2: {
+    borderWidth: 1, 
+    borderColor: '#999', 
+    width: '100%', 
+    height: 200, 
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(0,0,0,0.1)',
+  },
+  debugView3: {
+    marginTop: 35,
     borderWidth: 1, 
     borderColor: '#999', 
     width: '100%', 
