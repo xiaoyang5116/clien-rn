@@ -9,7 +9,9 @@ import {
   View,
   Text,
   StyleSheet,
+  DeviceEventEmitter,
 } from 'react-native';
+import { EventKeys } from '../../constants';
 
 const DATA = [
   { id: 1, title: '第一章' },
@@ -26,11 +28,15 @@ const DATA = [
 
 const DirectoryPage = (props) => {
 
+  const gotoDirMap = () => {
+    DeviceEventEmitter.emit(EventKeys.GOTO_DIRECTORY_MAP);
+  }
+
   const renderItem = (data) => {
     const { id, title } = data.item;
     return (
         <View style={{ width: '100%', height: 60 }}>
-          <TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={gotoDirMap}>
             <View style={styles.dirItem}>
               <Text style={styles.dirItemText}>{title}</Text>
             </View>
