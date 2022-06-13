@@ -99,7 +99,7 @@ class StartReadPage extends Component {
                         }} />
                         {/* 书城 */}
                         <ImageButton {...BTN_STYLE} source={require('../../../assets/button/profile_button.png')} selectedSource={require('../../../assets/button/profile_button_selected.png')} onPress={() => {
-                            RootNavigation.navigate('BookMain');
+                            RootNavigation.navigate('BookCity');
                         }} />
                         {/* 返回 */}
                         <ImageButton {...BTN_STYLE} source={require('../../../assets/button/profile_button.png')} selectedSource={require('../../../assets/button/profile_button_selected.png')} onPress={() => {
