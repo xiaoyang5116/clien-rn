@@ -40,6 +40,8 @@ import FooterContainer from '../components/article/FooterContainer';
 import * as RootNavigation from '../utils/RootNavigation';
 import Collapse from '../components/collapse';
 import Drawer from '../components/drawer';
+import LeftContainer from '../components/article/LeftContainer';
+import DirectoryPage from './article/DirectoryPage';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -335,6 +337,7 @@ class NewArticlePage extends Component {
   constructor(props) {
     super(props);
     this.refPropsContainer = React.createRef();
+    this.refDirectory = React.createRef();
     this.longPressListener = null;
   }
 
@@ -349,6 +352,13 @@ class NewArticlePage extends Component {
 
   componentWillUnmount() {
     this.longPressListener.remove();
+  }
+
+  openDirectory = (e) => {
+    DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+    setTimeout(() => {
+      this.refDirectory.current.open();
+    }, 500);
   }
 
   render() {
@@ -371,7 +381,7 @@ class NewArticlePage extends Component {
               }} />
             </View>
             <View style={styles.bannerButton}>
-              <TextButton title='目录' />
+              <TextButton title='目录' onPress={this.openDirectory} />
             </View>
             <View style={styles.bannerButton}>
               <TextButton title='夜间' />
@@ -443,6 +453,9 @@ class NewArticlePage extends Component {
         <Drawer ref={this.refPropsContainer}>
           {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
         </Drawer>
+        <LeftContainer ref={this.refDirectory}>
+          <DirectoryPage />
+        </LeftContainer>
         {/* <View style={styles.debugContainer} pointerEvents="box-none" >
           <View style={styles.debugView1} pointerEvents="box-none">
             <Text style={{ color: '#fff' }}>事件触发区域1</Text>
