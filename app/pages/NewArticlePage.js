@@ -12,7 +12,8 @@ import {
   AppDispath,
   DataContext,
   getWindowSize,
-  statusBarHeight
+  statusBarHeight,
+  getChapterImage
 } from "../constants";
 
 import { 
@@ -39,6 +40,8 @@ import FooterContainer from '../components/article/FooterContainer';
 import * as RootNavigation from '../utils/RootNavigation';
 import Collapse from '../components/collapse';
 import Drawer from '../components/drawer';
+import LeftContainer from '../components/article/LeftContainer';
+import DirectoryPage from './article/DirectoryPage';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -80,6 +83,40 @@ const WorldSelector = () => {
       }
     }
   });
+}
+
+const ReaderBackgroundImageView = () => {
+  const context = React.useContext(DataContext);
+  const currentImageId = React.useRef('');
+  const [image, setImage] = React.useState(<></>);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.READER_BACKGROUND_IMG_UPDATE, ({ imageId, defaultOpacity }) => {
+      if (lo.isEqual(currentImageId.current, imageId))
+        return;
+      //
+      if (lo.isEmpty(imageId)) {
+        setTimeout(() => <></>, 0);
+      } else {
+        const res = getChapterImage(imageId);
+        setTimeout(() => {
+          context.readerBgImgOpacity.setValue(defaultOpacity);
+          setImage(<Animated.Image style={{ width: res.width, height: res.height, opacity: context.readerBgImgOpacity }} source={res.source} />);
+        }, 0);
+      }
+      //
+      currentImageId.current = imageId;
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  return (
+  <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+    {image}
+  </View>
+  );
 }
 
 const UserAttributesHolder = (props) => {
@@ -151,9 +188,11 @@ const TheWorld = (props) => {
   const routeName = props.route.name;
 
   const scrollHandler = (payload) => {
+    const { x, y } = payload.nativeEvent.contentOffset;
     props.dispatch(action('ArticleModel/scroll')({ 
-      offsetX: payload.nativeEvent.contentOffset.x,
-      offsetY: payload.nativeEvent.contentOffset.y,
+      offsetX: x, offsetY: y, 
+      textOpacity: context.readerTextOpacity,
+      bgImgOpacity: context.readerBgImgOpacity,
     }));
 
     // 屏蔽：需求 --- 手动点击才隐藏上下功能区域。
@@ -225,6 +264,7 @@ const TheWorld = (props) => {
 
   return (
     <View style={[{ flex: 1 }, { backgroundColor: props.readerStyle.bgColor }]}>
+      <ReaderBackgroundImageView />
       <FlatList
         style={{ alignSelf: 'stretch' }}
         ref={(ref) => refList.current = ref}
@@ -297,6 +337,7 @@ class NewArticlePage extends Component {
   constructor(props) {
     super(props);
     this.refPropsContainer = React.createRef();
+    this.refDirectory = React.createRef();
     this.longPressListener = null;
   }
 
@@ -313,10 +354,17 @@ class NewArticlePage extends Component {
     this.longPressListener.remove();
   }
 
+  openDirectory = (e) => {
+    DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+    setTimeout(() => {
+      this.refDirectory.current.open();
+    }, 500);
+  }
+
   render() {
     const { readerStyle, attrsConfig } = this.props;
     return (
-      <View style={[styles.viewContainer, { backgroundColor:readerStyle.bgColor }]}>
+      <View style={[styles.viewContainer, { backgroundColor: readerStyle.bgColor }]}>
         <HeaderContainer>
           <View style={[styles.bannerStyle, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0) }]}>
             <View style={styles.bannerButton}>
@@ -333,7 +381,7 @@ class NewArticlePage extends Component {
               }} />
             </View>
             <View style={styles.bannerButton}>
-              <TextButton title='目录' />
+              <TextButton title='目录' onPress={this.openDirectory} />
             </View>
             <View style={styles.bannerButton}>
               <TextButton title='夜间' />
@@ -349,6 +397,7 @@ class NewArticlePage extends Component {
         <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
           <Tab.Navigator initialRouteName='PrimaryWorld' 
             tabBar={(props) => <WorldTabBar {...props} />}
+            screenOptions={{ swipeEnabled: !this.props.isStartPage }}
             >
             <Tab.Screen name="LeftWorld" options={{ tabBarLabel: '现实' }} children={(props) => <TheWorld {...this.props} {...props} />} />
             <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '灵修界' }} children={(props) => <TheWorld {...this.props} {...props} />} />
@@ -404,6 +453,20 @@ class NewArticlePage extends Component {
         <Drawer ref={this.refPropsContainer}>
           {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
         </Drawer>
+        <LeftContainer ref={this.refDirectory}>
+          <DirectoryPage />
+        </LeftContainer>
+        {/* <View style={styles.debugContainer} pointerEvents="box-none" >
+          <View style={styles.debugView1} pointerEvents="box-none">
+            <Text style={{ color: '#fff' }}>事件触发区域1</Text>
+          </View>
+          <View style={styles.debugView2} pointerEvents="box-none">
+            <Text style={{ color: '#fff' }}>事件触发区域2</Text>
+          </View>
+          <View style={styles.debugView3} pointerEvents="box-none">
+            <Text style={{ color: '#fff' }}>事件触发区域3</Text>
+          </View>
+        </View> */}
       </View>
     );
   }
@@ -415,7 +478,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center', 
     justifyContent: "flex-start", 
-    // backgroundColor: "#eee7dd"
   },
   bodyContainer: {
     flex: 1,
@@ -429,6 +491,38 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  debugView1: {
+    marginBottom: 35,
+    borderWidth: 1, 
+    borderColor: '#999', 
+    width: '100%', 
+    height: 200, 
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(0,0,0,0.1)',
+  },
+  debugView2: {
+    borderWidth: 1, 
+    borderColor: '#999', 
+    width: '100%', 
+    height: 200, 
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(0,0,0,0.1)',
+  },
+  debugView3: {
+    marginTop: 35,
+    borderWidth: 1, 
+    borderColor: '#999', 
+    width: '100%', 
+    height: 200, 
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(0,0,0,0.1)',
   },
   bannerStyle: {
     flex: 1, 

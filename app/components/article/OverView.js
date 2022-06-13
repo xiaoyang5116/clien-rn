@@ -5,19 +5,14 @@ import ImageCapInset from 'react-native-image-capinsets-next';
 import {
     connect,
     action,
-    DeviceEventEmitter,
-    EventKeys,
 } from "../../constants";
 import { TextButton } from '../../constants/custom-ui';
-
-import RootView from '../../components/RootView';
-import OptionsPage from '../../pages/OptionsPage';
-
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-const ArticleOverview = (props) => {
+// 封面View
+const OverView = (props) => {
     // {
     // "itemKey": 6, 
     // "overview": {
@@ -121,7 +116,7 @@ const ArticleOverview = (props) => {
     )
 }
 
-export default connect((state) => ({ ...state.AppModel, ...state.ArticleModel }))(ArticleOverview);
+export default connect((state) => ({ ...state.AppModel, ...state.ArticleModel }))(OverView);
 
 const styles = StyleSheet.create({
     bigTitle: {

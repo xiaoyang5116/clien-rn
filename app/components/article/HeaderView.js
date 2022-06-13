@@ -19,7 +19,7 @@ class HeaderView extends PureComponent {
     render() {
         const { readerStyle } = this.props;
         return (
-            <View key={this.props.itemKey} style={{ marginTop: 10, marginBottom: 10 }} onLayout={this.layoutHandler}>
+            <View key={this.props.itemKey} style={{ paddingTop: 10, paddingBottom: 10 }} onLayout={this.layoutHandler}>
                 <Text style={{
                     fontSize: readerStyle.titleSize,
                     color: readerStyle.color,

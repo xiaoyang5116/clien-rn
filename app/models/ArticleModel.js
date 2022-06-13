@@ -20,6 +20,7 @@ import EventListeners from '../utils/EventListeners';
 import defaultReaderStyle from '../themes/readerStyle';
 
 const WIN_SIZE = getWindowSize();
+const DETECTION_AREA_HEIGHT = 200;
 
 const AddLoadedListHandler = (list, obj) => {
   if (lo.isEqual(obj.path, '[START]')) {
@@ -51,6 +52,17 @@ export default {
 
       // 记录小说描述索引[{ id: '小说ID'， files: 数据 }]
       indexes: [],
+
+      // 区域检测开始位置
+      startOffsetY: 0,
+      // 区域检测对象KEY
+      eventTargetKey: '',
+      // 区域检测目标区域
+      eventTargetAreaId: 0,
+      // 区域检测目标特效ID
+      eventTargetEffectId: '',
+      // 记录上一个滑动偏移量
+      prevOffsetY: 0,
     },
 
     attrsConfig: null,
@@ -63,6 +75,9 @@ export default {
 
     // 阅读器样式
     readerStyle: {},
+
+    // 当前是否起始页
+    isStartPage: false,
   },
 
   effects: {
@@ -77,6 +92,7 @@ export default {
       const { id, path } = (payload.file != undefined) ? ParseFileDesc(payload.file) : payload;
       const data = yield call(GetArticleDataApi, id, path);
       if (data != null) AddLoadedListHandler(articleState.__data.loadedList, { id, path, stop: HasStopDirective(data) });
+      articleState.isStartPage = lo.isEqual(path, '[START]'); // 标注是否起始页
 
       // 首次加载索引文件
       if (articleState.__data.indexes.find(e => e.id == id) == undefined) {
@@ -192,7 +208,7 @@ export default {
 
     *scroll({ payload }, { call, put, select }) {
       const articleState = yield select(state => state.ArticleModel);
-      const { offsetX, offsetY } = payload;
+      const { offsetX, offsetY, textOpacity, bgImgOpacity } = payload;
 
       for (let k in articleState.sections) {
         const item = articleState.sections[k];
@@ -204,25 +220,99 @@ export default {
           continue;
 
         // 触发按区域激活提示
-        const { toast, pop } = item.object;
-        if (toast == undefined && pop == undefined)
+        const { toast, pop, image, effect } = item.object;
+        if (toast == undefined 
+          && pop == undefined 
+          && image == undefined
+          && effect == undefined)
           continue;
 
         // 计算总偏移量
-        const prevSections = articleState.sections.filter(e => e.key <= item.key);
         let totalOffsetY = 0;
+        const prevSections = articleState.sections.filter(e => e.key < item.key);
         prevSections.forEach(e => totalOffsetY += e.height);
-        const validY = offsetY + WIN_SIZE.height / 2 - 40 + 100; // 40: iOS顶部空间, 100: 透明框一半
-        if (validY > totalOffsetY && (validY - 200) < totalOffsetY) {
-          // 在事件触发区域
+        const direction = (articleState.__data.prevOffsetY > offsetY) ? 1 : -1;
+
+        // 事件触发区域(顶部)
+        const validY1 = offsetY + WIN_SIZE.height / 2 - 80 - (DETECTION_AREA_HEIGHT / 2) - 35;
+        if (validY1 > totalOffsetY && (validY1 - DETECTION_AREA_HEIGHT) < totalOffsetY) {
+          if (effect != undefined) {
+            if (articleState.__data.startOffsetY <= 0 || articleState.__data.eventTargetAreaId != 1) {
+              articleState.__data.startOffsetY = (direction > 0) ? (offsetY - DETECTION_AREA_HEIGHT) : offsetY;
+              articleState.__data.eventTargetAreaId = 1;
+              articleState.__data.eventTargetKey = item.key;
+              articleState.__data.eventTargetEffectId = item.object.effect.id;
+              console.debug(`[enter 1] key=${item.key} offsetY=${articleState.__data.startOffsetY} direction=${direction}`);
+            }
+          }
+        }
+
+        // 事件触发区域(中心区域)
+        const validY2 = offsetY + WIN_SIZE.height / 2 - 80 + (DETECTION_AREA_HEIGHT / 2); // 80: FlatList至顶部空间
+        if (validY2 > totalOffsetY && (validY2 - DETECTION_AREA_HEIGHT) < totalOffsetY) {
+          // 弹出提示
           if (toast != undefined) {
             Toast.show(toast, toastType(item.object.type));
+            item.object.completed = true;
           }
+          // 弹出对话框
           if (pop != undefined) {
             Modal.show(pop);
+            item.object.completed = true;
           }
-          item.object.completed = true;
+          // 内容间插图
+          if (image != undefined) {
+            DeviceEventEmitter.emit(EventKeys.IMAGE_VIEW_ENTER_EVENT_AREA, item);
+          }
+          // 效果事件
+          if (effect != undefined) {
+            if (articleState.__data.startOffsetY <= 0 || articleState.__data.eventTargetAreaId != 2) {
+              articleState.__data.startOffsetY = (direction > 0) ? (offsetY - DETECTION_AREA_HEIGHT) : offsetY;
+              articleState.__data.eventTargetAreaId = 2;
+              articleState.__data.eventTargetKey = item.key;
+              articleState.__data.eventTargetEffectId = item.object.effect.id;
+              console.debug(`[enter 2] key=${item.key} offsetY=${articleState.__data.startOffsetY} direction=${direction}`);
+            }
+          }
         }
+
+        // 事件触发区域(底部)
+        const validY3 = offsetY + WIN_SIZE.height / 2 - 80 + (DETECTION_AREA_HEIGHT * 1.5) + 35
+        if (validY3 > totalOffsetY && (validY3 - DETECTION_AREA_HEIGHT) < totalOffsetY) {
+          if (effect != undefined) {
+            if (articleState.__data.startOffsetY <= 0 || articleState.__data.eventTargetAreaId != 3) {
+              articleState.__data.startOffsetY = (direction > 0) ? (offsetY - DETECTION_AREA_HEIGHT) : offsetY;
+              articleState.__data.eventTargetAreaId = 3;
+              articleState.__data.eventTargetKey = item.key;
+              articleState.__data.eventTargetEffectId = item.object.effect.id;
+              console.debug(`[enter 3] key=${item.key} offsetY=${articleState.__data.startOffsetY} direction=${direction}`);
+            }
+          }
+        }
+
+        if (articleState.__data.eventTargetAreaId > 0
+          && lo.isEqual(articleState.__data.eventTargetKey, item.key)
+          && lo.isEqual(articleState.__data.eventTargetEffectId, 'BackgroundArt')
+          && (articleState.__data.startOffsetY > 0)) {
+          const value = 1 - (offsetY - articleState.__data.startOffsetY) / DETECTION_AREA_HEIGHT;
+          if (value >= 0) {
+            switch (articleState.__data.eventTargetAreaId) {
+              case 1:
+                textOpacity.setValue(1 - value);
+                bgImgOpacity.setValue(value);
+                break;
+              case 2:
+                textOpacity.setValue(value);
+                bgImgOpacity.setValue(1 - value);
+                break;
+              case 3:
+                break;
+            }
+          }
+        }
+
+        //
+        articleState.__data.prevOffsetY = offsetY;
       }
     },
 
@@ -280,6 +370,7 @@ export default {
         yield put(action('updateState')({ readerStyle: currentReaderStyle }));
       }
     },
+
     // 修改字体大小
     *changeFontSize({ payload }, { call, put, select }) {
       const { readerStyle } = yield select(state => state.ArticleModel);
@@ -301,6 +392,7 @@ export default {
       yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, newReaderStyle);
       yield put(action('updateState')({ readerStyle: newReaderStyle }));
     },
+
     // 修改阅读器样式
     *changeReaderStyle({ payload }, { call, put, select }) {
       const { readerStyle } = yield select(state => state.ArticleModel);

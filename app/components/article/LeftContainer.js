@@ -26,6 +26,22 @@ export default class LeftContainer extends React.PureComponent {
     this.leftPos.setValue(-winSize.width + x);
   }
 
+  open() {
+    Animated.timing(this.leftPos, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  }
+
+  close() {
+    Animated.timing(this.leftPos, {
+      toValue: -winSize.width,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  }
+
   release() {
     if (this.leftPos._value >= -winSize.width*7/10) {
       Animated.timing(this.leftPos, {
@@ -42,18 +58,9 @@ export default class LeftContainer extends React.PureComponent {
     }
   }
 
-  handlePress = (e) => {
-    // 关闭界面
-    Animated.timing(this.leftPos, {
-      toValue: -winSize.width,
-      duration: 300,
-      useNativeDriver: false,
-    }).start();
-  } 
-
   render() {
     return (
-      <TouchableWithoutFeedback onPress={this.handlePress}>
+      <TouchableWithoutFeedback onPress={() => this.close()}>
         <Animated.View style={{ position: 'absolute', left: this.leftPos, top: 0, zIndex: 100, width: winSize.width, height: winSize.height, backgroundColor: '#a49f99' }}>
           {this.props.children}
         </Animated.View>

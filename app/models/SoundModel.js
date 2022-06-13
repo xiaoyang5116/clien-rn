@@ -10,7 +10,7 @@ import lo from 'lodash';
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 import { GetSoundDataApi } from "../services/GetSoundDataApi";
-import { playSound } from "../components/sound/utils";
+import { playEffect, playSound } from "../components/sound/utils";
 
 export default {
     namespace: 'SoundModel',
@@ -59,6 +59,28 @@ export default {
                 if (!lo.isUndefined(found)) {
                     const type = inReaderMode() ? 'readerVolume' : 'masterVolume';
                     playSound({ ...found, type })
+                }
+            }
+        },
+
+        *testAudio({ payload }, { call, put, select }) {
+            const { category, type } = payload;
+            const soundState = yield select(state => state.SoundModel);
+            if (lo.isEqual(type, 'masterVolume')) {
+                if (lo.isEqual(category, 'bg')) {
+                    const found = soundState.__data.config.find(e => (e.test != undefined && lo.isEqual(e.test, 'masterBGM')));
+                    playSound({ ...found, type: 'masterVolume' });
+                } else if (lo.isEqual(category, 'effect')) {
+                    const found = soundState.__data.config.find(e => (e.test != undefined && lo.isEqual(e.test, 'masterEffect')));
+                    playSound({ ...found, type: 'masterVolume' });
+                }
+            } else if (lo.isEqual(type, 'readerVolume')) {
+                if (lo.isEqual(category, 'bg')) {
+                    const found = soundState.__data.config.find(e => (e.test != undefined && lo.isEqual(e.test, 'readerBGM')));
+                    playSound({ ...found, type: 'readerVolume' });
+                } else if (lo.isEqual(category, 'effect')) {
+                    const found = soundState.__data.config.find(e => (e.test != undefined && lo.isEqual(e.test, 'readerEffect')));
+                    playSound({ ...found, type: 'readerVolume' });
                 }
             }
         },

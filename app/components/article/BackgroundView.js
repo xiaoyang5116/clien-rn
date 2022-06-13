@@ -3,14 +3,18 @@ import React from 'react';
 import { 
     View, 
     StyleSheet, 
+    DeviceEventEmitter 
 } from 'react-native';
+
+import lo from 'lodash';
 
 import {
     connect,
     action,
+    EventKeys,
 } from "../../constants";
 
-const EventView = (props) => {
+const BackgroundView = (props) => {
     const layoutHandler = (e) => {
         props.dispatch(action('ArticleModel/layout')({ 
             key: props.itemKey,
@@ -18,6 +22,13 @@ const EventView = (props) => {
             height: e.nativeEvent.layout.height,
         }));
     }
+
+    React.useEffect(() => {
+        if (lo.isObject(props.background)) {
+            const { imageId, defaultOpacity } = props.background;
+            DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, { imageId, defaultOpacity: (defaultOpacity != undefined) ? defaultOpacity : 0.2 });
+        }
+    }, []);
 
     return (
         <View key={props.itemKey} style={{}} onLayout={layoutHandler} >
@@ -34,4 +45,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect((state) => ({ ...state.ArticleModel }))(EventView);
+export default connect((state) => ({ ...state.ArticleModel }))(BackgroundView);
