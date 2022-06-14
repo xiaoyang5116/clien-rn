@@ -4,7 +4,6 @@ import React from 'react';
 import {
   SafeAreaView,
   View,
-  StyleSheet,
   ImageBackground,
 } from 'react-native';
 import { px2pd } from '../../constants/resolution';
@@ -16,7 +15,7 @@ const SCENE_MAP_DATA = [
   { point: [1, 0], title: '天仙', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
   { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
   { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
-  { point: [-2, 0], title: '老者', toScene: 'pomiao', links: [[-1, 0]] },
+  { point: [-2, 0], title: '老者', toScene: 'pomiao', links: [[-1, 0], [0, 1]] },
   { point: [-1, -1], title: '地主', toScene: 'pomiao', links: [[-1, 0], [0, -1]] },
 ];
 
@@ -34,9 +33,5 @@ const DirMapPage = (props) => {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-
-});
 
 export default DirMapPage;
