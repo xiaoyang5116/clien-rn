@@ -165,7 +165,7 @@ const DirMap = (props) => {
   });
 
   return (
-  <View style={[{ position: 'absolute' }, { width: MAP_BIG_SIZE.width, height: MAP_BIG_SIZE.height }]} {...panResponder.panHandlers} pointerEvents='auto'>
+  <View style={[{ position: 'absolute' }, { width: MAP_BIG_SIZE.width, height: MAP_BIG_SIZE.height }]} {...panResponder.panHandlers}>
     <Animated.View style={[{ position: 'absolute', bottom: 0 }, { transform: [{ translateY: bigMapTransY }] }, { ...MAP_BIG_SIZE }]}>
       {/* 大地图网格 */}
       <View style={{ flex: 1, margin: 4, overflow: 'hidden' }}>

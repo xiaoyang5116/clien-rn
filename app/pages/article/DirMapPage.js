@@ -1,13 +1,11 @@
 
 import React from 'react';
-import lo from 'lodash';
 
 import {
   SafeAreaView,
   View,
   StyleSheet,
   ImageBackground,
-  TouchableWithoutFeedback,
 } from 'react-native';
 import { px2pd } from '../../constants/resolution';
 import DirMap from '../../components/maps/DirMap';
@@ -28,11 +26,9 @@ const DirMapPage = (props) => {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ImageBackground style={{ width: px2pd(1080), height: px2pd(1808) }} source={require('../../../assets/bg/dir_map.png')}>
-          <TouchableWithoutFeedback onPress={() => {}}>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} pointerEvents='box-none'>
-              <DirMap data={SCENE_MAP_DATA} initialCenterPoint={[0,0]} />
-            </View>
-          </TouchableWithoutFeedback>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} pointerEvents='box-none' onTouchStart={(e) => { e.stopPropagation(); }}>
+            <DirMap data={SCENE_MAP_DATA} initialCenterPoint={[0,0]} />
+          </View>
         </ImageBackground>
       </View>
     </SafeAreaView>

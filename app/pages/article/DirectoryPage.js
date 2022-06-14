@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
 
   headerText: {
     fontSize: 24,
+    color: '#000',
   },
 
   dirItem: {
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
 
   dirItemText: {
     fontSize: 16,
+    color: '#000',
   },
 
 });
