@@ -43,6 +43,11 @@ const CluesList = (props) => {
         setFilterArray(filterArray.map(f => f.filterType === filterType ? { ...f, filterTypeValue } : f))
     }
 
+    // useEffect(() => {
+    //     //添加线索
+    //     props.dispatch(action("CluesModel/addClue")({ cluesType: "CLUES", cluesName: "xiansuo6" }));
+    // }, [])
+
     return (
         <View style={[{ flex: 1, position: "relative" }]}>
             <TabBarComponent {...props}

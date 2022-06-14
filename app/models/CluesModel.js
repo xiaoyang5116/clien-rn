@@ -36,7 +36,7 @@ export default {
                         data: []
                     }
                     for (let d = 0; d < clueConfig[index].data.length; d++) {
-                        const clueData = yield call(GetClueDataApi, { cluesType: clueConfig[index].cluesType, name: clueConfig[index].data[d] });
+                        const clueData = yield call(GetClueDataApi, { cluesType: clueConfig[index].cluesType, cluesName: clueConfig[index].data[d] });
                         clues.data.push(clueData)
                     }
                     newCluesList.push(clues)
@@ -45,17 +45,12 @@ export default {
             }
         },
         *addClue({ payload }, { call, put, select }) {
-            // payload: { cluesType: "SCENE", name: "xiansuo1" }
+            // payload: { cluesType: "CLUES", cluesName: "xiansuo1" }
             const { cluesList } = yield select(state => state.CluesModel);
             const clueData = yield call(GetClueDataApi, payload);
-            let currentTypeClues = cluesList.find(f => f.cluesType === payload.cluesType);
-            if (currentTypeClues === undefined) {
-                const newClue = {
-                    cluesType: payload.cluesType,
-                    data: [clueData],
-                }
-                const newCluesList = [...cluesList, newClue];
-                yield put.resolve(action('saveCluesList')(newCluesList));
+            if (clueData === undefined) {
+                // 没有数据
+                return;
             }
             else {
                 const newCluesList = cluesList.map(f => f.cluesType === payload.cluesType ? { ...f, data: [clueData, ...f.data] } : f);
