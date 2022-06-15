@@ -42,11 +42,13 @@ const MAP_BIG_SIZE = { width: px2pd(1028), height: px2pd(1650) };
 const MAP_LINE_SIZE = { width: px2pd(142), height: px2pd(142) };
 // 地图水平线条尺寸
 const MAP_XLINE_SIZE = { width: px2pd(362), height: px2pd(142) };
+// 地图竖线条尺寸
+const MAP_YLINE_SIZE = { width: px2pd(142), height: px2pd(120) };
 // 地图转角尺寸
 const MAP_CORNER_SIZE = { width: px2pd(142), height: px2pd(142) };
 
 const LINES = [
-  { direction: 1, style: MAP_LINE_SIZE, img: require('../../../assets/bg/map_line1.png') },
+  { direction: 1, style: MAP_YLINE_SIZE, img: require('../../../assets/bg/map_line1.png') },
   { direction: 2, style: MAP_XLINE_SIZE, img: require('../../../assets/bg/map_line2B.png') },
   { direction: 3, style: MAP_LINE_SIZE, img: require('../../../assets/bg/map_line3.png') },
   { direction: 4, style: MAP_LINE_SIZE, img: require('../../../assets/bg/map_line4.png') },
@@ -61,7 +63,7 @@ const CORNERS = [
 
 const getLineConfig = (p1, p2) => {
   if (p1[0] == p2[0] && p1[1] != p2[1])
-    return { direction: 1, style: (p1[1] < p2[1]) ? { bottom: 0 } : { top: 0 } };
+    return { direction: 1, style: (p1[1] < p2[1]) ? { bottom: GRID_PX_HEIGHT / 2 } : { top: GRID_PX_HEIGHT / 2 } };
   else if (p1[0] != p2[0] && p1[1] == p2[1])
     return { direction: 2, style: (p1[0] < p2[0]) ? { right: (0 - GRID_SPACE - GRID_PX_WIDTH / 2) } : { left: (0 - GRID_SPACE - GRID_PX_WIDTH / 2) } };
   else if ((p1[0] < p2[0] && p1[1] < p2[1]) || (p1[0] > p2[0] && p1[1] > p2[1]))
@@ -70,18 +72,6 @@ const getLineConfig = (p1, p2) => {
     return { direction: 4, style: (p1[1] < p2[1]) ? { left: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), bottom: GRID_SLASH_FIXED } : { right: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), top: GRID_SLASH_FIXED } };
   else
     return null;
-}
-
-// 计算两个点之间连线经过的所有点
-const buildLinkPath = (p1, p2) => {
-  const path = [p1];
-  for (let i = p1[1] + 1; i <= p2[1]; i++) {
-    for (let j = p1[0]; j < p2[0]; j++) {
-      path.push([j, i]);
-    }
-  }
-  path.push(p2);
-  return path;
 }
 
 const DirMap = (props) => {
@@ -155,56 +145,67 @@ const DirMap = (props) => {
 
     if (lo.isArray(e.links)) {
       e.links.forEach(lp => {
-        const needCorner = ((Math.abs(e.point[0]) - Math.abs(lp[0])) >= 2) || ((Math.abs(e.point[1]) - Math.abs(lp[1])) >= 2);
-        if (needCorner) {
-          const path = buildLinkPath(e.point, lp);
-          for (let i = 0; i < path.length; i++) {
-            const prev = path[i - 1];
-            const current = path[i];
-            const next = path[i + 1];
-            console.debug('point: ', current);
+        const lineConfig = getLineConfig(e.point, lp);
+        if (lineConfig != null) {
+          const line = LINES.find(e => e.direction == lineConfig.direction);
+          lines.push((
+            <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}>
+              <FastImage key={idx++} style={[{ position: 'absolute', zIndex: -1 }, { ...lineConfig.style }, { ...line.style }]} source={line.img} />
+            </View>
+          ));
+        }
+      });
+    }
+    if (lo.isArray(e.path)) {
+      const path = [e.point, ...e.path];
+      for (let i = 0; i < path.length; i++) {
+        const prev = path[i - 1];
+        const current = path[i];
+        const next = path[i + 1];
 
-            if (current != undefined && next != undefined) {
-              const lineConfig = getLineConfig(current, next);
-              if (lineConfig != null) {
-                const lineLeft = current[0] * (GRID_PX_WIDTH + GRID_SPACE);
-                const lineTop = (-current[1]) * (GRID_PX_HEIGHT + GRID_SPACE);
-                const line = LINES.find(e => e.direction == lineConfig.direction);
-                lines.push((
-                  <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left: lineLeft, top: lineTop }]}>
-                    <FastImage key={idx++} style={[{ position: 'absolute', zIndex: -1 }, { ...lineConfig.style }, { ...line.style }]} source={line.img} />
-                  </View>
-                ));
-              }
-            }
-
-            if (prev != null && current != undefined && next != undefined) {
-              if (prev[0] == current[0] && prev[1] < current[1] && next[0] > current[0] && current[1] == next[1]) { // 转角1
-                const cornerLeft = current[0] * (GRID_PX_WIDTH + GRID_SPACE);
-                const cornerTop = (-current[1]) * (GRID_PX_HEIGHT + GRID_SPACE);
-                const corner = CORNERS.find(e => e.angle == 1);
-
-                lines.push((
-                  <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left: cornerLeft, top: cornerTop }]}>
-                    <FastImage key={idx++} style={[{ position: 'absolute', zIndex: -1 }, { ...corner.style }]} source={corner.img} />
-                  </View>
-                ));
-                console.debug('---> corner', current);
-              }
-            }
-          }
-        } else {
-          const lineConfig = getLineConfig(e.point, lp);
+        if (current != undefined && next != undefined) {
+          const lineConfig = getLineConfig(current, next);
           if (lineConfig != null) {
+            const lineLeft = current[0] * (GRID_PX_WIDTH + GRID_SPACE);
+            const lineTop = (-current[1]) * (GRID_PX_HEIGHT + GRID_SPACE);
             const line = LINES.find(e => e.direction == lineConfig.direction);
             lines.push((
-              <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}>
+              <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left: lineLeft, top: lineTop }]}>
                 <FastImage key={idx++} style={[{ position: 'absolute', zIndex: -1 }, { ...lineConfig.style }, { ...line.style }]} source={line.img} />
               </View>
             ));
           }
         }
-      });
+
+        if (prev != null && current != undefined && next != undefined) {
+          let angle = 0;
+          if ((prev[0] == current[0] && prev[1] < current[1] && next[0] > current[0] && current[1] == next[1])
+              || (prev[0] > current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] > next[1])) {
+            angle = 1;
+          } else if ((prev[0] < current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] > next[1])
+                      || (prev[0] == current[0] && prev[1] < current[1] && next[0] < current[0] && current[1] == next[1])) {
+            angle = 2;
+          } else if ((prev[0] == current[0] && prev[1] > current[1] && next[0] < current[0] && current[1] == next[1])
+                      || (prev[0] < current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] < next[1])) {
+            angle = 3;
+          } else if ((prev[0] > current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] < next[1])
+                      || (prev[0] == current[0] && prev[1] > current[1] && next[0] > current[0] && current[1] == next[1])) {
+            angle = 4;
+          }
+
+          if (angle > 0) {
+            const cornerLeft = current[0] * (GRID_PX_WIDTH + GRID_SPACE);
+            const cornerTop = (-current[1]) * (GRID_PX_HEIGHT + GRID_SPACE);
+            const corner = CORNERS.find(e => e.angle == angle);
+  
+            lines.push((
+              <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left: cornerLeft, top: cornerTop }]}>
+                <FastImage key={idx++} style={[{ position: 'absolute', zIndex: -1 }, { ...corner.style }]} source={corner.img} />
+              </View>
+            ));
+          }
+        }
+      }
     }
 
     const gridImg = isCenterPoint 
