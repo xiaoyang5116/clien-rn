@@ -15,4 +15,18 @@ book: {
     'npc_1', 
   ],
 
+  # 章节目录 
+  directory: [
+    { title: '第一章', propId: 26, num: 1 },
+    { title: '第二章', propId: 26, num: 1 },
+    { title: '第三章', propId: 26, num: 1 },
+    { title: '第四章', propId: 26, num: 1 },
+    { title: '第五章', propId: 26, num: 1 },
+    { title: '第六章', propId: 26, num: 1 },
+    { title: '第七章', propId: 26, num: 1 },
+    { title: '第八章', propId: 26, num: 1 },
+    { title: '第九章', propId: 26, num: 1 },
+    { title: '第十章', propId: 26, num: 1 },
+  ]
+
 }

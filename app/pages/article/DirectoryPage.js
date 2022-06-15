@@ -1,6 +1,5 @@
 
 import React from 'react';
-import lo from 'lodash';
 
 import {
   FlatList,
@@ -9,7 +8,12 @@ import {
   View,
   Text,
   StyleSheet,
+  DeviceEventEmitter,
 } from 'react-native';
+
+import { EventKeys } from '../../constants';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../constants/resolution';
 
 const DATA = [
   { id: 1, title: '第一章' },
@@ -26,12 +30,17 @@ const DATA = [
 
 const DirectoryPage = (props) => {
 
+  const gotoDirMap = () => {
+    DeviceEventEmitter.emit(EventKeys.GOTO_DIRECTORY_MAP);
+  }
+
   const renderItem = (data) => {
     const { id, title } = data.item;
     return (
-        <View style={{ width: '100%', height: 60 }}>
-          <TouchableWithoutFeedback>
+        <View style={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center', marginBottom: 5 }}>
+          <TouchableWithoutFeedback onPress={gotoDirMap}>
             <View style={styles.dirItem}>
+              <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/button/dir_button.png')} />
               <Text style={styles.dirItemText}>{title}</Text>
             </View>
           </TouchableWithoutFeedback>
@@ -41,9 +50,12 @@ const DirectoryPage = (props) => {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1 }}>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>章 节</Text>
+      <View style={styles.viewContainer}>
+        <View style={styles.topView}>
+          <View style={styles.header}>
+            <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/bg/header_bg1.png')} />
+            <Text style={styles.headerText}>章 节</Text>
+          </View>
         </View>
         <FlatList 
           data={DATA}
@@ -56,31 +68,48 @@ const DirectoryPage = (props) => {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    width: '100%', 
-    height: 40 , 
+  viewContainer: {
+    flex: 1, 
     justifyContent: 'center', 
     alignItems: 'center'
+  },
+
+  topView: {
+    width: '100%', 
+    paddingTop: 6, 
+    paddingBottom: 6, 
+    marginBottom: 15, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(120,152,145,0.3)'
+  },
+
+  header: {
+    width: px2pd(1070), 
+    height: px2pd(110),
+    justifyContent: 'center', 
+    alignItems: 'center',
   },
 
   headerText: {
     fontSize: 24,
+    color: '#000',
   },
 
   dirItem: {
     flex: 1, 
-    marginLeft: 5,
-    marginRight: 5, 
-    marginBottom: 5,
-    borderWidth: 1, 
-    borderColor: '#ccc', 
-    backgroundColor: '#666', 
+    width: px2pd(1018),
+    height: px2pd(135),
     justifyContent: 'center', 
-    alignItems: 'center'
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#333',
+    borderRadius: 3,
   },
 
   dirItemText: {
     fontSize: 16,
+    color: '#000',
   },
 
 });

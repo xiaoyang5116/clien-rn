@@ -42,6 +42,8 @@ import Collapse from '../components/collapse';
 import Drawer from '../components/drawer';
 import LeftContainer from '../components/article/LeftContainer';
 import DirectoryPage from './article/DirectoryPage';
+import RightContainer from '../components/article/RightContainer';
+import DirMapPage from './article/DirMapPage';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -338,20 +340,32 @@ class NewArticlePage extends Component {
     super(props);
     this.refPropsContainer = React.createRef();
     this.refDirectory = React.createRef();
+    this.refDirMap = React.createRef();
     this.longPressListener = null;
+    this.gotoDirMapListener = null;
+    this.listeners = [];
   }
 
   componentDidMount() {
     this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
 
-    // 长按监听器
-    this.longPressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
-      WorldSelector();
-    });
+    this.listeners.push(
+      DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
+        WorldSelector();
+      })
+    );
+
+    this.listeners.push(
+      DeviceEventEmitter.addListener(EventKeys.GOTO_DIRECTORY_MAP, () => {
+        this.refDirectory.current.close();
+        this.refDirMap.current.open();
+      })
+    );
   }
 
   componentWillUnmount() {
-    this.longPressListener.remove();
+    this.listeners.forEach(e => e.remove());
+    this.listeners.length = 0;
   }
 
   openDirectory = (e) => {
@@ -456,6 +470,9 @@ class NewArticlePage extends Component {
         <LeftContainer ref={this.refDirectory}>
           <DirectoryPage />
         </LeftContainer>
+        <RightContainer ref={this.refDirMap}>
+          <DirMapPage />
+        </RightContainer>
         {/* <View style={styles.debugContainer} pointerEvents="box-none" >
           <View style={styles.debugView1} pointerEvents="box-none">
             <Text style={{ color: '#fff' }}>事件触发区域1</Text>

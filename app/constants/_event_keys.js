@@ -49,4 +49,6 @@ export class EventKeys {
 
     // 更换阅读器内容背景图片
     static READER_BACKGROUND_IMG_UPDATE = 'READER_BACKGROUND_IMG_UPDATE';
+
+    static GOTO_DIRECTORY_MAP = 'GOTO_DIRECTORY_MAP';
 }
