@@ -392,6 +392,7 @@ class NewArticlePage extends Component {
             <View style={styles.bannerButton}>
               <TextButton title='退出阅读' onPress={() => {
                 this.props.navigation.navigate('First');
+                AppDispath({ type: 'ArticleModel/cleanup', payload: { } });
               }} />
             </View>
             <View style={styles.bannerButton}>

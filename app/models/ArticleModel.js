@@ -171,6 +171,11 @@ export default {
       }, 0);
     },
 
+    *cleanup({ payload }, { select }) {
+      const articleState = yield select(state => state.ArticleModel);
+      articleState.sections.length = 0;
+    },
+
     *getValidOptions({ payload }, { call, put, select }) {
       const optionsData = [];
       for (let k in payload.options) {
