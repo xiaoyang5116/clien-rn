@@ -1,0 +1,56 @@
+########################
+## 线索列表
+########################
+
+allCluesListData: [
+    {
+      id: 1,
+      groupId: '李家村',
+      typeId: 0,
+      filter: {location: '李家村', chapter: '第二章'},
+      title: '诡异柳树',
+      # 交付,需要满足的条件
+      # condition: {npcId: 1, scenes: 'pomiao', propId: 20, andVarsOff: ['v7']},
+      content: '在诡异的柳树下,有一颗桃子',
+    },
+    {
+      id: 2,
+      groupId: '李家村',
+      typeId: 0,
+      filter: {location: '李家村', chapter: '第二章'},
+      title: '在发射点发生范德萨发士',
+      content: 'REDER线索1...在发射点发生范德萨发士大夫萨芬，发生发，手动阀四分发士大夫，1',
+    },
+    {
+      id: 3,
+      groupId: '王家村',
+      typeId: 1,
+      filter: {location: '李家村', chapter: '第二章'},
+      title: '在发射点发生范德萨发士',
+      content: 'REDER线索1...在发射点发生范德萨发士大夫萨芬，发生发，手动阀四分发士大夫，1',
+    },
+    {
+      id: 4,
+      groupId: '王家村',
+      typeId: 1,
+      filter: {location: '李家村', chapter: '第二章'},
+      title: '在发射点发生范德萨发士',
+      content: 'REDER线索1...在发射点发生范德萨发士大夫萨芬，发生发，手动阀四分发士大夫，1',
+    },
+    {
+      id: 5,
+      groupId: '王家村',
+      typeId: 2,
+      filter: {location: '李家村', chapter: '第二章'},
+      title: '在发射点发生范德萨发士',
+      content: 'REDER线索1...在发射点发生范德萨发士大夫萨芬，发生发，手动阀四分发士大夫，1',
+    },
+    {
+      id: 6,
+      groupId: '王家村',
+      typeId: 2,
+      filter: {location: '李家村', chapter: '第二章'},
+      title: '在发射点发生范德萨发士',
+      content: 'REDER线索1...在发射点发生范德萨发士大夫萨芬，发生发，手动阀四分发士大夫，1',
+    },
+  ]

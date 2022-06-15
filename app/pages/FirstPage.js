@@ -103,7 +103,7 @@ class FirstPage extends Component {
               });
             }} />
             {/* 书城 */}
-            <ImageButton {...BTN_STYLE} source={require('../../assets/button/profile_button.png')} selectedSource={require('../../assets/button/profile_button_selected.png')} onPress={() => {
+            <ImageButton {...BTN_STYLE} source={require('../../assets/button/quit_read.png')} selectedSource={require('../../assets/button/quit_read_selected.png')} onPress={() => {
               RootNavigation.navigate('BookMain');
             }} />
           </View>

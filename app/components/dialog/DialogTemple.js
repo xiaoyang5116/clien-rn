@@ -94,6 +94,13 @@ const DialogTemple = (props) => {
             props.dispatch(action('ExploreModel/changeExploreStatus')({ id: item.isFinish.id, type: item.isFinish.type }));
         }
 
+        // 添加 线索
+        // if (item.addClues !== undefined) {
+        //     for (let index = 0; index < item.addClues.length; index++) {
+        //         props.dispatch(action('CluesModel/addClues')({ cluesType: item.addClues[index].cluesType, cluesName: item.addClues[index].cluesName }));
+        //     }
+        // }
+
         // // 跳转到其他对话
         // if (item.dialogs !== undefined) {
         //     props.dispatch(action('SceneModel/__onDialogCommand')({ __sceneId: props.viewData.__sceneId, params: item.dialogs }))
@@ -138,4 +145,4 @@ const DialogTemple = (props) => {
     }
 }
 
-export default connect((state) => ({ ...state.SceneModel, ...state.ExploreModel }))(DialogTemple);
+export default connect((state) => ({ ...state.SceneModel, ...state.ExploreModel, ...state.CluesModel }))(DialogTemple);

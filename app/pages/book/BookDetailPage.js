@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, ScrollView, Image } from 'react-native';
 import React from 'react';
 
 import Swiper from '../../components/Swiper';
@@ -28,9 +28,15 @@ const BookDetailPage = props => {
             swiperIndex={swiperIndex}
             onChange={index => { setSwiperIndex(index) }}
           >
-            <View style={styles.item1}></View>
-            <View style={styles.item2}></View>
-            <View style={styles.item3}></View>
+            <View style={styles.item1}>
+              <Image style={{ width: "100%", height: "100%" }} source={require('../../../assets/book/1.png')} />
+            </View>
+            <View style={styles.item2}>
+              <Image style={{ width: "100%", height: "100%" }} source={require('../../../assets/book/3.png')} />
+            </View>
+            <View style={styles.item3}>
+              <Image style={{ width: "100%", height: "100%" }} source={require('../../../assets/book/2.png')} />
+            </View>
           </Swiper>
           <View style={{ paddingLeft: 12, paddingRight: 12 }}>
             <View style={{ height: 200, backgroundColor: "#ccc", marginTop: 20, borderRadius: 12 }}>
@@ -101,7 +107,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     fontSize: 16,
-    color: "#000"
+    color: "#ccc"
   },
   startReading: {
     fontSize: 16,

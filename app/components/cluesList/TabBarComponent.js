@@ -6,8 +6,26 @@ import { ThemeContext } from '../../constants'
 
 const TabBarComponent = (props) => {
     const theme = useContext(ThemeContext)
-    const { cluesList, tabIndex, setTabIndex, setCheckedClue } = props
+    const { cluesConfigData, tabIndex, setTabIndex, setCheckedClue } = props
     const scrollRef = useRef()
+
+    tabItems = cluesConfigData.type.map((item, i) => {
+        return (
+            <TouchableOpacity key={i} onPress={() => {
+                setTabIndex(item.id)
+                setCheckedClue(null)
+            }}>
+                <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
+                    <Text style={[styles.tabItem, tabIndex === i ? theme.titleColor3 : { color: "#ffffff" }]} >
+                        {item.name}
+                    </Text>
+                </View>
+            </TouchableOpacity>
+        )
+    })
+
+
+
 
     return (
         <View style={[styles.container, { backgroundColor: "#656565" }]}>
@@ -19,22 +37,7 @@ const TabBarComponent = (props) => {
                 showsHorizontalScrollIndicator={false}
                 snapToAlignment={'center'}
             >
-                {
-                    cluesList.map((item, i) => {
-                        return (
-                            <TouchableOpacity key={i} onPress={() => {
-                                setTabIndex(i)
-                                setCheckedClue(null)
-                            }}>
-                                <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
-                                    <Text style={[styles.tabItem, tabIndex === i ? theme.titleColor3 : { color: "#ffffff" }]} >
-                                        {item.cluesTypeName}
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
-                        )
-                    })
-                }
+                {tabItems}
             </ScrollView>
         </View>
     )
