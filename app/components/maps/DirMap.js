@@ -30,9 +30,9 @@ const GRID_SPACE = 20;
 // 斜线修正
 const GRID_SLASH_FIXED = 4;
 // 格子宽度
-const GRID_PX_WIDTH = px2pd(290);
+const GRID_PX_WIDTH = px2pd(306);
 // 格子高度
-const GRID_PX_HEIGHT = px2pd(84);
+const GRID_PX_HEIGHT = px2pd(64);
 // 地图magin值
 const MAP_MARGIN_VALUE = 4;
 
@@ -40,7 +40,8 @@ const MAP_MARGIN_VALUE = 4;
 const MAP_BIG_SIZE = { width: px2pd(1028), height: px2pd(1650) };
 // 地图线条尺寸
 const MAP_LINE_SIZE = { width: px2pd(142), height: px2pd(142) };
-const MAP_XLINE_SIZE = { width: px2pd(350), height: px2pd(142) };
+// 地图水平线条尺寸
+const MAP_XLINE_SIZE = { width: px2pd(362), height: px2pd(142) };
 // 地图转角尺寸
 const MAP_CORNER_SIZE = { width: px2pd(142), height: px2pd(142) };
 
@@ -64,20 +65,18 @@ const getLineConfig = (p1, p2) => {
   else if (p1[0] != p2[0] && p1[1] == p2[1])
     return { direction: 2, style: (p1[0] < p2[0]) ? { right: (0 - GRID_SPACE - GRID_PX_WIDTH / 2) } : { left: (0 - GRID_SPACE - GRID_PX_WIDTH / 2) } };
   else if ((p1[0] < p2[0] && p1[1] < p2[1]) || (p1[0] > p2[0] && p1[1] > p2[1]))
-    return { direction: 3, style: (p1[1] < p2[1]) ? { right: (0 - GRID_SPACE - GRID_SLASH_FIXED), bottom: GRID_SLASH_FIXED } : { left: 0 - (GRID_SPACE + GRID_SLASH_FIXED), top: GRID_SLASH_FIXED } };
+    return { direction: 3, style: (p1[1] < p2[1]) ? { right: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), bottom: GRID_SLASH_FIXED } : { left: 0 - (GRID_SPACE + GRID_SLASH_FIXED + 8), top: GRID_SLASH_FIXED } };
   else if ((p1[0] < p2[0] && p1[1] > p2[1]) || (p1[0] > p2[0] && p1[1] < p2[1]))
-    return { direction: 4, style: (p1[1] < p2[1]) ? { left: (0 - GRID_SPACE - GRID_SLASH_FIXED), bottom: GRID_SLASH_FIXED } : { right: (0 - GRID_SPACE - GRID_SLASH_FIXED), top: GRID_SLASH_FIXED } };
+    return { direction: 4, style: (p1[1] < p2[1]) ? { left: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), bottom: GRID_SLASH_FIXED } : { right: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), top: GRID_SLASH_FIXED } };
   else
     return null;
 }
 
 // 计算两个点之间连线经过的所有点
 const buildLinkPath = (p1, p2) => {
-  // console.debug('---------> ', p1, p2);
   const path = [p1];
   for (let i = p1[1] + 1; i <= p2[1]; i++) {
     for (let j = p1[0]; j < p2[0]; j++) {
-      // console.debug(`[${j}, ${i}]`);
       path.push([j, i]);
     }
   }
@@ -209,8 +208,8 @@ const DirMap = (props) => {
     }
 
     const gridImg = isCenterPoint 
-      ? require('../../../assets/button/scene_map_button.png') 
-      : require('../../../assets/button/scene_map_button2.png');
+      ? require('../../../assets/button/dir_map_button.png') 
+      : require('../../../assets/button/dir_map_button2.png');
 
     grids.push((
       <TouchableWithoutFeedback key={idx++} onPress={() => {
@@ -219,8 +218,8 @@ const DirMap = (props) => {
         }
       }}>
         <View style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}>
-          <FastImage style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} source={gridImg} />
-          <Text style={{ color: '#000', zIndex: 1 }}>{e.title}</Text>
+          <FastImage style={{ position: 'absolute', zIndex: 0, width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT }} source={gridImg} />
+          <Text style={{ color: '#000', fontSize: 12, zIndex: 1 }}>{e.title}</Text>
         </View>
       </TouchableWithoutFeedback>));
   });

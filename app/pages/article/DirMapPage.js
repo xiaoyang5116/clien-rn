@@ -10,13 +10,16 @@ import { px2pd } from '../../constants/resolution';
 import DirMap from '../../components/maps/DirMap';
 
 const SCENE_MAP_DATA = [
-  { point: [0, 0], title: '神兽', toScene: 'pomiao', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
-  { point: [0, 1], title: '原神', toScene: 'wzkj', links: [] },
-  { point: [1, 0], title: '天仙', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
-  { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
-  { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
-  { point: [-2, 0], title: '老者', toScene: 'pomiao', links: [[-1, 0], [0, 1]] },
-  { point: [-1, -1], title: '地主', toScene: 'pomiao', links: [[-1, 0], [0, -1]] },
+  { point: [0, 0], title: '起点', toScene: 'pomiao', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
+  { point: [0, 1], title: '选择世界', toScene: 'wzkj', links: [] },
+  { point: [1, 0], title: '向右', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
+  { point: [0, -1], title: '沉浸式阅读', toScene: 'pomiao', links: [] },
+  { point: [-1, 0], title: '向左', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
+  { point: [-2, 0], title: '我有秘籍, 要继续？', toScene: 'pomiao', links: [[-1, 0], [0, 1]] },
+  { point: [-1, -1], title: '开始游戏', toScene: 'pomiao', links: [[-1, 0], [0, -1], [-1, -2]] },
+  { point: [-1, -2], title: '选择副本', toScene: 'pomiao', links: [[-1, -3]] },
+  { point: [-1, -3], title: '击杀怪物', toScene: 'pomiao', links: [[-1, -4]] },
+  { point: [-1, -4], title: '获得奖励', toScene: 'pomiao', links: [[-2, 0]] },
 ];
 
 const DirMapPage = (props) => {
