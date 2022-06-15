@@ -14,7 +14,6 @@ import {
 } from 'react-native';
 
 import { 
-  AppDispath,
   getWindowSize
 } from '../../constants';
 
@@ -214,8 +213,8 @@ const DirMap = (props) => {
 
     grids.push((
       <TouchableWithoutFeedback key={idx++} onPress={() => {
-        if (lo.isString(e.toScene)) {
-          AppDispath({ type: 'SceneModel/processActions', payload: { toScene: e.toScene } });
+        if (props.onEnterDir != undefined) {
+          props.onEnterDir(e);
         }
       }}>
         <View style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}>
