@@ -2,11 +2,12 @@
 import React from 'react';
 
 import {
+  EventKeys,
   getWindowSize,
 } from "../../constants";
 
 import {
-  Animated, StyleSheet,
+  Animated, DeviceEventEmitter, StyleSheet,
 } from 'react-native';
 import Easing from 'react-native/Libraries/Animated/Easing';
 
@@ -17,6 +18,16 @@ export default class RightContainer extends React.PureComponent {
   constructor(props) {
     super(props);
     this.rightPos = new Animated.Value(-winSize.width);
+    this.listeners = [];
+  }
+
+  componentDidMount() {
+    this.listeners.push(DeviceEventEmitter.addListener(EventKeys.HIDE_DIRECTORY_MAP, () => this.close()));
+  }
+
+  componentWillUnmount() {
+    this.listeners.forEach(e => e.remove());
+    this.listeners.length = 0;
   }
 
   offsetX(x) {
