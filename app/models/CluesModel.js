@@ -36,7 +36,7 @@ export default {
                 for (let index = 0; index < defaultClues.length; index++) {
                     for (let i = 0; i < allCluesListData.length; i++) {
                         if (defaultClues[index] === allCluesListData[i].id) {
-                            newCluesList.push(allCluesListData[i]);
+                            newCluesList.push({ ...allCluesListData[i], state: true });
                         }
                     }
                 }
@@ -73,22 +73,28 @@ export default {
             yield put(action('updateState')({ cluesConfigData }));
         },
 
+        // 添加线索
         *addClues({ payload }, { call, put, select }) {
-            // payload: { cluesType: "CLUES", cluesName: "xiansuo1" }
+            // payload: [1,2,3]
             const { cluesList } = yield select(state => state.CluesModel);
-            const clueData = yield call(GetClueDataApi, payload);
-            if (clueData === undefined) {
-                // 没有数据
-                return;
+            const { allCluesListData } = yield call(GetClueDataApi);
+            let newCluesList = [];
+            for (let index = 0; index < payload.length; index++) {
+                // 跳过已经存在的线索
+                if (cluesList.filter(item => item.id === payload[index]).length !== 0) {
+                    continue;
+                }
+                for (let i = 0; i < allCluesListData.length; i++) {
+                    if (payload[index] === allCluesListData[i].id) {
+                        newCluesList.push({ ...allCluesListData[i], state: true });
+                    }
+                }
             }
-            else {
-                const newCluesList = cluesList.map(f => f.cluesType === payload.cluesType ? { ...f, data: [clueData, ...f.data] } : f);
-                yield put.resolve(action('saveCluesList')(newCluesList));
-            }
+            yield put.resolve(action('saveCluesList')([...newCluesList, ...cluesList]));
         },
 
         // 保存线索
-        *saveCluesList({ payload }, { call, put, select }) {
+        * saveCluesList({ payload }, { call, put, select }) {
             yield call(LocalStorage.set, LocalCacheKeys.CLUES_DATA, payload);
             yield put(action('updateState')({ cluesList: payload }));
         }

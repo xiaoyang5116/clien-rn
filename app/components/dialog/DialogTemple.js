@@ -95,11 +95,9 @@ const DialogTemple = (props) => {
         }
 
         // 添加 线索
-        // if (item.addClues !== undefined) {
-        //     for (let index = 0; index < item.addClues.length; index++) {
-        //         props.dispatch(action('CluesModel/addClues')({ cluesType: item.addClues[index].cluesType, cluesName: item.addClues[index].cluesName }));
-        //     }
-        // }
+        if (item.addClues !== undefined) {
+            props.dispatch(action('CluesModel/addClues')(item.addClues));
+        }
 
         // // 跳转到其他对话
         // if (item.dialogs !== undefined) {
