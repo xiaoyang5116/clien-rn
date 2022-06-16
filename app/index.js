@@ -17,6 +17,7 @@ import {
 
 import SplashScreen from 'react-native-splash-screen'  // 启动页插件
 import { SafeAreaProvider } from 'react-native-safe-area-context';  // React Native Elements
+import { hideNavigationBar } from 'react-native-navigation-bar-color';
 
 import {
   dva_create,
@@ -28,6 +29,7 @@ import {
   EventKeys,
   DataContext,
   setReaderMode,
+  statusBarHeight
 } from './constants';
 
 import lo from 'lodash';
@@ -143,6 +145,9 @@ class App extends Component {
   }
 
   componentDidMount() {
+    // 隐藏安卓底部导航栏
+    hideNavigationBar();
+
     // 注册事件监听
     this.listeners.push(DeviceEventEmitter.addListener(EventKeys.APP_SET_STATE, (payload) => {
       this.setState({ ...payload });
@@ -183,8 +188,12 @@ class App extends Component {
     return (
       <View style={styles.rootContainer}>
         <Shock>
-          <MainPage />
-          <RootView />
+          {/* 隐藏安卓底部导航栏后,顶部的状态栏高度消失 */}
+          <View style={{ height: statusBarHeight }} />
+          <View style={{ flex: 1 }}>
+            <MainPage />
+            <RootView />
+          </View>
         </Shock>
       </View>
     );

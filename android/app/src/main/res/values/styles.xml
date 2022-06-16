@@ -6,6 +6,9 @@
         <!-- <item name="android:editTextBackground">@drawable/rn_edit_text_material</item> -->
         <!--设置透明背景-->
         <item name="android:windowIsTranslucent">true</item>
+
+        <!-- 设置顶部状态栏不占据空间 -->
+        <!-- <item name="android:windowTranslucentStatus">true</item> -->
     </style>
 
 </resources>
