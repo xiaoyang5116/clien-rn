@@ -124,8 +124,8 @@ scenes: [
         id: 'c0', desc: '洁白的未知空间内', 
         options: [ 
           { title: '【查看四周】', andVarsOff: ['v5'], nextChat: 'c6' }, 
-          { title: '【思考】', andVarsOn: ['v5'], nextChat: 'c7' }, 
-          { title: '【查看选项】', andVarsOn: ['v5'], nextChat: 'c1' }, 
+          { title: '【思考】', andVarsOn: ['v5'], nextChat: 'c7' , icon: { id: 1, bindVar: 'v5' } }, 
+          { title: '【查看眼前选项】', andVarsOn: ['v5'], nextChat: 'c1' }, 
         ],
       },
       { 
