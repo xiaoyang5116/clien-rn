@@ -1,11 +1,9 @@
 
 import yaml from 'js-yaml';
+import { loadConfig } from '../utils/ConfigLoader';
 
 export async function GetAttrsDataApi() {
-    let url = 'http://localhost:8081/config/attrs.yml';
-    return fetch(url)
-    .then(r => r.text(url))
-    .then(text => {
+    return loadConfig('config/attrs.yml', (text) => {
         let data = yaml.load(text);
         return data;
     });
