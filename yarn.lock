@@ -5800,15 +5800,15 @@ react-native-splash-screen@^3.3.0:
   resolved "https://registry.npmmirror.com/react-native-splash-screen/-/react-native-splash-screen-3.3.0.tgz"
   integrity sha512-rGjt6HkoSXxMqH4SQUJ1gnPQlPJV8+J47+4yhgTIan4bVvAwJhEeJH7wWt9hXSdH4+VfwTS0GTaflj1Tw83IhA==
 
-"react-native-swiper-flatlist@^3.0.16":
-  "integrity" "sha512-8Mkh5DnGP7x42GBI870vpiliAdXAJObi8uDdqCjd3cWJBDgVv1xmo3y11CZzqpf6241EyddX0LygSt1Rv61LYg=="
-  "resolved" "https://registry.npmmirror.com/react-native-swiper-flatlist/-/react-native-swiper-flatlist-3.0.16.tgz"
-  "version" "3.0.16"
+react-native-swiper-flatlist@^3.0.16:
+  version "3.0.16"
+  resolved "https://registry.npmmirror.com/react-native-swiper-flatlist/-/react-native-swiper-flatlist-3.0.16.tgz"
+  integrity sha512-8Mkh5DnGP7x42GBI870vpiliAdXAJObi8uDdqCjd3cWJBDgVv1xmo3y11CZzqpf6241EyddX0LygSt1Rv61LYg==
 
-"react-native-tab-view@^3.1.1", "react-native-tab-view@>= 3.0.0":
-  "integrity" "sha512-M5pRN6utQfytKWoKlKVzg5NbkYu308qNoW1khGTtEOTs1k14p2dHJ/BWOJoJYHKbPVUyZldbG9MFT7gUl4YHnw=="
-  "resolved" "https://registry.npmmirror.com/react-native-tab-view/-/react-native-tab-view-3.1.1.tgz"
-  "version" "3.1.1"
+react-native-tab-view@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.npmmirror.com/react-native-tab-view/-/react-native-tab-view-3.1.1.tgz"
+  integrity sha512-M5pRN6utQfytKWoKlKVzg5NbkYu308qNoW1khGTtEOTs1k14p2dHJ/BWOJoJYHKbPVUyZldbG9MFT7gUl4YHnw==
 
 react-native-vector-icons@^9.1.0:
   version "9.1.0"
@@ -5832,17 +5832,10 @@ react-native-webp-format@^1.1.2:
   resolved "https://registry.npmmirror.com/react-native-webp-format/-/react-native-webp-format-1.1.2.tgz"
   integrity sha512-qs0oyLZOjoLdlTM9781Vr8WBwvtdkcwQuSJpCtA5KxspGl+YDDDZrW+tpwRQI0PSlB84O+IoK3bfmgHu1zqejQ==
 
-<<<<<<< HEAD
 react-native@0.67.2:
   version "0.67.2"
   resolved "https://registry.npmmirror.com/react-native/-/react-native-0.67.2.tgz"
   integrity sha512-grEtpOLLvtSg8Bivg0ffVRCjTkresqMt7Jdog/geF6VAYhb4RnLaaUCWvyrfyB9buf135FKnqg5BIuve/XQNXA==
-=======
-"react-native@*", "react-native@^*", "react-native@>=0.57.0", "react-native@>=0.59.0", "react-native@>=0.60.0", "react-native@>=0.65.0", "react-native@0.67.2":
-  "integrity" "sha512-grEtpOLLvtSg8Bivg0ffVRCjTkresqMt7Jdog/geF6VAYhb4RnLaaUCWvyrfyB9buf135FKnqg5BIuve/XQNXA=="
-  "resolved" "https://registry.npmmirror.com/react-native/-/react-native-0.67.2.tgz"
-  "version" "0.67.2"
->>>>>>> 04d1c5c5528402ea4c9ed1d992b672a40fbdde0c
   dependencies:
     "@jest/create-cache-key-function" "^27.0.1"
     "@react-native-community/cli" "^6.0.0"
