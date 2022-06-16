@@ -98,7 +98,7 @@ const ReaderBackgroundImageView = () => {
         return;
       //
       if (lo.isEmpty(imageId)) {
-        setTimeout(() => <></>, 0);
+        setTimeout(() => setImage(<></>), 0);
       } else {
         const res = getChapterImage(imageId);
         setTimeout(() => {
@@ -392,7 +392,7 @@ class NewArticlePage extends Component {
             <View style={styles.bannerButton}>
               <TextButton title='退出阅读' onPress={() => {
                 this.props.navigation.navigate('First');
-                AppDispath({ type: 'ArticleModel/cleanup', payload: { } });
+                AppDispath({ type: 'ArticleModel/cleanup' });
               }} />
             </View>
             <View style={styles.bannerButton}>

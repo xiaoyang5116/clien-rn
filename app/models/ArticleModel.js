@@ -173,7 +173,11 @@ export default {
 
     *cleanup({ payload }, { select }) {
       const articleState = yield select(state => state.ArticleModel);
+      // 清理章节数据
       articleState.sections.length = 0;
+      
+      // 清除背景图片
+      DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, { imageId: '' });
     },
 
     *getValidOptions({ payload }, { call, put, select }) {

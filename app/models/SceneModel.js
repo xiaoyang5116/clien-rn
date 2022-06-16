@@ -665,6 +665,7 @@ export default {
       const index = payload.params.indexOf('_');
       const id = payload.params.substring(0, index);
       const path = payload.params.substring(index + 1);
+      yield put.resolve(action('ArticleModel/cleanup')({}));
       yield put.resolve(action('ArticleModel/show')({ id, path }));
     },
 
