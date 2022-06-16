@@ -72,6 +72,7 @@ class CustomParagraph extends React.Component {
                 onBackdropPress={() => {
                     this.setState({ visible: false })
                 }}
+                coverScreen={false}
                 style={{ padding: 0, margin: 0, flex: 1, zIndex: 2, }}
             >
                 <View style={[{ backgroundColor: readerStyle.popUpBgColor }, theme.readerSettingContainer]}>

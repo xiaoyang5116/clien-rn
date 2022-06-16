@@ -64,6 +64,7 @@ const ReaderSettings = (props) => {
             onBackdropPress={() => {
                 setVisible(false);
             }}
+            coverScreen={false}
             style={{ padding: 0, margin: 0, flex: 1, zIndex: 1 }}
         >
             <View style={[{ backgroundColor: readerStyle.popUpBgColor }, theme.readerSettingContainer]}>
