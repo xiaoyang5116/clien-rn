@@ -9,6 +9,7 @@
 import React from 'react';
 
 import {
+  Animated,
   AppRegistry,
   DeviceEventEmitter,
   Platform,
@@ -68,6 +69,11 @@ const models = [
   require('./models/CluesModel').default,
   require('./models/SoundModel').default,
 ];
+
+const defaultDataContext = {
+  readerTextOpacity: new Animated.Value(1),
+  readerBgImgOpacity: new Animated.Value(0.2),
+}
 
 const ActionHook = ({ dispatch, getState }) => next => action => {
   next(action);
@@ -190,7 +196,7 @@ class App extends Component {
         <Provider store={dva._store}>
           <SoundProvider />
           <ThemeContext.Provider value={this.state.themeStyle}>
-            <DataContext.Provider value={{}}>
+            <DataContext.Provider value={defaultDataContext}>
               {(this.state.loading) ? this.renderLoading() : this.renderBody()}
             </DataContext.Provider>
           </ThemeContext.Provider>

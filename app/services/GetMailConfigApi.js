@@ -1,11 +1,9 @@
 import yaml from 'js-yaml';
+import { loadConfig } from '../utils/ConfigLoader';
 
 export async function GetMailConfigApi() {
-    let url = "http://localhost:8081/config/TEST/MAIL/mailConfig.yml"
-    return fetch(url)
-        .then(r => r.text(url))
-        .then(text => {
-            let data = yaml.load(text);
-            return data;
-        });
+    return loadConfig('config/TEST/MAIL/mailConfig.yml', (text) => {
+        let data = yaml.load(text);
+        return data;
+    });
 }

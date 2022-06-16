@@ -1,11 +1,9 @@
 
 import yaml from 'js-yaml';
+import { loadConfig } from '../utils/ConfigLoader';
 
 export async function GetSeqDataApi(seqId) {
-    let url = 'http://localhost:8081/config/seq_{0}.yml'.format(seqId);
-    return fetch(url)
-    .then(r => r.text(url))
-    .then(text => {
+    return loadConfig(`config/seq_${seqId}.yml`, (text) => {
         let data = yaml.load(text);
         return data;
     });

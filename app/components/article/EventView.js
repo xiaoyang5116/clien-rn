@@ -1,29 +1,37 @@
-import React, { PureComponent } from 'react';
-import { View, Text } from 'react-native';
+import React from 'react';
+
+import { 
+    View, 
+    StyleSheet, 
+} from 'react-native';
 
 import {
     connect,
     action,
 } from "../../constants";
 
-class EventView extends PureComponent {
-
-    layoutHandler = (e) => {
-        this.props.dispatch(action('ArticleModel/layout')({ 
-            key: this.props.itemKey,
+const EventView = (props) => {
+    const layoutHandler = (e) => {
+        props.dispatch(action('ArticleModel/layout')({ 
+            key: props.itemKey,
             width: e.nativeEvent.layout.width,
             height: e.nativeEvent.layout.height,
         }));
     }
 
-    render() {
-        return (
-            <View key={this.props.itemKey} style={{ }} onLayout={this.layoutHandler} >
-                {/* <Text style={{ fontSize: 20, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text> */}
-            </View>
-        );
-    }
-
+    return (
+        <View key={props.itemKey} style={{}} onLayout={layoutHandler} >
+            {/* <Text style={{ fontSize: 20, paddingLeft: 10, paddingRight: 10 }}>{this.props.content}</Text> */}
+        </View>
+    );
 }
+
+const styles = StyleSheet.create({
+    debugView: {
+        width: '100%', 
+        height: 10, 
+        backgroundColor: '#669900'
+    }
+});
 
 export default connect((state) => ({ ...state.ArticleModel }))(EventView);

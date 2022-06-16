@@ -3,6 +3,115 @@ import React, { useState } from 'react'
 
 import { Tab, TabView } from "@rneui/themed";
 
+const DATA = [
+    {
+        tabTitle: "精选",
+        tabContent: [
+            {
+                id: "1231231",
+                img: require("../../../../../../assets/linshi/linshi1.png"),
+            },
+            {
+                id: "1231231",
+                img: require("../../../../../../assets/linshi/linshi1.png"),
+            }
+        ]
+    },
+    {
+        tabTitle: "动态",
+        tabContent: [
+            {
+                id: "1231231",
+                img: require("../../../../../../assets/linshi/linshi1.png"),
+            },
+            {
+                id: "1231231",
+                img: require("../../../../../../assets/linshi/linshi1.png"),
+            }
+        ]
+    },
+    {
+        tabTitle: "文字开黑",
+        tabContent: [
+            {
+                id: "1231231",
+                img: require("../../../../../../assets/linshi/linshi1.png"),
+            },
+            {
+                id: "1231231",
+                img: require("../../../../../../assets/linshi/linshi1.png"),
+            }
+        ]
+    },
+    {
+        tabTitle: "看比赛",
+        tabContent: [
+            {
+                id: "1231231",
+                img: require("../../../../../../assets/linshi/linshi1.png"),
+            },
+            {
+                id: "1231231",
+                img: require("../../../../../../assets/linshi/linshi1.png"),
+            }
+        ]
+    },
+    {
+        tabTitle: "云顶上分",
+        tabContent: [
+            {
+                id: "1231231",
+                img: require("../../../../../../assets/linshi/linshi1.png"),
+            },
+            {
+                id: "1231231",
+                img: require("../../../../../../assets/linshi/linshi1.png"),
+            }
+        ]
+    },
+    {
+        tabTitle: "看电影",
+        tabContent: [
+            {
+                id: "1231231",
+                img: require("../../../../../../assets/linshi/linshi1.png"),
+            },
+            {
+                id: "1231231",
+                img: require("../../../../../../assets/linshi/linshi1.png"),
+            }
+        ]
+    },
+]
+const Classification2 = (props) => {
+    const [tabIndex, setTabIndex] = useState(0);
+
+    const renderTab = ({ item }) => {
+        return (
+            <View>
+                <Text>{item.title}</Text>
+            </View>
+        )
+    }
+
+    const TabComponent = ({ data, index }) => {
+        return (
+            <View>
+                <Text></Text>
+            </View>
+        )
+    }
+
+    return (
+        <View style={{ width: "100%", height: 300, marginTop: 12, }}>
+            <Tab>
+
+            </Tab>
+        </View>
+    )
+}
+
+
 const Classification = (props) => {
     const [tabIndex, setTabIndex] = useState(0)
 
@@ -18,37 +127,37 @@ const Classification = (props) => {
                 <Tab.Item
                     title={"精选"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 50, backgroundColor: '#f2f2f2' }}
+                    containerStyle={[styles.TatItem_containerBg, { width: 50 }]}
                     buttonStyle={{ padding: 0 }}
                 />
                 <Tab.Item
                     title={"动态"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 50, backgroundColor: '#f2f2f2' }}
+                    containerStyle={[styles.TatItem_containerBg, { width: 50 }]}
                     buttonStyle={{ padding: 0 }}
                 />
                 <Tab.Item
                     title={"文字开黑"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 80, backgroundColor: '#f2f2f2' }}
+                    containerStyle={[styles.TatItem_containerBg, { width: 80 }]}
                     buttonStyle={{ padding: 0 }}
                 />
                 <Tab.Item
                     title={"看比赛"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 70, backgroundColor: '#f2f2f2' }}
+                    containerStyle={[styles.TatItem_containerBg, { width: 70 }]}
                     buttonStyle={{ padding: 0 }}
                 />
                 <Tab.Item
                     title={"云顶上分"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 80, backgroundColor: '#f2f2f2' }}
+                    containerStyle={[styles.TatItem_containerBg, { width: 80 }]}
                     buttonStyle={{ padding: 0 }}
                 />
                 <Tab.Item
                     title={"看电影"}
                     titleStyle={(active) => active ? styles.TabItem_active : styles.TabItem}
-                    containerStyle={{ width: 70, backgroundColor: '#f2f2f2' }}
+                    containerStyle={[styles.TatItem_containerBg, { width: 70 }]}
                     buttonStyle={{ padding: 0 }}
                 />
             </Tab>
@@ -185,6 +294,9 @@ const styles = StyleSheet.create({
     TabContainerStyle: {
         width: "100%",
         height: 50,
+    },
+    TatItem_containerBg: {
+        backgroundColor: "#f2f2f2",
     },
     TabItem: {
         fontSize: 16,

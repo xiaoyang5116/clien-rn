@@ -2,17 +2,19 @@
 import React from 'react';
 
 import {
-  EventKeys,
+  EventKeys, getWindowSize,
 } from "../../constants";
 
 import { DeviceEventEmitter, Animated } from 'react-native';
+
+const WIN_SIZE = getWindowSize();
 
 const FooterContainer = (props) => {
   const [display, setDisplay] = React.useState(false);
   const maxHeight = React.useRef(0);
   const status = React.useRef({ animating: false, closing: false, initLayout: false }).current;
   const switcAnimation = React.useRef(null);
-  const posBottom = React.useRef(new Animated.Value(0)).current;
+  const posBottom = React.useRef(new Animated.Value(-WIN_SIZE.height / 2)).current;
 
   React.useEffect(() => {
     // 点击滑出

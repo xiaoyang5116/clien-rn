@@ -259,7 +259,7 @@ const SceneMap = (props) => {
       </TouchableWithoutFeedback>
 
       {/* 大地图网格(可滑动) */}
-      <View style={[{ position: 'absolute', bottom: 0, overflow: 'hidden' }, { width: MAP_BIG_SIZE.width, height: MAP_BIG_SIZE.height + 10 }]} pointerEvents={bigPointerEvent}>
+      <View style={[{ position: 'absolute', bottom: 0 }, { width: MAP_BIG_SIZE.width, height: MAP_BIG_SIZE.height + 10 }]} pointerEvents={bigPointerEvent}>
         <Animated.View style={[{ position: 'absolute', bottom: 0 }, { transform: [{ translateY: bigMapTransY }] }, { ...MAP_BIG_SIZE }]}>
           <FastImage style={[{ position: 'absolute', width: '100%', height: '100%' }]} source={require('../../../assets/bg/scene_map_big.png')} />
           {/* 大地图网格 */}
@@ -284,6 +284,10 @@ const SceneMap = (props) => {
           {/* 大地图还原按钮 */}
           <TouchableWithoutFeedback onPress={zoomRestoreBigMapHandler}>
             <FastImage style={{ position: 'absolute', left: 110, top: -6, width: px2pd(106), height: px2pd(46) }} source={require('../../../assets/button/map_restore_button.png')} />
+          </TouchableWithoutFeedback>
+          {/* 大地图缩小按钮(底部) */}
+          <TouchableWithoutFeedback onPress={minBigMapHandler}>
+            <FastImage style={{ position: 'absolute', right: 20, bottom: -6, width: px2pd(106), height: px2pd(46), zIndex: 100 }} source={require('../../../assets/button/map_min_button.png')} />
           </TouchableWithoutFeedback>
         </Animated.View>
       </View>

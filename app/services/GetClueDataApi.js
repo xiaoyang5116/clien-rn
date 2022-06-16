@@ -1,11 +1,9 @@
 import yaml from 'js-yaml';
+import { loadConfig } from '../utils/ConfigLoader';
 
-export async function GetClueDataApi(data) {
-    let url = `http://localhost:8081/config/CLUES/${data.cluesType}/${data.name}.yml`;
-    return fetch(url)
-        .then(r => r.text(url))
-        .then(text => {
-            let { clue } = yaml.load(text);
-            return clue;
-        });
+export async function GetClueDataApi() {
+    return loadConfig('config/CLUES/test.yml', (text) => {
+        let data = yaml.load(text);
+        return data;
+    });
 }

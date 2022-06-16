@@ -47,7 +47,7 @@ const ScreenCenterStretch = (props) => {
     }, [])
     return (
         <View
-            // pointerEvents="box-none"
+            pointerEvents='none'
             style={{
                 flex: 1,
                 position: 'absolute',

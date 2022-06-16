@@ -12,7 +12,9 @@ import {
   AppDispath,
   DataContext,
   getWindowSize,
-  statusBarHeight
+  statusBarHeight,
+  getChapterImage,
+  ThemeContext
 } from "../constants";
 
 import { 
@@ -24,6 +26,7 @@ import {
 import {
   Platform,
   Animated,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -39,6 +42,12 @@ import FooterContainer from '../components/article/FooterContainer';
 import * as RootNavigation from '../utils/RootNavigation';
 import Collapse from '../components/collapse';
 import Drawer from '../components/drawer';
+import LeftContainer from '../components/article/LeftContainer';
+import DirectoryPage from './article/DirectoryPage';
+import RightContainer from '../components/article/RightContainer';
+import DirMapPage from './article/DirMapPage';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../constants/resolution';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -70,6 +79,15 @@ const WORLD = [
   },
 ];
 
+const TAB_BUTTONS = [
+  { title: '世界', action: () => { RootNavigation.navigate('Home', { screen: 'World' }) } },
+  { title: '探索', action: () => { RootNavigation.navigate('Home', { screen: 'Explore' }) } },
+  { title: '城镇', action: () => { RootNavigation.navigate('Home', { screen: 'Town' }) } },
+  { title: '制作', action: () => { RootNavigation.navigate('Home', { screen: 'Compose' }) } },
+  { title: '道具', action: () => { RootNavigation.navigate('Home', { screen: 'Props' }) } },
+  { title: '抽奖', action: () => { RootNavigation.navigate('Home', { screen: 'Lottery' }) } },
+]
+
 const WorldSelector = () => {
   CarouselUtils.show({ 
     data: WORLD, 
@@ -80,6 +98,40 @@ const WorldSelector = () => {
       }
     }
   });
+}
+
+const ReaderBackgroundImageView = () => {
+  const context = React.useContext(DataContext);
+  const currentImageId = React.useRef('');
+  const [image, setImage] = React.useState(<></>);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.READER_BACKGROUND_IMG_UPDATE, ({ imageId, defaultOpacity }) => {
+      if (lo.isEqual(currentImageId.current, imageId))
+        return;
+      //
+      if (lo.isEmpty(imageId)) {
+        setTimeout(() => setImage(<></>), 0);
+      } else {
+        const res = getChapterImage(imageId);
+        setTimeout(() => {
+          context.readerBgImgOpacity.setValue(defaultOpacity);
+          setImage(<Animated.Image style={{ width: res.width, height: res.height, opacity: context.readerBgImgOpacity }} source={res.source} />);
+        }, 0);
+      }
+      //
+      currentImageId.current = imageId;
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  return (
+  <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+    {image}
+  </View>
+  );
 }
 
 const UserAttributesHolder = (props) => {
@@ -151,9 +203,11 @@ const TheWorld = (props) => {
   const routeName = props.route.name;
 
   const scrollHandler = (payload) => {
+    const { x, y } = payload.nativeEvent.contentOffset;
     props.dispatch(action('ArticleModel/scroll')({ 
-      offsetX: payload.nativeEvent.contentOffset.x,
-      offsetY: payload.nativeEvent.contentOffset.y,
+      offsetX: x, offsetY: y, 
+      textOpacity: context.readerTextOpacity,
+      bgImgOpacity: context.readerBgImgOpacity,
     }));
 
     // 屏蔽：需求 --- 手动点击才隐藏上下功能区域。
@@ -225,6 +279,7 @@ const TheWorld = (props) => {
 
   return (
     <View style={[{ flex: 1 }, { backgroundColor: props.readerStyle.bgColor }]}>
+      <ReaderBackgroundImageView />
       <FlatList
         style={{ alignSelf: 'stretch' }}
         ref={(ref) => refList.current = ref}
@@ -290,6 +345,31 @@ const WorldTabBar = (props) => {
   );
 }
 
+const FooterTabBar = (props) => {
+  const theme = React.useContext(ThemeContext);
+
+  const buttons = [];
+  let key = 0;
+
+  TAB_BUTTONS.forEach(e => {
+    const { title, action } = e;
+    buttons.push(
+      <TouchableWithoutFeedback key={key++} onPress={action}>
+        <View style={styles.bottomBannerButton}>
+          <FastImage style={[theme.tabBottomImgStyle, { position: 'absolute' }]} source={theme.tabBottomImage} />
+          <Text style={[theme.tabBottomLabelStyle, { position: 'absolute', width: 24, fontSize: px2pd(60), color: '#fff' }]}>{title}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  });
+
+  return (
+    <View style={[styles.bannerStyle, { marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
+      {buttons}
+    </View>
+  );
+}
+
 class NewArticlePage extends Component {
 
   static contextType = DataContext;
@@ -297,26 +377,46 @@ class NewArticlePage extends Component {
   constructor(props) {
     super(props);
     this.refPropsContainer = React.createRef();
+    this.refDirectory = React.createRef();
+    this.refDirMap = React.createRef();
     this.longPressListener = null;
+    this.gotoDirMapListener = null;
+    this.listeners = [];
   }
 
   componentDidMount() {
     this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
 
-    // 长按监听器
-    this.longPressListener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
-      WorldSelector();
-    });
+    this.listeners.push(
+      DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
+        WorldSelector();
+      })
+    );
+
+    this.listeners.push(
+      DeviceEventEmitter.addListener(EventKeys.GOTO_DIRECTORY_MAP, () => {
+        this.refDirectory.current.close();
+        this.refDirMap.current.open();
+      })
+    );
   }
 
   componentWillUnmount() {
-    this.longPressListener.remove();
+    this.listeners.forEach(e => e.remove());
+    this.listeners.length = 0;
+  }
+
+  openDirectory = (e) => {
+    DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+    setTimeout(() => {
+      this.refDirectory.current.open();
+    }, 500);
   }
 
   render() {
     const { readerStyle, attrsConfig } = this.props;
     return (
-      <View style={[styles.viewContainer, { backgroundColor:readerStyle.bgColor }]}>
+      <View style={[styles.viewContainer, { backgroundColor: readerStyle.bgColor }]}>
         <HeaderContainer>
           <View style={[styles.bannerStyle, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0) }]}>
             <View style={styles.bannerButton}>
@@ -330,10 +430,11 @@ class NewArticlePage extends Component {
             <View style={styles.bannerButton}>
               <TextButton title='退出阅读' onPress={() => {
                 this.props.navigation.navigate('First');
+                AppDispath({ type: 'ArticleModel/cleanup' });
               }} />
             </View>
             <View style={styles.bannerButton}>
-              <TextButton title='目录' />
+              <TextButton title='目录' onPress={this.openDirectory} />
             </View>
             <View style={styles.bannerButton}>
               <TextButton title='夜间' />
@@ -349,6 +450,7 @@ class NewArticlePage extends Component {
         <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
           <Tab.Navigator initialRouteName='PrimaryWorld' 
             tabBar={(props) => <WorldTabBar {...props} />}
+            screenOptions={{ swipeEnabled: !this.props.isStartPage }}
             >
             <Tab.Screen name="LeftWorld" options={{ tabBarLabel: '现实' }} children={(props) => <TheWorld {...this.props} {...props} />} />
             <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '灵修界' }} children={(props) => <TheWorld {...this.props} {...props} />} />
@@ -356,54 +458,28 @@ class NewArticlePage extends Component {
           </Tab.Navigator>
         </View>
         <FooterContainer>
-          <View style={[styles.bannerStyle, { marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
-            <View style={styles.bannerButton}>
-              <TextButton title='世界' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'World',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='探索' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Explore',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='城镇' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Town',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='制作' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Compose',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='道具' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Props',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='抽奖' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Lottery',
-                });
-              }} />
-            </View>
-          </View>
+          <FooterTabBar />
         </FooterContainer>
         <Drawer ref={this.refPropsContainer}>
           {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
         </Drawer>
+        <LeftContainer ref={this.refDirectory}>
+          <DirectoryPage />
+        </LeftContainer>
+        <RightContainer ref={this.refDirMap}>
+          <DirMapPage />
+        </RightContainer>
+        {/* <View style={styles.debugContainer} pointerEvents="box-none" >
+          <View style={styles.debugView1} pointerEvents="box-none">
+            <Text style={{ color: '#fff' }}>事件触发区域1</Text>
+          </View>
+          <View style={styles.debugView2} pointerEvents="box-none">
+            <Text style={{ color: '#fff' }}>事件触发区域2</Text>
+          </View>
+          <View style={styles.debugView3} pointerEvents="box-none">
+            <Text style={{ color: '#fff' }}>事件触发区域3</Text>
+          </View>
+        </View> */}
       </View>
     );
   }
@@ -415,7 +491,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center', 
     justifyContent: "flex-start", 
-    // backgroundColor: "#eee7dd"
   },
   bodyContainer: {
     flex: 1,
@@ -430,6 +505,38 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  debugView1: {
+    marginBottom: 35,
+    borderWidth: 1, 
+    borderColor: '#999', 
+    width: '100%', 
+    height: 200, 
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(0,0,0,0.1)',
+  },
+  debugView2: {
+    borderWidth: 1, 
+    borderColor: '#999', 
+    width: '100%', 
+    height: 200, 
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(0,0,0,0.1)',
+  },
+  debugView3: {
+    marginTop: 35,
+    borderWidth: 1, 
+    borderColor: '#999', 
+    width: '100%', 
+    height: 200, 
+    flexDirection: 'column', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    backgroundColor: 'rgba(0,0,0,0.1)',
+  },
   bannerStyle: {
     flex: 1, 
     flexDirection: 'row', 
@@ -439,6 +546,14 @@ const styles = StyleSheet.create({
   },
   bannerButton: {
     width: 100,
+    marginLeft: 10, 
+    marginRight: 10,
+    marginTop: 0,
+    marginBottom: 10,
+  },
+  bottomBannerButton: {
+    width: 45,
+    height: 80,
     marginLeft: 10, 
     marginRight: 10,
     marginTop: 0,

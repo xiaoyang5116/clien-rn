@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
 
     /* 选项按钮文本 */
     tabBottomLabelStyle: {
-        left: 20, 
+        left: 10, 
         top: 10
     },
 

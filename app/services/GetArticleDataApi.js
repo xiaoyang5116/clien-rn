@@ -2,14 +2,12 @@
 import yaml from 'js-yaml';
 import lo from 'lodash';
 import { errorMessage } from '../constants';
+import { loadConfig } from '../utils/ConfigLoader';
 
 let UNIQUE_KEY = 1;
 
 export async function GetArticleDataApi(id, path) {
-    let url = `http://localhost:8081/config/${id}/TXT/${id}_${path}.txt`;
-    return fetch(url)
-    .then(r => r.text(url))
-    .then(text => {
+    return loadConfig(`config/${id}/TXT/${id}_${path}.txt`, (text) => {
         // 返回格式化的段落数据
         const sectionData = [];
 
@@ -38,7 +36,6 @@ export async function GetArticleDataApi(id, path) {
                     code = '';
                 } catch (except) {
                     errorMessage(`Yaml配置异常, 请检查文章指令区域语法. (${except.reason})`);
-                    console.debug('fuck', code)
                 }
             } else if (begin) {
                 code = e;

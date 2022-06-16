@@ -94,6 +94,11 @@ const DialogTemple = (props) => {
             props.dispatch(action('ExploreModel/changeExploreStatus')({ id: item.isFinish.id, type: item.isFinish.type }));
         }
 
+        // 添加 线索
+        if (item.addClues !== undefined) {
+            props.dispatch(action('CluesModel/addClues')(item.addClues));
+        }
+
         // // 跳转到其他对话
         // if (item.dialogs !== undefined) {
         //     props.dispatch(action('SceneModel/__onDialogCommand')({ __sceneId: props.viewData.__sceneId, params: item.dialogs }))
@@ -138,4 +143,4 @@ const DialogTemple = (props) => {
     }
 }
 
-export default connect((state) => ({ ...state.SceneModel, ...state.ExploreModel }))(DialogTemple);
+export default connect((state) => ({ ...state.SceneModel, ...state.ExploreModel, ...state.CluesModel }))(DialogTemple);

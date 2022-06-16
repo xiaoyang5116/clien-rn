@@ -3,14 +3,18 @@ import React from 'react'
 
 import RootView from '../RootView'
 import CluesList from './CluesList';
+import NewCluesList from './NewCluesList';
 
 
 class Clues {
     static show() {
         const key = RootView.add(
-            <CluesList onClose={() => {
+            <NewCluesList onClose={() => {
                 RootView.remove(key);
             }} />
+            // <CluesList onClose={() => {
+            //     RootView.remove(key);
+            // }} />
         );
     }
 }

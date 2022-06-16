@@ -1,11 +1,9 @@
 import yaml from 'js-yaml';
+import { loadConfig } from '../utils/ConfigLoader';
 
 export async function GetFigureDataApi() {
-    let url = "http://localhost:8081/config/TEST/MAIL/mailFigure.yml"
-    return fetch(url)
-        .then(r => r.text(url))
-        .then(text => {
-            let data = yaml.load(text);
-            return data;
-        });
+    return loadConfig('config/TEST/MAIL/mailFigure.yml', (text) => {
+        let data = yaml.load(text);
+        return data;
+    });
 }

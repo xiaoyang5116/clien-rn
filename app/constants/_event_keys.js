@@ -43,4 +43,15 @@ export class EventKeys {
 
     // 导航路径发生变化
     static NAVIGATION_ROUTE_CHANGED = 'NAVIGATION_ROUTE_CHANGED';
+
+    // 图片视图进入事件检测区域
+    static IMAGE_VIEW_ENTER_EVENT_AREA = 'IMAGE_VIEW_ENTER_EVENT_AREA';
+
+    // 更换阅读器内容背景图片
+    static READER_BACKGROUND_IMG_UPDATE = 'READER_BACKGROUND_IMG_UPDATE';
+
+    // 切换至目录地图
+    static GOTO_DIRECTORY_MAP = 'GOTO_DIRECTORY_MAP';
+    // 隐藏目录地图
+    static HIDE_DIRECTORY_MAP = 'HIDE_DIRECTORY_MAP';
 }

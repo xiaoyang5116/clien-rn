@@ -7,21 +7,10 @@ import { TextButton } from '../../constants/custom-ui';
 
 const TabContent = (props) => {
     const theme = React.useContext(ThemeContext)
-    const { clueData, checkedClue, setCheckedClue, filterArray } = props
 
-    const filteredClueData = clueData.filter(c => {
-        if (c.filter === undefined) return true
-        return c.filter.every(f => {
-            return filterArray.every(e => {
-                if (f.filterType === e.filterType) {
-                    if (e.filterTypeValue === "全部") { return true }
-                    else { return f.filterTypeValue === e.filterTypeValue ? true : false }
-                }
-                return true
-            })
-        })
-    })
+    const { cluesList, tabIndex, checkedClue, setCheckedClue } = props
 
+    const cluesData = cluesList.filter(item => item.typeId === tabIndex)
 
     const SelecteItem = ({ item }) => {
         return (
@@ -63,7 +52,7 @@ const TabContent = (props) => {
     return (
         <View style={styles.container}>
             <FlatList
-                data={filteredClueData}
+                data={cluesData}
                 renderItem={renderItem}
                 showsVerticalScrollIndicator={false}
             />
