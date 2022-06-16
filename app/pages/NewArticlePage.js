@@ -63,19 +63,19 @@ const WORLD = [
   },
   {
     worldId: 1,
-    title: "灵修界",
-    body: "灵修场景，这里添加更多描述",
-    desc: "灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述",
-    imgUrl: "https://picsum.photos/id/10/200/300",
-    toChapter: "WZXX_M1_N1_C002",
-  },
-  {
-    worldId: 2,
     title: "尘界",
     body: "尘界场景，这里添加更多描述",
     desc: "尘界场景，这里添加更多描述，尘界场景，这里添加更多描述，尘界场景，这里添加更多描述，尘界场景，这里添加更多描述",
     imgUrl: "https://picsum.photos/id/12/200/300",
     toChapter: "WZXX_M1_N1_C003",
+  },
+  {
+    worldId: 2,
+    title: "灵修界",
+    body: "灵修场景，这里添加更多描述",
+    desc: "灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述",
+    imgUrl: "https://picsum.photos/id/10/200/300",
+    toChapter: "WZXX_M1_N1_C002",
   },
 ];
 
@@ -287,15 +287,7 @@ const TheWorld = (props) => {
       return;
     }
     //
-    if (lo.isEqual(routeName, 'RightWorld')) {
-      // Animated.sequence([
-      //   Animated.timing(maskOpacity, {
-      //     toValue: 0,
-      //     duration: 2000,
-      //     useNativeDriver: false,
-      //   })
-      // ]).start();
-    } else if (lo.isEqual(routeName, 'LeftWorld')) {
+    if (lo.isEqual(routeName, 'LeftWorld') || lo.isEqual(routeName, 'RightWorld')) {
       Animated.sequence([
         Animated.delay(300),
         Animated.timing(fontOpacity, {
@@ -304,23 +296,11 @@ const TheWorld = (props) => {
           useNativeDriver: false,
         }),
       ]).start();
-    } else {
+    } else if (lo.isEqual(routeName, 'PrimaryWorld')) {
       Animated.sequence([
-        Animated.delay(300),
-        Animated.timing(fontOpacity, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: false,
-        }),
-        Animated.delay(600),
-        Animated.timing(fontOpacity, {
-          toValue: 0,
-          duration: 300,
-          useNativeDriver: false,
-        }),
         Animated.timing(maskOpacity, {
           toValue: 0,
-          duration: 2000,
+          duration: 1000,
           useNativeDriver: false,
         })
       ]).start();
@@ -374,7 +354,7 @@ const TheWorld = (props) => {
         pointerEvents={(lo.isEqual(routeName, 'PrimaryWorld') ? 'none' : 'auto')}>
         <Animated.View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', opacity: fontOpacity }}>
           {(lo.isEqual(routeName, 'LeftWorld')) ? (<Text style={styles.tranSceneFontStyle}>其实，修真可以改变现实。。。</Text>) : <></>}
-          {(lo.isEqual(routeName, 'PrimaryWorld')) ? (<Text style={styles.tranSceneFontStyle}>所念即所现，所思即所得。。。</Text>) : <></>}
+          {(lo.isEqual(routeName, 'RightWorld')) ? (<Text style={styles.tranSceneFontStyle}>所念即所现，所思即所得。。。</Text>) : <></>}
         </Animated.View>
       </Animated.View>
   </View>
@@ -502,8 +482,8 @@ class NewArticlePage extends Component {
             screenOptions={{ swipeEnabled: !this.props.isStartPage }}
             >
             <Tab.Screen name="LeftWorld" options={{ tabBarLabel: '现实' }} children={(props) => <TheWorld {...this.props} {...props} />} />
-            <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '灵修界' }} children={(props) => <TheWorld {...this.props} {...props} />} />
-            <Tab.Screen name="RightWorld" options={{ tabBarLabel: '尘界' }} children={(props) => <TheWorld {...this.props} {...props} />} />
+            <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '尘界' }} children={(props) => <TheWorld {...this.props} {...props} />} />
+            <Tab.Screen name="RightWorld" options={{ tabBarLabel: '灵修界' }} children={(props) => <TheWorld {...this.props} {...props} />} />
           </Tab.Navigator>
         </View>
         <FooterContainer>
