@@ -171,6 +171,15 @@ export default {
       }, 0);
     },
 
+    *cleanup({ payload }, { select }) {
+      const articleState = yield select(state => state.ArticleModel);
+      // 清理章节数据
+      articleState.sections.length = 0;
+      
+      // 清除背景图片
+      DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, { imageId: '' });
+    },
+
     *getValidOptions({ payload }, { call, put, select }) {
       const optionsData = [];
       for (let k in payload.options) {
@@ -231,18 +240,21 @@ export default {
         let totalOffsetY = 0;
         const prevSections = articleState.sections.filter(e => e.key < item.key);
         prevSections.forEach(e => totalOffsetY += e.height);
-        const direction = (articleState.__data.prevOffsetY > offsetY) ? 1 : -1;
+
+        // 检测线
+        const line2 = totalOffsetY - (WIN_SIZE.height / 2) - (DETECTION_AREA_HEIGHT / 2) + 80;
+        const line1 = line2 + DETECTION_AREA_HEIGHT + 35;
+        const line3 = line2 - DETECTION_AREA_HEIGHT - 35;
 
         // 事件触发区域(顶部)
         const validY1 = offsetY + WIN_SIZE.height / 2 - 80 - (DETECTION_AREA_HEIGHT / 2) - 35;
         if (validY1 > totalOffsetY && (validY1 - DETECTION_AREA_HEIGHT) < totalOffsetY) {
           if (effect != undefined) {
             if (articleState.__data.startOffsetY <= 0 || articleState.__data.eventTargetAreaId != 1) {
-              articleState.__data.startOffsetY = (direction > 0) ? (offsetY - DETECTION_AREA_HEIGHT) : offsetY;
+              articleState.__data.startOffsetY = line1;
               articleState.__data.eventTargetAreaId = 1;
               articleState.__data.eventTargetKey = item.key;
               articleState.__data.eventTargetEffectId = item.object.effect.id;
-              console.debug(`[enter 1] key=${item.key} offsetY=${articleState.__data.startOffsetY} direction=${direction}`);
             }
           }
         }
@@ -267,11 +279,10 @@ export default {
           // 效果事件
           if (effect != undefined) {
             if (articleState.__data.startOffsetY <= 0 || articleState.__data.eventTargetAreaId != 2) {
-              articleState.__data.startOffsetY = (direction > 0) ? (offsetY - DETECTION_AREA_HEIGHT) : offsetY;
+              articleState.__data.startOffsetY = line2;
               articleState.__data.eventTargetAreaId = 2;
               articleState.__data.eventTargetKey = item.key;
               articleState.__data.eventTargetEffectId = item.object.effect.id;
-              console.debug(`[enter 2] key=${item.key} offsetY=${articleState.__data.startOffsetY} direction=${direction}`);
             }
           }
         }
@@ -281,11 +292,10 @@ export default {
         if (validY3 > totalOffsetY && (validY3 - DETECTION_AREA_HEIGHT) < totalOffsetY) {
           if (effect != undefined) {
             if (articleState.__data.startOffsetY <= 0 || articleState.__data.eventTargetAreaId != 3) {
-              articleState.__data.startOffsetY = (direction > 0) ? (offsetY - DETECTION_AREA_HEIGHT) : offsetY;
+              articleState.__data.startOffsetY = line3;
               articleState.__data.eventTargetAreaId = 3;
               articleState.__data.eventTargetKey = item.key;
               articleState.__data.eventTargetEffectId = item.object.effect.id;
-              console.debug(`[enter 3] key=${item.key} offsetY=${articleState.__data.startOffsetY} direction=${direction}`);
             }
           }
         }
@@ -295,7 +305,7 @@ export default {
           && lo.isEqual(articleState.__data.eventTargetEffectId, 'BackgroundArt')
           && (articleState.__data.startOffsetY > 0)) {
           const value = 1 - (offsetY - articleState.__data.startOffsetY) / DETECTION_AREA_HEIGHT;
-          if (value >= 0) {
+          if (value >= 0 && value <= 1) {
             switch (articleState.__data.eventTargetAreaId) {
               case 1:
                 textOpacity.setValue(1 - value);
@@ -307,6 +317,23 @@ export default {
                 break;
               case 3:
                 break;
+            }
+          } else {
+            // 非检测区域强制指定状态
+            if ((articleState.__data.eventTargetAreaId == 2 && value >= 1) 
+              || (articleState.__data.eventTargetAreaId == 3 && value < 0)) {
+              textOpacity.setValue(1);
+              bgImgOpacity.setValue(0);
+            } else if ((articleState.__data.eventTargetAreaId == 1 && value > 1)
+              || (articleState.__data.eventTargetAreaId == 2 && (value < 0 && value > -1))) {
+              textOpacity.setValue(0);
+              bgImgOpacity.setValue(1);
+            }
+            if ((articleState.__data.eventTargetAreaId == 1 && value <= -1)
+              || (articleState.__data.eventTargetAreaId == 2 && value <= -1)
+              || (articleState.__data.eventTargetAreaId == 3 && value >= 1)) {
+              textOpacity.setValue(1);
+              bgImgOpacity.setValue(0);
             }
           }
         }

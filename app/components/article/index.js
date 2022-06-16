@@ -7,7 +7,6 @@ import EventView from './EventView';
 import OptionView from './OptionView';
 import OverView from './OverView';
 import ImageView from './ImageView';
-import { EventKeys } from '../../constants';
 import BackgroundView from './BackgroundView';
 
 export default class ArticleBlock extends React.PureComponent {

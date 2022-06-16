@@ -10,7 +10,7 @@ import lo from 'lodash';
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 import { GetSoundDataApi } from "../services/GetSoundDataApi";
-import { playEffect, playSound } from "../components/sound/utils";
+import { playSound } from "../components/sound/utils";
 
 export default {
     namespace: 'SoundModel',

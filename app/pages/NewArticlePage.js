@@ -13,7 +13,8 @@ import {
   DataContext,
   getWindowSize,
   statusBarHeight,
-  getChapterImage
+  getChapterImage,
+  ThemeContext
 } from "../constants";
 
 import { 
@@ -25,6 +26,7 @@ import {
 import {
   Platform,
   Animated,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -44,6 +46,8 @@ import LeftContainer from '../components/article/LeftContainer';
 import DirectoryPage from './article/DirectoryPage';
 import RightContainer from '../components/article/RightContainer';
 import DirMapPage from './article/DirMapPage';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../constants/resolution';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -75,6 +79,15 @@ const WORLD = [
   },
 ];
 
+const TAB_BUTTONS = [
+  { title: '世界', action: () => { RootNavigation.navigate('Home', { screen: 'World' }) } },
+  { title: '探索', action: () => { RootNavigation.navigate('Home', { screen: 'Explore' }) } },
+  { title: '城镇', action: () => { RootNavigation.navigate('Home', { screen: 'Town' }) } },
+  { title: '制作', action: () => { RootNavigation.navigate('Home', { screen: 'Compose' }) } },
+  { title: '道具', action: () => { RootNavigation.navigate('Home', { screen: 'Props' }) } },
+  { title: '抽奖', action: () => { RootNavigation.navigate('Home', { screen: 'Lottery' }) } },
+]
+
 const WorldSelector = () => {
   CarouselUtils.show({ 
     data: WORLD, 
@@ -98,7 +111,7 @@ const ReaderBackgroundImageView = () => {
         return;
       //
       if (lo.isEmpty(imageId)) {
-        setTimeout(() => <></>, 0);
+        setTimeout(() => setImage(<></>), 0);
       } else {
         const res = getChapterImage(imageId);
         setTimeout(() => {
@@ -174,6 +187,42 @@ const UserAttributesHolder = (props) => {
   );
 }
 
+const WorldUnlockView = (props) => {
+
+  const back = () => {
+    props.navigation.navigate('PrimaryWorld');
+    props.onClose();
+  }
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f5f5f5' }}>
+      <View style={{ 
+        width: '80%', 
+        height: 150, 
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: '#fff', 
+        borderWidth: 1, 
+        borderColor: '#ddd',
+        shadowColor: "#0d152c",
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowOpacity: 0.4,
+        shadowRadius: 6, }}>
+          <Text style={{ fontSize: 24, color: '#000' }}>当前世界未解锁</Text>
+          <TouchableWithoutFeedback onPress={back}>
+            <View style={{ width: 130, height: 30, borderWidth: 1, borderColor: '#bbb', justifyContent: 'center', alignItems: 'center' }}>
+              <Text style={{ color: '#000' }}>返回</Text>
+            </View>
+          </TouchableWithoutFeedback>
+      </View>
+    </View>
+  );
+}
+
 const TheWorld = (props) => {
   const startX = React.useRef(0);
   const startY = React.useRef(0);
@@ -205,6 +254,11 @@ const TheWorld = (props) => {
     props.dispatch(action('ArticleModel/end')({}));
   }
 
+  const onTouchTransView = () => {
+    fontOpacity.setValue(0);
+    const key = RootView.add(<WorldUnlockView {...props} onClose={() => RootView.remove(key)} />);
+  }
+
   React.useEffect(() => {
     if (props.sections.length <= 0)
       return;
@@ -234,12 +288,21 @@ const TheWorld = (props) => {
     }
     //
     if (lo.isEqual(routeName, 'RightWorld')) {
+      // Animated.sequence([
+      //   Animated.timing(maskOpacity, {
+      //     toValue: 0,
+      //     duration: 2000,
+      //     useNativeDriver: false,
+      //   })
+      // ]).start();
+    } else if (lo.isEqual(routeName, 'LeftWorld')) {
       Animated.sequence([
-        Animated.timing(maskOpacity, {
-          toValue: 0,
-          duration: 2000,
+        Animated.delay(300),
+        Animated.timing(fontOpacity, {
+          toValue: 1,
+          duration: 300,
           useNativeDriver: false,
-        })
+        }),
       ]).start();
     } else {
       Animated.sequence([
@@ -294,22 +357,21 @@ const TheWorld = (props) => {
 
           if (Math.abs(dx) >= 10) {
             if (dx < 0) {
-              // this.refPropsContainer.current.offsetX(-dx);
               context.slideMoving = true;
             }
           }
         }}
         onTouchEnd={() => {
-          // this.refPropsContainer.current.release();
           started.current = false;
         }}
         onTouchCancel={() => {
-          // this.refPropsContainer.current.release();
           started.current = false;
         }}
       />
       {/* 白色遮盖层 */}
-      <Animated.View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: '#fff', opacity: maskOpacity }} pointerEvents='none'>
+      <Animated.View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: '#fff', opacity: maskOpacity }} 
+        onTouchStart={onTouchTransView} 
+        pointerEvents={(lo.isEqual(routeName, 'PrimaryWorld') ? 'none' : 'auto')}>
         <Animated.View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', opacity: fontOpacity }}>
           {(lo.isEqual(routeName, 'LeftWorld')) ? (<Text style={styles.tranSceneFontStyle}>其实，修真可以改变现实。。。</Text>) : <></>}
           {(lo.isEqual(routeName, 'PrimaryWorld')) ? (<Text style={styles.tranSceneFontStyle}>所念即所现，所思即所得。。。</Text>) : <></>}
@@ -328,6 +390,31 @@ const WorldTabBar = (props) => {
   return (
     <View style={{ paddingTop: 5, paddingBottom: 5, paddingRight: 20, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
       <Text style={{ fontSize: 20, color: '#333' }}>{options.tabBarLabel}</Text>
+    </View>
+  );
+}
+
+const FooterTabBar = (props) => {
+  const theme = React.useContext(ThemeContext);
+
+  const buttons = [];
+  let key = 0;
+
+  TAB_BUTTONS.forEach(e => {
+    const { title, action } = e;
+    buttons.push(
+      <TouchableWithoutFeedback key={key++} onPress={action}>
+        <View style={styles.bottomBannerButton}>
+          <FastImage style={[theme.tabBottomImgStyle, { position: 'absolute' }]} source={theme.tabBottomImage} />
+          <Text style={[theme.tabBottomLabelStyle, { position: 'absolute', width: 24, fontSize: px2pd(60), color: '#fff' }]}>{title}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  });
+
+  return (
+    <View style={[styles.bannerStyle, { marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
+      {buttons}
     </View>
   );
 }
@@ -392,6 +479,7 @@ class NewArticlePage extends Component {
             <View style={styles.bannerButton}>
               <TextButton title='退出阅读' onPress={() => {
                 this.props.navigation.navigate('First');
+                AppDispath({ type: 'ArticleModel/cleanup' });
               }} />
             </View>
             <View style={styles.bannerButton}>
@@ -419,50 +507,7 @@ class NewArticlePage extends Component {
           </Tab.Navigator>
         </View>
         <FooterContainer>
-          <View style={[styles.bannerStyle, { marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
-            <View style={styles.bannerButton}>
-              <TextButton title='世界' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'World',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='探索' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Explore',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='城镇' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Town',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='制作' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Compose',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='道具' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Props',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='抽奖' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Lottery',
-                });
-              }} />
-            </View>
-          </View>
+          <FooterTabBar />
         </FooterContainer>
         <Drawer ref={this.refPropsContainer}>
           {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
@@ -550,6 +595,14 @@ const styles = StyleSheet.create({
   },
   bannerButton: {
     width: 100,
+    marginLeft: 10, 
+    marginRight: 10,
+    marginTop: 0,
+    marginBottom: 10,
+  },
+  bottomBannerButton: {
+    width: 45,
+    height: 80,
     marginLeft: 10, 
     marginRight: 10,
     marginTop: 0,
