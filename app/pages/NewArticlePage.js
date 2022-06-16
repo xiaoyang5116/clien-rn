@@ -13,7 +13,8 @@ import {
   DataContext,
   getWindowSize,
   statusBarHeight,
-  getChapterImage
+  getChapterImage,
+  ThemeContext
 } from "../constants";
 
 import { 
@@ -25,6 +26,7 @@ import {
 import {
   Platform,
   Animated,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -44,6 +46,8 @@ import LeftContainer from '../components/article/LeftContainer';
 import DirectoryPage from './article/DirectoryPage';
 import RightContainer from '../components/article/RightContainer';
 import DirMapPage from './article/DirMapPage';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../constants/resolution';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -74,6 +78,15 @@ const WORLD = [
     toChapter: "WZXX_M1_N1_C003",
   },
 ];
+
+const TAB_BUTTONS = [
+  { title: '世界', action: () => { RootNavigation.navigate('Home', { screen: 'World' }) } },
+  { title: '探索', action: () => { RootNavigation.navigate('Home', { screen: 'Explore' }) } },
+  { title: '城镇', action: () => { RootNavigation.navigate('Home', { screen: 'Town' }) } },
+  { title: '制作', action: () => { RootNavigation.navigate('Home', { screen: 'Compose' }) } },
+  { title: '道具', action: () => { RootNavigation.navigate('Home', { screen: 'Props' }) } },
+  { title: '抽奖', action: () => { RootNavigation.navigate('Home', { screen: 'Lottery' }) } },
+]
 
 const WorldSelector = () => {
   CarouselUtils.show({ 
@@ -332,6 +345,31 @@ const WorldTabBar = (props) => {
   );
 }
 
+const FooterTabBar = (props) => {
+  const theme = React.useContext(ThemeContext);
+
+  const buttons = [];
+  let key = 0;
+
+  TAB_BUTTONS.forEach(e => {
+    const { title, action } = e;
+    buttons.push(
+      <TouchableWithoutFeedback key={key++} onPress={action}>
+        <View style={styles.bottomBannerButton}>
+          <FastImage style={[theme.tabBottomImgStyle, { position: 'absolute' }]} source={theme.tabBottomImage} />
+          <Text style={[theme.tabBottomLabelStyle, { position: 'absolute', width: 24, fontSize: px2pd(60), color: '#fff' }]}>{title}</Text>
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  });
+
+  return (
+    <View style={[styles.bannerStyle, { marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
+      {buttons}
+    </View>
+  );
+}
+
 class NewArticlePage extends Component {
 
   static contextType = DataContext;
@@ -420,50 +458,7 @@ class NewArticlePage extends Component {
           </Tab.Navigator>
         </View>
         <FooterContainer>
-          <View style={[styles.bannerStyle, { marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
-            <View style={styles.bannerButton}>
-              <TextButton title='世界' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'World',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='探索' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Explore',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='城镇' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Town',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='制作' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Compose',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='道具' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Props',
-                });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='抽奖' onPress={() => {
-                RootNavigation.navigate('Home', {
-                  screen: 'Lottery',
-                });
-              }} />
-            </View>
-          </View>
+          <FooterTabBar />
         </FooterContainer>
         <Drawer ref={this.refPropsContainer}>
           {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
@@ -551,6 +546,14 @@ const styles = StyleSheet.create({
   },
   bannerButton: {
     width: 100,
+    marginLeft: 10, 
+    marginRight: 10,
+    marginTop: 0,
+    marginBottom: 10,
+  },
+  bottomBannerButton: {
+    width: 45,
+    height: 80,
     marginLeft: 10, 
     marginRight: 10,
     marginTop: 0,
