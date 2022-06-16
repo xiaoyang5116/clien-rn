@@ -212,10 +212,10 @@ const WorldUnlockView = (props) => {
         },
         shadowOpacity: 0.4,
         shadowRadius: 6, }}>
-          <Text style={{ fontSize: 24 }}>当前世界未解锁</Text>
+          <Text style={{ fontSize: 24, color: '#000' }}>当前世界未解锁</Text>
           <TouchableWithoutFeedback onPress={back}>
             <View style={{ width: 130, height: 30, borderWidth: 1, borderColor: '#bbb', justifyContent: 'center', alignItems: 'center' }}>
-              <Text>返回</Text>
+              <Text style={{ color: '#000' }}>返回</Text>
             </View>
           </TouchableWithoutFeedback>
       </View>
