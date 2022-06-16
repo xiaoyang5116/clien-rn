@@ -21,6 +21,16 @@ export function playEffect(config) {
 // 自动选择BGM还是音效
 export function playSound(config) {
     const { soundId } = config;
+    
+    if (lo.isEmpty(soundId)) {
+        stopBGM();
+    }
+
     const bgm = lo.isBoolean(config.bgm) ? config.bgm : lo.startsWith(soundId, 'BGM');
     bgm ? playBGM(config) : playEffect(config);
+}
+
+// 停止BGM
+export function stopBGM() {
+    DeviceEventEmitter.emit(EventKeys.SOUND_BGM_PLAY, { soundId: '' });
 }

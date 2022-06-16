@@ -18,7 +18,7 @@ sound: [
     # 世界页
     { routeName: 'World', soundId: 'BGM00006' },
     # 阅读器默认
-    { routeName: 'Article', soundId: 'BGM00003' },
+    # { routeName: 'Article', soundId: 'BGM00003' },
     # 测试主音量
     { test: 'masterBGM', soundId: 'BGM00003' },
     # 测试主音效
