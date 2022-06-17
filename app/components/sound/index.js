@@ -200,8 +200,11 @@ const SoundProvider = (props) => {
 
     React.useEffect(() => {
         const listener = DeviceEventEmitter.addListener(EventKeys.NAVIGATION_ROUTE_CHANGED, ({ routeName }) => {
-            stopBGM();
-            props.dispatch(action('SoundModel/checkAudio')({ routeName }));
+            // 延时执行，避免切换导航栏卡顿。
+            setTimeout(() => {
+                stopBGM();
+                props.dispatch(action('SoundModel/checkAudio')({ routeName }));
+            }, 300);
         });
         return () => {
             listener.remove();
