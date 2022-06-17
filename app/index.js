@@ -189,7 +189,7 @@ class App extends Component {
       <View style={styles.rootContainer}>
         <Shock>
           {/* 隐藏安卓底部导航栏后,顶部的状态栏高度消失 */}
-          <View style={{ height: statusBarHeight }} />
+          { (Platform.OS == 'android') ? <View style={{ height: statusBarHeight }} /> : <></>  }
           <View style={{ flex: 1 }}>
             <MainPage />
             <RootView />
