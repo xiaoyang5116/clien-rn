@@ -71,16 +71,16 @@ class ArchivePage extends Component {
   }
 
   componentDidMount() {
-    const play = type => {
-      this.mummy.play({
-        type,
-        fps: Number(30),
-        loop: true,
-        resetAfterFinish: false,
-        onFinish: () => console.log('hi')
-      });
-    };
-    play('walk');
+    // const play = type => {
+    //   this.mummy.play({
+    //     type,
+    //     fps: Number(30),
+    //     loop: true,
+    //     resetAfterFinish: false,
+    //     onFinish: () => console.log('hi')
+    //   });
+    // };
+    // play('walk');
   }
 
   render() {
@@ -99,7 +99,7 @@ class ArchivePage extends Component {
                 />
             </View>
             <View style={{ position: 'absolute', top: -100, left: 80, transform: [{ scale: 1.4 }] }}>
-              <SpriteSheet
+              {/* <SpriteSheet
                 ref={ref => (this.mummy = ref)}
                 source={require('../../assets/animations/effect.png')}
                 columns={10}
@@ -110,7 +110,7 @@ class ArchivePage extends Component {
                 animations={{
                   walk: range(60),
                 }}
-              />
+              /> */}
             </View>
             <View style={{ paddingTop: 10, paddingBottom: 10, alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', 
                 borderColor: '#999', borderWidth: 1, backgroundColor: '#ede7db' }}>
