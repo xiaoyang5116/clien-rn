@@ -77,7 +77,13 @@ scenes: [
            btn: [{title: '大侠饶命！我上有老，下有小……',tokey: "p2A"},{title: '别杀我，我有钱',dialogs: ['gameover02']},{title: '别杀我，我有秘籍',tokey: "ok1"},{title: '别杀我，我有美女',tokey: "gg1"},{title: '别杀我，我有藏宝线索',tokey: "gg2"},{title: '别杀我，我有能保命的情报',tokey: "gg3"},]},
  
            { key: 'p2A', content: ['大侠饶命！我上有八十老母，下有三岁小儿！','句句是真！句句属实啊！','对方点了点头笑了，那你几岁？', ],
-            btn: [{title: '80?',tokey: "p2B1"},{title: '而立之年啊',tokey: "p2B1"},{title: '风华正茂啊',tokey: "p2B1"},{title: '随便编一个',tokey: "gg1"},{title: '照实说',tokey: "p2B2"}]},   
+            btn: [{title: '80?',tokey: "p2B0"},{title: '而立之年啊',tokey: "p2B1"},{title: '风华正茂啊',tokey: "p2B0A"},{title: '随便编一个',tokey: "gg1"},{title: '照实说',tokey: "p2B2"}]},   
+
+           { key: 'p2B0', content: ['小滑头，我信你的邪','你八十你老母也八十？','我给你个机会好好说！','…………',], 
+             btn: [{title: '一下子紧张说岔了!',tokey: "p2A" }]},   
+
+           { key: 'p2B0A', content: ['你也知道风华正茂','这是不是还想娶个媳妇？','不过你遇上我就是你命不好','记得下辈子多积点德','…………',], 
+             btn: [{title: '被说中了我还真没媳妇!',dialogs: ['gameover00'] }]},   
 
            { key: 'p2B1', content: ['我管你上有老，我管你几岁。','我就是来杀你的！','剑光一闪',['边缘闪烁红'],'…………',], 
              btn: [{title: '我觉得我还能抢救一下!',dialogs: ['gameover00'] }]},   
