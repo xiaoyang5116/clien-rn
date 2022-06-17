@@ -63,19 +63,19 @@ const WORLD = [
   },
   {
     worldId: 1,
-    title: "灵修界",
-    body: "灵修场景，这里添加更多描述",
-    desc: "灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述",
-    imgUrl: "https://picsum.photos/id/10/200/300",
-    toChapter: "WZXX_M1_N1_C002",
-  },
-  {
-    worldId: 2,
     title: "尘界",
     body: "尘界场景，这里添加更多描述",
     desc: "尘界场景，这里添加更多描述，尘界场景，这里添加更多描述，尘界场景，这里添加更多描述，尘界场景，这里添加更多描述",
     imgUrl: "https://picsum.photos/id/12/200/300",
     toChapter: "WZXX_M1_N1_C003",
+  },
+  {
+    worldId: 2,
+    title: "灵修界",
+    body: "灵修场景，这里添加更多描述",
+    desc: "灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述, 灵修场景，这里添加更多描述",
+    imgUrl: "https://picsum.photos/id/10/200/300",
+    toChapter: "WZXX_M1_N1_C002",
   },
 ];
 
@@ -187,6 +187,42 @@ const UserAttributesHolder = (props) => {
   );
 }
 
+const WorldUnlockView = (props) => {
+
+  const back = () => {
+    props.navigation.navigate('PrimaryWorld');
+    props.onClose();
+  }
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f5f5f5' }}>
+      <View style={{ 
+        width: '80%', 
+        height: 150, 
+        flexDirection: 'column',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: '#fff', 
+        borderWidth: 1, 
+        borderColor: '#ddd',
+        shadowColor: "#0d152c",
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowOpacity: 0.4,
+        shadowRadius: 6, }}>
+          <Text style={{ fontSize: 24, color: '#000' }}>当前世界未解锁</Text>
+          <TouchableWithoutFeedback onPress={back}>
+            <View style={{ width: 130, height: 30, borderWidth: 1, borderColor: '#bbb', justifyContent: 'center', alignItems: 'center' }}>
+              <Text style={{ color: '#000' }}>返回</Text>
+            </View>
+          </TouchableWithoutFeedback>
+      </View>
+    </View>
+  );
+}
+
 const TheWorld = (props) => {
   const startX = React.useRef(0);
   const startY = React.useRef(0);
@@ -218,6 +254,11 @@ const TheWorld = (props) => {
     props.dispatch(action('ArticleModel/end')({}));
   }
 
+  const onTouchTransView = () => {
+    fontOpacity.setValue(0);
+    const key = RootView.add(<WorldUnlockView {...props} onClose={() => RootView.remove(key)} />);
+  }
+
   React.useEffect(() => {
     if (props.sections.length <= 0)
       return;
@@ -246,15 +287,7 @@ const TheWorld = (props) => {
       return;
     }
     //
-    if (lo.isEqual(routeName, 'RightWorld')) {
-      Animated.sequence([
-        Animated.timing(maskOpacity, {
-          toValue: 0,
-          duration: 2000,
-          useNativeDriver: false,
-        })
-      ]).start();
-    } else {
+    if (lo.isEqual(routeName, 'LeftWorld') || lo.isEqual(routeName, 'RightWorld')) {
       Animated.sequence([
         Animated.delay(300),
         Animated.timing(fontOpacity, {
@@ -262,15 +295,12 @@ const TheWorld = (props) => {
           duration: 300,
           useNativeDriver: false,
         }),
-        Animated.delay(600),
-        Animated.timing(fontOpacity, {
-          toValue: 0,
-          duration: 300,
-          useNativeDriver: false,
-        }),
+      ]).start();
+    } else if (lo.isEqual(routeName, 'PrimaryWorld')) {
+      Animated.sequence([
         Animated.timing(maskOpacity, {
           toValue: 0,
-          duration: 2000,
+          duration: 1000,
           useNativeDriver: false,
         })
       ]).start();
@@ -307,25 +337,24 @@ const TheWorld = (props) => {
 
           if (Math.abs(dx) >= 10) {
             if (dx < 0) {
-              // this.refPropsContainer.current.offsetX(-dx);
               context.slideMoving = true;
             }
           }
         }}
         onTouchEnd={() => {
-          // this.refPropsContainer.current.release();
           started.current = false;
         }}
         onTouchCancel={() => {
-          // this.refPropsContainer.current.release();
           started.current = false;
         }}
       />
       {/* 白色遮盖层 */}
-      <Animated.View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: '#fff', opacity: maskOpacity }} pointerEvents='none'>
+      <Animated.View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: '#fff', opacity: maskOpacity }} 
+        onTouchStart={onTouchTransView} 
+        pointerEvents={(lo.isEqual(routeName, 'PrimaryWorld') ? 'none' : 'auto')}>
         <Animated.View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', opacity: fontOpacity }}>
           {(lo.isEqual(routeName, 'LeftWorld')) ? (<Text style={styles.tranSceneFontStyle}>其实，修真可以改变现实。。。</Text>) : <></>}
-          {(lo.isEqual(routeName, 'PrimaryWorld')) ? (<Text style={styles.tranSceneFontStyle}>所念即所现，所思即所得。。。</Text>) : <></>}
+          {(lo.isEqual(routeName, 'RightWorld')) ? (<Text style={styles.tranSceneFontStyle}>所念即所现，所思即所得。。。</Text>) : <></>}
         </Animated.View>
       </Animated.View>
   </View>
@@ -453,8 +482,8 @@ class NewArticlePage extends Component {
             screenOptions={{ swipeEnabled: !this.props.isStartPage }}
             >
             <Tab.Screen name="LeftWorld" options={{ tabBarLabel: '现实' }} children={(props) => <TheWorld {...this.props} {...props} />} />
-            <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '灵修界' }} children={(props) => <TheWorld {...this.props} {...props} />} />
-            <Tab.Screen name="RightWorld" options={{ tabBarLabel: '尘界' }} children={(props) => <TheWorld {...this.props} {...props} />} />
+            <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '尘界' }} children={(props) => <TheWorld {...this.props} {...props} />} />
+            <Tab.Screen name="RightWorld" options={{ tabBarLabel: '灵修界' }} children={(props) => <TheWorld {...this.props} {...props} />} />
           </Tab.Navigator>
         </View>
         <FooterContainer>

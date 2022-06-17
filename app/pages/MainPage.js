@@ -26,7 +26,6 @@ import FirstPage from './FirstPage';
 import SettingsPage from './SettingsPage';
 import BookMainPage from './BookMainPage'
 import { navigationRef } from '../utils/RootNavigation';
-import { playBGM, playEffect } from '../components/sound/utils';
 
 const Stack = createStackNavigator();
 
@@ -56,6 +55,7 @@ class MainPage extends Component {
     if (lo.isEqual(route.name, 'Home')) {
       route = route.state.routes[route.state.index];
     }
+    
     // 拦截导航栏所有跳转
     DeviceEventEmitter.emit(EventKeys.NAVIGATION_ROUTE_CHANGED, { routeName: route.name });
   }

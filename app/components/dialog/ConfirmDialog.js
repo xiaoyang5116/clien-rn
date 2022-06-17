@@ -1,5 +1,6 @@
 import React from 'react'
 import RootView from '../RootView'
+import lo from 'lodash';
 
 import {
     View,
@@ -17,6 +18,30 @@ class ConfirmDialog extends React.Component {
     }
 
     render() {
+        const buttons = [];
+        if (lo.isObject(this.props.yes) && !lo.isFunction(this.props.yes)) {
+            const { title, cb } = this.props.yes;
+            buttons.push(
+                <TextButton key={0} title={title} style={{ width: 90 }} onPress={() => { 
+                    if (cb != undefined) cb();
+                    this.props.onClose();
+                }} />
+            );
+        } else {
+            buttons.push(
+                <TextButton key={0} title="确认" style={{ width: 90 }} onPress={() => { 
+                    if (this.props.yes != undefined) this.props.yes();
+                    this.props.onClose();
+                }} />
+            );
+            buttons.push(
+                <TextButton key={1} title="取消" style={{ width: 90 }} onPress={() => {
+                    if (this.props.no != undefined) this.props.no();
+                    this.props.onClose();
+                }} />
+            );
+        }
+
         return (
         <SafeAreaView style={{ flex: 1, zIndex: 999999 }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -41,14 +66,7 @@ class ConfirmDialog extends React.Component {
                             <Text style={{ color: '#fff' }}>{this.props.msg}</Text>
                         </View>
                         <View style={{ height: 50, marginBottom: 10, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                            <TextButton title="确认" style={{ width: 90 }} onPress={() => { 
-                                if (this.props.yes != undefined) this.props.yes();
-                                this.props.onClose();
-                            }} />
-                            <TextButton title="取消" style={{ width: 90 }} onPress={() => {
-                                if (this.props.no != undefined) this.props.no();
-                                this.props.onClose();
-                            }} />
+                            {buttons}
                         </View>
                     </View>
                 </View>
