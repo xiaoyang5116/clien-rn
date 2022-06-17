@@ -109,7 +109,7 @@ class ComposeMainTabPage extends Component {
                             keyExtractor={item => item.id}
                         />
                     </View>
-                    <View style={{ height: 100, marginBottom: 10, flexDirection: 'column'}}>
+                    <View style={{ height: 100, marginBottom: 30, flexDirection: 'column'}}>
                         <ImageCapInset
                             style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.3 }}
                             source={require('../../../../assets/bg/area.png')}
