@@ -8,8 +8,7 @@
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
-    "android-clean": "cd android && ./gradlew clean",
-    "android-release": "cd android && ./gradlew assembleRelease"
+    "android-release": "./deploy.sh"
   },
   "dependencies": {
     "@react-native-community/slider": "^4.2.2",
