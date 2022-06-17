@@ -1,4 +1,4 @@
-import { View, Text, TouchableWithoutFeedback, FlatList } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, FlatList, Image } from 'react-native';
 import React, { useState } from 'react';
 import { ThemeContext } from '../../../constants';
 
@@ -7,6 +7,10 @@ const FullSingle = props => {
     const theme = React.useContext(ThemeContext);
     return (
         <View style={[{ backgroundColor: '#fff', flex: 1, opacity: 1, paddingTop: 10 }]}>
+            <Image
+                style={{ width: '100%', height: '100%', position: "absolute", top: 0, left: 0, zIndex: 0 ,opacity:0.2 }}
+                source={require('../../../../assets/bg/gameOver.png')}
+            />
             {/* 标题 */}
             <View
                 style={[
