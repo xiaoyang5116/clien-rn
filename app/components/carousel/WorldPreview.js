@@ -50,7 +50,7 @@ const WorldPreview = (props) => {
       const prevImg = previewImages.find(e => e.worldId == item.worldId).img;
       const propEnough = propNum > 0;
       return (
-        <Modal isVisible={true} coverScreen={false} style={{padding: 0, margin: 0, flex: 1, zIndex: 1}} animationIn='fadeIn' animationOut='fadeOut' animationInTiming={2000} backdropColor="#fff" backdropOpacity={1}>
+        <Modal isVisible={true} coverScreen={false} style={{padding: 0, margin: 0, flex: 1, zIndex: 1, backgroundColor:"#fff"}} animationIn='fadeIn' animationOut='fadeOut' animationInTiming={2000} backdropOpacity={0}>
           <SafeAreaView style={{ flex: 1 }}>
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
               <View style={styles.bodyContainer}>
