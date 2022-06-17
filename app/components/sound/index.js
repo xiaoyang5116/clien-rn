@@ -6,6 +6,7 @@ import lo from 'lodash';
 import Video from 'react-native-video';
 import { EventKeys, connect, action } from '../../constants';
 import { SOUND_RESOURCES } from './config';
+import { stopBGM } from './utils';
 
 const Sound = (props) => {
     const refVideo = React.useRef(null);
@@ -117,12 +118,23 @@ const SoundProvider = (props) => {
 
         if (lastBGM == undefined) {
             playingBGM.current = null;
+            setTimeout(() => {
+                setBGMViews((_list) => {
+                    return [];
+                });
+            }, 0);
             return;
         }
 
         // type: 主音，副音（阅读器）
         // soundId: 声音ID
         const { type, soundId, seek } = lastBGM;
+        
+        if (lo.isEmpty(soundId)) {
+            playingBGM.current = null;
+            return;
+        }
+        
         const source = SOUND_RESOURCES.find(e => lo.isEqual(e.id, soundId)).source;
         const volumeSettings = volumeState.current[type];
         const so = <Sound key={lastBGM.key} id={lastBGM.key} type={type} seek={seek} soundId={soundId} isBGM={true} audioOnly={true} repeat={true} volume={volumeSettings.bg} source={source} />;
@@ -188,7 +200,11 @@ const SoundProvider = (props) => {
 
     React.useEffect(() => {
         const listener = DeviceEventEmitter.addListener(EventKeys.NAVIGATION_ROUTE_CHANGED, ({ routeName }) => {
-            props.dispatch(action('SoundModel/checkAudio')({ routeName }));
+            // 延时执行，避免切换导航栏卡顿。
+            setTimeout(() => {
+                stopBGM();
+                props.dispatch(action('SoundModel/checkAudio')({ routeName }));
+            }, 300);
         });
         return () => {
             listener.remove();
