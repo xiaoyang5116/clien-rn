@@ -9,7 +9,7 @@
     "test": "jest",
     "lint": "eslint .",
     "android-clean": "cd android && ./gradlew clean",
-    "android-release": "cd android && ./gradlew assembleRelease --no-daemon"
+    "android-release": "cd android && ./gradlew assembleRelease"
   },
   "dependencies": {
     "@react-native-community/slider": "^4.2.2",
