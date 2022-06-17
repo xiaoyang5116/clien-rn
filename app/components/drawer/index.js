@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         zIndex: 100,
-        height: VIEW_HEIGHT,
+        // height: VIEW_HEIGHT,
+        height:"100%",
     }
 });

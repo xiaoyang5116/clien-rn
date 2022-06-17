@@ -5,6 +5,8 @@ import {
   EventKeys, getWindowSize,
 } from "../../constants";
 
+// import changeNavigationBarColor,{ hideNavigationBar, showNavigationBar } from 'react-native-navigation-bar-color';
+
 import { DeviceEventEmitter, Animated } from 'react-native';
 
 const WIN_SIZE = getWindowSize();
@@ -30,6 +32,13 @@ const FooterContainer = (props) => {
       });
       animation.start(() => {
         setDisplay((v) => !v);
+
+        // 显示或隐藏 底部导航栏
+        // if (!display) {
+        //   showNavigationBar()
+        // }else{
+        //   hideNavigationBar()
+        // }
         status.animating = false;
       });
       switcAnimation.current = animation;
