@@ -64,7 +64,7 @@ export default class LeftContainer extends React.PureComponent {
   render() {
     return (
       <TouchableWithoutFeedback onPress={() => this.close()}>
-        <Animated.View style={{ position: 'absolute', left: this.leftPos, top: 0, zIndex: 100, width: winSize.width, height: winSize.height, backgroundColor: '#bcc3bf' }}>
+        <Animated.View style={{ position: 'absolute', left: this.leftPos, top: 0, bottom: 0, zIndex: 100, width: winSize.width, backgroundColor: '#bcc3bf' }}>
           {this.props.children}
         </Animated.View>
       </TouchableWithoutFeedback>

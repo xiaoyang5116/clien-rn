@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
   viewContainer: {
     position: 'absolute', 
     top: 0, 
+    bottom: 0,
     zIndex: 100, 
     width: winSize.width, 
-    height: winSize.height, 
     backgroundColor: '#bcc3bf',
   }
 });
