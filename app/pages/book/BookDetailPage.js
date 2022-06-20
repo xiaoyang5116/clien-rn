@@ -16,7 +16,7 @@ const BookDetailPage = props => {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, position: 'relative', }}>
         <View style={styles.headerContarner}>
-          <Text style={styles.footerText} onPress={() => { props.navigation.goBack() }}>返回</Text>
+          <Text style={[styles.footerText, { color: '#000' }]} onPress={() => { props.navigation.goBack() }}>返回</Text>
         </View>
         <ScrollView
           style={{ flex: 1, marginBottom: 60 }}

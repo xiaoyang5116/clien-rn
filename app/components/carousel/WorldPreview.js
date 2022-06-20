@@ -56,13 +56,13 @@ const WorldPreview = (props) => {
               <View style={styles.bodyContainer}>
                   <View style={styles.viewContainer}>
                     <View style={styles.titleContainer}>
-                      <Text style={{ fontSize: 24, fontWeight: 'bold' }}>{item.title}</Text>
+                      <Text style={{ fontSize: 24, fontWeight: 'bold', color: '#000' }}>{item.title}</Text>
                     </View>
                     <View style={styles.descContainer}>
                       <FastImage style={{ width: '100%', height: 200, borderBottomWidth: 1, borderColor: '#999' }}
                         resizeMode='cover' source={prevImg}
                       />
-                      <Text style={{ fontSize: 14, padding: 6, lineHeight: 20 }}>{(item.desc != undefined ? item.desc : item.body)}</Text>
+                      <Text style={{ fontSize: 14, padding: 6, lineHeight: 20, color: '#000' }}>{(item.desc != undefined ? item.desc : item.body)}</Text>
                     </View>
                     <View style={{ marginTop: 20, height: 100, flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center' }}>
                       <View style={{ width: 200 }}>
