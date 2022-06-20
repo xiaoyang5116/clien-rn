@@ -17,7 +17,8 @@ const FullSingle = props => {
         showBtnList,
         currentIndex,
         currentDialogueLength,
-        nextDialogue
+        nextDialogue,
+        artId,
     } = props;
 
     const renderText = ({ item, index }) => {
@@ -65,7 +66,8 @@ const FullSingle = props => {
         <View style={[{ backgroundColor: '#fff', flex: 1, opacity: 1, paddingTop: 10 }]}>
             <Image
                 style={{ width: '100%', height: '100%', position: "absolute", top: 0, left: 0, zIndex: 0, opacity: 0.2 }}
-                source={require('../../../../assets/bg/gameOver.png')}
+                // source={require('../../../../assets/bg/gameOver.png')}
+                source={artId ? theme.artTab[artId] : theme.artTab[1]}
             />
             {/* 标题 */}
             <View

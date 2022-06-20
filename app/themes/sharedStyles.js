@@ -81,7 +81,7 @@ const sharedStyles = StyleSheet.create({
     /* 对话框内位置 */
     positionLabel: {
         fontSize: 18,
-        paddingLeft: 10, 
+        paddingLeft: 10,
         paddingRight: 10,
         textAlign: 'left',
     },
@@ -383,6 +383,16 @@ const sharedStyles = StyleSheet.create({
         fontSize: 14,
         textAlign: 'center',
     },
+
+    /** ================================ */
+    /**          美术图片资源 tab          */
+    /** ================================ */
+    artTab: {
+        1: require('../../assets/bg/gameOver.png'),  // game over 图片
+        2: require('../../assets/bg/flower.png'),  // game over 图片
+        3: require('../../assets/bg/tombstone.png'),  // game over 图片
+        4: require('../../assets/bg/censer.png'),  // game over 图片
+    }
 });
 
 export default sharedStyles;

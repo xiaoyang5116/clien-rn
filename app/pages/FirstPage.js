@@ -122,7 +122,7 @@ class FirstPage extends Component {
                 {/* 测试按钮 */}
                 <ImageButton {...BTN_STYLE} source={require('../../assets/button/test_button.png')} selectedSource={require('../../assets/button/test_button_selected.png')} onPress={() => {
                   // // 线索列表
-                  Clues.show();
+                  // Clues.show();
 
                   // 震屏
                   // Shock.shockShow('bigShock');
@@ -131,12 +131,12 @@ class FirstPage extends Component {
                   // const key = RootView.add(<MailBoxPage onClose={() => { RootView.remove(key) }} />);
 
                   // GameOverModal 7
-                  // Modal.show({
-                  //   style: 7, title: '神秘阵盘', dialogType: 'FullScreen', textAnimationType: 'TextSingle',
-                  //   sections: [
-                  //     { content: ['你迅速跑过去，地面有些东西。'], btn: [{ title: '去拿菜刀', tokey: "p2", props: [{ propId: 20, num: 10 }] }, { title: '去拿画轴', tokey: "p3" }] },
-                  //   ]
-                  // })
+                  Modal.show({
+                    style: 7, title: '神秘阵盘', dialogType: 'FullScreen', textAnimationType: 'TextSingle', 
+                    sections: [
+                      { content: ['你迅速跑过去，地面有些东西。'], btn: [{ title: '去拿菜刀', tokey: "p2", props: [{ propId: 20, num: 10 }] }, { title: '去拿画轴', tokey: "p3" }] },
+                    ]
+                  })
 
                   // 单人对话框
                   // Modal.show({ 
