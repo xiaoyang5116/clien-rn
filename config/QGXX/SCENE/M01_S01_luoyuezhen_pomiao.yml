@@ -47,9 +47,9 @@ scenes: [
       { 
         id: 'pomiao_Event01Day0A', desc: '一座简陋的破庙内', 
         options: [ 
-          { title: '【查看四周】', andVarsOff: ['v10'], dialogs: ['p1'] }, 
-          { title: '【查看头顶】', andVarsOff: ['v10'], dialogs: ['p2'] }, 
-          { title: '【动动身子】', andVarsOn: ['v1', 'v2'], andVarsOff: ['v10'], dialogs: ['p3'] }, 
+          { title: '【查看四周】', andVarsOff: ['v10'], dialogs: ['p1'], icon: { id: 1, bindVar: 'v1' } }, 
+          { title: '【查看头顶】', andVarsOff: ['v10'], dialogs: ['p2'], icon: { id: 1, bindVar: 'v2' } }, 
+          { title: '【动动身子】', andVarsOn: ['v1', 'v2'], andVarsOff: ['v10'], dialogs: ['p3'], icon: { id: 1, bindVar: 'v3' } }, 
           { title: '【看看自己的手】', andVarsOn: ['v1', 'v2', 'v3'], andVarsOff: ['v10'], dialogs: ['p4'] }, 
           # 以下选项在【询问周围的乞丐】&【尝试起身】点击后替换
           { title: '【询问周围的乞丐】', andVarsOn: ['v1', 'v2', 'v3', 'v4'], andVarsOff: ['v6', 'v10'], dialogs: ['p5'] }, 

@@ -75,6 +75,16 @@ export default {
         const item = chat.options[key];
         item.chatId = chat.id;
         if (yield put.resolve(action('SceneModel/testCondition')(item))) {
+          if (lo.isObject(item.icon)) {
+            const { bindVar } = item.icon;
+            if (bindVar != undefined) {
+              const checkVar = { andVarsOn: [bindVar], __sceneId: item.__sceneId };
+              const match = yield put.resolve(action('SceneModel/testCondition')(checkVar));
+              item.icon = { ...item.icon, show: match };
+            } else {
+              item.icon = { ...item.icon, show: true };
+            }
+          }
           sectionItem.data.push({ ...item });
         }
       }
