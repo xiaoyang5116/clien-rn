@@ -42,6 +42,30 @@ const HasStopDirective = (data) => {
   return false;
 }
 
+const checkTop = (offsetY, totalOffsetY) => {
+  const validY = offsetY + WIN_SIZE.height / 2 - 80 - (DETECTION_AREA_HEIGHT / 2) - 35;     // 80: FlatList至顶部空间
+  return (validY > totalOffsetY && (validY - DETECTION_AREA_HEIGHT) < totalOffsetY);
+}
+
+const checkMiddle = (offsetY, totalOffsetY) => {
+  const validY = offsetY + WIN_SIZE.height / 2 - 80 + (DETECTION_AREA_HEIGHT / 2);          // 80: FlatList至顶部空间
+  return (validY > totalOffsetY && (validY - DETECTION_AREA_HEIGHT) < totalOffsetY);
+}
+
+const checkBottom = (offsetY, totalOffsetY) => {
+  const validY3 = offsetY + WIN_SIZE.height / 2 - 80 + (DETECTION_AREA_HEIGHT * 1.5) + 35;  // 80: FlatList至顶部空间
+  return (validY3 > totalOffsetY && (validY3 - DETECTION_AREA_HEIGHT) < totalOffsetY);
+}
+
+const enterEffectArea = (state, item, areaId, startOffsetY) => {
+  if (state.__data.startOffsetY <= 0 || state.__data.eventTargetAreaId != areaId) {
+    state.__data.startOffsetY = startOffsetY;
+    state.__data.eventTargetAreaId = areaId;
+    state.__data.eventTargetKey = item.key;
+    state.__data.eventTargetEffectId = item.object.effect.id;
+  }
+}
+
 export default {
   namespace: 'ArticleModel',
 
@@ -217,7 +241,7 @@ export default {
 
     *scroll({ payload }, { call, put, select }) {
       const articleState = yield select(state => state.ArticleModel);
-      const { offsetX, offsetY, textOpacity, bgImgOpacity } = payload;
+      const { offsetY, textOpacity, bgImgOpacity } = payload;
 
       for (let k in articleState.sections) {
         const item = articleState.sections[k];
@@ -229,11 +253,9 @@ export default {
           continue;
 
         // 触发按区域激活提示
-        const { toast, pop, image, effect } = item.object;
-        if (toast == undefined 
-          && pop == undefined 
-          && image == undefined
-          && effect == undefined)
+        const { toast, pop, image, background, effect } = item.object;
+        if (toast == undefined && pop == undefined && image == undefined 
+            && background == undefined && effect == undefined)
           continue;
 
         // 计算总偏移量
@@ -246,22 +268,15 @@ export default {
         const line1 = line2 + DETECTION_AREA_HEIGHT + 35;
         const line3 = line2 - DETECTION_AREA_HEIGHT - 35;
 
-        // 事件触发区域(顶部)
-        const validY1 = offsetY + WIN_SIZE.height / 2 - 80 - (DETECTION_AREA_HEIGHT / 2) - 35;
-        if (validY1 > totalOffsetY && (validY1 - DETECTION_AREA_HEIGHT) < totalOffsetY) {
+        if (checkTop(offsetY, totalOffsetY)) { // 事件触发区域(顶部)
           if (effect != undefined) {
-            if (articleState.__data.startOffsetY <= 0 || articleState.__data.eventTargetAreaId != 1) {
-              articleState.__data.startOffsetY = line1;
-              articleState.__data.eventTargetAreaId = 1;
-              articleState.__data.eventTargetKey = item.key;
-              articleState.__data.eventTargetEffectId = item.object.effect.id;
-            }
+            enterEffectArea(articleState, item, 1, line1);
           }
-        }
-
-        // 事件触发区域(中心区域)
-        const validY2 = offsetY + WIN_SIZE.height / 2 - 80 + (DETECTION_AREA_HEIGHT / 2); // 80: FlatList至顶部空间
-        if (validY2 > totalOffsetY && (validY2 - DETECTION_AREA_HEIGHT) < totalOffsetY) {
+        } else if (checkBottom(offsetY, totalOffsetY)) {  // 事件触发区域(底部)
+          if (effect != undefined) {
+            enterEffectArea(articleState, item, 3, line3);
+          }
+        } else if (checkMiddle(offsetY, totalOffsetY)) { // 事件触发区域(中心区域)
           // 弹出提示
           if (toast != undefined) {
             Toast.show(toast, toastType(item.object.type));
@@ -272,31 +287,18 @@ export default {
             Modal.show(pop);
             item.object.completed = true;
           }
-          // 内容间插图
+          // 显示插图
           if (image != undefined) {
             DeviceEventEmitter.emit(EventKeys.IMAGE_VIEW_ENTER_EVENT_AREA, item);
           }
+          // 显示背景图
+          if (background != undefined) {
+            articleState.__data.startOffsetY = 0;
+            DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, background);
+          }
           // 效果事件
           if (effect != undefined) {
-            if (articleState.__data.startOffsetY <= 0 || articleState.__data.eventTargetAreaId != 2) {
-              articleState.__data.startOffsetY = line2;
-              articleState.__data.eventTargetAreaId = 2;
-              articleState.__data.eventTargetKey = item.key;
-              articleState.__data.eventTargetEffectId = item.object.effect.id;
-            }
-          }
-        }
-
-        // 事件触发区域(底部)
-        const validY3 = offsetY + WIN_SIZE.height / 2 - 80 + (DETECTION_AREA_HEIGHT * 1.5) + 35
-        if (validY3 > totalOffsetY && (validY3 - DETECTION_AREA_HEIGHT) < totalOffsetY) {
-          if (effect != undefined) {
-            if (articleState.__data.startOffsetY <= 0 || articleState.__data.eventTargetAreaId != 3) {
-              articleState.__data.startOffsetY = line3;
-              articleState.__data.eventTargetAreaId = 3;
-              articleState.__data.eventTargetKey = item.key;
-              articleState.__data.eventTargetEffectId = item.object.effect.id;
-            }
+            enterEffectArea(articleState, item, 2, line2);
           }
         }
 
