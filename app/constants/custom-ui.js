@@ -4,13 +4,16 @@ import { ThemeContext } from '.';
 import Header from '../components/header'
 import { CButton } from '../components/CButton';
 
+// 按钮组件
+export * from '../components/buttonComponents';
+
 /** 选项按钮 */
 export const TabButton = (props) => {
     const themeStyle = React.useContext(ThemeContext);
     return (
-        <CButton 
-            title={props.title} 
-            fontSize={16} 
+        <CButton
+            title={props.title}
+            fontSize={16}
             color={themeStyle.button.backgroundColor}
             fontColor={themeStyle.button.color}
             onPress={props.onPress}

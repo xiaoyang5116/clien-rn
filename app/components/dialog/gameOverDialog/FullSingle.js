@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import { ThemeContext } from '../../../constants';
 import { px2pd } from '../../../constants/resolution';
-import { TextButton } from '../../../constants/custom-ui';
+import { TextButton, LongTextButton } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 
 
@@ -52,11 +52,11 @@ const FullSingle = props => {
         if (currentIndex === currentDialogueLength) {
             return (
                 <View style={{ marginTop: 8 }}>
-                    {/* <TextButton
+                    {/* <LongTextButton
                         title={item.title}
-                        onPress={() => {
-                            nextDialogue(item);
-                        }}
+                        onPress={() => { nextDialogue(item) }}
+                        borderColor={"#a3a3a3"}
+                        source={require('../../../../assets/button/gameOver_btn.png')}
                     /> */}
                     <View style={{ justifyContent: "center", alignItems: 'center', overflow: 'hidden', }}>
                         <TouchableHighlight
@@ -107,7 +107,7 @@ const FullSingle = props => {
                 </Text>
             </View>
             {/* 显示区域 */}
-            <View style={{ flex: 1, paddingLeft: 8, paddingRight: 8, alignItems: "center" }}>
+            <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, }}>
                 <TouchableWithoutFeedback onPress={nextParagraph}>
                     <View style={{ flex: 1 }}>
                         {/* 内容显示区域 */}
@@ -121,7 +121,7 @@ const FullSingle = props => {
 
                         {/* 按钮区域 */}
                         <View
-                            style={{ marginTop: 12, height: '20%', justifyContent: 'center' }}>
+                            style={{ marginTop: 12, height: '40%', justifyContent: 'center' }}>
                             <FlatList
                                 data={showBtnList}
                                 renderItem={renderBtn}

@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
 
     /* 选项按钮文本 */
     tabBottomLabelStyle: {
-        left: 10, 
+        left: 10,
         top: 10
     },
 
@@ -171,6 +171,8 @@ const styles = StyleSheet.create({
     optionButtonImage: require("../../assets/themes/dark/button/option_button.png"),
     propSelectedImage: require("../../assets/themes/dark/button/prop_selected.png"),
     townMapButtonImage: require("../../assets/themes/dark/button/town_button.png"),
+    LongTBBorderImage: require("../../assets/themes/dark/button/long_text_button_border.png"),
+    LongTBBgImage: require("../../assets/themes/dark/button/long_text_button_bg.png"),
 });
 
 export default styles;
