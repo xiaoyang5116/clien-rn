@@ -138,7 +138,7 @@ class PropsTabPage extends Component {
                             keyExtractor={item => item.id}
                         />
                     </View>
-                    <View style={{ height: 100, flexDirection: 'column'}}>
+                    <View style={{ height: 120, flexDirection: 'column'}}>
                         <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
                             <Text>{selectedProp != undefined ? selectedProp.name : ''}</Text>
                             <Text>{(selectedProp != undefined && selectedProp.desc != undefined) ? selectedProp.desc : ''}</Text>

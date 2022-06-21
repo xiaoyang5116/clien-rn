@@ -49,7 +49,7 @@ const OverView = (props) => {
             <Text
                 numberOfLines={1}
                 ellipsizeMode="clip"
-                style={{ fontSize: 12, lineHeight: 12, marginTop: 4, marginBottom: 4 }}
+                style={{ fontSize: 12, lineHeight: 12, marginTop: 4, marginBottom: 4, color: "#000" }}
             >
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
             </Text>
@@ -123,9 +123,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         lineHeight: 24,
         fontWeight: "bold",
+        color: "#000"
     },
     smallTitle: {
         fontSize: 16,
         lineHeight: 20,
+        color: "#000"
     },
 })
