@@ -58,20 +58,21 @@ const FullSingle = props => {
                             nextDialogue(item);
                         }}
                     /> */}
-                    <View style={{ width: "100%", justifyContent: "center", alignItems: 'center', overflow: 'hidden', borderColor: "#a3a3a3", borderRadius: 3, borderWidth: 1, }}>
+                    <View style={{ justifyContent: "center", alignItems: 'center', overflow: 'hidden', }}>
                         <TouchableHighlight
                             underlayColor={'#fff'}
                             activeOpacity={0.5}
-                            style={{ position: 'absolute', height: "100%", width: "100%", }}
                             onPress={() => { nextDialogue(item) }}
                         >
-                            <Image
-                                style={{ width: px2pd(1010), height: px2pd(96), }}
-                                source={require("../../../../assets/button/gameOver_btn.png")}
-                            />
+                            <View style={{ width: px2pd(1016), height: px2pd(102), borderWidth: px2pd(3), borderRadius: 3, borderColor: "#a3a3a3", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
+                                <Image
+                                    style={{ width: px2pd(1010), height: px2pd(96) }}
+                                    source={require("../../../../assets/button/gameOver_btn.png")}
+                                />
+                            </View>
                         </TouchableHighlight>
-                        <View pointerEvents="none">
-                            <Text style={{ fontSize: 20, color: "#6a655e", padding: 5 }}>{item.title}</Text>
+                        <View pointerEvents="none" style={{ position: 'absolute' }}>
+                            <Text style={{ fontSize: 18, color: "#6a655e", }}>{item.title}</Text>
                         </View>
                     </View>
                 </View>
@@ -106,7 +107,7 @@ const FullSingle = props => {
                 </Text>
             </View>
             {/* 显示区域 */}
-            <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12 }}>
+            <View style={{ flex: 1, paddingLeft: 8, paddingRight: 8, alignItems: "center" }}>
                 <TouchableWithoutFeedback onPress={nextParagraph}>
                     <View style={{ flex: 1 }}>
                         {/* 内容显示区域 */}
@@ -120,7 +121,7 @@ const FullSingle = props => {
 
                         {/* 按钮区域 */}
                         <View
-                            style={{ marginTop: 12, height: '40%', justifyContent: 'center' }}>
+                            style={{ marginTop: 12, height: '20%', justifyContent: 'center' }}>
                             <FlatList
                                 data={showBtnList}
                                 renderItem={renderBtn}
