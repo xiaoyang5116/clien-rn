@@ -37,6 +37,14 @@ const SCENE_MAP_DATA = [
   { point: [-1, -1], title: '地主', toScene: 'pomiao', links: [[-1, 0], [0, -1]] },
 ];
 
+const ICONS = [
+  { id: 1, img: require('../../../assets/button_icon/1.png'), top: 0, left: 10 },
+  { id: 2, img: require('../../../assets/button_icon/2.png'), top: -1, left: 10 },
+  { id: 3, img: require('../../../assets/button_icon/3.png'), top: 0, left: 10 },
+  { id: 4, img: require('../../../assets/button_icon/4.png'), top: 0, left: 10 },
+  { id: 5, img: require('../../../assets/button_icon/5.png'), top: 0, right: 0 },
+];
+
 const SceneImage = (props) => {
   const { scene } = props;
   const sceneImage = (scene != null && lo.isString(scene.sceneImage)) ? scene.sceneImage : '';
@@ -111,12 +119,25 @@ class StoryTabPage extends Component {
         this.progressViews.push({ progressId: data.item.progressId, view: progressView });
       }
     }
+    let iconComponent = <></>;
+    if (lo.isObject(data.item.icon) && lo.isBoolean(data.item.icon.show) && data.item.icon.show) {
+      const icon = ICONS.find(e => e.id == data.item.icon.id);
+      const attrs = {};
+      if (icon.top != undefined) attrs.top = icon.top;
+      if (icon.left != undefined) attrs.left = icon.left;
+      if (icon.right != undefined) attrs.right = icon.right;
+
+      iconComponent = (<View style={{ position: 'absolute', ...attrs }}>
+                          <Image source={icon.img} style={{ width: px2pd(100), height: px2pd(100) }} />
+                      </View>);
+  }
     return (
       <View style={this.context.chatItem}>
         <TouchableWithoutFeedback onPress={() => this._onClickItem(data)}>
           <View style={{ height: px2pd(117), justifyContent: 'center', alignItems: 'center' }}>
             <Image style={{ width: '100%', height: '100%', position: 'absolute' }} source={this.context.optionButtonImage} />
             <Text style={{ fontSize: 18, color: this.context.options.fontColor }}>{data.item.title}</Text>
+            {iconComponent}
           </View>
         </TouchableWithoutFeedback>
         {progressView}

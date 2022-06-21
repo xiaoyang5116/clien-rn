@@ -1,5 +1,4 @@
 import React from 'react';
-import { DeviceEventEmitter } from 'react-native';
 
 import HeaderView from './HeaderView';
 import PlainView from './PlainView';
@@ -7,7 +6,6 @@ import EventView from './EventView';
 import OptionView from './OptionView';
 import OverView from './OverView';
 import ImageView from './ImageView';
-import BackgroundView from './BackgroundView';
 
 export default class ArticleBlock extends React.PureComponent {
 
@@ -30,7 +28,7 @@ export default class ArticleBlock extends React.PureComponent {
             } else if (image != undefined) {
                 return (<ImageView itemKey={this.props.data.key} {...this.props.data.object} />);
             } else if (background != undefined) {
-                return (<BackgroundView itemKey={this.props.data.key} {...this.props.data.object} />);
+                return (<EventView itemKey={this.props.data.key} {...this.props.data.object} />);
             } else if (effect != undefined) {
                 return (<EventView itemKey={this.props.data.key} {...this.props.data.object} />);
             }
