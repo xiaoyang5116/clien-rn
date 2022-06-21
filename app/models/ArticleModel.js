@@ -12,6 +12,7 @@ import {
 import { GetAttrsDataApi } from '../services/GetAttrsDataApi';
 import { GetArticleDataApi } from '../services/GetArticleDataApi';
 import { GetArticleIndexDataApi } from '../services/GetArticleIndexDataApi';
+import { GetBookDirDataApi } from '../services/GetBookDirDataApi';
 import Toast from "../components/toast";
 import Modal from "../components/modal";
 import lo from 'lodash';
@@ -94,6 +95,9 @@ export default {
     // 展现用段落数据 [{ key: xxx, type: 'plain|code', content: xxx, object: xxx, height: xxx }, ...]
     sections: [],
 
+    // 目录数据
+    dirData: [],
+
     // 是否续章
     continueView: false,
 
@@ -117,6 +121,11 @@ export default {
       const data = yield call(GetArticleDataApi, id, path);
       if (data != null) AddLoadedListHandler(articleState.__data.loadedList, { id, path, stop: HasStopDirective(data) });
       articleState.isStartPage = lo.isEqual(path, '[START]'); // 标注是否起始页
+
+      if (articleState.isStartPage) {
+        const data = yield call(GetBookDirDataApi, id);
+        articleState.dirData = data.directory;
+      }
 
       // 首次加载索引文件
       if (articleState.__data.indexes.find(e => e.id == id) == undefined) {
