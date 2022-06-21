@@ -188,6 +188,7 @@ export default {
         if (item.object.chatId != undefined) {
           // 预生成选项数据
           const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: item.object.sceneId, chatId: item.object.chatId }));
+          if (lo.isBoolean(chat.plain)) item.object.plain = chat.plain;
           item.object.options = yield put.resolve(action('getValidOptions')({ options: chat.options }));
         }
       }
