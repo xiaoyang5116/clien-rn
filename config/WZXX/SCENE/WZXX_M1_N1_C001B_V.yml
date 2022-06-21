@@ -77,11 +77,9 @@ scenes: [
         ],
       },
       { 
-        id: 'B2', desc: '你在悬崖陡坡的下侧，虽然陡坡不高，但依旧攀爬不上去', 
+        id: 'B2A', desc: '你在悬崖陡坡的下侧，虽然陡坡不高，但依旧攀爬不上去', 
         options: [ 
           { title: '【原路返回】',nextChat: 'B2'  }, 
-          { title: '【沿着陡坡向右走】',nextChat: 'B2A'  }, 
-          { title: '【沿着陡坡向左走】',nextChat: 'B6'  }, 
         ],
       },
       { 
