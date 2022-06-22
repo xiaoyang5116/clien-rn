@@ -7,6 +7,10 @@ import {
 } from "../../constants";
 
 import {
+  TouchableWithoutFeedback,
+} from '../../constants/native-ui';
+
+import {
   Animated, DeviceEventEmitter, StyleSheet,
 } from 'react-native';
 import Easing from 'react-native/Libraries/Animated/Easing';
@@ -70,9 +74,11 @@ export default class RightContainer extends React.PureComponent {
 
   render() {
     return (
-        <Animated.View style={[styles.viewContainer, { right: this.rightPos }]} onTouchStart={() => { this.close(); }}>
+      <TouchableWithoutFeedback onPress={() => this.close()}>
+        <Animated.View style={[styles.viewContainer, { right: this.rightPos }]}>
           {this.props.children}
         </Animated.View>
+      </TouchableWithoutFeedback>
     );
   }
 }

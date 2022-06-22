@@ -30,15 +30,15 @@ const DATA = [
 
 const DirectoryPage = (props) => {
 
-  const gotoDirMap = () => {
-    DeviceEventEmitter.emit(EventKeys.GOTO_DIRECTORY_MAP);
+  const gotoDirMap = (id) => {
+    DeviceEventEmitter.emit(EventKeys.GOTO_DIRECTORY_MAP, id);
   }
 
   const renderItem = (data) => {
     const { id, title } = data.item;
     return (
         <View style={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center', marginBottom: 5 }}>
-          <TouchableWithoutFeedback onPress={gotoDirMap}>
+          <TouchableWithoutFeedback onPress={() => gotoDirMap(id)}>
             <View style={styles.dirItem}>
               <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/button/dir_button.png')} />
               <Text style={styles.dirItemText}>{title}</Text>
@@ -58,7 +58,7 @@ const DirectoryPage = (props) => {
           </View>
         </View>
         <FlatList 
-          data={DATA}
+          data={props.data}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />

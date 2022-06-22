@@ -54,4 +54,6 @@ export class EventKeys {
     static GOTO_DIRECTORY_MAP = 'GOTO_DIRECTORY_MAP';
     // 隐藏目录地图
     static HIDE_DIRECTORY_MAP = 'HIDE_DIRECTORY_MAP';
+    // 返回至目录
+    static BACK_DIRECTORY = 'BACK_DIRECTORY';
 }
