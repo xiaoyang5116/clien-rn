@@ -13,7 +13,9 @@ import { px2pd } from '../../constants/resolution';
 import DirMap from '../../components/maps/DirMap';
 import { confirm } from '../../components/dialog/ConfirmDialog';
 import { AppDispath, EventKeys } from '../../constants';
-import { TextButton } from '../../constants/custom-ui';
+
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { TouchableWithoutFeedback } from 'react-native';
 
 const DirMapPage = (props) => {
 
@@ -54,8 +56,12 @@ const DirMapPage = (props) => {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <ImageBackground style={{ width: px2pd(1080), height: px2pd(1808) }} source={require('../../../assets/bg/dir_map.png')}>
-          <View style={styles.topView}>
-            <View style={{ position: 'absolute', left: 10 }}><TextButton title='返回' onPress={back} /></View>
+          <View style={styles.topView} onTouchStart={(e) => e.stopPropagation()}>
+            <View style={{ position: 'absolute', left: 10 }}>
+              <TouchableWithoutFeedback onPress={back}>
+                <AntDesign name={'left'} size={30} />
+              </TouchableWithoutFeedback>
+            </View>
             <Text style={{ fontSize: 24 }}>{item.title}</Text>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} pointerEvents='box-none' onTouchStart={(e) => { e.stopPropagation(); }}>
