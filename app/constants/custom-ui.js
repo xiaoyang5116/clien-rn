@@ -1,11 +1,14 @@
 import React from 'react';
 import { ThemeContext } from '.';
 
-import Header from '../components/header'
+import { Header2 } from '../components/header'
 import { CButton } from '../components/CButton';
 
 // 按钮组件
 export * from '../components/buttonComponents';
+
+// header 组件
+export * from '../components/header'
 
 /** 选项按钮 */
 export const TabButton = (props) => {
@@ -46,5 +49,5 @@ export const ImageButton = (props) => {
 
 /** 标题 header */
 export const TitleHeader = (props) => {
-    return <Header {...props} />;
+    return <Header2 {...props} />;
 }

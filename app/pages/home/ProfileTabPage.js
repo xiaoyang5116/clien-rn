@@ -10,10 +10,11 @@ import {
     View,
     Text,
     FlatList,
+    Image
 } from '../../constants/native-ui';
 
-import { Panel } from '../../components/panel';
-import { ImageButton } from '../../constants/custom-ui';
+import { Panel, ImagePanel } from '../../components/panel';
+import { ImageButton, Header1 } from '../../constants/custom-ui';
 import * as RootNavigation from '../../utils/RootNavigation';
 
 class ProfileTabPage extends React.Component {
@@ -65,8 +66,9 @@ class ProfileTabPage extends React.Component {
 
     render() {
         return (
-            <Panel>
+            <ImagePanel source={this.context.profileBg}>
                 <View style={{ flex: 1, marginTop: 10 }}>
+                    <Header1 style={{ marginTop: 24 }} title={"设置"} />
                     <FlatList
                         key={this.flatListKey++}
                         data={this.data}
@@ -74,7 +76,7 @@ class ProfileTabPage extends React.Component {
                         keyExtractor={item => item.id}
                     />
                 </View>
-            </Panel>
+            </ImagePanel>
         );
     }
 }

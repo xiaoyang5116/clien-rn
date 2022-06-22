@@ -37,41 +37,49 @@ const TabIcon = (props) => {
   const theme = React.useContext(ThemeContext);
 
   return (
-    <View style={[theme.tabBottomImgStyle, { position: 'absolute', left: 5, top: -30 }]}>
-        <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={theme.tabBottomImage} />
-        <View style={[theme.tabBottomLabelStyle, { position: 'absolute', width: 24 }]}>
-          <Text style={{ fontSize: px2pd(60), color: props.color }}>{props.title}</Text>
-        </View>
+    <View style={[theme.tabBottomImgStyle, { position: 'absolute', left: 5, top: -30, }]}>
+      <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={theme.tabBottomImage} />
+      <View style={[theme.tabBottomLabelStyle, { position: 'absolute', width: 24 }]}>
+        <Text style={{ fontSize: px2pd(60), color: props.color }}>{props.title}</Text>
+      </View>
     </View>
   );
 }
 
-const HeaderTitle = (props) => {
+// const HeaderTitle = (props) => {
+//   return (
+//     <View style={[{ marginTop: (Platform.OS == 'android' ? 0 : 40), height: 45, width: '100%', backgroundColor: '#fff', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }]}>
+//       <ImageCapInset
+//         style={{ width: '100%', height: '100%', position: 'absolute', }}
+//         source={require('../../assets/tab/tab_header_bg.png')}
+//         capInsets={{ top: 25, right: 25, bottom: 25, left: 25 }}
+//       />
+//       <Text style={{ fontWeight: 'bold', color: '#333', fontSize: 18 }}>{props.options.title}</Text>
+//     </View>
+//   )
+// }
+
+const TabBarBackground = (props) => {
+  const theme = React.useContext(ThemeContext);
   return (
-    <View style={[{ marginTop: (Platform.OS == 'android' ? 0 : 40),  height: 45, width: '100%', backgroundColor: '#fff', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }]}>
-      <ImageCapInset
-        style={{ width: '100%', height: '100%', position: 'absolute', }}
-        source={require('../../assets/tab/tab_header_bg.png')}
-        capInsets={{ top: 25, right: 25, bottom: 25, left: 25 }}
-      />
-      <Text style={{ fontWeight: 'bold', color: '#333', fontSize: 18 }}>{props.options.title}</Text>
+    <View style={{ height: 70, }}>
+      <FastImage style={{ position: 'absolute', left: 0, top: -20, width: '100%', height: '100%' }} resizeMode='contain' source={theme.tabBannerBg} />
     </View>
-  )
+
+  );
 }
 
 const defaultScreenOptions = {
-  header: (props)=> <HeaderTitle {...props} />,
+  // header: (props)=> <HeaderTitle {...props} />,
+  headerShown: false,
   tabBarStyle: {
-    height: 70,
+    position: 'absolute',
+    bottom: px2pd(200),
+    height: 0,
     borderTopWidth: 0, // 去掉底部边框
-    backgroundColor: '#fff',
   },
   tabBarInactiveTintColor: '#fff',
-  tabBarBackground: () => {
-    return (
-      <FastImage style={{ position: 'absolute', left: 0, top: -20, width: '100%', height: '100%' }} resizeMode='contain' source={require('../../assets/tab/tab_banner_bg.png')} />
-    );
-  },
+  tabBarBackground: () => <TabBarBackground />,
 }
 
 class HomePage extends Component {
@@ -117,7 +125,7 @@ class HomePage extends Component {
       </Tab.Navigator>
     );
   }
-  
+
 }
 
 const styles = StyleSheet.create({

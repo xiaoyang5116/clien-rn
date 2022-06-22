@@ -16,6 +16,7 @@ import {
 } from '../../../constants/native-ui';
 
 import {
+    Header1,
     TabButton,
     TextButton,
 } from '../../../constants/custom-ui';
@@ -88,6 +89,7 @@ class ComposeMainTabPage extends Component {
             <Panel patternId={3}>
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={styles.composeContainer}>
+                    <Header1 title={"制作"} style={{ marginTop: 24 }}/>
                     <View style={{ height: 40, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                         <View>
                             <Text>全部配方</Text>

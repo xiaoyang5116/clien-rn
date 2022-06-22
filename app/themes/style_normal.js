@@ -167,12 +167,15 @@ const styles = StyleSheet.create({
     /** ================================ */
     profileItemImage: require('../../assets/button/profile_item.png'),
     profileItemImageSelected: require('../../assets/button/profile_item_selected.png'),
+    profileBg: require('../../assets/themes/normal/bg/setting.png'),
     tabBottomImage: require('../../assets/themes/normal/button/tab_normal.png'),
     optionButtonImage: require("../../assets/themes/normal/button/option_button.png"),
     propSelectedImage: require("../../assets/themes/normal/button/prop_selected.png"),
     townMapButtonImage: require("../../assets/themes/normal/button/town_button.png"),
     LongTBBorderImage: require("../../assets/themes/normal/button/long_text_button_border.png"),
     LongTBBgImage: require("../../assets/themes/normal/button/long_text_button_bg.png"),
+    tabBannerBg: require("../../assets/themes/normal/tab/tab_banner_bg.png"),
+    headerBg: require("../../assets/themes/normal/header/settiing_bg.png"),
 });
 
 export default styles;
