@@ -67,7 +67,7 @@ class ProfileTabPage extends React.Component {
     render() {
         return (
             <ImagePanel source={this.context.profileBg}>
-                <View style={{ flex: 1, marginTop: 10 }}>
+                <View style={{ flex: 1, marginTop: 10, paddingLeft: 10, paddingRight: 10 }}>
                     <Header1 style={{ marginTop: 24 }} title={"设置"} />
                     <FlatList
                         key={this.flatListKey++}
