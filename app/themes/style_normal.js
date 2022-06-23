@@ -176,6 +176,10 @@ const styles = StyleSheet.create({
     LongTBBgImage: require("../../assets/themes/normal/button/long_text_button_bg.png"),
     tabBannerBg: require("../../assets/themes/normal/tab/tab_banner_bg.png"),
     headerBg: require("../../assets/themes/normal/header/settiing_bg.png"),
+
+    // 按钮
+    btnPattern1: require("../../assets/themes/normal/button/btn_pattern1.png"),
+    btnPattern2: require("../../assets/themes/normal/button/btn_pattern2.png"),
 });
 
 export default styles;

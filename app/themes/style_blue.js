@@ -176,6 +176,10 @@ const styles = StyleSheet.create({
     LongTBBgImage: require("../../assets/themes/blue/button/long_text_button_bg.png"),
     tabBannerBg: require("../../assets/themes/blue/tab/tab_banner_bg.png"),
     headerBg: require("../../assets/themes/blue/header/settiing_bg.png"),
+
+    // 按钮
+    btnPattern1:require("../../assets/themes/blue/button/btn_pattern1.png"),
+    btnPattern2:require("../../assets/themes/blue/button/btn_pattern2.png"),
 });
 
 export default styles;
