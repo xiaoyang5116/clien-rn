@@ -72,7 +72,8 @@ const defaultScreenOptions = {
   tabBarShowLabel: false,
   tabBarStyle: {
     position: 'absolute',
-    bottom: px2pd(200) - 30,
+    height: 15,
+    bottom: px2pd(200),
     backgroundColor: "rgba(0,0,0,0)",
     borderTopWidth: 0, // 去掉边框,
   },
