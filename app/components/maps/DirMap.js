@@ -213,13 +213,19 @@ const DirMap = (props) => {
 
     grids.push((
       <TouchableWithoutFeedback key={idx++} onPress={() => {
+        if (lo.isBoolean(e.lock) && e.lock)
+          return;
+          
         if (props.onEnterDir != undefined) {
           props.onEnterDir(e);
         }
       }}>
         <View style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}>
           <FastImage style={{ position: 'absolute', zIndex: 0, width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT }} source={gridImg} />
-          <Text style={{ color: '#000', fontSize: 12, zIndex: 1 }}>{e.title}</Text>
+          {(lo.isBoolean(e.lock) && e.lock) 
+            ? <FastImage style={{ position: 'absolute', width: px2pd(39), height: px2pd(52) }} source={require('../../../assets/bg/lock.png')} /> 
+            : <Text style={{ color: '#000', fontSize: 12, zIndex: 1 }}>{e.title}</Text>
+          }
         </View>
       </TouchableWithoutFeedback>));
   });

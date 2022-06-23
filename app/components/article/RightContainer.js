@@ -6,9 +6,6 @@ import {
   getWindowSize,
 } from "../../constants";
 
-import {
-  TouchableWithoutFeedback,
-} from '../../constants/native-ui';
 
 import {
   Animated, DeviceEventEmitter, StyleSheet,
@@ -74,11 +71,9 @@ export default class RightContainer extends React.PureComponent {
 
   render() {
     return (
-      <TouchableWithoutFeedback onPress={() => this.close()}>
-        <Animated.View style={[styles.viewContainer, { right: this.rightPos }]}>
+        <Animated.View style={[styles.viewContainer, { right: this.rightPos }]} onTouchStart={() => { this.close(); }}>
           {this.props.children}
         </Animated.View>
-      </TouchableWithoutFeedback>
     );
   }
 }
