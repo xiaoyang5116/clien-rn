@@ -8,14 +8,12 @@ export const ImagePanel = (props) => {
     const theme = React.useContext(ThemeContext);
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 1 }}>
-                <ImageBackground
-                    source={props.source}
-                    style={{ width: "100%", height: "100%" }}
-                    children={props.children}
-                />
-            </View>
-        </SafeAreaView>
+        <View style={{ flex: 1 }}>
+            <ImageBackground
+                source={props.source}
+                style={{ width: "100%", height: "100%" }}
+                children={props.children}
+            />
+        </View>
     )
 }
