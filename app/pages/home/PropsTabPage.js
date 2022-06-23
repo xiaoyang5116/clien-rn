@@ -16,7 +16,6 @@ import {
 } from '../../constants/native-ui';
 
 import {
-    Header1,
     TabButton,
     TextButton,
 } from '../../constants/custom-ui';
@@ -102,10 +101,9 @@ class PropsTabPage extends Component {
     render() {
         const selectedProp = this.props.listData.find(e => e.id == this.state.selectId);
         return (
-            <Panel patternId={2}>
+            // <Panel patternId={2}>
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={styles.propsContainer}>
-                    <Header1 title={"道具"} style={{ marginTop: 24 }} />
                     <View style={{ height: 80, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                         <View>
                             <Text>金币：0</Text>
@@ -152,7 +150,7 @@ class PropsTabPage extends Component {
                     </View>
                 </View>
             </View>
-            </Panel>
+            // </Panel>
         );
     }
 }

@@ -14,7 +14,7 @@ import {
 } from '../../constants/native-ui';
 
 import { Panel, ImagePanel } from '../../components/panel';
-import { ImageButton, Header1 } from '../../constants/custom-ui';
+import { ImageButton } from '../../constants/custom-ui';
 import * as RootNavigation from '../../utils/RootNavigation';
 
 class ProfileTabPage extends React.Component {
@@ -66,17 +66,14 @@ class ProfileTabPage extends React.Component {
 
     render() {
         return (
-            <ImagePanel source={this.context.profileBg}>
-                <View style={{ flex: 1, marginTop: 10, paddingLeft: 10, paddingRight: 10 }}>
-                    <Header1 style={{ marginTop: 24 }} title={"设置"} />
-                    <FlatList
-                        key={this.flatListKey++}
-                        data={this.data}
-                        renderItem={this._renderItem}
-                        keyExtractor={item => item.id}
-                    />
-                </View>
-            </ImagePanel>
+            <View style={{ flex: 1, marginTop: 10, }}>
+                <FlatList
+                    key={this.flatListKey++}
+                    data={this.data}
+                    renderItem={this._renderItem}
+                    keyExtractor={item => item.id}
+                />
+            </View>
         );
     }
 }

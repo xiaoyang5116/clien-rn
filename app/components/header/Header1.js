@@ -15,7 +15,7 @@ export const Header1 = (props) => {
                 style={{ width: "100%", height: "100%", position: "absolute" }}
                 source={theme.headerBg}
             />
-            <Text style={{ fontSize: 24 }}>
+            <Text style={{ fontSize: 24, }}>
                 {title}
             </Text>
         </View>

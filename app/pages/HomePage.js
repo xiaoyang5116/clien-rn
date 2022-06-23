@@ -11,6 +11,7 @@ import {
   StyleSheet,
   ThemeContext,
 } from "../constants";
+import { Header1 } from '../constants/custom-ui';
 
 import {
   View,
@@ -26,9 +27,10 @@ import PropsTabPage from './home/PropsTabPage';
 import LotteryTabPage from './home/LotteryTabPage';
 import ComposeTabPage from './home/ComposeTabPage';
 import ExploreTabPage from './home/ExploreTabPage';
-import { Platform } from 'react-native';
+import { Platform, ImageBackground } from 'react-native';
 import { px2pd } from '../constants/resolution';
 import TownTabPage from './home/TownTabPage';
+import { log } from 'react-native-reanimated';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,45 +39,37 @@ const TabIcon = (props) => {
   const theme = React.useContext(ThemeContext);
 
   return (
-    <View style={styles.tabIconContainer}>
-      <FastImage style={[theme.tabBottomImgStyle, { position: 'absolute' }]} source={theme.tabBottomImage} />
-      <View style={{ width: 24 }}>
+    <View style={[theme.tabBottomImgStyle, { position: 'absolute', left: 5, top: -30 }]}>
+      <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={theme.tabBottomImage} />
+      <View style={[theme.tabBottomLabelStyle, { position: 'absolute', width: 24 }]}>
         <Text style={{ fontSize: px2pd(60), color: props.color }}>{props.title}</Text>
       </View>
     </View>
+
   );
 }
 
-// const HeaderTitle = (props) => {
-//   return (
-//     <View style={[{ marginTop: (Platform.OS == 'android' ? 0 : 40), height: 45, width: '100%', backgroundColor: '#fff', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }]}>
-//       <ImageCapInset
-//         style={{ width: '100%', height: '100%', position: 'absolute', }}
-//         source={require('../../assets/tab/tab_header_bg.png')}
-//         capInsets={{ top: 25, right: 25, bottom: 25, left: 25 }}
-//       />
-//       <Text style={{ fontWeight: 'bold', color: '#333', fontSize: 18 }}>{props.options.title}</Text>
-//     </View>
-//   )
-// }
+const HeaderTitle = (props) => {
+  return (
+    <Header1 style={{ marginTop: 40 }} title={props.options.title} />
+  )
+}
 
 const TabBarBackground = (props) => {
   const theme = React.useContext(ThemeContext);
   return (
-    <FastImage style={{ width: '100%', height: px2pd(200) }} resizeMode='contain' source={theme.tabBannerBg} />
+    <FastImage style={{ position: 'absolute', left: 0, top: -25, width: '100%', height: '100%' }} resizeMode='contain' source={theme.tabBannerBg} />
   );
 }
 
 const defaultScreenOptions = {
-  // header: (props)=> <HeaderTitle {...props} />,
-  headerShown: false,
+  header: (props) => <HeaderTitle {...props} />,
+  // headerShown: false,
   tabBarShowLabel: false,
   tabBarStyle: {
-    position: 'absolute',
-    height: 15,
-    bottom: px2pd(200),
-    backgroundColor: "rgba(0,0,0,0)",
-    borderTopWidth: 0, // 去掉边框,
+    height: 70,
+    borderTopWidth: 0, // 去掉底部边框
+    backgroundColor: 'rgba(0,0,0,0)',
   },
   tabBarInactiveTintColor: '#fff',
   tabBarBackground: () => <TabBarBackground />,
@@ -83,48 +77,47 @@ const defaultScreenOptions = {
 
 class HomePage extends Component {
 
+  static contextType = ThemeContext
+
   render() {
     return (
-      <Tab.Navigator initialRouteName='World' screenOptions={defaultScreenOptions}>
-        <Tab.Screen name="World" component={StoryTabPage} options={{
-          tabBarIcon: ({ color }) => (<TabIcon color={color} title={'世界'} />),
-        }} />
-        <Tab.Screen name="Explore" component={ExploreTabPage} options={{
-          tabBarIcon: ({ color }) => (<TabIcon color={color} title={'探索'} />),
-        }} />
-        <Tab.Screen name="Town" component={TownTabPage} options={{
-          tabBarIcon: ({ color }) => (<TabIcon color={color} title={'城镇'} />),
-        }} />
-        <Tab.Screen name="Compose" component={ComposeTabPage} options={{
-          tabBarIcon: ({ color }) => (<TabIcon color={color} title={'制作'} />),
-        }} />
-        <Tab.Screen name="Props" component={PropsTabPage} options={{
-          tabBarIcon: ({ color }) => (<TabIcon color={color} title={'道具'} />),
-        }} />
-        <Tab.Screen name="Lottery" component={LotteryTabPage} options={{
-          tabBarIcon: ({ color }) => (<TabIcon color={color} title={'抽奖'} />),
-        }} />
-        <Tab.Screen name="Profile" component={ProfileTabPage} options={{
-          tabBarIcon: ({ color }) => (<TabIcon color={color} title={'设置'} />),
-        }} />
-      </Tab.Navigator>
+      <View style={{ flex: 1 }}>
+        <ImageBackground style={{ width: "100%", height: "100%" }} source={this.context.profileBg}>
+          <Tab.Navigator initialRouteName='World' sceneContainerStyle={{ backgroundColor: 'none' }} screenOptions={defaultScreenOptions}>
+            <Tab.Screen name="World" component={StoryTabPage} options={{
+              title: "世界",
+              tabBarIcon: ({ color }) => (<TabIcon color={color} title={'世界'} />),
+            }} />
+            <Tab.Screen name="Explore" component={ExploreTabPage} options={{
+              title: "探索",
+              tabBarIcon: ({ color }) => (<TabIcon color={color} title={'探索'} />),
+            }} />
+            <Tab.Screen name="Town" component={TownTabPage} options={{
+              title: "城镇",
+              tabBarIcon: ({ color }) => (<TabIcon color={color} title={'城镇'} />),
+            }} />
+            <Tab.Screen name="Compose" component={ComposeTabPage} options={{
+              title: "制作",
+              tabBarIcon: ({ color }) => (<TabIcon color={color} title={'制作'} />),
+            }} />
+            <Tab.Screen name="Props" component={PropsTabPage} options={{
+              title: "道具",
+              tabBarIcon: ({ color }) => (<TabIcon color={color} title={'道具'} />),
+            }} />
+            <Tab.Screen name="Lottery" component={LotteryTabPage} options={{
+              title: "抽奖",
+              tabBarIcon: ({ color }) => (<TabIcon color={color} title={'抽奖'} />),
+            }} />
+            <Tab.Screen name="Profile" component={ProfileTabPage} options={{
+              title: "设置",
+              tabBarIcon: ({ color }) => (<TabIcon color={color} title={'设置'} />),
+            }} />
+          </Tab.Navigator>
+        </ImageBackground>
+      </View>
     );
   }
 
 }
-
-const styles = StyleSheet.create({
-  tabIconContainer: {
-    height: px2pd(200),
-    width: "100%",
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    justifyContent: "center",
-    alignItems: "center",
-  }
-});
 
 export default connect((state) => ({ ...state.AppModel }))(HomePage);
