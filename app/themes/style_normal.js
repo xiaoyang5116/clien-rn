@@ -180,6 +180,10 @@ const styles = StyleSheet.create({
     // 按钮
     btnPattern1: require("../../assets/themes/normal/button/btn_pattern1.png"),
     btnPattern2: require("../../assets/themes/normal/button/btn_pattern2.png"),
+
+    // 对话框
+    dialogBorder1: require('../../assets/themes/normal/dialog/border1.png'),
+    dialogBg1: require('../../assets/themes/normal/dialog/dialog_bg1.png'),
 });
 
 export default styles;
