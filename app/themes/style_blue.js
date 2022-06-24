@@ -205,7 +205,9 @@ const styles = StyleSheet.create({
     // block
     blockBg_1_img: require('../../assets/themes/blue/bg/block_bg1.png'),
     blockBg_2_img: require('../../assets/themes/blue/bg/block_bg2.png'),
-    blockBg_3_img: require('../../assets/themes/blue/bg/block_bg3.png')
+    blockBg_3_img: require('../../assets/themes/blue/bg/block_bg3.png'),
+    blockBg_4_img: require('../../assets/themes/blue/bg/block_bg4.png'),
+    blockBg_5_img: require('../../assets/themes/blue/bg/block_bg5.png'),
 });
 
 export default styles;
