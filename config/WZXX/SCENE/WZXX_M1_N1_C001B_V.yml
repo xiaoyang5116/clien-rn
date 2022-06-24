@@ -247,7 +247,7 @@ scenes: [
         options: [ 
           { title: '【朝着树的方向走】',nextChat: 'E7'  }, 
           { title: '【向山洞的位置走】',nextChat: 'E8'  }, 
-          { title: '【向右走】',nextChat: 'B2'  }, 
+          { title: '【向右走】',nextChat: 'D4'  }, 
         ],
       },
 
