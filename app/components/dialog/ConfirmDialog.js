@@ -50,10 +50,10 @@ class ConfirmDialog extends React.Component {
             <SafeAreaView style={{ flex: 1, zIndex: 999999 }}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <View style={{ width: 320, justifyContent: 'center', alignItems: 'center', borderRadius: 3 }}>
-                        <ImageBackground style={{ width: px2pd(934), height: px2pd(396) }} source={this.context.dialogBg1}>
+                        <ImageBackground style={{ width: px2pd(934), height: px2pd(396) }} source={this.context.dialogBg_1_img}>
                             <ImageCapInset
                                 style={{ width: '100%', height: '100%', position: 'absolute', }}
-                                source={this.context.dialogBorder1}
+                                source={this.context.dialogBorder_1_img}
                                 capInsets={{ top: 10, right: 10, bottom: 10, left: 10 }}
                             />
                             <View style={{ flex: 1, justifyContent: "center" }}>

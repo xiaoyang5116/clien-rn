@@ -162,6 +162,19 @@ const styles = StyleSheet.create({
         border: '#c7c7cc',
         notification: '#ff453a',
     },
+
+    /** ================================ */
+    /**            图片大小定义            */
+    /** ================================ */
+    blockBg_2_size: {
+        width: px2pd(450),
+        height: px2pd(299),
+    },
+    blockBg_3_size: {
+        width: px2pd(408),
+        height: px2pd(111),
+    },
+
     /** ================================ */
     /**            图片资源               */
     /** ================================ */
@@ -178,12 +191,20 @@ const styles = StyleSheet.create({
     headerBg: require("../../assets/themes/normal/header/settiing_bg.png"),
 
     // 按钮
-    btnPattern1: require("../../assets/themes/normal/button/btn_pattern1.png"),
-    btnPattern2: require("../../assets/themes/normal/button/btn_pattern2.png"),
+    btnPattern_1_img: require("../../assets/themes/normal/button/btn_pattern1.png"),
+    btnPattern_2_img: require("../../assets/themes/normal/button/btn_pattern2.png"),
 
     // 对话框
-    dialogBorder1: require('../../assets/themes/normal/dialog/border1.png'),
-    dialogBg1: require('../../assets/themes/normal/dialog/dialog_bg1.png'),
+    dialogBorder_1_img: require('../../assets/themes/normal/bg/border1.png'),
+    dialogBg_1_img: require('../../assets/themes/normal/bg/dialog_bg1.png'),
+
+    // 通用花纹
+    pattern_1_img: require('../../assets/themes/normal/bg/border1.png'),
+
+    // block
+    blockBg_1_img: require('../../assets/themes/normal/bg/block_bg1.png'),
+    blockBg_2_img: require('../../assets/themes/normal/bg/block_bg2.png'),
+    blockBg_3_img: require('../../assets/themes/normal/bg/block_bg3.png')
 });
 
 export default styles;

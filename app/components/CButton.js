@@ -74,7 +74,7 @@ export class CButton extends Component {
                 backgroundColor: (this.props.disabled ? '#999' : this.props.color),
                 ...styles.border,
             };
-            const imgBg = this.props.disabled ? this.context.btnPattern2 : this.context.btnPattern1;
+            const imgBg = this.props.disabled ? this.context.btnPattern_2_img : this.context.btnPattern_1_img;
             return (
                 <TouchableHighlight underlayColor={this.props.underlayColor} activeOpacity={0.75} disabled={this.props.disabled} onPressIn={this.onPressIn} onPressOut={this.onPressOut} onPress={this.onPress} >
                     <View style={[defaultStyle, { ...this.props.style }]}>
