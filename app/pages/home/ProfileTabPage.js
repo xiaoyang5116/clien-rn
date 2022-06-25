@@ -58,7 +58,7 @@ class ProfileTabPage extends React.Component {
                     onPress={() => { if (item.cb != undefined) item.cb(); }}
                 />
                 <View style={{ position: 'absolute', left: 0, top: 30, width: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents='none' >
-                    <Text style={{ color: this.context.button.fontColor, fontSize: 20 }}>{item.title}</Text>
+                    <Text style={[this.context.options_2, { fontSize: 20 }]}>{item.title}</Text>
                 </View>
             </View>
         );

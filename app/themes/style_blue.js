@@ -117,6 +117,9 @@ const styles = StyleSheet.create({
     options: {
         fontColor: '#8addff',
     },
+    options_2: {
+        color: '#fff',
+    },
 
     /* 选项按钮宽高 */
     tabBottomImgStyle: {
@@ -183,8 +186,8 @@ const styles = StyleSheet.create({
     /** ================================ */
     /**            图片资源               */
     /** ================================ */
-    profileItemImage: require('../../assets/button/profile_item.png'),
-    profileItemImageSelected: require('../../assets/button/profile_item_selected.png'),
+    profileItemImage: require('../../assets/button/profile_item.2.png'),
+    profileItemImageSelected: require('../../assets/button/profile_item_selected.2.png'),
     profileBg: require('../../assets/themes/blue/bg/setting.png'),
     tabBottomImage: require('../../assets/themes/blue/button/tab_normal.png'),
     optionButtonImage: require("../../assets/themes/blue/button/option_button.png"),

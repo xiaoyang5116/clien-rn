@@ -117,6 +117,9 @@ const styles = StyleSheet.create({
     options: {
         fontColor: '#8addff',
     },
+    options_2: {
+        color: btnFontColor,
+    },
 
     /* 选项按钮宽高 */
     tabBottomImgStyle: {

@@ -143,7 +143,7 @@ class PropsTabPage extends Component {
                             <Text>{selectedProp != undefined ? selectedProp.name : ''}</Text>
                             <Text>{(selectedProp != undefined && selectedProp.desc != undefined) ? selectedProp.desc : ''}</Text>
                         </View>
-                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+                        <View style={{ width:"100%", flexDirection: 'row', justifyContent: 'space-around' }}>
                             <TextButton title="使用" {...this.props} onPress={() => { this._useProps(); }} />
                             <TextButton title="丢弃" {...this.props} onPress={() => { this._discardProps(); }} />
                         </View>
