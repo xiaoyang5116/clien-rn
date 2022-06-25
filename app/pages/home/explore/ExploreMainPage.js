@@ -69,12 +69,9 @@ const RewardsPage = (props) => {
                 <View>
                     <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>储物袋</Text>
                 </View>
-                <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#a6c2cb' }}>
-                    <ImageBackground style={{ flex: 1 }} source={theme.blockBg_5_img} >
-                        {childs}
-                    </ImageBackground>
-
-                </View>
+                <ImageBackground style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#a6c2cb' }} source={theme.blockBg_5_img}>
+                    {childs}
+                </ImageBackground>
                 <View>
                     <Text style={{ color: '#fff', lineHeight: 35, }}>点击任意区域领取奖励</Text>
                     <TextButton title={'领取奖励'} {...props} onPress={() => {
