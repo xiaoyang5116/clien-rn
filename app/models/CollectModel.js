@@ -109,8 +109,10 @@ export default {
 
     *getGridData({}, { call, put, select }) {
       const collectState = yield select(state => state.CollectModel);
-      if (lo.isEmpty(collectState.gridsData)) {
+      if ((lo.isEmpty(collectState.gridsData))
+        || (collectState.gridsData.find(e => e.show) == undefined)) {
         const data = yield put.resolve(action('generateGridData')({}));
+        collectState.gridsData.length = 0;
         collectState.gridsData.push(...data);
       }
       return collectState.gridsData;

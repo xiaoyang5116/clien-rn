@@ -148,13 +148,14 @@ const GridItem = (props) => {
       const { id } = e;
       if (id == props.id) {
         //
-        AppDispath({ type: 'CollectModel/hideGrid', payload: { ...e } });
-        //
         Animated.timing(opacity.current, {
           toValue: 0,
           duration: 300,
           useNativeDriver: false,
         }).start();
+        //
+        setPointerEvents('none');
+        AppDispath({ type: 'CollectModel/hideGrid', payload: { ...e } });
       }
     });
     return () => {
@@ -180,8 +181,6 @@ const GridItem = (props) => {
         setTimeout(() => {
           DeviceEventEmitter.emit('___@CollectPage.touchOne', { ...props });
         }, 300);
-
-        setPointerEvents('none');
       }} 
       pointerEvents={pointerEvents}
     >
