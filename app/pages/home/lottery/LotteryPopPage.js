@@ -36,10 +36,12 @@ const PROPS_ICON = [
 
 // 点击宝箱二次确认框
 const BoxConfirmDialog = (props) => {
+    const theme = React.useContext(ThemeContext)
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.85)' }}>
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
                 <View style={{ width: '90%', height: 440, borderColor: '#999', borderWidth: 1, backgroundColor: '#fff' }}>
+                    <Image style={{ width: "100%", height: "100%", position: 'absolute' }} source={theme.blockBg_6_img} />
                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ lineHeight: 80, fontSize: 32, fontWeight: 'bold' }}>{props.title}</Text>
                     </View>
