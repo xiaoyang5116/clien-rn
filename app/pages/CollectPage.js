@@ -5,6 +5,8 @@ import lo from 'lodash';
 
 import {
   StyleSheet,
+  connect,
+  action,
 } from "../constants";
 
 import {
@@ -14,7 +16,6 @@ import {
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { TextButton } from '../constants/custom-ui';
-import RootView from '../components/RootView';
 import { getFixedWidthScale, px2pd } from '../constants/resolution';
 import FastImage from 'react-native-fast-image';
 import SpriteSheet from '../components/SpriteSheet';
@@ -22,8 +23,10 @@ import { Animated, DeviceEventEmitter } from 'react-native';
 
 const pxWidth = 1000; // 像素宽度
 const pxHeight = 1300; // 像素高度
-const pxGridWidth = 150;  // 格子像素宽度
-const pxGridHeight = 150; // 格子像素高度
+const pxGridWidth = 160;  // 格子像素宽度
+const pxGridHeight = 160; // 格子像素高度
+const topFixed = 8;
+const leftFixed = 10;
 
 const maxColumns = Math.floor(pxWidth / pxGridWidth);
 const maxRows = Math.floor(pxHeight / pxGridHeight);
@@ -31,9 +34,12 @@ const maxRows = Math.floor(pxHeight / pxGridHeight);
 const SCENE_ITEMS = [
   { id: 1, source: require('../../assets/collect/item_1.png') },
   { id: 2, source: require('../../assets/collect/item_2.png') },
+  { id: 3, source: require('../../assets/collect/item_3.png') },
+  { id: 4, source: require('../../assets/collect/item_4.png') },
 ];
 
 const EFFECTS = [
+  { effectId: 1, columns: 8, rows: 6, framesNum: 48, source: require('../../assets/animations/flower_effect_1.png') },
   { effectId: 2, columns: 6, rows: 5, framesNum: 27, source: require('../../assets/animations/flower_effect_2.png') },
   { effectId: 3, columns: 9, rows: 5, framesNum: 44, source: require('../../assets/animations/flower_effect_3.png') },
 ];
@@ -129,8 +135,8 @@ const GridItem = (props) => {
 
   const sheet = React.createRef(null);
   const opacity = React.useRef(new Animated.Value(1));
-  const itemId = React.useRef(lo.random(1, 2));
-  const effectId = React.useRef(lo.random(2, 3));
+  const itemId = React.useRef(lo.random(1, 4));
+  const effectId = React.useRef(lo.random(1, 3));
   const viewTop = React.useRef(0);
   const viewLeft = React.useRef(0);
 
@@ -155,8 +161,8 @@ const GridItem = (props) => {
       randTop = lo.random(-10, 10);
     }
 
-    viewTop.current = (props.j * px2pd(162)) + randTop;
-    viewLeft.current = (props.i * px2pd(167)) + randLeft;
+    viewTop.current = (props.j * px2pd(pxGridHeight)) + topFixed + randTop;
+    viewLeft.current = (props.i * px2pd(pxGridWidth)) + leftFixed + randLeft;
   }
 
   const item = SCENE_ITEMS.find(e => e.id == itemId.current);
@@ -201,6 +207,9 @@ const GridItem = (props) => {
         width: px2pd(pxGridWidth), height: px2pd(pxGridHeight), 
         top: viewTop.current, left: viewLeft.current,
         opacity: opacity.current,
+        // backgroundColor: '#669900',
+        // borderWidth: 1,
+        // borderColor: '#333'
       }}
       onTouchStart={(e) => {
         const found = GRIDS_META_INFO.find(g => g.id == props.id);
@@ -239,59 +248,35 @@ const GridItem = (props) => {
 
 const CollectPage = (props) => {
 
-  const array = lo.range(maxColumns * maxRows);
-  const hitList = [];
-
-  for (let i = 0; i < 16; i++) {
-    while (true) {
-      const newArray = lo.shuffle(array);
-      const hitValue = newArray[0];
-      if (lo.indexOf(hitList, hitValue) == -1) {
-        // 过滤：横竖三个不能连一线
-        if (lo.indexOf(hitList, hitValue + 1) != -1 && lo.indexOf(hitList, hitValue + 2) != -1) continue;
-        if (lo.indexOf(hitList, hitValue - 1) != -1 && lo.indexOf(hitList, hitValue + 1) != -1) continue;
-        if (lo.indexOf(hitList, hitValue - 2) != -1 && lo.indexOf(hitList, hitValue - 1) != -1) continue;
-        if (lo.indexOf(hitList, hitValue + maxColumns * 1) != -1 && lo.indexOf(hitList, hitValue + maxColumns * 2) != -1) continue;
-        if (lo.indexOf(hitList, hitValue - maxColumns * 1) != -1 && lo.indexOf(hitList, hitValue + maxColumns * 1) != -1) continue;
-        if (lo.indexOf(hitList, hitValue - maxColumns * 2) != -1 && lo.indexOf(hitList, hitValue - maxColumns * 1) != -1) continue;
-        // 过滤： 四周密集度
-        const a1 = lo.indexOf(hitList, hitValue - maxColumns) != -1 ? 1 : 0;
-        const a2 = lo.indexOf(hitList, hitValue + maxColumns) != -1 ? 1 : 0;
-        const a3 = lo.indexOf(hitList, hitValue - 1) != -1 ? 1 : 0;
-        const a4 = lo.indexOf(hitList, hitValue + 1) != -1 ? 1 : 0;
-        const a5 = lo.indexOf(hitList, hitValue - maxColumns - 1) != -1 ? 1 : 0;
-        const a6 = lo.indexOf(hitList, hitValue - maxColumns + 1) != -1 ? 1 : 0;
-        const a7 = lo.indexOf(hitList, hitValue + maxColumns - 1) != -1 ? 1 : 0;
-        const a8 = lo.indexOf(hitList, hitValue + maxColumns + 1) != -1 ? 1 : 0;
-        const aa = a1 + a2 + a3 + a4 + a5 + a6 + a7 + a8;
-        if (aa > 4) continue;
-        //
-        hitList.push(hitValue);
-        break;
-      }
-    }
-  }
-
-  const grids = [];
-  for (let i = 0; i < maxColumns; i++) {
-    for (let j = 0; j < maxRows; j++) {
-      const id = j * maxColumns + i;
-      if (lo.indexOf(hitList, id) == -1)
-        continue;
-
-      grids.push(<GridItem key={id} id={id} i={i} j={j} />);
-    }
-  }
-
-  const collectAll = () => {
-    DeviceEventEmitter.emit('___@CollectPage.touchAll');
-  }
+  const [grids, setGrids] = React.useState([]);
 
   React.useEffect(() => {
+    //
+    props.dispatch(action('CollectModel/generateGridData')({}))
+    .then(list => {
+      const array = [];
+      for (let i = 0; i < maxColumns; i++) {
+        for (let j = 0; j < maxRows; j++) {
+          const id = j * maxColumns + i;
+          if (lo.indexOf(list, id) == -1)
+            continue;
+  
+          array.push(<GridItem key={id} id={id} i={i} j={j} />);
+        }
+      }
+  
+      setGrids(array);
+    });
+
+    //
     return () => {
       GRIDS_META_INFO.length = 0;
     }
   }, []);
+
+  const collectAll = () => {
+    DeviceEventEmitter.emit('___@CollectPage.touchAll');
+  }
 
   return (
     <View style={styles.viewContainer}>
@@ -340,17 +325,10 @@ const styles = StyleSheet.create({
   mapContainer: {
     width: px2pd(pxWidth),
     height: px2pd(pxHeight),
-
     // borderWidth: 1,
     // borderColor: '#333',
     // backgroundColor: '#666',
   },
 });
 
-export const showCollectPage = () => {
-  const key = RootView.add(<CollectPage onClose={() => {
-    RootView.remove(key);
-  }} />)
-}
-
-export default CollectPage;
+export default connect((state) => ({ ...state.CollectModel }))(CollectPage);

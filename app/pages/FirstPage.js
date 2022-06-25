@@ -30,7 +30,7 @@ import Shock from '../components/shock';
 import Drawer from '../components/drawer';
 import Clues from '../components/cluesList';
 import { playBGM } from '../components/sound/utils';
-import { showCollectPage } from './CollectPage';
+import CollectPage from './CollectPage';
 
 const BTN_STYLE = {
   width: 235,
@@ -106,7 +106,9 @@ class FirstPage extends Component {
             {/* 书城 */}
             <ImageButton {...BTN_STYLE} source={require('../../assets/button/quit_read.png')} selectedSource={require('../../assets/button/quit_read_selected.png')} onPress={() => {
               // RootNavigation.navigate('BookMain');
-              showCollectPage();
+              const key = RootView.add(<CollectPage onClose={() => {
+                RootView.remove(key);
+              }} />);
             }} />
           </View>
           <Drawer ref={this.refDrawer} direction={'left'} margin={60} style={{ backgroundColor: '#a49f99', borderRadius: 10, overflow: 'hidden' }}>
