@@ -128,9 +128,45 @@ const AnimationLayer = (props) => {
 const GridItem = (props) => {
 
   const sheet = React.createRef(null);
-  const opacity = React.useRef(new Animated.Value(1)).current;
+  const opacity = React.useRef(new Animated.Value(1));
+  const itemId = React.useRef(lo.random(1, 2));
+  const effectId = React.useRef(lo.random(2, 3));
+  const viewTop = React.useRef(0);
+  const viewLeft = React.useRef(0);
+
+  const [pointerEvents, setPointerEvents] = React.useState('auto');
+
+  if (viewTop.current <= 0 || viewLeft.current <= 0) {
+    // 随机半径偏移量
+    let randLeft = 0;
+    let randTop = 0;
+    if (props.i == 0) {
+      randLeft = lo.random(0, 20);
+    } else if (props.i == (maxColumns - 1)) {
+      randLeft = lo.random(-20, 0);
+    } else {
+      randLeft = lo.random(-10, 10);
+    }
+    if (props.j == 0) {
+      randTop = lo.random(0, 20);
+    } else if (props.j == (maxRows - 1)) {
+      randTop = lo.random(-20, 0);
+    } else {
+      randTop = lo.random(-10, 10);
+    }
+
+    viewTop.current = (props.j * px2pd(162)) + randTop;
+    viewLeft.current = (props.i * px2pd(167)) + randLeft;
+  }
+
+  const item = SCENE_ITEMS.find(e => e.id == itemId.current);
+  const effect = EFFECTS.find(e => e.effectId === effectId.current);
 
   React.useEffect(() => {
+    //
+    GRIDS_META_INFO.push({ id: props.id, itemId: itemId.current, x: viewLeft.current, y: viewTop.current, show: true });
+
+    //
     const play = type => {
       sheet.current.play({
         type,
@@ -142,40 +178,11 @@ const GridItem = (props) => {
     play('walk');
   }, []);
 
-  const effectId = lo.random(2, 3);
-  const effect = EFFECTS.find(e => e.effectId === effectId);
-
-  // 随机半径偏移量
-  let randLeft = 0;
-  let randTop = 0;
-  if (props.i == 0) {
-    randLeft = lo.random(0, 20);
-  } else if (props.i == (maxColumns - 1)) {
-    randLeft = lo.random(-20, 0);
-  } else {
-    randLeft = lo.random(-10, 10);
-  }
-  if (props.j == 0) {
-    randTop = lo.random(0, 20);
-  } else if (props.j == (maxRows - 1)) {
-    randTop = lo.random(-20, 0);
-  } else {
-    randTop = lo.random(-10, 10);
-  }
-
-  const viewTop = (props.j * px2pd(162)) + randTop;
-  const viewLeft = (props.i * px2pd(167)) + randLeft;
-
-  const itemId = lo.random(1, 2);
-  const item = SCENE_ITEMS.find(e => e.id == itemId);
-
-  GRIDS_META_INFO.push({ id: props.id, itemId: itemId, x: viewLeft, y: viewTop, show: true });
-
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener('___@CollectPage.hideGrid', (e) => {
       const { id } = e;
       if (id == props.id) {
-        Animated.timing(opacity, {
+        Animated.timing(opacity.current, {
           toValue: 0,
           duration: 300,
           useNativeDriver: false,
@@ -192,8 +199,8 @@ const GridItem = (props) => {
       style={{ 
         position: 'absolute',
         width: px2pd(pxGridWidth), height: px2pd(pxGridHeight), 
-        top: viewTop, left: viewLeft,
-        opacity: opacity,
+        top: viewTop.current, left: viewLeft.current,
+        opacity: opacity.current,
       }}
       onTouchStart={(e) => {
         const found = GRIDS_META_INFO.find(g => g.id == props.id);
@@ -205,7 +212,10 @@ const GridItem = (props) => {
         setTimeout(() => {
           DeviceEventEmitter.emit('___@CollectPage.touchOne', { id: props.id });
         }, 300);
-      }}>
+
+        setPointerEvents('none');
+      }} 
+      pointerEvents={pointerEvents}>
       <FastImage 
         style={{ position: 'absolute', width: px2pd(pxGridWidth), height: px2pd(pxGridHeight), transform: [{ scale: lo.random(0.75, 1) }] }} 
         source={item.source} 
