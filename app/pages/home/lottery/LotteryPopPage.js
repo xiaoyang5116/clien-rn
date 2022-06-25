@@ -121,19 +121,21 @@ const Box = (props) => {
 
     return (
         <TouchableWithoutFeedback onPress={onPressHandler} >
-            <ImageBackground style={{ width: 160, height: 100, }} resizeMode={"stretch"}  source={theme.blockBg_2_img}>
-                <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center',}} >
-                    <Text>{props.title}</Text>
-                </View>
-                <View style={{ flex: 1}} >
-                    <View style={{ flex: 1, marginLeft: 10, marginRight: 10, marginTop: 8, marginBottom: 8 }}>
-                        <ProgressBar percent={percent} sections={[{ x: 0, y: 100, color: '#12b7b5' }]} />
+            <View>
+                <ImageBackground style={{ width: 160, height: 100, }} resizeMode={"stretch"} source={theme.blockBg_2_img}>
+                    <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', }} >
+                        <Text>{props.title}</Text>
                     </View>
-                    <View style={{ position: 'absolute', top: 7, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ color: '#fff' }}>{props.currentNum}/{props.reqNum}</Text>
+                    <View style={{ flex: 1 }} >
+                        <View style={{ flex: 1, marginLeft: 10, marginRight: 10, marginTop: 8, marginBottom: 8 }}>
+                            <ProgressBar percent={percent} sections={[{ x: 0, y: 100, color: '#12b7b5' }]} />
+                        </View>
+                        <View style={{ position: 'absolute', top: 7, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ color: '#fff' }}>{props.currentNum}/{props.reqNum}</Text>
+                        </View>
                     </View>
-                </View>
-            </ImageBackground>
+                </ImageBackground>
+            </View>
         </TouchableWithoutFeedback>
     );
 
@@ -267,7 +269,7 @@ class Lottery10Times extends Component {
                         {/* <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 24, fontWeight: 'bold' }}>十连抽</Text>
                     </View> */}
-                        <Header1 style={{ marginTop: 24 }} title={"十连抽"} />
+                        <Header1 style={{ marginTop: 30, marginBottom: 10 }} title={"十连抽"} />
 
                         <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
                             <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>白嫖券: {(this.state.propsInfo[0] != undefined) ? this.state.propsInfo[0].num : 0}</Text>

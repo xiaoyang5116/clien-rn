@@ -52,7 +52,7 @@ const TabIcon = (props) => {
 
 const HeaderTitle = (props) => {
   return (
-    <Header1 style={{ marginTop: 40 }} title={props.options.title} />
+    <Header1 style={{ marginTop: 30, marginBottom: 10, }} title={props.options.title} />
   )
 }
 

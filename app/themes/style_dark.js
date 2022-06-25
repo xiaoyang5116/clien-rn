@@ -174,6 +174,10 @@ const styles = StyleSheet.create({
         width: px2pd(408),
         height: px2pd(111),
     },
+    headerBg_size: {
+        width: px2pd(1170),
+        height: px2pd(161),
+    },
 
     /** ================================ */
     /**            图片资源               */
