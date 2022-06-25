@@ -4,6 +4,8 @@ export const images = [
     require('../../assets/bg/lottery_bg.jpg'),
     require('../../assets/bg/lottery_bg2.jpg'),
     require('../../assets/bg/explore_bg.jpg'),
+    require('../../assets/bg/collect_bg.png'),
+
     require('../../assets/scene/bg_default.jpg'),
     require('../../assets/world/world_0.jpg'),
     require('../../assets/world/world_1.jpg'),

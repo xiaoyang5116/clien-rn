@@ -9,7 +9,6 @@ import {
 
 import {
   View,
-  SafeAreaView,
   TouchableWithoutFeedback,
 } from '../constants/native-ui';
 
@@ -19,6 +18,7 @@ import RootView from '../components/RootView';
 import { getFixedWidthScale, px2pd } from '../constants/resolution';
 import FastImage from 'react-native-fast-image';
 import SpriteSheet from '../components/SpriteSheet';
+import { Animated, DeviceEventEmitter } from 'react-native';
 
 const pxWidth = 1000; // 像素宽度
 const pxHeight = 1300; // 像素高度
@@ -28,14 +28,107 @@ const pxGridHeight = 150; // 格子像素高度
 const maxColumns = Math.floor(pxWidth / pxGridWidth);
 const maxRows = Math.floor(pxHeight / pxGridHeight);
 
+const SCENE_ITEMS = [
+  { id: 1, source: require('../../assets/collect/item_1.png') },
+  { id: 2, source: require('../../assets/collect/item_2.png') },
+];
+
 const EFFECTS = [
   { effectId: 2, columns: 6, rows: 5, framesNum: 27, source: require('../../assets/animations/flower_effect_2.png') },
   { effectId: 3, columns: 9, rows: 5, framesNum: 44, source: require('../../assets/animations/flower_effect_3.png') },
 ];
 
+// 格子状态数据 [{ id:, x:, y:, show: }, ...]
+const GRIDS_META_INFO = [];
+
+const AnimatedTarget = (props) => {
+
+  const opacity = React.useRef(new Animated.Value(1)).current;
+  const translateXY = React.useRef(new Animated.ValueXY({ x: props.x, y: props.y })).current;
+
+  React.useEffect(() => {
+    Animated.parallel([
+      Animated.sequence([
+        Animated.timing(translateXY, {
+          toValue: { x: 300, y: 500 },
+          duration: 800,
+          useNativeDriver: false,
+        })
+      ]),
+      Animated.sequence([
+        Animated.delay(500),
+        Animated.timing(opacity, {
+          toValue: 0, 
+          duration: 200,
+          useNativeDriver: false,
+        })
+      ]),
+    ]).start();
+  }, []);
+
+  const item = SCENE_ITEMS.find(e => e.id == props.itemId);
+
+  return (
+    <Animated.Image 
+      style={[{ position: 'absolute', width: px2pd(pxGridWidth), height: px2pd(pxGridHeight) }, 
+      { transform: [{ translateX: translateXY.x }, { translateY: translateXY.y }] },
+      { opacity: opacity } ]} 
+      source={item.source} 
+    />
+  )
+}
+
+const AnimationLayer = (props) => {
+
+  const uniqueKey = React.useRef(0);
+  const [ targets, setTargets ] = React.useState([]);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener('___@CollectPage.touchOne', (e) => {
+      const { id } = e;
+
+      const found = GRIDS_META_INFO.find(g => g.id === id);
+      found.show = false;
+      DeviceEventEmitter.emit('___@CollectPage.hideGrid', { id });
+
+      setTargets((targets) => {
+        const target = <AnimatedTarget key={uniqueKey.current++} x={found.x} y={found.y} itemId={found.itemId} />;
+        return [...targets, target];
+      });
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener('___@CollectPage.touchAll', () => {
+      const timer = setInterval(() => {
+        const found = GRIDS_META_INFO.find(e => e.show);
+        if (found != undefined) {
+          found.show = false;
+          DeviceEventEmitter.emit('___@CollectPage.touchOne', { id: found.id });
+        } else {
+          clearInterval(timer);
+        }
+      }, 60);
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  return (
+    <View style={{ position: 'absolute', width: '100%', height: '100%' }} pointerEvents='none'>
+      {targets}
+    </View>
+  )
+}
+
 const GridItem = (props) => {
 
   const sheet = React.createRef(null);
+  const opacity = React.useRef(new Animated.Value(1)).current;
 
   React.useEffect(() => {
     const play = type => {
@@ -70,15 +163,52 @@ const GridItem = (props) => {
     randTop = lo.random(-10, 10);
   }
 
+  const viewTop = (props.j * px2pd(162)) + randTop;
+  const viewLeft = (props.i * px2pd(167)) + randLeft;
+
+  const itemId = lo.random(1, 2);
+  const item = SCENE_ITEMS.find(e => e.id == itemId);
+
+  GRIDS_META_INFO.push({ id: props.id, itemId: itemId, x: viewLeft, y: viewTop, show: true });
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener('___@CollectPage.hideGrid', (e) => {
+      const { id } = e;
+      if (id == props.id) {
+        Animated.timing(opacity, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: false,
+        }).start();
+      }
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
   return (
-    <View style={{ 
-      position: 'absolute',
-      width: px2pd(pxGridWidth), height: px2pd(pxGridHeight), 
-      top: (props.j * px2pd(162)) + randTop, left: (props.i * px2pd(167)) + randLeft
+    <Animated.View 
+      style={{ 
+        position: 'absolute',
+        width: px2pd(pxGridWidth), height: px2pd(pxGridHeight), 
+        top: viewTop, left: viewLeft,
+        opacity: opacity,
+      }}
+      onTouchStart={(e) => {
+        const found = GRIDS_META_INFO.find(g => g.id == props.id);
+        if (!found.show) return;
+
+        found.show = false;
+        DeviceEventEmitter.emit('___@CollectPage.hideGrid', { id: props.id });
+
+        setTimeout(() => {
+          DeviceEventEmitter.emit('___@CollectPage.touchOne', { id: props.id });
+        }, 300);
       }}>
       <FastImage 
         style={{ position: 'absolute', width: px2pd(pxGridWidth), height: px2pd(pxGridHeight), transform: [{ scale: lo.random(0.75, 1) }] }} 
-        source={lo.random(0, 1) > 0 ? require('../../assets/collect/item_1.png') : require('../../assets/collect/item_2.png')} 
+        source={item.source} 
       />
       <SpriteSheet
         ref={ref => (sheet.current = ref)}
@@ -87,13 +217,13 @@ const GridItem = (props) => {
         rows={effect.rows}
         frameWidth={200}
         frameHeight={200}
-        imageStyle={{ }}
+        imageStyle={{}}
         viewStyle={{ left: -74, top: -74, transform: [{ scale: getFixedWidthScale() }] }}
         animations={{
           walk: lo.range(effect.framesNum),
         }}
       />
-    </View>
+    </Animated.View>
   );
 }
 
@@ -139,43 +269,55 @@ const CollectPage = (props) => {
       if (lo.indexOf(hitList, id) == -1)
         continue;
 
-      const key = `${i}_${j}`
-      grids.push(<GridItem key={key} i={i} j={j} />);
+      grids.push(<GridItem key={id} id={id} i={i} j={j} />);
     }
   }
 
+  const collectAll = () => {
+    DeviceEventEmitter.emit('___@CollectPage.touchAll');
+  }
+
+  React.useEffect(() => {
+    return () => {
+      GRIDS_META_INFO.length = 0;
+    }
+  }, []);
+
   return (
-    <SafeAreaView style={styles.viewContainer}>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <View style={styles.bodyContainer}>
-          <View style={styles.topBarContainer}>
-            <TouchableWithoutFeedback onPress={() => {
-              if (props.onClose != undefined) {
-                props.onClose();
-              }
-            }}>
-              <AntDesign name={'left'} size={30} />
-            </TouchableWithoutFeedback>
-          </View>
+    <View style={styles.viewContainer}>
+      <View style={styles.bodyContainer}>
+        <View style={styles.topBarContainer}>
+          <TouchableWithoutFeedback onPress={() => {
+            if (props.onClose != undefined) {
+              props.onClose();
+            }
+          }}>
+            <AntDesign name={'left'} size={30} />
+          </TouchableWithoutFeedback>
+        </View>
+        <FastImage style={{ width: px2pd(1020), height: px2pd(1320), overflow: 'visible' }} source={require('../../assets/bg/collect_bg.png')}>
           <View style={styles.mapContainer}>
             {grids}
+            <AnimationLayer />
           </View>
-        </View>
-        <View style={{ width: '100%', marginTop: 10, justifyContent: 'center', alignItems: 'center' }}>
-          <TextButton title='一键采集' />
-        </View>
-        <View style={{ width: '100%', marginTop: 10, marginRight: 20, justifyContent: 'center', alignItems: 'flex-end' }}>
-          <TextButton title='储物袋' />
-        </View>
+        </FastImage>
       </View>
-    </SafeAreaView>
+      <View style={{ width: '100%', zIndex: -1, marginTop: 10, justifyContent: 'center', alignItems: 'center' }}>
+        <TextButton title='一键采集' onPress={collectAll} />
+      </View>
+      <View style={{ width: '100%', zIndex: -1, marginTop: 10, marginRight: 20, justifyContent: 'center', alignItems: 'flex-end' }}>
+        <TextButton title='储物袋' />
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
-    backgroundColor: '#a49f99',
+    backgroundColor: '#64615e',
+    justifyContent: 'center', 
+    alignItems: 'center',
   },
 
   bodyContainer: {
@@ -189,9 +331,9 @@ const styles = StyleSheet.create({
     width: px2pd(pxWidth),
     height: px2pd(pxHeight),
 
-    borderWidth: 1,
-    borderColor: '#333',
-    backgroundColor: '#666',
+    // borderWidth: 1,
+    // borderColor: '#333',
+    // backgroundColor: '#666',
   },
 });
 
