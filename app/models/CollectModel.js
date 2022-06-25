@@ -10,11 +10,14 @@ import lo from 'lodash';
 
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
+import { px2pd } from "../constants/resolution";
 
 const pxWidth = 1000; // 像素宽度
 const pxHeight = 1300; // 像素高度
 const pxGridWidth = 150;  // 格子像素宽度
 const pxGridHeight = 150; // 格子像素高度
+const topFixed = 8;
+const leftFixed = 10;
 
 const maxColumns = Math.floor(pxWidth / pxGridWidth);
 const maxRows = Math.floor(pxHeight / pxGridHeight);
@@ -23,7 +26,7 @@ export default {
   namespace: 'CollectModel',
 
   state: {
-    gridData: [],
+    gridsData: [],
   },
 
   effects: {
@@ -31,8 +34,8 @@ export default {
     },
 
     *generateGridData({}, { call, put }) {
-      const array = lo.range(maxColumns * maxRows);
       const hitList = [];
+      const array = lo.range(maxColumns * maxRows);
     
       for (let i = 0; i < 16; i++) {
         while (true) {
@@ -63,8 +66,69 @@ export default {
           }
         }
       }
-      
-      return hitList;
+
+      const grids = [];
+
+      hitList.forEach(id => {
+        const rows = Math.floor(id / maxColumns);
+        const cols = id % maxColumns;
+
+        // 随机半径偏移量
+        let randLeft = 0;
+        let randTop = 0;
+        if (cols == 0) {
+          randLeft = lo.random(0, 20);
+        } else if (cols == (maxColumns - 1)) {
+          randLeft = lo.random(-20, 0);
+        } else {
+          randLeft = lo.random(-10, 10);
+        }
+        if (rows == 0) {
+          randTop = lo.random(0, 20);
+        } else if (rows == (maxRows - 1)) {
+          randTop = lo.random(-20, 0);
+        } else {
+          randTop = lo.random(-10, 10);
+        }
+
+        const top = (rows * px2pd(pxGridHeight)) + topFixed + randTop;
+        const left = (cols * px2pd(pxGridWidth)) + leftFixed + randLeft;
+
+        grids.push({ 
+          id: id, 
+          top: top,
+          left: left,
+          show: true,
+          itemId: lo.random(1, 4), 
+          effectId: lo.random(1, 3),
+        });
+      });
+
+      return grids;
+    },
+
+    *getGridData({}, { call, put, select }) {
+      const collectState = yield select(state => state.CollectModel);
+      if (lo.isEmpty(collectState.gridsData)) {
+        const data = yield put.resolve(action('generateGridData')({}));
+        collectState.gridsData.push(...data);
+      }
+      return collectState.gridsData;
+    },
+
+    *hideGrid({payload}, { call, put, select }) {
+      const { id } = payload;
+      const collectState = yield select(state => state.CollectModel);
+
+      const found = collectState.gridsData.find(e => e.id == id);
+      if (found != undefined) {
+        found.show = false;
+      }
+    },
+
+    *getVisableGrids({payload}, { call, put, select }) {
+      const collectState = yield select(state => state.CollectModel);
+      return collectState.gridsData.filter(e => e.show);
     },
   },
   

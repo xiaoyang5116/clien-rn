@@ -7,6 +7,7 @@ import {
   StyleSheet,
   connect,
   action,
+  AppDispath,
 } from "../constants";
 
 import {
@@ -25,11 +26,6 @@ const pxWidth = 1000; // 像素宽度
 const pxHeight = 1300; // 像素高度
 const pxGridWidth = 160;  // 格子像素宽度
 const pxGridHeight = 160; // 格子像素高度
-const topFixed = 8;
-const leftFixed = 10;
-
-const maxColumns = Math.floor(pxWidth / pxGridWidth);
-const maxRows = Math.floor(pxHeight / pxGridHeight);
 
 const SCENE_ITEMS = [
   { id: 1, source: require('../../assets/collect/item_1.png') },
@@ -44,13 +40,10 @@ const EFFECTS = [
   { effectId: 3, columns: 9, rows: 5, framesNum: 44, source: require('../../assets/animations/flower_effect_3.png') },
 ];
 
-// 格子状态数据 [{ id:, x:, y:, show: }, ...]
-const GRIDS_META_INFO = [];
-
 const AnimatedTarget = (props) => {
 
   const opacity = React.useRef(new Animated.Value(1)).current;
-  const translateXY = React.useRef(new Animated.ValueXY({ x: props.x, y: props.y })).current;
+  const translateXY = React.useRef(new Animated.ValueXY({ x: props.left, y: props.top })).current;
 
   React.useEffect(() => {
     Animated.parallel([
@@ -91,14 +84,8 @@ const AnimationLayer = (props) => {
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener('___@CollectPage.touchOne', (e) => {
-      const { id } = e;
-
-      const found = GRIDS_META_INFO.find(g => g.id === id);
-      found.show = false;
-      DeviceEventEmitter.emit('___@CollectPage.hideGrid', { id });
-
       setTargets((targets) => {
-        const target = <AnimatedTarget key={uniqueKey.current++} x={found.x} y={found.y} itemId={found.itemId} />;
+        const target = <AnimatedTarget key={uniqueKey.current++} left={e.left} top={e.top} itemId={e.itemId} />;
         return [...targets, target];
       });
     });
@@ -109,15 +96,18 @@ const AnimationLayer = (props) => {
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener('___@CollectPage.touchAll', () => {
-      const timer = setInterval(() => {
-        const found = GRIDS_META_INFO.find(e => e.show);
-        if (found != undefined) {
-          found.show = false;
-          DeviceEventEmitter.emit('___@CollectPage.touchOne', { id: found.id });
-        } else {
-          clearInterval(timer);
-        }
-      }, 60);
+      AppDispath({ type: 'CollectModel/getVisableGrids', cb: (list) => {
+        const grids = [...list];
+        const timer = setInterval(() => {
+          if (grids.length > 0) {
+            const item = grids.shift();
+            DeviceEventEmitter.emit('___@CollectPage.hideGrid', { id: item.id });
+            DeviceEventEmitter.emit('___@CollectPage.touchOne', { ...item });
+          } else {
+            clearInterval(timer);
+          }
+        }, 60);
+      } });
     });
     return () => {
       listener.remove();
@@ -135,43 +125,12 @@ const GridItem = (props) => {
 
   const sheet = React.createRef(null);
   const opacity = React.useRef(new Animated.Value(1));
-  const itemId = React.useRef(lo.random(1, 4));
-  const effectId = React.useRef(lo.random(1, 3));
-  const viewTop = React.useRef(0);
-  const viewLeft = React.useRef(0);
-
   const [pointerEvents, setPointerEvents] = React.useState('auto');
 
-  if (viewTop.current <= 0 || viewLeft.current <= 0) {
-    // 随机半径偏移量
-    let randLeft = 0;
-    let randTop = 0;
-    if (props.i == 0) {
-      randLeft = lo.random(0, 20);
-    } else if (props.i == (maxColumns - 1)) {
-      randLeft = lo.random(-20, 0);
-    } else {
-      randLeft = lo.random(-10, 10);
-    }
-    if (props.j == 0) {
-      randTop = lo.random(0, 20);
-    } else if (props.j == (maxRows - 1)) {
-      randTop = lo.random(-20, 0);
-    } else {
-      randTop = lo.random(-10, 10);
-    }
-
-    viewTop.current = (props.j * px2pd(pxGridHeight)) + topFixed + randTop;
-    viewLeft.current = (props.i * px2pd(pxGridWidth)) + leftFixed + randLeft;
-  }
-
-  const item = SCENE_ITEMS.find(e => e.id == itemId.current);
-  const effect = EFFECTS.find(e => e.effectId === effectId.current);
+  const item = SCENE_ITEMS.find(e => e.id == props.itemId);
+  const effect = EFFECTS.find(e => e.effectId === props.effectId);
 
   React.useEffect(() => {
-    //
-    GRIDS_META_INFO.push({ id: props.id, itemId: itemId.current, x: viewLeft.current, y: viewTop.current, show: true });
-
     //
     const play = type => {
       sheet.current.play({
@@ -188,6 +147,9 @@ const GridItem = (props) => {
     const listener = DeviceEventEmitter.addListener('___@CollectPage.hideGrid', (e) => {
       const { id } = e;
       if (id == props.id) {
+        //
+        AppDispath({ type: 'CollectModel/hideGrid', payload: { ...e } });
+        //
         Animated.timing(opacity.current, {
           toValue: 0,
           duration: 300,
@@ -205,26 +167,24 @@ const GridItem = (props) => {
       style={{ 
         position: 'absolute',
         width: px2pd(pxGridWidth), height: px2pd(pxGridHeight), 
-        top: viewTop.current, left: viewLeft.current,
+        top: props.top, left: props.left,
         opacity: opacity.current,
         // backgroundColor: '#669900',
         // borderWidth: 1,
         // borderColor: '#333'
       }}
       onTouchStart={(e) => {
-        const found = GRIDS_META_INFO.find(g => g.id == props.id);
-        if (!found.show) return;
-
-        found.show = false;
+        if (!props.show) return;
         DeviceEventEmitter.emit('___@CollectPage.hideGrid', { id: props.id });
 
         setTimeout(() => {
-          DeviceEventEmitter.emit('___@CollectPage.touchOne', { id: props.id });
+          DeviceEventEmitter.emit('___@CollectPage.touchOne', { ...props });
         }, 300);
 
         setPointerEvents('none');
       }} 
-      pointerEvents={pointerEvents}>
+      pointerEvents={pointerEvents}
+    >
       <FastImage 
         style={{ position: 'absolute', width: px2pd(pxGridWidth), height: px2pd(pxGridHeight), transform: [{ scale: lo.random(0.75, 1) }] }} 
         source={item.source} 
@@ -251,27 +211,16 @@ const CollectPage = (props) => {
   const [grids, setGrids] = React.useState([]);
 
   React.useEffect(() => {
-    //
-    props.dispatch(action('CollectModel/generateGridData')({}))
+    props.dispatch(action('CollectModel/getGridData')({}))
     .then(list => {
       const array = [];
-      for (let i = 0; i < maxColumns; i++) {
-        for (let j = 0; j < maxRows; j++) {
-          const id = j * maxColumns + i;
-          if (lo.indexOf(list, id) == -1)
-            continue;
-  
-          array.push(<GridItem key={id} id={id} i={i} j={j} />);
-        }
-      }
-  
+      list.forEach(g => {
+        if (!g.show) return;
+
+        array.push(<GridItem key={g.id} {...g} />);
+      });
       setGrids(array);
     });
-
-    //
-    return () => {
-      GRIDS_META_INFO.length = 0;
-    }
   }, []);
 
   const collectAll = () => {
