@@ -178,8 +178,8 @@ const styles = StyleSheet.create({
         height: px2pd(111),
     },
     headerBg_size: {
-        width: px2pd(1170),
-        height: px2pd(161),
+        width: px2pd(1074),
+        height: px2pd(114),
     },
 
     /** ================================ */
@@ -214,6 +214,7 @@ const styles = StyleSheet.create({
     blockBg_3_img: require('../../assets/themes/dark/bg/block_bg3.png'),
     blockBg_4_img: require('../../assets/themes/dark/bg/block_bg4.png'),
     blockBg_5_img: require('../../assets/themes/dark/bg/block_bg5.png'),
+    blockBg_6_img: require('../../assets/themes/dark/bg/block_bg6.png'),
 });
 
 export default styles;

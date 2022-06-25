@@ -214,6 +214,7 @@ const styles = StyleSheet.create({
     blockBg_3_img: require('../../assets/themes/normal/bg/block_bg3.png'),
     blockBg_4_img: require('../../assets/themes/normal/bg/block_bg4.png'),
     blockBg_5_img: require('../../assets/themes/normal/bg/block_bg5.png'),
+    blockBg_6_img: require('../../assets/themes/normal/bg/block_bg6.png'),
 });
 
 export default styles;
