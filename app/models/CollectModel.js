@@ -1,6 +1,6 @@
 
 import { 
-  action,
+  action, errorMessage,
 } from "../constants";
 
 import lo from 'lodash';
@@ -32,6 +32,7 @@ export default {
 
     gridsData: {},
     status: {},
+    bags: {},
   },
 
   effects: {
@@ -152,6 +153,8 @@ export default {
           periodId: 1,
           times: 1,
         };
+        // 储物袋
+        collectState.bags[collectId] = [];
       } else {
         const status = collectState.status[collectId];
         // 时间到，进入下一个刷新周期
@@ -175,16 +178,58 @@ export default {
       const { id, collectId } = payload;
       const collectState = yield select(state => state.CollectModel);
 
+      const config = collectState.__data.collects.find(e => e.id == collectId);
       const found = collectState.gridsData[collectId].find(e => e.id == id);
-      if (found != undefined) {
-        found.show = false;
+      if (found == undefined || config == undefined) return;
+
+      const foundItem = config.items.find(e => e.id == found.itemId);
+      if (foundItem == undefined) {
+        errorMessage(`收集系统配置异常！collectId=${collectId}，缺失(itemId=${found.itemId})配置`);
+        return;
       }
+
+      found.show = false;
+      const props = foundItem.props;
+      const bag = collectState.bags[collectId];
+
+      props.forEach(e => {
+        const { propId, num } = e;
+        const exists = bag.find(b => b.propId == propId);
+        if (exists != undefined) {
+          exists.num += num;
+        } else {
+          bag.push({ propId, num });
+        }
+      });
     },
 
     *getVisableGrids({payload}, { call, put, select }) {
       const { collectId } = payload;
       const collectState = yield select(state => state.CollectModel);
       return collectState.gridsData[collectId].filter(e => e.show);
+    },
+
+    *getBagItems({payload}, { call, put, select }) {
+      const { collectId } = payload;
+      const collectState = yield select(state => state.CollectModel);
+
+      const bag = collectState.bags[collectId];
+      const list = [];
+
+      for (let k in bag) {
+        const v = bag[k];
+        const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: v.propId }));
+        const item = { ...v, iconId: propConfig.iconId, name: propConfig.name };
+        list.push(item);
+      }
+
+      // 发放道具
+      if (list.length > 0) {
+        yield put.resolve(action('PropsModel/sendPropsBatch')({ props: list }));
+        bag.length = 0;
+      }
+
+      return list;
     },
   },
   
