@@ -106,7 +106,7 @@ class FirstPage extends Component {
             {/* 书城 */}
             <ImageButton {...BTN_STYLE} source={require('../../assets/button/quit_read.png')} selectedSource={require('../../assets/button/quit_read_selected.png')} onPress={() => {
               // RootNavigation.navigate('BookMain');
-              const key = RootView.add(<CollectPage collectId={1} onClose={() => {
+              const key = RootView.add(<CollectPage collectId={'1'} onClose={() => {
                 RootView.remove(key);
               }} />);
             }} />

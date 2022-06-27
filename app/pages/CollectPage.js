@@ -37,6 +37,10 @@ const SCENE_ITEMS = [
   { id: 7, source: require('../../assets/collect/item_7.png') },
 ];
 
+const BACKGROUNDS = [
+  { name: 'collect_default', source: require('../../assets/bg/collect_default.png') },
+];
+
 const EFFECTS = [
   { effectId: 1, columns: 8, rows: 6, framesNum: 48, source: require('../../assets/animations/flower_effect_1.png') },
   { effectId: 2, columns: 6, rows: 5, framesNum: 27, source: require('../../assets/animations/flower_effect_2.png') },
@@ -229,6 +233,8 @@ const CollectPage = (props) => {
     DeviceEventEmitter.emit('___@CollectPage.touchAll');
   }
 
+  const config = props.__data.collects.find(e => lo.isEqual(e.id, props.collectId));
+
   return (
     <View style={styles.viewContainer}>
       <View style={styles.bodyContainer}>
@@ -241,7 +247,7 @@ const CollectPage = (props) => {
             <AntDesign name={'left'} size={30} />
           </TouchableWithoutFeedback>
         </View>
-        <FastImage style={{ width: px2pd(1020), height: px2pd(1320), overflow: 'visible' }} source={require('../../assets/bg/collect_bg.png')}>
+        <FastImage style={{ width: px2pd(1020), height: px2pd(1320), overflow: 'visible' }} source={BACKGROUNDS.find(e => lo.isEqual(e.name, config.background)).source}>
           <View style={styles.mapContainer}>
             {grids}
             <AnimationLayer collectId={props.collectId} />
