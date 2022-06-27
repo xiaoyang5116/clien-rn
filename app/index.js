@@ -70,6 +70,7 @@ const models = [
   require('./models/ExploreModel').default,
   require('./models/CluesModel').default,
   require('./models/SoundModel').default,
+  require('./models/CollectModel').default,
 ];
 
 const defaultDataContext = {
