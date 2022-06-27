@@ -99,12 +99,12 @@ const AnimationLayer = (props) => {
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener('___@CollectPage.touchAll', () => {
-      AppDispath({ type: 'CollectModel/getVisableGrids', cb: (list) => {
+      AppDispath({ type: 'CollectModel/getVisableGrids', payload: { collectId: props.collectId }, cb: (list) => {
         const grids = [...list];
         const timer = setInterval(() => {
           if (grids.length > 0) {
             const item = grids.shift();
-            DeviceEventEmitter.emit('___@CollectPage.hideGrid', { id: item.id });
+            DeviceEventEmitter.emit('___@CollectPage.hideGrid', { ...item });
             DeviceEventEmitter.emit('___@CollectPage.touchOne', { ...item });
           } else {
             clearInterval(timer);
@@ -179,7 +179,7 @@ const GridItem = (props) => {
       }}
       onTouchStart={(e) => {
         if (!props.show) return;
-        DeviceEventEmitter.emit('___@CollectPage.hideGrid', { id: props.id });
+        DeviceEventEmitter.emit('___@CollectPage.hideGrid', { id: props.id, collectId: props.collectId });
 
         setTimeout(() => {
           DeviceEventEmitter.emit('___@CollectPage.touchOne', { ...props });
@@ -219,7 +219,7 @@ const CollectPage = (props) => {
       list.forEach(g => {
         if (!g.show) return;
 
-        array.push(<GridItem key={g.id} {...g} />);
+        array.push(<GridItem key={g.id} {...g} collectId={props.collectId} />);
       });
       setGrids(array);
     });
@@ -244,7 +244,7 @@ const CollectPage = (props) => {
         <FastImage style={{ width: px2pd(1020), height: px2pd(1320), overflow: 'visible' }} source={require('../../assets/bg/collect_bg.png')}>
           <View style={styles.mapContainer}>
             {grids}
-            <AnimationLayer />
+            <AnimationLayer collectId={props.collectId} />
           </View>
         </FastImage>
       </View>

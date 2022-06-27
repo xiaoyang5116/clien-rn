@@ -22,14 +22,16 @@ export default {
   namespace: 'CollectModel',
 
   state: {
-    gridsData: [],
+    gridsData: {},
   },
 
   effects: {
     *reload({ }, { call, put }) {
     },
 
-    *generateGridData({}, { call, put }) {
+    *generateGridData({ payload }, { call, put }) {
+      const { collectId } = payload;
+
       const hitList = [];
       const array = lo.range(maxColumns * maxRows);
     
@@ -91,9 +93,11 @@ export default {
         const left = (cols * px2pd(pxGridWidth)) + leftFixed + randLeft;
 
         grids.push({ 
-          id: id, 
-          top: top,
-          left: left,
+          id,
+          top,
+          left,
+          collectId,
+          //
           show: true,
           itemId: lo.random(1, 7), 
           effectId: lo.random(1, 3),
@@ -106,28 +110,29 @@ export default {
     *getGridData({ payload }, { call, put, select }) {
       const { collectId } = payload;
       const collectState = yield select(state => state.CollectModel);
-      if ((lo.isEmpty(collectState.gridsData))
-        || (collectState.gridsData.find(e => e.show) == undefined)) {
-        const data = yield put.resolve(action('generateGridData')({}));
-        collectState.gridsData.length = 0;
-        collectState.gridsData.push(...data);
+      if ((lo.isEmpty(collectState.gridsData[collectId]))
+        || (collectState.gridsData[collectId].find(e => e.show) == undefined)) {
+        const data = yield put.resolve(action('generateGridData')({ collectId }));
+        collectState.gridsData[collectId] = [];
+        collectState.gridsData[collectId].push(...data);
       }
-      return collectState.gridsData;
+      return collectState.gridsData[collectId];
     },
 
     *hideGrid({payload}, { call, put, select }) {
-      const { id } = payload;
+      const { id, collectId } = payload;
       const collectState = yield select(state => state.CollectModel);
 
-      const found = collectState.gridsData.find(e => e.id == id);
+      const found = collectState.gridsData[collectId].find(e => e.id == id);
       if (found != undefined) {
         found.show = false;
       }
     },
 
     *getVisableGrids({payload}, { call, put, select }) {
+      const { collectId } = payload;
       const collectState = yield select(state => state.CollectModel);
-      return collectState.gridsData.filter(e => e.show);
+      return collectState.gridsData[collectId].filter(e => e.show);
     },
   },
   
