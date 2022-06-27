@@ -23,6 +23,9 @@ const DialogTemple = (props) => {
 
     let currentDialogueLength = currentTextList.length - 1;
 
+    // 场景id
+    const __sceneId = props.viewData.__sceneId
+
     useEffect(() => {
         return () => {
             if (animationEndListener.current !== null) {
@@ -33,9 +36,17 @@ const DialogTemple = (props) => {
 
     const nextParagraph = () => {
         if (currentIndex < currentDialogueLength) {
+            // 判断下一句话是否是数组,是就代表是特效,否就下一句话
             if (Array.isArray(currentTextList[currentIndex + 1])) {
-                const animationList = currentTextList[currentIndex + 1]
-                Animation(animationList)
+                const specialEffects = currentTextList[currentIndex + 1]
+                specialEffects.forEach(item => {
+                    if (typeof item === 'string') {
+                        Animation(item)
+                    }
+                    else {
+                        props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
+                    }
+                });
                 setCurrentIndex(currentIndex + 2);
             }
             else {
@@ -59,13 +70,13 @@ const DialogTemple = (props) => {
         } else {
             if (item.animation !== undefined) {
                 animationEndListener.current = DeviceEventEmitter.addListener(EventKeys.ANIMATION_END, props.onDialogCancel);
-                props.dispatch(action('SceneModel/processActions')({ __sceneId: props.viewData.__sceneId, ...item }));
             }
             else {
                 props.onDialogCancel();
-                props.dispatch(action('SceneModel/processActions')({ __sceneId: props.viewData.__sceneId, ...item }));
             }
         }
+
+        props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
 
         // 发送道具
         if (item.props !== undefined) {
