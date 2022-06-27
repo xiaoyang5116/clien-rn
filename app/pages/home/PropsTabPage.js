@@ -101,7 +101,7 @@ class PropsTabPage extends Component {
     render() {
         const selectedProp = this.props.listData.find(e => e.id == this.state.selectId);
         return (
-            <Panel patternId={2}>
+            // <Panel patternId={2}>
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={styles.propsContainer}>
                     <View style={{ height: 80, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
@@ -143,14 +143,14 @@ class PropsTabPage extends Component {
                             <Text>{selectedProp != undefined ? selectedProp.name : ''}</Text>
                             <Text>{(selectedProp != undefined && selectedProp.desc != undefined) ? selectedProp.desc : ''}</Text>
                         </View>
-                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
+                        <View style={{ width:"100%", flexDirection: 'row', justifyContent: 'space-around' }}>
                             <TextButton title="使用" {...this.props} onPress={() => { this._useProps(); }} />
                             <TextButton title="丢弃" {...this.props} onPress={() => { this._discardProps(); }} />
                         </View>
                     </View>
                 </View>
             </View>
-            </Panel>
+            // </Panel>
         );
     }
 }

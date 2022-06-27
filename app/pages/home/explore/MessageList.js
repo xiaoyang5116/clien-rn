@@ -77,7 +77,8 @@ class MessageList extends PureComponent {
         return (
         <FlatList
             ref={this.refList}
-            style={{ alignSelf: 'stretch', margin: 10, borderColor: '#999', borderWidth: 1, backgroundColor: 'rgba(255,255,255,0.85)' }}
+            style={{ alignSelf: 'stretch', }}
+            // style={{ alignSelf: 'stretch', margin: 10, borderColor: '#999', borderWidth: 1, backgroundColor: 'rgba(255,255,255,0.85)' }}
             data={this.state.messages}
             renderItem={this.renderItem}
             getItemLayout={(_data, index) => (

@@ -30,17 +30,28 @@ const DATA = [
 
 const DirectoryPage = (props) => {
 
-  const gotoDirMap = () => {
-    DeviceEventEmitter.emit(EventKeys.GOTO_DIRECTORY_MAP);
+  const gotoDirMap = (id) => {
+    if (id <= 7) {
+      DeviceEventEmitter.emit(EventKeys.GOTO_DIRECTORY_MAP, id);
+    }
   }
 
   const renderItem = (data) => {
     const { id, title } = data.item;
+    let button = <></>;
+    if (id <= 7) {
+      button = <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/button/dir_button.png')} />;
+    } else {
+      button = <>
+        <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/button/dir_button_disabled.png')} /> 
+        <FastImage style={{ position: 'absolute', right: 25, width: px2pd(48), height: px2pd(64) }} source={require('../../../assets/bg/lock_big.png')} />
+      </>
+    }
     return (
         <View style={{ width: '100%', height: 'auto', justifyContent: 'center', alignItems: 'center', marginBottom: 5 }}>
-          <TouchableWithoutFeedback onPress={gotoDirMap}>
+          <TouchableWithoutFeedback onPress={() => gotoDirMap(id)}>
             <View style={styles.dirItem}>
-              <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/button/dir_button.png')} />
+              {button}
               <Text style={styles.dirItemText}>{title}</Text>
             </View>
           </TouchableWithoutFeedback>
@@ -58,7 +69,7 @@ const DirectoryPage = (props) => {
           </View>
         </View>
         <FlatList 
-          data={DATA}
+          data={props.data}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />
@@ -85,8 +96,8 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    width: px2pd(1070), 
-    height: px2pd(110),
+    width: px2pd(1074), 
+    height: px2pd(114),
     justifyContent: 'center', 
     alignItems: 'center',
   },

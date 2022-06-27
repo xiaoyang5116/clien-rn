@@ -117,6 +117,9 @@ const styles = StyleSheet.create({
     options: {
         fontColor: btnFontColor,
     },
+    options_2: {
+        color: btnFontColor,
+    },
 
     /* 选项按钮宽高 */
     tabBottomImgStyle: {
@@ -126,7 +129,7 @@ const styles = StyleSheet.create({
 
     /* 选项按钮文本 */
     tabBottomLabelStyle: {
-        left: 10, 
+        left: 10,
         top: 10
     },
 
@@ -162,15 +165,56 @@ const styles = StyleSheet.create({
         border: '#c7c7cc',
         notification: '#ff453a',
     },
+
+    /** ================================ */
+    /**            图片大小定义            */
+    /** ================================ */
+    blockBg_2_size: {
+        width: px2pd(450),
+        height: px2pd(299),
+    },
+    blockBg_3_size: {
+        width: px2pd(408),
+        height: px2pd(111),
+    },
+    headerBg_size: {
+        width: px2pd(1074),
+        height: px2pd(114),
+    },
+
     /** ================================ */
     /**            图片资源               */
     /** ================================ */
     profileItemImage: require('../../assets/button/profile_item.2.png'),
     profileItemImageSelected: require('../../assets/button/profile_item_selected.2.png'),
+    profileBg: require('../../assets/themes/dark/bg/setting.png'),
     tabBottomImage: require('../../assets/themes/dark/button/tab_normal.png'),
     optionButtonImage: require("../../assets/themes/dark/button/option_button.png"),
     propSelectedImage: require("../../assets/themes/dark/button/prop_selected.png"),
     townMapButtonImage: require("../../assets/themes/dark/button/town_button.png"),
+    LongTBBorderImage: require("../../assets/themes/dark/button/long_text_button_border.png"),
+    LongTBBgImage: require("../../assets/themes/dark/button/long_text_button_bg.png"),
+    tabBannerBg: require("../../assets/themes/dark/tab/tab_banner_bg.png"),
+    headerBg: require("../../assets/themes/dark/header/settiing_bg.png"),
+
+    // 按钮
+    btnPattern_1_img: require("../../assets/themes/dark/button/btn_pattern1.png"),
+    btnPattern_2_img: require("../../assets/themes/dark/button/btn_pattern2.png"),
+
+    // 对话框border
+    dialogBorder_1_img: require('../../assets/themes/dark/bg/border1.png'),
+    dialogBg_1_img: require('../../assets/themes/dark/bg/dialog_bg1.png'),
+
+    // 通用花纹
+    pattern_1_img: require('../../assets/themes/dark/bg/border1.png'),
+
+    // block
+    blockBg_1_img: require('../../assets/themes/dark/bg/block_bg1.png'),
+    blockBg_2_img: require('../../assets/themes/dark/bg/block_bg2.png'),
+    blockBg_3_img: require('../../assets/themes/dark/bg/block_bg3.png'),
+    blockBg_4_img: require('../../assets/themes/dark/bg/block_bg4.png'),
+    blockBg_5_img: require('../../assets/themes/dark/bg/block_bg5.png'),
+    blockBg_6_img: require('../../assets/themes/dark/bg/block_bg6.png'),
 });
 
 export default styles;

@@ -442,9 +442,16 @@ class NewArticlePage extends Component {
     );
 
     this.listeners.push(
-      DeviceEventEmitter.addListener(EventKeys.GOTO_DIRECTORY_MAP, () => {
+      DeviceEventEmitter.addListener(EventKeys.GOTO_DIRECTORY_MAP, (id) => {
         this.refDirectory.current.close();
         this.refDirMap.current.open();
+      })
+    );
+
+    this.listeners.push(
+      DeviceEventEmitter.addListener(EventKeys.BACK_DIRECTORY, () => {
+        this.refDirectory.current.open();
+        this.refDirMap.current.close();
       })
     );
   }
@@ -512,10 +519,10 @@ class NewArticlePage extends Component {
           {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
         </Drawer>
         <LeftContainer ref={this.refDirectory}>
-          <DirectoryPage />
+          <DirectoryPage data={this.props.dirData} />
         </LeftContainer>
         <RightContainer ref={this.refDirMap}>
-          <DirMapPage />
+          <DirMapPage data={this.props.dirData} />
         </RightContainer>
         {/* <View style={styles.debugContainer} pointerEvents="box-none" >
           <View style={styles.debugView1} pointerEvents="box-none">

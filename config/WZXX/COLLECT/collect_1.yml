@@ -1,0 +1,30 @@
+collects: [
+    {
+      id: 'c1',
+
+      # 背景图片
+      background: 'default',
+
+      # 阶段列表
+      periods: [
+        { itemNum: 10 },
+        { itemNum: 7 },
+        { itemNum: 5 },
+      ], 
+
+      # 道具配置
+      items: [
+        { id: 1, props: [{ propId: 10, num: 1 }] },
+        { id: 2, props: [{ propId: 10, num: 1 }] },
+        { id: 3, props: [{ propId: 10, num: 1 }] },
+      ],
+
+      # 总量控制
+      limits: [
+        { itemId: 10, max: 1000 },
+      ],
+
+      # 刷新周期(单位秒)
+      refresh_period: 3600,
+    },
+  ]
