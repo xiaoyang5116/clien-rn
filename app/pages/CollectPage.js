@@ -32,6 +32,9 @@ const SCENE_ITEMS = [
   { id: 2, source: require('../../assets/collect/item_2.png') },
   { id: 3, source: require('../../assets/collect/item_3.png') },
   { id: 4, source: require('../../assets/collect/item_4.png') },
+  { id: 5, source: require('../../assets/collect/item_5.png') },
+  { id: 6, source: require('../../assets/collect/item_6.png') },
+  { id: 7, source: require('../../assets/collect/item_7.png') },
 ];
 
 const EFFECTS = [
@@ -210,7 +213,7 @@ const CollectPage = (props) => {
   const [grids, setGrids] = React.useState([]);
 
   React.useEffect(() => {
-    props.dispatch(action('CollectModel/getGridData')({}))
+    props.dispatch(action('CollectModel/getGridData')({ collectId: props.collectId }))
     .then(list => {
       const array = [];
       list.forEach(g => {

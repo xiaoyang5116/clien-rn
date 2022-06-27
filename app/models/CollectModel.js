@@ -1,14 +1,10 @@
 
 import { 
   action,
-  LocalCacheKeys,
-  DeviceEventEmitter,
-  EventKeys,
 } from "../constants";
 
 import lo from 'lodash';
 
-import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 import { px2pd } from "../constants/resolution";
 
@@ -99,7 +95,7 @@ export default {
           top: top,
           left: left,
           show: true,
-          itemId: lo.random(1, 4), 
+          itemId: lo.random(1, 7), 
           effectId: lo.random(1, 3),
         });
       });
@@ -107,7 +103,8 @@ export default {
       return grids;
     },
 
-    *getGridData({}, { call, put, select }) {
+    *getGridData({ payload }, { call, put, select }) {
+      const { collectId } = payload;
       const collectState = yield select(state => state.CollectModel);
       if ((lo.isEmpty(collectState.gridsData))
         || (collectState.gridsData.find(e => e.show) == undefined)) {
