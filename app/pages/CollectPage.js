@@ -417,8 +417,8 @@ const CollectPage = (props) => {
           onPress={collectAll}
         />
       </View>
-      <View style={{ width: '100%', zIndex: 2, marginTop: 10, marginRight: 20, justifyContent: 'center', alignItems: 'flex-end' }}>
-        <View style={{ position: 'absolute', top: -50, right: -10, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ width: '100%', zIndex: 2, marginTop: 0, marginRight: 20, justifyContent: 'center', alignItems: 'flex-end' }}>
+        <View style={{ position: 'absolute', top: -35, right: -10, justifyContent: 'center', alignItems: 'center' }}>
           <BagButton {...props} />
         </View>
       </View>
@@ -439,7 +439,7 @@ const styles = StyleSheet.create({
 
   topBarContainer: {
     position: 'absolute',
-    top: -30,
+    top: -32,
     zIndex: 1,
   },
 
