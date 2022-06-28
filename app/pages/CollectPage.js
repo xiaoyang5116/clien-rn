@@ -20,6 +20,7 @@ import {
   Animated, 
   DeviceEventEmitter, 
   Image,
+  ImageBackground,
 } from 'react-native';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -359,7 +360,7 @@ const BagButton = (props) => {
       }}>
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <Animated.Image style={{ width: px2pd(210), height: px2pd(210), transform: [{ scale: scale.current }] }} source={buttonImage} />
-        <Text style={{ color: '#fff' }}>储物袋</Text>
+        <FastImage style={{ position: 'absolute', bottom: -18, right: 10, width: px2pd(232), height: px2pd(88) }} source={require('../../assets/button/collect_bag_button.png')} />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -389,6 +390,7 @@ const CollectPage = (props) => {
 
   return (
     <View style={styles.viewContainer}>
+      <FastImage style={{ position: 'absolute', zIndex: -10, width: px2pd(1080), height: px2pd(1708) }} source={require('../../assets/bg/collect_border_bg.jpg')} />
       <View style={styles.bodyContainer}>
         <View style={styles.topBarContainer}>
           <TouchableWithoutFeedback onPress={() => {
@@ -406,11 +408,17 @@ const CollectPage = (props) => {
           </View>
         </FastImage>
       </View>
-      <View style={{ width: '100%', zIndex: -1, marginTop: 10, justifyContent: 'center', alignItems: 'center' }}>
-        <TextButton title='一键采集' onPress={collectAll} />
+      <View style={{ position: 'absolute', bottom: 50, width: '100%', zIndex: -1, marginTop: 10, justifyContent: 'center', alignItems: 'center' }}>
+        <ImageButton 
+          width={px2pd(624)} 
+          height={px2pd(130)} 
+          source={require('../../assets/button/collect_all_button.png')}
+          selectedSource={require('../../assets/button/collect_all_button.png')}
+          onPress={collectAll}
+        />
       </View>
       <View style={{ width: '100%', zIndex: 2, marginTop: 10, marginRight: 20, justifyContent: 'center', alignItems: 'flex-end' }}>
-        <View style={{ position: 'absolute', top: -90, right: -10, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ position: 'absolute', top: -50, right: -10, justifyContent: 'center', alignItems: 'center' }}>
           <BagButton {...props} />
         </View>
       </View>
@@ -430,7 +438,9 @@ const styles = StyleSheet.create({
   },
 
   topBarContainer: {
-    marginBottom: 5,
+    position: 'absolute',
+    top: -30,
+    zIndex: 1,
   },
 
   mapContainer: {
