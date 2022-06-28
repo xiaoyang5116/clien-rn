@@ -6,6 +6,7 @@ import {
   connect,
   Component,
   ThemeContext,
+  EventKeys,
 } from "../../constants";
 
 import { 
@@ -22,6 +23,7 @@ import FastImage from 'react-native-fast-image';
 import lo from 'lodash';
 import { px2pd } from '../../constants/resolution';
 import SceneMap from '../../components/maps/SceneMap';
+import { DeviceEventEmitter } from 'react-native';
 
 const SCENE_BG = [
   { name: 'default', img: require('../../../assets/scene/bg_default.jpg') },
@@ -73,6 +75,25 @@ const SceneTimeLabel = (props) => {
       <Text style={[themeStyle.datetimeLabel]}>{props.datetimes[0]}</Text>
       <Text style={[themeStyle.datetimeLabel, { textAlign: 'right' }]}>{props.datetimes[1]}</Text>
     </View>
+  );
+}
+
+const SceneMapWrapper = (props) => {
+  const [mapCenterPoint, setMapCenterPoint] = React.useState(lo.isArray(props.mapCenterPoint) ? props.mapCenterPoint : [0,0]);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.SCENE_MAP_MOVE, (point) => {
+      if (lo.isArray(point)) {
+        setMapCenterPoint(point);
+      }
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  return (
+    <SceneMap data={props.mapData} initialCenterPoint={mapCenterPoint} />
   );
 }
 
@@ -181,7 +202,8 @@ class StoryTabPage extends Component {
     return (
       <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 'auto', justifyContent: 'flex-end', alignItems: 'center', zIndex: 10 }} pointerEvents='box-none'>
         <View style={{ marginBottom: 40 }} pointerEvents='box-none'>
-          <SceneMap data={this.props.scene.mapData} initialCenterPoint={lo.isArray(this.props.scene.mapCenterPoint) ? this.props.scene.mapCenterPoint : [0,0]} />
+          {/* <SceneMap data={this.props.scene.mapData} initialCenterPoint={lo.isArray(this.props.scene.mapCenterPoint) ? this.props.scene.mapCenterPoint : [0,0]} /> */}
+          <SceneMapWrapper mapData={this.props.scene.mapData} mapCenterPoint={this.props.scene.mapCenterPoint} />
         </View>
       </View>
     );
