@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ImageBackground } from 'react-native'
+import { ImageBackground, Platform } from 'react-native'
 
 import {
     action,
@@ -9,6 +9,7 @@ import {
     DeviceEventEmitter,
     EventKeys,
     ThemeContext,
+    statusBarHeight
 } from "../../../constants";
 import { px2pd } from '../../../constants/resolution';
 
@@ -194,43 +195,43 @@ class ExploreMapsPage extends Component {
     render() {
         return (
             <FastImage style={{ flex: 1 }} source={this.context.profileBg} >
-                <SafeAreaView style={{ flex: 1 }}>
-                    <View style={{ flex: 1 }}>
-                        {/* <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                {/* <SafeAreaView style={{ flex: 1 }}> */}
+                <View style={{ flex: 1 }}>
+                    {/* <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                             <Text style={{ fontSize: 30, margin: 15 }}>世界探索</Text>
                         </View> */}
 
-                        <Header1 style={{ marginTop: 30, marginLeft: 10, marginRight: 10, marginBottom: 10 }} title={"世界探索"} />
+                    <Header1 style={{ marginTop: (Platform.OS == 'ios' ? statusBarHeight + 10 : 30), marginLeft: 10, marginRight: 10, marginBottom: 10 }} title={"世界探索"} />
 
-                        <View style={{ borderColor: '#999', borderWidth: 1, backgroundColor: '#eee', margin: 10, height: 100 }}>
-                            <ImageBackground style={{ width: "100%", height: "100%" }} source={this.context.blockBg_1_img}>
-                                <Text style={{ fontSize: 14, color: '#111', lineHeight: 28, margin: 8 }}>{this.state.desc}</Text>
-                            </ImageBackground>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <FlatList
-                                style={{ alignSelf: 'stretch', margin: 10 }}
-                                data={this.props.maps}
-                                renderItem={this.renderItem}
-                            />
-                        </View>
-                        <View style={{ flexDirection: 'row', height: 80, justifyContent: 'space-around', alignItems: 'center' }} >
-                            <TextButton {...this.props} title={'返回'} onPress={() => {
-                                this.props.onClose();
-                            }} />
-                            <TextButton {...this.props} title={'开始探索'} onPress={() => {
-                                if (this.state.selectMapId <= 0) {
-                                    Toast.show('请选择探索地图', 'CenterToTop');
-                                } else {
-                                    this.props.onClose();
-                                    this.props.dispatch(action('ExploreModel/start')({ mapId: this.state.selectMapId }));
-                                    DeviceEventEmitter.emit(EventKeys.EXPLORETABPAGE_SHOW, 'ExploreMainPage');
-                                }
-                            }} />
-                            <TextButton {...this.props} title={'调整补给'} disabled={true} />
-                        </View>
+                    <View style={{ borderColor: '#999', borderWidth: 1, backgroundColor: '#eee', margin: 10, height: 100 }}>
+                        <ImageBackground style={{ width: "100%", height: "100%" }} source={this.context.blockBg_1_img}>
+                            <Text style={{ fontSize: 14, color: '#111', lineHeight: 28, margin: 8 }}>{this.state.desc}</Text>
+                        </ImageBackground>
                     </View>
-                </SafeAreaView>
+                    <View style={{ flex: 1 }}>
+                        <FlatList
+                            style={{ alignSelf: 'stretch', margin: 10 }}
+                            data={this.props.maps}
+                            renderItem={this.renderItem}
+                        />
+                    </View>
+                    <View style={{ flexDirection: 'row', height: 80, justifyContent: 'space-around', alignItems: 'center' }} >
+                        <TextButton {...this.props} title={'返回'} onPress={() => {
+                            this.props.onClose();
+                        }} />
+                        <TextButton {...this.props} title={'开始探索'} onPress={() => {
+                            if (this.state.selectMapId <= 0) {
+                                Toast.show('请选择探索地图', 'CenterToTop');
+                            } else {
+                                this.props.onClose();
+                                this.props.dispatch(action('ExploreModel/start')({ mapId: this.state.selectMapId }));
+                                DeviceEventEmitter.emit(EventKeys.EXPLORETABPAGE_SHOW, 'ExploreMainPage');
+                            }
+                        }} />
+                        <TextButton {...this.props} title={'调整补给'} disabled={true} />
+                    </View>
+                </View>
+                {/* </SafeAreaView> */}
             </FastImage>
         );
     }

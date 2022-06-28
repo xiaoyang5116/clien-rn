@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground } from 'react-native'
+import { ImageBackground, Platform } from 'react-native'
 
 import {
     action,
@@ -9,6 +9,7 @@ import {
     DeviceEventEmitter,
     EventKeys,
     ThemeContext,
+    statusBarHeight
 } from "../../../constants";
 
 import {
@@ -266,27 +267,27 @@ class Lottery10Times extends Component {
     render() {
         return (
             <FastImage style={{ flex: 1 }} source={this.context.profileBg}>
-                <SafeAreaView style={{ flex: 1 }}>
-                    <View style={{ flex: 1, justifyContent: 'center' }}>
-                        {/* <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                {/* <SafeAreaView style={{ flex: 1 }}> */}
+                <View style={{ flex: 1, justifyContent: 'center' }}>
+                    {/* <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 24, fontWeight: 'bold' }}>十连抽</Text>
                     </View> */}
-                        <Header1 style={{ marginTop: 30, marginBottom: 10 }} title={"十连抽"} />
+                    <Header1 style={{ marginTop: (Platform.OS == 'ios' ? statusBarHeight + 10 : 30), marginBottom: 10 }} title={"十连抽"} />
 
-                        <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                            <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>白嫖券: {(this.state.propsInfo[0] != undefined) ? this.state.propsInfo[0].num : 0}</Text>
-                            <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>消费券: {(this.state.propsInfo[1] != undefined) ? this.state.propsInfo[1].num : 0}</Text>
-                        </View>
-                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            <Text></Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginBottom: 60 }}>
-                            <ImageButton width={150} height={50} source={require('../../../../assets/button/xunbao1.png')} selectedSource={require('../../../../assets/button/xunbao1_selected.png')} onPress={() => { this.lottery(1); }} />
-                            <ImageButton width={150} height={50} source={require('../../../../assets/button/xunbao10.png')} selectedSource={require('../../../../assets/button/xunbao10_selected.png')} onPress={() => { this.lottery(2); }} />
-                        </View>
-                        <BottomBar {...this.props} />
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
+                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>白嫖券: {(this.state.propsInfo[0] != undefined) ? this.state.propsInfo[0].num : 0}</Text>
+                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>消费券: {(this.state.propsInfo[1] != undefined) ? this.state.propsInfo[1].num : 0}</Text>
                     </View>
-                </SafeAreaView>
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        <Text></Text>
+                    </View>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginBottom: 60 }}>
+                        <ImageButton width={150} height={50} source={require('../../../../assets/button/xunbao1.png')} selectedSource={require('../../../../assets/button/xunbao1_selected.png')} onPress={() => { this.lottery(1); }} />
+                        <ImageButton width={150} height={50} source={require('../../../../assets/button/xunbao10.png')} selectedSource={require('../../../../assets/button/xunbao10_selected.png')} onPress={() => { this.lottery(2); }} />
+                    </View>
+                    <BottomBar {...this.props} />
+                </View>
+                {/* </SafeAreaView> */}
             </FastImage>
         );
     }
