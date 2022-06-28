@@ -36,7 +36,7 @@ const tipBgColor1 = '#d3c2aa';  // 淡米色
 /**             文字颜色              */
 /** ================================ */
 /* 标题 */
-const titleColor1 = '#6a655e';  // 深棕色
+const titleColor1 = '#000';  // 深棕色
 const titleColor2 = '#6a655e';  // 深棕色
 const titleColor3 = '#d86362';  // 淡红色
 
@@ -45,6 +45,8 @@ const contentColor1 = '#f2f2f2';  // 淡灰色
 const contentColor2 = '#868076';  // 淡棕色
 const contentColor3 = '#6a655e';  // 深棕色
 
+// 对话框
+const dialogFontColor = "#000";  // 黑色
 
 
 
@@ -93,6 +95,9 @@ const styles = StyleSheet.create({
     },
     titleColor3: {
         color: titleColor3,
+    },
+    dialogFontColor: {
+        color: dialogFontColor
     },
 
     /* 内容颜色 */
@@ -205,6 +210,9 @@ const styles = StyleSheet.create({
     // 对话框
     dialogBorder_1_img: require('../../assets/themes/blue/bg/border1.png'),
     dialogBg_1_img: require('../../assets/themes/blue/bg/dialog_bg1.png'),
+    dialogBg_2_img: require('../../assets/themes/blue/bg/dialog_bg2.png'),
+    dialogBg_2_header_img: require('../../assets/themes/blue/bg/dialog_bg2_header.png'),
+
 
     // 通用花纹
     pattern_1_img: require('../../assets/themes/blue/bg/border1.png'),

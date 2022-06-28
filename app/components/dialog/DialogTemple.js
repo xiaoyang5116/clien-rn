@@ -34,19 +34,22 @@ const DialogTemple = (props) => {
         }
     }, [])
 
+    const specialEffects = (arr) => {
+        arr.forEach(item => {
+            if (typeof item === 'string') {
+                Animation(item)
+            }
+            else {
+                props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
+            }
+        });
+    }
+
     const nextParagraph = () => {
         if (currentIndex < currentDialogueLength) {
             // 判断下一句话是否是数组,是就代表是特效,否就下一句话
             if (Array.isArray(currentTextList[currentIndex + 1])) {
-                const specialEffects = currentTextList[currentIndex + 1]
-                specialEffects.forEach(item => {
-                    if (typeof item === 'string') {
-                        Animation(item)
-                    }
-                    else {
-                        props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
-                    }
-                });
+                specialEffects(currentTextList[currentIndex + 1])
                 setCurrentIndex(currentIndex + 2);
             }
             else {
@@ -60,7 +63,7 @@ const DialogTemple = (props) => {
         const newDialogue = sections.filter(i => i.key === item.tokey);
 
         if (item.animation !== undefined) {
-            Animation(item.animation)
+            specialEffects(item.animation)
         }
 
         if (newDialogue.length > 0) {
