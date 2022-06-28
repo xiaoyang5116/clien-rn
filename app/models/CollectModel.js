@@ -38,6 +38,7 @@ export default {
   effects: {
     *reload({ }, { call, put, select }) {
       const collectState = yield select(state => state.CollectModel);
+      collectState.bags[0] = [];
 
       collectState.__data.collects.length = 0;
       const booksConfig = yield call(GetBooksDataApi);
@@ -153,8 +154,6 @@ export default {
           periodId: 1,
           times: 1,
         };
-        // 储物袋
-        collectState.bags[collectId] = [];
       } else {
         const status = collectState.status[collectId];
         // 时间到，进入下一个刷新周期
@@ -190,7 +189,7 @@ export default {
 
       found.show = false;
       const props = foundItem.props;
-      const bag = collectState.bags[collectId];
+      const bag = collectState.bags[0];
 
       props.forEach(e => {
         const { propId, num } = e;
@@ -213,7 +212,7 @@ export default {
       const { collectId } = payload;
       const collectState = yield select(state => state.CollectModel);
 
-      const bag = collectState.bags[collectId];
+      const bag = collectState.bags[0];
       const list = [];
 
       for (let k in bag) {

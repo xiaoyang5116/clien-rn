@@ -28,6 +28,7 @@ import { getFixedWidthScale, px2pd } from '../constants/resolution';
 import FastImage from 'react-native-fast-image';
 import SpriteSheet from '../components/SpriteSheet';
 import RootView from '../components/RootView';
+import Toast from '../components/toast';
 
 const pxWidth = 1000; // 像素宽度
 const pxHeight = 1300; // 像素高度
@@ -62,29 +63,43 @@ const EFFECTS = [
   { effectId: 3, columns: 9, rows: 5, framesNum: 44, source: require('../../assets/animations/flower_effect_3.png') },
 ];
 
+const MOV_SPEED = 1000; // 物品飞入速度
+const BAG_POSITION = { x: 300, y: 430 };
+
 const AnimatedTarget = (props) => {
 
   const opacity = React.useRef(new Animated.Value(1)).current;
   const translateXY = React.useRef(new Animated.ValueXY({ x: props.left, y: props.top })).current;
 
+
+  const a = Math.abs(BAG_POSITION.y - props.top);
+  const b = Math.abs(BAG_POSITION.x - props.left);
+  const c = Math.sqrt(a * a + b * b);
+  const t = (c / MOV_SPEED) * 1000;
+
   React.useEffect(() => {
     Animated.parallel([
       Animated.sequence([
         Animated.timing(translateXY, {
-          toValue: { x: 300, y: 430 },
-          duration: 800,
+          toValue: BAG_POSITION,
+          duration: t,
           useNativeDriver: false,
         })
       ]),
       Animated.sequence([
-        Animated.delay(500),
+        Animated.delay(t * 0.6),
         Animated.timing(opacity, {
           toValue: 0, 
-          duration: 200,
+          duration: t * 0.4,
           useNativeDriver: false,
         })
       ]),
-    ]).start();
+    ]).start((r) => {
+      const { finished } = r;
+      if (finished) {
+        DeviceEventEmitter.emit('___@CollectPage.moveCompleted', { ...props });
+      }
+    });
   }, []);
 
   const item = SCENE_ITEMS.find(e => e.id == props.itemId);
@@ -107,7 +122,7 @@ const AnimationLayer = (props) => {
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener('___@CollectPage.touchOne', (e) => {
       setTargets((targets) => {
-        const target = <AnimatedTarget key={uniqueKey.current++} left={e.left} top={e.top} itemId={e.itemId} />;
+        const target = <AnimatedTarget key={uniqueKey.current++} left={e.left} top={e.top} itemId={e.itemId} collectId={props.collectId} />;
         return [...targets, target];
       });
     });
@@ -272,17 +287,18 @@ const BagPage = (props) => {
 const BagButton = (props) => {
   const emptyImage = require('../../assets/button/collect_bag1.png');
   const notEmptyImage = require('../../assets/button/collect_bag2.png');
-  const defaultImage = (lo.isArray(props.bags[props.collectId]) && props.bags[props.collectId].length > 0)
+  const defaultImage = (lo.isArray(props.bags[0]) && props.bags[0].length > 0)
     ? notEmptyImage : emptyImage;
 
   const [buttonImage, setButtonImage] = React.useState(defaultImage);
+  const scale = React.useRef(new Animated.Value(1));
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener('___@CollectPage.touchAll', ({ collectId }) => {
       if (!lo.isEqual(collectId, props.collectId)) return;
       setTimeout(() => {
         setButtonImage(notEmptyImage);
-      }, 800);
+      }, 300);
     });
     return () => {
       listener.remove();
@@ -290,11 +306,25 @@ const BagButton = (props) => {
   }, []);
 
   React.useEffect(() => {
-    const listener = DeviceEventEmitter.addListener('___@CollectPage.touchOne', ({ collectId }) => {
+    const listener = DeviceEventEmitter.addListener('___@CollectPage.moveCompleted', ({ collectId }) => {
       if (!lo.isEqual(collectId, props.collectId)) return;
+      // 更换袋子按钮图片
       setTimeout(() => {
         setButtonImage(notEmptyImage);
-      }, 800);
+      }, 0);
+      // 播放按钮动效
+      Animated.sequence([
+        Animated.timing(scale.current, {
+          toValue: 1.2,
+          duration: 200,
+          useNativeDriver: false,
+        }),
+        Animated.timing(scale.current, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: false,
+        })
+      ]).start();
     });
     return () => {
       listener.remove();
@@ -306,7 +336,7 @@ const BagButton = (props) => {
       if (!lo.isEqual(collectId, props.collectId)) return;
       setTimeout(() => {
         setButtonImage(emptyImage);
-      }, 800);
+      }, 0);
     });
     return () => {
       listener.remove();
@@ -317,14 +347,18 @@ const BagButton = (props) => {
     <TouchableWithoutFeedback onPress={() => {
         props.dispatch(action('CollectModel/getBagItems')({ collectId: props.collectId }))
         .then(list => {
+          if (lo.isEmpty(list)) {
+            Toast.show('储物袋为空');
+            return;
+          }
           const key = RootView.add(<BagPage data={list} onClose={() => {
             RootView.remove(key);
           }} />);
           DeviceEventEmitter.emit('___@CollectPage.getBagItems', { collectId: props.collectId });
         });
       }}>
-      <View>
-        <FastImage style={{ width: px2pd(210), height: px2pd(210) }} source={buttonImage} />
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <Animated.Image style={{ width: px2pd(210), height: px2pd(210), transform: [{ scale: scale.current }] }} source={buttonImage} />
         <Text style={{ color: '#fff' }}>储物袋</Text>
       </View>
     </TouchableWithoutFeedback>

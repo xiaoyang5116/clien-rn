@@ -18,6 +18,7 @@ book: {
     # 收集列表
     collect_list: [
       'collect_1',
+      'collect_2',
     ],
     
   }

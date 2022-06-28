@@ -40,6 +40,8 @@ export class EventKeys {
     static SOUND_BGM_PLAY = 'SOUND_BGM_PLAY';
     // 播放音效
     static SOUND_EFFECT_PLAY = 'SOUND_EFFECT_PLAY';
+    // 移动场景地图坐标
+    static SCENE_MAP_MOVE = 'SCENE_MAP_MOVE';
 
     // 导航路径发生变化
     static NAVIGATION_ROUTE_CHANGED = 'NAVIGATION_ROUTE_CHANGED';

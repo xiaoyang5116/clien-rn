@@ -1,0 +1,33 @@
+collects: [
+  {
+    id: '2',
+
+    # 背景图片
+    background: 'collect_default',
+
+    # 阶段列表
+    periods: [
+      { itemsNum: 16 },
+      { itemsNum: 10 },
+      { itemsNum: 7 },
+    ], 
+
+    # 道具配置
+    items: [
+      { id: 1, props: [{ propId: 20, num: 1 }] },
+      { id: 2, props: [{ propId: 21, num: 1 }] },
+      { id: 3, props: [{ propId: 22, num: 1 }] },
+      { id: 4, props: [{ propId: 23, num: 1 }] },
+      { id: 5, props: [{ propId: 24, num: 1 }] },
+      { id: 6, props: [{ propId: 25, num: 1 }] },
+      { id: 7, props: [{ propId: 26, num: 1 }] },
+    ],
+
+    # 总量控制
+    limits: [
+    ],
+
+    # 刷新周期(单位秒)
+    refresh_period: 10,
+  },
+]

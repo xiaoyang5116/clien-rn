@@ -146,6 +146,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__collect", cmd: 'collect', params: payload.collect });
     }
 
+    // 生成移动场景地图动作
+    if (payload.toMapPoint != undefined && lo.isArray(payload.toMapPoint)) {
+      allActions.push({ id: "__toMapPoint", cmd: 'toMapPoint', params: payload.toMapPoint });
+    }
+
     return allActions;
   }
 }
@@ -211,6 +216,7 @@ const ACTIONS_MAP = [
   { cmd: 'shock',         handler: '__onShockCommand' },
   { cmd: 'sounds',        handler: '__onSoundsCommand' },
   { cmd: 'collect',       handler: '__onCollectCommand' },
+  { cmd: 'toMapPoint',    handler: '__onMapPointCommand' },
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;
@@ -706,6 +712,10 @@ export default {
     *__onCollectCommand({ payload }, { put }) {
       const collectId = payload.params;
       CollectUtils.show(collectId);
+    },
+
+    *__onMapPointCommand({ payload }, { put }) {
+      DeviceEventEmitter.emit(EventKeys.SCENE_MAP_MOVE, payload.params);
     },
 
     *syncData({ }, { select, call }) {
