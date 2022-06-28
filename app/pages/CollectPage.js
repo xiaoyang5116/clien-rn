@@ -12,15 +12,22 @@ import {
 
 import {
   View,
+  Text,
   TouchableWithoutFeedback,
 } from '../constants/native-ui';
 
+import { 
+  Animated, 
+  DeviceEventEmitter, 
+  Image,
+} from 'react-native';
+
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { TextButton } from '../constants/custom-ui';
+import { ImageButton, TextButton } from '../constants/custom-ui';
 import { getFixedWidthScale, px2pd } from '../constants/resolution';
 import FastImage from 'react-native-fast-image';
 import SpriteSheet from '../components/SpriteSheet';
-import { Animated, DeviceEventEmitter } from 'react-native';
+import RootView from '../components/RootView';
 
 const pxWidth = 1000; // 像素宽度
 const pxHeight = 1300; // 像素高度
@@ -35,6 +42,18 @@ const SCENE_ITEMS = [
   { id: 5, source: require('../../assets/collect/item_5.png') },
   { id: 6, source: require('../../assets/collect/item_6.png') },
   { id: 7, source: require('../../assets/collect/item_7.png') },
+];
+
+const PROPS_ICON = [
+  { iconId: 1, img: require('../../assets/props/prop_1.png') },
+  { iconId: 2, img: require('../../assets/props/prop_2.png') },
+  { iconId: 3, img: require('../../assets/props/prop_3.png') },
+  { iconId: 4, img: require('../../assets/props/prop_4.png') },
+  { iconId: 5, img: require('../../assets/props/prop_5.png') },
+];
+
+const BACKGROUNDS = [
+  { name: 'collect_default', source: require('../../assets/bg/collect_default.png') },
 ];
 
 const EFFECTS = [
@@ -52,7 +71,7 @@ const AnimatedTarget = (props) => {
     Animated.parallel([
       Animated.sequence([
         Animated.timing(translateXY, {
-          toValue: { x: 300, y: 500 },
+          toValue: { x: 300, y: 430 },
           duration: 800,
           useNativeDriver: false,
         })
@@ -99,12 +118,12 @@ const AnimationLayer = (props) => {
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener('___@CollectPage.touchAll', () => {
-      AppDispath({ type: 'CollectModel/getVisableGrids', cb: (list) => {
+      AppDispath({ type: 'CollectModel/getVisableGrids', payload: { collectId: props.collectId }, cb: (list) => {
         const grids = [...list];
         const timer = setInterval(() => {
           if (grids.length > 0) {
             const item = grids.shift();
-            DeviceEventEmitter.emit('___@CollectPage.hideGrid', { id: item.id });
+            DeviceEventEmitter.emit('___@CollectPage.hideGrid', { ...item });
             DeviceEventEmitter.emit('___@CollectPage.touchOne', { ...item });
           } else {
             clearInterval(timer);
@@ -179,7 +198,7 @@ const GridItem = (props) => {
       }}
       onTouchStart={(e) => {
         if (!props.show) return;
-        DeviceEventEmitter.emit('___@CollectPage.hideGrid', { id: props.id });
+        DeviceEventEmitter.emit('___@CollectPage.hideGrid', { id: props.id, collectId: props.collectId });
 
         setTimeout(() => {
           DeviceEventEmitter.emit('___@CollectPage.touchOne', { ...props });
@@ -208,8 +227,112 @@ const GridItem = (props) => {
   );
 }
 
-const CollectPage = (props) => {
+// 袋子物品
+const BagItem = (props) => {
+  const icon = PROPS_ICON.find(e => e.iconId == props.iconId);
+  return (
+  <View style={{ flexDirection: 'column', margin: 10, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ width: 64, height: 64 }}>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#333', borderRadius: 10 }}>
+              <Image source={icon.img} />
+              <Text style={{ position: 'absolute', top: 46, right: 5, color: '#fff' }}>{props.num}</Text>
+          </View>
+      </View>
+      <Text style={{ color: '#000', marginTop: 3 }}>{props.name}</Text>
+  </View>
+  );
+}
 
+// 储物袋页面
+const BagPage = (props) => {
+  const childs = [];
+  let key = 0;
+  props.data.forEach(e => {
+      childs.push(<BagItem key={key++} propId={e.propId} iconId={e.iconId} num={e.num} name={e.name} />);
+  });
+  return (
+      <TouchableWithoutFeedback onPress={() => { props.onClose() }}>
+          <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.65)' }}>
+              <View>
+                  <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>获得奖励</Text>
+              </View>
+              <View style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#a6c2cb' }}>
+                  <FastImage style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: 2 }} resizeMode='stretch' source={require('../../assets/bg/dialog_line.png')} />
+                  {childs}
+                  <FastImage style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: 2 }} resizeMode='stretch' source={require('../../assets/bg/dialog_line.png')} />
+              </View>
+              <View>
+                  <Text style={{ marginTop: 20, color: '#fff', fontSize: 20 }}>点击任意区域关闭</Text>
+              </View>
+          </View>
+      </TouchableWithoutFeedback>
+  );
+}
+
+const BagButton = (props) => {
+  const emptyImage = require('../../assets/button/collect_bag1.png');
+  const notEmptyImage = require('../../assets/button/collect_bag2.png');
+  const defaultImage = (lo.isArray(props.bags[props.collectId]) && props.bags[props.collectId].length > 0)
+    ? notEmptyImage : emptyImage;
+
+  const [buttonImage, setButtonImage] = React.useState(defaultImage);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener('___@CollectPage.touchAll', ({ collectId }) => {
+      if (!lo.isEqual(collectId, props.collectId)) return;
+      setTimeout(() => {
+        setButtonImage(notEmptyImage);
+      }, 800);
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener('___@CollectPage.touchOne', ({ collectId }) => {
+      if (!lo.isEqual(collectId, props.collectId)) return;
+      setTimeout(() => {
+        setButtonImage(notEmptyImage);
+      }, 800);
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener('___@CollectPage.getBagItems', ({ collectId }) => {
+      if (!lo.isEqual(collectId, props.collectId)) return;
+      setTimeout(() => {
+        setButtonImage(emptyImage);
+      }, 800);
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  return (
+    <TouchableWithoutFeedback onPress={() => {
+        props.dispatch(action('CollectModel/getBagItems')({ collectId: props.collectId }))
+        .then(list => {
+          const key = RootView.add(<BagPage data={list} onClose={() => {
+            RootView.remove(key);
+          }} />);
+          DeviceEventEmitter.emit('___@CollectPage.getBagItems', { collectId: props.collectId });
+        });
+      }}>
+      <View>
+        <FastImage style={{ width: px2pd(210), height: px2pd(210) }} source={buttonImage} />
+        <Text style={{ color: '#fff' }}>储物袋</Text>
+      </View>
+    </TouchableWithoutFeedback>
+  );
+}
+
+const CollectPage = (props) => {
+  
   const [grids, setGrids] = React.useState([]);
 
   React.useEffect(() => {
@@ -218,41 +341,44 @@ const CollectPage = (props) => {
       const array = [];
       list.forEach(g => {
         if (!g.show) return;
-
-        array.push(<GridItem key={g.id} {...g} />);
+        array.push(<GridItem key={g.id} {...g} collectId={props.collectId} />);
       });
       setGrids(array);
     });
   }, []);
 
   const collectAll = () => {
-    DeviceEventEmitter.emit('___@CollectPage.touchAll');
+    DeviceEventEmitter.emit('___@CollectPage.touchAll', { collectId: props.collectId });
   }
+
+  const config = props.__data.collects.find(e => lo.isEqual(e.id, props.collectId));
 
   return (
     <View style={styles.viewContainer}>
       <View style={styles.bodyContainer}>
         <View style={styles.topBarContainer}>
           <TouchableWithoutFeedback onPress={() => {
-            if (props.onClose != undefined) {
-              props.onClose();
-            }
-          }}>
+              if (props.onClose != undefined) {
+                props.onClose();
+              }
+            }}>
             <AntDesign name={'left'} size={30} />
           </TouchableWithoutFeedback>
         </View>
-        <FastImage style={{ width: px2pd(1020), height: px2pd(1320), overflow: 'visible' }} source={require('../../assets/bg/collect_bg.png')}>
+        <FastImage style={{ width: px2pd(1020), height: px2pd(1320), overflow: 'visible' }} source={BACKGROUNDS.find(e => lo.isEqual(e.name, config.background)).source}>
           <View style={styles.mapContainer}>
             {grids}
-            <AnimationLayer />
+            <AnimationLayer collectId={props.collectId} />
           </View>
         </FastImage>
       </View>
       <View style={{ width: '100%', zIndex: -1, marginTop: 10, justifyContent: 'center', alignItems: 'center' }}>
         <TextButton title='一键采集' onPress={collectAll} />
       </View>
-      <View style={{ width: '100%', zIndex: -1, marginTop: 10, marginRight: 20, justifyContent: 'center', alignItems: 'flex-end' }}>
-        <TextButton title='储物袋' />
+      <View style={{ width: '100%', zIndex: 2, marginTop: 10, marginRight: 20, justifyContent: 'center', alignItems: 'flex-end' }}>
+        <View style={{ position: 'absolute', top: -90, right: -10, justifyContent: 'center', alignItems: 'center' }}>
+          <BagButton {...props} />
+        </View>
       </View>
     </View>
   );
