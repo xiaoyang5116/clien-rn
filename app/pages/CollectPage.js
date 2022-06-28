@@ -287,7 +287,7 @@ const BagPage = (props) => {
 const BagButton = (props) => {
   const emptyImage = require('../../assets/button/collect_bag1.png');
   const notEmptyImage = require('../../assets/button/collect_bag2.png');
-  const defaultImage = (lo.isArray(props.bags[props.collectId]) && props.bags[props.collectId].length > 0)
+  const defaultImage = (lo.isArray(props.bags[0]) && props.bags[0].length > 0)
     ? notEmptyImage : emptyImage;
 
   const [buttonImage, setButtonImage] = React.useState(defaultImage);
