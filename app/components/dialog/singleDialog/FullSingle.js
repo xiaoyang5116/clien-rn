@@ -9,7 +9,7 @@ import {
 import React, { useState } from 'react';
 import { Panel } from '../../panel';
 import { ThemeContext } from '../../../constants';
-import { TextButton } from '../../../constants/custom-ui';
+import { TextButton, LongTextButton } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 
 const FullSingle = props => {
@@ -61,7 +61,13 @@ const FullSingle = props => {
         if (currentIndex >= currentDialogueLength) {
             return (
                 <View style={{ marginTop: 8, height: 40, justifyContent: 'center' }}>
-                    <TextButton
+                    {/* <TextButton
+                        title={item.title}
+                        onPress={() => {
+                            nextDialogue(item);
+                        }}
+                    /> */}
+                    <LongTextButton
                         title={item.title}
                         onPress={() => {
                             nextDialogue(item);

@@ -13,21 +13,6 @@ import SingleDialog from './singleDialog';
 import GameOverDialog from './gameOverDialog';
 import MultiplayerDialog from './MultiplayerDialog';
 
-// 数据格式
-// {
-//   style: 6, title: '神秘阵盘', dialogType: 'HalfScreen', textAnimationType: 'TextSingle',
-//     sections: [
-//       {
-//           key: 'p1',
-//           content: ['你迅速跑过去，地面有些东西。', ['盖章过关'], ['边缘闪烁绿'], '获得几颗石头珠子，看起来能卖不少钱。'],
-//           btn: [{ title: '去拿菜刀', tokey: "p2", toScene: 'M01_S01_luoyuezhen_pomiao' }, { title: '去拿画轴', tokey: "p3", animation: ['边缘闪烁绿'] }]
-//       },
-//       { key: 'p2', content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。', '动不了', '动不了', '动不了'], 
-//         btn: [{ title: '退出', tokey: "next" }] },
-//       { key: 'p3', content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。', '动不了', '动不了', '动不了'],
-//         btn: [{ title: '退出', tokey: "next" }] },
-//     ]
-// }
 
 const DialogTemple = (props) => {
     const { sections } = props.viewData;
@@ -38,6 +23,9 @@ const DialogTemple = (props) => {
 
     let currentDialogueLength = currentTextList.length - 1;
 
+    // 场景id
+    const __sceneId = props.viewData.__sceneId
+
     useEffect(() => {
         return () => {
             if (animationEndListener.current !== null) {
@@ -46,11 +34,22 @@ const DialogTemple = (props) => {
         }
     }, [])
 
+    const specialEffects = (arr) => {
+        arr.forEach(item => {
+            if (typeof item === 'string') {
+                Animation(item)
+            }
+            else {
+                props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
+            }
+        });
+    }
+
     const nextParagraph = () => {
         if (currentIndex < currentDialogueLength) {
+            // 判断下一句话是否是数组,是就代表是特效,否就下一句话
             if (Array.isArray(currentTextList[currentIndex + 1])) {
-                const animationList = currentTextList[currentIndex + 1]
-                Animation(animationList)
+                specialEffects(currentTextList[currentIndex + 1])
                 setCurrentIndex(currentIndex + 2);
             }
             else {
@@ -64,7 +63,7 @@ const DialogTemple = (props) => {
         const newDialogue = sections.filter(i => i.key === item.tokey);
 
         if (item.animation !== undefined) {
-            Animation(item.animation)
+            specialEffects(item.animation)
         }
 
         if (newDialogue.length > 0) {
@@ -74,13 +73,13 @@ const DialogTemple = (props) => {
         } else {
             if (item.animation !== undefined) {
                 animationEndListener.current = DeviceEventEmitter.addListener(EventKeys.ANIMATION_END, props.onDialogCancel);
-                props.dispatch(action('SceneModel/processActions')({ __sceneId: props.viewData.__sceneId, ...item }));
             }
             else {
                 props.onDialogCancel();
-                props.dispatch(action('SceneModel/processActions')({ __sceneId: props.viewData.__sceneId, ...item }));
             }
         }
+
+        props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
 
         // 发送道具
         if (item.props !== undefined) {
@@ -135,7 +134,17 @@ const DialogTemple = (props) => {
                 />
             )
         case 7:
-            return <GameOverDialog {...props} />
+            return (
+                <GameOverDialog
+                    nextParagraph={nextParagraph}
+                    nextDialogue={nextDialogue}
+                    currentTextList={currentTextList}
+                    showBtnList={showBtnList}
+                    currentIndex={currentIndex}
+                    currentDialogueLength={currentDialogueLength}
+                    {...props.viewData}
+                />
+            )
         case 8:
             return <MultiplayerDialog {...props} />
         // default:

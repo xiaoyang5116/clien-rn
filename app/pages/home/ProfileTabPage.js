@@ -10,9 +10,10 @@ import {
     View,
     Text,
     FlatList,
+    Image
 } from '../../constants/native-ui';
 
-import { Panel } from '../../components/panel';
+import { Panel, ImagePanel } from '../../components/panel';
 import { ImageButton } from '../../constants/custom-ui';
 import * as RootNavigation from '../../utils/RootNavigation';
 
@@ -57,7 +58,7 @@ class ProfileTabPage extends React.Component {
                     onPress={() => { if (item.cb != undefined) item.cb(); }}
                 />
                 <View style={{ position: 'absolute', left: 0, top: 30, width: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents='none' >
-                    <Text style={{ color: this.context.button.fontColor, fontSize: 20 }}>{item.title}</Text>
+                    <Text style={[this.context.options_2, { fontSize: 20 }]}>{item.title}</Text>
                 </View>
             </View>
         );
@@ -65,16 +66,14 @@ class ProfileTabPage extends React.Component {
 
     render() {
         return (
-            <Panel>
-                <View style={{ flex: 1, marginTop: 10 }}>
-                    <FlatList
-                        key={this.flatListKey++}
-                        data={this.data}
-                        renderItem={this._renderItem}
-                        keyExtractor={item => item.id}
-                    />
-                </View>
-            </Panel>
+            <View style={{ flex: 1, marginTop: 10, }}>
+                <FlatList
+                    key={this.flatListKey++}
+                    data={this.data}
+                    renderItem={this._renderItem}
+                    keyExtractor={item => item.id}
+                />
+            </View>
         );
     }
 }

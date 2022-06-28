@@ -1,22 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableWithoutFeedback, FlatList, DeviceEventEmitter } from 'react-native';
-
-import {
-    AppDispath,
-    ThemeContext,
-    action,
-    connect,
-    EventKeys
-} from '../../../constants';
-
-import { TextButton } from '../../../constants/custom-ui';
-import TextAnimation from '../../textAnimation';
-import Animation from '../../animation';
+import React from 'react';
 
 import FullSingle from './FullSingle';
 import HalfSingle from './HalfSingle';
-import OptionsPage from '../../../pages/OptionsPage';
-import RootView from '../../RootView';
 
 
 const SingleDialog = props => {
