@@ -212,6 +212,7 @@ const styles = StyleSheet.create({
     dialogBg_1_img: require('../../assets/themes/blue/bg/dialog_bg1.png'),
     dialogBg_2_img: require('../../assets/themes/blue/bg/dialog_bg2.png'),
     dialogBg_2_header_img: require('../../assets/themes/blue/bg/dialog_bg2_header.png'),
+    dialogBg_2_footer_img: require('../../assets/themes/blue/bg/dialog_bg2_footer.png'),
 
 
     // 通用花纹
