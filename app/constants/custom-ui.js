@@ -1,7 +1,6 @@
 import React from 'react';
 import { ThemeContext } from '.';
 
-import { Header2 } from '../components/header'
 import { CButton } from '../components/CButton';
 
 // 按钮组件
@@ -45,9 +44,4 @@ export const ImageButton = (props) => {
     return (
         <CButton {...props} onPress={props.onPress} />
     );
-}
-
-/** 标题 header */
-export const TitleHeader = (props) => {
-    return <Header2 {...props} />;
 }

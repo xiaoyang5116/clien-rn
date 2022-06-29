@@ -12,8 +12,8 @@ const defaultBgColor = "#e0e9ed";
 /**
 * 通用按钮
 */
-const btnFontColor = '#424242';
-const btnBackgroundColor = '#eee';
+const btnFontColor = defaultFontColor;
+const btnBackgroundColor = defaultBgColor;
 
 
 /** ================================ */
