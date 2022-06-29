@@ -58,10 +58,11 @@ export default {
     },
 
     *generateGridData({ payload }, { call, put }) {
-      const { collectId, itemsNum } = payload;
+      const { collectId, itemsNum, config } = payload;
 
       const hitList = [];
       const array = lo.range(maxColumns * maxRows);
+      const itemIds = config.items.map(e => e.id);
     
       for (let i = 0; i < itemsNum; i++) {
         while (true) {
@@ -119,6 +120,8 @@ export default {
 
         const top = (rows * px2pd(pxGridHeight)) + topFixed + randTop;
         const left = (cols * px2pd(pxGridWidth)) + leftFixed + randLeft;
+        const randItemId = lo.shuffle(itemIds)[0];
+        const randItem = config.items.find(e => e.id == randItemId);
 
         grids.push({ 
           id,
@@ -127,7 +130,8 @@ export default {
           collectId,
           //
           show: true,
-          itemId: lo.random(1, 7), 
+          itemId: randItemId, 
+          time: lo.isNumber(randItem.time) ? randItem.time : 0,
           effectId: lo.random(1, 3),
         });
       });
@@ -145,7 +149,7 @@ export default {
       if (lo.isEmpty(collectState.status[collectId])) {
         const itemsNum = config.periods[0].itemsNum;
         //
-        const data = yield put.resolve(action('generateGridData')({ collectId, itemsNum }));
+        const data = yield put.resolve(action('generateGridData')({ collectId, itemsNum, config }));
         collectState.gridsData[collectId] = [];
         collectState.gridsData[collectId].push(...data);
         // 初始化
@@ -161,7 +165,7 @@ export default {
           const nextPeriodId = status.periodId >= config.periods.length ? 1 : (status.periodId + 1);
           const itemsNum = config.periods[nextPeriodId - 1].itemsNum;
           //
-          const data = yield put.resolve(action('generateGridData')({ collectId, itemsNum }));
+          const data = yield put.resolve(action('generateGridData')({ collectId, itemsNum, config }));
           collectState.gridsData[collectId] = [];
           collectState.gridsData[collectId].push(...data);
           //

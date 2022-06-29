@@ -20,11 +20,10 @@ import {
   Animated, 
   DeviceEventEmitter, 
   Image,
-  ImageBackground,
 } from 'react-native';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { ImageButton, TextButton } from '../constants/custom-ui';
+import { ImageButton } from '../constants/custom-ui';
 import { getFixedWidthScale, px2pd } from '../constants/resolution';
 import FastImage from 'react-native-fast-image';
 import SpriteSheet from '../components/SpriteSheet';
@@ -66,6 +65,7 @@ const EFFECTS = [
 
 const MOV_SPEED = 1000; // 物品飞入速度
 const BAG_POSITION = { x: 300, y: 430 };
+const PROGRESS_WIDTH = 60;
 
 const AnimatedTarget = (props) => {
 
@@ -122,6 +122,10 @@ const AnimationLayer = (props) => {
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener('___@CollectPage.touchOne', (e) => {
+      // 隐藏格子
+      DeviceEventEmitter.emit('___@CollectPage.hideGrid', { ...e });
+
+      // 显示动画对象
       setTargets((targets) => {
         const target = <AnimatedTarget key={uniqueKey.current++} left={e.left} top={e.top} itemId={e.itemId} collectId={props.collectId} />;
         return [...targets, target];
@@ -139,8 +143,11 @@ const AnimationLayer = (props) => {
         const timer = setInterval(() => {
           if (grids.length > 0) {
             const item = grids.shift();
-            DeviceEventEmitter.emit('___@CollectPage.hideGrid', { ...item });
-            DeviceEventEmitter.emit('___@CollectPage.touchOne', { ...item });
+            if (item.time <= 0) {
+              DeviceEventEmitter.emit('___@CollectPage.touchOne', { ...item });
+            } else {
+              DeviceEventEmitter.emit('___@CollectPage.showProgress', { ...item });
+            }
           } else {
             clearInterval(timer);
           }
@@ -159,11 +166,49 @@ const AnimationLayer = (props) => {
   )
 }
 
+const CollectProgress = (props) => {
+  const [seconds, setSeconds] = React.useState(props.time);
+
+  const timeOutHandler = () => {
+    DeviceEventEmitter.emit('___@CollectPage.touchOne', { ...props });
+  }
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setSeconds((sec) => {
+        if (sec <= 0) {
+          clearInterval(timer);
+          setTimeout(() => {
+            timeOutHandler();
+          }, 0);
+          return 0;
+        }
+        return sec - 1;
+      });
+    }, 1000);
+  }, []);
+
+  const percent = seconds / props.time;
+  const value = percent * PROGRESS_WIDTH;
+  const translateX = -(PROGRESS_WIDTH - value);
+  
+
+  return (
+    <View style={[styles.progressView]}>
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <View style={[styles.progressBar, { transform: [{ translateX: translateX }] }]} />
+        <Text>{(Math.floor(percent * 100))}%</Text>
+      </View>
+    </View>
+  );
+}
+
 const GridItem = (props) => {
 
   const sheet = React.createRef(null);
   const opacity = React.useRef(new Animated.Value(1));
   const [pointerEvents, setPointerEvents] = React.useState('auto');
+  const [progress, setProgress] = React.useState(null);
 
   const item = SCENE_ITEMS.find(e => e.id == props.itemId);
   const effect = EFFECTS.find(e => e.effectId === props.effectId);
@@ -201,6 +246,23 @@ const GridItem = (props) => {
     }
   }, []);
 
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener('___@CollectPage.showProgress', (e) => {
+      const { id } = e;
+      if ((id == props.id) && props.show) {
+        setProgress((p) => {
+          if (p == null)
+            return <CollectProgress { ...props } />;
+          else
+            return p;
+        });
+      }
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
   return (
     <Animated.View 
       style={{ 
@@ -208,17 +270,17 @@ const GridItem = (props) => {
         width: px2pd(pxGridWidth), height: px2pd(pxGridHeight), 
         top: props.top, left: props.left,
         opacity: opacity.current,
-        // backgroundColor: '#669900',
-        // borderWidth: 1,
-        // borderColor: '#333'
       }}
       onTouchStart={(e) => {
-        if (!props.show) return;
-        DeviceEventEmitter.emit('___@CollectPage.hideGrid', { id: props.id, collectId: props.collectId });
-
-        setTimeout(() => {
+        if (!props.show) 
+          return;
+        if (props.time <= 0) {
+          // 不需要倒计时，直接领取
           DeviceEventEmitter.emit('___@CollectPage.touchOne', { ...props });
-        }, 300);
+        } else {
+          // 显示时间进度条
+          setProgress(<CollectProgress { ...props } />);
+        }
       }} 
       pointerEvents={pointerEvents}
     >
@@ -239,6 +301,7 @@ const GridItem = (props) => {
           walk: lo.range(effect.framesNum),
         }}
       />
+      {progress}
     </Animated.View>
   );
 }
@@ -446,9 +509,27 @@ const styles = StyleSheet.create({
   mapContainer: {
     width: px2pd(pxWidth),
     height: px2pd(pxHeight),
-    // borderWidth: 1,
-    // borderColor: '#333',
-    // backgroundColor: '#666',
+  },
+
+  progressView: {
+    position: 'absolute', 
+    left: 0, 
+    bottom: -12, 
+    width: PROGRESS_WIDTH, 
+    height: 18, 
+    borderWidth: 1, 
+    borderColor: '#fff', 
+    borderRadius: 5, 
+    backgroundColor: '#999',
+    overflow: 'hidden',
+  },
+
+  progressBar: {
+    position: 'absolute', 
+    left: 0, 
+    width: PROGRESS_WIDTH, 
+    height: 18, 
+    backgroundColor: '#eee',
   },
 });
 
