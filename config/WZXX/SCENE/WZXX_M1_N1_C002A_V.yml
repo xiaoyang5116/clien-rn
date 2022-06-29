@@ -84,14 +84,17 @@ scenes: [
            #选项对话
           { id: 'C002A_fenzhiA',style: 6, title: '直接回家，越快越好', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'P1', content: ['事不宜迟，你决定先回家找线索！','家中空无一人，母亲早已睡下。','静谧的家中并无任何异样，也就是说那群人并没有找到这里来。','你可以安心找线索。','但线索从何而来呢？你忽然回想到原主的家中，一直有一块神秘莫测之地。','那便是——原身父亲李曜的书房。','那书房内，有着各式各样的古籍，虽看上去平平无奇，但母亲却从未让你翻阅过。甚至都很少让你踏足书房。','你会选择以下哪个行动————',],
+          { key: 'P1', content: ['事不宜迟，你决定先回家找线索！','但线索从何而来呢？你忽然回想到原主的家中，一直有一块神秘莫测之地。','那便是——原身父亲李曜的书房。','那书房内，有着各式各样的古籍，虽看上去平平无奇，但母亲却从未让你翻阅过。甚至都很少让你踏足书房。','你会选择以下哪个行动————',],
           btn: [{title: '好奇心害死猫，我不去书房',tokey: "P1A"},{title: '我去！说不定真有秘籍！',tokey: "P2"},]},
 
           { key: 'P2', content: ['如今，仇家都寻到脸上来了','此时再不弄明白，更待何时？','推开书房的们，你似乎听见树底下趴着的那只狸猫叫唤了两声。','推门，映入眼帘的便是一樽满是落灰的实木大书橱，和寻常家具看上去别无两样，无非是脏了些。','你小心翼翼的关上门，挽起袖子，便开始翻找。','而你刚动，便不小心碰落了三本书。','而也就在这时！你听间院子外传来一阵急促的脚步声……',],
           btn: [{title: '查看掉落的三本书',tokey: "P2B",},]},
 
           { key: 'P1A', content: ['不听老人言吃亏在眼前！你觉得母亲不让你踏足，定是有她的用意的','再加上现在出门，随时都有被那群杀手抓住的可能性','所以你决定，今天晚上，打死都不出门！','一个时辰过去——','两个时辰过去——','你感觉腹间暖意喷涌……','肚子越来越不舒服了',['边缘闪烁红'],],
-          btn: [{title: '无论如何都憋不住了',dialogs: ['gameover01'],},{title: '返回上一个选项',tokey: "P1",}]},
+          btn: [{title: '无论如何都憋不住了',tokey: "P1B",}]},
+
+          { key: 'P1B', content: ['你跑出房间，准备去茅房上厕所','刚出房门，就听见一阵悉悉索索的声音','好像就是杀手，声音还就是从茅房那边传来的','','两个时辰过去——','你感觉腹间暖意喷涌……','肚子越来越不舒服了',['边缘闪烁红'],],
+          btn: [{title: '无论如何都憋不住了',dialogs: ['gameover01'],}]},
          
           { key: 'P2B', content: ['掉落的三本书','你只有详细查看一本的时间','你选择查看哪一本？'],
           btn: [{title: '《中华笑话大全》',tokey: "P3"},{title: '《思无邪》', tokey: "P4"},{title: '《凌云》', tokey: "P2C"},]},
@@ -121,10 +124,16 @@ scenes: [
           btn: [{title: '这题我会，‘地下十分泥泞，我来一个滑铲’',tokey: "P7A"},{title: '简单，‘九霄狂涛骇浪，你当缩头乌龟’',tokey: "P7B"},{title: '出其不意，‘这老虎不会是母老虎吧！’',tokey: "P7C"}]},
 
           { key: 'P6A', content: ['你挣扎，一面还捏着嗓子，假装骄凄，“大哥，你放过我吧，小女子不懂事误闯了贵地，我马上走。”','但，挣扎下，被山匪发现了你的真实身份。','“什么？你竟然是男人！”',['震屏1'],],
-          btn: [{title: '糟了',dialogs: ['gameover04']},]},
+          btn: [{title: '害，还是藏不住',tokey: "P6A1"},]},
+
+           { key: 'P6A1', content: ['山匪瞪圆了眼睛，惊又怒，“你这变态，竟然假扮女人，我今天就要为民除害。”',['震屏1'],'“喂，相比之下，你才是害吧！”','那大汉不由分说，对你拳脚相加，','但看似危险又可怕的动作，实际不过是花拳绣腿','你三下五除二就把大汉打晕在地','然后正义的教他做人','随后，你嫌弃的看了一眼身上的衣服，看了这招行不通，于是脱下，换上自己原来的衣服',],
+          btn: [{title: '算了，直接回家',dialogs: ['C002A_fenzhiA'],},]},
 
           { key: 'P6B', content: ['“大哥！”你气定神闲，怒吼一声。','“我是个男人！”你昂首挺胸，势必做出一点男子气概来。','山匪震惊，上下打量他一眼，略带迟疑的开口，“你，是个男的？”','你点头',],
           btn: [{title: '忽然……',dialogs: ['gameover05']},]},
+
+          { key: 'P6B2', content: ['大汉：“你是个男的为什么要打扮成这样？！”，大汉：“这么变态？！”','“我，更喜欢了！”',['边缘闪烁红'],'山匪朝你扑过来……','你屈辱的死去',],
+          btn: [{title: '算了，直接回家',dialogs: ['C002A_fenzhiA'],},]},
 
           { key: 'P7A', content: ['地下十分泥泞，我来一个滑铲','“什么东西？！你胆敢冒充我天魔宗的人，是何居心！”天魔宗修士用剑使出了一套你从未见过的阵法',['边缘闪烁红'],],
           btn: [{title: '中阵了！！！',dialogs: ['gameover06']},]},
@@ -277,7 +286,7 @@ scenes: [
            textAnimationType: 'TextFadeIn', 
            sections: [
          { key: 'B1', content: ['你书入了迷','连黑衣人就站在自己身后了都不知道','最终淌着鼻血，死在了黑衣人的剑下……',['边缘闪烁红'],], 
-         btn: [{title: '怎么可能！再来',dialogs: ['C002A_fenzhiA']},{title: '重新选书',tokey: "P1",}]},
+         btn: [{title: '重新选书',tokey: "P1",}]},
            ], },
 
 
@@ -285,79 +294,73 @@ scenes: [
           #死亡3
           { id: 'gameover03',style: 6, title: '《中华笑话大全》', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B3', content: ['那真的只是一本笑话大全，你看到第一行，便忍俊不禁','笑声引起了屋外黑衣人的注意','“好啊，你小子原来藏在这里，受死吧！”','黑衣人使了一套剑法，你来不及躲',['边缘闪烁红'],],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiA']},{title: '重新选书',tokey: "P2",}]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiA']},]},
           ], },
   
-          #死亡4
-          { id: 'gameover04',style: 6, title: '继续装女人，誓死不从', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-          { key: 'B4', content: ['山匪瞪圆了眼睛，惊又怒，“你这变态，竟然假扮女人，我今天就要为民除害。”',['震屏1'],'“喂，相比之下，你才是害吧！”','你对那大汉拳脚相向，拼命挣扎','但这副身体实在是太弱了，大汉一拳就打死了',],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},{title: '返回上一选项重新选择',tokey: "P6",},{title: '重新选衣服',tokey: "P5",}]},
-          ], },
-
           #死亡5
           { id: 'gameover05',style: 6, title: '亮出自己的男人身份', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B5', content: ['“你是个男的为什么要打扮成这样，这么变态？！我，更喜欢了！”',['边缘闪烁红'],'山匪朝你扑过来……','你屈辱的死去',],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},{title: '返回上一选项重新选择',tokey: "P6",},{title: '重新选衣服',tokey: "P5",}]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
           #死亡6
           { id: 'gameover06',style: 6, title: '地下十分泥泞，我来一个滑铲', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B6', content: ['由于你对错了暗号，修士将你杀了。',],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},{title: '返回上一选项重新选择',tokey: "P7",},{title: '重新选衣服',tokey: "P5",}]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
           #死亡7
           { id: 'gameover07',style: 6, title: '九霄狂涛骇浪，你当缩头乌龟', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B7', content: ['他说完，那剑直直朝你刺来。','你成了剑下亡魂',],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},{title: '返回上一选项重新选择',tokey: "P7",},{title: '重新选衣服',tokey: "P5",}]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
           #死亡8
           { id: 'gameover08',style: 6, title: '这老虎不会是母老虎吧！', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B8', content: ['你和修士上了山，全天魔宗的弟子全来迎你，仗势浩荡','谁想，白发长老一见到你，便认出你并不是传说中的‘大法师’。','天魔宗上下暴怒，施法将你灰飞烟灭，永世不得超生。',['边缘闪烁红'],],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},{title: '返回上一选项重新选择',tokey: "P7",},{title: '重新选衣服',tokey: "P5",}]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
           #死亡9
           { id: 'gameover09',style: 6, title: '你认错人了，我不是你同伙', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B9', content: ['“你认错人了，我不是你同党。”你没好气的白了他一眼。','心中暗骂倒霉，决定快步离开。''刚走出两步，便听见身后那男人嘀咕一句。','“就算不是，你也知道了春花阁的事，小兄弟，得罪了！”','那黑衣人担心事情被你泄露，决定除之后快！',['边缘闪烁红'],],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},{title: '返回上一选项重新选择',tokey: "P8",},{title: '重新选衣服',tokey: "P5",}]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
            #死亡10
           { id: 'gameover10',style: 6, title: '是男人就上', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B10', content: ['半推半就的，眼看着女人的红唇就要贴上来，结果凑近了些，借着微弱的光还有窗外的皓月，看清了李森炎的样子','发现李森炎是假冒的后，扇了他一巴掌，尖叫一声叫来众多姐妹，报了官！',['边缘闪烁红'],'你被抓进了官府',],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},{title: '返回上一选项重新选择',tokey: "P8B",},{title: '重新选房间',tokey: "P8A",}]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
             #死亡11
           { id: 'gameover11',style: 6, title: '我不上', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B11', content: ['这样下去，肯定是瞒不住的，你决定告诉她','“姑娘，姑娘嘴下留情！”你赶紧制止了她，“小生不是萧郎，小生只是来问个路。”''“啊！”听你这么一说，花魁惊吓万分，扯过丝被给自己披上，又端着火烛，仔细打量着你。','花魁见你生的俊俏，为人又正直，对他十分心许。','十分有想将错就错的样子','但好景不长，门外传来敲门声。有人硬闯了进来。',['边缘闪烁红'],'你被人捉奸在床，活活打死',],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},{title: '返回上一选项重新选择',tokey: "P8B",},{title: '重新选房间',tokey: "P8A",}]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
             #死亡12
           { id: 'gameover12',style: 6, title: '赶紧溜！', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B12', content: ['你选择溜，毫不犹豫，马不停蹄的溜！','你马上朝着出口的方向跑去，结果还没跑出五步，忽然身后一个暗箭飞来————',['边缘闪烁红'],'黑衣人放了毒箭，你死了',],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},{title: '重新选房间',tokey: "P8A",}]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
             #死亡13
           { id: 'gameover13',style: 6, title: '带出去交给官府', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B13', content: ['你看见这些银子底下都是刻了字的','应该是官员交税收上来的银子，现在被这群黑衣人劫了','私自使用官影可是杀头的大罪，你仔细思量了半分，决定报官','你从窗户跳下，前去官府报了官','帮助官府成功收缴了这批被盗的官银','立下了大功','不过也正因为这件事你备受关注，名气大涨','被皇城司的人注意到了','某天夜里，你刚洗漱好准备睡下，忽然不知被哪里飞出来的暗箭刺中',['边缘闪烁红'],],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},{title: '重新选择',tokey: "P8C",},{title: '重新选衣服',tokey: "P5",}]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
             #死亡14
           { id: 'gameover14',style: 6, title: '交给黑衣人', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B14', content: ['你抱起这一大包银子，赶紧从房间里跑了出去，溜进暗道把东西交给了黑衣人','黑衣人见到东西大喜，拍着你的肩，“你这小子，还是有点用嘛，这东西，我和你三七分。”','你并不在乎，这东西收着就是掉脑袋的罪。你只想着待会儿怎么溜走。','和黑衣人出了暗道还没走多久，你就看见一群官兵朝你们追来','黑衣人一见立马抱着银子，一招腾飞逃了','而你傻了','官兵们追上来制住了你：“说！官银呢，你的同伙往哪里跑了！坦白从宽，抗拒从严。”','你欲哭无泪，“官大哥，我说这事和我没关系你信吗？我说是那个贼先动的手你信吗！！！”',['边缘闪烁红'],'面对官兵的质问，你一个字也说不出来。','很快，成了绣春刀下的怨魂',],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},{title: '重新选择',tokey: "P8C",},{title: '重新选衣服',tokey: "P5",}]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
             #死亡15
           { id: 'gameover15',style: 6, title: '自己带走', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B15', content: ['这么一大包银子，足以让你和原身母亲从此摆脱疾苦，奔向小康了','你心生一计，决定自己把这些东西带走','于是去窗户边打量了下，这里的距离大概不过两层楼高，抱着东西跳下去应该是可以的','你将银子打包好，背上身，翻窗逃跑','天色漆黑，只能凭借运气，找准机会奋力一跳',['震屏1'],'你掉进了灌丛，摔得晕头转向，还撞到了一对偷情男女','结果被那男的，胖揍了一顿，他还带着女人，和你的银子跑路了','你人财两空，且由于被打失血过多死亡',],
-          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},{title: '重新选择',tokey: "P8C",},{title: '重新选衣服',tokey: "P5",}]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
            #死亡16
