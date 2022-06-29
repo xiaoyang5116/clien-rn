@@ -26,6 +26,7 @@ import {
 import lo from 'lodash';
 import LocalStorage from '../utils/LocalStorage';
 import * as DateTime from '../utils/DateTimeUtils';
+import CollectUtils from '../utils/CollectUtils';
 import EventListeners from '../utils/EventListeners';
 import * as RootNavigation from '../utils/RootNavigation';
 import SceneConfigReader from "../utils/SceneConfigReader";
@@ -140,6 +141,16 @@ class PropertyActionBuilder {
       allActions.push({ id: "__sounds", cmd: 'sounds', params: payload.sounds });
     }
 
+    // 生成采集动作
+    if (payload.collect != undefined && !lo.isEmpty(payload.collect)) {
+      allActions.push({ id: "__collect", cmd: 'collect', params: payload.collect });
+    }
+
+    // 生成移动场景地图动作
+    if (payload.toMapPoint != undefined && lo.isArray(payload.toMapPoint)) {
+      allActions.push({ id: "__toMapPoint", cmd: 'toMapPoint', params: payload.toMapPoint });
+    }
+
     return allActions;
   }
 }
@@ -204,6 +215,8 @@ const ACTIONS_MAP = [
   { cmd: 'selector',      handler: '__onSelectorCommand' },
   { cmd: 'shock',         handler: '__onShockCommand' },
   { cmd: 'sounds',        handler: '__onSoundsCommand' },
+  { cmd: 'collect',       handler: '__onCollectCommand' },
+  { cmd: 'toMapPoint',    handler: '__onMapPointCommand' },
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;
@@ -695,6 +708,15 @@ export default {
       payload.params.forEach(e => {
         playSound({ ...e, type });
       });
+    },
+
+    *__onCollectCommand({ payload }, { put }) {
+      const collectId = payload.params;
+      CollectUtils.show(collectId);
+    },
+
+    *__onMapPointCommand({ payload }, { put }) {
+      DeviceEventEmitter.emit(EventKeys.SCENE_MAP_MOVE, payload.params);
     },
 
     *syncData({ }, { select, call }) {

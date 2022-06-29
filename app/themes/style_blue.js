@@ -3,11 +3,17 @@ import { StyleSheet } from 'react-native';
 import { px2pd } from '../constants/resolution';
 import sharedStyles from './sharedStyles';
 
+
+/*** 主图色: 蓝色 */
+// 默认颜色
+const defaultFontColor = "#000";
+const defaultBgColor = "#e0e9ed";
+
 /**
 * 通用按钮
 */
-const btnFontColor = '#424242';
-const btnBackgroundColor = '#eee';
+const btnFontColor = defaultFontColor;
+const btnBackgroundColor = defaultBgColor;
 
 
 /** ================================ */
@@ -36,7 +42,7 @@ const tipBgColor1 = '#d3c2aa';  // 淡米色
 /**             文字颜色              */
 /** ================================ */
 /* 标题 */
-const titleColor1 = '#6a655e';  // 深棕色
+const titleColor1 = '#000';  // 深棕色
 const titleColor2 = '#6a655e';  // 深棕色
 const titleColor3 = '#d86362';  // 淡红色
 
@@ -45,6 +51,8 @@ const contentColor1 = '#f2f2f2';  // 淡灰色
 const contentColor2 = '#868076';  // 淡棕色
 const contentColor3 = '#6a655e';  // 深棕色
 
+// 对话框
+const dialogFontColor = "#000";  // 黑色
 
 
 
@@ -54,6 +62,12 @@ const styles = StyleSheet.create({
     /** ================================ */
     /* 通用样式 */
     ...sharedStyles,
+
+    // 默认
+    default: {
+        color: defaultFontColor,
+        backgroundColor: defaultBgColor,
+    },
 
     /* 页面背景颜色 */
     pageBgColor1: {
@@ -93,6 +107,9 @@ const styles = StyleSheet.create({
     },
     titleColor3: {
         color: titleColor3,
+    },
+    dialogFontColor: {
+        color: dialogFontColor
     },
 
     /* 内容颜色 */
@@ -205,6 +222,10 @@ const styles = StyleSheet.create({
     // 对话框
     dialogBorder_1_img: require('../../assets/themes/blue/bg/border1.png'),
     dialogBg_1_img: require('../../assets/themes/blue/bg/dialog_bg1.png'),
+    dialogBg_2_img: require('../../assets/themes/blue/bg/dialog_bg2.png'),
+    dialogBg_2_header_img: require('../../assets/themes/blue/bg/dialog_bg2_header.png'),
+    dialogBg_2_footer_img: require('../../assets/themes/blue/bg/dialog_bg2_footer.png'),
+
 
     // 通用花纹
     pattern_1_img: require('../../assets/themes/blue/bg/border1.png'),
@@ -216,6 +237,9 @@ const styles = StyleSheet.create({
     blockBg_4_img: require('../../assets/themes/blue/bg/block_bg4.png'),
     blockBg_5_img: require('../../assets/themes/blue/bg/block_bg5.png'),
     blockBg_6_img: require('../../assets/themes/blue/bg/block_bg6.png'),
+
+    // icon
+    check_1_img: require('../../assets/themes/blue/icon/hook.png'),
 });
 
 export default styles;

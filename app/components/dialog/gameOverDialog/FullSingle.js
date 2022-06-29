@@ -49,7 +49,7 @@ const FullSingle = props => {
     };
 
     const renderBtn = ({ item }) => {
-        if (currentIndex === currentDialogueLength) {
+        if (currentIndex >= currentDialogueLength) {
             return (
                 <View style={{ marginTop: 8 }}>
                     {/* <LongTextButton

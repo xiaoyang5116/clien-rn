@@ -1,12 +1,16 @@
 
 import { 
-  action,
+  action, errorMessage,
 } from "../constants";
 
 import lo from 'lodash';
 
 import EventListeners from '../utils/EventListeners';
 import { px2pd } from "../constants/resolution";
+import { GetBooksDataApi } from "../services/GetBooksDataApi";
+import { GetBookConfigDataApi } from "../services/GetBookConfigDataApi";
+import { GetCollectDataApi } from "../services/GetCollectDataApi";
+import { now } from '../utils/DateTimeUtils';
 
 const pxWidth = 1000; // 像素宽度
 const pxHeight = 1300; // 像素高度
@@ -22,18 +26,45 @@ export default {
   namespace: 'CollectModel',
 
   state: {
-    gridsData: [],
+    __data: {
+      collects: [], // 所有书本的收集配置
+    },
+
+    gridsData: {},
+    status: {},
+    bags: {},
   },
 
   effects: {
-    *reload({ }, { call, put }) {
+    *reload({ }, { call, put, select }) {
+      const collectState = yield select(state => state.CollectModel);
+      collectState.bags[0] = [];
+
+      collectState.__data.collects.length = 0;
+      const booksConfig = yield call(GetBooksDataApi);
+      for (let k in booksConfig.books.list) {
+        const bookId = booksConfig.books.list[k];
+        const bookConfig = yield call(GetBookConfigDataApi, bookId);
+        if (bookConfig != null && lo.isArray(bookConfig.book.collect_list)) {
+          for (let k in bookConfig.book.collect_list) {
+            const fileName = bookConfig.book.collect_list[k];
+            const config = yield call(GetCollectDataApi, bookId, fileName);
+            if (config != null && lo.isArray(config.collects)) {
+              collectState.__data.collects.push(...config.collects);
+            }
+          }
+        }
+      }
     },
 
-    *generateGridData({}, { call, put }) {
+    *generateGridData({ payload }, { call, put }) {
+      const { collectId, itemsNum, config } = payload;
+
       const hitList = [];
       const array = lo.range(maxColumns * maxRows);
+      const itemIds = config.items.map(e => e.id);
     
-      for (let i = 0; i < 16; i++) {
+      for (let i = 0; i < itemsNum; i++) {
         while (true) {
           const newArray = lo.shuffle(array);
           const hitValue = newArray[0];
@@ -89,13 +120,18 @@ export default {
 
         const top = (rows * px2pd(pxGridHeight)) + topFixed + randTop;
         const left = (cols * px2pd(pxGridWidth)) + leftFixed + randLeft;
+        const randItemId = lo.shuffle(itemIds)[0];
+        const randItem = config.items.find(e => e.id == randItemId);
 
         grids.push({ 
-          id: id, 
-          top: top,
-          left: left,
+          id,
+          top,
+          left,
+          collectId,
+          //
           show: true,
-          itemId: lo.random(1, 7), 
+          itemId: randItemId, 
+          time: lo.isNumber(randItem.time) ? randItem.time : 0,
           effectId: lo.random(1, 3),
         });
       });
@@ -106,28 +142,97 @@ export default {
     *getGridData({ payload }, { call, put, select }) {
       const { collectId } = payload;
       const collectState = yield select(state => state.CollectModel);
-      if ((lo.isEmpty(collectState.gridsData))
-        || (collectState.gridsData.find(e => e.show) == undefined)) {
-        const data = yield put.resolve(action('generateGridData')({}));
-        collectState.gridsData.length = 0;
-        collectState.gridsData.push(...data);
+
+      const config = collectState.__data.collects.find(e => e.id == collectId);
+      if (lo.isEmpty(config)) return [];
+
+      if (lo.isEmpty(collectState.status[collectId])) {
+        const itemsNum = config.periods[0].itemsNum;
+        //
+        const data = yield put.resolve(action('generateGridData')({ collectId, itemsNum, config }));
+        collectState.gridsData[collectId] = [];
+        collectState.gridsData[collectId].push(...data);
+        // 初始化
+        collectState.status[collectId] = {
+          lastRefreshTime: now(),
+          periodId: 1,
+          times: 1,
+        };
+      } else {
+        const status = collectState.status[collectId];
+        // 时间到，进入下一个刷新周期
+        if (now() > (status.lastRefreshTime + config.refresh_period * 1000)) {
+          const nextPeriodId = status.periodId >= config.periods.length ? 1 : (status.periodId + 1);
+          const itemsNum = config.periods[nextPeriodId - 1].itemsNum;
+          //
+          const data = yield put.resolve(action('generateGridData')({ collectId, itemsNum, config }));
+          collectState.gridsData[collectId] = [];
+          collectState.gridsData[collectId].push(...data);
+          //
+          status.lastRefreshTime = now();
+          status.periodId = nextPeriodId;
+          status.times += 1;
+        }
       }
-      return collectState.gridsData;
+      return collectState.gridsData[collectId];
     },
 
     *hideGrid({payload}, { call, put, select }) {
-      const { id } = payload;
+      const { id, collectId } = payload;
       const collectState = yield select(state => state.CollectModel);
 
-      const found = collectState.gridsData.find(e => e.id == id);
-      if (found != undefined) {
-        found.show = false;
+      const config = collectState.__data.collects.find(e => e.id == collectId);
+      const found = collectState.gridsData[collectId].find(e => e.id == id);
+      if (found == undefined || config == undefined) return;
+
+      const foundItem = config.items.find(e => e.id == found.itemId);
+      if (foundItem == undefined) {
+        errorMessage(`收集系统配置异常！collectId=${collectId}，缺失(itemId=${found.itemId})配置`);
+        return;
       }
+
+      found.show = false;
+      const props = foundItem.props;
+      const bag = collectState.bags[0];
+
+      props.forEach(e => {
+        const { propId, num } = e;
+        const exists = bag.find(b => b.propId == propId);
+        if (exists != undefined) {
+          exists.num += num;
+        } else {
+          bag.push({ propId, num });
+        }
+      });
     },
 
     *getVisableGrids({payload}, { call, put, select }) {
+      const { collectId } = payload;
       const collectState = yield select(state => state.CollectModel);
-      return collectState.gridsData.filter(e => e.show);
+      return collectState.gridsData[collectId].filter(e => e.show);
+    },
+
+    *getBagItems({payload}, { call, put, select }) {
+      const { collectId } = payload;
+      const collectState = yield select(state => state.CollectModel);
+
+      const bag = collectState.bags[0];
+      const list = [];
+
+      for (let k in bag) {
+        const v = bag[k];
+        const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: v.propId }));
+        const item = { ...v, iconId: propConfig.iconId, name: propConfig.name };
+        list.push(item);
+      }
+
+      // 发放道具
+      if (list.length > 0) {
+        yield put.resolve(action('PropsModel/sendPropsBatch')({ props: list }));
+        bag.length = 0;
+      }
+
+      return list;
     },
   },
   

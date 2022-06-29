@@ -10,6 +10,7 @@ import {
   Component,
   StyleSheet,
   ThemeContext,
+  statusBarHeight
 } from "../constants";
 import { Header1 } from '../constants/custom-ui';
 import { ImagePanel } from '../components/panel';
@@ -52,7 +53,7 @@ const TabIcon = (props) => {
 
 const HeaderTitle = (props) => {
   return (
-    <Header1 style={{ marginTop: 30, marginBottom: 10, }} title={props.options.title} />
+    <Header1 style={{ marginTop: (Platform.OS == 'ios' ? statusBarHeight + 10 : 30), marginBottom: 10, }} title={props.options.title} />
   )
 }
 

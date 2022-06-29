@@ -3,6 +3,12 @@ import { StyleSheet } from 'react-native';
 import { px2pd } from '../constants/resolution';
 import sharedStyles from './sharedStyles';
 
+
+/** 主题色：黄色 */
+// 默认颜色
+const defaultFontColor = "#424242";
+const defaultBgColor = "#e8ddcc";
+
 /**
 * 通用按钮
 */
@@ -45,6 +51,8 @@ const contentColor1 = '#f2f2f2';  // 淡灰色
 const contentColor2 = '#868076';  // 淡棕色
 const contentColor3 = '#6a655e';  // 深棕色
 
+// 对话框
+const dialogFontColor = "#000";  // 黑色
 
 
 
@@ -54,6 +62,13 @@ const styles = StyleSheet.create({
     /** ================================ */
     /* 通用样式 */
     ...sharedStyles,
+
+    // 默认
+    default: {
+        color: defaultFontColor,
+        backgroundColor: defaultBgColor,
+    },
+
 
     /* 页面背景颜色 */
     pageBgColor1: {
@@ -93,6 +108,9 @@ const styles = StyleSheet.create({
     },
     titleColor3: {
         color: titleColor3,
+    },
+    dialogFontColor: {
+        color: dialogFontColor
     },
 
     /* 内容颜色 */
@@ -204,6 +222,9 @@ const styles = StyleSheet.create({
     // 对话框
     dialogBorder_1_img: require('../../assets/themes/normal/bg/border1.png'),
     dialogBg_1_img: require('../../assets/themes/normal/bg/dialog_bg1.png'),
+    dialogBg_2_img: require('../../assets/themes/normal/bg/dialog_bg2.png'),
+    dialogBg_2_header_img: require('../../assets/themes/normal/bg/dialog_bg2_header.png'),
+    dialogBg_2_footer_img: require('../../assets/themes/normal/bg/dialog_bg2_footer.png'),
 
     // 通用花纹
     pattern_1_img: require('../../assets/themes/normal/bg/border1.png'),
@@ -215,6 +236,9 @@ const styles = StyleSheet.create({
     blockBg_4_img: require('../../assets/themes/normal/bg/block_bg4.png'),
     blockBg_5_img: require('../../assets/themes/normal/bg/block_bg5.png'),
     blockBg_6_img: require('../../assets/themes/normal/bg/block_bg6.png'),
+
+    // icon
+    check_1_img: require('../../assets/themes/normal/icon/hook.png'),
 });
 
 export default styles;

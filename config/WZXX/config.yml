@@ -19,4 +19,11 @@ book: {
         "WZXX_MasterEventVar_01",
         "WZXX_NormalEventVar_01",
       ],
+      
+    # 收集列表
+    collect_list: [
+      'collect_1',
+      'collect_2',
+    ],
+
   }
