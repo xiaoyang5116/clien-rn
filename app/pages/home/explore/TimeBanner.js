@@ -54,7 +54,7 @@ class TimeBanner extends Component {
                 toValue: offset,
                 duration: (props.interval * 1000),
                 easing: Easing.linear,
-                useNativeDriver: false,
+                useNativeDriver: true,
             });
             animations.push(item);
             animations.push({
@@ -101,7 +101,7 @@ class TimeBanner extends Component {
             childs.push(<BannerBox key={i} id={i} />);
         }
         return (
-            <Animated.View style={{ position: 'absolute', left: this.bannerLeftValue, top: 0 }}>
+            <Animated.View style={{ position: 'absolute', top: 0, left: 0, transform: [{ translateX: this.bannerLeftValue }] }}>
                 {childs}
             </Animated.View>
         );
