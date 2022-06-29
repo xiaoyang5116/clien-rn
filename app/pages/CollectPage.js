@@ -190,14 +190,13 @@ const CollectProgress = (props) => {
 
   const percent = seconds / props.time;
   const value = percent * PROGRESS_WIDTH;
-  const translateX = -(PROGRESS_WIDTH - value);
-  
+  const translateX = PROGRESS_WIDTH - value;
 
   return (
     <View style={[styles.progressView]}>
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <View style={[styles.progressBar, { transform: [{ translateX: translateX }] }]} />
-        <Text>{(Math.floor(percent * 100))}%</Text>
+        <Text>{(100 - Math.floor(percent * 100))}%</Text>
       </View>
     </View>
   );
@@ -526,7 +525,7 @@ const styles = StyleSheet.create({
 
   progressBar: {
     position: 'absolute', 
-    left: 0, 
+    left: -PROGRESS_WIDTH, 
     width: PROGRESS_WIDTH, 
     height: 18, 
     backgroundColor: '#eee',
