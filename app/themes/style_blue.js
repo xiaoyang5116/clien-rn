@@ -3,6 +3,12 @@ import { StyleSheet } from 'react-native';
 import { px2pd } from '../constants/resolution';
 import sharedStyles from './sharedStyles';
 
+
+/*** 主图色: 蓝色 */
+// 默认颜色
+const defaultFontColor = "#000";
+const defaultBgColor = "#e0e9ed";
+
 /**
 * 通用按钮
 */
@@ -56,6 +62,12 @@ const styles = StyleSheet.create({
     /** ================================ */
     /* 通用样式 */
     ...sharedStyles,
+
+    // 默认
+    default: {
+        color: defaultFontColor,
+        backgroundColor: defaultBgColor,
+    },
 
     /* 页面背景颜色 */
     pageBgColor1: {
@@ -225,6 +237,9 @@ const styles = StyleSheet.create({
     blockBg_4_img: require('../../assets/themes/blue/bg/block_bg4.png'),
     blockBg_5_img: require('../../assets/themes/blue/bg/block_bg5.png'),
     blockBg_6_img: require('../../assets/themes/blue/bg/block_bg6.png'),
+
+    // icon
+    check_1_img: require('../../assets/themes/blue/icon/hook.png'),
 });
 
 export default styles;
