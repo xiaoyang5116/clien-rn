@@ -1,7 +1,8 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, Platform } from 'react-native'
 import React from 'react'
 
-import { ThemeContext } from "../../constants";
+import { ThemeContext, statusBarHeight } from "../../constants";
+
 
 export const Header1 = (props) => {
 
@@ -10,7 +11,7 @@ export const Header1 = (props) => {
     const theme = React.useContext(ThemeContext);
 
     return (
-        <View style={{ justifyContent: 'center', alignItems: 'center', ...style }}>
+        <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: (Platform.OS == 'ios' ? statusBarHeight + 10 : 30), ...style }}>
             <Image
                 style={{ ...theme.headerBg_size, position: "absolute" }}
                 source={theme.headerBg}

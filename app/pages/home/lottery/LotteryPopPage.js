@@ -9,7 +9,6 @@ import {
     DeviceEventEmitter,
     EventKeys,
     ThemeContext,
-    statusBarHeight
 } from "../../../constants";
 
 import {
@@ -172,7 +171,7 @@ const BottomBar = (props) => {
             </View>
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}>
                 <View style={{ marginLeft: 10, marginRight: 10 }}>
-                    <TextButton title='十连抽' {...props} onPress={() => {
+                    <TextButton title='寻宝' {...props} onPress={() => {
                         DeviceEventEmitter.emit(EventKeys.LOTTERYPOPPAGE_SHOW, 'Lottery10Times');
                     }} />
                 </View>
@@ -272,7 +271,7 @@ class Lottery10Times extends Component {
                     {/* <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 24, fontWeight: 'bold' }}>十连抽</Text>
                     </View> */}
-                    <Header1 style={{ marginTop: (Platform.OS == 'ios' ? statusBarHeight + 10 : 30), marginBottom: 10 }} title={"十连抽"} />
+                    <Header1 style={{ marginBottom: 10 }} title={"寻宝"} />
 
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
                         <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>白嫖券: {(this.state.propsInfo[0] != undefined) ? this.state.propsInfo[0].num : 0}</Text>
@@ -334,12 +333,12 @@ class LotteryBaoZang extends Component {
     render() {
         return (
             <FastImage style={{ flex: 1 }} source={this.context.profileBg}>
-                <SafeAreaView style={{ flex: 1 }}>
+                {/* <SafeAreaView style={{ flex: 1 }}> */}
                     <View style={{ flex: 1, justifyContent: 'center' }}>
                         {/* <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 24, fontWeight: 'bold' }}>宝藏</Text>
                         </View> */}
-                        <Header1 style={{ marginTop: 24 }} title={"宝藏"} />
+                        <Header1 title={"宝藏"} />
 
                         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                             <FlatList
@@ -350,7 +349,7 @@ class LotteryBaoZang extends Component {
                         </View>
                         <BottomBar {...this.props} />
                     </View>
-                </SafeAreaView>
+                {/* </SafeAreaView> */}
             </FastImage>
         );
     }
