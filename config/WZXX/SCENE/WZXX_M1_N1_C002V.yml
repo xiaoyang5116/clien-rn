@@ -18,17 +18,16 @@ scenes: [
       chats: [
       #
       { 
-        id: 'WZXX_M1_N1_C002V', desc: '选项', 
+        id: 'WZXX_M1_N1_C002V', desc: '选择回家还是？', 
         options: [ 
-        #  { title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
-          { title: "【2去最近的城市，生存重要】", toChapter: "WZXX_M1_N1_C001_[A1]" },
-          { title: "【2去穿越的地点，也许能找到什么】", toChapter: "WZXX_M1_N1_C001_[A2]" },
-          { title: "【2跟踪对手，找到更多线索】", toChapter: "WZXX_M1_N1_C001_[A3]" },
+          { title: "【直接回家，越快越好】", toChapter: "WZXX_M1_N1_C002A_[A1]" },
+          { title: "【考虑变装一下的可能】", toChapter: "WZXX_M1_N1_C002A_[B1]" },
+          { title: "【先去找人打听情报】", toChapter: "WZXX_M1_N1_C002A_[C1]" },
         ],
       },
    #
       { 
-        id: 'WZXX_M1_N1_C001_[A1]V0000', desc: '选项', 
+        id: 'WZXX_M1_N1_C001_[A1]V03000', desc: '选项', 
         options: [ 
         #  { title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
           { title: "【你想起，这个身体原身是修真世家出身】", toChapter: "WZXX_M1_N1_C001_[A1]" },

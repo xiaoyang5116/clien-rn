@@ -288,6 +288,7 @@ export default {
         }
       });
 
+
       // 加载本地缓存
       const sceneCache = yield call(LocalStorage.get, LocalCacheKeys.SCENES_DATA);
       if (sceneCache != null && sceneCache.time != null) {

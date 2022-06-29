@@ -37,9 +37,19 @@ scenes: [
         id: 'WZXX_[START]_DEBUG', desc: '选项', 
         options: [ 
 
-          { title: "【世界选择功能】", varsOn: "WZXX_M1_N1_C001_[A1]", },
+          { title: "【世界选择功能】", varsOn: "WZXX_M1_N1_C001_[A1]" },
           { title: "【DEBUG阶段2】", toChapter: "WZXX_M1_N1_C001A" },
           { title: "【DEBUG阶段3】", toChapter: "WZXX_M1_N1_C001B" },
+        ],
+      },
+      #
+      { 
+        id: 'TEST_PARAGRAPH', desc: '测试段落', plain: true,
+        options: [ 
+
+          { title: "罡风怒号，剑影挥动，血洒苍天！", dialogs: ["p1"] },
+          { title: "<一阵疼痛袭来。>", shock: 'slightShock' },
+          { title: "啊啊啊啊……这个感觉绝不想再来了，绝对！" },
         ],
       },
       { 
@@ -124,6 +134,7 @@ scenes: [
       dialogs:
         [
  #
+          { id: 'p1', title: '乞丐：', content: '这是落月镇的土地庙啊' },
         ],
     },
   ]

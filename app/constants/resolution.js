@@ -23,6 +23,7 @@ const fwHeight = fwDesignScale * pxHeight;
 const fwScale = 1 / pxRatio / fwDesignScale;
 
 export const px2pd = (px) => (px * fwScale);
+export const getFixedWidthScale = () => fwScale;
 
 console.debug(`
 ================================

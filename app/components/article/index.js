@@ -1,9 +1,11 @@
 import React from 'react';
+import lo from 'lodash';
 
 import HeaderView from './HeaderView';
 import PlainView from './PlainView';
 import EventView from './EventView';
 import OptionView from './OptionView';
+import PlainOptionView from './PlainOptionView';
 import OverView from './OverView';
 import ImageView from './ImageView';
 
@@ -22,7 +24,9 @@ export default class ArticleBlock extends React.PureComponent {
             } else if (pop != undefined) {
                 return (<EventView itemKey={this.props.data.key} content={pop.title} />);
             } else if (chatId != undefined) {
-                return (<OptionView itemKey={this.props.data.key} {...this.props.data.object} />);
+                return (lo.isBoolean(this.props.data.object.plain) && this.props.data.object.plain)
+                    ? <PlainOptionView itemKey={this.props.data.key} {...this.props.data.object} />
+                    : <OptionView itemKey={this.props.data.key} {...this.props.data.object} />;
             } else if (overview != undefined) {
                 return (<OverView itemKey={this.props.data.key} {...this.props.data.object} />);
             } else if (image != undefined) {

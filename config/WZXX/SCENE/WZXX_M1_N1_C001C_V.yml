@@ -30,7 +30,13 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001C_V', desc: '选项', 
         options: [ 
-          { title: "【DEBUG开始】",  varsOff: ['C001C_V_MAP_point_01/ONE_OPEN'], toScene: 'C001C_V_MAP_point_0_0' },
+
+          { title: "【DEBUG进入森林】", toScene: 'WZXX_M1_N1_C001B_V' },
+          { title: "【DEBUG开始】",   varsOff: ['C001C_V_MAP_point_01/ONE_OPEN'], toScene: 'C001C_V_MAP_0_0' },
+          { title: "【第二章分支1】",  toChapter: "WZXX_M1_N1_C002" },
+          { title: "【第二章跟踪杀手】",  toScene: "C001C_V_MAP_0_0" },
+
+          
         ],
       },
 
@@ -244,7 +250,7 @@ scenes: [
 
 # 最后找到城门的路上
 # 然后杀手去城外的一家小房子
-# 只要接近这个房子时，路线就是必死的，死了很多次之后，你决定不去触这个霉
+# 只要接近这个 房子时，路线就是必死的，死了很多次之后，你决定不去触这个霉
  
  
 
@@ -302,16 +308,22 @@ scenes: [
   #地图场景===========================================================
   # NPC1
   {
-    id: 'C001C_V_MAP_point_0_0', name: '林间小道，入口',
+    id: 'C001C_V_MAP_0_0', name: '林间小道，入口',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     # 当前场景地图
     mapId: 'C001C_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 0],
 
     # 变量定义
     vars: [
-    { id: "ONE_OPEN", min: 0, max: 1 },
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "luxian_N1_V2", min: 0, max: 1 },
+    { id: "luxian_N1_V2END", min: 0, max: 1 },
+    
     ],
 
     # 动作定义
@@ -320,8 +332,9 @@ scenes: [
 
     # 事件定义
     events: [
-        { type: 'enter', andVarsOff: ['ONE_OPEN'], nextChat: 'C1' },
-        { type: 'enter', andVarsOn: ['ONE_OPEN'], nextChat: 'C2' },
+        { type: 'enter', andVarsOff: ['ONE_OPEN_0','ONE_OPEN_1',], nextChat: 'C1' },
+        { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
+        { type: 'enter', andVarsOff: [luxian_N1_V2END],andVarsOn: ['ONE_OPEN_1','luxian_N1_V2'], nextChat: 'C3' },
     ],
 
     # 对话选项
@@ -330,7 +343,8 @@ scenes: [
       { 
         id: 'C1', desc: '树林，起点位置，请选择', 
         options: [ 
-         { title: '【开始跟踪杀手】', varsOn: 'ONE_OPEN',dialogs: ['Screen1'] }, 
+         { title: '【开始跟踪杀手】', dialogs: ['Screen1'] , varsOn: 'ONE_OPEN_1',}, 
+
         ],
       },
       #
@@ -339,38 +353,29 @@ scenes: [
         options: [ 
         ],
       },
+      #
+      { 
+        id: 'C3', desc: '这里已经调查过了', 
+        options: [ 
+         { title: '【等待了足够的时间了】', varsOn: 'luxian_N1_V2END', toScene: 'C001C_V_MAP_0_1' }, 
+        ],
+      },
     ],
 
     # 对话框
     dialogs: [
           { id: 'Screen1',style: 6, title: '跟踪杀手#1', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
+          { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','看上去就和寻常窄道没有区别','李森炎决定',],
 
+          btn: [{title: '在小路的两边用树来作掩护', toScene: 'C001C_V_MAP_0_1' , varsOn: 'C001C_V_MAP_0_1/luxian_N1_V1'},{title: '距离更远一点，先原地不动', toScene: 'C001C_V_MAP_0_0', varsOn: 'luxian_N1_V2', },]},
+     
 
-          #btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
-          btn: [{title: '在小路的两边用树来作掩护', toScene: 'C001C_V_MAP_point_0_1',},{title: '距离更远一点', tokey: "R1"},]},
-           #分支1
-          { key: 'N1A', content: ['杀手好像没有异常','继续向前走',], 
-          btn: [{title: '继续跟踪！（本剧场还在制作中）', tokey: "N1B"},{title: '结束这次跟踪', tokey: "END01"},], },   
-
-          { key: 'N1B', content: ['树下有很多落叶和枯枝','你不得不小心谨慎',], 
-          btn: [{title: '大胆下脚,JOJO思密达！', tokey: "N1B1"},{title: '想起一些小说情节', tokey: "N1B2"},], },   
-
-          { key: 'N1B1', content: ['看到了一窝蚂蚁','我踩','几只蛐蛐被吓跑远','乐','我踩','嘿嘿嘿','李森炎起身','……','发现被杀手以奇怪的眼光扫视','乐死了，你说是吧，李森炎说到'], 
-          btn: [{title: '是啊，乐死了', dialogs: ['gameover00']}], },   
-
-          { key: 'N1B2', content: ['小说1','某个主角踩了树枝被敌人发现','被追了三条街','小说2','某个主角踩了树枝被敌人发现','不得不化身狂战士全灭敌人','……'], 
-          btn: [{title: '被剧情逗乐了呵呵笑起来', tokey: "N1C1"},{title: '这好像和现在差不多啊', tokey: "M1"},], },   
-
-          { key: 'N1C1', content: ['杀手正在走路','突然听见背后传来诡异的笑','呵呵呵呵呵啊哈哈哈','呵哈哈哈隔','嗯嗯嗯嗯噗……','杀手……？','不对劲','……'], 
-          btn: [{title: '杀手：不对劲，好奇去瞅一下', dialogs: ['gameoverD4']},{title: '杀手：错觉吗？', tokey: "M1"},], },   
-    
     ],},],
   },
-   {
+  {
   # NPC2
-    id: 'C001C_V_MAP_point_0_1', name: '寻常窄道',
+    id: 'C001C_V_MAP_0_1', name: '寻常窄道',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
@@ -381,24 +386,33 @@ scenes: [
 
     # 变量定义
     vars: [
-    { id: "ONE_OPEN", min: 0, max: 1 },
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "luxian_N1_V1", min: 0, max: 1 },
+    { id: "luxian_N1_V2", min: 0, max: 1 },
+
+    
     ],
+
     # 动作定义
     actions: [
     ],
     # 事件定义
     events: [
-        { type: 'enter', andVarsOff: ['ONE_OPEN'], nextChat: 'C1' },
-        { type: 'enter', andVarsOn: ['ONE_OPEN'], nextChat: 'C2' },
+       { type: 'enter',  andVarsOn: ['luxian_N1_V1'],  nextChat: 'C3' },
+       { type: 'enter',  nextChat: 'C1' },
+      # { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
+         #        { type: 'enter',  nextChat: 'C2' },
     ],
+
 
     # 对话选项
     chats: [
       #
       { 
-        id: 'C1', desc: '树林，起点位置', 
+        id: 'C1', desc: '寻常的窄道', 
         options: [ 
-         { title: '【继续跟踪杀手】',dialogs: ['Screen2'] }, 
+         { title: '【继续跟踪杀手】',dialogs: ['jinruzhaidao'] }, 
         ],
       },
       #
@@ -407,20 +421,56 @@ scenes: [
         options: [ 
         ],
       },
+      #
+      { 
+        id: 'C3', desc: '用树木做掩护', 
+        options: [ 
+         { title: '【观察杀手的动作】', varsOn: 'ONE_OPEN_1',dialogs: ['jinruzhaidao']   }, 
+        ],
+      },
+ 
     ],
 
     # 对话框
     dialogs: [
-          { id: 'Screen2',style: 6, title: '跟踪杀手#1', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'jinruzhaidao',style: 6, title: '跟踪杀手#2A', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
-          btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
+           #分支1
+          { key: 'N1A', content: ['杀手好像没有异常','继续向前走',], 
+          btn: [{title: '继续跟踪！', toScene: 'C001C_V_MAP_0_2'},{title: '继续跟踪！', tokey: "N1B"},{title: '结束这次跟踪', tokey: "END01"},], },   
 
-    ],},],
+          { key: 'N1B', content: ['树下有很多落叶和枯枝','你不得不小心谨慎',], 
+          btn: [{title: '大胆下脚,JOJO思密达！', tokey: "N1B1"},{title: '想起一些小说情节', tokey: "N1B2"},], },   
+
+          { key: 'N1B1', content: ['看到了一窝蚂蚁','我踩','几只蛐蛐被吓跑远','乐','我踩','嘿嘿嘿','李森炎起身','……','发现被杀手以奇怪的眼光扫视','乐死了，你说是吧，李森炎说到'], 
+          btn: [{title: '是啊，乐死了', dialogs: ['gameover00']}], },   
+
+          { key: 'N1B2', content: ['小说1','某个主角踩了树枝被敌人发现','被追了三条街','小说2','某个主角踩了树枝被敌人发现','不得不化身狂战士全灭敌人','……'], 
+          btn: [{title: '被剧情逗乐了呵呵笑起来', tokey: "N1C1"},{title: '这好像和现在差不多啊',toScene: 'C001C_V_MAP_0_2',varsOn: 'C001C_V_MAP_0_2/N1B2_V'},], },   
+
+          { key: 'N1C1', content: ['杀手正在走路','突然听见背后传来诡异的笑','呵呵呵呵呵啊哈哈哈','呵哈哈哈隔','嗯嗯嗯嗯噗……','杀手……？','不对劲','……'], 
+          btn: [{title: '杀手：不对劲，好奇去瞅一下', dialogs: ['gameoverD4']},{title: '杀手：错觉吗？', toScene: 'C001C_V_MAP_0_2',varsOn: 'C001C_V_MAP_0_2/N1C1_V'},], },   
+    
+                     ],
+          },
+        #死亡1
+         { id: 'gameover00',
+           style: 7, 
+           title: '你挂了',
+           dialogType: 'FullScreen', 
+           textAnimationType: 'TextFadeIn', 
+           sections: [
+           { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来', dialogs: ['jinruzhaidao'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
+           ],
+         },
+          #合理退出
+          { key: 'END01', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
+          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "N1A", }]},    
+    ],
   },
   # NPC3
   {
-     id: 'C001C_V_MAP_point_0_2', name: '寻常窄道',
+     id: 'C001C_V_MAP_0_2', name: '猎人小道',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
@@ -431,24 +481,31 @@ scenes: [
 
     # 变量定义
     vars: [
-    { id: "ONE_OPEN", min: 0, max: 1 },
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "N1C1_V", min: 0, max: 1 },
+    { id: "N1B2_V", min: 0, max: 1 },
     ],
+
     # 动作定义
     actions: [
     ],
     # 事件定义
     events: [
-        { type: 'enter', andVarsOff: ['ONE_OPEN'], nextChat: 'C1' },
-        { type: 'enter', andVarsOn: ['ONE_OPEN'], nextChat: 'C2' },
+       { type: 'enter',  nextChat: 'C1' },
+     #   { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
+      #  { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1C1_V",], andVarsOn: ['N1B2_V'], dialogs: ['Screen2'] },
+      #  { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
+      #    { type: 'enter',  nextChat: 'C2' },
     ],
 
     # 对话选项
     chats: [
       #
       { 
-        id: 'C1', desc: '树林，起点位置', 
+        id: 'C1', desc: '猎人小道', 
         options: [ 
-         { title: '【继续跟踪杀手】',dialogs: ['Screen2'] }, 
+         { title: '【继续跟踪杀手】',dialogs: ['lierenxiaodao'] }, 
         ],
       },
       #
@@ -461,47 +518,387 @@ scenes: [
 
     # 对话框
     dialogs: [
-          { id: 'Screen2',style: 6, title: '跟踪杀手#1', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'lierenxiaodao',style: 6, title: '跟踪杀手#1', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','这是平时那种猎户走出来的小路','李森炎决定',],
-          btn: [{title: '在小路的两边用树来作掩护',tokey: "N1A"},{title: '距离更远一点', tokey: "R1"},]},
+          { key: 'P1', content: ['紧接着李森炎看见那杀手四处张望了下','好似极为警惕的样子','李森炎紧紧盯着他，只见他又拐进了一条小道','周围杂草丛生看上去很不好跟踪','李森炎决定',],
+          btn: [{title: '大步流星，赶紧跟上杀手',dialogs: ['gameover01']},{title: '小心翼翼的走，不着急', tokey: "N1B1"},]},
 
-    ],},],
+          { key: 'N1B1', content: ['这地方陷阱重重，李森炎顾不上杀手，走的很小心翼翼','然后','听见前面传来一声响声','杀手差点掉猎户的陷阱里',李森炎：“噗……”',], 
+          btn: [{title: '偷笑', dialogs: ['gameover02']},{title: '憋笑', tokey: "N1B2"}]},   
+
+          { key: 'N1B2', content: ['杀手脚尖轻点，使着轻功从陷阱上跳了出来','继续往前走','周围杂草丛生看上去很不好跟踪','李森炎决定',],
+          btn: [{title: '继续跟踪！', toScene: 'C001C_V_MAP_0_3'},]},
+
+    ],},
+   #死亡2
+         { id: 'gameover01',
+           style: 7, 
+           title: '你挂了',
+           dialogType: 'FullScreen', 
+           textAnimationType: 'TextFadeIn', 
+           sections: [
+           { key: 'p1', content: ['杀手大概是对这条路无比熟悉','走的很快','你也快步跟上','忽然被绊倒了','杀手听见‘啪唧’一声','回过头就看见李森炎四仰八叉倒在地上的样子','“我懂，这回我自己死……”',], btn: [{title: '不放弃，再来', dialogs: ['lierenxiaodao'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
+           ],      
+         },      
+  #死亡3
+            { id: 'gameover02',
+           style: 7, 
+           title: '你挂了',
+           dialogType: 'FullScreen', 
+           textAnimationType: 'TextFadeIn', 
+           sections: [
+           { key: 'p2', content: ['李森炎偷笑','哈哈哈哈哈哈','哎不是，不小心笑出声了？','刚想捂上嘴，结果忽然感觉脚下一凉','垂直落地，加速运动','……','好的，我自己手动重来',], btn: [{title: '不放弃，再来', dialogs: ['lierenxiaodao'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
+           ],      
+         },      
+          #合理退出
+          { key: 'END01', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
+          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "N1A", }]},     
+    ],
+
+    
   },
 
+  {
+  # NPC2
+    id: 'C001C_V_MAP_0_3', name: '林荫休息处',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C001C_V_MAP_0_3',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 3],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "N1C1_V", min: 0, max: 1 },
+    { id: "N1B2_V", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+     #   { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
+      #  { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1C1_V",], andVarsOn: ['N1B2_V'], dialogs: ['Screen2'] },
+      #  { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
+      #    { type: 'enter',  nextChat: 'C2' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '林荫休息处', 
+        options: [ 
+         { title: '【继续跟踪杀手】',dialogs: ['linyinxiuxichu'] }, 
+        ],
+      },
+      #
+      { 
+        id: 'C2', desc: '这里已经调查过了', 
+        options: [ 
+        ],
+      },
+      #
+ 
+    ],
+
+    # 对话框
+    dialogs: [
+          { id: 'linyinxiuxichu',style: 6, title: '跟踪杀手#4', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+           #分支1
+          { key: 'N1A', content: ['这里看上去很阴凉','杀手似乎想在这里休息一下','杀手坐下了，闭上眼假寐','此时李森炎决定——',], 
+          btn: [{title: '恶搞杀手', tokey: "N3"},{title: '静静等候', tokey: "N4"},], },   
+
+          { key: 'N3', content: ['现在这么好的机会','绝对不能错过','李森炎找到一个小树叉，朝着杀手的方向仍过去','','','',], 
+          btn: [{title: '偷偷翻一下黑包', tokey: "N3B1"},{title: '还是算了，默默等待', tokey: "N4"},], },   
+
+          { key: 'N3B1', content: ['','','杀手动了下','吓！不会是要醒了吧！','还好只是挠头','继续……','拿起黑包，准备打开','……','里面装的竟然是自己的画像','此时杀手醒了，双目有神且冷冷的盯着你'], 
+          btn: [{title: '选这个',tokey: "N3B2"},{title: '别选这个', tokey: "N5"}], },   
+
+          { key: 'N3B2', content: ['杀手看着李森炎：“……”','李森炎面露尴尬，“咳咳……你随身带我的画像做什么，要签名直说啊……”','说完手指一动，在画像上签上名','然后，立刻转身跑','……杀手站起欲追，但是他睡得腿麻了','原地摔了一跤'], 
+          btn: [{title: '往另一条小路跑', toScene: 'C001C_V_MAP_0_5'},], },   
+
+          { key: 'N4', content: ['杀手靠在木桩前休息好了之后','拍了拍身上的灰继续走',], 
+          btn: [{title: '继续跟踪',toScene: 'C001C_V_MAP_0_4'},], },   
+
+          { key: 'N5', content: ['恭喜你，触发特殊技能——‘天生神力’！','怒增一万点暴力值','李森炎一拳把拔剑欲起的黑衣人一拳捶晕','将手中画像撕碎','潇洒离开',], 
+          btn: [{title: '往宽阔大道走',toScene: 'C001C_V_MAP_0_5'},{title: '往另一条小路跑', toScene: 'C001C_V_MAP_0_5'},], },   
+         ],
+          },
+    ],
+  },
+
+
+ {
+  # NPC2
+    id: 'C001C_V_MAP_0_4', name: '进城大道',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C001C_V_MAP_0_4',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, 4],
+
+    # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "N1C1_V", min: 0, max: 1 },
+    { id: "N1B2_V", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+      #  { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
+         #        { type: 'enter',  nextChat: 'C2' },
+    ],
+
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '进城大道', 
+        options: [ 
+         { title: '【继续跟踪杀手】',dialogs: ['jinchengdadao'] }, 
+        ],
+      },
+      #
+      { 
+        id: 'C2', desc: '这里已经调查过了', 
+        options: [ 
+        ],
+      },
+      #
+ 
+    ],
+
+    # 对话框
+    dialogs: [
+          { id: 'jinchengdadao',style: 6, title: '跟踪杀手#4', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+           #分支1
+          { key: 'N5', content: ['杀手刚才休息的不错，什么也没发现','继续往前走','四周的人越来越多','这个杀手应该是想进城','此时李森炎决定——',], 
+          btn: [{title: '进城', toScene: 'C001C_V_MAP_0_5'},{title: '继续跟着杀手', tokey: "N6"},], },   
+
+          { key: 'N6', content: ['杀手又走了一会儿','进了城后，杀手见四下无人，进了路边的一个小房子','你本来想跟上','但看见房子里出来了更多黑衣人','你知道，但凡进去就是必死，默默把地址记下','算了，走吧',], 
+          btn: [{title: '进城', toScene: 'C001C_V_MAP_0_5'},], },   
+
+         ],
+          },
+    ],
+  },
+
+       {
+  # NPC2
+    id: 'C001C_V_MAP_0_5', name: '白城',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C001C_V_MAP_0_5',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, 5],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "N1C1_V", min: 0, max: 1 },
+    { id: "N1B2_V", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+     #   { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
+      #  { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1C1_V",], andVarsOn: ['N1B2_V'], dialogs: ['Screen2'] },
+      #  { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
+      #    { type: 'enter',  nextChat: 'C2' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '白城', 
+        options: [ 
+         { title: '【直接进城】',toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+
+        ],
+      },
+      #
+      { 
+        id: 'C2', desc: '这里已经调查过了', 
+        options: [ 
+        ],
+      },
+      #
+ 
+    ],
+
+   
+  },
+    #=================================场景地图的设置==================================
     maps: [
       {
         id: 'C001C_V_MAP_0_0',
         data: [
-          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
-          #{ point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_02', links: [] },
-        ]
-      },
-      {
-        id: 'C001C_V_MAP_0_0END',
-        data: [
-          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
-          { point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_02', links: [] },
+          { 
+          point: [0, 0], title: '林间小道，入口', 
+          #toScene: 'C001C_V_MAP_0_0', 
+          links: [[0, 1], ] },
+          { point: [0, 1], title: '？？？', links: [] },
         ]
       },
       
       {
         id: 'C001C_V_MAP_0_1',
         data: [
-          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
-          { point: [0, 1], title: '？？？', toScene: 'C001C_V_MAP_point_0_1', links: [] },
+          { point: [0, 2], title: '？？？', links: [] },
+          { 
+          point: [0, 1], title: '寻常窄道',
+           #toScene: 'C001C_V_MAP_0_1',
+            links: [[0, 2], ] },
+          { 
+          point: [0, 0], title: '林间小道，入口', 
+         # toScene: 'C001C_V_MAP_0_0',
+           links: [[0, 1], ] 
+           },
+
         ]
       },
       {
         id: 'C001C_V_MAP_0_2',
         data: [
-          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
-          { point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_0_1', links: [[0, 2], ] },
-          { point: [0, 2], title: '？？？？', toScene: 'C001C_V_MAP_point_0_2', links: [[0, 2], ] },
+          { point: [0, 3], title: '？？？', links: [[], ] },
+          { 
+          point: [0, 2], title: '猎人小道',
+           # toScene: 'C001C_V_MAP_0_2',
+             links: [[0, 3], ] },
+          {
+           point: [0, 1], title: '寻常窄道', 
+          # toScene: 'C001C_V_MAP_0_1',
+            links: [[0, 2], ] },
+          { point: [0, 0],
+           title: '林间小道，入口', 
+           #toScene: 'C001C_V_MAP_0_0', 
+           links: [[0, 1], ] },
+        ]
+      },
+
+       {
+        id: 'C001C_V_MAP_0_3',
+        data: [
+          { point: [1, 4], title: '？？？',
+           links: [[], ] },
+          { 
+          point: [0, 3], title: '林荫休息处', 
+           #toScene: 'C001C_V_MAP_0_3',
+            links: [[1, 4], ] },
+          { 
+          point: [0, 2],
+           title: '猎人小道', 
+          #  toScene: 'C001C_V_MAP_0_2',
+             links: [[0, 3], ] },
+          {
+
+           point: [0, 1], 
+           title: '寻常窄道',
+          #  toScene: 'C001C_V_MAP_0_1',
+             links: [[0, 2], ] },
+          { 
+          point: [0, 0],
+           title: '林间小道，入口', 
+         #  toScene: 'C001C_V_MAP_0_0',
+            links: [[0, 1], ] },
         ]
       },
 
 
+       {
+        id: 'C001C_V_MAP_0_4',
+        data: [
+
+          { point: [1, 5], title: '？？？',
+           links: [[], ] },
+
+          { point: [1, 4], title: '进城大道',
+          #toScene: 'C001C_V_MAP_0_4',
+           links: [[1, 5], ] },
+          { 
+          point: [0, 3], title: '林荫休息处', 
+           #toScene: 'C001C_V_MAP_0_3',
+            links: [[1, 4], ] },
+          { 
+          point: [0, 2],
+           title: '猎人小道', 
+          #  toScene: 'C001C_V_MAP_0_2',
+             links: [[0, 3], ] },
+          {
+
+           point: [0, 1], 
+           title: '寻常窄道',
+          #  toScene: 'C001C_V_MAP_0_1',
+             links: [[0, 2], ] },
+          { 
+          point: [0, 0],
+           title: '林间小道，入口', 
+         #  toScene: 'C001C_V_MAP_0_0',
+            links: [[0, 1], ] },
+
+        ]
+      },
+
+       {
+        id: 'C001C_V_MAP_0_5',
+        data: [
+
+          { point: [1, 5], title: '白城',
+          #toScene: 'C001C_V_MAP_0_5',
+           links: [[], ] },
+
+          { point: [1, 4], title: '进城大道',
+          #toScene: 'C001C_V_MAP_0_4',
+           links: [[1, 5], ] },
+          { 
+          point: [0, 3], title: '林荫休息处', 
+           #toScene: 'C001C_V_MAP_0_3',
+            links: [[1, 4], ] },
+          { 
+          point: [0, 2],
+           title: '猎人小道', 
+          #  toScene: 'C001C_V_MAP_0_2',
+             links: [[0, 3], ] },
+          {
+
+           point: [0, 1], 
+           title: '寻常窄道',
+          #  toScene: 'C001C_V_MAP_0_1',
+             links: [[0, 2], ] },
+          { 
+          point: [0, 0],
+           title: '林间小道，入口', 
+         #  toScene: 'C001C_V_MAP_0_0',
+            links: [[0, 1], ] },
+
+        ]
+      },
     ],
 
   ]

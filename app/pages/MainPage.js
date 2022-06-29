@@ -63,7 +63,7 @@ class MainPage extends Component {
   render() {
     return (
       <NavigationContainer theme={{ colors: this.props.currentStyles.navigation }} ref={navigationRef} onStateChange={this.stateChangeHandler}>
-        <Stack.Navigator initialRouteName='BookMain' screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
+        <Stack.Navigator initialRouteName='First' screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
           <Stack.Screen name='Home' options={{ headerShown: false }} component={HomePage} />
           <Stack.Screen name='Article' options={{ headerShown: false }} component={NewArticlePage} />
           <Stack.Screen name="First" options={{ headerShown: false }} component={FirstPage} />

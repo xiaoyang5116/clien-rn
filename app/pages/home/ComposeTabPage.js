@@ -4,9 +4,9 @@ import {
     Component,
 } from "../../constants";
 
-import { 
-    createStackNavigator, 
-    CardStyleInterpolators 
+import {
+    createStackNavigator,
+    CardStyleInterpolators
 } from '@react-navigation/stack';
 
 import {
@@ -22,14 +22,14 @@ const Stack = createStackNavigator();
 export default class ComposeTabPage extends Component {
     render() {
         return (
-        <Panel patternId={3}>
+            // <Panel patternId={3}>
             <View style={{ flex: 1 }}>
                 <Stack.Navigator initialRouteName='ComposeMain' screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
                     <Stack.Screen name='ComposeMain' options={{ headerShown: false }} component={ComposeMainTabPage} />
                     <Stack.Screen name='ComposeDetail' options={{ headerShown: false }} component={ComposeDetailTabPage} />
                 </Stack.Navigator>
             </View>
-        </Panel>
+            // </Panel>
         );
     }
 }

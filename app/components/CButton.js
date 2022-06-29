@@ -5,19 +5,22 @@ import lo from 'lodash';
 import {
     Component,
     StyleSheet,
+    ThemeContext,
 } from "../constants";
 
 import ImageCapInset from 'react-native-image-capinsets-next';
 import { Text, Image, View, TouchableHighlight, TouchableOpacity } from '../constants/native-ui';
 
-const TEXT_BUTTON_BG = [
-    require('../../assets/button/40dpi.png'), // 正常状态
-    require('../../assets/button/40dpi_gray.png'), // 无效状态
-];
+// const TEXT_BUTTON_BG = [
+//     require('../../assets/button/40dpi.png'), // 正常状态
+//     require('../../assets/button/40dpi_gray.png'), // 无效状态
+// ];
 
 // 通用按钮实现
 // onPress 回调函数可返回 对象指定 disabled 属性控制按钮是否禁用。
 export class CButton extends Component {
+    static contextType = ThemeContext
+
     constructor(props) {
         super(props);
 
@@ -71,10 +74,10 @@ export class CButton extends Component {
                 backgroundColor: (this.props.disabled ? '#999' : this.props.color),
                 ...styles.border,
             };
-            const imgBg = this.props.disabled ? TEXT_BUTTON_BG[1] : TEXT_BUTTON_BG[0];
+            const imgBg = this.props.disabled ? this.context.btnPattern_2_img : this.context.btnPattern_1_img;
             return (
                 <TouchableHighlight underlayColor={this.props.underlayColor} activeOpacity={0.75} disabled={this.props.disabled} onPressIn={this.onPressIn} onPressOut={this.onPressOut} onPress={this.onPress} >
-                    <View style={[defaultStyle, {...this.props.style}]}>
+                    <View style={[defaultStyle, { ...this.props.style }]}>
                         <ImageCapInset
                             style={{ width: '100%', height: '100%', position: 'absolute' }}
                             source={imgBg}
@@ -88,7 +91,7 @@ export class CButton extends Component {
             const defaultStyle = {};
             return (
                 <TouchableOpacity disabled={this.props.disabled} activeOpacity={1} onPressIn={this.onPressIn} onPressOut={this.onPressOut} onPress={this.onPress} >
-                    <View style={[defaultStyle, {...this.props.style}]}>
+                    <View style={[defaultStyle, { ...this.props.style }]}>
                         {this.state.onPressing ? this.state.selectedImage : this.state.normalImage}
                     </View>
                 </TouchableOpacity>
