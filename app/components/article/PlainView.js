@@ -1,5 +1,15 @@
 import React from 'react';
-import { View, Text, TouchableWithoutFeedback, DeviceEventEmitter, Animated } from 'react-native';
+
+import { 
+    View, 
+    Text, 
+    TouchableWithoutFeedback, 
+    DeviceEventEmitter, 
+    Animated, 
+    Linking 
+} from 'react-native';
+
+import RenderHTML from 'react-native-render-html';
 
 import {
     connect,
@@ -33,10 +43,21 @@ const PlainView = (props) => {
         DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_LONG_PRESS, e);
     }
 
+    const css = [];
+    css.push(`font-size: ${readerStyle.contentSize}px`);
+    css.push(`margin-top: ${readerStyle.paragraphSpacing}px`);
+    css.push(`margin-bottom: ${readerStyle.paragraphSpacing}px`);
+    css.push(`padding-left: ${readerStyle.leftPadding}px`);
+    css.push(`padding-right: ${readerStyle.rightPadding}px`);
+    css.push(`line-height: ${readerStyle.contentSize + readerStyle.lineHeight}px`);
+    css.push(`color: ${readerStyle.color}`);
+
+    const html = `<pre style="${css.join(';')}">${props.content}</pre>`;
+
     return (
         <TouchableWithoutFeedback onLongPress={onLongPressHandler} onPress={onPressHandler}>
             <Animated.View key={props.itemKey} style={{ opacity: context.readerTextOpacity }} onLayout={layoutHandler} >
-                <Text style={{
+                {/* <Text style={{
                     fontSize: readerStyle.contentSize,
                     color: readerStyle.color,
                     lineHeight: (readerStyle.contentSize + readerStyle.lineHeight),
@@ -46,7 +67,18 @@ const PlainView = (props) => {
                     paddingRight: readerStyle.rightPadding,
                 }}>
                     {props.content}
-                </Text>
+                </Text> */}
+                <RenderHTML 
+                    renderersProps={{
+                        a: {
+                            onPress: (evt, href) => {
+                                Linking.openURL(href);
+                            }
+                        }
+                    }}
+                    contentWidth={10} 
+                    source={{ html }} 
+                />
             </Animated.View>
         </TouchableWithoutFeedback>
     );
