@@ -57,22 +57,13 @@ const PlainView = (props) => {
     return (
         <TouchableWithoutFeedback onLongPress={onLongPressHandler} onPress={onPressHandler}>
             <Animated.View key={props.itemKey} style={{ opacity: context.readerTextOpacity }} onLayout={layoutHandler} >
-                {/* <Text style={{
-                    fontSize: readerStyle.contentSize,
-                    color: readerStyle.color,
-                    lineHeight: (readerStyle.contentSize + readerStyle.lineHeight),
-                    marginTop: readerStyle.paragraphSpacing,
-                    marginBottom: readerStyle.paragraphSpacing,
-                    paddingLeft: readerStyle.leftPadding,
-                    paddingRight: readerStyle.rightPadding,
-                }}>
-                    {props.content}
-                </Text> */}
                 <RenderHTML 
                     renderersProps={{
                         a: {
                             onPress: (evt, href) => {
-                                Linking.openURL(href);
+                                // 缺省：Linking.openURL(href);
+                                const { pageX, pageY } = evt.nativeEvent;
+                                DeviceEventEmitter.emit(EventKeys.ARTICLE_CLICK_LINK, { pageX, pageY, source: href });
                             }
                         }
                     }}
