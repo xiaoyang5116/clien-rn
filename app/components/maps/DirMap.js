@@ -89,6 +89,15 @@ const DirMap = (props) => {
   // 大地图缩放
   const bigMapScale = React.useRef(new Animated.Value(1)).current;
 
+  // 地图缩放限制
+  const zoomMax = 2;
+  const zoomMin = 0.6;
+
+  // 是否开始双指
+  let isTwoFinger = false
+  // 开始时双指简距离
+  let initDistend = 0
+
   // 地图滑动处理器
   const panResponder = React.useRef(PanResponder.create({
     onMoveShouldSetPanResponder: () => true,
@@ -97,18 +106,38 @@ const DirMap = (props) => {
       status.prevY = bigMapPos.y._value;
     },
     onPanResponderMove: (evt, gestureState) => {
-      bigMapPos.setValue({ x: status.prevX + gestureState.dx, y: status.prevY + gestureState.dy });
+      // 单指操作
+      if (gestureState.numberActiveTouches === 1) {
+        bigMapPos.setValue({ x: status.prevX + gestureState.dx, y: status.prevY + gestureState.dy });
+      }
+      // 双指操作
+      if (gestureState.numberActiveTouches === 2) {
+        let distend = Math.sqrt(
+          Math.pow(evt.nativeEvent.touches[0].pageX - evt.nativeEvent.touches[1].pageX, 2) +
+          Math.pow(evt.nativeEvent.touches[0].pageY - evt.nativeEvent.touches[1].pageY, 2)
+        )
+        if (!isTwoFinger) {
+          isTwoFinger = true
+          initDistend = distend
+        }
+        let scaleNumber = ((distend - initDistend) / 5000) + bigMapScale._value
+        if (scaleNumber > zoomMax + 0.1) return;
+        if (scaleNumber < zoomMin - 0.1) return;
+        bigMapScale.setValue(scaleNumber)
+      }
     },
     onPanResponderRelease: (evt, gestureState) => {
       status.prevX = bigMapPos.x._value;
       status.prevY = bigMapPos.y._value;
+      initDistend = 0
+      isTwoFinger = false
     },
   })).current;
 
   // 大地图缩小
   const zoomOutBigMapHandler = (e) => {
     const value = bigMapScale._value;
-    if (value <= 0.6) {
+    if (value <= zoomMin) {
       Toast.show('已经缩放至最小', 'CenterToTop');
       return;
     }
@@ -118,7 +147,7 @@ const DirMap = (props) => {
   // 大地图放大
   const zoomInBigMapHandler = (e) => {
     const value = bigMapScale._value;
-    if (value >= 2) {
+    if (value >= zoomMax) {
       Toast.show('已经缩放至最大', 'CenterToTop');
       return;
     }
