@@ -351,6 +351,21 @@ const TheWorld = (props) => {
     }
   }, []);
 
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.NAVIGATION_ROUTE_CHANGED, ({ routeName }) => {
+      if (lo.isEqual(routeName, 'Article')) {
+        // 页面切换时删除浮层提示
+        if (tipsKey.current != null) {
+          RootView.remove(tipsKey.current);
+          tipsKey.current = null;
+        }
+      }
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
   return (
     <View style={[{ flex: 1 }, { backgroundColor: props.readerStyle.bgColor }]}>
       <ReaderBackgroundImageView />

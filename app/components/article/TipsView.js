@@ -3,15 +3,17 @@ import React from 'react';
 import { 
     View, 
     Text,
-    StyleSheet
+    StyleSheet,
+    Platform
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import { statusBarHeight } from '../../constants';
 import { px2pd } from '../../constants/resolution';
 
 const TipsView = (props) => {
-
+    const fixedY = (Platform.OS == 'android' ? statusBarHeight : 0);
     return (
-        <View style={[styles.viewContainer, { left: props.pageX, top: props.pageY }]}>
+        <View style={[styles.viewContainer, { left: props.pageX, top: (props.pageY - fixedY) }]}>
             <FastImage style={{ width: px2pd(300), height: px2pd(480) }} source={require('../../../assets/bg/baojian.png')} />
             <Text style={{ marginTop: 10, color: '#000' }}>尚方宝剑 （至高无上的皇权象征）</Text>
         </View>
