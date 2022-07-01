@@ -5,7 +5,6 @@ ASSETS_PATH=./android/app/src/main/assets/
 VERSION_FILE=./android/app/build.gradle
 CONFIG_FILE=./app/constants/_others.js
 
-
 # 缺省版本号，可传入第一个参数为指定的版本号
 VERSION_VALUE=1.0
 if [ $# == 1 ]
