@@ -48,6 +48,7 @@ import RightContainer from '../components/article/RightContainer';
 import DirMapPage from './article/DirMapPage';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../constants/resolution';
+import TipsView from '../components/article/TipsView';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -247,6 +248,7 @@ const TheWorld = (props) => {
   const startY = React.useRef(0);
   const started = React.useRef(false);
   const refList = React.useRef(null);
+  const tipsKey = React.useRef(null);
   const context = React.useContext(DataContext);
   const maskOpacity = React.useRef(new Animated.Value(1)).current;
   const fontOpacity = React.useRef(new Animated.Value(0)).current;
@@ -267,6 +269,12 @@ const TheWorld = (props) => {
 
     // 屏蔽：需求 --- 手动点击才隐藏上下功能区域。
     // DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_SCROLL, payload);
+
+    // 页面滚动时删除浮层提示
+    if (tipsKey.current != null) {
+      RootView.remove(tipsKey.current);
+      tipsKey.current = null;
+    }
   }
 
   const endReachedHandler = () => {
@@ -325,6 +333,38 @@ const TheWorld = (props) => {
       ]).start();
     }
   }, [props]);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_CLICK_LINK, (e) => {
+      if (!lo.isEqual(routeName, 'PrimaryWorld'))
+        return;
+
+      if (tipsKey.current != null) {
+        RootView.remove(tipsKey.current);
+      }
+
+      const key = RootView.add(<TipsView { ...e } />);
+      tipsKey.current = key;
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.NAVIGATION_ROUTE_CHANGED, ({ routeName }) => {
+      if (lo.isEqual(routeName, 'Article')) {
+        // 页面切换时删除浮层提示
+        if (tipsKey.current != null) {
+          RootView.remove(tipsKey.current);
+          tipsKey.current = null;
+        }
+      }
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
 
   return (
     <View style={[{ flex: 1 }, { backgroundColor: props.readerStyle.bgColor }]}>

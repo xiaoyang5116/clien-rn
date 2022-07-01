@@ -58,4 +58,7 @@ export class EventKeys {
     static HIDE_DIRECTORY_MAP = 'HIDE_DIRECTORY_MAP';
     // 返回至目录
     static BACK_DIRECTORY = 'BACK_DIRECTORY';
+
+    // 文章内超链接点击
+    static ARTICLE_CLICK_LINK = 'ARTICLE_CLICK_LINK';
 }
