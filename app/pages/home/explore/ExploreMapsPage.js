@@ -9,7 +9,6 @@ import {
     DeviceEventEmitter,
     EventKeys,
     ThemeContext,
-    statusBarHeight
 } from "../../../constants";
 import { px2pd } from '../../../constants/resolution';
 
@@ -201,7 +200,7 @@ class ExploreMapsPage extends Component {
                             <Text style={{ fontSize: 30, margin: 15 }}>世界探索</Text>
                         </View> */}
 
-                    <Header1 style={{ marginTop: (Platform.OS == 'ios' ? statusBarHeight + 10 : 30), marginLeft: 10, marginRight: 10, marginBottom: 10 }} title={"世界探索"} />
+                    <Header1 style={{ marginLeft: 10, marginRight: 10, marginBottom: 10 }} title={"世界探索"} />
 
                     <View style={{ borderColor: '#999', borderWidth: 1, backgroundColor: '#eee', margin: 10, height: 100 }}>
                         <ImageBackground style={{ width: "100%", height: "100%" }} source={this.context.blockBg_1_img}>

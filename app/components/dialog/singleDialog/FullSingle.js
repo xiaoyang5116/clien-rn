@@ -9,8 +9,9 @@ import {
 import React, { useState } from 'react';
 import { Panel } from '../../panel';
 import { ThemeContext } from '../../../constants';
-import { TextButton, LongTextButton } from '../../../constants/custom-ui';
+import { TextButton, LongTextButton, Header1 } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
+import FastImage from 'react-native-fast-image';
 
 const FullSingle = props => {
     const windowHeight = Dimensions.get('window').height;
@@ -80,25 +81,12 @@ const FullSingle = props => {
     };
 
     return (
-        <SafeAreaView style={[theme.blockBgColor3, { flex: 1 }]}>
-            <View style={[theme.blockBgColor3, { flex: 1, opacity: 1, paddingTop: 10 }]}>
+        <FastImage style={{ flex: 1 }}
+            source={theme.dialogBg_2_img}
+        >
+            <View style={[{ flex: 1, opacity: 1 }]}>
                 {/* 标题 */}
-                <View
-                    style={[
-                        theme.rowCenter,
-                        theme.blockBgColor1,
-                        {
-                            height: 40,
-                            borderBottomColor: '#6d6a65',
-                            borderBottomWidth: 1,
-                            borderTopColor: '#6d6a65',
-                            borderTopWidth: 1,
-                        },
-                    ]}>
-                    <Text style={[theme.titleColor1, { fontSize: 20, textAlign: 'center' }]}>
-                        {title}
-                    </Text>
-                </View>
+                <Header1 style={{ marginBottom: 10 }} title={title} />
                 {/* 显示区域 */}
                 <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12 }}>
                     <TouchableWithoutFeedback onPress={nextParagraph}>
@@ -146,7 +134,7 @@ const FullSingle = props => {
                     </TouchableWithoutFeedback>
                 </View>
             </View>
-        </SafeAreaView>
+        </FastImage>
     );
 };
 
