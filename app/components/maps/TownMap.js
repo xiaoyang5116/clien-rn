@@ -89,7 +89,7 @@ const EntryButton = (props) => {
     return (
         <TouchableWithoutFeedback onPress={() => {
                 confirm('确认进入？', () => {
-                    DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
+                    // DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
                 });
             }}>
             <View style={{ ...props.style }}>
