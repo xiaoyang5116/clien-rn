@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     /* 导航栏样式 */
     navigation: {
         primary: '#ff2d55',
-        background: '#5e5e5e',
+        background: '#f2f2f2',
         card: '#212121',
         text: '#ffffff',
         border: '#c7c7cc',
