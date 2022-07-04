@@ -61,4 +61,7 @@ export class EventKeys {
 
     // 文章内超链接点击
     static ARTICLE_CLICK_LINK = 'ARTICLE_CLICK_LINK';
+
+    // 进入城镇地点
+    static TOWN_ENTER = 'TOWN_ENTER';
 }
