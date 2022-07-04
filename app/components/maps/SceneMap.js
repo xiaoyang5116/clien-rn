@@ -76,6 +76,15 @@ const SceneMap = (props) => {
     y: ((MAP_BIG_SIZE.height - MAP_MARGIN_VALUE * 2) / 2) - (GRID_PX_HEIGHT / 2) + (props.initialCenterPoint[1] * (GRID_PX_HEIGHT + GRID_SPACE)),
   }
 
+  // 地图缩放限制
+  const zoomMax = 1.2;
+  const zoomMin = 0.9;
+
+  // 是否开始双指
+  let isTwoFinger = false
+  // 开始时双指简距离
+  let initDistend = 0
+
   // 大地图移动坐标
   const bigMapPos = React.useRef(new Animated.ValueXY(bigMapInitXY)).current;
   // 各种状态数据
@@ -99,11 +108,29 @@ const SceneMap = (props) => {
       status.prevY = bigMapPos.y._value;
     },
     onPanResponderMove: (evt, gestureState) => {
-      bigMapPos.setValue({ x: status.prevX + gestureState.dx, y: status.prevY + gestureState.dy });
+      if (gestureState.numberActiveTouches === 1) { // 单指操作
+        bigMapPos.setValue({ x: status.prevX + gestureState.dx, y: status.prevY + gestureState.dy });
+      } else if (gestureState.numberActiveTouches === 2) { // 双指操作
+        let distend = Math.sqrt(
+          Math.pow(evt.nativeEvent.touches[0].pageX - evt.nativeEvent.touches[1].pageX, 2) +
+          Math.pow(evt.nativeEvent.touches[0].pageY - evt.nativeEvent.touches[1].pageY, 2)
+        )
+        if (!isTwoFinger) {
+          isTwoFinger = true
+          initDistend = distend
+        }
+        let scaleNumber = ((distend - initDistend) / 5000) + bigMapScale._value
+        if (scaleNumber > zoomMax + 0.1) return;
+        if (scaleNumber < zoomMin - 0.1) return;
+        bigMapScale.setValue(scaleNumber)
+      }
     },
     onPanResponderRelease: (evt, gestureState) => {
       status.prevX = bigMapPos.x._value;
       status.prevY = bigMapPos.y._value;
+
+      initDistend = 0
+      isTwoFinger = false
     },
   })).current;
 
@@ -164,7 +191,7 @@ const SceneMap = (props) => {
   // 大地图缩小
   const zoomOutBigMapHandler = (e) => {
     const value = bigMapScale._value;
-    if (value <= 0.6) {
+    if (value <= zoomMin) {
       Toast.show('已经缩放至最小', 'CenterToTop');
       return;
     }
@@ -174,7 +201,7 @@ const SceneMap = (props) => {
   // 大地图放大
   const zoomInBigMapHandler = (e) => {
     const value = bigMapScale._value;
-    if (value >= 2) {
+    if (value >= zoomMax) {
       Toast.show('已经缩放至最大', 'CenterToTop');
       return;
     }
