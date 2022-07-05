@@ -175,6 +175,11 @@ export default {
       return result;
     },
 
+    *getBagProps({}, { select }) {
+      const propsState = yield select(state => state.PropsModel);
+      return propsState.__data.bags;
+    },
+
     *getPropConfig({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
       const { propId } = payload;
