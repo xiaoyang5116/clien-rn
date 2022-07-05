@@ -45,4 +45,7 @@ props: [
   { id: 60 , name: '炼丹宝箱', iconId: 4, num: 200, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
   { id: 61 , name: '穿越宝箱', iconId: 5, num: 200, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
   { id: 62 , name: '复活宝箱', iconId: 1, num: 200, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
+
+  # 种植道具
+  { id: 63 , name: '西瓜种子', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '种植西瓜' }, 
 ]
