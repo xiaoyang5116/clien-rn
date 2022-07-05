@@ -5,10 +5,11 @@ import { Tab, TabView } from '@rneui/themed'
 import RootView from '../RootView'
 
 import Farm from './Farm'
+import { TextButton } from '../../constants/custom-ui'
 
 
 
-const Plant = () => {
+const Plant = (props) => {
     const [tabIndex, setTabIndex] = useState(0)
     return (
         <View style={{ flex: 1, backgroundColor: "#fff" }} >
@@ -22,7 +23,7 @@ const Plant = () => {
                         <Tab.Item title={"春"} />
                         <Tab.Item title={"夏"} />
                         <Tab.Item title={"秋"} />
-                        <Tab.Item title={"东"} />
+                        <Tab.Item title={"冬"} />
                     </Tab>
                     <TabView
                         value={tabIndex}
@@ -47,9 +48,11 @@ const Plant = () => {
                         </TabView.Item>
                         <TabView.Item style={styles.TabView_item_container}>
                             <View style={{ flex: 1, backgroundColor: "pink" }}></View>
-
                         </TabView.Item>
                     </TabView>
+                    <View style={{ position: "absolute", bottom: 0, left: 40, height: 40 }}>
+                        <TextButton title={"退出"} onPress={props.onClose} />
+                    </View>
                 </View>
             </SafeAreaView>
         </View>
@@ -67,28 +70,6 @@ export class PlantPage {
 }
 
 const styles = StyleSheet.create({
-    TabContainerStyle: {
-        width: "100%",
-        height: 50,
-        paddingLeft: 12,
-        paddingRight: 12,
-    },
-    TabItem: {
-        fontSize: 16,
-        color: "#858585",
-        backgroundColor: "#f2f2f2",
-        width: 100,
-        height: 50,
-        lineHeight: 45
-    },
-    TabItem_active: {
-        fontSize: 20,
-        color: "#000",
-        backgroundColor: "#f2f2f2",
-        width: 100,
-        height: 50,
-        lineHeight: 45
-    },
     TabView_item_container: {
         flex: 1,
         marginTop: 12,
