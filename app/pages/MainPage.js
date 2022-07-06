@@ -24,14 +24,12 @@ import FirstPage from './FirstPage';
 import SettingsPage from './SettingsPage';
 import BookMainPage from './BookMainPage'
 import { navigationRef } from '../utils/RootNavigation';
-import { useColorScheme } from 'react-native';
+import { Appearance } from 'react-native';
 import readerStyle from '../themes/readerStyle';
 
 const Stack = createStackNavigator();
 
 const MainPage = (props) => {
-
-  const colorScheme = useColorScheme();
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener(EventKeys.APP_DISPATCH, (params) => {
@@ -45,19 +43,18 @@ const MainPage = (props) => {
   }, []);
 
   React.useEffect(() => {
-    const listener = DeviceEventEmitter.addListener(EventKeys.COLOR_SCHEME_CHANGED, (colorScheme) => {
-      console.debug('ColorScheme=', colorScheme, props.darkLightSettings);
+    const listener = DeviceEventEmitter.addListener(EventKeys.COLOR_SCHEME_CHANGED, (color) => {
       if (lo.isBoolean(props.darkLightSettings.app) && props.darkLightSettings.app) {
-        if (lo.isEqual(colorScheme, 'dark')) {
+        if (lo.isEqual(color, 'dark')) {
           props.dispatch(action('AppModel/changeTheme')({ themeId: 2 }));
-        } else if (lo.isEqual(colorScheme, 'light')) {
+        } else if (lo.isEqual(color, 'light')) {
           props.dispatch(action('AppModel/changeTheme')({ themeId: 0 }));
         }
       }
       if (lo.isBoolean(props.darkLightSettings.reader) && props.darkLightSettings.reader) {
-        if (lo.isEqual(colorScheme, 'dark')) {
+        if (lo.isEqual(color, 'dark')) {
           props.dispatch(action('ArticleModel/changeReaderStyle')(readerStyle.matchColor_7));
-        } else if (lo.isEqual(colorScheme, 'light')) {
+        } else if (lo.isEqual(color, 'light')) {
           props.dispatch(action('ArticleModel/changeReaderStyle')(readerStyle.matchColor_1));
         }
       }
@@ -68,8 +65,13 @@ const MainPage = (props) => {
   }, []);
 
   React.useEffect(() => {
-    DeviceEventEmitter.emit(EventKeys.COLOR_SCHEME_CHANGED, colorScheme);
-  }, [colorScheme]);
+    const listener = Appearance.addChangeListener(({ colorScheme }) => {
+      DeviceEventEmitter.emit(EventKeys.COLOR_SCHEME_CHANGED, colorScheme);
+    })
+    return () => {
+      listener.remove();
+    }
+  }, []);
 
   // 导航栏切换至相应的页面
   const stateChangeHandler = (state) => {
