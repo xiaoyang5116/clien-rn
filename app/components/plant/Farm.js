@@ -7,7 +7,12 @@ import {
     Animated
 } from 'react-native'
 import React, { useRef, useState, useEffect } from 'react'
-import { Formula } from './Formula'
+
+import { connect } from "../../constants"
+import RootView from '../RootView';
+
+import Formula from './Formula'
+
 
 
 // status: 0--待种植, 1--种植中, 2--成熟, 3--未开辟
@@ -70,8 +75,17 @@ const Farm = (props) => {
     }
 
     const Plant = (props) => {
+        const showFormula = () => {
+            const key = RootView.add(
+                <Formula
+                    onClose={() => {
+                        RootView.remove(key);
+                    }}
+                />,
+            );
+        }
         return (
-            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => { Formula.show() }}>
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={showFormula}>
                 <View style={{ flex: 1 }}>
                     <Text style={{ width: 150, height: 30, lineHeight: 30, fontSize: 20, textAlign: "center", backgroundColor: "#389e0d" }}>
                         待种植
@@ -135,7 +149,7 @@ const Farm = (props) => {
     )
 }
 
-export default Farm
+export default connect((state) => ({ ...state.PropsModel }))(Farm);
 
 const styles = StyleSheet.create({
     equipment_btn: {

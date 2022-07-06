@@ -1,0 +1,9 @@
+# ===========================================
+# 种植配方
+# ===========================================
+rules: [
+  { id: 101 , name: '西瓜', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], time: 1000, desc: '冰镇西瓜' },
+  { id: 102 , name: '橘子', tags: [], attrs: ['材料'], quality: 3, stuffs: [{ id: 20, num: 1000 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], time: 7260, desc: '被咬过的苹果' },
+  { id: 103, name: '苹果', tags: [], attrs: ['材料'], quality: 1, stuffs: [{ id: 20, num: 1000 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], time: 60, desc: '被咬过的苹果' },
+  { id: 104 , name: '香蕉', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], time: 86400, desc: '冰镇西瓜' },
+]

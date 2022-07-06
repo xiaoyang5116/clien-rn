@@ -8,7 +8,7 @@ import Farm from './Farm'
 import { TextButton } from '../../constants/custom-ui'
 
 
-
+// Carousel 无线滑动组件
 const Plant = (props) => {
     const [tabIndex, setTabIndex] = useState(0)
     return (

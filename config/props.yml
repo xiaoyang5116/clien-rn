@@ -47,5 +47,6 @@ props: [
   { id: 62 , name: '复活宝箱', iconId: 1, num: 200, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
 
   # 种植道具
-  { id: 63 , name: '西瓜种子', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '种植西瓜' }, 
+  { id: 101 , name: '西瓜种子', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '种植西瓜' }, 
+  { id: 102 , name: '冰西瓜', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '含冰属性的西瓜' }, 
 ]
