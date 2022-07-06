@@ -5,16 +5,23 @@ import { connect, action } from '../../constants'
 import { h_m_s_Format } from '../../utils/DateTimeUtils'
 
 import { TextButton } from '../../constants/custom-ui'
+import Toast from '../toast'
 
 
 
 const Detail = (props) => {
-    const { item, plantRecipeDetail } = props
+    const { item, plantRecipeDetail, lingTianId } = props
     // console.log("plantRecipeDetail", plantRecipeDetail);
 
     useEffect(() => {
         props.dispatch(action("PlantModel/formulaDetail")(item))
     }, [])
+
+    const plantHandler = () => {
+        if (!item.valid) return Toast.show("材料不足")
+
+        props.dispatch(action("PlantModel/plant")(item))
+    }
 
     const renderStuffs = (data) => {
         const { name, currNum, reqNum } = data.item
@@ -135,9 +142,7 @@ const Detail = (props) => {
                     />
                     <TextButton
                         title={'种植'}
-                        onPress={() => {
-                            props.onClose();
-                        }}
+                        onPress={plantHandler}
                     />
                 </View>
             </View>

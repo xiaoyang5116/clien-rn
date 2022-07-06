@@ -1,11 +1,15 @@
 
 import {
     action,
+    LocalCacheKeys
 } from '../constants';
 
+import lo, { range } from 'lodash';
 import { GetPlantComposeDataApi } from '../services/GetPlantComposeDataApi';
-import EventListeners from '../utils/EventListeners';
+import { GetLingTianDataApi } from '../services/GetLingTianDataApi';
 
+import EventListeners from '../utils/EventListeners';
+import LocalStorage from '../utils/LocalStorage';
 import Toast from '../components/toast';
 
 export default {
@@ -20,17 +24,33 @@ export default {
             targets: []  // 产品
         },
 
-        plantComposeConfig: []  // 种植配方 配置 数据
+        plantComposeConfig: [],  // 种植配方 配置 数据
+
+        lingTianData: [],  // 灵田数据
+
+        // 当前选中的灵田
+        selectedLingTian: {
+            lingTianName: null,
+            lingTianId: null,
+        }
     },
 
     effects: {
         *reload({ }, { select, put, call }) {
             const composeState = yield select(state => state.PlantModel);
-            const data = yield call(GetPlantComposeDataApi);
 
+            // 种植配方数据
+            const data = yield call(GetPlantComposeDataApi);
             if (data != null) {
                 composeState.plantComposeConfig.length = 0;
                 composeState.plantComposeConfig.push(...data.rules);
+            }
+
+            // 初始化灵田数据
+            let lingTianData = yield call(LocalStorage.get, LocalCacheKeys.LINGTIAN_DATA);
+            if (lingTianData === null) {
+                const { data } = yield call(GetLingTianDataApi);
+                yield call(LocalStorage.set, LocalCacheKeys.LINGTIAN_DATA, data);
             }
         },
 
@@ -114,6 +134,63 @@ export default {
                     targets,
                 },
             }));
+        },
+
+        // 获取灵田数据
+        *getLingTianData({ payload }, { put, select, call }) {
+            const lingTianData = yield call(LocalStorage.get, LocalCacheKeys.LINGTIAN_DATA);
+            yield put(action('updateState')({ lingTianData }))
+        },
+
+        // 当前选中的灵田
+        *selectedLingTian({ payload }, { put, select, call }) {
+            const composeState = yield select(state => state.PlantModel);
+            composeState.selectedLingTian.lingTianName = payload.lingTianName
+            composeState.selectedLingTian.lingTianId = payload.lingTianId
+        },
+
+        // 种植
+        *plant({ payload }, { put, select, call }) {
+            // {"attrs": ["材料"], "desc": "冰镇西瓜", "id": 101, "lingQiZhi": 10, "name": "西瓜", "props": [{"id": 51, "num": 1}], "quality": 2,
+            //  "stuffs": [{"id": 20, "num": 1}, {"id": 21, "num": 2}], "tags": [], 
+            //  "targets": [{"id": 52, "num": 1, "rate": 80}, {"id": 53, "num": 1, "rate": 20}],
+            //   "time": 1000, "valid": true}
+            const composeState = yield select(state => state.PlantModel);
+
+            // 扣除原料
+            for (let k in payload.stuffs) {
+                const stuff = payload.stuffs[k];
+                yield put.resolve(action('PropsModel/use')({ propId: stuff.id, num: stuff.num, quiet: true }));
+            }
+            // 扣除辅助材料
+            for (let k in payload.props) {
+                const props = payload.props[k];
+                yield put.resolve(action('PropsModel/use')({ propId: props.id, num: props.num, quiet: true }));
+            }
+
+            // 随机产生道具
+            const sortTargets = payload.targets.map(e => ({ ...e }))
+            sortTargets.sort((a, b) => b.rate - a.rate);
+            let prevRange = 0;
+            sortTargets.forEach(e => {
+                e.range = [prevRange, prevRange + e.rate];
+                prevRange = e.range[1];
+            });
+            const randValue = lo.random(0, 100, false);
+            let hit = sortTargets.find(e => randValue >= e.range[0] && randValue < e.range[1]);
+            if (hit == undefined) hit = sortTargets[sortTargets.length - 1];
+            // 发送道具，这就先存储 种植成果的道具信息
+            // yield put.resolve(action('PropsModel/sendProps')({ propId: hit.id, num: hit.num, quiet: true }));
+
+
+            // console.log("composeState.lingTianData", composeState.lingTianData);
+            // composeState.lingTianData.map((item) => {
+            //     item.name
+
+            // })
+
+
+
         }
 
     },

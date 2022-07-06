@@ -36,7 +36,7 @@ const Plant = (props) => {
                         animationConfig={{ duration: 200 }}
                     >
                         <TabView.Item style={styles.TabView_item_container}>
-                            <Farm />
+                            <Farm lingTianName={"春"} />
                         </TabView.Item>
                         <TabView.Item style={styles.TabView_item_container}>
                             <View style={{ flex: 1, backgroundColor: "red" }}></View>

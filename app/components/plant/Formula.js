@@ -20,7 +20,7 @@ import Detail from './Detail';
 
 const Formula = props => {
 
-    const { plantRecipeList } = props
+    const { plantRecipeList, lingTianId } = props
     const [update, setUpdate] = useState(false)
 
     React.useEffect(() => {
