@@ -51,6 +51,8 @@ import TipsView from '../components/article/TipsView';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+import readerStyle from '../themes/readerStyle';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -460,6 +462,35 @@ const FooterTabBar = (props) => {
   );
 }
 
+const DarkLightSelector = (props) => {
+
+  const darkMode = React.useRef(lo.isEqual(props.readerStyle.bgColor, readerStyle.matchColor_7.bgColor));
+
+  const onChanged = (e) => {
+    if (!darkMode.current) {
+      props.dispatch(action('ArticleModel/changeReaderStyle')(readerStyle.matchColor_7));
+      darkMode.current = true;
+    } else {
+      props.dispatch(action('ArticleModel/changeReaderStyle')(readerStyle.matchColor_1));
+      darkMode.current = false;
+    }
+  }
+
+  const button = darkMode.current
+    ? <FontAwesome name={'moon-o'} size={23} /> : <Fontisto name={'day-sunny'} size={23} />
+  const text = darkMode.current
+    ?  <Text style={styles.bannerButtonText}>夜间模式</Text> :  <Text style={styles.bannerButtonText}>白天模式</Text>
+
+  return (
+  <TouchableWithoutFeedback onPress={onChanged}>
+    <View style={styles.bannerButton}>
+      {button}
+      {text}
+    </View>
+  </TouchableWithoutFeedback>
+  );
+}
+
 class NewArticlePage extends Component {
 
   static contextType = DataContext;
@@ -471,6 +502,7 @@ class NewArticlePage extends Component {
     this.refDirMap = React.createRef();
     this.longPressListener = null;
     this.gotoDirMapListener = null;
+    this.darkMode = false;
     this.listeners = [];
   }
 
@@ -539,12 +571,7 @@ class NewArticlePage extends Component {
               </View>
             </TouchableWithoutFeedback>
 
-            <TouchableWithoutFeedback>
-              <View style={styles.bannerButton}>
-                <FontAwesome name={'moon-o'} size={23} />
-                <Text style={styles.bannerButtonText}>夜间模式</Text>
-              </View>
-            </TouchableWithoutFeedback>
+            <DarkLightSelector {...this.props} />
 
             <TouchableWithoutFeedback onPress={()=>{
                 DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
