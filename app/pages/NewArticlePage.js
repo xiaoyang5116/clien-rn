@@ -34,7 +34,6 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Block from '../components/article';
 import { DeviceEventEmitter } from 'react-native';
 import { CarouselUtils } from '../components/carousel';
-import { TextButton } from '../constants/custom-ui';
 import RootView from '../components/RootView';
 import ReaderSettings from '../components/readerSettings';
 import HeaderContainer from '../components/article/HeaderContainer';
@@ -49,6 +48,9 @@ import DirMapPage from './article/DirMapPage';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../constants/resolution';
 import TipsView from '../components/article/TipsView';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -514,32 +516,55 @@ class NewArticlePage extends Component {
       <View style={[styles.viewContainer, { backgroundColor: readerStyle.bgColor }]}>
         <HeaderContainer>
           <View style={[styles.bannerStyle, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0) }]}>
-            <View style={styles.bannerButton}>
-              <TextButton title='X' onPress={() => {
-                  DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
-                }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='选择世界' onPress={WorldSelector} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='退出阅读' onPress={() => {
-                this.props.navigation.navigate('First');
-                AppDispath({ type: 'ArticleModel/cleanup' });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='目录' onPress={this.openDirectory} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='夜间' />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='设置' onPress={()=>{
+            <TouchableWithoutFeedback onPress={() => {
+              DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+            }}>
+              <View style={styles.bannerButton}>
+                <AntDesign name={'menufold'} size={21} />
+                <Text style={styles.bannerButtonText}>菜单选项</Text>
+              </View>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback onPress={this.openDirectory}>
+              <View style={styles.bannerButton}>
+                <AntDesign name={'bars'} size={23} />
+                <Text style={styles.bannerButtonText}>章节目录</Text>
+              </View>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback onPress={WorldSelector}>
+              <View style={styles.bannerButton}>
+                <AntDesign name={'select1'} size={21} />
+                <Text style={styles.bannerButtonText}>切换世界</Text>
+              </View>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback>
+              <View style={styles.bannerButton}>
+                <FontAwesome name={'moon-o'} size={23} />
+                <Text style={styles.bannerButtonText}>夜间模式</Text>
+              </View>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback onPress={()=>{
                 DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
                 const key =RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
-              }} />
-            </View>
+              }}>
+              <View style={styles.bannerButton}>
+                <Ionicons name={'ios-text'} size={23} />
+                <Text style={styles.bannerButtonText}>阅读设置</Text>
+              </View>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback onPress={() => {
+                this.props.navigation.navigate('First');
+                AppDispath({ type: 'ArticleModel/cleanup' });
+              }}>
+              <View style={styles.bannerButton}>
+                <Ionicons name={'exit-outline'} size={23} />
+                <Text style={styles.bannerButtonText}>返回主页</Text>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
         </HeaderContainer>
         <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
@@ -635,17 +660,24 @@ const styles = StyleSheet.create({
   bannerStyle: {
     flex: 1, 
     flexDirection: 'row', 
-    flexWrap: 'wrap', 
+    // flexWrap: 'wrap', 
     justifyContent: 'center', 
     alignItems: 'center', 
   },
   bannerButton: {
-    width: 100,
-    marginLeft: 10, 
-    marginRight: 10,
+    width: 55,
+    marginLeft: 5, 
+    marginRight: 5,
     marginTop: 0,
     marginBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  bannerButtonText: {
+    marginTop: 10,
+    color: '#000',
+    fontSize: 12,
+  }, 
   bottomBannerButton: {
     width: 45,
     height: 80,
