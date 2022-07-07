@@ -668,7 +668,7 @@ const styles = StyleSheet.create({
     width: 55,
     marginLeft: 5, 
     marginRight: 5,
-    marginTop: 0,
+    marginTop: 10,
     marginBottom: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -683,7 +683,7 @@ const styles = StyleSheet.create({
     height: 80,
     marginLeft: 10, 
     marginRight: 10,
-    marginTop: 0,
+    marginTop: 10,
     marginBottom: 10,
   },
   tranSceneFontStyle: {
