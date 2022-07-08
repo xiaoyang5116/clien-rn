@@ -24,24 +24,23 @@ const Improve = (props) => {
         })
     }, [])
 
-
-
     const renderItem = ({ item }) => {
-        const changeLingQiZhi = (plantLingQiZhi) => {
-            props.dispatch(action("PlantModel/changeLingQiZhi")({ lingTianName, lingTianId, lingQiZhi: plantLingQiZhi, propsId: item.id })).then(r => {
+        const changeLingQiZhi = () => {
+            props.dispatch(action("PlantModel/changeLingQiZhi")({ lingTianName, lingTianId, lingQiZhi: item.plantLingQiZhi, propsId: item.id })).then(r => {
                 props.onClose()
             })
-
         }
+
         return (
             <View style={styles.props_container}>
                 <Text>{item.name}</Text>
                 <Text>{item.desc}</Text>
                 {/* <Text>剩余:{item.num}</Text> */}
-                <TextButton title={"使用"} onPress={() => { changeLingQiZhi(item.plantLingQiZhi) }} />
+                <TextButton title={"使用"} onPress={changeLingQiZhi} />
             </View>
         )
     }
+
     return (
         <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"}>
             <View style={{ flex: 1, backgroundColor: "#fff" }}>

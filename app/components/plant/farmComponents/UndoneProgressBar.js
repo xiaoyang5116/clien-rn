@@ -40,7 +40,7 @@ const UndoneProgressBar = (props) => {
                 position: "absolute", top: 0, left: -100, height: 20, width: "100%", backgroundColor: "#595959", zIndex: 0,
                 transform: [{ translateX: translateX }]
             }} ></View>
-            <Text style={{ textAlign: 'center' }}>{(100 - Math.floor(percent * 100))}%%</Text>
+            <Text style={{ textAlign: 'center' }}>{(100 - Math.floor(percent * 100))}%</Text>
         </View>
     )
 }
