@@ -272,15 +272,15 @@ const DirMap = (props) => {
     </Animated.View>
     {/* 大地图缩小按钮 */}
     <TouchableWithoutFeedback onPress={zoomOutBigMapHandler}>
-      <FastImage style={{ position: 'absolute', left: 8, top: -7, width: px2pd(106), height: px2pd(46) }} source={require('../../../assets/button/map_zoom_out_button.png')} />
+      <FastImage style={{ position: 'absolute', left: 8, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_out_button.png')} />
     </TouchableWithoutFeedback>
     {/* 大地图放大按钮 */}
     <TouchableWithoutFeedback onPress={zoomInBigMapHandler}>
-      <FastImage style={{ position: 'absolute', left: 53, top: -7, width: px2pd(106), height: px2pd(46) }} source={require('../../../assets/button/map_zoom_in_button.png')} />
+      <FastImage style={{ position: 'absolute', left: 60, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_in_button.png')} />
     </TouchableWithoutFeedback>
     {/* 大地图还原按钮 */}
     <TouchableWithoutFeedback onPress={zoomRestoreBigMapHandler}>
-      <FastImage style={{ position: 'absolute', left: 98, top: -7, width: px2pd(106), height: px2pd(46) }} source={require('../../../assets/button/map_restore_button.png')} />
+      <FastImage style={{ position: 'absolute', left: 112, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_restore_button.png')} />
     </TouchableWithoutFeedback>
   </View>
   );
