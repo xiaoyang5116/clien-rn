@@ -65,7 +65,7 @@ const DirMapPage = (props) => {
             <Text style={{ fontSize: 24 }}>{item.title}</Text>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} pointerEvents='box-none' onTouchStart={(e) => { e.stopPropagation(); }}>
-            <DirMap data={item.map} initialCenterPoint={[0,0]} onEnterDir={handleEnterDir} />
+            <DirMap data={item.map} initialCenterPoint={[0,0]} onEnterDir={handleEnterDir} onClose={back} />
           </View>
         </ImageBackground>
       </View>

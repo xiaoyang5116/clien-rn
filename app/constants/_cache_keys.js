@@ -28,4 +28,7 @@ export class LocalCacheKeys {
     // 种植灵田
     static LINGTIAN_DATA = 'LINGTIAN_DATA';
 
+    // 黑夜模式
+    static DARK_LIGHT_MODE = 'DARK_LIGHT_MODE';
+
 }

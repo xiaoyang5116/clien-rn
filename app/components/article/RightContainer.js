@@ -18,7 +18,7 @@ export default class RightContainer extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.rightPos = new Animated.Value(-winSize.width);
+    this.translateX = new Animated.Value(winSize.width);
     this.listeners = [];
   }
 
@@ -31,12 +31,8 @@ export default class RightContainer extends React.PureComponent {
     this.listeners.length = 0;
   }
 
-  offsetX(x) {
-    this.rightPos.setValue(-winSize.width + x);
-  }
-
   open() {
-    Animated.timing(this.rightPos, {
+    Animated.timing(this.translateX, {
       toValue: 0,
       duration: 300,
       easing: Easing.linear,
@@ -45,33 +41,17 @@ export default class RightContainer extends React.PureComponent {
   }
 
   close() {
-    Animated.timing(this.rightPos, {
-      toValue: -winSize.width,
+    Animated.timing(this.translateX, {
+      toValue: winSize.width,
       duration: 300,
       easing: Easing.linear,
       useNativeDriver: false,
     }).start();
   }
 
-  release() {
-    if (this.rightPos._value >= -winSize.width*7/10) {
-      Animated.timing(this.rightPos, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: false,
-      }).start();
-    } else {
-      Animated.timing(this.rightPos, {
-        toValue: -winSize.width,
-        duration: 300,
-        useNativeDriver: false,
-      }).start();
-    }
-  }
-
   render() {
     return (
-        <Animated.View style={[styles.viewContainer, { right: this.rightPos }]} onTouchStart={() => { this.close(); }}>
+        <Animated.View style={[styles.viewContainer, { transform: [{ translateX: this.translateX }] }]} onTouchStart={() => { this.close(); }}>
           {this.props.children}
         </Animated.View>
     );

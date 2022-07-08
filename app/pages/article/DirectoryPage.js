@@ -14,6 +14,7 @@ import {
 import { EventKeys } from '../../constants';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../constants/resolution';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const DATA = [
   { id: 1, title: '第一章' },
@@ -72,7 +73,11 @@ const DirectoryPage = (props) => {
           data={props.data}
           renderItem={renderItem}
           keyExtractor={item => item.id}
+          onTouchStart={(e) => { e.stopPropagation() }}
         />
+        <View style={{ width: '100%', alignItems: 'center', marginBottom: 10 }}>
+          <AntDesign name='leftcircleo' size={50} color={'#7ba69b'} />
+        </View>
       </View>
     </SafeAreaView>
   );
