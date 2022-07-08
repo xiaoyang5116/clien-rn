@@ -6,13 +6,11 @@ import {
 } from "../../constants";
 
 import {
-  TouchableWithoutFeedback,
-} from '../../constants/native-ui';
-
-import {
-  Animated,
+  Animated, StyleSheet,
 } from 'react-native';
+
 import Easing from 'react-native/Libraries/Animated/Easing';
+import lo from 'lodash';
 
 const winSize = getWindowSize();
 
@@ -29,7 +27,7 @@ export default class LeftContainer extends React.PureComponent {
 
   open() {
     Animated.timing(this.leftPos, {
-      toValue: 0,
+      toValue: lo.isNumber(this.props.openScale) ? (-winSize.width  * (1 - this.props.openScale)) : 0,
       duration: 300,
       easing: Easing.linear,
       useNativeDriver: false,
@@ -63,11 +61,20 @@ export default class LeftContainer extends React.PureComponent {
 
   render() {
     return (
-      <TouchableWithoutFeedback onPress={() => this.close()}>
-        <Animated.View style={{ position: 'absolute', left: this.leftPos, top: 0, bottom: 0, zIndex: 100, width: winSize.width, backgroundColor: '#bcc3bf' }}>
-          {this.props.children}
-        </Animated.View>
-      </TouchableWithoutFeedback>
+      <Animated.View style={[styles.viewContainer, { left: this.leftPos }]} onTouchStart={() => { this.close() }}>
+        {this.props.children}
+      </Animated.View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  viewContainer: {
+    position: 'absolute', 
+    top: 0, 
+    bottom: 0, 
+    zIndex: 100, 
+    width: winSize.width, 
+    backgroundColor: '#bcc3bf',
+  }
+});
