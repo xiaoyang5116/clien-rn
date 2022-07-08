@@ -8,52 +8,23 @@ import {
 } from 'react-native'
 import React, { useRef, useState, useEffect } from 'react'
 
-import { action, connect } from "../../constants"
+import { action, connect, EventKeys } from "../../constants"
 import RootView from '../RootView';
+import Toast from '../toast';
+import { now } from '../../utils/DateTimeUtils';
 
 import Formula from './Formula'
+import UndoneProgressBar from './farmComponents/UndoneProgressBar';
+import Improve from './Improve';
 
 
 
-// status: 0--待种植, 1--种植中, 2--成熟, 3--未开辟
-// const DATA = [
-//     {
-//         id: 1,  // id
-//         status: 1,  // 状态
-//         lingqizhi: 1000,  //灵气值
-//         lingwu: 1,  // 灵物
-//         soil: 1,  // 土壤
-//         zhenfa: 1,  //阵法
-//     },
-//     {
-//         id: 2,  // id
-//         status: 1,  // 状态
-//         lingqizhi: 1000,  //灵气值
-//         lingwu: 1,  // 灵物
-//         soil: 1,  // 土壤
-//         zhenfa: 1,  //阵法
-//     },
-//     {
-//         id: 3,  // id
-//         status: 1,  // 状态
-//         lingqizhi: 1000,  //灵气值
-//         lingwu: 1,  // 灵物
-//         soil: 1,  // 土壤
-//         zhenfa: 1,  //阵法
-//     },
-//     {
-//         id: 4,  // id
-//         status: 1,  // 状态
-//         lingqizhi: 1000,  //灵气值
-//         lingwu: 1,  // 灵物
-//         soil: 1,  // 土壤
-//         zhenfa: 1,  //阵法
-//     },
-// ]
+
+// 状态 status: 0-未开启, 1-开启但未种植, 2-种植中,
 
 const Farm = (props) => {
 
-    const { lingTianData, lingTianName } = props
+    const { lingTianData, lingTianName, plantComposeConfig } = props
 
     let DATA = []
     if (lingTianData.length > 0) {
@@ -73,7 +44,7 @@ const Farm = (props) => {
     const Grade = (item) => {
         const container_height = 180  // 容器显示的高度
         const lingQiZhi = item.lingQiZhi // 有多少灵气
-        const lingQiZhi_online = 1000  // 灵气槽的容量
+        const lingQiZhi_online = item.grade * 1000  // 灵气槽的容量
         const proportion = container_height / lingQiZhi_online  // 相对于容器高度的比例
         const lingQiZhi_height = container_height - (lingQiZhi * proportion)  // 灵气值显示高度 :180 - 18 =162
         const translateY = useRef(new Animated.Value(lingQiZhi_height)).current;
@@ -84,7 +55,7 @@ const Farm = (props) => {
                 <View style={{ flex: 1, alignItems: "center" }}>
                     <View style={{ height: container_height, width: 20, backgroundColor: "#135200", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
                         <Animated.View style={{ width: 20, backgroundColor: "#4f6f46", height: container_height, position: "absolute", transform: [{ translateY }] }}></Animated.View>
-                        <Text style={{ width: 10, textAlign: "center" }}>{lingQiZhi}/1000</Text>
+                        <Text style={{ width: 10, textAlign: "center" }}>{lingQiZhi}/{lingQiZhi_online}</Text>
                     </View>
                 </View>
             </View>
@@ -93,18 +64,79 @@ const Farm = (props) => {
 
     const Plant = (item) => {
         const showFormula = () => {
-            props.dispatch(action("PlantModel/selectedLingTian")({lingTianName,lingTianId:item.id}))
+            props.dispatch(action("PlantModel/selectedLingTian")({ lingTianName, lingTianId: item.id }))
             const key = RootView.add(<Formula onClose={() => { RootView.remove(key); }} />);
         }
 
+        // 点击事件
+        const onPress = () => {
+            if (item.status === 3) return Toast.show("请先采集")
+            if (item.status === 2) return Toast.show("已种植")
+            if (item.status === 1) return showFormula()
+        }
+
+        // 进度条
+        const ProgressBar = () => {
+            if (item.status === 1) {
+                return (
+                    <View style={{ height: 20, width: 100, backgroundColor: "#d9d9d9", borderRadius: 12, overflow: 'hidden' }}>
+                        <Text style={{ textAlign: 'center' }}>0%</Text>
+                    </View>
+                )
+            }
+            if (item.status === 3) {
+                return (
+                    <View style={{ height: 20, width: 100, backgroundColor: "#d9d9d9", borderRadius: 12, overflow: 'hidden' }}>
+                        <View style={{
+                            position: "absolute", top: 0, left: 0, height: 20, width: "100%", backgroundColor: "#595959", zIndex: 0,
+                        }} ></View>
+                        <Text style={{ textAlign: 'center' }}>100%</Text>
+                    </View>
+                )
+            }
+
+            // 时间差
+            const diffTime = Math.floor((now() - item.plantTime) / 1000)
+
+            // 当前需要的时间
+            const currentNeedTime = item.needTime - diffTime
+
+            if (currentNeedTime < 0) {
+                props.dispatch(action("PlantModel/changePlantStatus")({ lingTianName, lingTianId: item.id, status: 3 }))
+                return (
+                    <View style={{ height: 20, width: 100, backgroundColor: "#d9d9d9", borderRadius: 12, overflow: 'hidden' }}>
+                        <View style={{
+                            position: "absolute", top: 0, left: 0, height: 20, width: "100%", backgroundColor: "#595959", zIndex: 0,
+                        }} ></View>
+                        <Text style={{ textAlign: 'center' }}>100%</Text>
+                    </View>
+                )
+            }
+
+            return <UndoneProgressBar currentNeedTime={currentNeedTime} needTime={item.needTime} lingTianName={lingTianName} lingTianId={item.id} />
+        }
+
+        const Title = () => {
+            let content = "待种植"
+            if (item.status !== 1) {
+                // 正在种植的配方
+                const plantRecipe = plantComposeConfig.find(f => f.id === item.plantRecipeId)
+                content = `正在种植-${plantRecipe.name}`
+            }
+
+            return (
+                <Text style={{ width: 150, height: 30, lineHeight: 30, fontSize: 20, textAlign: "center", backgroundColor: "#389e0d" }}>
+                    {content}
+                </Text>
+            )
+        }
+
         return (
-            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={showFormula}>
+            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={onPress}>
                 <View style={{ flex: 1 }}>
-                    <Text style={{ width: 150, height: 30, lineHeight: 30, fontSize: 20, textAlign: "center", backgroundColor: "#389e0d" }}>
-                        待种植
-                    </Text>
-                    <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 30, backgroundColor: "#389e0d" }}>
-                        <Text>进度条</Text>
+                    <Title />
+                    <View style={styles.plant_ProgressBar_container}>
+                        <ProgressBar />
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -123,11 +155,19 @@ const Farm = (props) => {
     }
 
     const FunctionKeys = (item) => {
+        const collection = () => {
+            if (item.status === 2) return Toast.show("种植物还未成熟,不可采集")
+            if (item.status === 1) return Toast.show("请先种植")
+            props.dispatch(action("PlantModel/collection")({ lingTianName, lingTianId: item.id }))
+        }
+        const showImprove = () => {
+            const key = RootView.add(<Improve onClose={() => { RootView.remove(key); }} lingTianName={lingTianName} lingTianId={item.id} />);
+        }
         return (
             <View style={{ height: 30, width: "100%", marginTop: 12, flexDirection: 'row', }}>
-                <Text style={styles.FunctionKeys_btn}>改良</Text>
+                <Text style={styles.FunctionKeys_btn} onPress={showImprove}>改良</Text>
                 <Text style={styles.FunctionKeys_btn}>加速</Text>
-                <Text style={styles.FunctionKeys_btn}>采集</Text>
+                <Text style={styles.FunctionKeys_btn} onPress={collection}>采集</Text>
             </View>
         )
     }
@@ -140,7 +180,7 @@ const Farm = (props) => {
         )
     }
 
-    // {"grade": 1, "id": 1, "lingQiZhi": 100, "status": 1}, {"grade": 1, "id": 2, "lingQiZhi": 100, "status": 0}
+    // {"grade": 1, "id": 1, "lingQiZhi": 80, "needTime": 1000, "plantRecipeId": 101, "plantTime": 1657163905426, "status": 2, "targets": {"id": 53, "num": 1, "range": [Array], "rate": 20}}
     const renderItem = ({ item }) => {
         if (item.status === 0) return <NotDeveloped />
 
@@ -170,6 +210,7 @@ const Farm = (props) => {
         <FlatList
             data={DATA}
             renderItem={renderItem}
+            keyExtractor={(item, index) => item + index}
             showsVerticalScrollIndicator={false}
             ListFooterComponent={() => <View style={{ height: 50 }} />}
         />
@@ -198,4 +239,22 @@ const styles = StyleSheet.create({
         backgroundColor: "#95de64",
         marginLeft: 12,
     },
+    plant_ProgressBar_container: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: 30,
+        backgroundColor: "#389e0d",
+        justifyContent: "center",
+        alignItems: 'center'
+    },
+    plant_ProgressBar_box: {
+        position: "absolute",
+        top: 0,
+        height: 20,
+        width: "100%",
+        backgroundColor: "#8c8c8c",
+        zIndex: 0,
+    }
 })

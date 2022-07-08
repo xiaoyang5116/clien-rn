@@ -32,6 +32,7 @@ const Formula = props => {
         const key = RootView.add(
             <Detail
                 item={item}
+                onCloseFormula={props.onClose}
                 onClose={() => {
                     RootView.remove(key);
                 }}

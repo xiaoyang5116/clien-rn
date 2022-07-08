@@ -20,7 +20,10 @@ const Detail = (props) => {
     const plantHandler = () => {
         if (!item.valid) return Toast.show("材料不足")
 
-        props.dispatch(action("PlantModel/plant")(item))
+        props.dispatch(action("PlantModel/plant")(item)).then((result) => {
+            props.onClose()
+            props.onCloseFormula()
+        })
     }
 
     const renderStuffs = (data) => {

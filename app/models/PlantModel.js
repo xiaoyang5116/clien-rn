@@ -11,6 +11,7 @@ import { GetLingTianDataApi } from '../services/GetLingTianDataApi';
 import EventListeners from '../utils/EventListeners';
 import LocalStorage from '../utils/LocalStorage';
 import Toast from '../components/toast';
+import { now } from '../utils/DateTimeUtils';
 
 export default {
     namespace: 'PlantModel',
@@ -51,6 +52,7 @@ export default {
             if (lingTianData === null) {
                 const { data } = yield call(GetLingTianDataApi);
                 yield call(LocalStorage.set, LocalCacheKeys.LINGTIAN_DATA, data);
+                yield put(action('updateState')({ lingTianData: data }))
             }
         },
 
@@ -151,10 +153,16 @@ export default {
 
         // 种植
         *plant({ payload }, { put, select, call }) {
-            // {"attrs": ["材料"], "desc": "冰镇西瓜", "id": 101, "lingQiZhi": 10, "name": "西瓜", "props": [{"id": 51, "num": 1}], "quality": 2,
-            //  "stuffs": [{"id": 20, "num": 1}, {"id": 21, "num": 2}], "tags": [], 
-            //  "targets": [{"id": 52, "num": 1, "rate": 80}, {"id": 53, "num": 1, "rate": 20}],
-            //   "time": 1000, "valid": true}
+            // {"attrs": ["材料"], 
+            // "desc": "冰镇西瓜", 
+            // "id": 101, 
+            // "lingQiZhi": 10, 
+            // "name": "西瓜", 
+            // "props": [{"id": 51, "num": 1}], "quality": 2,
+            // "stuffs": [{"id": 20, "num": 1}, {"id": 21, "num": 2}], "tags": [], 
+            // "targets": [{"id": 52, "num": 1, "rate": 80}, {"id": 53, "num": 1, "rate": 20}],
+            // "time": 1000, 
+            // "valid": true}
             const composeState = yield select(state => state.PlantModel);
 
             // 扣除原料
@@ -168,7 +176,7 @@ export default {
                 yield put.resolve(action('PropsModel/use')({ propId: props.id, num: props.num, quiet: true }));
             }
 
-            // 随机产生道具
+            // 随机产生种植成果
             const sortTargets = payload.targets.map(e => ({ ...e }))
             sortTargets.sort((a, b) => b.rate - a.rate);
             let prevRange = 0;
@@ -182,16 +190,102 @@ export default {
             // 发送道具，这就先存储 种植成果的道具信息
             // yield put.resolve(action('PropsModel/sendProps')({ propId: hit.id, num: hit.num, quiet: true }));
 
+            for (let index = 0; index < composeState.lingTianData.length; index++) {
+                // 找到对应名字的灵田
+                if (composeState.lingTianData[index].name === composeState.selectedLingTian.lingTianName) {
+                    for (let l = 0; l < composeState.lingTianData[index].lingTian.length; l++) {
+                        // 找到对应 id 的灵田格子,进行修改
+                        if (composeState.lingTianData[index].lingTian[l].id === composeState.selectedLingTian.lingTianId) {
+                            composeState.lingTianData[index].lingTian[l].lingQiZhi -= payload.lingQiZhi
+                            composeState.lingTianData[index].lingTian[l].status = 2
+                            composeState.lingTianData[index].lingTian[l].targets = hit
+                            composeState.lingTianData[index].lingTian[l].plantTime = now()
+                            composeState.lingTianData[index].lingTian[l].needTime = payload.time
+                            composeState.lingTianData[index].lingTian[l].plantRecipeId = payload.id
+                        }
+                    }
+                }
+            }
+            Toast.show("种植成功")
 
-            // console.log("composeState.lingTianData", composeState.lingTianData);
-            // composeState.lingTianData.map((item) => {
-            //     item.name
+            yield put.resolve(action("updateLingTianData")(composeState.lingTianData))
+        },
 
-            // })
+        // 采集
+        *collection({ payload }, { put, select, call }) {
+            const composeState = yield select(state => state.PlantModel);
 
+            let targetsData = {}
 
+            for (let index = 0; index < composeState.lingTianData.length; index++) {
+                // 找到对应名字的灵田
+                if (composeState.lingTianData[index].name === payload.lingTianName) {
+                    for (let l = 0; l < composeState.lingTianData[index].lingTian.length; l++) {
+                        // 找到对应 id 的灵田格子,进行修改
+                        if (composeState.lingTianData[index].lingTian[l].id === payload.lingTianId) {
+                            targetsData = composeState.lingTianData[index].lingTian[l].targets
+                            composeState.lingTianData[index].lingTian[l].status = 1
+                        }
+                    }
+                }
+            }
 
-        }
+            // 发放道具
+            yield put.resolve(action('PropsModel/sendProps')({ propId: targetsData.id, num: targetsData.num, quiet: true }));
+            Toast.show(`采集成功，获得道具id:${targetsData.id} !!!'`, 'CenterToTop');
+
+            // 更新数据
+            yield put.resolve(action("updateLingTianData")(composeState.lingTianData))
+        },
+
+        // 改变灵田状态
+        *changePlantStatus({ payload }, { put, select, call }) {
+            const composeState = yield select(state => state.PlantModel);
+            for (let index = 0; index < composeState.lingTianData.length; index++) {
+                // 找到对应名字的灵田
+                if (composeState.lingTianData[index].name === payload.lingTianName) {
+                    for (let l = 0; l < composeState.lingTianData[index].lingTian.length; l++) {
+                        // 找到对应 id 的灵田格子,进行修改
+                        if (composeState.lingTianData[index].lingTian[l].id === payload.lingTianId) {
+                            composeState.lingTianData[index].lingTian[l].status = payload.status
+                        }
+                    }
+                }
+            }
+
+            yield put.resolve(action("updateLingTianData")(composeState.lingTianData))
+        },
+
+        // 获取 对应类型 道具数据
+        *getProps({ payload }, { put, select, call }) {
+            const allProps = yield put.resolve(action("PropsModel/getBagProps")())
+            const propsData = allProps.filter(i => i.type === payload.type)
+            return propsData
+        },
+
+        // 改变灵气值
+        *changeLingQiZhi({ payload }, { put, select, call }) {
+            const composeState = yield select(state => state.PlantModel);
+            for (let index = 0; index < composeState.lingTianData.length; index++) {
+                // 找到对应名字的灵田
+                if (composeState.lingTianData[index].name === payload.lingTianName) {
+                    for (let l = 0; l < composeState.lingTianData[index].lingTian.length; l++) {
+                        if (composeState.lingTianData[index].lingTian[l].id === payload.lingTianId) {
+                            composeState.lingTianData[index].lingTian[l].lingQiZhi += payload.lingQiZhi
+                        }
+                    }
+                }
+            }
+            Toast.show(`灵气值增加${payload.lingQiZhi}`)
+            yield put.resolve(action("updateLingTianData")(composeState.lingTianData))
+        },
+
+        // 更新数据
+        *updateLingTianData({ payload }, { put, select, call }) {
+            const newLingTianData = [...payload]
+            yield call(LocalStorage.set, LocalCacheKeys.LINGTIAN_DATA, newLingTianData);
+            yield put(action('updateState')({ lingTianData: newLingTianData }))
+        },
 
     },
 
