@@ -13,20 +13,20 @@ import { action, connect, EventKeys } from "../../constants"
 import { HalfPanel } from '../panel/HalfPanel'
 import { TextButton } from '../../constants/custom-ui'
 
-const Improve = (props) => {
+const Accelerate = (props) => {
     const { lingTianName, lingTianId } = props
 
     const [propsData, setPropsData] = useState([])
 
     useEffect(() => {
-        props.dispatch(action("PlantModel/getProps")({ type: 101 })).then(data => {
+        props.dispatch(action("PlantModel/getProps")({ type: 100 })).then(data => {
             setPropsData(data)
         })
     }, [])
 
     const renderItem = ({ item }) => {
         const changeLingQiZhi = () => {
-            props.dispatch(action("PlantModel/changeLingQiZhi")({ lingTianName, lingTianId, lingQiZhi: item.plantLingQiZhi, propsId: item.id })).then(r => {
+            props.dispatch(action("PlantModel/acceleratePlantTime")({ lingTianName, lingTianId, plantTime: item.plantTime, propsId: item.id })).then(r => {
                 props.onClose()
             })
         }
@@ -44,7 +44,7 @@ const Improve = (props) => {
     return (
         <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"}>
             <View style={{ flex: 1, backgroundColor: "#fff" }}>
-                <Text style={{ fontSize: 20, color: "#000", textAlign: 'center', marginTop: 12 }}>选择改良道具</Text>
+                <Text style={{ fontSize: 20, color: "#000", textAlign: 'center', marginTop: 12 }}>选择加速道具</Text>
                 <View style={{ flex: 1 }}>
                     <FlatList
                         data={propsData}
@@ -58,7 +58,7 @@ const Improve = (props) => {
     )
 }
 
-export default connect((state) => ({ ...state.PlantModel, ...state.PropsModel }))(Improve)
+export default connect((state) => ({ ...state.PropsModel }))(Accelerate)
 
 const styles = StyleSheet.create({
     props_container: {

@@ -284,6 +284,27 @@ export default {
             yield put.resolve(action("updateLingTianData")(composeState.lingTianData))
         },
 
+        // 加速种植时间
+        *acceleratePlantTime({ payload }, { put, select, call }) {
+            const composeState = yield select(state => state.PlantModel);
+            for (let index = 0; index < composeState.lingTianData.length; index++) {
+                // 找到对应名字的灵田
+                if (composeState.lingTianData[index].name === payload.lingTianName) {
+                    for (let l = 0; l < composeState.lingTianData[index].lingTian.length; l++) {
+                        if (composeState.lingTianData[index].lingTian[l].id === payload.lingTianId) {
+                            composeState.lingTianData[index].lingTian[l].needTime -= payload.plantTime
+                        }
+                    }
+                }
+            }
+
+            // 扣除道具
+            yield put.resolve(action('PropsModel/use')({ propId: payload.propsId, num: 1, quiet: true }));
+            Toast.show(`种植时间减少${payload.plantTime}`)
+
+            yield put.resolve(action("updateLingTianData")(composeState.lingTianData))
+        },
+
         // 更新数据
         *updateLingTianData({ payload }, { put, select, call }) {
             const newLingTianData = [...payload]

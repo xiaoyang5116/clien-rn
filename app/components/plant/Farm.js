@@ -16,6 +16,7 @@ import { now } from '../../utils/DateTimeUtils';
 import Formula from './Formula'
 import UndoneProgressBar from './farmComponents/UndoneProgressBar';
 import Improve from './Improve';
+import Accelerate from './Accelerate';
 
 
 
@@ -160,13 +161,23 @@ const Farm = (props) => {
             if (item.status === 1) return Toast.show("请先种植")
             props.dispatch(action("PlantModel/collection")({ lingTianName, lingTianId: item.id }))
         }
+
+        // 显示改良弹窗
         const showImprove = () => {
             const key = RootView.add(<Improve onClose={() => { RootView.remove(key); }} lingTianName={lingTianName} lingTianId={item.id} />);
         }
+
+        // 显示加速弹窗
+        const showAccelerate = () => {
+            if (item.status === 3) return Toast.show("种植物已成熟,不能加速")
+            if (item.status === 1) return Toast.show("请先种植")
+            const key = RootView.add(<Accelerate onClose={() => { RootView.remove(key); }} lingTianName={lingTianName} lingTianId={item.id} />);
+        }
+
         return (
             <View style={{ height: 30, width: "100%", marginTop: 12, flexDirection: 'row', }}>
                 <Text style={styles.FunctionKeys_btn} onPress={showImprove}>改良</Text>
-                <Text style={styles.FunctionKeys_btn}>加速</Text>
+                <Text style={styles.FunctionKeys_btn} onPress={showAccelerate}>加速</Text>
                 <Text style={styles.FunctionKeys_btn} onPress={collection}>采集</Text>
             </View>
         )
@@ -175,7 +186,7 @@ const Farm = (props) => {
     const NotDeveloped = (item) => {
         return (
             <View style={{ height: 230, width: "100%", marginTop: 24, padding: 12, borderWidth: 1, borderColor: "#000", backgroundColor: "#d9d9d9", justifyContent: "center", alignItems: 'center' }}>
-                <Text style={{ fontSize: 20, color: "#000" }}>未开辟</Text>
+                <Text style={{ fontSize: 20, color: "#000" }}>未解锁</Text>
             </View>
         )
     }

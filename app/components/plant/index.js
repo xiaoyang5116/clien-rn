@@ -39,15 +39,15 @@ const Plant = (props) => {
                             <Farm lingTianName={"春"} />
                         </TabView.Item>
                         <TabView.Item style={styles.TabView_item_container}>
-                            <View style={{ flex: 1, backgroundColor: "red" }}></View>
+                            <Farm lingTianName={"夏"} />
 
                         </TabView.Item>
                         <TabView.Item style={styles.TabView_item_container} >
-                            <View style={{ flex: 1, backgroundColor: "pink" }}></View>
+                            <Farm lingTianName={"秋"} />
 
                         </TabView.Item>
                         <TabView.Item style={styles.TabView_item_container}>
-                            <View style={{ flex: 1, backgroundColor: "pink" }}></View>
+                            <Farm lingTianName={"冬"} />
                         </TabView.Item>
                     </TabView>
                     <View style={{ position: "absolute", bottom: 0, left: 40, height: 40 }}>
