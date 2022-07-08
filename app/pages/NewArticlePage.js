@@ -27,6 +27,7 @@ import {
   Platform,
   Animated,
   TouchableWithoutFeedback,
+  SafeAreaView,
 } from 'react-native';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -192,22 +193,29 @@ const UserAttributesHolder = (props) => {
   }, []);
 
   return (
-    <Collapse 
-      data={data}
-      renderItem={(item) => {
-        return (
-          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ width: 50 }}><Text>{item.title}:</Text></View>
-            <View><Text style={{ color: '#666' }}>{item.value}</Text></View>
-          </View>
-        );
-      }}
-      renderGroupHeader={(section) => {
-        return (
-          <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
-        );
-      }}
-    />
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
+        <AntDesign name='left' size={23} style={{ margin: 5 }} />
+        <View style={{ flex: 1 }} onTouchStart={(e) => e.stopPropagation()}>
+          <Collapse 
+            data={data}
+            renderItem={(item) => {
+              return (
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                  <View style={{ width: 50 }}><Text>{item.title}:</Text></View>
+                  <View><Text style={{ color: '#666' }}>{item.value}</Text></View>
+                </View>
+              );
+            }}
+            renderGroupHeader={(section) => {
+              return (
+                <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
+              );
+            }}
+          />
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -564,10 +572,12 @@ class NewArticlePage extends Component {
               </View>
             </TouchableWithoutFeedback>
 
-            <TouchableWithoutFeedback onPress={WorldSelector}>
+            <TouchableWithoutFeedback onPress={() => {
+              this.refPropsContainer.current.open();
+            }}>
               <View style={styles.bannerButton}>
-                <AntDesign name={'select1'} size={21} />
-                <Text style={styles.bannerButtonText}>切换世界</Text>
+                <AntDesign name={'hearto'} size={21} />
+                <Text style={styles.bannerButtonText}>角色属性</Text>
               </View>
             </TouchableWithoutFeedback>
 
@@ -607,14 +617,14 @@ class NewArticlePage extends Component {
         <FooterContainer>
           <FooterTabBar />
         </FooterContainer>
-        <Drawer ref={this.refPropsContainer}>
-          {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
-        </Drawer>
         <LeftContainer ref={this.refDirectory}>
           <DirectoryPage data={this.props.dirData} />
         </LeftContainer>
         <RightContainer ref={this.refDirMap}>
           <DirMapPage data={this.props.dirData} />
+        </RightContainer>
+        <RightContainer ref={this.refPropsContainer}>
+          {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
         </RightContainer>
         {/* <View style={styles.debugContainer} pointerEvents="box-none" >
           <View style={styles.debugView1} pointerEvents="box-none">
