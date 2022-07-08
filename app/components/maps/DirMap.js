@@ -282,6 +282,10 @@ const DirMap = (props) => {
     <TouchableWithoutFeedback onPress={zoomRestoreBigMapHandler}>
       <FastImage style={{ position: 'absolute', left: 112, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_restore_button.png')} />
     </TouchableWithoutFeedback>
+    {/* 大地图关闭按钮 */}
+    <TouchableWithoutFeedback onPress={props.onClose}>
+      <FastImage style={{ position: 'absolute', right: 10, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_close_button.png')} />
+    </TouchableWithoutFeedback>
   </View>
   );
 }
