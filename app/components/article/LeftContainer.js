@@ -18,50 +18,30 @@ export default class LeftContainer extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.leftPos = new Animated.Value(-winSize.width);
-  }
-
-  offsetX(x) {
-    this.leftPos.setValue(-winSize.width + x);
+    this.translateX = new Animated.Value(-winSize.width);
   }
 
   open() {
-    Animated.timing(this.leftPos, {
+    Animated.timing(this.translateX, {
       toValue: lo.isNumber(this.props.openScale) ? (-winSize.width  * (1 - this.props.openScale)) : 0,
       duration: 300,
       easing: Easing.linear,
-      useNativeDriver: false,
+      useNativeDriver: true,
     }).start();
   }
 
   close() {
-    Animated.timing(this.leftPos, {
+    Animated.timing(this.translateX, {
       toValue: -winSize.width,
       duration: 300,
       easing: Easing.linear,
-      useNativeDriver: false,
+      useNativeDriver: true,
     }).start();
-  }
-
-  release() {
-    if (this.leftPos._value >= -winSize.width*7/10) {
-      Animated.timing(this.leftPos, {
-        toValue: 0,
-        duration: 300,
-        useNativeDriver: false,
-      }).start();
-    } else {
-      Animated.timing(this.leftPos, {
-        toValue: -winSize.width,
-        duration: 300,
-        useNativeDriver: false,
-      }).start();
-    }
   }
 
   render() {
     return (
-      <Animated.View style={[styles.viewContainer, { left: this.leftPos }]} onTouchStart={() => { this.close() }}>
+      <Animated.View style={[styles.viewContainer, { transform: [{ translateX: this.translateX }]}]} onTouchStart={() => { this.close() }}>
         {this.props.children}
       </Animated.View>
     );
