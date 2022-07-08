@@ -276,7 +276,11 @@ export default {
                     }
                 }
             }
+
+            // 扣除道具
+            yield put.resolve(action('PropsModel/use')({ propId: payload.propsId, num: 1, quiet: true }));
             Toast.show(`灵气值增加${payload.lingQiZhi}`)
+
             yield put.resolve(action("updateLingTianData")(composeState.lingTianData))
         },
 

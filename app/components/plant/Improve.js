@@ -24,14 +24,15 @@ const Improve = (props) => {
         })
     }, [])
 
-    const changeLingQiZhi = (plantLingQiZhi) => {
-        props.dispatch(action("PlantModel/changeLingQiZhi")({ lingTianName, lingTianId, lingQiZhi: plantLingQiZhi })).then(r => {
-            props.onClose()
-        })
 
-    }
 
     const renderItem = ({ item }) => {
+        const changeLingQiZhi = (plantLingQiZhi) => {
+            props.dispatch(action("PlantModel/changeLingQiZhi")({ lingTianName, lingTianId, lingQiZhi: plantLingQiZhi, propsId: item.id })).then(r => {
+                props.onClose()
+            })
+
+        }
         return (
             <View style={styles.props_container}>
                 <Text>{item.name}</Text>
@@ -45,13 +46,13 @@ const Improve = (props) => {
         <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"}>
             <View style={{ flex: 1, backgroundColor: "#fff" }}>
                 <Text style={{ fontSize: 20, color: "#000", textAlign: 'center', marginTop: 12 }}>选择道具</Text>
-                <View>
+                <View style={{ flex: 1 }}>
                     <FlatList
                         data={propsData}
                         renderItem={renderItem}
-                    // keyExtractor={item => item.id}
                     />
                 </View>
+                <TextButton title={"退出"} onPress={props.onClose} />
 
             </View>
         </HalfPanel>
