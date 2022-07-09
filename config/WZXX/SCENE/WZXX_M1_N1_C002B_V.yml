@@ -51,7 +51,7 @@ scenes: [
       },
 
       { 
-        id: 'WZXX_M1_N1_C002B_V5', desc: '守夜', 
+        id: 'WZXX_M1_N1_C002B_V5', desc: '恶灵', 
         options: [ 
           { title: "【！！出事了】",dialogs: ['C002B_elingA']},
 

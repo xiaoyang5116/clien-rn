@@ -20,7 +20,7 @@ scenes: [
         id: 'WZXX_M1_N1_C005_V', desc: '打工还是守夜', 
         options: [ 
           { title: "【去打工】",toScene: 'C005_V_MAP_0_0'},
-          { title: "【去守夜】",dialogs: ['C005_P2']},
+          { title: "【去守夜】",toChapter: "WZXX_M1_N1_C005A1"},
         ],
       },
 
