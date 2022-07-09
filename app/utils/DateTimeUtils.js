@@ -1,22 +1,22 @@
 export class Week {
     static format(day) {
-        if (day == 0)
-            return '一';
-        else if (day == 1)
-            return '二';
-        else if (day == 2)
-            return '三';
-        else if (day == 3)
-            return '四';
-        else if (day == 4)
-            return '五';
-        else if (day == 5)
-            return '六';
-        else if (day == 6)
-            return '日';
+      if (day == 0)
+        return '一';
+      else if (day == 1)
+        return '二';
+      else if (day == 2)
+        return '三';
+      else if (day == 3)
+        return '四';
+      else if (day == 4)
+        return '五';
+      else if (day == 5)
+        return '六';
+      else if (day == 6)
+        return '日';
     }
 }
-
+  
 export class Seasons {
     static format(month) {
         const v = month + 1;
@@ -123,33 +123,4 @@ export function timeDiff(pre, current) {
         returnStr = day + "天"
     }
     return returnStr
-}
-
-// 秒 转换 00天00小时00分钟00秒
-export function h_m_s_Format(s) {
-    // 得到天数
-    const day = Math.floor(s / (24 * 60 * 60));
-    // 得到不满一天的小时数
-    const hour = Math.floor((s % (24 * 60 * 60)) / (60 * 60));
-    // 得到不满一小时的分钟数
-    const min = Math.floor((s % (60 * 60)) / 60);
-    // 得到不满一分钟的秒数
-    const second = s % 60
-
-    let returnStr = second + "秒";
-    if (min > 0) {
-        const miao = s - (min * 60)
-        returnStr = miao > 0 ? min + "分钟" + miao + "秒" : min + "分钟"
-    }
-    if (hour > 0) {
-        const fenzhong = Math.floor((s - (hour * 3600)) / 60);
-        returnStr = fenzhong > 0 ? hour + "小时" + fenzhong + "分钟" : hour + "小时"
-    }
-    if (day > 0) {
-        const xiaoshi = Math.floor((s - (day * 86400)) / (60 * 60))
-        returnStr = xiaoshi > 0 ? day + "天" + xiaoshi + "小时" : day + "天"
-    }
-    return returnStr
-
-
 }

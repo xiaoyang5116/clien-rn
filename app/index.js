@@ -71,7 +71,6 @@ const models = [
   require('./models/CluesModel').default,
   require('./models/SoundModel').default,
   require('./models/CollectModel').default,
-  require('./models/PlantModel').default,
 ];
 
 const defaultDataContext = {
