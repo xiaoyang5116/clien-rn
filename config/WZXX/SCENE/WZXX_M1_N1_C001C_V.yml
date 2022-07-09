@@ -36,6 +36,7 @@ scenes: [
           { title: "【第二章分支1】",  toChapter: "WZXX_M1_N1_C002" },
           { title: "【第二章跟踪杀手】",  toScene: "C001C_V_MAP_0_0" },
           { title: "【第二章分支2】",  toChapter: "WZXX_M1_N1_C003D" },
+          { title: "【第二章分支3】",  toChapter: "WZXX_M1_N1_C005" }
 
           
         ],

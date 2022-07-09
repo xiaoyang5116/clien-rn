@@ -49,6 +49,14 @@ scenes: [
 
         ],
       },
+
+      { 
+        id: 'WZXX_M1_N1_C002B_V5', desc: '守夜', 
+        options: [ 
+          { title: "【！！出事了】",dialogs: ['C002B_elingA']},
+
+        ],
+      },
         ],
 
 
@@ -154,7 +162,7 @@ scenes: [
     },
 
      #选项对话5
-          { id: 'C002B_elingA',style: 6, title: '回屋拿粮，逗逗猫再去买簪子', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'C002B_elingA',style: 6, title: '恶灵', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'M1', content: ['李森炎惊疑：“什么脏东西？”','美女大夫的脸色这才有了一些细微的变化，她看向李森炎，“别的办法也不是不行，你帮我杀了外面那个恶灵，我可以给你这个灵药。”','“恶灵？”','李森炎倒吸一口冷气，推了推旁边的云云，低声问，“喂，恶灵是什么鬼啊？”','“我没法跟你解释，反正就是比较恶心的东西，你去的话……”云云上下打量他一眼，“胜算，不大。”','虽然李森炎现在突破了炼气三重，但依旧没什么实战经验，这出去，不知道是死是活了','请选择是否要帮美女大夫——',],
           btn: [{title: "帮",tokey: "M3"},{title: "不帮",tokey: "M2"}]},
