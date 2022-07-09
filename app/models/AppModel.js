@@ -27,6 +27,9 @@ export default {
 
     // 当前存档ID
     currentArchiveIndex: 0,
+
+    // 黑夜模式设置
+    darkLightSettings: {},
   },
 
   effects: {
@@ -43,6 +46,12 @@ export default {
       // 存档相关
       appState.archiveList = lo.reverse([...LocalStorage.metadata.descriptors].filter(e => e.archived));
       appState.currentArchiveIndex = LocalStorage.metadata.currentArchiveIndex;
+
+      // 黑夜模式
+      const darkLightSettings = yield call(LocalStorage.get, LocalCacheKeys.DARK_LIGHT_MODE);
+      if (!lo.isEmpty(darkLightSettings)) {
+        appState.darkLightSettings = darkLightSettings;
+      }
     },
 
     *changeTheme({ payload }, { call, put, select }) {
@@ -98,6 +107,21 @@ export default {
       yield call(LocalStorage.clear);
       EventListeners.raise('reload');
       RootNavigation.navigate('First');
+    },
+
+    *setDarkLightMode({ payload }, { call, put, select }) {
+      const appState = yield select(state => state.AppModel);
+      const { reader, app } = payload;
+      
+      if (lo.isBoolean(reader)) {
+        appState.darkLightSettings.reader = reader;
+      }
+      if (lo.isBoolean(app)) {
+        appState.darkLightSettings.app = app;
+      }
+
+      yield call(LocalStorage.set, LocalCacheKeys.DARK_LIGHT_MODE, appState.darkLightSettings);
+      yield put(action('updateState')({ }));
     },
   },
   

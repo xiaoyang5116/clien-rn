@@ -27,6 +27,7 @@ import {
   Platform,
   Animated,
   TouchableWithoutFeedback,
+  SafeAreaView,
 } from 'react-native';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -34,14 +35,12 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Block from '../components/article';
 import { DeviceEventEmitter } from 'react-native';
 import { CarouselUtils } from '../components/carousel';
-import { TextButton } from '../constants/custom-ui';
 import RootView from '../components/RootView';
 import ReaderSettings from '../components/readerSettings';
 import HeaderContainer from '../components/article/HeaderContainer';
 import FooterContainer from '../components/article/FooterContainer';
 import * as RootNavigation from '../utils/RootNavigation';
 import Collapse from '../components/collapse';
-import Drawer from '../components/drawer';
 import LeftContainer from '../components/article/LeftContainer';
 import DirectoryPage from './article/DirectoryPage';
 import RightContainer from '../components/article/RightContainer';
@@ -49,6 +48,11 @@ import DirMapPage from './article/DirMapPage';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../constants/resolution';
 import TipsView from '../components/article/TipsView';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Fontisto from 'react-native-vector-icons/Fontisto';
+import readerStyle from '../themes/readerStyle';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -188,22 +192,29 @@ const UserAttributesHolder = (props) => {
   }, []);
 
   return (
-    <Collapse 
-      data={data}
-      renderItem={(item) => {
-        return (
-          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ width: 50 }}><Text>{item.title}:</Text></View>
-            <View><Text style={{ color: '#666' }}>{item.value}</Text></View>
-          </View>
-        );
-      }}
-      renderGroupHeader={(section) => {
-        return (
-          <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
-        );
-      }}
-    />
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
+        <AntDesign name='left' size={23} style={{ margin: 5 }} />
+        <View style={{ flex: 1 }} onTouchStart={(e) => e.stopPropagation()}>
+          <Collapse 
+            data={data}
+            renderItem={(item) => {
+              return (
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                  <View style={{ width: 50 }}><Text>{item.title}:</Text></View>
+                  <View><Text style={{ color: '#666' }}>{item.value}</Text></View>
+                </View>
+              );
+            }}
+            renderGroupHeader={(section) => {
+              return (
+                <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
+              );
+            }}
+          />
+        </View>
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -458,17 +469,115 @@ const FooterTabBar = (props) => {
   );
 }
 
+const DarkLightSelector = (props) => {
+
+  const darkMode = React.useRef(lo.isEqual(props.readerStyle.bgColor, readerStyle.matchColor_7.bgColor));
+
+  const onChanged = (e) => {
+    if (!darkMode.current) {
+      props.dispatch(action('ArticleModel/changeReaderStyle')(readerStyle.matchColor_7));
+      darkMode.current = true;
+    } else {
+      props.dispatch(action('ArticleModel/changeReaderStyle')(readerStyle.matchColor_1));
+      darkMode.current = false;
+    }
+  }
+
+  const button = darkMode.current
+    ? <FontAwesome name={'moon-o'} size={23} /> : <Fontisto name={'day-sunny'} size={23} />
+  const text = darkMode.current
+    ?  <Text style={styles.bannerButtonText}>夜间模式</Text> :  <Text style={styles.bannerButtonText}>白天模式</Text>
+
+  return (
+  <TouchableWithoutFeedback onPress={onChanged}>
+    <View style={styles.bannerButton}>
+      {button}
+      {text}
+    </View>
+  </TouchableWithoutFeedback>
+  );
+}
+
+const MENU_OPTIONS = [
+  { id: 1, title: '返回主页', icon: 'exit-outline', type: 'Ionicons' },
+  { id: 2, title: '功能未解锁', icon: 'laptop', type: 'AntDesign' },
+  { id: 3, title: '功能未解锁', icon: 'linechart', type: 'AntDesign' },
+  { id: 4, title: '功能未解锁', icon: 'filter', type: 'AntDesign' },
+  { id: 5, title: '功能未解锁', icon: 'sharealt', type: 'AntDesign' },
+  { id: 6, title: '功能未解锁', icon: 'notification', type: 'AntDesign' },
+  { id: 7, title: '功能未解锁', icon: 'customerservice', type: 'AntDesign' },
+  { id: 8, title: '功能未解锁', icon: 'clouddownloado', type: 'AntDesign' },
+  { id: 9, title: '功能未解锁', icon: 'search1', type: 'AntDesign' },
+  { id: 10, title: '功能未解锁', icon: 'dashboard', type: 'AntDesign' },
+];
+
+const MenuOptions = (props) => {
+
+  const renderItem = (data) => {
+    const { item } = data;
+    let icon = (<></>);
+    if (lo.isEqual(item.type, 'Ionicons')) {
+      icon = <Ionicons name={item.icon} size={20} />
+    } else if (lo.isEqual(item.type, 'AntDesign')) {
+      icon = <AntDesign name={item.icon} size={20} />
+    }
+
+    let pressHandler = null;
+    if (!lo.isFunction(item.action)) {
+      if (item.id == 1) {
+        pressHandler = () => {
+          props.navigation.navigate('First');
+          AppDispath({ type: 'ArticleModel/cleanup' });
+        }
+      }
+    } else {
+      pressHandler = item.action;
+    }
+
+    return (
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+        <TouchableWithoutFeedback onPress={pressHandler}>
+          <View style={styles.menuOptionsItem}>
+            <View style={{ width: 50, alignItems: 'center' }}>{icon}</View>
+            <View style={{ width: 130 }}><Text style={{ color: (pressHandler != null ? '#000' : '#999'), fontSize: 20 }}>{item.title}</Text></View>
+          </View>
+        </TouchableWithoutFeedback>
+      </View>
+    )
+  }
+
+  return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#eee' }}>
+      <View style={{ flex: 1, alignItems: 'flex-end' }}>
+        <View style={{ width: '70%' }}>
+          <AntDesign name='left' size={23} style={{ margin: 5 }} />
+        </View>
+        <View style={{ flex: 1, width: '70%' }} onTouchStart={(e) =>{ e.stopPropagation(); }}>
+          <FlatList 
+            data={MENU_OPTIONS}
+            style={{ alignSelf: 'stretch' }}
+            keyExtractor={item => item.id}
+            renderItem={renderItem}
+          />
+        </View>
+      </View>
+    </SafeAreaView>
+  );
+}
+
 class NewArticlePage extends Component {
 
   static contextType = DataContext;
 
   constructor(props) {
     super(props);
+    this.refMenuOptions = React.createRef();
     this.refPropsContainer = React.createRef();
     this.refDirectory = React.createRef();
     this.refDirMap = React.createRef();
     this.longPressListener = null;
     this.gotoDirMapListener = null;
+    this.darkMode = false;
     this.listeners = [];
   }
 
@@ -478,6 +587,12 @@ class NewArticlePage extends Component {
     this.listeners.push(
       DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
         WorldSelector();
+      })
+    );
+
+    this.listeners.push(
+      DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_PRESS, (e) => {
+        this.refMenuOptions.current.close();
       })
     );
 
@@ -514,32 +629,45 @@ class NewArticlePage extends Component {
       <View style={[styles.viewContainer, { backgroundColor: readerStyle.bgColor }]}>
         <HeaderContainer>
           <View style={[styles.bannerStyle, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0) }]}>
-            <View style={styles.bannerButton}>
-              <TextButton title='X' onPress={() => {
-                  DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
-                }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='选择世界' onPress={WorldSelector} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='退出阅读' onPress={() => {
-                this.props.navigation.navigate('First');
-                AppDispath({ type: 'ArticleModel/cleanup' });
-              }} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='目录' onPress={this.openDirectory} />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='夜间' />
-            </View>
-            <View style={styles.bannerButton}>
-              <TextButton title='设置' onPress={()=>{
+            <TouchableWithoutFeedback onPress={() => {
+              DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+              setTimeout(() => {
+                this.refMenuOptions.current.open();
+              }, 500);
+            }}>
+              <View style={styles.bannerButton}>
+                <AntDesign name={'menufold'} size={21} />
+                <Text style={styles.bannerButtonText}>菜单选项</Text>
+              </View>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback onPress={this.openDirectory}>
+              <View style={styles.bannerButton}>
+                <AntDesign name={'bars'} size={23} />
+                <Text style={styles.bannerButtonText}>章节目录</Text>
+              </View>
+            </TouchableWithoutFeedback>
+
+            <TouchableWithoutFeedback onPress={() => {
+              this.refPropsContainer.current.open();
+            }}>
+              <View style={styles.bannerButton}>
+                <AntDesign name={'hearto'} size={21} />
+                <Text style={styles.bannerButtonText}>角色属性</Text>
+              </View>
+            </TouchableWithoutFeedback>
+
+            <DarkLightSelector {...this.props} />
+
+            <TouchableWithoutFeedback onPress={()=>{
                 DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
                 const key =RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
-              }} />
-            </View>
+              }}>
+              <View style={styles.bannerButton}>
+                <Ionicons name={'ios-text'} size={23} />
+                <Text style={styles.bannerButtonText}>阅读设置</Text>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
         </HeaderContainer>
         <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
@@ -555,14 +683,21 @@ class NewArticlePage extends Component {
         <FooterContainer>
           <FooterTabBar />
         </FooterContainer>
-        <Drawer ref={this.refPropsContainer}>
-          {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
-        </Drawer>
+        {/* 菜单选项 */}
+        <LeftContainer ref={this.refMenuOptions} openScale={0.7}>
+          <MenuOptions { ...this.props } />
+        </LeftContainer>
+        {/* 章节目录 */}
         <LeftContainer ref={this.refDirectory}>
           <DirectoryPage data={this.props.dirData} />
         </LeftContainer>
+        {/* 章节目录地图 */}
         <RightContainer ref={this.refDirMap}>
           <DirMapPage data={this.props.dirData} />
+        </RightContainer>
+        {/* 角色属性 */}
+        <RightContainer ref={this.refPropsContainer}>
+          {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
         </RightContainer>
         {/* <View style={styles.debugContainer} pointerEvents="box-none" >
           <View style={styles.debugView1} pointerEvents="box-none">
@@ -635,28 +770,44 @@ const styles = StyleSheet.create({
   bannerStyle: {
     flex: 1, 
     flexDirection: 'row', 
-    flexWrap: 'wrap', 
+    // flexWrap: 'wrap', 
     justifyContent: 'center', 
     alignItems: 'center', 
   },
   bannerButton: {
-    width: 100,
+    width: 55,
     marginLeft: 10, 
     marginRight: 10,
-    marginTop: 0,
+    marginTop: 10,
     marginBottom: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
+  bannerButtonText: {
+    marginTop: 10,
+    color: '#000',
+    fontSize: 12,
+  }, 
   bottomBannerButton: {
     width: 45,
     height: 80,
     marginLeft: 10, 
     marginRight: 10,
-    marginTop: 0,
+    marginTop: 10,
     marginBottom: 10,
   },
   tranSceneFontStyle: {
     fontSize: 24, 
     color: '#333',
+  },
+  menuOptionsItem: {
+    flexDirection: 'row', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    width: '90%',
+    height: 60, 
+    borderBottomWidth: 1, 
+    borderBottomColor: '#999',
   }
 });
 

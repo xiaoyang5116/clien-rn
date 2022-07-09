@@ -9,12 +9,12 @@ import {
 } from '../../constants/native-ui';
 
 import {
-    Animated,
+    Animated, DeviceEventEmitter,
 } from 'react-native';
 
 import lo from 'lodash';
 import { px2pd } from '../../constants/resolution';
-import { getWindowSize, ThemeContext } from '../../constants';
+import { EventKeys, getWindowSize, ThemeContext } from '../../constants';
 import { confirm } from '../dialog/ConfirmDialog';
 import Flower from '../animation/Flower';
 
@@ -26,7 +26,7 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_01.png'),
         },
         farPoints: [
-            { style: { left: 70, top: 260 }, title: '百兽山' },
+            { style: { left: 70, top: 260 }, name: 'BaiShouShan', title: '百兽山' },
         ],
         nearPoints: [
         ],
@@ -38,8 +38,8 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_02.png'),
         },
         farPoints: [
-            { style: { left: 10, top: 380 }, title: '灵药田' },
-            { style: { left: 110, top: 200 }, title: '云雾峰' },
+            { style: { left: 10, top: 380 }, name: 'LingYaoTian', title: '灵药田' },
+            { style: { left: 110, top: 200 }, name: 'YunWuFeng', title: '云雾峰' },
         ],
         nearPoints: [
         ],
@@ -53,7 +53,7 @@ const MAP_DATA = [
         farPoints: [
         ],
         nearPoints: [
-            { style: { left: 75, top: 320 }, title: '练器峰' },
+            { style: { left: 75, top: 320 }, name: 'LianQiFeng', title: '练器峰' },
         ],
     },
     {
@@ -63,7 +63,7 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_04.png'),
         },
         farPoints: [
-            { style: { left: 55, top: 280 }, title: '演武亭' },
+            { style: { left: 55, top: 280 }, name: 'YanWuTing', title: '演武亭' },
         ],
         nearPoints: [
         ],
@@ -75,10 +75,10 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_05.png'),
         },
         farPoints: [
-            { style: { left: 70, top: 150 }, title: '镇妖塔' },
+            { style: { left: 70, top: 150 }, name: 'ZhenYaoTa', title: '镇妖塔' },
         ],
         nearPoints: [
-            { style: { left: 160, top: 300 }, title: '炼丹房' },
+            { style: { left: 160, top: 300 }, name: 'LianDanFeng', title: '炼丹房' },
         ],
     },
 ];
@@ -88,7 +88,9 @@ const EntryButton = (props) => {
 
     return (
         <TouchableWithoutFeedback onPress={() => {
-                confirm('确认进入？');
+                confirm('确认进入？', () => {
+                    DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
+                });
             }}>
             <View style={{ ...props.style }}>
                 <FastImage style={{ width: px2pd(84), height: px2pd(211) }} source={themeStyle.townMapButtonImage} />

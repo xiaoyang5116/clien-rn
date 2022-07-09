@@ -20,6 +20,8 @@ export class EventKeys {
 
     // 动画结束
     static ANIMATION_END = 'ANIMATION_END';
+    // 系统颜色方案发生变化（黑夜模式切换）
+    static COLOR_SCHEME_CHANGED = 'COLOR_SCHEME_CHANGED';
 
     // 探索相关消息
     static EXPLORE_MSGLIST_ADD = 'EXPLORE_MSGLIST_ADD';
@@ -61,4 +63,7 @@ export class EventKeys {
 
     // 文章内超链接点击
     static ARTICLE_CLICK_LINK = 'ARTICLE_CLICK_LINK';
+
+    // 进入城镇地点
+    static TOWN_ENTER = 'TOWN_ENTER';
 }

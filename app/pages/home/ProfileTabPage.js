@@ -10,10 +10,8 @@ import {
     View,
     Text,
     FlatList,
-    Image
 } from '../../constants/native-ui';
 
-import { Panel, ImagePanel } from '../../components/panel';
 import { ImageButton } from '../../constants/custom-ui';
 import * as RootNavigation from '../../utils/RootNavigation';
 
@@ -34,6 +32,13 @@ class ProfileTabPage extends React.Component {
             },
             {
                 id: 2,
+                title: '黑夜模式设置',
+                cb: () => {
+                    RootNavigation.navigate('Settings', { screen: 'DarkLight', });
+                }
+            },
+            {
+                id: 3,
                 title: '音量设置',
                 cb: () => {
                     RootNavigation.navigate('Settings', { screen: 'Sound', });
