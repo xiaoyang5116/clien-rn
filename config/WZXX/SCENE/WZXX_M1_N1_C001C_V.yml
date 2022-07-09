@@ -30,7 +30,15 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001C_V', desc: '选项', 
         options: [ 
-          { title: "【DEBUG开始】",  varsOff: ['C001C_V_MAP_point_01/ONE_OPEN'], toScene: 'C001C_V_MAP_point_0_0' },
+
+          { title: "【DEBUG进入森林】", toScene: 'WZXX_M1_N1_C001B_V' },
+          { title: "【DEBUG开始】",   varsOff: ['C001C_V_MAP_point_01/ONE_OPEN'], toScene: 'C001C_V_MAP_0_0' },
+          { title: "【第二章分支1】",  toChapter: "WZXX_M1_N1_C002" },
+          { title: "【第二章跟踪杀手】",  toScene: "C001C_V_MAP_0_0" },
+          { title: "【第二章分支2】",  toChapter: "WZXX_M1_N1_C003D" },
+          { title: "【第二章分支3】",  toChapter: "WZXX_M1_N1_C005" }
+
+          
         ],
       },
 
@@ -460,27 +468,68 @@ scenes: [
       {
         id: 'C001C_V_MAP_0_0',
         data: [
-          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
-          #{ point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_02', links: [] },
+          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_0_0', links: [[0, 1], ] },
+          { point: [0, 1], title: '？？？', links: [] },
         ]
       },
       {
         id: 'C001C_V_MAP_0_1',
         data: [
-          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
-          { point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_0_1', links: [] },
+          { point: [0, 2], title: '？？？', links: [] },
+          { point: [0, 1], title: '寻常窄道',toScene: 'C001C_V_MAP_0_1',links: [[0, 2], ] },
+          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_0_0',links: [[0, 1], ]  },
+
         ]
       },
       {
         id: 'C001C_V_MAP_0_2',
         data: [
-          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_point_0_0', links: [[0, 1], ] },
-          { point: [0, 1], title: '寻常窄道', toScene: 'C001C_V_MAP_point_0_1', links: [[0, 2], ] },
-          { point: [0, 2], title: '寻常窄道', toScene: 'C001C_V_MAP_point_0_2', links: [[0, 2], ] },
+          { point: [0, 3], title: '？？？', links: [[], ] },
+          { point: [0, 2], title: '猎人小道', toScene: 'C001C_V_MAP_0_2', links: [[0, 3], ] },
+          { point: [0, 1], title: '寻常窄道',  toScene: 'C001C_V_MAP_0_1', links: [[0, 2], ] },
+          { point: [0, 0], title: '林间小道，入口', toScene: 'C001C_V_MAP_0_0',links: [[0, 1], ] },
+        ]
+      },
+
+       {
+        id: 'C001C_V_MAP_0_3',
+        data: [
+          { point: [1, 4], title: '？？？',links: [[], ] },
+          { point: [0, 3], title: '林荫休息处', toScene: 'C001C_V_MAP_0_3',links: [[1, 4], ] },
+          { point: [0, 2], title: '猎人小道',toScene: 'C001C_V_MAP_0_2',links: [[0, 3], ] },
+          { point: [0, 1], title: '寻常窄道',toScene: 'C001C_V_MAP_0_1',links: [[0, 2], ] },
+          { point: [0, 0],title: '林间小道，入口', toScene: 'C001C_V_MAP_0_0', links: [[0, 1], ] },
         ]
       },
 
 
+       {
+        id: 'C001C_V_MAP_0_4',
+        data: [
+
+          { point: [1, 5], title: '？？？', links: [[], ] },
+          { point: [1, 4], title: '进城大道',toScene: 'C001C_V_MAP_0_4',links: [[1, 5], ] },
+          { point: [0, 3], title: '林荫休息处', toScene: 'C001C_V_MAP_0_3', links: [[1, 4], ] },
+          { point: [0, 2], title: '猎人小道',  toScene: 'C001C_V_MAP_0_2',links: [[0, 3], ] },
+          { point: [0, 1], title: '寻常窄道',toScene: 'C001C_V_MAP_0_1',links: [[0, 2], ] },
+          { point: [0, 0],title: '林间小道，入口', toScene: 'C001C_V_MAP_0_0', links: [[0, 1], ] },
+
+        ]
+      },
+
+       {
+        id: 'C001C_V_MAP_0_5',
+        data: [
+
+          { point: [1, 5], title: '白城',toScene: 'C001C_V_MAP_0_5',links: [[], ] },
+          { point: [1, 4], title: '进城大道',toScene: 'C001C_V_MAP_0_4', links: [[1, 5], ] },
+          { point: [0, 3], title: '林荫休息处', toScene: 'C001C_V_MAP_0_3',links: [[1, 4], ] },
+          { point: [0, 2],title: '猎人小道',  toScene: 'C001C_V_MAP_0_2',links: [[0, 3], ] },
+          { point: [0, 1],  title: '寻常窄道', toScene: 'C001C_V_MAP_0_1', links: [[0, 2], ] },
+          { point: [0, 0],title: '林间小道，入口',  toScene: 'C001C_V_MAP_0_0',links: [[0, 1], ] },
+
+        ]
+      },
     ],
 
   ]

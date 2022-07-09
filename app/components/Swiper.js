@@ -113,7 +113,7 @@ export default class Swiper extends PureComponent {
 
         return (
             <View
-                style={[style, styles.allContarner]}
+                style={[style, styles.allContainer]}
                 onLayout={this.handleLayout}
             >
                 <ScrollView
@@ -134,7 +134,7 @@ export default class Swiper extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-    allContarner: {
+    allContainer: {
         position: 'relative',
         overflow: "hidden"
     },

@@ -17,6 +17,7 @@ import { px2pd } from '../../constants/resolution';
 import { EventKeys, getWindowSize, ThemeContext } from '../../constants';
 import { confirm } from '../dialog/ConfirmDialog';
 import Flower from '../animation/Flower';
+import { PlantPage } from '../plant';
 
 const MAP_DATA = [
     {
@@ -89,7 +90,8 @@ const EntryButton = (props) => {
     return (
         <TouchableWithoutFeedback onPress={() => {
                 confirm('确认进入？', () => {
-                    DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
+                    // DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
+                    return PlantPage.show()
                 });
             }}>
             <View style={{ ...props.style }}>
