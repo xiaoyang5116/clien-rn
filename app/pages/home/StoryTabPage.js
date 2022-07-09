@@ -105,6 +105,10 @@ class StoryTabPage extends Component {
     super(props);
     this.progressViews = [];
     this.unsubscribe = null;
+
+    this.currentMapId = '';
+    this.currentMapCenterPoint = null;
+    this.sceneMapRefreshKey = 0;
   }
 
   _onClickItem = (e) => {
@@ -199,11 +203,18 @@ class StoryTabPage extends Component {
   _renderMap() {
     if (lo.isEmpty(this.props.scene) || !lo.isArray(this.props.scene.mapData))
       return (<></>);
+
+    if (!lo.isEqual(this.currentMapId, this.props.scene.mapId) || !lo.isEqual(this.currentMapCenterPoint, this.props.scene.mapCenterPoint)) {
+      this.currentMapId = this.props.scene.mapId;
+      this.currentMapCenterPoint = this.props.scene.mapCenterPoint;
+      this.sceneMapRefreshKey++;
+    }
+
     return (
       <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 'auto', justifyContent: 'flex-end', alignItems: 'center', zIndex: 10 }} pointerEvents='box-none'>
         <View style={{ marginBottom: 40 }} pointerEvents='box-none'>
           {/* <SceneMap data={this.props.scene.mapData} initialCenterPoint={lo.isArray(this.props.scene.mapCenterPoint) ? this.props.scene.mapCenterPoint : [0,0]} /> */}
-          <SceneMapWrapper mapData={this.props.scene.mapData} mapCenterPoint={this.props.scene.mapCenterPoint} />
+          <SceneMapWrapper key={this.sceneMapRefreshKey} mapData={this.props.scene.mapData} mapCenterPoint={this.props.scene.mapCenterPoint} />
         </View>
       </View>
     );
