@@ -31,14 +31,6 @@ scenes: [
         id: 'WZXX_M1_N1_C001C_V', desc: '选项', 
         options: [ 
 
-          { title: "【DEBUG进入森林】", toScene: 'WZXX_M1_N1_C001B_V' },
-          { title: "【DEBUG开始】",   varsOff: ['C001C_V_MAP_point_01/ONE_OPEN'], toScene: 'C001C_V_MAP_0_0' },
-          { title: "【第二章分支1】",  toChapter: "WZXX_M1_N1_C002" },
-          { title: "【第二章跟踪杀手】",  toScene: "C001C_V_MAP_0_0" },
-          { title: "【第二章分支2】",  toChapter: "WZXX_M1_N1_C003D" },
-          { title: "【第二章分支3】",  toChapter: "WZXX_M1_N1_C005" }
-
-          
         ],
       },
 
