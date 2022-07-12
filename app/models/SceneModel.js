@@ -34,6 +34,7 @@ import Modal from "../components/modal";
 import Shock from '../components/shock';
 import { CarouselUtils } from "../components/carousel";
 import { playSound } from "../components/sound/utils";
+import Games from "../components/games";
 
 class VarUtils {
   static generateVarUniqueId(sceneId, varId) {
@@ -151,6 +152,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__toMapPoint", cmd: 'toMapPoint', params: payload.toMapPoint });
     }
 
+    // 生成游戏相关动作
+    if (payload.games != undefined && lo.isObject(payload.games)) {
+      allActions.push({ id: "__games", cmd: 'games', params: payload.games });
+    }
+
     return allActions;
   }
 }
@@ -217,6 +223,7 @@ const ACTIONS_MAP = [
   { cmd: 'sounds',        handler: '__onSoundsCommand' },
   { cmd: 'collect',       handler: '__onCollectCommand' },
   { cmd: 'toMapPoint',    handler: '__onMapPointCommand' },
+  { cmd: 'games',         handler: '__onGamesCommand' },
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;
@@ -716,6 +723,10 @@ export default {
 
     *__onMapPointCommand({ payload }, { put }) {
       DeviceEventEmitter.emit(EventKeys.SCENE_MAP_MOVE, payload.params);
+    },
+
+    *__onGamesCommand({ payload }, { put }) {
+      Games.show(payload.params);
     },
 
     *syncData({ }, { select, call }) {

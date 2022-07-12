@@ -19,6 +19,7 @@ import lo from 'lodash';
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 import defaultReaderStyle from '../themes/readerStyle';
+import Games from "../components/games";
 
 const WIN_SIZE = getWindowSize();
 const DETECTION_AREA_HEIGHT = 200;
@@ -263,9 +264,9 @@ export default {
           continue;
 
         // 触发按区域激活提示
-        const { toast, pop, image, background, effect } = item.object;
+        const { toast, pop, image, background, effect, games } = item.object;
         if (toast == undefined && pop == undefined && image == undefined 
-            && background == undefined && effect == undefined)
+            && background == undefined && effect == undefined && games == undefined)
           continue;
 
         // 计算总偏移量
@@ -309,6 +310,11 @@ export default {
           // 效果事件
           if (effect != undefined) {
             enterEffectArea(articleState, item, 2, line2);
+          }
+          // 子游戏
+          if (games != undefined) {
+            Games.show(games);
+            item.object.completed = true;
           }
         }
 

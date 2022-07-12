@@ -2,29 +2,29 @@
 #  routeName: 导航栏切换的路径名称
 #  soundId: 音乐音效ID
 #  seek: 跳开多少秒
-#
+#  对应界面没有声音就注释掉
 
 sound: [
     # 首页
-    { routeName: 'First', soundId: 'BGM00001', seek: 20 },
+    { routeName: 'First', soundId: 'BGM_C_0002' },
     # 设置页
-    { routeName: 'Profile', soundId: 'BGM00002' },
+    { routeName: 'Profile', soundId: 'BGM_C_0001' },
     # 道具页
-    { routeName: 'Props', soundId: 'BGM00003' },
+    #{ routeName: 'Props', soundId: 'BGM00003' },
     # 制作页
-    { routeName: 'Compose', soundId: 'BGM00004' },
+    # { routeName: 'Compose', soundId: 'BGM00004' },
     # 城镇页
-    { routeName: 'Town', soundId: 'BGM00005' },
+    { routeName: 'Town', soundId: 'BGM_C_0001' },
     # 世界页
-    { routeName: 'World', soundId: 'BGM00006' },
+    # { routeName: 'World', soundId: 'BGM_C_0001' },
     # 阅读器默认
     # { routeName: 'Article', soundId: 'BGM00003' },
     # 测试主音量
-    { test: 'masterBGM', soundId: 'BGM00003' },
+    { test: 'masterBGM', soundId: 'BGM_R_0001', seek: 14 },
     # 测试主音效
-    { test: 'masterEffect', soundId: 'SE000001' },
+    { test: 'masterEffect', soundId: 'SE_UE_0001' },
     # 测试阅读器音量
-    { test: 'readerBGM', soundId: 'BGM00004', seek: 60 },
+    { test: 'readerBGM', soundId: 'BGM_C_0002', seek: 20 },
     # 测试阅读器音效
-    { test: 'readerEffect', soundId: 'SE000001' },
+    { test: 'readerEffect', soundId: 'SE_KO_0001' },
 ]
