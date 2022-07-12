@@ -100,6 +100,7 @@ const StatusBar = (props) => {
 const TouchCat = (props) => {
 
     const speedSet = React.useRef([]);
+    const touchTimer = React.useRef(null);
     const detectionAreas = React.useRef(IMAGES[0].areas);
     const [image, setImage] = React.useState(IMAGES[0].source);
 
@@ -113,6 +114,11 @@ const TouchCat = (props) => {
         onPanResponderMove: (evt, gestureState) => {
             const { dx, dy, moveX, moveY, x0, y0, vx, vy } = gestureState;
             const { locationX, locationY } = evt.nativeEvent;
+
+            if (touchTimer.current != null) {
+                clearTimeout(touchTimer.current);
+                touchTimer.current = null;
+            }
 
             let inRange = false; // 是否在检测区域
             detectionAreas.current.forEach(e => {
@@ -146,6 +152,29 @@ const TouchCat = (props) => {
         },
     })).current;
 
+    const touchEventHandler = (e) => {
+        const { locationX, locationY } = e.nativeEvent;
+
+        if (touchTimer.current != null) {
+            clearTimeout(touchTimer.current);
+            touchTimer.current = null;
+        }
+
+        let inRange = false; // 是否在检测区域
+        detectionAreas.current.forEach(e => {
+            if ((locationX >= e.origin[0] && locationX <= (e.origin[0] + e.width))
+                && (locationY >= e.origin[1] && locationY <= (e.origin[1] + e.height))) {
+                inRange = true;
+            }
+        });
+
+        if (inRange) { // 单纯点击算厌恶
+            touchTimer.current = setTimeout(() => {
+                DeviceEventEmitter.emit('__@StatusBar.addYanWuDu', 1);
+            }, 600);
+        }
+    }
+
     return (
         <View style={styles.viewContainer}>
             <View style={styles.bodyContainer}>
@@ -159,7 +188,7 @@ const TouchCat = (props) => {
                     </TouchableWithoutFeedback>
                 </View>
                 <StatusBar {...props} />
-                <View style={styles.mainContainer} {...panResponder.panHandlers}>
+                <View style={styles.mainContainer} {...panResponder.panHandlers} onTouchStart={touchEventHandler}>
                     <FastImage style={{ width: px2pd(675), height: px2pd(675) }} source={image} />
                 </View>
             </View>
