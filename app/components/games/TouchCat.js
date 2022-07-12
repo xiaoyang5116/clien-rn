@@ -5,6 +5,7 @@ import {
     View,
     Text,
     Animated,
+    PanResponder,
     DeviceEventEmitter,
     TouchableWithoutFeedback,
 } from 'react-native';
@@ -14,116 +15,136 @@ import {
 } from '../../constants'
 
 import { px2pd } from '../../constants/resolution';
+import { confirm } from '../dialog/ConfirmDialog';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const PREGRESS_BAR_WIDTH = px2pd(680);
-
 const IMAGES = [
-    { source: require('../../../assets/games/cat/1.png') },
-    { source: require('../../../assets/games/cat/2.png') },
+    { source: require('../../../assets/games/cat/1.png'), areas: [{ origin: [86, 125], width: 47, height: 30 }] },
+    { source: require('../../../assets/games/cat/2.png'), areas: [{ origin: [86, 125], width: 47, height: 30 }] },
 ]
 
-const ProgressBar = (props) => {
+const YAN_WU_DU_LIMIT = 3;
+const HAO_GAN_DU_LIMIT = 3;
 
-    const translateX = React.useRef(new Animated.Value(-PREGRESS_BAR_WIDTH)).current;
-
-    React.useEffect(() => {
-        const timer = setInterval(() => {
-            if (translateX._value < 0 && translateX._value > -PREGRESS_BAR_WIDTH) {
-                let value = translateX._value - 0.3;
-                value = value < -PREGRESS_BAR_WIDTH ? -PREGRESS_BAR_WIDTH : value;
-                translateX.setValue(value);
-                // 计算百分比
-                const percent = (PREGRESS_BAR_WIDTH - Math.abs(value)) / PREGRESS_BAR_WIDTH * 100;
-                DeviceEventEmitter.emit('___@SpeedClick.percent', percent);
-            }
-        }, 100);
-        return () => {
-            clearInterval(timer);
-        }
-    }, []);
+const StatusBar = (props) => {
+    const [yanWuDu, setYanWuDu] = React.useState(0);
+    const [haoGanDu, setHaoGanDu] = React.useState(0);
 
     React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener('___@SpeedClick', () => {
-            if (translateX._value >= 0)
-                return
-            let value = translateX._value + 3;
-            value = value > 0 ? 0 : value;
-            translateX.setValue(value);
-            // 完成
-            if (value >= 0) {
-                DeviceEventEmitter.emit('___@SpeedClick.percent', 100);
-            }
+        const listener = DeviceEventEmitter.addListener('__@StatusBar.addYanWuDu', (v) => {
+            setYanWuDu((du) => {
+                const value = du + v;
+                if (value >= YAN_WU_DU_LIMIT) {
+                    setTimeout(() => {
+                        confirm('通关失败!', { title: '确定', cb: () => {
+                            if (props.onClose != undefined) {
+                                props.onClose();
+                            }
+                        }});
+                    }, 0);
+                    return YAN_WU_DU_LIMIT;
+                }
+                return value;
+            });
         });
         return () => {
             listener.remove();
         }
-    })
-
-    return (
-        <View style={{ width: '100%', backgroundColor: '#333', alignItems: 'center', overflow: 'hidden' }}>
-            <Animated.View style={{ width: '100%', height: 35, backgroundColor: '#669900', transform: [{ translateX: translateX }] }} />
-        </View>
-    )
-}
-
-const TimeDown = (props) => {
-
-    const [seconds, setSeconds] = React.useState(30);
+    }, []);
 
     React.useEffect(() => {
-        const timer = setInterval(() => {
-            setSeconds((v) => {
-                if (v > 0) {
-                    return v - 1;
+        const listener = DeviceEventEmitter.addListener('__@StatusBar.addHaoGanDu', (v) => {
+            setHaoGanDu((du) => {
+                const value = du + v;
+                if (value >= HAO_GAN_DU_LIMIT) {
+                    setTimeout(() => {
+                        confirm('通关成功!', { title: '确定', cb: () => {
+                            if (props.onClose != undefined) {
+                                props.onClose();
+                            }
+                        }});
+                    }, 0);
+                    return HAO_GAN_DU_LIMIT;
                 }
-                // 时间到!!!
-                DeviceEventEmitter.emit('___@SpeedClick.timeout');
-                clearInterval(timer);
-                return 0;
-            });
-        }, 1000);
+                return value;
+            })
+        });
         return () => {
-            clearInterval(timer);
+            listener.remove();
         }
     }, []);
 
-    const label = seconds > 0 ? `剩余 ${seconds} 秒` : '时间已结束';
+    const yanWuDuWidth = yanWuDu / YAN_WU_DU_LIMIT * 100;
+    const haoGanDuWidth = haoGanDu / HAO_GAN_DU_LIMIT * 100;
+
     return (
-        <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ color: '#000' }}>{label}</Text>
+        <View style={{ width: '100%', height: 35, paddingLeft: 10, paddingRight: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <View>
+                <Text>厌恶度: </Text>
+                <View style={{ width: 100, height: 20, marginTop: 3, backgroundColor: '#333', justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ position: 'absolute', left: 0, width: yanWuDuWidth, height: '100%', backgroundColor: '#669900' }} />
+                    <Text style={{ color: '#fff' }}>{yanWuDu}/{YAN_WU_DU_LIMIT}</Text>
+                </View>
+            </View>
+            <View>
+                <Text>好感度: </Text>
+                <View style={{ width: 100, height: 20, marginTop: 3, backgroundColor: '#333', justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ position: 'absolute', left: 0, width: haoGanDuWidth, height: '100%', backgroundColor: '#669900' }} />
+                    <Text style={{ color: '#fff' }}>{haoGanDu}/{HAO_GAN_DU_LIMIT}</Text>
+                </View>
+            </View>
         </View>
-    )
+    );
 }
 
 const TouchCat = (props) => {
 
+    const speedSet = React.useRef([]);
+    const detectionAreas = React.useRef(IMAGES[0].areas);
     const [image, setImage] = React.useState(IMAGES[0].source);
-    const timeout = React.useRef(false);
 
-    React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener('___@SpeedClick.percent', (v) => {
-            if (v >= 0 && v < 50) {
-                setImage(IMAGES[0].source);
-            } else if (v >= 50 && v < 100) {
-                setImage(IMAGES[1].source);
-            } else {
-                setImage(IMAGES[2].source);
+    // 地图滑动处理器
+    const panResponder = React.useRef(PanResponder.create({
+        onMoveShouldSetPanResponder: () => true,
+        onPanResponderGrant: (evt, gestureState) => {
+            // const { locationX, locationY } = evt.nativeEvent;
+            // console.debug('onPanResponderGrant', locationX, locationY);
+        },
+        onPanResponderMove: (evt, gestureState) => {
+            const { dx, dy, moveX, moveY, x0, y0, vx, vy } = gestureState;
+            const { locationX, locationY } = evt.nativeEvent;
+
+            let inRange = false; // 是否在检测区域
+            detectionAreas.current.forEach(e => {
+                if ((locationX >= e.origin[0] && locationX <= (e.origin[0] + e.width))
+                    && (locationY >= e.origin[1] && locationY <= (e.origin[1] + e.height))) {
+                    inRange = true;
+                }
+            });
+            
+            if (inRange) {
+                const speed = Math.round(vx * 100, 2);
+                speedSet.current.push(speed);
             }
-        });
-        return () => {
-            listener.remove();
-        }
-    }, []);
+        },
+        onPanResponderRelease: (evt, gestureState) => {
+            let totalSpeed = 0;
+            speedSet.current.forEach(e => totalSpeed += e);
 
-    React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener('___@SpeedClick.timeout', () => {
-            timeout.current = true;
-        });
-        return () => {
-            listener.remove();
-        }
-    }, []);
+            // 计算平均速度
+            if (speedSet.current.length > 0) {
+                const avgSpeed = Math.abs(totalSpeed / speedSet.current.length);
+                // 移动速度符合则增加好感度，否则增加厌恶度
+                if (avgSpeed >= 10 && avgSpeed <= 50) {
+                    DeviceEventEmitter.emit('__@StatusBar.addHaoGanDu', 1);
+                } else {
+                    DeviceEventEmitter.emit('__@StatusBar.addYanWuDu', 1);
+                }
+            }
+
+            speedSet.current.length = 0;
+        },
+    })).current;
 
     return (
         <View style={styles.viewContainer}>
@@ -137,16 +158,9 @@ const TouchCat = (props) => {
                         <AntDesign name='close' size={24} />
                     </TouchableWithoutFeedback>
                 </View>
-                <TimeDown />
-                <View style={styles.mainContainer}>
-                    <TouchableWithoutFeedback onPress={() => {
-                        if (!timeout.current) {
-                            DeviceEventEmitter.emit('___@SpeedClick');
-                        }
-                    }}>
-                        <FastImage style={{ width: px2pd(675), height: px2pd(675) }} source={image} />
-                    </TouchableWithoutFeedback>
-                    <ProgressBar />
+                <StatusBar {...props} />
+                <View style={styles.mainContainer} {...panResponder.panHandlers}>
+                    <FastImage style={{ width: px2pd(675), height: px2pd(675) }} source={image} />
                 </View>
             </View>
         </View>
@@ -164,7 +178,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)',
     },
     bodyContainer: {
-        width: PREGRESS_BAR_WIDTH + 20, 
+        width: px2pd(850) + 20, 
         justifyContent: 'center', 
         alignItems: 'center', 
         borderWidth: 1, 
@@ -172,12 +186,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     mainContainer: {
-        width: PREGRESS_BAR_WIDTH, 
+        width: px2pd(850), 
         marginTop: 10, 
         marginBottom: 10, 
         borderWidth: 1, 
         borderColor: '#333', 
-        backgroundColor: '#ccc',
+        // backgroundColor: '#ccc',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     topBanner: {
         width: '100%', 
