@@ -3,6 +3,8 @@ import RootView from "../RootView";
 import SpeedClick from "./SpeedClick";
 import TouchCat from './TouchCat';
 import Scratch from './Scratch';
+import CopyBook from './CopyBook'
+
 
 export default class Games {
 
@@ -20,6 +22,11 @@ export default class Games {
         } else if (id == 3) {
             // 刮刮乐
             const key = RootView.add(<Scratch onClose={() => {
+                RootView.remove(key);
+            }} />);
+        } else if (id == 4) {
+            // 字帖
+            const key = RootView.add(<CopyBook onClose={() => {
                 RootView.remove(key);
             }} />);
         }
