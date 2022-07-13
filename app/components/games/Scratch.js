@@ -27,10 +27,6 @@ class Scratch extends Component {
         // FlatList from scrolling while scratching
         // this.setState({ scrollEnabled: !touchState });
     }
-    componentDidMount() {
-        // const cardBg = require("../../../assets/bg/lottery_bg2.jpg")
-        // Toast.show(Image.resolveAssetSource(cardBg).uri, "BOTTOM_TOP", 3600)
-    }
 
     render() {
         // console.log("ssss", require("../../../assets/bg/lottery_bg2.jpg"));
@@ -49,10 +45,10 @@ class Scratch extends Component {
                             imageUrl={"https://s2.loli.net/2022/07/12/jr2siQNAknW3Fpz.jpg"} // A url to your image (Optional)
                             resourceName="your_image" // An image resource name (without the extension like '.png/jpg etc') in the native bundle of the app (drawble for Android, Images.xcassets in iOS) (Optional)
                             resizeMode="stretch" // Resize the image to fit or fill the scratch view. Default is stretch (cover|contain|stretch)
-                            onImageLoadFinished={this.onImageLoadFinished} // Event to indicate that the image has done loading
-                            // onTouchStateChanged={this.onTouchStateChangedMethod} // Touch event (to stop a containing FlatList for example)
-                            onScratchProgressChanged={this.onScratchProgressChanged} // Scratch progress event while scratching
-                            onScratchDone={this.onScratchDone} // 完成时调用
+                            onImageLoadFinished={this.onImageLoadFinished} // 图片 loading 完成时调用
+                            onTouchStateChanged={this.onScratchTouchStateChanged} // 判断是否在刮,Touch event (to stop a containing FlatList for example)
+                            onScratchProgressChanged={this.onScratchProgressChanged} // 刮时的进度
+                            onScratchDone={this.onScratchDone} // 刮完时调用
                         />
                         <Image style={{ width: "100%", height: "100%", zIndex: -1 }} source={require("../../../assets/avatar/1.jpg")} />
                     </View>
