@@ -38,7 +38,7 @@ const ProgressBar = (props) => {
     React.useEffect(() => {
         const timer = setInterval(() => {
             if (translateX._value < 0 && translateX._value > -PREGRESS_BAR_WIDTH) {
-                let value = translateX._value - 0.3;
+                let value = translateX._value - 1.2;
                 value = value < -PREGRESS_BAR_WIDTH ? -PREGRESS_BAR_WIDTH : value;
                 translateX.setValue(value);
                 // 计算百分比

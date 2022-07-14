@@ -163,6 +163,7 @@ scenes: [
           { title: '【移动地图中心点_P1】', toMapPoint: [0, 0] }, 
           { title: '【移动地图中心点_P2】', toMapPoint: [-1, 0] }, 
           { title: '【打开游戏1】', games: { id: 1 } }, 
+          { title: '【打开游戏2】', games: { id: 2 } }, 
           { title: '【打开采集页面(1)】', collect: '1' }, 
           { title: '【打开采集页面(2)】', collect: '2' }, 
           { title: '【--DEBUG跳过序章移动到破庙--】', toScene: 'M01_S01_luoyuezhen_pomiao' }, 
