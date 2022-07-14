@@ -18,16 +18,23 @@ import { confirm } from '../dialog/ConfirmDialog';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const WORDS = [
-    { idx: 0, value: '床' },
-    { idx: 1, value: '前' },
-    { idx: 2, value: '明' },
-    { idx: 3, value: '月' },
-    { idx: 4, value: '光' },
-    { idx: 5, value: '疑' },
-    { idx: 6, value: '似' },
-    { idx: 7, value: '地' },
-    { idx: 8, value: '上' },
-    { idx: 9, value: '霜' },
+    { idx: 0, value: '童' },
+    { idx: 1, value: '家' },
+    { idx: 2, value: '知' },
+    { idx: 3, value: '道' },
+    { idx: 4, value: '董' },
+    { idx: 5, value: '家' },
+    { idx: 6, value: '冬' },
+    { idx: 7, value: '瓜' },
+    { idx: 8, value: '大' }, 
+    { idx: 9, value: '来' },
+    { idx: 10, value: '到' },
+    { idx: 11, value: '董' },
+    { idx: 12, value: '家' },
+    { idx: 13, value: '学' },
+    { idx: 14, value: '种' },
+    { idx: 15, value: '冬' },
+    { idx: 16, value: '瓜' },
 ];
 
 const Result = (props) => {
@@ -46,7 +53,12 @@ const Result = (props) => {
 
     return (
         <View style={styles.resultContainer}>
-            <Text>请按顺序选择：{value}</Text>
+            <View style={styles.label1}>
+                <Text style={{ }}>请按顺序选择：</Text>
+            </View>
+            <View style={styles.label1}>
+                <Text style={{ }}>{value}</Text>
+            </View>
         </View>
     );
 };
@@ -159,7 +171,7 @@ const MemoryTraining = (props) => {
                 }
                 if (failure) {
                     setTimeout(() => {
-                        confirm('过关失败!', { title: '确认', cb: () => {
+                        confirm('失败!', { title: '确认', cb: () => {
                             DeviceEventEmitter.emit('__@MemoryTraining.reset');
                         }});
                     }, 600);
@@ -297,5 +309,10 @@ const styles = StyleSheet.create({
     },
     selected: {
         backgroundColor: '#999',
+    },
+    label1: {
+        height: 20, 
+        justifyContent: 'center', 
+        alignItems: 'center',
     },
 });
