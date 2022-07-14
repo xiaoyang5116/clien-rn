@@ -16,12 +16,18 @@ import {
 import { px2pd } from '../../constants/resolution';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const PREGRESS_BAR_WIDTH = px2pd(680);
+const PREGRESS_BAR_WIDTH = px2pd(750);
 
 const IMAGES = [
-    { source: require('../../../assets/games/speed_click/1.png') },
-    { source: require('../../../assets/games/speed_click/2.png') },
-    { source: require('../../../assets/games/speed_click/3.png') },
+    { sources: [require('../../../assets/games/speed_click/1.png')] },
+    { sources: [require('../../../assets/games/speed_click/2.png')] },
+    { sources: [
+        require('../../../assets/games/speed_click/3A.png'), 
+        require('../../../assets/games/speed_click/3B.png'), 
+        require('../../../assets/games/speed_click/3C.png'), 
+        require('../../../assets/games/speed_click/3D.png'), 
+      ]
+    },
 ]
 
 const ProgressBar = (props) => {
@@ -48,7 +54,7 @@ const ProgressBar = (props) => {
         const listener = DeviceEventEmitter.addListener('___@SpeedClick', () => {
             if (translateX._value >= 0)
                 return
-            let value = translateX._value + 3;
+            let value = translateX._value + 30;
             value = value > 0 ? 0 : value;
             translateX.setValue(value);
             // 完成
@@ -70,7 +76,7 @@ const ProgressBar = (props) => {
 
 const TimeDown = (props) => {
 
-    const [seconds, setSeconds] = React.useState(30);
+    const [seconds, setSeconds] = React.useState(10);
 
     React.useEffect(() => {
         const timer = setInterval(() => {
@@ -99,17 +105,22 @@ const TimeDown = (props) => {
 
 const SpeedClick = (props) => {
 
-    const [image, setImage] = React.useState(IMAGES[0].source);
+    const index = React.useRef(0);
+    const [images, setImages] = React.useState(IMAGES[index.current].sources);
     const timeout = React.useRef(false);
 
     React.useEffect(() => {
         const listener = DeviceEventEmitter.addListener('___@SpeedClick.percent', (v) => {
-            if (v >= 0 && v < 50) {
-                setImage(IMAGES[0].source);
-            } else if (v >= 50 && v < 100) {
-                setImage(IMAGES[1].source);
-            } else {
-                setImage(IMAGES[2].source);
+            if (v >= 50 && v < 100) {
+                if (index.current < 1) {
+                    index.current = 1;
+                    setImages(IMAGES[index.current].sources);
+                } 
+            } else if (v >= 100) {
+                if (index.current < 2) {
+                    index.current = 2;
+                    setImages(IMAGES[index.current].sources);
+                }
             }
         });
         return () => {
@@ -126,6 +137,12 @@ const SpeedClick = (props) => {
         }
     }, []);
 
+    let key = 0;
+    const imageViews = [];
+    images.forEach(e => {
+        imageViews.push(<FastImage key={key++} style={{ position: 'absolute', width: px2pd(750), height: px2pd(750) }} source={e} />);
+    });
+
     return (
         <View style={styles.viewContainer}>
             <View style={styles.bodyContainer}>
@@ -140,13 +157,17 @@ const SpeedClick = (props) => {
                 </View>
                 <TimeDown />
                 <View style={styles.mainContainer}>
-                    <TouchableWithoutFeedback onPress={() => {
-                        if (!timeout.current) {
-                            DeviceEventEmitter.emit('___@SpeedClick');
-                        }
-                    }}>
-                        <FastImage style={{ width: px2pd(675), height: px2pd(675) }} source={image} />
-                    </TouchableWithoutFeedback>
+                    <FastImage style={{ width: px2pd(750), height: px2pd(750) }} source={require('../../../assets/games/speed_click/bg.png')}>
+                        <TouchableWithoutFeedback onPress={() => {
+                            if (!timeout.current) {
+                                DeviceEventEmitter.emit('___@SpeedClick');
+                            }
+                        }}>
+                        <View>
+                            {imageViews}
+                        </View>
+                        </TouchableWithoutFeedback>
+                    </FastImage>
                     <ProgressBar />
                 </View>
             </View>
@@ -176,9 +197,9 @@ const styles = StyleSheet.create({
         width: PREGRESS_BAR_WIDTH, 
         marginTop: 10, 
         marginBottom: 10, 
-        borderWidth: 1, 
-        borderColor: '#333', 
-        backgroundColor: '#ccc',
+        // borderWidth: 1, 
+        // borderColor: '#333', 
+        // backgroundColor: '#ccc',
     },
     topBanner: {
         width: '100%', 
