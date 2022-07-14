@@ -20,7 +20,8 @@ const PREGRESS_BAR_WIDTH = px2pd(750);
 
 const IMAGES = [
     { sources: [require('../../../assets/games/speed_click/1.png')] },
-    { sources: [require('../../../assets/games/speed_click/2.png')] },
+    { sources: [require('../../../assets/games/speed_click/2A.png')] },
+    { sources: [require('../../../assets/games/speed_click/2B.png')] },
     { sources: [
         require('../../../assets/games/speed_click/3A.png'), 
         require('../../../assets/games/speed_click/3B.png'), 
@@ -111,14 +112,19 @@ const SpeedClick = (props) => {
 
     React.useEffect(() => {
         const listener = DeviceEventEmitter.addListener('___@SpeedClick.percent', (v) => {
-            if (v >= 50 && v < 100) {
+            if (v >= 50 && v < 60) {
                 if (index.current < 1) {
                     index.current = 1;
                     setImages(IMAGES[index.current].sources);
                 } 
-            } else if (v >= 100) {
+            } else if (v >= 90 && v < 100) {
                 if (index.current < 2) {
                     index.current = 2;
+                    setImages(IMAGES[index.current].sources);
+                } 
+            } else if (v >= 100) {
+                if (index.current < 3) {
+                    index.current = 3;
                     setImages(IMAGES[index.current].sources);
                 }
             }
