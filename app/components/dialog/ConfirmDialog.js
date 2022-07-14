@@ -72,7 +72,7 @@ class ConfirmDialog extends React.Component {
     }
 }
 
-export function confirm(msg, yes, no, type = 0) {
+export function confirm(msg, yes, no) {
     const key = RootView.add(<ConfirmDialog msg={msg} yes={yes} no={no} onClose={() => {
         RootView.remove(key);
     }} />);
