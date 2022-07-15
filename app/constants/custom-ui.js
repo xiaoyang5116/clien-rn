@@ -4,7 +4,7 @@ import { ThemeContext } from '.';
 import { CButton } from '../components/CButton';
 
 // 按钮组件
-export * from '../components/buttonComponents';
+export * from '../components/button';
 
 // header 组件
 export * from '../components/header'
