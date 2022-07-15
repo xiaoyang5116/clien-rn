@@ -17,7 +17,7 @@ export default class Games {
                 RootView.remove(key);
             }} />);
         } else if (id == 3) { // 记忆力训练
-            const key = RootView.add(<MemoryTraining onClose={() => {
+            const key = RootView.add(<MemoryTraining words={params.words} onClose={() => {
                 RootView.remove(key);
             }} />);
         }

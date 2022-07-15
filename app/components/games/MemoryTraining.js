@@ -17,24 +17,25 @@ import { px2pd } from '../../constants/resolution';
 import { confirm } from '../dialog/ConfirmDialog';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
+// 缺省数据，在不指定props.words时使用。
 const WORDS = [
-    { idx: 0, value: '童' },
-    { idx: 1, value: '家' },
-    { idx: 2, value: '知' },
-    { idx: 3, value: '道' },
-    { idx: 4, value: '董' },
-    { idx: 5, value: '家' },
-    { idx: 6, value: '冬' },
-    { idx: 7, value: '瓜' },
-    { idx: 8, value: '大' }, 
-    { idx: 9, value: '来' },
-    { idx: 10, value: '到' },
-    { idx: 11, value: '董' },
-    { idx: 12, value: '家' },
-    { idx: 13, value: '学' },
-    { idx: 14, value: '种' },
-    { idx: 15, value: '冬' },
-    { idx: 16, value: '瓜' },
+    { value: '童' },
+    { value: '家' },
+    { value: '知' },
+    { value: '道' },
+    { value: '董' },
+    { value: '家' },
+    { value: '冬' },
+    { value: '瓜' },
+    { value: '大' }, 
+    { value: '来' },
+    { value: '到' },
+    { value: '董' },
+    { value: '家' },
+    { value: '学' },
+    { value: '种' },
+    { value: '冬' },
+    { value: '瓜' },
 ];
 
 const Result = (props) => {
@@ -92,6 +93,13 @@ const MemoryTraining = (props) => {
     const chooseList = React.useRef([]);
     const chooseViewOpacity = React.useRef(new Animated.Value(0));
     const chooseWordOrder = React.useRef([]);
+
+    if (lo.isArray(props.words) && props.words.length > 0) {
+        WORDS.length = 0;
+        props.words.forEach(e => {
+            WORDS.push({ value: e });
+        });
+    }
 
     if (previewList.current.length <= 0) {
         const words = lo.cloneDeep(WORDS);
