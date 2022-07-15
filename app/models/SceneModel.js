@@ -35,6 +35,7 @@ import Shock from '../components/shock';
 import { CarouselUtils } from "../components/carousel";
 import { playSound } from "../components/sound/utils";
 import Games from "../components/games";
+import EffectAnimations from "../components/effects";
 
 class VarUtils {
   static generateVarUniqueId(sceneId, varId) {
@@ -157,6 +158,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__games", cmd: 'games', params: payload.games });
     }
 
+    // 生成动效相关
+    if (payload.animations != undefined && lo.isObject(payload.animations)) {
+      allActions.push({ id: "__animations", cmd: 'animations', params: payload.animations });
+    }
+
     return allActions;
   }
 }
@@ -224,6 +230,7 @@ const ACTIONS_MAP = [
   { cmd: 'collect',       handler: '__onCollectCommand' },
   { cmd: 'toMapPoint',    handler: '__onMapPointCommand' },
   { cmd: 'games',         handler: '__onGamesCommand' },
+  { cmd: 'animations',    handler: '__onAnimationsCommand' },
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;
@@ -727,6 +734,10 @@ export default {
 
     *__onGamesCommand({ payload }, { put }) {
       Games.show(payload.params);
+    },
+
+    *__onAnimationsCommand({ payload }, { put }) {
+      EffectAnimations.show(payload.params);
     },
 
     *syncData({ }, { select, call }) {
