@@ -1,12 +1,11 @@
-import React, { PureComponent, Component } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     StyleSheet,
     View,
     Text,
-    // ART,
     Dimensions,
     PanResponder,
-    FlatList
+    Image
 } from 'react-native';
 
 import Svg, { Path, } from 'react-native-svg'
@@ -14,12 +13,41 @@ import Svg, { Path, } from 'react-native-svg'
 import { statusBarHeight } from '../../constants'
 import { TextButton } from '../../constants/custom-ui';
 import { HalfPanel } from '../panel';
+import Toast from '../toast'
 
 
 
 //获取屏幕的宽高
 const { width, height } = Dimensions.get('window');
 
+const ziTieArr = [
+    {
+        id: 0, img: require('../../../assets/ziTie/mu.png'), detectionArea: [
+            { origin: [89, 95], width: 15, height: 14 },
+            { origin: [120, 95], width: 15, height: 14 },
+            { origin: [145, 95], width: 15, height: 14 },
+            { origin: [89, 174], width: 14, height: 12 },
+            { origin: [145, 65], width: 15, height: 15 },
+            { origin: [145, 174], width: 15, height: 15 },
+            { origin: [190, 95], width: 15, height: 14 },
+            { origin: [190, 161], width: 12, height: 12 },
+        ]
+    },
+    {
+        id: 1, img: require('../../../assets/ziTie/xian.png'), detectionArea: [
+            { origin: [108, 80], width: 13, height: 12 },
+            { origin: [168, 80], width: 14, height: 14 },
+            { origin: [99, 109], width: 15, height: 15 },
+            { origin: [132, 109], width: 14, height: 15 },
+            { origin: [204, 109], width: 15, height: 15 },
+            { origin: [83, 134], width: 11, height: 11 },
+            { origin: [99, 198], width: 15, height: 15 },
+            { origin: [132, 198], width: 14, height: 15 },
+            { origin: [168, 198], width: 14, height: 12 },
+            { origin: [204, 198], width: 15, height: 12 },
+        ]
+    }
+]
 
 const box_width = 300
 const scopeLeft = (width - box_width) / 2
@@ -27,160 +55,170 @@ const scopeRight = scopeLeft + box_width
 const scopeTop = ((height - box_width) / 2) + statusBarHeight
 const scopeBottom = scopeTop + box_width
 
-export default class CopyBook extends PureComponent {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            //用于更新界面
-            lastX: 0,
+const CopyBook = (props) => {
+    // 用于更新页面
+    const [lastX, setLastX] = useState(0)
+    // 字帖索引
+    const ziTieIndex = useRef(0)
+    // 所有移动位置
+    const MousePositions = useRef([])
+    // svg 移动路径
+    const path = useRef("")
+    // 字帖数据
+    let ziTie = useRef([...ziTieArr]).current
 
-        };
+    // 起点的 X 坐标
+    let firstX = 0
 
-        // //每次移动的临时数组
-        // this.MousePosition = {
-        //     firstX: 0, //起点 X 坐标
-        //     firstY: 0,// 起点 Y 坐标
-        //     x: 0,   //经过路径的x坐标
-        //     y: 0    //经过路径的y坐标
-        // }
-        // //path 全部路径数组
-        // this.MousePositions = []
+    const panResponder = useRef(
+        PanResponder.create({
+            onStartShouldSetPanResponder: () => true,
+            onMoveShouldSetPanResponder: () => true,
 
-        this.MousePosition = []
-        //path 全部路径数组
-        this.MousePositions = []
+            //激活时做的动作
+            onPanResponderGrant: (evt, gestureState) => {
+                // 手指按下时的画笔起点坐标
+                firstX = evt.nativeEvent.locationX
+                const firstY = evt.nativeEvent.locationY
 
-        this.path = ""
-    }
+                path.current = `M${firstX} ${firstY}`
+            },
 
+            // 移动时作出的动作
+            onPanResponderMove: (evt, gestureState) => {
+                // 单指
+                if (gestureState.numberActiveTouches === 1) {
+                    const { locationX, locationY, pageX, pageY } = evt.nativeEvent;
 
-    _panResponder = PanResponder.create({
-        onStartShouldSetPanResponder: (evt, gestureState) => {
-            return true;
-        },
-        onMoveShouldSetPanResponder: (evt, gestureState) => {
-            return true;
-        },
+                    if (scopeLeft > pageX) return
+                    if (scopeRight < pageX) return
+                    if (scopeTop > pageY) return
+                    if (scopeBottom < pageY) return
 
-        //激活时做的动作
-        onPanResponderGrant: (evt, gestureState) => {
-            // 手指按下时的画笔起点坐标
-            this.tempFirstX = evt.nativeEvent.locationX
-            this.tempFirstY = evt.nativeEvent.locationY
+                    path.current += ` L${locationX} ${locationY}`
 
-            const M = `M${this.tempFirstX} ${this.tempFirstY}`
-            this.path = M
-        },
+                    const detectionArea = ziTie[ziTieIndex.current].detectionArea
 
-        // 移动时作出的动作
-        onPanResponderMove: (evt, gestureState) => {
-            // 单指
-            if (gestureState.numberActiveTouches === 1) {
-                let currentX = evt.nativeEvent.locationX
-                let currentY = evt.nativeEvent.locationY
+                    for (let index = 0; index < detectionArea.length; index++) {
+                        if ((locationX >= detectionArea[index].origin[0] && locationX <= (detectionArea[index].origin[0] + detectionArea[index].width))
+                            && (locationY >= detectionArea[index].origin[1] && locationY <= (detectionArea[index].origin[1] + detectionArea[index].height))) {
+                            detectionArea[index].status = true
+                        }
+                    }
 
-                if (scopeLeft > evt.nativeEvent.pageX) return
-                if (scopeRight < evt.nativeEvent.pageX) return
-                if (scopeTop > evt.nativeEvent.pageY) return
-                if (scopeBottom < evt.nativeEvent.pageY) return
+                    //更新界面
+                    setLastX(firstX + gestureState.dx)
+                }
+            },
 
-                this.path += ` L${currentX} ${currentY}`
+            // 动作释放后做的动作
+            onPanResponderRelease: (evt, gestureState) => {
+                MousePositions.current.push(path.current)
+                statusHandler()
+                setLastX(0)
+            },
+        })
+    ).current
 
-                //更新界面
-                this.setState({
-                    lastX: this.tempFirstX + gestureState.dx,
-                })
+    const statusHandler = () => {
+        const isOk = ziTie[ziTieIndex.current].detectionArea.every((item) => {
+            if (item.status === undefined || item.status === false) return false
+            if (item.status === true) return true
+        })
 
+        if (isOk) {
+            Toast.show("过关")
+            if (ziTieIndex.current < ziTie.length - 1) {
+                onClear()
+                ziTieIndex.current += 1
             }
-        },
-
-        // 动作释放后做的动作
-        onPanResponderRelease: (evt, gestureState) => {
-            this.MousePositions.push(this.path)
-            // this.path = ""
-            // console.log("结束",this.path);
-            this.setState({
-                lastX: 0,
-            })
-        },
-        onPanResponderTerminate: (evt, gestureState) => {
-            console.log("ssss");
-        },
-    });
-
-    renderSVG = ({ item, index }) => {
-        console.log("item", item, index);
-        return (
-            <View style={[styles.container, { position: "absolute", zIndex: 99, backgroundColor: "pink" }]}>
-                <Text>{item}</Text>
-                {/* <Svg height={box_width} width={box_width} >
-                    <Path
-                        d={item}
-                        stroke="red"
-                        fill="none"
-                        strokeWidth={"3"}
-                    />
-                </Svg> */}
-            </View>
-        )
+            else {
+                onClear()
+                props.onClose()
+            }
+        }
+        return isOk
     }
 
-    render() {
-        // "height": 300.19049072265625, "width": 300.19049072265625, "x": 35.0476188659668, "y": 130.6666717529297
-        return (
-            <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"}>
-                <View style={{ flex: 1, backgroundColor: "#ccc", justifyContent: "space-between", alignItems: 'center' }}>
-                    <Text style={styles.title}>字帖</Text>
+    const onClear = () => {
+        MousePositions.current = []
+        path.current = ""
+        for (let index = 0; index < ziTie[ziTieIndex.current].detectionArea.length; index++) {
+            ziTie[ziTieIndex.current].detectionArea[index].status = false;
+        }
+        setLastX(null)
+    }
 
-                    <View style={[styles.container, { backgroundColor: "#fff", }]}>
-                        <View style={[styles.container, { position: "absolute", zIndex: 1, }]}>
-                            {
-                                this.MousePositions.map((item, index) => {
-                                    return (
-                                        <View key={index} style={[styles.container, { position: "absolute", zIndex: index, }]}>
-                                            <Svg height={box_width} width={box_width} >
-                                                <Path
-                                                    d={item}
-                                                    stroke="red"
-                                                    fill="none"
-                                                    strokeWidth={"3"}
-                                                />
-                                            </Svg>
-                                        </View>
-                                    )
-                                })
-                            }
-                        </View>
-                        <View
-                            style={[styles.container, { zIndex: 999 }]}
-                            {...this._panResponder.panHandlers}
-                        >
-                            <Svg height={box_width} width={box_width}  >
-                                <Path
-                                    d={this.path}
-                                    stroke="red"
-                                    fill="none"
-                                    strokeWidth={"3"}
-                                />
-                            </Svg>
-                        </View>
+    const onFinish = () => {
+        const isOk = statusHandler()
+        if (!isOk) {
+            Toast.show("还差一点点!!!,重新开始")
+            onClear()
+        }
+    }
+
+    useEffect(() => {
+        return () => {
+            onClear()
+        }
+    }, [])
+
+    return (
+        <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"}>
+            <View style={{ flex: 1, backgroundColor: "#ccc", justifyContent: "space-between", alignItems: 'center' }}>
+                <Text style={styles.title}>字帖</Text>
+
+                <View style={[styles.container, { backgroundColor: "#fff", }]}>
+                    <View style={[styles.container, { position: "absolute", zIndex: 0 }]}>
+                        <Image style={{ width: "100%", height: "100%" }} source={ziTie[ziTieIndex.current].img} />
                     </View>
-
-                    <TextButton title={"退出"} onPress={this.props.onClose} />
+                    <View style={[styles.container, { position: "absolute", zIndex: 1, }]}>
+                        {
+                            MousePositions.current.map((item, index) => {
+                                return (
+                                    <View key={index} style={[styles.container, { position: "absolute", zIndex: index, }]}>
+                                        <Svg height={box_width} width={box_width}>
+                                            <Path
+                                                d={item}
+                                                stroke="red"
+                                                fill="none"
+                                                strokeWidth={"3"}
+                                            />
+                                        </Svg>
+                                    </View>
+                                )
+                            })
+                        }
+                    </View>
+                    <View style={[styles.container, { zIndex: 999 }]} {...panResponder.panHandlers} >
+                        <Svg height={box_width} width={box_width}  >
+                            <Path
+                                d={path.current}
+                                stroke="red"
+                                fill="none"
+                                strokeWidth={"3"}
+                            />
+                        </Svg>
+                    </View>
                 </View>
-            </HalfPanel>
-        );
-    }
+                <View style={{ flexDirection: "row", justifyContent: "space-evenly", width: "100%" }}>
+                    <TextButton title={"退出"} onPress={props.onClose} />
+                    <TextButton title={"清除"} onPress={onClear} />
+                    <TextButton title={"确认"} onPress={onFinish} />
+                </View>
+
+            </View>
+        </HalfPanel>
+    )
 }
+
+export default CopyBook
 
 const styles = StyleSheet.create({
     container: {
         width: box_width,
         height: box_width,
-        // overflow: "hidden",
-        // justifyContent: "center",
-        // alignItems: 'center',
     },
     title: {
         fontSize: 24,
