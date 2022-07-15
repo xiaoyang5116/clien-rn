@@ -24,7 +24,7 @@ export default class Games {
                 RootView.remove(key);
             }} />);
         } else if (id == 4) {  // 刮刮乐
-            const key = RootView.add(<Scratch onClose={() => {
+            const key = RootView.add(<Scratch {...params} onClose={() => {
                 RootView.remove(key);
             }} />);
         } else if (id == 5) {  // 字帖

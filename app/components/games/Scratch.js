@@ -2,6 +2,12 @@ import { View, Text, Image } from 'react-native'
 import React, { Component } from 'react'
 
 import ScratchView from 'react-native-scratch'
+import {
+    AppDispath,
+    action,
+    connect,
+    EventKeys
+} from '../../constants';
 
 import { HalfPanel } from "../panel";
 import Toast from '../toast'
@@ -18,14 +24,17 @@ class Scratch extends Component {
     }
 
     onScratchDone = ({ isScratchDone, id }) => {
-        // Do something
-        // Toast.show("ssss")
+        this.props.onClose()
+        this.props.dispatch(action('SceneModel/processActions')({ __sceneId: this.props.sceneId, ...this.props }))
     }
 
     onScratchTouchStateChanged = ({ id, touchState }) => {
         // Example: change a state value to stop a containing
         // FlatList from scrolling while scratching
         // this.setState({ scrollEnabled: !touchState });
+    }
+    componentWillUnmount(){
+        this.props.onClose()
     }
 
     render() {
@@ -46,7 +55,7 @@ class Scratch extends Component {
                             resourceName="your_image" // An image resource name (without the extension like '.png/jpg etc') in the native bundle of the app (drawble for Android, Images.xcassets in iOS) (Optional)
                             resizeMode="stretch" // Resize the image to fit or fill the scratch view. Default is stretch (cover|contain|stretch)
                             onImageLoadFinished={this.onImageLoadFinished} // 图片 loading 完成时调用
-                            onTouchStateChanged={this.onScratchTouchStateChanged} // 判断是否在刮,Touch event (to stop a containing FlatList for example)
+                            // onTouchStateChanged={this.onScratchTouchStateChanged} // 判断是否在刮,Touch event (to stop a containing FlatList for example)
                             onScratchProgressChanged={this.onScratchProgressChanged} // 刮时的进度
                             onScratchDone={this.onScratchDone} // 刮完时调用
                         />
@@ -59,4 +68,4 @@ class Scratch extends Component {
     }
 }
 
-export default Scratch
+export default connect((state) => ({ ...state.SceneModel }))(Scratch);
