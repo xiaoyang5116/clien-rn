@@ -14,13 +14,18 @@ import {
     StyleSheet,
 } from '../../constants'
 
+import lo from 'lodash';
 import { px2pd } from '../../constants/resolution';
 import { confirm } from '../dialog/ConfirmDialog';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const IMAGES = [
-    { source: require('../../../assets/games/cat/1.png'), areas: [{ origin: [86, 125], width: 47, height: 30 }] },
-    { source: require('../../../assets/games/cat/2.png'), areas: [{ origin: [86, 125], width: 47, height: 30 }] },
+    { id: 0, source: require('../../../assets/games/cat/1.png'), type: 'wait', areas: [{ origin: [82, 149], width: 108, height: 48 }] }, // 待机1
+    { id: 1, source: require('../../../assets/games/cat/2.png'), type: 'wait', areas: [{ origin: [82, 149], width: 108, height: 48 }] }, // 待机2
+    { id: 2, source: require('../../../assets/games/cat/3A.png'), type: 'happy', areas: [{ origin: [66, 149], width: 124, height: 48 }] }, // 开心A
+    { id: 3, source: require('../../../assets/games/cat/3B.png'), type: 'happy', areas: [{ origin: [66, 149], width: 124, height: 48 }] }, // 开心B
+    { id: 4, source: require('../../../assets/games/cat/3C.png'), type: 'happy', areas: [{ origin: [66, 149], width: 124, height: 48 }] }, // 开心C
+    { id: 5, source: require('../../../assets/games/cat/4.png'), type: 'unhappy', areas: [{ origin: [66, 149], width: 124, height: 48 }] }, // 不开心
 ]
 
 const YAN_WU_DU_LIMIT = 3;
@@ -41,7 +46,7 @@ const StatusBar = (props) => {
                                 props.onClose();
                             }
                         }});
-                    }, 0);
+                    }, 600);
                     return YAN_WU_DU_LIMIT;
                 }
                 return value;
@@ -63,7 +68,7 @@ const StatusBar = (props) => {
                                 props.onClose();
                             }
                         }});
-                    }, 0);
+                    }, 600);
                     return HAO_GAN_DU_LIMIT;
                 }
                 return value;
@@ -101,15 +106,31 @@ const TouchCat = (props) => {
 
     const speedSet = React.useRef([]);
     const touchTimer = React.useRef(null);
-    const detectionAreas = React.useRef(IMAGES[0].areas);
-    const [image, setImage] = React.useState(IMAGES[0].source);
+    const tailTimer = React.useRef(null); // 猫尾巴摆动的定时器
+    const imageIndex = React.useRef(0); // 当前的图片ID
+    const detectionAreas = React.useRef(IMAGES[imageIndex.current].areas);
+    const [image, setImage] = React.useState(IMAGES[imageIndex.current].source);
+
+    const setRandomImage = (imageType) => {
+        const list = IMAGES.filter(e => lo.isEqual(e.type, imageType));
+        if (lo.isArray(list)) {
+            let randItem = lo.shuffle(list)[0];
+            while (list.length > 1) { // 随机一个与上次不一样的
+                if (randItem.id != imageIndex.current)
+                    break;
+                randItem = lo.shuffle(list)[0];
+            }
+            imageIndex.current = randItem.id;
+            setImage(randItem.source);
+        }
+    }
 
     // 地图滑动处理器
     const panResponder = React.useRef(PanResponder.create({
         onMoveShouldSetPanResponder: () => true,
         onPanResponderGrant: (evt, gestureState) => {
-            // const { locationX, locationY } = evt.nativeEvent;
-            // console.debug('onPanResponderGrant', locationX, locationY);
+            const { locationX, locationY } = evt.nativeEvent;
+            console.debug('onPanResponderGrant', locationX, locationY);
         },
         onPanResponderMove: (evt, gestureState) => {
             const { dx, dy, moveX, moveY, x0, y0, vx, vy } = gestureState;
@@ -141,11 +162,16 @@ const TouchCat = (props) => {
             if (speedSet.current.length > 0) {
                 const avgSpeed = Math.abs(totalSpeed / speedSet.current.length);
                 // 移动速度符合则增加好感度，否则增加厌恶度
+                let imageType = '';
                 if (avgSpeed >= 10 && avgSpeed <= 50) {
+                    imageType = 'happy';
                     DeviceEventEmitter.emit('__@StatusBar.addHaoGanDu', 1);
                 } else {
+                    imageType = 'unhappy';
                     DeviceEventEmitter.emit('__@StatusBar.addYanWuDu', 1);
                 }
+                //
+                setRandomImage(imageType);
             }
 
             speedSet.current.length = 0;
@@ -160,6 +186,11 @@ const TouchCat = (props) => {
             touchTimer.current = null;
         }
 
+        if (tailTimer.current != null) {
+            clearInterval(tailTimer.current);
+            tailTimer.current = null;
+        }
+
         let inRange = false; // 是否在检测区域
         detectionAreas.current.forEach(e => {
             if ((locationX >= e.origin[0] && locationX <= (e.origin[0] + e.width))
@@ -171,9 +202,26 @@ const TouchCat = (props) => {
         if (inRange) { // 单纯点击算厌恶
             touchTimer.current = setTimeout(() => {
                 DeviceEventEmitter.emit('__@StatusBar.addYanWuDu', 1);
+                setRandomImage('unhappy');
             }, 600);
         }
     }
+
+    React.useEffect(() => {
+        tailTimer.current = setInterval(() => {
+            const list = IMAGES.filter(e => lo.isEqual(e.type, 'wait'));
+            if (lo.isArray(list)) {
+                const randItem = lo.shuffle(list)[0];
+                imageIndex.current = randItem.id;
+                setImage(randItem.source);
+            }
+        }, 1000);
+        return () => {
+            if (tailTimer.current != null) {
+                clearInterval(tailTimer.current);
+            }
+        }
+    }, []);
 
     return (
         <View style={styles.viewContainer}>
@@ -189,7 +237,7 @@ const TouchCat = (props) => {
                 </View>
                 <StatusBar {...props} />
                 <View style={styles.mainContainer} {...panResponder.panHandlers} onTouchStart={touchEventHandler}>
-                    <FastImage style={{ width: px2pd(675), height: px2pd(675) }} source={image} />
+                    <FastImage style={{ width: px2pd(700), height: px2pd(700) }} source={image} />
                 </View>
             </View>
         </View>
