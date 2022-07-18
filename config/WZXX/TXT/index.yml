@@ -20,37 +20,38 @@ files:
     "WZXX_M1_N1_C001C_[N3].txt",
     "WZXX_M1_N1_C001C.txt",
     #
-    "WZXX_M1_N1_C002.txt",
-    "WZXX_M1_N1_C002B.txt",
-    "WZXX_M1_N1_C002C.txt",
-    "WZXX_M1_N1_C002E.txt",
-    "WZXX_M1_N1_C002F.txt",
-    "WZXX_M1_N1_C003.txt",
-    "WZXX_M1_N1_C003A.txt",
-    "WZXX_M1_N1_C003B.txt",
-    "WZXX_M1_N1_C003C.txt",
-    "WZXX_M1_N1_C003D.txt",
-    "WZXX_M1_N1_C004.txt",
-    "WZXX_M1_N1_C004A.txt",
-    "WZXX_M1_N1_C004B.txt",
+    "WZXX_M1_N1_C002_[N1].txt",
+    "WZXX_M1_N1_C002_[N2].txt",
+    "WZXX_M1_N1_C002_[N3].txt",
+    #
+    "WZXX_M1_N1_C003_[N1].txt",
+    "WZXX_M1_N1_C003_[N2].txt",
+    #
+    "WZXX_M1_N1_C004_[N1].txt",
+    "WZXX_M1_N1_C004_[N2].txt",
     "WZXX_M1_N1_C004C.txt",
-    "WZXX_M1_N1_C005.txt",
-    "WZXX_M1_N1_C006.txt",
-    "WZXX_M1_N1_C005A.txt",
-    "WZXX_M1_N1_C005A1.txt",
-    "WZXX_M1_N1_C005B.txt",
-    "WZXX_M1_N1_C005C.txt",
-    "WZXX_M1_N1_C007.txt",
-    "WZXX_M1_N1_C008.txt",
-    "WZXX_M1_N1_C009.txt",
-    "WZXX_M1_N1_C010.txt",
+    #
+    "WZXX_M1_N1_C005_[N1].txt",
+    "WZXX_M1_N1_C005_[N2].txt",
+    #
+    "WZXX_M1_N1_C006_[N0].txt",
+    #
+    "WZXX_M1_N1_C007_[N0].txt",
+    #
+    "WZXX_M1_N1_C008_[N0].txt",
+    #
+    "WZXX_M1_N1_C009_[V2].txt",
+    #
+    "WZXX_M1_N1_C010_[V1][N1].txt",
+    "WZXX_M1_N1_C010_[V1][N2].txt",
+    "WZXX_M1_N1_C010_[V2][N1].txt",
+    "WZXX_M1_N1_C010_[V2][N2].txt",
+    #
+    "WZXX_M1_N1_C011_[V0].txt",
+    "WZXX_M1_N1_C012_[V0].txt",
+    "WZXX_M1_N1_C015_[V0].txt",
+    "WZXX_M1_N1_C016_[V0].txt",
    #
-    "WZXX_M1_N1_C011.txt",
-    "WZXX_M1_N1_C012.txt",
-    "WZXX_M1_N1_C013.txt",
-    "WZXX_M1_N1_C014.txt",
-    "WZXX_M1_N1_C015.txt",
-    "WZXX_M1_N1_C016.txt",
     "WZXX_M1_N1_C017.txt",
     "WZXX_M1_N1_C018.txt",
     "WZXX_M1_N1_C019.txt",
@@ -66,6 +67,11 @@ files:
     "WZXX_M1_N1_C028.txt",
     "WZXX_M1_N1_C029.txt",
     "WZXX_M1_N1_C030.txt",
+    "WZXX_M1_N1_C031.txt",
+    "WZXX_M1_N1_C032.txt",
+    "WZXX_M1_N1_C033.txt",
+    "WZXX_M1_N1_C034.txt",
+    "WZXX_M1_N1_C035.txt",
     
 #
 #
