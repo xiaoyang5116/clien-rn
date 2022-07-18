@@ -21,6 +21,7 @@ const BothSidesPushEffectComponent = (props) => {
     const fadeAnim = useRef(new Animated.Value(1)).current;
     const leftWidth = useRef(new Animated.Value(0)).current;
     const rightWidth = useRef(new Animated.Value(0)).current;
+    const coverAnim = useRef(new Animated.Value(1)).current;
 
     const animEnd = () => {
         DeviceEventEmitter.emit(EventKeys.ANIMATION_END, true);
@@ -29,11 +30,17 @@ const BothSidesPushEffectComponent = (props) => {
 
     useEffect(() => {
         Animated.parallel([
+            Animated.timing(coverAnim, {
+                toValue: 0,
+                duration: 700,
+                delay: 300,
+                useNativeDriver: false,
+            }),
             Animated.timing(fadeAnim, {
                 toValue: 0,
                 duration: 1000,
                 useNativeDriver: false,
-                delay: 600,
+                delay: 400,
                 // easing: Easing.ease,
             }),
             Animated.timing(leftWidth, {
@@ -53,6 +60,7 @@ const BothSidesPushEffectComponent = (props) => {
 
     return (
         <View style={styles.container}>
+            <Animated.View style={{ flex: 1, backgroundColor: "#fff", zIndex: 3, opacity: coverAnim }}></Animated.View>
             <Animated.View style={[styles.imgBox1, {
                 transform: [{ translateX: leftWidth }],
                 opacity: fadeAnim
