@@ -6,6 +6,7 @@
 export const SHCOK = 'shock';
 export const EDGE_LIGHT = 'edge_light';
 export const SCREEN_CENTER_STRETCH = 'screen_center_stretch';
+export const FLASH_BUXUE = "FlashBuXue"
 
 // 震屏
 const shcok_1 = 'slightShock';
@@ -59,6 +60,11 @@ export const animationAction = type => {
             return {
                 type: SCREEN_CENTER_STRETCH,
                 action: pass_1,
+            };
+        case "闪烁补血":
+            return {
+                type: FLASH_BUXUE,
+                action: edge_light_green,
             };
     }
 };

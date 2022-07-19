@@ -2,6 +2,7 @@ import React from 'react';
 import RootView from "../RootView";
 import BarrageAnimation from './BarrageAnimation';
 import CloudAnimation from './CloudAnimation';
+import BothSidesPushEffect from '../animation/BothSidesPushEffect'
 import LightningAnimation from './LightningAnimation';
 
 export default class EffectAnimations {
@@ -20,6 +21,8 @@ export default class EffectAnimations {
             const key = RootView.add(<LightningAnimation rotate={params.rotate} onClose={() => {
                 RootView.remove(key);
             }} />);
+        } else if (id == 4) { // 自动推开两边云彩
+            BothSidesPushEffect.show()
         }
     }
 

@@ -45,4 +45,13 @@ props: [
   { id: 60 , name: '炼丹宝箱', iconId: 4, num: 200, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
   { id: 61 , name: '穿越宝箱', iconId: 5, num: 200, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
   { id: 62 , name: '复活宝箱', iconId: 1, num: 200, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 1000, desc: '抽奖专用' }, 
+
+  # 种植道具
+  { id: 101 , name: '西瓜种子', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '种植西瓜' }, 
+  { id: 102 , name: '冰西瓜', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '含冰属性的西瓜' }, 
+  # 种植加速道具
+  { id: 103 , name: '时光宝珠', iconId: 1, num: 200, quality: 2, type: 100, tags: ['普通'], attrs: [], capacity: 1000, desc: '加速种植,减少50秒钟', plantTime: 50, }, 
+  { id: 104 , name: '灵石', iconId: 1, num: 200, quality: 2, type: 101, tags: ['普通'], attrs: [], capacity: 1000, desc: '增加100灵气值', plantLingQiZhi: 100, }, 
+
+
 ]

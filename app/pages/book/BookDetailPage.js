@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
   },
   item1: {
     flex: 1,
-    backgroundColor: 'pink',
   },
   item2: {
     flex: 1,
