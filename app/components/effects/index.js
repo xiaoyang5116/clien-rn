@@ -17,7 +17,7 @@ export default class EffectAnimations {
                 RootView.remove(key);
             }} />);
         } else if (id == 3) { // 闪电
-            const key = RootView.add(<LightningAnimation data={params.data} onClose={() => {
+            const key = RootView.add(<LightningAnimation rotate={params.rotate} onClose={() => {
                 RootView.remove(key);
             }} />);
         }
