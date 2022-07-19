@@ -1,7 +1,7 @@
 import { View, Text, Image } from 'react-native'
 import React, { Component } from 'react'
 
-import ScratchView from 'react-native-scratch'
+import ScratchView from 'react-native-scratcher'
 import {
     AppDispath,
     action,
@@ -34,7 +34,7 @@ class Scratch extends Component {
     onScratchDone = ({ isScratchDone, id }) => {
         this.setState({ isScratchDone: true })
         this.props.dispatch(action('SceneModel/processActions')({ __sceneId: this.props.sceneId, ...this.props }))
-        this.timer = setTimeout(() => { 
+        this.timer = setTimeout(() => {
             this.onClose()
         }, 500)
     }
