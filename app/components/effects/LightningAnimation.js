@@ -43,7 +43,7 @@ const IMAGES = [
     { id: 30, source: require('../../../assets/animations/lightning/30.png') },
 ]
 
-const Lightning = (props) => {
+const LightningAnimation = (props) => {
 
     const rotate = lo.isNumber(props.rotate) ? props.rotate : 90;
     const opacitys = React.useRef([]);
@@ -92,7 +92,7 @@ const Lightning = (props) => {
     );
 }
 
-export default Lightning;
+export default LightningAnimation;
 
 const styles = StyleSheet.create({
     viewContainer: {
