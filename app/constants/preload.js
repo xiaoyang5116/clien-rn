@@ -27,6 +27,22 @@ export const images = [
     require('../../assets/animations/lightning/light13-14.png'),
     require('../../assets/animations/lightning/light14-15.png'),
     require('../../assets/animations/lightning/light15-16.png'),
+
+    require('../../assets/animations/leiyun/leiyun0-1.png'),
+    require('../../assets/animations/leiyun/leiyun1-2.png'),
+    require('../../assets/animations/leiyun/leiyun2-3.png'),
+    require('../../assets/animations/leiyun/leiyun3-4.png'),
+    require('../../assets/animations/leiyun/leiyun4-5.png'),
+    require('../../assets/animations/leiyun/leiyun5-6.png'),
+    require('../../assets/animations/leiyun/leiyun6-7.png'),
+    require('../../assets/animations/leiyun/leiyun7-8.png'),
+    require('../../assets/animations/leiyun/leiyun8-9.png'),
+    require('../../assets/animations/leiyun/leiyun9-10.png'),
+    require('../../assets/animations/leiyun/leiyun10-11.png'),
+    require('../../assets/animations/leiyun/leiyun11-12.png'),
+    require('../../assets/animations/leiyun/leiyun12-13.png'),
+    require('../../assets/animations/leiyun/leiyun13-14.png'),
+    require('../../assets/animations/leiyun/leiyun14-15.png'),
 ];
 
 // 需要预热的字体
