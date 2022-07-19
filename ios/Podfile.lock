@@ -397,9 +397,14 @@ PODS:
     - React-RCTText
     - ReactCommon/turbomodule/core
     - Yoga
+  - RNScratch (1.0.1):
+    - React
+    - React-Core
   - RNScreens (3.13.1):
     - React-Core
     - React-RCTImage
+  - RNSVG (12.4.0):
+    - React-Core
   - RNVectorIcons (9.1.0):
     - React-Core
   - SDWebImage (5.11.1):
@@ -476,7 +481,9 @@ DEPENDENCIES:
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - RNScratch (from `../node_modules/react-native-scratcher`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -579,8 +586,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
+  RNScratch:
+    :path: "../node_modules/react-native-scratcher"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -640,7 +651,9 @@ SPEC CHECKSUMS:
   RNFS: fc610f78fdf8bfc89a9e5cc2f898519f4dba1002
   RNGestureHandler: 61628a2c859172551aa2100d3e73d1e57878392f
   RNReanimated: 46cdb89ca59ab7181334f4ed05a70e82ddb36751
+  RNScratch: 65040c077967320e970d3df04d27ed6c6896653a
   RNScreens: 40a2cb40a02a609938137a1e0acfbf8fc9eebf19
+  RNSVG: 3dd44d99d1c18e1342aee4bfa53ab3f6a8c4865f
   RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: f93010f3f6c031e2f8fb3081ca4ee6966c539815
