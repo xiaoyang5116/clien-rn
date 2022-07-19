@@ -32,7 +32,7 @@ const BothSidesPushEffectComponent = (props) => {
         Animated.parallel([
             Animated.timing(coverAnim, {
                 toValue: 0,
-                duration: 700,
+                duration: 1000,
                 delay: 300,
                 useNativeDriver: false,
             }),
@@ -60,18 +60,18 @@ const BothSidesPushEffectComponent = (props) => {
 
     return (
         <View style={styles.container}>
-            <Animated.View style={{ flex: 1, backgroundColor: "#fff", zIndex: 3, opacity: coverAnim }}></Animated.View>
+            <Animated.View style={{ flex: 1, backgroundColor: "#fff", zIndex: 0, opacity: coverAnim }}></Animated.View>
             <Animated.View style={[styles.imgBox1, {
                 transform: [{ translateX: leftWidth }],
                 opacity: fadeAnim
             }]}>
-                <Image style={styles.img} source={require("../../../assets/bg/lottery_bg.jpg")} />
+                <Image style={styles.img} source={require("../../../assets/bg/leftyun.png")} />
             </Animated.View>
             <Animated.View style={[styles.imgBox2, {
                 transform: [{ translateX: rightWidth }],
                 opacity: fadeAnim
             }]}>
-                <Image style={styles.img} source={require("../../../assets/bg/lottery_bg2.jpg")} />
+                <Image style={styles.img} source={require("../../../assets/bg/rightyun.png")} />
             </Animated.View>
         </View>
     )
