@@ -3,10 +3,12 @@ import {
     SHCOK,
     EDGE_LIGHT,
     SCREEN_CENTER_STRETCH,
+    FLASH_BUXUE
 } from '../../constants';
 import EdgeLightModal from "./EdgeLight";
 import Shock from '../shock';
 import ScreenCenterStretchModal from './ScreenCenterStretch';
+import FlashBuXueModal from './FlashBuXue';
 
 
 export default function Animation(animation) {
@@ -18,5 +20,7 @@ export default function Animation(animation) {
             return EdgeLightModal.show(acitonObj.action)
         case SCREEN_CENTER_STRETCH:
             return ScreenCenterStretchModal.show(acitonObj.action)
+        case FLASH_BUXUE:
+            return FlashBuXueModal.show(acitonObj.action)
     }
 };
