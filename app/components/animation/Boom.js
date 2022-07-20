@@ -68,26 +68,31 @@ const BoomContainer = (props) => {
     const DATA = ["1", "2"]
     const [currIndex, setCurrIndex] = useState(0)
     const animationCount = useRef(0)
+    const animationEndListener = useRef(null)
 
     useEffect(() => {
         let closeTimer = null
-    
-        DeviceEventEmitter.addListener("boom", (value) => {
+
+        animationEndListener.current = DeviceEventEmitter.addListener("boom", (value) => {
             animationCount.current += value
             if (animationCount.current === DATA.length) {
-                closeTimer= setTimeout(()=>{
+                closeTimer = setTimeout(() => {
                     props.onClose()
-                },500)
+                }, 500)
 
             }
         });
-    
+
         let timer = setTimeout(() => {
             setCurrIndex(1)
         }, 200)
-    
+
         return () => {
-            clearTimeout(timer,closeTimer)
+            clearTimeout(timer,)
+            clearTimeout(closeTimer)
+            if (animationEndListener.current !== null) {
+                animationEndListener.current.remove();
+            }
         }
     }, [])
 
