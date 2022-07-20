@@ -159,7 +159,7 @@ class PropertyActionBuilder {
     }
 
     // 生成动效相关
-    if (payload.animations != undefined && lo.isObject(payload.animations)) {
+    if (payload.animations != undefined && (lo.isObject(payload.animations) || lo.isArray(payload.animations))) {
       allActions.push({ id: "__animations", cmd: 'animations', params: payload.animations });
     }
 
