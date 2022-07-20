@@ -100,10 +100,6 @@ class HomePage extends Component {
             title: "制作",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'制作'} />),
           }} />
-          <Tab.Screen name="Props" component={PropsTabPage} options={{
-            title: "道具",
-            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'道具'} />),
-          }} />
           <Tab.Screen name="Lottery" component={LotteryTabPage} options={{
             title: "抽奖",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'抽奖'} />),
@@ -111,6 +107,10 @@ class HomePage extends Component {
           <Tab.Screen name="Profile" component={ProfileTabPage} options={{
             title: "设置",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'设置'} />),
+          }} />
+          <Tab.Screen name="Props" component={PropsTabPage} options={{
+            title: "道具",
+            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'道具'} />),
           }} />
         </Tab.Navigator>
       </ImagePanel>

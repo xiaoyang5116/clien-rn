@@ -159,7 +159,7 @@ class PropertyActionBuilder {
     }
 
     // 生成动效相关
-    if (payload.animations != undefined && lo.isObject(payload.animations)) {
+    if (payload.animations != undefined && (lo.isObject(payload.animations) || lo.isArray(payload.animations))) {
       allActions.push({ id: "__animations", cmd: 'animations', params: payload.animations });
     }
 
@@ -679,8 +679,13 @@ export default {
 
     *__onSendPropsCommand({ payload }, { put, select }) {
       const sceneState = yield select(state => state.SceneModel);
-      const [propId, num] = payload.params.split(',');
+      const [propId, num, showBag] = payload.params.split(',');
       yield put.resolve(action('PropsModel/sendProps')({ propId: parseInt(propId), num: parseInt(num) }));
+      
+      // 通知界面显示背包动效
+      if (showBag != undefined && lo.isEqual(showBag, 'showBag')) {
+        DeviceEventEmitter.emit(EventKeys.ARTICLE_SHOW_BAG_ANIMATION);
+      }
     },
 
     *__onSeqIdCommand({ payload }, { put }) {
@@ -733,6 +738,7 @@ export default {
     },
 
     *__onGamesCommand({ payload }, { put }) {
+      payload.params.__sceneId = payload.__sceneId; // 传入场景ID，用于一些列的跳转动作。
       Games.show(payload.params);
     },
 

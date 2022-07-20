@@ -216,7 +216,7 @@ const CloudAnimation = (props) => {
             </TouchableWithoutFeedback>
             <View style={{ width: '100%', height: px2pd(1500), overflow: 'hidden' }}>
                 <FarLayer />
-                <View style={{ position: 'absolute', top: 170 }}>
+                <View style={{ position: 'absolute', top: 0 }}>
                     <MidLayer />
                 </View>
                 <View style={{ position: 'absolute', top: 260 }}>
