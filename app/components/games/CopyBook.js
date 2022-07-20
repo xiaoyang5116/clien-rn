@@ -12,7 +12,6 @@ import Svg, { Path, } from 'react-native-svg'
 
 import { statusBarHeight } from '../../constants'
 import { TextButton } from '../../constants/custom-ui';
-import { HalfPanel } from '../panel';
 import Toast from '../toast'
 
 
@@ -165,8 +164,8 @@ const CopyBook = (props) => {
     }, [])
 
     return (
-        <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"}>
-            <View style={{ flex: 1, backgroundColor: "#ccc", justifyContent: "space-between", alignItems: 'center' }}>
+        <View style={styles.viewContainer} >
+            <View style={{ width: '90%', height: '80%', borderRadius: 10, overflow: 'hidden', backgroundColor: "#ccc", justifyContent: "space-between", alignItems: 'center' }}>
                 <Text style={styles.title}>字帖</Text>
 
                 <View style={[styles.container, { backgroundColor: "#fff", }]}>
@@ -209,13 +208,23 @@ const CopyBook = (props) => {
                 </View>
 
             </View>
-        </HalfPanel>
+        </View>
     )
 }
 
 export default CopyBook
 
 const styles = StyleSheet.create({
+    viewContainer: {
+        height: "100%",
+        width: "100%",
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow: 'hidden',
+        backgroundColor: "rgba(0,0,0,0.7)",
+        zIndex: 99,
+    },
     container: {
         width: box_width,
         height: box_width,

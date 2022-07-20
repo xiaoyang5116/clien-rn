@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
 
 import ScratchView from 'react-native-scratcher'
@@ -9,7 +9,6 @@ import {
     EventKeys
 } from '../../constants';
 
-import { HalfPanel } from "../panel";
 import Toast from '../toast'
 import { TextButton } from '../../constants/custom-ui';
 
@@ -36,7 +35,7 @@ class Scratch extends Component {
         this.props.dispatch(action('SceneModel/processActions')({ __sceneId: this.props.sceneId, ...this.props }))
         this.timer = setTimeout(() => {
             this.onClose()
-        }, 500)
+        }, 1000)
     }
 
     onClose = () => {
@@ -56,8 +55,8 @@ class Scratch extends Component {
         // console.log("ssss", require("../../../assets/bg/lottery_bg2.jpg"));
         // const cardBg = require("../../../assets/bg/lottery_bg2.jpg")
         return (
-            <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"} height={"70%"}>
-                <View style={{ flex: 1, justifyContent: "space-around", alignItems: "center" }}>
+            <View style={styles.container}>
+                <View style={{ width: '90%', height: '70%', justifyContent: "space-around", alignItems: "center" }}>
                     <Text style={{ fontSize: 24, color: "#ccc" }}>刮刮乐</Text>
                     <View style={{ width: 300, height: 300, overflow: "hidden" }} pointerEvents={this.state.isScratchDone ? "none" : "auto"}>
                         {/* <View style={{ width: 300, height: 300, overflow: "hidden" }}> */}
@@ -79,9 +78,22 @@ class Scratch extends Component {
                     </View>
                     <TextButton title={"退出"} onPress={this.props.onClose} />
                 </View>
-            </HalfPanel>
+            </View>
         )
     }
 }
 
 export default connect((state) => ({ ...state.SceneModel }))(Scratch);
+
+const styles = StyleSheet.create({
+    container: {
+        height: "100%",
+        width: "100%",
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        overflow: 'hidden',
+        backgroundColor: "rgba(0,0,0,0.7)",
+        zIndex: 99,
+    }
+})
