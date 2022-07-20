@@ -69,38 +69,6 @@ class ConfirmDialog extends React.Component {
                 </View>
             </SafeAreaView>
         )
-        // return (
-        //     <SafeAreaView style={{ flex: 1, zIndex: 999999 }}>
-        //         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        //             <View style={{ width: 320, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(180,180,180, 1)', borderRadius: 3 }}>
-        //                 <ImageCapInset
-        //                     style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.5 }}
-        //                     source={require('../../../assets/bg/confirm_dlg_patch.png')}
-        //                     capInsets={{ top: 10, right: 10, bottom: 10, left: 10 }}
-        //                 />
-        //                 <View style={{ width: 280, margin: 10, overflow: 'hidden' }}>
-        //                     <ImageCapInset
-        //                         style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.5 }}
-        //                         source={require('../../../assets/bg/confirm_dlg_outter_patch.png')}
-        //                         capInsets={{ top: 10, right: 10, bottom: 10, left: 10 }}
-        //                     />
-        //                     <FastImage
-        //                         style={{ width: '100%', height: '100%', position: 'absolute', top: 80 }}
-        //                         source={require('../../../assets/bg/panel_c.png')}
-        //                     />
-        //                     <View style={{ alignSelf: 'stretch', backgroundColor: 'rgba(72,72,72,0.7)' }}>
-        //                         <View style={{ marginTop: 10, marginBottom: 10, padding: 10, justifyContent: 'center', alignItems: 'center' }}>
-        //                             <Text style={{ color: '#fff' }}>{this.props.msg}</Text>
-        //                         </View>
-        //                         <View style={{ height: 50, marginBottom: 10, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-        //                             {buttons}
-        //                         </View>
-        //                     </View>
-        //                 </View>
-        //             </View>
-        //         </View>
-        //     </SafeAreaView>
-        // );
     }
 }
 

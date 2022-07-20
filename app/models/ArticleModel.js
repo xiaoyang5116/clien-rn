@@ -21,6 +21,7 @@ import EventListeners from '../utils/EventListeners';
 import defaultReaderStyle from '../themes/readerStyle';
 import Games from "../components/games";
 import { playSound } from "../components/sound/utils";
+import EffectAnimations from "../components/effects";
 
 const WIN_SIZE = getWindowSize();
 const DETECTION_AREA_HEIGHT = 200;
@@ -265,9 +266,14 @@ export default {
           continue;
 
         // 触发按区域激活提示
-        const { toast, pop, image, background, effect, games, sounds } = item.object;
+        // const { toast, pop, image, background, effect, games, sounds } = item.object;
+        // if (toast == undefined && pop == undefined && image == undefined 
+        //     && background == undefined && effect == undefined && games == undefined && sounds == undefined)
+        const { toast, pop, image, background, effect, games, animations, sounds } = item.object;
         if (toast == undefined && pop == undefined && image == undefined 
-            && background == undefined && effect == undefined && games == undefined && sounds == undefined)
+            && background == undefined && effect == undefined 
+            && games == undefined && animations == undefined
+            && sounds == undefined)
           continue;
 
         // 计算总偏移量
@@ -322,6 +328,11 @@ export default {
             sounds.forEach(e => {
               playSound({ ...e, type: "readerVolume" });
             });
+          }
+          // 动效
+          if (animations != undefined) {
+            EffectAnimations.show(animations);
+            item.object.completed = true;
           }
         }
 

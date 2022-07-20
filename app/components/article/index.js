@@ -16,7 +16,7 @@ export default class ArticleBlock extends React.PureComponent {
         if (dataType == 'plain') {
             return (<PlainView itemKey={this.props.data.key} content={this.props.data.content} />)
         } else if (dataType == 'code' && this.props.data.object != null) {
-            const { header, toast, pop, chatId, overview, image, background, effect, games, sounds } = this.props.data.object;
+            const { header, toast, pop, chatId, overview, image, background, effect, games, animations, sounds} = this.props.data.object;
             if (header != undefined) {
                 return (<HeaderView itemKey={this.props.data.key} content={header} />);
             } else if (toast != undefined) {
@@ -31,7 +31,7 @@ export default class ArticleBlock extends React.PureComponent {
                 return (<OverView itemKey={this.props.data.key} {...this.props.data.object} />);
             } else if (image != undefined) {
                 return (<ImageView itemKey={this.props.data.key} {...this.props.data.object} />);
-            } else if (background != undefined || effect != undefined || games != undefined) {
+            } else if (background != undefined || effect != undefined || games != undefined || animations != undefined) {
                 return (<EventView itemKey={this.props.data.key} {...this.props.data.object} />);
             } else if (sounds != undefined) {
                 return (<EventView itemKey={this.props.data.key} {...this.props.data.object} />);
