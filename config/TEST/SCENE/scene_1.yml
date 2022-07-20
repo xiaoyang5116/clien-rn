@@ -163,7 +163,7 @@ scenes: [
           { title: '【移动地图中心点_P1】', toMapPoint: [0, 0] }, 
           { title: '【移动地图中心点_P2】', toMapPoint: [-1, 0] }, 
           { title: '【小游戏：劈砖头】', games: { id: 1 } }, 
-          { title: '【小游戏：撸猫】', games: { id: 2 } }, 
+          { title: '【小游戏：撸猫】', games: { id: 2, toScene: 'M01_S01_luoyuezhen_pomiao' } }, 
           { title: '【小游戏：记忆力训练】', games: { id: 3, words: ['童', '家', '知', '道', '董', '家', '冬', '瓜', '大', '来', '到', '董', '家', '学', '种', '冬', '瓜'] } }, 
           { title: '【动效1】', animations: { id: 1 } }, 
           { title: '【动效2】', animations: { id: 2 } }, 

@@ -1,12 +1,13 @@
 import React from 'react';
 import RootView from "../RootView";
+import lo from 'lodash';
+
 import BarrageAnimation from './BarrageAnimation';
 import CloudAnimation from './CloudAnimation';
 import BothSidesPushEffect from '../animation/BothSidesPushEffect'
 import LightningAnimation from './LightningAnimation';
 import LeiYunAnimation from './LeiYunAnimation';
-
-import lo from 'lodash';
+import BagAnimation from './BagAnimation';
 
 export default class EffectAnimations {
 
@@ -37,6 +38,10 @@ export default class EffectAnimations {
                 BothSidesPushEffect.show()
             } else if (id == 5) { // 雷云
                 const key = RootView.add(<LeiYunAnimation onClose={() => {
+                    RootView.remove(key);
+                }} />);
+            } else if (id == 6) { // 背包
+                const key = RootView.add(<BagAnimation onClose={() => {
                     RootView.remove(key);
                 }} />);
             }

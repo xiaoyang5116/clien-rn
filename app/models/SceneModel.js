@@ -733,6 +733,7 @@ export default {
     },
 
     *__onGamesCommand({ payload }, { put }) {
+      payload.params.__sceneId = payload.__sceneId; // 传入场景ID，用于一些列的跳转动作。
       Games.show(payload.params);
     },
 
