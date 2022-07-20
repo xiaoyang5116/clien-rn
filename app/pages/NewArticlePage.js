@@ -53,6 +53,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import readerStyle from '../themes/readerStyle';
+import BagAnimation from '../components/animation/BagAnimation';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -699,6 +700,7 @@ class NewArticlePage extends Component {
         <RightContainer ref={this.refPropsContainer}>
           {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
         </RightContainer>
+        <BagAnimation {...this.props} />
         {/* <View style={styles.debugContainer} pointerEvents="box-none" >
           <View style={styles.debugView1} pointerEvents="box-none">
             <Text style={{ color: '#fff' }}>事件触发区域1</Text>

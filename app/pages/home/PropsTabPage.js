@@ -104,7 +104,7 @@ class PropsTabPage extends Component {
             // <Panel patternId={2}>
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={styles.propsContainer}>
-                    <View style={{ height: 80, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                    <View style={{ height: 40, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                         <View>
                             <Text>金币：0</Text>
                         </View>

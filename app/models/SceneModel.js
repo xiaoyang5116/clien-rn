@@ -679,8 +679,13 @@ export default {
 
     *__onSendPropsCommand({ payload }, { put, select }) {
       const sceneState = yield select(state => state.SceneModel);
-      const [propId, num] = payload.params.split(',');
+      const [propId, num, showBag] = payload.params.split(',');
       yield put.resolve(action('PropsModel/sendProps')({ propId: parseInt(propId), num: parseInt(num) }));
+      
+      // 通知界面显示背包动效
+      if (showBag != undefined && lo.isEqual(showBag, 'showBag')) {
+        DeviceEventEmitter.emit(EventKeys.ARTICLE_SHOW_BAG_ANIMATION);
+      }
     },
 
     *__onSeqIdCommand({ payload }, { put }) {
