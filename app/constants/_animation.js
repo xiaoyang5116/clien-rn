@@ -8,6 +8,8 @@ export const EDGE_LIGHT = 'edge_light';
 export const SCREEN_CENTER_STRETCH = 'screen_center_stretch';
 export const FLASH_BUXUE = "FlashBuXue"
 export const BOOM = "Boom"
+export const ONOMATOPOEIA = "Onomatopoeia"
+
 
 // 震屏
 const shcok_1 = 'slightShock';
@@ -69,8 +71,8 @@ export const animationAction = type => {
             };
         case "boom":
             return {
-                type: BOOM,
-                action: pass_1,
+                type: ONOMATOPOEIA,
+                typeId: 1,
             };
     }
 };

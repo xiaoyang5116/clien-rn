@@ -7,6 +7,7 @@ import CloudAnimation from './CloudAnimation';
 import BothSidesPushEffect from '../animation/BothSidesPushEffect'
 import LightningAnimation from './LightningAnimation';
 import LeiYunAnimation from './LeiYunAnimation';
+import Onomatopoeia from '../animation/onomatopoeia';
 
 export default class EffectAnimations {
 
@@ -39,6 +40,8 @@ export default class EffectAnimations {
                 const key = RootView.add(<LeiYunAnimation onClose={() => {
                     RootView.remove(key);
                 }} />);
+            } else if (id == 6) { // 拟声词
+                Onomatopoeia(e)
             }
         });
     }
