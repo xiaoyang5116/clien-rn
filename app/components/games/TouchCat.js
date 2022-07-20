@@ -86,15 +86,15 @@ const StatusBar = (props) => {
         <View style={{ width: '100%', height: 35, paddingLeft: 10, paddingRight: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <View>
                 <Text>厌恶度: </Text>
-                <View style={{ width: 100, height: 20, marginTop: 3, backgroundColor: '#333', justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={{ position: 'absolute', left: 0, width: yanWuDuWidth, height: '100%', backgroundColor: '#669900' }} />
+                <View style={{ width: 100, height: 20, marginTop: 3, backgroundColor: '#333', justifyContent: 'center', alignItems: 'center', borderRadius: 10, overflow: 'hidden' }}>
+                    <View style={{ position: 'absolute', left: 0, width: yanWuDuWidth, height: '100%', backgroundColor: '#990800' }} />
                     <Text style={{ color: '#fff' }}>{yanWuDu}/{YAN_WU_DU_LIMIT}</Text>
                 </View>
             </View>
             <View>
                 <Text>好感度: </Text>
-                <View style={{ width: 100, height: 20, marginTop: 3, backgroundColor: '#333', justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={{ position: 'absolute', left: 0, width: haoGanDuWidth, height: '100%', backgroundColor: '#669900' }} />
+                <View style={{ width: 100, height: 20, marginTop: 3, backgroundColor: '#333', justifyContent: 'center', alignItems: 'center', borderRadius: 10, overflow: 'hidden' }}>
+                    <View style={{ position: 'absolute', left: 0, width: haoGanDuWidth, height: '100%', backgroundColor: '#009919' }} />
                     <Text style={{ color: '#fff' }}>{haoGanDu}/{HAO_GAN_DU_LIMIT}</Text>
                 </View>
             </View>
@@ -226,19 +226,24 @@ const TouchCat = (props) => {
     return (
         <View style={styles.viewContainer}>
             <View style={styles.bodyContainer}>
-                <View style={styles.topBanner}>
-                    <TouchableWithoutFeedback onPress={() => {
-                        if (props.onClose != undefined) {
-                            props.onClose();
-                        }
-                    }}>
-                        <AntDesign name='close' size={24} />
-                    </TouchableWithoutFeedback>
+                <View style={{ position: 'absolute', top: -90 }}>
+                    <FastImage style={{ width: px2pd(797), height: px2pd(190) }} source={require('../../../assets/bg/touch_cat_header.png')} />
                 </View>
-                <StatusBar {...props} />
-                <View style={styles.mainContainer} {...panResponder.panHandlers} onTouchStart={touchEventHandler}>
-                    <FastImage style={{ width: px2pd(700), height: px2pd(700) }} source={image} />
-                </View>
+                <FastImage style={{ width: px2pd(900), height: px2pd(940), alignItems: 'center' }} source={require('../../../assets/bg/touch_cat_bg.webp')}>
+                    <View style={styles.topBanner}>
+                        <TouchableWithoutFeedback onPress={() => {
+                            if (props.onClose != undefined) {
+                                props.onClose();
+                            }
+                        }}>
+                            <AntDesign name='close' size={24} />
+                        </TouchableWithoutFeedback>
+                    </View>
+                    <StatusBar {...props} />
+                    <View style={styles.mainContainer} {...panResponder.panHandlers} onTouchStart={touchEventHandler}>
+                        <FastImage style={{ width: px2pd(700), height: px2pd(700) }} source={image} />
+                    </View>
+                </FastImage>
             </View>
         </View>
     )
@@ -258,9 +263,9 @@ const styles = StyleSheet.create({
         width: px2pd(850) + 20, 
         justifyContent: 'center', 
         alignItems: 'center', 
-        borderWidth: 1, 
-        borderColor: '#333', 
-        backgroundColor: '#fff',
+        // borderWidth: 1, 
+        // borderColor: '#333', 
+        // backgroundColor: '#fff',
     },
     mainContainer: {
         width: px2pd(850), 
