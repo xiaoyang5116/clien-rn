@@ -21,7 +21,7 @@ const { width, height } = Dimensions.get('window');
 
 const ziTieArr = [
     {
-        id: 0, img: require('../../../assets/ziTie/mu.png'), detectionArea: [
+        id: 0, name: "木", img: require('../../../assets/ziTie/mu.png'), detectionArea: [
             { origin: [89, 95], width: 15, height: 14 },
             { origin: [120, 95], width: 15, height: 14 },
             { origin: [145, 95], width: 15, height: 14 },
@@ -33,7 +33,7 @@ const ziTieArr = [
         ]
     },
     {
-        id: 1, img: require('../../../assets/ziTie/xian.png'), detectionArea: [
+        id: 1, name: "仙", img: require('../../../assets/ziTie/xian.png'), detectionArea: [
             { origin: [108, 80], width: 13, height: 12 },
             { origin: [168, 80], width: 14, height: 14 },
             { origin: [99, 109], width: 15, height: 15 },
@@ -44,6 +44,19 @@ const ziTieArr = [
             { origin: [132, 198], width: 14, height: 15 },
             { origin: [168, 198], width: 14, height: 12 },
             { origin: [204, 198], width: 15, height: 12 },
+        ]
+    },
+    {
+        id: 2, name: "火", img: require('../../../assets/ziTie/huo.png'), detectionArea: [
+            { origin: [81, 94], width: 13, height: 13 },
+            { origin: [223, 94], width: 15, height: 17 },
+            { origin: [62, 137], width: 13, height: 14 },
+            { origin: [205, 137], width: 13, height: 14 },
+            { origin: [133, 137], width: 23, height: 24 },
+            { origin: [139, 51], width: 19, height: 16 },
+            { origin: [62, 233], width: 12, height: 17 },
+            { origin: [205, 224], width: 14, height: 14 },
+
         ]
     }
 ]
@@ -65,7 +78,19 @@ const CopyBook = (props) => {
     // svg 移动路径
     const path = useRef("")
     // 字帖数据
-    let ziTie = useRef([...ziTieArr]).current
+    const { word } = props
+
+    if (word === undefined) return null
+    
+    const currentZiTieArr = word.map((item) => {
+        for (let index = 0; index < ziTieArr.length; index++) {
+            if (item === ziTieArr[index].name) {
+                return ziTieArr[index]
+            }
+        }
+    })
+
+    let ziTie = useRef(currentZiTieArr).current
 
     // 起点的 X 坐标
     let firstX = 0

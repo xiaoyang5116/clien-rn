@@ -44,7 +44,7 @@ export default class Games {
                 afterGameClosed(params);
             }} />);
         } else if (id == 5) {  // 字帖
-            const key = RootView.add(<CopyBook onClose={() => {
+            const key = RootView.add(<CopyBook {...params} onClose={() => {
                 RootView.remove(key);
                 afterGameClosed(params);
             }} />);
