@@ -25,8 +25,7 @@ export const HalfPanel = props => {
         )
     }
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: props.backgroundColor ? props.backgroundColor : null, }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',zIndex: 99, backgroundColor: props.backgroundColor ? props.backgroundColor : null, }}>
                 <View
                     style={{
                         width: props.width ? props.width : '90%',
@@ -38,6 +37,5 @@ export const HalfPanel = props => {
                     {props.children}
                 </View>
             </View>
-        </SafeAreaView>
     );
 };

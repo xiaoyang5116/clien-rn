@@ -16,6 +16,8 @@ import {
 import { px2pd } from '../../constants/resolution';
 import { confirm } from '../dialog/ConfirmDialog';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import ImageCapInset from 'react-native-image-capinsets-next';
+import FastImage from 'react-native-fast-image';
 
 // 缺省数据，在不指定props.words时使用。
 const WORDS = [
@@ -69,6 +71,10 @@ const ChooseItem = (props) => {
     const [selected, setSelected] = React.useState(false);
     const disabled = React.useRef(false);
 
+    const img = selected
+                    ? require('../../../assets/button/memory_traning_btn_selected.png')
+                    : require('../../../assets/button/memory_traning_btn.png');
+
     return (
         <TouchableWithoutFeedback onPress={() => {
             if (disabled.current) {
@@ -79,8 +85,55 @@ const ChooseItem = (props) => {
             disabled.current = true;
             DeviceEventEmitter.emit('__@MemoryTraining.choose', props.value);
         }}>
-            <Animated.View style={[styles.word, (selected ? styles.selected : {}), { opacity: props.bindOpacity }]}>
+            <Animated.View style={[styles.word, { opacity: props.bindOpacity }]}>
+                <FastImage style={{ position: 'absolute', width: px2pd(118), height: px2pd(118) }} source={img} />
                 <Text>{props.value}</Text>
+            </Animated.View>
+        </TouchableWithoutFeedback>
+    );
+}
+
+const Space = (props) => {
+    return (
+        <View style={{ width: '100%', height: 10 }} />
+    );
+}
+
+const BeginButton = (props) => {
+    const opacity = React.useRef(new Animated.Value(1)).current;
+    const scale = React.useRef(new Animated.Value(1)).current;
+
+    React.useEffect(() => {
+        const animation = Animated.loop(Animated.sequence([
+            Animated.timing(scale, {
+                toValue: 1.05,
+                duration: 1000,
+                useNativeDriver: true,
+            }),
+            Animated.timing(scale, {
+                toValue: 1,
+                duration: 1000,
+                useNativeDriver: true,
+            }),
+        ]));
+        animation.start();
+        return () => {
+            animation.stop();
+        }
+    }, []);
+
+    return (
+        <TouchableWithoutFeedback onPress={() => {
+            if (opacity._value <= 0)
+                return;
+                
+            opacity.setValue(0);
+            setTimeout(() => {
+                DeviceEventEmitter.emit('__@MemoryTraining.begin');
+            }, 1000);
+        }}>
+            <Animated.View style={{ position: 'absolute', opacity: opacity, transform: [{ scale: scale }] }}>
+                <FastImage style={{ width: px2pd(666), height: px2pd(166) }} source={require('../../../assets/button/memory_traning_start_btn.png')} />
             </Animated.View>
         </TouchableWithoutFeedback>
     );
@@ -138,12 +191,15 @@ const MemoryTraining = (props) => {
     }
 
     React.useEffect(() => {
-        if (previewList.current.length > 0) {
-            previewList.current.forEach(e => {
-                e.animation.start();
-            });
-        }
+        const listener = DeviceEventEmitter.addListener('__@MemoryTraining.begin', () => {
+            if (previewList.current.length > 0) {
+                previewList.current.forEach(e => {
+                    e.animation.start();
+                });
+            }
+        });
         return () => {
+            listener.remove();
             previewList.current.length = 0;
             previewAnimationCounter.current = 0;
             chooseList.current.length = 0;
@@ -204,6 +260,7 @@ const MemoryTraining = (props) => {
     previewList.current.forEach(e => {
         previewViews.push(
             <Animated.View key={key++} style={[styles.word, { opacity: e.opacity }]}>
+                <FastImage style={{ position: 'absolute', width: px2pd(118), height: px2pd(118) }} source={require('../../../assets/button/memory_traning_btn.png')} />
                 <Text>{e.value}</Text>
             </Animated.View>
         );
@@ -217,6 +274,9 @@ const MemoryTraining = (props) => {
     return (
         <View style={styles.viewContainer}>
             <View style={styles.bodyContainer}>
+                <View style={styles.titleContainer}>
+                    <Text style={{ color: '#000', fontSize: 26 }}>记忆力考验</Text>
+                </View>
                 <View style={styles.topBanner}>
                     <TouchableWithoutFeedback onPress={() => {
                         if (props.onClose != undefined) {
@@ -226,12 +286,30 @@ const MemoryTraining = (props) => {
                         <AntDesign name='close' size={24} />
                     </TouchableWithoutFeedback>
                 </View>
+                <View style={styles.resultContainer}>
+                    <Text>出题：</Text>
+                </View>
                 <View style={styles.boxContainer}>
+                    <ImageCapInset
+                        style={{ width: '100%', height: '100%', position: 'absolute' }}
+                        source={require('../../../assets/bg/memory_training_bg.png')}
+                        capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                    />
+                    <Space />
                     {previewViews}
+                    <Space />
+                    <BeginButton />
                 </View>
                 <Result />
-                <View style={styles.boxContainer}>
+                <View style={[styles.boxContainer, { marginBottom: 10 }]}>
+                    <ImageCapInset
+                        style={{ width: '100%', height: '100%', position: 'absolute' }}
+                        source={require('../../../assets/bg/memory_training_bg.png')}
+                        capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                    />
+                    <Space />
                     {chooseViews}
+                    <Space />
                 </View>
             </View>
         </View>
@@ -241,7 +319,6 @@ const MemoryTraining = (props) => {
 const MemoryTrainingWapper = (props) => {
 
     const [refreshKey, setRefreshKey] = React.useState(0);
-
 
     React.useEffect(() => {
         const listener = DeviceEventEmitter.addListener('__@MemoryTraining.reset', () => {
@@ -272,20 +349,33 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)',
         zIndex: 99,
     },
+    titleContainer: {
+        position: 'absolute', 
+        top: -28, 
+        borderWidth: 1, 
+        borderColor: '#333', 
+        borderRadius: 16,
+        backgroundColor: '#eee', 
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 220, 
+    }, 
     bodyContainer: {
         width: px2pd(850) + 20, 
         justifyContent: 'center', 
         alignItems: 'center', 
         borderWidth: 1, 
         borderColor: '#333', 
+        borderRadius: 6,
         backgroundColor: '#fff',
     },
     boxContainer: {
         width: px2pd(850), 
-        marginTop: 10, 
-        marginBottom: 10, 
+        marginTop: 5, 
+        marginBottom: 5, 
         borderWidth: 1, 
         borderColor: '#333', 
+        borderRadius: 2,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'center',
@@ -307,14 +397,15 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     word: {
-        width: 35, 
-        height: 35, 
-        borderWidth: 1, 
-        borderColor: '#333', 
+        width: px2pd(118), 
+        height: px2pd(118), 
+        // borderWidth: 1, 
+        // borderColor: '#333', 
         justifyContent: 'center', 
         alignItems: 'center',
-        margin: 10,
-        backgroundColor: '#eee',
+        marginTop: 5,
+        marginLeft: 5,
+        marginRight: 5,
     },
     selected: {
         backgroundColor: '#999',

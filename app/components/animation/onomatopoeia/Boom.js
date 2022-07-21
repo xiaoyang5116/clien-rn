@@ -11,40 +11,52 @@ import {
 } from 'react-native'
 import React, { useRef, useEffect, useState } from 'react'
 
-import { EventKeys } from '../../constants';
+import { EventKeys, } from '../../../constants';
+import { px2pd } from '../../../constants/resolution';
 
-import RootView from '../RootView';
+import RootView from '../../RootView';
 
 
 const Boom = (props) => {
     const translateX = useRef(new Animated.Value(0)).current;
     const translateY = useRef(new Animated.Value(0)).current;
     const scale = useRef(new Animated.Value(0)).current;
+    const opacity = useRef(new Animated.Value(1)).current
 
     const animationEnd = () => {
         DeviceEventEmitter.emit("boom", 1);
     }
 
     useEffect(() => {
-        Animated.parallel([
-            Animated.timing(translateX, {
-                toValue: 50,
-                duration: 200,
+        Animated.sequence([
+            Animated.parallel([
+                Animated.timing(translateX, {
+                    toValue: 50,
+                    duration: 300,
+                    useNativeDriver: false,
+                    easing: Easing.ease,
+                }),
+                Animated.timing(translateY, {
+                    toValue: -50,
+                    duration: 300,
+                    useNativeDriver: false,
+                    easing: Easing.ease,
+                }),
+                Animated.timing(scale, {
+                    toValue: 1,
+                    duration: 300,
+                    useNativeDriver: false,
+                    easing: Easing.ease,
+                }),
+            ]),
+            Animated.timing(opacity, {
+                toValue: 0,
+                delay: 300,
+                duration: 300,
                 useNativeDriver: false,
                 easing: Easing.ease,
             }),
-            Animated.timing(translateY, {
-                toValue: -50,
-                duration: 200,
-                useNativeDriver: false,
-                easing: Easing.ease,
-            }),
-            Animated.timing(scale, {
-                toValue: 1,
-                duration: 200,
-                useNativeDriver: false,
-                easing: Easing.ease,
-            }),
+
         ]).start(animationEnd)
     }, [])
 
@@ -52,13 +64,15 @@ const Boom = (props) => {
         <View style={styles.boom_container}>
             <Animated.View style={{
                 marginRight: 12,
+                opacity,
                 transform: [
                     { translateX },
                     { translateY },
                     { scale }
                 ],
             }}>
-                <Text style={{ fontSize: 20, }}>Boom</Text>
+                {/* <Text style={{ fontSize: 20, }}>Boom</Text> */}
+                <Image style={{ width: px2pd(353), height: px2pd(335) }} source={require('../../../../assets/animations/peng.png')} />
             </Animated.View>
         </View>
     )
@@ -76,9 +90,10 @@ const BoomContainer = (props) => {
         animationEndListener.current = DeviceEventEmitter.addListener("boom", (value) => {
             animationCount.current += value
             if (animationCount.current === DATA.length) {
-                closeTimer = setTimeout(() => {
-                    props.onClose()
-                }, 500)
+                props.onClose()
+                // closeTimer = setTimeout(() => {
+                //     props.onClose()
+                // }, 600)
 
             }
         });
@@ -100,8 +115,10 @@ const BoomContainer = (props) => {
         <View style={[styles.container, { zIndex: 99 }]} pointerEvents="none">
             <View style={{
                 position: "absolute",
-                bottom: "10%",
-                left: "10%",
+                bottom: props.bottom ? props.bottom : "10%",
+                left: props.left ? props.left : "10%",
+                right: props.right ? props.right : null,
+                top: props.top ? props.top : null,
                 flex: 1,
                 flexDirection: "row",
                 justifyContent: "flex-start"
@@ -114,9 +131,9 @@ const BoomContainer = (props) => {
 }
 
 class BoomModel {
-    static show(img) {
+    static show(props) {
         const key = RootView.add(
-            <BoomContainer img={img} onClose={() => {
+            <BoomContainer {...props} onClose={() => {
                 RootView.remove(key);
             }} />
         );

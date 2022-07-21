@@ -7,6 +7,8 @@ import CloudAnimation from './CloudAnimation';
 import BothSidesPushEffect from '../animation/BothSidesPushEffect'
 import LightningAnimation from './LightningAnimation';
 import LeiYunAnimation from './LeiYunAnimation';
+import Onomatopoeia from '../animation/onomatopoeia';
+import SubTitleAnimation from './SubTitleAnimation';
 
 export default class EffectAnimations {
 
@@ -17,7 +19,6 @@ export default class EffectAnimations {
         } else {
             items.push(params);
         }
-
 
         items.forEach(e => {
             const { id } = e;
@@ -37,6 +38,12 @@ export default class EffectAnimations {
                 BothSidesPushEffect.show()
             } else if (id == 5) { // 雷云
                 const key = RootView.add(<LeiYunAnimation onClose={() => {
+                    RootView.remove(key);
+                }} />);
+            } else if (id == 6) { // 拟声词
+                Onomatopoeia(e)
+            } else if (id == 7) { // 字幕
+                const key = RootView.add(<SubTitleAnimation data={e.data} onClose={() => {
                     RootView.remove(key);
                 }} />);
             }

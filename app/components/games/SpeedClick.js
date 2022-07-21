@@ -152,6 +152,9 @@ const SpeedClick = (props) => {
     return (
         <View style={styles.viewContainer}>
             <View style={styles.bodyContainer}>
+                <View style={{ position: 'absolute', top: -90 }}>
+                    <FastImage style={{ width: px2pd(698), height: px2pd(204) }} source={require('../../../assets/bg/pzt_bg.png')} />
+                </View>
                 <View style={styles.topBanner}>
                     <TouchableWithoutFeedback onPress={() => {
                         if (props.onClose != undefined) {
@@ -175,6 +178,9 @@ const SpeedClick = (props) => {
                         </TouchableWithoutFeedback>
                     </FastImage>
                     <ProgressBar />
+                    <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 5 }}>
+                        <Text style={{ color: '#000' }}>点击敲碎</Text>
+                    </View>
                 </View>
             </View>
         </View>
