@@ -1,0 +1,24 @@
+# ================== 
+# 砸鸡蛋-宝箱配置
+# ==================
+
+
+data: [
+  {
+    # ID
+    id: 1,
+
+    # 是否宝箱类型
+    box: true,
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [ { propId: 26, num: 1, rate: 20 }, { propId: 27, num: 2, rate: 20 } ],
+        p1000: [ { propId: 28, num: 1, rate: 200 }, { propId: 29, num: 2, rate: 300 } ],
+        p10000: [ { propId: 30, num: 1, rate: 800 } ],
+      }
+    },
+  },
+]

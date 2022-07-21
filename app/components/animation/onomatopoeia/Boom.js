@@ -111,7 +111,6 @@ const BoomContainer = (props) => {
         }
     }, [])
 
-    console.log("props", props);
     return (
         <View style={[styles.container, { zIndex: 99 }]} pointerEvents="none">
             <View style={{
