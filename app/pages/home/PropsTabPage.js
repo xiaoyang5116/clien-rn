@@ -25,6 +25,8 @@ import { confirm } from '../../components/dialog';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../constants/resolution';
+import RootView from '../../components/RootView';
+import PropTips from '../../components/tips/PropTips';
 
 class PropsTabPage extends Component {
 
@@ -47,9 +49,12 @@ class PropsTabPage extends Component {
     }
 
     _propSelected(item) {
-        this.setState({
-            selectId: item.id,
-        });
+        // this.setState({
+        //     selectId: item.id,
+        // });
+        const key = RootView.add(<PropTips propId={item.id} onClose={() => {
+            RootView.remove(key);
+          }} />);
     }
 
     _typeFilter(type) {
@@ -130,7 +135,7 @@ class PropsTabPage extends Component {
                             <Text style={{ marginRight: 20, textAlign: 'right', fontSize: 14, color: '#929292' }}>数量</Text>
                         </View>
                     </View>
-                    <View style={{ flex: 1, paddingLeft: 10, paddingRight: 10 }}>
+                    <View style={{ flex: 1, paddingLeft: 10, paddingRight: 10, marginBottom: 40, }}>
                         <FlatList
                             style={{ paddingTop: 2 }}
                             data={this.props.listData}
@@ -138,7 +143,7 @@ class PropsTabPage extends Component {
                             keyExtractor={item => item.id}
                         />
                     </View>
-                    <View style={{ height: 120, flexDirection: 'column'}}>
+                    {/* <View style={{ height: 120, flexDirection: 'column'}}>
                         <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
                             <Text>{selectedProp != undefined ? selectedProp.name : ''}</Text>
                             <Text>{(selectedProp != undefined && selectedProp.desc != undefined) ? selectedProp.desc : ''}</Text>
@@ -147,7 +152,7 @@ class PropsTabPage extends Component {
                             <TextButton title="使用" {...this.props} onPress={() => { this._useProps(); }} />
                             <TextButton title="丢弃" {...this.props} onPress={() => { this._discardProps(); }} />
                         </View>
-                    </View>
+                    </View> */}
                 </View>
             </View>
             // </Panel>
