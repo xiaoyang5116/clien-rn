@@ -89,6 +89,12 @@ const RewardsPage = (props) => {
 const SmashEggs = (props) => {
   // props: {"eggNumber": 3, "id": 6, "onClose": [Function onClose], "remainNumber": 1, "treasureChestId": 1}
   const { treasureChestId } = props
+
+  if (treasureChestId === undefined) {
+    console.debug("宝箱id 未配置")
+    return null
+  }
+
   const [remainNumber, setRemainNumber] = useState(props.remainNumber ? props.remainNumber : 1)
   const eggNumber = props.eggNumber ? props.eggNumber : 3
   const [eggData, setEggData] = useState([])
