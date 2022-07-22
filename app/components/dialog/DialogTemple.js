@@ -27,6 +27,7 @@ const DialogTemple = (props) => {
     const __sceneId = props.viewData.__sceneId
 
     useEffect(() => {
+        // 关闭页面时移除动画监听
         return () => {
             if (animationEndListener.current !== null) {
                 animationEndListener.current.remove();
@@ -34,6 +35,7 @@ const DialogTemple = (props) => {
         }
     }, [])
 
+    // 特效方法
     const specialEffects = (arr) => {
         arr.forEach(item => {
             if (typeof item === 'string') {
@@ -45,6 +47,7 @@ const DialogTemple = (props) => {
         });
     }
 
+    // 下一段话
     const nextParagraph = () => {
         if (currentIndex < currentDialogueLength) {
             // 判断下一句话是否是数组,是就代表是特效,否就下一句话
@@ -58,13 +61,9 @@ const DialogTemple = (props) => {
         }
     };
 
+    // 显示下一个对话
     const nextDialogue = item => {
-        // 显示下一个对话
         const newDialogue = sections.filter(i => i.key === item.tokey);
-
-        if (item.animation !== undefined) {
-            specialEffects(item.animation)
-        }
 
         if (newDialogue.length > 0) {
             setCurrentTextList(newDialogue[0].content);
@@ -79,6 +78,17 @@ const DialogTemple = (props) => {
             }
         }
 
+        actionMethod(item)
+    };
+
+    // 动作方法
+    const actionMethod = (item) => {
+        // 特效
+        if (item.animation !== undefined) {
+            specialEffects(item.animation)
+        }
+
+        // 场景里的动作
         props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
 
         // 发送道具
@@ -97,28 +107,7 @@ const DialogTemple = (props) => {
         if (item.addClues !== undefined) {
             props.dispatch(action('CluesModel/addClues')(item.addClues));
         }
-
-        // // 跳转到其他对话
-        // if (item.dialogs !== undefined) {
-        //     props.dispatch(action('SceneModel/__onDialogCommand')({ __sceneId: props.viewData.__sceneId, params: item.dialogs }))
-        // }
-        // 跳转到新的章节
-        // if (item.toChapter !== undefined) {
-        //     AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: item.toChapter, __sceneId: props.viewData.__sceneId } });
-        // }
-        // // 跳转到场景
-        // if (item.toScene !== undefined) {
-        //     props.dispatch(action('SceneModel/processActions')(item))
-        //         .then(e => {
-        //             // 如果是切换场景，显示选项页面
-        //             if (item.toScene != undefined) {
-        //                 const key = RootView.add(<OptionsPage onClose={() => {
-        //                     RootView.remove(key);
-        //                 }} />);
-        //             }
-        //         });
-        // }
-    };
+    }
 
     switch (props.viewData.style) {
         case 6:
