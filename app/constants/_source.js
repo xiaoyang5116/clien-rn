@@ -6,6 +6,9 @@ const _images = {
     avatar: [
         { id: 1, img: require('../../assets/avatar/1.jpg') },
         { id: 2, img: require('../../assets/avatar/2.jpg') },
+        { id: 3, img: require('../../assets/avatar/3.png') },
+        { id: 4, img: require('../../assets/avatar/4.png') },
+        { id: 5, img: require('../../assets/avatar/5.png') },
     ],
     panel: [
         { id: 1, img: require('../../assets/bg/panel_b.png') },
