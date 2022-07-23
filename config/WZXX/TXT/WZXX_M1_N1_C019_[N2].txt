@@ -26,8 +26,8 @@ animations: {
             { title: '狮子大开口啊', posIdx: 0, speed: 15 },
             { title: '没错，这灵犬也不是什么稀有东西。', posIdx: 2, speed: 10 },
             { title: '十颗灵石都能买上十条了', posIdx: 3, speed: 10, delay: 2000 },
-            { title: '真是蛮不讲理，明明是自己有错在先，却还要趁机敲诈勒索一番', posIdx: 4, speed: 15 },
-            { title: '真是人不可貌相', posIdx: 5, speed: 10 },
+            { title: '真是蛮不讲理，明明是自己有错在先，却还要趁机敲诈勒索一番', posIdx: 6, speed: 15 },
+            { title: '真是人不可貌相', posIdx: 4, speed: 10 },
         ]
     }
     
