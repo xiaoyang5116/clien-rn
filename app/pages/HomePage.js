@@ -21,18 +21,15 @@ import {
 } from '../constants/native-ui';
 
 import FastImage from 'react-native-fast-image';
-import ImageCapInset from 'react-native-image-capinsets-next';
-
 import StoryTabPage from './home/StoryTabPage';
 import ProfileTabPage from './home/ProfileTabPage';
 import PropsTabPage from './home/PropsTabPage';
 import LotteryTabPage from './home/LotteryTabPage';
-import ComposeTabPage from './home/ComposeTabPage';
 import ExploreTabPage from './home/ExploreTabPage';
-import { Platform, ImageBackground } from 'react-native';
+import { Platform } from 'react-native';
 import { px2pd } from '../constants/resolution';
 import TownTabPage from './home/TownTabPage';
-import { log } from 'react-native-reanimated';
+import RoleTabPage from './home/RoleTabPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -84,6 +81,10 @@ class HomePage extends Component {
     return (
       <ImagePanel source={this.context.profileBg}>
         <Tab.Navigator initialRouteName='World' sceneContainerStyle={{ backgroundColor: 'none' }} screenOptions={defaultScreenOptions}>
+          <Tab.Screen name="Role" component={RoleTabPage} options={{
+            title: "人物",
+            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'人物'} />),
+          }} />
           <Tab.Screen name="World" component={StoryTabPage} options={{
             title: "世界",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'世界'} />),
@@ -96,10 +97,10 @@ class HomePage extends Component {
             title: "城镇",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'城镇'} />),
           }} />
-          <Tab.Screen name="Compose" component={ComposeTabPage} options={{
+          {/* <Tab.Screen name="Compose" component={ComposeTabPage} options={{
             title: "制作",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'制作'} />),
-          }} />
+          }} /> */}
           <Tab.Screen name="Lottery" component={LotteryTabPage} options={{
             title: "抽奖",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'抽奖'} />),

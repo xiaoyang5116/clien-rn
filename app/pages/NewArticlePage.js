@@ -88,10 +88,10 @@ const WORLD = [
 ];
 
 const TAB_BUTTONS = [
+  { title: '人物', action: () => { RootNavigation.navigate('Home', { screen: 'Role' }) } },
   { title: '世界', action: () => { RootNavigation.navigate('Home', { screen: 'World' }) } },
   { title: '探索', action: () => { RootNavigation.navigate('Home', { screen: 'Explore' }) } },
   { title: '城镇', action: () => { RootNavigation.navigate('Home', { screen: 'Town' }) } },
-  { title: '制作', action: () => { RootNavigation.navigate('Home', { screen: 'Compose' }) } },
   { title: '抽奖', action: () => { RootNavigation.navigate('Home', { screen: 'Lottery' }) } },
   { title: '道具', action: () => { RootNavigation.navigate('Home', { screen: 'Props' }) } },
 ]

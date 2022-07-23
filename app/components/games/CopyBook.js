@@ -9,10 +9,12 @@ import {
 } from 'react-native';
 
 import Svg, { Path, } from 'react-native-svg'
+import { px2pd } from '../../constants/resolution';
 
 import { statusBarHeight } from '../../constants'
 import { TextButton } from '../../constants/custom-ui';
 import Toast from '../toast'
+import FastImage from 'react-native-fast-image';
 
 
 
@@ -21,7 +23,7 @@ const { width, height } = Dimensions.get('window');
 
 const ziTieArr = [
     {
-        id: 0, name: "木", img: require('../../../assets/ziTie/mu.png'), detectionArea: [
+        id: 0, name: "木", img: require('../../../assets/games/ziTie/mu.png'), detectionArea: [
             { origin: [89, 95], width: 15, height: 14 },
             { origin: [120, 95], width: 15, height: 14 },
             { origin: [145, 95], width: 15, height: 14 },
@@ -33,7 +35,7 @@ const ziTieArr = [
         ]
     },
     {
-        id: 1, name: "仙", img: require('../../../assets/ziTie/xian.png'), detectionArea: [
+        id: 1, name: "仙", img: require('../../../assets/games/ziTie/xian.png'), detectionArea: [
             { origin: [108, 80], width: 13, height: 12 },
             { origin: [168, 80], width: 14, height: 14 },
             { origin: [99, 109], width: 15, height: 15 },
@@ -47,7 +49,7 @@ const ziTieArr = [
         ]
     },
     {
-        id: 2, name: "火", img: require('../../../assets/ziTie/huo.png'), detectionArea: [
+        id: 2, name: "火", img: require('../../../assets/games/ziTie/huo.png'), detectionArea: [
             { origin: [81, 94], width: 13, height: 13 },
             { origin: [223, 94], width: 15, height: 17 },
             { origin: [62, 137], width: 13, height: 14 },
@@ -81,7 +83,7 @@ const CopyBook = (props) => {
     const { word } = props
 
     if (word === undefined) return null
-    
+
     const currentZiTieArr = word.map((item) => {
         for (let index = 0; index < ziTieArr.length; index++) {
             if (item === ziTieArr[index].name) {
@@ -190,43 +192,48 @@ const CopyBook = (props) => {
 
     return (
         <View style={styles.viewContainer} >
-            <View style={{ width: '90%', height: '80%', borderRadius: 10, overflow: 'hidden', backgroundColor: "#ccc", justifyContent: "space-between", alignItems: 'center' }}>
+            <View style={{ width: '90%', height: '80%', borderRadius: 10, overflow: 'hidden', backgroundColor: "#ccc", justifyContent: "center", alignItems: 'center' }}>
                 <Text style={styles.title}>字帖</Text>
 
-                <View style={[styles.container, { backgroundColor: "#fff", }]}>
-                    <View style={[styles.container, { position: "absolute", zIndex: 0 }]}>
-                        <Image style={{ width: "100%", height: "100%" }} source={ziTie[ziTieIndex.current].img} />
-                    </View>
-                    <View style={[styles.container, { position: "absolute", zIndex: 1, }]}>
-                        {
-                            MousePositions.current.map((item, index) => {
-                                return (
-                                    <View key={index} style={[styles.container, { position: "absolute", zIndex: index, }]}>
-                                        <Svg height={box_width} width={box_width}>
-                                            <Path
-                                                d={item}
-                                                stroke="red"
-                                                fill="none"
-                                                strokeWidth={"3"}
-                                            />
-                                        </Svg>
-                                    </View>
-                                )
-                            })
-                        }
-                    </View>
-                    <View style={[styles.container, { zIndex: 999 }]} {...panResponder.panHandlers} >
-                        <Svg height={box_width} width={box_width}  >
-                            <Path
-                                d={path.current}
-                                stroke="red"
-                                fill="none"
-                                strokeWidth={"3"}
-                            />
-                        </Svg>
+                <View style={styles.imgBg}>
+                    <FastImage style={{ width: px2pd(928), height: px2pd(1492), position: "absolute", }} source={require('../../../assets/games/ziTie/bg.webp')} />
+                    <View style={[styles.container, { backgroundColor: "#fff", }]}>
+                        <View style={[styles.container, { position: "absolute", zIndex: 0 }]}>
+                            <Image style={{ width: "100%", height: "100%", position: 'absolute', zIndex: 2, opacity: 0.5 }} source={ziTie[ziTieIndex.current].img} />
+                            <Image style={{ width: "100%", height: "100%", position: 'absolute', zIndex: 1 }} source={require('../../../assets/games/ziTie/ziTie_bg.webp')} />
+                        </View>
+                        <View style={[styles.container, { position: "absolute", zIndex: 1, }]}>
+                            {
+                                MousePositions.current.map((item, index) => {
+                                    return (
+                                        <View key={index} style={[styles.container, { position: "absolute", zIndex: index, }]}>
+                                            <Svg height={box_width} width={box_width}>
+                                                <Path
+                                                    d={item}
+                                                    stroke="red"
+                                                    fill="none"
+                                                    strokeWidth={"3"}
+                                                />
+                                            </Svg>
+                                        </View>
+                                    )
+                                })
+                            }
+                        </View>
+                        <View style={[styles.container, { zIndex: 999 }]} {...panResponder.panHandlers} >
+                            <Svg height={box_width} width={box_width}  >
+                                <Path
+                                    d={path.current}
+                                    stroke="red"
+                                    fill="none"
+                                    strokeWidth={"3"}
+                                />
+                            </Svg>
+                        </View>
                     </View>
                 </View>
-                <View style={{ flexDirection: "row", justifyContent: "space-evenly", width: "100%" }}>
+
+                <View style={{ flexDirection: "row", justifyContent: "space-evenly", width: "100%",marginBottom:12, }}>
                     <TextButton title={"退出"} onPress={props.onClose} />
                     <TextButton title={"清除"} onPress={onClear} />
                     <TextButton title={"确认"} onPress={onFinish} />
@@ -250,6 +257,11 @@ const styles = StyleSheet.create({
         backgroundColor: "rgba(0,0,0,0.7)",
         zIndex: 99,
     },
+    imgBg: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
     container: {
         width: box_width,
         height: box_width,
@@ -257,5 +269,6 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         color: "#000",
+        marginTop: 12,
     },
 });
