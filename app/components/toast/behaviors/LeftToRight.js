@@ -62,6 +62,7 @@ export default LeftToRight = props => {
         bottom: 100,
         left: leftAnim,
         opacity: opacityAnim,
+        zIndex: 99,
       }}>
       <TouchableOpacity onPress={props.isHide}>
         <View style={currentStyles.tooltipContainer}>

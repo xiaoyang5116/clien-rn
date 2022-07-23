@@ -248,6 +248,7 @@ const sharedStyles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: 'center',
         alignItems: 'center',
+        zIndex: 99,
     },
     tooltip: {
         backgroundColor: "#f2f6eb",
