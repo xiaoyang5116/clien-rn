@@ -31,6 +31,7 @@ import {
 } from 'react-native';
 
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { URL, URLSearchParams } from 'react-native-url-polyfill';
 
 import Block from '../components/article';
 import { DeviceEventEmitter } from 'react-native';
@@ -54,6 +55,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import readerStyle from '../themes/readerStyle';
 import BagAnimation from '../components/animation/BagAnimation';
+import PropTips from '../components/tips/PropTips';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -350,6 +352,17 @@ const TheWorld = (props) => {
     const listener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_CLICK_LINK, (e) => {
       if (!lo.isEqual(routeName, 'PrimaryWorld'))
         return;
+
+      const uri = new URL(e.url);
+      const params = new URLSearchParams(uri.searchParams);
+      if (!lo.isNull(params.get('propId'))) {
+        // 显示道具Tips
+        const propId = parseInt(params.get('propId'));
+        const key = RootView.add(<PropTips propId={propId} viewOnly={true} onClose={() => {
+          RootView.remove(key);
+        }} />);
+        return;
+      }
 
       if (tipsKey.current != null) {
         RootView.remove(tipsKey.current);

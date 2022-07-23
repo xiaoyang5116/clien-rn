@@ -21,8 +21,8 @@ import { confirm } from '../dialog'
 
 
 const eggStatusImg = [
-  { source: require('../../../assets/games/egg/golden_egg.png') },
-  { source: require('../../../assets/games/egg/golden_egg_open.png') },
+  { source: require('../../../assets/games/egg/no_open.png') },
+  { source: require('../../../assets/games/egg/open.png') },
 ]
 
 const PROPS_ICON = [
@@ -89,6 +89,12 @@ const RewardsPage = (props) => {
 const SmashEggs = (props) => {
   // props: {"eggNumber": 3, "id": 6, "onClose": [Function onClose], "remainNumber": 1, "treasureChestId": 1}
   const { treasureChestId } = props
+
+  if (treasureChestId === undefined) {
+    console.debug("宝箱id 未配置")
+    return null
+  }
+
   const [remainNumber, setRemainNumber] = useState(props.remainNumber ? props.remainNumber : 1)
   const eggNumber = props.eggNumber ? props.eggNumber : 3
   const [eggData, setEggData] = useState([])
@@ -129,7 +135,7 @@ const SmashEggs = (props) => {
   const Header = () => {
     return (
       <View>
-        <Text style={styles.header_title}>砸鸡蛋</Text>
+        <Text style={styles.header_title}>碰运气</Text>
         <View style={styles.close}>
           <TouchableWithoutFeedback onPress={() => {
             if (props.onClose != undefined) {
@@ -172,7 +178,7 @@ const SmashEggs = (props) => {
     <HalfPanel style={{ height: "100%", justifyContent: 'center' }}>
       <View style={{ backgroundColor: "#fff", }}>
         <Header />
-        <Text style={styles.TipTitle}>你还有{remainNumber}次砸蛋的机会</Text>
+        <Text style={styles.TipTitle}>你还有{remainNumber}次选择的机会</Text>
         <Eggs />
       </View>
     </HalfPanel>
@@ -212,7 +218,7 @@ const styles = StyleSheet.create({
     marginTop: 24,
     paddingLeft: 12,
     paddingRight: 12,
-    height: 112,
+    height: 130,
     width: "33%",
   },
   img: {

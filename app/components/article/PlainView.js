@@ -63,7 +63,7 @@ const PlainView = (props) => {
                             onPress: (evt, href) => {
                                 // 缺省：Linking.openURL(href);
                                 const { pageX, pageY } = evt.nativeEvent;
-                                DeviceEventEmitter.emit(EventKeys.ARTICLE_CLICK_LINK, { pageX, pageY, source: href });
+                                DeviceEventEmitter.emit(EventKeys.ARTICLE_CLICK_LINK, { pageX, pageY, url: href });
                             }
                         }
                     }}
