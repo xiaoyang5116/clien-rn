@@ -1,6 +1,6 @@
-import DialogTempleComponent from './DialogTemple';
+import DialogRoutesComponent from './DialogRoutes';
 
 
 export * from './ConfirmDialog';
 
-export const DialogTemple = DialogTempleComponent;
+export const DialogRoutes = DialogRoutesComponent;
