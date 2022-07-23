@@ -42,7 +42,7 @@ directory: [
 
   {
     id: 2, 
-    title: '第二卷',
+    title: '未开启',
     map: [
       { point: [0, 0], title: '起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
       { point: [0, 1], title: '选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
@@ -59,7 +59,7 @@ directory: [
 
   {
     id: 3, 
-    title: '第三卷',
+    title: '未开启',
     map: [
       { point: [0, 0], title: '起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
       { point: [0, 1], title: '选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
@@ -76,7 +76,7 @@ directory: [
 
   {
     id: 4, 
-    title: '第四卷',
+    title: '未开启',
     map: [
       { point: [0, 0], title: '起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
       { point: [0, 1], title: '选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
@@ -93,7 +93,7 @@ directory: [
 
   {
     id: 5, 
-    title: '第五卷',
+    title: '未开启',
     map: [
       { point: [0, 0], title: '起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
       { point: [0, 1], title: '选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
@@ -110,7 +110,7 @@ directory: [
 
   {
     id: 6, 
-    title: '第六卷',
+    title: '未开启',
     map: [
       { point: [0, 0], title: '起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
       { point: [0, 1], title: '选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
@@ -127,7 +127,7 @@ directory: [
 
   {
     id: 7, 
-    title: '第七卷',
+    title: '未开启',
     map: [
       { point: [0, 0], title: '起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
       { point: [0, 1], title: '选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
@@ -144,7 +144,7 @@ directory: [
 
   {
     id: 8, 
-    title: '第八卷',
+    title: '未开启',
     map: [
       { point: [0, 0], title: '起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
       { point: [0, 1], title: '选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
@@ -161,7 +161,7 @@ directory: [
 
   {
     id: 9, 
-    title: '第九卷',
+    title: '未开启',
     map: [
       { point: [0, 0], title: '起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
       { point: [0, 1], title: '选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
@@ -178,7 +178,7 @@ directory: [
 
   {
     id: 10, 
-    title: '第十卷',
+    title: '未开启',
     map: [
       { point: [0, 0], title: '起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
       { point: [0, 1], title: '选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
