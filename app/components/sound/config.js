@@ -22,6 +22,9 @@ export const SOUND_RESOURCES = [
     { id: 'SE_AM_0002', source: require('../../../assets/sound/SE/SE_AM_0002.wav') },
     { id: 'SE_AM_0003', source: require('../../../assets/sound/SE/SE_AM_0003.wav') },
     { id: 'SE_AM_0004', source: require('../../../assets/sound/SE/SE_AM_0004.wav') },
+    { id: 'SE_AM_0005', source: require('../../../assets/sound/SE/SE_AM_0005.wav') },
+    { id: 'SE_AM_0006', source: require('../../../assets/sound/SE/SE_AM_0006.wav') },
+    { id: 'SE_AM_0007', source: require('../../../assets/sound/SE/SE_AM_0007.wav') },
    
 
 
