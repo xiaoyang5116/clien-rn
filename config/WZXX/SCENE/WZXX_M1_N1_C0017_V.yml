@@ -34,6 +34,15 @@ scenes: [
         ],
       },
 
+      { 
+        id: 'WZXX_M1_N1_C0017_V3', desc: '谁来了', 
+        options: [ 
+          { title: "【和陶老联系】",dialogs: ['C0017A_duihuaA']},
+
+      
+        ],
+      },
+
 
 
         ],
@@ -61,13 +70,38 @@ scenes: [
 
 
           #选项对话2
-          { id: 'C0017A_suanleA',style: 6, title: '忍气吞声', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+        { id: 'C0017A_suanleA',style: 6, title: '忍气吞声', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P3', content: ['李森炎心中忿忿不平，但还是选择忍下这口气','每日坚持用陶老本尊给的锻骨灵液炼体，体质逐渐提升','但每次看到那些筑基锻骨灵液，他心中的郁愤就更增一分','他想着自己这么受人欺辱，欺骗',
           '一切的根源都是因为自己太弱','这种念头渐渐形成心魔，在他心里扎根','他变得更加急功近利，在一次突破中，他一念成魔','被附近的强大修士感知到，遭围攻而死',],
           btn: [{title: '再来一次绝不选这个',toChapter: "WZXX_M1_N1_C017_[N1]"}]},
         ],
-    },
+        },
+
+     {   id: 'C0017A_duihuaA',
+          style: 8, title: '神秘阵盘', textAnimationType: 'TextSingle', dialogType: 'HalfScreen', isBubbleColor: true,
+          sections: [
+            {
+              key: 'p1',
+              dialog: [
+                { id: '04', content: ['滴滴，主人在吗','在吗？','在吗？','在吗？',], },
+                { id: '02', content: ['云云发生什么事了',], },
+                { id: '04', content: ['是李森炎有事，他说他要死了',], },
+                { id: '02', content: ['？？？',], },
+                { id: '05', content: ['要死…那就是没死咯',], },
+                { id: '03', content: ['这就要死了……这才哪到哪啊，我早就说过他不行的，你们却偏要觉得他是全村的希望',], },
+              ],
+              btn: [{ title: '开始乞讨', tokey: "p2", animation: ['边缘闪烁绿'] }, { title: '退出', tokey: "next" }]
+            },
+            {
+              key: 'p2',
+              dialog: [
+                { id: '02', content: ['记住不要去北街，那是富人才能去的地方，乞丐是去不了的。会被打。'] }
+              ],
+              btn: [{ title: '退出', tokey: "next" }]
+            },
+          ]
+        }
 
 
         
