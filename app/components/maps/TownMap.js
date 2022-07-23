@@ -18,6 +18,7 @@ import { EventKeys, getWindowSize, ThemeContext } from '../../constants';
 import { confirm } from '../dialog/ConfirmDialog';
 import Flower from '../animation/Flower';
 import { PlantPage } from '../plant';
+import { ComposeUtils } from '../../pages/home/ComposePage';
 
 const MAP_DATA = [
     {
@@ -90,8 +91,15 @@ const EntryButton = (props) => {
     return (
         <TouchableWithoutFeedback onPress={() => {
                 confirm('确认进入？', () => {
-                    // DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
-                    return PlantPage.show()
+                    switch (props.name) {
+                        case 'LingYaoTian':
+                            PlantPage.show();
+                            break;
+                        case 'LianQiFeng':
+                            ComposeUtils.show();
+                            break;
+                    }
+                    DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
                 });
             }}>
             <View style={{ ...props.style }}>
