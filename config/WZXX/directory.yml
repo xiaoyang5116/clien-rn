@@ -2,11 +2,41 @@
 directory: [
   {
     id: 1, 
-    title: '第一卷',
+    title: '第一至二十章',
     map: [
-      { point: [0, 0], title: '起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1]] },
-      { point: [0, 1], title: '选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
-      { point: [0, -1], title: '沉浸式阅读', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [], path: [] },
+      { point: [0, 0], title: '第一章N1起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1]] },
+      { point: [0, 1], title: '第一章N2选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
+      { point: [0, -1], title: '第一章N3沉浸式阅读', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [[-1, -2], [0, -2], [1, -2]], },
+      { point: [-1, -2], title: '第二章N1回忆开始', toChapter: 'WZXX_M1_N1_C002_[N1]', links: [[0, -2]] },
+      { point: [0, -2], title: '第二章N2猫', toChapter: 'WZXX_M1_N1_C002_[N2]', links: [[1, -2]] },
+      { point: [1, -2], title: '第二章N3追杀', toChapter: 'WZXX_M1_N1_C002_[N3]', links: [[1, -3]], },
+      { point: [1, -3], title: '第三章N1白马分庄', toChapter: 'WZXX_M1_N1_C003_[N1]', links: [[0, -3],] },
+      { point: [0, -3], title: '第三章N2白月光闺房', toChapter: 'WZXX_M1_N1_C003_[N2]', links: [[0, -4]], },
+      { point: [0, -4], title: '第四章N1灵修界', toChapter: 'WZXX_M1_N1_C004_[N1]', links: [[0, -5], ] },
+      { point: [0, -5], title: '第四章N2拒绝拜师', toChapter: 'WZXX_M1_N1_C004_[N2]', links: [[0, -6]],  },
+      { point: [0, -6], title: '第五章N1小师弟', toChapter: 'WZXX_M1_N1_C005_[N1]', links: [[-1, -6]] },
+      { point: [-1, -6], title: '第五章N2打斗', toChapter: 'WZXX_M1_N1_C005_[N2]', links: [[0, -7]], },
+      { point: [0, -7], title: '第六章初见陶老', toChapter: 'WZXX_M1_N1_C006_[N0]', links: [[0, -8], ] },
+      { point: [0, -8], title: '第七章修炼', toChapter: 'WZXX_M1_N1_C007_[N0]', links: [[-1, -8]] },
+      { point: [-1, -8], title: '第八章坊市中毒', toChapter: 'WZXX_M1_N1_C008_[N0]', links: [[0, -9], ] },
+      { point: [0, -9], title: '第九章解决恶灵', toChapter: 'WZXX_M1_N1_C009_[V2]', links: [[-1, -10]],  },
+      { point: [-1, -10], title: '第十章N1 守夜 ', toChapter: 'WZXX_M1_N1_C010_[V1][N1]', links: [[0, -10], ] },
+      { point: [0, -10], title: '第十章N2大战红衣女灵', toChapter: 'WZXX_M1_N1_C010_[V1][N2]', links: [[-1, -11]],  },
+      { point: [-1, -11], title: '第十一章三只阴灵', toChapter: 'WZXX_M1_N1_C011_[V0]', links: [[0, -12], ] },
+      { point: [0, -12], title: '第十二章神识', toChapter: 'WZXX_M1_N1_C012_[V0]', links: [[0, -13]], },
+      { point: [0, -13], title: '第十五章再遇陶老', toChapter: 'WZXX_M1_N1_C015_[V0]', links: [[1, -13]] },
+      { point: [1, -13], title: '第十六章突破炼气四重', toChapter: 'WZXX_M1_N1_C016_[V0]', links: [[1, -14]],  },
+      { point: [1, -14], title: '第十七章锻骨灵液N1', toChapter: 'WZXX_M1_N1_C017_[N1]', links: [[2, -15]],  },
+      { point: [2, -15], title: '第十七章找陶老N2', toChapter: 'WZXX_M1_N1_C017_[N2]', links: [[1, -15]],  },
+      { point: [1, -15], title: '第十八章对话陶老N1', toChapter: 'WZXX_M1_N1_C018_[N1]', links: [[1, -16]],  },
+      { point: [1, -16], title: '第十八章怒怼陶老N2', toChapter: 'WZXX_M1_N1_C018_[N2]', links: [[0, -16]],  },
+      { point: [0, -16], title: '第十九章用灵液N1', toChapter: 'WZXX_M1_N1_C019_[N1]', links: [[0, -17]],  },
+      { point: [0, -17], title: '第十九章恶犬恶主N2', toChapter: 'WZXX_M1_N1_C019_[N2]', links: [[1, -17]],  },
+      { point: [1, -17], title: '第二十章暴打黑光', toChapter: 'WZXX_M1_N1_C020', links: [[]],  },
+    
+   
+
+
     ]
   },
 

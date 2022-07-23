@@ -30,7 +30,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001C_V', desc: '选项', 
         options: [ 
-
+       
         ],
       },
 
@@ -55,7 +55,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001C_TO_C002', desc: '选项', 
         options: [ 
-          { title: "【阅读下一章】", toChapter: "WZXX_M1_N1_C002" },
+          { title: "【阅读下一章】", toChapter: "WZXX_M1_N1_C002_[N1]" },
         ],
       },
       #

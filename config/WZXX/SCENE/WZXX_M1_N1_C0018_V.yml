@@ -1,0 +1,72 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_C0018_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [{ id: "v1", min: 0, max: 1 }],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [],
+
+
+    
+      chats: [
+      #
+
+      { 
+        id: 'WZXX_M1_N1_C0018_V1', desc: '对话', 
+        options: [ 
+          { title: "【和陶老联系】",dialogs: ['C0018A_duihuaA']},
+
+      
+        ],
+      },
+
+      
+
+
+
+
+        ],
+
+
+      # 对话框
+      dialogs:
+        [
+
+     #选项对话2
+       
+
+     {   id: 'C0018A_duihuaA',
+          style: 8, title: '陶老对话', textAnimationType: 'TextSingle', dialogType: 'HalfScreen', isBubbleColor: true,
+          sections: [
+            {
+              key: 'p1',
+              dialog: [
+                { id: '04', content: ['滴滴，主人在吗','在吗？','在吗？','在吗？',], },
+                { id: '02', content: ['云云发生什么事了',], },
+                { id: '04', content: ['是李森炎有事，他说他要死了',], },
+                { id: '02', content: ['？？？',], },
+                { id: '05', content: ['要死…那就是没死咯',], },
+                { id: '03', content: ['这就要死了……这才哪到哪啊，我早就说过他不行的，你们却偏要觉得他是全村的希望',], },
+              ],
+              btn: [{ title: '……', toChapter: "WZXX_M1_N1_C018_[N1]" }]
+            },
+          ]
+        }
+        
+  ]
+  
+
+  
+    }
+
+
+]
+
