@@ -151,6 +151,15 @@ const MultiplayerDialog = (props) => {
 
   // 渲染对话
   const renderDialog = ({ item }) => {
+    // 对话中的提示
+    if (item.id === "center") {
+      return <View><Text style={styles.tips}>{item.content}</Text></View>
+    }
+    // 对话中的旁白
+    if (item.id === "left") {
+      return <View><Text style={styles.narration}>{item.content}</Text></View>
+    }
+
     if (figureInfo.length > 0) {
       // 当前说话人的信息
       const figure = figureInfo.find(f => f.id === item.id)
@@ -323,5 +332,17 @@ const styles = StyleSheet.create({
   },
   titleFontSize: {
     fontSize: 20,
+  },
+  tips: {
+    fontSize: 16,
+    color: "#959595",
+    marginTop: 18,
+    textAlign: "center",
+  },
+  narration: {
+    fontSize: 18,
+    color: "#000",
+    marginTop: 18,
+    textAlign: "left",
   }
 });

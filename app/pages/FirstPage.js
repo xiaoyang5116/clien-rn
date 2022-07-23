@@ -161,7 +161,9 @@ class FirstPage extends Component {
                         key: 'p1',
                         dialog: [
                           { id: '02', content: ['这里是外来的一般商家来的市场，一般为了图个彩头，不会有多寒酸 我们就在这附近讨乞。不出这条路就行。', ['边缘闪烁绿'], '讨乞后每天晚上要给帮派利钱，不然被记住会被帮派打走。',], },
+                          { id: 'center', content: ["一天前"] },
                           { id: '01', content: ['好的', ['边缘闪烁绿']], },
+                          { id: 'left', content: ["一天前"] },
                           { id: '04', content: ['好的',], },
                         ],
                         btn: [{ title: '开始乞讨', tokey: "p2", animation: ['边缘闪烁绿'] }, { title: '退出', tokey: "next" }]
