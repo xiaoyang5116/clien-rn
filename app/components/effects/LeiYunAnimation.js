@@ -46,7 +46,6 @@ class SheetItem extends React.Component {
                     if (this.props.next.current != null) {
                         this.props.next.current.start();
                     } else {
-                        console.debug('Completed');
                         if (this.props.onClose != undefined) {
                             this.props.onClose();
                         }
