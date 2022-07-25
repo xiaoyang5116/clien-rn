@@ -7,6 +7,7 @@ import {
     PureComponent,
 } from "../../constants";
 
+import ImageCapInset from 'react-native-image-capinsets-next';
 import { Button, Text, View } from '../../constants/native-ui';
 import BlackNarration from './BlackNarration';
 import Narration from './Narration'
@@ -48,6 +49,13 @@ class MaskModal extends PureComponent {
             <Modal isVisible={this.props.visible} coverScreen={false} style={{ margin: 0, backgroundColor: "rgba(102, 102, 102, 0.6)" }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropOpacity={0}>
                 <View style={currentStyles.dlgCenter}>
                     <View style={[currentStyles.dlgParent, currentStyles.dlgCenter]}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', width: "100%", height: "100%", position: "absolute", zIndex: 0, padding: 2, }}>
+                            <ImageCapInset
+                                source={require("../../../assets/button/40dpi_gray.png")}
+                                style={{ width: "100%", height: "100%" }}
+                                capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                            />
+                        </View>
                         <View style={{ flex: 4 }}>
                             <View style={currentStyles.dlgTitleContainer}>
                                 <Text style={currentStyles.dlgTitle}>{this.props.title}</Text>
