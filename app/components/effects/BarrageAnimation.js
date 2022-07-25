@@ -68,7 +68,8 @@ const BarrageItem = (props) => {
 
     return (
         <Animated.View style={{ position: 'absolute', left: WIN_SIZE.width, top: (props.posIdx * 35), transform: [{ translateX: translateX }] }} onLayout={layoutHandler}>
-            <Text style={{
+            <Text numberOfLines={1} style={{
+                width: '100%', // 解决文本过长导致的换行问题
                 color: '#fff',
                 fontSize: 28,
                 textShadowColor: '#000', 
