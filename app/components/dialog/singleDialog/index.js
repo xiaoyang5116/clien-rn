@@ -5,6 +5,7 @@ import { EventKeys } from '../../../constants';
 
 import FullSingle from './FullSingle'
 import HalfSingle from './HalfSingle'
+import GameOverDialog from '../gameOverDialog';
 
 const SingleDialog = (props) => {
     // props 传入

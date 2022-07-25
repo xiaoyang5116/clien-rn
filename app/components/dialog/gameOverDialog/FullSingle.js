@@ -1,4 +1,12 @@
-import { View, Text, TouchableWithoutFeedback, FlatList, Image, TouchableHighlight } from 'react-native';
+import {
+    View,
+    Text,
+    TouchableWithoutFeedback,
+    FlatList,
+    Image,
+    TouchableHighlight,
+    SafeAreaView
+} from 'react-native';
 import React, { useState } from 'react';
 
 import { ThemeContext } from '../../../constants';
@@ -88,49 +96,51 @@ const FullSingle = props => {
                 // source={require('../../../../assets/bg/gameOver.png')}
                 source={artId ? theme.artTab[artId] : theme.artTab[1]}
             />
-            {/* 标题 */}
-            <View
-                style={[
-                    theme.rowCenter,
-                    // theme.blockBgColor1,
-                    {
-                        backgroundColor: '#fff',
-                        height: 40,
-                        borderBottomColor: '#9e9a92',
-                        borderBottomWidth: 1,
-                        borderTopColor: '#9e9a92',
-                        borderTopWidth: 1,
-                    },
-                ]}>
-                <Text style={[{ fontSize: 20, textAlign: 'center', backgroundColor: '#fff' }]}>
-                    {title}
-                </Text>
-            </View>
-            {/* 显示区域 */}
-            <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, }}>
-                <TouchableWithoutFeedback onPress={nextParagraph}>
-                    <View style={{ flex: 1 }}>
-                        {/* 内容显示区域 */}
-                        <View style={{ height: '60%' }}>
-                            <FlatList
-                                data={currentTextList}
-                                renderItem={renderText}
-                                keyExtractor={(item, index) => item + index}
-                            />
-                        </View>
+            <SafeAreaView style={{ flex: 1 }}>
+                {/* 标题 */}
+                <View
+                    style={[
+                        theme.rowCenter,
+                        // theme.blockBgColor1,
+                        {
+                            backgroundColor: '#fff',
+                            height: 40,
+                            borderBottomColor: '#9e9a92',
+                            borderBottomWidth: 1,
+                            borderTopColor: '#9e9a92',
+                            borderTopWidth: 1,
+                        },
+                    ]}>
+                    <Text style={[{ fontSize: 20, textAlign: 'center', backgroundColor: '#fff' }]}>
+                        {title}
+                    </Text>
+                </View>
+                {/* 显示区域 */}
+                <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, }}>
+                    <TouchableWithoutFeedback onPress={nextParagraph}>
+                        <View style={{ flex: 1 }}>
+                            {/* 内容显示区域 */}
+                            <View style={{ height: '60%' }}>
+                                <FlatList
+                                    data={currentTextList}
+                                    renderItem={renderText}
+                                    keyExtractor={(item, index) => item + index}
+                                />
+                            </View>
 
-                        {/* 按钮区域 */}
-                        <View
-                            style={{ marginTop: 12, height: '40%', justifyContent: 'center' }}>
-                            <FlatList
-                                data={showBtnList}
-                                renderItem={renderBtn}
-                                keyExtractor={(item, index) => item.title + index}
-                            />
+                            {/* 按钮区域 */}
+                            <View
+                                style={{ marginTop: 12, height: '40%', justifyContent: 'center' }}>
+                                <FlatList
+                                    data={showBtnList}
+                                    renderItem={renderBtn}
+                                    keyExtractor={(item, index) => item.title + index}
+                                />
+                            </View>
                         </View>
-                    </View>
-                </TouchableWithoutFeedback>
-            </View>
+                    </TouchableWithoutFeedback>
+                </View>
+            </SafeAreaView>
         </View>
     );
 };
