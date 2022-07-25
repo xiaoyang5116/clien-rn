@@ -488,7 +488,7 @@ scenes: [
                        
         #死亡0
          { id: 'gameover00',
-           style: 6, 
+           style: 7, 
            title: '你挂了',
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 

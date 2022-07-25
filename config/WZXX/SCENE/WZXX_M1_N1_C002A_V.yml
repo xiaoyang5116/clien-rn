@@ -232,26 +232,26 @@ scenes: [
 
 
            #死亡10
-          { id: 'gameover10',style: 7, title: '采花贼李森炎', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover10',style: 7, title: '采花贼李森炎', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B10', content: ['半推半就的，眼看着女人的红唇就要贴上来','结果凑近了些，借着微弱的光还有窗外的皓月，看清了李森炎的样子',
           '发现李森炎是假冒的后，姑娘扇了李森炎一巴掌',{ sounds: [{ soundId: 'SE_HV_0010',}] } ,'尖叫一声叫来众多姐妹',{ sounds: [{ soundId: 'SE_HV_0005',}] } ,'李森炎被抓进了官府','刚好碰见县令心情不好，不由分说直接判了个游街示众','之后，李森炎采花贼的名字响彻十里八乡，故事被添油加醋的戏剧化，成为众人笑谈',],
           btn: [{title: '要是能重来的话……',dialogs: ['C002A_fenzhiB']},]},
           ], },
            #死亡10
-          { id: 'gameover10A',style: 7, title: '采花贼李森炎', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover10A',style: 7, title: '采花贼李森炎', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B10', content: ['李森炎被抓进了官府','刚好碰见县令心情不好，不由分说直接判了个游街示众','之后，李森炎采花贼的名字响彻十里八乡，故事被添油加醋戏剧化了无数遍，成为众人茶余饭后的笑谈',],
           btn: [{title: '要是能重来的话……',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
 
             #死亡12
-          { id: 'gameover12',style: 6, title: '赶紧溜！', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover12',style: 7, title: '赶紧溜！', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B12', content: ['你选择溜，毫不犹豫，马不停蹄的溜！','傻瓜才参合着乱七八糟的事','李森炎趁没人注意，找了个倒霉蛋的衣服，直接换上逃走',],
           btn: [{title: '赶紧回家',dialogs: ['C002A_fenzhiA']},]},
           ], },
 
             #死亡13
-          { id: 'gameover13',style: 6, title: '带出去交给官府', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover13',style: 7, title: '带出去交给官府', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B13', content: ['你看见这些银子底下都是刻了字的','应该是官员交税收上来的银子，现在被这群黑衣人劫了','私自使用官银可是杀头的大罪，你仔细思量了半分，决定报官',
           '李森炎从窗户跳下，前去官府报了官','帮助官府成功收缴了这批被盗的官银','立下了大功','不过也正因为这件事你备受关注','马上被暗中的有心人注意到了',
           '当天夜里，李森炎刚洗漱好准备睡下，忽然不知被哪里飞出来的暗箭刺中',['边缘闪烁红'],],
@@ -259,7 +259,7 @@ scenes: [
           ], },
 
             #死亡14
-          { id: 'gameover14',style: 6, title: '交给接头黑衣人', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover14',style: 7, title: '交给接头黑衣人', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B14', content: ['你抱起这一大包银子，赶紧从房间里跑了出去，溜进暗道把东西交给了黑衣人','黑衣人见到东西大喜，拍着你的肩，“你这小子，还是有点用嘛，这东西，我和你三七分。”',
           '你并不在乎，这东西收着就是掉脑袋的罪。你只想着待会儿怎么溜走。','和黑衣人出了暗道还没走多久，你就看见一群官兵朝你们追来','黑衣人一见立马抱着银子，一招腾飞逃了',
           '而你傻了','官兵们追上来制住了你：“说！官银呢，你的同伙往哪里跑了！坦白从宽，抗拒从严。”','你欲哭无泪，“官大哥，我说这事和我没关系你信吗？我说是那个贼先动的手你信吗！！！”',['边缘闪烁红'],
@@ -268,32 +268,32 @@ scenes: [
           ], },
 
             #死亡15
-          { id: 'gameover15',style: 6, title: '自己带走', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover15',style: 7, title: '自己带走', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B15', content: ['这么一大包银子，足以让你和原身母亲从此摆脱疾苦，奔向小康了','你心生一计，决定自己把这些东西带走','于是去窗户边打量了下，这里的距离大概不过两层楼高，抱着东西跳下去应该是可以的',
           '李森炎将银子打包好，背上身，翻窗逃跑','天色漆黑，只能凭借运气，找准机会奋力一跳',['震屏1'],'发现正好跳到了一群官兵前面','官兵看着李森炎背着包裹，大喝，就是他！','李森炎：怎么这么巧啊！',],
           btn: [{title: '太怪了，再来!',dialogs: ['C002A_fenzhiB']},]},
           ], },
 
            #死亡16
-          { id: 'gameover16',style: 6, title: '亮光一闪！', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover16',style: 7, title: '亮光一闪！', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B16', content: ['白家巡逻的护卫看见你从小姐的房间里出来，立马拿刀架住了你','厉声讯问，“你是何人，为什么会从小姐的闺房出来！”',['边缘闪烁红'],'“大哥，这是误会，误会……我和你们小姐没发生任何关系。”','“没关系，你还敢擅闯小姐闺房，找死！”','说完，手起刀落。','你挂了',],
           btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiBF_A']},]},
           ], },
 
            #死亡17
-          { id: 'gameover17',style: 6, title: '威胁、挟持她', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover17',style: 7, title: '威胁、挟持她', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B17', content: ['你做出凶狠蛮横的样子，呲牙咧嘴的对白月光开口。','“你是谁不重要，不过你若是识趣的话，最好闭上你的嘴巴，不然的话，小心我……”','话还没说完，白月光冷冷一笑。','“笑话，我白月光也岂是你能威胁的？”','说完，纤细的手指挥了挥，一道暗器朝你射来。',['边缘闪烁红'],'你死了',],
           btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiBF_A']},]},
           ], },
 
           #死亡18
-          { id: 'gameover18',style: 6, title: '威胁、挟持她', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover18',style: 7, title: '威胁、挟持她', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B18', content: ['你做出凶狠蛮横的样子，呲牙咧嘴的对白月光开口。','“你是谁不重要，不过你若是识趣的话，最好闭上你的嘴巴，不然的话，小心我……”','话还没说完，白月光冷冷一笑。','“笑话，我白月光也岂是你能威胁的？”','说完，纤细的手指挥了挥，一道暗器朝你射来。',['边缘闪烁红'],'你死了',],
           btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiBF_B']},]},
           ], },
 
            #死亡19
-          { id: 'gameover19',style: 6, title: '亮光一闪！', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover19',style: 7, title: '亮光一闪！', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B19', content: ['白家巡逻的护卫看见你从小姐的房间里出来，立马拿刀架住了你','厉声讯问，“你是何人，为什么会从小姐的闺房出来！”',['边缘闪烁红'],'“大哥，这是误会，误会……我和你们小姐没发生任何关系。”','“没关系，你还敢擅闯小姐闺房，找死！”','说完，手起刀落。',[{ sounds: [{ soundId: 'SE_KO_0007',}] }],'你挂了',],
           btn: [{title: '不放弃，再来',dialogs: ['C002A_fenzhiBF_B']},]},
           ], },
@@ -436,7 +436,7 @@ scenes: [
     },
           #死亡1
          { id: 'gameover01',
-           style: 6, 
+           style: 7, 
            title: '打死也不出门',
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
@@ -466,7 +466,7 @@ scenes: [
   
  
           #死亡6  
-          { id: 'gameover06',style: 6, title: '被打一顿', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover06',style: 7, title: '被打一顿', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B6', content: ['李森炎被打一顿',[{ sounds: [{ soundId: 'SE_UE_0010',}] }],'三天起不来床','当能活动的时候发现自家遭了贼','连家具都被搬空，被搜刮的干干净净什么都不剩了',],
           btn: [{title: '重来！',dialogs: ['C002A_fenzhiB']},]},
           ], },
