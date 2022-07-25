@@ -6,9 +6,7 @@ import {
     Animated,
     View,
     StyleSheet,
-    DeviceEventEmitter,
 } from 'react-native';
-
 
 const IMAGES = [
     { id: 0, source: require('../../../assets/animations/leiyun/leiyun0-1.png'), frameWidth: 480, frameHeight: 960, frameNums: 8, columns: 4, rows: 2 },
@@ -28,73 +26,82 @@ const IMAGES = [
     { id: 14, source: require('../../../assets/animations/leiyun/leiyun14-15.png'), frameWidth: 480, frameHeight: 960, frameNums: 8, columns: 4, rows: 2 },
 ]
 
-const SheetItem = (props) => {
-    const sheet = React.createRef(null);
-    const opacity = React.useRef(new Animated.Value(0)).current;
+class SheetItem extends React.Component {
 
-    React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener('__@LeiYunAnimation.sheetItem', (id) => {
-            if (props.data.id != id)
-                return
+    constructor(props) {
+        super(props);
+        this.sheet = React.createRef(null);
+        this.opacity = new Animated.Value(0);
+    }
 
-            const play = type => {
-                sheet.current.play({
-                    type,
-                    fps: Number(18),
-                    resetAfterFinish: false,
-                    loop: false,
-                    onFinish: () => {
-                        opacity.setValue(0);
-                        const next = IMAGES.find(e => e.id == (id + 1));
-                        if (next != undefined) {
-                            DeviceEventEmitter.emit('__@LeiYunAnimation.sheetItem', next.id);
-                        } else  {
-                            if (props.onClose != undefined) {
-                                props.onClose();
-                            }
+    start() {
+        const play = type => {
+            this.sheet.current.play({
+                type,
+                fps: Number(18),
+                resetAfterFinish: false,
+                loop: false,
+                onFinish: () => {
+                    this.opacity.setValue(0);
+                    if (this.props.next.current != null) {
+                        this.props.next.current.start();
+                    } else {
+                        console.debug('Completed');
+                        if (this.props.onClose != undefined) {
+                            this.props.onClose();
                         }
-                    },
-                });
-            }
-
-            opacity.setValue(1);
-            play('walk');
-        });
-        return () => {
-            listener.remove();
+                    }
+                },
+            });
         }
-    }, []);
+        //
+        this.opacity.setValue(1);
+        play('walk');
+    }
 
-    return (
-        <Animated.View style={{ opacity: opacity }}>
-            <SpriteSheet
-                ref={ref => (sheet.current = ref)}
-                source={props.data.source}
-                columns={props.data.columns}
-                rows={props.data.rows}
-                frameWidth={props.data.frameWidth}
-                frameHeight={props.data.frameHeight}
-                imageStyle={{}}
-                viewStyle={{}}
-                animations={{
-                    walk: lo.range(props.data.frameNums),
-                }}
-            />
-        </Animated.View>
-    );
+    render() {
+        return (
+            <Animated.View style={{ opacity: this.opacity }}>
+                <SpriteSheet
+                    ref={ref => (this.sheet.current = ref)}
+                    source={this.props.data.source}
+                    columns={this.props.data.columns}
+                    rows={this.props.data.rows}
+                    frameWidth={this.props.data.frameWidth}
+                    frameHeight={this.props.data.frameHeight}
+                    imageStyle={{}}
+                    viewStyle={{}}
+                    animations={{
+                        walk: lo.range(this.props.data.frameNums),
+                    }}
+                />
+            </Animated.View>
+        );
+    }
 }
 
 const LeiYunAnimation = (props) => {
 
+    const first = React.useRef(null);
+
     React.useEffect(() => {
-        DeviceEventEmitter.emit('__@LeiYunAnimation.sheetItem', 0);
+        if (first != null) {
+            first.current.current.start();
+        }
     }, []);
+
+    let nextRef = React.createRef();
+    first.current = nextRef;
 
     const items = [];
     IMAGES.forEach(e => {
+        //
+        const ref = nextRef;
+        nextRef = React.createRef();
+        //
         items.push(
             <View key={e.id} style={{ position: 'absolute' }}>
-                <SheetItem data={e} {...props} />
+                <SheetItem ref={ref} next={nextRef} data={e} {...props} />
             </View>
         );
     });
