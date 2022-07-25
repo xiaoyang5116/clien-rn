@@ -21,4 +21,20 @@ data: [
       }
     },
   },
+  {
+    # ID
+    id: 2,
+
+    # 是否宝箱类型
+    box: true,
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [  { propId: 201, num: 2, rate: 20 } ],
+      
+      }
+    },
+  },
 ]

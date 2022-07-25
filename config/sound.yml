@@ -6,7 +6,7 @@
 
 sound: [
     # 首页
-    { routeName: 'First', soundId: 'BGM_C_0002' },
+    { routeName: 'First', soundId: 'BGM_C_0003' },
     # 设置页
     { routeName: 'Profile', soundId: 'BGM_C_0001' },
     # 道具页
