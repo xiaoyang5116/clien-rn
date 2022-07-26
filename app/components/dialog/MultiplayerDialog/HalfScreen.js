@@ -57,6 +57,7 @@ const HalfScreen = (props) => {
                                 data={historyDialogData}
                                 renderItem={renderDialog}
                                 keyExtractor={(item, index) => item + index}
+                                ListFooterComponent={() => <View style={{ height: 24 }} />}
                                 onContentSizeChange={() => {
                                     if (historyDialogData.length > 0) {
                                         refFlatList.current.scrollToEnd({ animated: true })
