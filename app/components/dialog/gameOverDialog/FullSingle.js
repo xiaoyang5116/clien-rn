@@ -9,9 +9,10 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 
+import lo from 'lodash'
 import { ThemeContext } from '../../../constants';
 import { px2pd } from '../../../constants/resolution';
-import { TextButton, LongTextButton } from '../../../constants/custom-ui';
+import { TextButton, LongTextButton, BtnIcon } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 
 
@@ -58,31 +59,29 @@ const FullSingle = props => {
 
     const renderBtn = ({ item }) => {
         if (currentIndex >= currentDialogueLength) {
+            let iconComponent = <></>;
+            if (lo.isObject(item.icon) && lo.isBoolean(item.icon.show) && item.icon.show) {
+                iconComponent = <BtnIcon id={item.icon.id} style={{ height: "100%", justifyContent: "center" }} />
+            }
+
             return (
-                <View style={{ marginTop: 8 }}>
-                    {/* <LongTextButton
-                        title={item.title}
+                <View style={{ marginTop: 8, justifyContent: "center", alignItems: 'center', overflow: 'hidden', }}>
+                    <TouchableHighlight
+                        underlayColor={'#fff'}
+                        activeOpacity={0.5}
                         onPress={() => { nextDialogue(item) }}
-                        borderColor={"#a3a3a3"}
-                        source={require('../../../../assets/button/gameOver_btn.png')}
-                    /> */}
-                    <View style={{ justifyContent: "center", alignItems: 'center', overflow: 'hidden', }}>
-                        <TouchableHighlight
-                            underlayColor={'#fff'}
-                            activeOpacity={0.5}
-                            onPress={() => { nextDialogue(item) }}
-                        >
-                            <View style={{ width: px2pd(1016), height: px2pd(102), borderWidth: px2pd(3), borderRadius: 3, borderColor: "#a3a3a3", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
-                                <Image
-                                    style={{ width: px2pd(1010), height: px2pd(96) }}
-                                    source={require("../../../../assets/button/gameOver_btn.png")}
-                                />
-                            </View>
-                        </TouchableHighlight>
-                        <View pointerEvents="none" style={{ position: 'absolute' }}>
-                            <Text style={{ fontSize: 18, color: "#6a655e", }}>{item.title}</Text>
+                    >
+                        <View style={{ width: px2pd(1016), height: px2pd(102), borderWidth: px2pd(3), borderRadius: 3, borderColor: "#a3a3a3", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
+                            <Image
+                                style={{ width: px2pd(1010), height: px2pd(96) }}
+                                source={require("../../../../assets/button/gameOver_btn.png")}
+                            />
                         </View>
+                    </TouchableHighlight>
+                    <View pointerEvents="none" style={{ position: 'absolute' }}>
+                        <Text style={{ fontSize: 18, color: "#6a655e", }}>{item.title}</Text>
                     </View>
+                    {iconComponent}
                 </View>
             );
         }

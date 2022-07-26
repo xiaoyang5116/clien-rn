@@ -7,11 +7,13 @@ import {
     SafeAreaView
 } from 'react-native';
 import React, { useState } from 'react';
-import { Panel } from '../../panel';
+
 import { ThemeContext } from '../../../constants';
-import { TextButton, LongTextButton, Header1 } from '../../../constants/custom-ui';
+
+import { TextButton, LongTextButton, Header1, BtnIcon } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 import FastImage from 'react-native-fast-image';
+
 
 const FullSingle = props => {
     const windowHeight = Dimensions.get('window').height;
@@ -58,22 +60,38 @@ const FullSingle = props => {
         return null;
     };
 
+    const HaveBtnIcon = ({ item }) => {
+        const { title, icon } = item
+        return (
+            <>
+                <LongTextButton
+                    title={title}
+                    // disabled={icon.show}
+                    onPress={() => {
+                        nextDialogue(item);
+                    }}
+                />
+                {icon.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
+            </>
+        )
+    }
+
     const renderBtn = ({ item }) => {
         if (currentIndex >= currentDialogueLength) {
             return (
-                <View style={{ marginTop: 8, height: 40, justifyContent: 'center' }}>
-                    {/* <TextButton
-                        title={item.title}
-                        onPress={() => {
-                            nextDialogue(item);
-                        }}
-                    /> */}
-                    <LongTextButton
-                        title={item.title}
-                        onPress={() => {
-                            nextDialogue(item);
-                        }}
-                    />
+                <View style={{ marginTop: 8, height: 40, justifyContent: 'center', }}>
+                    {
+                        item.icon
+                            ? (<HaveBtnIcon item={item} />)
+                            : (
+                                <LongTextButton
+                                    title={item.title}
+                                    onPress={() => {
+                                        nextDialogue(item);
+                                    }}
+                                />
+                            )
+                    }
                 </View>
             );
         }

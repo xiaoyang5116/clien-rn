@@ -10,7 +10,7 @@ import React from 'react';
 import { px2pd } from '../../../constants/resolution';
 import { ThemeContext } from '../../../constants';
 import { HalfPanel } from '../../panel';
-import { TextButton } from '../../../constants/custom-ui';
+import { TextButton, BtnIcon } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 
 
@@ -56,16 +56,37 @@ const HalfSingle = (props) => {
         return null;
     };
 
+    const HaveBtnIcon = ({ item }) => {
+        const { title, icon } = item
+        return (
+            <>
+                <TextButton
+                    title={item.title}
+                    onPress={() => {
+                        nextDialogue(item);
+                    }}
+                />
+                {icon.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
+            </>
+        )
+    }
+
     const renderBtn = ({ item }) => {
         if (currentIndex >= currentDialogueLength) {
             return (
                 <View style={{ marginTop: 8 }}>
-                    <TextButton
-                        title={item.title}
-                        onPress={() => {
-                            nextDialogue(item);
-                        }}
-                    />
+                    {
+                        item.icon
+                            ? (<HaveBtnIcon item={item} />)
+                            : (
+                                <TextButton
+                                    title={item.title}
+                                    onPress={() => {
+                                        nextDialogue(item);
+                                    }}
+                                />
+                            )
+                    }
                 </View>
             );
         }
@@ -123,52 +144,6 @@ const HalfSingle = (props) => {
             </TouchableWithoutFeedback>
         </HalfPanel>
     );
-
-    // return (
-    //     <HalfPanel>
-    //         {/* head */}
-    //         <View style={[theme.rowCenter, theme.blockBgColor1, { paddingLeft: 12, paddingRight: 12, height: 50 }]}>
-    //             {/* 标题 */}
-    //             <View style={[theme.rowCenter]}>
-    //                 <Text style={[theme.titleColor1, { fontSize: 24, }]}>
-    //                     {title}
-    //                 </Text>
-    //             </View>
-    //         </View>
-
-    //         {/* 显示区域 */}
-    //         <TouchableWithoutFeedback
-    //             onPress={nextParagraph}>
-    //             <View style={[theme.blockBgColor2, { flex: 1, paddingLeft: 2, paddingRight: 2, paddingTop: 2, }]}>
-    //                 {/* 内容显示区域 */}
-    //                 <View style={[theme.blockBgColor3, { height: "70%" }]}>
-    //                     <FlatList
-    //                         ref={refFlatList}
-    //                         data={currentTextList}
-    //                         renderItem={renderText}
-    //                         keyExtractor={(item, index) => item + index}
-    //                         ListFooterComponent={() => <View style={{ height: 12 }} />}
-    //                         onContentSizeChange={() => {
-    //                             if (props.currentTextList.length > 0) {
-    //                                 refFlatList.current.scrollToEnd({ animated: true })
-    //                             }
-    //                         }}
-    //                     />
-    //                 </View>
-
-    //                 {/* 按钮区域 */}
-    //                 <View style={{ padding: 12, height: "30%" }}>
-    //                     <FlatList
-    //                         data={showBtnList}
-    //                         renderItem={renderBtn}
-    //                         keyExtractor={(item, index) => item.title + index}
-    //                     />
-    //                 </View>
-    //             </View>
-    //         </TouchableWithoutFeedback>
-    //     </HalfPanel>
-    // );
-
 };
 
 export default HalfSingle;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { DeviceEventEmitter } from 'react-native';
 
-import { EventKeys } from '../../../constants';
+import { EventKeys, connect, action } from '../../../constants';
 
 import FullSingle from './FullSingle'
 import HalfSingle from './HalfSingle'
@@ -9,7 +9,7 @@ import GameOverDialog from '../gameOverDialog';
 
 const SingleDialog = (props) => {
     // props 传入
-    const { sections, style, dialogType } = props.viewData;
+    const { sections, style, dialogType, __sceneId } = props.viewData;
     const { actionMethod, specialEffects } = props
 
     // 定义变量
@@ -19,8 +19,16 @@ const SingleDialog = (props) => {
     const animationEndListener = useRef(null)
     let currentDialogueLength = currentTextList.length - 1;
 
-    // 关闭页面时移除动画监听
+
     useEffect(() => {
+        // 初始化 按钮状态
+        props.dispatch(action('MaskModel/getOptionBtnStatus')({ optionBtnArr: showBtnList, __sceneId })).then((result) => {
+            if (Array.isArray(result)) {
+                setShowBtnList(result)
+            }
+        })
+
+        // 关闭页面时移除动画监听
         return () => {
             if (animationEndListener.current !== null) {
                 animationEndListener.current.remove();
@@ -48,7 +56,12 @@ const SingleDialog = (props) => {
 
         if (newDialogue.length > 0) {
             setCurrentTextList(newDialogue[0].content);
-            setShowBtnList(newDialogue[0].btn);
+            // 初始化 按钮状态
+            props.dispatch(action('MaskModel/getOptionBtnStatus')({ optionBtnArr: newDialogue[0].btn, __sceneId })).then((result) => {
+                if (Array.isArray(result)) {
+                    setShowBtnList(result)
+                }
+            })
             setCurrentIndex(0);
         } else {
             if (item.animation !== undefined) {
@@ -106,4 +119,4 @@ const SingleDialog = (props) => {
     return null
 }
 
-export default SingleDialog
+export default connect((state) => ({ ...state.MaskModel }))(SingleDialog)
