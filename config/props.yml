@@ -5,6 +5,7 @@ props: [
   { id: 1, name: '金创药', iconId: 1, num: 10000, quality: 1, type: 0, tags: [], attrs: ['丹药'], capacity: 1, desc: '回血100点' },
   { id: 2, name: '回魂丹', iconId: 2, num: 9988, quality: 2, type: 0, tags: [], attrs: ['丹药'], capacity: 1, desc: '' },
   { id: 3, name: '狼牙', iconId: 3, num: 666, quality: 1, type: 0, tags: [], attrs: [], capacity: 1, desc: '' },
+  
   { id: 4, name: '护腕', iconId: 4, num: 100, quality: 3, type: 0, tags: [], attrs: ['装备'], capacity: 1, desc: '' },
   { id: 5, name: '护膝', iconId: 5, num: 9, quality: 1, type: 0, tags: [], attrs: ['装备'], capacity: 1, desc: ''},
   { id: 20 , name: '西瓜', iconId: 1, num: 100, quality: 1, type: 0, tags: ['普通'], attrs: ['材料'], capacity: 100, desc: '墨绿色 清香 沁甜爽口。' }, 
@@ -49,6 +50,7 @@ props: [
   # 种植道具
   { id: 101 , name: '西瓜种子', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '种植西瓜' }, 
   { id: 102 , name: '冰西瓜', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '含冰属性的西瓜' }, 
+  
   # 种植加速道具
   { id: 103 , name: '时光宝珠', iconId: 1, num: 200, quality: 2, type: 100, tags: ['普通'], attrs: [], capacity: 1000, desc: '加速种植,减少50秒钟', plantTime: 50, }, 
   { id: 104 , name: '灵石', iconId: 1, num: 200, quality: 2, type: 101, tags: ['普通'], attrs: [], capacity: 1000, desc: '增加100灵气值', plantLingQiZhi: 100, }, 
