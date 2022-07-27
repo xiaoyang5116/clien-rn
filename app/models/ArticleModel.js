@@ -6,7 +6,8 @@ import {
   toastType,
   LocalCacheKeys,
   DeviceEventEmitter,
-  EventKeys
+  EventKeys,
+  AppDispath
 } from "../constants";
 
 import { GetAttrsDataApi } from '../services/GetAttrsDataApi';
@@ -136,6 +137,20 @@ export default {
         if (indexData != null) {
           articleState.__data.indexes.push({ id: id, files: indexData.files });
         }
+      }
+
+      // 执行前置变量影响命令
+      if (lo.isArray(data) && data.length > 0) {
+        do {
+          const varsItem = lo.head(data);
+          if (!lo.isEqual(varsItem.type, 'code'))
+            break
+
+          const actions = lo.pick(varsItem.object, ['varsOn', 'varsOff']);
+          if (lo.keys(actions).length > 0) {
+            AppDispath({ type: 'SceneModel/processActions', payload: actions });
+          }
+        } while (false);
       }
 
       // 按需加载小分支
