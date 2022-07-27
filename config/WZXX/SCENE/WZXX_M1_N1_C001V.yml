@@ -111,12 +111,12 @@ scenes: [
         },
 
          #死亡1
-          { id: 'p1DGG',style: 6,title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',sections: [
+          { id: 'p1DGG',style: 7,title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',sections: [
           { key: 'p1', content: ['临死前听到一句话，距离这么近你还敢跑……'],btn: [{title: '不放弃，再来',tokey: "p1"},{title: '啊我死了（回章节开头）',tokey: "next", toChapter: "WZXX_M1_N1_C001"}]},
           ], },
         #死亡2
          { id: 'gameover00',
-           style: 6, 
+           style: 7, 
            title: '你挂了',
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
@@ -125,11 +125,11 @@ scenes: [
            ],
          },
        #死亡3
-         { id: 'gameover01',style: 6, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+         { id: 'gameover01',style: 7, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
          { key: 'p3', content: ['临死前听到一句话','我一个学武的，最讨厌你们这帮文人……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001"}]},
          ], },
        #死亡3
-          { id: 'gameover02',style: 6, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover02',style: 7, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'p4', content: ['临死前听到一句话','我把你宰了，也能拿钱……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001"}]},
           ], },
 

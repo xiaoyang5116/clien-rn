@@ -22,6 +22,13 @@ const _images = {
         { id: 'V4_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V4_1080.png') },
         { id: 'V5_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V5_1080.png') },
         { id: 'V6_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V6_1080.png') },
+    ],
+    btn_icon: [
+        { id: 1, img: require('../../assets/button_icon/1.png'), top: 0, left: 10 },
+        { id: 2, img: require('../../assets/button_icon/2.png'), top: -1, left: 10 },
+        { id: 3, img: require('../../assets/button_icon/3.png'), top: 0, left: 10 },
+        { id: 4, img: require('../../assets/button_icon/4.png'), top: 0, left: 10 },
+        { id: 5, img: require('../../assets/button_icon/5.png'), top: 0, right: 0 },
     ]
 }
 
@@ -39,4 +46,9 @@ export const getPanelPatternImage = (patternId) => {
 // 获取文章背景图片
 export const getChapterImage = (imageId) => {
     return _images.chapterBg.find(e => lo.isEqual(e.id, imageId));
+}
+
+// 获取按钮 icon
+export const getBtnIcon = (iconId) => {
+    return _images.btn_icon.find(e => e.id === iconId)
 }

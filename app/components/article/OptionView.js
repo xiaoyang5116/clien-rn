@@ -13,14 +13,8 @@ import {
 
 import RootView from '../../components/RootView';
 import OptionsPage from '../../pages/OptionsPage';
+import { BtnIcon } from '../button'
 
-const ICONS = [
-    { id: 1, img: require('../../../assets/button_icon/1.png'), top: 0, left: 10 },
-    { id: 2, img: require('../../../assets/button_icon/2.png'), top: -1, left: 10 },
-    { id: 3, img: require('../../../assets/button_icon/3.png'), top: 0, left: 10 },
-    { id: 4, img: require('../../../assets/button_icon/4.png'), top: 0, left: 10 },
-    { id: 5, img: require('../../../assets/button_icon/5.png'), top: 0, right: 0 },
-];
 
 class OptionView extends PureComponent {
 
@@ -66,15 +60,7 @@ class OptionView extends PureComponent {
                 const option = this.state.options[k];
                 let iconComponent = <></>;
                 if (lo.isObject(option.icon) && lo.isBoolean(option.icon.show) && option.icon.show) {
-                    const icon = ICONS.find(e => e.id == option.icon.id);
-                    const attrs = {};
-                    if (icon.top != undefined) attrs.top = icon.top;
-                    if (icon.left != undefined) attrs.left = icon.left;
-                    if (icon.right != undefined) attrs.right = icon.right;
-
-                    iconComponent = (<View style={{ position: 'absolute', height: 5, ...attrs }}>
-                                        <Image source={icon.img} style={{ width: 30, height: 30 }} />
-                                    </View>);
+                    iconComponent = <BtnIcon id={option.icon.id} style={{ height: 5 }}/>
                 }
                 buttonChilds.push(
                     <View key={key} style={{ marginTop: 5, marginBottom: 5 }}>

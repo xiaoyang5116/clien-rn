@@ -10,8 +10,8 @@ import {
 import Animation from '../animation';
 
 import SingleDialog from './singleDialog';
-import GameOverDialog from './gameOverDialog';
 import MultiplayerDialog from './MultiplayerDialog';
+import BlackAndWhiteClickDialog from './blackAndWhiteClickDialog';
 
 
 const DialogRoutes = (props) => {
@@ -72,6 +72,14 @@ const DialogRoutes = (props) => {
     } else if (style === 8) {
         return (
             <MultiplayerDialog
+                {...props}
+                actionMethod={actionMethod}
+                specialEffects={specialEffects}
+            />
+        )
+    } else if (style === 9 || style === "9A" || style === "9B") {
+        return (
+            <BlackAndWhiteClickDialog
                 {...props}
                 actionMethod={actionMethod}
                 specialEffects={specialEffects}

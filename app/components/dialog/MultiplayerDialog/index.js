@@ -16,9 +16,10 @@ import {
   ThemeContext,
   changeAvatar
 } from "../../../constants";
+import lo from 'lodash'
 
 import TextAnimation from '../../textAnimation'
-import { TextButton } from '../../../constants/custom-ui';
+import { TextButton, BtnIcon } from '../../../constants/custom-ui';
 import HalfScreen from './HalfScreen';
 import FullScreen from './FullScreen';
 
@@ -55,6 +56,8 @@ const MultiplayerDialog = (props) => {
 
   // 样式， 配置数据， 关闭对话框方法
   const { viewData, onDialogCancel, actionMethod, specialEffects, isBubbleColor } = props;
+  // 场景ID
+  const __sceneId = viewData.__sceneId
   // 文字动画类型
   const textAnimationType = viewData.textAnimationType;
   // 对话框外观类型
@@ -97,10 +100,20 @@ const MultiplayerDialog = (props) => {
       const currentDialogContent = currentData.content[0]
       addHistoryDialog({ id: currentData.id, content: currentDialogContent })
     }
+
+    // 初始化 按钮
+    if (currentDialogData.btn.length > 0) {
+      props.dispatch(action('MaskModel/getOptionBtnStatus')({ optionBtnArr: currentDialogData.btn, __sceneId })).then((result) => {
+        if (Array.isArray(result)) {
+          setCurrentDialogData({ ...currentDialogData, btn: result })
+        }
+      })
+    }
   }, [])
 
   // 点击下一段
   const nextParagraph = () => {
+    refFlatList.current.scrollToEnd({ animated: true })
     // 判断当前内容是否有下一段
     if (currentContentIndex < currentContentLength) {
       const currentDialogContent = currentData.content[currentContentIndex + 1]
@@ -140,7 +153,11 @@ const MultiplayerDialog = (props) => {
       addHistoryDialog({ id: newDialogData[0].dialog[0].id, content: newDialogData[0].dialog[0].content[0] })
       setCurrentDialogIndex(0)
       setCurrentContentIndex(0)
-      setCurrentDialogData(newDialogData[0])
+      props.dispatch(action('MaskModel/getOptionBtnStatus')({ optionBtnArr: newDialogData[0].btn, __sceneId })).then((result) => {
+        if (Array.isArray(result)) {
+          setCurrentDialogData({ ...newDialogData[0], btn: result })
+        }
+      })
     }
     else {
       onDialogCancel()
@@ -153,11 +170,23 @@ const MultiplayerDialog = (props) => {
   const renderDialog = ({ item }) => {
     // 对话中的提示
     if (item.id === "center") {
-      return <View><Text style={styles.tips}>{item.content}</Text></View>
+      return (
+        <TouchableWithoutFeedback onPress={nextParagraph}>
+          <View>
+            <Text style={styles.tips}>{item.content}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+      )
     }
     // 对话中的旁白
     if (item.id === "left") {
-      return <View><Text style={styles.narration}>{item.content}</Text></View>
+      return (
+        <TouchableWithoutFeedback onPress={nextParagraph}>
+          <View>
+            <Text style={styles.narration}>{item.content}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+      )
     }
 
     if (figureInfo.length > 0) {
@@ -167,7 +196,7 @@ const MultiplayerDialog = (props) => {
       const bg = (item.id === '01' && viewData.isBubbleColor) ? "#95ec69" : "#fff"
       return (
         <TouchableWithoutFeedback onPress={nextParagraph} >
-          <View style={{ flexDirection: item.id === '01' ? 'row-reverse' : 'row', justifyContent: 'flex-start', flexWrap: 'nowrap', marginTop: 18, }}>
+          <View style={{ flexDirection: item.id === '01' ? 'row-reverse' : 'row', justifyContent: 'flex-start', flexWrap: 'nowrap', paddingTop: 18, }}>
             <View>
               <Image source={changeAvatar(figure.avatar)} style={{ height: 50, width: 50, borderRadius: 5 }} />
             </View>
@@ -208,15 +237,21 @@ const MultiplayerDialog = (props) => {
   // 渲染按钮
   const renderBtn = ({ item }) => {
     if ((currentDialogIndex === currentDialogData.dialog.length - 1) && (currentContentIndex >= currentContentLength)) {
+      let iconComponent = <></>;
+      if (lo.isObject(item.icon) && lo.isBoolean(item.icon.show) && item.icon.show) {
+        iconComponent = <BtnIcon id={item.icon.id} style={{ height: "100%", justifyContent: "center" }} />
+      }
+
       return (
         <View style={{ marginTop: 12 }}>
           <TextButton title={item.title} onPress={() => { nextDialog(item) }} />
+          {iconComponent}
         </View>
       )
     }
   }
 
-  if (viewData.dialogType === "HalfScreen") {
+  if (dialogType === "HalfScreen") {
     return (
       <HalfScreen
         onDialogCancel={onDialogCancel}
@@ -229,7 +264,7 @@ const MultiplayerDialog = (props) => {
         renderBtn={renderBtn}
       />
     )
-  } else if (viewData.dialogType === "FullScreen") {
+  } else if (dialogType === "FullScreen") {
     return (
       <FullScreen
         onDialogCancel={onDialogCancel}
@@ -247,7 +282,7 @@ const MultiplayerDialog = (props) => {
   return null
 
 }
-export default connect((state) => ({ ...state.FigureModel }))(MultiplayerDialog)
+export default connect((state) => ({ ...state.FigureModel, ...state.MaskModel }))(MultiplayerDialog)
 
 const styles = StyleSheet.create({
   fullscreenContainer: {

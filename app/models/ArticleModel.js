@@ -328,6 +328,7 @@ export default {
             sounds.forEach(e => {
               playSound({ ...e, type: "readerVolume" });
             });
+            item.object.completed = true;
           }
           // 动效
           if (animations != undefined) {

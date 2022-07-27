@@ -1,9 +1,18 @@
-import { View, Text, TouchableWithoutFeedback, FlatList, Image, TouchableHighlight } from 'react-native';
+import {
+    View,
+    Text,
+    TouchableWithoutFeedback,
+    FlatList,
+    Image,
+    TouchableHighlight,
+    SafeAreaView
+} from 'react-native';
 import React, { useState } from 'react';
 
+import lo from 'lodash'
 import { ThemeContext } from '../../../constants';
 import { px2pd } from '../../../constants/resolution';
-import { TextButton, LongTextButton } from '../../../constants/custom-ui';
+import { TextButton, LongTextButton, BtnIcon } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 
 
@@ -50,31 +59,29 @@ const FullSingle = props => {
 
     const renderBtn = ({ item }) => {
         if (currentIndex >= currentDialogueLength) {
+            let iconComponent = <></>;
+            if (lo.isObject(item.icon) && lo.isBoolean(item.icon.show) && item.icon.show) {
+                iconComponent = <BtnIcon id={item.icon.id} style={{ height: "100%", justifyContent: "center" }} />
+            }
+
             return (
-                <View style={{ marginTop: 8 }}>
-                    {/* <LongTextButton
-                        title={item.title}
+                <View style={{ marginTop: 8, justifyContent: "center", alignItems: 'center', overflow: 'hidden', }}>
+                    <TouchableHighlight
+                        underlayColor={'#fff'}
+                        activeOpacity={0.5}
                         onPress={() => { nextDialogue(item) }}
-                        borderColor={"#a3a3a3"}
-                        source={require('../../../../assets/button/gameOver_btn.png')}
-                    /> */}
-                    <View style={{ justifyContent: "center", alignItems: 'center', overflow: 'hidden', }}>
-                        <TouchableHighlight
-                            underlayColor={'#fff'}
-                            activeOpacity={0.5}
-                            onPress={() => { nextDialogue(item) }}
-                        >
-                            <View style={{ width: px2pd(1016), height: px2pd(102), borderWidth: px2pd(3), borderRadius: 3, borderColor: "#a3a3a3", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
-                                <Image
-                                    style={{ width: px2pd(1010), height: px2pd(96) }}
-                                    source={require("../../../../assets/button/gameOver_btn.png")}
-                                />
-                            </View>
-                        </TouchableHighlight>
-                        <View pointerEvents="none" style={{ position: 'absolute' }}>
-                            <Text style={{ fontSize: 18, color: "#6a655e", }}>{item.title}</Text>
+                    >
+                        <View style={{ width: px2pd(1016), height: px2pd(102), borderWidth: px2pd(3), borderRadius: 3, borderColor: "#a3a3a3", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
+                            <Image
+                                style={{ width: px2pd(1010), height: px2pd(96) }}
+                                source={require("../../../../assets/button/gameOver_btn.png")}
+                            />
                         </View>
+                    </TouchableHighlight>
+                    <View pointerEvents="none" style={{ position: 'absolute' }}>
+                        <Text style={{ fontSize: 18, color: "#6a655e", }}>{item.title}</Text>
                     </View>
+                    {iconComponent}
                 </View>
             );
         }
@@ -88,49 +95,51 @@ const FullSingle = props => {
                 // source={require('../../../../assets/bg/gameOver.png')}
                 source={artId ? theme.artTab[artId] : theme.artTab[1]}
             />
-            {/* 标题 */}
-            <View
-                style={[
-                    theme.rowCenter,
-                    // theme.blockBgColor1,
-                    {
-                        backgroundColor: '#fff',
-                        height: 40,
-                        borderBottomColor: '#9e9a92',
-                        borderBottomWidth: 1,
-                        borderTopColor: '#9e9a92',
-                        borderTopWidth: 1,
-                    },
-                ]}>
-                <Text style={[{ fontSize: 20, textAlign: 'center', backgroundColor: '#fff' }]}>
-                    {title}
-                </Text>
-            </View>
-            {/* 显示区域 */}
-            <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, }}>
-                <TouchableWithoutFeedback onPress={nextParagraph}>
-                    <View style={{ flex: 1 }}>
-                        {/* 内容显示区域 */}
-                        <View style={{ height: '60%' }}>
-                            <FlatList
-                                data={currentTextList}
-                                renderItem={renderText}
-                                keyExtractor={(item, index) => item + index}
-                            />
-                        </View>
+            <SafeAreaView style={{ flex: 1 }}>
+                {/* 标题 */}
+                <View
+                    style={[
+                        theme.rowCenter,
+                        // theme.blockBgColor1,
+                        {
+                            backgroundColor: '#fff',
+                            height: 40,
+                            borderBottomColor: '#9e9a92',
+                            borderBottomWidth: 1,
+                            borderTopColor: '#9e9a92',
+                            borderTopWidth: 1,
+                        },
+                    ]}>
+                    <Text style={[{ fontSize: 20, textAlign: 'center', backgroundColor: '#fff' }]}>
+                        {title}
+                    </Text>
+                </View>
+                {/* 显示区域 */}
+                <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, }}>
+                    <TouchableWithoutFeedback onPress={nextParagraph}>
+                        <View style={{ flex: 1 }}>
+                            {/* 内容显示区域 */}
+                            <View style={{ height: '60%' }}>
+                                <FlatList
+                                    data={currentTextList}
+                                    renderItem={renderText}
+                                    keyExtractor={(item, index) => item + index}
+                                />
+                            </View>
 
-                        {/* 按钮区域 */}
-                        <View
-                            style={{ marginTop: 12, height: '40%', justifyContent: 'center' }}>
-                            <FlatList
-                                data={showBtnList}
-                                renderItem={renderBtn}
-                                keyExtractor={(item, index) => item.title + index}
-                            />
+                            {/* 按钮区域 */}
+                            <View
+                                style={{ marginTop: 12, height: '40%', justifyContent: 'center' }}>
+                                <FlatList
+                                    data={showBtnList}
+                                    renderItem={renderBtn}
+                                    keyExtractor={(item, index) => item.title + index}
+                                />
+                            </View>
                         </View>
-                    </View>
-                </TouchableWithoutFeedback>
-            </View>
+                    </TouchableWithoutFeedback>
+                </View>
+            </SafeAreaView>
         </View>
     );
 };
