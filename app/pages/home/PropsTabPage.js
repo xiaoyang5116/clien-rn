@@ -17,12 +17,9 @@ import {
 
 import {
     TabButton,
-    TextButton,
 } from '../../constants/custom-ui';
 
-import { Panel } from '../../components/panel';
 import { confirm } from '../../components/dialog';
-import ImageCapInset from 'react-native-image-capinsets-next';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../constants/resolution';
 import RootView from '../../components/RootView';
@@ -49,12 +46,14 @@ class PropsTabPage extends Component {
     }
 
     _propSelected(item) {
-        // this.setState({
-        //     selectId: item.id,
-        // });
-        const key = RootView.add(<PropTips propId={item.id} onClose={() => {
-            RootView.remove(key);
-          }} />);
+        this.setState({
+            selectId: item.id,
+        });
+        setTimeout(() => {
+            const key = RootView.add(<PropTips propId={item.id} onClose={() => {
+                RootView.remove(key);
+            }} />);
+        }, 0);
     }
 
     _typeFilter(type) {
@@ -104,9 +103,7 @@ class PropsTabPage extends Component {
     }
 
     render() {
-        const selectedProp = this.props.listData.find(e => e.id == this.state.selectId);
         return (
-            // <Panel patternId={2}>
             <View style={this.props.currentStyles.viewContainer}>
                 <View style={styles.propsContainer}>
                     <View style={{ height: 40, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
@@ -143,19 +140,8 @@ class PropsTabPage extends Component {
                             keyExtractor={item => item.id}
                         />
                     </View>
-                    {/* <View style={{ height: 120, flexDirection: 'column'}}>
-                        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text>{selectedProp != undefined ? selectedProp.name : ''}</Text>
-                            <Text>{(selectedProp != undefined && selectedProp.desc != undefined) ? selectedProp.desc : ''}</Text>
-                        </View>
-                        <View style={{ width:"100%", flexDirection: 'row', justifyContent: 'space-around' }}>
-                            <TextButton title="使用" {...this.props} onPress={() => { this._useProps(); }} />
-                            <TextButton title="丢弃" {...this.props} onPress={() => { this._discardProps(); }} />
-                        </View>
-                    </View> */}
                 </View>
             </View>
-            // </Panel>
         );
     }
 }
