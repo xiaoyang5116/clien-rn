@@ -46,8 +46,6 @@ const FullScreen = (props) => {
           <TouchableWithoutFeedback onPress={nextParagraph}>
             <View style={{
               flex: 1,
-              paddingLeft: 12,
-              paddingRight: 12,
             }}>
               {/* content */}
               <View style={{ width: "100%", height: '70%' }} >
@@ -56,6 +54,7 @@ const FullScreen = (props) => {
                   data={historyDialogData}
                   renderItem={renderDialog}
                   keyExtractor={(item, index) => item + index}
+                  ListFooterComponent={() => <View style={{ height: 24 }} />}
                   onContentSizeChange={() => {
                     if (historyDialogData.length > 0) {
                       refFlatList.current.scrollToEnd({ animated: true })
@@ -84,29 +83,26 @@ export default FullScreen
 
 const styles = StyleSheet.create({
   fullscreenContainer: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    right: 0,
+    flex: 1,
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
   },
   fullContainer: {
     flex: 1,
-    height: windowHeight,
     width: '100%',
+    height: "100%",
+    paddingLeft: 12,
+    paddingRight: 12,
   },
   dialogHeader: {
     height: 40,
+    width: "100%",
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomColor: '#6a655e',
     borderBottomWidth: 1,
-    marginLeft: 12,
-    marginRight: 12,
   },
   back: {
     textAlign: 'left',

@@ -2,6 +2,7 @@
 import {
   action
 } from "../constants";
+import lo from 'lodash';
 
 const DIALOG_TYPE = 1;
 const ASIDE_TYPE = 2;
@@ -84,8 +85,8 @@ export default {
         }
 
         current.sectionId = nextSectionId;
-        yield put(action('updateState')({ 
-          content: current.sections[nextSectionId], 
+        yield put(action('updateState')({
+          content: current.sections[nextSectionId],
         }));
       }
     },
@@ -111,7 +112,7 @@ export default {
       }
     },
 
-    *_checkNext({}, { put, select }) {
+    *_checkNext({ }, { put, select }) {
       const maskState = yield select(state => state.MaskModel);
       if (maskState.__data.current != null)
         return;
@@ -126,10 +127,10 @@ export default {
         else if (next.primaryType == ASIDE_TYPE)
           content = next.sections[0]
         //
-        yield put(action('updateState')({ 
+        yield put(action('updateState')({
           primaryType: next.primaryType,
-          title: next.title, 
-          content: content, 
+          title: next.title,
+          content: content,
           style: next.style,
           visible: true,
           viewData: next,
@@ -138,15 +139,36 @@ export default {
     },
 
     *hide({ }, { put }) {
-      yield put(action('updateState')({ 
+      yield put(action('updateState')({
         visible: false,
       }));
     },
+
+    // 获取选项按钮数组,返回新的状态数组 
+    *getOptionBtnStatus({ payload }, { call, put, select }) {
+      const { optionBtnArr, __sceneId } = payload
+      let newBtnArr = []
+      for (let key in optionBtnArr) {
+        const item = optionBtnArr[key];
+        if (lo.isObject(item.icon)) {
+          const { bindVar } = item.icon;
+          if (bindVar != undefined) {
+            const checkVar = { andVarsOn: [bindVar], __sceneId };
+            const match = yield put.resolve(action('SceneModel/testCondition')(checkVar));
+            item.icon = { ...item.icon, show: match };
+          } else {
+            item.icon = { ...item.icon, show: true };
+          }
+        }
+        newBtnArr.push(item)
+      }
+      return newBtnArr
+    },
   },
-  
+
   reducers: {
     updateState(state, { payload }) {
-      return { 
+      return {
         ...state,
         ...payload,
       };
