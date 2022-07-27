@@ -29,6 +29,8 @@ const _images = {
         { id: 3, img: require('../../assets/button_icon/3.png'), top: 0, left: 10 },
         { id: 4, img: require('../../assets/button_icon/4.png'), top: 0, left: 10 },
         { id: 5, img: require('../../assets/button_icon/5.png'), top: 0, right: 0 },
+        { id: 6, img: require('../../assets/button_icon/6.png'), top: 0, left: 10 },
+        { id: 7, img: require('../../assets/button_icon/7.png'), top: 0, left: 10 },
     ]
 }
 
