@@ -31,4 +31,7 @@ export class LocalCacheKeys {
     // 黑夜模式
     static DARK_LIGHT_MODE = 'DARK_LIGHT_MODE';
 
+    // 掉落ID
+    static DROPS_ID = 'DROPS_ID';
+
 }

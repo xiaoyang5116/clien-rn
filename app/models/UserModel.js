@@ -8,6 +8,10 @@ import {
 
 import lo from 'lodash';
 
+import { 
+  GetAttrsDataApi 
+} from '../services/GetAttrsDataApi';
+
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 
@@ -25,6 +29,25 @@ export default {
   effects: {
     *reload({ }, { call, put }) {
       const userCache = yield call(LocalStorage.get, LocalCacheKeys.USER_DATA);
+      const attrsData = yield call(GetAttrsDataApi);
+      const userAttrs = (userCache != null) ? userCache.attrs : [];
+
+      const allAttrs = [];
+      attrsData.data.attrs.forEach(e => {
+        e.data.forEach(e => {
+          e.forEach(e => {
+            allAttrs.push(e);
+          })
+        })
+      });
+
+      // 初始化默认值
+      allAttrs.forEach(e => {
+        if (userAttrs.find(x => lo.isEqual(x.key, e.key)) == undefined) {
+          userAttrs.push({ key: e.key, value: e.value });
+        }
+      });
+
       if (userCache != null) {
         yield put(action('updateState')({ ...userCache }));
       } else {
@@ -33,7 +56,7 @@ export default {
           sceneId: '',
           prevSceneId: '',
           worldId: 0,
-          attrs: [],
+          attrs: userAttrs,
         }));
       }
     },
