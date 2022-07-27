@@ -5,9 +5,8 @@ props: [
   { id: 1, name: '金创药', iconId: 1, num: 10000, quality: 1, type: 0, tags: [], attrs: ['丹药'], capacity: 1, desc: '回血100点' },
   { id: 2, name: '回魂丹', iconId: 2, num: 9988, quality: 2, type: 0, tags: [], attrs: ['丹药'], capacity: 1, desc: '' },
   { id: 3, name: '狼牙', iconId: 3, num: 666, quality: 1, type: 0, tags: [], attrs: [], capacity: 1, desc: '' },
-  
-  { id: 4, name: '护腕', iconId: 4, num: 100, quality: 3, type: 0, tags: [], attrs: ['装备'], capacity: 1, desc: '' },
-  { id: 5, name: '护膝', iconId: 5, num: 9, quality: 1, type: 0, tags: [], attrs: ['装备'], capacity: 1, desc: ''},
+  # { id: 4, name: '护腕', iconId: 4, num: 100, quality: 3, type: 0, tags: [], attrs: ['装备'], capacity: 1, desc: '' },
+  # { id: 5, name: '护膝', iconId: 5, num: 9, quality: 1, type: 0, tags: [], attrs: ['装备'], capacity: 1, desc: ''},
   { id: 20 , name: '西瓜', iconId: 1, num: 100, quality: 1, type: 0, tags: ['普通'], attrs: ['材料'], capacity: 100, desc: '墨绿色 清香 沁甜爽口。' }, 
   { id: 21 , name: '苹果', iconId: 2, num: 100, quality: 1, type: 0, tags: ['普通'], attrs: ['材料'], capacity: 100, desc: '口感酸甜清香。' }, 
   { id: 22 , name: '樱桃', iconId: 3, num: 100, quality: 1, type: 0, tags: ['普通'], attrs: ['材料'], capacity: 100, desc: '甜中带酸,香气浓郁。' }, 

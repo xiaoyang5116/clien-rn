@@ -9,6 +9,8 @@ import {
   ImageBackground,
   DeviceEventEmitter,
 } from 'react-native';
+
+import lo from 'lodash';
 import { px2pd } from '../../constants/resolution';
 import DirMap from '../../components/maps/DirMap';
 import { confirm } from '../../components/dialog/ConfirmDialog';
@@ -19,7 +21,7 @@ import { TouchableWithoutFeedback } from 'react-native';
 
 const DirMapPage = (props) => {
 
-  const data = React.useRef([]);
+  const data = React.useRef(props.data);
   const [ item, setItem ] = React.useState({});
 
   const handleEnterDir = (e) => {
@@ -41,16 +43,33 @@ const DirMapPage = (props) => {
     const listener = DeviceEventEmitter.addListener(EventKeys.GOTO_DIRECTORY_MAP, (id) => {
       const item = data.current.find(e => e.id == id);
       if (item != undefined) {
-        setItem(item);
+        const tmpObj = {};
+        lo.forEach(item.map, (v, k) => {
+          if (v.bindVar != undefined && (v.lock == undefined || v.lock)) {
+            tmpObj[k] = { andVarsOn: [v.bindVar] };
+          }
+        });
+
+        const checkList = lo.values(tmpObj);
+        AppDispath({ type: 'SceneModel/testConditionArray', payload: checkList, cb: (v) => {
+          if (!lo.isArray(v))
+            return
+
+          let index = 0;
+          for (let key in tmpObj) {
+            item.map[key].lock = !(v[index]);
+            index++;
+          }
+
+          // // 每次收到消息强制刷新一次
+          setItem({ ...item });
+        }});
       }
     });
     return () => {
       listener.remove();
     }
   }, []);
-
-  // 更新最新引用值，解决副作用函数作用域问题。
-  data.current = props.data;
 
   return (
     <SafeAreaView style={{ flex: 1 }}>

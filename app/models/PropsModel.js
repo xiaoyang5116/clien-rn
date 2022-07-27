@@ -7,6 +7,7 @@ import {
 
 import LocalStorage from '../utils/LocalStorage';
 import { GetPropsDataApi } from '../services/GetPropsDataApi';
+import { GetEquipsDataApi } from '../services/GetEquipsDataApi';
 import EventListeners from '../utils/EventListeners';
 import Toast from '../components/toast';
 import lo from 'lodash';
@@ -26,14 +27,19 @@ export default {
     *reload({ }, { select, call }) {
       const propsState = yield select(state => state.PropsModel);
       const propsCache = yield call(LocalStorage.get, LocalCacheKeys.PROPS_DATA);
-      const data = yield call(GetPropsDataApi);
 
       propsState.listData.length = 0;
       propsState.__data.bags.length = 0;
       propsState.__data.propsConfig.length = 0;
 
-      if (data != undefined) {
-        propsState.__data.propsConfig.push(...data.props);
+      const propsData = yield call(GetPropsDataApi);
+      if (propsData != undefined) {
+        propsState.__data.propsConfig.push(...propsData.props);
+      }
+
+      const equipsData = yield call(GetEquipsDataApi);
+      if (equipsData != undefined) {
+        propsState.__data.propsConfig.push(...equipsData.equips);
       }
 
       if (propsCache != null) {
@@ -173,6 +179,21 @@ export default {
       }
 
       return result;
+    },
+
+    *getPropsFromAttr({ payload }, { put, select }) {
+      const propsState = yield select(state => state.PropsModel);
+      const { attr } = payload;
+
+      const props = [];
+      for (let key in propsState.__data.bags) {
+        const item = propsState.__data.bags[key];
+        if ((item.attrs.indexOf(attr) != -1) || (attr == '全部') || attr == '') {
+          props.push(item);
+        }
+      }
+
+      return props;
     },
 
     *getBagProps({}, { select }) {

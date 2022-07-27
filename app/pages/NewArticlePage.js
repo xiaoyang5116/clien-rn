@@ -593,6 +593,7 @@ class NewArticlePage extends Component {
     this.gotoDirMapListener = null;
     this.darkMode = false;
     this.listeners = [];
+    this.refreshKey = 0;
   }
 
   componentDidMount() {
@@ -639,6 +640,8 @@ class NewArticlePage extends Component {
 
   render() {
     const { readerStyle, attrsConfig } = this.props;
+    this.refreshKey++; // 提供给需强制刷新的组件
+
     return (
       <View style={[styles.viewContainer, { backgroundColor: readerStyle.bgColor }]}>
         <HeaderContainer>
@@ -707,7 +710,7 @@ class NewArticlePage extends Component {
         </LeftContainer>
         {/* 章节目录地图 */}
         <RightContainer ref={this.refDirMap}>
-          <DirMapPage data={this.props.dirData} />
+          <DirMapPage key={this.refreshKey} data={this.props.dirData} />
         </RightContainer>
         {/* 角色属性 */}
         <RightContainer ref={this.refPropsContainer}>

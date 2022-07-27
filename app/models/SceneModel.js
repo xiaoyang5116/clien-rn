@@ -868,6 +868,19 @@ export default {
       return !failure;
     },
 
+    // 批量测试条件是否成立
+    *testConditionArray({ payload }, { call, put, select }) {
+      if (!lo.isArray(payload))
+        return false;
+      
+      const result = [];
+      for (let key in payload) {
+        const item = payload[key];
+        result.push(yield put.resolve(action('testCondition')({ ...item })));
+      }
+      return result;
+    }
+
   },
   
   reducers: {
