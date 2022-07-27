@@ -20,7 +20,7 @@ scenes: [
         id: 'WZXX_M1_N1_C005_V', desc: '打工还是守夜', 
         options: [ 
           { title: "【去打工】",toScene: 'C005_V_MAP_0_0'},
-          { title: "【去守夜】",toChapter: "WZXX_M1_N1_C010_[V2][N1]"},
+          { title: "【去守夜】",toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C010_[V2][N1]"},
         ],
       },
 
@@ -69,7 +69,7 @@ scenes: [
          { title: '【对话】', nextChat: 'C2'}, 
          { title: '【去哪里赚钱？】', nextChat: 'X1'}, 
 
-         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]" }, 
 
         ],
       },
@@ -179,11 +179,11 @@ scenes: [
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010_[V1][N1]" },]},
+          btn: [{title: '回医馆',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C010_[V1][N1]" },]},
 
           { key: 'P4', content: ['你愤怒至极，这一天五个灵石，你要一百天才能凑齐五百个','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010_[V1][N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C010_[V1][N1]"},]},
 
 
 
@@ -203,11 +203,11 @@ scenes: [
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010_[V1][N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C010_[V1][N1]"},]},
 
           { key: 'P4', content: ['你愤怒至极，这一天五个灵石，你要一百天才能凑齐五百个','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010_[V1][N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C010_[V1][N1]"},]},
 
 
            ], },
@@ -244,7 +244,7 @@ scenes: [
         options: [ 
          { title: '【对话】', nextChat: 'C2'}, 
          { title: '【离开】', nextChat: 'X1'}, 
-         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]" }, 
         ],
       },
      { 
@@ -295,11 +295,11 @@ scenes: [
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010_[V1][N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C010_[V1][N1]"},]},
 
           { key: 'P4', content: ['你愤怒至极，这一天五个灵石，你要一百天才能凑齐五百个','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010_[V1][N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C010_[V1][N1]"},]},
 
 
 
@@ -319,11 +319,11 @@ scenes: [
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010_[V1][N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C010_[V1][N1]"},]},
 
           { key: 'P4', content: ['你愤怒至极，这一天五个灵石，你要一百天才能凑齐五百个','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010_[V1][N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C010_[V1][N1]"},]},
 
 
            ], },
@@ -361,7 +361,7 @@ scenes: [
         options: [ 
          { title: '【珍宝阁告示】', nextChat: 'C2'}, 
          { title: '【移动】', nextChat: 'X1'}, 
-         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]" }, 
         ],
       },
       #
@@ -416,7 +416,7 @@ scenes: [
         options: [ 
          { title: '【兵器铺告示】', nextChat: 'C2'}, 
          { title: '【移动】', nextChat: 'X1'}, 
-         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]" }, 
         ],
       },
       #

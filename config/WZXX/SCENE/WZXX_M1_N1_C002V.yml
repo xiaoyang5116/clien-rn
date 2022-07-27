@@ -21,9 +21,9 @@ scenes: [
         id: 'WZXX_M1_N1_C002V', desc: '选项', 
         options: [ 
         #  { title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
-          { title: "【2去最近的城市，生存重要】", toChapter: "WZXX_M1_N1_C001_[A1]" },
-          { title: "【2去穿越的地点，也许能找到什么】", toChapter: "WZXX_M1_N1_C001_[A2]" },
-          { title: "【2跟踪对手，找到更多线索】", toChapter: "WZXX_M1_N1_C001_[A3]" },
+          { title: "【2去最近的城市，生存重要】", toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001_[A1]" },
+          { title: "【2去穿越的地点，也许能找到什么】", toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001_[A2]" },
+          { title: "【2跟踪对手，找到更多线索】", toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001_[A3]" },
         ],
       },
    #
@@ -31,9 +31,9 @@ scenes: [
         id: 'WZXX_M1_N1_C001_[A1]V0000', desc: '选项', 
         options: [ 
         #  { title: "【开始阅读333】", varsOn: ['WZXX_M1_N1_C001_[A1]'], },
-          { title: "【你想起，这个身体原身是修真世家出身】", toChapter: "WZXX_M1_N1_C001_[A1]" },
-          { title: "【你想起，这个身体原身是个贫穷包子铺小子】", toChapter: "WZXX_M1_N1_C001_[A2]" },
-          { title: "【你想起，这个身体原身是白府富户的私生子】", toChapter: "WZXX_M1_N1_C001_[A3]" },
+          { title: "【你想起，这个身体原身是修真世家出身】", toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001_[A1]" },
+          { title: "【你想起，这个身体原身是个贫穷包子铺小子】", toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001_[A2]" },
+          { title: "【你想起，这个身体原身是白府富户的私生子】", toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001_[A3]" },
         ],
       },
 
