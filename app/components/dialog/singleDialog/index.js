@@ -52,8 +52,10 @@ const SingleDialog = (props) => {
 
     // 显示下一个对话
     const nextDialogue = item => {
-        const newDialogue = sections.filter(i => i.key === item.tokey);
+        // 执行动作
+        actionMethod(item)
 
+        const newDialogue = sections.filter(i => i.key === item.tokey);
         if (newDialogue.length > 0) {
             setCurrentTextList(newDialogue[0].content);
             // 初始化 按钮状态
@@ -71,8 +73,6 @@ const SingleDialog = (props) => {
                 props.onDialogCancel();
             }
         }
-
-        actionMethod(item)
     };
 
     switch (style) {
