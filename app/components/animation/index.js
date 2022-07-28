@@ -4,13 +4,16 @@ import {
     EDGE_LIGHT,
     SCREEN_CENTER_STRETCH,
     FLASH_BUXUE,
-    ONOMATOPOEIA
+    ONOMATOPOEIA,
+    KNIFELIGHT
 } from '../../constants';
+
 import EdgeLightModal from "./EdgeLight";
 import Shock from '../shock';
 import ScreenCenterStretchModal from './ScreenCenterStretch';
 import FlashBuXueModal from './FlashBuXue';
 import Onomatopoeia from './onomatopoeia/index';
+import KnifeLightEffects from './knifeLightEffects'
 
 export default function Animation(animation) {
     const acitonObj = animationAction(animation)
@@ -25,6 +28,8 @@ export default function Animation(animation) {
             return FlashBuXueModal.show(acitonObj.action)
         case ONOMATOPOEIA:
             return Onomatopoeia(acitonObj)
+        case KNIFELIGHT:
+            return KnifeLightEffects(acitonObj.action)
 
     }
 };

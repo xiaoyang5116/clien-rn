@@ -9,6 +9,7 @@ export const SCREEN_CENTER_STRETCH = 'screen_center_stretch';
 export const FLASH_BUXUE = "FlashBuXue"
 export const BOOM = "Boom"
 export const ONOMATOPOEIA = "Onomatopoeia"
+export const KNIFELIGHT = "knifeLight"
 
 
 // 震屏
@@ -26,6 +27,16 @@ const edge_light_green = require('../../assets/edge_light/green.png');
 const edge_light_blue = require('../../assets/edge_light/blue.png');
 // 边缘闪烁白
 const edge_light_white = require('../../assets/edge_light/white.png');
+
+// =========刀光
+function knifeLightAction(type) {
+    const DATA = [
+        { type: "拔刀", img: require('../../assets/animations/knifeLight/badao.png') },
+    ]
+    return DATA.find(item => item.type === type)
+}
+
+
 
 // ========= 屏幕中心 图片伸缩
 // 通关1
@@ -73,6 +84,11 @@ export const animationAction = type => {
             return {
                 type: ONOMATOPOEIA,
                 typeId: 1,
+            };
+        case "拔刀":
+            return {
+                type: KNIFELIGHT,
+                action: knifeLightAction("拔刀")
             };
     }
 };
