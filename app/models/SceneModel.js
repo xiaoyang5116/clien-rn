@@ -163,6 +163,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__animations", cmd: 'animations', params: payload.animations });
     }
 
+    // 生成掉落ID
+    if (payload.dropId != undefined && typeof(payload.dropId) == 'string') {
+      allActions.push({ id: "__dropId_{0}".format(payload.dropId), cmd: 'dropId', params: payload.dropId });
+    }
+
     return allActions;
   }
 }
@@ -231,6 +236,7 @@ const ACTIONS_MAP = [
   { cmd: 'toMapPoint',    handler: '__onMapPointCommand' },
   { cmd: 'games',         handler: '__onGamesCommand' },
   { cmd: 'animations',    handler: '__onAnimationsCommand' },
+  { cmd: 'dropId',        handler: '__onDropIdCommand' },
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;
@@ -746,6 +752,10 @@ export default {
       EffectAnimations.show(payload.params);
     },
 
+    *__onDropIdCommand({ payload }, { put }) {
+      yield put.resolve(action('DropsModel/process')({ dropId: payload.params }));
+    },
+
     *syncData({ }, { select, call }) {
       const sceneState = yield select(state => state.SceneModel);
       yield call(LocalStorage.set, LocalCacheKeys.SCENES_DATA, { 
@@ -867,6 +877,19 @@ export default {
       }
       return !failure;
     },
+
+    // 批量测试条件是否成立
+    *testConditionArray({ payload }, { call, put, select }) {
+      if (!lo.isArray(payload))
+        return false;
+      
+      const result = [];
+      for (let key in payload) {
+        const item = payload[key];
+        result.push(yield put.resolve(action('testCondition')({ ...item })));
+      }
+      return result;
+    }
 
   },
   

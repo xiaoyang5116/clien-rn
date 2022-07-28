@@ -4,8 +4,9 @@ data:
     figure:
       [
         { id: "01", name: "李森炎", avatar: "1", cover: "" },
-        { id: "02", name: "乞丐李大哥", avatar: "1", cover: "" },
-        { id: "03", name: "掌门", avatar: "1", cover: "" },
-        { id: "04", name: "师姐", avatar: "2", cover: "" },
+        { id: "02", name: "陶老本尊", avatar: "3", cover: "" },
+        { id: "03", name: "为老不尊", avatar: "4", cover: "" },
+        { id: "05", name: "吾才是本尊", avatar: "5", cover: "" },
+        { id: "04", name: "云云", avatar: "2", cover: "" },
       ],
   }

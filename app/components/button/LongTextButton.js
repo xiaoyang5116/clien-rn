@@ -22,6 +22,7 @@ export const LongTextButton = props => {
             <TouchableHighlight
                 underlayColor={'#fff'}
                 activeOpacity={0.4}
+                disabled={props.disabled ? props.disabled : false}
                 style={[
                     styles.center,
                     styles.btnContainer,

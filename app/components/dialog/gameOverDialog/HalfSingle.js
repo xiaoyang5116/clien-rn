@@ -8,7 +8,7 @@ import React from 'react';
 
 import { ThemeContext } from '../../../constants';
 import { HalfPanel } from '../../panel';
-import { TextButton } from '../../../constants/custom-ui';
+import { TextButton, BtnIcon } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 
 const HalfSingle = (props) => {
@@ -51,17 +51,37 @@ const HalfSingle = (props) => {
         return null;
     };
 
+    const HaveBtnIcon = ({ item }) => {
+        const { title, icon } = item
+        return (
+            <>
+                <TextButton
+                    title={item.title}
+                    onPress={() => {
+                        nextDialogue(item);
+                    }}
+                />
+                {icon.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
+            </>
+        )
+    }
+
     const renderBtn = ({ item }) => {
         if (currentIndex === currentDialogueLength) {
             return (
                 <View style={{ marginTop: 8 }}>
-                    <TextButton
-                        // currentStyles={props.currentStyles}
-                        title={item.title}
-                        onPress={() => {
-                            nextDialogue(item);
-                        }}
-                    />
+                    {
+                        item.icon
+                            ? (<HaveBtnIcon item={item} />)
+                            : (
+                                <TextButton
+                                    title={item.title}
+                                    onPress={() => {
+                                        nextDialogue(item);
+                                    }}
+                                />
+                            )
+                    }
                 </View>
             );
         }

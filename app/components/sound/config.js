@@ -5,6 +5,7 @@ export const SOUND_RESOURCES = [
     { id: 'BGM_B_0003', source: require('../../../assets/sound/BGM/BGM_B_0003.mp3') },
     { id: 'BGM_C_0001', source: require('../../../assets/sound/BGM/BGM_C_0001.mp3') },
     { id: 'BGM_C_0002', source: require('../../../assets/sound/BGM/BGM_C_0002.mp3') },
+    { id: 'BGM_C_0003', source: require('../../../assets/sound/BGM/BGM_C_0003.mp3') },
     { id: 'BGM_Q_0001', source: require('../../../assets/sound/BGM/BGM_Q_0001.mp3') },
     { id: 'BGM_Q_0002', source: require('../../../assets/sound/BGM/BGM_Q_0002.mp3') },
     { id: 'BGM_Q_0003', source: require('../../../assets/sound/BGM/BGM_Q_0003.mp3') },
@@ -22,6 +23,9 @@ export const SOUND_RESOURCES = [
     { id: 'SE_AM_0002', source: require('../../../assets/sound/SE/SE_AM_0002.wav') },
     { id: 'SE_AM_0003', source: require('../../../assets/sound/SE/SE_AM_0003.wav') },
     { id: 'SE_AM_0004', source: require('../../../assets/sound/SE/SE_AM_0004.wav') },
+    { id: 'SE_AM_0005', source: require('../../../assets/sound/SE/SE_AM_0005.wav') },
+    { id: 'SE_AM_0006', source: require('../../../assets/sound/SE/SE_AM_0006.wav') },
+    { id: 'SE_AM_0007', source: require('../../../assets/sound/SE/SE_AM_0007.wav') },
    
 
 

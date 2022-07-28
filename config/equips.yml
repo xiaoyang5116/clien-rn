@@ -1,0 +1,16 @@
+# ===========================================
+# 装备配置
+# ===========================================
+equips: [
+  { id: 100000, name: '护腕', iconId: 4, num: 100, quality: 3, type: 0, tags: ['防具'], attrs: ['装备'], affect: [{ key: '普通防御', value: 10 }, { key: '体力', value: 100 }], capacity: 1, desc: '' },
+  { id: 100001, name: '护膝', iconId: 5, num: 9, quality: 1, type: 0, tags: ['防具'], attrs: ['装备'], affect: [{ key: '法术防御', value: 10 }, { key: '法力', value: 100 }], capacity: 1, desc: ''},
+  { id: 100002, name: '长剑', iconId: 5, num: 9, quality: 1, type: 0, tags: ['武器'], attrs: ['装备'], affect: [{ key: '普通攻击', value: 20 }, { key: '体力', value: 100 }], capacity: 1, desc: ''},
+  { id: 100003, name: '飞镖', iconId: 5, num: 9, quality: 1, type: 0, tags: ['武器'], attrs: ['装备'], affect: [{ key: '普通攻击', value: 10 }, { key: '法术攻击', value: 10 }, { key: '法力', value: 100 }], capacity: 1, desc: ''},
+  { id: 100004, name: '匕首', iconId: 5, num: 9, quality: 1, type: 0, tags: ['武器'], attrs: ['装备'], affect: [{ key: '普通攻击', value: 5 }, { key: '法术攻击', value: 10 }, { key: '体力', value: 100 }], capacity: 1, desc: ''},
+  { id: 100005, name: '披风', iconId: 5, num: 9, quality: 1, type: 0, tags: ['衣装'], attrs: ['装备'], affect: [{ key: '法术防御', value: 5 }, { key: '法力', value: 100 }], capacity: 1, desc: ''},
+  { id: 100006, name: '长裤', iconId: 5, num: 9, quality: 1, type: 0, tags: ['衣装'], attrs: ['装备'], affect: [{ key: '普通防御', value: 5 }, { key: '体力', value: 100 }], capacity: 1, desc: ''},
+  { id: 100007, name: '草鞋', iconId: 5, num: 9, quality: 1, type: 0, tags: ['其他'], attrs: ['装备'], affect: [{ key: '法术防御', value: 5 }, { key: '法力', value: 100 }], capacity: 1, desc: ''},
+  { id: 100008, name: '护身符', iconId: 5, num: 9, quality: 1, type: 0, tags: ['法宝'], attrs: ['装备'], affect: [{ key: '法术防御', value: 100 }, { key: '体力', value: 100 }], capacity: 1, desc: ''},
+  { id: 100009, name: '银手镯', iconId: 5, num: 9, quality: 1, type: 0, tags: ['饰品1'], attrs: ['装备'], affect: [{ key: '普通防御', value: 5 }, { key: '法力', value: 100 }], capacity: 1, desc: ''},
+  { id: 100010, name: '金项链', iconId: 5, num: 9, quality: 1, type: 0, tags: ['饰品2'], attrs: ['装备'], affect: [{ key: '普通防御', value: 5 }, { key: '体力', value: 100 }], capacity: 1, desc: ''},
+]

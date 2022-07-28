@@ -88,15 +88,17 @@ const DirMap = (props) => {
   const bigMapTransY = React.useRef(new Animated.Value(0)).current;
   // 大地图缩放
   const bigMapScale = React.useRef(new Animated.Value(1)).current;
+  // 记录Grid点击状态（解决Grid与PanResponser的响应BUG）
+  const touchStart = React.useRef(false);
 
   // 地图缩放限制
   const zoomMax = 2;
   const zoomMin = 0.6;
 
   // 是否开始双指
-  let isTwoFinger = false
+  let isTwoFinger = false;
   // 开始时双指简距离
-  let initDistend = 0
+  let initDistend = 0;
 
   // 地图滑动处理器
   const panResponder = React.useRef(PanResponder.create({
@@ -125,6 +127,7 @@ const DirMap = (props) => {
         if (scaleNumber < zoomMin - 0.1) return;
         bigMapScale.setValue(scaleNumber)
       }
+      touchStart.current = false;
     },
     onPanResponderRelease: (evt, gestureState) => {
       status.prevX = bigMapPos.x._value;
@@ -240,23 +243,26 @@ const DirMap = (props) => {
       ? require('../../../assets/button/dir_map_button.png') 
       : require('../../../assets/button/dir_map_button2.png');
 
-    grids.push((
-      <TouchableWithoutFeedback key={idx++} onPress={() => {
-        if (lo.isBoolean(e.lock) && e.lock)
-          return;
-          
-        if (props.onEnterDir != undefined) {
-          props.onEnterDir(e);
-        }
-      }}>
-        <View style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}>
+    grids.push(
+      <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]} 
+        onTouchStart={() => {
+          touchStart.current = true;
+        }}
+        onTouchEnd={() => {
+          if ((lo.isBoolean(e.lock) && e.lock) || !touchStart.current)
+            return;
+        
+          touchStart.current = false;
+          if (props.onEnterDir != undefined) {
+            props.onEnterDir(e);
+          }
+        }}>
           <FastImage style={{ position: 'absolute', zIndex: 0, width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT }} source={gridImg} />
           {(lo.isBoolean(e.lock) && e.lock) 
             ? <FastImage style={{ position: 'absolute', width: px2pd(39), height: px2pd(52) }} source={require('../../../assets/bg/lock.png')} /> 
-            : <Text style={{ color: '#000', fontSize: 12, zIndex: 1 }}>{e.title}</Text>
+            : <Text numberOfLines={1} style={{ color: '#000', fontSize: 12, zIndex: 1 }}>{e.title}</Text>
           }
-        </View>
-      </TouchableWithoutFeedback>));
+      </View>);
   });
 
   return (

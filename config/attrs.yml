@@ -1,45 +1,73 @@
 # ===========================================
 # 角色属性
 # ===========================================
+#       title: '力量倾向',=标题
+#       collapsed: true,=默认是否展开
+#     { title: '成神'=标题   , key: 成神=调用名字轻易不能修改，要改整个文件全部都要重新定位, value: 0 =初始化值， 默认不动},#
+#本数值最低为0，默认扣值最多扣到0，所以设计时候负值要考虑先让属性为正数，否则扣值容易无效。
+#选项配置的时候考虑互相排斥，如做好事的时候同时扣做坏事的值。但需要考虑负值问题。
+#初始值为10，要想让数值快速归零，可以直接减去9999，就会至零
+# ===========================================
 data: {
   attrs: [
-    {
-      title: '力量倾向',
-      collapsed: true,
-      data: [[
-        { title: '成神', key: 1, value: 0 },
-        { title: '入魔', key: 2, value: 0 },
-        { title: '变化', key: 3, value: 0 },
-        { title: '自由', key: 4, value: 0 },
-      ]],
-    },
-    {
-      title: '善恶',
-      data: [[
-        { title: '善良', key: 5, value: 0 },
-        { title: '冷漠', key: 6, value: 0 },
-      ]],
-    },
-    {
-      title: '武艺',
-      data: [[
-        { title: '身法', key: 7, value: 0 },
-        { title: '速度', key: 8, value: 0 },
-      ]],
-    },
+
     {
       title: '修行',
       collapsed: true,
       data: [[
-        { title: '神识', key: 9, value: 0 },
-        { title: '鉴定', key: 10, value: 0 },
+        { title: '神识', key: 神识, value: 10 },
+        { title: '鉴定', key: 鉴定, value: 10 },
+        { title: '气运', key: 气运, value: 10 },
+        { title: '道行', key: 道行, value: 10 },
+        { title: '神通', key: 神通, value: 10 },
+        { title: '仙缘', key: 仙缘, value: 10 },
       ]],
     },
+   
+    {
+      title: '武艺',
+      data: [[
+        { title: '身法', key: 身法, value: 10 },
+        { title: '速度', key: 速度, value: 10 },
+        { title: '体魄', key: 体魄, value: 10 },
+      ]],
+    },
+    
     {
       title: '才华',
       collapsed: true,
       data: [[
-        { title: '学识', key: 11, value: 0 },
+        { title: '学识', key: 学识, value: 10 },
+        { title: '悟性', key: 悟性, value: 10 },
+        { title: '颜值', key: 颜值, value: 10 },
+        { title: '智慧', key: 智慧, value: 10 },
+      ]],
+    },
+    {
+      title: '仙途',
+      collapsed: true,
+      data: [[
+        { title: '轮回', key: 轮回, value: 10 },
+        { title: '寿元', key: 寿元, value: 10 },
+        { title: '道友', key: 道友, value: 10 },
+       
+      ]],
+    },
+     {
+      title: '善恶',
+      data: [[
+        { title: '善良', key: 善良, value: 10 },
+        { title: '冷漠', key: 冷漠, value: 10 },
+      ]],
+    },
+     {
+      title: '力量倾向',
+      collapsed: true,
+      data: [[
+        { title: '成神', key: 成神, value: 10 },
+        { title: '入魔', key: 入魔, value: 10 },
+        { title: '变化', key: 变化, value: 10 },
+        { title: '自由', key: 自由, value: 10 },
       ]],
     },
   ]

@@ -139,41 +139,58 @@ class FirstPage extends Component {
                   // })
 
                   // 单人对话框
+                  // Modal.show({
+                  //   style: 6, title: '神秘阵盘', dialogType: 'HalfScreen', textAnimationType: 'TextSingle',
+                  //   sections: [
+                  //     {
+                  //       key: 'p1',
+                  //       content: ['你迅速跑过去，地面有些东西。', ["boom"], '走开走开，马夫大喝， 正从远处拨开人群走来。', '获得几颗石头珠子，看起来能卖不少钱。'],
+                  //       btn: [{ title: '去拿菜刀', tokey: "",}, { title: '去拿画轴', tokey: "p3", animation: ['边缘闪烁绿'] }]
+                  //     },
+                  //     { key: 'p2', content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
+                  //     { key: 'p3', content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
+                  //   ]
+                  // })
+
+                  // 多人对话框
+                  // Modal.show({
+                  //   style: 8, title: '神秘阵盘', textAnimationType: 'TextSingle', dialogType: 'FullScreen',
+                  //   isBubbleColor: true,
+                  //   sections: [
+                  //     {
+                  //       key: 'p1',
+                  //       dialog: [
+                  //         { id: '02', content: ['这里是外来的一般商家来的市场，一般为了图个彩头，不会有多寒酸 我们就在这附近讨乞。不出这条路就行。', ['边缘闪烁绿'], '讨乞后每天晚上要给帮派利钱，不然被记住会被帮派打走。',], },
+                  //         { id: 'center', content: ["一天前"] },
+                  //         { id: '01', content: ['好的', ['边缘闪烁绿']], },
+                  //         { id: 'left', content: ["一天前"] },
+                  //         { id: '04', content: ['好的',], },
+                  //       ],
+                  //       btn: [{ title: '开始乞讨', tokey: "p2", animation: ['边缘闪烁绿'] }, { title: '退出', tokey: "next" }]
+                  //     },
+                  //     {
+                  //       key: 'p2',
+                  //       dialog: [
+                  //         { id: '02', content: ['记住不要去北街，那是富人才能去的地方，乞丐是去不了的。会被打。'] }
+                  //       ],
+                  //       btn: [{ title: '退出', tokey: "next" }]
+                  //     },
+                  //   ]
+                  // })
+
+                  // 黑白对话框
                   Modal.show({
-                    style: 6, title: '神秘阵盘', dialogType: 'HalfScreen', textAnimationType: 'TextSingle',
+                    style: "9B", textAnimationType: 'TextSingle',
                     sections: [
                       {
                         key: 'p1',
-                        content: ['你迅速跑过去，地面有些东西。', ["boom"], '走开走开，马夫大喝， 正从远处拨开人群走来。', '获得几颗石头珠子，看起来能卖不少钱。'],
-                        btn: [{ title: '去拿菜刀', tokey: "",}, { title: '去拿画轴', tokey: "p3", animation: ['边缘闪烁绿'] }]
+                        content: ['你迅速跑过去，地面有些东西。', '走开走开，马夫大喝， 正从远处拨开人群走来。', '获得几颗石头珠子，看起来能卖不少钱。', '获得几颗石头珠子，看起来能卖不少钱。', '获得几颗石头珠子，看起来能卖不少钱。', '获得几颗石头珠子，看起来能卖不少钱。', '获得几颗石头珠子，看起来能卖不少钱。','来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。','来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。','来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。'],
                       },
                       { key: 'p2', content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
                       { key: 'p3', content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
                     ]
                   })
 
-                  // 多人对话框
-                  // Modal.show({
-                  //   style: 8, title: '神秘阵盘', textAnimationType: 'TextSingle', dialogType: 'HalfScreen',
-                  //   sections: [
-                  //     { 
-                  //       key: 'p1',
-                  //       dialog: [
-                  //         {id: '02',content: ['这里是外来的一般商家来的市场，一般为了图个彩头，不会有多寒酸 我们就在这附近讨乞。不出这条路就行。', '讨乞后每天晚上要给帮派利钱，不然被记住会被帮派打走。', ],},
-                  //         {id: '01',content: ['好的',],},
-                  //         {id: '04',content: ['好的',],},
-                  //       ],
-                  //       btn:[{title: '开始乞讨',tokey: "p2"},{title: '退出',tokey: "next"}]
-                  //     },
-                  //     { 
-                  //       key: 'p2',
-                  //       dialog: [
-                  //         {id:'02',content: ['记住不要去北街，那是富人才能去的地方，乞丐是去不了的。会被打。']}
-                  //       ],
-                  //       btn: [{title: '退出',tokey: "next"}]
-                  //     },
-                  //   ]
-                  // })
                 }} />
               </View>
             </SafeAreaView>

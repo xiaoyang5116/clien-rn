@@ -9,6 +9,7 @@ import LightningAnimation from './LightningAnimation';
 import LeiYunAnimation from './LeiYunAnimation';
 import Onomatopoeia from '../animation/onomatopoeia';
 import SubTitleAnimation from './SubTitleAnimation';
+import Animation from '../animation';
 
 export default class EffectAnimations {
 
@@ -46,6 +47,8 @@ export default class EffectAnimations {
                 const key = RootView.add(<SubTitleAnimation data={e.data} onClose={() => {
                     RootView.remove(key);
                 }} />);
+            } else if (id == 8) { // 其他动画
+                Animation(e.type)
             }
         });
     }

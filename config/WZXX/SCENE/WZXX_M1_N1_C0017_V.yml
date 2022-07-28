@@ -1,0 +1,78 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_C0017_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [{ id: "v1", min: 0, max: 1 }],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [],
+
+
+    
+      chats: [
+      #
+
+      { 
+        id: 'WZXX_M1_N1_C0017_V1', desc: '炸桶', 
+        options: [ 
+          { title: "【我需要……】",dialogs: ['C0017A_zhatongA']},
+        ],
+      },
+      { 
+        id: 'WZXX_M1_N1_C0017_V2', desc: '选择', 
+        options: [ 
+          { title: "【忍气吞声，算了】",dialogs: ['C0017A_suanleA']},
+          { title: "【向陶老讨要个说法】",toChapter: "WZXX_M1_N1_C017_[N2]"},
+      
+        ],
+      },
+
+     
+
+
+
+        ],
+
+
+      # 对话框
+      dialogs:
+        [
+
+
+
+
+           #选项对话
+          { id: 'C0017A_zhatongA',style: 6, title: '炸桶', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎有些尴尬，穿好衣服，这才回答：“我需要，赔你们个桶。”','此时，住在高层房间的云云也听到了动静。','出来看到李森炎房间碎了一地的浴桶，她有些瞠目结舌：“不就是泡个澡而已吗，你怎么把人家桶给炸了？”',
+          '“桶要不炸，我人就炸了。”李森炎二话不说，直接掏钱。',
+          ],
+          btn: [{title: '赔偿（铜币-1贯）',toChapter: "WZXX_M1_N1_C017_[N1]"},]},
+
+         
+           ]  
+        },
+
+
+
+          #选项对话2
+        { id: 'C0017A_suanleA',style: 6, title: '忍气吞声', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P3', content: ['李森炎心中忿忿不平，但还是选择忍下这口气',['闪烁补血'],'每日坚持用陶老本尊给的锻骨灵液炼体，体质逐渐提升','但每次看到那些筑基锻骨灵液，他心中的郁愤就更增一分','他想着自己这么受人欺辱，欺骗',
+          '一切的根源都是因为自己太弱','这种念头渐渐形成心魔，在他心里扎根','他变得更加急功近利，在一次突破中，他一念成魔',[{ sounds: [{ soundId: 'SE_UE_0003',}] }] ,'被附近的强大修士感知到，遭围攻而死',],
+          btn: [{title: '再来一次绝不选这个',toChapter: "WZXX_M1_N1_C017_[N1]"}]},
+        ],
+        },
+
+        
+
+  ]
+    }
+]
