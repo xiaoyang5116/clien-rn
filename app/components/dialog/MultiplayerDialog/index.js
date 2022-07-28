@@ -146,9 +146,10 @@ const MultiplayerDialog = (props) => {
 
   //  点击按钮
   const nextDialog = (item) => {
+    // 执行动作
+    actionMethod(item)
 
     const newDialogData = viewData.sections.filter(s => s.key === item.tokey)
-
     if (newDialogData.length > 0) {
       addHistoryDialog({ id: newDialogData[0].dialog[0].id, content: newDialogData[0].dialog[0].content[0] })
       setCurrentDialogIndex(0)
@@ -162,8 +163,6 @@ const MultiplayerDialog = (props) => {
     else {
       onDialogCancel()
     }
-
-    actionMethod(item)
   }
 
   // 渲染对话

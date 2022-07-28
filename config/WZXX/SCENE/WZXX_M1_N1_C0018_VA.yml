@@ -74,7 +74,7 @@ scenes: [
                 { id: '03', content: ['……',], },
                 { id: '02', content: ['……',], },
               ],
-              btn: [{ title: '解气！', toChapter: "WZXX_M1_N1_C018_[N2]"},]
+              btn: [{ title: '解气！', toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C018_[N2]"},]
 
               
             },
