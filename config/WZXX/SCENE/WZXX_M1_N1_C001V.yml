@@ -45,16 +45,16 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001C_CCXZ', desc: '选择穿越的出身', 
         options: [ 
-          { title: "【想起自己是“被灭门修真世家的逃难者”】", andVarsOff: ['v1'], varsOn: ['v2,v3'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001_[A1]" },
-          { title: "【想起自己是“经营包子铺的穷小子”】", andVarsOff: ['v2'], varsOn: ['v1,v3'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001_[A2]" },
-          { title: "【想起自己是“富贵白府千金的私生子”】", andVarsOff: ['v3'], varsOn: ['v1,v2'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001_[A3]" },
+          { title: "【想起自己是“被灭门修真世家的逃难者”】", andVarsOff: ['v1'], varsOn: ['v2,v3'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C_[N1]" },
+          { title: "【想起自己是“经营包子铺的穷小子”】", andVarsOff: ['v2'], varsOn: ['v1,v3'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C_[N2]" },
+          { title: "【想起自己是“富贵白府千金的私生子”】", andVarsOff: ['v3'], varsOn: ['v1,v2'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C_[N3]" },
         ],
       },
       #
       { 
         id: 'WZXX_M1_N1_C001B_TO_C001C', desc: '选项', 
         options: [ 
-        { title: "【观察城门】", toChapter: "WZXX_M1_N1_C001C", },
+        { title: "【观察城门】", toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C", },
         ],
       },
 

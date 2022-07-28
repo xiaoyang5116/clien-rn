@@ -8,4 +8,5 @@
 drops: [
   { id: 'D1000000', sendProps: '40,10', alertAttrs: ['气运,1', '道行,2'] },
   { id: 'D1000001', sendProps: '20,10', alertAttrs: ['仙缘,1'] },
+  
 ]

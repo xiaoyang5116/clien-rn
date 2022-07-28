@@ -7,6 +7,9 @@ scenes: [
       # 变量定义
       vars: [
         { id: "v1", min: 0, max: 1 },
+        { id: "biaoqianv0", min: 0, max: 1 } ,
+        { id: "biaoqianv00", min: 0, max: 1 } ,
+        { id: "biaoqianv000", min: 0, max: 1 } ,
         { id: "biaoqianv1", min: 0, max: 1 } ,
         { id: "biaoqianv2", min: 0, max: 1 } ,
         { id: "biaoqianv3", min: 0, max: 1 } ,
@@ -41,12 +44,7 @@ scenes: [
         { id: "biaoqianv32", min: 0, max: 1 } ,
         { id: "biaoqianv33", min: 0, max: 1 } ,
         { id: "biaoqianv34", min: 0, max: 1 } ,
-        { id: "biaoqianv35", min: 0, max: 1 } ,
-        { id: "biaoqianv36", min: 0, max: 1 } ,
-        { id: "biaoqianv37", min: 0, max: 1 } ,
-        { id: "biaoqianv38", min: 0, max: 1 } ,
-        { id: "biaoqianv39", min: 0, max: 1 } ,
-        { id: "biaoqianv40", min: 0, max: 1 } ,
+       
       ],
 
 
@@ -237,17 +235,17 @@ scenes: [
            #选项对话3 修正1
           { key: 'P7', content: ['李森炎看到那套从未见过的异国人装束','当他看见那装束的时候，店家的表情有些欲言又止','怎么回事？算了管他',
           '店长：这件衣服少有人买，而且比较招摇，您……要不换个款式？','信息时代什么款式没见过，李森炎才不会计较',],
-          btn: [{title: '换上衣服’',tokey: "P7_1", icon: { id: 6, bindVar: 'biaoqianv18' }}]},
+          btn: [{title: '换上衣服',tokey: "P7_1", }]},
           
            { key: 'P7_1', content: ['无视店家的眼神','挑了那套从未见过的异国人装束，换上。',
           '“原来公子您是天魔宗的人，您还是我店里的第一位。”布庄老板恭敬的送他出去。','李森炎：天魔宗？？？','这个名字似乎有点耳熟，但行的匆忙，也没在想起来这件事，离开布庄之后便离开了。',
           '路上，李森炎走了许久。','忽闻头顶屋檐之上传过两阵风声，两位身着兵装的士兵朝着原身家的方向奔去。',],
-          btn: [{title: '还好没回去’',tokey: "P7_2", icon: { id: 6, bindVar: 'biaoqianv19' }}]},
+          btn: [{title: '还好没回去',tokey: "P7_2", }]},
           
           { key: 'P7_2', content: [ '这大概就是皇城司的人',
           '李森炎松了一口气，还好机智没有先回家，不然就被逮了！','于是就在准备去前面街口转悠一会儿的时候。',
           '忽然，巷子深处跑出一人来，与你迎头撞上。',['震屏1'],'“你是何人，怎会穿着我天魔宗的衣服！”那年轻人吹胡子瞪眼指着你。',],
-          btn: [{title: '正面刚’',tokey: "P7_3", icon: { id: 6, bindVar: 'biaoqianv20' }},
+          btn: [{title: '正面刚',tokey: "P7_3", icon: { id: 6, bindVar: 'biaoqianv20' }},
           {title: '绕道走',tokey: "P7_4", icon: { id: 6, bindVar: 'biaoqianv21' }},]},
 
           { key: 'P7_3', content: [ 
@@ -265,13 +263,13 @@ scenes: [
           {title: '出其不意，‘这老虎不会是母老虎吧！’',tokey: "P7C", icon: { id: 6, bindVar: 'biaoqianv24' }}]},
 
           { key: 'P7A', content: ['地下十分泥泞，我来一个滑铲','修士：？？？','李森炎：没事我就是玩个梗','修士：那就按规矩来','李森炎：什么规矩？','修士：先打一顿，让舒展下筋骨',[{ sounds: [{ soundId: 'SE_KO_0004',}] }],'李森炎：等下！',],
-          btn: [{title: '不要打脸！',dialogs: ['gameover06'], varsOn: ['biaoqianv22','biaoqianv21','biaoqianv20','biaoqianv19','biaoqianv18','biaoqianv00',]},]},
+          btn: [{title: '不要打脸！',dialogs: ['gameover06'], varsOn: ['biaoqianv22','biaoqianv21','biaoqianv20','biaoqianv00','biaoqianv11',]},]},
 
           { key: 'P7B', content: ['九霄狂涛骇浪，你当缩头乌龟','刚说完，李森炎人便给你当头来了一拳。',[{ sounds: [{ soundId: 'SE_KO_0004',}] }],'“你竟敢骂老子？你是哪家的小子，你可认得我是谁，罢了！今日老子不管你是谁，敢骂我，先打一顿再说！”',['边缘闪烁红'],],
-          btn: [{title: '我就随便一说！！！',dialogs: ['gameover06'], varsOn: ['biaoqianv23','biaoqianv21','biaoqianv20','biaoqianv19','biaoqianv18','biaoqianv00',]},]},
+          btn: [{title: '我就随便一说！！！',dialogs: ['gameover06'], varsOn: ['biaoqianv23','biaoqianv21','biaoqianv20','biaoqianv00','biaoqianv11',]},]},
 
           { key: 'P7C', content: ['这老虎不会是母老虎吧！','李森炎刚说完答案，那修士的脸像便秘了似的','既然不是我宗之人，假冒者就要罚','李森炎：罚什么，罚款吗？','不用，先打你一顿张张记性就成…','李森炎：我还有事，先走了','修士：哪里逃！',[{ sounds: [{ soundId: 'SE_KO_0004',}] }],],
-         btn: [{title: '跑不过！',dialogs: ['gameover06'], varsOn: ['biaoqianv22','biaoqianv24','biaoqianv20','biaoqianv19','biaoqianv18','biaoqianv00',]},]},
+         btn: [{title: '跑不过！',dialogs: ['gameover06'], varsOn: ['biaoqianv22','biaoqianv20','biaoqianv00','biaoqianv11',]},]},
 
 
            #选项对话4 
@@ -283,40 +281,40 @@ scenes: [
 
           { key: 'P8G1', content: ['“你认错人了，我不是你同党。”李森炎没好气的白了黑衣人一眼。','心中暗骂倒霉，决定快步离开。',
           '刚走出两步，便听见身后那男人嘀咕一句。','“就算不是，你也知道了春花阁的事，小兄弟，得罪了！”',[{ sounds: [{ soundId: 'SE_KO_0007',}] }],'李森炎：？？？',],
-          btn: [{title: '等下！别拔刀啊！',tokey: "P8_A", icon: { id: 6, bindVar: 'biaoqianv27' }},]},
+          btn: [{title: '等下！别拔刀啊！',tokey: "P8",varsOn: ['biaoqianv25',]},]},
 
           { key: 'P8_A', content: ['眼前人来势汹汹，火急火燎的样子，你知道这件事肯定不能简单的应付过去','李森炎眼一转，想出个注意，“东西太多，春花阁宾客太多，我一个人取不出来。我告诉你地址你去拿。”',
           '李森炎想着，先把这人支来，自己再溜。','黑衣人惊呵一声，“春花阁那种烟柳之地，你都取不出来，你这废物，干什么吃的！”','“和我一起去，今天老子就让你看看，什么叫做盗圣！”',],
-          btn: [{title: '去春花阁',tokey: "P8A", icon: { id: 6, bindVar: 'biaoqianv28' }},]},
+          btn: [{title: '去春花阁',tokey: "P8A",},]},
 
            { key: 'P8A', content: ['你被黑衣人带进春花阁，期间几次想溜，都被黑衣人发现了，无奈之下，你只好跟着他。','不过能来春花阁一逛，你的心中也是有几分乐意的。','这古代的春楼，还真是没见过。',
           '进了春花阁，走的是暗道','“货就在房间里，你去取过来，我在这里接应你。”黑衣人推了你一把，随后把暗格门关上了','于是，你就这样站在了春花阁的走廊里，看着面前的两扇门，心中一团乱麻','哪知道上哪儿取啊？现在溜还来得及吗！','选择————',],
           btn: [{title: '标记百花的房间',tokey: "P8B", icon: { id: 6, bindVar: 'biaoqianv29' }},
           {title: '标记牡丹的房间',tokey: "P8C", icon: { id: 6, bindVar: 'biaoqianv30' }},
-          {title: '趁着黑衣人不注意，赶紧溜！',dialogs: ['gameover12'], varsOn: ['biaoqianv27','biaoqianv25',]}]},
+          {title: '趁着黑衣人不注意，赶紧溜！',dialogs: ['gameover12'], varsOn: ['biaoqianv25',]}]},
 
           { key: 'P8B', content: ['你探的推了百花标记房间的门。','竟然没锁？','有些意外，李森炎蹑手蹑脚的走了进去',[{ sounds: [{ soundId: 'SE_UE_0008',}] }],
           '一进房间，便幽幽传来一阵淡雅的馨香，十分好闻，你不自觉地继续往里走',],
-          btn: [{title: '进房间',tokey: "P8_B", icon: { id: 6, bindVar: 'biaoqianv31' }},]},
+          btn: [{title: '进房间',tokey: "P8_B",},]},
           
            { key: 'P8_B', content: ['门‘啪嗒’一关的声音，引起了屏风后的女子注意。',
           '“死鬼，你怎么才来呀，人家都等着急了呢。”屏风后传来女子的骄嗔。',[{ sounds: [{ soundId: 'SE_HV_0004',}] }],'声音娇嫩',
           '忽然一阵清风，你还没来得及看清，李森炎感觉到一双娇嫩温热的小手在自己身上攀附。忽然，李森炎摔到了女子的闺床之上','“萧郎，怎得这么晚才来，你让奴家等的好苦啊……”',],
-          btn: [{title: '继续沉默',dialogs: ['gameover10'], varsOn: ['biaoqianv31','biaoqianv29','biaoqianv28','biaoqianv27','biaoqianv25','biaoqianv26','biaoqianv00',]},
+          btn: [{title: '继续沉默',dialogs: ['gameover10'], varsOn: ['biaoqianv29','biaoqianv25','biaoqianv26','biaoqianv00','biaoqianv12']},
           {title: '你认错人了姑娘',tokey: "P8B2", icon: { id: 6, bindVar: 'biaoqianv32' }}]},
 
           { key: 'P8B2', content: ['这样下去，肯定是瞒不住的，你决定告诉她','“姑娘，姑娘嘴下留情！”你赶紧制止了她，“小生不是萧郎，小生只是来问个路。”',
           '“啊！”',[{ sounds: [{ soundId: 'SE_HV_0015',}] }],'听你这么一说，女子惊吓万分，扯过丝被给自己披上，又端着火烛，仔细打量着李森炎','气氛了静了下来',],
           btn: [{title: '继续沉默',tokey: "P8B2A", icon: { id: 6, bindVar: 'biaoqianv33' }},
-          {title: '开溜！',dialogs: ['gameover12'], varsOn: ['biaoqianv32','biaoqianv31','biaoqianv29','biaoqianv28','biaoqianv27','biaoqianv25','biaoqianv26','biaoqianv00',]},]},
+          {title: '开溜！',dialogs: ['gameover12'], varsOn: ['biaoqianv32','biaoqianv29','biaoqianv28','biaoqianv27','biaoqianv25','biaoqianv26','biaoqianv00','biaoqianv12']},]},
 
           { key: 'P8B2A', content: ['好景不长，门外传来敲门声。','你还没想好躲到哪里','有人硬闯了进来','萧郎！女子认出来人','萧姓男人：这是谁？怎么到你房间的',[{ sounds: [{ soundId: 'SE_HV_0016',}] }],'李森炎：我就是路过！',],
-          btn: [{title: '我真是路过！',dialogs: ['gameover10A'], varsOn: ['biaoqianv33','biaoqianv31','biaoqianv29','biaoqianv28','biaoqianv27','biaoqianv25','biaoqianv26','biaoqianv00',]},]},
+          btn: [{title: '我真是路过！',dialogs: ['gameover10A'], varsOn: ['biaoqianv33','biaoqianv29','biaoqianv28','biaoqianv27','biaoqianv25','biaoqianv26','biaoqianv00','biaoqianv12']},]},
 
           { key: 'P8C', content: ['推开房门，房间没有人，李森炎简单搜寻一番，竟然真的看到了黑衣人同伙放在这里的‘货’','黑色袋子，李森炎搜了下，里面全是现银！','足足有好几百两',],
-          btn: [{title: '带出去交给官府',dialogs: ['gameover13'], varsOn: ['biaoqianv30','biaoqianv28','biaoqianv27','biaoqianv25','biaoqianv26','biaoqianv00',]},
-          {title: '交给黑衣人',dialogs: ['gameover14'], varsOn: ['biaoqianv30','biaoqianv28','biaoqianv27','biaoqianv25','biaoqianv26','biaoqianv00',]},
-          {title: '自己带走',dialogs: ['gameover15'], varsOn: ['biaoqianv30','biaoqianv28','biaoqianv27','biaoqianv25','biaoqianv26','biaoqianv00',]}]},
+          btn: [{title: '带出去交给官府',dialogs: ['gameover13'], varsOn: ['biaoqianv12','biaoqianv30','biaoqianv28','biaoqianv25','biaoqianv26','biaoqianv00',]},
+          {title: '交给黑衣人',dialogs: ['gameover14'], varsOn: ['biaoqianv12','biaoqianv30','biaoqianv28','biaoqianv25','biaoqianv26','biaoqianv00',]},
+          {title: '自己带走',dialogs: ['gameover15'], varsOn: ['biaoqianv12','biaoqianv30','biaoqianv28','biaoqianv25','biaoqianv26','biaoqianv00',]}]},
 
         ],
     },
@@ -325,7 +323,11 @@ scenes: [
            #死亡10
           { id: 'gameover10',style: 7, title: '采花贼李森炎', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B10', content: ['半推半就的，眼看着女人的红唇就要贴上来','结果凑近了些，借着微弱的光还有窗外的皓月，看清了李森炎的样子',
-          '发现李森炎是假冒的后，姑娘扇了李森炎一巴掌',{ sounds: [{ soundId: 'SE_HV_0010',}] } ,'尖叫一声叫来众多姐妹',{ sounds: [{ soundId: 'SE_HV_0005',}] } ,'李森炎被抓进了官府','刚好碰见县令心情不好，不由分说直接判了个游街示众','之后，李森炎采花贼的名字响彻十里八乡，故事被添油加醋的戏剧化，成为众人笑谈',],
+          '发现李森炎是假冒的后，姑娘扇了李森炎一巴掌',
+          [{ sounds: [{ soundId: 'SE_HV_0010',}] } ,],
+          '尖叫一声叫来众多姐妹',
+          [{ sounds: [{ soundId: 'SE_HV_0005',}] } ,],
+          '李森炎被抓进了官府','刚好碰见县令心情不好，不由分说直接判了个游街示众','之后，李森炎采花贼的名字响彻十里八乡，故事被添油加醋的戏剧化，成为众人笑谈',],
           btn: [{title: '要是能重来，我一定回家',dialogs: ['C002A_fenzhiA']},]},
           ], },
            #死亡10
@@ -395,13 +397,31 @@ scenes: [
      #选项对话3
           { id: 'C002A_fenzhiC',style: 6, title: '先去找人打听情报', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'P9', content: ['现在回家无疑是死路一条','首先得避避风头，不然贸然赶回家还有可能被人守株待兔','你决定自己作为穿越者刚来到这个世界，人生地不熟的，应该先找人打听打听','于是徒步朝着城镇走了几里路，这才终于看见了三个人','此时与你擦肩而过的有三人，你只能找一个人打听消息，你选择——',],
-          btn: [{title: '年轻的村民',tokey: "P10"},{title: '路边的乞丐',tokey: "P11"},{title: '吃糖的小女孩',tokey: "P12"}]},
+          { key: 'P9', content: ['现在回家无疑是死路一条','首先得避避风头，不然贸然赶回家还有可能被人守株待兔',
+          '你决定自己作为穿越者刚来到这个世界，人生地不熟的，应该先找人打听打听','于是徒步朝着城镇走了几里路，这才终于看见了三个人',
+          '此时与你擦肩而过的有三人，你只能找一个人打听消息，你选择——',],
+          btn: [{title: '年轻的村民',tokey: "P10"},
+          {title: '路边的乞丐',tokey: "P11"},
+          {title: '吃糖的小女孩',tokey: "P12"}]},
 
-          { key: 'P10', content: ['你仔细打量了下这三个人，觉得还是村民最靠谱','于是你，走上前去，与他攀谈','“大哥，和你打听个事儿呗……”你一连串问了好多问题','那村民也很有耐心的听着，但这个村民是个哑巴，他帮不上你',],
+          { key: 'P10', content: ['你仔细打量了下这三个人，觉得还是村民最靠谱','于是你，走上前去，与他攀谈',
+          '“大哥，和你打听个事儿呗……”你一连串问了好多问题','那村民也很有耐心的听着，但这个村民是个哑巴，他帮不上你',],
           btn: [{title: '算了，直接回家',dialogs: ['C002A_fenzhiA'],},]},
-         
-          { key: 'P11', content: ['思量之下，你选择了向乞丐打听','毕竟丐帮，也算是天下第一大帮了','你朝那乞丐走进，就听见他口里吟着什么————','“蓬头垢面万家客，衣衫褴褛千城游。身无分文浑不怕，腰有万贯不自由。”','闻言，你就更是笃定自己选的没错了','你上前，拍了拍那乞丐的肩，“大哥，向你打听个事儿。”','“五两银子一次。十辆银子三次，小兄弟要打听什么？”乞丐抬起那市侩的脸，笑吟吟的开口','“我去，你抢钱啊，我就问下最近城中的八卦。”你赶紧松开扶着他肩膀的手','乞丐晃了晃脑袋，“这白城内，多是达官华胄，琼枝玉叶的，岂是你能白听的。”','他摊出脏兮兮的手心，“给钱吧。”','“你别总惦记钱啊，谈钱多伤感情。”你自是给不出这些钱','“去去去，我出来讨钱，我不惦记钱惦记什么。”','你被乞丐赶走了，把你赶走的时候，还听见他嘀咕了一声','“没钱还敢来白城，往前走一走去见识下那平川府里的白家你就知道了什么叫做腰缠万贯了。”','你皱眉，眼神探进那华灯初上的街，心中对那乞丐口中说的——白家，起了一丝好奇”','你想，不如，前去看看？',],
+
+          { key: 'P11', content: ['思量之下，你选择了向乞丐打听','毕竟丐帮，也算是天下第一大帮了','你朝那乞丐走进，就听见他口里吟着什么————',
+          '“蓬头垢面万家客，衣衫褴褛千城游。身无分文浑不怕，腰有万贯不自由。”','闻言，你就更是笃定自己选的没错了','你上前，拍了拍那乞丐的肩，“大哥，向你打听个事儿。”',
+          '“五两银子一次。十辆银子三次，小兄弟要打听什么？”乞丐抬起那市侩的脸，笑吟吟的开口',],
+          btn: [{title: '我去，你抢钱呢？！',tokey: "P11A"},]},
+
+          { key: 'P11A', content: [
+          '“我去，你抢钱啊！”李森炎深感晦气，后退了一步。',
+          乞丐脸一下就垮了下来：“没钱你瞎打听什么，情报不用钱吗？”','上下打量一身风尘尤为狼狈的李森炎，乞丐露出一副人上人的嘴脸“看你这倒霉的样子，我给你指条明路吧，跟我一起干，只需要三天，你就能赚到买情报的钱。”','李森炎惊疑道：“丐帮这么赚钱？”','乞丐突然脸红脖子粗：“什么丐帮，我们是新丐中丐帮！那些老东西怎配与我们相提并论？”',
+          '李森炎恍然：“原来如此，怪不得你这么人上人。”','“你说什么？到底干不干？”',],
+          btn: [{title: '干哩娘!',tokey: "P11B"},]},
+
+           { key: 'P11B', content: [
+          '李森炎转身就走，我就是饿死，死外边，也不可能当乞丐的，这是气节！',
+          走时，李森炎听见背后的乞丐嘀咕了一声 。','“这年头，什么人都敢来白城了，真希望我能遇见白家的大善人，女菩萨，听说她一出手就是二百两。”','李森炎蹙眉，眼神探进那华灯初上的街，摸了摸自己的空空如也的口袋，心中对那乞丐口中说的——白家，起了一丝好奇。',],
           btn: [{title: '进白城！顺藤摸瓜找出线索',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C003_[N1]"},{title: '先回家！先休歇一日再打算',dialogs: ['C002A_fenzhiA']},]},
 
           { key: 'P12', content: ['一番思索之下，你选择了路边池塘的小女孩……','等等，为什么大半夜的街口会出现一个吃糖的小女孩啊！？','设计师，这未免也太诡异了吧！',['震屏1'],'咳咳，题外话。','你笑着上前，和小姑娘搭话，问了下最近有哪些大事发生,“小孩，哥哥向你打听事儿。”','小姑娘吃着糖，告诉你了许多。','比如那家办了丧，那家失了窃，那家迎了新娘子……','最重要的是，白城平川府的白家小姐————白月光，最近在择婿！','若是谁能接住那白家娘子扔下的绣球，就能一跃成了白家的金婿呢！','据说这次，就连皇城司亲事官梁敬，梁公子也会去','听闻皇城司的人也会去，你犹豫着也想去白城见识见识',],
@@ -584,16 +604,16 @@ scenes: [
 
 
           #死亡3
-          { id: 'gameover03',style: 7, title: '《白城笑话大全》', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover03',style: 7, title: '《白城笑话大全》', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B3', content: ['那真的只是一本笑话大全，你看到第一行，便忍俊不禁','笑声引起了屋外邻居大妈的注意','大妈？？这里难道有人？','记得那个黑衣武者说','看见有人的话就给两贯钱作为报酬','发财了！发财了……','李森炎刚想出门，发现被一群邻里堵了起来','……',],
           btn: [{title: '怎么运气这么好，大家都来迎接我',dialogs: ['C002A_fenzhiA']},]},
           ], },
   
  
           #死亡6  
-          { id: 'gameover06',style: 7, title: '被打一顿', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover06',style: 7, title: '被打一顿', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B6', content: ['李森炎被打一顿',[{ sounds: [{ soundId: 'SE_UE_0010',}] }],'三天起不来床','当能活动的时候发现自家遭了贼','连家具都被搬空，被搜刮的干干净净什么都不剩了',],
-          btn: [{title: '重来！',dialogs: ['C002A_fenzhiB']},]},
+          btn: [{title: '要是能重来，我要回家！',dialogs: ['C002A_fenzhiA']},]},
           ], },
 
           #死亡7
