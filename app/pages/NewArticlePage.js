@@ -653,6 +653,7 @@ class NewArticlePage extends Component {
   render() {
     const { readerStyle, attrsConfig } = this.props;
     this.refreshKey++; // 提供给需强制刷新的组件
+    this.context.readerTextOpacity.setValue(1);
 
     return (
       <View style={[styles.viewContainer, { backgroundColor: readerStyle.bgColor }]}>
