@@ -22,6 +22,15 @@ const _images = {
         { id: 'V4_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V4_1080.png') },
         { id: 'V5_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V5_1080.png') },
         { id: 'V6_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V6_1080.png') },
+
+        { id: 'BAI_FU', width: px2pd(750), height: px2pd(1000), source: require('../../assets/chapter/BAI_FU.webp') },
+        { id: 'HUAIBIAO', width: px2pd(720), height: px2pd(720), source: require('../../assets/chapter/HUAIBIAO.webp') },
+        { id: 'JIUGUAN1', width: px2pd(750), height: px2pd(422), source: require('../../assets/chapter/JIUGUAN1.webp') },
+        { id: 'KEZHAN1', width: px2pd(720), height: px2pd(540), source: require('../../assets/chapter/KEZHAN1.webp') },
+        { id: 'PINGCHUANFUBAICHENG', width: px2pd(1080), height: px2pd(1054), source: require('../../assets/chapter/PINGCHUANFUBAICHENG.webp') },
+        { id: 'SHUIJIAOCAODUO', width: px2pd(750), height: px2pd(500), source: require('../../assets/chapter/KEZHAN1.webp') },
+        { id: 'WAPIAN', width: px2pd(802), height: px2pd(690), source: require('../../assets/chapter/WAPIAN.webp') },
+        { id: 'ZANZI', width: px2pd(720), height: px2pd(720), source: require('../../assets/chapter/ZANZI.webp') },
     ],
     btn_icon: [
         { id: 1, img: require('../../assets/button_icon/1.png'), top: 0, left: 10 },
