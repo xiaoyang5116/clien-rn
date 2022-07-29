@@ -32,7 +32,7 @@ data: [
     products: {
       # 随机道具
       props: {
-        p100: [  { propId: 201, num: 2, rate: 20 } ],
+        p100: [  { propId: 886, num: 2, rate: 100 } ],
       
       }
     },
