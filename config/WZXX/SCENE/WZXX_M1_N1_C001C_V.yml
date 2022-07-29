@@ -44,9 +44,9 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001C_V_CCXZ', desc: '选择穿越出身的记忆片段', 
         options: [ 
-          { title: "【想起记忆片段“灭门修真世家”】", andVarsOff: ['v1'], varsOn: ['v2','v3'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C_[N1]" },
-          { title: "【想起记忆片段“包子铺穷小子”】", andVarsOff: ['v2'], varsOn: ['v1','v3'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C_[N2]" },
-          { title: "【想起记忆片段“白府远房亲戚”】", andVarsOff: ['v3'], varsOn: ['v1','v2'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C_[N3]" },
+          { title: "【想起记忆片段“灭门修真世家”】", andVarsOff: ['v1'], varsOn: ['v2','v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N1]" },
+          { title: "【想起记忆片段“包子铺穷小子”】", andVarsOff: ['v2'], varsOn: ['v1','v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N2]" },
+          { title: "【想起记忆片段“白府远房亲戚”】", andVarsOff: ['v3'], varsOn: ['v1','v2'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N3]" },
           { title: "【DEBUG清除不可选状态”】", andVarsOn: ['WZXX_[START]/DEBUG'],varsOff: ['v1','v2','v3'],},
         ],
       },
@@ -55,7 +55,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001C_TO_C002', desc: '选项', 
         options: [ 
-          { title: "【阅读下一章】", toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C002_[N1]" },
+          { title: "【阅读下一章】", toChapter: "WZXX_M1_N1_C002_[N1]" },
         ],
       },
       #
@@ -71,7 +71,7 @@ scenes: [
           #第一次进入 
           { title: '【向左走】',nextChat: 'B2', varsOff: ["v1A","v2A",] }, 
           { title: '【向右走】',nextChat: 'B1', varsOff: ["v1A","v2A",] }, 
-          { title: '【DEBUG 到场景外】',toChapter:  'WZXX_[Chapters]/WZXX_M1_N1_C001B_[B2]'}, 
+          { title: '【DEBUG 到场景外】',toChapter:  'WZXX_M1_N1_C001B_[B2]'}, 
           { title: '【DEBUG 去结局】',nextChat: 'C001B_EventEND1'  }, 
         ],
       },
@@ -252,15 +252,15 @@ scenes: [
 
           #合理退出
           { key: 'END01', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
-          btn: [{title: '确认', toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "N1A", }]},    
+          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "N1A", }]},    
           { key: 'END02', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
-          btn: [{title: '确认', toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "R2B2", }]},    
+          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "R2B2", }]},    
 
           ]  
         },
        #死亡3
          { id: 'gameoverC01',style: 6, title: '结束跟踪', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p3', content: ['结束这次跟踪？','确认后，将从下段章节剧情继续',],btn: [{title: '确认', dialogs: ['Screen1']},{title: '取消',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001"}]},
+         { key: 'p3', content: ['结束这次跟踪？','确认后，将从下段章节剧情继续',],btn: [{title: '确认', dialogs: ['Screen1']},{title: '取消',toChapter: "WZXX_M1_N1_C001"}]},
          ], },
   
         #死亡0
@@ -270,24 +270,24 @@ scenes: [
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['失败，请选择'], btn: [{title: '不放弃，再来',dialogs: ['Screen1'] }, {title: '回章节开头', toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001A",}]},
+           { key: 'p1', content: ['失败，请选择'], btn: [{title: '不放弃，再来',dialogs: ['Screen1'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001A",}]},
            ],
          },
        #死亡3
          { id: 'gameoverD1',style: 7, title: '睡过头了', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['一阵冷风','李森炎起身','睡过头了，李森炎内心大呼','眼见发现天已经黄昏','杀手早就不知那里去了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B_[C1]"}]},
+         { key: 'p1', content: ['一阵冷风','李森炎起身','睡过头了，李森炎内心大呼','眼见发现天已经黄昏','杀手早就不知那里去了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
          ], },
          { id: 'gameoverD2',style: 7, title: '风紧扯呼', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['呼呼呼呼','杀手看到李森炎，拔腿就追','李森炎看到杀手追','大呼，来啊来啊','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B_[C1]"}]},
+         { key: 'p1', content: ['呼呼呼呼','杀手看到李森炎，拔腿就追','李森炎看到杀手追','大呼，来啊来啊','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
          ], },
          { id: 'gameoverD3',style: 7, title: '就是路过', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['李森炎：我就是路过','杀手：我读书少，你不要骗我','李森炎看到杀手追','大呼，我真是路过！','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B_[C1]"}]},
+         { key: 'p1', content: ['李森炎：我就是路过','杀手：我读书少，你不要骗我','李森炎看到杀手追','大呼，我真是路过！','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
          ], },
          { id: 'gameoverD4',style: 7, title: '就是呵呵！', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['李森炎：呵呵，微笑可以解决一切问题','杀手：呵呵呵呵，然后快速跑来','李森炎看到杀手追','原本呵呵的脸仿佛发绿了！','跑，再不跑没救了！李森炎火速开溜','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B_[C1]"}]},
+         { key: 'p1', content: ['李森炎：呵呵，微笑可以解决一切问题','杀手：呵呵呵呵，然后快速跑来','李森炎看到杀手追','原本呵呵的脸仿佛发绿了！','跑，再不跑没救了！李森炎火速开溜','两人一追一逃','反正这次跟踪是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
          ], },
          { id: 'gameoverD5',style: 7, title: '丢失目标', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['前面是一个分岔路','我倒，这杀手去哪条路我没看到啊','李森炎只能随便选一条路','没人！','走回来换另一条路！','李森炎：人呢？','这次跟踪算是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B_[C1]"}]},
+         { key: 'p1', content: ['前面是一个分岔路','我倒，这杀手去哪条路我没看到啊','李森炎只能随便选一条路','没人！','走回来换另一条路！','李森炎：人呢？','这次跟踪算是凉透了'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B_[C1]"}]},
          ], },
   
 

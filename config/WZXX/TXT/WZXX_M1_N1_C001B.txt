@@ -2,7 +2,7 @@
 #章节切换
 [
     #设置章节已读变量做章节解锁标记
-{ VarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001B'] }, 
+{ varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001B'] }, 
      { header: '第一章 中篇 行动 ' },
 ]
 #END==========================================
