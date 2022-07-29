@@ -2,7 +2,7 @@
 #接续第一章
 [
 #设置章节已读变量做章节解锁标记
-{ varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001A'] }, 
+{ varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001A'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001AFZ'] }, 
 {header: '我有秘籍？！' },
 ]
 #END==========================================

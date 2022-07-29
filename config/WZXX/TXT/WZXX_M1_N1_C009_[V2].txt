@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C009_[V2]']}, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C009_[V2]']}, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C009_[V2]FZ'] }, 
      { header: '第九章 解决恶灵 ' },
 ]
 #END==========================================
