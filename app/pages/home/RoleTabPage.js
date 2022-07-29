@@ -50,15 +50,15 @@ const AttrsPage = (props) => {
                         />
                         <View style={detailStyles.attrsDetailLabel}><Text style={{ color: '#000', fontSize: 24 }}>基础属性</Text></View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>气血： 10</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>真元： 5</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>神识： 4</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>移动速度： 3</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>体魄： 2</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>身法： 1</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>气血： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>真元： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>神识： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>移动速度： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>体魄： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>身法： 0</Text></View>
                             <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>内息： 0</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>跨界心魔： 10</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>心魔： 10</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>跨界心魔： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>心魔： 0</Text></View>
                         </View>
                     </View>
                     <View style={detailStyles.attrsDetailContainer}>
@@ -69,15 +69,15 @@ const AttrsPage = (props) => {
                         />
                         <View style={detailStyles.attrsDetailLabel}><Text style={{ color: '#000', fontSize: 24 }}>攻击属性</Text></View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>气血： 10</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>真元： 5</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>神识： 4</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>移动速度： 3</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>体魄： 2</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>身法： 1</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>气血： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>真元： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>神识： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>移动速度： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>体魄： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>身法： 0</Text></View>
                             <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>内息： 0</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>跨界心魔： 10</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>心魔： 10</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>跨界心魔： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>心魔： 0</Text></View>
                         </View>
                     </View>
                     <View style={detailStyles.attrsDetailContainer}>
@@ -88,15 +88,15 @@ const AttrsPage = (props) => {
                         />
                         <View style={detailStyles.attrsDetailLabel}><Text style={{ color: '#000', fontSize: 24 }}>防御属性</Text></View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', flexWrap: 'wrap' }}>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>气血： 10</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>真元： 5</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>神识： 4</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>移动速度： 3</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>体魄： 2</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>身法： 1</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>气血： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>真元： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>神识： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>移动速度： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>体魄： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>身法： 0</Text></View>
                             <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>内息： 0</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>跨界心魔： 10</Text></View>
-                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>心魔： 10</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>跨界心魔： 0</Text></View>
+                            <View style={detailStyles.attrsDetailItem}><Text style={detailStyles.attrsDetailText}>心魔： 0</Text></View>
                         </View>
                     </View>
                 </ScrollView>

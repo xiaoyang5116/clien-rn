@@ -93,7 +93,7 @@ const EquipSelector = (props) => {
                 (props.currentEquipId > 0)
                 ? (
                 <View style={selectorStyles.rmView}>
-                    <View style={{ width: 60, marginLeft: 12 }}>
+                    <View style={{ width: 80, marginLeft: 12 }}>
                         <TextButton title={'卸下'} onPress={() => {
                             DeviceEventEmitter.emit('__@EquipSelector.select', { tag: props.tag, e: null });
                             if (props.onClose != undefined) {
@@ -110,7 +110,7 @@ const EquipSelector = (props) => {
                         style={{ paddingTop: 2, height: '100%' }}
                         data={data}
                         renderItem={renderItem}
-                        keyExtractor={item => item.id}
+                        keyExtractor={item => item.recordId}
                     />
                 </View>
             </View>

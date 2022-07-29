@@ -8,14 +8,14 @@ import {
 } from 'react-native';
 import React from 'react';
 import { px2pd } from '../../../constants/resolution';
-import { ThemeContext } from '../../../constants';
+import { ThemeData } from '../../../constants';
 import { HalfPanel } from '../../panel';
 import { TextButton, BtnIcon } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 
 
 const HalfSingle = (props) => {
-    const theme = React.useContext(ThemeContext);
+    const theme = ThemeData();
     const {
         title,
         textAnimationType,
@@ -24,10 +24,9 @@ const HalfSingle = (props) => {
         showBtnList,
         currentIndex,
         currentDialogueLength,
-        nextDialogue
+        nextDialogue,
+        refFlatList,
     } = props;
-    // FlatList
-    const refFlatList = React.createRef();
 
     const renderText = ({ item, index }) => {
         if (index <= currentIndex) {

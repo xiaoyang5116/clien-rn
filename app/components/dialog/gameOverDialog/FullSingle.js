@@ -29,6 +29,7 @@ const FullSingle = props => {
         currentDialogueLength,
         nextDialogue,
         artId,
+        refFlatList
     } = props;
 
     const renderText = ({ item, index }) => {
@@ -121,9 +122,15 @@ const FullSingle = props => {
                             {/* 内容显示区域 */}
                             <View style={{ height: '60%' }}>
                                 <FlatList
+                                    ref={refFlatList}
                                     data={currentTextList}
                                     renderItem={renderText}
                                     keyExtractor={(item, index) => item + index}
+                                    onContentSizeChange={() => {
+                                        if (props.currentTextList.length > 0) {
+                                            refFlatList.current.scrollToEnd({ animated: true })
+                                        }
+                                    }}
                                 />
                             </View>
 

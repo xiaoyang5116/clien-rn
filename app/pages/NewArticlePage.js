@@ -597,7 +597,19 @@ class NewArticlePage extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
+    // 判断是否继续阅读
+    if (this.context.continueReading != undefined && this.context.continueReading) {
+      AppDispath({ type: 'ArticleModel/getArticleHistory', payload: { }, cb: (v) => {
+        if (v != null) {
+          this.props.dispatch(action('ArticleModel/show')(v));
+        } else {
+          this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
+        }
+      }});
+      this.context.continueReading = false;
+    } else {
+      this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
+    }
 
     this.listeners.push(
       DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
@@ -641,6 +653,7 @@ class NewArticlePage extends Component {
   render() {
     const { readerStyle, attrsConfig } = this.props;
     this.refreshKey++; // 提供给需强制刷新的组件
+    this.context.readerTextOpacity.setValue(1);
 
     return (
       <View style={[styles.viewContainer, { backgroundColor: readerStyle.bgColor }]}>

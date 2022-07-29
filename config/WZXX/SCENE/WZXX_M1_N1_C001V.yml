@@ -45,16 +45,16 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001C_CCXZ', desc: '选择穿越的出身', 
         options: [ 
-          { title: "【想起自己是“被灭门修真世家的逃难者”】", andVarsOff: ['v1'], varsOn: ['v2,v3'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C_[N1]" },
-          { title: "【想起自己是“经营包子铺的穷小子”】", andVarsOff: ['v2'], varsOn: ['v1,v3'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C_[N2]" },
-          { title: "【想起自己是“富贵白府千金的私生子”】", andVarsOff: ['v3'], varsOn: ['v1,v2'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C_[N3]" },
+          { title: "【想起自己是“被灭门修真世家的逃难者”】", andVarsOff: ['v1'], varsOn: ['v2,v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N1]" },
+          { title: "【想起自己是“经营包子铺的穷小子”】", andVarsOff: ['v2'], varsOn: ['v1,v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N2]" },
+          { title: "【想起自己是“富贵白府千金的私生子”】", andVarsOff: ['v3'], varsOn: ['v1,v2'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N3]" },
         ],
       },
       #
       { 
         id: 'WZXX_M1_N1_C001B_TO_C001C', desc: '选项', 
         options: [ 
-        { title: "【观察城门】", toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C", },
+        { title: "【观察城门】", toChapter: "WZXX_M1_N1_C001C", },
         ],
       },
 
@@ -69,17 +69,17 @@ scenes: [
           { id: 'Screen1',style: 6, title: '急中生智的选择', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'p1', content: ['卧槽，这回可不能再死了。','李森炎的求生本能发动，脑子飞快运转。','从自己看过的符合类似情节的电影片段里找啊找啊。','灵机一动。', '李森炎下意识的想到，这时候最合适的台词是什么。'],
-          btn: [{title: '草，想不出来！（智慧-1）',tokey: "p1A",  icon: { id: 6, bindVar: 'biaoqianv1' }},
+          btn: [{title: '草，想不出来！（智慧-1）',tokey: "p1A", dropId: 'WZXX_M1_N1_C001V_drop8',  icon: { id: 6, bindVar: 'biaoqianv1' }},
           {title: '兄台何必执着杀人！', tokey: "p1B", icon: { id: 6, bindVar: 'biaoqianv2' }},
-          {title: '等一下！（智慧+1）', tokey: "p1C", icon: { id: 7, bindVar: 'biaoqianv3' }},
-          {title: '说个毛线，拔腿就跑！（身法+1）', tokey: "p1D", icon: { id: 6, bindVar: 'biaoqianv4' }},]},
+          {title: '等一下！（智慧+1）', tokey: "p1C", dropId: 'WZXX_M1_N1_C001V_drop7', icon: { id: 7, bindVar: 'biaoqianv3' }},
+          {title: '说个毛线，拔腿就跑！（身法+1）', dropId: 'WZXX_M1_N1_C001V_drop9', tokey: "p1D", icon: { id: 6, bindVar: 'biaoqianv4' }},]},
 
           { key: 'p1A', content: ['李森炎露出自信的笑容，牙齿仿佛在闪闪发光！','剑光一闪',['震屏1','边缘闪烁红'],'李森炎挂了','…………',], 
           btn: [{title: '…………!', dialogs: ['gameover00'], varsOn: ['biaoqianv1',] },], },   
 
           { key: 'p1B', content: ['听我一言！','你可要听好了!','…………', ],
-            btn: [{title: '一言之善，重于千金（学识+1）',tokey: 'p1B1', icon: { id: 6, bindVar: 'biaoqianv5' }},
-            {title: '人而好善，福虽未至，祸其远矣（学识+1）',tokey: "p1B2", icon: { id: 6, bindVar: 'biaoqianv6' }},
+            btn: [{title: '一言之善，重于千金（学识+1）',tokey: 'p1B1', dropId: 'WZXX_M1_N1_C001V_drop5', icon: { id: 6, bindVar: 'biaoqianv5' }},
+            {title: '人而好善，福虽未至，祸其远矣（学识+1）',tokey: "p1B2", dropId: 'WZXX_M1_N1_C001V_drop6', icon: { id: 6, bindVar: 'biaoqianv6' }},
             #{title: '尽量多来几句，以量取胜',tokey: "p1B3", icon: { id: 1, bindVar: 'biaoqianv7' }} 
             ]},   
 
@@ -97,11 +97,11 @@ scenes: [
 
            { key: 'p1C', content: ['头脑一阵清明，灵感爆发，你飞快的说出'],
            btn: [
-           {title: '大侠饶命！我上有老，下有小……（善良-1）',tokey: "p2A",icon: { id: 6, bindVar: 'biaoqianv13' }},
+           {title: '大侠饶命！我上有老，下有小……',tokey: "p2A",icon: { id: 6, bindVar: 'biaoqianv13' }},
            #{title: '别杀我，我有钱',dialogs: ['gameover02']},
-           {title: '别杀我，我有秘籍（智慧+1）',tokey: "ok1",icon: { id: 7, bindVar: 'biaoqianv7' }},
-           {title: '别杀我，我有美女（善良-1）',tokey: "gg1",icon: { id: 6, bindVar: 'biaoqianv8' }},
-           {title: '别杀我，我有藏宝线索（善良-1）',tokey: "gg2",icon: { id: 6, bindVar: 'biaoqianv9' }},
+           {title: '别杀我，我有秘籍（智慧+1）',tokey: "ok1", dropId: 'WZXX_M1_N1_C001V_drop4',icon: { id: 7, bindVar: 'biaoqianv7' }},
+           {title: '别杀我，我有美女',tokey: "gg1",icon: { id: 6, bindVar: 'biaoqianv8' }},
+           {title: '别杀我，我有藏宝线索',tokey: "gg2",icon: { id: 6, bindVar: 'biaoqianv9' }},
            #{title: '别杀我，我有能保命的情报',tokey: "gg3"},
            ]},
  
@@ -132,24 +132,24 @@ scenes: [
            { key: 'ok1', content: ['你小子会有什么秘籍？说来看看。','杀手好像有点兴趣的样子','怎么办',],
            btn: [
            #{title: '你还当我真的有啊……',tokey: "ok1A"},
-           {title: '没有，现编一个怎么样（悟性+1）',tokey: "ok1C",icon: { id: 7, bindVar: 'biaoqianv14' }},
-           {title: '记得原身家里就有（悟性+1）',tokey: "ok1D",icon: { id: 7, bindVar: 'biaoqianv15' }},]},
+           {title: '没有，现编一个怎么样（悟性+1）',tokey: "ok1C", dropId: 'WZXX_M1_N1_C001V_drop2', icon: { id: 7, bindVar: 'biaoqianv14' }},
+           {title: '记得原身家里就有（悟性+1）',tokey: "ok1D",dropId: 'WZXX_M1_N1_C001V_drop3',icon: { id: 7, bindVar: 'biaoqianv15' }},]},
 
            #{ key: 'ok1A', content: ['你还当我真的有啊……','李森炎露出尴尬而不失礼貌笑容','…………','剑光一闪',['边缘闪烁红'],'李森炎挂了','…………',], 
             #btn: [{title: '…………',dialogs: ['gameover00'],}]},   
 
            { key: 'ok1C', content: ['那么多本武侠小说总看过……','就算没有我也给你忽悠一本','就这么定了','…………', ['盖章过关']  ],
-            btn: [{title: '就这么办', toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001A" ,varsOn: ['biaoqianv7','biaoqianv14',]}]},    
+            btn: [{title: '就这么办', dropId: 'WZXX_M1_N1_C001V_Vdrop1', toChapter: "WZXX_M1_N1_C001A" ,varsOn: ['biaoqianv7','biaoqianv14',]}]},    
 
            { key: 'ok1D', content: ['虽然没怎么修炼过……','确实有点秘籍的印象','先稳住对方再说','…………', ['盖章过关'] ],
-            btn: [{title: '就这么办', toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001A" ,varsOn: ['biaoqianv7','biaoqianv15',]}]},    
+            btn: [{title: '就这么办', dropId: 'WZXX_M1_N1_C001V_Vdrop1', toChapter: "WZXX_M1_N1_C001A" , varsOn: ['biaoqianv7','biaoqianv15',]}]},    
           ]  
 
         },
 
          #死亡1
           { id: 'p1DGG',style: 7,title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',sections: [
-          { key: 'p1', content: ['临死前听到一句话，距离这么近你还敢跑……'],btn: [{title: '不放弃，再来',tokey: "p1"},{title: '啊我死了（回章节开头）',tokey: "next", toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001"}]},
+          { key: 'p1', content: ['临死前听到一句话，距离这么近你还敢跑……'],btn: [{title: '不放弃，再来',tokey: "p1"},{title: '啊我死了（回章节开头）',tokey: "next", toChapter: "WZXX_M1_N1_C001"}]},
           ], },
         #死亡2
          { id: 'gameover00',
@@ -158,16 +158,16 @@ scenes: [
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来',dialogs: ['Screen1'] }, {title: '回章节开头', toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001",}]},
+           { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来',dialogs: ['Screen1'] },]},
            ],
          },
        #死亡3
          { id: 'gameover01',style: 7, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p3', content: ['临死前听到一句话','我一个学武的，最讨厌你们这帮文人……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001"}]},
+         { key: 'p3', content: ['临死前听到一句话','我一个学武的，最讨厌你们这帮文人……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},]},
          ], },
        #死亡3
           #{ id: 'gameover02',style: 7, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-          #{ key: 'p4', content: ['临死前听到一句话','我把你宰了，也能拿钱……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001"}]},
+          #{ key: 'p4', content: ['临死前听到一句话','我把你宰了，也能拿钱……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001"}]},
           #], },
 
 
