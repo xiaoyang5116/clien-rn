@@ -6,7 +6,7 @@ scenes: [
 
       # 变量定义 ，每个章节默认对应一个变量，主要用于分支,章节解锁的检测,
       vars: [
-          #
+           #
           { id: "WZXX_M1_N1_C001", min: 0, max: 1 },
           { id: "WZXX_M1_N1_C001A", min: 0, max: 1 },
           { id: "WZXX_M1_N1_C001B_[A1]", min: 0, max: 1 },
@@ -18,9 +18,62 @@ scenes: [
           { id: "WZXX_M1_N1_C001C_[N2]", min: 0, max: 1 },
           { id: "WZXX_M1_N1_C001C_[N3]", min: 0, max: 1 },
           { id: "WZXX_M1_N1_C001C", min: 0, max: 1 },
+           #
+          { id: "WZXX_M1_N1_C002_[N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C002_[N2]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C002_[N3]",min: 0, max: 1 },
+            #
+          { id: "WZXX_M1_N1_C003_[N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C003_[N2]",min: 0, max: 1 },
+            #
+          { id: "WZXX_M1_N1_C004_[N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C004_[N2]",min: 0, max: 1 },
+            #
+          { id: "WZXX_M1_N1_C005_[N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C005_[N2]",min: 0, max: 1 },
+            #
+          { id: "WZXX_M1_N1_C006_[N0]",min: 0, max: 1 },
+            #
+          { id: "WZXX_M1_N1_C007_[N0]",min: 0, max: 1 },
+            #
+          { id: "WZXX_M1_N1_C008_[N0]",min: 0, max: 1 },
+            #
+          { id: "WZXX_M1_N1_C009_[V2]",min: 0, max: 1 },
+            #
+          { id: "WZXX_M1_N1_C010_[V1][N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C010_[V1][N2]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C010_[V2][N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C010_[V2][N2]",min: 0, max: 1 },
+            #
+          { id: "WZXX_M1_N1_C011_[V0]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C012_[V0]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C013_[V0]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C015_[V0]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C016_[V0]",min: 0, max: 1 },
           #
-          { id: "WZXX_M1_N1_C002", min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C003", min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C017_[N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C017_[N2]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C018_[N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C018_[N2]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C019_[N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C019_[N2]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C020",min: 0, max: 1 },
+            #
+          { id: "WZXX_M1_N1_C021",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C022",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C023",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C024",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C025",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C026",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C027",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C028",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C029",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C030",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C031",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C032",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C033",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C034",min: 0, max: 1 },
+          
         ],
 
       #
