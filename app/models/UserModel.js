@@ -127,15 +127,23 @@ export default {
       const found = userState.equips.find(e => (lo.indexOf(equipConfig.tags, e.tag) != -1));
       if (found != undefined) {
         userState.equips = userState.equips.filter(e => (e.id != found.id));
+        // 归还锁定的道具
+        yield put.resolve(action('PropsModel/sendProps')({ propId: found.id, num: 1, quiet: true }));
       }
 
-      // tags[0] = 部位标签
-      userState.equips.push({ id: equipId, tag: equipConfig.tags[0], affect: lo.cloneDeep(equipConfig.affect) });
-      yield put.resolve(action('syncData')({}));
+      // 扣除一个相应的道具
+      const status = yield put.resolve(action('PropsModel/reduce')({ propsId: [equipId], num: 1, mode: 1 }));
+      if (status) {
+        // tags[0] = 部位标签
+        userState.equips.push({ id: equipId, tag: equipConfig.tags[0], affect: lo.cloneDeep(equipConfig.affect) });
+        yield put.resolve(action('syncData')({}));
 
-      // 通知角色属性刷新
-      DeviceEventEmitter.emit(EventKeys.USER_EQUIP_UPDATE);
-      return true;
+        // 通知角色属性刷新
+        DeviceEventEmitter.emit(EventKeys.USER_EQUIP_UPDATE);
+        return true;
+      }
+
+      return false;
     },
 
     *removeEquip({ payload }, { put, select }) {
@@ -151,6 +159,9 @@ export default {
 
       userState.equips = userState.equips.filter(e => (e.id != equipId));
       yield put.resolve(action('syncData')({}));
+
+      // 归还锁定的道具
+      yield put.resolve(action('PropsModel/sendProps')({ propId: equipId, num: 1, quiet: true }));
 
       // 通知角色属性刷新
       DeviceEventEmitter.emit(EventKeys.USER_EQUIP_UPDATE);

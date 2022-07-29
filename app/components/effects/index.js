@@ -10,6 +10,7 @@ import LeiYunAnimation from './LeiYunAnimation';
 import Onomatopoeia from '../animation/onomatopoeia';
 import SubTitleAnimation from './SubTitleAnimation';
 import Animation from '../animation';
+import XueHuaAnimation from './XueHuaAnimation';
 
 export default class EffectAnimations {
 
@@ -49,6 +50,10 @@ export default class EffectAnimations {
                 }} />);
             } else if (id == 8) { // 其他动画
                 Animation(e.type)
+            } else if (id == 9) { // 雪花
+                const key = RootView.add(<XueHuaAnimation onClose={() => {
+                    RootView.remove(key);
+                }} />);
             }
         });
     }
