@@ -20,6 +20,7 @@ export default {
     __data: {
       propsConfig: [],  // 道具配置
       bags: [],         // 玩家背包
+      recordId: 0,      // 道具/装备记录ID
     },
   },
 
@@ -44,10 +45,30 @@ export default {
 
       if (propsCache != null) {
         propsState.__data.bags.push(...propsCache);
+        // 计算当前最大记录ID
+        if (lo.isArray(propsCache)) {
+          propsCache.forEach(e => {
+            if (e.recordId > propsState.__data.recordId) {
+              propsState.__data.recordId = e.recordId;
+            }
+          });
+        }
       } else {
         for (let key in propsState.__data.propsConfig) {
           const item = propsState.__data.propsConfig[key];
-          propsState.__data.bags.push(item);
+          if (item.num <= 0)
+            continue
+
+          if (item.stack != undefined && !item.stack) {
+            // 不堆叠则分开几条记录
+            for (let i = 0; i < item.num; i++) {
+              propsState.__data.bags.push({ recordId: propsState.__data.recordId + 1, ...item, num: 1 });
+              propsState.__data.recordId += 1;
+            }
+          } else {
+            propsState.__data.bags.push({ recordId: propsState.__data.recordId + 1, ...item });
+            propsState.__data.recordId += 1;
+          }
         }
         yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
       }
@@ -74,19 +95,19 @@ export default {
       const num = parseInt(payload.num);
       const quiet = payload.quiet != undefined && payload.quiet;
 
-      const prop = propsState.__data.bags.find((e) => e.id == propId);
+      const found = propsState.__data.bags.find((e) => e.id == propId);
       const config = propsState.__data.propsConfig.find((e) => e.id == propId);
-      if (prop == undefined) {
+      if (found == undefined || config == undefined) {
         if (!quiet) Toast.show('道具不存在！');
         return;
       }
 
-      if (prop.num < num) {
+      if (found.num < num) {
         if (!quiet) Toast.show('道具数量不足！');
         return;
       }
 
-      prop.num -= num;
+      found.num -= num;
 
       if (config.useEffects != undefined) {
         for (let key in config.useEffects) {
@@ -97,13 +118,13 @@ export default {
         }
       }
 
-      if (prop.num <= 0) {
+      if (found.num <= 0) {
         propsState.__data.bags = propsState.__data.bags.filter((e) => e.num > 0);
         propsState.listData = propsState.listData.filter((e) => e.num > 0);
       }
 
       if (!quiet) Toast.show('使用成功！');
-      
+
       yield put(action('updateState')({}));
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
     },
@@ -122,8 +143,8 @@ export default {
         let totalNum = 0;
         for (let key in propsId) {
           const propId = propsId[key];
-          const prop = propsState.__data.bags.find((e) => e.id == propId);
-          if (prop != undefined) totalNum += prop.num;
+          const found = propsState.__data.bags.find((e) => e.id == propId);
+          if (found != undefined) totalNum += found.num;
         }
 
         // 道具不足
@@ -134,14 +155,14 @@ export default {
         let reduceNum = num;
         for (let key in propsId) {
           const propId = propsId[key];
-          const prop = propsState.__data.bags.find((e) => e.id == propId);
-          if (prop != undefined) {
-            if (prop.num >= reduceNum) {
-              prop.num -= reduceNum;
+          const found = propsState.__data.bags.find((e) => e.id == propId);
+          if (found != undefined) {
+            if (found.num >= reduceNum) {
+              found.num -= reduceNum;
               break;
             } else {
-              reduceNum -= prop.num;
-              prop.num = 0;
+              reduceNum -= found.num;
+              found.num = 0;
             }
           }
         }
@@ -162,8 +183,13 @@ export default {
       const propsState = yield select(state => state.PropsModel);
       const { propId } = payload;
 
-      const prop = propsState.__data.bags.find((e) => e.id == propId);
-      return (prop != undefined) ? prop.num : 0;
+      let totalNum = 0;
+      propsState.__data.bags.forEach(e => {
+        if (e.id == propId)
+          totalNum += e.num;
+      });
+
+      return totalNum;
     },
 
     *getPropsNum({ payload }, { put, call, select }) {
@@ -172,10 +198,11 @@ export default {
 
       const result = [];
       if (lo.isArray(propsId)) {
-        propsId.forEach(propId => {
-          const prop = propsState.__data.bags.find((e) => e.id == propId);
-          result.push({ propId: propId, num: ((prop != undefined) ? prop.num : 0) });
-        });
+        for (let key in propsId) {
+          const propId = propsId[key];
+          const num = yield put.resolve(action('getPropNum')({ propId: propId }));
+          result.push({ propId: propId, num: num });
+        }
       }
 
       return result;
@@ -213,25 +240,39 @@ export default {
       const num = parseInt(payload.num);
       const quiet = payload.quiet != undefined && payload.quiet;
 
+      // 批量处理流水线不提交同步，将由调用方负责持久化
+      const batchPipeline = payload.batchPipeline != undefined && payload.batchPipeline;
+      if (batchPipeline) quiet = true;
+
       const config = propsState.__data.propsConfig.find((e) => e.id == propId);
       if (config == undefined) {
         if (!quiet) Toast.show('道具不存在！');
         return;
       }
 
-      const prop = propsState.__data.bags.find((e) => e.id == propId);
-      if (prop != undefined) {
-        prop.num += num;
+      const found = propsState.__data.bags.find((e) => e.id == propId);
+      if (config.stack != undefined && !config.stack) {
+            // 不堆叠则分开几条记录
+            for (let i = 0; i < num; i++) {
+              propsState.__data.bags.push({ recordId: propsState.__data.recordId + 1, ...config, num: 1 });
+              propsState.__data.recordId += 1;
+            }
       } else {
-        const item = { ...config };
-        item.num = num;
-        propsState.__data.bags.push(item);
+        if (found != undefined) {
+          found.num += num;
+        } else {
+          const item = { recordId: propsState.__data.recordId + 1, ...config, num: num };
+          propsState.__data.recordId += 1;
+          propsState.__data.bags.push(item);
+        }
       }
 
       if (!quiet)  Toast.show('获得道具！');
-      
-      yield put(action('updateState')({}));
-      yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
+
+      if (!batchPipeline) {
+        yield put(action('updateState')({}));
+        yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
+      }
     },
 
     *sendPropsBatch({ payload }, { put, call, select }) {
@@ -239,19 +280,10 @@ export default {
       const { props } = payload; // [{ propId: xxx, num: xxx }, ...]
 
       if (lo.isArray(props)) {
-        props.forEach(p => {
-          const config = propsState.__data.propsConfig.find((e) => e.id == p.propId);
-          if (config == undefined) return;
-
-          const prop = propsState.__data.bags.find((e) => e.id == p.propId);
-          if (prop != undefined) {
-            prop.num += p.num;
-          } else {
-            const item = { ...config };
-            item.num = p.num;
-            propsState.__data.bags.push(item);
-          }
-        })
+        for (let key in props) {
+          const item = props[key];
+          yield put.resolve(action('sendProps')({ propId: item.propId, num: item.num, batchPipeline: true }));
+        }
       }
       
       yield put(action('updateState')({}));
@@ -262,13 +294,13 @@ export default {
       const propsState = yield select(state => state.PropsModel);
       const { propId } = payload;
 
-      const props = propsState.__data.bags.find((e) => e.id == propId);
-      if (props == undefined) {
+      const found = propsState.__data.bags.find((e) => e.id == propId);
+      if (found == undefined) {
         Toast.show('道具不存在！');
         return;
       }
 
-      props.num = 0;
+      found.num = 0;
       propsState.__data.bags = propsState.__data.bags.filter((e) => e.num > 0);
       propsState.listData = propsState.listData.filter((e) => e.num > 0);
 
