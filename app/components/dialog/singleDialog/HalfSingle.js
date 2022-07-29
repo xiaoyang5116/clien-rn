@@ -24,10 +24,9 @@ const HalfSingle = (props) => {
         showBtnList,
         currentIndex,
         currentDialogueLength,
-        nextDialogue
+        nextDialogue,
+        refFlatList,
     } = props;
-    // FlatList
-    const refFlatList = React.createRef();
 
     const renderText = ({ item, index }) => {
         if (index <= currentIndex) {

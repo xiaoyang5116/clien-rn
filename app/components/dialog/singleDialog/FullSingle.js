@@ -28,10 +28,10 @@ const FullSingle = props => {
         currentIndex,
         currentDialogueLength,
         nextDialogue,
+        refFlatList
     } = props;
 
-    // FlatList
-    const refFlatList = React.createRef();
+
 
     const renderText = ({ item, index }) => {
         if (index <= currentIndex) {
@@ -118,6 +118,9 @@ const FullSingle = props => {
                                                 ? '50%'
                                                 : '60%'
                                             : '100%',
+                                }}
+                                onLayout={()=>{
+                                    refFlatList.current.scrollToEnd({ animated: true });
                                 }}
                             >
                                 <FlatList
