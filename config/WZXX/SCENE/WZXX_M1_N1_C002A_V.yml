@@ -154,13 +154,13 @@ scenes: [
           btn: [{title: '无论如何都憋不住了！',dialogs: ['gameover01'], varsOn: ['biaoqianv1',]}]},
 
           { key: 'P2B', content: ['外边的脚步声越来越近','你总觉得这脚步声是冲着你而来','再这样疑神疑鬼不是办法','你准备先拿一本书躲起来再看','眼前有三本书，因为天色太黑，有些字无法看清楚','你选择拿上哪一本？'],
-          btn: [{title: '《白城？？大全》',tokey: "P3",  icon: { id: 6, bindVar: 'biaoqianv3' }},
-          {title: '《思无？》', tokey: "P4",  icon: { id: 6, bindVar: 'biaoqianv4' }},
-          {title: '《凌云？？》', tokey: "P2C",  icon: { id: 7, bindVar: 'biaoqianv5' }},]},
+          btn: [{title: '《白城？？大全》',tokey: "P3", dropId: 'WZXX_M1_N1_C002A_V_Vdrop1',  icon: { id: 6, bindVar: 'biaoqianv3' }},
+          {title: '《思无？》', tokey: "P4", dropId: 'WZXX_M1_N1_C002A_V_Vdrop2', icon: { id: 6, bindVar: 'biaoqianv4' }},
+          {title: '《凌云？？》', tokey: "P2C", dropId: 'WZXX_M1_N1_C002A_V_Vdrop3',  icon: { id: 7, bindVar: 'biaoqianv5' }},]},
 
           { key: 'P2C', content: ['拿起书，李森炎一个翻滚，躲在书房的床椅下面','说时迟，那时快，书房的门被打开',[{ sounds: [{ soundId: 'SE_UE_0009',}] }],'然后似乎是看到没有人，书房的门又被关上了','李森炎不敢走出房间，先翻了眼刚才拿到的书',[{games: {id: 4, imgName: "凌云要诀"}}],'这时候才能仔细看到书名',
           '《凌云要诀》。',[{ sounds: [{ soundId: 'SE_UE_0001',}] }],'这名字听着就很有修真内味了。','果不其然，你翻开迅速扫了几眼，发现这本书竟包含了关于‘凌云步’的修炼之法。',['盖章过关'],  ],
-          btn: [{title: '果然是它！', toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C003_[N1]" , varsOn: ['biaoqianv5','biaoqianv2','biaoqianv0']},]},   
+          btn: [{title: '果然是它！', toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C003_[N1]" , dropId: 'WZXX_M1_N1_C002A_V_Vdrop4', varsOn: ['biaoqianv5','biaoqianv2','biaoqianv0']},]},   
           
 
           { key: 'P3', content: ['拿起书，李森炎一个翻滚，躲在书房的床椅下面','说时迟，那时快，书房的门被打开',[{ sounds: [{ soundId: 'SE_UE_0008',}] }],'然后似乎是看到没有人，书房的门又被关上了','李森炎不敢走出房间，先翻了眼刚才拿到的书','这时候才能仔细看到书名',
@@ -200,9 +200,9 @@ scenes: [
           sections: [
           { key: 'P5', content: ['李森炎觉得现在回家就是死路一条，那些杀手一定很快就会追杀到家里去','不如便装躲过追杀，即便那些黑衣人现在追杀到这里，也认不出你。',
           '李森炎快步来到一家布庄。','布庄快打烊了，老板见李森炎来，拿出三批衣服，摆在你面前','“小伙子，今天生意不错，这是仅剩的三套了，你要我就便宜卖给你。”',],
-          btn: [{title: '花枝招展的女装',tokey: "P6",  icon: { id: 6, bindVar: 'biaoqianv10' }},
-          {title: '奇异的异国人装束',tokey: "P7",  icon: { id: 6, bindVar: 'biaoqianv11' }},
-          {title: '黑衣，杀手装',tokey: "P8",  icon: { id: 6, bindVar: 'biaoqianv12' }}]},
+          btn: [{title: '花枝招展的女装（变化+1）',tokey: "P6", dropId: 'WZXX_M1_N1_C002A_V_Vdrop5',  icon: { id: 6, bindVar: 'biaoqianv10' }},
+          {title: '奇异的异国人装束（变化+1）',tokey: "P7", dropId: 'WZXX_M1_N1_C002A_V_Vdrop6',  icon: { id: 6, bindVar: 'biaoqianv11' }},
+          {title: '黑衣杀手装（变化+1）',tokey: "P8", dropId: 'WZXX_M1_N1_C002A_V_Vdrop7',  icon: { id: 6, bindVar: 'biaoqianv12' }}]},
 
           { key: 'P6', content: [
           '‘女装才是版本答案！’','你在心中虔诚的默喊了三遍，然后在布庄老板诡异打量的眼神中，换上了精致婀娜的女装','原身皮肤白皙，又鲜少练武，偏瘦也没什么肌肉','穿上这女装，竟然恰到好处的匹配！',
@@ -547,7 +547,7 @@ scenes: [
           btn: [{title: '干啥啥不行，逃跑第一名',tokey: "C3"},]},
 
           { key: 'C3', content: ['不过身有内伤，所以每次躲的时候，都得强忍剧痛，不过幸运的是，他竟然再次躲过了',[{ sounds: [{ soundId: 'SE_CQ_0013' }] }],'看来这凌云步的修炼多半是靠着累计经验，他每一次启用，都与上一次感觉不同','“不是，咱要是没那个本事，就别逞能呗。”李森炎故作叹息，脸上贱兮兮的表情彻底点燃了对面人。','小师弟咬牙，“你有种，你别躲啊！”','李森炎好笑，摊开双手，“你拿着这么好的剑，我赤手空拳。搞笑，打不过还不能躲了？你脖子上那东西是用来凑身高的吗？”','此话刚说完，李森炎的脚边就出现了一把，不知哪里甩过来的银白色的宝剑','李森炎：“……”','小师弟见状，大喜，“现在你有剑了，你要是个男人就拿剑和我堂堂正正打一架，别像个缩头乌龟一样。”','李森炎：我也想啊，但是这玩意儿，他特么的不会使',[{ sounds: [{ soundId: 'SE_KO_0003' }] }],'这回，他还没来得及贫嘴，小师弟就先一步，使出招式朝他冲了过来',['震屏1'],'糟了！！！',],
-          btn: [{title: '捡起剑，挡回去！',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C004_[N2]"},]},
+          btn: [{title: '捡起剑，挡回去！（体魄+1）',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C004_[N2]",dropId: 'WZXX_M1_N1_C002A_V_Vdrop8',},]},
         ],
     },
 
@@ -575,7 +575,7 @@ scenes: [
           btn: [{title: "三十六计走为上！", tokey: "J2"},]},
           
           { key: 'J2', content: ['李森炎心想着，感觉小心翼翼的从草堆上爬了起来','他猫着身子，小心翼翼的贴着墙，往外走','他的凌云步是越来越精进了，现在他的脚步几乎不会发出任何声音引人注意。','不过还是得尽快了，那两个修士的武功都不低，要不了多久就会发现他的。','想到这儿，李森炎又在地上抓了一把什么，继续往前走','果然，就在他猫着腰，就快要走出破庙的时候，那两个修士发现了！','“师兄，在这儿，快追！”小师弟率先看见了他，怒吼了一声。',],
-          btn: [{title: '被发现了，快逃！',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C005_[N2]"},]},
+          btn: [{title: '被发现了，快逃！（身法+1）',dropId: 'WZXX_M1_N1_C002A_V_Vdrop9',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C005_[N2]"},]},
 
         ],
     },

@@ -5,8 +5,16 @@ scenes: [
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 }],
-
+      vars: [
+        { id: "v1", min: 0, max: 1 },
+        { id: "biaoqianv0", min: 0, max: 1 } ,
+        { id: "biaoqianv00", min: 0, max: 1 } ,
+        { id: "biaoqianv000", min: 0, max: 1 } ,
+        { id: "biaoqianv1", min: 0, max: 1 } ,
+        { id: "biaoqianv2", min: 0, max: 1 } ,
+        { id: "biaoqianv3", min: 0, max: 1 } ,
+        { id: "biaoqianv4", min: 0, max: 1 } ,
+      ],
       # 动作定义
       actions: [],
 
@@ -68,7 +76,8 @@ scenes: [
           { key: 'P3', content: ['这几天，李森炎适应下来，于是继续加大药量。','很快，陶老本尊给的锻骨灵液就被他消耗一空。','他感觉自己的肉身强度已经达到一种瓶颈，而他的修为，也在这过程中飞速提升，逐渐摸到炼气五重的门槛。',
           '尽管随着时间的推移，药力的累积，淬炼过程中的疼痛在所难免，但有了上次噩梦般的经历过后，当下淬体的疼痛都是小儿科了。',
           '李森炎看着纳戒中剩下的筑基期锻骨灵液，陷入了沉思。',],
-          btn: [{title: '用',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C019_[N1]"},{title: '还是不用',tokey: "P4"}]},
+          btn: [{title: '用（体魄+1）',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C019_[N1]",dropId: 'WZXX_M1_N1_C0019_V_Vdrop1'},
+          {title: '还是不用（自由+1）',tokey: "P4",  icon: { id: 6, bindVar: 'biaoqianv1' },dropId: 'WZXX_M1_N1_C0019_V_Vdrop2'}]},
          
 
           { key: 'P4', content: ['回想起上次的痛苦，还是不用了！','李森炎收敛心神，准备离开客栈，却到处找不到云云','等待了几个时辰，到外面疯玩的云云终于回来了，却也带来了麻烦',
@@ -79,7 +88,7 @@ scenes: [
           { key: 'P5', content: ['李森炎不肯，周围人也开始议论并且指责女人贪婪','这时候女人的靠山出现，一个凶名赫赫的炼体修士','他比女人更贪婪，向李森炎索要一百颗灵石',
           '李森炎不给，并狠狠怼了他一番，两人就此发生战斗','云云想出手被李森炎阻拦，他想要检验自己这段时间的修炼成果',
           '然而，李森炎的修为和肉身都没有突破瓶颈，最终还是对方技高一筹',[{ sounds: [{ soundId: 'SE_UE_0003',}] }] ,'李森炎一个不慎，被对方直接击穿了心脏，暴毙而亡',],
-          btn: [{title: '还是重新选吧……',tokey: "P3"},]},
+          btn: [{title: '还是重新选吧……',tokey: "P3", varsOn: ['biaoqianv1',]},]},
            ]  
         },
 

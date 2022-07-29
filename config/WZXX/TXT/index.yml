@@ -60,11 +60,17 @@ files:
     "WZXX_[Chapters]/WZXX_M1_N1_C019_[N2].txt",
     "WZXX_[Chapters]/WZXX_M1_N1_C020.txt",
      #
-    "WZXX_M1_N1_C021.txt",
-    "WZXX_M1_N1_C022.txt",
-    "WZXX_M1_N1_C023.txt",
-    "WZXX_M1_N1_C024.txt",
-    "WZXX_M1_N1_C025.txt",
+    "WZXX_[Chapters]/WZXX_M1_N1_C021.txt",
+    #
+    "WZXX_[Chapters]/WZXX_M1_N1_C022_[N1].txt",
+    "WZXX_[Chapters]/WZXX_M1_N1_C022_[N2].txt",
+    #
+    "WZXX_[Chapters]/WZXX_M1_N1_C023_[N1].txt",
+    "WZXX_[Chapters]/WZXX_M1_N1_C024_[V1].txt",
+    "WZXX_[Chapters]/WZXX_M1_N1_C025_[N1][V1].txt",
+    "WZXX_[Chapters]/WZXX_M1_N1_C025_[N2][V1].txt",
+    "WZXX_[Chapters]/WZXX_M1_N1_C026_[V1].txt",
+    #
     "WZXX_M1_N1_C026.txt",
     "WZXX_M1_N1_C027.txt",
     "WZXX_M1_N1_C028.txt",

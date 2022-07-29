@@ -58,7 +58,7 @@ scenes: [
           #{title: '草，想不出来！（理直气壮）',tokey: "p1A"},
           {title: '不如念一段道德经？', tokey: "p1B",  icon: { id: 6, bindVar: 'biaoqianv1' }},
           {title: '用小学课本的看到的诗句！', tokey: "p1C",  icon: { id: 6, bindVar: 'biaoqianv2' }},
-          {title: '不行，再想想', tokey: "p1D",  icon: { id: 7, bindVar: 'biaoqianv3' }},
+          {title: '不行，再想想', tokey: "p1D" , icon: { id: 7, bindVar: 'biaoqianv3' }},
           #{title: '做几个广播体操的动作', tokey: "p1E"},
           ]},
 
@@ -102,7 +102,7 @@ scenes: [
            btn: [{title: '…………',dialogs: ['gameover00'] , varsOn: ['biaoqianv6','biaoqianv3',]}]},     
 
           { key: 'p1D4', content: ['什么都不说','说多错多','干脆让对方脑补','……','杀手：这小子看起来这么自信，难道真有料不成？',['盖章过关'],'……'],
-          btn: [{title: '有戏',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B",  varsOn: ['biaoqianv7','biaoqianv3',]}]},    
+          btn: [{title: '有戏',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001B", dropId: 'WZXX_M1_N1_C001A_V_Vdrop1',  varsOn: ['biaoqianv7','biaoqianv3',]}]},    
 
 
 
