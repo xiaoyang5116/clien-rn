@@ -218,9 +218,16 @@ export default {
         yield put(action('updateState')({ sections: data, continueView: false }));
       }
 
+      // 记录当前阅读
+      yield call(LocalStorage.set, LocalCacheKeys.ARTICLE_HISTORY, payload);
+
       setTimeout(() => {
         DeviceEventEmitter.emit(EventKeys.OPTIONS_HIDE);
       }, 0);
+    },
+
+    *getArticleHistory({}, { call, put, select }) {
+      return yield call(LocalStorage.get, LocalCacheKeys.ARTICLE_HISTORY);
     },
 
     *cleanup({ payload }, { select }) {
