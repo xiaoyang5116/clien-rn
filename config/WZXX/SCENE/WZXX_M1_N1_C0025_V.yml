@@ -75,10 +75,9 @@ scenes: [
 
            { key: 'P4', content: ['李森炎突然有股不详的预感，立马出声阻止，然而高雁兰这时候却根本听不进去他的话。',
           '下一刻，有利箭刺破长空的呼啸声响起。',
-          '本命法器被毁，高雁兰神情羞恼，又从储物袋中取出一把平日里不大使用的弧形弯刀，愤而冲上前，朝蛛王的足身狠狠砍落。',
            [{ sounds: [{ soundId: 'SE_KO_0003',}] }] ,
           ],
-          btn: [{title: '别去！！！',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C025_[N2][V1]",}]},
+          btn: [{title: '…………',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C025_[N2][V1]",}]},
            ]  
         },
 
