@@ -129,7 +129,7 @@ scenes: [
                     [
                       {
                         title: "回到入口",
-                        toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C026_[V1]",
+                        toChapter: "WZXX_M1_N1_C026_[V1]",
                       },
                     ],
                 },
@@ -153,7 +153,7 @@ scenes: [
                     [
                       {
                         title: "回到入口",
-                        toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C026_[V1]",
+                        toChapter: "WZXX_M1_N1_C026_[V1]",
                       },
                     ],
                 },
@@ -177,9 +177,15 @@ scenes: [
                     [
                       {
                         title: "回到入口",
-                        toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C026_[V1]",
+                        toChapter: "WZXX_M1_N1_C026_[V1]",
+
                       },
                     ],
+
+
+
+
+                    
                 },
               ],
           },

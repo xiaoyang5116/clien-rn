@@ -77,7 +77,7 @@ scenes: [
           '下一刻，有利箭刺破长空的呼啸声响起。',
            [{ sounds: [{ soundId: 'SE_KO_0003',}] }] ,
           ],
-          btn: [{title: '…………',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C025_[N2][V1]",}]},
+          btn: [{title: '…………',toChapter: "WZXX_M1_N1_C025_[N2][V1]",}]},
            ]  
         },
 

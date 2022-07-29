@@ -45,16 +45,16 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001C_CCXZ', desc: '选择穿越的出身', 
         options: [ 
-          { title: "【想起自己是“被灭门修真世家的逃难者”】", andVarsOff: ['v1'], varsOn: ['v2,v3'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C_[N1]" },
-          { title: "【想起自己是“经营包子铺的穷小子”】", andVarsOff: ['v2'], varsOn: ['v1,v3'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C_[N2]" },
-          { title: "【想起自己是“富贵白府千金的私生子”】", andVarsOff: ['v3'], varsOn: ['v1,v2'], alwayDisplay: true,  toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C_[N3]" },
+          { title: "【想起自己是“被灭门修真世家的逃难者”】", andVarsOff: ['v1'], varsOn: ['v2,v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N1]" },
+          { title: "【想起自己是“经营包子铺的穷小子”】", andVarsOff: ['v2'], varsOn: ['v1,v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N2]" },
+          { title: "【想起自己是“富贵白府千金的私生子”】", andVarsOff: ['v3'], varsOn: ['v1,v2'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N3]" },
         ],
       },
       #
       { 
         id: 'WZXX_M1_N1_C001B_TO_C001C', desc: '选项', 
         options: [ 
-        { title: "【观察城门】", toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001C", },
+        { title: "【观察城门】", toChapter: "WZXX_M1_N1_C001C", },
         ],
       },
 
@@ -139,17 +139,17 @@ scenes: [
             #btn: [{title: '…………',dialogs: ['gameover00'],}]},   
 
            { key: 'ok1C', content: ['那么多本武侠小说总看过……','就算没有我也给你忽悠一本','就这么定了','…………', ['盖章过关']  ],
-            btn: [{title: '就这么办', dropId: 'WZXX_M1_N1_C001V_Vdrop1', toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001A" ,varsOn: ['biaoqianv7','biaoqianv14',]}]},    
+            btn: [{title: '就这么办', dropId: 'WZXX_M1_N1_C001V_Vdrop1', toChapter: "WZXX_M1_N1_C001A" ,varsOn: ['biaoqianv7','biaoqianv14',]}]},    
 
            { key: 'ok1D', content: ['虽然没怎么修炼过……','确实有点秘籍的印象','先稳住对方再说','…………', ['盖章过关'] ],
-            btn: [{title: '就这么办', dropId: 'WZXX_M1_N1_C001V_Vdrop1', toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001A" , varsOn: ['biaoqianv7','biaoqianv15',]}]},    
+            btn: [{title: '就这么办', dropId: 'WZXX_M1_N1_C001V_Vdrop1', toChapter: "WZXX_M1_N1_C001A" , varsOn: ['biaoqianv7','biaoqianv15',]}]},    
           ]  
 
         },
 
          #死亡1
           { id: 'p1DGG',style: 7,title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',sections: [
-          { key: 'p1', content: ['临死前听到一句话，距离这么近你还敢跑……'],btn: [{title: '不放弃，再来',tokey: "p1"},{title: '啊我死了（回章节开头）',tokey: "next", toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001"}]},
+          { key: 'p1', content: ['临死前听到一句话，距离这么近你还敢跑……'],btn: [{title: '不放弃，再来',tokey: "p1"},{title: '啊我死了（回章节开头）',tokey: "next", toChapter: "WZXX_M1_N1_C001"}]},
           ], },
         #死亡2
          { id: 'gameover00',
@@ -158,16 +158,16 @@ scenes: [
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来',dialogs: ['Screen1'] }, {title: '回章节开头', toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001",}]},
+           { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来',dialogs: ['Screen1'] },]},
            ],
          },
        #死亡3
          { id: 'gameover01',style: 7, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p3', content: ['临死前听到一句话','我一个学武的，最讨厌你们这帮文人……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001"}]},
+         { key: 'p3', content: ['临死前听到一句话','我一个学武的，最讨厌你们这帮文人……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},]},
          ], },
        #死亡3
           #{ id: 'gameover02',style: 7, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-          #{ key: 'p4', content: ['临死前听到一句话','我把你宰了，也能拿钱……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C001"}]},
+          #{ key: 'p4', content: ['临死前听到一句话','我把你宰了，也能拿钱……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001"}]},
           #], },
 
 
