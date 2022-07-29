@@ -29,7 +29,7 @@ scenes: [
         id: 'WZXX_M1_N1_C0017_V2', desc: '选择', 
         options: [ 
           { title: "【忍气吞声，算了】",dialogs: ['C0017A_suanleA']},
-          { title: "【向陶老讨要个说法】",toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C017_[N2]"},
+          { title: "【向陶老讨要个说法】",toChapter: "WZXX_M1_N1_C017_[N2]"},
       
         ],
       },
@@ -54,7 +54,7 @@ scenes: [
           { key: 'P1', content: ['李森炎有些尴尬，穿好衣服，这才回答：“我需要，赔你们个桶。”','此时，住在高层房间的云云也听到了动静。','出来看到李森炎房间碎了一地的浴桶，她有些瞠目结舌：“不就是泡个澡而已吗，你怎么把人家桶给炸了？”',
           '“桶要不炸，我人就炸了。”李森炎二话不说，直接掏钱。',
           ],
-          btn: [{title: '赔偿（铜币-1贯）',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C017_[N1]"},]},
+          btn: [{title: '赔偿（铜币-1贯）',toChapter: "WZXX_M1_N1_C017_[N1]"},]},
 
          
            ]  
@@ -67,7 +67,7 @@ scenes: [
           sections: [
           { key: 'P3', content: ['李森炎心中忿忿不平，但还是选择忍下这口气',['闪烁补血'],'每日坚持用陶老本尊给的锻骨灵液炼体，体质逐渐提升','但每次看到那些筑基锻骨灵液，他心中的郁愤就更增一分','他想着自己这么受人欺辱，欺骗',
           '一切的根源都是因为自己太弱','这种念头渐渐形成心魔，在他心里扎根','他变得更加急功近利，在一次突破中，他一念成魔',[{ sounds: [{ soundId: 'SE_UE_0003',}] }] ,'被附近的强大修士感知到，遭围攻而死',],
-          btn: [{title: '再来一次绝不选这个（入魔+1）',toChapter: "WZXX_[Chapters]/WZXX_M1_N1_C017_[N1]",dropId: 'WZXX_M1_N1_C0017_V_Vdrop1'}]},
+          btn: [{title: '再来一次绝不选这个（入魔+1）',toChapter: "WZXX_M1_N1_C017_[N1]",dropId: 'WZXX_M1_N1_C0017_V_Vdrop1'}]},
         ],
         },
 

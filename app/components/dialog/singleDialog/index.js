@@ -19,6 +19,9 @@ const SingleDialog = (props) => {
     const animationEndListener = useRef(null)
     let currentDialogueLength = currentTextList.length - 1;
 
+    // FlatList
+    const refFlatList = React.createRef();
+
 
     useEffect(() => {
         // 初始化 按钮状态
@@ -48,6 +51,7 @@ const SingleDialog = (props) => {
                 setCurrentIndex(currentIndex + 1);
             }
         }
+        refFlatList.current.scrollToEnd({ animated: true });
     };
 
     // 显示下一个对话
@@ -86,6 +90,7 @@ const SingleDialog = (props) => {
                         showBtnList={showBtnList}
                         currentIndex={currentIndex}
                         currentDialogueLength={currentDialogueLength}
+                        refFlatList={refFlatList}
                         {...props.viewData}
                     />
                 )
@@ -98,6 +103,7 @@ const SingleDialog = (props) => {
                         showBtnList={showBtnList}
                         currentIndex={currentIndex}
                         currentDialogueLength={currentDialogueLength}
+                        refFlatList={refFlatList}
                         {...props.viewData}
                     />
                 )
@@ -111,6 +117,7 @@ const SingleDialog = (props) => {
                     showBtnList={showBtnList}
                     currentIndex={currentIndex}
                     currentDialogueLength={currentDialogueLength}
+                    refFlatList={refFlatList}
                     {...props.viewData}
                 />
             )

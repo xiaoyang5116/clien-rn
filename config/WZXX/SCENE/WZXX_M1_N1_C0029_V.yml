@@ -1,0 +1,97 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_C0029_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [{ id: "v1", min: 0, max: 1 }],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [],
+
+
+    
+      chats: [
+      #
+
+      { 
+        id: 'WZXX_M1_N1_C0029_V1', desc: '玉珏', 
+        options: [ 
+          { title: "【扔掉玉珏】",dialogs: ['C0029A_rendiaoA']},
+          { title: "【再看看】",dialogs: ['C0029A_zaikankanA']},
+        ],
+      },
+
+      
+      { 
+        id: 'WZXX_M1_N1_C0029_V2', desc: '遇害', 
+        options: [ 
+          { title: "【见死不救（冷漠+1）】",dialogs: ['C0029A_jiurA']},
+          { title: "【救人要紧（善良+1）】",dialogs: ['C0029A_bujiurA']},
+        ],
+      },
+
+
+        ],
+
+      # 对话框
+      dialogs:
+        [
+          #选项对话
+          { 
+            id: 'C0029A_rendiaoA',style: 6, title: '扔掉玉珏', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['李森炎自己都被自己的想法给吓到','虽然觉得这想法很荒诞，但他还是默默把玉珏放下了', '玉珏开始出现一丝裂纹','这玉都裂开了，果然是要炸了吗？','李森炎仔细一想，感觉又不太对','如果玉珏真是个爆炸物的话','那这前摇也太长了点吧？','这么长的待炸时间，爆炸前还会发热发烫','这能炸得到谁啊？','李森炎觉察到一丝不对劲之后','又凑了上去，伸手触碰',],
+                btn: [{title: '……',toChapter: "WZXX_M1_N1_C029_[N2][V2]",},]
+              },
+            ]  
+          },
+          #选项对话
+          { 
+            id: 'C0029A_zaikankanA',style: 6, title: '背叛', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              { 
+              key: 'B1', 
+              content: ['这个想法一冒出来，他自己都觉得荒诞','玉珏拿在手里，随着时间推移','玉珏缓缓出现裂纹','这一幕，同样震惊了李森炎。','这让李森炎感觉不妙','“我该叫你杨真呢，还是杨假？”','心里有股不详的预感！',],
+              btn: [{title: '……',toChapter: "WZXX_M1_N1_C029_[N2][V2]",},]
+              },
+            ]  
+          },
+          { 
+            id: 'C0029A_jiurA',style: 6, title: '见死不救', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              { 
+              key: 'B1', 
+              content: ['李森炎有些犹豫','路是他们自己选的','结果自然也要他们自己去承受','自己不是济世救难的活菩萨，管不了那么多',
+              '李森炎故意往反方向走','此时江依依的音容笑貌却在脑海不断浮现','李森炎实在承受不了内心的煎熬',
+              '“就去看看怎么回事也好”','“这要是不去，晚上做梦都不踏实！”',],
+              btn: [{title: '……',toChapter: "WZXX_M1_N1_C030_[N1][V2]",},]
+              },
+            ]  
+          },
+
+
+          { 
+            id: 'C0029A_bujiurA',style: 6, title: '救人要紧', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              { 
+              key: 'B1', 
+              content: ['下一刻，李森炎没有犹豫，展开身法，施展凌云步，朝着玉珏指引的方向飞奔而去。','不多时，李森炎找到了江依依小队所在的洞窟，洞窟入口有天然遮掩，被蔓藤覆盖，相当隐秘，若无玉珏指引，还真不容易找到。',
+              '入口还算宽敞，可容数人通行，在入口处听不到里面的动静，想来这洞窟有些深度。','李森炎没有耽搁时间，玉珏上闪烁的红光已经变得微弱，李森炎不知道这意味着什么，但总感觉若是这红光消失的话，一定会有不好的事情发生！',],
+              btn: [{title: '……',toChapter: "WZXX_M1_N1_C030_[N1][V2]",},]
+              },
+            ]  
+          },
+        ],
+      #===  dialog end
+
+
+    }
+]
