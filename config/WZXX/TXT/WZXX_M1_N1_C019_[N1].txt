@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C019_[N1]'] }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C019_[N1]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C019_[N1]FZ'] },  
      { header: '第十九章 N1用灵液' },
 ]
 #END==========================================

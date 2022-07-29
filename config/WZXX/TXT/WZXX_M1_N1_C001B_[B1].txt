@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-{ varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001B_[B1]']}, 
+{ varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001B_[B1]'], andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001B_[B1]FZ'] }, 
      { header: '第一章 分支B 选择寻找物品' },
 ]
 #END==========================================

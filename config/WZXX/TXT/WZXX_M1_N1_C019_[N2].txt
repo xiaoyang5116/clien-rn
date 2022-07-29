@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C019_[N2]']}, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C019_[N2]']}, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C019_[N2]FZ'] },  
      { header: '第十九章 N2恶犬恶主' },
 ]
 #END==========================================
