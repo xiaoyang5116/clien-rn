@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C029_[N2][V2]']  }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C029B_[V2]']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C029B_[V2]FZ'] },
      { header: '第二十九章 救命[N2][V2]' },
 ]
 #END==========================================

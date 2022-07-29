@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C020'] }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C020'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C020FZ'] },  
      { header: '第二十章 暴打黑光' },
 ]
 #END==========================================

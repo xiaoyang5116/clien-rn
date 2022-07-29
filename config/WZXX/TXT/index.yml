@@ -41,10 +41,10 @@ files:
     #
     "WZXX_M1_N1_C009_[V2].txt",
     #
-    "WZXX_M1_N1_C010_[V1][N1].txt",
-    "WZXX_M1_N1_C010_[V1][N2].txt",
-    "WZXX_M1_N1_C010_[V2][N1].txt",
-    "WZXX_M1_N1_C010_[V2][N2].txt",
+    "WZXX_M1_N1_C010A_[N1].txt",
+    "WZXX_M1_N1_C010A_[N2].txt",
+    "WZXX_M1_N1_C010B_[N1].txt",
+    "WZXX_M1_N1_C010B_[N2].txt",
     #
     "WZXX_M1_N1_C011_[V0].txt",
     "WZXX_M1_N1_C012_[V0].txt",
@@ -69,21 +69,21 @@ files:
     #
     "WZXX_M1_N1_C024_[V1].txt",
     #
-    "WZXX_M1_N1_C025_[N1][V1].txt",
-    "WZXX_M1_N1_C025_[N2][V1].txt",
+    "WZXX_M1_N1_C025A_[V1].txt",
+    "WZXX_M1_N1_C025B_[V1].txt",
     #
     "WZXX_M1_N1_C026_[V1].txt",
     #
-    "WZXX_M1_N1_C027_[N1][V1].txt",
-    "WZXX_M1_N1_C027_[N2][V1].txt",
-    "WZXX_M1_N1_C027_[N3][V1].txt",
+    "WZXX_M1_N1_C027A_[V1].txt",
+    "WZXX_M1_N1_C027B_[V1].txt",
+    "WZXX_M1_N1_C027C_[V1].txt",
     #
-    "WZXX_M1_N1_C028_[N1][V1].txt",
+    "WZXX_M1_N1_C028A_[V1].txt",
     #
-    "WZXX_M1_N1_C029_[N1][V2].txt",
-    "WZXX_M1_N1_C029_[N2][V2].txt",
+    "WZXX_M1_N1_C029A_[V2].txt",
+    "WZXX_M1_N1_C029B_[V2].txt",
     #
-    "WZXX_M1_N1_C030_[N1][V2].txt",
+    "WZXX_M1_N1_C030A_[V2].txt",
 
 
     

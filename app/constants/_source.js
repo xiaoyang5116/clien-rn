@@ -28,7 +28,7 @@ const _images = {
         { id: 'JIUGUAN1', width: px2pd(750), height: px2pd(422), source: require('../../assets/chapter/JIUGUAN1.webp') },
         { id: 'KEZHAN1', width: px2pd(720), height: px2pd(540), source: require('../../assets/chapter/KEZHAN1.webp') },
         { id: 'PINGCHUANFUBAICHENG', width: px2pd(1080), height: px2pd(1054), source: require('../../assets/chapter/PINGCHUANFUBAICHENG.webp') },
-        { id: 'SHUIJIAOCAODUO', width: px2pd(750), height: px2pd(500), source: require('../../assets/chapter/KEZHAN1.webp') },
+        { id: 'SHUIJIAOCAODUO', width: px2pd(750), height: px2pd(500), source: require('../../assets/chapter/SHUIJIAOCAODUO.webp') },
         { id: 'WAPIAN', width: px2pd(802), height: px2pd(690), source: require('../../assets/chapter/WAPIAN.webp') },
         { id: 'ZANZI', width: px2pd(720), height: px2pd(720), source: require('../../assets/chapter/ZANZI.webp') },
     ],

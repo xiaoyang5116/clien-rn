@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C021']  }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C021']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C021FZ'] },   
      { header: '第二十一章 归元丹' },
 ]
 #END==========================================

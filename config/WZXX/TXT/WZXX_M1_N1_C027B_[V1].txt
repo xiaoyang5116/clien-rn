@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C027_[N2][V1]']  }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C027B_[V1]']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C027B_[V1]FZ'] },  
      { header: '第二十七章 玉上寒凝髓[N2][V1]' },
 ]
 #END==========================================

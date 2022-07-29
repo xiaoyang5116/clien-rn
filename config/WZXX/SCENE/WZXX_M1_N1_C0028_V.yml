@@ -22,7 +22,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0028_V1', desc: '雷画符', 
         options: [ 
-          { title: "【准备动手准备动手】", games: { id: 5, word: ["雷"], toChapter: "WZXX_M1_N1_C028_[N1][V1]", },}
+          { title: "【准备动手准备动手】", games: { id: 5, word: ["雷"], toChapter: "WZXX_M1_N1_C028A_[V1]", },}
         ],
       },
 
