@@ -301,7 +301,11 @@ export default {
         // 计算总偏移量
         let totalOffsetY = 0;
         const prevSections = articleState.sections.filter(e => e.key < item.key);
-        prevSections.forEach(e => totalOffsetY += e.height);
+        prevSections.forEach(e => {
+          if (e.height != undefined && e.height > 0) {
+            totalOffsetY += e.height;
+          }
+        });
 
         // 检测线
         const line2 = totalOffsetY - (WIN_SIZE.height / 2) - (DETECTION_AREA_HEIGHT / 2) + 80;
