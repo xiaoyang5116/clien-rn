@@ -23,7 +23,7 @@ directory: [
         { point: [1, -7], title: '第三章N2白月光闺房',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C003_[N2]' , toChapter: 'WZXX_M1_N1_C003_[N2]', links: [[0, -8]], },
         { point: [0, -8], title: '第四章N1灵修界',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N1]' , toChapter: 'WZXX_M1_N1_C004_[N1]', links: [[0, -9],[0, -6], ] },
         { point: [0, -9], title: '第四章N2拒绝拜师',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N2]' , toChapter: 'WZXX_M1_N1_C004_[N2]', links: [[0, -10]],  },
-        { point: [0, -10], title: '第五章N1小师弟',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C005_[N1]' , toChapter: 'WWZXX_M1_N1_C005_[N1]', links: [[0, -11]] },
+        { point: [0, -10], title: '第五章N1小师弟',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C005_[N1]' , toChapter: 'WZXX_M1_N1_C005_[N1]', links: [[0, -11]] },
         { point: [0, -11], title: '第五章N2打斗', bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C005_[N2]' ,toChapter: 'WZXX_M1_N1_C005_[N2]', links: [[0, -12]], },
         { point: [0, -12], title: '第六章初见陶老', bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C006_[N0]' ,toChapter: 'WZXX_M1_N1_C006_[N0]', links: [[0, -13], ] },
         { point: [0, -13], title: '第七章修炼',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C007_[N0]' , toChapter: 'WZXX_M1_N1_C007_[N0]', links: [[0, -14]] },
