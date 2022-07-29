@@ -172,7 +172,7 @@ export default {
 
                 // 小分支根据变量判断
                 const conds = lo.keys(condItem.object);
-                const inters = lo.intersection([...conds], ['andVarsOn', 'andVarsOff', 'andVarsValue']);
+                const inters = lo.intersection([...conds], ['andVarsOn', 'andVarsOff', 'andVarsValue', 'varsOn', 'varsOff']);
                 if (inters.length != conds.length) {
                   errorMessage('Invalid article config: ' + conds);
                   continue;
