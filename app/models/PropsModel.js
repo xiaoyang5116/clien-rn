@@ -242,7 +242,6 @@ export default {
 
       // 批量处理流水线不提交同步，将由调用方负责持久化
       const batchPipeline = payload.batchPipeline != undefined && payload.batchPipeline;
-      if (batchPipeline) quiet = true;
 
       const config = propsState.__data.propsConfig.find((e) => e.id == propId);
       if (config == undefined) {
@@ -267,9 +266,8 @@ export default {
         }
       }
 
-      if (!quiet)  Toast.show('获得道具！');
-
       if (!batchPipeline) {
+        if (!quiet)  Toast.show('获得道具！');
         yield put(action('updateState')({}));
         yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
       }
