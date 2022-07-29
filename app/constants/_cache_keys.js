@@ -34,4 +34,7 @@ export class LocalCacheKeys {
     // 掉落ID
     static DROPS_ID = 'DROPS_ID';
 
+    // 阅读记录
+    static ARTICLE_HISTORY = 'ARTICLE_HISTORY';
+
 }

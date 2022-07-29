@@ -12,6 +12,7 @@ import {
   connect,
   Component,
   EventKeys,
+  DataContext,
 } from "../constants";
 
 import {
@@ -37,6 +38,8 @@ const BTN_STYLE = {
 }
 
 class FirstPage extends Component {
+
+  static contextType = DataContext;
 
   constructor(props) {
     super(props);
@@ -88,6 +91,7 @@ class FirstPage extends Component {
             }} />
             {/* 继续阅读 */}
             <ImageButton {...BTN_STYLE} source={require('../../assets/button/continue_button.png')} selectedSource={require('../../assets/button/continue_button_selected.png')} onPress={() => {
+              this.context.continueReading = true;
               RootNavigation.navigate('Article');
             }} />
             {/* 读取存档 */}
