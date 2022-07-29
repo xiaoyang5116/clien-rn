@@ -23,7 +23,8 @@ export default {
     sceneId: '',  // 当前场景ID(该状态在异步操作中状态不确定，请使用__sceneId)
     prevSceneId: '',  // 前一个场景ID
     worldId: 0, // 用户当前世界ID
-    attrs: [], // 角色属性
+    attrs: [], // 普通属性（阅读器）
+    equips: [], // 身上的装备
   },
 
   effects: {
@@ -57,6 +58,7 @@ export default {
           prevSceneId: '',
           worldId: 0,
           attrs: userAttrs,
+          equips: [],
         }));
       }
     },
@@ -103,6 +105,84 @@ export default {
     *getAttrs({}, { select }) {
       const userState = yield select(state => state.UserModel);
       return userState.attrs;
+    },
+
+    *addEquip({ payload }, { put, select }) {
+      const { equipId } = payload;
+      if (!lo.isNumber(equipId) || equipId <= 0)
+        return false;
+
+      const userState = yield select(state => state.UserModel);
+      const equipConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: equipId }));
+      if (equipConfig == undefined)
+        return false;
+
+      if (!lo.isArray(equipConfig.affect))
+        return false;
+
+      if (userState.equips.find(e => (e.id == equipId)) != undefined)
+        return false;
+
+      // 部位已经装配,则替换
+      const found = userState.equips.find(e => (lo.indexOf(equipConfig.tags, e.tag) != -1));
+      if (found != undefined) {
+        userState.equips = userState.equips.filter(e => (e.id != found.id));
+        // 归还锁定的道具
+        yield put.resolve(action('PropsModel/sendProps')({ propId: found.id, num: 1, quiet: true }));
+      }
+
+      // 扣除一个相应的道具
+      const status = yield put.resolve(action('PropsModel/reduce')({ propsId: [equipId], num: 1, mode: 1 }));
+      if (status) {
+        // tags[0] = 部位标签
+        userState.equips.push({ id: equipId, tag: equipConfig.tags[0], affect: lo.cloneDeep(equipConfig.affect) });
+        yield put.resolve(action('syncData')({}));
+
+        // 通知角色属性刷新
+        DeviceEventEmitter.emit(EventKeys.USER_EQUIP_UPDATE);
+        return true;
+      }
+
+      return false;
+    },
+
+    *removeEquip({ payload }, { put, select }) {
+      const { equipId } = payload;
+      if (!lo.isNumber(equipId) || equipId <= 0)
+        return false;
+
+      const userState = yield select(state => state.UserModel);
+
+      const found = userState.equips.find(e => (e.id == equipId));
+      if (found == undefined)
+        return false;
+
+      userState.equips = userState.equips.filter(e => (e.id != equipId));
+      yield put.resolve(action('syncData')({}));
+
+      // 归还锁定的道具
+      yield put.resolve(action('PropsModel/sendProps')({ propId: equipId, num: 1, quiet: true }));
+
+      // 通知角色属性刷新
+      DeviceEventEmitter.emit(EventKeys.USER_EQUIP_UPDATE);
+      return true;
+    },
+
+    *getEquipsEntity({}, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+
+      if (lo.isArray(userState.equips) && userState.equips.length > 0) {
+        const equips = [];
+        for (let key in userState.equips) {
+          const item = userState.equips[key];
+          const equipConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.id }));
+          if (equipConfig == undefined)
+            continue;
+          equips.push({ ...item, entity: equipConfig });
+        }
+        return equips
+      }
+      return [];
     },
 
     *syncData({ }, { select, call }) {

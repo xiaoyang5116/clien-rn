@@ -137,7 +137,7 @@ class PropsTabPage extends Component {
                             style={{ paddingTop: 2 }}
                             data={this.props.listData}
                             renderItem={this._renderItem}
-                            keyExtractor={item => item.id}
+                            keyExtractor={item => item.recordId}
                         />
                     </View>
                 </View>

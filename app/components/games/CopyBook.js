@@ -60,6 +60,53 @@ const ziTieArr = [
             { origin: [205, 224], width: 14, height: 14 },
 
         ]
+    },
+    {
+        id: 2, name: "雷", img: require('../../../assets/games/ziTie/lei.png'), detectionArea: [
+            // 雨
+            { origin: [77, 50], width: 15, height: 14 },
+            { origin: [211, 50], width: 15, height: 14 },
+            { origin: [141, 50], width: 17, height: 14 },
+            { origin: [54, 79], width: 16, height: 16 },
+            { origin: [141, 79], width: 17, height: 13 },
+            { origin: [230, 79], width: 17, height: 14 },
+            { origin: [54, 107], width: 16, height: 15 },
+            { origin: [80, 107], width: 14, height: 13 },
+            { origin: [114, 107], width: 15, height: 13 },
+            { origin: [169, 107], width: 15, height: 13 },
+            { origin: [205, 107], width: 15, height: 13 },
+            { origin: [230, 107], width: 17, height: 15 },
+            { origin: [76, 132], width: 17, height: 13 },
+            { origin: [114, 132], width: 16, height: 13 },
+            { origin: [169, 132], width: 16, height: 14 },
+            { origin: [205, 132], width: 16, height: 14 },
+            { origin: [141, 132], width: 17, height: 14 },
+            // 田
+            { origin: [73, 160], width: 17, height: 12 },
+            { origin: [141, 160], width: 17, height: 13 },
+            { origin: [210, 160], width: 17, height: 13 },
+            { origin: [73, 194], width: 17, height: 14 },
+            { origin: [141, 194], width: 17, height: 14 },
+            { origin: [210, 194], width: 17, height: 13 },
+            { origin: [73, 229], width: 17, height: 14 },
+            { origin: [141, 229], width: 17, height: 14 },
+            { origin: [210, 229], width: 17, height: 13 },
+
+            // 特殊
+            { origin: [99, 160], width: 17, height: 13 },
+            { origin: [168, 160], width: 17, height: 13 },
+            { origin: [99, 194], width: 17, height: 13 },
+            { origin: [168, 194], width: 17, height: 13 },
+            { origin: [99, 229], width: 17, height: 13 },
+            { origin: [168, 229], width: 17, height: 13 },
+
+            { origin: [73, 176], width: 17, height: 12 },
+            { origin: [141, 176], width: 17, height: 13 },
+            { origin: [210, 176], width: 17, height: 13 },
+            { origin: [73, 211], width: 17, height: 8 },
+            { origin: [141, 211], width: 17, height: 8 },
+            { origin: [210, 211], width: 17, height: 8 },
+        ]
     }
 ]
 
@@ -233,7 +280,7 @@ const CopyBook = (props) => {
                     </View>
                 </View>
 
-                <View style={{ flexDirection: "row", justifyContent: "space-evenly", width: "100%",marginBottom:12, }}>
+                <View style={{ flexDirection: "row", justifyContent: "space-evenly", width: "100%", marginBottom: 12, }}>
                     <TextButton title={"退出"} onPress={props.onClose} />
                     <TextButton title={"清除"} onPress={onClear} />
                     <TextButton title={"确认"} onPress={onFinish} />
