@@ -40,7 +40,7 @@ const CoinAnimation = (props) => {
                 imageStyle={{}}
                 // viewStyle={{ transform: [{ scale: getFixedWidthScale() }] }}
                 animations={{
-                    walk: lo.range(24),
+                    walk: lo.range(25),
                 }}
             />
         </View>
