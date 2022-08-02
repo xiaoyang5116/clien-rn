@@ -4,7 +4,7 @@ clues:
     id: 'xiansuo2',
     type: '流言',
     groupId: '李家村',
-    filterCondition: {location: '李家村', chapter: '第二章'},
+    filterCondition: {location: '李家村',},
     title: '线索2',
     content: 'REDER线索1...在发射点发生范德萨发士大夫萨芬，发生发，手动阀四分发士大夫，1',
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},

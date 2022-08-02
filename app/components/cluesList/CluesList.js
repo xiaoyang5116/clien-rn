@@ -40,11 +40,18 @@ function tabDataFun(cluesList) {
 // 获取 筛选条件数组 方法
 function allFilterDataFun(cluesList, cluesConfigData) {
     let allFilterData = []
+    // 根据 配置的过滤数据循环
     for (let index = 0; index < cluesConfigData.filterData.length; index++) {
+        // 某个类型的过滤配置
         const filterConfigItem = cluesConfigData.filterData[index];
+        // 对应类型的线索数据
         const cluesData = cluesList.filter(i => i.type === filterConfigItem.type)
+        // 如果没有对应线索 就跳过循环
+        if (cluesData.length === 0) continue
+        // 过滤条件
         const filterCondition = filterConfigItem.filterCondition.map(filterConfig => {
             const type = filterConfig.filterType
+            // 添加过滤选项
             cluesData.map(clues => {
                 const cluesFilterCondition = clues.filterCondition
                 if (filterConfig.filterOption === undefined && cluesFilterCondition[type] !== undefined) {
@@ -56,19 +63,26 @@ function allFilterDataFun(cluesList, cluesConfigData) {
                 ) {
                     filterConfig.filterOption.push(cluesFilterCondition[type])
                 }
-                if (filterConfig.filterOption.filter(i => i === "全部").length === 0) {
+                if (Array.isArray(filterConfig.filterOption) &&
+                    filterConfig.filterOption.length > 0 &&
+                    filterConfig.filterOption.filter(i => i === "全部").length === 0
+                ) {
                     filterConfig.filterOption.unshift("全部")
                 }
             })
-            filterConfig.checkedOption = "全部"
-            return filterConfig
+            if (filterConfig.filterOption !== undefined) {
+                filterConfig.checkedOption = "全部"
+                return filterConfig
+            }
         })
+
         const currentFilterData = {
             type: filterConfigItem.type,
-            filterCondition,
+            filterCondition: filterCondition.filter(item => item !== undefined),
         }
         allFilterData.push(currentFilterData)
     }
+
     return allFilterData
 }
 
