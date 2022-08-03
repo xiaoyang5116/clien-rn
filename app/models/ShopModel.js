@@ -6,6 +6,7 @@ import {
 import { GetShopDataApi } from '../services/GetShopDataApi';
 import EventListeners from '../utils/EventListeners';
 import * as DateTime from '../utils/DateTimeUtils';
+import Toast from '../components/toast';
 import lo from 'lodash';
 
 export default {
@@ -42,9 +43,38 @@ export default {
       if (found == undefined || found.num <= 0)
         return false;
 
+      // 扣除道具
+      if (lo.isArray(found.config.consume)) {
+        let enough = true;
+        for (let key in found.config.consume) {
+          const item = found.config.consume[key];
+
+          let currentNum = 0;
+          if (item.propId != undefined) {
+            currentNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: item.propId }));
+          }
+
+          if (currentNum < item.num) {
+            enough = false;
+            break
+          }
+        }
+        if (!enough) {
+          Toast.show(`购买不成功，道具不足！`);
+          return
+        }
+
+        // 扣除道具
+        for (let key in found.config.consume) {
+          const item = found.config.consume[key];
+          yield put.resolve(action('PropsModel/reduce')({ propsId: [item.propId], num: 1, mode: 1 }));
+        }
+      }
+
+      // 发放道具
       yield put.resolve(action('PropsModel/sendProps')({ propId: propId, num: 1 }));
       found.num -= 1;
-      
+
       return true;
     },
 
@@ -62,6 +92,17 @@ export default {
       if (shopState.listData.length > 0) {
         for (let key in shopState.listData) {
           const item = shopState.listData[key];
+          if (lo.isArray(item.config.consume)) {
+            for (let key in item.config.consume) {
+              const kv = item.config.consume[key];
+              const { propId } = kv;
+              if (propId != undefined && kv.propConfig == undefined) { // 只加载一次
+                const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: propId }));
+                kv.propConfig = propConfig;
+              }
+            }
+          }
+
           const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.propId }));
           data.push({ ...item, propConfig: propConfig });
         }

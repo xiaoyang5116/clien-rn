@@ -18,6 +18,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
+import lo from 'lodash';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../constants/resolution';
@@ -66,6 +67,16 @@ const ShopPage = (props) => {
                 color = styles.quality3;
             }
         }
+
+        const consumeList = [];
+        if (lo.isArray(data.item.config.consume)) {
+            data.item.config.consume.forEach(e => {
+                if (e.propConfig != undefined) {
+                    consumeList.push(`${e.propConfig.name}x${e.num}`);
+                }
+            });
+        }
+
         return (
         <TouchableOpacity activeOpacity={1} onPress={() => {
             setSelect(data.item.propId);
@@ -83,7 +94,7 @@ const ShopPage = (props) => {
                         <Text style={[{ marginLeft: 5, fontSize: 14 }, color]}>(库存: {data.item.num})</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Text style={{ marginRight: 20, fontSize: 16, color: '#424242', textAlign: 'right' }}>消耗: 灵石x{data.item.num}</Text>
+                        <Text style={{ marginRight: 20, fontSize: 16, color: '#424242', textAlign: 'right' }}>消耗: {lo.join(consumeList, ',')}</Text>
                     </View>
                     <View style={{ width: 60, height: 32 }}>
                         {
