@@ -31,6 +31,7 @@ import Shock from '../components/shock';
 import Drawer from '../components/drawer';
 import Clues from '../components/cluesList';
 import { playBGM } from '../components/sound/utils';
+import { ShopUtils } from '../pages/shop/ShopUtils';
 
 const BTN_STYLE = {
   width: 235,
@@ -108,7 +109,8 @@ class FirstPage extends Component {
             }} />
             {/* 书城 */}
             <ImageButton {...BTN_STYLE} source={require('../../assets/button/quit_read.png')} selectedSource={require('../../assets/button/quit_read_selected.png')} onPress={() => {
-              RootNavigation.navigate('BookMain');
+              // RootNavigation.navigate('BookMain');
+              ShopUtils.show();
             }} />
           </View>
           <Drawer ref={this.refDrawer} direction={'left'} margin={60} style={{ backgroundColor: '#a49f99', borderRadius: 10, overflow: 'hidden' }}>
