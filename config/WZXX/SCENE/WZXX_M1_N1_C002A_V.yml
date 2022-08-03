@@ -44,7 +44,20 @@ scenes: [
         { id: "biaoqianv32", min: 0, max: 1 } ,
         { id: "biaoqianv33", min: 0, max: 1 } ,
         { id: "biaoqianv34", min: 0, max: 1 } ,
-       
+       #
+        { id: "biaoqianv35", min: 0, max: 1 } ,
+        { id: "biaoqianv36", min: 0, max: 1 } ,
+        { id: "biaoqianv37", min: 0, max: 1 } ,
+        { id: "biaoqianv38", min: 0, max: 1 } ,
+        { id: "biaoqianv39", min: 0, max: 1 } ,
+        { id: "biaoqianv40", min: 0, max: 1 } ,
+        { id: "biaoqianv41", min: 0, max: 1 } ,
+        { id: "biaoqianv42", min: 0, max: 1 } ,
+        { id: "biaoqianv43", min: 0, max: 1 } ,
+        { id: "biaoqianv44", min: 0, max: 1 } ,
+
+
+
       ],
 
 
@@ -63,25 +76,25 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002A_V1', desc: '喂食还是离开？', 
         options: [ 
-          { title: "【事不宜迟，哪有时间逗猫，离开】",dialogs: ['C002A_fenzhimaoA']},
-          { title: "【回屋拿粮，逗逗猫再去买簪子】",dialogs: ['C002A_fenzhimaoB'] },
+          { title: "【事不宜迟，哪有时间逗猫，离开】",dialogs: ['C002A_fenzhimaoA'], icon: { id: 1, bindVar: 'biaoqianv35' }, varsOn: ['biaoqianv35']},
+          { title: "【回屋拿粮，逗逗猫再去买簪子】",dialogs: ['C002A_fenzhimaoB'] , icon: { id: 1, bindVar: 'biaoqianv36' }, varsOn: ['biaoqianv36']}
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C002A_V3', desc: '硬刚还是认怂？？', 
         options: [ 
-          { title: "【和他们拼了】",dialogs: ['C002A_fenzhiDH1'] },
-          { title: "【好汉不吃眼前亏】",dialogs: ['C002A_fenzhiDH2'] },
+          { title: "【和他们拼了】",dialogs: ['C002A_fenzhiDH1'] , icon: { id: 1, bindVar: 'biaoqianv37' }, varsOn: ['biaoqianv37']},
+          { title: "【好汉不吃眼前亏】",dialogs: ['C002A_fenzhiDH2'] , icon: { id: 1, bindVar: 'biaoqianv38' }, varsOn: ['biaoqianv38']},
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C002A_V2', desc: '选择回家还是？', 
         options: [ 
-          { title: "【直接回家，越快越好】",dialogs: ['C002A_fenzhiA'],  icon: { id: 7, bindVar: 'biaoqianv0' }},
-          { title: "【考虑变装一下的可能】",dialogs: ['C002A_fenzhiB'],  icon: { id: 7, bindVar: 'biaoqianv00' }},
-          { title: "【先去找人打听情报】", dialogs: ['C002A_fenzhiC'],  icon: { id: 7, bindVar: 'biaoqianv000' }},
+          { title: "【直接回家，越快越好】",dialogs: ['C002A_fenzhiA'],  icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']},
+          { title: "【考虑变装一下的可能】",dialogs: ['C002A_fenzhiB'],  icon: { id: 1, bindVar: 'biaoqianv00' }, varsOn: ['biaoqianv00']},
+          { title: "【先去找人打听情报】", dialogs: ['C002A_fenzhiC'],  icon: { id: 1, bindVar: 'biaoqianv000' }, varsOn: ['biaoqianv000']},
         ],
       },
 
@@ -90,15 +103,15 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002A_V4', desc: '进去看还是离开？', 
         options: [ 
-          { title: "【眼前就有一个房子，进去看看】",dialogs: ['C002A_fenzhiBF_A']},
-          { title: "【先去外面探探路】",dialogs: ['C002A_fenzhiBF_B']},
+          { title: "【眼前就有一个房子，进去看看】",dialogs: ['C002A_fenzhiBF_A'],  icon: { id: 1, bindVar: 'biaoqianv39' }, varsOn: ['biaoqianv39']},
+          { title: "【先去外面探探路】",dialogs: ['C002A_fenzhiBF_B'],  icon: { id: 1, bindVar: 'biaoqianv40' }, varsOn: ['biaoqianv40']},
         ],
       },
 
         { 
         id: 'WZXX_M1_N1_C002A_V5', desc: '进去看还是离开？', 
         options: [ 
-          { title: "【开启新世界的大门】",dialogs: ['C002A_erchuanA']},
+          { title: "【开启新世界的大门】",dialogs: ['C002A_erchuanA'],  icon: { id: 1, bindVar: 'biaoqianv41' }, varsOn: ['biaoqianv41']},
 
           #其实放上一个穿越的黑洞图片，或者简单的动作效果会更好
         ],
@@ -107,7 +120,7 @@ scenes: [
         { 
         id: 'WZXX_M1_N1_C002A_V6', desc: '不好！！！', 
         options: [ 
-          { title: "【不好！！！】",dialogs: ['C002A_chenjieA']},
+          { title: "【不好！！！】",dialogs: ['C002A_chenjieA'],  icon: { id: 1, bindVar: 'biaoqianv42' }, varsOn: ['biaoqianv42']},
 
           #其实放上一个穿越的黑洞图片，或者简单的动作效果会更好
         ],
@@ -115,7 +128,7 @@ scenes: [
        { 
         id: 'WZXX_M1_N1_C002A_V7', desc: '不好！！！', 
         options: [ 
-          { title: "【我说，我不想做你的弟子】",dialogs: ['C002A_shoutuB']},
+          { title: "【我说，我不想做你的弟子】",dialogs: ['C002A_shoutuB'],  icon: { id: 1, bindVar: 'biaoqianv43' }, varsOn: ['biaoqianv43']},
 
         ],
       },
@@ -123,7 +136,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002A_V8', desc: '被追杀了！', 
         options: [ 
-          { title: "【！！！什么情况！！！】",dialogs: ['C002A_dajiaA']},
+          { title: "【！！！什么情况！！！】",dialogs: ['C002A_dajiaA'],  icon: { id: 1, bindVar: 'biaoqianv44' }, varsOn: ['biaoqianv44']},
 
         ],
       },

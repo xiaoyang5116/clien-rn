@@ -7,9 +7,8 @@ scenes: [
       # 变量定义
       vars: [
         { id: "v1", min: 0, max: 1 },
-        { id: "biaoqianv0", min: 0, max: 1 } ,
-        { id: "biaoqianv00", min: 0, max: 1 } ,
-        { id: "biaoqianv000", min: 0, max: 1 } ,
+        
+        
         { id: "biaoqianv1", min: 0, max: 1 } ,
         { id: "biaoqianv2", min: 0, max: 1 } ,
         { id: "biaoqianv3", min: 0, max: 1 } ,
@@ -30,6 +29,13 @@ scenes: [
         { id: "biaoqianv18", min: 0, max: 1 } ,
         { id: "biaoqianv19", min: 0, max: 1 } ,
         { id: "biaoqianv20", min: 0, max: 1 } ,
+        { id: "biaoqianv21", min: 0, max: 1 } ,
+        { id: "biaoqianv22", min: 0, max: 1 } ,
+        { id: "biaoqianv23", min: 0, max: 1 } ,
+        { id: "biaoqianv24", min: 0, max: 1 } ,
+        { id: "biaoqianv25", min: 0, max: 1 } ,
+        { id: "biaoqianv26", min: 0, max: 1 } ,
+
         
       ],
 
@@ -49,7 +55,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002B_V1', desc: '治疗？？？', 
         options: [ 
-          { title: "【治疗？？？】",dialogs: ['C002B_zhiliaoA']},
+          { title: "【治疗？？？】",dialogs: ['C002B_zhiliaoA'], icon: { id: 1, bindVar: 'biaoqianv21' }, varsOn: ['biaoqianv21']}
         ],
       },
 
@@ -57,22 +63,22 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002B_V2', desc: '落霞峰', 
         options: [ 
-          { title: "【点击去往落霞峰】",dialogs: ['C002B_xiulianA']},
+          { title: "【点击去往落霞峰】",dialogs: ['C002B_xiulianA'], icon: { id: 1, bindVar: 'biaoqianv22' }, varsOn: ['biaoqianv22']}
         ],
       },
     
         { 
         id: 'WZXX_M1_N1_C002B_V3', desc: '坊市', 
         options: [ 
-          { title: "【不去坊市】",dialogs: ['C002B_fangshiA']},
-          { title: "【去坊市看看】",dialogs: ['C002B_fangshiB']},
+          { title: "【不去坊市】",dialogs: ['C002B_fangshiA'], icon: { id: 1, bindVar: 'biaoqianv23' }, varsOn: ['biaoqianv23']},
+          { title: "【去坊市看看】",dialogs: ['C002B_fangshiB'], icon: { id: 1, bindVar: 'biaoqianv24' }, varsOn: ['biaoqianv24']}
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C002B_V4', desc: '怎么了？', 
         options: [ 
-          { title: "【！！出事了】",dialogs: ['C002B_elingA']},
+          { title: "【！！出事了】",dialogs: ['C002B_elingA'], icon: { id: 1, bindVar: 'biaoqianv25' }, varsOn: ['biaoqianv25']}
 
         ],
       },
@@ -80,7 +86,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002B_V5', desc: '恶灵', 
         options: [ 
-          { title: "【！！出事了】",dialogs: ['C002B_elingA']},
+          { title: "【！！出事了】",dialogs: ['C002B_elingA'], icon: { id: 1, bindVar: 'biaoqianv26' }, varsOn: ['biaoqianv26']}
 
         ],
       },

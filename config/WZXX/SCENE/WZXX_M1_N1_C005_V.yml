@@ -5,7 +5,11 @@ scenes: [
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 }],
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 },
+      { id: "biaoqianv2", min: 0, max: 1 },
+      ],
 
       # 动作定义
       actions: [],
@@ -19,8 +23,8 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C005_V', desc: '打工还是守夜', 
         options: [ 
-          { title: "【去打工】",toScene: 'C005_V_MAP_0_0'},
-          { title: "【去守夜】",toChapter: "WZXX_M1_N1_C010B_[N1]"},
+          { title: "【去打工】",toScene: 'C005_V_MAP_0_0', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: "【去守夜】",toChapter: "WZXX_M1_N1_C010B_[N1]", icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
         ],
       },
 

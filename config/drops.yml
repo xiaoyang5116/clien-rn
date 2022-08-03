@@ -74,6 +74,21 @@ drops: [
   { id: 'WZXX_M1_N1_C0020_V_Vdrop2',  sendProps: '886,16','890,3',},
   #
   { id: 'WZXX_M1_N1_C0021_V_Vdrop1',  sendProps: '608,10',},
+  #
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop1',  sendProps: '338,10',},
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop2',  sendProps: '339,2',},
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop3',  sendProps: '886,16',},
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop4',  sendProps: '349,1',},
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop5',  sendProps: '333,3',},
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop6',  sendProps: '332,1',},
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop7',  sendProps: '319,1',},
+
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop8',   alertAttrs: ['善良,1'] },
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop9',   alertAttrs: ['冷漠,1'] },
+
+
+
+
 
 
   

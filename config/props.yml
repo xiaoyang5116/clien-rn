@@ -94,7 +94,24 @@ props: [
    { id:  331, name: '天栾衣', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
    { id:  332, name: '大还丹', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
    { id:  333, name: '小还丹', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-												
+   { id:  334, name: '归元丹', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
+   { id:  335, name: '蛛矛', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },		
+   { id:  336, name: '玉珏', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+   { id:  337, name: '镇毒丹', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+   { id:  338, name: '药草', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+   { id:  339, name: '不知名的蛋', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+   { id:  340, name: '玉上寒凝髓', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+   { id:  341, name: '冰灵之心', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+   { id:  342, name: '冰灵果', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+   { id:  343, name: '轻身符', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+   { id:  344, name: '疾雷符', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+   { id:  345, name: '火球符', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+   { id:  346, name: '凌空符', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+   { id:  347, name: '定身符', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+   { id:  348, name: '结界符', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+   { id:  349, name: '玄铁重剑', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
+
+
 
 
     #草药

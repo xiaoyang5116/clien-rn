@@ -5,7 +5,11 @@ scenes: [
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 }],
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      ],
 
       # 动作定义
       actions: [],
@@ -22,8 +26,8 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C005_VA1', desc: '挽留云云', 
         options: [ 
-          { title: "【挽留云云】",dialogs: ['C005A_yunyunA']},
-          { title: "【爱走走，我一人足矣】",dialogs: ['C005A_yunyunB']},
+          { title: "【挽留云云】",dialogs: ['C005A_yunyunA'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: "【爱走走，我一人足矣】",dialogs: ['C005A_yunyunB'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
         ],
       },
 
