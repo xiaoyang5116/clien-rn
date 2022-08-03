@@ -73,8 +73,6 @@ const styles = StyleSheet.create({
     TabView_item_container: {
         flex: 1,
         marginTop: 12,
-        paddingLeft: 12,
-        paddingRight: 12,
     }
 })
 

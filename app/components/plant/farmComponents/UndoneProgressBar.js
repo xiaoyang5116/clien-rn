@@ -3,6 +3,7 @@ import React from 'react'
 
 import { action, connect, EventKeys } from "../../../constants"
 
+
 const UndoneProgressBar = (props) => {
     const { needTime, currentNeedTime, lingTianName, lingTianId } = props
     const [seconds, setSeconds] = React.useState(currentNeedTime);
@@ -30,18 +31,20 @@ const UndoneProgressBar = (props) => {
     }
 
     const percent = seconds / needTime;
-    const value = percent * 100;
-    const translateX = 100 - value;
+    const value = percent * 300;
+    const translateX = 300 - value;
 
-    // let translateX = 50
     return (
-        <View style={{ height: 20, width: 100, backgroundColor: "#d9d9d9", borderRadius: 12, overflow: 'hidden' }}>
-            <View style={{
-                position: "absolute", top: 0, left: -100, height: 20, width: "100%", backgroundColor: "#595959", zIndex: 0,
-                transform: [{ translateX: translateX }]
-            }} ></View>
+        <>
+            <View style={{ height: 10, width: 300, backgroundColor: "#e0e0e0", borderRadius: 12, overflow: 'hidden', position: "absolute" }}>
+                <View style={{
+                    position: "absolute", top: 0, left: -300, height: 10, width: "100%", backgroundColor: "#33ad85", zIndex: 0,
+                    transform: [{ translateX: translateX }]
+                }} ></View>
+
+            </View>
             <Text style={{ textAlign: 'center' }}>{(100 - Math.floor(percent * 100))}%</Text>
-        </View>
+        </>
     )
 }
 

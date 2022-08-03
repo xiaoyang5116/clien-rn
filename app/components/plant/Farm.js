@@ -4,7 +4,10 @@ import {
     FlatList,
     StyleSheet,
     TouchableWithoutFeedback,
-    Animated
+    Animated,
+    Image,
+    ImageBackground,
+    TouchableOpacity,
 } from 'react-native'
 import React, { useRef, useState, useEffect } from 'react'
 
@@ -12,6 +15,7 @@ import { action, connect, EventKeys } from "../../constants"
 import RootView from '../RootView';
 import Toast from '../toast';
 import { now } from '../../utils/DateTimeUtils';
+import { px2pd } from '../../constants/resolution';
 
 import Formula from './Formula'
 import UndoneProgressBar from './farmComponents/UndoneProgressBar';
@@ -19,12 +23,19 @@ import Improve from './Improve';
 import Accelerate from './Accelerate';
 
 
+// 状态 status: 0-未开启, 1-开启但未种植, 2-种植中, 3-已成熟
+function bgImg(status) {
+    const img = [
+        { status: 1, source: require('../../../assets/plant/daizhongzhi.png') },
+        { status: 2, source: require('../../../assets/plant/yizhongzhi_bg.png') },
+        { status: 3, source: require('../../../assets/plant/shouhuo.png') },
+    ]
+    return img.find(i => i.status === status).source
+}
 
-
-// 状态 status: 0-未开启, 1-开启但未种植, 2-种植中,
+// 进度条容器
 
 const Farm = (props) => {
-
     const { lingTianData, lingTianName, plantComposeConfig } = props
 
     let DATA = []
@@ -38,31 +49,48 @@ const Farm = (props) => {
         }
     }, [])
 
-
-
-
-
+    // 灵气值
     const Grade = (item) => {
-        const container_height = 180  // 容器显示的高度
-        const lingQiZhi = item.lingQiZhi // 有多少灵气
-        const lingQiZhi_online = item.grade * 1000  // 灵气槽的容量
+        const container_height = px2pd(198)  // 容器显示的高度
+        let lingQiZhi = item.lingQiZhi // 有多少灵气
+        if (item.lingQiZhi > 1000) {
+            lingQiZhi = (item.lingQiZhi % 1000)
+        }
+        const lingQiZhi_online = 1000  // 灵气槽的容量
+        const baifenbi = parseInt((lingQiZhi / lingQiZhi_online) * 100)
         const proportion = container_height / lingQiZhi_online  // 相对于容器高度的比例
-        const lingQiZhi_height = container_height - (lingQiZhi * proportion)  // 灵气值显示高度 :180 - 18 =162
+        const lingQiZhi_height = container_height - (lingQiZhi * proportion)  // 灵气值显示高度
         const translateY = useRef(new Animated.Value(lingQiZhi_height)).current;
 
+        // 显示改良弹窗
+        const showImprove = () => {
+            const key = RootView.add(<Improve onClose={() => { RootView.remove(key); }} lingTianName={lingTianName} lingTianId={item.id} />);
+        }
+
         return (
-            <View style={{ flex: 1 }}>
-                <Text style={{ textAlign: "center", fontSize: 16, backgroundColor: "#2ecc71", height: 20, lineHeight: 20 }}>{item.grade}</Text>
-                <View style={{ flex: 1, alignItems: "center" }}>
-                    <View style={{ height: container_height, width: 20, backgroundColor: "#135200", justifyContent: "center", alignItems: "center", overflow: "hidden" }}>
-                        <Animated.View style={{ width: 20, backgroundColor: "#4f6f46", height: container_height, position: "absolute", transform: [{ translateY }] }}></Animated.View>
-                        <Text style={{ width: 10, textAlign: "center" }}>{lingQiZhi}/{lingQiZhi_online}</Text>
-                    </View>
-                </View>
-            </View>
+            <View style={{ alignItems: 'center' }}>
+                <Text style={{ color: "#fff", fontSize: 12 }}>{baifenbi}%</Text>
+                <TouchableWithoutFeedback onPress={showImprove}>
+                    <ImageBackground source={require('../../../assets/plant/lingqicao.png')}
+                        style={{
+                            width: px2pd(38),
+                            height: px2pd(198),
+                            overflow: "hidden",
+                            borderRadius: 5,
+                            backgroundColor: "red"
+                        }}
+                    >
+                        <Animated.Image
+                            source={require('../../../assets/plant/lingqicao2.png')}
+                            style={{ width: px2pd(38), height: px2pd(198), position: "absolute", transform: [{ translateY }] }}
+                        />
+                    </ImageBackground>
+                </TouchableWithoutFeedback>
+            </View >
         )
     }
 
+    // 种植
     const Plant = (item) => {
         const showFormula = () => {
             props.dispatch(action("PlantModel/selectedLingTian")({ lingTianName, lingTianId: item.id }))
@@ -71,30 +99,22 @@ const Farm = (props) => {
 
         // 点击事件
         const onPress = () => {
-            if (item.status === 3) return Toast.show("请先采集")
-            if (item.status === 2) return Toast.show("已种植")
+            if (item.status === 3) {
+                // return Toast.show("请先采集")
+                return props.dispatch(action("PlantModel/collection")({ lingTianName, lingTianId: item.id }))
+            }
+            if (item.status === 2) {
+                return Toast.show("已种植")
+                // const key = RootView.add(<Accelerate onClose={() => { RootView.remove(key); }} lingTianName={lingTianName} lingTianId={item.id} />);
+                // return null
+            }
             if (item.status === 1) return showFormula()
         }
 
         // 进度条
         const ProgressBar = () => {
-            if (item.status === 1) {
-                return (
-                    <View style={{ height: 20, width: 100, backgroundColor: "#d9d9d9", borderRadius: 12, overflow: 'hidden' }}>
-                        <Text style={{ textAlign: 'center' }}>0%</Text>
-                    </View>
-                )
-            }
-            if (item.status === 3) {
-                return (
-                    <View style={{ height: 20, width: 100, backgroundColor: "#d9d9d9", borderRadius: 12, overflow: 'hidden' }}>
-                        <View style={{
-                            position: "absolute", top: 0, left: 0, height: 20, width: "100%", backgroundColor: "#595959", zIndex: 0,
-                        }} ></View>
-                        <Text style={{ textAlign: 'center' }}>100%</Text>
-                    </View>
-                )
-            }
+            if (item.status === 1) return null
+            if (item.status === 3) return null
 
             // 时间差
             const diffTime = Math.floor((now() - item.plantTime) / 1000)
@@ -105,41 +125,45 @@ const Farm = (props) => {
             if (currentNeedTime < 0) {
                 props.dispatch(action("PlantModel/changePlantStatus")({ lingTianName, lingTianId: item.id, status: 3 }))
                 return (
-                    <View style={{ height: 20, width: 100, backgroundColor: "#d9d9d9", borderRadius: 12, overflow: 'hidden' }}>
-                        <View style={{
-                            position: "absolute", top: 0, left: 0, height: 20, width: "100%", backgroundColor: "#595959", zIndex: 0,
-                        }} ></View>
-                        <Text style={{ textAlign: 'center' }}>100%</Text>
+                    <View style={styles.plant_ProgressBar_container}>
+                        <View style={{ height: 10, width: 300, backgroundColor: "#33ad85", borderRadius: 12, overflow: 'hidden', position: "absolute" }}></View>
+                        <Text style={{ textAlign: 'center', fontSize: 20, color: "#000", }}>100%</Text>
                     </View>
                 )
             }
 
-            return <UndoneProgressBar currentNeedTime={currentNeedTime} needTime={item.needTime} lingTianName={lingTianName} lingTianId={item.id} />
+            return (
+                <View style={styles.plant_ProgressBar_container} pointerEvents="none">
+                    <UndoneProgressBar currentNeedTime={currentNeedTime} needTime={item.needTime} lingTianName={lingTianName} lingTianId={item.id} />
+                </View>
+            )
         }
 
         const Title = () => {
-            let content = "待种植"
-            if (item.status !== 1) {
+            let content = "未种植: 点击选择种子"
+            if (item.status == 2) {
                 // 正在种植的配方
                 const plantRecipe = plantComposeConfig.find(f => f.id === item.plantRecipeId)
-                content = `正在种植-${plantRecipe.name}`
+                content = `已种植: ${plantRecipe.name}`
+            }
+            if (item.status == 3) {
+                content = `已成熟: 点击收获`
             }
 
             return (
-                <Text style={{ width: 150, height: 30, lineHeight: 30, fontSize: 20, textAlign: "center", backgroundColor: "#389e0d" }}>
-                    {content}
-                </Text>
+                <View style={styles.statusContainer} pointerEvents="none">
+                    <Image source={require('../../../assets/plant/status_bg.png')} style={styles.status_bg} />
+                    <Text style={{ fontSize: 16, color: "#000", textAlign: "center" }}>{content}</Text>
+                </View>
             )
         }
 
         return (
-            <TouchableWithoutFeedback style={{ flex: 1 }} onPress={onPress}>
-                <View style={{ flex: 1 }}>
+            <TouchableWithoutFeedback onPress={onPress}>
+                <ImageBackground source={bgImg(item.status)} style={{ width: px2pd(904), height: px2pd(242), justifyContent: "center" }}>
                     <Title />
-                    <View style={styles.plant_ProgressBar_container}>
-                        <ProgressBar />
-                    </View>
-                </View>
+                    <ProgressBar />
+                </ImageBackground>
             </TouchableWithoutFeedback>
         )
     }
@@ -151,10 +175,10 @@ const Farm = (props) => {
                 <Text style={styles.equipment_btn}>土壤</Text>
                 <Text style={styles.equipment_btn}>阵法</Text>
             </View>
-
         )
     }
 
+    // 功能键
     const FunctionKeys = (item) => {
         const collection = () => {
             if (item.status === 2) return Toast.show("种植物还未成熟,不可采集")
@@ -183,32 +207,66 @@ const Farm = (props) => {
         )
     }
 
+    // 未解锁
     const NotDeveloped = (item) => {
         return (
-            <View style={{ height: 230, width: "100%", marginTop: 24, padding: 12, borderWidth: 1, borderColor: "#000", backgroundColor: "#d9d9d9", justifyContent: "center", alignItems: 'center' }}>
-                <Text style={{ fontSize: 20, color: "#000" }}>未解锁</Text>
+            <View style={styles.box}>
+                <ImageBackground source={require('../../../assets/plant/not_unlocked.png')} style={[styles.box_bgImg, {
+                    justifyContent: "center",
+                    alignItems: "center"
+                }]}>
+                    <View style={styles.statusContainer}>
+                        <Image source={require('../../../assets/plant/status_bg.png')} style={styles.status_bg} />
+                        <Text style={{ fontSize: 16, color: "#000", textAlign: "center" }}>未解锁</Text>
+                    </View>
+                </ImageBackground>
             </View>
+        )
+    }
+
+    // 灵田等级
+    const HeaderTitle = (item) => {
+        const { grade } = item
+        return (
+            <ImageBackground
+                source={require('../../../assets/plant/title_bg.png')}
+                style={styles.box_title}
+            >
+                <Text style={{ fontSize: 16, color: "#000" }}>{grade} 阶灵田</Text>
+            </ImageBackground>
         )
     }
 
     // {"grade": 1, "id": 1, "lingQiZhi": 80, "needTime": 1000, "plantRecipeId": 101, "plantTime": 1657163905426, "status": 2, "targets": {"id": 53, "num": 1, "range": [Array], "rate": 20}}
     const renderItem = ({ item }) => {
         if (item.status === 0) return <NotDeveloped />
+        const showAccelerate = () => {
+            if (item.status === 3) return Toast.show("种植物已成熟,不能加速")
+            if (item.status === 1) return Toast.show("请先种植")
+            const key = RootView.add(<Accelerate onClose={() => { RootView.remove(key); }} lingTianName={lingTianName} lingTianId={item.id} />);
+        }
 
         return (
-            <View style={{ width: "100%", marginTop: 24, padding: 12, borderWidth: 1, borderColor: "#000", backgroundColor: "#d9d9d9" }}>
-                <View style={{ height: 200, width: "100%", flexDirection: "row" }}>
-                    <View style={{ width: 50, }}>
+            <View style={styles.box}>
+                <ImageBackground source={require('../../../assets/plant/box_bg.png')} style={[styles.box_bgImg, {
+                    alignItems: 'center'
+                }]} >
+                    <HeaderTitle {...item} />
+                    <View style={{ width: "100%", flexDirection: 'row', marginTop: 8, justifyContent: "space-around", paddingLeft: 4, paddingRight: 4 }}>
                         <Grade {...item} />
-                    </View>
-                    <View style={{ flex: 1, backgroundColor: "#237804" }}>
                         <Plant {...item} />
                     </View>
-                    <View style={{ width: 70, }}>
-                        <Equipment {...item} />
-                    </View>
-                </View>
-                <FunctionKeys {...item} />
+                    <TouchableOpacity onPress={showAccelerate}>
+                        <ImageBackground source={require('../../../assets/plant/btn_bg.png')} style={{ width: px2pd(242), height: px2pd(68), justifyContent: "center", alignItems: 'center', marginTop: 4 }}>
+                            <Text>加速</Text>
+                        </ImageBackground>
+                    </TouchableOpacity>
+
+                    {/* <View style={{ width: 70, }}>
+                            <Equipment {...item} />
+                        </View> */}
+                    {/* <FunctionKeys {...item} /> */}
+                </ImageBackground>
             </View>
         )
     }
@@ -256,7 +314,6 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         height: 30,
-        backgroundColor: "#389e0d",
         justifyContent: "center",
         alignItems: 'center'
     },
@@ -267,5 +324,35 @@ const styles = StyleSheet.create({
         width: "100%",
         backgroundColor: "#8c8c8c",
         zIndex: 0,
+    },
+    box: {
+        width: "100%",
+        marginTop: 24,
+        justifyContent: "center",
+        alignItems: 'center'
+    },
+    box_bgImg: {
+        width: px2pd(1052),
+        height: px2pd(364),
+    },
+    statusContainer: {
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    status_bg: {
+        position: "absolute",
+        zIndex: 0,
+        height: px2pd(52),
+        width: px2pd(660),
+    },
+    box_title: {
+        position: "absolute",
+        top: -8,
+        zIndex: 99,
+        height: px2pd(70),
+        width: px2pd(410),
+        justifyContent: "center",
+        alignItems: "center"
     }
+
 })

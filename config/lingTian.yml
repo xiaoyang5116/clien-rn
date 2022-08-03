@@ -11,9 +11,8 @@ data:
       lingTian:
         [
           {id: 1, status: 1, grade: 1, lingQiZhi: 100},
-          {id: 2, status: 0, grade: 1, lingQiZhi: 100},
+          {id: 2, status: 1, grade: 1, lingQiZhi: 100},
           {id: 3, status: 0, grade: 1, lingQiZhi: 100},
-          {id: 4, status: 0, grade: 1, lingQiZhi: 100},
         ],
     },
     {
