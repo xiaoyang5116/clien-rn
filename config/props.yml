@@ -55,7 +55,7 @@ props: [
   { id: 104 , name: '灵石', iconId: 1, num: 200, quality: 2, type: 101, tags: ['普通'], attrs: [], capacity: 1000, desc: '增加100灵气值', plantLingQiZhi: 100, }, 
 
   # games 开宝箱道具
-  { id: 200 , name: '灵石', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '普通灵石' }, 
+  { id: 200 , name: '灵石', iconId: 2, num: 100, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '普通灵石' }, 
   { id: 201 , name: '丹药', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: [], capacity: 100, desc: '平平无奇的丹药' }, 
 #阅读器道具
 

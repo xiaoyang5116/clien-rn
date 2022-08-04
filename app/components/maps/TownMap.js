@@ -19,6 +19,7 @@ import { confirm } from '../dialog/ConfirmDialog';
 import Flower from '../animation/Flower';
 import { PlantPage } from '../plant';
 import { ComposeUtils } from '../../pages/home/ComposePage';
+import { ShopUtils } from '../../pages/shop/ShopUtils';
 
 const MAP_DATA = [
     {
@@ -80,7 +81,7 @@ const MAP_DATA = [
             { style: { left: 70, top: 150 }, name: 'ZhenYaoTa', title: '镇妖塔' },
         ],
         nearPoints: [
-            { style: { left: 160, top: 300 }, name: 'LianDanFeng', title: '炼丹房' },
+            { style: { left: 160, top: 300 }, textStyle: { top: 22 }, name: 'ShiChang', title: '市场' },
         ],
     },
 ];
@@ -98,13 +99,16 @@ const EntryButton = (props) => {
                         case 'LianQiFeng':
                             ComposeUtils.show();
                             break;
+                        case 'ShiChang':
+                            ShopUtils.show();
+                            break;
                     }
                     DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
                 });
             }}>
             <View style={{ ...props.style }}>
                 <FastImage style={{ width: px2pd(84), height: px2pd(211) }} source={themeStyle.townMapButtonImage} />
-                <Text style={[{ position: 'absolute', left: 8, top: 12, width: 20 }, { ...themeStyle.townMapButtonLabel }]}>{props.title}</Text>
+                <Text style={[{ position: 'absolute', left: 8, top: 12, width: 20 }, props.textStyle, { ...themeStyle.townMapButtonLabel }]}>{props.title}</Text>
             </View>
         </TouchableWithoutFeedback>
     );
