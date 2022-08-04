@@ -5,7 +5,12 @@ scenes: [
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 }],
+      vars: [{ id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+      ],
 
       # 动作定义
       actions: [],
@@ -20,7 +25,9 @@ scenes: [
             id: "WZXX_M1_N1_C0026_V1",
             desc: "有问题！",
             options:
-              [{ title: "【“不好！快闪开！”】", dialogs: ["C0026A_buhaoA"] }],
+              [
+              { title: "【“不好！快闪开！”】", dialogs: ["C0026A_buhaoA"] , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+              ],
           },
         ],
 
@@ -107,9 +114,9 @@ scenes: [
                     ],
                   btn:
                     [
-                      { title: "左边通道", tokey: "P6" },
-                      { title: "中间通道", tokey: "P7" },
-                      { title: "右边通道", tokey: "P8" },
+                      { title: "左边通道", tokey: "P6" , icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+                      { title: "中间通道", tokey: "P7" , icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
+                      { title: "右边通道", tokey: "P8" , icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
                     ],
                 },
 
@@ -129,7 +136,7 @@ scenes: [
                     [
                       {
                         title: "回到入口",
-                        toChapter: "WZXX_M1_N1_C026_[V1]",
+                        toChapter: "WZXX_M1_N1_C026_[V1]", dropId: 'WZXX_M1_N1_C0026_V_Vdrop1', 
                       },
                     ],
                 },
@@ -147,13 +154,13 @@ scenes: [
                       "李森炎拿走了两颗",
                       "说一颗是给江依依的，自己代为保管",
                       "其他两人也没有异议",
-                      "（获得不知名的蛋+2）",
+                      "（获得不知名的蛋+2）", 
                     ],
                   btn:
                     [
                       {
                         title: "回到入口",
-                        toChapter: "WZXX_M1_N1_C026_[V1]",
+                        toChapter: "WZXX_M1_N1_C026_[V1]", dropId: 'WZXX_M1_N1_C0026_V_Vdrop2',
                       },
                     ],
                 },
@@ -177,7 +184,7 @@ scenes: [
                     [
                       {
                         title: "回到入口",
-                        toChapter: "WZXX_M1_N1_C026_[V1]",
+                        toChapter: "WZXX_M1_N1_C026_[V1]", dropId: 'WZXX_M1_N1_C0026_V_Vdrop3','WZXX_M1_N1_C0026_V_Vdrop4', 'WZXX_M1_N1_C0026_V_Vdrop5','WZXX_M1_N1_C0026_V_Vdrop6','WZXX_M1_N1_C0026_V_Vdrop7',
 
                       },
                     ],

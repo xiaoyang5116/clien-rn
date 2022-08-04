@@ -5,7 +5,13 @@ scenes: [
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 }],
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      
+      ],
 
       # 动作定义
       actions: [],
@@ -22,19 +28,17 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0017_V1', desc: '炸桶', 
         options: [ 
-          { title: "【我需要……】",dialogs: ['C0017A_zhatongA']},
+          { title: "【我需要……】",dialogs: ['C0017A_zhatongA'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
         ],
       },
       { 
         id: 'WZXX_M1_N1_C0017_V2', desc: '选择', 
         options: [ 
-          { title: "【忍气吞声，算了】",dialogs: ['C0017A_suanleA']},
-          { title: "【向陶老讨要个说法】",toChapter: "WZXX_M1_N1_C017_[N2]"},
+          { title: "【忍气吞声，算了】",dialogs: ['C0017A_suanleA'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+          { title: "【向陶老讨要个说法】",toChapter: "WZXX_M1_N1_C017_[N2]", icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
       
         ],
       },
-
-     
 
 
 

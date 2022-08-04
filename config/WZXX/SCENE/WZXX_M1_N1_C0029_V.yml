@@ -5,7 +5,12 @@ scenes: [
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 }],
+      vars: [{ id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+      ],
 
       # 动作定义
       actions: [],
@@ -22,8 +27,8 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0029_V1', desc: '玉珏', 
         options: [ 
-          { title: "【扔掉玉珏】",dialogs: ['C0029A_rendiaoA']},
-          { title: "【再看看】",dialogs: ['C0029A_zaikankanA']},
+          { title: "【扔掉玉珏】",dialogs: ['C0029A_rendiaoA'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: "【再看看】",dialogs: ['C0029A_zaikankanA'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
         ],
       },
 
@@ -31,8 +36,8 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0029_V2', desc: '遇害', 
         options: [ 
-          { title: "【见死不救（冷漠+1）】",dialogs: ['C0029A_jiurA']},
-          { title: "【救人要紧（善良+1）】",dialogs: ['C0029A_bujiurA']},
+          { title: "【见死不救（冷漠+1）】",dialogs: ['C0029A_jiurA'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'], dropId: 'WZXX_M1_N1_C002A_V_Vdrop9',},
+          { title: "【救人要紧（善良+1）】",dialogs: ['C0029A_bujiurA'], icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'], dropId: 'WZXX_M1_N1_C002A_V_Vdrop8',},
         ],
       },
 
