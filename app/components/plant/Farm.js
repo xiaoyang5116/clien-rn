@@ -77,7 +77,6 @@ const Farm = (props) => {
                             height: px2pd(198),
                             overflow: "hidden",
                             borderRadius: 5,
-                            backgroundColor: "red"
                         }}
                     >
                         <Animated.Image
