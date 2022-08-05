@@ -36,6 +36,7 @@ import { CarouselUtils } from "../components/carousel";
 import { playSound } from "../components/sound/utils";
 import Games from "../components/games";
 import EffectAnimations from "../components/effects";
+import ShopsUtils from '../utils/ShopsUtils';
 
 class VarUtils {
   static generateVarUniqueId(sceneId, varId) {
@@ -168,6 +169,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__dropId_{0}".format(payload.dropId), cmd: 'dropId', params: payload.dropId });
     }
 
+    // 生成商店动作
+    if (payload.toShop != undefined && typeof(payload.toShop) == 'string') {
+      allActions.push({ id: "__shop_{0}".format(payload.toShop), cmd: 'shop', params: payload.toShop });
+    }
+
     return allActions;
   }
 }
@@ -237,6 +243,7 @@ const ACTIONS_MAP = [
   { cmd: 'games',         handler: '__onGamesCommand' },
   { cmd: 'animations',    handler: '__onAnimationsCommand' },
   { cmd: 'dropId',        handler: '__onDropIdCommand' },
+  { cmd: 'shop',          handler: '__onShopCommand' },
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;
@@ -754,6 +761,10 @@ export default {
 
     *__onDropIdCommand({ payload }, { put }) {
       yield put.resolve(action('DropsModel/process')({ dropId: payload.params }));
+    },
+
+    *__onShopCommand({ payload }, { put }) {
+      ShopsUtils.show(payload.params);
     },
 
     *syncData({ }, { select, call }) {
