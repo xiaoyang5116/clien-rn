@@ -1,6 +1,6 @@
 
 import { 
-  action,
+  action, LocalCacheKeys,
 } from '../constants';
 
 import { GetShopDataApi } from '../services/GetShopDataApi';
@@ -8,6 +8,7 @@ import EventListeners from '../utils/EventListeners';
 import * as DateTime from '../utils/DateTimeUtils';
 import Toast from '../components/toast';
 import lo from 'lodash';
+import LocalStorage from '../utils/LocalStorage';
 
 export default {
   namespace: 'ShopModel',
@@ -33,6 +34,12 @@ export default {
 
       shopState.listData.length = 0;
       shopState.refreshTime = 0;
+
+      const cache = yield call(LocalStorage.get, LocalCacheKeys.SHOP_DATA);
+      if (cache != null) {
+        shopState.listData.push(...cache.listData);
+        shopState.refreshTime = cache.refreshTime;
+      }
     },
 
     *buy({ payload }, { put, select, call }) {
@@ -73,7 +80,10 @@ export default {
 
       // 发放道具
       yield put.resolve(action('PropsModel/sendProps')({ propId: propId, num: 1 }));
+
+      // 更新状态
       found.num -= 1;
+      yield call(LocalStorage.set, LocalCacheKeys.SHOP_DATA, { listData: shopState.listData, refreshTime: shopState.refreshTime });
 
       return true;
     },
@@ -86,6 +96,8 @@ export default {
       if (shopState.refreshTime <= 0 || DateTime.now() >= shopState.refreshTime || lo.isEmpty(shopState.listData)) {
         shopState.listData = yield put.resolve(action('renew')());
         shopState.refreshTime = DateTime.now() + (shopState.__data.shopConfig.cdValue * 1000);
+        //
+        yield call(LocalStorage.set, LocalCacheKeys.SHOP_DATA, { listData: shopState.listData, refreshTime: shopState.refreshTime });
       }
 
       const data = [];
