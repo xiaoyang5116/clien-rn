@@ -267,7 +267,7 @@ export default {
       }
 
       if (!batchPipeline) {
-        if (!quiet)  Toast.show('获得道具！');
+        if (!quiet)  Toast.show(`获得${config.name}*${num}`);
         yield put(action('updateState')({}));
         yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
       }

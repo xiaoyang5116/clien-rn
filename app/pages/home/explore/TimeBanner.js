@@ -13,7 +13,9 @@ import {
     View, 
     Text, 
 } from '../../../constants/native-ui';
+
 import { TIME_BANNER_CONFIG } from './config';
+import CoinAnimation from '../../../components/animation/CoinAnimation';
 
 // 事件单元
 const BannerBox = (props) => {
@@ -32,7 +34,7 @@ const BannerBox = (props) => {
 
     return (
         <View style={[styles.mxPoint, { left: props.id * TIME_BANNER_CONFIG.space, display: display }]}>
-            <Text>{props.id}</Text>
+            <CoinAnimation />
         </View>
     );
 }
@@ -113,6 +115,11 @@ export default TimeBanner;
 const styles = StyleSheet.create({
     mxPoint: {
         position: 'absolute', left: 330, top: 20,
-        width: 20, height: 20, borderColor: '#666', borderWidth: 1, justifyContent: 'center', alignItems: 'center',
+        width: 20, 
+        height: 20, 
+        // borderColor: '#666', 
+        // borderWidth: 1, 
+        justifyContent: 'center', 
+        alignItems: 'center',
     },
 });

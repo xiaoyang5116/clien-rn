@@ -37,4 +37,7 @@ export class LocalCacheKeys {
     // 阅读记录
     static ARTICLE_HISTORY = 'ARTICLE_HISTORY';
 
+    // 商店数据
+    static SHOP_DATA = 'SHOP_DATA';
+
 }
