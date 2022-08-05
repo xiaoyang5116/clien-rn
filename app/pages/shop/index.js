@@ -33,19 +33,21 @@ const ShopPage = (props) => {
     const [select, setSelect] = React.useState(0);
     const context = React.useContext(ThemeContext);
     const refreshTime = React.useRef(0);
+    const shopConfig = React.useRef(null);
 
     const refresh = () => {
-        AppDispath({ type: 'ShopModel/getList', payload: { }, cb: (data) => {
-            if (data == null)
+        AppDispath({ type: 'ShopsModel/getList', payload: { shopId: props.shopId }, cb: (result) => {
+            if (result == null)
                 return
             //
-            refreshTime.current = data.timeout;
-            setData(data.data);
+            refreshTime.current = result.timeout;
+            shopConfig.current = result.config;
+            setData(result.data);
         }});
     }
 
     const buy = (propId) => {
-        AppDispath({ type: 'ShopModel/buy', payload: { propId: propId }, cb: (v) => {
+        AppDispath({ type: 'ShopsModel/buy', payload: { shopId: props.shopId, propId: propId }, cb: (v) => {
             if (v) {
                 refresh();
             }
@@ -128,7 +130,7 @@ const ShopPage = (props) => {
                         </View>
                     </TouchableWithoutFeedback>
                     <View style={styles.headerView}>
-                        <Text style={{ fontSize: 22, color: '#000' }}>市场</Text>
+                        <Text style={{ fontSize: 22, color: '#000' }}>{(shopConfig.current != null) ? shopConfig.current.name : ''}</Text>
                     </View>
                     <View style={styles.listView}>
                         <FlatList
@@ -138,9 +140,16 @@ const ShopPage = (props) => {
                             keyExtractor={item => item.propId}
                         />
                     </View>
+                    {
+                    (shopConfig.current != null && shopConfig.current.cdValue > 0)
+                    ?
+                    (
                     <View style={styles.refreshBanner}>
                         <Text>下次刷新：{nextRefreshTimeStr}</Text>
                     </View>
+                    )
+                    : <></>
+                    }
                 </View>
             </SafeAreaView>
         </View>
