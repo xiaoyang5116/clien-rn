@@ -2,6 +2,8 @@ import React from 'react';
 
 import {
     AppDispath,
+    connect,
+    getWindowSize,
     ThemeContext,
 } from "../../constants";
 
@@ -27,6 +29,47 @@ import * as DateTime from '../../utils/DateTimeUtils';
 import RootView from '../../components/RootView';
 import PropTips from '../../components/tips/PropTips';
 
+const WIN_SIZE = getWindowSize();
+
+const EconomicAttrs = (props) => {
+
+    const [data, setData] = React.useState([]);
+
+    React.useEffect(() => {
+        if (props.consumablePropList != undefined) {
+            const propIdList = [];
+            props.consumablePropList.forEach(e => propIdList.push(e.propId));
+            if (propIdList.length > 0) {
+                AppDispath({ type: 'PropsModel/getPropsNum', payload: { propsId: propIdList }, cb: (result) => {
+                    const list = [];
+                    props.consumablePropList.forEach(e => {
+                        const found = result.find(x => x.propId == e.propId);
+                        list.push({ ...e, num: (found != null ? found.num : 0) })
+                    });
+                    setData(list);
+                }});
+            }
+        }
+    }, []);
+
+    const subViews = [];
+    if (data.length > 0) {
+        lo.forEach(data, (v, k) => {
+            subViews.push(
+                <View key={k} style={{ marginRight: 10 }}>
+                    <Text>{v.propName}: {v.num}</Text>
+                </View>
+            );
+        });
+    }
+
+    return (
+        <View style={{ width: '100%', flexDirection: 'row' }}>
+            {subViews}
+        </View>
+    );
+}
+
 const ShopPage = (props) => {
 
     const [data, setData] = React.useState([]);
@@ -34,6 +77,7 @@ const ShopPage = (props) => {
     const context = React.useContext(ThemeContext);
     const refreshTime = React.useRef(0);
     const shopConfig = React.useRef(null);
+    const forceUIRefreshKey = React.useRef(0);
 
     const refresh = () => {
         AppDispath({ type: 'ShopsModel/getList', payload: { shopId: props.shopId }, cb: (result) => {
@@ -116,6 +160,18 @@ const ShopPage = (props) => {
         nextRefreshTimeStr = DateTime.format(refreshTime.current, 'hh:mm:ss');
     }
 
+    const consumablePropList = [];
+    if (data != null) {
+        data.forEach(e => {
+            e.config.consume.forEach(e => {
+                if (consumablePropList.find(x => x.propId == e.propId) == undefined) {
+                    consumablePropList.push({ propId: e.propId, propName: e.propConfig.name });
+                }
+            });
+        });
+        forceUIRefreshKey.current += 1;
+    }
+
     return (
         <View style={styles.mainContainer}>
             <SafeAreaView style={{ flex: 1 }}>
@@ -131,6 +187,9 @@ const ShopPage = (props) => {
                     </TouchableWithoutFeedback>
                     <View style={styles.headerView}>
                         <Text style={{ fontSize: 22, color: '#000' }}>{(shopConfig.current != null) ? shopConfig.current.name : ''}</Text>
+                    </View>
+                    <View style={styles.attrsView}>
+                        <EconomicAttrs key={forceUIRefreshKey.current} user={props.user} consumablePropList={consumablePropList} />
                     </View>
                     <View style={styles.listView}>
                         <FlatList
@@ -165,10 +224,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#eee',
     },
     viewContainer: {
-        width: '100%',
+        width: WIN_SIZE.width,
         height: '100%',
-        // borderWidth: 1,
-        // borderColor: '#333',
         alignItems: 'center',
     },
     headerView: {
@@ -176,6 +233,14 @@ const styles = StyleSheet.create({
         marginTop: 5,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    attrsView: {
+        width: '94%',
+        height: 24,
+        marginTop: 10,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        // backgroundColor: '#669900',
     },
     listView: {
         width: '94%',
@@ -249,4 +314,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ShopPage;
+export default connect((state) => ({ user: { ...state.UserModel } }))(ShopPage);
