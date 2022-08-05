@@ -276,7 +276,6 @@ export default {
                             if (lingQiZhi % 1000 !== 0) {
                                 composeState.lingTianData[index].lingTian[l].grade = parseInt(lingQiZhi / 1000) + 1
                             }
-                            console.log("111111", composeState.lingTianData[index].lingTian[l]);
                         }
                     }
                 }

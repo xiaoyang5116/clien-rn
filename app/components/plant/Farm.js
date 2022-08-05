@@ -16,11 +16,13 @@ import RootView from '../RootView';
 import Toast from '../toast';
 import { now } from '../../utils/DateTimeUtils';
 import { px2pd } from '../../constants/resolution';
+import lo from 'lodash'
 
 import Formula from './Formula'
 import UndoneProgressBar from './farmComponents/UndoneProgressBar';
 import Improve from './Improve';
 import Accelerate from './Accelerate';
+import SpriteSheet from '../SpriteSheet';
 
 
 // 状态 status: 0-未开启, 1-开启但未种植, 2-种植中, 3-已成熟
@@ -67,6 +69,22 @@ const Farm = (props) => {
             const key = RootView.add(<Improve onClose={() => { RootView.remove(key); }} lingTianName={lingTianName} lingTianId={item.id} />);
         }
 
+        const sheet = React.createRef(null);
+        useEffect(() => {
+            const play = type => {
+                sheet.current.play({
+                    type,
+                    fps: Number(5),
+                    resetAfterFinish: false,
+                    loop: true,
+                    onFinish: () => {
+                    },
+                });
+            }
+
+            play('walk');
+        }, [])
+
         return (
             <View style={{ alignItems: 'center' }}>
                 <Text style={{ color: "#fff", fontSize: 12 }}>{baifenbi}%</Text>
@@ -79,10 +97,32 @@ const Farm = (props) => {
                             borderRadius: 5,
                         }}
                     >
-                        <Animated.Image
+                        {/* <Animated.Image
                             source={require('../../../assets/plant/lingqicao2.png')}
-                            style={{ width: px2pd(38), height: px2pd(198), position: "absolute", transform: [{ translateY }] }}
-                        />
+                            style={{ width: px2pd(38), height: px2pd(198), position: 'absolute', transform: [{ translateY }] }}
+                            pointerEvents="none"
+                        /> */}
+                        <Animated.View
+                            style={{
+                                flex: 1,
+                                alignItems: 'center',
+                                transform: [{ translateY }]
+                            }}
+                            pointerEvents="none"
+                        >
+                            <SpriteSheet
+                                ref={ref => (sheet.current = ref)}
+                                source={require('../../../assets/animations/lingqitiao.png')}
+                                columns={25}
+                                rows={3}
+                                frameWidth={30}
+                                frameHeight={190}
+                                imageStyle={{}}
+                                animations={{
+                                    walk: lo.range(73),
+                                }}
+                            />
+                        </Animated.View>
                     </ImageBackground>
                 </TouchableWithoutFeedback>
             </View >
@@ -236,14 +276,31 @@ const Farm = (props) => {
         )
     }
 
-    // {"grade": 1, "id": 1, "lingQiZhi": 80, "needTime": 1000, "plantRecipeId": 101, "plantTime": 1657163905426, "status": 2, "targets": {"id": 53, "num": 1, "range": [Array], "rate": 20}}
-    const renderItem = ({ item }) => {
-        if (item.status === 0) return <NotDeveloped />
+    // 底部
+    const Footer = (item) => {
         const showAccelerate = () => {
             if (item.status === 3) return Toast.show("种植物已成熟,不能加速")
             if (item.status === 1) return Toast.show("请先种植")
             const key = RootView.add(<Accelerate onClose={() => { RootView.remove(key); }} lingTianName={lingTianName} lingTianId={item.id} />);
         }
+        return (
+            <View style={{ width: "100%", marginTop: 4, flexDirection: "row", justifyContent: 'center', alignItems: 'center', }}>
+                <View style={{ position: "absolute", left: 12 }}>
+                    <Text style={{ fontSize: 12, color: "#fff" }}>灵气: {item.lingQiZhi}</Text>
+                </View>
+                <TouchableOpacity onPress={showAccelerate}>
+                    <ImageBackground source={require('../../../assets/plant/btn_bg.png')} style={{ width: px2pd(242), height: px2pd(68), justifyContent: "center", alignItems: 'center', }}>
+                        <Text>加速</Text>
+                    </ImageBackground>
+                </TouchableOpacity>
+            </View>
+
+        )
+    }
+
+    // {"grade": 1, "id": 1, "lingQiZhi": 80, "needTime": 1000, "plantRecipeId": 101, "plantTime": 1657163905426, "status": 2, "targets": {"id": 53, "num": 1, "range": [Array], "rate": 20}}
+    const renderItem = ({ item }) => {
+        if (item.status === 0) return <NotDeveloped />
 
         return (
             <View style={styles.box}>
@@ -255,12 +312,7 @@ const Farm = (props) => {
                         <Grade {...item} />
                         <Plant {...item} />
                     </View>
-                    <TouchableOpacity onPress={showAccelerate}>
-                        <ImageBackground source={require('../../../assets/plant/btn_bg.png')} style={{ width: px2pd(242), height: px2pd(68), justifyContent: "center", alignItems: 'center', marginTop: 4 }}>
-                            <Text>加速</Text>
-                        </ImageBackground>
-                    </TouchableOpacity>
-
+                    <Footer {...item} />
                     {/* <View style={{ width: 70, }}>
                             <Equipment {...item} />
                         </View> */}
