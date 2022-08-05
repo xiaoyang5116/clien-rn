@@ -57,7 +57,6 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-     #   { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
 
     ],
 
@@ -67,11 +66,8 @@ scenes: [
       { 
         id: 'C1', desc: '城门', 
         options: [ 
-         { title: '【左右张望】', nextChat: 'C2'}, 
-         { title: '【去前面看看】', nextChat: 'X1'}, 
-
-         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
-
+         { title: '【停下来左右张望】', nextChat: 'C2'}, 
+         { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'}, 
         ],
       },
       #
@@ -80,14 +76,6 @@ scenes: [
         options: [ 
          { title: '<<<没什么好看的，走吧', nextChat: 'X1' }, 
         ]
-      },
-      #
-
-      { 
-        id: 'X1', desc: '城门', 
-        options: [ 
-        { title: '【前面似乎是一条街】', toScene: 'C000A_V_MAP_-1_1'}, 
-        ],
       },
        #
     ],
@@ -126,9 +114,8 @@ scenes: [
          { title: '【民居NPC3】', toScene: 'C000A_V_MAP_1_-2'}, 
          { title: '【来福客栈】', toScene: 'C000A_V_MAP_1_-3'}, 
          { title: '【布庄】', toScene: 'C000A_V_MAP_-1_-3'}, 
-         { title: '【继续往前走】', nextChat: 'X1'}, 
-         { title: '【城门离开】', toScene: 'C000A_V_MAP_-1_1'}, 
-         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+         { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
+         { title: '【城门】', toScene: 'C000A_V_MAP_0_-4'}, 
         ],
       },
       #
@@ -139,18 +126,12 @@ scenes: [
          { title: '<<<离开', nextChat: 'C1' }, 
         ],
       },
-      { 
-        id: 'X1', desc: '玄德大街', 
-        options: [ 
-        { title: '【沿街走】', toScene: 'C000A_V_MAP_-1_1'}, 
-        ],
-      },
 # 对话框
     dialogs: [
           { id: 'Screen1',style: 6, title: '街边小孩', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎走上前和小孩打招呼','小孩们跑走了',],
-          btn: [{title: '继续往前走', toScene: 'C000A_V_MAP_-1_1'},]},
+          btn: [{title: '重新选择',tokey: "C1",},]},
     
     ],},],
     ],
@@ -183,23 +164,17 @@ scenes: [
       { 
         id: 'C1', desc: '玄德中街', 
         options: [ 
-         { title: '【东市】', nextChat: 'C2'}, 
-         { title: '【西市】', nextChat: 'X1'}, 
-         { title: '【继续往前走】', toScene: 'C000A_V_MAP_0_-2'}, 
-          { title: '【返回上一处】', nextChat: 'X1'}, 
-        ],
-      },
-     { 
-        id: 'C2', desc: '有什么事？', 
-        options: [ 
-         { title: '聊聊做工的事', nextChat: 'C3',}, 
-         { title: '<<<离开', nextChat: 'C1' }, 
+        { title: '【四处看看】', nextChat: 'X1'},
+        { title: '【东市】', toScene: 'C000A_V_MAP_1_0'},
+        { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'},
+        { title: '【官府】', toScene: 'C000A_V_MAP_0_2'}, 
+        { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'},
         ],
       },
       { 
-        id: 'X1', desc: '往前走', 
+        id: 'X1', desc: '这里只是普通的街道', 
         options: [ 
-         { title: '【官府】', toScene: 'C000A_V_MAP_0_2'}, 
+         { title: '【车马很多，有点危险，离开】', nextChat: 'C1'},
         ],
       },
     ],
@@ -233,34 +208,26 @@ scenes: [
       { 
         id: 'C1', desc: '官府', 
         options: [ 
-         { title: '【进去看看】', dialogs: ['Screen1'] },  
-         { title: '【返回上一处】', toScene: 'C000A_V_MAP_0_0'}, 
-         { title: '【继续往前走】', nextChat: 'X1'}, 
-         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+         { title: '【进去看看】', dialogs: ['Screen2'] },  
+         { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
+         { title: '【仁德街】', toScene: 'C000A_V_MAP_0_4'}, 
         ],
       },
-      { 
-        id: 'X1', desc: '选择移动位置', 
-        options: [ 
-         { title: '【仁德街】', toScene: 'C000A_V_MAP_-1_1'}, 
-        ],
-      },
-       #
      # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '进官府看看', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen2',style: 6, title: '进官府看看', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['“你有何事。”','一个衙役拦住了李森炎'],
-          btn: [{title: '我有冤',tokey: "P2",},{title: '来逛逛',tokey: "P3",},{title: '无事，转身离开',toScene: 'C000A_V_MAP_-1_1',}]},
+          btn: [{title: '我有冤',tokey: "P2",},{title: '来逛逛',tokey: "P3",},{title: '无事，转身离开',tokey: "C1",},]},
 
           { key: 'P2', content: ['“你有什么冤？”','衙役问道。',
           '“我……”李森炎磕磕巴巴说不出来。','衙役仔细盘问了一番，返现李森炎骗他','叫了一群人把李森炎丢了出去',
           ],
-          btn: [{title: '哎呦屁股疼，赶紧走吧',toScene: 'C000A_V_MAP_-1_1'},]},
+          btn: [{title: '哎呦屁股疼，赶紧走吧',tokey: "C1",},]},
 
           { key: 'P3', content: ['“我，我就是来逛逛。”','李森炎摸着后脑勺，傻乐。','“……”','衙役不太相信，把李森炎赶了出去',
           ],
-          btn: [{title: '<<<离开',toScene: 'C000A_V_MAP_-1_1' },]},
+          btn: [{title: '<<<离开',tokey: "C1",},]},
     ],},],
     ],
   },
@@ -269,13 +236,13 @@ scenes: [
 #===========事件场景==============
        {
   # NPC2
-    id: 'C000A_V_MAP_-1_1', name: '仁德街',
+    id: 'C000A_V_MAP_0_4', name: '仁德街',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [0, 2],
+    mapCenterPoint: [0, 4],
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -293,7 +260,7 @@ scenes: [
         id: 'C1', desc: '仁德街', 
         options: [ 
          { title: '【四处观察】', nextChat: 'C2'}, 
-         { title: '【返回上一处】', toScene: 'C000A_V_MAP_0_2'}, 
+         { title: '【官府】', toScene: 'C000A_V_MAP_0_2'}, 
          { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
         ],
       },
@@ -301,7 +268,7 @@ scenes: [
       { 
         id: 'C2', desc: '这儿没什么商铺', 
         options: [ 
-         { title: '<<<离开', nextChat: 'C1' }, 
+         { title: '无趣，离开', nextChat: 'C1' }, 
         ],
       },
     ],
@@ -335,8 +302,7 @@ scenes: [
         id: 'C1', desc: '选择行动', 
         options: [ 
          { title: '【四处观察】', nextChat: 'C2'}, 
-         { title: '【返回上一处】', toScene: 'C000A_V_MAP_-1_1'}, 
-         { title: '【郊区】', toScene: 'C000A_V_MAP_0_2'},  
+         { title: '【仁德街】', toScene: 'C000A_V_MAP_0_4'}, 
          { title: '【森林】', toScene: 'C000A_V_MAP_-1_5'},  
          { title: '【天水亭】', toScene: 'C000A_V_MAP_1_5'},  
          { title: '【郊外】', toScene: 'C000A_V_MAP_0_6'},  
@@ -361,7 +327,7 @@ scenes: [
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [0, 2],
+    mapCenterPoint: [-1, 5],
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -378,13 +344,14 @@ scenes: [
       { 
         id: 'C1', desc: '选择行动', 
         options: [ 
-         { title: '【到处走动】', dialogs: ['Screen1'] },   
-         { title: '【返回上一处】', toScene: 'C000A_V_MAP_0_5'}, 
+         { title: '【到处走动】', dialogs: ['Screen3'] },
+         { title: '【郊外】', toScene: 'C000A_V_MAP_0_6'}, 
+         { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
         ],
       },
        # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '在森林里到处走动', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen3',style: 6, title: '在森林里到处走动', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['森林里什么都没有','兜兜转转好无聊啊','连个兔子都抓不到',],
           btn: [{title: '离开',tokey: "C1",},]},
@@ -417,13 +384,13 @@ scenes: [
       { 
         id: 'C1', desc: '选择行动', 
         options: [ 
-         { title: '【在亭子里坐坐】', dialogs: ['Screen1'] },   
-         { title: '【返回上一处】', toScene: 'C000A_V_MAP_0_5'}, 
+         { title: '【在亭子里坐坐】', dialogs: ['Screen4'] },   
+         { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
         ],
       },
         # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '在亭子里坐坐', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen4',style: 6, title: '在亭子里坐坐', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['坐了一会儿','此处少人烟，也没看到什么人','天气炎热，李森炎起身离开',],
           btn: [{title: '离开',tokey: "C1",},]},
@@ -457,7 +424,7 @@ scenes: [
         id: 'C1', desc: '选择行动', 
         options: [ 
          { title: '【查看四周】', nextChat: 'C2'},   
-         { title: '【返回上一处】', toScene: 'C000A_V_MAP_0_5'}, 
+         { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
          { title: '【森林】', toScene: 'C000A_V_MAP_-1_5'}, 
         ],
       },
@@ -465,7 +432,7 @@ scenes: [
       { 
         id: 'C2', desc: '这边没有路了，前方看起来很危险', 
         options: [ 
-         { title: '<<<离开', nextChat: 'C1' }, 
+         { title: '赶快离开', nextChat: 'C1' }, 
         ],
       },
     ],
@@ -494,22 +461,38 @@ scenes: [
     ],
     # 对话选项
     chats: [
-     { 
+    
+      { 
         id: 'C1', desc: '选择行动', 
         options: [ 
-         { title: '【进去买衣服】', dialogs: ['Screen1'] },   
-         { title: '【返回上一处】', toScene: 'C000A_V_MAP_0_-2'}, 
+         { title: '【进去买衣服】', dialogs: ['Screen5'] },   
+         { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'}, 
+         { title: '【春花阁】', toScene: 'C000A_V_MAP_-1_-2'}, 
         ],
       },
-        # 对话框
-    dialogs: [
-          { id: 'Screen1',style: 6, title: '进去买衣服', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'P1', content: ['“公子你想买什么衣服？”','李森炎逛了一圈，价格昂贵，显然是来宰客的','算了，离开',],
-          btn: [{title: '离开',tokey: "C1",},]},
-    ],},],
+       #
     ],
+      # 对话框===========
+      dialogs:
+        [
+           #选项对话1
+          { id: 'Screen5',style: 6, title: '进去买衣服', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“公子你想买什么衣服？”','李森炎逛了一圈，价格昂贵，显然是来宰客的','算了，离开',
+          ],
+         btn: [{title: '离开',tokey: "C1",},]},
+
+
+          #{ key: 'P4', content: ['你愤怒至极，这一天五个灵石，你要一百天才能凑齐五百个','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
+          #],
+          #btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010A_[N1]"},]},
+
+
+           ], },
+
+  ],
   },
+
 #===========事件场景==============
        {
   # NPC2
@@ -532,27 +515,37 @@ scenes: [
        { type: 'enter',  nextChat: 'C1' },
     ],
     # 对话选项
-    chats: [
-       { 
+      chats: [
+    
+      { 
         id: 'C1', desc: '选择行动', 
         options: [ 
-         { title: '【进去看看】', dialogs: ['Screen1'] },
-         { title: '【西市一街】', toScene: 'C000A_V_MAP_-1_5'},  
+         { title: '【进去看看】', dialogs: ['Screen6'] },
+         { title: '【西市一街】', toScene: 'C000A_V_MAP_-1_-1'},  
          { title: '【布庄】', toScene: 'C000A_V_MAP_-1_-3'},     
-         { title: '【返回上一处】', toScene: 'C000A_V_MAP_0_-2'}, 
+         { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'}, 
         ],
       },
-        # 对话框
-    dialogs: [
-          { id: 'Screen1',style: 6, title: '进去看看', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'P1', content: ['“公子，来玩啊~”','老鸨站在楼上对着李森炎招手','身后站着一群浓妆艳抹的姑娘们',],
-          btn: [{title: '离开',tokey: "C1",},{title: '进去',tokey: "P2",}]},
-
-          { key: 'P2', content: ['李森炎搓搓手，往春花阁里走','刚进去还没见到姑娘，就被一个五大三粗的男人围住','“要想进，先交钱。”','“多少？”','“先交三千贯！”','“什么？三千贯！”','他现在连三百个铜钱都凑不出来'], 
-          btn: [{title: '算了，离开，等我有钱了……', tokey: "C1"},], },    
-    ],},],
+       #
     ],
+      # 对话框===========
+      dialogs:
+        [
+           #选项对话1
+          { id: 'Screen6',style: 6, title: '进去看看', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“公子，来玩啊~”','老鸨站在楼上对着李森炎招手','身后站着一群浓妆艳抹的姑娘们',
+          ],
+         btn: [{title: '离开',tokey: "C1",},{title: '进去',tokey: "P2",}]},
+
+
+          { key: 'P2', content: ['李森炎搓搓手，往春花阁里走','刚进去还没见到姑娘，就被一个五大三粗的男人围住','“要想进，先交钱。”','“多少？”','“先交三千贯！”','“什么？三千贯！”','他现在连三百个铜钱都凑不出来'
+          ],
+          btn: [{title: '算了，离开，等我有钱了……', tokey: "C1"},], },    
+
+           ], },
+
+  ],
   },
 
   #===========事件场景==============
@@ -564,7 +557,7 @@ scenes: [
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [-1, -2],
+    mapCenterPoint: [-1, -1],
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -583,7 +576,7 @@ scenes: [
         options: [ 
          { title: '【进去看看】', nextChat: 'C2'}, 
          { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'},     
-         { title: '【返回上一处】', toScene: 'C000A_V_MAP_-1_-2'}, 
+         { title: '【春花阁】', toScene: 'C000A_V_MAP_-1_-2'},
         ],
       },
         { 
@@ -624,7 +617,7 @@ scenes: [
          { title: '【西市一街】', toScene: 'C000A_V_MAP_-1_-1'},
          { title: '【李家】', toScene: 'C000A_V_MAP_-2_0'},  
          { title: '【西市二街】', toScene: 'C000A_V_MAP_-1_1'},    
-         { title: '【返回上一处】', toScene: 'C000A_V_MAP_0_0'}, 
+         { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
          
         ],
       },
@@ -645,7 +638,7 @@ scenes: [
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [-1, 0],
+    mapCenterPoint: [-2, 0],
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -657,28 +650,39 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C1' },
     ],
-    # 对话选项
-    chats: [
-       { 
+
+   # 对话选项
+      chats: [
+    
+      { 
         id: 'C1', desc: '选择行动', 
         options: [ 
-         { title: '【回家】', dialogs: ['Screen1'] },   
-         { title: '【米铺】', toScene: 'C000A_V_MAP_-1_-1'},
-         { title: '【西市三街】', toScene: 'C000A_V_MAP_-2_0'},      
-         { title: '【返回上一处】', toScene: 'C000A_V_MAP_-1_0'}, 
+         { title: '【回家】', dialogs: ['Screen7'] },   
+         { title: '【米铺】', toScene: 'C000A_V_MAP_-3_0'},
+         { title: '【西市三街】', toScene: 'C000A_V_MAP_-2_-1'},      
+         { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'}, 
         ],
       },
-        # 对话框
-    dialogs: [
-          { id: 'Screen1',style: 6, title: '回家', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'P1', content: ['回到家，家中除了那只薛定谔的猫，空无一人','请选择行动——',],
-          btn: [{title: '再出去逛逛',tokey: "C1",},{title: '在家休歇一夜',tokey: "P2",},]},
-
-          { key: 'P2', content: ['休息一夜过后你精神漫漫','决定出去逛逛！',],
-          btn: [{title: '出门',tokey: "C1",},]},
-    ],},],
+       #
     ],
+      # 对话框===========
+      dialogs:
+        [
+           #选项对话1
+          { id: 'Screen7',style: 6, title: '回家', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['回到家，家中除了那只薛定谔的猫，空无一人','请选择行动——',
+          ],
+         btn: [{title: '再出去逛逛',tokey: "C1",},{title: '在家休歇一夜',tokey: "P2",},]},
+
+
+          { key: 'P2', content: ['休息一夜过后你精神漫漫','决定出去逛逛！',
+          ],
+          btn: [{title: '出门',tokey: "C1",},]},    
+
+           ], },
+
+  ],
   },
  #===========事件场景==============
        {
@@ -707,7 +711,7 @@ scenes: [
         id: 'C1', desc: '选择行动', 
         options: [ 
          { title: '【四处逛逛】', nextChat: 'C2'},   
-         { title: '【返回上一处】', toScene: 'C000A_V_MAP_-1_0'}, 
+         { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'}, 
          
         ],
       },
@@ -728,7 +732,7 @@ scenes: [
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [-1, 1],
+    mapCenterPoint: [-3, 0],
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -746,24 +750,24 @@ scenes: [
         id: 'C1', desc: '选择行动', 
         options: [ 
          { title: '【回家】', toScene: 'C000A_V_MAP_-2_0'},  
-         { title: '【买米】', dialogs: ['Screen1'] }, 
+         { title: '【买米】', dialogs: ['Screen8'] }, 
          { title: '【前面有个路人，找他问问】',toScene: 'C000A_V_MAP_-3_-1'},
          
         ],
-      },
+      },],
      # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '买米', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen8',style: 6, title: '买米', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['“小伙子要买多少米啊？”','李森炎想了想，家里好像并不缺米','主要是兜里没有多少钱，也买不起','只能摆摆手出去了',],
           btn: [{title: '离开',tokey: "C1",},]},
-    ],},],
+    ],},
     ],
   },
   #===========事件场景==============
        {
   # NPC2
-    id: 'C000A_V_MAP_-3_-1', name: '路人npc5',
+    id: 'C000A_V_MAP_-3_-1', name: '小女孩npc5',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     # 当前场景地图
@@ -786,71 +790,646 @@ scenes: [
        { 
         id: 'C1', desc: '选择行动', 
         options: [ 
-        { title: '【找他聊聊天】', dialogs: ['Screen1'] }, 
+        { title: '【找小女孩聊聊天】', dialogs: ['Screen9'] }, 
         { title: '【西市三街】',toScene: 'C000A_V_MAP_-2_-1'},
         { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
-        { title: '【返回上一处】', toScene: 'C000A_V_MAP_-3_0'},  
+        { title: '【米铺】', toScene: 'C000A_V_MAP_-3_0'},  
 
          
         ],
-      },
+      },],
      # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '路人聊天', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen9',style: 6, title: '小女孩聊天', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎笑着上前，和小姑娘搭话','问了下最近有哪些大事发生,“小孩，哥哥向你打听事儿。”','小姑娘吃着糖，告诉你了许多。','比如那家办了丧，那家失了窃，那家迎了新娘子……','最重要的是，白城平川府的白家小姐————白月光，最近在择婿！','若是谁能接住那白家娘子扔下的绣球，就能一跃成了白家的金婿呢！',
+          '说完小女孩走了，下次见到她还不知道要什么时候','请选择行动……',],
+          btn: [{title: '去白府',toScene: 'C000A_V_MAP_-3_-2',},{title: '停在原地再想想',tokey: "C1",},]},
+    ],},
+    ],
+  },
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_-2_-1', name: '西市三街',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, -1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【四处逛逛】', nextChat: 'C2' },
+        { title: '【小女孩npc5】',toScene: 'C000A_V_MAP_-3_-1'},
+        { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
+        { title: '【西市一街】',toScene: 'C000A_V_MAP_-1_-1'},
+        { title: '【回家】', toScene: 'C000A_V_MAP_-2_0'},  
+        ],
+      },
+      { 
+        id: 'C2', desc: '这边很热闹', 
+        options: [ 
+         { title: '逛了一会儿，但是没钱，离开', nextChat: 'C1' }, 
+        ],
+      },
+    ],
+  },
+  #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_-3_-2', name: '白府',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, -2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【四处逛逛】', dialogs: ['Screen10'] }, 
+        { title: '【小女孩npc5】',toScene: 'C000A_V_MAP_-3_-1'},
+        { title: '【西市三街】',toScene: 'C000A_V_MAP_-2_-1'},
+        { title: '【哑巴npc1】',toScene: 'C000A_V_MAP_-2_-3'},
+        { title: '【乞丐npc2】',toScene: 'C000A_V_MAP_-3_-3'},
+        ],
+      },],
+       # 对话框
+    dialogs: [
+          { id: 'Screen10',style: 6, title: '在白府四周逛逛', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎好奇的在白府四周逛逛','这白府还真是非比寻常，很宏伟繁华','走着走着……','“喂！你是何人，有何事啊？”',],
+          btn: [{title: '我就是来闲逛的',tokey: "P2",},{title: '呸……我是你爸爸',tokey: "P3",},{title: '贫僧从东土大唐而来……',tokey: "P4",},]},
+
+          { key: 'P2', content: ['“此处不让闲逛，快走！”','白府家丁把李森炎赶了出去','……离开此处吧',],
+          btn: [{title: '离开',tokey: "C1",},]},
+
+          { key: 'P3', content: ['家丁大怒，叫来一群手下把李森炎团团围住','一通拳打脚踢之后……','李森炎鼻青脸肿的被丢了出去','李森炎拖着疲惫的身体，回了家',],
+          btn: [{title: '回家休息一下',toScene: 'C000A_V_MAP_-2_0'},]},
+
+          { key: 'P4', content: ['“贫僧……”','还没说出两句话，就被家丁推搡出去了。','“那来的疯子，快走快走。”身后白府家丁骂骂咧咧','你李森炎迫离开',],
+          btn: [{title: '走吧',tokey: "C1",},]},
+
+    ],},
+    ],
+  },
+    #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_-2_-3', name: '哑巴npc1',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, -3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【和他搭话】', dialogs: ['Screen11'] }, 
+        { title: '【布庄】',toScene: 'C000A_V_MAP_-1_-3'},
+        { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
+        { title: '【乞丐npc2】',toScene: 'C000A_V_MAP_-3_-3'},
+        ],
+      },],
+       # 对话框
+    dialogs: [
+          { id: 'Screen11',style: 6, title: '和他搭话', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎走近，准备和他打招呼','才发现原来这人是个哑巴','那哑巴在你身上看来看去','然后咿咿呀呀的走了',],
+          btn: [{title: '离开',tokey: "C1",},]},
+
+    ],},
+    ],
+  },
+  #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_-3_-3', name: '乞丐npc2',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, -3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【和他搭话】', dialogs: ['Screen12'] }, 
+        { title: '【哑巴npc1】',toScene: 'C000A_V_MAP_-2_-3'},
+        { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
+        ],
+      },],
+       # 对话框
+    dialogs: [
+          { id: 'Screen12',style: 6, title: '和他搭话', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎走近那乞丐走近，就听见他口里吟着什么————',
+          '“蓬头垢面万家客，衣衫褴褛千城游。身无分文浑不怕，腰有万贯不自由。”','李森炎上前，拍了拍那乞丐的肩”','“小兄弟，何事？”'],
+          btn: [{title: '打听事情',tokey: "P2",},{title: '没事，聊聊天',tokey: "P3",},]},
+
+          { key: 'P2', content: ['“打听事情五两银子一次。十辆银子三次，小兄弟要打听什么？”乞丐抬起那市侩的脸，笑吟吟的开口',
+          '“我去，你抢钱啊！”李森炎深感晦气，后退了一步。',
+          乞丐脸一下就垮了下来：“没钱你瞎打听什么，情报不用钱吗？”','上下打量一身风尘尤为狼狈的李森炎，乞丐露出一副人上人的嘴脸“看你这倒霉的样子，我给你指条明路吧，跟我一起干，只需要三天，你就能赚到买情报的钱。”',
+          ],
+          btn: [{title: '不了，快溜',tokey: "C1",},]},
+
+          { key: 'P3', content: ['“五两银子一时辰，十两银子三个时辰，小兄弟想聊个多少钱的天？”乞丐抬起那市侩的脸，笑吟吟的开口',
+          '“……”','李森炎汗颜，聊不起了先溜了',],
+          btn: [{title: '还是走吧',tokey: "C1",},]},
+
+    ],},
+    ],
+  },
+
+    #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_1_-3', name: '来福客栈',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, -3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【进客栈看看】', dialogs: ['Screen13'] }, 
+        { title: '【奇怪的老头npc3】',toScene: 'C000A_V_MAP_1_-2'},
+        { title: '【城门】',toScene: 'C000A_V_MAP_0_-4'},
+        { title: '【玄德大街】',toScene: 'C000A_V_MAP_0_-2'},
+        ],
+      },],
+       # 对话框
+    dialogs: [
+          { id: 'Screen13',style: 6, title: '进客栈看看', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“兄弟，是打尖还是住店啊？”小二凑上来','“本店各种客房都有，一百文，两百文，三百文的各种厢房都有。”'],
+          btn: [{title: '我就讨口水喝',tokey: "P2",},{title: '住店',tokey: "P3",},{title: '打尖',tokey: "P5",}]},
+
+          { key: 'P2', content: ['“我就来讨口水喝，嘿嘿”',
+          '“快点快点，喝完就出去，别耽误我做生意”小二倒了一杯水。',
+          ],
+          btn: [{title: '走吧',tokey: "C1",},]},
+
+          { key: 'P3', content: ['“我要住店。”李森炎道。','“好嘞，公子要住多少钱一晚的？”',
+          '“……”','“就住个一百文的吧……”',],
+          btn: [{title: '住店（-100文）',tokey: "P4",},]},
+
+          { key: 'P4', content: ['这一百文的厢房，还没有家里住的舒服。','下次可再也不来了',
+          '痛失一百文，离开',],
+          btn: [{title: '离开',tokey: "C1",},]},
+
+          { key: 'P5', content: ['“打尖”','小二兴高采烈将菜名报了一遍','李森炎一听价格……',
+          '吃不起吃不起，在小二鄙夷的目光下离开',],
+          btn: [{title: '离开',tokey: "C1",},]},
+
+    ],},
+    ],
+  },
+
+      #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_1_-2', name: '奇怪的老头npc3',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, -2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【和他聊聊天】', dialogs: ['Screen14'] }, 
+        { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
+        { title: '【来福客栈】',toScene: 'C000A_V_MAP_1_-3'},
+        { title: '【玄德大街】',toScene: 'C000A_V_MAP_0_-2'},
+        ],
+      },],
+       # 对话框
+    dialogs: [
+          { id: 'Screen14',style: 6, title: '和他聊聊天', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“菩提本无树 ，明镜亦非台，本来无一物，何处惹尘埃”那人嘴里奇奇怪怪的说着什么','李森炎走过去看了他一眼','觉得他神经兮兮的，还是赶快走吧，别靠近'],
+          btn: [{title: '离开',tokey: "C1",},]},
+
+    ],},
+    ],
+  },
+
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_1_-1', name: '花满楼',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, -1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【进去看看】', dialogs: ['Screen15'] }, 
+        { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'},
+        { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
+        { title: '【奇怪的老头npc3】',toScene: 'C000A_V_MAP_1_-2'},
+        ],
+      },],
+       # 对话框
+    dialogs: [
+          { id: 'Screen15',style: 6, title: '进去看看', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['原来这个花满楼就是茶楼啊','里面许多文人雅士在喝茶吟赋','这时和李森炎格格不入','其实主要还是没钱……',],
+          btn: [{title: '离开',tokey: "C1",},]},
+
+    ],},
+    ],
+  },
+
+  #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_1_0', name: '东市',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, 0],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【逛逛】', nextChat: 'C2'},   
+        { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'},
+        { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
+        { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
+        { title: '【玄德中街】',toScene: 'C000A_V_MAP_0_0'},
+
+        ],
+      }, 
+      { 
+        id: 'C2', desc: '东市没什么人', 
+        options: [ 
+         { title: '这条街并不繁华，离开', nextChat: 'C1' }, 
+        ],
+      },
+    ],
+  },
+ #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_2_-1', name: '东市一街',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, -1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【逛一会儿】', nextChat: 'C2'},   
+        { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
+        { title: '【商铺】',toScene: 'C000A_V_MAP_3_-1'},
+        { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
+
+        ],
+      }, 
+      { 
+        id: 'C2', desc: '前面有人打架', 
+        options: [ 
+         { title: '凑了一会儿热闹，然后离开', nextChat: 'C1' }, 
+        ],
+      },
+    ],
+  },
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_2_1', name: '东市二街',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, 1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【逛一会儿】', nextChat: 'C2'},   
+        { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
+        { title: '【鉴宝阁】',toScene: 'C000A_V_MAP_3_1'},
+        { title: '【路人npc4】',toScene: 'C000A_V_MAP_2_2'},
+
+        ],
+      }, 
+      { 
+        id: 'C2', desc: '这条街似乎很乱', 
+        options: [ 
+         { title: '忽然挨了醉汉一拳，晦气，离开', nextChat: 'C1' }, 
+        ],
+      },
+    ],
+  },
+
+  #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_2_2', name: '路人npc4',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, 2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【和他聊天】', dialogs: ['Screen15'] }, 
+        { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
+        ],
+      },],
+       # 对话框
+    dialogs: [
+          { id: 'Screen15',style: 6, title: '路人聊天', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['“大哥。”','李森炎拍了拍路人的肩膀','路人颇有礼貌，朝他点头','“不知这位兄台，有何事？”',],
-          btn: [{title: '没事，我就叫叫你',tokey: "P2",},{title: '你知道哪里有集市吗？',tokey: "P3",},{title: '前面是什么地方？',tokey: "P4",},]},
+          btn: [{title: '没事，我就叫叫你',tokey: "P2",},{title: '你知道哪里有集市吗？',tokey: "P3",},{title: '大哥，你知道白家吗',tokey: "P4",},]},
 
           { key: 'P2', content: ['“没事我就叫叫你。”','路人脸黑：“……”','转身走了','……离开此处吧',],
           btn: [{title: '没事，我就叫叫你',tokey: "C1",},]},
 
           { key: 'P3', content: ['“大哥，你知道哪里有买东西的集市吗？”','路人指了指右边的小径','“往这边走，那边是西市三街，你可以去哪里看看。”','“好的，谢谢大哥！”李森炎抱拳','两人道别之后离开',],
-          btn: [{title: '去西市三街',toScene: 'C000A_V_MAP_-2_-1',},]},
+          btn: [{title: '去东市二街',toScene: 'C000A_V_MAP_2_1',},]},
 
-          { key: 'P4', content: ['“大哥前面是什么地方”','李森炎拍了拍路人的肩膀','路人颇有礼貌，转过来对他点点头','“不知这位兄台，有何事？”',],
-          btn: [{title: '没事，我就叫叫你',tokey: "P2",},{title: '你知道哪里有买东西的吗',tokey: "P3",},{title: '前面是什么地方',tokey: "P4",},]},
-
-    ],},],
+          { key: 'P4', content: ['“当然知道！”','“白府是白城最大商贾的府邸，尊贵无比。”','“不过小兄弟你可千万别随便去那边，白家守卫森严，不能随便走动。”','大哥说完就走了……','请选择行动——',],
+          btn: [{title: '去白府',toScene: 'C000A_V_MAP_-3_-2',},{title: '停在原地再想想',tokey: "C1",},]},
+    ],},
     ],
   },
 
+ #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_3_1', name: '鉴宝阁',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [3, 1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【逛一会儿】', nextChat: 'C2'},   
+        { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
 
 
-    #=================================场景地图的设置==================================
+        ],
+      }, 
+      { 
+        id: 'C2', desc: '这是有钱人才来的地方', 
+        options: [ 
+         { title: '连门都进不去，算了离开', nextChat: 'C1' }, 
+        ],
+      },
+    ],
+  },
+
+   #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000A_V_MAP_3_-1', name: '商铺',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000A_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [3, -1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '选择行动', 
+        options: [ 
+        { title: '【逛一会儿】', nextChat: 'C2'},   
+        { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'},
+        ],
+      }, 
+      { 
+        id: 'C2', desc: '都是些普通商店', 
+        options: [ 
+         { title: '没有东西需要购买，离开', nextChat: 'C1' }, 
+        ],
+      },
+    ],
+  },
+#=================================场景地图的设置==================================
     maps: [
       {
         id: 'C000A_V_MAP_0_0',
         data: [
           { point: [0, -4], title: '城门', toScene: 'C000A_V_MAP_0_-4', links: [[0, -2]], path: [[0, -3], ] },
           { point: [0, -2], title: '玄德大街', toScene: 'C000A_V_MAP_0_-2', links: [[0, 0],[1, -3],[1, -2],[-1, -3],[0, -4], ] , path: [[0, -3],[0, 0], ]},
-          { point: [0, 0], title: '玄德中街', toScene: 'C000A_V_MAP_0_0', links: [[-1, 0],[1, 0],[0, 2],[0, 1],[0, -2],  ] },
-          { point: [0, 2], title: '官府', toScene: 'C000A_V_MAP_0_2', links: [[0, 3],[0, 4],[-1, 1], ] },
-          { point: [-1, 1], title: '仁德街', toScene: 'C000A_V_MAP_-1_1', links: [[0, 5]] },
-          { point: [0, 5], title: '郊区', toScene: 'C000A_V_MAP_0_5', links: [[0, 6],[-1, 5],[1, 5],], },
+          { point: [0, 0], title: '玄德中街', toScene: 'C000A_V_MAP_0_0', links: [[-1, 0],[1, 0],[0, 2],[0, 1],[0, -2],  ] ,},
+          { point: [0, 2], title: '官府', toScene: 'C000A_V_MAP_0_2', links: [[0, 3],[0, 4],[-1, 1], [0, 0], ], path: [[0, 3], ]},
+          { point: [0, 4], title: '仁德街', toScene: 'C000A_V_MAP_0_4', links: [[0, 5],[0, 2]], },
+          { point: [0, 5], title: '郊区', toScene: 'C000A_V_MAP_0_5', links: [[0, 6],[-1, 5],[1, 5],[0, 2],], },
           { point: [-1, 5], title: '森林', toScene: 'C000A_V_MAP_-1_5', links: [] },
           { point: [1, 5], title: '天水亭', toScene: 'C000A_V_MAP_1_5', links: [] },
           { point: [0, 6], title: '郊外', toScene: 'C000A_V_MAP_0_6', links: [[-1, 5]] },
-          { point: [-1, 0], title: '西市', toScene: 'C000A_V_MAP_-1_0', links: [[-1, 1],[-2, 0]] },
+          { point: [-1, 0], title: '西市', toScene: 'C000A_V_MAP_-1_0', links: [[-1, 1],[-2, 0],[-1, -1],] },
           { point: [-2, 0], title: '李家', toScene: 'C000A_V_MAP_-2_0', links: [[-3, 0],[-2, -1]] },
           { point: [-3, 0], title: '米铺', toScene: 'C000A_V_MAP_-3_0', links: [[-3, -1],[-2, 0]] },
-          { point: [-3, -1], title: '路人npc5', toScene: 'C000A_V_MAP_-3_-1', links: [[-3, -2],[-2, -1]] },
-          { point: [-1, 1], title: '西市二街', toScene: 'C000A_V_MAP_-1_1', links: [[0, 2]] },
+          { point: [-3, -1], title: '小女孩npc5', toScene: 'C000A_V_MAP_-3_-1', links: [[-3, -2],[-2, -1]] },
+          { point: [-1, 1], title: '西市二街', toScene: 'C000A_V_MAP_-1_1', links: [] },
           { point: [-1, -1], title: '西市一街', toScene: 'C000A_V_MAP_-1_-1', links: [[-2, -1]] },
-          { point: [-2, -1], title: '西市三街', toScene: 'C000A_V_MAP_-2_-1', links: [[-3, -1],[-3, -2],[-2, 0],] },
+          { point: [-2, -1], title: '西市三街', toScene: 'C000A_V_MAP_-2_-1', links: [[-3, -1],[-2, 0],] },
           { point: [-1, -2], title: '春花阁', toScene: 'C000A_V_MAP_-1_-2', links: [[-1, -1],[-1, -3],] },
           { point: [-1, -3], title: '布庄', toScene: 'C000A_V_MAP_-1_-3', links: [[-2, -3],] },
           { point: [-3, -2], title: '白府', toScene: 'C000A_V_MAP_-3_-2', links: [[-3, -3],[-2, -3],[-3, -1],[-2, -1],] },
-          { point: [-2, -3], title: 'npc1', toScene: 'C000A_V_MAP_-2_-3', links: [[-3, -2]] },
-          { point: [-3, -3], title: 'npc2', toScene: 'C000A_V_MAP_-3_-3', links: [[-3, -2]] },
+          { point: [-2, -3], title: '哑巴npc1', toScene: 'C000A_V_MAP_-2_-3', links: [] },
+          { point: [-3, -3], title: '乞丐npc2', toScene: 'C000A_V_MAP_-3_-3', links: [[-3, -2]] }, 
           { point: [1, -3], title: '来福客栈', toScene: 'C000A_V_MAP_1_-3', links: [[1, -2],[0, -4],] },
-          { point: [1, -2], title: '民居NPC3', toScene: 'C000A_V_MAP_1_-2', links: [[1, -3],[1, -1],[0, -2],] },
+          { point: [1, -2], title: '奇怪的老头npc3', toScene: 'C000A_V_MAP_1_-2', links: [[1, -3],[1, -1],[0, -2],] },
           { point: [1, -1], title: '花满楼', toScene: 'C000A_V_MAP_1_-1', links: [[2, -1],[1, 0],] },
           { point: [1, 0], title: '东市', toScene: 'C000A_V_MAP_1_0', links: [[2, 1],[2, -1],] },
           { point: [2, -1], title: '东市一街', toScene: 'C000A_V_MAP_2_-1', links: [[3, -1],] },
           { point: [3, -1], title: '商铺', toScene: 'C000A_V_MAP_3_-1', links: [] },
           { point: [2, 1], title: '东市二街', toScene: 'C000A_V_MAP_2_1', links: [[2, 2],[3, 1],] },
           { point: [3, 1], title: '鉴宝阁', toScene: 'C000A_V_MAP_3_1', links: [] },
-          { point: [2, 2], title: 'NPC4', toScene: 'C000A_V_MAP_2_2',  links: [] },
+          { point: [2, 2], title: '路人npc4', toScene: 'C000A_V_MAP_2_2',  links: [] },
           
         ]
       },
