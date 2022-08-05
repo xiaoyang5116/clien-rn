@@ -42,24 +42,37 @@ const MAP_SMALL_SIZE = { width: px2pd(1064), height: px2pd(464) };
 // 大地图尺寸
 const MAP_BIG_SIZE = { width: px2pd(1064), height: px2pd(1664) };
 // 地图线条尺寸
-const MAP_LINE_SIZE = { width: px2pd(142), height: px2pd(142) }
+const MAP_LINE_SIZE = { width: px2pd(142), height: px2pd(142) };
+// 地图水平线条尺寸
+const MAP_XLINE_SIZE = { width: px2pd(345), height: px2pd(142) };
+// 地图竖线条尺寸
+const MAP_YLINE_SIZE = { width: px2pd(142), height: px2pd(140) };
+// 地图转角尺寸
+const MAP_CORNER_SIZE = { width: px2pd(142), height: px2pd(142) };
 
 const LINES = [
-  { direction: 1, style: MAP_LINE_SIZE, img: require('../../../assets/bg/map_line1.png') },
-  { direction: 2, style: MAP_LINE_SIZE, img: require('../../../assets/bg/map_line2.png') },
+  { direction: 1, style: MAP_YLINE_SIZE, img: require('../../../assets/bg/map_line1.png') },
+  { direction: 2, style: MAP_XLINE_SIZE, img: require('../../../assets/bg/map_line2B.png') },
   { direction: 3, style: MAP_LINE_SIZE, img: require('../../../assets/bg/map_line3.png') },
   { direction: 4, style: MAP_LINE_SIZE, img: require('../../../assets/bg/map_line4.png') },
 ]
 
+const CORNERS = [
+  { angle: 1, style: MAP_CORNER_SIZE, img: require('../../../assets/bg/map_corner1.png') },
+  { angle: 2, style: MAP_CORNER_SIZE, img: require('../../../assets/bg/map_corner2.png') },
+  { angle: 3, style: MAP_CORNER_SIZE, img: require('../../../assets/bg/map_corner3.png') },
+  { angle: 4, style: MAP_CORNER_SIZE, img: require('../../../assets/bg/map_corner4.png') },
+]
+
 const getLineConfig = (p1, p2) => {
   if (p1[0] == p2[0] && p1[1] != p2[1])
-    return { direction: 1, style: (p1[1] < p2[1]) ? { bottom: 0 } : { top: 0 } };
+    return { direction: 1, style: (p1[1] < p2[1]) ? { bottom: GRID_PX_HEIGHT / 2 } : { top: GRID_PX_HEIGHT / 2 } };
   else if (p1[0] != p2[0] && p1[1] == p2[1])
-    return { direction: 2, style: (p1[0] < p2[0]) ? { right: (0 - GRID_SPACE) } : { left: (0 - GRID_SPACE) } };
+    return { direction: 2, style: (p1[0] < p2[0]) ? { right: (0 - GRID_SPACE - GRID_PX_WIDTH / 2) } : { left: (0 - GRID_SPACE - GRID_PX_WIDTH / 2) } };
   else if ((p1[0] < p2[0] && p1[1] < p2[1]) || (p1[0] > p2[0] && p1[1] > p2[1]))
-    return { direction: 3, style: (p1[1] < p2[1]) ? { right: (0 - GRID_SPACE - GRID_SLASH_FIXED), bottom: GRID_SLASH_FIXED } : { left: 0 - (GRID_SPACE + GRID_SLASH_FIXED), top: GRID_SLASH_FIXED } };
+    return { direction: 3, style: (p1[1] < p2[1]) ? { right: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), bottom: GRID_SLASH_FIXED } : { left: 0 - (GRID_SPACE + GRID_SLASH_FIXED + 8), top: GRID_SLASH_FIXED } };
   else if ((p1[0] < p2[0] && p1[1] > p2[1]) || (p1[0] > p2[0] && p1[1] < p2[1]))
-    return { direction: 4, style: (p1[1] < p2[1]) ? { left: (0 - GRID_SPACE - GRID_SLASH_FIXED), bottom: GRID_SLASH_FIXED } : { right: (0 - GRID_SPACE - GRID_SLASH_FIXED), top: GRID_SLASH_FIXED } };
+    return { direction: 4, style: (p1[1] < p2[1]) ? { left: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), bottom: GRID_SLASH_FIXED } : { right: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), top: GRID_SLASH_FIXED } };
   else
     return null;
 }
@@ -238,6 +251,57 @@ const SceneMap = (props) => {
           </View>
         ));
       });
+    }
+    if (lo.isArray(e.path)) {
+      const path = [e.point, ...e.path];
+      for (let i = 0; i < path.length; i++) {
+        const prev = path[i - 1];
+        const current = path[i];
+        const next = path[i + 1];
+
+        if (current != undefined && next != undefined) {
+          const lineConfig = getLineConfig(current, next);
+          if (lineConfig != null) {
+            const lineLeft = current[0] * (GRID_PX_WIDTH + GRID_SPACE);
+            const lineTop = (-current[1]) * (GRID_PX_HEIGHT + GRID_SPACE);
+            const line = LINES.find(e => e.direction == lineConfig.direction);
+            lines.push((
+              <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left: lineLeft, top: lineTop }]}>
+                <FastImage key={idx++} style={[{ position: 'absolute', zIndex: -1 }, { ...lineConfig.style }, { ...line.style }]} source={line.img} />
+              </View>
+            ));
+          }
+        }
+
+        if (prev != null && current != undefined && next != undefined) {
+          let angle = 0;
+          if ((prev[0] == current[0] && prev[1] < current[1] && next[0] > current[0] && current[1] == next[1])
+              || (prev[0] > current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] > next[1])) {
+            angle = 1;
+          } else if ((prev[0] < current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] > next[1])
+                      || (prev[0] == current[0] && prev[1] < current[1] && next[0] < current[0] && current[1] == next[1])) {
+            angle = 2;
+          } else if ((prev[0] == current[0] && prev[1] > current[1] && next[0] < current[0] && current[1] == next[1])
+                      || (prev[0] < current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] < next[1])) {
+            angle = 3;
+          } else if ((prev[0] > current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] < next[1])
+                      || (prev[0] == current[0] && prev[1] > current[1] && next[0] > current[0] && current[1] == next[1])) {
+            angle = 4;
+          }
+
+          if (angle > 0) {
+            const cornerLeft = current[0] * (GRID_PX_WIDTH + GRID_SPACE);
+            const cornerTop = (-current[1]) * (GRID_PX_HEIGHT + GRID_SPACE);
+            const corner = CORNERS.find(e => e.angle == angle);
+  
+            lines.push((
+              <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left: cornerLeft, top: cornerTop }]}>
+                <FastImage key={idx++} style={[{ position: 'absolute', zIndex: -1 }, { ...corner.style }]} source={corner.img} />
+              </View>
+            ));
+          }
+        }
+      }
     }
 
     const gridImg = isCenterPoint 

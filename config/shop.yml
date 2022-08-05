@@ -3,7 +3,7 @@
 # ===========================================
 shop: {
    # CD刷新周期，单位秒
-   cdValue: 60,
+   cdValue: 300,
 
    # 商城道具列表
    list: [
@@ -18,7 +18,7 @@ shop: {
          },
          # 消耗设定
          consume: [
-            { propId: 104, num: 1 },
+            { propId: 200, num: 1 },
          ]
       },
 
@@ -33,7 +33,7 @@ shop: {
          },
          # 消耗设定
          consume: [
-            { propId: 104, num: 2 },
+            { propId: 200, num: 2 },
          ]
       },
    ]
