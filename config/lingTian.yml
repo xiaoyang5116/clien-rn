@@ -6,7 +6,7 @@
 data:
   [
     {
-      name: '春',
+      name: '顾春园',
       isOpen: true,
       lingTian:
         [
@@ -16,17 +16,17 @@ data:
         ],
     },
     {
-      name: '夏',
+      name: '盛夏园',
       isOpen: false,
       lingTian: [{id: 1, grade: 1, status: 0, lingQiZhi: 100}],
     },
     {
-      name: '秋',
+      name: '秋雨园',
       isOpen: false,
       lingTian: [{id: 1, grade: 1, status: 0, lingQiZhi: 100}],
     },
     {
-      name: '冬',
+      name: '寒冬园',
       isOpen: false,
       lingTian: [{id: 1, grade: 1, status: 0, lingQiZhi: 100}],
     },

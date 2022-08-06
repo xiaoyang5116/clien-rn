@@ -112,7 +112,7 @@ const Farm = (props) => {
                         >
                             <SpriteSheet
                                 ref={ref => (sheet.current = ref)}
-                                source={require('../../../assets/animations/lingqitiao.png')}
+                                source={require('../../../assets/animations/lingqitiao2.png')}
                                 columns={25}
                                 rows={3}
                                 frameWidth={30}
@@ -190,16 +190,15 @@ const Farm = (props) => {
             }
 
             return (
-                <View style={styles.statusContainer} pointerEvents="none">
-                    <Image source={require('../../../assets/plant/status_bg.png')} style={styles.status_bg} />
-                    <Text style={{ fontSize: 16, color: "#000", textAlign: "center" }}>{content}</Text>
-                </View>
+                <ImageBackground source={require('../../../assets/plant/status_bg.png')} style={[styles.statusContainer, { height: px2pd(52), width: px2pd(660), }]} pointerEvents="none">
+                    <Text style={{ fontSize: 15, color: "#000", textAlign: "center" }}>{content}</Text>
+                </ImageBackground>
             )
         }
 
         return (
             <TouchableWithoutFeedback onPress={onPress}>
-                <ImageBackground source={bgImg(item.status)} style={{ width: px2pd(904), height: px2pd(242), justifyContent: "center" }}>
+                <ImageBackground source={bgImg(item.status)} style={{ width: px2pd(904), height: px2pd(242), justifyContent: "center", alignItems: "center" }}>
                     <Title />
                     <ProgressBar />
                 </ImageBackground>
@@ -290,7 +289,7 @@ const Farm = (props) => {
                 </View>
                 <TouchableOpacity onPress={showAccelerate}>
                     <ImageBackground source={require('../../../assets/plant/btn_bg.png')} style={{ width: px2pd(242), height: px2pd(68), justifyContent: "center", alignItems: 'center', }}>
-                        <Text>加速</Text>
+                        <Text style={{ fontSize: 14, color: "#000" }}>加速</Text>
                     </ImageBackground>
                 </TouchableOpacity>
             </View>
