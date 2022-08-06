@@ -110,7 +110,7 @@ props: [
    { id:  347, name: '定身符', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
    { id:  348, name: '结界符', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
    { id:  349, name: '玄铁重剑', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  350, name: '簪子', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
+   { id:  350, name: '簪子', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
 
 
 

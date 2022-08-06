@@ -314,7 +314,7 @@ scenes: [
     chats: [
       #
       { 
-        id: 'C1', desc: '猎人小道', 
+        id: 'C1', desc: '这里似乎危机重重，小心为好', 
         options: [ 
          { title: '【继续跟踪杀手】',dialogs: ['lierenxiaodao'] }, 
         ],
@@ -404,7 +404,7 @@ scenes: [
     chats: [
       #
       { 
-        id: 'C1', desc: '林荫休息处', 
+        id: 'C1', desc: '在这儿小歇一会儿，应该会很舒服吧', 
         options: [ 
          { title: '【继续跟踪杀手】',dialogs: ['linyinxiuxichu'] }, 
         ],
@@ -493,7 +493,7 @@ scenes: [
     chats: [
       #
       { 
-        id: 'C1', desc: '进城大道', 
+        id: 'C1', desc: '道路越来越宽了，看来是要进城了', 
         options: [ 
          { title: '【继续跟踪杀手】',dialogs: ['jinchengdadao'] }, 
         ],
@@ -559,7 +559,7 @@ scenes: [
     chats: [
       #
       { 
-        id: 'C1', desc: '白城', 
+        id: 'C1', desc: '城门口，来往的人越来越多不太好跟踪了', 
         options: [ 
          { title: '【直接进城】',toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
 
