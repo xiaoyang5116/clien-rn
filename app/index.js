@@ -74,7 +74,7 @@ const models = [
   require('./models/PlantModel').default,
   require('./models/TreasureChestModel').default,
   require('./models/DropsModel').default,
-  require('./models/ShopModel').default,
+  require('./models/ShopsModel').default,
 ];
 
 const defaultDataContext = {

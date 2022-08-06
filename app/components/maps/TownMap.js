@@ -19,7 +19,7 @@ import { confirm } from '../dialog/ConfirmDialog';
 import Flower from '../animation/Flower';
 import { PlantPage } from '../plant';
 import { ComposeUtils } from '../../pages/home/ComposePage';
-import { ShopUtils } from '../../pages/shop/ShopUtils';
+import ShopsUtils from '../../utils/ShopsUtils';
 
 const MAP_DATA = [
     {
@@ -100,7 +100,7 @@ const EntryButton = (props) => {
                             ComposeUtils.show();
                             break;
                         case 'ShiChang':
-                            ShopUtils.show();
+                            ShopsUtils.show();
                             break;
                     }
                     DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
