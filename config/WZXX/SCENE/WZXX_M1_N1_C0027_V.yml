@@ -5,7 +5,12 @@ scenes: [
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 }],
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      ],
 
       # 动作定义
       actions: [],
@@ -22,20 +27,20 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0027_V1', desc: '石壁', 
         options: [ 
-          { title: "【别吵了，过来看看】",dialogs: ['C0027A_shibiA']},
+          { title: "【别吵了，过来看看】",dialogs: ['C0027A_shibiA'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C0027_V2', desc: '背叛', 
         options: [ 
-          { title: "【你……】",dialogs: ['C0027A_beipanA']},
+          { title: "【你……】",dialogs: ['C0027A_beipanA'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
         ],
       },
        { 
         id: 'WZXX_M1_N1_C0027_V3', desc: '背叛!', 
         options: [ 
-          { title: "【你……】",dialogs: ['C0027A_beipanB']},
+          { title: "【你……】",dialogs: ['C0027A_beipanB'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
         ],
       },
 

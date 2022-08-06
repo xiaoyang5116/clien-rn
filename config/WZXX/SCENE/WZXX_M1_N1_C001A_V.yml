@@ -23,6 +23,8 @@ scenes: [
       { id: "biaoqianv12", min: 0, max: 1 } ,
       { id: "biaoqianv13", min: 0, max: 1 } ,
       { id: "biaoqianv14", min: 0, max: 1 } ,
+      { id: "biaoqianv15", min: 0, max: 1 } ,
+
       ],
 
       # 动作定义
@@ -38,7 +40,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001A_V', desc: '选项', 
         options: [ 
-          { title: "【秘籍的解释】", dialogs: ['Screen1']},
+          { title: "【秘籍的解释】", dialogs: ['Screen1'], icon: { id: 1, bindVar: 'biaoqianv15' }, varsOn: ['biaoqianv15']}
         ],
       },
       #
@@ -102,7 +104,7 @@ scenes: [
            btn: [{title: '…………',dialogs: ['gameover00'] , varsOn: ['biaoqianv6','biaoqianv3',]}]},     
 
           { key: 'p1D4', content: ['什么都不说','说多错多','干脆让对方脑补','……','杀手：这小子看起来这么自信，难道真有料不成？',['盖章过关'],'……'],
-          btn: [{title: '有戏',toChapter: "WZXX_M1_N1_C001B", dropId: 'WZXX_M1_N1_C001A_V_Vdrop1',  varsOn: ['biaoqianv7','biaoqianv3',]}]},    
+          btn: [{title: '有戏',toChapter: "WZXX_M1_N1_C001B",  dropIds: ['WZXX_M1_N1_C001A_V_Vdrop1',],  varsOn: ['biaoqianv7','biaoqianv3',]}]},    
 
 
 

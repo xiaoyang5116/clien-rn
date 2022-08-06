@@ -5,7 +5,11 @@ scenes: [
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 }],
+      vars: [{ id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      
+      ],
 
       # 动作定义
       actions: [],
@@ -22,14 +26,14 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0022_V1', desc: '尖叫的女人', 
         options: [ 
-          { title: "【前面发生什么事了？！】",dialogs: ['C0022A_jianjiaoA']},
+          { title: "【前面发生什么事了？！】",dialogs: ['C0022A_jianjiaoA'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
         ],
       },
       
       { 
         id: 'WZXX_M1_N1_C0022_V2', desc: '耍帅', 
         options: [ 
-          { title: "【结束战斗】",dialogs: ['C0022A_zhandouA']},
+          { title: "【结束战斗】",dialogs: ['C0022A_zhandouA'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
         ],
       },
 

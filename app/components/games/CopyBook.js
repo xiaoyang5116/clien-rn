@@ -5,7 +5,8 @@ import {
     Text,
     Dimensions,
     PanResponder,
-    Image
+    Image,
+    Animated
 } from 'react-native';
 
 import Svg, { Path, } from 'react-native-svg'
@@ -15,6 +16,7 @@ import { statusBarHeight } from '../../constants'
 import { TextButton } from '../../constants/custom-ui';
 import Toast from '../toast'
 import FastImage from 'react-native-fast-image';
+import HuoYanAnimation from '../animation/HuoYan';
 
 
 
@@ -117,9 +119,65 @@ const scopeTop = ((height - box_width) / 2) + statusBarHeight
 const scopeBottom = scopeTop + box_width
 
 
+const HuoYna = (props) => {
+    const { nextZiTie } = props
+
+    const translateY = useRef(new Animated.Value(box_width)).current
+    const bottom = useRef(new Animated.Value(0)).current
+
+    useEffect(() => {
+        show()
+    }, [])
+
+    const show = () => {
+        Animated.parallel([
+            Animated.timing(translateY, {
+                toValue: 0,
+                duration: 1400,
+                delay: 300,
+                useNativeDriver: false,
+            }),
+            Animated.timing(bottom, {
+                toValue: box_width,
+                duration: 1500,
+                delay: 200,
+                useNativeDriver: false,
+            }),
+        ]).start(nextZiTie)
+    }
+    return (
+        <View style={[styles.container, { position: "absolute", zIndex: 10, }]}>
+            {/* 火焰 */}
+            <Animated.View style={{
+                position: 'absolute',
+                zIndex: 10,
+                bottom: bottom,
+                width: box_width,
+                backgroundColor: 'red'
+            }}>
+                <HuoYanAnimation />
+            </Animated.View>
+            {/* 遮罩 */}
+            <View style={{ flex: 1, overflow: 'hidden' }}>
+                <Animated.View style={{
+                    width: box_width,
+                    height: box_width,
+                    backgroundColor: '#E9E7E1',
+                    transform: [{ translateY: translateY }]
+                }} />
+            </View>
+        </View>
+    )
+}
+
 const CopyBook = (props) => {
     // 用于更新页面
     const [lastX, setLastX] = useState(0)
+
+    // 火焰显示
+    // const [isShowHuoYan, setIsShowHuoYan] = useState(false)
+    let isShowHuoYan = useRef(false)
+    // let isShowHuoYan = false
     // 字帖索引
     const ziTieIndex = useRef(0)
     // 所有移动位置
@@ -130,6 +188,29 @@ const CopyBook = (props) => {
     const { word } = props
 
     if (word === undefined) return null
+
+    // 字帖显示
+    const fadeAnim = useRef(new Animated.Value(1)).current;
+
+    // const ziTieFadeOut = () => {
+    //     Animated.sequence([
+    //         Animated.timing(fadeAnim, {
+    //             toValue: 0,
+    //             duration: 500,
+    //             delay: 300,
+    //             useNativeDriver: false,
+    //         }),
+    //     ]).start(nextZiTie)
+    // }
+
+    // const ziTieFadeIn = () => {
+    //     Animated.timing(fadeAnim, {
+    //         toValue: 1,
+    //         duration: 500,
+    //         delay: 500,
+    //         useNativeDriver: false,
+    //     }).start()
+    // }
 
     const currentZiTieArr = word.map((item) => {
         for (let index = 0; index < ziTieArr.length; index++) {
@@ -202,18 +283,30 @@ const CopyBook = (props) => {
 
         if (isOk) {
             Toast.show("过关")
-            if (ziTieIndex.current < ziTie.length - 1) {
-                onClear()
-                ziTieIndex.current += 1
-            }
-            else {
-                onClear()
-                props.onClose()
-            }
+            isShowHuoYan.current = true
+            onClear()
         }
+
         return isOk
     }
 
+    // 下一个字帖
+    const nextZiTie = () => {
+        if (ziTieIndex.current < ziTie.length - 1) {
+            ziTieIndex.current += 1
+            isShowHuoYan.current = false
+            // ziTieFadeIn()
+            onClear()
+            // setIsShowHuoYan(false)
+            // ziTieFadeIn()
+        }
+        else {
+            onClear()
+            props.onClose()
+        }
+    }
+
+    // 清除
     const onClear = () => {
         MousePositions.current = []
         path.current = ""
@@ -244,11 +337,14 @@ const CopyBook = (props) => {
 
                 <View style={styles.imgBg}>
                     <FastImage style={{ width: px2pd(928), height: px2pd(1492), position: "absolute", }} source={require('../../../assets/games/ziTie/bg.webp')} />
-                    <View style={[styles.container, { backgroundColor: "#fff", }]}>
+                    <Animated.View style={[styles.container, { backgroundColor: "#fff", opacity: fadeAnim }]}>
+                        {/* 字帖背景 */}
                         <View style={[styles.container, { position: "absolute", zIndex: 0 }]}>
                             <Image style={{ width: "100%", height: "100%", position: 'absolute', zIndex: 2, opacity: 0.5 }} source={ziTie[ziTieIndex.current].img} />
                             <Image style={{ width: "100%", height: "100%", position: 'absolute', zIndex: 1 }} source={require('../../../assets/games/ziTie/ziTie_bg.webp')} />
                         </View>
+
+                        {/* 字帖 begin */}
                         <View style={[styles.container, { position: "absolute", zIndex: 1, }]}>
                             {
                                 MousePositions.current.map((item, index) => {
@@ -277,7 +373,12 @@ const CopyBook = (props) => {
                                 />
                             </Svg>
                         </View>
-                    </View>
+                        {/* 字帖 end */}
+
+                        {/* 火焰 */}
+                        {isShowHuoYan.current ? <HuoYna nextZiTie={nextZiTie} /> : null}
+                        {/* <HuoYna ziTieFadeOut={ziTieFadeOut} isShowHuoYan={isShowHuoYan.current} nextZiTie={nextZiTie} /> */}
+                    </Animated.View>
                 </View>
 
                 <View style={{ flexDirection: "row", justifyContent: "space-evenly", width: "100%", marginBottom: 12, }}>
@@ -287,7 +388,7 @@ const CopyBook = (props) => {
                 </View>
 
             </View>
-        </View>
+        </View >
     )
 }
 
