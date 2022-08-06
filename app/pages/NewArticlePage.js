@@ -636,6 +636,14 @@ class NewArticlePage extends Component {
         this.refDirMap.current.close();
       })
     );
+
+    this.listeners.push(
+      DeviceEventEmitter.addListener(EventKeys.ARTICLE_SHOW_BAG_ANIMATION, () => {
+        const key = RootView.add(<BagAnimation {...this.props} onClose={() => {
+          RootView.remove(key);
+        }} />);
+      })
+    );
   }
 
   componentWillUnmount() {
@@ -729,7 +737,6 @@ class NewArticlePage extends Component {
         <RightContainer ref={this.refPropsContainer}>
           {(attrsConfig != null) ? <UserAttributesHolder config={attrsConfig} /> : <></>}
         </RightContainer>
-        <BagAnimation {...this.props} />
         {/* <View style={styles.debugContainer} pointerEvents="box-none" >
           <View style={styles.debugView1} pointerEvents="box-none">
             <Text style={{ color: '#fff' }}>事件触发区域1</Text>

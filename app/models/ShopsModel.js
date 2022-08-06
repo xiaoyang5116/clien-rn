@@ -3,50 +3,55 @@ import {
   action, LocalCacheKeys,
 } from '../constants';
 
-import { GetShopDataApi } from '../services/GetShopDataApi';
+import { GetShopsDataApi } from '../services/GetShopsDataApi';
 import EventListeners from '../utils/EventListeners';
 import * as DateTime from '../utils/DateTimeUtils';
 import Toast from '../components/toast';
 import lo from 'lodash';
 import LocalStorage from '../utils/LocalStorage';
 
+function init_shop_data(shopId) {
+  return { shopId: shopId, listData: [], refreshTime: 0 };
+}
+
 export default {
-  namespace: 'ShopModel',
+  namespace: 'ShopsModel',
 
   state: {
     __data: {
-      shopConfig: {},  // 商店配置
+      shopsConfig: [], // 商店配置
     },
-    //
-    listData: [],
-    // 下一次刷新时间
-    refreshTime: 0,
+    shops: [],
   },
 
   effects: {
     *reload({ }, { put, select, call }) {
-      const shopState = yield select(state => state.ShopModel);
+      const shopsState = yield select(state => state.ShopsModel);
 
-      const shopConfig = yield call(GetShopDataApi);
-      if (shopConfig != null) {
-        shopState.__data.shopConfig = shopConfig.shop;
+      const shopsConfig = yield call(GetShopsDataApi);
+      if (shopsConfig != null) {
+        shopsState.__data.shopsConfig = shopsConfig.shops;
       }
 
-      shopState.listData.length = 0;
-      shopState.refreshTime = 0;
-
-      const cache = yield call(LocalStorage.get, LocalCacheKeys.SHOP_DATA);
-      if (cache != null) {
-        shopState.listData.push(...cache.listData);
-        shopState.refreshTime = cache.refreshTime;
+      shopsState.shops.length = 0;
+      const cache = yield call(LocalStorage.get, LocalCacheKeys.SHOPS_DATA);
+      if (cache != null && lo.isArray(cache.shops)) {
+        shopsState.shops.push(...cache.shops);
       }
     },
 
     *buy({ payload }, { put, select, call }) {
-      const shopState = yield select(state => state.ShopModel);
-      const { propId } = payload;
+      const shopsState = yield select(state => state.ShopsModel);
+      const { shopId, propId } = payload;
 
-      const found = shopState.listData.find(e => e.propId == propId);
+      if (shopId == undefined || lo.isEmpty(shopId))
+        return false;
+
+      let shop = shopsState.shops.find(e => lo.isEqual(e.shopId, shopId));
+      if (shop == undefined)
+        return false;
+
+      const found = shop.listData.find(e => e.propId == propId);
       if (found == undefined || found.num <= 0)
         return false;
 
@@ -83,27 +88,38 @@ export default {
 
       // 更新状态
       found.num -= 1;
-      yield call(LocalStorage.set, LocalCacheKeys.SHOP_DATA, { listData: shopState.listData, refreshTime: shopState.refreshTime });
+      yield call(LocalStorage.set, LocalCacheKeys.SHOPS_DATA, { shops: shopsState.shops });
 
       return true;
     },
 
-    *getList({ }, { put, select, call }) {
-      const shopState = yield select(state => state.ShopModel);
-      if (shopState.__data.shopConfig.cdValue <= 0)
+    *getList({ payload }, { put, select, call }) {
+      const shopsState = yield select(state => state.ShopsModel);
+      const { shopId } = payload;
+
+      if (shopId == undefined || lo.isEmpty(shopId))
         return null;
+
+      const shopConfig = shopsState.__data.shopsConfig.find(e => lo.isEqual(e.id, shopId));
+      if (shopConfig == undefined)
+        return
+
+      let shop = shopsState.shops.find(e => lo.isEqual(e.shopId, shopId));
+      if (shop == undefined) {
+        shop = init_shop_data(shopId);
+        shopsState.shops.push(shop);
+      }
       
-      if (shopState.refreshTime <= 0 || DateTime.now() >= shopState.refreshTime || lo.isEmpty(shopState.listData)) {
-        shopState.listData = yield put.resolve(action('renew')());
-        shopState.refreshTime = DateTime.now() + (shopState.__data.shopConfig.cdValue * 1000);
-        //
-        yield call(LocalStorage.set, LocalCacheKeys.SHOP_DATA, { listData: shopState.listData, refreshTime: shopState.refreshTime });
+      if (shop.refreshTime <= 0 || DateTime.now() >= shop.refreshTime || lo.isEmpty(shop.listData)) {
+        shop.listData = yield put.resolve(action('renew')({ shopId }));
+        shop.refreshTime = DateTime.now() + ((shopConfig.cdValue > 0 ? shopConfig.cdValue : (86400*365*100)) * 1000);
+        yield call(LocalStorage.set, LocalCacheKeys.SHOPS_DATA, { shops: shopsState.shops });
       }
 
       const data = [];
-      if (shopState.listData.length > 0) {
-        for (let key in shopState.listData) {
-          const item = shopState.listData[key];
+      if (shop.listData.length > 0) {
+        for (let key in shop.listData) {
+          const item = shop.listData[key];
           if (lo.isArray(item.config.consume)) {
             for (let key in item.config.consume) {
               const kv = item.config.consume[key];
@@ -120,16 +136,22 @@ export default {
         }
       }
 
-      return { timeout: shopState.refreshTime, data: data };
+      return { timeout: shop.refreshTime, config: shopConfig, data: data };
     },
 
-    *renew({ }, { select, call }) {
-      const shopState = yield select(state => state.ShopModel);
-      if (lo.isEmpty(shopState.__data.shopConfig) || !lo.isArray(shopState.__data.shopConfig.list))
+    *renew({ payload }, { select, call }) {
+      const shopsState = yield select(state => state.ShopsModel);
+
+      const { shopId } = payload;
+      if (shopId == undefined || lo.isEmpty(shopId))
+        return
+
+      const shopConfig = shopsState.__data.shopsConfig.find(e => lo.isEqual(e.id, shopId));
+      if (shopConfig == undefined)
         return
 
       const newList = [];
-      shopState.__data.shopConfig.list.forEach(x => {
+      shopConfig.list.forEach(x => {
         const rateTargets = [];
         if (x.rates.p100 != undefined) rateTargets.push(...x.rates.p100.map(e => ({ ...e, rate: e.rate * 100 })));
         if (x.rates.p1000 != undefined) rateTargets.push(...x.rates.p1000.map(e => ({ ...e, rate: e.rate * 10 })));
