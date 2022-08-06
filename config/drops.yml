@@ -20,9 +20,9 @@ drops: [
   #
   { id: 'WZXX_M1_N1_C001A_V_Vdrop1', sendProps: '887,10', },
   #
-  { id: 'WZXX_M1_N1_C002A_V_Vdrop1', sendProps: '600,10', },
-  { id: 'WZXX_M1_N1_C002A_V_Vdrop2', sendProps: '601,10', },
-  { id: 'WZXX_M1_N1_C002A_V_Vdrop3', sendProps: '602,10', },
+  { id: 'WZXX_M1_N1_C002A_V_Vdrop1', sendProps: '600,1', },
+  { id: 'WZXX_M1_N1_C002A_V_Vdrop2', sendProps: '601,1,', },
+  { id: 'WZXX_M1_N1_C002A_V_Vdrop3', sendProps: '602,1', },
   { id: 'WZXX_M1_N1_C002A_V_Vdrop4', sendProps: '887,10', },
   { id: 'WZXX_M1_N1_C002A_V_Vdrop5',  alertAttrs: ['变化,1'] },
   { id: 'WZXX_M1_N1_C002A_V_Vdrop6',  alertAttrs: ['变化,1'] },

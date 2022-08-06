@@ -19,9 +19,9 @@ scenes: [
       #
 
       { 
-        id: 'WZXX_M1_N1_C000A_V', desc: '进入白城', 
+        id: 'WZXX_M1_N1_C000A_V', desc: '购买簪子', 
         options: [ 
-          { title: "【进入白城】",toScene: 'C000A_V_MAP_0_-4', },
+          { title: "【出门去买簪子】",toScene: 'C000A_V_MAP_-2_0', },
         ],
       },
 
@@ -74,7 +74,7 @@ scenes: [
       { 
         id: 'C2', desc: '城门', 
         options: [ 
-         { title: '<<<没什么好看的，走吧', nextChat: 'X1' }, 
+         { title: '<<<没什么好看的，走吧', nextChat: 'C1' }, 
         ]
       },
        #
@@ -128,7 +128,7 @@ scenes: [
       },
 # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '街边小孩', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen1',style: 6, title: '街边小孩', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎走上前和小孩打招呼','小孩们跑走了',],
           btn: [{title: '重新选择',tokey: "C1",},]},
@@ -215,7 +215,7 @@ scenes: [
       },
      # 对话框
     dialogs: [
-          { id: 'Screen2',style: 6, title: '进官府看看', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen2',style: 6, title: '进官府看看', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['“你有何事。”','一个衙役拦住了李森炎'],
           btn: [{title: '我有冤',tokey: "P2",},{title: '来逛逛',tokey: "P3",},{title: '无事，转身离开',tokey: "C1",},]},
@@ -351,7 +351,7 @@ scenes: [
       },
        # 对话框
     dialogs: [
-          { id: 'Screen3',style: 6, title: '在森林里到处走动', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen3',style: 6, title: '在森林里到处走动', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['森林里什么都没有','兜兜转转好无聊啊','连个兔子都抓不到',],
           btn: [{title: '离开',tokey: "C1",},]},
@@ -390,7 +390,7 @@ scenes: [
       },
         # 对话框
     dialogs: [
-          { id: 'Screen4',style: 6, title: '在亭子里坐坐', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen4',style: 6, title: '在亭子里坐坐', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['坐了一会儿','此处少人烟，也没看到什么人','天气炎热，李森炎起身离开',],
           btn: [{title: '离开',tokey: "C1",},]},
@@ -757,7 +757,7 @@ scenes: [
       },],
      # 对话框
     dialogs: [
-          { id: 'Screen8',style: 6, title: '买米', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen8',style: 6, title: '买米', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['“小伙子要买多少米啊？”','李森炎想了想，家里好像并不缺米','主要是兜里没有多少钱，也买不起','只能摆摆手出去了',],
           btn: [{title: '离开',tokey: "C1",},]},
@@ -800,7 +800,7 @@ scenes: [
       },],
      # 对话框
     dialogs: [
-          { id: 'Screen9',style: 6, title: '小女孩聊天', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen9',style: 6, title: '小女孩聊天', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎笑着上前，和小姑娘搭话','问了下最近有哪些大事发生,“小孩，哥哥向你打听事儿。”','小姑娘吃着糖，告诉你了许多。','比如那家办了丧，那家失了窃，那家迎了新娘子……','最重要的是，白城平川府的白家小姐————白月光，最近在择婿！','若是谁能接住那白家娘子扔下的绣球，就能一跃成了白家的金婿呢！',
           '说完小女孩走了，下次见到她还不知道要什么时候','请选择行动……',],
@@ -884,7 +884,7 @@ scenes: [
       },],
        # 对话框
     dialogs: [
-          { id: 'Screen10',style: 6, title: '在白府四周逛逛', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen10',style: 6, title: '在白府四周逛逛', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎好奇的在白府四周逛逛','这白府还真是非比寻常，很宏伟繁华','走着走着……','“喂！你是何人，有何事啊？”',],
           btn: [{title: '我就是来闲逛的',tokey: "P2",},{title: '呸……我是你爸爸',tokey: "P3",},{title: '贫僧从东土大唐而来……',tokey: "P4",},]},
@@ -925,7 +925,7 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: '前面有个过路人', 
+        id: 'C1', desc: '这路口前面有个过路人', 
         options: [ 
         { title: '【和他搭话】', dialogs: ['Screen11'] }, 
         { title: '【布庄】',toScene: 'C000A_V_MAP_-1_-3'},
@@ -935,7 +935,7 @@ scenes: [
       },],
        # 对话框
     dialogs: [
-          { id: 'Screen11',style: 6, title: '和他搭话', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen11',style: 6, title: '和他搭话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎走近，准备和他打招呼','才发现原来这人是个哑巴','那哑巴在你身上看来看去','然后咿咿呀呀的走了',],
           btn: [{title: '离开',tokey: "C1",},]},
@@ -967,7 +967,7 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: '前面有个乞丐', 
+        id: 'C1', desc: '前面有个衣衫褴褛的乞丐', 
         options: [ 
         { title: '【和他搭话】', dialogs: ['Screen12'] }, 
         { title: '【路口】',toScene: 'C000A_V_MAP_-2_-3'},
@@ -976,7 +976,7 @@ scenes: [
       },],
        # 对话框
     dialogs: [
-          { id: 'Screen12',style: 6, title: '和他搭话', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen12',style: 6, title: '和他搭话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎走近那乞丐走近，就听见他口里吟着什么————',
           '“蓬头垢面万家客，衣衫褴褛千城游。身无分文浑不怕，腰有万贯不自由。”','李森炎上前，拍了拍那乞丐的肩”','“小兄弟，何事？”'],
@@ -1030,7 +1030,7 @@ scenes: [
       },],
        # 对话框
     dialogs: [
-          { id: 'Screen13',style: 6, title: '进客栈看看', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen13',style: 6, title: '进客栈看看', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['“兄弟，是打尖还是住店啊？”小二凑上来','“本店各种客房都有，一百文，两百文，三百文的各种厢房都有。”'],
           btn: [{title: '我就讨口水喝',tokey: "P2",},{title: '住店',tokey: "P3",},{title: '打尖',tokey: "P5",}]},
@@ -1090,7 +1090,7 @@ scenes: [
       },],
        # 对话框
     dialogs: [
-          { id: 'Screen14',style: 6, title: '和他聊聊天', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen14',style: 6, title: '和他聊聊天', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['“菩提本无树 ，明镜亦非台，本来无一物，何处惹尘埃”那人嘴里奇奇怪怪的说着什么','李森炎走过去看了他一眼','觉得他神经兮兮的，还是赶快走吧，别靠近'],
           btn: [{title: '离开',tokey: "C1",},]},
@@ -1133,7 +1133,7 @@ scenes: [
       },],
        # 对话框
     dialogs: [
-          { id: 'Screen15',style: 6, title: '进去看看', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen15',style: 6, title: '进去看看', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['原来这个花满楼就是茶楼啊','里面许多文人雅士在喝茶吟赋','这时和李森炎格格不入','其实主要还是没钱……',],
           btn: [{title: '离开',tokey: "C1",},]},
@@ -1299,7 +1299,7 @@ scenes: [
       },],
        # 对话框
     dialogs: [
-          { id: 'Screen15',style: 6, title: '路人聊天', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen15',style: 6, title: '路人聊天', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['“大哥。”','李森炎拍了拍路人的肩膀','路人颇有礼貌，朝他点头','“不知这位兄台，有何事？”',],
           btn: [{title: '没事，我就叫叫你',tokey: "P2",},{title: '你知道哪里有集市吗？',tokey: "P3",},{title: '大哥，你知道白家吗',tokey: "P4",},]},
