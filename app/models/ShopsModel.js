@@ -42,6 +42,7 @@ export default {
 
     *buy({ payload }, { put, select, call }) {
       const shopsState = yield select(state => state.ShopsModel);
+      const userState = yield select(state => state.UserModel);
       const { shopId, propId } = payload;
 
       if (shopId == undefined || lo.isEmpty(shopId))
@@ -57,29 +58,45 @@ export default {
 
       // 扣除道具
       if (lo.isArray(found.config.consume)) {
-        let enough = true;
+        let propsEnough = true, copperEnough = true;
         for (let key in found.config.consume) {
           const item = found.config.consume[key];
 
-          let currentNum = 0;
           if (item.propId != undefined) {
-            currentNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: item.propId }));
+            const propsNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: item.propId }));
+            if (propsNum < item.num) {
+              propsEnough = false;
+              break
+            }
           }
 
-          if (currentNum < item.num) {
-            enough = false;
-            break
+          if (item.copper != undefined && item.copper > 0) {
+            if (userState.copper < item.copper) {
+              copperEnough = false;
+              break
+            }
           }
         }
-        if (!enough) {
+
+        if (!propsEnough) {
           Toast.show(`购买不成功，道具不足！`);
+          return
+        }
+
+        if (!copperEnough) {
+          Toast.show(`购买不成功，铜币不足！`);
           return
         }
 
         // 扣除道具
         for (let key in found.config.consume) {
           const item = found.config.consume[key];
-          yield put.resolve(action('PropsModel/reduce')({ propsId: [item.propId], num: 1, mode: 1 }));
+          if (item.propId != undefined) {
+            yield put.resolve(action('PropsModel/reduce')({ propsId: [item.propId], num: 1, mode: 1 }));
+          }
+          if (item.copper != undefined && item.copper > 0) {
+            yield put.resolve(action('UserModel/alertCopper')({ value: -Math.abs(item.copper) }));
+          }
         }
       }
 
