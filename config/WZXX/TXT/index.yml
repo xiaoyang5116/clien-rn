@@ -14,6 +14,7 @@ files:
     "WZXX_M1_N1_C001B_[B2].txt",
     "WZXX_M1_N1_C001B_[C1].txt",
     "WZXX_M1_N1_C001B_[C2].txt",
+    "WZXX_M1_N1_C001B_[C3].txt",
     "WZXX_M1_N1_C001B.txt",
     "WZXX_M1_N1_C001C_[N1].txt",
     "WZXX_M1_N1_C001C_[N2].txt",
@@ -33,6 +34,7 @@ files:
     "WZXX_M1_N1_C005_[N1].txt",
     "WZXX_M1_N1_C005_[N2].txt",
     #
+    "WZXX_M1_N1_C006_[N1].txt",
     "WZXX_M1_N1_C006_[N0].txt",
     #
     "WZXX_M1_N1_C007_[N0].txt",
@@ -99,7 +101,8 @@ files:
     "WZXX_M1_N1_C033.txt",
     "WZXX_M1_N1_C034.txt",
     "WZXX_M1_N1_C035.txt",
-    
+    "WZXX_M1_N1_C037.txt",
+    "WZXX_M1_N1_C038.txt",
 #
 #
 #

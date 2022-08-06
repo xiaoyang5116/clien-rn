@@ -247,6 +247,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#eee',
+        zIndex: 99,
     },
     viewContainer: {
         width: WIN_SIZE.width,

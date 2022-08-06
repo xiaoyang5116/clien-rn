@@ -5,7 +5,13 @@ scenes: [
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 }],
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      
+      ],
 
       # 动作定义
       actions: [],
@@ -22,19 +28,17 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0017_V1', desc: '炸桶', 
         options: [ 
-          { title: "【我需要……】",dialogs: ['C0017A_zhatongA']},
+          { title: "【我需要……】",dialogs: ['C0017A_zhatongA'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
         ],
       },
       { 
         id: 'WZXX_M1_N1_C0017_V2', desc: '选择', 
         options: [ 
-          { title: "【忍气吞声，算了】",dialogs: ['C0017A_suanleA']},
-          { title: "【向陶老讨要个说法】",toChapter: "WZXX_M1_N1_C017_[N2]"},
+          { title: "【忍气吞声，算了】",dialogs: ['C0017A_suanleA'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+          { title: "【向陶老讨要个说法】",toChapter: "WZXX_M1_N1_C017_[N2]", icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
       
         ],
       },
-
-     
 
 
 
@@ -67,7 +71,7 @@ scenes: [
           sections: [
           { key: 'P3', content: ['李森炎心中忿忿不平，但还是选择忍下这口气',['闪烁补血'],'每日坚持用陶老本尊给的锻骨灵液炼体，体质逐渐提升','但每次看到那些筑基锻骨灵液，他心中的郁愤就更增一分','他想着自己这么受人欺辱，欺骗',
           '一切的根源都是因为自己太弱','这种念头渐渐形成心魔，在他心里扎根','他变得更加急功近利，在一次突破中，他一念成魔',[{ sounds: [{ soundId: 'SE_UE_0003',}] }] ,'被附近的强大修士感知到，遭围攻而死',],
-          btn: [{title: '再来一次绝不选这个（入魔+1）',toChapter: "WZXX_M1_N1_C017_[N1]",dropId: 'WZXX_M1_N1_C0017_V_Vdrop1'}]},
+          btn: [{title: '再来一次绝不选这个（入魔+1）',toChapter: "WZXX_M1_N1_C017_[N1]",dropIds: [ 'WZXX_M1_N1_C0017_V_Vdrop1'],}]},
         ],
         },
 

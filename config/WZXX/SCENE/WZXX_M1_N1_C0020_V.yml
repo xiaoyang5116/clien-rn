@@ -5,7 +5,11 @@ scenes: [
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 }],
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      ],
 
       # 动作定义
       actions: [],
@@ -22,8 +26,8 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0020_V1', desc: '要，还是不要', 
         options: [ 
-          { title: "【使不得使不得】",dialogs: ['C0020A_buyaoA']},
-          { title: "【我全都要】",dialogs: ['C0020A_quanyaoA']},
+          { title: "【使不得使不得】",dialogs: ['C0020A_buyaoA'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: "【我全都要】",dialogs: ['C0020A_quanyaoA'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
         ],
       },
 
@@ -48,7 +52,7 @@ scenes: [
           '女人以头抢地，恳请李森炎收下灵石','等到她头都快磕晕过去，李森炎这才慢悠悠地笑纳了',[{ sounds: [{ soundId: 'SE_CQ_0008',}] }] ,
           '获得灵石+16',
           ],
-          btn: [{title: '哈哈哈哈',toChapter: "WZXX_M1_N1_C021",dropId: 'WZXX_M1_N1_C0020_V_Vdrop1'},]},
+          btn: [{title: '哈哈哈哈',toChapter: "WZXX_M1_N1_C021",dropIds: [ 'WZXX_M1_N1_C0020_V_Vdrop1'],},]},
 
        
            ]  
@@ -68,7 +72,7 @@ scenes: [
           '女子苦笑着，又把自己身上值钱的金饰摘下来。','“我身上值钱的，也就只有世俗之物了，不知道大哥你这位挚爱亲朋能不能看得上？”',
           '“她不喜欢金子”，李森炎替云云回答，“不过我喜欢，就先替她收着了。”',
           '云云：“……”','你做人，也是挺狗的。',[{ sounds: [{ soundId: 'SE_CQ_0008',}] }] ,'获得灵石+16','获得黄金饰品+3',],
-          btn: [{title: '哈哈哈哈',toChapter: "WZXX_M1_N1_C021",dropId: 'WZXX_M1_N1_C0020_V_Vdrop2'}]},
+          btn: [{title: '哈哈哈哈',toChapter: "WZXX_M1_N1_C021",dropIds: ['WZXX_M1_N1_C0020_V_Vdrop2','WZXX_M1_N1_C0020_V_Vdrop3'],}]},
 
          
 

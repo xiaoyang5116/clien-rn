@@ -1,14 +1,13 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_C005_V',
+      id: 'WZXX_M1_N1_C000B_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
       vars: [
       { id: "v1", min: 0, max: 1 },
-      { id: "biaoqianv1", min: 0, max: 1 },
-      { id: "biaoqianv2", min: 0, max: 1 },
+
       ],
 
       # 动作定义
@@ -18,34 +17,111 @@ scenes: [
       events: [],
 
       chats: [
-      #
-
       { 
-        id: 'WZXX_M1_N1_C005_V', desc: '打工还是守夜', 
-        options: [ 
-          { title: "【去打工】",toScene: 'C005_V_MAP_0_0', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
-          { title: "【去守夜】",toChapter: "WZXX_M1_N1_C010B_[N1]", icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+        id: 'WZXX_M1_N1_C000B_V', desc: '打工还是守夜', 
+        options: [ { title: "【去打工】",toScene: 'C000B_V_MAP_0_0', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+        
         ],
       },
 
-      #
         ],
 
   
     },
 
-
  #===========事件场景==============
        {
   # NPC2
-    id: 'C005_V_MAP_0_0', name: '医馆',
+    id: 'C000B_V_MAP_0_0', name: '坊市出入口',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     # 当前场景地图
-    mapId: 'C005_V_MAP_0_0',
+    mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [0, 0],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'B1' },
+     #   { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
+
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'B1', desc: '坊市出入口', 
+        options: [ 
+         { title: '【继续往前走】', nextChat: 'B2'}, 
+         { title: '【打量一下风景】', nextChat: 'B3'}, 
+
+
+        ],
+      },
+      #
+      { 
+        id: 'B3', desc: '外边没什么好看的，还是去坊市里边看看吧', 
+        options: [ 
+         { title: '<<<出发', nextChat: 'B2' }, 
+        ]
+      },
+      #
+
+      { 
+        id: 'B2', desc: '选择移动位置', 
+        options: [ 
+        { title: '【空白摊位】', nextChat: 'B2A'},  #这里需要做个判定，第一次点进去，触发“这摊位空空如也，东西应该是卖完了”，链接坊市主道。
+        { title: '【坊市主道】',  toChapter: 'WZXX_M1_N1_C008_[N0]'}, #接剧情
+      { 
+        id: 'B2A', desc: '这摊位空空如也，东西应该是卖完了', 
+        options: [ 
+         { title: '<<<走吧', toChapter: 'WZXX_M1_N1_C008_[N0]' }, 
+        ]
+      },
+        
+        ],
+      },
+
+#剧情到准备去医馆的时候接回这里
+  #  { 
+      #  id: 'B4', desc: '选择移动位置', 
+     #   options: [ 
+      #  { title: '【医馆】', toScene: 'C000B_V_MAP_-1_2'},  #这里继续接医馆剧情
+    #    { title: '【东街】',  toScene: 'C000B_V_MAP_1_2'}, #这里需要一个判定，判定是第一次来，触发“小命要紧，事不宜迟，还是不要闲逛了”，同样接回医馆剧情
+
+        #医馆剧情之后，到打工部分剧情
+        
+
+   #     ],
+  #    },
+
+       #
+    ],
+   
+  },
+ #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_V_MAP_-1_2', name: '医馆',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 2],
 
      # 变量定义
     vars: [
@@ -89,11 +165,11 @@ scenes: [
       { 
         id: 'X1', desc: '选择移动位置', 
         options: [ 
-        { title: '【饭馆】', toScene: 'C005_V_MAP_-1_1'}, 
-         { title: '【当铺】', toScene: 'C005_V_MAP_0_1'}, 
-         { title: '【珍宝阁】', toScene: 'C005_V_MAP_1_1'}, 
-         { title: '【兵器铺】', toScene: 'C005_V_MAP_0_2'},
-         #{ title: '【医馆】', toScene: 'C005_V_MAP_0_0'}, 
+        { title: '【饭馆】', toScene: 'C000B_V_MAP_-2_3'}, 
+         { title: '【当铺】', toScene: 'C000B_V_MAP_-1_3'}, 
+         { title: '【珍宝阁】', toScene: 'C000B_V_MAP_0_3'}, 
+         { title: '【兵器铺】', toScene: 'C000B_V_MAP_-1_4'},
+         #{ title: '【医馆】', toScene: 'C000B_V_MAP_-1_2'}, 
         ],
       },
        #
@@ -105,13 +181,13 @@ scenes: [
 #===========事件场景==============
        {
   # NPC2
-    id: 'C005_V_MAP_-1_1', name: '饭馆',
+    id: 'C000B_V_MAP_-2_3', name: '饭馆',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     # 当前场景地图
-    mapId: 'C005_V_MAP_0_0',
+    mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [-1, 1],
+    mapCenterPoint: [-2, 3],
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -157,11 +233,11 @@ scenes: [
       { 
         id: 'X1', desc: '选择移动位置', 
         options: [ 
-        # { title: '【饭馆】', toScene: 'C005_V_MAP_-1_1'}, 
-         { title: '【当铺】', toScene: 'C005_V_MAP_0_1'}, 
-         { title: '【珍宝阁】', toScene: 'C005_V_MAP_1_1'}, 
-         { title: '【兵器铺】', toScene: 'C005_V_MAP_0_2'},
-         { title: '【医馆】', toScene: 'C005_V_MAP_0_0'}, 
+        # { title: '【饭馆】', toScene: 'C000B_V_MAP_-2_3'}, 
+         { title: '【当铺】', toScene: 'C000B_V_MAP_-1_3'}, 
+         { title: '【珍宝阁】', toScene: 'C000B_V_MAP_0_3'}, 
+         { title: '【兵器铺】', toScene: 'C000B_V_MAP_-1_4'},
+         { title: '【医馆】', toScene: 'C000B_V_MAP_-1_2'}, 
         ],
       },
        #
@@ -179,8 +255,8 @@ scenes: [
           { key: 'P2', content: ['掌柜的看了你一眼，那副市侩的脸露出奸奸的笑，扣这扣那的，最后从钱柜里丢出几个灵石',[{ sounds: [{ soundId: 'SE_CQ_0016',}] }] ,'才五个灵石？！',
           '这不是欺负老实人嘛！你可是足足累了一天','“就这么点，你店里大大小小的活可都是我干的，不是说好二十起步吗，才五个？”','你愤愤不平','掌柜摇扇，冷笑，“二十个？做梦吧你，你这种生手，五个我都已经算是给多啦。”','请选择行动——',
           ],
-          btn: [{title: '忍一时越想越气，干他（入魔+1）',tokey: "P3",dropIds: ['WZXX_M1_N1_C005_V_Vdrop1'],},
-          {title: '忍一时风平浪静，算了（成神+1）',tokey: "P4",dropIds: [ 'WZXX_M1_N1_C005_V_Vdrop2'],}]},
+          btn: [{title: '忍一时越想越气，干他（入魔+1）',tokey: "P3",dropId: 'WZXX_M1_N1_C005_V_Vdrop1'},
+          {title: '忍一时风平浪静，算了（成神+1）',tokey: "P4",dropId: 'WZXX_M1_N1_C005_V_Vdrop2'}]},
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
@@ -204,8 +280,8 @@ scenes: [
           { key: 'P2', content: ['掌柜的看了你一眼，那副市侩的脸露出奸奸的笑，扣这扣那的，最后从钱柜里丢出几个灵石',[{ sounds: [{ soundId: 'SE_CQ_0016',}] }] ,'才五个灵石？！',
           '这不是欺负老实人嘛！你可是足足累了一天','“就这么点，你店里大大小小的活可都是我干的，不是说好二十起步吗，才五个？”','你愤愤不平','掌柜摇扇，冷笑，“二十个？做梦吧你，你这种生手，五个我都已经算是给多啦。”','请选择行动——',
           ],
-          btn: [{title: '忍一时越想越气，干他（入魔+1）',tokey: "P3",dropIds: [ 'WZXX_M1_N1_C005_V_Vdrop3'],},
-          {title: '忍一时风平浪静，算了（成神+1）',tokey: "P4",dropIds: [ 'WZXX_M1_N1_C005_V_Vdrop4'],}]},
+          btn: [{title: '忍一时越想越气，干他（入魔+1）',tokey: "P3",dropId: 'WZXX_M1_N1_C005_V_Vdrop3'},
+          {title: '忍一时风平浪静，算了（成神+1）',tokey: "P4",dropId: 'WZXX_M1_N1_C005_V_Vdrop4'}]},
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
@@ -225,13 +301,13 @@ scenes: [
 #===========事件场景==============
        {
   # NPC2
-    id: 'C005_V_MAP_0_1', name: '当铺',
+    id: 'C000B_V_MAP_-1_3', name: '当铺',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     # 当前场景地图
-    mapId: 'C005_V_MAP_0_0',
+    mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [0, 1],
+    mapCenterPoint: [-1, 3],
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -273,11 +349,11 @@ scenes: [
       { 
         id: 'X1', desc: '选择移动位置', 
         options: [ 
-         { title: '【饭馆】', toScene: 'C005_V_MAP_-1_1'}, 
-        # { title: '【当铺】', toScene: 'C005_V_MAP_0_1'}, 
-         { title: '【珍宝阁】', toScene: 'C005_V_MAP_1_1'}, 
-         { title: '【兵器铺】', toScene: 'C005_V_MAP_0_2'},
-         { title: '【医馆】', toScene: 'C005_V_MAP_0_0'}, 
+         { title: '【饭馆】', toScene: 'C000B_V_MAP_-2_3'}, 
+        # { title: '【当铺】', toScene: 'C000B_V_MAP_-1_3'}, 
+         { title: '【珍宝阁】', toScene: 'C000B_V_MAP_0_3'}, 
+         { title: '【兵器铺】', toScene: 'C000B_V_MAP_-1_4'},
+         { title: '【医馆】', toScene: 'C000B_V_MAP_-1_2'}, 
         ],
       },
        #
@@ -297,8 +373,8 @@ scenes: [
           { key: 'P2', content: ['掌柜的看了你一眼，那副市侩的脸露出奸奸的笑，扣这扣那的，最后从钱柜里丢出几个灵石',[{ sounds: [{ soundId: 'SE_CQ_0016',}] }] ,'才五个灵石？！',
           '这不是欺负老实人嘛！你可是足足累了一天','“就这么点，你店里大大小小的活可都是我干的，不是说好二十起步吗，才五个？”','你愤愤不平','掌柜摇扇，冷笑，“二十个？做梦吧你，你这种生手，五个我都已经算是给多啦。”','请选择行动——',
           ],
-          btn: [{title: '忍一时越想越气，干他（入魔+1）',tokey: "P3",dropIds: [ 'WZXX_M1_N1_C005_V_Vdrop5'],},
-          {title: '忍一时风平浪静，算了（成神+1）',tokey: "P4",dropIds: [ 'WZXX_M1_N1_C005_V_Vdrop6'],}]},
+          btn: [{title: '忍一时越想越气，干他（入魔+1）',tokey: "P3",dropId: 'WZXX_M1_N1_C005_V_Vdrop5'},
+          {title: '忍一时风平浪静，算了（成神+1）',tokey: "P4",dropId: 'WZXX_M1_N1_C005_V_Vdrop6'}]},
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
@@ -322,8 +398,8 @@ scenes: [
           { key: 'P2', content: ['掌柜的看了你一眼，那副市侩的脸露出奸奸的笑，扣这扣那的，最后从钱柜里丢出几个灵石',[{ sounds: [{ soundId: 'SE_CQ_0016',}] }] ,'才五个灵石？！',
           '这不是欺负老实人嘛！你可是足足累了一天','“就这么点，你店里大大小小的活可都是我干的，不是说好二十起步吗，才五个？”','你愤愤不平','掌柜摇扇，冷笑，“二十个？做梦吧你，你这种生手，五个我都已经算是给多啦。”','请选择行动——',
           ],
-          btn: [{title: '忍一时越想越气，干他（入魔+1）',tokey: "P3",dropIds: [ 'WZXX_M1_N1_C005_V_Vdrop7'],},
-          {title: '忍一时风平浪静，算了（成神+1）',tokey: "P4",dropIds: [ 'WZXX_M1_N1_C005_V_Vdrop8'],}]},
+          btn: [{title: '忍一时越想越气，干他（入魔+1）',tokey: "P3",dropId: 'WZXX_M1_N1_C005_V_Vdrop7'},
+          {title: '忍一时风平浪静，算了（成神+1）',tokey: "P4",dropId: 'WZXX_M1_N1_C005_V_Vdrop8'}]},
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
@@ -344,13 +420,13 @@ scenes: [
 #===========事件场景==============
        {
   # NPC2
-    id: 'C005_V_MAP_1_1', name: '珍宝阁',
+    id: 'C000B_V_MAP_0_3', name: '珍宝阁',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     # 当前场景地图
-    mapId: 'C005_V_MAP_0_0',
+    mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [1, 1],
+    mapCenterPoint: [0, 3],
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -383,11 +459,11 @@ scenes: [
       { 
         id: 'X1', desc: '选择移动位置', 
         options: [ 
-         { title: '【饭馆】', toScene: 'C005_V_MAP_-1_1'}, 
-         { title: '【当铺】', toScene: 'C005_V_MAP_0_1'}, 
-        # { title: '【珍宝阁】', toScene: 'C005_V_MAP_1_1'}, 
-         { title: '【兵器铺】', toScene: 'C005_V_MAP_0_2'},
-         { title: '【医馆】', toScene: 'C005_V_MAP_0_0'}, 
+         { title: '【饭馆】', toScene: 'C000B_V_MAP_-2_3'}, 
+         { title: '【当铺】', toScene: 'C000B_V_MAP_-1_3'}, 
+        # { title: '【珍宝阁】', toScene: 'C000B_V_MAP_0_3'}, 
+         { title: '【兵器铺】', toScene: 'C000B_V_MAP_-1_4'},
+         { title: '【医馆】', toScene: 'C000B_V_MAP_-1_2'}, 
         ],
       },
        #
@@ -399,13 +475,13 @@ scenes: [
 #===========事件场景==============
        {
   # NPC2
-    id: 'C005_V_MAP_0_2', name: '兵器铺',
+    id: 'C000B_V_MAP_-1_4', name: '兵器铺',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     # 当前场景地图
     mapId: 'C005_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [0, 2],
+    mapCenterPoint: [-1, 4],
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -438,11 +514,11 @@ scenes: [
       { 
         id: 'X1', desc: '选择移动位置', 
         options: [ 
-         { title: '【饭馆】', toScene: 'C005_V_MAP_-1_1'}, 
-         { title: '【当铺】', toScene: 'C005_V_MAP_0_1'}, 
-         { title: '【珍宝阁】', toScene: 'C005_V_MAP_1_1'}, 
-         #{ title: '【兵器铺】', toScene: 'C005_V_MAP_0_2'},
-         { title: '【医馆】', toScene: 'C005_V_MAP_0_0'}, 
+         { title: '【饭馆】', toScene: 'C000B_V_MAP_-2_3'}, 
+         { title: '【当铺】', toScene: 'C000B_V_MAP_-1_3'}, 
+         { title: '【珍宝阁】', toScene: 'C000B_V_MAP_0_3'}, 
+         #{ title: '【兵器铺】', toScene: 'C000B_V_MAP_-1_4'},
+         { title: '【医馆】', toScene: 'C000B_V_MAP_-1_2'}, 
         ],
       },
        #
@@ -451,39 +527,36 @@ scenes: [
   },
 
 
-
-
-
-
-
-
     #=================================场景地图的设置==================================
     maps: [
       {
-        id: 'C005_V_MAP_0_0',
+        id: 'C000B_V_MAP_0_0',
         data: [
-          { point: [1, 1], title: '珍宝阁', toScene: 'C005_V_MAP_1_1', links: [ ] },
-          { point: [0, 1], title: '当铺', toScene: 'C005_V_MAP_0_1', links: [[1, 1], ] },
-          { point: [0, 0], title: '医馆', toScene: 'C005_V_MAP_0_0', links: [[0, 1], ] },
-          { point: [-1, 1], title: '饭馆', toScene: 'C005_V_MAP_0_-1', links: [0, 1] },
-          { point: [0, 2], title: '兵器铺', toScene: 'C005_V_MAP_0_2', links: [0, 1] },
+          { point: [0, 0], title: '坊市出入口', toScene: 'C000B_V_MAP_0_0', links: [ 0, 1] },
+          { point: [0, 1], title: '天机阁摊位', toScene: 'C000B_V_MAP_0_1', links: [0, 2 ] },
+          { point: [0, 2], title: '坊市主道', toScene: 'C000B_V_MAP_0_2', links: [-1, 2], [1, 2] },
+          { point: [1, 2], title: '东街', toScene: 'C000B_V_MAP_1_2', links: [ 2, 2] },
+          { point: [2, 2], title: '酒肆', toScene: 'C000B_V_MAP_2_2', links: [ ] },
+          { point: [-1, 2], title: '医馆', toScene: 'C000B_V_MAP_-1_2', links: [0, 2], [-2, 2], [-1, 3]},
+          { point: [-2, 2], title: '西街', toScene: 'C000B_V_MAP_-2_2', links: [-3, 2] },
+          { point: [-3, 2], title: '赌摊', toScene: 'C000B_V_MAP_-3_2', links: [ ] },
+          { point: [-1, 3], title: '当铺', toScene: 'C000B_V_MAP_-1_3', links: [-1, 4], [-2, 3], [0, 3] },
+          { point: [-2, 3], title: '饭馆', toScene: 'C000B_V_MAP_-2_3', links: [ ] },
+          { point: [-1, 4], title: '兵器铺', toScene: 'C000B_V_MAP_-1_4', links: [-1, 5] },
+          { point: [-1, 5], title: '小集市', toScene: 'C000B_V_MAP_-1_5', links: [ ] },
+          { point: [0, 3], title: '珍宝阁', toScene: 'C000B_V_MAP_0_3', links: [1, 3] },
+          { point: [1, 3], title: '客栈', toScene: 'C000B_V_MAP_1_3', links: [ ] },
         ]
       },
-    
-    ],
-
-
-
-
-
-
-
-
-
-
-
-
-]
-
-
-
+    ]
+    ]
+   #  { 
+       #  id: 'X1', desc: '选择移动位置', 
+    #     options: [ 
+        # { title: '【饭馆】', toScene: 'C000B_V_MAP_-2_3'}, 
+        #  { title: '【当铺】', toScene: 'C000B_V_MAP_-1_3'}, 
+        #  { title: '【珍宝阁】', toScene: 'C000B_V_MAP_0_3'}, 
+        #  { title: '【兵器铺】', toScene: 'C000B_V_MAP_-1_4'},
+        #  { title: '【医馆】', toScene: 'C000B_V_MAP_-1_2'}, 
+       #  ],
+       #},

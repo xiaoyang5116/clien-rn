@@ -5,7 +5,9 @@ scenes: [
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 }],
+      vars: [{ id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      ],
 
       # 动作定义
       actions: [],
@@ -22,7 +24,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0025_V1', desc: '与蛛王的搏斗', 
         options: [ 
-          { title: "【凶险！】",dialogs: ['C0025A_bodouA']},
+          { title: "【凶险！】",dialogs: ['C0025A_bodouA'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
         ],
       },
 
