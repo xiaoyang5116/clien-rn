@@ -14,7 +14,7 @@ shops: [
       list: [
          { 
             # 道具ID
-            propId: 1,
+            propId: 350,
             # 刷新概率设定
             rates : {
                p100: [ { num: 10, rate: 20 }, { num: 20, rate: 30 } ],
@@ -24,7 +24,7 @@ shops: [
             # 消耗设定
             consume: [
                { propId: 200, num: 1 },
-               { copper: 2000 },
+               # { copper: 2000 },
             ]
          },
 
