@@ -594,6 +594,7 @@ class NewArticlePage extends Component {
     this.darkMode = false;
     this.listeners = [];
     this.refreshKey = 0;
+    this.hasBagAnimation = false;
   }
 
   componentDidMount() {
@@ -639,9 +640,13 @@ class NewArticlePage extends Component {
 
     this.listeners.push(
       DeviceEventEmitter.addListener(EventKeys.ARTICLE_SHOW_BAG_ANIMATION, () => {
-        const key = RootView.add(<BagAnimation {...this.props} onClose={() => {
-          RootView.remove(key);
-        }} />);
+        if (!this.hasBagAnimation) {
+          this.hasBagAnimation = true;
+          const key = RootView.add(<BagAnimation {...this.props} onClose={() => {
+            RootView.remove(key);
+            this.hasBagAnimation = false;
+          }} />);
+        }
       })
     );
   }
