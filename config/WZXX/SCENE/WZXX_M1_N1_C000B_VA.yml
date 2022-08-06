@@ -1,0 +1,984 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_C000B_VA',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      ],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义# 故事中的场景事件暂时没什么意义
+      events: [],
+
+      chats: [
+      #
+
+      { 
+        id: 'WZXX_M1_N1_C000B_VA', desc: '进入坊市', 
+        options: [ 
+          { title: "【坊市出入口】",toScene: 'C000B_VA_MAP_0_0',},
+        ],
+      },
+
+      #
+        ],
+
+  
+    },
+
+
+ #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_0_0', name: '坊市出入口',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 0],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'B1' },
+     #   { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
+
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'B1', desc: '不大的坊市出入口，人来人往', 
+        options: [ 
+         { title: '【天机阁摊位】', toScene: 'C000B_VA_MAP_0_1'}, 
+         { title: '【原地看看风景】', nextChat: 'B3'}, 
+
+
+        ],
+      },
+      #
+      { 
+        id: 'B3', desc: '外边没什么好看的，还是去坊市里边看看吧', 
+        options: [ 
+         { title: '<<<出发', toScene: 'C000B_VA_MAP_0_1' }, 
+        ]
+      },
+      
+    ],
+   
+  },
+ #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_0_1', name: '天机阁摊位',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 1],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+     #   { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
+
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '一个颇为神秘的摊位，摊主有股桀骜不驯的味道', 
+        options: [ 
+         { title: '【看看摊位】', nextChat: 'C2'}, 
+         { title: '【返回上一处】', toScene: 'C000B_VA_MAP_0_0'}, 
+         { title: '【坊市主道】', toScene: 'C000B_VA_MAP_0_2'}, 
+     
+
+        ],
+      },
+      #
+      { 
+        id: 'C2', desc: '走近一看，摊位上空空如也，摊主好像在卖空气', 
+        options: [ 
+         { title: '搞不懂，走吧', nextChat: 'X1' }, 
+        ]
+      },
+      #
+
+      { 
+        id: 'X1', desc: '选择移动位置', 
+        options: [ 
+        { title: '【返回出入口】', toScene: 'C000B_VA_MAP_0_0'}, 
+        { title: '【坊市主道】', toScene: 'C000B_VA_MAP_0_2'}, 
+ 
+         #{ title: '【医馆】', toScene: 'C000B_V_MAP_-1_2'}, 
+        ],
+      },
+       #
+    ],
+   
+  },
+
+
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_0_2', name: '坊市主道',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: '车水马龙的坊市主道，聚集了很多来往的修士', 
+        options: [ 
+         { title: '【原地溜达】', nextChat: 'C2'}, 
+         { title: '【东街】', toScene: 'C000B_VA_MAP_1_2'}, 
+         { title: '【医馆】', toScene: 'C000B_VA_MAP_-1_2'}, 
+         { title: '【离开】', toScene: 'C000B_VA_MAP_0_1'}, 
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+        ],
+      },
+
+    { 
+        id: 'C2', desc: '沿着街道，各式各样的摊位整齐排列两边', 
+        options: [ 
+         { title: '慢慢逛', dialogs: ['Screen1'] }, 
+         { title: '去别的地方看看', nextChat: 'C3' }, 
+        ],
+      },
+       #
+ { 
+        id: 'C3', desc: '选择行动', 
+        options: [ 
+        { title: '【东街】', toScene: 'C000B_VA_MAP_1_2'}, 
+         { title: '【医馆】', toScene: 'C000B_VA_MAP_-1_2'}, 
+         { title: '【离开】', toScene: 'C000B_VA_MAP_0_1'}, 
+        ],
+      },
+       
+    ],
+# 对话框===========
+      dialogs:
+        [
+           #选项对话1
+          { id: 'Screen1',style: 6, title: '慢慢逛', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['琳琅满目的奇珍异宝看花了眼','你的心情很愉快，看到很多东西都想买','可是摸了摸自己的口袋','你突然发现自己再也快乐不起来',
+          ],
+          btn: [{title: '没钱，还是走吧',nextChat: 'C3' },]},
+
+          
+         
+
+           ], },
+
+  ],
+  },
+
+
+
+ 
+
+
+
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_1_2', name: '东街',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, 2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: '相对于西街，这条街明显人气不足，但酒味很足', 
+        options: [ 
+         { title: '【原地转转】', nextChat: 'C2'}, 
+         { title: '【坊市主道】',toScene: 'C000B_VA_MAP_0_2'}, 
+         { title: '【酒肆】',toScene: 'C000B_VA_MAP_2_2'}, 
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+        ],
+      },
+     { 
+        id: 'C2', desc: '你见到一个奇装异服的壮汉', 
+        options: [ 
+         { title: '盯着他看', nextChat: 'C3',}, 
+         { title: '别看了，赶紧走', nextChat: 'X1' }, 
+        ],
+      },
+      #
+      { 
+        id: 'C3', desc: '大汉眼瞅着要发怒了', 
+        options: [ 
+         { title: '继续盯着',dialogs: ['Screen1'] }, 
+         { title: '走为上策',nextChat: 'X1'}, 
+       
+        ],
+      },
+
+
+      #
+      { 
+        id: 'X1', desc: '选择移动位置', 
+        options: [ 
+         { title: '【坊市主道】', toScene: 'C000B_VA_MAP_0_2'}, 
+         { title: '【酒肆】', toScene: 'C000B_VA_MAP_2_2'}, 
+
+        ],
+      },
+       #
+        ],
+  dialogs:
+        [
+           #选项对话1
+          { id: 'Screen1',style: 6, title: '继续盯着', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['大汉朝你怒吼：“你瞅啥？”','你毫不示弱：“瞅你咋地”','“信不信我把你眼睛挖出来？”','呦呵，还挺横！','你二话不说上去把他打了一顿','“大哥饶命，我再也不敢了！”'
+          ],
+          btn: [{title: '哼，放你一马',nextChat: 'X1' },]},
+     
+  ],
+  },
+  ],
+
+ },
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_2_2', name: '酒肆',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, 2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: '酒味四溢，飘香十里，隔着老远就能闻到', 
+        options: [ 
+         { title: '【口有点渴，弄杯酒喝】', nextChat: 'C2'}, 
+         { title: '【东街】',toScene: 'C000B_VA_MAP_1_2'}, 
+         { title: '【坊市主道】',toScene: 'C000B_VA_MAP_0_2'}, 
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+        ],
+      },
+    
+      #
+      { 
+        id: 'C2', desc: '一个卖酒的摊主奋力吆喝', 
+        options: [ 
+         { title: '过去看看',dialogs: ['Screen1'] }, 
+         { title: '算了，没钱喝什么酒',nextChat: 'X1'}, 
+       
+        ],
+      },
+
+
+      #
+      { 
+        id: 'X1', desc: '选择移动位置', 
+        options: [ 
+         { title: '【东街】',toScene: 'C000B_VA_MAP_1_2'}, 
+         { title: '【坊市主道】',toScene: 'C000B_VA_MAP_0_2'}, 
+
+        ],
+      },
+      
+        ],
+       #
+  dialogs:
+        [
+           #选项对话1
+          { id: 'Screen1',style: 6, title: '过去看看', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“这位小兄弟，来一瓶天仙酿吗？”','“这可是滋阴补肾，强身健体的好东西”','“喝了保证你夜夜快活似神仙哦！”',
+          ],
+          btn: [
+          {title: '快活似神仙？那我要一瓶！',tokey: "P2" },
+          {title: '算了，这家伙一点也不真诚！',nextChat: 'X1' }]},
+     
+          { key: 'P2', content: ['你喝了一口，发觉这酒索然无味！','我去，老板，你这是水里掺酒了吧？','摊主佯装出一幅愤怒的样子：“你怎能轻易污人清白？”','“我做了八十年生意了，向来童叟无欺”','……','你特喵的都不到五十岁吧，做八十年生意，扯犊子呢！',
+          '这波就是纯纯的大冤种！',],
+          btn: [{title: '这里都是奸商，赶紧跑！',nextChat: 'X1' },]},
+  ],
+  },
+  ],   
+  },
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_-1_2', name: '医馆',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: '乍一看平平无奇，仔细看却透露出一丝古韵', 
+        options: [ 
+         { title: '【进入医馆】', nextChat: 'C2'}, 
+         { title: '【西街】',toScene: 'C000B_VA_MAP_-2_2'}, 
+         { title: '【当铺】',toScene: 'C000B_VA_MAP_-1_3'}, 
+         { title: '【坊市主道】',toScene: 'C000B_VA_MAP_0_2'}, 
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+        ],
+      },
+     { 
+        id: 'C2', desc: '医馆的主人是个赏心悦目的美女', 
+        options: [ 
+         { title: '多看两眼', nextChat: 'C3',}, 
+         { title: '唐突佳人，别看了', nextChat: 'X1' }, 
+        ],
+      },
+      #
+      { 
+        id: 'C3', desc: '正在整理柜台的美女大夫抬头看了你一眼', 
+        options: [ 
+         { title: '继续跟她对视',dialogs: ['Screen1'] }, 
+         { title: '赶紧溜吧',nextChat: 'X1'}, 
+       
+        ],
+      },
+      #
+      { 
+        id: 'X1', desc: '选择移动位置', 
+        options: [ 
+         { title: '【西街】',toScene: 'C000B_VA_MAP_-2_2'}, 
+         { title: '【当铺】',toScene: 'C000B_VA_MAP_-1_3'}, 
+         { title: '【坊市主道】',toScene: 'C000B_VA_MAP_0_2'}, 
+
+        ],
+      },
+       #
+        ],
+  dialogs:
+        [
+           #选项对话1
+          { id: 'Screen1',style: 6, title: '继续跟她对视', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['美女开口：“你有病吗？”','“嘿，你咋骂人呢？”','美女无语：“……我问的是你是不是有病？”','“你再骂！”','……','大夫美目含煞：“这里是医馆，你要有病就治，没病走远点！”','因为你坚持称自己没病，被美女大夫轰了出来',
+          ],
+          btn: [{title: '这女人惹不得，赶紧溜！',nextChat: 'X1' },]},
+     
+  ],
+  },
+  ],
+
+ },
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_-2_2', name: '西街',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, 2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: '这条街相当热闹，除交易外还有很多娱乐活动', 
+        options: [ 
+         { title: '【赌摊】',toScene: 'C000B_VA_MAP_-3_2'}, 
+         { title: '【医馆】',toScene: 'C000B_VA_MAP_-1_2'}, 
+        ],
+      },],},
+
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_-3_2', name: '赌摊',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, 2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: '有人欢喜有人愁，在这里人与人悲喜并不相通', 
+        options: [ 
+         { title: '【赌一把】', nextChat: 'C2'}, 
+         { title: '【我与赌毒不共戴天】',nextChat: 'C3'}, 
+        
+
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+        ],
+      },
+     { 
+        id: 'C2', desc: '赌一把', 
+        options: [ 
+         { title: '选择一枚丹药', dialogs: ['Screen1'],}, 
+     
+        ],
+      },
+      #
+      { 
+        id: 'C3', desc: '你头也不回地离去', 
+        options: [ 
+        { title: '【西街】',toScene: 'C000B_VA_MAP_-2_2'}, 
+       
+        ],
+      },
+
+
+       #
+        ],
+  dialogs:
+        [
+           #选项对话1
+          { id: 'Screen1',style: 6, title: '选择一枚丹药', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“只有搏一搏，单车才能变摩托。”','你手指往其中一枚丹药点去。',[{games: { id: 6, treasureChestId: 2 }}]
+          ],
+          btn: [{title: '就它了',tokey: "P2"},]},
+          { key: 'P2', content: ['“恭喜你，这是一枚真丹！”','“丹药品质，普通。”','摊主直接以最低两倍的价格回购','灵石+2','你见好就收，转身离开',
+          ],
+          btn: [{title: '可以走了',nextChat: 'C3' },]},
+  ],
+  },
+  ],
+
+ },
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_-1_3', name: '当铺',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: '除非走投无路，否则一般人都不想来的地方', 
+        options: [ 
+         { title: '【进入当铺】', nextChat: 'C2'}, 
+         { title: '【珍宝阁】',toScene: 'C000B_VA_MAP_0_3'}, 
+         { title: '【兵器铺】',toScene: 'C000B_VA_MAP_-1_4'}, 
+         { title: '【饭馆】',toScene: 'C000B_VA_MAP_-2_3'}, 
+         { title: '【医馆】',toScene: 'C000B_VA_MAP_-1_2'}, 
+         
+        ],
+      },
+     { 
+        id: 'C2', desc: '当铺的主人在柜台上居高临下地看着你', 
+        options: [ 
+         { title: '询问老板', nextChat: 'C3',}, 
+         { title: '走了，没什么东西可当的', nextChat: 'X1' }, 
+        ],
+      },
+      #
+      { 
+        id: 'C3', desc: '询问老板', 
+        options: [ 
+         { title: '问问老板需不需要打工的',dialogs: ['Screen1'] }, 
+         { title: '赶紧溜吧',nextChat: 'X1'}, 
+       
+        ],
+      },
+      #
+      { 
+        id: 'X1', desc: '选择移动位置', 
+        options: [ 
+         { title: '【珍宝阁】',toScene: 'C000B_VA_MAP_0_3'}, 
+         { title: '【兵器铺】',toScene: 'C000B_VA_MAP_-1_4'}, 
+         { title: '【饭馆】',toScene: 'C000B_VA_MAP_-2_3'}, 
+         { title: '【医馆】',toScene: 'C000B_VA_MAP_-1_2'}, 
+        ],
+      },
+       #
+        ],
+  dialogs:
+        [
+           #选项对话1
+          { id: 'Screen1',style: 6, title: '问问老板需不需要打工的', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['当铺老板很冷漠：“你看我这需要招人吗？”','“我看不出来”','当铺老板沉默了一下：“你有东西当没？”','“我能把自己当了吗？”','……','当铺老板直接骂人：“你可以滚了。”',
+          ],
+          btn: [{title: '离开当铺！',nextChat: 'X1' },]},
+     
+  ],
+  },
+  ],
+
+ },
+
+
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_0_3', name: '珍宝阁',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: '装潢华丽，富丽堂皇，一看就是奢侈场所', 
+        options: [ 
+         { title: '【珍宝阁告示】', nextChat: 'C2'}, 
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+        ],
+      },
+      #
+      { 
+        id: 'C2', desc: '进入珍宝阁最低需要筑基期修为', 
+        options: [ 
+         { title: '狗眼看人低，走了！', nextChat: 'X1' }, 
+        ],
+      },
+      #
+      { 
+        id: 'X1', desc: '选择移动位置', 
+        options: [ 
+         { title: '【客栈】', toScene: 'C000B_VA_MAP_1_3'}, 
+         { title: '【当铺】', toScene: 'C000B_VA_MAP_-1_3'}, 
+
+        ],
+      },
+       #
+    ],
+
+  },
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_1_3', name: '客栈',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, 3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: '给旅行者一个温暖的家（当真就输了）', 
+        options: [ 
+         { title: '【珍宝阁】',toScene: 'C000B_VA_MAP_0_3'}, 
+         { title: '【住店】',nextChat: 'C2'}, 
+        ]
+      },
+        { 
+        id: 'C2', desc: '住店', 
+        options: [ 
+         { title: '你睡了一觉精神抖擞！', nextChat: 'X1' }, 
+        ],
+      },
+      { 
+        id: 'X1', desc: '离开', 
+        options: [ 
+         { title: '【珍宝阁】',toScene: 'C000B_VA_MAP_0_3'}, 
+         { title: '【当铺】', toScene: 'C000B_V_MAP_-1_3'}, 
+
+        ],
+      },
+      ],},
+
+
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_-1_4', name: '兵器铺',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 4],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: '建筑风格狂野，棱角分明，很符合自身定位', 
+        options: [ 
+         { title: '【进入兵器铺】', nextChat: 'C2'}, 
+         { title: '【离开】', nextChat: 'X1'}, 
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+        ],
+      },
+      #
+        { 
+        id: 'X1', desc: '选择移动！', 
+        options: [ 
+         { title: '【小集市】', toScene: 'C000B_VA_MAP_-1_5'}, 
+         { title: '【当铺】', toScene: 'C000B_VA_MAP_-1_3'}, 
+
+        ],
+      },
+      { 
+        id: 'C2', desc: '看看兵器', 
+        options: [ 
+          { title: '【青龙偃月刀】', nextChat: 'C3'}, 
+          { title: '【方天画戟】', nextChat: 'C4'}, 
+          { title: '【丈八蛇矛】', nextChat: 'C5'}, 
+          { title: '【我全都要】', nextChat: 'C6'}, 
+        ],
+      },
+      #
+    
+       { 
+        id: 'C3', desc: '青龙偃月刀', 
+        options: [ 
+          { title: '【我就要这把】', nextChat: 'C6'}, 
+        ],
+      },
+         { 
+        id: 'C4', desc: '方天画戟', 
+        options: [ 
+          { title: '【我就要这把】', nextChat: 'C6'}, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: '丈八蛇矛', 
+        options: [ 
+          { title: '【我就要这把】', nextChat: 'C6'}, 
+        ],
+      },
+
+      { 
+        id: 'C6', desc: '钱不够', 
+        options: [ 
+          { title: '【你翻了翻自己的家当，根本买不起】', nextChat: 'C7'}, 
+        ],
+      },
+
+      { 
+        id: 'C7', desc: '别丢人了，快走！', 
+        options: [ 
+         { title: '【小集市】', toScene: 'C000B_VA_MAP_-1_5'}, 
+         { title: '【当铺】', toScene: 'C000B_VA_MAP_-1_3'}, 
+
+        ],
+      },
+       #
+    ],
+
+  },
+
+#===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_-2_3', name: '饭馆',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, 3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: '装潢还算高档，就是不知道吃饭贵不贵', 
+        options: [ 
+         { title: '【进入饭馆】', nextChat: 'C2'}, 
+         { title: '【离开】', nextChat: 'X1'}, 
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+        ],
+      },
+      #
+        { 
+        id: 'X1', desc: '选择移动！', 
+        options: [ 
+         { title: '【当铺】', toScene: 'C000B_VA_MAP_-1_3'}, 
+
+        ],
+      },
+      { 
+        id: 'C2', desc: '饭香飘来，勾动你的碌碌饥肠', 
+        options: [ 
+          { title: '【饱餐一顿】', nextChat: 'C3'}, 
+          { title: '【扛饿小能手，直接走】', nextChat: 'C4'}, 
+ 
+        ],
+      },
+      #
+  { 
+        id: 'C4', desc: '离开！', 
+        options: [ 
+         { title: '【当铺】', toScene: 'C000B_VA_MAP_-1_3'}, 
+
+        ],
+      },
+       { 
+        id: 'C3', desc: '小二给你递上菜单', 
+        options: [ 
+          { title: '【鱼香肉丝】', nextChat: 'C5'}, 
+          { title: '【四喜丸子】', nextChat: 'C5'}, 
+          { title: '【宫保鸡丁】', nextChat: 'C5'}, 
+          { title: '【东坡肘子】', nextChat: 'C5'}, 
+          { title: '【龙井虾仁】', nextChat: 'C5'}, 
+        ],
+      },
+         { 
+        id: 'C5', desc: '味道好极了', 
+        options: [ 
+          { title: '【你大快朵颐，饱餐了一顿】', nextChat: 'C4'}, 
+        ],
+      },
+
+
+       #
+    ],
+
+  },
+  #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000B_VA_MAP_-1_5', name: '小集市',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 当前场景地图
+    mapId: 'C000B_VA_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 5],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: '一些小摊聚集的场所，鱼龙混杂，需要注意甄别', 
+        options: [ 
+         { title: '【逛一逛】', nextChat: 'C2'}, 
+         { title: '【累了，不逛了】',nextChat: 'C3'}, 
+        
+
+         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+        ],
+      },
+      
+
+     { 
+        id: 'C2', desc: '发现有游戏可以玩', 
+        options: [ 
+         { title: '记忆力小游戏', dialogs: ['Screen1'],}, 
+     
+        ],
+      },
+      #
+      { 
+        id: 'C3', desc: '离开', 
+        options: [ 
+        { title: '【兵器铺】',toScene: 'C000B_VA_MAP_-1_4'}, 
+       
+        ],
+      },
+
+
+       #
+        ],
+  dialogs:
+        [
+           #选项对话1
+          { id: 'Screen1',style: 6, title: '记忆力小游戏', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['考验你记忆力的时候到了！','游戏成功可获得道具奖励！',
+          ],
+          btn: [{title: '挑战开始', games: { id: 3, words: ['不', '知', '道', ] },nextChat: 'C3' },]},
+  ],
+  },
+  ],
+
+ },
+    #=================================场景地图的设置==================================
+    maps: [
+      {
+        id: 'C000B_VA_MAP_0_0',
+        data: [
+          { point: [0, 0], title: '坊市出入口', toScene: 'C000B_VA_MAP_0_0', links: [ [0, 1]] },
+          { point: [0, 1], title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', links: [[0, 2] ] },
+          { point: [0, 2], title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', links: [[-1, 2], [1, 2]] },
+          { point: [1, 2], title: '东街', toScene: 'C000B_VA_MAP_1_2', links: [ [2, 2]] },
+          { point: [2, 2], title: '酒肆', toScene: 'C000B_VA_MAP_2_2', links: [ ] },
+          { point: [-1, 2], title: '医馆', toScene: 'C000B_VA_MAP_-1_2', links: [[0, 2], [-2, 2], [-1, 3]]},
+          { point: [-2, 2], title: '西街', toScene: 'C000B_VA_MAP_-2_2', links: [[-3, 2]] },
+          { point: [-3, 2], title: '赌摊', toScene: 'C000B_VA_MAP_-3_2', links: [ ] },
+          { point: [-1, 3], title: '当铺', toScene: 'C000B_VA_MAP_-1_3', links: [[-1, 4], [-2, 3], [0, 3]] },
+          { point: [-2, 3], title: '饭馆', toScene: 'C000B_VA_MAP_-2_3', links: [ ] },
+          { point: [-1, 4], title: '兵器铺', toScene: 'C000B_VA_MAP_-1_4', links: [[-1, 5]] },
+          { point: [-1, 5], title: '小集市', toScene: 'C000B_VA_MAP_-1_5', links: [ ] },
+          { point: [0, 3], title: '珍宝阁', toScene: 'C000B_VA_MAP_0_3', links: [[1, 3]] },
+          { point: [1, 3], title: '客栈', toScene: 'C000B_VA_MAP_1_3', links: [ ] },
+        ]
+      },
+    ]
+    ]
