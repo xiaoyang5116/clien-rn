@@ -4,10 +4,26 @@ directory: [
     id: 1, 
     title: '第一至二十章',
    map: [
-        { point: [0, 3], title: '第一章上篇脱身',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001', toChapter: 'WZXX_M1_N1_C001', links: [[0, 2], ] },
-        { point: [0, 2], title: '接续第一章 我有秘籍？',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001A', toChapter: 'WZXX_M1_N1_C001A', links: [[0, 1], ] },
-        { point: [0, 1], title: '第一章 分支 选择先回城',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[A1]', toChapter: 'WZXX_M1_N1_C001B_[A1]', links: [[0, 0],[-1, 0],[1, 0],[0, -1],] },
-        { point: [-2, 0], title: '第一章 分支B2 选择寻找物品',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[B1]', toChapter: 'WZXX_M1_N1_C001B_[B1]', links: [[-1, 0], ] },
+        { point: [0, 3], title: '第一章上篇脱身',
+        bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001',
+         toChapter: 'WZXX_M1_N1_C001', links: [[0, 2], ] 
+        },
+
+        { point: [0, 2], title: '接续第一章 我有秘籍？',
+        bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001A',
+         toChapter: 'WZXX_M1_N1_C001A', links: [[0, 1], ] 
+        },
+
+        { point: [0, 1], title: '第一章 分支 选择先回城',
+        bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[A1]',
+        toChapter: 'WZXX_M1_N1_C001B_[A1]', links: [[0, 0],[-1, 0],[1, 0],[0, -1],] 
+        },
+
+        { point: [-2, 0], title: '第一章 分支B2 选择寻找物品',
+        bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[B1]',
+         toChapter: 'WZXX_M1_N1_C001B_[B1]', links: [[-1, 0], ] 
+        },
+        
         { point: [-1, 0], title: '第一章 分支B 选择寻找物品',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[B2]' ,toChapter: 'WZXX_M1_N1_C001B_[B2]', links: [[0, -1], ] },
         { point: [1, 0], title: '第一章 分支C 选择跟踪',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[C1]' , toChapter: 'WZXX_M1_N1_C001B_[C1]', links: [[0, -1],[2, 0], ] },
         { point: [2, 0], title: '第一章 分支C2 跟踪结束',bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]' , toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [[]] },
@@ -60,8 +76,13 @@ directory: [
       { point: [0, 0], title: '第二十二章 对战白蛛[N2]', bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C022_[N2]' ,toChapter: 'WZXX_M1_N1_C022_[N2]', links: [[0, -1], ] },
       { point: [0, -1], title: '第二十三章 散修小队', bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C023_[N1]' ,toChapter: 'WZXX_M1_N1_C023_[N1]', links: [[-1, -2],[1, -2],  ] },
       { point: [-1, -2], title: '第二十四章 人面蜘王[V1](加）', bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C024_[V1]' ,toChapter: 'WZXX_M1_N1_C024_[V1]', links: [[-1, -3], ] },
-      { point: [-1, -3], title: '第二十五章 火云绕N1V1', bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C025A_[V1]' ,toChapter: 'WZXX_M1_N1_C025A_[V1]', links: [[-1, -4]] },
-      { point: [-1, -4], title: '第二十五章 雁兰之死N2V1', bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C025B_[V1]' ,toChapter: 'WZXX_M1_N1_C025B_[V1]', links: [[-1, -5], ] },
+      { point: [-1, -3], title: '第二十五章 火云绕N1V1', 
+      bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C025A_[V1]' ,
+      toChapter: 'WZXX_M1_N1_C025A_[V1]', links: [[-1, -4]] },
+
+      { point: [-1, -4], title: '第二十五章 雁兰之死N2V1', 
+      bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C025B_[V1]' ,
+      toChapter: 'WZXX_M1_N1_C025B_[V1]', links: [[-1, -5], ] },
       { point: [-1, -5], title: '第二十六章 获取物资V1', bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C026_[V1]' ,toChapter: 'WZXX_M1_N1_C026_[V1]', links: [[-1, -6]] },
       { point: [-1, -6], title: '第二十七章 砸墙[N1][V1] ', bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C027A_[V1]' ,toChapter: 'WZXX_M1_N1_C027A_[V1]', links: [[-1, -7]] },
       { point: [-1, -7], title: '第二十七章 玉上寒凝髓[N2][V1]', bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C027B_[V1]' ,toChapter: 'WZXX_M1_N1_C027B_[V1]', links: [[-1, -8]] },
