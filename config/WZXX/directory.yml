@@ -78,8 +78,9 @@ directory: [
     id: 3, 
     title: '未开启',
     map: [
-      { point: [0, 0], title: '坊市地图测试',toChapter: 'WZXX_M1_N1_C037', links: [[],[]] },
-     
+     { point: [0, 0], title: '坊市地图测试',toChapter: 'WZXX_M1_N1_C037', links: [[],[]] },
+     { point: [0, 1], title: '白城地图', toChapter: 'WZXX_M1_N1_C038', links: [[], ] },
+
     ]
   },
 

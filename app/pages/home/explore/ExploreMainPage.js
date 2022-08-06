@@ -229,7 +229,7 @@ class ExploreMainPopPage extends Component {
                         </View>
                         <View style={styles.timeBannerContainer} >
                             <TimeBanner key={this.props.areaId * 100} time={currentArea.time} interval={currentArea.interval} onStep={this.onStep} />
-                            <View style={{ position: 'absolute', left: 100, top: 0, width: 10, height: '100%', backgroundColor: '#669900', opacity: 0.75 }} />
+                            <FastImage style={{ position: 'absolute', left: 70, width: px2pd(185), height: px2pd(166) }} source={require('../../../../assets/bg/explore_person.png')} />
                         </View>
                         <View style={{ flexDirection: 'row', height: 80, justifyContent: 'space-evenly', alignItems: 'center' }} >
                             <TextButton {...this.props} title={'终止'} onPress={() => {
@@ -247,57 +247,6 @@ class ExploreMainPopPage extends Component {
                 </SafeAreaView>
             </FastImage>
         );
-
-        // return (
-        //     <FastImage style={{ flex: 1 }} source={require('../../../../assets/bg/explore_bg.jpg')} >
-        //         <SafeAreaView style={{ flex: 1 }}>
-        //             <View style={{ flex: 1 }}>
-        //                 <View style={{ flexDirection: 'row', marginLeft: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
-        //                     <Text style={styles.textBox}>{mapSelected.name}</Text>
-        //                 </View>
-        //                 <View style={{ flexDirection: 'column', margin: 10, height: 160, justifyContent: 'center', alignItems: 'center' }} >
-        //                     <FastImage style={{ flex: 1, overflow: 'hidden' }} source={require('../../../../assets/bg/lottery_bg2.jpg')} resizeMode='stretch' >
-        //                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />
-        //                         <View style={{ flexDirection: 'row', width: '100%', height: 80, justifyContent: 'space-around', alignItems: 'center' }} >
-        //                             <EventButton id={'xunbao'} title={'寻宝'} {...this.props} onPress={() => { this.showXunBao() }} />
-        //                             <EventButton id={'boss'} title={'战斗'} {...this.props} onPress={() => { this.showBoss() }} />
-        //                             <EventButton id={'xiansuo'} title={'线索'} {...this.props} onPress={() => { this.showXianSuo() }} />
-        //                             <EventButton id={'qiyu'} title={'奇遇'} {...this.props} onPress={() => { this.showQiYu() }} />
-        //                         </View>
-        //                     </FastImage>
-        //                 </View>
-        //                 <View style={{ flexDirection: 'row', marginLeft: 10, marginBottom: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
-        //                     <Text style={styles.textBox}>{currentArea.name}</Text>
-        //                 </View>
-        //                 <View style={{ flexDirection: 'row', marginLeft: 10, marginBottom: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
-        //                     <ExploreProgress style={styles.textBox} progress={mapSelected.progress} />
-        //                 </View>
-        //                 <View style={{ flexDirection: 'row', marginLeft: 10, justifyContent: 'flex-start', alignItems: 'center' }} >
-        //                     <Text style={styles.textBox}>补给[预留位置]</Text>
-        //                 </View>
-        //                 <View style={{ flex: 1 }}>
-        //                     <MessageList />
-        //                 </View>
-        //                 <View style={styles.timeBannerContainer} >
-        //                     <TimeBanner key={this.props.areaId * 100} time={currentArea.time} interval={currentArea.interval} onStep={this.onStep} />
-        //                     <View style={{ position: 'absolute', left: 100, top: 0, width: 10, height: '100%', backgroundColor: '#669900', opacity: 0.75 }} />
-        //                 </View>
-        //                 <View style={{ flexDirection: 'row', height: 80, justifyContent: 'space-evenly', alignItems: 'center' }} >
-        //                     <TextButton {...this.props} title={'终止'} onPress={() => {
-        //                         this.props.onClose();
-        //                     }} />
-        //                     <TextButton {...this.props} title={'储物袋'} onPress={() => { this.showBag(); }} />
-        //                     <TextButton {...this.props} title={'预留'} onPress={() => { }} disabled={true} />
-        //                 </View>
-        //                 <View style={{ flexDirection: 'row', height: 60, justifyContent: 'space-evenly', alignItems: 'center' }} >
-        //                     <TextButton {...this.props} title={'返回'} onPress={() => { }} disabled={true} />
-        //                     <TextButton {...this.props} title={'加速'} onPress={() => { }} disabled={true} />
-        //                     <TextButton {...this.props} title={'全部加速'} onPress={() => { }} disabled={true} />
-        //                 </View>
-        //             </View>
-        //         </SafeAreaView>
-        //     </FastImage>
-        // );
     }
 }
 
