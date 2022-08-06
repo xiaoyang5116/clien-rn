@@ -165,8 +165,8 @@ class PropertyActionBuilder {
     }
 
     // 生成掉落ID
-    if (payload.dropId != undefined && typeof(payload.dropId) == 'string') {
-      allActions.push({ id: "__dropId_{0}".format(payload.dropId), cmd: 'dropId', params: payload.dropId });
+    if (payload.dropIds != undefined && lo.isArray(payload.dropIds)) {
+      allActions.push({ id: "__dropIds_{0}".format(payload.dropIds), cmd: 'dropIds', params: payload.dropIds });
     }
 
     // 生成商店动作
@@ -242,7 +242,7 @@ const ACTIONS_MAP = [
   { cmd: 'toMapPoint',    handler: '__onMapPointCommand' },
   { cmd: 'games',         handler: '__onGamesCommand' },
   { cmd: 'animations',    handler: '__onAnimationsCommand' },
-  { cmd: 'dropId',        handler: '__onDropIdCommand' },
+  { cmd: 'dropIds',       handler: '__onDropIdsCommand' },
   { cmd: 'shop',          handler: '__onShopCommand' },
 ];
 
@@ -759,8 +759,8 @@ export default {
       EffectAnimations.show(payload.params);
     },
 
-    *__onDropIdCommand({ payload }, { put }) {
-      yield put.resolve(action('DropsModel/process')({ dropId: payload.params }));
+    *__onDropIdsCommand({ payload }, { put }) {
+      yield put.resolve(action('DropsModel/process')({ dropIds: payload.params }));
     },
 
     *__onShopCommand({ payload }, { put }) {
