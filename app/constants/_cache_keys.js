@@ -38,6 +38,6 @@ export class LocalCacheKeys {
     static ARTICLE_HISTORY = 'ARTICLE_HISTORY';
 
     // 商店数据
-    static SHOP_DATA = 'SHOP_DATA';
+    static SHOPS_DATA = 'SHOPS_DATA';
 
 }

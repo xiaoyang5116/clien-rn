@@ -42,24 +42,29 @@ export default {
     *process({ payload }, { call, select, put }) {
       const dropsState = yield select(state => state.DropsModel);
 
-      const { dropId } = payload;
-      if (lo.isEmpty(dropId))
+      const { dropIds } = payload;
+      if (lo.isEmpty(dropIds) || !lo.isArray(dropIds))
         return
 
-      const found = dropsState.__data.config.find(e => lo.isEqual(e.id, dropId));
-      if (found == undefined) 
-        return
+      for (let key in dropIds) {
+        const dropId = dropIds[key];
 
-      if (lo.indexOf(dropsState.ids, dropId) != -1)
-        return
+        const found = dropsState.__data.config.find(e => lo.isEqual(e.id, dropId));
+        if (found == undefined) 
+          continue
 
-      const actions = lo.pick(found, ['sendProps', 'alertAttrs']);
-      if (lo.keys(actions).length > 0) {
-        yield put.resolve(action('SceneModel/processActions')({ ...actions }));
+        if (lo.indexOf(dropsState.ids, dropId) != -1)
+          return
+
+        const actions = lo.pick(found, ['sendProps', 'alertAttrs']);
+        if (lo.keys(actions).length > 0) {
+          yield put.resolve(action('SceneModel/processActions')({ ...actions }));
+        }
+
+        // 记录完成
+        dropsState.ids.push(dropId);
       }
 
-      // 记录完成并存档
-      dropsState.ids.push(dropId);
       yield put.resolve(action('syncData')({}));
     },
 

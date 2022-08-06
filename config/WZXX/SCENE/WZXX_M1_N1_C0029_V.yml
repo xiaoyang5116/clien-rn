@@ -36,8 +36,8 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0029_V2', desc: '遇害', 
         options: [ 
-          { title: "【见死不救（冷漠+1）】",dialogs: ['C0029A_jiurA'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'], dropId: 'WZXX_M1_N1_C002A_V_Vdrop9',},
-          { title: "【救人要紧（善良+1）】",dialogs: ['C0029A_bujiurA'], icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'], dropId: 'WZXX_M1_N1_C002A_V_Vdrop8',},
+          { title: "【见死不救（冷漠+1）】",dialogs: ['C0029A_jiurA'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'], dropIds: [ 'WZXX_M1_N1_C002A_V_Vdrop9'],},
+          { title: "【救人要紧（善良+1）】",dialogs: ['C0029A_bujiurA'], icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'], dropIds: [ 'WZXX_M1_N1_C002A_V_Vdrop8'],},
         ],
       },
 

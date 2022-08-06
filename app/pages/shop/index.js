@@ -2,6 +2,8 @@ import React from 'react';
 
 import {
     AppDispath,
+    connect,
+    getWindowSize,
     ThemeContext,
 } from "../../constants";
 
@@ -27,25 +29,100 @@ import * as DateTime from '../../utils/DateTimeUtils';
 import RootView from '../../components/RootView';
 import PropTips from '../../components/tips/PropTips';
 
+const WIN_SIZE = getWindowSize();
+
+const EconomicAttrs = (props) => {
+
+    const [data, setData] = React.useState([]);
+    const copper = React.useRef(null);
+
+    React.useEffect(() => {
+        const consumablePropList = []; // 消耗的道具列表
+        let occurCopper = false; // 是否需要消耗铜币
+
+        props.data.forEach(e => {
+            e.config.consume.forEach(e => {
+                if (e.propId != undefined) {
+                    if (consumablePropList.find(x => x.propId == e.propId) == undefined) {
+                        consumablePropList.push({ propId: e.propId, propName: e.propConfig.name });
+                    }
+                } else if (e.copper != undefined) {
+                    occurCopper = true;
+                }
+            });
+        });
+
+        if (consumablePropList != undefined) {
+            const propIdList = [];
+            consumablePropList.forEach(e => propIdList.push(e.propId));
+            if (propIdList.length > 0) {
+                AppDispath({ type: 'PropsModel/getPropsNum', payload: { propsId: propIdList }, cb: (result) => {
+                    const list = [];
+                    consumablePropList.forEach(e => {
+                        const found = result.find(x => x.propId == e.propId);
+                        list.push({ ...e, num: (found != null ? found.num : 0) })
+                    });
+                    setData(list);
+                }});
+            }
+        }
+
+        if (occurCopper) {
+            copper.current = props.user.copper;
+        }
+
+    }, []);
+
+    const subViews = [];
+    if (data.length > 0) {
+        lo.forEach(data, (v, k) => {
+            subViews.push(
+                <View key={k} style={{ marginRight: 10 }}>
+                    <Text>{v.propName}: {v.num}</Text>
+                </View>
+            );
+        });
+    }
+
+    let copperView = <></>;
+    if (copper.current != null) {
+        copperView = (
+        <View key={'copper'} style={{ marginRight: 10 }}>
+            <Text>铜币: {copper.current}</Text>
+        </View>
+        );
+    }
+
+    return (
+        <View style={{ width: '100%', flexDirection: 'row' }}>
+            {subViews}
+            {copperView}
+        </View>
+    );
+}
+
 const ShopPage = (props) => {
 
     const [data, setData] = React.useState([]);
     const [select, setSelect] = React.useState(0);
     const context = React.useContext(ThemeContext);
     const refreshTime = React.useRef(0);
+    const shopConfig = React.useRef(null);
+    const forceUIRefreshKey = React.useRef(0);
 
     const refresh = () => {
-        AppDispath({ type: 'ShopModel/getList', payload: { }, cb: (data) => {
-            if (data == null)
+        AppDispath({ type: 'ShopsModel/getList', payload: { shopId: props.shopId }, cb: (result) => {
+            if (result == null)
                 return
             //
-            refreshTime.current = data.timeout;
-            setData(data.data);
+            refreshTime.current = result.timeout;
+            shopConfig.current = result.config;
+            setData(result.data);
         }});
     }
 
     const buy = (propId) => {
-        AppDispath({ type: 'ShopModel/buy', payload: { propId: propId }, cb: (v) => {
+        AppDispath({ type: 'ShopsModel/buy', payload: { shopId: props.shopId, propId: propId }, cb: (v) => {
             if (v) {
                 refresh();
             }
@@ -73,6 +150,8 @@ const ShopPage = (props) => {
             data.item.config.consume.forEach(e => {
                 if (e.propConfig != undefined) {
                     consumeList.push(`${e.propConfig.name}x${e.num}`);
+                } else if (e.copper != undefined) {
+                    consumeList.push(`铜币x${e.copper}`);
                 }
             });
         }
@@ -94,7 +173,7 @@ const ShopPage = (props) => {
                         <Text style={[{ marginLeft: 5, fontSize: 14 }, color]}>(库存: {data.item.num})</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Text style={{ marginRight: 20, fontSize: 16, color: '#424242', textAlign: 'right' }}>消耗: {lo.join(consumeList, ',')}</Text>
+                        <Text style={{ marginRight: 20, fontSize: 16, color: '#424242', textAlign: 'right' }}>{lo.join(consumeList, ',')}</Text>
                     </View>
                     <View style={{ width: 60, height: 32 }}>
                         {
@@ -114,6 +193,10 @@ const ShopPage = (props) => {
         nextRefreshTimeStr = DateTime.format(refreshTime.current, 'hh:mm:ss');
     }
 
+    if (data != null) {
+        forceUIRefreshKey.current += 1;
+    }
+
     return (
         <View style={styles.mainContainer}>
             <SafeAreaView style={{ flex: 1 }}>
@@ -128,7 +211,10 @@ const ShopPage = (props) => {
                         </View>
                     </TouchableWithoutFeedback>
                     <View style={styles.headerView}>
-                        <Text style={{ fontSize: 22, color: '#000' }}>市场</Text>
+                        <Text style={{ fontSize: 22, color: '#000' }}>{(shopConfig.current != null) ? shopConfig.current.name : ''}</Text>
+                    </View>
+                    <View style={styles.attrsView}>
+                        <EconomicAttrs key={forceUIRefreshKey.current} user={props.user} data={data} />
                     </View>
                     <View style={styles.listView}>
                         <FlatList
@@ -138,9 +224,16 @@ const ShopPage = (props) => {
                             keyExtractor={item => item.propId}
                         />
                     </View>
+                    {
+                    (shopConfig.current != null && shopConfig.current.cdValue > 0)
+                    ?
+                    (
                     <View style={styles.refreshBanner}>
                         <Text>下次刷新：{nextRefreshTimeStr}</Text>
                     </View>
+                    )
+                    : <></>
+                    }
                 </View>
             </SafeAreaView>
         </View>
@@ -154,12 +247,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#eee',
+        zIndex: 99,
     },
     viewContainer: {
-        width: '100%',
+        width: WIN_SIZE.width,
         height: '100%',
-        // borderWidth: 1,
-        // borderColor: '#333',
         alignItems: 'center',
     },
     headerView: {
@@ -167,6 +259,14 @@ const styles = StyleSheet.create({
         marginTop: 5,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    attrsView: {
+        width: '94%',
+        height: 24,
+        marginTop: 10,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        // backgroundColor: '#669900',
     },
     listView: {
         width: '94%',
@@ -240,4 +340,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ShopPage;
+export default connect((state) => ({ user: { ...state.UserModel } }))(ShopPage);
