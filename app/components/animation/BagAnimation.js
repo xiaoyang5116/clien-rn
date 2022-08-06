@@ -1,5 +1,4 @@
 import React from 'react';
-import lo from 'lodash';
 
 import { px2pd } from '../../constants/resolution';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -8,12 +7,10 @@ import {
     Animated,
     View,
     StyleSheet,
-    DeviceEventEmitter,
     TouchableWithoutFeedback,
 } from 'react-native';
 import RootView from '../RootView';
 import PropsTabPage from '../../pages/home/PropsTabPage';
-import { EventKeys } from '../../constants';
 
 const PropsWrapper = (props) => {
     return (
@@ -37,49 +34,42 @@ const PropsWrapper = (props) => {
 const BagAnimation = (props) => {
 
     const scale = React.useRef(new Animated.Value(0)).current;
-    const opacity = React.useRef(new Animated.Value(0)).current;
 
     React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener(EventKeys.ARTICLE_SHOW_BAG_ANIMATION, () => {
-            opacity.setValue(1);
-            Animated.sequence([
-                Animated.timing(scale, {
-                  toValue: 1.2,
-                  duration: 200,
-                  useNativeDriver: false,
-                }),
-                Animated.timing(scale, {
-                  toValue: 1,
-                  duration: 200,
-                  useNativeDriver: false,
-                }),
-                Animated.delay(20 * 1000),
-              ]).start(r => {
-                const { finished } = r;
-                if (finished) {
-                    if (props.onClose != undefined) {
-                        props.onClose();
-                    }
+        Animated.sequence([
+            Animated.timing(scale, {
+              toValue: 1.2,
+              duration: 200,
+              useNativeDriver: false,
+            }),
+            Animated.timing(scale, {
+              toValue: 1,
+              duration: 200,
+              useNativeDriver: false,
+            }),
+            Animated.delay(20 * 1000),
+          ]).start(r => {
+            const { finished } = r;
+            if (finished) {
+                if (props.onClose != undefined) {
+                    props.onClose();
                 }
-              });
-        });
-        return () => {
-            listener.remove();
-        }
+            }
+          });
     }, []);
 
     return (
         <View style={[styles.viewContainer]} pointerEvents='box-none'>
-            <Animated.View style={{ position: 'absolute', bottom: 30, right: 30, opacity: opacity }}>
+            <Animated.View style={{ position: 'absolute', bottom: 30, right: 30 }}>
                 <TouchableWithoutFeedback onPress={() => {
-                    //
                     setTimeout(() => {
                         const key = RootView.add(<PropsWrapper {...props} onClose={() => {
                             RootView.remove(key);
                         }} />);
                     }, 0);
-                    //
-                    opacity.setValue(0);
+                    if (props.onClose != undefined) {
+                        props.onClose();
+                    }
                 }}>
                     <Animated.Image style={{ width: px2pd(210), height: px2pd(210), transform: [{ scale: scale }] }} source={require('../../../assets/button/collect_bag1.png')} />
                 </TouchableWithoutFeedback>
