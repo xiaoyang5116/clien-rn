@@ -73,8 +73,8 @@ scenes: [
           { key: 'P3', content: ['这几天，李森炎适应下来，于是继续加大药量。','很快，陶老本尊给的锻骨灵液就被他消耗一空。','他感觉自己的肉身强度已经达到一种瓶颈，而他的修为，也在这过程中飞速提升，逐渐摸到炼气五重的门槛。',
           '尽管随着时间的推移，药力的累积，淬炼过程中的疼痛在所难免，但有了上次噩梦般的经历过后，当下淬体的疼痛都是小儿科了。',
           '李森炎看着纳戒中剩下的筑基期锻骨灵液，陷入了沉思。',],
-          btn: [{title: '用（体魄+1）',toChapter: "WZXX_M1_N1_C019_[N1]",dropId: 'WZXX_M1_N1_C0019_V_Vdrop1'},
-          {title: '还是不用（自由+1）',tokey: "P4",  icon: { id: 6, bindVar: 'biaoqianv1' },dropId: 'WZXX_M1_N1_C0019_V_Vdrop2'}]},
+          btn: [{title: '用（体魄+1）',toChapter: "WZXX_M1_N1_C019_[N1]",dropIds: [ 'WZXX_M1_N1_C0019_V_Vdrop1'],},
+          {title: '还是不用（自由+1）',tokey: "P4",  icon: { id: 6, bindVar: 'biaoqianv1' },dropIds: [ 'WZXX_M1_N1_C0019_V_Vdrop2'],}]},
          
 
           { key: 'P4', content: ['回想起上次的痛苦，还是不用了！','李森炎收敛心神，准备离开客栈，却到处找不到云云','等待了几个时辰，到外面疯玩的云云终于回来了，却也带来了麻烦',

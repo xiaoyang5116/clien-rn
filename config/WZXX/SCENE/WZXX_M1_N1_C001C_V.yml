@@ -174,7 +174,7 @@ scenes: [
 
     # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '跟踪杀手#1', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen1',style: 6, title: '跟踪杀手#1', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','看上去就和寻常窄道没有区别','李森炎决定',],
 

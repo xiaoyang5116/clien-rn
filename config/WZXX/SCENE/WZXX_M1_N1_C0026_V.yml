@@ -136,7 +136,7 @@ scenes: [
                     [
                       {
                         title: "回到入口",
-                        toChapter: "WZXX_M1_N1_C026_[V1]", dropId: 'WZXX_M1_N1_C0026_V_Vdrop1', 
+                        toChapter: "WZXX_M1_N1_C026_[V1]", dropIds: [ 'WZXX_M1_N1_C0026_V_Vdrop1'], 
                       },
                     ],
                 },
@@ -160,7 +160,7 @@ scenes: [
                     [
                       {
                         title: "回到入口",
-                        toChapter: "WZXX_M1_N1_C026_[V1]", dropId: 'WZXX_M1_N1_C0026_V_Vdrop2',
+                        toChapter: "WZXX_M1_N1_C026_[V1]", dropIds: [ 'WZXX_M1_N1_C0026_V_Vdrop2'],
                       },
                     ],
                 },
@@ -184,7 +184,7 @@ scenes: [
                     [
                       {
                         title: "回到入口",
-                        toChapter: "WZXX_M1_N1_C026_[V1]", dropId: 'WZXX_M1_N1_C0026_V_Vdrop3','WZXX_M1_N1_C0026_V_Vdrop4', 'WZXX_M1_N1_C0026_V_Vdrop5','WZXX_M1_N1_C0026_V_Vdrop6','WZXX_M1_N1_C0026_V_Vdrop7',
+                        toChapter: "WZXX_M1_N1_C026_[V1]", dropIds: [ 'WZXX_M1_N1_C0026_V_Vdrop3'],
 
                       },
                     ],

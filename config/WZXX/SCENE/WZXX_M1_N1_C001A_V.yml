@@ -104,7 +104,7 @@ scenes: [
            btn: [{title: '…………',dialogs: ['gameover00'] , varsOn: ['biaoqianv6','biaoqianv3',]}]},     
 
           { key: 'p1D4', content: ['什么都不说','说多错多','干脆让对方脑补','……','杀手：这小子看起来这么自信，难道真有料不成？',['盖章过关'],'……'],
-          btn: [{title: '有戏',toChapter: "WZXX_M1_N1_C001B", dropId: 'WZXX_M1_N1_C001A_V_Vdrop1',  varsOn: ['biaoqianv7','biaoqianv3',]}]},    
+          btn: [{title: '有戏',toChapter: "WZXX_M1_N1_C001B",  dropIds: ['WZXX_M1_N1_C001A_V_Vdrop1',],  varsOn: ['biaoqianv7','biaoqianv3',]}]},    
 
 
 
