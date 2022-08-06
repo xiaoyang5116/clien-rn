@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C006_[N0]']}, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C006_[N0]FZ'] }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C006_[N1]']}, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C006_[N1]FZ'] }, 
      { header: '第六章 初见陶老N1' },
 ]
 #END==========================================
