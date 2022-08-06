@@ -8,7 +8,7 @@
 # ===========================================
 drops: [
   #
-  { id: 'WZXX_M1_N1_C001V_Vdrop1', sendProps: '887,10',showBag', },
+  { id: 'WZXX_M1_N1_C001V_Vdrop1', sendProps: '887,10,showBag', },
   { id: 'WZXX_M1_N1_C001V_drop2',  alertAttrs: ['悟性,1'] },
   { id: 'WZXX_M1_N1_C001V_drop3',  alertAttrs: ['悟性,1'] },
   { id: 'WZXX_M1_N1_C001V_drop4',  alertAttrs: ['智慧,1'] },
@@ -20,10 +20,10 @@ drops: [
   #
   { id: 'WZXX_M1_N1_C001A_V_Vdrop1', sendProps: '887,10,showBag', },
   #
-  { id: 'WZXX_M1_N1_C002A_V_Vdrop1', sendProps: '600,1',showBag', },
-  { id: 'WZXX_M1_N1_C002A_V_Vdrop2', sendProps: '601,1,',showBag', },
-  { id: 'WZXX_M1_N1_C002A_V_Vdrop3', sendProps: '602,1', showBag',},
-  { id: 'WZXX_M1_N1_C002A_V_Vdrop4', sendProps: '887,10', showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_Vdrop1', sendProps: '600,1,showBag', },
+  { id: 'WZXX_M1_N1_C002A_V_Vdrop2', sendProps: '601,1,showBag', },
+  { id: 'WZXX_M1_N1_C002A_V_Vdrop3', sendProps: '602,1,showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_Vdrop4', sendProps: '887,10,showBag',},
   { id: 'WZXX_M1_N1_C002A_V_Vdrop5',  alertAttrs: ['变化,1'] },
   { id: 'WZXX_M1_N1_C002A_V_Vdrop6',  alertAttrs: ['变化,1'] },
   { id: 'WZXX_M1_N1_C002A_V_Vdrop7',  alertAttrs: ['变化,1'] },
@@ -31,7 +31,7 @@ drops: [
   { id: 'WZXX_M1_N1_C002A_V_Vdrop9',  alertAttrs: ['身法,1'] },
   #
   { id: 'WZXX_M1_N1_C002B_V_Vdrop1',  alertAttrs: ['仙缘,1'] },
-  { id: 'WZXX_M1_N1_C002B_V_Vdrop2', sendProps: '887,100',showBag', },
+  { id: 'WZXX_M1_N1_C002B_V_Vdrop2', sendProps: '887,100,showBag', },
   { id: 'WZXX_M1_N1_C002B_V_Vdrop3',  alertAttrs: ['善良,1'] },
   { id: 'WZXX_M1_N1_C002B_V_Vdrop4',  alertAttrs: ['冷漠,1'] },
   { id: 'WZXX_M1_N1_C002B_V_Vdrop5',  alertAttrs: ['成神,1'] },
@@ -48,41 +48,42 @@ drops: [
   #
   { id: 'WZXX_M1_N1_C005_VA_Vdrop1',  alertAttrs: ['善良,1'] },
   { id: 'WZXX_M1_N1_C005_VA_Vdrop2',  alertAttrs: ['冷漠,1','自由,1'] },
-  { id: 'WZXX_M1_N1_C005_VA_Vdrop3', sendProps: '887,1000',showBag', },
-  { id: 'WZXX_M1_N1_C005_VA_Vdrop4', sendProps: '887,1000',showBag', },
-  { id: 'WZXX_M1_N1_C005_VA_Vdrop5', sendProps: '887,1000',showBag', },
+  { id: 'WZXX_M1_N1_C005_VA_Vdrop3', sendProps: '887,1000,showBag', },
+  { id: 'WZXX_M1_N1_C005_VA_Vdrop4', sendProps: '887,1000,showBag', },
+  { id: 'WZXX_M1_N1_C005_VA_Vdrop5', sendProps: '887,1000,showBag', },
   { id: 'WZXX_M1_N1_C005_VA_Vdrop6',  alertAttrs: ['善良,1'] },
   { id: 'WZXX_M1_N1_C005_VA_Vdrop7',  alertAttrs: ['冷漠,1','自由,1'] },
-  { id: 'WZXX_M1_N1_C005_VA_Vdrop8', sendProps: '887,1000',showBag', },
-  { id: 'WZXX_M1_N1_C005_VA_Vdrop9', sendProps: '887,1000', showBag',},
-  { id: 'WZXX_M1_N1_C005_VA_Vdrop10', sendProps: '887,1000', showBag',},
+  { id: 'WZXX_M1_N1_C005_VA_Vdrop8', sendProps: '887,1000,showBag', },
+  { id: 'WZXX_M1_N1_C005_VA_Vdrop9', sendProps: '887,1000, showBag',},
+  { id: 'WZXX_M1_N1_C005_VA_Vdrop10', sendProps: '887,1000, showBag',},
   #
-  { id: 'WZXX_M1_N1_C006_V_Vdrop1', sendProps: '887,1000', showBag',},
-  { id: 'WZXX_M1_N1_C006_V_Vdrop2', sendProps: '887,1000', showBag', },
-  { id: 'WZXX_M1_N1_C006_V_Vdrop3', sendProps: '887,1000', showBag',},
-  { id: 'WZXX_M1_N1_C006_V_Vdrop4', sendProps: '887,-1000', showBag',},
+  { id: 'WZXX_M1_N1_C006_V_Vdrop1', sendProps: '887,1000, showBag',},
+  { id: 'WZXX_M1_N1_C006_V_Vdrop2', sendProps: '887,1000, showBag', },
+  { id: 'WZXX_M1_N1_C006_V_Vdrop3', sendProps: '887,1000, showBag',},
+  { id: 'WZXX_M1_N1_C006_V_Vdrop4', sendProps: '887,-1000, showBag',},
   #
   { id: 'WZXX_M1_N1_C006_drop1',  alertAttrs: ['悟性,1'] },
-  { id: 'WZXX_M1_N1_C006_drop2', sendProps: '886,1', showBag',},
+  { id: 'WZXX_M1_N1_C006_drop2', sendProps: '886,1, showBag',},
   #
   { id: 'WZXX_M1_N1_C0017_V_Vdrop1',  alertAttrs: ['入魔,1'] },
   #
   { id: 'WZXX_M1_N1_C0019_V_Vdrop1',  alertAttrs: ['体魄,1'] },
   { id: 'WZXX_M1_N1_C0019_V_Vdrop2',  alertAttrs: ['自由,1'] },
   #
-  { id: 'WZXX_M1_N1_C0020_V_Vdrop1',  sendProps: '886,16',showBag', },
-  { id: 'WZXX_M1_N1_C0020_V_Vdrop2',  sendProps: '886,16','890,3',showBag',},
+  { id: 'WZXX_M1_N1_C0020_V_Vdrop1',  sendProps: '886,16,showBag', },
+  { id: 'WZXX_M1_N1_C0020_V_Vdrop2',  sendProps: '886,16,showBag',},
+  { id: 'WZXX_M1_N1_C0020_V_Vdrop3',  sendProps: '890,3,showBag',},
   #
-  { id: 'WZXX_M1_N1_C0021_V_Vdrop1',  sendProps: '608,10',showBag',},
+  { id: 'WZXX_M1_N1_C0021_V_Vdrop1',  sendProps: '608,10,showBag',},
   #
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop1',  sendProps: '338,10',showBag',},
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop2',  sendProps: '339,2',showBag',},
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop3',  sendProps: '886,16',showBag',},
-  
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop4',  sendProps: '349,1',showBag',},
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop5',  sendProps: '333,3',showBag',},
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop6',  sendProps: '332,1',showBag',},
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop7',  sendProps: '319,1',showBag',},
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop1',  sendProps: '338,10,showBag',},
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop2',  sendProps: '339,2,showBag',},
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop3',  sendProps: '886,16,showBag',},
+
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop4',  sendProps: '349,1,showBag',},
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop5',  sendProps: '333,3,showBag',},
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop6',  sendProps: '332,1,showBag',},
+  { id: 'WZXX_M1_N1_C0026_V_Vdrop7',  sendProps: '319,1,showBag',},
 
   { id: 'WZXX_M1_N1_C0026_V_Vdrop8',   alertAttrs: ['善良,1'] },
   { id: 'WZXX_M1_N1_C0026_V_Vdrop9',   alertAttrs: ['冷漠,1'] },
