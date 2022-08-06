@@ -157,9 +157,8 @@ scenes: [
           { id: "WZXX_M1_N1_C029B_[V2]FZ",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C030A_[V2]",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C030A_[V2]FZ",min: 0, max: 1 },
-
+          { id: "WZXX_M1_N1_C037",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C038",min: 0, max: 1 },
-          
         ],
 
       #

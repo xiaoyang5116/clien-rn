@@ -321,7 +321,7 @@ directory: [
     id: 3, 
     title: '未开启',
     map: [
-      
+       { point: [0, 0], title: '坊市地图测试',toChapter: 'WZXX_M1_N1_C037', links: [[],[]] },
     ]
   },
 
