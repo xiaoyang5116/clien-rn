@@ -78,6 +78,13 @@ export default {
       yield put.resolve(action('saveCluesList')([...newCluesList, ...cluesList]));
     },
 
+    // 获得 status = 0 的线索
+    *getUnusedClues({ }, { select }) {
+      const { cluesList, __allCluesData, cluesConfigData } = yield select(state => state.CluesModel);
+      const result = cluesList.filter(item => item.status === 0)
+      return result
+    },
+
     // 保存并更新线索
     * saveCluesList({ payload }, { call, put, select }) {
       yield call(LocalStorage.set, LocalCacheKeys.CLUES_DATA, payload);
