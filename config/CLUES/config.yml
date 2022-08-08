@@ -1,74 +1,43 @@
 ## 配置线索
 
-cluesConfigData:
-  {
-    defaultClues: [1, 2, 3, 4, 5],
-  
-    type:
-      [
-        {id: 0, type: 'CLUES', name: '线索'},
-        {id: 1, type: 'GOSSIP', name: '流言'},
-        {id: 2, type: 'INTELLIGENCE', name: '情报'},
-      ],
+cluesConfigData: {
 
-    groupId: ["李家村", "王家村", "杨家村"],
+    # 默认 线索
+    defaultClues: ['xiansuo1','xiansuo2', 'xiansuo3',],
 
-    filterBtn:
-      [
+    # 线索类型 注册
+    type: ['线索', '流言', '情报'],
+
+    # groupId: ['李家村', '王家村', '杨家村'],
+
+    # 对应线索 过滤条件
+    filterData: [
         {
-          type: 0,
-          filter:
+          type: '线索',
+          filterCondition:
             [
-              {filterType: 'location', filterOption: ['全部', '李家村', '王家村']},
-              {filterType: 'chapter', filterOption: ['全部', '第一章']},
+              {filterType: 'location', filterTypeName: '地点'},
+              {filterType: 'biaoqian', filterTypeName: '标签'},
+              # {filterType: 'chapter', filterTypeName: '章节'},
+
             ],
         },
         {
-          type: 1,
-          filter:
+          type: '流言',
+          filterCondition:
             [
-              {filterType: 'location', filterOption: ['全部', '李家村', '王家村']},
-              {filterType: 'chapter', filterOption: ['全部', '第一章']},
+              {filterType: 'location', filterTypeName: '地址'},
+              # {filterType: 'chapter', filterTypeName: '章节'},
             ],
         },
-        {
-          type: 2,
-          filter:
-            [
-              {filterType: 'location', filterOption: ['全部', '李家村', '王家村']},
-              {filterType: 'chapter', filterOption: ['全部', '第一章']},
-            ],
-        },
-      ],
+    ],
+
+    # 线索配置注册
+    config_List: [
+      'CLUES/xiansuo1',
+      'CLUES/xiansuo2',
+      'CLUES/xiansuo3',
+      'CLUES/xiansuo4',
+    ],
+
   }
-# cluesConfig:
-#   [
-#     {
-#       cluesType: 'CLUES',
-#       cluesTypeName: '线索',
-#       filter:
-#         [
-#           {filterType: 'location', filterOption: ['全部', '李家村', '王家村']},
-#           {filterType: 'chapter', filterOption: ['全部', '第一章']},
-#         ],
-#       data: ['xiansuo1', 'xiansuo2', 'xiansuo3', 'xiansuo4', 'xiansuo5'],
-#     },
-#     {
-#       cluesType: 'INTELLIGENCE',
-#       cluesTypeName: '情报',
-#       filter:
-#         [
-#           {filterType: 'location', filterOption: ['全部', '李家村']},
-#           {filterType: 'chapter', filterOption: ['全部', '第一章']},
-#         ],
-#     },
-#     {
-#       cluesType: 'GOSSIP',
-#       cluesTypeName: '流言',
-#       filter:
-#         [
-#           {filterType: 'location', filterOption: ['全部', '李家村']},
-#           {filterType: 'chapter', filterOption: ['全部', '第一章']},
-#         ],
-#     },
-#   ]

@@ -1,8 +1,0 @@
-# 线索1
-clue:
-  {
-    name: "xiansuo2",
-    title: "SCENE线索2",
-    content: "SCENE线索2...",
-    condition: { npcId: 1, scenes: "pomiao", prop: 20, andVarsOff: ["v7"] },
-  }

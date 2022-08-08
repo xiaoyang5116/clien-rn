@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
         fontColor: '#8addff',
     },
     options_2: {
-        color: '#fff',
+        color: '#000',
     },
 
     /* 选项按钮宽高 */

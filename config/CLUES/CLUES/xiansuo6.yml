@@ -1,8 +1,0 @@
-# 线索1
-clue:
-  {
-    name: "xiansuo6",
-    title: "REDER线索6",
-    content: "REDER线索6...",
-    condition: { npcId: 1, scenes: "pomiao", prop: 20, andVarsOff: ["v7"] },
-  }

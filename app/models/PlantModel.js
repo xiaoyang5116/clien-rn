@@ -272,6 +272,10 @@ export default {
                     for (let l = 0; l < composeState.lingTianData[index].lingTian.length; l++) {
                         if (composeState.lingTianData[index].lingTian[l].id === payload.lingTianId) {
                             composeState.lingTianData[index].lingTian[l].lingQiZhi += payload.lingQiZhi
+                            const lingQiZhi = composeState.lingTianData[index].lingTian[l].lingQiZhi
+                            if (lingQiZhi % 1000 !== 0) {
+                                composeState.lingTianData[index].lingTian[l].grade = parseInt(lingQiZhi / 1000) + 1
+                            }
                         }
                     }
                 }

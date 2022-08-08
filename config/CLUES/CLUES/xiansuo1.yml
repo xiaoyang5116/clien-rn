@@ -1,14 +1,11 @@
 # 线索1
-clue:
+clues:
   {
-    id: "xiansuo1",
-    name: "线索1",
-    filter:
-      [
-        { filterType: "location", filterTypeValue: "李家村" },
-        { filterType: "chapter", filterTypeValue: "第二章" },
-      ],
-    title: "在发射点发生范德萨发士",
-    content: "REDER线索1...在发射点发生范德萨发士大夫萨芬，发生发，手动阀四分发士大夫，1",
-    condition: { npcId: 1, scenes: "pomiao", prop: 20, andVarsOff: ["v7"] },
+    id: 'xiansuo1',
+    type: '线索',
+    groupId: '李家村',
+    filterCondition: {location: '李家村', biaoqian: '豪门'},
+    title: '线索1',
+    content: 'REDER线索1...在发射点发生范德萨发士大夫萨芬，发生发，手动阀四分发士大夫，1',
+    condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
   }
