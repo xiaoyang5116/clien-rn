@@ -174,6 +174,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__shop_{0}".format(payload.toShop), cmd: 'shop', params: payload.toShop });
     }
 
+    // 发送消息指令
+    if (payload.toMsg != undefined && typeof(payload.toMsg) == 'object') {
+      allActions.push({ id: "__msg_{0}".format(payload.toMsg), cmd: 'msg', params: payload.toMsg });
+    }
+
     return allActions;
   }
 }
@@ -244,6 +249,7 @@ const ACTIONS_MAP = [
   { cmd: 'animations',    handler: '__onAnimationsCommand' },
   { cmd: 'dropIds',       handler: '__onDropIdsCommand' },
   { cmd: 'shop',          handler: '__onShopCommand' },
+  { cmd: 'msg',           handler: '__onMsgCommand' },
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;
@@ -767,6 +773,11 @@ export default {
       ShopsUtils.show(payload.params);
     },
 
+    *__onMsgCommand({ payload }, { put }) {
+      const p = payload.params;
+      yield put.resolve(action(p.action)(p.params));
+    },
+
     *syncData({ }, { select, call }) {
       const sceneState = yield select(state => state.SceneModel);
       yield call(LocalStorage.set, LocalCacheKeys.SCENES_DATA, { 
@@ -848,7 +859,8 @@ export default {
           cond.split(' ').forEach(e => params.push(e.trim()));
           if (params.length != 3) continue;
           
-          const [id, operator, value] = params;
+          const [id, operator, _value] = params;
+          const value = parseInt(_value);
           let compareValue = 0;
 
           if (id == '@world_time_hours') {
@@ -861,6 +873,19 @@ export default {
             const [_k, v] = id.split('_');
             const propId = parseInt(v);
             compareValue = yield put.resolve(action('PropsModel/getPropNum')({ propId: propId }));
+          } else if (id.indexOf('@clues_') == 0) { // 线索条件判断
+            const [_k, v] = id.split('_');
+            const clueId = lo.trim(v);
+            const validList = yield put.resolve(action('CluesModel/getUnusedClues')({}));
+            if (lo.isArray(validList)) {
+              const found = validList.find(e => lo.isEqual(e.id, clueId));
+              if (found != undefined) {
+                compareValue = found.status;
+              }
+            } else {
+              debugMessage("Invalid (CluesModel/getUnusedClues) result");
+              continue;
+            }
           } else if (id.indexOf('@') == 0) {
             debugMessage("Unknown '{0}' identifier!!!", id);
             continue;
