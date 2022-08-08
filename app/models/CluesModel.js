@@ -91,29 +91,31 @@ export default {
     *useClues({ payload }, { call, put, select }) {
       const { addCluesId, useCluesId } = payload
       const { cluesList, __allCluesData } = yield select(state => state.CluesModel);
+
       let newCluesList = [...cluesList]
+
       if (useCluesId !== undefined) {
         for (let index = 0; index < useCluesId.length; index++) {
           for (let c = 0; c < newCluesList.length; c++) {
             const item = newCluesList[c];
             if (item.id === useCluesId[index]) {
-              item.state = 2
+              item.status = 2
             }
           }
         }
-        // newCluesList = cluesList.map(item => item, id === useCluesId ? { ...item.item.status = 2 } : item)
       }
-      console.log("newClues--", newCluesList);
-      // if (addCluesId !== undefined && useCluesId !== undefined) {
-      //   for (let index = 0; index < addCluesId.length; index++) {
-      //     // 跳过已经存在的线索
-      //     if (cluesList.filter(item => item.id === addCluesId[index]).length !== 0) continue;
 
-      //     const clues = __allCluesData.find(item => item.id === addCluesId[index])
-      //     if (clues === undefined) return console.debug("未找到线索")
-      //     newCluesList = [...clues, ...newCluesList]
-      //   }
-      // }
+      if (addCluesId !== undefined && useCluesId !== undefined) {
+        for (let index = 0; index < addCluesId.length; index++) {
+          // 跳过已经存在的线索
+          if (cluesList.filter(item => item.id === addCluesId[index]).length !== 0) continue;
+
+          const clues = __allCluesData.find(item => item.id === addCluesId[index])
+          if (clues === undefined) return console.debug("未找到线索")
+          newCluesList.unshift(clues)
+        }
+      }
+
       yield put.resolve(action('saveCluesList')(newCluesList));
     },
 
