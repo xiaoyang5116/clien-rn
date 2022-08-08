@@ -142,10 +142,10 @@ scenes: [
             #btn: [{title: '…………',dialogs: ['gameover00'],}]},   
 
            { key: 'ok1C', content: ['那么多本武侠小说总看过……','就算没有我也给你忽悠一本','就这么定了','…………', ['盖章过关']  ],
-            btn: [{title: '就这么办', dropIds: [ 'WZXX_M1_N1_C001V_Vdrop1'], toChapter: "WZXX_M1_N1_C001A" ,varsOn: ['biaoqianv7','biaoqianv14',]}]},    
+            btn: [{title: '就这么办', dropIds: [ 'WZXX_M1_N1_C001V_drop1'], toChapter: "WZXX_M1_N1_C001A" ,varsOn: ['biaoqianv7','biaoqianv14',]}]},    
 
            { key: 'ok1D', content: ['虽然没怎么修炼过……','确实有点秘籍的印象','先稳住对方再说','…………', ['盖章过关'] ],
-            btn: [{title: '就这么办', dropIds: [ 'WZXX_M1_N1_C001V_Vdrop1'], toChapter: "WZXX_M1_N1_C001A" , varsOn: ['biaoqianv7','biaoqianv15',]}]},    
+            btn: [{title: '就这么办', dropIds: [ 'WZXX_M1_N1_C001V_drop1'], toChapter: "WZXX_M1_N1_C001A" , varsOn: ['biaoqianv7','biaoqianv15',]}]},    
           ]  
 
         },

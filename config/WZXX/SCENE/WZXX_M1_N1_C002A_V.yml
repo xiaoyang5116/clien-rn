@@ -89,6 +89,14 @@ scenes: [
         ],
       },
 
+       { 
+        id: 'WZXX_M1_N1_C002A_V0', desc: '身体不适', 
+        options: [ 
+          { title: "【身体似乎有些不适】",toChapter: "WZXX_M1_N1_C002_[N5]" },
+
+        ],
+      },
+
       { 
         id: 'WZXX_M1_N1_C002A_V2', desc: '选择回家还是？', 
         options: [ 
