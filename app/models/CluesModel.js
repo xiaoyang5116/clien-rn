@@ -12,6 +12,8 @@ import { GetClueDataApi } from "../services/GetClueDataApi";
 import { GetClueConfigDataApi } from "../services/GetClueConfigDataApi";
 
 
+// status : 0-关闭, 1-未使用, 2- 使用过
+
 export default {
   namespace: 'CluesModel',
 
@@ -50,7 +52,7 @@ export default {
           const item = defaultClues[index]
           const data = __allCluesData.find(i => i.id === item)
           if (data !== undefined) {
-            newCluesList.push({ ...data, status: 0 });
+            newCluesList.push({ ...data, status: 1 });
           }
         }
         yield call(LocalStorage.set, LocalCacheKeys.CLUES_DATA, newCluesList);
@@ -73,7 +75,7 @@ export default {
 
         const clues = __allCluesData.find(item => item.id === cluesId[index])
         if (clues === undefined) return console.debug("未找到线索")
-        newCluesList.push({ ...clues, status: 0 })
+        newCluesList.push({ ...clues, status: 1 })
       }
       yield put.resolve(action('saveCluesList')([...newCluesList, ...cluesList]));
     },
@@ -81,7 +83,7 @@ export default {
     // 获得 status = 0 的线索
     *getUnusedClues({ }, { select }) {
       const { cluesList, __allCluesData, cluesConfigData } = yield select(state => state.CluesModel);
-      const result = cluesList.filter(item => item.status === 0)
+      const result = cluesList.filter(item => item.status === 1)
       return result
     },
 
