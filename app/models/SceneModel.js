@@ -174,6 +174,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__shop_{0}".format(payload.toShop), cmd: 'shop', params: payload.toShop });
     }
 
+    // 发送消息指令
+    if (payload.toMsg != undefined && typeof(payload.toMsg) == 'object') {
+      allActions.push({ id: "__msg_{0}".format(payload.toMsg), cmd: 'msg', params: payload.toMsg });
+    }
+
     return allActions;
   }
 }
@@ -244,6 +249,7 @@ const ACTIONS_MAP = [
   { cmd: 'animations',    handler: '__onAnimationsCommand' },
   { cmd: 'dropIds',       handler: '__onDropIdsCommand' },
   { cmd: 'shop',          handler: '__onShopCommand' },
+  { cmd: 'msg',           handler: '__onMsgCommand' },
 ];
 
 let PROGRESS_UNIQUE_ID = 1230000;
@@ -765,6 +771,11 @@ export default {
 
     *__onShopCommand({ payload }, { put }) {
       ShopsUtils.show(payload.params);
+    },
+
+    *__onMsgCommand({ payload }, { put }) {
+      const p = payload.params;
+      yield put.resolve(action(p.action)(p.params));
     },
 
     *syncData({ }, { select, call }) {
