@@ -44,8 +44,9 @@ const DialogRoutes = (props) => {
         }
 
         // 添加 线索
-        if (item.addClues !== undefined) {
-            props.dispatch(action('CluesModel/addClues')(item.addClues));
+        if (item.addCluesId !== undefined) {
+            // addCluesId: ["xiansuo4"]
+            props.dispatch(action('CluesModel/addClues')({ addCluesId: item.addCluesId }));
         }
     }
 

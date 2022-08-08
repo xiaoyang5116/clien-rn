@@ -11,6 +11,8 @@ import EventListeners from '../utils/EventListeners';
 import { GetClueDataApi } from "../services/GetClueDataApi";
 import { GetClueConfigDataApi } from "../services/GetClueConfigDataApi";
 
+import Toast from "../components/toast";
+
 
 // status : 0-关闭, 1-未使用, 2- 使用过
 
@@ -62,20 +64,21 @@ export default {
 
     // 添加线索
     *addClues({ payload }, { call, put, select }) {
-      // payload {"cluesId": "xiansuo4"}
-      const { cluesId } = payload
+      // payload { "addCluesId": ["xiansuo4"] }
+      const { addCluesId } = payload
       const { cluesList, __allCluesData, cluesConfigData } = yield select(state => state.CluesModel);
 
-      if (!Array.isArray(cluesId)) return console.debug("cluesId 是一个数组")
+      if (!Array.isArray(addCluesId)) return console.debug("cluesId 是一个数组")
 
       let newCluesList = [];
-      for (let index = 0; index < cluesId.length; index++) {
+      for (let index = 0; index < addCluesId.length; index++) {
         // 跳过已经存在的线索
-        if (cluesList.filter(item => item.id === cluesId[index]).length !== 0) continue;
+        if (cluesList.filter(item => item.id === addCluesId[index]).length !== 0) continue;
 
-        const clues = __allCluesData.find(item => item.id === cluesId[index])
+        const clues = __allCluesData.find(item => item.id === addCluesId[index])
         if (clues === undefined) return console.debug("未找到线索")
         newCluesList.push({ ...clues, status: 1 })
+        Toast.show(`获得${clues.type}: ${clues.title}`)
       }
       yield put.resolve(action('saveCluesList')([...newCluesList, ...cluesList]));
     },
