@@ -96,6 +96,20 @@ const StoryTabPage = (props) => {
   const currentMapCenterPoint = React.useRef(null);
   const sceneMapRefreshKey = React.useRef(0);
 
+  const refCurrentChatId = React.useRef('');
+  const refCurrentScene = React.useRef(null);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.FORCE_UPDATE_STORY_CHAT, () => {
+      if (!lo.isEmpty(refCurrentScene.current) && !lo.isEmpty(refCurrentChatId.current)) {
+        props.dispatch(action('SceneModel/processActions')({ nextChat: refCurrentChatId.current, __sceneId: refCurrentScene.current.id }));
+      }
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
   const onClickItem = (e) => {
     props.dispatch(action('StoryModel/click')(e.item));
   }
@@ -214,6 +228,10 @@ const StoryTabPage = (props) => {
       "周{0} {1}".format(DateTime.Week.format(dt.getDay()), DateTime.DayPeriod.format(dt.getHours())),
     ];
   }
+
+  // 同步属性至副作用方法内
+  refCurrentScene.current = props.scene;
+  refCurrentChatId.current = props.chatId;
 
   return (
     <View style={props.currentStyles.viewContainer}>
