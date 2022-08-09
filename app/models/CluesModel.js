@@ -115,7 +115,8 @@ export default {
 
           const clues = __allCluesData.find(item => item.id === addCluesId[index])
           if (clues === undefined) return console.debug("未找到线索")
-          newCluesList.unshift(clues)
+          newCluesList.unshift({ ...clues, status: 1 })
+          Toast.show(`获得${clues.type}: ${clues.title}`)
         }
       }
 
