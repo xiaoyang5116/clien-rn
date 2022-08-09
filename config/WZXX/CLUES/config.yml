@@ -3,7 +3,7 @@
 cluesConfigData: {
 
     # 默认 线索
-    defaultClues: ['xiansuo1','xiansuo2', 'xiansuo3',],
+    defaultClues: ['xiansuo2', 'xiansuo3'],
 
     # 线索类型 注册
     type: ['线索', '流言', '情报'],
@@ -27,7 +27,6 @@ cluesConfigData: {
           filterCondition:
             [
               {filterType: 'location', filterTypeName: '地址'},
-              # {filterType: 'chapter', filterTypeName: '章节'},
             ],
         },
     ],
@@ -38,6 +37,9 @@ cluesConfigData: {
       'CLUES/xiansuo2',
       'CLUES/xiansuo3',
       'CLUES/xiansuo4',
+      'Liuyan/liuyan1',
+      'Liuyan/liuyan2',
+      'Liuyan/liuyan3',
     ],
 
   }
