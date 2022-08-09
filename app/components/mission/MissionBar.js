@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { Animated, ScrollView, StyleSheet } from 'react-native';
 
 import {
   action,
@@ -31,30 +31,75 @@ const BoxItem = (props) => {
 
 const MissionBar = (props) => {
 
+  const translateY = React.useRef(new Animated.Value(0)).current;
+  const zIndex = React.useRef(new Animated.Value(0)).current;
+  const showBtnOpacity = React.useRef(new Animated.Value(0)).current;
+
+  const hide = () => {
+    Animated.timing(translateY, {
+      toValue: 200,
+      duration: 300,
+      useNativeDriver: true,
+    }).start((r) => {
+      const { finished } = r;
+      if (finished) {
+        zIndex.setValue(0);
+        Animated.timing(showBtnOpacity, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: false,
+        }).start();
+      }
+    });
+  }
+
+  const show = () => {
+    showBtnOpacity.setValue(0);
+    zIndex.setValue(100);
+    Animated.timing(translateY, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: true
+    }).start((r) => {
+    });
+  }
+
+  React.useEffect(() => {
+    hide();
+  }, []);
+
   const boxItems = [];
   lo.range(28).forEach(e => {
     boxItems.push(<BoxItem key={e} style={(e <= 1) ? { marginLeft: 10 } : {}} />);
   });
 
   return (
-      <View style={{ position: 'absolute', bottom: 40, width: '100%', height: px2pd(320), backgroundColor: '#a49f99', zIndex: 100 }}>
+      <Animated.View style={[styles.viewContainer, { transform: [{ translateY: translateY }], zIndex: zIndex }]}>
         <View style={{ position: 'absolute', right: 5, top: -25 }}>
-          <AntDesign name='close' size={25} onPress={() => {
-            if (props.onClose != undefined) {
-              props.onClose();
-            }
-          }} />
+          <AntDesign name='close' size={25} onPress={() => hide()} />
         </View>
-        <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false} style={{  }}>
+        <Animated.View style={[{ position: 'absolute', right: 90, top: -105 }, { opacity: showBtnOpacity }]}>
+          <AntDesign name='upcircleo' size={20} onPress={() => show()} />
+        </Animated.View>
+        <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false} style={{}}>
           <View style={{ flexWrap: 'wrap' }}>
             {boxItems}
           </View>
         </ScrollView>
-      </View>
+      </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
+  viewContainer: {
+    position: 'absolute', 
+    bottom: 40, 
+    width: '100%', 
+    height: px2pd(320), 
+    backgroundColor: '#a49f99', 
+    // zIndex: 100,
+  },
+
   boxItem: {
     width: px2pd(120), 
     height: px2pd(120), 

@@ -256,6 +256,7 @@ const StoryTabPage = (props) => {
         />
       </View>
       {renderSceneProgress()}
+      <MissionBar />
       {renderMap()}
     </View>
   );
