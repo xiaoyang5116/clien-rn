@@ -40,12 +40,21 @@ const _images = {
         { id: 5, img: require('../../assets/button_icon/5.png'), top: 0, right: 0 },
         { id: 6, img: require('../../assets/button_icon/6.png'), top: 0, left: 10 },
         { id: 7, img: require('../../assets/button_icon/7.png'), top: 0, left: 10 },
-    ]
+    ],
+    bust: [
+        { id: 1, img: require('../../assets/avatar/1.jpg') },
+        { id: 2, img: require('../../assets/avatar/2.jpg') },
+    ],
 }
 
 // 获得头像
 export const changeAvatar = (avatar) => {
     return _images.avatar.find(a => a.id == avatar).img
+}
+
+// 获得 半身图片
+export const getBustImg = (bust) => {
+    return _images.bust.find(a => a.id == bust).img
 }
 
 // 获取面板风格图片

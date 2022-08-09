@@ -1,0 +1,12 @@
+# 剧情人物配置
+data:
+  {
+    figure:
+      [
+        { id: "01", name: "李森炎", avatar: "1", cover: "", bust: 1,},
+        { id: "02", name: "陶老本尊", avatar: "3", cover: "", bust: 2, },
+        { id: "03", name: "为老不尊", avatar: "4", cover: "", bust: 3, },
+        { id: "05", name: "吾才是本尊", avatar: "5", cover: "", bust: 4, },
+        { id: "04", name: "云云", avatar: "2", cover: "", bust: 5, },
+      ],
+  }
