@@ -543,7 +543,7 @@ export default {
     },
 
     *processTimeoutActions({ payload }, { put }) {
-      const timeoutActions = { chatId: payload.chatId, actions: payload.timeoutActions };
+      const timeoutActions = { chatId: payload.chatId, actions: payload.timeoutActions, __sceneId: payload.__sceneId };
       yield put.resolve(action('processActions')(timeoutActions));
     },
 
