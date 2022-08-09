@@ -7,7 +7,6 @@ export const SHCOK = 'shock';
 export const EDGE_LIGHT = 'edge_light';
 export const SCREEN_CENTER_STRETCH = 'screen_center_stretch';
 export const FLASH_BUXUE = "FlashBuXue"
-export const BOOM = "Boom"
 export const ONOMATOPOEIA = "Onomatopoeia"
 export const KNIFELIGHT = "knifeLight"
 
@@ -83,10 +82,35 @@ export const animationAction = type => {
                 type: FLASH_BUXUE,
                 action: edge_light_green,
             };
-        case "boom":
+        case "砰砰":
             return {
                 type: ONOMATOPOEIA,
                 typeId: 1,
+            };
+        case "嗖嗖":
+            return {
+                type: ONOMATOPOEIA,
+                typeId: 2,
+            };
+        case "啊湫":
+            return {
+                type: ONOMATOPOEIA,
+                typeId: 3,
+            };
+        case "啊!":
+            return {
+                type: ONOMATOPOEIA,
+                typeId: 4,
+            };
+        case "呼呼":
+            return {
+                type: ONOMATOPOEIA,
+                typeId: 5,
+            };
+        case "哐当":
+            return {
+                type: ONOMATOPOEIA,
+                typeId: 6,
             };
         case "拔刀":
             return {
