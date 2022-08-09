@@ -6,6 +6,7 @@ import {
 
 import * as RootNavigation from '../utils/RootNavigation';
 import lo from 'lodash';
+import EventListeners from "../utils/EventListeners";
 
 export default {
   namespace: 'StoryModel',
@@ -19,6 +20,15 @@ export default {
   },
 
   effects: {
+
+    *reload({ }, { call, put, select }) {
+      const storyState = yield select(state => state.StoryModel);
+      storyState.time = 0;
+      storyState.position = '';
+      storyState.scene = null;
+      storyState.sceneVars.length = 0;
+      storyState.sectionData.length = 0;
+    },
 
     // 进入场景
     *enter({ payload }, { put, select }) {
@@ -118,9 +128,9 @@ export default {
 
   subscriptions: {
     registerReloadEvent({ dispatch }) {
-      // EventListeners.register('reload', (msg) => {
-      //   return dispatch({ 'type':  'reload'});
-      // });
+      EventListeners.register('reload', (msg) => {
+        return dispatch({ 'type':  'reload'});
+      });
     },
   }
 }

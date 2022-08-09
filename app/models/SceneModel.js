@@ -286,6 +286,7 @@ export default {
       const sceneState = yield select(state => state.SceneModel);
 
       // 从书本目录获取场景列表
+      sceneState.__data.sceneList.length = 0;
       if (sceneState.__data.scenesConfig == null) {
         const booksConfig = yield call(GetBooksDataApi);
         for (let k in booksConfig.books.list) {
