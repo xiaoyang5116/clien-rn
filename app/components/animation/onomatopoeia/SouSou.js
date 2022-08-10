@@ -86,8 +86,6 @@ const SouSouContainer = (props) => {
   const animationEndListener = useRef(null)
 
   useEffect(() => {
-    let closeTimer = null
-
     animationEndListener.current = DeviceEventEmitter.addListener("SouSou", (value) => {
       animationCount.current += value
       if (animationCount.current === DATA.length) {
@@ -101,7 +99,6 @@ const SouSouContainer = (props) => {
 
     return () => {
       clearTimeout(timer,)
-      clearTimeout(closeTimer)
       if (animationEndListener.current !== null) {
         animationEndListener.current.remove();
       }

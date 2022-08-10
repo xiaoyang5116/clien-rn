@@ -112,6 +112,21 @@ export const animationAction = type => {
                 type: ONOMATOPOEIA,
                 typeId: 6,
             };
+        case "嘎吱":
+            return {
+                type: ONOMATOPOEIA,
+                typeId: 7,
+            };
+        case "隔~":
+            return {
+                type: ONOMATOPOEIA,
+                typeId: 8,
+            };
+        case "嘣~":
+            return {
+                type: ONOMATOPOEIA,
+                typeId: 9,
+            };
         case "拔刀":
             return {
                 type: KNIFELIGHT,

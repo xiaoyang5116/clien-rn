@@ -44,8 +44,6 @@ const KuangDang = (props) => {
   slightShock = () => {
     if (index > 4) return animEnd()
     let r = Math.floor(Math.random() * 10 + 1);
-    // rotate.setValue(r)
-    // console.log("r", rotate);
     Animated.sequence([
       Animated.timing(rotate, { toValue: r, duration: 20, useNativeDriver: false, easing: Easing.linear }),
       Animated.timing(rotate, { toValue: -r, duration: 20, useNativeDriver: false, easing: Easing.linear }),

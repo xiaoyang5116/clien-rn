@@ -7,6 +7,10 @@ import AQiuModel2 from './AQiu2'
 import AModel from './A'
 import HuHuModel from './HuHu'
 import KuangDangModal from './KuangDang'
+import GaZhiModal from './GaZhi'
+import DaGeModal from './DaGe'
+import BengModal from './Beng'
+
 
 const Onomatopoeia = (props) => {
     const { typeId } = props
@@ -23,6 +27,12 @@ const Onomatopoeia = (props) => {
             return HuHuModel.show(props)
         case 6:
             return KuangDangModal.show(props)
+        case 7:
+            return GaZhiModal.show(props)
+        case 8:
+            return DaGeModal.show(props)
+        case 9:
+            return BengModal.show(props)
     }
 }
 
