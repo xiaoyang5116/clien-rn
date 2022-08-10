@@ -10,6 +10,10 @@ import KuangDangModal from './KuangDang'
 import GaZhiModal from './GaZhi'
 import DaGeModal from './DaGe'
 import BengModal from './Beng'
+import ShanModal from './Shan'
+import ShuiModal from './Shui'
+import HouHouHouModal from './HouHouHou'
+import PuChiModal from './PuChi'
 
 
 const Onomatopoeia = (props) => {
@@ -33,6 +37,14 @@ const Onomatopoeia = (props) => {
             return DaGeModal.show(props)
         case 9:
             return BengModal.show(props)
+        case 10:
+            return ShanModal.show(props)
+        case 11:
+            return ShuiModal.show(props)
+        case 12:
+            return HouHouHouModal.show(props)
+        case 13:
+            return PuChiModal.show(props)
     }
 }
 
