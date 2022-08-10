@@ -109,6 +109,14 @@ const WorldSelector = () => {
 }
 
 const ReaderBackgroundImageView = () => {
+  return (
+  <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+    {/* <FastImage style={{ width: '100%', height: '100%', opacity: 0.35 }} source={require('../../assets/bg/explore_bg.jpg')} /> */}
+  </View>
+  );
+}
+
+const ReaderXianGaoImageView = () => {
   const context = React.useContext(DataContext);
   const currentImageId = React.useRef('');
   const nextImage = React.useRef(null);
@@ -392,8 +400,8 @@ const TheWorld = (props) => {
   }, []);
 
   return (
-    <View style={[{ flex: 1 }, { backgroundColor: props.readerStyle.bgColor }]}>
-      <ReaderBackgroundImageView />
+    <View style={[{ flex: 1 }, {  }]}>
+      <ReaderXianGaoImageView />
       <FlatList
         style={{ alignSelf: 'stretch' }}
         ref={(ref) => refList.current = ref}
@@ -714,9 +722,11 @@ class NewArticlePage extends Component {
           </View>
         </HeaderContainer>
         <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
+          <ReaderBackgroundImageView />
           <Tab.Navigator initialRouteName='PrimaryWorld' 
             tabBar={(props) => <WorldTabBar {...props} />}
             screenOptions={{ swipeEnabled: !this.props.isStartPage }}
+            sceneContainerStyle={{ backgroundColor: 'transparent' }}
             >
             <Tab.Screen name="LeftWorld" options={{ tabBarLabel: '现实' }} children={(props) => <TheWorld {...this.props} {...props} />} />
             <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '尘界' }} children={(props) => <TheWorld {...this.props} {...props} />} />

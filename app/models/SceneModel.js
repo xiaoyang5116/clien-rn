@@ -286,6 +286,7 @@ export default {
       const sceneState = yield select(state => state.SceneModel);
 
       // 从书本目录获取场景列表
+      sceneState.__data.sceneList.length = 0;
       if (sceneState.__data.scenesConfig == null) {
         const booksConfig = yield call(GetBooksDataApi);
         for (let k in booksConfig.books.list) {
@@ -543,7 +544,7 @@ export default {
     },
 
     *processTimeoutActions({ payload }, { put }) {
-      const timeoutActions = { chatId: payload.chatId, actions: payload.timeoutActions };
+      const timeoutActions = { chatId: payload.chatId, actions: payload.timeoutActions, __sceneId: payload.__sceneId };
       yield put.resolve(action('processActions')(timeoutActions));
     },
 
