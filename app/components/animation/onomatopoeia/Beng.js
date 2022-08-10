@@ -20,6 +20,8 @@ const Beng = (props) => {
   const scale = useRef(new Animated.Value(0)).current
   const translateX = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(0)).current;
+  const translateX2 = useRef(new Animated.Value(0)).current;
+  const translateY2 = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.parallel([
@@ -31,7 +33,7 @@ const Beng = (props) => {
       }),
       Animated.timing(scale, {
         toValue: 1.5,
-        duration: 50,
+        duration: 200,
         useNativeDriver: false,
         easing: Easing.ease,
       }),
@@ -43,16 +45,22 @@ const Beng = (props) => {
   slightShock = () => {
     if (index > 4) return animationEnd()
 
-    let X = Math.floor(Math.random() * 10 + 30);
-    let Y = Math.floor(Math.random() * 10 + 30);
+    let X = Math.floor(Math.random() * 10 + 5);
+    let Y = Math.floor(Math.random() * 10 + 5);
+    let X2 = Math.floor(Math.random() * 10 + 1);
+    let Y2 = Math.floor(Math.random() * 10 + 1);
     Animated.sequence([
       Animated.parallel([
         Animated.timing(translateX, { toValue: X, duration: 70, useNativeDriver: false, easing: Easing.ease }),
         Animated.timing(translateY, { toValue: Y, duration: 70, useNativeDriver: false, easing: Easing.ease }),
+        Animated.timing(translateX2, { toValue: X2, duration: 70, useNativeDriver: false, easing: Easing.ease }),
+        Animated.timing(translateY2, { toValue: Y2, duration: 70, useNativeDriver: false, easing: Easing.ease }),
       ]),
       Animated.parallel([
         Animated.timing(translateX, { toValue: -X, duration: 70, useNativeDriver: false, easing: Easing.ease }),
         Animated.timing(translateY, { toValue: -Y, duration: 70, useNativeDriver: false, easing: Easing.ease }),
+        Animated.timing(translateX2, { toValue: -X2, duration: 70, useNativeDriver: false, easing: Easing.ease }),
+        Animated.timing(translateY2, { toValue: -Y2, duration: 70, useNativeDriver: false, easing: Easing.ease }),
       ]),
     ]).start(slightShock)
 
@@ -64,8 +72,10 @@ const Beng = (props) => {
       Animated.parallel([
         Animated.timing(translateX, { toValue: 0, duration: 70, useNativeDriver: false, easing: Easing.ease }),
         Animated.timing(translateY, { toValue: 0, duration: 70, useNativeDriver: false, easing: Easing.ease }),
+        Animated.timing(translateX2, { toValue: 0, duration: 70, useNativeDriver: false, easing: Easing.ease }),
+        Animated.timing(translateY2, { toValue: 0, duration: 70, useNativeDriver: false, easing: Easing.ease }),
       ]),
-      Animated.timing(opacity, { toValue: 0, duration: 200, delay: 500, useNativeDriver: false, easing: Easing.ease }),
+      Animated.timing(opacity, { toValue: 0, duration: 500, delay: 200, useNativeDriver: false, easing: Easing.ease }),
     ]).start(props.onClose)
   }
 
@@ -73,22 +83,34 @@ const Beng = (props) => {
     <View pointerEvents='none' style={styles.container}>
       <Animated.View style={{
         opacity,
+        justifyContent: "center",
+        alignItems: 'center',
         transform: [
-          { scale, },
-          { translateX },
-          { translateY },
+          { scale },
         ]
       }}>
-        <ImageBackground style={{
+        <Animated.Image style={{
+          position: "absolute",
           width: px2pd(724),
           height: px2pd(514),
-          justifyContent: "center",
-          alignItems: 'center',
+          transform: [
+            { translateX },
+            { translateY },
+          ]
         }}
           source={require('../../../../assets/animations/onomatopoeia/beng_bg.png')}
-        >
-          <Image style={{ width: px2pd(332), height: px2pd(213) }} source={require('../../../../assets/animations/onomatopoeia/beng.png')} />
-        </ImageBackground>
+        />
+        <Animated.Image
+          style={{
+            width: px2pd(332),
+            height: px2pd(213),
+            transform: [
+              { translateX: translateX2 },
+              { translateY: translateY2 },
+            ]
+          }}
+          source={require('../../../../assets/animations/onomatopoeia/beng.png')}
+        />
 
       </Animated.View>
     </View>

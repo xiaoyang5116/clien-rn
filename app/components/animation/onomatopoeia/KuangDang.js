@@ -14,7 +14,8 @@ const KuangDang = (props) => {
   const animEnd = () => {
     Animated.timing(fadeAnim, {
       toValue: 0,
-      duration: 500,
+      duration: 700,
+      delay: 100,
       useNativeDriver: false,
       easing: Easing.ease,
     }).start(props.onClose)
