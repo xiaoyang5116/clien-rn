@@ -118,6 +118,9 @@ scenes: [
       { id: 't4', cmd: 'var', params: 'v4 = ON' },
     ],
 
+    # 剧情道具
+    plotPropsId: [400, 401, 402, 403, 404, 405, 406, 407, 408],
+
     # 事件定义
     events: [
       { type: 'enter', dialogs: ['p0'] },

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, ScrollView, StyleSheet } from 'react-native';
+import { Animated, DeviceEventEmitter, ScrollView, StyleSheet } from 'react-native';
 
 import {
   connect,
@@ -49,7 +49,7 @@ const BoxItem = (props) => {
     propImage = (
       <FastImage source={image.img} style={{ width: image.width, height: image.height }} />
     );
-    propLabel = <Text numberOfLines={1} style={{ color: '#fff' }}>{props.prop.name}</Text>
+    propLabel = <Text numberOfLines={1} style={{ color: '#fff', fontSize: 13 }}>{props.prop.name}</Text>
   }
 
   return (
@@ -66,13 +66,14 @@ const BoxItem = (props) => {
 
 const MissionBar = (props) => {
 
+  const opacity = React.useRef(new Animated.Value(0)).current;
   const translateY = React.useRef(new Animated.Value(0)).current;
   const zIndex = React.useRef(new Animated.Value(0)).current;
   const showBtnOpacity = React.useRef(new Animated.Value(0)).current;
   const refCurrentScene = React.useRef(null);
   const [boxes, setBoxes] = React.useState([]);
 
-  const hide = () => {
+  const min = () => {
     Animated.timing(translateY, {
       toValue: 200,
       duration: 300,
@@ -91,8 +92,9 @@ const MissionBar = (props) => {
   }
 
   const show = () => {
+    opacity.setValue(1);
+    // zIndex.setValue(100);
     showBtnOpacity.setValue(0);
-    zIndex.setValue(100);
     Animated.timing(translateY, {
       toValue: 0,
       duration: 300,
@@ -101,32 +103,53 @@ const MissionBar = (props) => {
     });
   }
 
-  React.useEffect(() => {
-    AppDispath({ type: 'PropsModel/getPropsFromAttr', payload: { attr: '剧情' }, cb: (v) => {
-      const list = lo.cloneDeep(v);
+  const hide =() => {
+    opacity.setValue(0);
+    min();
+  }
 
-      const items = [];
-      lo.range(28).forEach(e => {
-        let prop = undefined;
-        const found = ID_IDX_MAP.find(i => i[0] == e);
-        if (found != null) {
-          prop = list[found[1]];
-        }
-        items.push(<BoxItem key={e} style={(e <= 1) ? { marginLeft: 10 } : {}} prop={prop} refScene={refCurrentScene} />);
-      });
-      setBoxes(items);
-    } });
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener('__@MissionBar.refresh', () => {
+      if (refCurrentScene.current == null)
+        return
+
+      // 没有指定剧情道具则不显示剧情道具栏
+      if (lo.isArray(refCurrentScene.current.plotPropsId) && refCurrentScene.current.plotPropsId.length > 0) {
+        show();
+      } else {
+        hide();
+      }
+
+      AppDispath({ type: 'PropsModel/getPropsFromAttr', payload: { attr: '剧情' }, cb: (v) => {
+        const vv = lo.cloneDeep(v);
+        const list = vv.filter(e => lo.indexOf(refCurrentScene.current.plotPropsId, e.id) != -1);
+  
+        const items = [];
+        lo.range(28).forEach(e => {
+          let prop = undefined;
+          const found = ID_IDX_MAP.find(i => i[0] == e);
+          if (found != null) {
+            prop = list[found[1]];
+          }
+          items.push(<BoxItem key={e} style={(e <= 1) ? { marginLeft: 10 } : {}} prop={prop} refScene={refCurrentScene} />);
+        });
+        setBoxes(items);
+      } });
+    });
+    return () => {
+      listener.remove();
+    }
   }, []);
 
-  // 记录当前场景
-  refCurrentScene.current = props.scene;
+  // 当场景发生变化时刷新
+  if (props.scene != null && (refCurrentScene.current == null || !lo.isEqual(refCurrentScene.current.id, props.scene.id))) {
+    refCurrentScene.current = props.scene;
+    DeviceEventEmitter.emit('__@MissionBar.refresh');
+  }
 
   return (
-      <Animated.View style={[styles.viewContainer, { transform: [{ translateY: translateY }], zIndex: zIndex }]}>
-        <View style={{ position: 'absolute', right: 5, top: -25 }}>
-          <AntDesign name='close' size={25} onPress={() => hide()} />
-        </View>
-        <Animated.View style={[{ position: 'absolute', right: 90, top: -76 }, { opacity: showBtnOpacity }]}>
+      <Animated.View style={[styles.viewContainer, { transform: [{ translateY: translateY }], opacity: opacity, zIndex: zIndex }]}>
+        <Animated.View style={[{ position: 'absolute', right: 80, top: -53 }, { opacity: showBtnOpacity }]}>
           <AntDesign name='upcircleo' size={20} onPress={() => show()} />
         </Animated.View>
         <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false} style={{}}>
@@ -134,6 +157,9 @@ const MissionBar = (props) => {
             {boxes}
           </View>
         </ScrollView>
+        <TouchableWithoutFeedback onPress={() => min()}>
+          <FastImage style={{ position: 'absolute', right: 23, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_min_button.png')} />
+        </TouchableWithoutFeedback>
       </Animated.View>
   );
 }
@@ -141,7 +167,7 @@ const MissionBar = (props) => {
 const styles = StyleSheet.create({
   viewContainer: {
     position: 'absolute', 
-    bottom: 40, 
+    bottom: 63, 
     width: '100%', 
     height: px2pd(400), 
     backgroundColor: '#a49f99', 
@@ -151,8 +177,8 @@ const styles = StyleSheet.create({
     width: px2pd(120), 
     height: px2pd(120), 
     marginRight: 10, 
-    marginTop: 10, 
-    marginBottom: 12,
+    marginTop: 15, 
+    marginBottom: 6,
     borderWidth: 1, 
     borderColor: '#ccc', 
     borderRadius: 10, 
