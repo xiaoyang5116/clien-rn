@@ -12,6 +12,7 @@ import Animation from '../animation';
 import SingleDialog from './singleDialog';
 import MultiplayerDialog from './MultiplayerDialog';
 import BlackAndWhiteClickDialog from './blackAndWhiteClickDialog';
+import BustDialog from './bustDialog';
 
 
 const DialogRoutes = (props) => {
@@ -81,6 +82,14 @@ const DialogRoutes = (props) => {
     } else if (style === 9 || style === "9A" || style === "9B") {
         return (
             <BlackAndWhiteClickDialog
+                {...props}
+                actionMethod={actionMethod}
+                specialEffects={specialEffects}
+            />
+        )
+    } else if (style === 10) {
+        return (
+            <BustDialog
                 {...props}
                 actionMethod={actionMethod}
                 specialEffects={specialEffects}
