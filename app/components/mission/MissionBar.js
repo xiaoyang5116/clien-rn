@@ -38,6 +38,7 @@ const BoxItem = (props) => {
       }
       AppDispath({ type: 'SceneModel/processActions', payload, cb: () => {
         StoryUtils.refreshCurrentChat();
+        DeviceEventEmitter.emit('__@MissionBar.refresh');
       }});
     }
   }
@@ -51,7 +52,7 @@ const BoxItem = (props) => {
       <FastImage source={image.img} style={{ width: image.width, height: image.height }} />
     );
     propLabel = <Text numberOfLines={1} style={{ color: '#fff', fontSize: 13 }}>{props.prop.name}</Text>
-    // propNum = <Text style={{ position: 'absolute', bottom: 1, right: 5, color: '#ccc', fontSize: 12 }}>{props.prop.num}</Text>
+    propNum = <Text style={{ position: 'absolute', bottom: 1, right: 5, color: '#ccc', fontSize: 12 }}>{props.prop.num}</Text>
   }
 
   return (
@@ -74,6 +75,7 @@ const MissionBar = (props) => {
   const zIndex = React.useRef(new Animated.Value(0)).current;
   const showBtnOpacity = React.useRef(new Animated.Value(0)).current;
   const refCurrentScene = React.useRef(null);
+  const needRefresh = React.useRef(false);
   const [boxes, setBoxes] = React.useState([]);
 
   const min = () => {
@@ -121,6 +123,7 @@ const MissionBar = (props) => {
         show();
       } else {
         hide();
+        return
       }
 
       AppDispath({ type: 'PropsModel/getPropsFromAttr', payload: { attr: '剧情' }, cb: (v) => {
@@ -139,6 +142,13 @@ const MissionBar = (props) => {
         setBoxes(items);
       } });
     });
+
+    // 解决emit消息发送后，监听器未注册的情况
+    if (needRefresh.current) {
+      DeviceEventEmitter.emit('__@MissionBar.refresh');
+      needRefresh.current = false;
+    }
+
     return () => {
       listener.remove();
     }
@@ -147,6 +157,7 @@ const MissionBar = (props) => {
   // 当场景发生变化时刷新
   if (props.scene != null && (refCurrentScene.current == null || !lo.isEqual(refCurrentScene.current.id, props.scene.id))) {
     refCurrentScene.current = props.scene;
+    needRefresh.current = true;
     DeviceEventEmitter.emit('__@MissionBar.refresh');
   }
 
