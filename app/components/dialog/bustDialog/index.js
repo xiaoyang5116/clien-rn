@@ -3,102 +3,144 @@ import {
   Text,
   View,
   TouchableWithoutFeedback,
-  FlatList
-} from 'react-native'
-import React, { useEffect, useState } from 'react'
+  FlatList,
+  Image,
+} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
 
-import {
-  action,
-  connect,
-  getBustImg,
-  ThemeData
-} from '../../../constants'
+import {action, connect, getBustImg, ThemeData} from '../../../constants';
+import TextAnimation from '../../textAnimation';
 
+const BustImage = props => {
+  const {bustImg, location} = props;
 
-const BustDialog = (props) => {
-  const {
-    viewData,
-    onDialogCancel,
-    actionMethod,
-    specialEffects,
-    figureList
-  } = props
+  return (
+    <View
+      style={[
+        styles.bustContainer,
+        {
+          alignItems: location === 'left' ? 'flex-start' : 'flex-end',
+        },
+      ]}>
+      <Image source={bustImg} />
+    </View>
+  );
+};
 
-  // {"confirm": false, "hidden": false, "primaryType": 2, "sectionId": 0, 
-  // "sections": [
-  //   {"Location": "left", "content": [Array], "figureId": 1},
-  //   {"Location": "left", "content": [Array], "figureId": 1},
-  //   {"Location": "left", "content": [Array], "figureId": 1}
-  // ],
-  // "style": 10, "textAnimationType": "TextSingle",}
+// {"confirm": false, "hidden": false, "primaryType": 2, "sectionId": 0,
+// "sections": [
+//   {"location": "left", "content": [Array], "figureId": 1},
+//   {"location": "left", "content": [Array], "figureId": 1},
+//   {"location": "left", "content": [Array], "figureId": 1}
+// ],
+// "style": 10, "textAnimationType": "TextSingle",}
 
-  const { sections, textAnimationType } = viewData
-
-  const [sectionsIndex, setSectionsIndex] = useState(0)
+const BustDialog = props => {
+  const theme = ThemeData();
+  const {viewData, onDialogCancel, actionMethod, specialEffects, figureList} =
+    props;
+  const {sections, textAnimationType} = viewData;
+  const sectionsIndex = useRef(0);
+  const [contentIndex, setContentIndex] = useState(0);
 
   useEffect(() => {
     if (figureList.length === 0) {
       props.dispatch(action('FigureModel/getFigureList')());
     }
-  }, [])
+  }, []);
 
   const nextDialog = () => {
-    if (sectionsIndex >= sections.length - 1) return onDialogCancel()
-    setSectionsIndex((sectionsIndex) => sectionsIndex + 1)
-  }
+    if (
+      sectionsIndex.current >= sections.length - 1 &&
+      contentIndex >= sections[sectionsIndex.current].content.length - 1
+    ) {
+      return onDialogCancel();
+    }
 
-  const renderItem = sections.map((item, index) => {
-    if (index <= sectionsIndex && figureList.length > 0) {
-      const currentFigureData = figureList.find(i => i.id === item.figureId)
+    if (
+      contentIndex === sections[sectionsIndex.current].content.length - 1 &&
+      sectionsIndex.current < sections.length - 1
+    ) {
+      sectionsIndex.current += 1;
+      setContentIndex(0);
+      return;
+    }
+
+    setContentIndex(contentIndex => contentIndex + 1);
+  };
+
+  const _renderItem = ({item, index}) => {
+    if (index <= sectionsIndex.current && figureList.length > 0) {
+      const currentFigureData = figureList.find(i => i.id === item.figureId);
+      const bustImg = getBustImg(currentFigureData.bust);
+      const content = item.content[contentIndex];
+
       return (
-        <View key={index} style={{ width: "95%", height: 400, position: "absolute" }}>
-          <View style={{ height: 300, width: "100%", }}>
-
-          </View>
+        <View
+          style={{
+            height: 400,
+            width: '100%',
+            position: 'absolute',
+            zIndex: index,
+            opacity: index === sectionsIndex.current ? 1 : 0.6,
+          }}>
+          <BustImage bustImg={bustImg} location={item.location} />
           <View style={styles.contentContainer}>
-            <Text style={styles.content}>
-              {item.content[0]}
-            </Text>
+            <Text style={styles.content}>{content}</Text>
           </View>
         </View>
-      )
+      );
     }
-  })
+  };
 
   return (
     <View style={styles.viewContainer}>
       <TouchableWithoutFeedback onPress={nextDialog}>
         <View style={styles.container}>
-          {renderItem}
+          <FlatList
+            style={{
+              position: 'absolute',
+              width: '95%',
+              height: 400,
+            }}
+            data={sections}
+            renderItem={_renderItem}
+            extraData={contentIndex}
+          />
         </View>
       </TouchableWithoutFeedback>
     </View>
-  )
-}
+  );
+};
 
-export default connect((state) => ({ ...state.FigureModel }))(BustDialog)
+export default connect(state => ({...state.FigureModel}))(BustDialog);
 
 const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.1)",
+    backgroundColor: 'rgba(0,0,0,0.1)',
   },
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bustContainer: {
+    height: 250,
+    width: '100%',
+    justifyContent: 'flex-end',
   },
   contentContainer: {
     height: 150,
-    width: "100%",
-    backgroundColor: "#666",
+    width: '100%',
+    backgroundColor: '#666',
     paddingTop: 12,
     paddingBottom: 12,
     paddingLeft: 18,
-    paddingRight: 18
+    paddingRight: 18,
   },
   content: {
     fontSize: 18,
-    color: "#000"
-  }
-})
+    color: '#000',
+  },
+});
