@@ -2,11 +2,7 @@ import React from 'react';
 import { Animated, ScrollView, StyleSheet } from 'react-native';
 
 import {
-  action,
   connect,
-  Component,
-  ThemeContext,
-  EventKeys,
   getPropIcon,
   AppDispath,
 } from "../../constants";
@@ -14,8 +10,6 @@ import {
 import { 
   Text, 
   View, 
-  Image,
-  SectionList, 
   TouchableWithoutFeedback 
 } from '../../constants/native-ui';
 
@@ -25,6 +19,12 @@ import StoryUtils from '../../utils/StoryUtils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 
+// 两页的格子映射表
+const ID_IDX_MAP = [
+  [0, 0], [1, 7], [2, 1], [3, 8], [4, 2], [5, 9], [6, 3], [7, 10], [8, 4], [9, 11], [10, 5], [11, 12], [12, 6], [13, 13],
+  [14, 14], [15, 21], [16, 15], [17, 22], [18, 16], [19, 23], [20, 17], [21, 24], [22, 18], [23, 25], [24, 19], [25, 26], [26, 20], [27, 27]
+];
+
 const BoxItem = (props) => {
 
   const onClick = (item) => {
@@ -32,7 +32,11 @@ const BoxItem = (props) => {
       return
 
     if (item.action != undefined && lo.isObject(item.action)) {
-      AppDispath({ type: 'SceneModel/processActions', payload: item.action, cb: () => {
+      const payload = { ...item.action };
+      if (props.refScene.current != null) {
+        payload.__sceneId = props.refScene.current.id;
+      }
+      AppDispath({ type: 'SceneModel/processActions', payload, cb: () => {
         StoryUtils.refreshCurrentChat();
       }});
     }
@@ -65,6 +69,7 @@ const MissionBar = (props) => {
   const translateY = React.useRef(new Animated.Value(0)).current;
   const zIndex = React.useRef(new Animated.Value(0)).current;
   const showBtnOpacity = React.useRef(new Animated.Value(0)).current;
+  const refCurrentScene = React.useRef(null);
   const [boxes, setBoxes] = React.useState([]);
 
   const hide = () => {
@@ -102,19 +107,26 @@ const MissionBar = (props) => {
 
       const items = [];
       lo.range(28).forEach(e => {
-        const prop = list.shift();
-        items.push(<BoxItem key={e} style={(e <= 1) ? { marginLeft: 10 } : {}} prop={prop} />);
+        let prop = undefined;
+        const found = ID_IDX_MAP.find(i => i[0] == e);
+        if (found != null) {
+          prop = list[found[1]];
+        }
+        items.push(<BoxItem key={e} style={(e <= 1) ? { marginLeft: 10 } : {}} prop={prop} refScene={refCurrentScene} />);
       });
       setBoxes(items);
     } });
   }, []);
+
+  // 记录当前场景
+  refCurrentScene.current = props.scene;
 
   return (
       <Animated.View style={[styles.viewContainer, { transform: [{ translateY: translateY }], zIndex: zIndex }]}>
         <View style={{ position: 'absolute', right: 5, top: -25 }}>
           <AntDesign name='close' size={25} onPress={() => hide()} />
         </View>
-        <Animated.View style={[{ position: 'absolute', right: 90, top: -75 }, { opacity: showBtnOpacity }]}>
+        <Animated.View style={[{ position: 'absolute', right: 90, top: -76 }, { opacity: showBtnOpacity }]}>
           <AntDesign name='upcircleo' size={20} onPress={() => show()} />
         </Animated.View>
         <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false} style={{}}>
@@ -150,4 +162,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MissionBar;
+export default connect((state) => ({ ...state.StoryModel }))(MissionBar);
