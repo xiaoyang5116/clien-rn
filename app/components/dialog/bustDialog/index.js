@@ -6,13 +6,14 @@ import {
   FlatList,
   Image,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import {action, connect, getBustImg, ThemeData} from '../../../constants';
+import { action, connect, getBustImg, ThemeData } from '../../../constants';
 import TextAnimation from '../../textAnimation';
 
+
 const BustImage = props => {
-  const {bustImg, location} = props;
+  const { bustImg, location } = props;
 
   return (
     <View
@@ -27,6 +28,7 @@ const BustImage = props => {
   );
 };
 
+
 // {"confirm": false, "hidden": false, "primaryType": 2, "sectionId": 0,
 // "sections": [
 //   {"location": "left", "content": [Array], "figureId": 1},
@@ -37,9 +39,8 @@ const BustImage = props => {
 
 const BustDialog = props => {
   const theme = ThemeData();
-  const {viewData, onDialogCancel, actionMethod, specialEffects, figureList} =
-    props;
-  const {sections, textAnimationType} = viewData;
+  const { viewData, onDialogCancel, actionMethod, specialEffects, figureList } = props;
+  const { sections, textAnimationType } = viewData;
   const sectionsIndex = useRef(0);
   const [contentIndex, setContentIndex] = useState(0);
 
@@ -69,11 +70,10 @@ const BustDialog = props => {
     setContentIndex(contentIndex => contentIndex + 1);
   };
 
-  const _renderItem = ({item, index}) => {
+  const _renderItem = ({ item, index }) => {
     if (index <= sectionsIndex.current && figureList.length > 0) {
       const currentFigureData = figureList.find(i => i.id === item.figureId);
       const bustImg = getBustImg(currentFigureData.bust);
-      const content = item.content[contentIndex];
 
       return (
         <View
@@ -86,7 +86,22 @@ const BustDialog = props => {
           }}>
           <BustImage bustImg={bustImg} location={item.location} />
           <View style={styles.contentContainer}>
-            <Text style={styles.content}>{content}</Text>
+            {
+              item.content.map((i, currentIndex) => {
+                if (currentIndex === contentIndex) {
+                  return (
+                    <TextAnimation
+                      icon={'▼'}
+                      key={currentIndex}
+                      fontSize={20}
+                      type={textAnimationType}
+                      style={theme.dialogFontColor}>
+                      {i}
+                    </TextAnimation>
+                  )
+                }
+              })
+            }
           </View>
         </View>
       );
@@ -113,7 +128,7 @@ const BustDialog = props => {
   );
 };
 
-export default connect(state => ({...state.FigureModel}))(BustDialog);
+export default connect(state => ({ ...state.FigureModel }))(BustDialog);
 
 const styles = StyleSheet.create({
   viewContainer: {
