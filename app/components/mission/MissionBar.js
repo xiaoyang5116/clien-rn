@@ -5,6 +5,7 @@ import {
   connect,
   getPropIcon,
   AppDispath,
+  EventKeys,
 } from "../../constants";
   
 import { 
@@ -38,7 +39,7 @@ const BoxItem = (props) => {
       }
       AppDispath({ type: 'SceneModel/processActions', payload, cb: () => {
         StoryUtils.refreshCurrentChat();
-        DeviceEventEmitter.emit('__@MissionBar.refresh');
+        DeviceEventEmitter.emit(EventKeys.REFRESH_MISSION_PROPSBAR);
       }});
     }
   }
@@ -114,7 +115,7 @@ const MissionBar = (props) => {
   }
 
   React.useEffect(() => {
-    const listener = DeviceEventEmitter.addListener('__@MissionBar.refresh', () => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.REFRESH_MISSION_PROPSBAR, () => {
       if (refCurrentScene.current == null)
         return
 
@@ -145,7 +146,7 @@ const MissionBar = (props) => {
 
     // 解决emit消息发送后，监听器未注册的情况
     if (needRefresh.current) {
-      DeviceEventEmitter.emit('__@MissionBar.refresh');
+      DeviceEventEmitter.emit(EventKeys.REFRESH_MISSION_PROPSBAR);
       needRefresh.current = false;
     }
 
@@ -158,7 +159,7 @@ const MissionBar = (props) => {
   if (props.scene != null && (refCurrentScene.current == null || !lo.isEqual(refCurrentScene.current.id, props.scene.id))) {
     refCurrentScene.current = props.scene;
     needRefresh.current = true;
-    DeviceEventEmitter.emit('__@MissionBar.refresh');
+    DeviceEventEmitter.emit(EventKeys.REFRESH_MISSION_PROPSBAR);
   }
 
   return (
