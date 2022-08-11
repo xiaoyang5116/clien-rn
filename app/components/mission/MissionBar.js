@@ -44,18 +44,21 @@ const BoxItem = (props) => {
 
   let propImage = <></>
   let propLabel = <></>
+  let propNum = <></>
   if (props.prop != undefined) {
     const image = getPropIcon(props.prop.iconId);
     propImage = (
       <FastImage source={image.img} style={{ width: image.width, height: image.height }} />
     );
     propLabel = <Text numberOfLines={1} style={{ color: '#fff', fontSize: 13 }}>{props.prop.name}</Text>
+    // propNum = <Text style={{ position: 'absolute', bottom: 1, right: 5, color: '#ccc', fontSize: 12 }}>{props.prop.num}</Text>
   }
 
   return (
     <TouchableWithoutFeedback onPress={() => onClick(props.prop)}>
       <View style={[props.style, styles.boxItem]}>
         {propImage} 
+        {propNum}
         <View style={{ position: 'absolute', bottom: -20, width: 50, justifyContent: 'center', alignItems: 'center' }}>
           {propLabel}
         </View>
