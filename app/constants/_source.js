@@ -40,7 +40,14 @@ const _images = {
         { id: 5, img: require('../../assets/button_icon/5.png'), top: 0, right: 0 },
         { id: 6, img: require('../../assets/button_icon/6.png'), top: 0, left: 10 },
         { id: 7, img: require('../../assets/button_icon/7.png'), top: 0, left: 10 },
-    ]
+    ],
+    propIcons: [
+        { id: 1, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_1.png') },
+        { id: 2, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_2.png') },
+        { id: 3, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_3.png') },
+        { id: 4, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_4.png') },
+        { id: 5, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_5.png') },
+    ],
 }
 
 // 获得头像
@@ -62,4 +69,9 @@ export const getChapterImage = (imageId) => {
 // 获取按钮 icon
 export const getBtnIcon = (iconId) => {
     return _images.btn_icon.find(e => e.id === iconId)
+}
+
+// 获取道具ICON
+export const getPropIcon = (iconId) => {
+    return _images.propIcons.find(e => e.id == iconId);
 }
