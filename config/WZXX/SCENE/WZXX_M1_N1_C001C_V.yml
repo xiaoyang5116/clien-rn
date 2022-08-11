@@ -220,7 +220,7 @@ scenes: [
     chats: [
       #
       { 
-        id: 'C1', desc: '寻常的窄道', 
+        id: 'C1', desc: '这里不太好跟踪，记得用树木做掩护', 
         options: [ 
          { title: '【继续跟踪杀手】',dialogs: ['jinruzhaidao'] }, 
         ],

@@ -73,17 +73,17 @@ scenes: [
           { id: 'Screen1',style: 6, title: '急中生智的选择', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'p1', content: ['卧槽，这回可不能再死了。','李森炎的求生本能发动，脑子飞快运转。','从自己看过的符合类似情节的电影片段里找啊找啊。','灵机一动。', '李森炎下意识的想到，这时候最合适的台词是什么。'],
-          btn: [{title: '草，想不出来！（智慧-1）',tokey: "p1A", dropIds: ['WZXX_M1_N1_C001V_drop8'],  icon: { id: 6, bindVar: 'biaoqianv1' }},
+          btn: [{title: '草，想不出来！',tokey: "p1A", dropIds: ['WZXX_M1_N1_C001V_drop8'],  icon: { id: 6, bindVar: 'biaoqianv1' }},
           {title: '兄台何必执着杀人！', tokey: "p1B", icon: { id: 6, bindVar: 'biaoqianv2' }},
-          {title: '等一下！（智慧+1）', tokey: "p1C", dropIds: ['WZXX_M1_N1_C001V_drop7'], icon: { id: 7, bindVar: 'biaoqianv3' }},
-          {title: '说个毛线，拔腿就跑！（身法+1）', dropIds: [ 'WZXX_M1_N1_C001V_drop9'], tokey: "p1D", icon: { id: 6, bindVar: 'biaoqianv4' }},]},
+          {title: '等一下！', tokey: "p1C", dropIds: ['WZXX_M1_N1_C001V_drop7'], icon: { id: 7, bindVar: 'biaoqianv3' }},
+          {title: '说个毛线，拔腿就跑！', dropIds: [ 'WZXX_M1_N1_C001V_drop9'], tokey: "p1D", icon: { id: 6, bindVar: 'biaoqianv4' }},]},
 
           { key: 'p1A', content: ['李森炎露出自信的笑容，牙齿仿佛在闪闪发光！','剑光一闪',['震屏1','边缘闪烁红'],'李森炎挂了','…………',], 
           btn: [{title: '…………!', dialogs: ['gameover00'], varsOn: ['biaoqianv1',] },], },   
 
           { key: 'p1B', content: ['听我一言！','你可要听好了!','…………', ],
-            btn: [{title: '一言之善，重于千金（学识+1）',tokey: 'p1B1', dropIds: [ 'WZXX_M1_N1_C001V_drop5'], icon: { id: 6, bindVar: 'biaoqianv5' }},
-            {title: '人而好善，福虽未至，祸其远矣（学识+1）',tokey: "p1B2", dropIds: [ 'WZXX_M1_N1_C001V_drop6'], icon: { id: 6, bindVar: 'biaoqianv6' }},
+            btn: [{title: '一言之善，重于千金',tokey: 'p1B1', dropIds: [ 'WZXX_M1_N1_C001V_drop5'], icon: { id: 6, bindVar: 'biaoqianv5' }},
+            {title: '人而好善，福虽未至，祸其远矣',tokey: "p1B2", dropIds: [ 'WZXX_M1_N1_C001V_drop6'], icon: { id: 6, bindVar: 'biaoqianv6' }},
             #{title: '尽量多来几句，以量取胜',tokey: "p1B3", icon: { id: 1, bindVar: 'biaoqianv7' }} 
             ]},   
 
@@ -103,7 +103,7 @@ scenes: [
            btn: [
            {title: '大侠饶命！我上有老，下有小……',tokey: "p2A",icon: { id: 6, bindVar: 'biaoqianv13' }},
            #{title: '别杀我，我有钱',dialogs: ['gameover02']},
-           {title: '别杀我，我有秘籍（智慧+1）',tokey: "ok1", dropIds: [ 'WZXX_M1_N1_C001V_drop4'],icon: { id: 7, bindVar: 'biaoqianv7' }},
+           {title: '别杀我，我有秘籍',tokey: "ok1", dropIds: [ 'WZXX_M1_N1_C001V_drop4'],icon: { id: 7, bindVar: 'biaoqianv7' }},
            {title: '别杀我，我有美女',tokey: "gg1",icon: { id: 6, bindVar: 'biaoqianv8' }},
            {title: '别杀我，我有藏宝线索',tokey: "gg2",icon: { id: 6, bindVar: 'biaoqianv9' }},
            #{title: '别杀我，我有能保命的情报',tokey: "gg3"},
@@ -136,8 +136,8 @@ scenes: [
            { key: 'ok1', content: ['你小子会有什么秘籍？说来看看。','杀手好像有点兴趣的样子','怎么办',],
            btn: [
            #{title: '你还当我真的有啊……',tokey: "ok1A"},
-           {title: '没有，现编一个怎么样（悟性+1）',tokey: "ok1C", dropIds: [ 'WZXX_M1_N1_C001V_drop2'], icon: { id: 7, bindVar: 'biaoqianv14' }},
-           {title: '记得原身家里就有（悟性+1）',tokey: "ok1D",dropIds: [ 'WZXX_M1_N1_C001V_drop3'],icon: { id: 7, bindVar: 'biaoqianv15' }},]},
+           {title: '没有，现编一个怎么样',tokey: "ok1C", dropIds: [ 'WZXX_M1_N1_C001V_drop2'], icon: { id: 7, bindVar: 'biaoqianv14' }},
+           {title: '记得原身家里就有',tokey: "ok1D",dropIds: [ 'WZXX_M1_N1_C001V_drop3'],icon: { id: 7, bindVar: 'biaoqianv15' }},]},
 
            #{ key: 'ok1A', content: ['你还当我真的有啊……','李森炎露出尴尬而不失礼貌笑容','…………','剑光一闪',['边缘闪烁红'],'李森炎挂了','…………',], 
             #btn: [{title: '…………',dialogs: ['gameover00'],}]},   

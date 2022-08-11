@@ -45,6 +45,8 @@ book: {
     collect_list: [
       'collect_1',
       'collect_2',
+      'collect_3',
+      'collect_4',
     ],
     
   }

@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C010A_[N1]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C010A_[N1]FZ'] }, 
-     { header: '第十章 上 守夜 版本1 N1' },
+     { header: '第十章 上 守夜 ' },
 ]
 #END==========================================
 

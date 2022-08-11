@@ -73,18 +73,30 @@ directory: [
 
         { point: [0, -5], title: '第二章N2猫',
         bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N2]' ,
-        toChapter: 'WZXX_M1_N1_C002_[N2]', links: [[-1, -6]] 
+        toChapter: 'WZXX_M1_N1_C002_[N2]', links: [[-1, -6],[1, -6]] 
         },
 
-        { point: [-1, -6], title: '第二章  站住！N3',
+        { point: [-2, -6], title: '第二章  站住！N3',
         bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N3]' ,
-        toChapter: 'WZXX_M1_N1_C002_[N3]', links: [[1, -6],[-1, -7],] 
+        toChapter: 'WZXX_M1_N1_C002_[N3]', links: [[-1, -6],] 
         },
 
-        { point: [1, -6], title: '第二章N4追杀',
+        { point: [-1, -6], title: '第二章N4追杀',
         bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N4]' ,
-        toChapter: 'WZXX_M1_N1_C002_[N4]', links: [[-1, -6], [1, -7],], 
+        toChapter: 'WZXX_M1_N1_C002_[N4]', links: [[1, -6], [-1, -7],], 
         },
+
+        { point: [1, -6], title: '第二章 药丹 N5',
+        bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N5]' ,
+        toChapter: 'WZXX_M1_N1_C002_[N5]', links: [[-1, -6], [2, -6],[1, -7],], 
+        },
+
+        { point: [2, -6], title: '第二章 行动 N6',
+         bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N6]' ,
+        toChapter: 'WZXX_M1_N1_C002_[N6]', links: [ ], 
+        },
+
+        
 
         { point: [-1, -7], title: '第三章N1白马分庄',
         bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C003_[N1]' ,
