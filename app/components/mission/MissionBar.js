@@ -81,7 +81,7 @@ const MissionBar = (props) => {
 
   const min = () => {
     Animated.timing(translateY, {
-      toValue: 200,
+      toValue: 250,
       duration: 300,
       useNativeDriver: true,
     }).start((r) => {
@@ -164,7 +164,7 @@ const MissionBar = (props) => {
 
   return (
       <Animated.View style={[styles.viewContainer, { transform: [{ translateY: translateY }], opacity: opacity, zIndex: zIndex }]}>
-        <Animated.View style={[{ position: 'absolute', right: 80, top: -53 }, { opacity: showBtnOpacity }]}>
+        <Animated.View style={[{ position: 'absolute', right: 80, top: -103 }, { opacity: showBtnOpacity }]}>
           <AntDesign name='upcircleo' size={20} onPress={() => show()} />
         </Animated.View>
         <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false} style={{}}>
