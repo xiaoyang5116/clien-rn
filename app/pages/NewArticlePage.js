@@ -109,9 +109,25 @@ const WorldSelector = () => {
 }
 
 const ReaderBackgroundImageView = () => {
+
+  const [backgroundImage, setBackgroundImage] = React.useState(<></>);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.SET_CURRENT_WORLD, (world) => {
+      if (!lo.isEmpty(world.imageId)) {
+        setBackgroundImage(<FastImage style={{ width: '100%', height: '100%', opacity: 0.35 }} source={require('../../assets/bg/explore_bg.jpg')} />);
+      } else {
+        setBackgroundImage(<></>);
+      }
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
   return (
   <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
-    {/* <FastImage style={{ width: '100%', height: '100%', opacity: 0.35 }} source={require('../../assets/bg/explore_bg.jpg')} /> */}
+    {backgroundImage}
   </View>
   );
 }
@@ -459,9 +475,27 @@ const WorldTabBar = (props) => {
   const descriptor = descriptors[routeKey];
   const { options } = descriptor;
 
+  const [barLabel, setBarLabel] = React.useState(options.tabBarLabel);
+
+  React.useEffect(() => {
+    if (!lo.isEqual(descriptor.route.name, 'PrimaryWorld'))
+      return
+
+      const listener = DeviceEventEmitter.addListener(EventKeys.SET_CURRENT_WORLD, (world) => {
+        if (!lo.isEmpty(world.name)) {
+          setBarLabel(world.name);
+        } else {
+          setBarLabel(options.tabBarLabel);
+        }
+      });
+      return () => {
+        listener.remove();
+      }
+  }, []);
+
   return (
     <View style={{ paddingTop: 5, paddingBottom: 5, paddingRight: 20, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
-      <Text style={{ fontSize: 20, color: '#333' }}>{options.tabBarLabel}</Text>
+      <Text style={{ fontSize: 20, color: '#333' }}>{barLabel}</Text>
     </View>
   );
 }
