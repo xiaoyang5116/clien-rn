@@ -82,9 +82,7 @@ const BustDialog = props => {
     setContentIndex(contentIndex => contentIndex + 1);
   };
 
-
-
-  const _renderItem = ({ item, index }) => {
+  const renderDialog = sections.map((item, index) => {
     if (
       hiddenFiguresId.current.length > 0 &&
       hiddenFiguresId.current.find(i => i === item.figureId) !== undefined
@@ -96,9 +94,10 @@ const BustDialog = props => {
 
       return (
         <View
+          key={index}
           style={{
             height: 400,
-            width: '100%',
+            width: '95%',
             position: 'absolute',
             zIndex: index,
             opacity: index === sectionsIndex ? 1 : 0.6,
@@ -125,22 +124,13 @@ const BustDialog = props => {
         </View>
       );
     }
-  };
+  })
 
   return (
     <View style={styles.viewContainer}>
       <TouchableWithoutFeedback onPress={nextDialog}>
         <View style={styles.container}>
-          <FlatList
-            style={{
-              position: 'absolute',
-              width: '95%',
-              height: 400,
-            }}
-            data={sections}
-            renderItem={_renderItem}
-            extraData={contentIndex}
-          />
+          {renderDialog}
         </View>
       </TouchableWithoutFeedback>
     </View>
