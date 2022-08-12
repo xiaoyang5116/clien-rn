@@ -295,14 +295,16 @@ export default {
           continue;
 
         // 触发按区域激活提示
-        // const { toast, pop, image, background, effect, games, sounds } = item.object;
-        // if (toast == undefined && pop == undefined && image == undefined 
-        //     && background == undefined && effect == undefined && games == undefined && sounds == undefined)
         const { toast, pop, image, background, effect, games, animations, sounds } = item.object;
-        if (toast == undefined && pop == undefined && image == undefined 
-            && background == undefined && effect == undefined 
-            && games == undefined && animations == undefined
-            && sounds == undefined)
+        if (toast == undefined 
+          && pop == undefined 
+          && image == undefined 
+          && background == undefined 
+          && effect == undefined 
+          && games == undefined 
+          && animations == undefined
+          && sounds == undefined
+          )
           continue;
 
         // 计算总偏移量

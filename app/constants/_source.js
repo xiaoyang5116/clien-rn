@@ -23,6 +23,12 @@ const _images = {
         { id: 'V5_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V5_1080.png') },
         { id: 'V6_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V6_1080.png') },
 
+        { id: 'HuaLing_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/HuaLing_1080.png') },
+        { id: 'YiLing_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/YiLing_1080.png') },
+        { id: 'JieMeiHua_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/JieMeiHua_1080.png') },
+        { id: 'TaoLaoDengChang_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/TaoLaoDengChang_1080.png') },
+        { id: 'TaoLaoLiKai_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/TaoLaoLiKai_1080.png') },
+
         { id: 'BAI_FU', width: px2pd(750), height: px2pd(1000), source: require('../../assets/chapter/BAI_FU.webp') },
         { id: 'HUAIBIAO', width: px2pd(720), height: px2pd(720), source: require('../../assets/chapter/HUAIBIAO.webp') },
         { id: 'JIUGUAN1', width: px2pd(750), height: px2pd(422), source: require('../../assets/chapter/JIUGUAN1.webp') },
