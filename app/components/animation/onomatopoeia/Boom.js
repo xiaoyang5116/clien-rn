@@ -72,7 +72,7 @@ const Boom = (props) => {
                 ],
             }}>
                 {/* <Text style={{ fontSize: 20, }}>Boom</Text> */}
-                <Image style={{ width: px2pd(353), height: px2pd(335) }} source={require('../../../../assets/animations/peng.png')} />
+                <Image style={{ width: px2pd(353), height: px2pd(335) }} source={require('../../../../assets/animations/onomatopoeia/peng.png')} />
             </Animated.View>
         </View>
     )
@@ -91,10 +91,6 @@ const BoomContainer = (props) => {
             animationCount.current += value
             if (animationCount.current === DATA.length) {
                 props.onClose()
-                // closeTimer = setTimeout(() => {
-                //     props.onClose()
-                // }, 600)
-
             }
         });
 

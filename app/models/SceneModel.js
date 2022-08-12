@@ -286,6 +286,7 @@ export default {
       const sceneState = yield select(state => state.SceneModel);
 
       // 从书本目录获取场景列表
+      sceneState.__data.sceneList.length = 0;
       if (sceneState.__data.scenesConfig == null) {
         const booksConfig = yield call(GetBooksDataApi);
         for (let k in booksConfig.books.list) {
@@ -543,7 +544,7 @@ export default {
     },
 
     *processTimeoutActions({ payload }, { put }) {
-      const timeoutActions = { chatId: payload.chatId, actions: payload.timeoutActions };
+      const timeoutActions = { chatId: payload.chatId, actions: payload.timeoutActions, __sceneId: payload.__sceneId };
       yield put.resolve(action('processActions')(timeoutActions));
     },
 
@@ -704,6 +705,13 @@ export default {
       // 通知界面显示背包动效
       if (showBag != undefined && lo.isEqual(showBag, 'showBag')) {
         DeviceEventEmitter.emit(EventKeys.ARTICLE_SHOW_BAG_ANIMATION);
+      }
+      // 如果当前场景存在剧情道具，则通知刷新
+      if (!lo.isEmpty(payload.__sceneId)) {
+        const scene = sceneState.__data.cfgReader.getScene(payload.__sceneId);
+        if (scene != null && lo.isArray(scene.plotPropsId) && scene.plotPropsId.length > 0) {
+          DeviceEventEmitter.emit(EventKeys.REFRESH_MISSION_PROPSBAR);
+        }
       }
     },
 

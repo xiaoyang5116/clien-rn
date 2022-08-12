@@ -6,6 +6,7 @@ import {
 
 import * as RootNavigation from '../utils/RootNavigation';
 import lo from 'lodash';
+import EventListeners from "../utils/EventListeners";
 
 export default {
   namespace: 'StoryModel',
@@ -13,12 +14,23 @@ export default {
   state: {
     time: 0, // 时间信息
     position: '', // 位置信息
+    chatId: '',   // 当前对话ID
     scene: null,  // 当前场景
     sceneVars: [], // 当前场景变量
     sectionData: [], // [{title:'', data:[{...title:'', action:''}]}]
   },
 
   effects: {
+
+    *reload({ }, { call, put, select }) {
+      const storyState = yield select(state => state.StoryModel);
+      storyState.time = 0;
+      storyState.position = '';
+      storyState.chatId = '';
+      storyState.scene = null;
+      storyState.sceneVars.length = 0;
+      storyState.sectionData.length = 0;
+    },
 
     // 进入场景
     *enter({ payload }, { put, select }) {
@@ -100,6 +112,7 @@ export default {
       yield put(action('updateState')({ 
         time: worldTime,
         position: scene.name,
+        chatId: chatId,
         scene: scene,
         sectionData: newSectionData, 
         sceneVars: sceneVars,
@@ -118,9 +131,9 @@ export default {
 
   subscriptions: {
     registerReloadEvent({ dispatch }) {
-      // EventListeners.register('reload', (msg) => {
-      //   return dispatch({ 'type':  'reload'});
-      // });
+      EventListeners.register('reload', (msg) => {
+        return dispatch({ 'type':  'reload'});
+      });
     },
   }
 }

@@ -139,8 +139,9 @@ export default {
         }
       }
 
-      // 执行前置变量影响命令
+      // 执行前置命令
       if (lo.isArray(data) && data.length > 0) {
+        // 前置变量修改
         do {
           const varsItem = lo.head(data);
           if (!lo.isEqual(varsItem.type, 'code'))
@@ -151,6 +152,12 @@ export default {
             AppDispath({ type: 'SceneModel/processActions', payload: actions });
           }
         } while (false);
+
+        // 设置当前世界
+        const foundWolrd = lo.find(data, (e) => lo.isEqual(e.type, 'code') && lo.isObject(e.object.world));
+        if (foundWolrd != null) {
+          DeviceEventEmitter.emit(EventKeys.SET_CURRENT_WORLD, foundWolrd.object.world);
+        }
       }
 
       // 按需加载小分支
@@ -288,14 +295,16 @@ export default {
           continue;
 
         // 触发按区域激活提示
-        // const { toast, pop, image, background, effect, games, sounds } = item.object;
-        // if (toast == undefined && pop == undefined && image == undefined 
-        //     && background == undefined && effect == undefined && games == undefined && sounds == undefined)
         const { toast, pop, image, background, effect, games, animations, sounds } = item.object;
-        if (toast == undefined && pop == undefined && image == undefined 
-            && background == undefined && effect == undefined 
-            && games == undefined && animations == undefined
-            && sounds == undefined)
+        if (toast == undefined 
+          && pop == undefined 
+          && image == undefined 
+          && background == undefined 
+          && effect == undefined 
+          && games == undefined 
+          && animations == undefined
+          && sounds == undefined
+          )
           continue;
 
         // 计算总偏移量

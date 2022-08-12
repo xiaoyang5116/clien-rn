@@ -215,7 +215,7 @@ export default {
       const props = [];
       for (let key in propsState.__data.bags) {
         const item = propsState.__data.bags[key];
-        if ((item.attrs.indexOf(attr) != -1) || (attr == '全部') || attr == '') {
+        if ((item.attrs.indexOf(attr) != -1) || lo.isEmpty(attr) || lo.isEqual(attr, '全部')) {
           props.push(item);
         }
       }

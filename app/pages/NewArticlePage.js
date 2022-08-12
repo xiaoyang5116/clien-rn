@@ -109,6 +109,30 @@ const WorldSelector = () => {
 }
 
 const ReaderBackgroundImageView = () => {
+
+  const [backgroundImage, setBackgroundImage] = React.useState(<></>);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.SET_CURRENT_WORLD, (world) => {
+      if (!lo.isEmpty(world.imageId)) {
+        setBackgroundImage(<FastImage style={{ width: '100%', height: '100%', opacity: 0.35 }} source={require('../../assets/bg/explore_bg.jpg')} />);
+      } else {
+        setBackgroundImage(<></>);
+      }
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  return (
+  <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+    {backgroundImage}
+  </View>
+  );
+}
+
+const ReaderXianGaoImageView = () => {
   const context = React.useContext(DataContext);
   const currentImageId = React.useRef('');
   const nextImage = React.useRef(null);
@@ -392,8 +416,8 @@ const TheWorld = (props) => {
   }, []);
 
   return (
-    <View style={[{ flex: 1 }, { backgroundColor: props.readerStyle.bgColor }]}>
-      <ReaderBackgroundImageView />
+    <View style={[{ flex: 1 }, {  }]}>
+      <ReaderXianGaoImageView />
       <FlatList
         style={{ alignSelf: 'stretch' }}
         ref={(ref) => refList.current = ref}
@@ -451,9 +475,27 @@ const WorldTabBar = (props) => {
   const descriptor = descriptors[routeKey];
   const { options } = descriptor;
 
+  const [barLabel, setBarLabel] = React.useState(options.tabBarLabel);
+
+  React.useEffect(() => {
+    if (!lo.isEqual(descriptor.route.name, 'PrimaryWorld'))
+      return
+
+      const listener = DeviceEventEmitter.addListener(EventKeys.SET_CURRENT_WORLD, (world) => {
+        if (!lo.isEmpty(world.name)) {
+          setBarLabel(world.name);
+        } else {
+          setBarLabel(options.tabBarLabel);
+        }
+      });
+      return () => {
+        listener.remove();
+      }
+  }, []);
+
   return (
     <View style={{ paddingTop: 5, paddingBottom: 5, paddingRight: 20, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
-      <Text style={{ fontSize: 20, color: '#333' }}>{options.tabBarLabel}</Text>
+      <Text style={{ fontSize: 20, color: '#333' }}>{barLabel}</Text>
     </View>
   );
 }
@@ -714,9 +756,11 @@ class NewArticlePage extends Component {
           </View>
         </HeaderContainer>
         <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
+          <ReaderBackgroundImageView />
           <Tab.Navigator initialRouteName='PrimaryWorld' 
             tabBar={(props) => <WorldTabBar {...props} />}
             screenOptions={{ swipeEnabled: !this.props.isStartPage }}
+            sceneContainerStyle={{ backgroundColor: 'transparent' }}
             >
             <Tab.Screen name="LeftWorld" options={{ tabBarLabel: '现实' }} children={(props) => <TheWorld {...this.props} {...props} />} />
             <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '尘界' }} children={(props) => <TheWorld {...this.props} {...props} />} />

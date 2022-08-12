@@ -126,9 +126,9 @@ scenes: [
         options: [ 
           { title: '>> 好感度测试老者NPC <<', toScene: 'npc1' }, 
           { title: '【背包存在木瓜】', nextChat: 'c6', andVarsValue: ['@props_40 >= 1'] }, 
-          { title: '【测试倒计时选项1】', nextChat: 'c6', andVarsOff: ['v2'], duration: 10000, timeoutActions: ['t2'] }, 
-          { title: '【测试倒计时选项2】', nextChat: 'c6', andVarsOff: ['v3'], duration: 5000, timeoutActions: ['t3'] }, 
-          { title: '【测试倒计时选项3】', nextChat: 'c6', andVarsOff: ['v4'], duration: 2000, timeoutActions: ['t4'] }, 
+          # { title: '【测试倒计时选项1】', nextChat: 'c6', andVarsOff: ['v2'], duration: 10000, timeoutActions: ['t2'] }, 
+          # { title: '【测试倒计时选项2】', nextChat: 'c6', andVarsOff: ['v3'], duration: 5000, timeoutActions: ['t3'] }, 
+          { title: '【测试倒计时选项3】', nextChat: 'c6', andVarsOff: ['v4'], duration: 5000, timeoutActions: ['t4'] }, 
           { title: '【★退出测试场景】', toScene: 'wzkj' }, 
         ],
       },

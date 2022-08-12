@@ -13,6 +13,7 @@ import {
   AppRegistry,
   DeviceEventEmitter,
   Platform,
+  AppState
 } from 'react-native';
 
 import SplashScreen from 'react-native-splash-screen'  // 启动页插件
@@ -145,6 +146,7 @@ class App extends Component {
     this.state = {
       loading: true,
       themeStyle: null,
+      appState: AppState.currentState
     };
     this.listeners = [];
   }
@@ -152,6 +154,27 @@ class App extends Component {
   componentDidMount() {
     // 隐藏安卓底部导航栏
     hideNavigationBar();
+
+    // 注册监听 app 应用当前是在前台还是在后台
+    // active - 应用正在前台运行
+    // background - 应用正在后台运行。用户可能面对以下几种情况：
+    //    在别的应用中
+    //    停留在桌面
+    //    对 Android 来说还可能处在另一个Activity中（即便是由你的应用拉起的）
+    // [iOS] inactive - 此状态表示应用正在前后台的切换过程中，或是处在系统的多任务视图，又或是处在来电状态中。
+    this.appStateSubscription = AppState.addEventListener(
+      "change",
+      nextAppState => {
+        if (
+          this.state.appState.match(/inactive|background/) &&
+          nextAppState === "active"
+        ) {
+          // 隐藏安卓底部导航栏
+          hideNavigationBar();
+        }
+        this.setState({ appState: nextAppState });
+      }
+    );
 
     // 注册事件监听
     this.listeners.push(DeviceEventEmitter.addListener(EventKeys.APP_SET_STATE, (payload) => {
@@ -181,6 +204,9 @@ class App extends Component {
   componentWillUnmount() {
     this.listeners.forEach(e => e.remove());
     this.listeners.length = 0;
+
+    // 移除 app 状态监听
+    this.appStateSubscription.remove();
   }
 
   renderLoading() {
@@ -194,7 +220,7 @@ class App extends Component {
       <View style={styles.rootContainer}>
         <Shock>
           {/* 隐藏安卓底部导航栏后,顶部的状态栏高度消失 */}
-          { (Platform.OS == 'android') ? <View style={{ height: statusBarHeight }} /> : <></>  }
+          {(Platform.OS == 'android') ? <View style={{ height: statusBarHeight }} /> : <></>}
           <View style={{ flex: 1 }}>
             <MainPage />
             <RootView />

@@ -150,7 +150,7 @@ const SceneMap = (props) => {
   // 隐藏小地图
   const hideSmallMapHandler = (e) => {
     Animated.timing(smallMapTransY, {
-      toValue: MAP_SMALL_SIZE.height + 80,
+      toValue: MAP_SMALL_SIZE.height + 90,
       duration: 300,
       useNativeDriver: true,
     }).start((r) => {
@@ -327,7 +327,7 @@ const SceneMap = (props) => {
       {/* 小地图隐藏过后显示按钮 */}
       <TouchableWithoutFeedback onPress={showSmallMapHandler}>
         <Animated.View style={{ opacity: showButtonOpacity }}>
-          <FastImage style={{ position: 'absolute', right: 20, top: -100, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_maximize_button.png')} />
+          <FastImage style={{ position: 'absolute', right: 20, top: -110, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_maximize_button.png')} />
         </Animated.View>
       </TouchableWithoutFeedback>
 
