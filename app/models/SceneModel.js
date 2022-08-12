@@ -706,6 +706,13 @@ export default {
       if (showBag != undefined && lo.isEqual(showBag, 'showBag')) {
         DeviceEventEmitter.emit(EventKeys.ARTICLE_SHOW_BAG_ANIMATION);
       }
+      // 如果当前场景存在剧情道具，则通知刷新
+      if (!lo.isEmpty(payload.__sceneId)) {
+        const scene = sceneState.__data.cfgReader.getScene(payload.__sceneId);
+        if (scene != null && lo.isArray(scene.plotPropsId) && scene.plotPropsId.length > 0) {
+          DeviceEventEmitter.emit(EventKeys.REFRESH_MISSION_PROPSBAR);
+        }
+      }
     },
 
     *__onSeqIdCommand({ payload }, { put }) {

@@ -16,7 +16,7 @@ const IMAGES = [
     { id: 4, source: require('../../../assets/animations/xuehua/xuehua4-5.png'), frameWidth: 480, frameHeight: 960, frameNums: 8, columns: 4, rows: 2 },
     { id: 5, source: require('../../../assets/animations/xuehua/xuehua5-6.png'), frameWidth: 480, frameHeight: 960, frameNums: 8, columns: 4, rows: 2 },
     { id: 6, source: require('../../../assets/animations/xuehua/xuehua6-7.png'), frameWidth: 480, frameHeight: 960, frameNums: 8, columns: 4, rows: 2 },
-    { id: 7, source: require('../../../assets/animations/xuehua/xuehua7-8.png'), frameWidth: 480, frameHeight: 960, frameNums: 5, columns: 3, rows: 2 },
+    { id: 7, source: require('../../../assets/animations/xuehua/xuehua7-8.png'), frameWidth: 480, frameHeight: 960, frameNums: 5, columns: 4, rows: 1 },
 ]
 
 class SheetItem extends React.Component {

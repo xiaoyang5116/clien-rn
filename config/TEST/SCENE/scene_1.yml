@@ -108,6 +108,7 @@ scenes: [
       { id: 'v5', min: 0, max: 1 },
       { id: 'v10', min: 0, max: 1 },
       { id: 'v20', min: 0, max: 1 },
+      { id: 'v_shop', min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -116,6 +117,9 @@ scenes: [
       { id: 't3', cmd: 'var', params: 'v3 = ON' },
       { id: 't4', cmd: 'var', params: 'v4 = ON' },
     ],
+
+    # 剧情道具
+    plotPropsId: [400, 401, 402, 403, 404, 405, 406, 407, 408],
 
     # 事件定义
     events: [
@@ -161,18 +165,19 @@ scenes: [
           { title: '【查看选项】', andVarsOn: ['v5'], nextChat: 'c1' }, 
           { title: '【思考】', andVarsOn: ['v5'], nextChat: 'c7' }, 
           { title: '【移动地图中心点_P1】', toMapPoint: [0, 0] }, 
+          { title: '【默认商店】', andVarsOn: ['v_shop'], toShop: 'default' }, 
+          { title: '【获得剧情道具】', sendProps: '405,1' }, 
+          { title: '【--测试选项进度条--】', toScene: 'S_00Test01' }, 
+          { title: '【--DEBUG跳过序章移动到破庙--】', toScene: 'M01_S01_luoyuezhen_pomiao' },
+          
           # { title: '【移动地图中心点_P2】', toMapPoint: [-1, 0] }, 
           # { title: '【小游戏：劈砖头】', games: { id: 1 }, dropIds: [ 'WZXX_M1_N1_C001V_Vdrop1'], }, 
           # { title: '【小游戏：撸猫】', games: { id: 2, toScene: 'M01_S01_luoyuezhen_pomiao' } }, 
           # { title: '【小游戏：记忆力训练】', games: { id: 3, words: ['不', '知', '道', ] } }, 
-          { title: '【默认商店】', toShop: 'default' }, 
           # { title: '【商店二】', toShop: 'shop2' }, 
           # { title: '【动效1】', animations: { id: 3 } }, 
           # { title: '【动效2】', animations: { id: 9 } }, 
-          { title: '【打开采集页面(1)】', collect: '1' }, 
           # { title: '【打开采集页面(2)】', collect: '2' }, 
-          { title: '【--测试选项进度条--】', toScene: 'S_00Test01' }, 
-          { title: '【--DEBUG跳过序章移动到破庙--】', toScene: 'M01_S01_luoyuezhen_pomiao' },
         ],
       },
       { 
