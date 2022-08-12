@@ -133,9 +133,10 @@ class FirstPage extends Component {
                   Modal.show({
                     style: 10, textAnimationType: 'TextSingle',
                     sections: [
-                      { figureId: "01", location: "right", content: ['你迅速跑过去，', '地面有些东西。你迅速跑过去，', '多发点十分丰富的水分'], },
+                      { figureId: "01", location: "right", content: ['你迅速跑过去，', '地面有些东西。你迅速跑过去，',], },
                       { figureId: "02", location: "left", content: ['发放垃圾分类就', '发顺丰撒', '草公司的后果', '火鬼斧神工'], },
-                      { figureId: "01", location: "right", content: ['十分骄傲放假辣鸡。'], },
+                      { figureId: "01", hideId: ["02"], location: "right", content: ['十分骄傲放假辣鸡。'], },
+                      { figureId: "02", location: "left", content: ['好的根深蒂固', '电饭锅电饭锅合适的'], },
                     ]
                   })
 

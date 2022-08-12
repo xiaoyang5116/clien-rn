@@ -41,8 +41,9 @@ const BustDialog = props => {
   const theme = ThemeData();
   const { viewData, onDialogCancel, actionMethod, specialEffects, figureList } = props;
   const { sections, textAnimationType } = viewData;
-  const sectionsIndex = useRef(0);
+  const [sectionsIndex, setSectionsIndex] = useState(0)
   const [contentIndex, setContentIndex] = useState(0);
+  const hiddenFiguresId = useRef([])
 
   useEffect(() => {
     if (figureList.length === 0) {
@@ -52,17 +53,28 @@ const BustDialog = props => {
 
   const nextDialog = () => {
     if (
-      sectionsIndex.current >= sections.length - 1 &&
-      contentIndex >= sections[sectionsIndex.current].content.length - 1
+      sectionsIndex === sections.length - 1 &&
+      contentIndex >= sections[sectionsIndex].content.length - 1
     ) {
       return onDialogCancel();
     }
 
     if (
-      contentIndex === sections[sectionsIndex.current].content.length - 1 &&
-      sectionsIndex.current < sections.length - 1
+      contentIndex === sections[sectionsIndex].content.length - 1 &&
+      sectionsIndex <= sections.length - 1
     ) {
-      sectionsIndex.current += 1;
+      // 添加隐藏人物的id
+      if (
+        sections[sectionsIndex + 1].hideId !== undefined &&
+        Array.isArray(sections[sectionsIndex + 1].hideId)
+      ) {
+        hiddenFiguresId.current.push(...sections[sectionsIndex + 1].hideId)
+      }
+
+      // 过滤下一个对话人物id
+      hiddenFiguresId.current = hiddenFiguresId.current.filter(item => item != sections[sectionsIndex + 1].figureId)
+
+      setSectionsIndex(index => index + 1)
       setContentIndex(0);
       return;
     }
@@ -70,8 +82,15 @@ const BustDialog = props => {
     setContentIndex(contentIndex => contentIndex + 1);
   };
 
+
+
   const _renderItem = ({ item, index }) => {
-    if (index <= sectionsIndex.current && figureList.length > 0) {
+    if (
+      hiddenFiguresId.current.length > 0 &&
+      hiddenFiguresId.current.find(i => i === item.figureId) !== undefined
+    ) return null
+
+    if (index <= sectionsIndex && figureList.length > 0) {
       const currentFigureData = figureList.find(i => i.id === item.figureId);
       const bustImg = getBustImg(currentFigureData.bust);
 
@@ -82,7 +101,7 @@ const BustDialog = props => {
             width: '100%',
             position: 'absolute',
             zIndex: index,
-            opacity: index === sectionsIndex.current ? 1 : 0.6,
+            opacity: index === sectionsIndex ? 1 : 0.6,
           }}>
           <BustImage bustImg={bustImg} location={item.location} />
           <View style={styles.contentContainer}>
