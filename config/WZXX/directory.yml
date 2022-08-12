@@ -109,7 +109,7 @@ directory: [
         },
 
         { point: [0, -8], title: '第四章N1灵修界',
-        bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N1]' ,
+        #bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N1]' ,
         toChapter: 'WZXX_M1_N1_C004_[N1]', links: [[0, -9], ] 
         },
 
@@ -129,12 +129,12 @@ directory: [
         },
 
         { point: [-1, -12], title: '第六章 解铃还须系铃人 N0', 
-        bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C006_[N0]' ,
+        #bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C006_[N0]' ,
         toChapter: 'WZXX_M1_N1_C006_[N0]', links: [[0, -13],[1, -12], ] 
         },
 
         { point: [1, -12], title: '第六章初见陶老', 
-        bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C006_[N1]' ,
+        #bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C006_[N1]' ,
         toChapter: 'WZXX_M1_N1_C006_[N1]', links: [[0, -13],[-1, -12], ] 
         },
 
@@ -174,12 +174,12 @@ directory: [
         },
 
         { point: [0, -17], title: '第十一章三只阴灵',
-          bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C011_[V0]' , 
+          #bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C011_[V0]' , 
           toChapter: 'WZXX_M1_N1_C011_[V0]', links: [[0, -18],[0, -15], ] 
         },
 
         { point: [0, -18], title: '第十二章神识', 
-          bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C012_[V0]' ,
+          #bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C012_[V0]' ,
           toChapter: 'WZXX_M1_N1_C012_[V0]', links: [[0, -19]], 
         },
 
@@ -256,7 +256,7 @@ directory: [
       },
 
       { point: [0, 1], title: '第二十二章 云云离开[N1]', 
-        bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C022_[N1]' ,
+        #bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C022_[N1]' ,
         toChapter: 'WZXX_M1_N1_C022_[N1]', links: [[0, 0],] 
       },
 
