@@ -12,6 +12,7 @@ import Animation from '../animation';
 import SingleDialog from './singleDialog';
 import MultiplayerDialog from './MultiplayerDialog';
 import BlackAndWhiteClickDialog from './blackAndWhiteClickDialog';
+import BustDialog from './bustDialog';
 
 
 const DialogRoutes = (props) => {
@@ -44,8 +45,9 @@ const DialogRoutes = (props) => {
         }
 
         // 添加 线索
-        if (item.addClues !== undefined) {
-            props.dispatch(action('CluesModel/addClues')(item.addClues));
+        if (item.addCluesId !== undefined) {
+            // addCluesId: ["xiansuo4"]
+            props.dispatch(action('CluesModel/addClues')({ addCluesId: item.addCluesId }));
         }
     }
 
@@ -80,6 +82,14 @@ const DialogRoutes = (props) => {
     } else if (style === 9 || style === "9A" || style === "9B") {
         return (
             <BlackAndWhiteClickDialog
+                {...props}
+                actionMethod={actionMethod}
+                specialEffects={specialEffects}
+            />
+        )
+    } else if (style === 10) {
+        return (
+            <BustDialog
                 {...props}
                 actionMethod={actionMethod}
                 specialEffects={specialEffects}

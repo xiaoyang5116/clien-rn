@@ -54,11 +54,20 @@ const _images = {
         { id: 4, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_4.png') },
         { id: 5, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_5.png') },
     ],
+    bust: [
+        { id: 1, img: require('../../assets/avatar/1.jpg') },
+        { id: 2, img: require('../../assets/avatar/2.jpg') },
+    ],
 }
 
 // 获得头像
 export const changeAvatar = (avatar) => {
     return _images.avatar.find(a => a.id == avatar).img
+}
+
+// 获得 半身图片
+export const getBustImg = (bust) => {
+    return _images.bust.find(a => a.id == bust).img
 }
 
 // 获取面板风格图片
