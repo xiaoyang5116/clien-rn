@@ -110,6 +110,9 @@ export default class ProgressBar extends Component {
     componentDidUpdate() {
         const kv = this.sequeue[this.state.index];
         if (kv != undefined) {
+            if (this.props.onStart != undefined) {
+                this.props.onStart();
+            }
             Animated.timing(this.state.refWidth, {
                 toValue: kv.toValue,
                 duration: kv.duration,
