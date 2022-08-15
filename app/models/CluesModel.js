@@ -14,7 +14,7 @@ import { GetClueConfigDataApi } from "../services/GetClueConfigDataApi";
 import Toast from "../components/toast";
 
 
-// status : 0-关闭, 1-未使用, 2- 使用过
+// status : 0-关闭, 1-未使用, 2-完成的, 3-失败的
 
 export default {
   namespace: 'CluesModel',
@@ -97,16 +97,7 @@ export default {
 
       let newCluesList = [...cluesList]
 
-      if (useCluesId !== undefined) {
-        for (let index = 0; index < useCluesId.length; index++) {
-          for (let c = 0; c < newCluesList.length; c++) {
-            const item = newCluesList[c];
-            if (item.id === useCluesId[index]) {
-              item.status = 2
-            }
-          }
-        }
-      }
+      newCluesList = yield put.resolve(action('changeCluesStatus')(payload));
 
       if (addCluesId !== undefined && useCluesId !== undefined) {
         for (let index = 0; index < addCluesId.length; index++) {
@@ -121,6 +112,37 @@ export default {
       }
 
       yield put.resolve(action('saveCluesList')(newCluesList));
+    },
+
+    // 改变线索的状态
+    *changeCluesStatus({ payload }, { call, put, select }) {
+      const { cluesList } = yield select(state => state.CluesModel);
+      const { useCluesId, invalidCluesId } = payload
+
+      let newCluesList = [...cluesList]
+      if (invalidCluesId !== undefined && invalidCluesId.length > 0) {
+        for (let index = 0; index < invalidCluesId.length; index++) {
+          for (let c = 0; c < newCluesList.length; c++) {
+            const item = newCluesList[c];
+            if (item.id === invalidCluesId[index]) {
+              item.status = 3
+            }
+          }
+        }
+      }
+
+      if (useCluesId !== undefined && useCluesId.length > 0) {
+        for (let index = 0; index < useCluesId.length; index++) {
+          for (let c = 0; c < newCluesList.length; c++) {
+            const item = newCluesList[c];
+            if (item.id === useCluesId[index]) {
+              item.status = 2
+            }
+          }
+        }
+      }
+
+      return newCluesList
     },
 
     // 保存并更新线索
