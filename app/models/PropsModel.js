@@ -1,7 +1,9 @@
 
 import { 
   action,
+  DeviceEventEmitter,
   errorMessage,
+  EventKeys,
   LocalCacheKeys,
 } from '../constants';
 
@@ -271,6 +273,11 @@ export default {
         yield put(action('updateState')({}));
         yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
       }
+
+      // 特殊类型道具发送消息通知
+      if (config.attrs.indexOf('碎片') != -1) {
+        yield put(action('_processFragmentCompose')({ propId }));
+      }
     },
 
     *sendPropsBatch({ payload }, { put, call, select }) {
@@ -286,6 +293,35 @@ export default {
       
       yield put(action('updateState')({}));
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
+    },
+
+    *_processFragmentCompose({ payload }, { put, call, select }) {
+      const propsState = yield select(state => state.PropsModel);
+      const { propId } = payload;
+
+      const fragmentConfig = propsState.__data.propsConfig.find((e) => e.id == propId);
+      if (fragmentConfig == undefined || fragmentConfig.composite == undefined)
+        return
+
+      const toPropConfig = propsState.__data.propsConfig.find((e) => e.id == fragmentConfig.composite.propId);
+      if (toPropConfig == undefined)
+        return
+
+      const fragment = propsState.__data.bags.find((e) => e.id == propId);
+      if (fragment == undefined)
+        return
+
+      const toProp = propsState.__data.bags.find((e) => e.id == fragmentConfig.composite.propId);
+      if (toProp != undefined && toProp.num > 0) {
+        return // 道具已经存在，不再自动合成
+      }
+
+      if ((fragment.num >= fragmentConfig.composite.requireNum)) {
+        const _fragment = lo.cloneDeep(fragment);
+        yield put.resolve(action('reduce')({ propsId: [propId], num: fragmentConfig.composite.requireNum, mode: 1 }));
+        yield put.resolve(action('sendProps')({ propId: fragmentConfig.composite.propId, num: 1 }));
+        DeviceEventEmitter.emit(EventKeys.GET_FRAGMENT_PROP, { fragment: _fragment, toPropConfig: toPropConfig });
+      }
     },
 
     *discard({ payload }, { put, call, select }) {

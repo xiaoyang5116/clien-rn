@@ -71,4 +71,7 @@ export class EventKeys {
 
     // 进入城镇地点
     static TOWN_ENTER = 'TOWN_ENTER';
+
+    // 获得碎片道具
+    static GET_FRAGMENT_PROP = 'GET_FRAGMENT_PROP';
 }
