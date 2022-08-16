@@ -6,6 +6,7 @@ import {
     Component,
     StyleSheet,
     ThemeContext,
+    ScrollView,
 } from "../../constants";
 
 import { 
@@ -117,12 +118,18 @@ class PropsTabPage extends Component {
                             <Text>铜币：{this.props.user.copper}</Text>
                         </View>
                     </View>
-                    <View style={{ height: 38, justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                        <TabButton title='全部' onPress={() => { this._typeFilter('全部') }} />
-                        <TabButton title='材料' onPress={() => { this._typeFilter('材料') }} />
-                        <TabButton title='装备' onPress={() => { this._typeFilter('装备') }} />
-                        <TabButton title='丹药' onPress={() => { this._typeFilter('丹药')}} />
-                        <TabButton title='特殊' onPress={() => { this._typeFilter('特殊') }} />
+                    <View style={{ height: 38 }}>
+                        <ScrollView horizontal={true} 
+                            pagingEnabled={false} 
+                            showsHorizontalScrollIndicator={false} 
+                            contentContainerStyle={{ justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+                            <TabButton title='全部' style={{ marginRight: 10 }} onPress={() => { this._typeFilter('全部') }} />
+                            <TabButton title='材料' style={{ marginRight: 10 }} onPress={() => { this._typeFilter('材料') }} />
+                            <TabButton title='装备' style={{ marginRight: 10 }} onPress={() => { this._typeFilter('装备') }} />
+                            <TabButton title='丹药' style={{ marginRight: 10 }} onPress={() => { this._typeFilter('丹药')}} />
+                            <TabButton title='碎片' style={{ marginRight: 10 }} onPress={() => { this._typeFilter('碎片') }} />
+                            <TabButton title='特殊' style={{ marginRight: 10 }} onPress={() => { this._typeFilter('特殊') }} />
+                        </ScrollView>
                     </View>
                     <View style={{ height: 30, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                         <View style={{ flex: 1 }}>

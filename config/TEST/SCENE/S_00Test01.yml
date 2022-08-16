@@ -108,6 +108,7 @@ scenes: [
       { id: 't2', cmd: 'var', params: 'v2 = ON' },
       { id: 't3', cmd: 'var', params: 'v3 = ON' },
       { id: 't4', cmd: 'var', params: 'v4 = ON' },
+      { id: 't4_1', cmd: 'animations', params: { id: 3 } },
 
       { id: 'a1', cmd: 'var', params: '__progress1__ += 10' },
       { id: 'a2', cmd: 'var', params: '__progress2__ -= 10' },
@@ -128,7 +129,7 @@ scenes: [
           { title: '【背包存在木瓜】', nextChat: 'c6', andVarsValue: ['@props_40 >= 1'] }, 
           # { title: '【测试倒计时选项1】', nextChat: 'c6', andVarsOff: ['v2'], duration: 10000, timeoutActions: ['t2'] }, 
           # { title: '【测试倒计时选项2】', nextChat: 'c6', andVarsOff: ['v3'], duration: 5000, timeoutActions: ['t3'] }, 
-          { title: '【测试倒计时选项3】', nextChat: 'c6', andVarsOff: ['v4'], duration: 5000, timeoutActions: ['t4'] }, 
+          { title: '【测试倒计时选项3】', animations: { id: 9 }, duration: 5000, timeoutActions: ['t4_1'] }, 
           { title: '【★退出测试场景】', toScene: 'wzkj' }, 
         ],
       },

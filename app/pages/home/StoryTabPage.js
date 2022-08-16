@@ -91,13 +91,14 @@ const SceneMapWrapper = (props) => {
 const StoryTabPage = (props) => {
 
   const theme = useContext(ThemeContext);
-  const progressViews = React.useRef([]);
   const currentMapId = React.useRef('');
   const currentMapCenterPoint = React.useRef(null);
   const sceneMapRefreshKey = React.useRef(0);
 
   const refCurrentChatId = React.useRef('');
   const refCurrentScene = React.useRef(null);
+
+  const completedProgressIds = React.useRef([]);
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener(EventKeys.FORCE_UPDATE_STORY_CHAT, () => {
@@ -111,12 +112,20 @@ const StoryTabPage = (props) => {
   }, []);
 
   const onClickItem = (e) => {
+    if (e.item != null && e.item.duration != undefined 
+      && (completedProgressIds.current.indexOf(e.item.progressId) == -1)) {
+      return // 倒计时选项没结束不能点击
+    }
     props.dispatch(action('StoryModel/click')(e.item));
   }
 
+  const onProgressStart = (data) => {
+    completedProgressIds.current = completedProgressIds.current.filter(e => e != data.item.progressId);
+  }
+
   const onProgressCompleted = (data) => {
-    if (data.item.progressId != undefined) {
-      progressViews.current = progressViews.current.filter(e => e.progressId != data.item.progressId);
+    if (completedProgressIds.current.indexOf(data.item.progressId) == -1) {
+      completedProgressIds.current.push(data.item.progressId);
     }
     props.dispatch(action('StoryModel/progressCompleted')(data.item));
   }
@@ -133,15 +142,11 @@ const StoryTabPage = (props) => {
     let progressView = <></>;
     // 进度条记录起来，倒计时没完成前不影响。
     if (data.item.progressId != undefined) {
-      const progress = progressViews.current.find(e => e.progressId == data.item.progressId);
-      if (progress != undefined) {
-        progressView = progress.view;
-      } else {
-        progressView = (<View style={{ position: 'absolute', left: 0, right: 0, top: 37, height: 4 }}>
-                          <ProgressBar percent={100} toPercent={0} duration={data.item.duration} onCompleted={() => onProgressCompleted(data)} />
-                        </View>);
-        progressViews.current.push({ progressId: data.item.progressId, view: progressView });
-      }
+      progressView = (
+      <View style={{ position: 'absolute', left: 0, right: 0, top: 37, height: 4, paddingLeft: 3, paddingRight: 3 }}>
+        <ProgressBar percent={100} toPercent={0} duration={data.item.duration} onStart={() => onProgressStart(data) } onCompleted={() => onProgressCompleted(data)} />
+      </View>
+      );
     }
 
     let iconComponent = <></>;

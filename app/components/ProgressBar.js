@@ -66,7 +66,6 @@ export default class ProgressBar extends Component {
         let percentage = this.props.percent;    // 当前百分比
         let value = this.state.wrapWidth * percentage / 100;   // 设置启始宽度
         const validWidth = this.state.wrapWidth *  Math.abs(this.props.percent - this.props.toPercent) / 100;  // 动画变化的有效宽度
-
         this.state.refWidth.setValue(value);
 
         if (this._playAnimation() && (this.props.toPercent > this.props.percent)) {
@@ -81,7 +80,7 @@ export default class ProgressBar extends Component {
 
                     this.sequeue.push({ 
                         toValue: value, 
-                        duration: (diffWith / validWidth) * this.props.duration, 
+                        duration: (validWidth > 0) ? ((diffWith / validWidth) * this.props.duration) : 0, 
                         color: section.color 
                     });
                 }
@@ -99,7 +98,7 @@ export default class ProgressBar extends Component {
 
                     this.sequeue.push({ 
                         toValue: value, 
-                        duration: (diffWith / validWidth) * this.props.duration, 
+                        duration: (validWidth > 0) ? ((diffWith / validWidth) * this.props.duration) : 0, 
                         color: section.color 
                     });
                 }
@@ -108,8 +107,14 @@ export default class ProgressBar extends Component {
     }
 
     componentDidUpdate() {
+        if (this.state.wrapWidth <= 0)
+            return
+
         const kv = this.sequeue[this.state.index];
         if (kv != undefined) {
+            if (this.props.onStart != undefined) {
+                this.props.onStart();
+            }
             Animated.timing(this.state.refWidth, {
                 toValue: kv.toValue,
                 duration: kv.duration,

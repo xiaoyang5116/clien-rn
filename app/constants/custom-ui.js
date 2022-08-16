@@ -18,6 +18,7 @@ export const TabButton = (props) => {
             fontSize={16}
             color={themeStyle.button.backgroundColor}
             fontColor={themeStyle.button.color}
+            {...props}
             onPress={props.onPress}
         />
     );
