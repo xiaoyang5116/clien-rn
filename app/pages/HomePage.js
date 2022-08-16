@@ -24,8 +24,8 @@ import FastImage from 'react-native-fast-image';
 import StoryTabPage from './home/StoryTabPage';
 import ProfileTabPage from './home/ProfileTabPage';
 import PropsTabPage from './home/PropsTabPage';
-import LotteryTabPage from './home/LotteryTabPage';
 import ExploreTabPage from './home/ExploreTabPage';
+import CollectionTabPage from './home/CollectionTabPage';
 import { Platform } from 'react-native';
 import { px2pd } from '../constants/resolution';
 import TownTabPage from './home/TownTabPage';
@@ -97,13 +97,9 @@ class HomePage extends Component {
             title: "城镇",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'城镇'} />),
           }} />
-          {/* <Tab.Screen name="Compose" component={ComposeTabPage} options={{
-            title: "制作",
-            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'制作'} />),
-          }} /> */}
-          <Tab.Screen name="Lottery" component={LotteryTabPage} options={{
-            title: "抽奖",
-            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'抽奖'} />),
+          <Tab.Screen name="Lottery" component={CollectionTabPage} options={{
+            title: "收藏",
+            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'收藏'} />),
           }} />
           <Tab.Screen name="Profile" component={ProfileTabPage} options={{
             title: "设置",
