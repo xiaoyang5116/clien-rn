@@ -7,15 +7,15 @@ import {
     TouchableWithoutFeedback,
     SectionList
 } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { ThemeContext } from '../../constants'
 
 import { TextButton } from '../../constants/custom-ui';
 
 
-const GroupHeader = (props) => {
-    const { title } = props
+const Separator = (props) => {
+    const { title, style } = props
     return (
         <View style={{
             flexDirection: 'row',
@@ -23,19 +23,74 @@ const GroupHeader = (props) => {
             alignItems: 'center',
             paddingLeft: 12,
             paddingRight: 12,
-            marginTop: 24
+            marginTop: 24,
+            ...style
         }}>
             <View style={{ height: 1, backgroundColor: "#ccc", flex: 1 }}></View>
-            <Text style={{ fontSize: 16, color: "#000", paddingLeft: 8, paddingRight: 8 }}>{title}</Text>
+            <Text style={{ fontSize: 16, color: "#7C7C7C", paddingLeft: 8, paddingRight: 8 }}>{title}</Text>
             <View style={{ height: 1, backgroundColor: "#ccc", flex: 1 }}></View>
         </View>
     )
 }
 
+const UnusedCluesItem = (props) => {
+    const { item, isChecked, setCheckedCluesId } = props
+    return (
+        <TouchableOpacity onPress={() => { setCheckedCluesId(item.id) }}>
+            <View style={styles.itemContainer}>
+                <View style={[styles.item_titleContainer, { backgroundColor: isChecked ? "#656565" : null }]}>
+                    <Text style={[styles.title, { color: isChecked ? "#fff" : "#000" }]}>{item.title}</Text>
+                </View>
+
+                <View style={isChecked ? styles.selectItem : styles.Unselected}>
+                    <Text style={[styles.content, { color: "#000" }]}>{item.content}</Text>
+                </View>
+            </View >
+        </TouchableOpacity>
+    )
+}
+
+const CompletedCluesItem = (props) => {
+    const { item, isChecked, setCheckedCluesId } = props
+    return (
+        <TouchableOpacity onPress={() => { setCheckedCluesId(item.id) }}>
+            <View style={styles.itemContainer}>
+                <View style={[styles.item_titleContainer, { backgroundColor: isChecked ? "#656565" : null }]}>
+                    <Text style={[styles.title, { color: isChecked ? "#fff" : "#7C7C7C" }]}>{item.title}</Text>
+                    {isChecked ? null : <Text style={[styles.title, { color: "#00BD2D" }]}> (已完成)</Text>}
+                </View>
+
+                <View style={isChecked ? styles.selectItem : styles.Unselected}>
+                    <Text style={[styles.content, { color: "#7C7C7C" }]}>{item.content}</Text>
+                </View>
+            </View >
+        </TouchableOpacity>
+    )
+}
+
+const InvalidCluesItem = (props) => {
+    const { item, isChecked, setCheckedCluesId } = props
+    return (
+        <TouchableOpacity onPress={() => { setCheckedCluesId(item.id) }}>
+            <View style={styles.itemContainer}>
+                <View style={[styles.item_titleContainer, { backgroundColor: isChecked ? "#656565" : null }]}>
+                    <Text style={[styles.title, { color: isChecked ? "#fff" : "#7C7C7C" }]}>{item.title}</Text>
+                    {isChecked ? null : <Text style={[styles.title, { color: "#7C7C7C" }]}> (已失效)</Text>}
+                </View>
+
+                <View style={isChecked ? styles.selectItem : styles.Unselected}>
+                    <Text style={[styles.content, { color: "#7C7C7C" }]}>{item.content}</Text>
+                </View>
+            </View >
+        </TouchableOpacity>
+    )
+}
+
+
 const CluesContent = (props) => {
     const theme = React.useContext(ThemeContext)
 
-    const { cluesData, filterConditionData, checkedCluesId, setCheckedCluesId } = props
+    const { cluesData, filterConditionData, checkedCluesId, setCheckedCluesId, isDisplayMore, setIsDisplayMore } = props
 
     // 首现循环每条线索,然后循环过滤条件,条件都满足就返回 true,最后根据状态分组并添加线索
     let DATA = [
@@ -57,48 +112,37 @@ const CluesContent = (props) => {
         }
     }
 
-
-    const SelectItem = ({ item }) => {
-        return (
-            <View style={styles.item}>
-                <View style={{ position: "absolute", top: -12, left: 8, backgroundColor: "#656565", zIndex: 1, paddingLeft: 4, paddingRight: 4 }}>
-                    <Text style={[styles.title, { color: "#ffffff" }]}>{item.title}</Text>
-                </View>
-
-                <View style={styles.selectItem}>
-                    <Text style={styles.content}>{item.content}</Text>
-                </View>
-            </View>
-        )
-    }
-    const UnselectedItem = ({ item }) => {
-        return (
-            <View style={styles.item}>
-                <View style={{ position: "absolute", top: -12, left: 8, zIndex: 1, paddingLeft: 4, paddingRight: 4 }}>
-                    <Text style={[styles.title, { color: item.status !== 1 ? "#7C7C7C" : "#000" }]}>{item.title}</Text>
-                </View>
-
-                <View style={styles.Unselected}>
-                    <Text style={[styles.content, { color: item.status !== 1 ? "#7C7C7C" : "#000" }]}>{item.content}</Text>
-                </View>
-            </View >
-        )
-    }
-
     const renderItem = ({ item }) => {
-        return (
-            <TouchableOpacity onPress={() => { setCheckedCluesId(item.id) }}>
-                {
-                    (checkedCluesId === item.id) ? <SelectItem item={item} /> : <UnselectedItem item={item} />
-                }
-            </TouchableOpacity>
-        )
+        const isChecked = (checkedCluesId === item.id)
+
+        if (item.status === 1) return <UnusedCluesItem item={item} isChecked={isChecked} setCheckedCluesId={setCheckedCluesId} />
+        if (item.status === 2 && isDisplayMore) return <CompletedCluesItem item={item} isChecked={isChecked} setCheckedCluesId={setCheckedCluesId} />
+        if (item.status === 3 && isDisplayMore) return <InvalidCluesItem item={item} isChecked={isChecked} setCheckedCluesId={setCheckedCluesId} />
+        return null
     }
 
     const renderItemHeader = ({ section: { status, data } }) => {
         if (status === 1 && data.length > 0) return <View style={{ marginTop: 24 }} />
-        if (status === 2 && data.length > 0) return <GroupHeader title={"已完成"} />
-        if (status === 3 && data.length > 0) return <GroupHeader title={"已失效"} />
+        if (status === 2 && data.length > 0 && isDisplayMore) return <Separator title={"已完成"} />
+        if (status === 3 && data.length > 0 && isDisplayMore) return <Separator title={"已失效"} />
+    }
+
+    const Footer = () => {
+        if (isDisplayMore === false && (DATA[1].data.length > 0 || DATA[2].data.length > 0)) {
+            return <Separator title={"上滑显示无效部分"} style={{ marginTop: 150 }} />
+        }
+        return null
+    }
+
+    const _onScrollEndDrag = (event) => {
+        if (isDisplayMore === true || (DATA[1].data.length === 0 && DATA[2].data.length === 0)) return
+        const offSetY = event.nativeEvent.contentOffset.y  // 滑动距离
+        const contentSizeHeight = event.nativeEvent.contentSize.height  // 内容高度
+        const SectionListHeight = event.nativeEvent.layoutMeasurement.height  // SectionList 的高度
+
+        if (offSetY + SectionListHeight >= contentSizeHeight - 1) {
+            setIsDisplayMore(true)
+        }
     }
 
     return (
@@ -108,7 +152,9 @@ const CluesContent = (props) => {
                 keyExtractor={(item, index) => item.status + index}
                 renderItem={renderItem}
                 renderSectionHeader={renderItemHeader}
+                ListFooterComponent={Footer}
                 showsVerticalScrollIndicator={false}
+                onScrollEndDrag={_onScrollEndDrag}
             />
         </View>
     )
@@ -121,8 +167,8 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 12,
         paddingRight: 12,
-        marginBottom: 60,
-        // backgroundColor: '#efefef'
+        // marginBottom: 60,
+        // backgroundColor:"red"
     },
     item: {
         marginTop: 20,
@@ -142,5 +188,21 @@ const styles = StyleSheet.create({
     },
     content: {
         fontSize: 14,
+    },
+
+    // ----
+    itemContainer: {
+        marginTop: 20,
+        width: "100%",
+        position: 'relative',
+    },
+    item_titleContainer: {
+        position: "absolute",
+        top: -12,
+        left: 8,
+        zIndex: 1,
+        paddingLeft: 4,
+        paddingRight: 4,
+        flexDirection: "row",
     },
 });

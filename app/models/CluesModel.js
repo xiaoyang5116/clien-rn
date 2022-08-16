@@ -4,6 +4,7 @@ import {
   LocalCacheKeys,
   DeviceEventEmitter,
   EventKeys,
+  BOTTOM_TOP_SMOOTH,
 } from "../constants";
 
 import LocalStorage from '../utils/LocalStorage';
@@ -99,7 +100,7 @@ export default {
 
       newCluesList = yield put.resolve(action('changeCluesStatus')(payload));
 
-      if (addCluesId !== undefined && useCluesId !== undefined) {
+      if (addCluesId !== undefined) {
         for (let index = 0; index < addCluesId.length; index++) {
           // 跳过已经存在的线索
           if (cluesList.filter(item => item.id === addCluesId[index]).length !== 0) continue;
@@ -107,7 +108,9 @@ export default {
           const clues = __allCluesData.find(item => item.id === addCluesId[index])
           if (clues === undefined) return console.debug("未找到线索")
           newCluesList.unshift({ ...clues, status: 1 })
-          Toast.show(`获得${clues.type}: ${clues.title}`)
+          setTimeout(() => {
+            Toast.show(`获得${clues.type}: ${clues.title}`, BOTTOM_TOP_SMOOTH)
+          }, 600)
         }
       }
 
@@ -124,8 +127,11 @@ export default {
         for (let index = 0; index < invalidCluesId.length; index++) {
           for (let c = 0; c < newCluesList.length; c++) {
             const item = newCluesList[c];
-            if (item.id === invalidCluesId[index]) {
+            if (item.id === invalidCluesId[index] && item.status !== 3) {
               item.status = 3
+              setTimeout(() => {
+                Toast.show(`${item.title} - 已失效`, BOTTOM_TOP_SMOOTH)
+              }, 1100)
             }
           }
         }
@@ -135,8 +141,11 @@ export default {
         for (let index = 0; index < useCluesId.length; index++) {
           for (let c = 0; c < newCluesList.length; c++) {
             const item = newCluesList[c];
-            if (item.id === useCluesId[index]) {
+            if (item.id === useCluesId[index] && item.status !== 2) {
               item.status = 2
+              setTimeout(() => {
+                Toast.show(`${item.title} - 已使用`, BOTTOM_TOP_SMOOTH)
+              }, 100)
             }
           }
         }

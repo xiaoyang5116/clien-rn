@@ -6,7 +6,7 @@ import {
     SafeAreaView,
     TouchableOpacity,
 } from 'react-native'
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useContext, useState, useRef } from 'react'
 
 import {
     AppDispath,
@@ -28,10 +28,16 @@ function tabDataFun(cluesList) {
     for (let index = 0; index < cluesList.length; index++) {
         const item = cluesList[index];
         if (tabData.length === 0) {
-            tabData.push(item.type)
+            tabData.push({
+                title: item.type,
+                isDisplayMore: false
+            })
         }
-        else if (tabData.length > 0 && tabData.filter(i => i === item.type).length === 0) {
-            tabData.push(item.type)
+        else if (tabData.length > 0 && tabData.filter(i => i.title === item.type).length === 0) {
+            tabData.push({
+                title: item.type,
+                isDisplayMore: false
+            })
         }
     }
     return tabData
@@ -123,9 +129,9 @@ const CluesList = (props) => {
     if (!cluesList) return null
 
     // 标签数据
-    const tabData = tabDataFun(cluesList)
+    const [tabData, setTabData] = useState(tabDataFun(cluesList))
     // 选中的标签
-    const [selectedTab, setSelectedTab] = useState(tabData[0])
+    const [selectedTab, setSelectedTab] = useState(tabData[0].title)
 
     // 选中标签 对应类型的 线索数据
     const cluesData = cluesList.filter(item => item.type === selectedTab)
@@ -149,6 +155,13 @@ const CluesList = (props) => {
     // 选中的线索ID
     const [checkedCluesId, setCheckedCluesId] = useState(null)
 
+    // 是否显示失效线索
+    const isDisplayMore = tabData.find(item => item.title === selectedTab).isDisplayMore
+    const setIsDisplayMore = () => {
+        const newTabData = tabData.map(item => item.title === selectedTab ? { ...item, isDisplayMore: true } : item)
+        setTabData(newTabData)
+    }
+
     return (
         <View style={{ flex: 1, backgroundColor: '#efefef' }}>
             <SafeAreaView style={{ flex: 1 }}>
@@ -170,6 +183,8 @@ const CluesList = (props) => {
                     filterConditionData={filterConditionData}
                     checkedCluesId={checkedCluesId}
                     setCheckedCluesId={setCheckedCluesId}
+                    isDisplayMore={isDisplayMore}
+                    setIsDisplayMore={setIsDisplayMore}
                 />
             </SafeAreaView>
         </View>
