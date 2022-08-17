@@ -3,6 +3,10 @@ import lo from 'lodash';
 import EventListeners from '../utils/EventListeners';
 import { GetCollectionDataApi } from '../services/GetCollectionDataApi';
 
+import { 
+  action,
+} from "../constants";
+
 export default {
   namespace: 'CollectionModel',
 
@@ -25,7 +29,18 @@ export default {
 
     *getCollectionList({ }, { call, put, select }) {
       const collectionState = yield select(state => state.CollectionModel);
-      return collectionState.__data.config;
+
+      const list = [];
+      for (let key in collectionState.__data.config) {
+        const item = collectionState.__data.config[key];
+        const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: item.propId }));
+        if (propNum <= 0)
+          continue
+        
+        list.push(lo.cloneDeep(item));
+      }
+      
+      return list;
     },
     
   },
