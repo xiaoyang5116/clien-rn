@@ -3,6 +3,7 @@ import React from 'react'
 
 const BasicBtn = (props) => {
   const { onPress, title, containerStyle } = props
+
   return (
     <TouchableHighlight onPress={onPress}>
       <View style={{ ...containerStyle }}>

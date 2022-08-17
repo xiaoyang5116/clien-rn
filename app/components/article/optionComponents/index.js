@@ -4,6 +4,7 @@ import BasicBtn from '../optionComponents/BasicBtn'
 
 const OptionComponents = (props) => {
   const { type } = props
+
   switch (type) {
     case "basic":
       return <BasicBtn {...props} />
