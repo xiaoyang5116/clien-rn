@@ -1,0 +1,24 @@
+# 收藏品
+collections: [
+
+  {
+    # 收藏品唯一ID
+    id: 1,
+
+    # 收藏品名称
+    name: '金项链',
+
+    # 所属分类
+    categories: ['金'],
+
+    # 收藏品属性加成
+    attrs: [{ key: '速度', value: 10 }, { key: '防御', value: 0.5 }],
+
+    # 解锁道具
+    propId: 700,
+
+    # 星级
+    stars: 6,
+  },
+
+]

@@ -36,6 +36,7 @@ const MainPage = (props) => {
     const listener = DeviceEventEmitter.addListener(EventKeys.APP_DISPATCH, (params) => {
       props.dispatch(action(params.type)(params.payload)).then((result) => {
         if (lo.isFunction(params.cb)) params.cb(result);
+        if (lo.isString(params.retmsg)) DeviceEventEmitter.emit(params.retmsg, result);
       });
     });
     return () => {

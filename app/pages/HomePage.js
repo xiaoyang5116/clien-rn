@@ -97,7 +97,7 @@ class HomePage extends Component {
             title: "城镇",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'城镇'} />),
           }} />
-          <Tab.Screen name="Lottery" component={CollectionTabPage} options={{
+          <Tab.Screen name="Collection" component={CollectionTabPage} options={{
             title: "灵物收藏",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'收藏'} />),
           }} />
