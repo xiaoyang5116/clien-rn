@@ -183,7 +183,7 @@ scenes: [
       {
         id: 'c9', desc: '千钧一发，小师弟的剑就要砍来，李森炎举起剑……', 
         options: [ 
-          { title: '奋力相击', toChapter: "WZXX_M1_N1_C002_[N14.5]"  }, 
+          { title: '奋力相击', toChapter: "WZXX_M1_N1_C004_[N1]"  }, 
         ]
       },
     ],
