@@ -26,6 +26,7 @@ import BookMainPage from './BookMainPage'
 import { navigationRef } from '../utils/RootNavigation';
 import { Appearance } from 'react-native';
 import readerStyle from '../themes/readerStyle';
+import ViewListeners from './ViewListeners';
 
 const Stack = createStackNavigator();
 
@@ -35,6 +36,7 @@ const MainPage = (props) => {
     const listener = DeviceEventEmitter.addListener(EventKeys.APP_DISPATCH, (params) => {
       props.dispatch(action(params.type)(params.payload)).then((result) => {
         if (lo.isFunction(params.cb)) params.cb(result);
+        if (lo.isString(params.retmsg)) DeviceEventEmitter.emit(params.retmsg, result);
       });
     });
     return () => {
@@ -93,6 +95,7 @@ const MainPage = (props) => {
         <Stack.Screen name="Settings" options={{ headerShown: false }} component={SettingsPage} />
         <Stack.Screen name="BookMain" options={{ headerShown: false }} component={BookMainPage} />
       </Stack.Navigator>
+      <ViewListeners />
     </NavigationContainer>
   );
 }

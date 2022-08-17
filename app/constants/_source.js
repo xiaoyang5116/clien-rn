@@ -28,6 +28,8 @@ const _images = {
         { id: 'JieMeiHua_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/JieMeiHua_1080.png') },
         { id: 'TaoLaoDengChang_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/TaoLaoDengChang_1080.png') },
         { id: 'TaoLaoLiKai_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/TaoLaoLiKai_1080.png') },
+        { id: 'BaiYueGuangCeMian_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/BaiYueGuangCeMian_1080.png') },
+        { id: 'BaiYueGuangZhengMian_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/BaiYueGuangZhengMian_1080.png') },
 
         { id: 'BAI_FU', width: px2pd(750), height: px2pd(1000), source: require('../../assets/chapter/BAI_FU.webp') },
         { id: 'HUAIBIAO', width: px2pd(720), height: px2pd(720), source: require('../../assets/chapter/HUAIBIAO.webp') },
@@ -58,6 +60,9 @@ const _images = {
         { id: 1, img: require('../../assets/avatar/1.jpg') },
         { id: 2, img: require('../../assets/avatar/2.jpg') },
     ],
+    world_bg: [
+        { id: 'ShiJieBeiJing_V1', source: require('../../assets/bg/world_bg1.png') },
+    ]
 }
 
 // 获得头像
@@ -89,4 +94,9 @@ export const getBtnIcon = (iconId) => {
 // 获取道具ICON
 export const getPropIcon = (iconId) => {
     return _images.propIcons.find(e => e.id == iconId);
+}
+
+// 世界背景
+export const getWorldBackgroundImage = (id) => {
+    return _images.world_bg.find(e => lo.isEqual(e.id, id));
 }

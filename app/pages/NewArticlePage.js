@@ -14,7 +14,8 @@ import {
   getWindowSize,
   statusBarHeight,
   getChapterImage,
-  ThemeContext
+  ThemeContext,
+  getWorldBackgroundImage
 } from "../constants";
 
 import { 
@@ -92,7 +93,7 @@ const TAB_BUTTONS = [
   { title: '世界', action: () => { RootNavigation.navigate('Home', { screen: 'World' }) } },
   { title: '探索', action: () => { RootNavigation.navigate('Home', { screen: 'Explore' }) } },
   { title: '城镇', action: () => { RootNavigation.navigate('Home', { screen: 'Town' }) } },
-  { title: '抽奖', action: () => { RootNavigation.navigate('Home', { screen: 'Lottery' }) } },
+  { title: '收藏', action: () => { RootNavigation.navigate('Home', { screen: 'Collection' }) } },
   { title: '道具', action: () => { RootNavigation.navigate('Home', { screen: 'Props' }) } },
 ]
 
@@ -115,7 +116,10 @@ const ReaderBackgroundImageView = () => {
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener(EventKeys.SET_CURRENT_WORLD, (world) => {
       if (!lo.isEmpty(world.imageId)) {
-        setBackgroundImage(<FastImage style={{ width: '100%', height: '100%', opacity: 0.35 }} source={require('../../assets/bg/explore_bg.jpg')} />);
+        const found = getWorldBackgroundImage(world.imageId);
+        if (found != undefined) {
+          setBackgroundImage(<FastImage style={{ width: '100%', height: '100%', opacity: 0.35 }} source={found.source} />);
+        }
       } else {
         setBackgroundImage(<></>);
       }
