@@ -34,7 +34,7 @@ const CollectionItem = (props) => {
                 <FastImage style={{ width: px2pd(220), height: px2pd(150) }} source={backgroundImage} />
             </View>
             <View>
-                <StarsBanner max={6} star={3} />
+                <StarsBanner max={props.data.stars} star={3} />
             </View>
         </View>
     </TouchableWithoutFeedback>

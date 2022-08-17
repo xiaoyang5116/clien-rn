@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+    AppDispath,
     connect,
     StyleSheet,
 } from "../../constants";
@@ -11,20 +12,47 @@ import {
 } from '../../constants/native-ui';
 
 import { 
-    FlatList, TouchableWithoutFeedback,
+    DeviceEventEmitter,
+    FlatList,
 } from 'react-native';
 
 import lo from 'lodash';
 import { TextButton } from '../../constants/custom-ui';
 import CollectionItem from './collection/CollectionItem';
 
-const DATA = [
-    [{ id: 0, title: 'A' }, { id: 1, title: 'B' }, { id: 2, title: 'C' }, { id: 3, title: 'D' }],
-    [{ id: 4, title: 'E' }, { id: 5, title: 'F' }, { id: 6, title: 'G' }, { id: 7, title: 'H' }],
-    [{ id: 8, title: 'I' }, { id: 9, title: 'J' }, { id: 10, title: 'K' }, ],
-]
-
 const CollectionTabPage = (props) => {
+
+    const [data, setData] = React.useState([]);
+
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener('__@CollectionTabPage.getCollectionList', (data) => {
+            const copy = lo.cloneDeep(data);
+            const result = [];
+
+            while (copy.length > 0) {
+                const list = [];
+                for (let i = 0; i < 4; i++) {
+                    const item = copy.shift();
+                    if (item != undefined) {
+                        list.push(item);
+                    } else {
+                        break
+                    }
+                }
+                result.push(list);
+            }
+
+            setData(result);
+        });
+        return () => {
+            listener.remove();
+        }
+    });
+
+
+    React.useEffect(() => {
+        AppDispath({ type: 'CollectionModel/getCollectionList', payload: {}, retmsg: '__@CollectionTabPage.getCollectionList'});
+    }, []);
 
     const renderItem = (data) => {
         const items = [];
@@ -32,7 +60,7 @@ const CollectionTabPage = (props) => {
             lo.forEach(data.item, (v, k) => {
                 items.push(
                     <View key={k} style={{ marginLeft: 8, marginRight: 8 }}>
-                        <CollectionItem />
+                        <CollectionItem data={v} />
                     </View>
                 );
             });
@@ -59,9 +87,9 @@ const CollectionTabPage = (props) => {
                 <TextButton title={'土'} />
                 <TextButton title={'特殊'} />
             </View>
-            <View>
+            <View style={{ width: '96%', height: '100%' }}>
                 <FlatList
-                    data={DATA}
+                    data={data}
                     renderItem={renderItem}
                 />
             </View>
