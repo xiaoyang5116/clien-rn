@@ -140,24 +140,6 @@ const Box = (props) => {
             </View>
         </TouchableWithoutFeedback>
     );
-
-    // return (
-    // <TouchableWithoutFeedback onPress={onPressHandler} >
-    //     <View style={{ width: 160, height: 100, borderColor: '#666', borderWidth: 1 }}>
-    //         <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', backgroundColor: '#e0f6ff' }} >
-    //             <Text>{props.title}</Text>
-    //         </View>
-    //         <View style={{ flex: 1, backgroundColor: '#fff' }} >
-    //             <View style={{ flex: 1, marginLeft: 10, marginRight: 10, marginTop: 8, marginBottom: 8 }}>
-    //                 <ProgressBar percent={percent} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
-    //             </View>
-    //             <View style={{ position: 'absolute', top: 7, left: 0, right: 0, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-    //                 <Text style={{ color: '#fff' }}>{props.currentNum}/{props.reqNum}</Text>
-    //             </View>
-    //         </View>
-    //     </View>
-    // </TouchableWithoutFeedback>
-    // );
 };
 
 // 底部工具栏组件

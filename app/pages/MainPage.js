@@ -26,6 +26,7 @@ import BookMainPage from './BookMainPage'
 import { navigationRef } from '../utils/RootNavigation';
 import { Appearance } from 'react-native';
 import readerStyle from '../themes/readerStyle';
+import ViewListeners from './ViewListeners';
 
 const Stack = createStackNavigator();
 
@@ -93,6 +94,7 @@ const MainPage = (props) => {
         <Stack.Screen name="Settings" options={{ headerShown: false }} component={SettingsPage} />
         <Stack.Screen name="BookMain" options={{ headerShown: false }} component={BookMainPage} />
       </Stack.Navigator>
+      <ViewListeners />
     </NavigationContainer>
   );
 }

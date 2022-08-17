@@ -167,6 +167,7 @@ scenes: [
           { title: '【移动地图中心点_P1】', toMapPoint: [0, 0] }, 
           { title: '【默认商店】', andVarsOn: ['v_shop'], toShop: 'default' }, 
           { title: '【获得剧情道具】', sendProps: '405,1' }, 
+          { title: '【获得碎片】', sendProps: '500,5' }, 
           { title: '【--测试选项进度条--】', toScene: 'S_00Test01' }, 
           { title: '【--DEBUG跳过序章移动到破庙--】', toScene: 'M01_S01_luoyuezhen_pomiao' },
           

@@ -20,6 +20,7 @@ import Flower from '../animation/Flower';
 import { PlantPage } from '../plant';
 import { ComposeUtils } from '../../pages/home/ComposePage';
 import ShopsUtils from '../../utils/ShopsUtils';
+import LotteryUtils from '../../utils/LotteryUtils';
 
 const MAP_DATA = [
     {
@@ -42,7 +43,7 @@ const MAP_DATA = [
         },
         farPoints: [
             { style: { left: 10, top: 380 }, name: 'LingYaoTian', title: '灵药田' },
-            { style: { left: 110, top: 200 }, name: 'YunWuFeng', title: '云雾峰' },
+            { style: { left: 110, top: 200 }, textStyle: { top: 22 }, name: 'XunBao', title: '寻宝' },
         ],
         nearPoints: [
         ],
@@ -101,6 +102,9 @@ const EntryButton = (props) => {
                             break;
                         case 'ShiChang':
                             ShopsUtils.show();
+                            break;
+                        case 'XunBao':
+                            LotteryUtils.show();
                             break;
                     }
                     DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
