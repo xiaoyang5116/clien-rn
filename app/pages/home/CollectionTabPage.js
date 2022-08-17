@@ -75,9 +75,9 @@ const CollectionTabPage = (props) => {
     return (
         <View style={styles.viewContainer}>
             <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                <Text>金: 1000</Text>
-                <Text>银: 2000</Text>
-                <Text>铜: 3000</Text>
+                <Text>金: 0</Text>
+                <Text>银: 0</Text>
+                <Text>铜: 0</Text>
             </View>
             <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
                 <TextButton title={'金'} />

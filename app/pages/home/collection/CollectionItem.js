@@ -23,7 +23,16 @@ const BACKGROUND_IMAGES = [
 const CollectionItem = (props) => {
 
     // 衬底图片
-    const backgroundImage = BACKGROUND_IMAGES[lo.random(0, 3)];
+    let backgroundImage = BACKGROUND_IMAGES[0];
+    if (props.data.level == undefined || props.data.level <= 3) {
+        backgroundImage = BACKGROUND_IMAGES[0];
+    } else if (props.data.level == 4) {
+        backgroundImage = BACKGROUND_IMAGES[1];
+    } else if (props.data.level == 5) {
+        backgroundImage = BACKGROUND_IMAGES[2];
+    } else if (props.data.level == 6) {
+        backgroundImage = BACKGROUND_IMAGES[3];
+    }
 
     return (
     <TouchableWithoutFeedback onPress={() => {
@@ -34,7 +43,7 @@ const CollectionItem = (props) => {
                 <FastImage style={{ width: px2pd(220), height: px2pd(150) }} source={backgroundImage} />
             </View>
             <View>
-                <StarsBanner max={props.data.stars} star={3} />
+                <StarsBanner max={props.data.stars} star={(props.data.level != undefined && props.data.level >= 0) ? props.data.level : 0} />
             </View>
         </View>
     </TouchableWithoutFeedback>
