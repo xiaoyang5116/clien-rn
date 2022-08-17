@@ -25,7 +25,8 @@ const CollectionTabPage = (props) => {
     const [data, setData] = React.useState([]);
 
     React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener('__@CollectionTabPage.getCollectionList', (data) => {
+        const eventKey = '__@CollectionTabPage.refresh';
+        const listener = DeviceEventEmitter.addListener(eventKey, (data) => {
             const copy = lo.cloneDeep(data);
             const result = [];
 
@@ -44,15 +45,12 @@ const CollectionTabPage = (props) => {
 
             setData(result);
         });
+
+        AppDispath({ type: 'CollectionModel/getCollectionList', payload: {}, retmsg: eventKey});
         return () => {
             listener.remove();
         }
     });
-
-
-    React.useEffect(() => {
-        AppDispath({ type: 'CollectionModel/getCollectionList', payload: {}, retmsg: '__@CollectionTabPage.getCollectionList'});
-    }, []);
 
     const renderItem = (data) => {
         const items = [];
