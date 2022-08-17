@@ -31,7 +31,12 @@ scenes: [
           { title: "【寻找药材】",toScene: 'C000A_V_MAP_2_2', },
         ],
       },
-
+      # { 
+      #   id: 'WZXX_M1_N1_C000A_V2', desc: '回家', 
+      #   options: [ 
+      #     { title: "【回李家越快越好】",toScene: 'C000A_V_MAP_-1_0', },
+      #   ],
+      # },
       #
         ],
 
@@ -668,7 +673,6 @@ scenes: [
          { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
          { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
          { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
-         
         ],
       },
         { 

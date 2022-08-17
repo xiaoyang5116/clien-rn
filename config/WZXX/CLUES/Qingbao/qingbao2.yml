@@ -1,0 +1,11 @@
+# 线索1
+clues:
+  {
+    id: 'qingbao2',
+    type: '情报',
+    filterCondition: {locaton: '郊外',},
+    title: '西市三街',
+    content: '西市三街通往李家的必经之路，有巨型杀手“天降正义”',
+    condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
+    groupId: '李家村',
+  }

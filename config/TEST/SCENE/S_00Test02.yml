@@ -87,8 +87,7 @@
 #       ...影响结果
 #
 # ===========================================
-scenes: 
-[
+scenes: [
   # 新手村场景
   {
     id: 'S_00Test02', name: '灵修界',
@@ -106,11 +105,6 @@ scenes:
 
     # 动作定义
     actions: [
-      { id: 't2', cmd: 'var', params: 'v2 = ON' },
-      { id: 't3', cmd: 'var', params: 'v3 = ON' },
-      { id: 't4', cmd: 'var', params: 'v4 = ON' },
-      { id: 't4_1', cmd: 'animations', params: { id: 3 } },
-
       { id: 'a1', cmd: 'var', params: '__progress1__ += 10' },
       { id: 'a2', cmd: 'var', params: '__progress2__ -= 10' },
       { id: 'a3', cmd: 'var', params: '__progress1__ -= 10' },
@@ -120,20 +114,26 @@ scenes:
 
     # 事件定义
     events: [
-      { type: 'enter', dialogs: ['p0'] },
+       { type: 'enter', nextChat: 'c1',}, 
+      # { type: 'enter', dialogs: ['Screen1']},
     ],
 
     # 对话选项
     chats: [
       # 新手对话主列表
       { 
-        id: 'c1', desc: '“找死！”小师弟大呵一声，拔剑朝他冲去', 
+        id: 'c0', desc: '找茬', 
         options: [ 
-          { title: '攻击', nextChat: 'c1', useProps: '40,1', clickActions: ['a2'] }, 
-          { title: '躲避', nextChat: 'c3', sendProps: '40,10', clickActions: ['a3'] }, 
+          { title: '废物？不可能！', toScene: 'S_00Test02',}, 
         ],
       },
-    
+      { 
+        id: 'c1', desc: '“找死！”小师弟大呵一声，拔剑朝他冲去', 
+        options: [ 
+          { title: '攻击', nextChat: 'c2', clickActions: ['a2'] }, 
+          { title: '躲避', nextChat: 'c3',  clickActions: ['a3'] }, 
+        ],
+      },
       {
         id: 'c2', desc: '李森炎不甘示弱，艰难的站起来，朝他一拳出击', 
         options: [
@@ -151,14 +151,14 @@ scenes:
       {
         id: 'c4', desc: '小师弟更是恼羞成怒，捏紧了手中剑，朝着他狠狠劈去', 
         options: [ 
-          { title: '左勾拳', nextChat: 'c5', useProps: '40,1', clickActions: ['a3'] }, 
-          { title: '躲避', nextChat: 'c6', sendProps: '40,10', clickActions: ['a2'] }, 
+          { title: '左勾拳', nextChat: 'c5', clickActions: ['a2'] }, 
+          { title: '躲避', nextChat: 'c6', clickActions: ['a3'] }, 
         ]
       },
       {
         id: 'c5', desc: '李森炎奋然一跃，看准时机，趁小师弟不注意，重重一击', 
         options: [ 
-          { title: '但小师弟很快反应过来，躲过了你的拳', nextChat: 'c7', }, 
+          { title: '但小师弟很快反应过来，躲过了你的拳', nextChat: 'c6', }, 
         ]
       },
       {
@@ -176,41 +176,55 @@ scenes:
       {
         id: 'c8', desc: '地上有一把银白色的宝剑，此时小师弟再次举起剑欲再次上前', 
         options: [ 
-          { title: '拿起剑，和他决一死战', nextChat: 'c5', useProps: '40,1', clickActions: ['a1'] }, 
-          { title: '不会使剑，还是继续躲吧', dialogs: ['gameover01'], sendProps: '40,10', clickActions: ['a2']  }, 
+          { title: '拿起剑，和他决一死战', nextChat: 'c9', clickActions: ['a1'] }, 
+          { title: '不会使剑，还是继续躲吧', dialogs: ['gameover01'],  clickActions: ['a5']  }, 
         ]
       },
       {
         id: 'c9', desc: '千钧一发，小师弟的剑就要砍来，李森炎举起剑……', 
         options: [ 
-          { title: '两剑相击忽然间狂风怒号，呼呼作响，一道无形之波震得来人身影急退', nextChat: 'c5',  }, 
-         
+          { title: '奋力相击', toChapter: "WZXX_M1_N1_C002_[N14.5]"  }, 
         ]
       },
     ],
 
    # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '挑衅', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'P1', content: ['小师弟咬牙，“你有种，你别躲啊！”','李森炎好笑，摊开双手，“你拿着这么好的剑，我赤手空拳。搞笑，打不过还不能躲了？你脖子上那东西是用来凑身高的吗？”',
-          '此话刚说完，李森炎的脚边就出现了一把，不知哪里甩过来的银白色的宝剑','李森炎：“……”','小师弟见状，大喜，“现在你有剑了，你要是个男人就拿剑和我堂堂正正打一架，别像个缩头乌龟一样。”',],
-          btn: [{title: '请选择行动——' , toChapter: "WZXX_M1_N1_C004_[N2]",}, ]},
+      {
+        id: 'Screen1', style: 6, title: '挑衅', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+        sections: [
+          {
+            key: 'P1', 
+            content: ['小师弟咬牙，“你有种，你别躲啊！”', '李森炎好笑，摊开双手，“你拿着这么好的剑，我赤手空拳。搞笑，打不过还不能躲了？你脖子上那东西是用来凑身高的吗？”', '此话刚说完，李森炎的脚边就出现了一把，不知哪里甩过来的银白色的宝剑', '李森炎：“……”', '小师弟见状，大喜，“现在你有剑了，你要是个男人就拿剑和我堂堂正正打一架，别像个缩头乌龟一样。”',],
+            btn: [
+              {title: '请选择行动——' , nextChat: 'c8', }, 
+            ]
+          },
+        ],
+      },
 
-    ],
-    },
       #死亡1
-         { id: 'gameover01',
-           style: 7, 
-           title: '不会使剑，还是继续躲吧',
-           dialogType: 'FullScreen', 
-           textAnimationType: 'TextFadeIn', 
-           sections: [
-         { key: 'B1', content: ['李森炎选择继续躲','然，小师弟有了前两次的经验','提前预判了李森炎要逃跑的位置','朝着他猛然刺去',['边缘闪烁红'],'李森炎死在了小师弟的剑下……',], 
-         btn: [{title: '看来还是得勇一点！',nextChat: 'c8',},]},
-           ], },
-
+      {
+        id: 'gameover01',
+        style: 7,
+        title: '不会使剑，还是继续躲吧',
+        dialogType: 'FullScreen', 
+        textAnimationType: 'TextFadeIn', 
+        sections: [
+          { 
+            key: 'B1', 
+            content: [
+              '李森炎选择继续躲',
+              '然，小师弟有了前两次的经验',
+              '提前预判了李森炎要逃跑的位置',
+              '朝着他猛然刺去',
+              ['边缘闪烁红'],
+              '李森炎死在了小师弟的剑下……',
+            ], 
+            btn: [{title: '看来还是得勇一点！',nextChat: 'c8',},]
+          },
+        ], 
+      },
     ], 
-      
   },
 ]
