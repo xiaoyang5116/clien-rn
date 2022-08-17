@@ -12,8 +12,11 @@ export default {
 
   state: {
     __data: {
-      config: [], // ref collection.yml
+      config: [],   // 查看定义 collection.yml
     },
+
+    // 收藏品
+    items: [],
   },
 
   effects: {
@@ -30,17 +33,24 @@ export default {
     *getCollectionList({ }, { call, put, select }) {
       const collectionState = yield select(state => state.CollectionModel);
 
-      const list = [];
       for (let key in collectionState.__data.config) {
         const item = collectionState.__data.config[key];
+        const found = collectionState.items.find(e => e.id == item.id);
+        if (found != undefined)
+          continue; // 已经初始化
+
         const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: item.propId }));
         if (propNum <= 0)
           continue
-        
-        list.push(lo.cloneDeep(item));
+
+        collectionState.items.push({
+          ...item, 
+          level: 0,       // 星级
+          actived: false, // 是否已经激活
+        });
       }
       
-      return list;
+      return collectionState.items;
     },
     
   },

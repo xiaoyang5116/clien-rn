@@ -38,7 +38,9 @@ const CollectionItem = (props) => {
     <TouchableWithoutFeedback onPress={() => {
     }}>
         <View style={{ width: px2pd(220), height: px2pd(230),  }}>
-            <FastImage style={{ marginLeft: 3, width: px2pd(200), height: px2pd(200) }} source={require('../../../../assets/collection/item_1.png')} />
+            <FastImage style={{ marginLeft: 3, width: px2pd(200), height: px2pd(200) }} source={(props.data.actived 
+                ? require('../../../../assets/collection/item_1.png') 
+                : require('../../../../assets/collection/item_1.gray.png'))} />
             <View style={{ position: 'absolute', bottom: -10, zIndex: -1, }}>
                 <FastImage style={{ width: px2pd(220), height: px2pd(150) }} source={backgroundImage} />
             </View>
