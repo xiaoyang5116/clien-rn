@@ -6,7 +6,8 @@ import {
 } from '../../../constants/native-ui';
 
 import { 
-    SafeAreaView, TouchableWithoutFeedback,
+    Animated,
+    SafeAreaView,
 } from 'react-native';
 
 import lo from 'lodash';
@@ -14,19 +15,31 @@ import FastImage from 'react-native-fast-image';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { px2pd } from '../../../constants/resolution';
 import { TextButton } from '../../../constants/custom-ui';
+import RootView from '../../../components/RootView';
 import StarsBanner from './StarsBanner';
+import ActivationConfirm from './ActivationConfirm';
 
 const ActivationPage = (props) => {
+
+    const scale = React.useRef(new Animated.Value(0)).current;
 
     const attrs = [];
     lo.forEach(props.data.attrs, (v, k) => {
         attrs.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{v.key}: +{v.value}</Text>);
     });
 
+    React.useEffect(() => {
+        Animated.timing(scale, {
+            toValue: 1,
+            duration: 200,
+            useNativeDriver: true,
+        }).start();
+    }, []);
+
     return (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <View style={{ width: 300, height: 370, backgroundColor: '#eee', alignItems: 'center' }}>
+                <Animated.View style={[{ width: 300, height: 370, backgroundColor: '#eee', alignItems: 'center', borderRadius: 5 }, { transform: [{ scale: scale }] }]}>
                     <View style={{ width: '100%', alignItems: 'flex-end' }}>
                         <AntDesign name='close' size={30} onPress={() => {
                             if (props.onClose != undefined) {
@@ -49,13 +62,14 @@ const ActivationPage = (props) => {
                         <Text style={{ color: '#ce6a6f', lineHeight: 26 }}>激活后，获得以下属性效果</Text>
                         {attrs}
                     </View>
-                    <TouchableWithoutFeedback onPress={() => {
-                        }}>
-                        <View style={{ width: '94%', justifyContent: 'center', alignItems: 'center' }}>
-                                <TextButton title={'激活'} />
-                        </View>
-                    </TouchableWithoutFeedback>
-                </View>
+                    <View style={{ width: '94%', justifyContent: 'center', alignItems: 'center' }}>
+                        <TextButton title={'激活'} onPress={() => {
+                            const key = RootView.add(<ActivationConfirm data={props.data} onClose={() => {
+                                RootView.remove(key);
+                            }} />);
+                        }} />
+                    </View>
+                </Animated.View>
             </SafeAreaView>
         </View>
     );
