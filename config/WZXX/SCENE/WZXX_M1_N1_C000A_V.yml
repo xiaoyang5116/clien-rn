@@ -711,7 +711,8 @@ scenes: [
       { 
         id: 'C1', desc: '家中空无一人，家徒四壁', 
         options: [ 
-         { title: '【回家】', dialogs: ['Screen7'] },   
+         { title: '【回家】', nextChat: 'C2' }, 
+         { title: '【去商铺】', toScene: 'C000A_V_MAP_-3_0'},  
          { title: '【米铺】', toScene: 'C000A_V_MAP_-3_0'},
          { title: '【西市三街】', toScene: 'C000A_V_MAP_-2_-1'},      
          { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'}, 
@@ -719,26 +720,41 @@ scenes: [
          { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
+      
+      { 
+        id: 'C2', desc: '回到家，家中除了那只薛定谔的猫，空无一人', 
+        options: [ 
+         { title: '再出去逛逛', nextChat: 'C1' }, 
+         { title: '在家休歇一夜', nextChat: 'C3' }, 
+        ],
+      },
+      { 
+        id: 'C3', desc: '在家休歇一夜过后你精神满满', 
+        options: [ 
+         { title: '决定出去逛逛', nextChat: 'C1' }, 
+        
+        ],
+      },
        #
     ],
-      # 对话框===========
-      dialogs:
-        [
-           #选项对话1
-          { id: 'Screen7',style: 6, title: '回家', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'P1', content: ['回到家，家中除了那只薛定谔的猫，空无一人','请选择行动——',
-          ],
-         btn: [{title: '再出去逛逛',tokey: "C1",},{title: '在家休歇一夜',tokey: "P2",},]},
+  #     # 对话框===========
+  #     dialogs:
+  #       [
+  #          #选项对话1
+  #         { id: 'Screen7',style: 6, title: '回家', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+  #         sections: [
+  #         { key: 'P1', content: ['回到家，家中除了那只薛定谔的猫，空无一人','请选择行动——',
+  #         ],
+  #        btn: [{title: '再出去逛逛',tokey: "C1",},{title: '在家休歇一夜',tokey: "P2",},]},
 
 
-          { key: 'P2', content: ['休息一夜过后你精神漫漫','决定出去逛逛！',
-          ],
-          btn: [{title: '出门',tokey: "C1",},]},    
+  #         { key: 'P2', content: ['休息一夜过后你精神漫漫','决定出去逛逛！',
+  #         ],
+  #         btn: [{title: '出门',tokey: "C1",},]},    
 
-           ], },
+  #          ], },
 
-  ],
+  # ],
   },
  #===========事件场景==============
        {

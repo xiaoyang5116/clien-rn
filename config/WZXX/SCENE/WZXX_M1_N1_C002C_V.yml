@@ -58,7 +58,7 @@ scenes: [
         id: 'WZXX_M1_N1_C002C_V3', desc: '喂食还是离开？', 
         options: [ 
           { title: "【事不宜迟，离开】",dialogs: ['C002C_lumaoA'],},
-          { title: "【撸猫，告诉它快离开】",dialogs: ['C002C_lumaoB'] ,}
+          { title: "【逗猫告诉它快离开】",dialogs: ['C002C_lumaoB'] ,}
         ],
       },
        { 
@@ -271,7 +271,7 @@ scenes: [
            ]  
         },
         #选项对话4
-          { id: 'C002C_lumaoB',style: 6, title: '撸猫，告诉它快离开', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'C002C_lumaoB',style: 6, title: '逗猫，告诉它快离开', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎过去摸了摸它的脑袋',[{ games: {id: 2}, }],'告诉它赶紧走，有人要杀上门来了',
           '也不管它听没听懂，反正意思传达到了就行','狸花猫喵了一声，算是回应','但还是懒洋洋地趴着，没有挪动那娇贵的身躯',
