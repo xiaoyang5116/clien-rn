@@ -52,6 +52,18 @@ export default {
       
       return collectionState.items;
     },
+
+    *activate({ payload }, { call, put, select }) {
+      const collectionState = yield select(state => state.CollectionModel);
+      const { id } = payload;
+
+      const found = collectionState.items.find(e => e.id == id);
+      if (found == undefined)
+        return false;
+
+      found.actived = true;
+      return true;
+    },
     
   },
   

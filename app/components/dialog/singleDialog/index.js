@@ -8,6 +8,7 @@ import HalfSingle from './HalfSingle'
 import GameOverDialog from '../gameOverDialog';
 
 const SingleDialog = (props) => {
+
     // props 传入
     const { sections, style, dialogType, __sceneId } = props.viewData;
     const { actionMethod, specialEffects } = props
@@ -126,4 +127,5 @@ const SingleDialog = (props) => {
     return null
 }
 
-export default connect((state) => ({ ...state.MaskModel }))(SingleDialog)
+// export default connect((state) => ({ ...state.MaskModel }))(SingleDialog)
+export default SingleDialog;

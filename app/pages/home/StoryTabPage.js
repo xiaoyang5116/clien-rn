@@ -63,8 +63,8 @@ const SceneTimeLabel = (props) => {
 
   return (
     <View style={{ display: (worldTimeHidden ? 'none' : 'flex') }}>
-      <Text style={[themeStyle.datetimeLabel]}>{props.datetimes[0]}</Text>
-      <Text style={[themeStyle.datetimeLabel, { textAlign: 'right' }]}>{props.datetimes[1]}</Text>
+      <Text style={[themeStyle.datetimeLabel, {color: themeStyle.navigation.text}]}>{props.datetimes[0]}</Text>
+      <Text style={[themeStyle.datetimeLabel, { textAlign: 'right', color: themeStyle.navigation.text }]}>{props.datetimes[1]}</Text>
     </View>
   );
 }
@@ -133,7 +133,7 @@ const StoryTabPage = (props) => {
   const renderSectionHeader = ({ section: { title } }) => {
     return (
       <View>
-        <Text style={theme.chatHeader}>{title}</Text>
+        <Text style={[theme.chatHeader, { color: '#4F4F4F' }]}>{title}</Text>
       </View>
     );
   }

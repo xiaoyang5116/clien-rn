@@ -112,6 +112,8 @@ const SceneMap = (props) => {
   const bigMapScale = React.useRef(new Animated.Value(1)).current;
   // 大地图事件模型
   const [bigPointerEvent, setBigPointerEvent] = React.useState('none');
+  // 记录Grid点击状态（解决Grid与PanResponser的响应BUG）
+  const touchStart = React.useRef(false);
 
   // 地图滑动处理器
   const panResponder = React.useRef(PanResponder.create({
@@ -137,6 +139,7 @@ const SceneMap = (props) => {
         if (scaleNumber < zoomMin - 0.1) return;
         bigMapScale.setValue(scaleNumber)
       }
+      touchStart.current = false;
     },
     onPanResponderRelease: (evt, gestureState) => {
       status.prevX = bigMapPos.x._value;
@@ -309,16 +312,23 @@ const SceneMap = (props) => {
       : require('../../../assets/button/scene_map_button2.png');
 
     grids.push((
-      <TouchableWithoutFeedback key={idx++} onPress={() => {
-        if (lo.isString(e.toScene)) {
-          AppDispath({ type: 'SceneModel/processActions', payload: { toScene: e.toScene } });
-        }
-      }}>
-        <View style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}>
-          <FastImage style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} source={gridImg} />
-          <Text style={{ color: '#000', zIndex: 1 }}>{e.title}</Text>
-        </View>
-      </TouchableWithoutFeedback>));
+      <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}
+        onTouchStart={() => {
+          touchStart.current = true;
+        }}
+        onTouchEnd={() => {
+          if (!touchStart.current)
+            return;
+        
+            if (lo.isString(e.toScene)) {
+              AppDispath({ type: 'SceneModel/processActions', payload: { toScene: e.toScene } });
+            }
+        }}
+      >
+        <FastImage style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} source={gridImg} />
+        <Text style={{ color: '#000', zIndex: 1 }}>{e.title}</Text>
+      </View>
+      ));
   });
 
   return (

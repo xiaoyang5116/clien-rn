@@ -10,8 +10,10 @@ import {
 
 import lo from 'lodash';
 import { px2pd } from '../../../constants/resolution';
+import RootView from '../../../components/RootView';
 import FastImage from 'react-native-fast-image';
 import StarsBanner from './StarsBanner';
+import ActivationPage from './ActivationPage';
 
 const BACKGROUND_IMAGES = [
     require('../../../../assets/collection/bg_1.png'),
@@ -36,6 +38,11 @@ const CollectionItem = (props) => {
 
     return (
     <TouchableWithoutFeedback onPress={() => {
+        if (!props.data.actived) {
+            const key = RootView.add(<ActivationPage data={props.data} onClose={() => {
+                RootView.remove(key);
+            }} />);
+        }
     }}>
         <View style={{ width: px2pd(220), height: px2pd(230),  }}>
             <FastImage style={{ marginLeft: 3, width: px2pd(200), height: px2pd(200) }} source={(props.data.actived 

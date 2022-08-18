@@ -12,13 +12,24 @@ collections: [
     categories: ['金'],
 
     # 收藏品属性加成
-    attrs: [{ key: '速度', value: 10 }, { key: '防御', value: 0.5 }],
+    attrs: [{ key: '速度', value: 10 }, { key: '防御', value: 5 }],
 
     # 解锁道具
     propId: 700,
 
     # 星级
     stars: 6,
+
+    # 升级
+    upgrade: [
+      { lv: 0, copper: 100 }, # 激活
+      { lv: 1, copper: 200 },
+      { lv: 2, copper: 300 },
+      { lv: 3, copper: 400 },
+      { lv: 4, copper: 500 },
+      { lv: 5, copper: 600 },
+      { lv: 6, copper: 700 },
+    ]
   },
 
 ]
