@@ -1,8 +1,11 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C004_[N2]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C004_[N2]FZ'] }, 
+     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C004_[N2]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C004_[N2]FZ'] }, 
      { header: '第四章 灵修界' },
+     #灵修界换底图背景
+     { world: { name: '灵修界', imageId: 'ShiJieBeiJing_V1' } },
+     
 ]
 #END==========================================
 

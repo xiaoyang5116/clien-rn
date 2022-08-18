@@ -3,6 +3,8 @@
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C005_[N1]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C005_[N1]FZ'] }, 
      { header: '第五章 陶老' },
+      #灵修界换底图背景
+     { world: { name: '灵修界', imageId: 'ShiJieBeiJing_V1' } },
 ]
 #END==========================================
 
