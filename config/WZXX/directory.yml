@@ -71,7 +71,7 @@ directory: [
         toChapter: 'WZXX_M1_N1_C002_[N1]', links: [[0, -5]] 
         },
 
-        { point: [0, -5], title: '第二章去集市买簪子',
+        { point: [0, -5], title: '第二章站住！',
          bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N3]' ,
         toChapter: 'WZXX_M1_N1_C002_[N3]', links: [[0, -6],] 
         },
@@ -102,7 +102,7 @@ directory: [
         },
 
          { point: [0, -11], title: '第二章 遇见母亲',
-        bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N8]' ,
+        bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N9]' ,
         toChapter: 'WZXX_M1_N1_C002_[N8]', links: [[0, -12], ], 
         },
 

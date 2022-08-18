@@ -28,6 +28,6 @@ collects: [
     ],
 
     # 刷新周期(单位秒)
-    refresh_period: 10,
+    refresh_period: 300,
   },
 ]
