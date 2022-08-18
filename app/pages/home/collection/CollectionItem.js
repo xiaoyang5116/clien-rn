@@ -38,9 +38,11 @@ const CollectionItem = (props) => {
 
     return (
     <TouchableWithoutFeedback onPress={() => {
-        const key = RootView.add(<ActivationPage data={props.data} onClose={() => {
-            RootView.remove(key);
-        }} />);
+        if (!props.data.actived) {
+            const key = RootView.add(<ActivationPage data={props.data} onClose={() => {
+                RootView.remove(key);
+            }} />);
+        }
     }}>
         <View style={{ width: px2pd(220), height: px2pd(230),  }}>
             <FastImage style={{ marginLeft: 3, width: px2pd(200), height: px2pd(200) }} source={(props.data.actived 

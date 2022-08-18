@@ -42,7 +42,6 @@ const CollectionTabPage = (props) => {
                 }
                 result.push(list);
             }
-
             setData(result);
         });
 
@@ -50,7 +49,7 @@ const CollectionTabPage = (props) => {
         return () => {
             listener.remove();
         }
-    });
+    }, []);
 
     const renderItem = (data) => {
         const items = [];
@@ -69,6 +68,8 @@ const CollectionTabPage = (props) => {
             </View>
         );
     }
+
+    console.debug('render');
 
     return (
         <View style={styles.viewContainer}>

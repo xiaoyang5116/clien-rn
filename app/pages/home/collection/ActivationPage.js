@@ -64,9 +64,14 @@ const ActivationPage = (props) => {
                     </View>
                     <View style={{ width: '94%', justifyContent: 'center', alignItems: 'center' }}>
                         <TextButton title={'激活'} onPress={() => {
-                            const key = RootView.add(<ActivationConfirm data={props.data} onClose={() => {
-                                RootView.remove(key);
-                            }} />);
+                            if (props.onClose != undefined) {
+                                props.onClose();
+                            }
+                            setTimeout(() => {
+                                const key = RootView.add(<ActivationConfirm data={props.data} onClose={() => {
+                                    RootView.remove(key);
+                                }} />);
+                            }, 200);
                         }} />
                     </View>
                 </Animated.View>
