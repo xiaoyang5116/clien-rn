@@ -99,16 +99,16 @@ scenes: [
       { id: 'v3', min: 0, max: 1 },
       { id: 'v4', min: 0, max: 1 },
 
-      { id: '__progress1__', min: 0, max: 100, defaultValue: 30, alias: '【血条】' },
-      { id: '__progress2__', min: 0, max: 100, defaultValue: 100, alias: '【法力】' },
+      { id: '__progress1__', min: 0, max: 100, defaultValue: 50, alias: '【李森炎的体力状态】' },
+      { id: '__progress2__', min: 0, max: 100, defaultValue: 10, alias: '【李森炎的技能状态】' },
     ],
 
     # 动作定义
     actions: [
       { id: 'a1', cmd: 'var', params: '__progress1__ += 10' },
-      { id: 'a2', cmd: 'var', params: '__progress2__ -= 10' },
+      { id: 'a2', cmd: 'var', params: '__progress2__ -= 1' },
       { id: 'a3', cmd: 'var', params: '__progress1__ -= 10' },
-      { id: 'a4', cmd: 'var', params: '__progress2__ += 10' },
+      { id: 'a4', cmd: 'var', params: '__progress2__ += 2' },
       { id: 'a5', cmd: 'var', params: '__progress2__ -= 100' },
     ],
 

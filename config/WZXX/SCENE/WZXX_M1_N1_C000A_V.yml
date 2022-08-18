@@ -21,7 +21,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000A_V', desc: '购买簪子', 
         options: [ 
-          { title: "【出门去买簪子】",toScene: 'C000A_V_MAP_-2_0', },
+          { title: "【去买簪子】",toScene: 'C000A_V_MAP_2_-1', },
         ],
       },
 
@@ -79,9 +79,9 @@ scenes: [
         id: 'C1', desc: '车水马龙的城门', 
         options: [ 
          { title: '【停下来左右张望】', nextChat: 'C2'}, 
-         { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'}, 
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'}, 
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
       #
@@ -121,17 +121,17 @@ scenes: [
     # 对话选项
     chats: [
       { 
-        id: 'C1', desc: '这似乎是主干道，人来人往很繁华', 
+        id: 'C1', desc: '这是一条繁华的主干道，人来人往，非常热闹', 
         options: [ 
          { title: '【街边小孩】', nextChat: 'C2'}, 
-         { title: '【春花阁】', toScene: 'C000A_V_MAP_-1_-2'}, 
-         { title: '【老人故居】', toScene: 'C000A_V_MAP_1_-2'}, 
-         { title: '【来福客栈】', toScene: 'C000A_V_MAP_1_-3'}, 
-         { title: '【布庄】', toScene: 'C000A_V_MAP_-1_-3'}, 
-         { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
-         { title: '【城门】', toScene: 'C000A_V_MAP_0_-4'}, 
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【春花阁】', toScene: 'C000A_V_MAP_-1_-2'}, 
+        #  { title: '【老人故居】', toScene: 'C000A_V_MAP_1_-2'}, 
+        #  { title: '【来福客栈】', toScene: 'C000A_V_MAP_1_-3'}, 
+        #  { title: '【布庄】', toScene: 'C000A_V_MAP_-1_-3'}, 
+        #  { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
+        #  { title: '【城门】', toScene: 'C000A_V_MAP_0_-4'}, 
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
       #
@@ -146,8 +146,11 @@ scenes: [
     dialogs: [
           { id: 'Screen1',style: 6, title: '街边小孩', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'P1', content: ['李森炎走上前和小孩打招呼','小孩们跑走了',],
-          btn: [{title: '重新选择',tokey: "C1",},]},
+          { key: 'P1', content: ['李森炎听到小孩们在议论白家很有钱','想要装成乞丐去白家门口骗钱','……','小小年纪竟不学好！',],
+          btn: [{title: '上前教育一番',tokey: "C3",},{title: '与我无关，离开',  nextChat: "C1",}]},
+
+          { key: 'C3', content: ['李森炎上前对这群小孩一顿教育','小孩们根本不理，一哄而散','有人甚至还对他翻了个白眼','……'],
+          btn: [{title: '熊孩子没法管教，离开',  nextChat: "C1",}]},
     
     ],},],
   },
@@ -156,7 +159,7 @@ scenes: [
 #===========事件场景==============
        {
   # NPC2
-    id: 'C000A_V_MAP_0_0', name: '走到这儿人依然很多，商铺也很多',
+    id: 'C000A_V_MAP_0_0', name: '这条街人潮汹涌，大小商铺错落有致',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     # 当前场景地图
@@ -180,18 +183,18 @@ scenes: [
         id: 'C1', desc: '玄德中街', 
         options: [ 
         { title: '【四处看看】', nextChat: 'X1'},
-        { title: '【东市】', toScene: 'C000A_V_MAP_1_0'},
-        { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'},
-        { title: '【官府】', toScene: 'C000A_V_MAP_0_2'}, 
-        { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【东市】', toScene: 'C000A_V_MAP_1_0'},
+        # { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'},
+        # { title: '【官府】', toScene: 'C000A_V_MAP_0_2'}, 
+        # { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
       { 
-        id: 'X1', desc: '这里只是普通的街道', 
+        id: 'X1', desc: '街道拥挤得几乎挤不进去人，车马也很多', 
         options: [ 
-         { title: '【车马很多，有点危险，离开】', nextChat: 'C1'},
+         { title: '【还是别凑热闹了，离开】', nextChat: 'C1'},
         ],
       },
     ],
@@ -226,10 +229,10 @@ scenes: [
         id: 'C1', desc: '官府门口看上去很肃静，门口站了很多侍卫', 
         options: [ 
          { title: '【进去看看】', dialogs: ['Screen2'] },  
-         { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
-         { title: '【仁德街】', toScene: 'C000A_V_MAP_0_4'},
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
+        #  { title: '【仁德街】', toScene: 'C000A_V_MAP_0_4'},
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },],
      # 对话框
@@ -237,16 +240,16 @@ scenes: [
           { id: 'Screen2',style: 6, title: '进官府看看', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['“你有何事。”','一个衙役拦住了李森炎'],
-          btn: [{title: '我有冤',tokey: "P2",},{title: '来逛逛',tokey: "P3",},{title: '无事，转身离开',tokey: "C1",},]},
+          btn: [{title: '我有冤',tokey: "P2",},{title: '来逛逛',tokey: "P3",},{title: '无事，转身离开',nextChat: "C1",},]},
 
-          { key: 'P2', content: ['“你有什么冤？”','衙役问道。',
-          '“我……”李森炎磕磕巴巴说不出来。','衙役仔细盘问了一番，返现李森炎骗他','叫了一群人把李森炎丢了出去',
+          { key: 'P2', content: ['“你想清楚，乱报官可是要挨板子的！”','衙役上下打量李森炎一眼，发出了警告。',
+          '“怎么样，你还有冤吗？”','“我仔细想想，觉得自己又不冤了”','李森炎连忙掉头离开',
           ],
-          btn: [{title: '哎呦屁股疼，赶紧走吧',tokey: "C1",},]},
+          btn: [{title: '官威真大，赶紧走吧',nextChat: "C1",},]},
 
-          { key: 'P3', content: ['“我，我就是来逛逛。”','李森炎摸着后脑勺，傻乐。','“……”','衙役不太相信，把李森炎赶了出去',
+          { key: 'P3', content: ['“我就是来逛逛。”','“衙门重地，岂是你说逛就逛的？”','“是不是还想去牢里逛逛啊？”','那倒不用，赶紧撤！',
           ],
-          btn: [{title: '<<<离开',tokey: "C1",},]},
+          btn: [{title: '<<<离开',nextChat: "C1",},]},
     ],},],
   },
 
@@ -275,18 +278,18 @@ scenes: [
     # 对话选项
     chats: [
       { 
-        id: 'C1', desc: '越走人越少，这边估计比较偏', 
+        id: 'C1', desc: '这条街官府人员走得较多，寻常百姓鲜有人来', 
         options: [ 
          { title: '【四处观察】', nextChat: 'C2'}, 
-         { title: '【官府】', toScene: 'C000A_V_MAP_0_2'}, 
-         { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【官府】', toScene: 'C000A_V_MAP_0_2'}, 
+        #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
       #
       { 
-        id: 'C2', desc: '这儿没什么商铺', 
+        id: 'C2', desc: '没什么意思的一条街', 
         options: [ 
          { title: '无趣，离开', nextChat: 'C1' }, 
         ],
@@ -319,16 +322,16 @@ scenes: [
     # 对话选项
     chats: [
       { 
-        id: 'C1', desc: '似乎要走出白城了', 
+        id: 'C1', desc: '白城的边缘地带，这里的房屋很少，人迹罕至', 
         options: [ 
          { title: '【四处观察】', nextChat: 'C2', },
          { title: '【采集】',andVarsValue: ['@clues_xiansuo1 == 1'],collect: '1' , nextChat: 'C3' },
-         { title: '【仁德街】', toScene: 'C000A_V_MAP_0_4'}, 
-         { title: '【森林】', toScene: 'C000A_V_MAP_-1_5'},  
-         { title: '【天水亭】', toScene: 'C000A_V_MAP_1_5'},  
-         { title: '【郊外】', toScene: 'C000A_V_MAP_0_6'},
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },  
+        #  { title: '【仁德街】', toScene: 'C000A_V_MAP_0_4'}, 
+        #  { title: '【森林】', toScene: 'C000A_V_MAP_-1_5'},  
+        #  { title: '【天水亭】', toScene: 'C000A_V_MAP_1_5'},  
+        #  { title: '【郊外】', toScene: 'C000A_V_MAP_0_6'},
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },  
 
         ],
       },
@@ -374,14 +377,14 @@ scenes: [
     # 对话选项
     chats: [
       { 
-        id: 'C1', desc: '走到森林里了，人烟稀少', 
+        id: 'C1', desc: '一片茂密丛林，鸟兽颇多，人烟稀少', 
         options: [ 
          { title: '【采集】', andVarsValue: ['@clues_xiansuo1 == 1'], collect: '2' ,nextChat: 'C2', },
-         { title: '【到处走动】', dialogs: ['Screen3'],},
-         { title: '【郊外】', toScene: 'C000A_V_MAP_0_6'}, 
-         { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【到处走动】', dialogs: ['Screen3'],},
+        #  { title: '【郊外】', toScene: 'C000A_V_MAP_0_6'}, 
+        #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
        { 
@@ -422,13 +425,13 @@ scenes: [
     # 对话选项
     chats: [
       { 
-        id: 'C1', desc: '这亭子建的很好看，可是没什么人来', 
+        id: 'C1', desc: '这亭子建的很好看，路过的人经常在亭中纳凉', 
         options: [ 
          { title: '【采集】', andVarsValue: ['@clues_xiansuo1 == 1'],collect: '4',nextChat: 'C2'   }, 
-         { title: '【去旁边看看】', dialogs: ['Screen4'], },  
-         { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【去旁边看看】', dialogs: ['Screen4'], },  
+        #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       }, 
       { 
@@ -441,7 +444,7 @@ scenes: [
     dialogs: [
           { id: 'Screen4',style: 6, title: '在亭子里坐坐', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'P1', content: ['坐了一会儿','此处少人烟，也没看到什么人','天气炎热，李森炎起身离开',],
+          { key: 'P1', content: ['坐了一会儿','周围路人全无交流','气氛有点尴尬，李森炎起身离开',],
           btn: [{title: '离开',tokey: "C1",},]},
     ],},],
   },
@@ -469,18 +472,18 @@ scenes: [
     # 对话选项
     chats: [
       {
-        id: 'C1', desc: '这边看上去比较危险', 
+        id: 'C1', desc: '郊外有野兽出没，比较危险', 
         options: [ 
-         { title: '【查看四周】',  nextChat: 'C2', }, 
+        #  { title: '【查看四周】',  nextChat: 'C2', }, 
          { title: '【去危险的山谷中】', andVarsValue: ['@clues_xiansuo1 == 1'], collect: '3',nextChat: 'C3',   }, 
-         { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
-         { title: '【森林】', toScene: 'C000A_V_MAP_-1_5'}, 
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
+        #  { title: '【森林】', toScene: 'C000A_V_MAP_-1_5'}, 
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
       { 
-        id: 'C2', desc: '这边没有路了，前方看起来很危险', 
+        id: 'C2', desc: '坑坑洼洼的土路，路很难走，偶尔能见到野兽出来觅食', 
         options: [ 
          { title: '赶快离开', nextChat: 'C1' }, 
         ],
@@ -519,11 +522,11 @@ scenes: [
       { 
         id: 'C1', desc: '这布庄看上去很奢华', 
         options: [ 
-         { title: '【进去买衣服】', dialogs: ['Screen5'] },   
-         { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'}, 
-         { title: '【春花阁】', toScene: 'C000A_V_MAP_-1_-2'}, 
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【进去买衣服】', dialogs: ['Screen5'] },   
+        #  { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'}, 
+        #  { title: '【春花阁】', toScene: 'C000A_V_MAP_-1_-2'}, 
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
        #
@@ -571,11 +574,11 @@ scenes: [
         id: 'C1', desc: '这……好像是古代的春楼~', 
         options: [ 
          { title: '【进去看看】', dialogs: ['Screen6'] },
-         { title: '【西市一街】', toScene: 'C000A_V_MAP_-1_-1'},  
-         { title: '【布庄】', toScene: 'C000A_V_MAP_-1_-3'},     
-         { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'}, 
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【西市一街】', toScene: 'C000A_V_MAP_-1_-1'},  
+        #  { title: '【布庄】', toScene: 'C000A_V_MAP_-1_-3'},     
+        #  { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'}, 
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
     ],
@@ -590,7 +593,7 @@ scenes: [
          btn: [{title: '离开',tokey: "C1",},{title: '进去',tokey: "P2",}]},
 
 
-          { key: 'P2', content: ['李森炎搓搓手，往春花阁里走','刚进去还没见到姑娘，就被一个五大三粗的男人围住','“要想进，先交钱。”','“多少？”','“先交三千贯！”','“什么？三千贯！”','他现在连三百个铜钱都凑不出来'
+          { key: 'P2', content: ['李森炎搓搓手，往春花阁里走','刚进去还没见到姑娘，就被一个五大三粗的男人挡住','“要想进，先交钱。”','“多少？”','“先交一千铜钱押金！”','“什么？押金就要一千？！”','他现在连三百个铜钱都凑不出来'
           ],
           btn: [{title: '算了，离开，等我有钱了……', tokey: "C1"},], },    
 
@@ -623,19 +626,19 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: '这边人很多，都是男人和醉汉', 
+        id: 'C1', desc: '这边人很多，绝大部分是男人和醉汉', 
         options: [ 
-         { title: '【进去看看】', nextChat: 'C2'}, 
-         { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'},     
-         { title: '【春花阁】', toScene: 'C000A_V_MAP_-1_-2'},
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+          { title: '【进去看看】', nextChat: 'C2'}, 
+        #  { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'},     
+        #  { title: '【春花阁】', toScene: 'C000A_V_MAP_-1_-2'},
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
         { 
-        id: 'C2', desc: '这边只是普通的街道', 
+        id: 'C2', desc: '一条平平无奇的长街', 
         options: [ 
-         { title: '没人认识你，离开', nextChat: 'C1' }, 
+         { title: '没什么特别，离开', nextChat: 'C1' }, 
         ],
       },
     ],
@@ -664,21 +667,21 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: '这里有很多马路，可以回家', 
+        id: 'C1', desc: '四通八达的闹市区，比东市规模更大，更热闹些', 
         options: [ 
-         { title: '【进去看看】', nextChat: 'C2'}, 
-         { title: '【西市一街】', toScene: 'C000A_V_MAP_-1_-1'},
-         { title: '【李家】', toScene: 'C000A_V_MAP_-2_0'},  
-         { title: '【西市二街】', toScene: 'C000A_V_MAP_-1_1'},    
-         { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+          { title: '【进去看看】', nextChat: 'C2'}, 
+        #  { title: '【西市一街】', toScene: 'C000A_V_MAP_-1_-1'},
+        #  { title: '【李家】', toScene: 'C000A_V_MAP_-2_0'},  
+        #  { title: '【西市二街】', toScene: 'C000A_V_MAP_-1_1'},    
+        #  { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
         { 
-        id: 'C2', desc: '这边只是普通的集市', 
+        id: 'C2', desc: '完全逛完整个西市估摸着要半天的时间', 
         options: [ 
-         { title: '没什么特别的，离开', nextChat: 'C1' }, 
+         { title: '没那么多时间，离开', nextChat: 'C1' }, 
         ],
       },
     ],
@@ -709,15 +712,14 @@ scenes: [
       chats: [
     
       { 
-        id: 'C1', desc: '家中空无一人，家徒四壁', 
+        id: 'C1', desc: '一间很普通也很隐蔽的居民屋', 
         options: [ 
          { title: '【回家】', nextChat: 'C2' }, 
-         { title: '【去商铺】', toScene: 'C000A_V_MAP_-3_0'},  
-         { title: '【米铺】', toScene: 'C000A_V_MAP_-3_0'},
-         { title: '【西市三街】', toScene: 'C000A_V_MAP_-2_-1'},      
-         { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'}, 
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【米铺】', toScene: 'C000A_V_MAP_-3_0'},
+        #  { title: '【西市三街】', toScene: 'C000A_V_MAP_-2_-1'},      
+        #  { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'}, 
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
       
@@ -783,9 +785,9 @@ scenes: [
         id: 'C1', desc: '这边有很多妇女和孩童', 
         options: [ 
          { title: '【四处逛逛】', nextChat: 'C2'},   
-         { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'}, 
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'}, 
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
          
         ],
       },
@@ -823,11 +825,11 @@ scenes: [
        { 
         id: 'C1', desc: '卖米的地方，门口坐了很多乞丐', 
         options: [ 
-         { title: '【回家】', toScene: 'C000A_V_MAP_-2_0'},  
-         { title: '【买米】', dialogs: ['Screen8'] }, 
-         { title: '【小院】',toScene: 'C000A_V_MAP_-3_-1'},
-         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【回家】', toScene: 'C000A_V_MAP_-2_0'},  
+          { title: '【买米】', dialogs: ['Screen8'] }, 
+        #  { title: '【小院】',toScene: 'C000A_V_MAP_-3_-1'},
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
          
         ],
       },],
@@ -867,11 +869,11 @@ scenes: [
         id: 'C1', desc: '前面有个小女孩', 
         options: [ 
         { title: '【找小女孩聊聊天】', dialogs: ['Screen9'] }, 
-        { title: '【西市三街】',toScene: 'C000A_V_MAP_-2_-1'},
-        { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
-        { title: '【米铺】', toScene: 'C000A_V_MAP_-3_0'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【西市三街】',toScene: 'C000A_V_MAP_-2_-1'},
+        # { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
+        # { title: '【米铺】', toScene: 'C000A_V_MAP_-3_0'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
 
          
         ],
@@ -913,18 +915,18 @@ scenes: [
         id: 'C1', desc: '繁华的集市，琳琅满目', 
         options: [ 
         { title: '【四处逛逛】', nextChat: 'C2' },
-        { title: '【小院】',toScene: 'C000A_V_MAP_-3_-1'},
-        { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
-        { title: '【西市一街】',toScene: 'C000A_V_MAP_-1_-1'},
-        { title: '【回家】', toScene: 'C000A_V_MAP_-2_0'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【小院】',toScene: 'C000A_V_MAP_-3_-1'},
+        # { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
+        # { title: '【西市一街】',toScene: 'C000A_V_MAP_-1_-1'},
+        # { title: '【回家】', toScene: 'C000A_V_MAP_-2_0'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
       { 
-        id: 'C2', desc: '这边很热闹', 
+        id: 'C2', desc: '这边很程度中规中矩', 
         options: [ 
-         { title: '逛了一会儿，但是没钱，离开', nextChat: 'C1' }, 
+         { title: '逛了一会儿，但是因为没钱，只好离开', nextChat: 'C1' }, 
         ],
       },
     ],
@@ -956,28 +958,30 @@ scenes: [
         id: 'C1', desc: '尊贵的白府，远远一看就很高大上', 
         options: [ 
         { title: '【四处逛逛】', dialogs: ['Screen10'] }, 
-        { title: '【小院】',toScene: 'C000A_V_MAP_-3_-1'},
-        { title: '【西市三街】',toScene: 'C000A_V_MAP_-2_-1'},
-        { title: '【路口】',toScene: 'C000A_V_MAP_-2_-3'},
-        { title: '【街角】',toScene: 'C000A_V_MAP_-3_-3'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【小院】',toScene: 'C000A_V_MAP_-3_-1'},
+        # { title: '【西市三街】',toScene: 'C000A_V_MAP_-2_-1'},
+        # { title: '【路口】',toScene: 'C000A_V_MAP_-2_-3'},
+        # { title: '【街角】',toScene: 'C000A_V_MAP_-3_-3'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },],
        # 对话框
     dialogs: [
           { id: 'Screen10',style: 6, title: '在白府四周逛逛', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'P1', content: ['李森炎好奇的在白府四周逛逛','这白府还真是非比寻常，很宏伟繁华','走着走着……','“喂！你是何人，有何事啊？”',],
-          btn: [{title: '我就是来闲逛的',tokey: "P2",},{title: '呸……我是你爸爸',tokey: "P3",},{title: '贫僧从东土大唐而来……',tokey: "P4",},]},
+          { key: 'P1', content: ['李森炎好奇的在白府四周逛逛','这白府还真是非比寻常，很宏伟繁华','走着走着被白府管事看到','“喂！你是何人，有何事啊？”',],
+          btn: [{title: '我就是来闲逛的',tokey: "P2",},{title: '我是白家的亲戚',tokey: "P3",},{title: '我跟你们小姐认识……',tokey: "P4",},]},
 
-          { key: 'P2', content: ['“此处不让闲逛，快走！”','白府家丁把李森炎赶了出去','……离开此处吧',],
+          { key: 'P2', content: ['“此处不让闲逛，快走！”','白府家丁把李森炎赶走','……离开此处吧',],
           btn: [{title: '离开',tokey: "C1",},]},
 
-          { key: 'P3', content: ['家丁大怒，叫来一群手下把李森炎团团围住','一通拳打脚踢之后……','李森炎鼻青脸肿的被丢了出去','李森炎拖着疲惫的身体，回了家',],
+          { key: 'P3', content: ['“你是白家亲戚？”','“对，远亲，我能进去拜访拜访吗？”','“可以，要先预约”','“啊？预约多久？”',
+          '"“大概半年吧，毕竟像你这么说的，没有一千也有八百个了”','“人一有钱嘛，亲戚就多了，能理解吧？”','“哈哈哈，理解理解”',],
           btn: [{title: '回家休息一下',toScene: 'C000A_V_MAP_-2_0'},]},
 
-          { key: 'P4', content: ['“贫僧……”','还没说出两句话，就被家丁推搡出去了。','“那来的疯子，快走快走。”身后白府家丁骂骂咧咧','你李森炎迫离开',],
+          { key: 'P4', content: ['“我认识你们家小姐……”','“去去去，都这么说。”','“我真认识！”','“那好，我家小姐的小名叫什么？”','小白？','小月？','小光？',
+          '“滚！” “我家小姐就没有小名！还敢装熟，讨打！” 白府管家作势要打人，李森炎赶紧开溜。',],
           btn: [{title: '走吧',tokey: "C1",},]},
 
     ],},
@@ -1007,14 +1011,14 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: '这路口前面有个过路人', 
+        id: 'C1', desc: '路口经常有个人像雕塑一样站着', 
         options: [ 
         { title: '【和他搭话】', dialogs: ['Screen11'] }, 
-        { title: '【布庄】',toScene: 'C000A_V_MAP_-1_-3'},
-        { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
-        { title: '【街角】',toScene: 'C000A_V_MAP_-3_-3'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【布庄】',toScene: 'C000A_V_MAP_-1_-3'},
+        # { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
+        # { title: '【街角】',toScene: 'C000A_V_MAP_-3_-3'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },],
        # 对话框
@@ -1054,10 +1058,10 @@ scenes: [
         id: 'C1', desc: '前面有个衣衫褴褛的乞丐', 
         options: [ 
         { title: '【和他搭话】', dialogs: ['Screen12'] }, 
-        { title: '【路口】',toScene: 'C000A_V_MAP_-2_-3'},
-        { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【路口】',toScene: 'C000A_V_MAP_-2_-3'},
+        # { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },],
        # 对话框
@@ -1109,11 +1113,11 @@ scenes: [
         id: 'C1', desc: '客栈来来往往的人很多，很热闹', 
         options: [ 
         { title: '【进客栈看看】', dialogs: ['Screen13'] }, 
-        { title: '【老人故居】',toScene: 'C000A_V_MAP_1_-2'},
-        { title: '【城门】',toScene: 'C000A_V_MAP_0_-4'},
-        { title: '【玄德大街】',toScene: 'C000A_V_MAP_0_-2'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【老人故居】',toScene: 'C000A_V_MAP_1_-2'},
+        # { title: '【城门】',toScene: 'C000A_V_MAP_0_-4'},
+        # { title: '【玄德大街】',toScene: 'C000A_V_MAP_0_-2'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },],
        # 对话框
@@ -1171,11 +1175,11 @@ scenes: [
         id: 'C1', desc: '里面有个德高望重的老人', 
         options: [ 
         { title: '【和他聊聊天】', dialogs: ['Screen14'] }, 
-        { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
-        { title: '【来福客栈】',toScene: 'C000A_V_MAP_1_-3'},
-        { title: '【玄德大街】',toScene: 'C000A_V_MAP_0_-2'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
+        # { title: '【来福客栈】',toScene: 'C000A_V_MAP_1_-3'},
+        # { title: '【玄德大街】',toScene: 'C000A_V_MAP_0_-2'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },],
        # 对话框
@@ -1216,11 +1220,11 @@ scenes: [
         id: 'C1', desc: '这边来往的都是些文人雅士，富家小姐', 
         options: [ 
         { title: '【进去看看】', dialogs: ['Screen15'] }, 
-        { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'},
-        { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
-        { title: '【老人故居】',toScene: 'C000A_V_MAP_1_-2'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'},
+        # { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
+        # { title: '【老人故居】',toScene: 'C000A_V_MAP_1_-2'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },],
        # 对话框
@@ -1258,22 +1262,22 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: '这边不太繁华，街道很荒凉，有点奇怪', 
+        id: 'C1', desc: '这边不太繁华，比之西市，差得不是一星半点', 
         options: [ 
         { title: '【逛逛】', nextChat: 'C2'},   
-        { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'},
-        { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
-        { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
-        { title: '【玄德中街】',toScene: 'C000A_V_MAP_0_0'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'},
+        # { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
+        # { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
+        # { title: '【玄德中街】',toScene: 'C000A_V_MAP_0_0'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
 
         ],
       }, 
       { 
-        id: 'C2', desc: '东市没什么人', 
+        id: 'C2', desc: '逛了一圈，也没发现什么有趣的地方', 
         options: [ 
-         { title: '这条街并不繁华，离开', nextChat: 'C1' }, 
+         { title: '这条街并不值得游玩，离开', nextChat: 'C1' }, 
         ],
       },
     ],
@@ -1302,21 +1306,21 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: '这边人烟更少，街道四周有很多垃圾', 
+        id: 'C1', desc: '街道来往车马行人都井然有序，不过却少了一些人气', 
         options: [ 
         { title: '【逛一会儿】', nextChat: 'C2'},   
-        { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
-        { title: '【商铺】',toScene: 'C000A_V_MAP_3_-1'},
-        { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+         { title: '【商铺】',toScene: 'C000A_V_MAP_3_-1'},
+         # { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
+        # { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
 
         ],
       }, 
       { 
-        id: 'C2', desc: '前面有人打架', 
+        id: 'C2', desc: '这条街有很多杂耍', 
         options: [ 
-         { title: '凑了一会儿热闹，然后离开', nextChat: 'C1' }, 
+         { title: '李森炎见惯了这种东西，没什么稀奇，离开', nextChat: 'C1' }, 
         ],
       },
     ],
@@ -1345,21 +1349,21 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: '这边人倒是挺多，只是看上去都不太好惹', 
+        id: 'C1', desc: '这条街类似不法之地，路过的人看上去都不太好惹', 
         options: [ 
         { title: '【逛一会儿】', nextChat: 'C2'},
-        { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
-        { title: '【鉴宝阁】',toScene: 'C000A_V_MAP_3_1'},
-        { title: '【巷子】',toScene: 'C000A_V_MAP_2_2'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
+        # { title: '【鉴宝阁】',toScene: 'C000A_V_MAP_3_1'},
+        # { title: '【巷子】',toScene: 'C000A_V_MAP_2_2'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
 
         ],
       }, 
       { 
         id: 'C2', desc: '这条街似乎很乱', 
         options: [ 
-         { title: '忽然挨了醉汉一拳，晦气，离开', nextChat: 'C1' }, 
+         { title: '醉汉倒在自己脚下，疑似碰瓷……晦气，离开', nextChat: 'C1' }, 
         ],
       },
     ],
@@ -1392,9 +1396,9 @@ scenes: [
         id: 'C1', desc: '此处人来人往，一片和谐', 
         options: [ 
         { title: '【找人询问】', dialogs: ['Screen15'] }, 
-        { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },],
        # 对话框
@@ -1442,11 +1446,11 @@ scenes: [
        { 
         id: 'C1', desc: '这里的路人看上去不是一般的有钱', 
         options: [ 
-        { title: '【逛一会儿】', nextChat: 'C2'},
+        # { title: '【逛一会儿】', nextChat: 'C2'},
         { title: '【情报阁】', andVarsValue: ['@clues_liuyan1 == 1'], dialogs: ['Screen16'] }, 
-        { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
 
 
         ],
@@ -1512,9 +1516,9 @@ scenes: [
         id: 'C1', desc: '这里很多店，但是很偏没什么人来', 
         options: [ 
         { title: '【逛一会儿】',  dialogs: ['Screen16'] },
-        { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'}, 
-        { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        # { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'}, 
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
       ],
@@ -1526,7 +1530,7 @@ scenes: [
           btn: [{title: '我要买簪子' ,toShop: 'default', tokey: "P2",}, ]},
 
           { key: 'P2', content: ['“客官，慢走，下次再来啊。”',['盖章过关'],'买到母亲心爱的簪子了，请选择行动……',],
-          btn: [{title: '买到簪子离开集市，回去',toChapter: "WZXX_M1_N1_C002_[N3]" },{title: '再逛一会儿',nextChat: "C1",}]},
+          btn: [{title: '买到簪子离开集市，回去',toChapter: "WZXX_M1_N1_C002_[N3]" },]},
 
     ],},
     ],
@@ -1536,20 +1540,60 @@ scenes: [
       {
         id: 'C000A_V_MAP_0_0',
         data: [
-          { point: [0, -4], title: '城门', toScene: 'C000A_V_MAP_0_-4', links: [[0, -2]], path: [[0, -3], ] },
-          { point: [0, -2], title: '玄德大街', toScene: 'C000A_V_MAP_0_-2', links: [[0, 0],[1, -3],[1, -2],[-1, -3],[0, -4], ] , path: [[0, -3],[0, 0], ]},
-          { point: [0, 0], title: '玄德中街', toScene: 'C000A_V_MAP_0_0', links: [[-1, 0],[1, 0],[0, 2],[0, 1],[0, -2],  ] ,},
-          { point: [0, 2], title: '官府', toScene: 'C000A_V_MAP_0_2', links: [[0, 3],[0, 4],[-1, 1], [0, 0], ], path: [[0, 3], ]},
-          { point: [0, 4], title: '仁德街', toScene: 'C000A_V_MAP_0_4', links: [[0, 5],[0, 2]], },
-          { point: [0, 5], title: '郊区', toScene: 'C000A_V_MAP_0_5', links: [[0, 6],[-1, 5],[1, 5],[0, 2],], },
-          { point: [-1, 5], title: '森林', toScene: 'C000A_V_MAP_-1_5', links: [] },
-          { point: [1, 5], title: '天水亭', toScene: 'C000A_V_MAP_1_5', links: [] },
-          { point: [0, 6], title: '郊外', toScene: 'C000A_V_MAP_0_6', links: [[-1, 5]] },
-          { point: [-1, 0], title: '西市', toScene: 'C000A_V_MAP_-1_0', links: [[-1, 1],[-2, 0],[-1, -1],] },
-          { point: [-2, 0], title: '李家', toScene: 'C000A_V_MAP_-2_0', links: [[-3, 0],[-2, -1]] },
-          { point: [-3, 0], title: '米铺', toScene: 'C000A_V_MAP_-3_0', links: [[-3, -1],[-2, 0]] },
-          { point: [-3, -1], title: '小院', toScene: 'C000A_V_MAP_-3_-1', links: [[-3, -2],[-2, -1]] },
-          { point: [-1, 1], title: '西市二街', toScene: 'C000A_V_MAP_-1_1', links: [] },
+          { point: [0, -4], title: '城门', 
+          toScene: 'C000A_V_MAP_0_-4',
+           links: [[0, -2]], path: [[0, -3], ] 
+           },
+          { point: [0, -2], title: '玄德大街',
+           toScene: 'C000A_V_MAP_0_-2', 
+           links: [[0, 0],[1, -3],[1, -2],[-1, -3],[0, -4], ] , path: [[0, -3],[0, 0], ]
+           },
+          { point: [0, 0], title: '玄德中街', 
+          toScene: 'C000A_V_MAP_0_0', 
+          links: [[-1, 0],[1, 0],[0, 2],[0, 1],[0, -2],  ] ,
+          },
+          { point: [0, 2], title: '官府',
+           toScene: 'C000A_V_MAP_0_2', 
+           links: [[0, 3],[0, 4],[-1, 1], [0, 0], ], path: [[0, 3], ]},
+          { point: [0, 4], title: '仁德街',
+           toScene: 'C000A_V_MAP_0_4',
+            links: [[0, 5],[0, 2]], 
+            },
+          { point: [0, 5], title: '郊区',
+           toScene: 'C000A_V_MAP_0_5', 
+           links: [[0, 6],[-1, 5],[1, 5],[0, 2],],
+            },
+          { point: [-1, 5], title: '森林', 
+          toScene: 'C000A_V_MAP_-1_5', 
+          links: []
+           },
+          { point: [1, 5], title: '天水亭',
+           toScene: 'C000A_V_MAP_1_5', 
+           links: [] 
+           },
+          { point: [0, 6], title: '郊外',
+           toScene: 'C000A_V_MAP_0_6', 
+           links: [[-1, 5]] 
+           },
+          { point: [-1, 0], title: '西市',
+           toScene: 'C000A_V_MAP_-1_0',
+            links: [[-1, 1],[-2, 0],[-1, -1],] 
+            },
+          { point: [-2, 0], title: '李家',
+           toScene: 'C000A_V_MAP_-2_0', 
+           links: [[-3, 0],[-2, -1]]
+            },
+          { point: [-3, 0], title: '米铺', 
+          toScene: 'C000A_V_MAP_-3_0',
+           links: [[-3, -1],[-2, 0]] 
+           },
+          { point: [-3, -1], title: '小院',
+           toScene: 'C000A_V_MAP_-3_-1',
+            links: [[-3, -2],[-2, -1]] },
+          { point: [-1, 1], title: '西市二街',
+           toScene: 'C000A_V_MAP_-1_1',
+            links: [] 
+            },
           { point: [-1, -1], title: '西市一街', toScene: 'C000A_V_MAP_-1_-1', links: [[-2, -1]] },
           { point: [-2, -1], title: '西市三街', toScene: 'C000A_V_MAP_-2_-1', links: [[-3, -1],[-2, 0],] },
           { point: [-1, -2], title: '春花阁', toScene: 'C000A_V_MAP_-1_-2', links: [[-1, -1],[-1, -3],] },

@@ -17,7 +17,7 @@ shops: [
             propId: 350,
             # 刷新概率设定
             rates : {
-               p100: [ { num: 10, rate: 20 }, { num: 20, rate: 30 } ],
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
                # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
                # p10000: [ { num: 50, rate: 800 } ],
             },
@@ -28,20 +28,7 @@ shops: [
             ]
          },
 
-         { 
-            # 道具ID
-            propId: 2,
-            # 刷新概率设定
-            rates : {
-               p100: [ { num: 10, rate: 20 }, { num: 20, rate: 80 } ],
-               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
-               # p10000: [ { num: 50, rate: 800 } ],
-            },
-            # 消耗设定
-            consume: [
-               { propId: 200, num: 2 },
-            ]
-         },
+         
       ]
    },
 
