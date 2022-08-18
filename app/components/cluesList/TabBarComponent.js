@@ -21,14 +21,14 @@ const TabBarComponent = (props) => {
     const tabItems = tabData.map((item, i) => {
         return (
             <TouchableOpacity key={i} onPress={() => {
-                setSelectedTab(item)
+                setSelectedTab(item.title)
             }}>
                 <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
                     <Text style={[
                         styles.tabItem,
-                        selectedTab === item ? { ...theme.titleColor3, ...styles.tabItem_select } : styles.tabItem_unselected
+                        selectedTab === item.title ? { ...theme.titleColor3, ...styles.tabItem_select } : styles.tabItem_unselected
                     ]}>
-                        {item}
+                        {item.title}
                     </Text>
                 </View>
             </TouchableOpacity>

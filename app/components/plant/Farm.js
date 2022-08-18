@@ -190,9 +190,11 @@ const Farm = (props) => {
             }
 
             return (
-                <ImageBackground source={require('../../../assets/plant/status_bg.png')} style={[styles.statusContainer, { height: px2pd(52), width: px2pd(660), }]} pointerEvents="none">
+                <View style={[styles.statusContainer, { height: px2pd(52), width: px2pd(660), }]} pointerEvents="none">
+                    <Image style={{ position: 'absolute', height: px2pd(52), width: px2pd(660), }} source={require('../../../assets/plant/status_bg.png')} />
                     <Text style={{ fontSize: 15, color: "#000", textAlign: "center" }}>{content}</Text>
-                </ImageBackground>
+                </View>
+
             )
         }
 

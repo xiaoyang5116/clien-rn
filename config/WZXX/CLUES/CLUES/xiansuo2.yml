@@ -2,7 +2,7 @@
 clues:
   {
     id: 'xiansuo2',
-    type: '流言',
+    type: '线索',
     groupId: '李家村',
     filterCondition: {location: '李家村',},
     title: '线索2',

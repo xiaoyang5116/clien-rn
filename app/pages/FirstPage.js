@@ -130,15 +130,15 @@ class FirstPage extends Component {
                 {/* 测试按钮 */}
                 <ImageButton {...BTN_STYLE} source={require('../../assets/button/test_button.png')} selectedSource={require('../../assets/button/test_button_selected.png')} onPress={() => {
                   // 半身人像对话 style = 10
-                  Modal.show({
-                    style: 10, textAnimationType: 'TextSingle',
-                    sections: [
-                      { figureId: "01", location: "right", content: ['你迅速跑过去，', '地面有些东西。你迅速跑过去，',], },
-                      { figureId: "02", location: "left", content: ['发放垃圾分类就', '发顺丰撒', '草公司的后果', '火鬼斧神工'], },
-                      { figureId: "01", hideId: ["02"], location: "right", content: ['十分骄傲放假辣鸡。'], },
-                      { figureId: "02", location: "left", content: ['好的根深蒂固', '电饭锅电饭锅合适的'], },
-                    ]
-                  })
+                  // Modal.show({
+                  //   style: 10, textAnimationType: 'TextSingle',
+                  //   sections: [
+                  //     { figureId: "01", location: "right", content: ['你迅速跑过去，', '地面有些东西。你迅速跑过去，',], },
+                  //     { figureId: "02", location: "left", content: ['发放垃圾分类就', '发顺丰撒', '草公司的后果', '火鬼斧神工'], },
+                  //     { figureId: "01", hideId: ["02"], location: "right", content: ['十分骄傲放假辣鸡。'], },
+                  //     { figureId: "02", location: "left", content: ['好的根深蒂固', '电饭锅电饭锅合适的'], },
+                  //   ]
+                  // })
 
                   // // 线索列表
                   // Clues.show();
@@ -158,18 +158,25 @@ class FirstPage extends Component {
                   // })
 
                   // 单人对话框
-                  // Modal.show({
-                  //   style: 6, title: '神秘阵盘', dialogType: 'HalfScreen', textAnimationType: 'TextSingle',
-                  //   sections: [
-                  //     {
-                  //       key: 'p1',
-                  //       content: ['你迅速跑过去，地面有些东西。', ["剑光1"], '走开走开，马夫大喝， 正从远处拨开人群走来。', '获得几颗石头珠子，看起来能卖不少钱。'],
-                  //       btn: [{ title: '去拿菜刀', tokey: "", addCluesId: ["xiansuo4"] }, { title: '去拿画轴', tokey: "p3", animation: ['边缘闪烁绿'] }]
-                  //     },
-                  //     { key: 'p2', content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
-                  //     { key: 'p3', content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
-                  //   ]
-                  // })
+                  Modal.show({
+                    style: 6, title: '神秘阵盘', dialogType: 'HalfScreen', textAnimationType: 'TextSingle',
+                    sections: [
+                      {
+                        key: 'p1',
+                        content: ['你迅速跑过去，地面有些东西。', ["剑光1"], '走开走开，马夫大喝， 正从远处拨开人群走来。', '获得几颗石头珠子，看起来能卖不少钱。'],
+                        btn: [{
+                          title: '去拿菜刀', tokey: "",
+                          toMsg: {
+                            action: 'CluesModel/useClues', params: {
+                              addCluesId: ["xiansuo4"], useCluesId: ["xiansuo1"], invalidCluesId: ["xiansuo3"]
+                            },
+                          }
+                        }, { title: '去拿画轴', tokey: "p3", animation: ['边缘闪烁绿'] }]
+                      },
+                      { key: 'p2', content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
+                      { key: 'p3', content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
+                    ]
+                  })
 
                   // 多人对话框
                   // Modal.show({

@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001C_[N2]'] , andVarsOn: [ 'WZXX_[Chapters]/WZXX_M1_N1_C001C_[N2]FZ' ] },
-    { header: '第一章 分支 选择身份2' },
+    { header: '第一章  贫穷包子铺小子' },
 ]
 #END==========================================
 
