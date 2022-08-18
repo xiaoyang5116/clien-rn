@@ -81,13 +81,13 @@ scenes: [
         ],
       },
 
-      { 
-        id: 'WZXX_M1_N1_C002A_V3', desc: '硬刚还是认怂？？', 
-        options: [ 
-          { title: "【和他们拼了】",dialogs: ['C002A_fenzhiDH1'] , icon: { id: 1, bindVar: 'biaoqianv37' }, varsOn: ['biaoqianv37']},
-          { title: "【好汉不吃眼前亏】",dialogs: ['C002A_fenzhiDH2'] , icon: { id: 1, bindVar: 'biaoqianv38' }, varsOn: ['biaoqianv38']},
-        ],
-      },
+      # { 
+      #   id: 'WZXX_M1_N1_C002A_V3', desc: '硬刚还是认怂？？', 
+      #   options: [ 
+      #     { title: "【和他们拼了】",dialogs: ['C002A_fenzhiDH1'] , icon: { id: 1, bindVar: 'biaoqianv37' }, varsOn: ['biaoqianv37']},
+      #     { title: "【好汉不吃眼前亏】",dialogs: ['C002A_fenzhiDH2'] , icon: { id: 1, bindVar: 'biaoqianv38' }, varsOn: ['biaoqianv38']},
+      #   ],
+      # },
 
        { 
         id: 'WZXX_M1_N1_C002A_V0', desc: '身体不适', 
