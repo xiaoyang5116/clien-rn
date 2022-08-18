@@ -281,7 +281,7 @@ const MultiplayerDialog = (props) => {
   return null
 
 }
-export default connect((state) => ({ ...state.FigureModel, ...state.MaskModel }))(MultiplayerDialog)
+export default connect((state) => ({ ...state.FigureModel }))(MultiplayerDialog)
 
 const styles = StyleSheet.create({
   fullscreenContainer: {
