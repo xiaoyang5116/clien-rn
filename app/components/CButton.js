@@ -65,10 +65,10 @@ export class CButton extends Component {
     }
 
     onPress = () => {
-        if (this.props.onPress != undefined && !this.props.disabled && this.isImageStyle()) {
+        if (this.props.onPress != undefined && !this.props.disabled && this.props.sourceType !== "reader") {
             return this.props.onPress();
         }
-        if (this.props.onPress != undefined && !this.props.disabled && !this.isImageStyle()) {
+        if (this.props.onPress != undefined && !this.props.disabled && !this.isImageStyle() && this.props.sourceType === "reader") {
             return this.btnAnimateRef.current.start();
         }
     }
