@@ -3,7 +3,7 @@ scenes: [
     {
       id: 'WZXX_M1_N1_C001C_V',
       name: "跟踪杀手",
-      worldTimeHidden: true,
+      # worldTimeHidden: true,
       sceneImage: 'default',
       
       # 变量定义

@@ -1594,22 +1594,67 @@ scenes: [
            toScene: 'C000A_V_MAP_-1_1',
             links: [] 
             },
-          { point: [-1, -1], title: '西市一街', toScene: 'C000A_V_MAP_-1_-1', links: [[-2, -1]] },
-          { point: [-2, -1], title: '西市三街', toScene: 'C000A_V_MAP_-2_-1', links: [[-3, -1],[-2, 0],] },
-          { point: [-1, -2], title: '春花阁', toScene: 'C000A_V_MAP_-1_-2', links: [[-1, -1],[-1, -3],] },
-          { point: [-1, -3], title: '布庄', toScene: 'C000A_V_MAP_-1_-3', links: [[-2, -3],] },
-          { point: [-3, -2], title: '白府', toScene: 'C000A_V_MAP_-3_-2', links: [[-3, -3],[-2, -3],[-3, -1],[-2, -1],] },
-          { point: [-2, -3], title: '路口', toScene: 'C000A_V_MAP_-2_-3', links: [] },
-          { point: [-3, -3], title: '街角', toScene: 'C000A_V_MAP_-3_-3', links: [[-3, -2]] }, 
-          { point: [1, -3], title: '来福客栈', toScene: 'C000A_V_MAP_1_-3', links: [[1, -2],[0, -4],] },
-          { point: [1, -2], title: '老人故居', toScene: 'C000A_V_MAP_1_-2', links: [[1, -3],[1, -1],[0, -2],] },
-          { point: [1, -1], title: '花满楼', toScene: 'C000A_V_MAP_1_-1', links: [[2, -1],[1, 0],] },
-          { point: [1, 0], title: '东市', toScene: 'C000A_V_MAP_1_0', links: [[2, 1],[2, -1],] },
-          { point: [2, -1], title: '东市一街', toScene: 'C000A_V_MAP_2_-1', links: [[3, -1],] },
-          { point: [3, -1], title: '商铺', toScene: 'C000A_V_MAP_3_-1', links: [] },
-          { point: [2, 1], title: '东市二街', toScene: 'C000A_V_MAP_2_1', links: [[2, 2],[3, 1],] },
-          { point: [3, 1], title: '鉴宝阁', toScene: 'C000A_V_MAP_3_1', links: [] },
-          { point: [2, 2], title: '巷子', toScene: 'C000A_V_MAP_2_2',  links: [] },
+          { point: [-1, -1], title: '西市一街', 
+          toScene: 'C000A_V_MAP_-1_-1',
+           links: [[-2, -1]] 
+           },
+          { point: [-2, -1], title: '西市三街',
+           toScene: 'C000A_V_MAP_-2_-1', 
+           links: [[-3, -1],[-2, 0],] 
+           },
+          { point: [-1, -2], title: '春花阁',
+           toScene: 'C000A_V_MAP_-1_-2', 
+           links: [[-1, -1],[-1, -3],] 
+           },
+          { point: [-1, -3], title: '布庄', 
+          toScene: 'C000A_V_MAP_-1_-3',
+           links: [[-2, -3],] 
+           },
+          { point: [-3, -2], title: '白府',
+          toScene: 'C000A_V_MAP_-3_-2', 
+          links: [[-3, -3],[-2, -3],[-3, -1],[-2, -1],] 
+          },
+          { point: [-2, -3], title: '路口',
+           toScene: 'C000A_V_MAP_-2_-3', links: [] 
+           },
+          { point: [-3, -3], title: '街角', 
+          toScene: 'C000A_V_MAP_-3_-3', links: [[-3, -2]]
+           }, 
+          { point: [1, -3], title: '来福客栈', 
+          toScene: 'C000A_V_MAP_1_-3', links: [[1, -2],[0, -4],] 
+          },
+          { point: [1, -2], title: '老人故居',
+           toScene: 'C000A_V_MAP_1_-2', 
+           links: [[1, -3],[1, -1],[0, -2],] 
+           },
+          { point: [1, -1], title: '花满楼',
+           toScene: 'C000A_V_MAP_1_-1', 
+           links: [[2, -1],[1, 0],] 
+           },
+          { point: [1, 0], title: '东市',
+           toScene: 'C000A_V_MAP_1_0', 
+           links: [[2, 1],[2, -1],] 
+           },
+          { point: [2, -1], title: '东市一街',
+           toScene: 'C000A_V_MAP_2_-1',
+            links: [[3, -1],] 
+            },
+          { point: [3, -1], title: '商铺',
+           toScene: 'C000A_V_MAP_3_-1', 
+           links: [] 
+           },
+          { point: [2, 1], title: '东市二街',
+           toScene: 'C000A_V_MAP_2_1', 
+           links: [[2, 2],[3, 1],] 
+           },
+          { point: [3, 1], title: '鉴宝阁', 
+          toScene: 'C000A_V_MAP_3_1',
+           links: [] 
+           },
+          { point: [2, 2], title: '巷子',
+           toScene: 'C000A_V_MAP_2_2', 
+            links: [] 
+            },
           
         ]
       },
