@@ -1,9 +1,7 @@
 import React from 'react';
 import Video from 'react-native-video';
-import lo from 'lodash';
 
 import {
-    Animated,
     View,
     StyleSheet,
 } from 'react-native';
@@ -31,11 +29,11 @@ const FlyAnimation = (props) => {
                 fullscreen={false}
                 resizeMode={'stretch'}
                 onEnd={() => { end() }}
-                onProgress={(p) => {
-                    if (p.currentTime >= 3.25) {
-                        end();
-                    }
-                }}
+                // onProgress={(p) => {
+                //     if (p.currentTime >= 3.25) {
+                //         end();
+                //     }
+                // }}
             />
         </View>
     );
