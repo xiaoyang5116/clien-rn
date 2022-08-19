@@ -22,6 +22,8 @@ import { TouchableWithoutFeedback } from 'react-native';
 const DirMapPage = (props) => {
 
   const data = React.useRef(props.data);
+  const dirMapRefreshKey = React.useRef(0);
+
   const [ item, setItem ] = React.useState({});
 
   const handleEnterDir = (e) => {
@@ -71,6 +73,8 @@ const DirMapPage = (props) => {
     }
   }, []);
 
+  dirMapRefreshKey.current += 1;
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -84,7 +88,7 @@ const DirMapPage = (props) => {
             <Text style={{ fontSize: 24 }}>{item.title}</Text>
           </View>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} pointerEvents='box-none' onTouchStart={(e) => { e.stopPropagation(); }}>
-            <DirMap data={item.map} initialCenterPoint={[0,0]} onEnterDir={handleEnterDir} onClose={back} />
+            <DirMap key={dirMapRefreshKey.current} data={item.map} initialCenterPoint={[0,0]} onEnterDir={handleEnterDir} onClose={back} />
           </View>
         </ImageBackground>
       </View>

@@ -13,16 +13,10 @@ import {
   PanResponder,
 } from 'react-native';
 
-import { 
-  getWindowSize
-} from '../../constants';
-
 import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../constants/resolution';
 import Toast from '../toast';
-
-const WIN_SIZE = getWindowSize();
 
 // 格子间隔
 const GRID_SPACE = 20;
