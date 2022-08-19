@@ -78,12 +78,13 @@ export default {
 
       // 激活需要扣除铜币
       const upgradeItem = found.upgrade[0];
-      if (upgradeItem.lv == 0 && upgradeItem.copper > 0 && userState.copper >= upgradeItem.copper) {
+      if (upgradeItem.lv == 1 && upgradeItem.copper > 0 && userState.copper >= upgradeItem.copper) {
         yield put.resolve(action('UserModel/alertCopper')({ value: -upgradeItem.copper }));
       } else {
         return false;
       }
 
+      found.level = 1;
       found.actived = true;
       yield call(LocalStorage.set, LocalCacheKeys.COLLECTION_DATA, collectionState.items);
       

@@ -22,7 +22,6 @@ collections: [
 
     # 升级
     upgrade: [
-      { lv: 0, copper: 100 }, # 激活
       { lv: 1, copper: 200 },
       { lv: 2, copper: 300 },
       { lv: 3, copper: 400 },

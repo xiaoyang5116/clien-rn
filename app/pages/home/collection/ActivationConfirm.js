@@ -52,8 +52,6 @@ const ActivationConfirm = (props) => {
     // 激活所需物品
     const upgradeItem = props.data.upgrade[0];
 
-    console.debug(props.user)
-
     return (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

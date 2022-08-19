@@ -85,7 +85,7 @@ const CollectionTabPage = (props) => {
             <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
                 <Text>金: 0</Text>
                 <Text>银: 0</Text>
-                <Text>铜: 0</Text>
+                <Text>铜: {props.user.copper}</Text>
             </View>
             <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
                 <TextButton title={'金'} />
@@ -116,4 +116,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default connect((state) => ({ ...state.AppModel }))(CollectionTabPage);
+export default connect((state) => ({ ...state.AppModel, user: { ...state.UserModel } }))(CollectionTabPage);
