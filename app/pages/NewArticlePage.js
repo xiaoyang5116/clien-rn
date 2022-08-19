@@ -430,7 +430,7 @@ const TheWorld = (props) => {
         keyExtractor={item => item.key}
         onScroll={scrollHandler}
         onEndReached={endReachedHandler}
-        initialNumToRender={2}
+        initialNumToRender={30}
         maxToRenderPerBatch={5}
         onTouchStart={(e) => {
           if (e.nativeEvent.pageX < WIN_SIZE.width - 40)

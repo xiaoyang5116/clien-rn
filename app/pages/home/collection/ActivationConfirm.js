@@ -14,6 +14,8 @@ import {
 import lo from 'lodash';
 import { TextButton } from '../../../constants/custom-ui';
 import { AppDispath } from '../../../constants';
+import Toast from '../../../components/toast';
+import { connect } from 'react-redux';
 
 const ActivationConfirm = (props) => {
 
@@ -30,7 +32,14 @@ const ActivationConfirm = (props) => {
     }, []);
 
     React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener(CALLBACK_EVENT_KEY, () => {
+        const listener = DeviceEventEmitter.addListener(CALLBACK_EVENT_KEY, (v) => {
+            if (!v) {
+                Toast.show('激活失败!');
+                return
+            }
+            Toast.show('激活成功!');
+
+            DeviceEventEmitter.emit('__@CollectionTabPage.refresh');
             if (props.onClose != undefined) {
                 props.onClose();
             }
@@ -39,6 +48,9 @@ const ActivationConfirm = (props) => {
             listener.remove();
         }
     }, []);
+
+    // 激活所需物品
+    const upgradeItem = props.data.upgrade[0];
 
     return (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
@@ -54,12 +66,12 @@ const ActivationConfirm = (props) => {
                         <View style={{ width: '100%', marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
                             <View style={{ width: 50, height: 50, borderWidth: 1, borderColor: '#333', borderRadius: 5, backgroundColor: '#ccc', justifyContent: 'center', alignItems: 'center' }}>
                                 <Text>铜币</Text>
-                                <Text style={{ position: 'absolute', bottom: -20 }}>666</Text>
+                                <Text style={{ position: 'absolute', bottom: -20 }}>{upgradeItem.copper}</Text>
                             </View>
                         </View>
                     </View>
                     <View style={{ width: '94%', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                        <TextButton title={'确认'} onPress={() => {
+                        <TextButton title={'确认'} disabled={(props.user.copper < upgradeItem.copper)} onPress={() => {
                             AppDispath({ type: 'CollectionModel/activate', payload: { id: props.data.id }, retmsg: CALLBACK_EVENT_KEY});
                         }} />
                         <TextButton title={'取消'} onPress={() => {
@@ -74,4 +86,4 @@ const ActivationConfirm = (props) => {
     );
 }
 
-export default ActivationConfirm;
+export default connect((state) => ({ user: { ...state.UserModel } }))(ActivationConfirm);

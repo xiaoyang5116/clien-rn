@@ -3,8 +3,10 @@ import lo from 'lodash';
 import EventListeners from '../utils/EventListeners';
 import { GetCollectionDataApi } from '../services/GetCollectionDataApi';
 
+import LocalStorage from '../utils/LocalStorage';
+
 import { 
-  action,
+  action, LocalCacheKeys,
 } from "../constants";
 
 export default {
@@ -28,11 +30,18 @@ export default {
       if (config != null) {
         collectionState.__data.config = config.collections;
       }
+
+      const cache = yield call(LocalStorage.get, LocalCacheKeys.COLLECTION_DATA);
+      if (cache != null && lo.isArray(cache)) {
+        collectionState.items.length = 0;
+        collectionState.items.push(...cache);
+      }
     },
 
     *getCollectionList({ }, { call, put, select }) {
       const collectionState = yield select(state => state.CollectionModel);
 
+      let updateCache = false;
       for (let key in collectionState.__data.config) {
         const item = collectionState.__data.config[key];
         const found = collectionState.items.find(e => e.id == item.id);
@@ -48,6 +57,11 @@ export default {
           level: 0,       // 星级
           actived: false, // 是否已经激活
         });
+        updateCache = true;
+      }
+
+      if (updateCache) {
+        yield call(LocalStorage.set, LocalCacheKeys.COLLECTION_DATA, collectionState.items);
       }
       
       return collectionState.items;
@@ -55,13 +69,25 @@ export default {
 
     *activate({ payload }, { call, put, select }) {
       const collectionState = yield select(state => state.CollectionModel);
+      const userState = yield select(state => state.UserModel);
       const { id } = payload;
 
       const found = collectionState.items.find(e => e.id == id);
       if (found == undefined)
         return false;
 
+      // 激活需要扣除铜币
+      const upgradeItem = found.upgrade[0];
+      if (upgradeItem.lv == 1 && upgradeItem.copper > 0 && userState.copper >= upgradeItem.copper) {
+        yield put.resolve(action('UserModel/alertCopper')({ value: -upgradeItem.copper }));
+      } else {
+        return false;
+      }
+
+      found.level = 1;
       found.actived = true;
+      yield call(LocalStorage.set, LocalCacheKeys.COLLECTION_DATA, collectionState.items);
+      
       return true;
     },
     

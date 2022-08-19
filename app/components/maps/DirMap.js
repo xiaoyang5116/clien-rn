@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import {
   Text,
   View,
-  TouchableWithoutFeedback,
 } from '../../constants/native-ui';
 
 import {
@@ -13,16 +12,10 @@ import {
   PanResponder,
 } from 'react-native';
 
-import { 
-  getWindowSize
-} from '../../constants';
-
 import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../constants/resolution';
 import Toast from '../toast';
-
-const WIN_SIZE = getWindowSize();
 
 // 格子间隔
 const GRID_SPACE = 20;
@@ -128,7 +121,7 @@ const DirMap = (props) => {
         bigMapScale.setValue(scaleNumber)
       }
 
-      if(gestureState.dx!==0 || gestureState.dy!==0){
+      if (Math.abs(gestureState.dx) > 5 || Math.abs(gestureState.dy) > 5) {
         touchStart.current = false;
       }
     },
@@ -280,21 +273,21 @@ const DirMap = (props) => {
       </View>
     </Animated.View>
     {/* 大地图缩小按钮 */}
-    <TouchableWithoutFeedback onPress={zoomOutBigMapHandler}>
-      <FastImage style={{ position: 'absolute', left: 8, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_out_button.png')} />
-    </TouchableWithoutFeedback>
+    <View style={{ position: 'absolute', left: 8, top: -9 }} onTouchStart={zoomOutBigMapHandler}>
+      <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_out_button.png')} />
+    </View>
     {/* 大地图放大按钮 */}
-    <TouchableWithoutFeedback onPress={zoomInBigMapHandler}>
-      <FastImage style={{ position: 'absolute', left: 60, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_in_button.png')} />
-    </TouchableWithoutFeedback>
+    <View style={{ position: 'absolute', left: 60, top: -9 }} onTouchStart={zoomInBigMapHandler}>
+      <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_in_button.png')} />
+    </View>
     {/* 大地图还原按钮 */}
-    <TouchableWithoutFeedback onPress={zoomRestoreBigMapHandler}>
-      <FastImage style={{ position: 'absolute', left: 112, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_restore_button.png')} />
-    </TouchableWithoutFeedback>
+    <View style={{ position: 'absolute', left: 112, top: -9 }} onTouchStart={zoomRestoreBigMapHandler}>
+      <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_restore_button.png')} />
+    </View>
     {/* 大地图关闭按钮 */}
-    <TouchableWithoutFeedback onPress={props.onClose}>
-      <FastImage style={{ position: 'absolute', right: 10, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_close_button.png')} />
-    </TouchableWithoutFeedback>
+    <View style={{ position: 'absolute', right: 10, top: -9 }} onTouchStart={props.onClose}>
+      <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_close_button.png')} />
+    </View>
   </View>
   );
 }

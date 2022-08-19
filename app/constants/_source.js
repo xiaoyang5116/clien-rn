@@ -22,6 +22,7 @@ const _images = {
         { id: 'V4_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V4_1080.png') },
         { id: 'V5_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V5_1080.png') },
         { id: 'V6_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V6_1080.png') },
+        { id: 'BAIYUN_1080', width: px2pd(1080), height: px2pd(2400), source: require('../../assets/chapter/BAIYUN_1080.webp') },
 
         { id: 'HuaLing_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/HuaLing_1080.png') },
         { id: 'YiLing_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/YiLing_1080.png') },
