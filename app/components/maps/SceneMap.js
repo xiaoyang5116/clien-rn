@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import {
   Text,
   View,
-  TouchableWithoutFeedback,
 } from '../../constants/native-ui';
 
 import {
@@ -337,11 +336,9 @@ const SceneMap = (props) => {
     <Animated.View style={[{ transform: [{ translateY: smallMapTransY }] }, { ...MAP_SMALL_SIZE }]} {...panResponder.panHandlers}>
       <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/bg/scene_map.png')} />
       {/* 小地图隐藏过后显示按钮 */}
-      <TouchableWithoutFeedback onPress={showSmallMapHandler}>
-        <Animated.View style={{ opacity: showButtonOpacity }}>
-          <FastImage style={{ position: 'absolute', right: 20, top: -110, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_maximize_button.png')} />
-        </Animated.View>
-      </TouchableWithoutFeedback>
+      <Animated.View style={{ opacity: showButtonOpacity }} onTouchStart={showSmallMapHandler}>
+        <FastImage style={{ position: 'absolute', right: 20, top: -110, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_maximize_button.png')} />
+      </Animated.View>
 
       {/* 小地图网格(静止) */}
       <View style={{ flex: 1, margin: 4, overflow: 'hidden' }}>
@@ -377,21 +374,21 @@ const SceneMap = (props) => {
             <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_min_button.png')} />
           </View>
           {/* 大地图缩小按钮 */}
-          <TouchableWithoutFeedback onPress={zoomOutBigMapHandler}>
-            <FastImage style={{ position: 'absolute', left: 20, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_out_button.png')} />
-          </TouchableWithoutFeedback>
+          <View style={{ position: 'absolute', left: 20, top: -9 }} onTouchStart={zoomOutBigMapHandler}>
+            <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_out_button.png')} />
+          </View>
           {/* 大地图放大按钮 */}
-          <TouchableWithoutFeedback onPress={zoomInBigMapHandler}>
-            <FastImage style={{ position: 'absolute', left: 75, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_in_button.png')} />
-          </TouchableWithoutFeedback>
+          <View style={{ position: 'absolute', left: 75, top: -9 }} onTouchStart={zoomInBigMapHandler}>
+            <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_in_button.png')} />
+          </View>
           {/* 大地图还原按钮 */}
-          <TouchableWithoutFeedback onPress={zoomRestoreBigMapHandler}>
-            <FastImage style={{ position: 'absolute', left: 130, top: -9, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_restore_button.png')} />
-          </TouchableWithoutFeedback>
+          <View style={{ position: 'absolute', left: 130, top: -9 }} onTouchStart={zoomRestoreBigMapHandler}>
+            <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_restore_button.png')} />
+          </View>
           {/* 大地图缩小按钮(底部) */}
-          <TouchableWithoutFeedback onPress={minBigMapHandler}>
-            <FastImage style={{ position: 'absolute', right: 20, bottom: -6, width: px2pd(130), height: px2pd(56), zIndex: 100 }} source={require('../../../assets/button/map_min_button.png')} />
-          </TouchableWithoutFeedback>
+          <View style={{ position: 'absolute', right: 20, bottom: -6 }} onTouchStart={minBigMapHandler}>
+            <FastImage style={{ width: px2pd(130), height: px2pd(56), zIndex: 100 }} source={require('../../../assets/button/map_min_button.png')} />
+          </View>
         </Animated.View>
       </View>
     </Animated.View>
