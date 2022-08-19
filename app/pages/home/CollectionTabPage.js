@@ -22,11 +22,12 @@ import CollectionItem from './collection/CollectionItem';
 
 const CollectionTabPage = (props) => {
 
+    const GET_LIST_EVENT_KEY = '__@CollectionTabPage.getList';
+    
     const [data, setData] = React.useState([]);
 
     React.useEffect(() => {
-        const eventKey = '__@CollectionTabPage.refresh';
-        const listener = DeviceEventEmitter.addListener(eventKey, (data) => {
+        const listener = DeviceEventEmitter.addListener(GET_LIST_EVENT_KEY, (data) => {
             const copy = lo.cloneDeep(data);
             const result = [];
 
@@ -45,7 +46,17 @@ const CollectionTabPage = (props) => {
             setData(result);
         });
 
-        AppDispath({ type: 'CollectionModel/getCollectionList', payload: {}, retmsg: eventKey});
+        AppDispath({ type: 'CollectionModel/getCollectionList', payload: {}, retmsg: GET_LIST_EVENT_KEY});
+
+        return () => {
+            listener.remove();
+        }
+    }, []);
+
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener('__@CollectionTabPage.refresh', () => {
+            AppDispath({ type: 'CollectionModel/getCollectionList', payload: {}, retmsg: GET_LIST_EVENT_KEY});
+        });
         return () => {
             listener.remove();
         }
@@ -68,8 +79,6 @@ const CollectionTabPage = (props) => {
             </View>
         );
     }
-
-    console.debug('render');
 
     return (
         <View style={styles.viewContainer}>
