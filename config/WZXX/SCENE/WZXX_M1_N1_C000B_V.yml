@@ -37,6 +37,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -119,6 +121,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -185,6 +189,8 @@ scenes: [
     id: 'C000B_V_MAP_-2_3', name: '饭馆',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -305,6 +311,8 @@ scenes: [
     id: 'C000B_V_MAP_-1_3', name: '当铺',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -424,6 +432,8 @@ scenes: [
     id: 'C000B_V_MAP_0_3', name: '珍宝阁',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -479,6 +489,8 @@ scenes: [
     id: 'C000B_V_MAP_-1_4', name: '兵器铺',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C005_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
