@@ -60,6 +60,9 @@ const _images = {
         { id: 1, img: require('../../assets/avatar/1.jpg') },
         { id: 2, img: require('../../assets/avatar/2.jpg') },
     ],
+    world_bg: [
+        { id: 'ShiJieBeiJing_V1', source: require('../../assets/bg/world_bg1.png') },
+    ]
 }
 
 // 获得头像
@@ -91,4 +94,9 @@ export const getBtnIcon = (iconId) => {
 // 获取道具ICON
 export const getPropIcon = (iconId) => {
     return _images.propIcons.find(e => e.id == iconId);
+}
+
+// 世界背景
+export const getWorldBackgroundImage = (id) => {
+    return _images.world_bg.find(e => lo.isEqual(e.id, id));
 }

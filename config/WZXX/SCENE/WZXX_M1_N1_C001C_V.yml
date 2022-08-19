@@ -82,12 +82,13 @@ scenes: [
                   #},
                   {
                       title: "第一章 分支1",
-                      body: "<<<<去最近的城市,平川府白城>>>>\n明明不是自己所在的现实世界的逻辑，但记忆里，像是有两个截然不同的人生在交错缠杂，他甚至有些分不清谁是谁。说不定进城后能询问出更多线索。",
+                      body: "<<<<去最近的城市,平川府白城>>>>\n现在李森炎已经初步得到自己想要的答案了，他想回到现实世界，靠死亡这种事情肯定是办不到了。记忆中原身家里也有些秘密和谜团亟待解开，现在进城，说不定能找到一些回去的线索！",
                       toChapter: "WZXX_M1_N1_C001B_[A1]",
                   },
+                  
                   {
                     title: "第一章 分支2",
-                    body: " <<<<跟踪杀手，寻找线索>>>>\n不知为什么，李森炎在这个时候觉得特别的冷静。\n分明是刚刚穿越而来，却发现现在不但有了脑中特殊的记忆，还多了一身功夫。\n甚至现在。这具身躯中多出额外的力量来。",
+                    body: " <<<<跟踪杀手，寻找线索>>>>\n知己知彼才能百战不殆，李森炎决定跟踪杀手，看能否从这个杀手身上了解到他一直被追杀的根源！",
                     # desc: "此段描述只有切换世界才用到",
                     toChapter: "WZXX_M1_N1_C001B_[C3]",
                     #toScene: 'C001C_V_MAP_point_0_0', 
@@ -118,7 +119,7 @@ scenes: [
   #地图场景===========================================================
   # NPC1
   {
-    id: 'C001C_V_MAP_0_0', name: '林间小道，入口',
+    id: 'C001C_V_MAP_0_0', name: '林间小道入口',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
@@ -133,7 +134,10 @@ scenes: [
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "luxian_N1_V2", min: 0, max: 1 },
     { id: "luxian_N1_V2END", min: 0, max: 1 },
+    { id: "biaoqianv0", min: 0, max: 1 } ,
+    { id: "biaoqianv1", min: 0, max: 1 } ,
     
+   
     ],
 
     # 动作定义
@@ -174,11 +178,12 @@ scenes: [
 
     # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '跟踪杀手#1', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen1',style: 6, title: '跟踪杀手', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李森炎在远远的地方看着杀手的行动','没走几步','杀手已经走到了一个林间小道','看上去就和寻常窄道没有区别','李森炎决定',],
 
-          btn: [{title: '在小路的两边用树来作掩护', toScene: 'C001C_V_MAP_0_1' , varsOn: 'C001C_V_MAP_0_1/luxian_N1_V1'},{title: '距离更远一点，先原地不动', toScene: 'C001C_V_MAP_0_0', varsOn: 'luxian_N1_V2', },]},
+          btn: [{title: '在小路的两边用树来作掩护', toScene: 'C001C_V_MAP_0_1' , icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']},
+          {title: '距离更远一点，先原地不动', toScene: 'C001C_V_MAP_0_0',  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] },]},
      
 
     ],},],
@@ -200,6 +205,16 @@ scenes: [
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "luxian_N1_V1", min: 0, max: 1 },
     { id: "luxian_N1_V2", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 } ,
+    { id: "biaoqianv3", min: 0, max: 1 } ,
+    { id: "biaoqianv17", min: 0, max: 1 } ,
+    { id: "biaoqianv18", min: 0, max: 1 } ,
+    { id: "biaoqianv19", min: 0, max: 1 } ,
+    { id: "biaoqianv20", min: 0, max: 1 } ,
+    { id: "biaoqianv21", min: 0, max: 1 } ,
+    { id: "biaoqianv22", min: 0, max: 1 } ,
+
+
 
     
     ],
@@ -220,7 +235,7 @@ scenes: [
     chats: [
       #
       { 
-        id: 'C1', desc: '寻常的窄道', 
+        id: 'C1', desc: '这里不太好跟踪，记得用树木做掩护', 
         options: [ 
          { title: '【继续跟踪杀手】',dialogs: ['jinruzhaidao'] }, 
         ],
@@ -243,40 +258,34 @@ scenes: [
 
     # 对话框
     dialogs: [
-          { id: 'jinruzhaidao',style: 6, title: '跟踪杀手#2A', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'jinruzhaidao',style: 6, title: '跟踪杀手', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
            #分支1
           { key: 'N1A', content: ['杀手好像没有异常','继续向前走',], 
-          btn: [{title: '继续跟踪！', toScene: 'C001C_V_MAP_0_2'},{title: '继续跟踪！', tokey: "N1B"},{title: '结束这次跟踪', tokey: "END01"},], },   
+          btn: [{title: '继续跟踪！', toScene: 'C001C_V_MAP_0_2',  icon: { id: 1, bindVar: 'biaoqianv17' }, varsOn: ['biaoqianv17']},
+          
+          {title: '结束这次跟踪', tokey: "END01",  icon: { id: 1, bindVar: 'biaoqianv19' }, varsOn: ['biaoqianv19']},], },   
 
-          { key: 'N1B', content: ['树下有很多落叶和枯枝','你不得不小心谨慎',], 
-          btn: [{title: '大胆下脚,JOJO思密达！', tokey: "N1B1"},{title: '想起一些小说情节', tokey: "N1B2"},], },   
-
-          { key: 'N1B1', content: ['看到了一窝蚂蚁','我踩','几只蛐蛐被吓跑远','乐','我踩','嘿嘿嘿','李森炎起身','……','发现被杀手以奇怪的眼光扫视','乐死了，你说是吧，李森炎说到'], 
-          btn: [{title: '是啊，乐死了', dialogs: ['gameover00']}], },   
-
-          { key: 'N1B2', content: ['小说1','某个主角踩了树枝被敌人发现','被追了三条街','小说2','某个主角踩了树枝被敌人发现','不得不化身狂战士全灭敌人','……'], 
-          btn: [{title: '被剧情逗乐了呵呵笑起来', tokey: "N1C1"},{title: '这好像和现在差不多啊',toScene: 'C001C_V_MAP_0_2',varsOn: 'C001C_V_MAP_0_2/N1B2_V'},], },   
-
-          { key: 'N1C1', content: ['杀手正在走路','突然听见背后传来诡异的笑','呵呵呵呵呵啊哈哈哈','呵哈哈哈隔','嗯嗯嗯嗯噗……','杀手……？','不对劲','……'], 
-          btn: [{title: '杀手：不对劲，好奇去瞅一下', dialogs: ['gameoverD4']},{title: '杀手：错觉吗？', toScene: 'C001C_V_MAP_0_2',varsOn: 'C001C_V_MAP_0_2/N1C1_V'},], },   
+    
     
                      ],
                      
           },
         #死亡1
          { id: 'gameover00',
-           style: 7, 
+           style: 7, artId: 1,
            title: '你挂了',
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来', dialogs: ['jinruzhaidao'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
+           { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来', dialogs: ['jinruzhaidao'] },
+            {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
            ],
          },
           #合理退出
           { key: 'END01', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
-          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "N1A", }]},    
+          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },
+          {title: '取消', tokey: "N1A", }]},    
     ],
   },
   # NPC3
@@ -296,6 +305,11 @@ scenes: [
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "N1C1_V", min: 0, max: 1 },
     { id: "N1B2_V", min: 0, max: 1 },
+     { id: "biaoqianv4", min: 0, max: 1 } ,
+    { id: "biaoqianv5", min: 0, max: 1 } ,
+    { id: "biaoqianv6", min: 0, max: 1 } ,
+    { id: "biaoqianv7", min: 0, max: 1 } ,
+   
     ],
 
     # 动作定义
@@ -329,21 +343,23 @@ scenes: [
 
     # 对话框
     dialogs: [
-          { id: 'lierenxiaodao',style: 6, title: '跟踪杀手#1', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'lierenxiaodao',style: 6, title: '跟踪杀手', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['紧接着李森炎看见那杀手四处张望了下','好似极为警惕的样子','李森炎紧紧盯着他，只见他又拐进了一条小道','周围杂草丛生看上去很不好跟踪','李森炎决定',],
-          btn: [{title: '大步流星，赶紧跟上杀手',dialogs: ['gameover01']},{title: '小心翼翼的走，不着急', tokey: "N1B1"},]},
+          btn: [{title: '大步流星，赶紧跟上杀手',dialogs: ['gameover01'] , icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
+          {title: '小心翼翼的走，不着急', tokey: "N1B1",  icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},]},
 
-          { key: 'N1B1', content: ['这地方陷阱重重，李森炎顾不上杀手，走的很小心翼翼','然后','听见前面传来一声响声','杀手差点掉猎户的陷阱里',李森炎：“噗……”',], 
-          btn: [{title: '偷笑', dialogs: ['gameover02']},{title: '憋笑', tokey: "N1B2"}]},   
+          { key: 'N1B1', content: ['李森炎小心翼翼地走着','突然看见杀手挥剑向上砍去','嘴里还喊道：“谁放的暗器？”','结果那“暗器”粘在剑上了','杀手定睛一看，是鸟屎','李森炎：“噗……”',], 
+          btn: [{title: '偷笑', dialogs: ['gameover02'], icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},
+          {title: '憋笑', tokey: "N1B2", icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']}]},   
 
-          { key: 'N1B2', content: ['杀手脚尖轻点，使着轻功从陷阱上跳了出来','继续往前走','周围杂草丛生看上去很不好跟踪','李森炎决定',],
-          btn: [{title: '继续跟踪！', toScene: 'C001C_V_MAP_0_3'},]},
+          { key: 'N1B2', content: ['杀手气急败坏，骂骂咧咧地从原地离开','继续往前走','周围杂草丛生看上去很不好跟踪','李森炎决定',],
+          btn: [{title: '继续跟踪！', toScene: 'C001C_V_MAP_0_3',},]},
 
     ],},
    #死亡2
          { id: 'gameover01',
-           style: 7, 
+           style: 7, artId: 4,
            title: '你挂了',
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
@@ -353,17 +369,18 @@ scenes: [
          },      
   #死亡3
             { id: 'gameover02',
-           style: 7, 
+           style: 7, artId: 2,
            title: '你挂了',
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p2', content: ['李森炎偷笑','哈哈哈哈哈哈','哎不是，不小心笑出声了？','刚想捂上嘴，结果忽然感觉脚下一凉','垂直落地，加速运动','……','好的，我自己手动重来',], btn: [{title: '不放弃，再来', dialogs: ['lierenxiaodao'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
+           { key: 'p2', content: ['李森炎偷笑','哈哈哈哈哈哈','哎不是，不小心笑出声了？','刚想捂上嘴，结果忽然感觉脚下一凉','……','你好，回见',], btn: [{title: '不放弃，再来', dialogs: ['lierenxiaodao'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
            ],      
          },      
           #合理退出
           { key: 'END01', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
-          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },{title: '取消', tokey: "N1A", }]},     
+          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },
+          {title: '取消', tokey: "N1A", }]},     
     ],
 
     
@@ -386,6 +403,14 @@ scenes: [
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "N1C1_V", min: 0, max: 1 },
     { id: "N1B2_V", min: 0, max: 1 },
+     { id: "biaoqianv8", min: 0, max: 1 } ,
+    { id: "biaoqianv9", min: 0, max: 1 } ,
+    { id: "biaoqianv10", min: 0, max: 1 } ,
+    { id: "biaoqianv11", min: 0, max: 1 } ,
+    { id: "biaoqianv12", min: 0, max: 1 } ,
+    { id: "biaoqianv13", min: 0, max: 1 } ,
+    { id: "biaoqianv14", min: 0, max: 1 } ,
+   
     ],
 
     # 动作定义
@@ -421,32 +446,16 @@ scenes: [
 
     # 对话框
     dialogs: [
-          { id: 'linyinxiuxichu',style: 6, title: '跟踪杀手#4', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'linyinxiuxichu',style: 6, title: '跟踪杀手', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
            #分支1
           { key: 'N1A', content: ['这里看上去很阴凉','杀手似乎想在这里休息一下','杀手坐下了，闭上眼假寐','此时李森炎决定——',], 
-          btn: [{title: '恶搞杀手', tokey: "N3"},{title: '静静等候', tokey: "N4"},{title: '睡一觉', tokey: "K8"},], },   
-
-           { key: 'N3', content: ['现在这么好的机会','绝对不能错过','你发现了一些猎人狩猎留下的残破的弓','有了弹弓','你决定',], 
-          btn: [{title: '弹弓当然是打鸟啦', tokey: "K2"},{title: '目标是杀手', tokey: "N1C3"},], },   
-
-          { key: 'K2', content: ['你使用了弹弓','鸟飞了','但发现你的准头还不至于能打到鸟的程度','……',],
-          btn: [{title: '返回', tokey: "N3"},], },   
-
-          { key: 'N1C3', content: ['你重新走到了能看到杀手的位置','你决定使用弹弓','目标是','……',],
-           btn: [{title: '头', tokey: "N1C2"},{title: '背后', tokey: "N1B3"},], },   
-
-          { key: 'N1C2', content: ['杀手的武者危机直觉发动','稍微扭头','弹弓很轻易的就打偏了','……',],
-          btn: [{title: '算了，不打了', tokey: "N4"},] },  
-
-          { key: 'N1B3', content: ['你本来冲着杀手的背部瞄准','但你的准头太差了','弹弓落点到了杀手的屁股中央','……！','杀手，什么东西偷袭我菊花！','现在你发现杀手走路开始一瘸一拐起来',],
-          btn: [{title: '妙啊', tokey: "K7"}], },  
+          btn: [
+          {title: '静静等候', tokey: "N4",  icon: { id: 1, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9']},
+          {title: '睡一觉', tokey: "K8",  icon: { id: 1, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10']},], },   
 
           { key: 'N4', content: ['杀手靠在木桩前休息好了之后','拍了拍身上的灰继续走',], 
           btn: [{title: '继续跟踪',toScene: 'C001C_V_MAP_0_4'},], },  
-
-          { key: 'K7', content: ['因为屁股痛，杀手决定休息一下','你忍着笑继续跟踪',],
-         btn: [{title: '持续监视', tokey: "N4"},], },  
 
          { key: 'K8', content: ['一阵冷风','李森炎起身','睡过头了，李森炎内心大呼','眼见发现天已经黄昏','杀手早就不知那里去了','请选择',],
          btn: [{title: '算了，直接进城', toScene: 'C001C_V_MAP_0_5'},], },  
@@ -476,6 +485,8 @@ scenes: [
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "N1C1_V", min: 0, max: 1 },
     { id: "N1B2_V", min: 0, max: 1 },
+    { id: "biaoqianv15", min: 0, max: 1 } ,
+    { id: "biaoqianv16", min: 0, max: 1 } ,
     ],
 
     # 动作定义
@@ -510,11 +521,12 @@ scenes: [
 
     # 对话框
     dialogs: [
-          { id: 'jinchengdadao',style: 6, title: '跟踪杀手#4', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'jinchengdadao',style: 6, title: '跟踪杀手', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
            #分支1
           { key: 'N5', content: ['杀手刚才休息的不错，什么也没发现','继续往前走','四周的人越来越多','这个杀手应该是想进城','此时李森炎决定——',], 
-          btn: [{title: '进城', toScene: 'C001C_V_MAP_0_5'},{title: '继续跟着杀手', tokey: "N6"},], },   
+          btn: [{title: '进城', toScene: 'C001C_V_MAP_0_5', icon: { id: 1, bindVar: 'biaoqianv15' }, varsOn: ['biaoqianv15']},
+          {title: '继续跟着杀手', tokey: "N6",  icon: { id: 1, bindVar: 'biaoqianv16' }, varsOn: ['biaoqianv16']},], },   
 
           { key: 'N6', content: ['杀手又走了一会儿','进了城后，杀手见四下无人，进了路边的一个小房子','你本来想跟上','但看见房子里出来了更多黑衣人','你知道，但凡进去就是必死，默默把地址记下','算了，走吧',], 
           btn: [{title: '进城', toScene: 'C001C_V_MAP_0_5'},], },   
@@ -583,7 +595,7 @@ scenes: [
         id: 'C001C_V_MAP_0_0',
         data: [
           { 
-          point: [0, 0], title: '林间小道，入口', 
+          point: [0, 0], title: '林间小道入口', 
           #toScene: 'C001C_V_MAP_0_0', 
           links: [[0, 1], ] },
           { point: [0, 1], title: '？？？', links: [] },
@@ -599,7 +611,7 @@ scenes: [
            #toScene: 'C001C_V_MAP_0_1',
             links: [[0, 2], ] },
           { 
-          point: [0, 0], title: '林间小道，入口', 
+          point: [0, 0], title: '林间小道入口', 
          # toScene: 'C001C_V_MAP_0_0',
            links: [[0, 1], ] 
            },

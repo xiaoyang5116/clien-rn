@@ -4,14 +4,17 @@ import {
     FlatList,
     StyleSheet,
     TouchableWithoutFeedback,
-    Animated
+    Animated,
+    Image
 } from 'react-native'
 import React, { useRef, useState, useEffect } from 'react'
 
 import { action, connect, EventKeys } from "../../constants"
+import { px2pd } from '../../constants/resolution';
 
 import { HalfPanel } from '../panel/HalfPanel'
 import { TextButton } from '../../constants/custom-ui'
+import ImageCapInset from 'react-native-image-capinsets-next';
 
 const Accelerate = (props) => {
     const { lingTianName, lingTianId } = props
@@ -32,27 +35,36 @@ const Accelerate = (props) => {
         }
 
         return (
-            <View style={styles.props_container}>
-                <Text>{item.name}</Text>
-                <Text>{item.desc}</Text>
-                {/* <Text>剩余:{item.num}</Text> */}
-                <TextButton title={"使用"} onPress={changeLingQiZhi} />
+            <View style={{ borderWidth: 1, borderColor: "#000", borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
+                <ImageCapInset
+                    style={{ width: '100%', height: '100%', position: 'absolute' }}
+                    source={require('../../../assets/button/40dpi_gray.png')}
+                    capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                />
+                <View style={styles.props_container}>
+                    <Text>{item.name}</Text>
+                    <Text>{item.desc}</Text>
+                    {/* <Text>剩余:{item.num}</Text> */}
+                    <TextButton title={"使用"} onPress={changeLingQiZhi} />
+                </View>
             </View>
         )
     }
 
     return (
         <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"}>
-            <View style={{ flex: 1, backgroundColor: "#fff" }}>
-                <Text style={{ fontSize: 20, color: "#000", textAlign: 'center', marginTop: 12 }}>选择加速道具</Text>
-                <View style={{ flex: 1 }}>
+            <Image style={{ position: "absolute", width: "100%", height: "100%" }} source={require('../../../assets/plant/plantBg.jpg')} />
+            <View style={{ flex: 1 }}>
+                <Text style={{ fontSize: 20, color: "#ccc", textAlign: 'center', marginTop: 12 }}>选择加速道具</Text>
+                <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, }}>
                     <FlatList
                         data={propsData}
                         renderItem={renderItem}
                     />
                 </View>
-                <TextButton title={"退出"} onPress={props.onClose} />
-
+                <View style={{ marginBottom: 12, width: "100%", paddingLeft: 12, paddingRight: 12, }}>
+                    <TextButton title={"退出"} onPress={props.onClose} />
+                </View>
             </View>
         </HalfPanel>
     )
@@ -66,11 +78,8 @@ const styles = StyleSheet.create({
         paddingBottom: 8,
         paddingLeft: 12,
         paddingRight: 12,
-        borderWidth: 1,
-        borderColor: "#ccc",
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: 'center',
-        marginTop: 12,
     }
 })

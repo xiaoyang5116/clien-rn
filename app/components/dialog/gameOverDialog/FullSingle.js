@@ -111,7 +111,7 @@ const FullSingle = props => {
                             borderTopWidth: 1,
                         },
                     ]}>
-                    <Text style={[{ fontSize: 20, textAlign: 'center', backgroundColor: '#fff' }]}>
+                    <Text style={[{ fontSize: 20, textAlign: 'center', backgroundColor: '#fff', }, theme.contentColor3]}>
                         {title}
                     </Text>
                 </View>

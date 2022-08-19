@@ -8,7 +8,7 @@
 # ===========================================
 drops: [
   #
-  { id: 'WZXX_M1_N1_C001V_Vdrop1', sendProps: '887,10,showBag', },
+  { id: 'WZXX_M1_N1_C001V_drop1', sendProps: '887,10,showBag', },
   { id: 'WZXX_M1_N1_C001V_drop2',  alertAttrs: ['悟性,1'] },
   { id: 'WZXX_M1_N1_C001V_drop3',  alertAttrs: ['悟性,1'] },
   { id: 'WZXX_M1_N1_C001V_drop4',  alertAttrs: ['智慧,1'] },

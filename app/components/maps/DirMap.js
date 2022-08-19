@@ -127,7 +127,10 @@ const DirMap = (props) => {
         if (scaleNumber < zoomMin - 0.1) return;
         bigMapScale.setValue(scaleNumber)
       }
-      touchStart.current = false;
+
+      if(gestureState.dx!==0 || gestureState.dy!==0){
+        touchStart.current = false;
+      }
     },
     onPanResponderRelease: (evt, gestureState) => {
       status.prevX = bigMapPos.x._value;

@@ -78,6 +78,7 @@ const Plant = (props) => {
 
     return (
         <View style={{ flex: 1, backgroundColor: "#fff" }} >
+            <Image style={{ position: "absolute", width: px2pd(1080), height: px2pd(2400) }} source={require('../../../assets/plant/plantBg.jpg')} />
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <HeaderTitle tabIndex={tabIndex} changeTabIndex={changeTabIndex} />

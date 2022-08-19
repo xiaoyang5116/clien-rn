@@ -1,73 +1,63 @@
 import React from 'react';
 
 import {
+    AppDispath,
     connect,
     StyleSheet,
 } from "../../constants";
 
 import {
     View,
+    Text,
 } from '../../constants/native-ui';
 
 import { 
+    DeviceEventEmitter,
     FlatList,
 } from 'react-native';
 
 import lo from 'lodash';
 import { TextButton } from '../../constants/custom-ui';
-import { px2pd } from '../../constants/resolution';
-import FastImage from 'react-native-fast-image';
-
-const DATA = [
-    [{ id: 0, title: 'A' }, { id: 1, title: 'B' }, { id: 2, title: 'C' }, { id: 3, title: 'D' }],
-    [{ id: 4, title: 'E' }, { id: 5, title: 'F' }, { id: 6, title: 'G' }, { id: 7, title: 'H' }],
-    [{ id: 8, title: 'I' }, { id: 9, title: 'J' }, { id: 10, title: 'K' }, ],
-]
-
-const StarsBanner = (props) => {
-    const items = [];
-    lo.forEach(lo.range(5), (v, k) => {
-        items.push(
-        <View key={k}>
-        {
-            (props.star >= (k + 1))
-            ? <FastImage style={{ width: px2pd(37), height: px2pd(37) }} source={require('../../../assets/collection/star.png')} />
-            : <FastImage style={{ width: px2pd(37), height: px2pd(37) }} source={require('../../../assets/collection/star_gray.png')} />
-        }
-        </View>
-        );
-    });
-
-    return (
-        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            {items}
-        </View>
-    );
-}
-
-const Collection = (props) => {
-    return (
-    <View style={{ width: px2pd(220), height: px2pd(230),  }}>
-        <FastImage style={{ width: px2pd(200), height: px2pd(200) }} source={require('../../../assets/collection/item_1.png')} />
-        <View style={{ position: 'absolute', bottom: -10, zIndex: -1, }}>
-            <FastImage style={{ width: px2pd(220), height: px2pd(150) }} source={require('../../../assets/collection/bg_2.png')} />
-        </View>
-        <View>
-            <StarsBanner star={3} />
-        </View>
-    </View>
-    );
-}
+import CollectionItem from './collection/CollectionItem';
 
 const CollectionTabPage = (props) => {
+
+    const [data, setData] = React.useState([]);
+
+    React.useEffect(() => {
+        const eventKey = '__@CollectionTabPage.refresh';
+        const listener = DeviceEventEmitter.addListener(eventKey, (data) => {
+            const copy = lo.cloneDeep(data);
+            const result = [];
+
+            while (copy.length > 0) {
+                const list = [];
+                for (let i = 0; i < 4; i++) {
+                    const item = copy.shift();
+                    if (item != undefined) {
+                        list.push(item);
+                    } else {
+                        break
+                    }
+                }
+                result.push(list);
+            }
+            setData(result);
+        });
+
+        AppDispath({ type: 'CollectionModel/getCollectionList', payload: {}, retmsg: eventKey});
+        return () => {
+            listener.remove();
+        }
+    }, []);
 
     const renderItem = (data) => {
         const items = [];
         if (lo.isArray(data.item)) {
             lo.forEach(data.item, (v, k) => {
                 items.push(
-                    <View style={{ marginLeft: 8, marginRight: 8 }}>
-                        <Collection />
+                    <View key={k} style={{ marginLeft: 8, marginRight: 8 }}>
+                        <CollectionItem data={v} />
                     </View>
                 );
             });
@@ -79,8 +69,15 @@ const CollectionTabPage = (props) => {
         );
     }
 
+    console.debug('render');
+
     return (
         <View style={styles.viewContainer}>
+            <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
+                <Text>金: 0</Text>
+                <Text>银: 0</Text>
+                <Text>铜: 0</Text>
+            </View>
             <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
                 <TextButton title={'金'} />
                 <TextButton title={'木'} />
@@ -89,9 +86,9 @@ const CollectionTabPage = (props) => {
                 <TextButton title={'土'} />
                 <TextButton title={'特殊'} />
             </View>
-            <View>
+            <View style={{ width: '96%', height: '100%' }}>
                 <FlatList
-                    data={DATA}
+                    data={data}
                     renderItem={renderItem}
                 />
             </View>
