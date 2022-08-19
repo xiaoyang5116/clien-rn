@@ -28,7 +28,7 @@ const FlyAnimation = (props) => {
                 style={{ width: '100%', height: '100%' }}
                 ref={(ref) => refVideo.current = ref}
                 source={require('../../../assets/mp4/FLY_480x960.mp4')}
-                fullscreen={true}
+                fullscreen={false}
                 resizeMode={'stretch'}
                 onEnd={() => { end() }}
                 onProgress={(p) => {
