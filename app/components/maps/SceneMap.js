@@ -140,7 +140,7 @@ const SceneMap = (props) => {
         bigMapScale.setValue(scaleNumber)
       }
 
-      if(gestureState.dx!==0 || gestureState.dy!==0){
+      if (Math.abs(gestureState.dx) > 5 || Math.abs(gestureState.dy) > 5) {
         touchStart.current = false;
       }
     },
@@ -318,17 +318,13 @@ const SceneMap = (props) => {
       <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}
         onTouchStart={() => {
           touchStart.current = true;
-          console.debug('touchA')
         }}
         onTouchEnd={() => {
-          console.debug('touchB')
           if (!touchStart.current)
             return;
-            console.debug('touchC')
-
-            if (lo.isString(e.toScene)) {
-              AppDispath({ type: 'SceneModel/processActions', payload: { toScene: e.toScene } });
-            }
+          if (lo.isString(e.toScene)) {
+            AppDispath({ type: 'SceneModel/processActions', payload: { toScene: e.toScene } });
+          }
         }}
       >
         <FastImage style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} source={gridImg} />

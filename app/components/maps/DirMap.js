@@ -122,7 +122,7 @@ const DirMap = (props) => {
         bigMapScale.setValue(scaleNumber)
       }
 
-      if(gestureState.dx!==0 || gestureState.dy!==0){
+      if (Math.abs(gestureState.dx) > 5 || Math.abs(gestureState.dy) > 5) {
         touchStart.current = false;
       }
     },
