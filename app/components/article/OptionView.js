@@ -74,7 +74,7 @@ class OptionView extends PureComponent {
                 if (option.btnType === undefined) {
                     buttonChilds.push(
                         <View key={key} style={{ marginTop: 5, marginBottom: 5 }}>
-                            <TextButton {...this.props} title={option.title} disabled={option.disabled} onPress={() => { this.optionPressHandler(option); }} />
+                            <TextButton {...this.props} title={option.title} btnAnimateId={option.btnAnimateId} disabled={option.disabled} onPress={() => { this.optionPressHandler(option); }} />
                             {iconComponent}
                         </View>
                     );
