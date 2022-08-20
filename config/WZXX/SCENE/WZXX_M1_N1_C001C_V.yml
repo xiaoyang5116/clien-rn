@@ -123,6 +123,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C001C_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -194,6 +196,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C001C_V_MAP_0_1',
     # 地图中心点，也是进入地图后的点
@@ -294,6 +298,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C001C_V_MAP_0_2',
     # 地图中心点，也是进入地图后的点
@@ -392,6 +398,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C001C_V_MAP_0_3',
     # 地图中心点，也是进入地图后的点
@@ -474,6 +482,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C001C_V_MAP_0_4',
     # 地图中心点，也是进入地图后的点
@@ -542,6 +552,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C001C_V_MAP_0_5',
     # 地图中心点，也是进入地图后的点

@@ -19,7 +19,7 @@ animations: {
         id: 2,
         data: [
             { title: '路人甲：竟然是黑光！', posIdx: 0, speed: 9 },
-            { title: '路人乙：天呐！黑光来了有好戏看了', posIdx: 2, speed: 10 },
+            { title: '路人乙：天呐！黑光来了有好戏看了's, posIdx: 2, speed: 10 },
             { title: '为什么叫黑光，难道就因为皮肤黑又是光头吗', posIdx: 4, speed: 8, delay: 2000 },
             { title: '客栈掌柜：有瓜子和西瓜没？', posIdx: 7, speed: 10, delay: 600 },
             { title: '黑光是恶霸，这小子完了', posIdx: 8, speed: 8 , delay: 800},
