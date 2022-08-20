@@ -24,7 +24,7 @@ const ActivationPage = (props) => {
     const scale = React.useRef(new Animated.Value(0)).current;
 
     const attrs = [];
-    lo.forEach(props.data.attrs, (v, k) => {
+    lo.forEach(props.data.attrs[`lv${props.data.level + 1}`], (v, k) => {
         attrs.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{v.key}: +{v.value}</Text>);
     });
 
