@@ -126,7 +126,7 @@ scenes: [
     # 对话选项
     chats: [
       { 
-        id: 'C1', desc: '这是一条繁华的主干道，人来人往，非常热闹', 
+        id: 'C1', desc: "这是一条繁华的主干道,\n人来人往，非常热闹",
         options: [ 
          { title: '【街边小孩】', nextChat: 'C2'}, 
         #  { title: '【春花阁】', toScene: 'C000A_V_MAP_-1_-2'}, 
@@ -1313,7 +1313,7 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: '这边不太繁华，比之西市，差得不是一星半点', 
+        id: 'C1', desc:  "这边不太繁华，比之西市,\n差得不是一星半点",
         options: [ 
         { title: '【逛逛】', nextChat: 'C2'},   
         # { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'},
@@ -1359,7 +1359,7 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: '街道来往车马行人都井然有序，不过却少了一些人气', 
+        id: 'C1', desc: "街道来往车马行人都井然有序,\n不过却少了一些人气",
         options: [ 
         { title: '【逛一会儿】', nextChat: 'C2'},   
          { title: '【商铺】',toScene: 'C000A_V_MAP_3_-1'},
@@ -1371,9 +1371,9 @@ scenes: [
         ],
       }, 
       { 
-        id: 'C2', desc: '这条街有很多杂耍', 
+        id: 'C2', desc: "这条街有很多杂耍,\n李森炎见惯了这种东西", 
         options: [ 
-         { title: '李森炎见惯了这种东西，没什么稀奇，离开', nextChat: 'C1' }, 
+         { title: '没什么稀奇，离开', nextChat: 'C1' }, 
         ],
       },
     ],
@@ -1404,7 +1404,7 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: '这条街类似不法之地，路过的人看上去都不太好惹', 
+        id: 'C1', desc:  "这条街类似不法之地,\n路过的人看上去都不太好惹",
         options: [ 
         { title: '【逛一会儿】', nextChat: 'C2'},
         # { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
@@ -1499,6 +1499,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C3' },
     ],
     # 对话选项
     chats: [
@@ -1506,7 +1507,12 @@ scenes: [
         id: 'C1', desc: '这里的路人看上去不是一般的有钱', 
         options: [ 
         # { title: '【逛一会儿】', nextChat: 'C2'},
-        { title: '【情报阁】', andVarsValue: ['@clues_liuyan1 == 1'], dialogs: ['Screen16'] }, 
+        { title: '【情报阁】', 
+        #当簪子道具大于零的时候，就等于有这个道具，就可以点击这个选项
+        andVarsValue: ['@props_350 > 0'],
+        #当线索1获得之后，才会开启这个选项
+        # andVarsValue: ['@clues_liuyan1 == 1'], 
+        dialogs: ['Screen16'] }, 
         # { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
         # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
         # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
@@ -1518,6 +1524,13 @@ scenes: [
         id: 'C2', desc: '这是有钱人才来的地方', 
         options: [ 
          { title: '连门都进不去，算了离开', nextChat: 'C1' }, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: '交钱获得线索才能开启情报阁', 
+        options: [ 
+         { title: '离开', nextChat: 'C1' }, 
         ],
       },
     ],
