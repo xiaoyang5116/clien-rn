@@ -118,7 +118,7 @@ const ReaderBackgroundImageView = () => {
       if (!lo.isEmpty(world.imageId)) {
         const found = getWorldBackgroundImage(world.imageId);
         if (found != undefined) {
-          setBackgroundImage(<FastImage style={{ width: '100%', height: '100%', opacity: 0.35 }} source={found.source} />);
+          setBackgroundImage(<FastImage style={{ width: '100%', height: '100%', opacity: 0.15 }} source={found.source} />);
         }
       } else {
         setBackgroundImage(<></>);

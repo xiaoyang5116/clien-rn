@@ -57,10 +57,10 @@ const Result = (props) => {
     return (
         <View style={styles.resultContainer}>
             <View style={styles.label1}>
-                <Text style={{ }}>请按顺序选择：</Text>
+                <Text style={{ color: '#000' }}>请按顺序选择：</Text>
             </View>
             <View style={styles.label1}>
-                <Text style={{ }}>{value}</Text>
+                <Text style={{ color: '#000' }}>{value}</Text>
             </View>
         </View>
     );
@@ -87,7 +87,7 @@ const ChooseItem = (props) => {
         }}>
             <Animated.View style={[styles.word, { opacity: props.bindOpacity }]}>
                 <FastImage style={{ position: 'absolute', width: px2pd(118), height: px2pd(118) }} source={img} />
-                <Text>{props.value}</Text>
+                <Text style={{ color: '#000' }}>{props.value}</Text>
             </Animated.View>
         </TouchableWithoutFeedback>
     );
@@ -261,7 +261,7 @@ const MemoryTraining = (props) => {
         previewViews.push(
             <Animated.View key={key++} style={[styles.word, { opacity: e.opacity }]}>
                 <FastImage style={{ position: 'absolute', width: px2pd(118), height: px2pd(118) }} source={require('../../../assets/button/memory_traning_btn.png')} />
-                <Text>{e.value}</Text>
+                <Text style={{ color: '#000' }}>{e.value}</Text>
             </Animated.View>
         );
     });
@@ -287,7 +287,7 @@ const MemoryTraining = (props) => {
                     </TouchableWithoutFeedback>
                 </View>
                 <View style={styles.resultContainer}>
-                    <Text>出题：</Text>
+                    <Text style={{ color: '#000' }}>出题：</Text>
                 </View>
                 <View style={styles.boxContainer}>
                     <ImageCapInset
