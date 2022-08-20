@@ -85,13 +85,10 @@ export default HalfScreen
 
 const styles = StyleSheet.create({
     fullscreenContainer: {
+        flex: 1,
         justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',
-    },
-    fullContainer: {
-        flex: 1,
-        width: '100%',
     },
     halfContainer: {
         width: 360,
@@ -153,5 +150,6 @@ const styles = StyleSheet.create({
     },
     titleFontSize: {
         fontSize: 20,
+        color: '#000'
     }
 })
