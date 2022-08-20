@@ -17,10 +17,11 @@ scenes: [
       events: [],
 
       chats: [
-      { 
-        id: 'WZXX_M1_N1_C000B_V', desc: '打工还是守夜', 
-        options: [ { title: "【去打工】",toScene: 'C000B_V_MAP_0_0', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
-        
+   { 
+        id: 'WZXX_M1_N1_C000B_V1', desc: '打工还是守夜', 
+        options: [ 
+          { title: "【去打工】",toScene: 'C000B_V_MAP_-1_2',},
+          { title: "【去守夜】",toChapter: "WZXX_M1_N1_C011_[N2]",},
         ],
       },
 
@@ -36,6 +37,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -118,6 +121,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -184,6 +189,8 @@ scenes: [
     id: 'C000B_V_MAP_-2_3', name: '饭馆',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -260,11 +267,11 @@ scenes: [
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010A_[N1]" },]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]" },]},
 
           { key: 'P4', content: ['你愤怒至极，这一天五个灵石，你要一百天才能凑齐五百个','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010A_[N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]"},]},
 
 
 
@@ -285,11 +292,11 @@ scenes: [
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010A_[N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]"},]},
 
           { key: 'P4', content: ['你愤怒至极，这一天五个灵石，你要一百天才能凑齐五百个','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010A_[N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]"},]},
 
 
            ], },
@@ -304,6 +311,8 @@ scenes: [
     id: 'C000B_V_MAP_-1_3', name: '当铺',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -378,11 +387,11 @@ scenes: [
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010A_[N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]"},]},
 
           { key: 'P4', content: ['你愤怒至极，这一天五个灵石，你要一百天才能凑齐五百个','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010A_[N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]"},]},
 
 
 
@@ -403,11 +412,11 @@ scenes: [
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010A_[N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]"},]},
 
           { key: 'P4', content: ['你愤怒至极，这一天五个灵石，你要一百天才能凑齐五百个','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C010A_[N1]"},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]"},]},
 
 
            ], },
@@ -423,6 +432,8 @@ scenes: [
     id: 'C000B_V_MAP_0_3', name: '珍宝阁',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -478,6 +489,8 @@ scenes: [
     id: 'C000B_V_MAP_-1_4', name: '兵器铺',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C005_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点

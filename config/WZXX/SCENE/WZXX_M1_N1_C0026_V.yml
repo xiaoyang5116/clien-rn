@@ -5,12 +5,14 @@ scenes: [
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
-      vars: [{ id: "v1", min: 0, max: 1 },
-      { id: "biaoqianv1", min: 0, max: 1 } ,
-      { id: "biaoqianv2", min: 0, max: 1 } ,
-      { id: "biaoqianv3", min: 0, max: 1 } ,
-      { id: "biaoqianv4", min: 0, max: 1 } ,
-      ],
+      vars:
+        [
+          { id: "v1", min: 0, max: 1 },
+          { id: "biaoqianv1", min: 0, max: 1 },
+          { id: "biaoqianv2", min: 0, max: 1 },
+          { id: "biaoqianv3", min: 0, max: 1 },
+          { id: "biaoqianv4", min: 0, max: 1 },
+        ],
 
       # 动作定义
       actions: [],
@@ -26,7 +28,11 @@ scenes: [
             desc: "有问题！",
             options:
               [
-              { title: "【“不好！快闪开！”】", dialogs: ["C0026A_buhaoA"] , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+                {
+                  title: "【选择通道】",
+                  dialogs: ["C0026A_buhaoA"],
+                 
+                },
               ],
           },
         ],
@@ -37,86 +43,40 @@ scenes: [
           {
             id: "C0026A_buhaoA",
             style: 6,
-            title: "这蛛王有问题",
+            title: "选择通道",
             dialogType: "FullScreen",
             textAnimationType: "TextFadeIn",
             sections:
               [
-                {
-                  key: "P1",
-                  content:
-                    [
-                      "话音刚落……。",
-                      "砰！",
-                      [{ sounds: [{ soundId: "SE_KO_0012" }] }],
-                      "蛛王整个身体如同炮弹一般炸开，绿色的血沫、血块四处横飞，离得最近的钟大山首当其冲，被血糊了一脸。",
-                      "其他人因为躲闪及时，没有受到波及。",
-                      "“大山？”",
-                      "杨真呼唤站在原地呆立不动的钟大山，钟大山像是才反应过来似的，胡乱抹去脸上的血迹。",
-                      "“只是一点臭血而已，没事的，没……”",
-                      "话还没说完，他整个人就倒在了血泊之中，彻底没了生息。",
-                      "“血液里面，混有剧毒……”",
-                    ],
-                  btn: [{ title: "这是蛛王死前的反扑！", tokey: "P2" }],
-                },
-
-                {
-                  key: "P2",
-                  content:
-                    [
-                      "剩下的几人都沉默了，进来时大家都信心满满，谁能想到结果却损兵折将。",
-                      "“李大哥，我……”",
-                      "江依依突然弱弱地喊了身旁的李森炎一声，李森炎闻声看去，只见她抬起自己那皓白手臂，手臂上有一点幽绿之色……那是人面蛛王的血！",
-                      "江依依花容苍白，凄笑说道：“我真没用，终究还是没你能躲过。”",
-                      "那一双澄澈灵动的美眸，充满不舍地注视着李森炎：“李大哥，我还有机会能再到你吗？”",
-                      "还没待李森炎回答，她便闭上了眼睛，直接晕迷过去。",
-                    ],
-                  btn: [{ title: "依依！", tokey: "P3" }],
-                },
-
-                {
-                  key: "P3",
-                  content:
-                    [
-                      "李森炎连忙将倒下的江依依扶住，初时的惊慌失措后，察觉到她尚存的气息，提到嗓子眼的心这才稍稍放下了。",
-                      "好在她只是沾了一点血，毒素的量没那么大，只要能解毒的话，还是有活路的。",
-                      "“你们有没有什么能解毒的丹药？”",
-                    ],
-                  btn: [{ title: "救治江依依", tokey: "P4" }],
-                },
-
-                {
-                  key: "P4",
-                  content:
-                    [
-                      "杨真脸上出现复杂的神情：“一般情况下中毒都是需要对症下药，也许有那种能解百毒的灵丹妙药。”",
-                      "李森炎看向赖崇信：“你呢？”",
-                      "赖崇信看着倒在李森炎怀里的江依依，想到她最后晕倒前，所有的目光都在李森炎身上，却看都不看他一眼，心中顿生怨气。",
-                      "不过，最后他还是拿出来一个瓷瓶扔给了李森炎。",
-                      "“里面的镇毒丹，能暂时压制住她体内毒素蔓延，至于完全解毒，我也没有办法，等出去再说吧。”",
-                     
-                    ],
-                  btn: [{ title: "给江依依服下药丸", tokey: "P5" }],
-                },
+                
 
                 {
                   key: "P5",
                   content:
                     [
-                      "李森炎倒出瓷瓶中唯一的一颗黑色丹丸，没有犹豫，当即给江依依服下。",
-                      "现在这种情况，他也只能相信他们小队人员之间的情谊了。",
-                      "李森炎背着江依依站起，将钟大山和高雁兰两人尸体埋葬后，",
-                      "三人一致决定继续往里面深入。",
-                      "若是不能得到相应的宝物，此行他们就白白牺牲了。",
-                      "往前走了没多远的距离，石壁上出现三个通道，三人商议过后，决定一起行动，以免再遇到不可知的危险。",
-                      "可是，此时却遇到了前方的三条通道",
+                      "三人商议过后，决定一起行动，以免再遇到不可知的危险。",
                       "请选择行动————",
                     ],
                   btn:
                     [
-                      { title: "左边通道", tokey: "P6" , icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
-                      { title: "中间通道", tokey: "P7" , icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
-                      { title: "右边通道", tokey: "P8" , icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
+                      {
+                        title: "左边通道",
+                        tokey: "P6",
+                        icon: { id: 1, bindVar: "biaoqianv2" },
+                        varsOn: ["biaoqianv2"],
+                      },
+                      {
+                        title: "中间通道",
+                        tokey: "P7",
+                        icon: { id: 1, bindVar: "biaoqianv3" },
+                        varsOn: ["biaoqianv3"],
+                      },
+                      {
+                        title: "右边通道",
+                        tokey: "P8",
+                        icon: { id: 1, bindVar: "biaoqianv4" },
+                        varsOn: ["biaoqianv4"],
+                      },
                     ],
                 },
 
@@ -136,7 +96,8 @@ scenes: [
                     [
                       {
                         title: "回到入口",
-                        toChapter: "WZXX_M1_N1_C026_[V1]", dropIds: [ 'WZXX_M1_N1_C0026_V_Vdrop1'], 
+                        toChapter: "WZXX_M1_N1_C029_[N1]",
+                        dropIds: ["WZXX_M1_N1_C0026_V_Vdrop1"],
                       },
                     ],
                 },
@@ -154,13 +115,14 @@ scenes: [
                       "李森炎拿走了两颗",
                       "说一颗是给江依依的，自己代为保管",
                       "其他两人也没有异议",
-                      "（获得不知名的蛋+2）", 
+                      "（获得不知名的蛋+2）",
                     ],
                   btn:
                     [
                       {
                         title: "回到入口",
-                        toChapter: "WZXX_M1_N1_C026_[V1]", dropIds: [ 'WZXX_M1_N1_C0026_V_Vdrop2'],
+                        toChapter: "WZXX_M1_N1_C029_[N1]",
+                        dropIds: ["WZXX_M1_N1_C0026_V_Vdrop2"],
                       },
                     ],
                 },
@@ -184,15 +146,17 @@ scenes: [
                     [
                       {
                         title: "回到入口",
-                        toChapter: "WZXX_M1_N1_C026_[V1]", dropIds: [ 'WZXX_M1_N1_C0026_V_Vdrop3','WZXX_M1_N1_C0026_V_Vdrop4','WZXX_M1_N1_C0026_V_Vdrop5','WZXX_M1_N1_C0026_V_Vdrop6','WZXX_M1_N1_C0026_V_Vdrop7',],
-
+                        toChapter: "WZXX_M1_N1_C029_[N1]",
+                        dropIds:
+                          [
+                            "WZXX_M1_N1_C0026_V_Vdrop3",
+                            "WZXX_M1_N1_C0026_V_Vdrop4",
+                            "WZXX_M1_N1_C0026_V_Vdrop5",
+                            "WZXX_M1_N1_C0026_V_Vdrop6",
+                            "WZXX_M1_N1_C0026_V_Vdrop7",
+                          ],
                       },
                     ],
-
-
-
-
-                    
                 },
               ],
           },

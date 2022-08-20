@@ -23,9 +23,16 @@ scenes: [
       #
 
       { 
-        id: 'WZXX_M1_N1_C0021_V1', desc: '大可不必', 
+        id: 'WZXX_M1_N1_C0021_V1', desc: '这是要做什么', 
         options: [ 
-          { title: "【大可不必】",dialogs: ['C0021A_huafuA'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: "【这……难道是……】",toChapter: "WZXX_M1_N1_C022_[N1]",},
+        ],
+      },
+
+       { 
+        id: 'WZXX_M1_N1_C0021_V1', desc: '这是要做什么', 
+        options: [ 
+          { title: "【……】",toChapter: "WZXX_M1_N1_C022_[N1]",},
         ],
       },
 

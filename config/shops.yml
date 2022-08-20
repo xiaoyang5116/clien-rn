@@ -5,7 +5,7 @@ shops: [
    {
       id: 'default',
 
-      name: '默认商店',
+      name: '白城首饰商铺',
 
       # CD刷新周期，单位秒
       cdValue: 0,
@@ -35,7 +35,7 @@ shops: [
    {
       id: 'shop2',
 
-      name: '商店二',
+      name: '白城首饰商铺',
 
       # CD刷新周期，单位秒
       cdValue: 300,
