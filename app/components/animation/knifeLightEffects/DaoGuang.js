@@ -19,6 +19,8 @@ import RootView from '../../RootView';
 const { height } = Dimensions.get('window')
 
 const DaoGuang = (props) => {
+  console.log("dao----2");
+
 
   const { source, onClose } = props
   if (!source) return null
@@ -91,5 +93,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    zIndex: 99,
   },
 })

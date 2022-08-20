@@ -39,8 +39,8 @@ scenes: [
           id: 'WZXX_M1_N1_C001C_V_CCXZ', desc: '选择穿越出身的记忆片段', 
           options: [ 
             { title: "【想起记忆片段“灭门修真世家”】", andVarsOff: ['v1'], varsOn: ['v2','v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N1]" },
-            { title: "【想起记忆片段“包子铺穷小子”】", andVarsOff: ['v2'], varsOn: ['v1','v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N2]" },
-            { title: "【想起记忆片段“白府远房亲戚”】", andVarsOff: ['v3'], varsOn: ['v1','v2'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N3]" },
+            # { title: "【想起记忆片段“包子铺穷小子”】", andVarsOff: ['v2'], varsOn: ['v1','v3'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N2]" },
+            # { title: "【想起记忆片段“白府远房亲戚”】", andVarsOff: ['v3'], varsOn: ['v1','v2'], alwayDisplay: true,  toChapter: "WZXX_M1_N1_C001C_[N3]" },
             { title: "【DEBUG清除不可选状态”】", andVarsOn: ['WZXX_[START]/DEBUG'],varsOff: ['v1','v2','v3'],},
           ],
         },

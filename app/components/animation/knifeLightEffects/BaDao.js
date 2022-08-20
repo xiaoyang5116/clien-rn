@@ -15,6 +15,7 @@ import { px2pd } from '../../../constants/resolution';
 import RootView from '../../RootView';
 
 const BaDao = (props) => {
+  console.log("dao----1");
   const { source, onClose } = props
   if (!source) return null
 
@@ -72,5 +73,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    zIndex: 99,
   },
 })
