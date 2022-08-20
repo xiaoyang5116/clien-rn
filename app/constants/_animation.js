@@ -118,7 +118,7 @@ export const animationAction = type => {
                 type: ONOMATOPOEIA,
                 typeId: 7,
             };
-        case "隔~":
+        case "嗝~":
             return {
                 type: ONOMATOPOEIA,
                 typeId: 8,
