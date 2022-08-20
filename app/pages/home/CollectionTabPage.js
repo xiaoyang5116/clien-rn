@@ -26,6 +26,10 @@ const CollectionTabPage = (props) => {
     
     const [data, setData] = React.useState([]);
 
+    const selectCategory = (category) => {
+        AppDispath({ type: 'CollectionModel/getCollectionList', payload: { category }, retmsg: GET_LIST_EVENT_KEY});
+    }
+
     React.useEffect(() => {
         const listener = DeviceEventEmitter.addListener(GET_LIST_EVENT_KEY, (data) => {
             const copy = lo.cloneDeep(data);
@@ -46,7 +50,7 @@ const CollectionTabPage = (props) => {
             setData(result);
         });
 
-        AppDispath({ type: 'CollectionModel/getCollectionList', payload: {}, retmsg: GET_LIST_EVENT_KEY});
+        selectCategory('金')
 
         return () => {
             listener.remove();
@@ -55,7 +59,7 @@ const CollectionTabPage = (props) => {
 
     React.useEffect(() => {
         const listener = DeviceEventEmitter.addListener('__@CollectionTabPage.refresh', () => {
-            AppDispath({ type: 'CollectionModel/getCollectionList', payload: {}, retmsg: GET_LIST_EVENT_KEY});
+            selectCategory('金');
         });
         return () => {
             listener.remove();
@@ -88,12 +92,12 @@ const CollectionTabPage = (props) => {
                 <Text>铜: {props.user.copper}</Text>
             </View>
             <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                <TextButton title={'金'} />
-                <TextButton title={'木'} />
-                <TextButton title={'水'} />
-                <TextButton title={'火'} />
-                <TextButton title={'土'} />
-                <TextButton title={'特殊'} />
+                <TextButton title={'金'} onPress={() => selectCategory('金')} />
+                <TextButton title={'木'} onPress={() => selectCategory('木')} />
+                <TextButton title={'水'} onPress={() => selectCategory('水')} />
+                <TextButton title={'火'} onPress={() => selectCategory('火')} />
+                <TextButton title={'土'} onPress={() => selectCategory('土')} />
+                <TextButton title={'特殊'} onPress={() => selectCategory('特殊')} />
             </View>
             <View style={{ width: '96%', height: '100%' }}>
                 <FlatList

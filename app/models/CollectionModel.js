@@ -38,8 +38,9 @@ export default {
       }
     },
 
-    *getCollectionList({ }, { call, put, select }) {
+    *getCollectionList({ payload }, { call, put, select }) {
       const collectionState = yield select(state => state.CollectionModel);
+      const { category } = payload;
 
       let updateCache = false;
       for (let key in collectionState.__data.config) {
@@ -63,8 +64,8 @@ export default {
       if (updateCache) {
         yield call(LocalStorage.set, LocalCacheKeys.COLLECTION_DATA, collectionState.items);
       }
-      
-      return collectionState.items;
+
+      return collectionState.items.filter(e => lo.indexOf(e.categories, category) != -1);
     },
 
     *activate({ payload }, { call, put, select }) {
