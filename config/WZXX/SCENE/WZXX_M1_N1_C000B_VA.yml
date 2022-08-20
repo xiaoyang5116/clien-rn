@@ -18,10 +18,11 @@ scenes: [
       chats: [
       #
 
-      { 
-        id: 'WZXX_M1_N1_C000B_VA', desc: '进入坊市', 
+   { 
+        id: 'WZXX_M1_N1_C000B_V1', desc: '打工还是守夜', 
         options: [ 
-          { title: "【坊市出入口】",toScene: 'C000B_VA_MAP_0_0',},
+          { title: "【去打工】",toScene: 'C000B_V_MAP_-1_2',},
+          { title: "【去守夜】",toChapter: "WZXX_M1_N1_C011_[N2]",},
         ],
       },
 
@@ -39,6 +40,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -91,6 +94,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -156,6 +161,8 @@ scenes: [
     id: 'C000B_VA_MAP_0_2', name: '坊市主道',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -232,6 +239,8 @@ scenes: [
     id: 'C000B_VA_MAP_1_2', name: '东街',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -307,6 +316,8 @@ scenes: [
     id: 'C000B_VA_MAP_2_2', name: '酒肆',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -381,6 +392,8 @@ scenes: [
     id: 'C000B_VA_MAP_-1_2', name: '医馆',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -456,6 +469,8 @@ scenes: [
     id: 'C000B_VA_MAP_-2_2', name: '西街',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -487,6 +502,8 @@ scenes: [
     id: 'C000B_VA_MAP_-3_2', name: '赌摊',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -555,6 +572,8 @@ scenes: [
     id: 'C000B_VA_MAP_-1_3', name: '当铺',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -633,6 +652,8 @@ scenes: [
     id: 'C000B_VA_MAP_0_3', name: '珍宝阁',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -683,6 +704,8 @@ scenes: [
     id: 'C000B_VA_MAP_1_3', name: '客栈',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -730,6 +753,8 @@ scenes: [
     id: 'C000B_VA_MAP_-1_4', name: '兵器铺',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -821,6 +846,8 @@ scenes: [
     id: 'C000B_VA_MAP_-2_3', name: '饭馆',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -898,6 +925,8 @@ scenes: [
     id: 'C000B_VA_MAP_-1_5', name: '小集市',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+       #不显示时间
+      worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000B_VA_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -982,3 +1011,28 @@ scenes: [
       },
     ]
     ]
+
+
+
+    #  maps: [
+    #   {
+    #     id: 'C000B_V_MAP_0_0',
+    #     data: [
+    #       { point: [0, 0], title: '坊市出入口', toScene: 'C000B_V_MAP_0_0', links: [ [0, 1]] },
+    #       { point: [0, 1], title: '天机阁摊位', toScene: 'C000B_V_MAP_0_1', links: [[0, 2] ] },
+    #       { point: [0, 2], title: '坊市主道', toScene: 'C000B_V_MAP_0_2', links: [[-1, 2], [1, 2]] },
+    #       { point: [1, 2], title: '东街', toScene: 'C000B_V_MAP_1_2', links: [ [2, 2]] },
+    #       { point: [2, 2], title: '酒肆', toScene: 'C000B_V_MAP_2_2', links: [ ] },
+    #       { point: [-1, 2], title: '医馆', toScene: 'C000B_V_MAP_-1_2', links: [[0, 2], [-2, 2], [-1, 3]]},
+    #       { point: [-2, 2], title: '西街', toScene: 'C000B_V_MAP_-2_2', links: [[-3, 2]] },
+    #       { point: [-3, 2], title: '赌摊', toScene: 'C000B_V_MAP_-3_2', links: [ ] },
+    #       { point: [-1, 3], title: '当铺', toScene: 'C000B_V_MAP_-1_3', links: [[-1, 4], [-2, 3], [0, 3]] },
+    #       { point: [-2, 3], title: '饭馆', toScene: 'C000B_V_MAP_-2_3', links: [ ] },
+    #       { point: [-1, 4], title: '兵器铺', toScene: 'C000B_V_MAP_-1_4', links: [[-1, 5]] },
+    #       { point: [-1, 5], title: '小集市', toScene: 'C000B_V_MAP_-1_5', links: [ ] },
+    #       { point: [0, 3], title: '珍宝阁', toScene: 'C000B_V_MAP_0_3', links: [[1, 3]] },
+    #       { point: [1, 3], title: '客栈', toScene: 'C000B_V_MAP_1_3', links: [ ] },
+    #     ]
+    #   },
+    # ]
+    # ]

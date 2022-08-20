@@ -268,7 +268,7 @@ scenes: [
           { key: 'N1A', content: ['杀手好像没有异常','继续向前走',], 
           btn: [{title: '继续跟踪！', toScene: 'C001C_V_MAP_0_2',  icon: { id: 1, bindVar: 'biaoqianv17' }, varsOn: ['biaoqianv17']},
           
-          {title: '结束这次跟踪', tokey: "END01",  icon: { id: 1, bindVar: 'biaoqianv19' }, varsOn: ['biaoqianv19']},], },   
+          {title: '结束这次跟踪',toChapter: "WZXX_M1_N1_C001B_[C2]" , icon: { id: 1, bindVar: 'biaoqianv19' }, varsOn: ['biaoqianv19']},], },   
 
     
     
@@ -315,6 +315,7 @@ scenes: [
     { id: "biaoqianv5", min: 0, max: 1 } ,
     { id: "biaoqianv6", min: 0, max: 1 } ,
     { id: "biaoqianv7", min: 0, max: 1 } ,
+    { id: "biaoqianv8", min: 0, max: 1 } ,
    
     ],
 
@@ -357,7 +358,9 @@ scenes: [
 
           { key: 'N1B1', content: ['李森炎小心翼翼地走着','突然看见杀手挥剑向上砍去','嘴里还喊道：“谁放的暗器？”','结果那“暗器”粘在剑上了','杀手定睛一看，是鸟屎','李森炎：“噗……”',], 
           btn: [{title: '偷笑', dialogs: ['gameover02'], icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},
-          {title: '憋笑', tokey: "N1B2", icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']}]},   
+          {title: '憋笑', tokey: "N1B2", icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']} , 
+          {title: '不笑', tokey: "N1B2", icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8']}]},   
+          
 
           { key: 'N1B2', content: ['杀手气急败坏，骂骂咧咧地从原地离开','继续往前走','周围杂草丛生看上去很不好跟踪','李森炎决定',],
           btn: [{title: '继续跟踪！', toScene: 'C001C_V_MAP_0_3',},]},
@@ -585,7 +588,11 @@ scenes: [
       { 
         id: 'C1', desc: '城门口，来往的人越来越多不太好跟踪了', 
         options: [ 
-         { title: '【直接进城】',toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
+         { title: '【直接进城】',toChapter: "WZXX_M1_N1_C001B_[C2]" ,  
+         toMsg: { 
+          action: 'CluesModel/addClues', params: { addCluesId: ["qingbao4"] } 
+        },
+        }, 
 
         ],
       },

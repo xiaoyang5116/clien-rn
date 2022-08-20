@@ -123,9 +123,11 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002C_V7', desc: '二穿', 
         options: [ 
-          { title: "【发生什么事了】",toChapter: "WZXX_M1_N1_C004_[N2]"  },
+         { title: '【发生什么事了】', animations: { id: 11, data: { worldId: '灵修界', desc: '突然，眼前一变，周围的景色完全不同', toChapter: 'WZXX_M1_N1_C004_[N2]' } } }, 
         ],
       },
+
+      
       { 
         id: 'WZXX_M1_N1_C002C_V8', desc: '打斗', 
         options: [ 
