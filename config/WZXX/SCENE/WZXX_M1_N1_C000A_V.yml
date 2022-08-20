@@ -1,4 +1,5 @@
 scenes: [
+
     #
     {
       id: 'WZXX_M1_N1_C000A_V',
@@ -44,6 +45,53 @@ scenes: [
   
     },
 
+
+
+
+    # #================================通用状态对话=====
+    # #
+    # {
+    #   id: 'WZXX_M1_N1_C000A_NPC_zanzi',
+    #   name: "定义对应标题名当前章节内的选项和变量",
+
+    #   # 变量定义
+    #   vars: [
+    #   { id: "v1", min: 0, max: 1 },
+    #   ],
+
+    #   # 动作定义
+    #   actions: [
+      
+    #   ],
+    #   #不显示时间
+    #   worldTimeHidden: true,
+    #   # 事件定义# 故事中的场景事件暂时没什么意义
+    #   events: [
+    #      { type: 'enter', dialogs: ['p0'] },
+    #   ],
+
+    #   chats: [
+    #   #
+
+    #   { 
+    #     id: 'WZXX_M1_N1_C000A_V', desc: '购买簪子', 
+    #     options: [ 
+    #       { title: "【去买簪子】",toScene: 'C000A_V_MAP_2_-1', },
+    #     ],
+    #   },
+
+    #   { 
+    #     id: 'WZXX_M1_N1_C000A_V1', desc: '去打听情报', 
+    #     options: [ 
+    #       { title: "【寻找药材】",toScene: 'C000A_V_MAP_2_2', },
+    #     ],
+    #   },
+ 
+    #     ],
+
+  
+    # },
+    # #================================结束=====
 
  #===========事件场景==============
        {
@@ -237,7 +285,9 @@ scenes: [
       { 
         id: 'C1', desc: '官府门口看上去很肃静，门口站了很多侍卫', 
         options: [ 
-         { title: '【进去看看】', dialogs: ['Screen2'] },  
+         { title: '【进去看看】', dialogs: ['Screen2'] },
+         { title: '【去买簪子】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
+         { title: '【去森林采集】', andVarsValue: ['@props_350 > 0'], },  
         #  { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
         #  { title: '【仁德街】', toScene: 'C000A_V_MAP_0_4'},
         #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
@@ -292,6 +342,8 @@ scenes: [
         id: 'C1', desc: '这条街官府人员走得较多，寻常百姓鲜有人来', 
         options: [ 
          { title: '【四处观察】', nextChat: 'C2'}, 
+         { title: '【去买簪子】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
+         { title: '【去森林采集】', andVarsValue: ['@props_350 > 0'], },
         #  { title: '【官府】', toScene: 'C000A_V_MAP_0_2'}, 
         #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
         #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
@@ -597,6 +649,8 @@ scenes: [
         id: 'C1', desc: '这……好像是古代的春楼~', 
         options: [ 
          { title: '【进去看看】', dialogs: ['Screen6'] },
+         { title: '【去买簪子】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
+         { title: '【去森林采集】', andVarsValue: ['@props_350 > 0'], },
         #  { title: '【西市一街】', toScene: 'C000A_V_MAP_-1_-1'},  
         #  { title: '【布庄】', toScene: 'C000A_V_MAP_-1_-3'},     
         #  { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'}, 
@@ -697,6 +751,8 @@ scenes: [
         id: 'C1', desc: '四通八达的闹市区，比东市规模更大，更热闹些', 
         options: [ 
           { title: '【进去看看】', nextChat: 'C2'}, 
+          { title: '【去买簪子】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
+         { title: '【去森林采集】', andVarsValue: ['@props_350 > 0'], },
         #  { title: '【西市一街】', toScene: 'C000A_V_MAP_-1_-1'},
         #  { title: '【李家】', toScene: 'C000A_V_MAP_-2_0'},  
         #  { title: '【西市二街】', toScene: 'C000A_V_MAP_-1_1'},    
@@ -741,9 +797,10 @@ scenes: [
       chats: [
     
       { 
-        id: 'C1', desc: '一间很普通也很隐蔽的居民屋', 
+        id: 'C1', desc: '这是李森炎的家门口，一间很普通也很隐蔽的居民屋', 
         options: [ 
-         { title: '【回家】', nextChat: 'C2' }, 
+         { title: '【进门】', nextChat: 'C2' }, 
+         
         #  { title: '【米铺】', toScene: 'C000A_V_MAP_-3_0'},
         #  { title: '【西市三街】', toScene: 'C000A_V_MAP_-2_-1'},      
         #  { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'}, 
@@ -757,12 +814,15 @@ scenes: [
         options: [ 
          { title: '再出去逛逛', nextChat: 'C1' }, 
          { title: '在家休歇一夜', nextChat: 'C3' }, 
+         
         ],
       },
       { 
         id: 'C3', desc: '在家休歇一夜过后你精神满满', 
         options: [ 
-         { title: '决定出去逛逛', nextChat: 'C1' }, 
+         { title: '决定出去逛逛', nextChat: 'C1' },
+         { title: '【去买簪子】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
+         { title: '【去森林采集】', andVarsValue: ['@props_350 > 0'], },
         
         ],
       },
@@ -903,7 +963,9 @@ scenes: [
        { 
         id: 'C1', desc: '前面有个小女孩', 
         options: [ 
-        { title: '【找小女孩聊聊天】', dialogs: ['Screen9'] }, 
+        { title: '【找小女孩聊聊天】', dialogs: ['Screen9'] },
+        { title: '【去买簪子】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
+         { title: '【去森林采集】', andVarsValue: ['@props_350 > 0'], }, 
         # { title: '【西市三街】',toScene: 'C000A_V_MAP_-2_-1'},
         # { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
         # { title: '【米铺】', toScene: 'C000A_V_MAP_-3_0'},
@@ -997,6 +1059,8 @@ scenes: [
         id: 'C1', desc: '尊贵的白府，远远一看就很高大上', 
         options: [ 
         { title: '【四处逛逛】', dialogs: ['Screen10'] }, 
+        { title: '【去买簪子】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
+         { title: '【去森林采集】', andVarsValue: ['@props_350 > 0'], },
         # { title: '【小院】',toScene: 'C000A_V_MAP_-3_-1'},
         # { title: '【西市三街】',toScene: 'C000A_V_MAP_-2_-1'},
         # { title: '【路口】',toScene: 'C000A_V_MAP_-2_-3'},
