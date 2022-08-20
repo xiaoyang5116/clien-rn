@@ -43,6 +43,9 @@ export const images = [
     require('../../assets/animations/leiyun/leiyun12-13.png'),
     require('../../assets/animations/leiyun/leiyun13-14.png'),
     require('../../assets/animations/leiyun/leiyun14-15.png'),
+
+    require('../../assets/mp4/CSSK_V1.mp4'),
+    require('../../assets/mp4/FLY_480x960.mp4'),
 ];
 
 // 需要预热的字体
