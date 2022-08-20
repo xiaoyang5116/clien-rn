@@ -120,7 +120,7 @@ class PropsTabPage extends Component {
                     </View>
                     <View style={{ height: 38 }}>
                         <ScrollView horizontal={true} 
-                            pagingEnabled={true} 
+                            pagingEnabled={false} 
                             showsHorizontalScrollIndicator={false} 
                             contentContainerStyle={{ justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
                             <TabButton title='全部' style={{ marginLeft: 8, marginRight: 15 }} onPress={() => { this._typeFilter('全部') }} />
