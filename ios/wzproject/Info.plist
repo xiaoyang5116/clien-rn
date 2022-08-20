@@ -53,11 +53,6 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>HanWangWeiBeiMedium-Gb5.ttf</string>
-		<string>PangMenZhengDao-Cu.ttf</string>
-		<string>SourceHanSansCN-Medium.ttf</string>
-		<string>SourceHanSansCN-Normal.ttf</string>
-		<string>SourceHanSerifCN-Bold.ttf</string>
 		<string>antfill.ttf</string>
 		<string>antoutline.ttf</string>
 		<string>AntDesign.ttf</string>
