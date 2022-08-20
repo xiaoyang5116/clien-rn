@@ -65,12 +65,15 @@ export class CButton extends Component {
     }
 
     onPress = () => {
-        if (this.props.onPress != undefined && !this.props.disabled && this.props.sourceType !== "reader") {
+        if (this.props.onPress != undefined && !this.props.disabled) {
             return this.props.onPress();
         }
-        if (this.props.onPress != undefined && !this.props.disabled && !this.isImageStyle() && this.props.sourceType === "reader") {
-            return this.btnAnimateRef.current.start();
-        }
+        // if (this.props.onPress != undefined && !this.props.disabled && this.props.sourceType !== "reader") {
+        //     return this.props.onPress();
+        // }
+        // if (this.props.onPress != undefined && !this.props.disabled && !this.isImageStyle() && this.props.sourceType === "reader") {
+        //     return this.btnAnimateRef.current.start();
+        // }
     }
 
     render() {
@@ -88,7 +91,7 @@ export class CButton extends Component {
                             source={imgBg}
                             capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
                         />
-                        <ButtonClickEffects ref={this.btnAnimateRef} onPress={this.props.onPress} btnAnimateId={this.props.btnAnimateId} />
+                        {/* <ButtonClickEffects ref={this.btnAnimateRef} onPress={this.props.onPress} btnAnimateId={this.props.btnAnimateId} /> */}
                         <Text key={0} style={[styles.text, { fontSize: this.props.fontSize, color: this.props.fontColor }]} >{this.props.title}</Text>
                     </View>
                 </TouchableHighlight>
