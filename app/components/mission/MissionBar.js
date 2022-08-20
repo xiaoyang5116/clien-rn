@@ -165,7 +165,7 @@ const MissionBar = (props) => {
   return (
       <Animated.View style={[styles.viewContainer, { transform: [{ translateY: translateY }], opacity: opacity, zIndex: zIndex }]}>
         <Animated.View style={[{ position: 'absolute', right: 80, top: -103 }, { opacity: showBtnOpacity }]}>
-          <AntDesign name='upcircleo' size={20} onPress={() => show()} />
+          <AntDesign name='upcircleo' color={'#000'} size={20} onPress={() => show()} />
         </Animated.View>
         <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false} style={{}}>
           <View style={{ flexWrap: 'wrap' }}>

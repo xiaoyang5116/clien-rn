@@ -40,4 +40,7 @@ export class LocalCacheKeys {
     // 商店数据
     static SHOPS_DATA = 'SHOPS_DATA';
 
+    // 收藏品数据
+    static COLLECTION_DATA = 'COLLECTION_DATA';
+
 }

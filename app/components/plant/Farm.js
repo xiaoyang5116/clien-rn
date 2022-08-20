@@ -114,12 +114,12 @@ const Farm = (props) => {
                                 ref={ref => (sheet.current = ref)}
                                 source={require('../../../assets/animations/lingqitiao2.png')}
                                 columns={25}
-                                rows={3}
+                                rows={4}
                                 frameWidth={30}
                                 frameHeight={190}
                                 imageStyle={{}}
                                 animations={{
-                                    walk: lo.range(73),
+                                    walk: lo.range(90),
                                 }}
                             />
                         </Animated.View>

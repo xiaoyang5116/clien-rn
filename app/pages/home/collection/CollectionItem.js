@@ -42,6 +42,8 @@ const CollectionItem = (props) => {
             const key = RootView.add(<ActivationPage data={props.data} onClose={() => {
                 RootView.remove(key);
             }} />);
+        } else {
+            
         }
     }}>
         <View style={{ width: px2pd(220), height: px2pd(230),  }}>

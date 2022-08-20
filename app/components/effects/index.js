@@ -11,6 +11,8 @@ import Onomatopoeia from '../animation/onomatopoeia';
 import SubTitleAnimation from './SubTitleAnimation';
 import Animation from '../animation';
 import XueHuaAnimation from './XueHuaAnimation';
+import FlyAnimation from './FlyAnimation';
+import WorldPreview from '../carousel/WorldPreview';
 
 export default class EffectAnimations {
 
@@ -54,6 +56,28 @@ export default class EffectAnimations {
                 const key = RootView.add(<XueHuaAnimation onClose={() => {
                     RootView.remove(key);
                 }} />);
+            } else if (id == 10) { // 飞行
+                const key = RootView.add(<FlyAnimation onClose={() => {
+                    RootView.remove(key);
+                }} />);
+            } else if (id == 11) { // 世界切换
+                const kvmap = [{ key: '现实', worldId: 0 }, { key: '尘界', worldId: 1 }, { key: '灵修界', worldId: 2 }];
+                const found = kvmap.find(kv => lo.isEqual(kv.key, e.data.worldId));
+                if (found != undefined) {
+                    const key = RootView.add(<WorldPreview 
+                        item={{ 
+                            worldId: found.worldId, 
+                            title: e.data.worldId, 
+                            desc: e.data.desc, 
+                            toChapter: e.data.toChapter 
+                        }} 
+                        index={found.worldId} 
+                        animation={true}
+                        onClose={() => {
+                            RootView.remove(key);
+                        }}
+                    />);
+                }
             }
         });
     }

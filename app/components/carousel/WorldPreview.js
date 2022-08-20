@@ -74,7 +74,13 @@ const WorldPreview = (props) => {
                                 props.onClose();
                                 AppDispath({ type: 'PropsModel/reduce', payload: { propsId: [PROP_ID], num: 1, mode: 1 } });
                                 const key = RootView.add(<TransAnimation onCompleted={() => {
-                                  DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
+                                  if (props.animation != undefined && props.animation) {
+                                    if (props.item.toChapter != undefined) {
+                                      AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: props.item.toChapter, __sceneId: '' } });
+                                    }
+                                  } else {
+                                    DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
+                                  }
                                   RootView.remove(key);
                                 }} />);
                               });
