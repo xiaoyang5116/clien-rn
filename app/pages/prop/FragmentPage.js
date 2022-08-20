@@ -7,10 +7,9 @@ import {
 } from '../../constants/native-ui';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { Animated, StyleSheet } from 'react-native';
+import { Animated, StyleSheet, Easing } from 'react-native';
 import PropGrid from '../../components/prop/PropGrid';
 import { TextButton } from '../../constants/custom-ui';
-import { Easing } from 'react-native-reanimated';
 
 const FragmentPage = (props) => {
 

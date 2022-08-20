@@ -12,7 +12,14 @@ collections: [
     categories: ['金'],
 
     # 收藏品属性加成
-    attrs: [{ key: '速度', value: 10 }, { key: '防御', value: 5 }],
+    attrs: {
+      lv1: [{ key: '速度', value: 10 }, { key: '防御', value: 5 }],
+      lv2: [{ key: '速度', value: 20 }, { key: '防御', value: 10 }],
+      lv3: [{ key: '速度', value: 30 }, { key: '防御', value: 20 }],
+      lv4: [{ key: '速度', value: 40 }, { key: '防御', value: 20 }],
+      lv5: [{ key: '速度', value: 50 }, { key: '防御', value: 30 }],
+      lv6: [{ key: '速度', value: 60 }, { key: '防御', value: 60 }],
+    },
 
     # 解锁道具
     propId: 700,

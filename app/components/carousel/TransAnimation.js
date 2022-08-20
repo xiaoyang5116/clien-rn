@@ -1,62 +1,37 @@
-import { range } from 'lodash';
 import React from 'react';
+import Video from 'react-native-video';
 
 import { 
     View, 
-    Animated,
-    Easing,
 } from 'react-native';
 
-import SpriteSheet from '../../components/SpriteSheet';
 
 const TransAnimation = (props) => {
-    const mummy = React.useRef(null);
-    const scale = React.useRef(new Animated.Value(0.6)).current;
-    
-    React.useEffect(() => {
-        const play = type => {
-            mummy.current.play({
-              type,
-              fps: Number(3),
-              loop: false,
-              resetAfterFinish: false,
-              onFinish: () => {
-                Animated.timing(scale, {
-                    toValue: 0.3,
-                    duration: 1600,
-                    easing: Easing.cubic,
-                    useNativeDriver: false,
-                }).start(() => {
-                    setTimeout(() => {
-                        if (props.onCompleted != undefined) { 
-                            props.onCompleted(); 
-                        }
-                    }, 600);
-                });
-              }
-            });
-          };
-          play('walk');
-    }, []);
 
-    return (
-        <View style={{ flex: 1, backgroundColor: '#fff', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-            <Animated.View style={{ transform: [{ scale: scale }], borderWidth: 2, borderColor: '#333' }}>
-              <SpriteSheet
-                ref={ref => (mummy.current = ref)}
-                source={require('../../../assets/animations/world_trans.png')}
-                columns={1}
-                rows={7}
-                frameWidth={690}
-                frameHeight={276}
-                imageStyle={{}}
-                animations={{
-                  walk: range(7),
-                }}
-              />
-            </Animated.View>
-        </View>
-    );
+  const refVideo = React.useRef(null);
+
+  React.useEffect(() => {
+      refVideo.current.seek(0);
+  }, []);
+
+  const end = () => {
+    if (props.onCompleted != undefined) { 
+      props.onCompleted(); 
+    }
+  }
+
+  return (
+      <View style={{ flex: 1, backgroundColor: '#fff', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+          <Video 
+              style={{ width: '100%', height: '100%' }}
+              ref={(ref) => refVideo.current = ref}
+              source={require('../../../assets/mp4/CSSK_V1.mp4')}
+              fullscreen={false}
+              resizeMode={'stretch'}
+              onEnd={() => { end() }}
+          />
+      </View>
+  );
 }
 
 export default TransAnimation;
