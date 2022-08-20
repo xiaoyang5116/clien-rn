@@ -283,7 +283,7 @@ const MemoryTraining = (props) => {
                             props.onClose();
                         }
                     }}>
-                        <AntDesign name='close' size={24} />
+                        <AntDesign name='close' style={{ color: '#000' }} size={24} />
                     </TouchableWithoutFeedback>
                 </View>
                 <View style={styles.resultContainer}>
