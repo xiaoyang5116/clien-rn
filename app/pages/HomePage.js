@@ -21,7 +21,7 @@ import {
 } from '../constants/native-ui';
 
 import FastImage from 'react-native-fast-image';
-import StoryTabPage from './home/StoryTabPage';
+import XiuWeiTabPage from './home/XiuWeiTabPage';
 import ProfileTabPage from './home/ProfileTabPage';
 import PropsTabPage from './home/PropsTabPage';
 import ExploreTabPage from './home/ExploreTabPage';
@@ -85,9 +85,9 @@ class HomePage extends Component {
             title: "人物",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'人物'} />),
           }} />
-          <Tab.Screen name="World" component={StoryTabPage} options={{
-            title: "世界",
-            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'世界'} />),
+          <Tab.Screen name="XiuWei" component={XiuWeiTabPage} options={{
+            title: "修为",
+            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'修为'} />),
           }} />
           <Tab.Screen name="Explore" component={ExploreTabPage} options={{
             title: "探索",
