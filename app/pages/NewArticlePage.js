@@ -57,6 +57,7 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import readerStyle from '../themes/readerStyle';
 import BagAnimation from '../components/animation/BagAnimation';
 import PropTips from '../components/tips/PropTips';
+import Clues from '../components/cluesList';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -818,6 +819,15 @@ class NewArticlePage extends Component {
                 <Text style={styles.bannerButtonText}>阅读设置</Text>
               </View>
             </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={()=>{
+                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+                Clues.show()
+              }}>
+              <View style={styles.bannerButton}>
+                <Ionicons name={'ios-text'} size={23} />
+                <Text style={styles.bannerButtonText}>线索</Text>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
         </HeaderContainer>
         <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
@@ -928,8 +938,8 @@ const styles = StyleSheet.create({
   },
   bannerButton: {
     width: 55,
-    marginLeft: 10, 
-    marginRight: 10,
+    marginLeft: 2, 
+    marginRight: 2,
     marginTop: 10,
     marginBottom: 10,
     justifyContent: 'center',
