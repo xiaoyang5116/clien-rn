@@ -421,7 +421,6 @@ const TheWorld = (props) => {
 
   return (
     <View style={[{ flex: 1 }, {  }]}>
-      <ReaderXianGaoImageView />
       <FlatList
         style={{ alignSelf: 'stretch' }}
         ref={(ref) => refList.current = ref}
@@ -822,6 +821,7 @@ class NewArticlePage extends Component {
         </HeaderContainer>
         <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
           <ReaderBackgroundImageView />
+          <ReaderXianGaoImageView />
           <Tab.Navigator initialRouteName='PrimaryWorld' 
             tabBar={(props) => <WorldTabBar {...props} />}
             screenOptions={{ swipeEnabled: !this.props.isStartPage }}
