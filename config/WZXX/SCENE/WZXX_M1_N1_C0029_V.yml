@@ -37,7 +37,7 @@ scenes: [
         id: 'WZXX_M1_N1_C0029_V2', desc: '遇害', 
         options: [ 
           { title: "【见死不救】",dialogs: ['C0029A_jiurA'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'], dropIds: [ 'WZXX_M1_N1_C002A_V_Vdrop9'],},
-          { title: "【救人要紧】",toChapter: "WZXX_M1_N1_C033_[N1]",}
+          { title: "【救人要紧】",toChapter: "WZXX_M1_N1_C033",}
         ],
       },
 
@@ -45,7 +45,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0029_V3', desc: '遇害', 
         options: [ 
-          { title: "【呵呵……】",toChapter: "WZXX_M1_N1_C030_[N1]",}
+          { title: "【呵呵……】",toChapter: "WZXX_M1_N1_C030",}
         ],
       },
 
@@ -62,7 +62,7 @@ scenes: [
               {
                 key: 'P1', 
                 content: ['李森炎自己都被自己的想法给吓到','虽然觉得这想法很荒诞，但他还是默默把玉珏放下了', '玉珏开始出现一丝裂纹','这玉都裂开了，果然是要炸了吗？','李森炎仔细一想，感觉又不太对','如果玉珏真是个爆炸物的话','那这前摇也太长了点吧？','这么长的待炸时间，爆炸前还会发热发烫','这能炸得到谁啊？','李森炎觉察到一丝不对劲之后','又凑了上去，伸手触碰',],
-                btn: [{title: '……',toChapter: "WZXX_M1_N1_C032_[N1]",},]
+                btn: [{title: '……',toChapter: "WZXX_M1_N1_C032",},]
               },
             ]  
           },
@@ -73,7 +73,7 @@ scenes: [
               { 
               key: 'B1', 
               content: ['这个想法一冒出来，他自己都觉得荒诞','玉珏拿在手里，随着时间推移','玉珏缓缓出现裂纹','这一幕，同样震惊了李森炎。','这让李森炎感觉不妙','“我该叫你杨真呢，还是杨假？”','心里有股不详的预感！',],
-              btn: [{title: '……',toChapter: "WZXX_M1_N1_C032_[N1]",},]
+              btn: [{title: '……',toChapter: "WZXX_M1_N1_C032",},]
               },
             ]  
           },
@@ -85,7 +85,7 @@ scenes: [
               content: ['李森炎有些犹豫','路是他们自己选的','结果自然也要他们自己去承受','自己不是济世救难的活菩萨，管不了那么多',
               '李森炎故意往反方向走','此时江依依的音容笑貌却在脑海不断浮现','李森炎实在承受不了内心的煎熬',
               '“就去看看怎么回事也好”','“这要是不去，晚上做梦都不踏实！”',],
-              btn: [{title: '……',toChapter: "WZXX_M1_N1_C033_[N1]",},]
+              btn: [{title: '……',toChapter: "WZXX_M1_N1_C033",},]
               },
             ]  
           },

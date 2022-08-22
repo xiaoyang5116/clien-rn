@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C025_[N1]']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C025_[N1]FZ'] }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C025']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C025FZ'] }, 
      { header: '第二十五章 炼体九重' },
 ]
 #END==========================================

@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C032_[N1]']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C032_[N1]FZ'] }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C032']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C032FZ'] }, 
      { header: '第三十二章 玉珏' },
 ]
 #END==========================================
