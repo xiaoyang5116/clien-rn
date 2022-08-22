@@ -164,6 +164,7 @@ export const animationAction = type => {
                 action: knifeLightAction("飞卷刀光1")
             };
         case "飞卷刀光2":
+            // 蓝色
             return {
                 type: KNIFELIGHT,
                 action: knifeLightAction("飞卷刀光2")

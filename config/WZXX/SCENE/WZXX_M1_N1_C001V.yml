@@ -112,22 +112,24 @@ scenes: [
            { key: 'p2A', content: ['大侠饶命！我上有八十老母，下有三岁小儿！','句句是真！句句属实啊！','对方点了点头笑了，那你几岁？', ],
             btn: [{title: '80?',tokey: "p2B1",icon: { id: 6, bindVar: 'biaoqianv10' }},
             {title: '而立之年啊',tokey: "p2B1",icon: { id: 6, bindVar: 'biaoqianv11' }},
-            #{title: '风华正茂啊',tokey: "p2B1"},
-            {title: '随便编一个',tokey: "gg1",icon: { id: 6, bindVar: 'biaoqianv12' }},
-            #{title: '照实说',tokey: "p2B2"}
+            # {title: '风华正茂啊',tokey: "p2B1"},icon: { id: 6, bindVar: 'biaoqianv12' }
+            # # {title: '随便编一个',tokey: "gg3",icon: { id: 6, bindVar: 'biaoqianv12' }},
+            {title: '照实说',tokey: "p2B2"}
             ]},   
 
            { key: 'p2B1', content: ['我管你上有老，我管你几岁。','我就是来杀你的！','剑光一闪',['边缘闪烁红'],'…………',], 
              btn: [{title: '我觉得我还能抢救一下!',dialogs: ['gameover00'], varsOn: ['biaoqianv10','biaoqianv11','biaoqianv3','biaoqianv13',] }]},   
          
-           #{ key: 'p2B2', content: ['那对了，杀的就是你','剑光一闪',['边缘闪烁红'],'…………',],
-            #btn: [{title: '…………!',dialogs: ['gameover00'], varsOn: ['biaoqianv3',] }]},   
+           { key: 'p2B2', content: ['那对了，杀的就是你','剑光一闪',['边缘闪烁红'],'…………',],
+            btn: [{title: '…………!',dialogs: ['gameover00'], varsOn: ['biaoqianv3',] }]},   
 
            { key: 'gg1', content: ['早就调查清楚了','你就是一个单身小屁孩','这么小就撒谎',['边缘闪烁红'],'让你活着何用',],
             btn: [{title: '…………',dialogs: ['gameover00'] ,varsOn: ['biaoqianv8','biaoqianv12','biaoqianv3',]},]},   
 
            { key: 'gg2', content: ['就你那种穷样','我可不信','剑光一闪',['边缘闪烁红'],'…………',],
-            btn: [{title: '…………',dialogs: ['gameover00'] , varsOn: ['biaoqianv9','biaoqianv3',]},]},   
+            btn: [{title: '…………',dialogs: ['gameover00'] , varsOn: ['biaoqianv9','biaoqianv3',]},]}, 
+
+    
             
            #{ key: 'gg3', content: ['我一个杀手是不需要情报的','你的脑袋更值钱','剑光一闪',['边缘闪烁红'],'…………',],
             #btn: [{title: '…………!',dialogs: ['gameover00'] }]},   

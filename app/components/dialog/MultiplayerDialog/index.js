@@ -218,6 +218,7 @@ const MultiplayerDialog = (props) => {
                   <TextAnimation
                     fontSize={18}
                     duration={200}
+                    style={{ color: "#000" }}
                     opacity={0.8}
                     type={textAnimationType}
                   >

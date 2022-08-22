@@ -91,6 +91,8 @@ scenes: [
   # 新手村场景
   {
     id: 'S_00Test02', name: '灵修界',
+    #不显示时间
+      worldTimeHidden: true,
 
     # 变量定义
     vars: [
@@ -137,14 +139,14 @@ scenes: [
       {
         id: 'c2', desc: '李森炎不甘示弱，艰难的站起来，朝他一拳出击', 
         options: [
-          { title: '小师弟没料到他敢还手，差点就被打中', nextChat: 'c4',}, 
+          { title: '小师弟没料到他敢还手，差点就被打中', animations: { id: 8, type: "飞卷刀光1" }, nextChat: 'c4'}, 
         ]
       },
 
       { 
         id: 'c3', desc: '李森炎沉着气，余光立刻开始四处打量，寻到一处空旷', 
         options: [ 
-          { title: '立刻闪身奔去', nextChat: 'c1', }, 
+          { title: '立刻闪身奔去', animations: { id: 8, type: "飞卷刀光2" },nextChat: 'c1', }, 
         ]
       },
 
@@ -176,7 +178,7 @@ scenes: [
       {
         id: 'c8', desc: '地上有一把银白色的宝剑，此时小师弟再次举起剑欲再次上前', 
         options: [ 
-          { title: '拿起剑，和他决一死战', nextChat: 'c9', clickActions: ['a1'] }, 
+          { title: '拿起剑，和他决一死战',nextChat: 'c9', clickActions: ['a1'] }, 
           { title: '不会使剑，还是继续躲吧', dialogs: ['gameover01'],  clickActions: ['a5']  }, 
         ]
       },
