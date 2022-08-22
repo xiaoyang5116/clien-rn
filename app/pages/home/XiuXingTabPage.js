@@ -11,12 +11,14 @@ import {
 } from '../../constants/native-ui';
 
 import { 
-    Animated, Easing,
+    Animated, Easing, SafeAreaView,
 } from 'react-native';
 
 import lo from 'lodash';
-import { TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
+import { TextButton } from '../../constants/custom-ui';
 import { px2pd } from '../../constants/resolution';
 
 const PROGRESS_BAR_WIDTH = px2pd(800);
@@ -51,31 +53,43 @@ const ProgressBar = (props) => {
 const XiuXingTabPage = (props) => {
 
     return (
-        <View style={styles.viewContainer}>
-            <View style={{ width: '90%', marginTop: 10, borderRadius: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: '#677d8e', flexDirection: 'row', flexWrap: 'wrap' }}>
-                <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>生命： 1000</Text></View>
-                <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>防御： 1000</Text></View>
-                <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>法力： 1000</Text></View>
-                <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>攻击： 1000</Text></View>
-            </View>
-            <View style={{ marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
-                <FastImage style={{ width: px2pd(607), height: px2pd(785) }} source={require('../../../assets/bg/xiuxing_bg.png')} />
-                <View style={{ position: 'absolute' }}>
-                    <TextButton title={'升级'} disabled={true} />
+        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+            <SafeAreaView style={{ flex: 1 }}>
+                <View style={styles.viewContainer}>
+                    <View style={{ width: '90%', alignItems: 'center', marginBottom: 10 }}>
+                        <Text style={{ fontSize: 26, color: '#000' }}>修行</Text>
+                        <AntDesign style={{ position: 'absolute', left: -10 }} name='left' size={30} color={'#333'} onPress={() => {
+                            if (props.onClose != undefined) {
+                                props.onClose();
+                            }
+                        }} />
+                    </View>
+                    <View style={{ width: '90%', marginTop: 10, borderRadius: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: '#677d8e', flexDirection: 'row', flexWrap: 'wrap' }}>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>生命： 1000</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>防御： 1000</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>法力： 1000</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>攻击： 1000</Text></View>
+                    </View>
+                    <View style={{ marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
+                        <FastImage style={{ width: px2pd(607), height: px2pd(785) }} source={require('../../../assets/bg/xiuxing_bg.png')} />
+                        <View style={{ position: 'absolute' }}>
+                            <TextButton title={'升级'} disabled={true} />
+                        </View>
+                    </View>
+                    <View style={{ marginTop: 20 }}>
+                        <Text style={{ fontSize: 24, color: '#000' }}>返虚期.八重</Text>
+                    </View>
+                    <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
+                        <View style={{ width: PROGRESS_BAR_WIDTH, height: 40 }}>
+                            <ProgressBar value={108650} limit={128650} />
+                        </View>
+                    </View>
+                    <View style={{ flexDirection: 'row' , marginTop: 10 }}>
+                        <Text style={{ fontSize: 22, color: '#000' }}>修为：</Text>
+                        <Text style={{ fontSize: 22, color: '#829358' }}>+600/分钟</Text>
+                    </View>
                 </View>
-            </View>
-            <View style={{ marginTop: 20 }}>
-                <Text style={{ fontSize: 24, color: '#000' }}>返虚期.八重</Text>
-            </View>
-            <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
-                <View style={{ width: PROGRESS_BAR_WIDTH, height: 40 }}>
-                    <ProgressBar value={108650} limit={128650} />
-                </View>
-            </View>
-            <View style={{ flexDirection: 'row' , marginTop: 10 }}>
-                <Text style={{ fontSize: 22, color: '#000' }}>修为：</Text>
-                <Text style={{ fontSize: 22, color: '#829358' }}>+600/分钟</Text>
-            </View>
+            </SafeAreaView>
         </View>
     );
 

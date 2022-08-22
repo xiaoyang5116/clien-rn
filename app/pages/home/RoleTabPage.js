@@ -24,6 +24,7 @@ import RootView from '../../components/RootView';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import EquippedSideBar from '../../components/equips/EquippedSideBar';
+import XiuXingTabPage from './XiuXingTabPage';
 
 const AttrsPage = (props) => {
     return (
@@ -210,6 +211,9 @@ const SimpleInfo = (props) => {
 const FuncButtons = (props) => {
 
     const openXiuXing = () => {
+        const key = RootView.add(<XiuXingTabPage onClose={() => {
+            RootView.remove(key);
+        }} />)
     }
 
     return (
