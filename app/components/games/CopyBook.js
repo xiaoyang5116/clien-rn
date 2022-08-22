@@ -6,7 +6,8 @@ import {
     Dimensions,
     PanResponder,
     Image,
-    Animated
+    Animated,
+    Platform
 } from 'react-native';
 
 import Svg, { Path, } from 'react-native-svg'
@@ -18,10 +19,6 @@ import Toast from '../toast'
 import FastImage from 'react-native-fast-image';
 import HuoYanAnimation from '../animation/HuoYan';
 
-
-
-//获取屏幕的宽高
-const { width, height } = Dimensions.get('window');
 
 const ziTieArr = [
     {
@@ -66,57 +63,70 @@ const ziTieArr = [
     {
         id: 2, name: "雷", img: require('../../../assets/games/ziTie/lei.png'), detectionArea: [
             // 雨
-            { origin: [77, 50], width: 15, height: 14 },
-            { origin: [211, 50], width: 15, height: 14 },
-            { origin: [141, 50], width: 17, height: 14 },
-            { origin: [54, 79], width: 16, height: 16 },
-            { origin: [141, 79], width: 17, height: 13 },
-            { origin: [230, 79], width: 17, height: 14 },
-            { origin: [54, 107], width: 16, height: 15 },
-            { origin: [80, 107], width: 14, height: 13 },
-            { origin: [114, 107], width: 15, height: 13 },
-            { origin: [169, 107], width: 15, height: 13 },
-            { origin: [205, 107], width: 15, height: 13 },
-            { origin: [230, 107], width: 17, height: 15 },
-            { origin: [76, 132], width: 17, height: 13 },
-            { origin: [114, 132], width: 16, height: 13 },
-            { origin: [169, 132], width: 16, height: 14 },
-            { origin: [205, 132], width: 16, height: 14 },
-            { origin: [141, 132], width: 17, height: 14 },
+            { origin: [77, 46], width: 25, height: 20 },
+            { origin: [200, 46], width: 25, height: 20 },
+            { origin: [139, 46], width: 22, height: 20 },
+
+            { origin: [50, 75], width: 23, height: 22 },
+            { origin: [136, 75], width: 26, height: 22 },
+            { origin: [226, 75], width: 24, height: 22 },
+
+            { origin: [50, 102], width: 23, height: 21 },
+            { origin: [76, 102], width: 20, height: 21 },
+            { origin: [114, 102], width: 19, height: 21 },
+            { origin: [136, 102], width: 26, height: 21 },
+            { origin: [164, 102], width: 24, height: 21 },
+            { origin: [202, 102], width: 21, height: 21 },
+            { origin: [226, 102], width: 24, height: 21 },
+
+            { origin: [71, 128], width: 22, height: 21 },
+            { origin: [111, 128], width: 22, height: 21 },
+            { origin: [165, 128], width: 23, height: 21 },
+            { origin: [202, 128], width: 18, height: 21 },
+
             // 田
-            { origin: [73, 160], width: 17, height: 12 },
-            { origin: [141, 160], width: 17, height: 13 },
-            { origin: [210, 160], width: 17, height: 13 },
-            { origin: [73, 194], width: 17, height: 14 },
-            { origin: [141, 194], width: 17, height: 14 },
-            { origin: [210, 194], width: 17, height: 13 },
-            { origin: [73, 229], width: 17, height: 14 },
-            { origin: [141, 229], width: 17, height: 14 },
-            { origin: [210, 229], width: 17, height: 13 },
+            { origin: [68, 156], width: 25, height: 21 },
+            { origin: [136, 156], width: 26, height: 21 },
+            { origin: [206, 156], width: 25, height: 21 },
+
+            { origin: [68, 190], width: 25, height: 21 },
+            { origin: [136, 190], width: 26, height: 21 },
+            { origin: [206, 190], width: 25, height: 21 },
+
+            { origin: [68, 225], width: 25, height: 21 },
+            { origin: [136, 225], width: 26, height: 21 },
+            { origin: [206, 225], width: 25, height: 21 },
 
             // 特殊
-            { origin: [99, 160], width: 17, height: 13 },
-            { origin: [168, 160], width: 17, height: 13 },
-            { origin: [99, 194], width: 17, height: 13 },
-            { origin: [168, 194], width: 17, height: 13 },
-            { origin: [99, 229], width: 17, height: 13 },
-            { origin: [168, 229], width: 17, height: 13 },
+            { origin: [68, 182], width: 25, height: 10 },
+            { origin: [136, 182], width: 26, height: 10 },
+            { origin: [206, 182], width: 25, height: 10 },
+            { origin: [68, 217], width: 25, height: 10 },
+            { origin: [136, 217], width: 26, height: 10 },
+            { origin: [206, 217], width: 25, height: 10 },
 
-            { origin: [73, 176], width: 17, height: 12 },
-            { origin: [141, 176], width: 17, height: 13 },
-            { origin: [210, 176], width: 17, height: 13 },
-            { origin: [73, 211], width: 17, height: 8 },
-            { origin: [141, 211], width: 17, height: 8 },
-            { origin: [210, 211], width: 17, height: 8 },
+            { origin: [111, 157], width: 10, height: 21 },
+            { origin: [111, 190], width: 10, height: 21 },
+            { origin: [111, 225], width: 10, height: 21 },
+            { origin: [183, 157], width: 10, height: 21 },
+            { origin: [183, 190], width: 10, height: 21 },
+            { origin: [183, 225], width: 10, height: 21 },
         ]
     }
 ]
 
+//获取屏幕的宽高
+const { width, height } = Dimensions.get('window');
+
 const box_width = 300
-const scopeLeft = (width - box_width) / 2
-const scopeRight = scopeLeft + box_width
-const scopeTop = ((height - box_width) / 2) + statusBarHeight
-const scopeBottom = scopeTop + box_width
+const scopeLeft = (width - box_width) / 2 + 5
+const scopeRight = scopeLeft + box_width - 5
+let scopeTop = ((height - box_width) / 2) + 5
+
+if (Platform.OS === "android") {
+    scopeTop += statusBarHeight + 5
+}
+const scopeBottom = scopeTop + box_width - 5
 
 
 const HuoYna = (props) => {
@@ -175,9 +185,7 @@ const CopyBook = (props) => {
     const [lastX, setLastX] = useState(0)
 
     // 火焰显示
-    // const [isShowHuoYan, setIsShowHuoYan] = useState(false)
     let isShowHuoYan = useRef(false)
-    // let isShowHuoYan = false
     // 字帖索引
     const ziTieIndex = useRef(0)
     // 所有移动位置
@@ -191,26 +199,6 @@ const CopyBook = (props) => {
 
     // 字帖显示
     const fadeAnim = useRef(new Animated.Value(1)).current;
-
-    // const ziTieFadeOut = () => {
-    //     Animated.sequence([
-    //         Animated.timing(fadeAnim, {
-    //             toValue: 0,
-    //             duration: 500,
-    //             delay: 300,
-    //             useNativeDriver: false,
-    //         }),
-    //     ]).start(nextZiTie)
-    // }
-
-    // const ziTieFadeIn = () => {
-    //     Animated.timing(fadeAnim, {
-    //         toValue: 1,
-    //         duration: 500,
-    //         delay: 500,
-    //         useNativeDriver: false,
-    //     }).start()
-    // }
 
     const currentZiTieArr = word.map((item) => {
         for (let index = 0; index < ziTieArr.length; index++) {
@@ -245,24 +233,22 @@ const CopyBook = (props) => {
                 if (gestureState.numberActiveTouches === 1) {
                     const { locationX, locationY, pageX, pageY } = evt.nativeEvent;
 
-                    if (scopeLeft > pageX) return
-                    if (scopeRight < pageX) return
-                    if (scopeTop > pageY) return
-                    if (scopeBottom < pageY) return
+                    if (pageY > scopeTop && pageY < scopeBottom && pageX > scopeLeft && pageX < scopeRight) {
+                        path.current += ` L${locationX} ${locationY}`
 
-                    path.current += ` L${locationX} ${locationY}`
+                        const detectionArea = ziTie[ziTieIndex.current].detectionArea
 
-                    const detectionArea = ziTie[ziTieIndex.current].detectionArea
-
-                    for (let index = 0; index < detectionArea.length; index++) {
-                        if ((locationX >= detectionArea[index].origin[0] && locationX <= (detectionArea[index].origin[0] + detectionArea[index].width))
-                            && (locationY >= detectionArea[index].origin[1] && locationY <= (detectionArea[index].origin[1] + detectionArea[index].height))) {
-                            detectionArea[index].status = true
+                        for (let index = 0; index < detectionArea.length; index++) {
+                            if ((locationX >= detectionArea[index].origin[0] && locationX <= (detectionArea[index].origin[0] + detectionArea[index].width))
+                                && (locationY >= detectionArea[index].origin[1] && locationY <= (detectionArea[index].origin[1] + detectionArea[index].height))) {
+                                detectionArea[index].status = true
+                            }
                         }
-                    }
 
-                    //更新界面
-                    setLastX(firstX + gestureState.dx)
+                        //更新界面
+                        setLastX(firstX + gestureState.dx)
+                    }
+                    return
                 }
             },
 
@@ -377,7 +363,6 @@ const CopyBook = (props) => {
 
                         {/* 火焰 */}
                         {isShowHuoYan.current ? <HuoYna nextZiTie={nextZiTie} /> : null}
-                        {/* <HuoYna ziTieFadeOut={ziTieFadeOut} isShowHuoYan={isShowHuoYan.current} nextZiTie={nextZiTie} /> */}
                     </Animated.View>
                 </View>
 
