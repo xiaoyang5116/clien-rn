@@ -11,7 +11,7 @@ import {
 } from '../../constants/native-ui';
 
 import { 
-    Animated, Easing, SafeAreaView,
+    Animated, Easing, SafeAreaView, ScrollView,
 } from 'react-native';
 
 import lo from 'lodash';
@@ -20,9 +20,13 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 import { TextButton } from '../../constants/custom-ui';
 import { px2pd } from '../../constants/resolution';
+import PropGrid from '../../components/prop/PropGrid';
+import { Panel } from '../../components/panel';
+import RootView from '../../components/RootView';
 
 const PROGRESS_BAR_WIDTH = px2pd(800);
- 
+
+// 进度条
 const ProgressBar = (props) => {
 
     const translateX = React.useRef(new Animated.Value(-PROGRESS_BAR_WIDTH)).current;
@@ -50,10 +54,72 @@ const ProgressBar = (props) => {
     )
 }
 
+// 药品道具栏
+const PropsBar = (props) => {
+    return (
+        <View style={{ height: 100, backgroundColor: '#beb9b3' }}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} style={{ marginLeft: 10, marginRight: 10, marginTop: 5 }}>
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 10 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 20 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
+            </ScrollView>
+        </View>
+    );
+}
+
+// 突破子界面
+const TuPoSubPage = (props) => {
+    return (
+        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ width: 320, height: 320, backgroundColor: '#eee', borderRadius: 5 }}>
+                <View style={{ alignItems: 'flex-end', marginRight: 5, marginTop: 5 }}>
+                    <AntDesign name='close' size={24} onPress={() => {
+                        if (props.onClose != undefined) {
+                            props.onClose();
+                        }
+                    }} />
+                </View>
+                <View style={{ position: 'absolute', top: 12, width: '100%', alignItems: 'center' }} pointerEvents='none'>
+                    <Text style={{ fontSize: 24, color: '#000' }}>修法突破</Text>
+                </View>
+                <View style={{ width: '100%', marginTop: 50, alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={{ width: 45, height: 45, borderWidth: 2, borderColor: '#333', backgroundColor: '#aaa', borderRadius: 5, alignItems: 'center', justifyContent: 'center' }}>
+                        <AntDesign name='plus' size={24} />
+                    </View>
+                    <View style={{ marginTop: 5 }}><Text>服用返虚丹</Text></View>
+                    <View style={{ marginTop: 20, flexDirection: 'row' }}>
+                        <Text style={{ color: '#000', fontWeight: 'bold' }}>成功率:</Text>
+                        <Text style={{ color: 'red', fontWeight: 'bold', marginLeft: 5 }}>5.00%</Text>
+                    </View>
+                </View>
+                <View style={{ position: 'absolute', bottom: 20, width: '100%', flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                    <TextButton title={'再等等'} />
+                    <TextButton title={'突  破'} />
+                </View>
+            </View>
+        </View>
+    );
+}
+
+// 主界面
 const XiuXingTabPage = (props) => {
 
+    const onTuPo = () => {
+        const key = RootView.add(<TuPoSubPage onClose={() => {
+            RootView.remove(key);
+        }} />);
+    }
+
     return (
-        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <Panel patternId={3}>
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={styles.viewContainer}>
                     <View style={{ width: '90%', alignItems: 'center', marginBottom: 10 }}>
@@ -65,7 +131,7 @@ const XiuXingTabPage = (props) => {
                         }} />
                     </View>
                     <View style={{ width: '90%', marginTop: 10, borderRadius: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: '#677d8e', flexDirection: 'row', flexWrap: 'wrap' }}>
-                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>生命： 1000</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>体力： 1000</Text></View>
                         <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>防御： 1000</Text></View>
                         <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>法力： 1000</Text></View>
                         <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>攻击： 1000</Text></View>
@@ -73,7 +139,7 @@ const XiuXingTabPage = (props) => {
                     <View style={{ marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
                         <FastImage style={{ width: px2pd(607), height: px2pd(785) }} source={require('../../../assets/bg/xiuxing_bg.png')} />
                         <View style={{ position: 'absolute' }}>
-                            <TextButton title={'升级'} disabled={true} />
+                            <TextButton title={'突破'} disabled={false} onPress={onTuPo} />
                         </View>
                     </View>
                     <View style={{ marginTop: 20 }}>
@@ -88,9 +154,14 @@ const XiuXingTabPage = (props) => {
                         <Text style={{ fontSize: 22, color: '#000' }}>修为：</Text>
                         <Text style={{ fontSize: 22, color: '#829358' }}>+600/分钟</Text>
                     </View>
+                    <View style={{ width: '100%', marginTop: 20, backgroundColor: '#565452' }}>
+                        <View style={{ marginLeft: 3, marginRight: 3, marginTop: 5, marginBottom: 5, borderWidth: 1, borderColor: '#494745' }}>
+                            <PropsBar />
+                        </View>
+                    </View>
                 </View>
             </SafeAreaView>
-        </View>
+        </Panel>
     );
 
 }

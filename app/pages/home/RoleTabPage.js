@@ -359,7 +359,7 @@ const detailStyles = StyleSheet.create({
     },
     closeButtonView: {
         position: 'absolute',
-        left: 5,
+        left: -6,
         top: 5,
         zIndex: 100,
     },
