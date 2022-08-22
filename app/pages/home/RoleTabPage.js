@@ -207,15 +207,34 @@ const SimpleInfo = (props) => {
     );
 }
 
-const RoleTabPage = (props) => {
+const FuncButtons = (props) => {
 
+    const openXiuXing = () => {
+    }
+
+    return (
+    <View style={fbStyles.viewContainer}>
+        <View style={fbStyles.box}>
+            <TextButton style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'修行'} onPress={() => openXiuXing()} />
+        </View>
+        <View style={fbStyles.box}>
+            <TextButton disabled={true} style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'解锁'} />
+        </View>
+        <View style={fbStyles.box}>
+            <TextButton disabled={true} style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'解锁'} />
+        </View>
+    </View>
+    );
+}
+
+const RoleTabPage = (props) => {
     return (
         <View style={styles.viewContainer}>
             <SimpleInfo />
             <EquippedSideBar />
+            <FuncButtons />
         </View>
     );
-
 }
 
 const styles = StyleSheet.create({
@@ -371,6 +390,24 @@ const detailStyles = StyleSheet.create({
     attrsDetailText: {
         color: '#000',
     },
+});
+
+const fbStyles = StyleSheet.create({
+    viewContainer: {
+        position: 'absolute', 
+        bottom: 50, 
+        width: '100%', 
+        height: 100, 
+        paddingLeft: 10,
+        justifyContent: 'flex-start', 
+        alignItems: 'center', 
+        flexDirection: 'row',
+    }, 
+    box: {
+        margin: 12, 
+        justifyContent: 'center', 
+        alignItems: 'center',
+    }
 });
 
 export default connect((state) => ({ ...state.AppModel }))(RoleTabPage);

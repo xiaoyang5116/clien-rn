@@ -90,7 +90,7 @@ const WORLD = [
 
 const TAB_BUTTONS = [
   { title: '人物', action: () => { RootNavigation.navigate('Home', { screen: 'Role' }) } },
-  { title: '修为', action: () => { RootNavigation.navigate('Home', { screen: 'XiuWei' }) } },
+  { title: '世界', action: () => { RootNavigation.navigate('Home', { screen: 'World' }) } },
   { title: '探索', action: () => { RootNavigation.navigate('Home', { screen: 'Explore' }) } },
   { title: '城镇', action: () => { RootNavigation.navigate('Home', { screen: 'Town' }) } },
   { title: '收藏', action: () => { RootNavigation.navigate('Home', { screen: 'Collection' }) } },
