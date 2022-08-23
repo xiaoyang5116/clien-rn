@@ -12,13 +12,23 @@ import {
   GetAttrsDataApi 
 } from '../services/GetAttrsDataApi';
 
+import { 
+  GetXiuXingDataApi 
+} from '../services/GetXiuXingDataApi';
+
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
+import Toast from '../components/toast';
 
 export default {
   namespace: 'UserModel',
 
   state: {
+
+    __data: {
+      xiuxingConfig: [], // 修行配置
+    },
+
     sceneId: '',  // 当前场景ID(该状态在异步操作中状态不确定，请使用__sceneId)
     prevSceneId: '',  // 前一个场景ID
     worldId: 0, // 用户当前世界ID
@@ -28,8 +38,8 @@ export default {
     equips: [], // 身上的装备
 
     xiuxingStatus: { // 修行状态
-      value: 108000, // 当前修行值
-      limit: 128000, // 修行上限
+      value: 0, // 当前修行值
+      limit: 0, // 修行上限
     },
     
     xiuxingAttrs: [ // 修行属性
@@ -42,7 +52,9 @@ export default {
 
   effects: {
     
-    *reload({ }, { call, put }) {
+    *reload({ }, { select, call, put }) {
+      const userState = yield select(state => state.UserModel);
+
       const userCache = yield call(LocalStorage.get, LocalCacheKeys.USER_DATA);
       const attrsData = yield call(GetAttrsDataApi);
       const userAttrs = (userCache != null) ? userCache.attrs : [];
@@ -63,16 +75,23 @@ export default {
         }
       });
 
+      // 修行配置
+      const xiuxingConfig = yield call(GetXiuXingDataApi);
+      if (xiuxingConfig != null) {
+        userState.__data.xiuxingConfig.length = 0;
+
+        const sortList = xiuxingConfig.xiuxing.sort((a, b) => a.limit - b.limit);
+        userState.__data.xiuxingConfig.push(...sortList);
+      }
+
       if (userCache != null) {
         yield put(action('updateState')({ ...userCache }));
       } else {
-        yield put(action('updateState')({
-          copper: 0,
-          sceneId: '',
-          prevSceneId: '',
-          worldId: 0,
-          attrs: userAttrs,
-        }));
+        if (userState.__data.xiuxingConfig.length > 0) {
+          const first = userState.__data.xiuxingConfig[0];
+          userState.xiuxingStatus.limit = first.limit;
+        }
+        yield put(action('updateState')({ attrs: userAttrs }));
       }
     },
 
@@ -138,6 +157,43 @@ export default {
       
       // 通知角色属性刷新
       DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
+    },
+
+    // 突破修行值
+    *upgradeXiuXing({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+
+      if (userState.xiuxingStatus.value < userState.xiuxingStatus.limit)
+        return false;
+
+      let nextXiuXing = null;
+      for (let key in userState.__data.xiuxingConfig) {
+        const item = userState.__data.xiuxingConfig[key];
+        if (item.limit > userState.xiuxingStatus.limit) {
+          nextXiuXing = item;
+          break
+        }
+      }
+
+      if (nextXiuXing == null) {
+        Toast.show('修行已满级!');
+        return false;
+      }
+
+      if (lo.random(100) > nextXiuXing.successRate) {
+        Toast.show('突破失败!');
+        return false;
+      }
+
+      userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
+      userState.xiuxingStatus.limit = nextXiuXing.limit;
+
+      yield put(action('updateState')({}));
+      yield put.resolve(action('syncData')({}));
+      
+      // 通知角色属性刷新
+      DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
+      return true;
     },
 
     // 获取合并属性值(装备、修行等)
@@ -248,7 +304,10 @@ export default {
 
     *syncData({ }, { select, call }) {
       const userState = yield select(state => state.UserModel);
-      yield call(LocalStorage.set, LocalCacheKeys.USER_DATA, userState);
+      const serialize = lo.pickBy(userState, (v, k) => {
+        return !lo.isEqual(k, '__data');
+      });
+      yield call(LocalStorage.set, LocalCacheKeys.USER_DATA, serialize);
     },
   },
   
