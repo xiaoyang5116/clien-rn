@@ -190,8 +190,7 @@ const XiuXingTabPage = (props) => {
         return (found != undefined) ? found.value : 0;
     }
 
-    const xiuxingConfig = props.user.__data.xiuxingConfig.find(e => e.limit == props.user.xiuxingStatus.limit);
-    console.debug(xiuxingConfig);
+    const currentXiuXingConfig = props.user.__data.xiuxingConfig.find(e => e.limit == props.user.xiuxingStatus.limit);
 
     return (
         <Panel patternId={3}>
@@ -218,7 +217,7 @@ const XiuXingTabPage = (props) => {
                         </View>
                     </View>
                     <View style={{ marginTop: 20 }}>
-                        <Text style={{ fontSize: 24, color: '#000' }}>返虚期.八重</Text>
+                        <Text style={{ fontSize: 24, color: '#000' }}>{currentXiuXingConfig.title}</Text>
                     </View>
                     <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
                         <View style={{ width: PROGRESS_BAR_WIDTH, height: 40 }}>
@@ -227,7 +226,7 @@ const XiuXingTabPage = (props) => {
                     </View>
                     <View style={{ flexDirection: 'row' , marginTop: 10 }}>
                         <Text style={{ fontSize: 22, color: '#000' }}>修为：</Text>
-                        <Text style={{ fontSize: 22, color: '#829358' }}>+600/分钟</Text>
+                        <Text style={{ fontSize: 22, color: '#829358' }}>+{currentXiuXingConfig.increaseXiuXingPerMinute}/分钟</Text>
                     </View>
                     <View style={{ width: '100%', marginTop: 20, backgroundColor: '#565452' }}>
                         <View style={{ marginLeft: 3, marginRight: 3, marginTop: 5, marginBottom: 5, borderWidth: 1, borderColor: '#494745' }}>

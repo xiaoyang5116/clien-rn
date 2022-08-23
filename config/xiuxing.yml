@@ -106,7 +106,7 @@ xiuxing: [
     ],
 
     # 突破基础成功率
-    successRate: 30,
+    successRate: 5,
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 1000,
@@ -128,7 +128,7 @@ xiuxing: [
     ],
 
     # 突破基础成功率
-    successRate: 1,
+    successRate: 5,
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 2000,

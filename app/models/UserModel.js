@@ -166,6 +166,10 @@ export default {
       if (userState.xiuxingStatus.value < userState.xiuxingStatus.limit)
         return false;
 
+      const currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
+      if (currentXiuXing == undefined)
+        return false;
+
       let nextXiuXing = null;
       for (let key in userState.__data.xiuxingConfig) {
         const item = userState.__data.xiuxingConfig[key];
@@ -180,7 +184,7 @@ export default {
         return false;
       }
 
-      if (lo.random(100) > nextXiuXing.successRate) {
+      if (lo.random(100) > currentXiuXing.successRate) {
         Toast.show('突破失败!');
         return false;
       }
