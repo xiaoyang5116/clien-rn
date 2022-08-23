@@ -19,15 +19,29 @@ export default {
   namespace: 'UserModel',
 
   state: {
-    copper: 0,  // 铜币数量
     sceneId: '',  // 当前场景ID(该状态在异步操作中状态不确定，请使用__sceneId)
     prevSceneId: '',  // 前一个场景ID
     worldId: 0, // 用户当前世界ID
+
+    copper: 0,  // 铜币数量
     attrs: [], // 普通属性（阅读器）
     equips: [], // 身上的装备
+
+    xiuxingStatus: { // 修行状态
+      value: 108000, // 当前修行值
+      limit: 128000, // 修行上限
+    },
+    
+    xiuxingAttrs: [ // 修行属性
+      { key: '体力', value: 0 },
+      { key: '防御', value: 0 },
+      { key: '法力', value: 0 },
+      { key: '攻击', value: 0 },
+    ],
   },
 
   effects: {
+    
     *reload({ }, { call, put }) {
       const userCache = yield call(LocalStorage.get, LocalCacheKeys.USER_DATA);
       const attrsData = yield call(GetAttrsDataApi);
@@ -58,11 +72,11 @@ export default {
           prevSceneId: '',
           worldId: 0,
           attrs: userAttrs,
-          equips: [],
         }));
       }
     },
 
+    // 修改铜币属性
     *alertCopper({ payload }, { put, call, select }) {
       const userState = yield select(state => state.UserModel);
       const value = parseInt(payload.value);
@@ -77,6 +91,7 @@ export default {
       yield put.resolve(action('syncData')({}));
     },
 
+    // 修改阅读器属性
     *alertAttrs({ payload }, { put, call, select }) {
       const userState = yield select(state => state.UserModel);
       
@@ -102,17 +117,61 @@ export default {
       DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
     },
 
+    // 阅读器属性
     *getAttrs({}, { select }) {
       const userState = yield select(state => state.UserModel);
       return userState.attrs;
     },
 
+    // 添加修行值
+    *addXiuXing({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+      const { value } = payload;
+
+      if (value == undefined || value == 0)
+        return
+
+      userState.xiuxingStatus.value += value;
+
+      yield put(action('updateState')({}));
+      yield put.resolve(action('syncData')({}));
+      
+      // 通知角色属性刷新
+      DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
+    },
+
+    // 获取合并属性值(装备、修行等)
+    *getMergeAttrs({}, { select }) {
+      const userState = yield select(state => state.UserModel);
+
+      const all = [];
+      if (lo.isArray(userState.equips) && userState.equips.length > 0) {
+        lo.forEach(userState.equips, (v) => {
+          all.push(...v.affect);
+        });
+      }
+
+      let result = [];
+      all.forEach(e => {
+        const found = result.find(x => lo.isEqual(x.key, e.key));
+        if (found != undefined) {
+          found.value += e.value;
+        } else {
+          result.push({ ...e });
+        }
+      });
+
+      return result;
+    },
+
+    // 穿戴装备
     *addEquip({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
       const { equipId } = payload;
+      
       if (!lo.isNumber(equipId) || equipId <= 0)
         return false;
 
-      const userState = yield select(state => state.UserModel);
       const equipConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: equipId }));
       if (equipConfig == undefined)
         return false;
@@ -139,13 +198,14 @@ export default {
         yield put.resolve(action('syncData')({}));
 
         // 通知角色属性刷新
-        DeviceEventEmitter.emit(EventKeys.USER_EQUIP_UPDATE);
+        DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
         return true;
       }
 
       return false;
     },
 
+    // 移除装备
     *removeEquip({ payload }, { put, select }) {
       const { equipId } = payload;
       if (!lo.isNumber(equipId) || equipId <= 0)
@@ -164,10 +224,11 @@ export default {
       yield put.resolve(action('PropsModel/sendProps')({ propId: equipId, num: 1, quiet: true }));
 
       // 通知角色属性刷新
-      DeviceEventEmitter.emit(EventKeys.USER_EQUIP_UPDATE);
+      DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
       return true;
     },
 
+    // 获取身上的装备
     *getEquipsEntity({}, { put, select }) {
       const userState = yield select(state => state.UserModel);
 

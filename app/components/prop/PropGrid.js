@@ -43,9 +43,6 @@ const styles = StyleSheet.create({
     viewContainer: {
         width: px2pd(120), 
         height: px2pd(120), 
-        marginRight: 10, 
-        marginTop: 15, 
-        marginBottom: 6,
         borderWidth: 1, 
         borderColor: '#ccc', 
         borderRadius: 10, 

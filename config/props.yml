@@ -120,16 +120,44 @@ props: [
    { id:  403, name: '剧情V4', iconId: 4, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], action: { toScene: 'S_00Test01' }, capacity: 100, desc: ' ' },
    { id:  404, name: '剧情V5', iconId: 5, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], action: { dialogs: ['p2'] }, capacity: 100, desc: ' ' },
    { id:  405, name: '剧情V6', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], action: { useProps: '405,1' }, capacity: 100, desc: ' ' },
-   { id:  406, name: '剧情V7', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
+   { id:  406, name: '剧情V7', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
    { id:  407, name: '剧情V8', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
-   { id:  408, name: '剧情V9', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },			
+   { id:  408, name: '剧情V9', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
+
+   # 修行系统专用
+   { id:  440, name: '突破丹', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ' },
+   { id:  450, name: '+1K', iconId: 2, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'],  capacity: 100, desc: ' ', useEffects: [{ xiuxing: 1000 }] },
+   { id:  451, name: '+5K', iconId: 3, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 5000 }] },
+   { id:  452, name: '+10K', iconId: 4, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 10000 }] },
+   { id:  453, name: '+20K', iconId: 5, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 20000 }] },
+   { id:  454, name: '+50K', iconId: 1, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 50000 }] },
 
    # 碎片
    { id:  500, name: '碎片1', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['碎片'], capacity: 100, desc: ' ', composite: { propId: 700, requireNum: 20 } },
    { id:  501, name: '碎片2', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['碎片'], capacity: 100, desc: ' ', composite: { propId: 700, requireNum: 20 } },
    { id:  502, name: '碎片3', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['碎片'], capacity: 100, desc: ' ', composite: { propId: 700, requireNum: 20 } },
-   { id:  700, name: '齿轮', iconId: 3, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '碎片合成的产物' },
-   
+
+   #功法书籍
+   { id:  600, name: '《白城笑话大全》', iconId: 2, num:  1, quality: 2, type: 0, tags: [' '], attrs: ['剧情'], capacity: 100, desc: ' ' },													
+   { id:  601, name: '《思无邪》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
+   { id:  602, name: '《凌云决》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
+   { id:  603, name: '《炼气之道》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
+   { id:  604, name: '《体魄乾坤》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
+   { id:  605, name: '《大荒衍万象》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
+   { id:  606, name: '《生生不息》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
+   { id:  607, name: '《梵苍决》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },
+   { id:  608, name: '符纸', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 101, desc: ' ' },			
+
+  # 碎片合成道具
+  { id:  700, name: '齿轮', iconId: 3, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '碎片合成的产物' },									
+
+   #重要的特殊道具
+   { id:  886, name: '灵石', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
+   { id:  887, name: '铜钱', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
+   { id:  888, name: '黄金', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
+   { id:  889, name: '白银', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+   { id:  890, name: '黄金饰品', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
+
     #草药
    { id:  1000, name: '百草哭', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
    { id:  1001, name: '摄魂草', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
@@ -146,23 +174,4 @@ props: [
    { id:  1012, name: '何首乌', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
    { id:  1013, name: '白术', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
    { id:  1014, name: '丹参', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
-
-   #功法书籍
-   { id:  600, name: '《白城笑话大全》', iconId: 2, num:  1, quality: 2, type: 0, tags: [' '], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  601, name: '《思无邪》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  602, name: '《凌云决》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  603, name: '《炼气之道》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
-   { id:  604, name: '《体魄乾坤》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
-   { id:  605, name: '《大荒衍万象》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
-   { id:  606, name: '《生生不息》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
-   { id:  607, name: '《梵苍决》', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },
-   { id:  608, name: '符纸', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 101, desc: ' ' },												
-
-   #重要的特殊道具
-   { id:  886, name: '灵石', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
-   { id:  887, name: '铜钱', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
-   { id:  888, name: '黄金', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  889, name: '白银', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
-   { id:  890, name: '黄金饰品', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-
 ]

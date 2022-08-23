@@ -24,6 +24,7 @@ import RootView from '../../components/RootView';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import EquippedSideBar from '../../components/equips/EquippedSideBar';
+import XiuXingTabPage from './XiuXingTabPage';
 
 const AttrsPage = (props) => {
     return (
@@ -110,22 +111,16 @@ const SimpleInfo = (props) => {
     const [affects, setAffects] = React.useState([]);
 
     const updateHandler = () => {
-        AppDispath({ type: 'UserModel/getEquipsEntity', payload: { }, cb: (v) => {
+        AppDispath({ type: 'UserModel/getMergeAttrs', payload: { }, cb: (v) => {
             if (!lo.isArray(v))
                 return
-
-            const allAffects = [];
-            v.forEach(e => {
-                allAffects.push(...e.affect);
-            });
-
-            setAffects(allAffects);
+            setAffects(v);
         }});
     }
 
     React.useEffect(() => {
         updateHandler();
-        const listener = DeviceEventEmitter.addListener(EventKeys.USER_EQUIP_UPDATE, () => {
+        const listener = DeviceEventEmitter.addListener(EventKeys.USER_ATTR_UPDATE, () => {
             updateHandler();
         });
         return () => {
@@ -207,15 +202,37 @@ const SimpleInfo = (props) => {
     );
 }
 
-const RoleTabPage = (props) => {
+const FuncButtons = (props) => {
 
+    const openXiuXing = () => {
+        const key = RootView.add(<XiuXingTabPage onClose={() => {
+            RootView.remove(key);
+        }} />)
+    }
+
+    return (
+    <View style={fbStyles.viewContainer}>
+        <View style={fbStyles.box}>
+            <TextButton style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'修行'} onPress={() => openXiuXing()} />
+        </View>
+        <View style={fbStyles.box}>
+            <TextButton disabled={true} style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'解锁'} />
+        </View>
+        <View style={fbStyles.box}>
+            <TextButton disabled={true} style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'解锁'} />
+        </View>
+    </View>
+    );
+}
+
+const RoleTabPage = (props) => {
     return (
         <View style={styles.viewContainer}>
             <SimpleInfo />
             <EquippedSideBar />
+            <FuncButtons />
         </View>
     );
-
 }
 
 const styles = StyleSheet.create({
@@ -336,7 +353,7 @@ const detailStyles = StyleSheet.create({
     },
     closeButtonView: {
         position: 'absolute',
-        left: 5,
+        left: -6,
         top: 5,
         zIndex: 100,
     },
@@ -371,6 +388,24 @@ const detailStyles = StyleSheet.create({
     attrsDetailText: {
         color: '#000',
     },
+});
+
+const fbStyles = StyleSheet.create({
+    viewContainer: {
+        position: 'absolute', 
+        bottom: 50, 
+        width: '100%', 
+        height: 100, 
+        paddingLeft: 10,
+        justifyContent: 'flex-start', 
+        alignItems: 'center', 
+        flexDirection: 'row',
+    }, 
+    box: {
+        margin: 12, 
+        justifyContent: 'center', 
+        alignItems: 'center',
+    }
 });
 
 export default connect((state) => ({ ...state.AppModel }))(RoleTabPage);
