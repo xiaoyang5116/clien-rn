@@ -32,7 +32,7 @@
 [
     {
         animations: [
-            { id: 6, typeId: 8 }
+            { id: 6, typeId: 8 },
             { id: 8, type: "震屏1" }
         ]
     }

@@ -216,7 +216,7 @@
 [
     {
         animations: [
-            { id: 6, typeId: 4 }
+            { id: 6, typeId: 4 },
             { id: 8, type: "震屏1" }
         ]
     }

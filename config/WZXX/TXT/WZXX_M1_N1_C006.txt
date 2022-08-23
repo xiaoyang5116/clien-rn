@@ -160,7 +160,7 @@
 [
     {
         animations: [
-            { id: 6, typeId: 3 }
+            { id: 6, typeId: 3 },
             { id: 8, type: "震屏1" }
         ]
     }

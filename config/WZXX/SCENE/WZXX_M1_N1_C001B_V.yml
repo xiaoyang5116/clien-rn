@@ -39,7 +39,7 @@ scenes: [
         id: 'C001B_EventSTART1', desc: '初始位置，一个分叉路在你眼前', 
         options: [ 
           #第一次进入 
-          { title: '【向左走】',nextChat: 'A3', varsOff: ["v1A","v2A",] }, 
+          { title: '【向左走】',nextChat: 'A3', varsOff: ["v1A","v2A",] },
           { title: '【向右走】',nextChat: 'B1', varsOff: ["v1A","v2A",] }, 
         #   { title: '【DEBUG 到场景外】',toChapter: "WZXX_M1_N1_C001B" },
         #    { title: '【DEBUG 去结局】',dialogs: ['C001B_EventEND1']},
