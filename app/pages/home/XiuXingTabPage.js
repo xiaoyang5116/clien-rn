@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {
+    AppDispath,
     connect,
     StyleSheet,
 } from "../../constants";
@@ -11,7 +12,7 @@ import {
 } from '../../constants/native-ui';
 
 import { 
-    Animated, Easing, SafeAreaView, ScrollView, TouchableWithoutFeedback,
+    Animated, DeviceEventEmitter, Easing, SafeAreaView, ScrollView, TouchableWithoutFeedback,
 } from 'react-native';
 
 import lo from 'lodash';
@@ -57,20 +58,38 @@ const ProgressBar = (props) => {
 
 // 药品道具栏
 const PropsBar = (props) => {
+    const GET_PROPS_CALLBACK = '__@XiuXingPropsBar.getProps';
+
+    const [items, setItems] = React.useState([]);
+
+    const useProp = (e) => {
+        AppDispath({ type: 'PropsModel/use', payload: { propId: e.id, num: 1 }, cb: () => {
+            AppDispath({ type: 'PropsModel/getPropsFromAttr', payload: { attr: '修行丹' }, retmsg: GET_PROPS_CALLBACK });
+        }});
+    }
+
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener(GET_PROPS_CALLBACK, (data) => {
+            const views = [];
+            lo.forEach(data, (v, k) => {
+                views.push(
+                <TouchableWithoutFeedback key={k} onPress={() => useProp(v)}>
+                    <PropGrid prop={v} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                </TouchableWithoutFeedback>
+                );
+            });
+            setItems(views);
+        });
+        AppDispath({ type: 'PropsModel/getPropsFromAttr', payload: { attr: '修行丹' }, retmsg: GET_PROPS_CALLBACK });
+        return () => {
+            listener.remove();
+        }
+    }, []);
+
     return (
         <View style={{ height: 100, backgroundColor: '#beb9b3' }}>
             <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} style={{ marginLeft: 10, marginRight: 10, marginTop: 20 }}>
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 10 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 20 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                {items}
             </ScrollView>
         </View>
     );
@@ -143,6 +162,11 @@ const XiuXingTabPage = (props) => {
         }} />);
     }
 
+    const getXiuXingAttrValue = (key) => {
+        const found = props.user.xiuxingAttrs.find(e => lo.isEqual(e.key, key));
+        return (found != undefined) ? found.value : 0;
+    }
+
     return (
         <Panel patternId={3}>
             <SafeAreaView style={{ flex: 1 }}>
@@ -156,15 +180,15 @@ const XiuXingTabPage = (props) => {
                         }} />
                     </View>
                     <View style={{ width: '90%', marginTop: 10, borderRadius: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: '#677d8e', flexDirection: 'row', flexWrap: 'wrap' }}>
-                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>体力： 1000</Text></View>
-                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>防御： 1000</Text></View>
-                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>法力： 1000</Text></View>
-                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>攻击： 1000</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>体力： {getXiuXingAttrValue('体力')}</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>防御： {getXiuXingAttrValue('防御')}</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>法力： {getXiuXingAttrValue('法力')}</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>攻击： {getXiuXingAttrValue('攻击')}</Text></View>
                     </View>
                     <View style={{ marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
                         <FastImage style={{ width: px2pd(607), height: px2pd(785) }} source={require('../../../assets/bg/xiuxing_bg.png')} />
                         <View style={{ position: 'absolute' }}>
-                            <TextButton title={'突破'} disabled={false} onPress={onTuPo} />
+                            <TextButton title={'突破'} disabled={!(props.user.xiuxingStatus.value >= props.user.xiuxingStatus.limit)} onPress={onTuPo} />
                         </View>
                     </View>
                     <View style={{ marginTop: 20 }}>
@@ -172,7 +196,7 @@ const XiuXingTabPage = (props) => {
                     </View>
                     <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
                         <View style={{ width: PROGRESS_BAR_WIDTH, height: 40 }}>
-                            <ProgressBar value={108650} limit={128650} />
+                            <ProgressBar value={props.user.xiuxingStatus.value} limit={props.user.xiuxingStatus.limit} />
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row' , marginTop: 10 }}>
@@ -201,4 +225,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default connect((state) => ({ ...state.AppModel }))(XiuXingTabPage);
+export default connect((state) => ({ ...state.AppModel, user: { ...state.UserModel } }))(XiuXingTabPage);

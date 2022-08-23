@@ -28,7 +28,7 @@ const PropGrid = (props) => {
             props.onClick();
         }
       }}>
-        <View style={[props.style, styles.viewContainer]} pointerEvents='none'>
+        <View style={[props.style, styles.viewContainer]}>
           {propImage} 
           {propNum}
           <View style={{ position: 'absolute', bottom: -20, width: 50, justifyContent: 'center', alignItems: 'center' }}>

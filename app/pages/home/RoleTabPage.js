@@ -111,16 +111,10 @@ const SimpleInfo = (props) => {
     const [affects, setAffects] = React.useState([]);
 
     const updateHandler = () => {
-        AppDispath({ type: 'UserModel/getEquipsEntity', payload: { }, cb: (v) => {
+        AppDispath({ type: 'UserModel/getMergeAttrs', payload: { }, cb: (v) => {
             if (!lo.isArray(v))
                 return
-
-            const allAffects = [];
-            v.forEach(e => {
-                allAffects.push(...e.affect);
-            });
-
-            setAffects(allAffects);
+            setAffects(v);
         }});
     }
 
