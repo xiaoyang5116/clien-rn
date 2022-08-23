@@ -11,7 +11,7 @@ import {
 } from '../../constants/native-ui';
 
 import { 
-    Animated, Easing, SafeAreaView, ScrollView,
+    Animated, Easing, SafeAreaView, ScrollView, TouchableWithoutFeedback,
 } from 'react-native';
 
 import lo from 'lodash';
@@ -23,6 +23,7 @@ import { px2pd } from '../../constants/resolution';
 import PropGrid from '../../components/prop/PropGrid';
 import { Panel } from '../../components/panel';
 import RootView from '../../components/RootView';
+import PropSelector from '../../components/prop/PropSelector';
 
 const PROGRESS_BAR_WIDTH = px2pd(800);
 
@@ -75,6 +76,28 @@ const PropsBar = (props) => {
     );
 }
 
+const PropPlaceHolder = (props) => {
+    const refProp = React.useRef(null);
+    const [prop, setProp] = React.useState(<AntDesign name='plus' size={24} />);
+
+    const onSelectedProp = ({ e }) => {
+        setProp(<PropGrid prop={e} />);
+        refProp.current = e;
+    }
+    const chooseProp = () => {
+        const key = RootView.add(<PropSelector attrFilter={'修行'} onSelected={onSelectedProp} onClose={() => {
+            RootView.remove(key);
+        }} />);
+    }
+    return (
+        <TouchableWithoutFeedback onPress={chooseProp}>
+            <View style={{ width: 45, height: 45, borderWidth: 2, borderColor: '#333', backgroundColor: '#aaa', borderRadius: 5, alignItems: 'center', justifyContent: 'center' }}>
+                {prop}
+            </View>
+        </TouchableWithoutFeedback>
+    );
+}
+
 // 突破子界面
 const TuPoSubPage = (props) => {
     return (
@@ -91,17 +114,19 @@ const TuPoSubPage = (props) => {
                     <Text style={{ fontSize: 24, color: '#000' }}>修法突破</Text>
                 </View>
                 <View style={{ width: '100%', marginTop: 50, alignItems: 'center', justifyContent: 'center' }}>
-                    <View style={{ width: 45, height: 45, borderWidth: 2, borderColor: '#333', backgroundColor: '#aaa', borderRadius: 5, alignItems: 'center', justifyContent: 'center' }}>
-                        <AntDesign name='plus' size={24} />
-                    </View>
-                    <View style={{ marginTop: 5 }}><Text>服用返虚丹</Text></View>
+                    <PropPlaceHolder />
+                    <View style={{ marginTop: 5 }}><Text>服用突破丹</Text></View>
                     <View style={{ marginTop: 20, flexDirection: 'row' }}>
                         <Text style={{ color: '#000', fontWeight: 'bold' }}>成功率:</Text>
                         <Text style={{ color: 'red', fontWeight: 'bold', marginLeft: 5 }}>5.00%</Text>
                     </View>
                 </View>
                 <View style={{ position: 'absolute', bottom: 20, width: '100%', flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                    <TextButton title={'再等等'} />
+                    <TextButton title={'再等等'} onPress={() => {
+                        if (props.onClose != undefined) {
+                            props.onClose();
+                        }
+                    }} />
                     <TextButton title={'突  破'} />
                 </View>
             </View>

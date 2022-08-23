@@ -124,6 +124,8 @@ props: [
    { id:  407, name: '剧情V8', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
    { id:  408, name: '剧情V9', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
 
+   { id:  440, name: '突破丹', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ' },
+
    # 碎片
    { id:  500, name: '碎片1', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['碎片'], capacity: 100, desc: ' ', composite: { propId: 700, requireNum: 20 } },
    { id:  501, name: '碎片2', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['碎片'], capacity: 100, desc: ' ', composite: { propId: 700, requireNum: 20 } },
