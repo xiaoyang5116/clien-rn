@@ -191,6 +191,12 @@ export default {
 
       userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
       userState.xiuxingStatus.limit = nextXiuXing.limit;
+      currentXiuXing.attrs.forEach(e => {
+        const found = userState.xiuxingAttrs.find(x => lo.isEqual(x.key, e.key));
+        if (found != undefined) {
+          found.value = e.value;
+        }
+      });
 
       yield put(action('updateState')({}));
       yield put.resolve(action('syncData')({}));
@@ -205,9 +211,24 @@ export default {
       const userState = yield select(state => state.UserModel);
 
       const all = [];
+
+      // 装备
       if (lo.isArray(userState.equips) && userState.equips.length > 0) {
         lo.forEach(userState.equips, (v) => {
           all.push(...v.affect);
+        });
+      }
+
+      // 修行
+      if (lo.isArray(userState.xiuxingAttrs) && userState.xiuxingAttrs.length > 0) {
+        lo.forEach(userState.xiuxingAttrs, (v) => {
+          let key = v.key;
+          if (lo.isEqual(key, '防御')) {
+            key = '普通防御';
+          } else if (lo.isEqual(key, '攻击')) {
+            key = '普通攻击';
+          }
+          all.push({ key: key, value: v.value });
         });
       }
 
