@@ -59,18 +59,18 @@ const ProgressBar = (props) => {
 const PropsBar = (props) => {
     return (
         <View style={{ height: 100, backgroundColor: '#beb9b3' }}>
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} style={{ marginLeft: 10, marginRight: 10, marginTop: 5 }}>
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 10 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 20 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
-                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} labelStyle={{ color: '#000' }} />
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} style={{ marginLeft: 10, marginRight: 10, marginTop: 20 }}>
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 10 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 20 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                <PropGrid prop={{ iconId: 1, name: 'XXX', num: 30 }} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
             </ScrollView>
         </View>
     );
