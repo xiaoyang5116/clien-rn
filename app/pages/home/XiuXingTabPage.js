@@ -179,6 +179,10 @@ const TuPoSubPage = (props) => {
 // 主界面
 const XiuXingTabPage = (props) => {
 
+    React.useEffect(() => {
+        AppDispath({ type: 'UserModel/checkXiuXingOnlineAddValue', payload: {} });
+    }, []);
+
     const onTuPo = () => {
         const key = RootView.add(<TuPoSubPage onClose={() => {
             RootView.remove(key);

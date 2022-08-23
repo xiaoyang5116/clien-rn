@@ -19,6 +19,7 @@ import {
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 import Toast from '../components/toast';
+import * as DateTime from '../utils/DateTimeUtils';
 
 export default {
   namespace: 'UserModel',
@@ -40,6 +41,7 @@ export default {
     xiuxingStatus: { // 修行状态
       value: 0, // 当前修行值
       limit: 0, // 修行上限
+      lastOnlineTime: 0, // 在线修为时间
     },
     
     xiuxingAttrs: [ // 修行属性
@@ -82,6 +84,7 @@ export default {
 
         const sortList = xiuxingConfig.xiuxing.sort((a, b) => a.limit - b.limit);
         userState.__data.xiuxingConfig.push(...sortList);
+        userState.xiuxingStatus.lastOnlineTime = DateTime.now();
       }
 
       if (userCache != null) {
@@ -204,6 +207,29 @@ export default {
       // 通知角色属性刷新
       DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
       return true;
+    },
+
+    // 检测在线修行增加值
+    *checkXiuXingOnlineAddValue({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+      const currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
+      if (currentXiuXing == undefined)
+        return;
+
+      const diffMillis = DateTime.now() - userState.xiuxingStatus.lastOnlineTime;
+      const minutes = Math.floor(diffMillis / 1000 / 60);
+      if (minutes > 0) {
+        const addXiuXing = minutes * currentXiuXing.increaseXiuXingPerMinute;
+        userState.xiuxingStatus.value += addXiuXing;
+        userState.xiuxingStatus.lastOnlineTime = DateTime.now();
+
+        yield put(action('updateState')({}));
+        yield put.resolve(action('syncData')({}));
+        
+        // 通知角色属性刷新
+        DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
+        Toast.show(`获得在线修为${addXiuXing}`);
+      }
     },
 
     // 获取合并属性值(装备、修行等)
