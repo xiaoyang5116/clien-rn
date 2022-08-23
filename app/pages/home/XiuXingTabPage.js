@@ -25,6 +25,7 @@ import PropGrid from '../../components/prop/PropGrid';
 import { Panel } from '../../components/panel';
 import RootView from '../../components/RootView';
 import PropSelector from '../../components/prop/PropSelector';
+import Toast from '../../components/toast';
 
 const PROGRESS_BAR_WIDTH = px2pd(800);
 
@@ -46,11 +47,13 @@ const ProgressBar = (props) => {
         }).start();
     })
 
+    const percent = parseFloat(Number((props.value/props.limit)*100).toFixed(2));
+
     return (
         <View style={{ width: '100%', backgroundColor: '#3f3e3a', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', borderWidth: 3, borderColor: '#000', borderRadius: 3 }}>
             <Animated.View style={{ width: '100%', height: 35, backgroundColor: '#4d6daf', transform: [{ translateX: translateX }] }} />
             <View style={{ position: 'absolute' }}>
-                <Text style={{ color: '#fff', fontSize: 20 }}>{props.value} / {props.limit}</Text>
+                <Text style={{ color: '#fff', fontSize: 20 }}>{props.value} / {props.limit} ({percent}%)</Text>
             </View>
         </View>
     )
@@ -119,6 +122,26 @@ const PropPlaceHolder = (props) => {
 
 // 突破子界面
 const TuPoSubPage = (props) => {
+    const TUPO_CALLBACK = '__@TuPoSubPage.cb';
+
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener(TUPO_CALLBACK, (v) => {
+            if (v) {
+                Toast.show('突破成功！');
+            }
+            if (props.onClose != undefined) {
+                props.onClose();
+            }
+        });
+        return () => {
+            listener.remove();
+        }
+    }, []);
+
+    const onTuPo = () => {
+        AppDispath({ type: 'UserModel/upgradeXiuXing', payload: {}, retmsg: TUPO_CALLBACK });
+    }
+
     return (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' }}>
             <View style={{ width: 320, height: 320, backgroundColor: '#eee', borderRadius: 5 }}>
@@ -146,7 +169,7 @@ const TuPoSubPage = (props) => {
                             props.onClose();
                         }
                     }} />
-                    <TextButton title={'突  破'} />
+                    <TextButton title={'突  破'} onPress={() => onTuPo()} />
                 </View>
             </View>
         </View>
@@ -166,6 +189,9 @@ const XiuXingTabPage = (props) => {
         const found = props.user.xiuxingAttrs.find(e => lo.isEqual(e.key, key));
         return (found != undefined) ? found.value : 0;
     }
+
+    const xiuxingConfig = props.user.__data.xiuxingConfig.find(e => e.limit == props.user.xiuxingStatus.limit);
+    console.debug(xiuxingConfig);
 
     return (
         <Panel patternId={3}>
@@ -216,13 +242,11 @@ const XiuXingTabPage = (props) => {
 }
 
 const styles = StyleSheet.create({
-
     viewContainer: {
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
-
 });
 
 export default connect((state) => ({ ...state.AppModel, user: { ...state.UserModel } }))(XiuXingTabPage);
