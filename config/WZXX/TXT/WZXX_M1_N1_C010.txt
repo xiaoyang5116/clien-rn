@@ -24,7 +24,7 @@
 [
     {
         animations: [
-            { id: 6, typeId: 5 }
+            { id: 6, typeId: 5 },
             { id: 8, type: "震屏1" }
         ]
     }

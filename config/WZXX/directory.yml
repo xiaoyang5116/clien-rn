@@ -103,7 +103,7 @@ directory: [
 
          { point: [0, -10], title: '第二章 成功见到母亲',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N9]' ,
-        toChapter: 'WZXX_M1_N1_C002_[N8]', links: [[0, -12], ], 
+        toChapter: 'WZXX_M1_N1_C002_[N9]', links: [[0, -12], ], 
         },
 
          { point: [0, -11], title: '第二章 书房',
@@ -126,15 +126,16 @@ directory: [
         toChapter: 'WZXX_M1_N1_C003_[N3]', links: [[-1, -15],[1, -15], ] 
         },
 
+        { point: [1, -15], title: '第四章 灵修界',
+        #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N1]' ,
+        toChapter: 'WZXX_M1_N1_C004_[N1]', links: [[-1, -15],[0, -16]]
+        },
+
         { point: [-1, -15], title: '第四章 打斗开始',
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N2]' ,
         toChapter: 'WZXX_M1_N1_C004_[N2]', links: [[1, -15],[0, -16]],
         },
 
-        { point: [1, -15], title: '第四章 灵修界',
-        #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N1]' ,
-        toChapter: 'WZXX_M1_N1_C004_[N1]', links: [[-1, -15],[0, -16]]
-        },
 
         { point: [0, -16], title: '第五章 陶老', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C005' ,
