@@ -28,6 +28,7 @@ export default {
   },
 
   effects: {
+    
     *reload({ }, { call, put }) {
       const userCache = yield call(LocalStorage.get, LocalCacheKeys.USER_DATA);
       const attrsData = yield call(GetAttrsDataApi);
@@ -108,11 +109,12 @@ export default {
     },
 
     *addEquip({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
       const { equipId } = payload;
+      
       if (!lo.isNumber(equipId) || equipId <= 0)
         return false;
 
-      const userState = yield select(state => state.UserModel);
       const equipConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: equipId }));
       if (equipConfig == undefined)
         return false;
@@ -139,7 +141,7 @@ export default {
         yield put.resolve(action('syncData')({}));
 
         // 通知角色属性刷新
-        DeviceEventEmitter.emit(EventKeys.USER_EQUIP_UPDATE);
+        DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
         return true;
       }
 
@@ -164,7 +166,7 @@ export default {
       yield put.resolve(action('PropsModel/sendProps')({ propId: equipId, num: 1, quiet: true }));
 
       // 通知角色属性刷新
-      DeviceEventEmitter.emit(EventKeys.USER_EQUIP_UPDATE);
+      DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
       return true;
     },
 

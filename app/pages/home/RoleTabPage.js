@@ -126,7 +126,7 @@ const SimpleInfo = (props) => {
 
     React.useEffect(() => {
         updateHandler();
-        const listener = DeviceEventEmitter.addListener(EventKeys.USER_EQUIP_UPDATE, () => {
+        const listener = DeviceEventEmitter.addListener(EventKeys.USER_ATTR_UPDATE, () => {
             updateHandler();
         });
         return () => {
