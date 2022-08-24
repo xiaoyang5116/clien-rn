@@ -1,0 +1,12 @@
+# ===========================================
+# 丹方配置
+# stuffs: 原材料
+# props: 辅助材料
+# targets: 目标道具
+# time: 所需时间(秒)
+# ===========================================
+
+rules: [
+  { id: 1 , name: '突破丹', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 1000, num: 1 },{ id: 1001, num: 1 }], props: [{id: 440, num: 1}], targets: [{ id: 440, num: 1, rate: 80 },{ id: 440, num: 1, rate: 20 }], time: 100, desc: '突破练气期的最佳丹药' },
+  { id: 2 , name: '修行丹', tags: [], attrs: ['材料'], quality: 3, stuffs: [{ id: 1003, num: 20 },{ id: 1004, num: 20 }], props: [{id: 450, num: 1}], targets: [{ id: 450, num: 1, rate: 80 },{ id: 451, num: 1, rate: 20 }], time: 7260, desc: '加快修炼速度' },
+]

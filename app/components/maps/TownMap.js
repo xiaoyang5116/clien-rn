@@ -21,6 +21,7 @@ import { PlantPage } from '../plant';
 import { ComposeUtils } from '../../pages/home/ComposePage';
 import ShopsUtils from '../../utils/ShopsUtils';
 import LotteryUtils from '../../utils/LotteryUtils';
+import AlchemyRoomModal from '../alchemyRoom';
 
 const MAP_DATA = [
     {
@@ -106,6 +107,9 @@ const EntryButton = (props) => {
                             break;
                         case 'XunBao':
                             LotteryUtils.show();
+                            break;
+                        case 'LianDanFang':
+                            AlchemyRoomModal.show();
                             break;
                     }
                     DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
