@@ -170,6 +170,7 @@ export default {
     // 突破修行值
     *upgradeXiuXing({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
+      const { prop } = payload;
 
       if (userState.xiuxingStatus.value < userState.xiuxingStatus.limit)
         return false;
@@ -192,8 +193,16 @@ export default {
         return false;
       }
 
+      let propSuccessRate = 0;
+      if (prop != undefined && prop != null) {
+        const result = yield put.resolve(action('PropsModel/reduce')({ propsId: [ prop.id ], num: 1, mode: 1 }));
+        if (result) {
+          propSuccessRate = prop.incSuccessRate;
+        }
+      }
+
       let success = true;
-      if (lo.random(100) <= currentXiuXing.successRate) {
+      if (lo.random(100) <= (currentXiuXing.successRate + propSuccessRate)) {
         userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
         userState.xiuxingStatus.limit = nextXiuXing.limit;
         currentXiuXing.attrs.forEach(e => {

@@ -125,12 +125,14 @@ props: [
    { id:  408, name: '剧情V9', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
 
    # 修行系统专用
-   { id:  440, name: '突破丹', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ' },
-   { id:  450, name: '修行丹', iconId: 2, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'],  capacity: 100, desc: ' ', useEffects: [{ xiuxing: 1000 }] },
-   { id:  451, name: '修行丹', iconId: 3, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 5000 }] },
-   { id:  452, name: '修行丹', iconId: 4, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 10000 }] },
-   { id:  453, name: '修行丹', iconId: 5, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 20000 }] },
-   { id:  454, name: '修行丹', iconId: 1, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 50000 }] },
+   { id:  440, name: '突破丹.LV1', iconId: 2, num:  10, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ', incSuccessRate: 10 },
+   { id:  441, name: '突破丹.LV2', iconId: 2, num:  10, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ', incSuccessRate: 20 },
+   { id:  442, name: '突破丹.LV3', iconId: 2, num:  10, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ', incSuccessRate: 30 },
+   { id:  450, name: '金行丹', iconId: 2, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'],  capacity: 100, desc: ' ', useEffects: [{ xiuxing: 1000 }] },
+   { id:  451, name: '木行丹', iconId: 3, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 5000 }] },
+   { id:  452, name: '水行丹', iconId: 4, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 10000 }] },
+   { id:  453, name: '火行丹', iconId: 5, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 20000 }] },
+   { id:  454, name: '土行丹', iconId: 1, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 50000 }] },
 
    # 碎片
    { id:  500, name: '碎片1', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['碎片'], capacity: 100, desc: ' ', composite: { propId: 700, requireNum: 20 } },
