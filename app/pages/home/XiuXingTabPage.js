@@ -26,6 +26,7 @@ import { Panel } from '../../components/panel';
 import RootView from '../../components/RootView';
 import PropSelector from '../../components/prop/PropSelector';
 import Toast from '../../components/toast';
+import * as DateTime from '../../utils/DateTimeUtils';
 
 const PROGRESS_BAR_WIDTH = px2pd(800);
 
@@ -126,9 +127,6 @@ const TuPoSubPage = (props) => {
 
     React.useEffect(() => {
         const listener = DeviceEventEmitter.addListener(TUPO_CALLBACK, (v) => {
-            if (v) {
-                Toast.show('突破成功！');
-            }
             if (props.onClose != undefined) {
                 props.onClose();
             }
@@ -180,7 +178,7 @@ const TuPoSubPage = (props) => {
 const XiuXingTabPage = (props) => {
 
     React.useEffect(() => {
-        AppDispath({ type: 'UserModel/checkXiuXingOnlineAddValue', payload: {} });
+        AppDispath({ type: 'UserModel/checkXiuXing', payload: {} });
     }, []);
 
     const onTuPo = () => {
@@ -195,6 +193,7 @@ const XiuXingTabPage = (props) => {
     }
 
     const currentXiuXingConfig = props.user.__data.xiuxingConfig.find(e => e.limit == props.user.xiuxingStatus.limit);
+    const cdForbiden = (props.user.xiuxingStatus.cdTime > 0 && DateTime.now() < props.user.xiuxingStatus.cdTime);
 
     return (
         <Panel patternId={3}>
@@ -217,8 +216,17 @@ const XiuXingTabPage = (props) => {
                     <View style={{ marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
                         <FastImage style={{ width: px2pd(607), height: px2pd(785) }} source={require('../../../assets/bg/xiuxing_bg.png')} />
                         <View style={{ position: 'absolute' }}>
-                            <TextButton title={'突破'} disabled={!(props.user.xiuxingStatus.value >= props.user.xiuxingStatus.limit)} onPress={onTuPo} />
+                            <TextButton title={'突破'} disabled={((props.user.xiuxingStatus.value < props.user.xiuxingStatus.limit) || cdForbiden)} onPress={onTuPo} />
                         </View>
+                        {
+                        (cdForbiden)
+                        ? (
+                        <View style={{ position: 'absolute', bottom: 50 }}>
+                            <Text style={{ color: '#829358', fontSize: 14, fontWeight: 'bold' }}>等待时间: {DateTime.format(props.user.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
+                        </View>
+                        )
+                        : <></>
+                        }
                     </View>
                     <View style={{ marginTop: 20 }}>
                         <Text style={{ fontSize: 24, color: '#000' }}>{currentXiuXingConfig.title}</Text>

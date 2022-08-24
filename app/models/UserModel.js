@@ -42,6 +42,7 @@ export default {
       value: 0, // 当前修行值
       limit: 0, // 修行上限
       lastOnlineTime: 0, // 在线修为时间
+      cdTime: 0,  // 突破失败后等待时间
     },
     
     xiuxingAttrs: [ // 修行属性
@@ -84,15 +85,19 @@ export default {
 
         const sortList = xiuxingConfig.xiuxing.sort((a, b) => a.limit - b.limit);
         userState.__data.xiuxingConfig.push(...sortList);
-        userState.xiuxingStatus.lastOnlineTime = DateTime.now();
       }
 
       if (userCache != null) {
+        if (userCache.xiuxingStatus != undefined) {
+          // 缓存内必要数据重置
+          userCache.xiuxingStatus.lastOnlineTime = DateTime.now();
+        }
         yield put(action('updateState')({ ...userCache }));
       } else {
         if (userState.__data.xiuxingConfig.length > 0) {
           const first = userState.__data.xiuxingConfig[0];
           userState.xiuxingStatus.limit = first.limit;
+          userState.xiuxingStatus.lastOnlineTime = DateTime.now();
         }
         yield put(action('updateState')({ attrs: userAttrs }));
       }
@@ -187,20 +192,28 @@ export default {
         return false;
       }
 
-      if (lo.random(100) > currentXiuXing.successRate) {
-        Toast.show('突破失败!');
-        return false;
+      let success = true;
+      if (lo.random(100) <= currentXiuXing.successRate) {
+        userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
+        userState.xiuxingStatus.limit = nextXiuXing.limit;
+        currentXiuXing.attrs.forEach(e => {
+          const found = userState.xiuxingAttrs.find(x => lo.isEqual(x.key, e.key));
+          if (found != undefined) {
+            found.value = e.value;
+          }
+        });
+      } else {
+        userState.xiuxingStatus.cdTime = DateTime.now() + (currentXiuXing.failCDTime * 1000);
+        success = false;
       }
 
-      userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
-      userState.xiuxingStatus.limit = nextXiuXing.limit;
-      currentXiuXing.attrs.forEach(e => {
-        const found = userState.xiuxingAttrs.find(x => lo.isEqual(x.key, e.key));
-        if (found != undefined) {
-          found.value = e.value;
-        }
-      });
+      if (success) {
+        Toast.show('突破成功!');
+      } else {
+        Toast.show('突破失败');
+      }
 
+      //
       yield put(action('updateState')({}));
       yield put.resolve(action('syncData')({}));
       
@@ -209,8 +222,8 @@ export default {
       return true;
     },
 
-    // 检测在线修行增加值
-    *checkXiuXingOnlineAddValue({ payload }, { put, select }) {
+    // 检测在线修行
+    *checkXiuXing({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
       if (currentXiuXing == undefined)
