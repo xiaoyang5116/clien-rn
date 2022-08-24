@@ -1060,7 +1060,7 @@ scenes: [
         options: [ 
         { title: '【四处逛逛】', dialogs: ['Screen10'] }, 
         { title: '【去买簪子】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
-         { title: '【去森林采集】', andVarsValue: ['@props_350 > 0'], },
+        { title: '【去森林采集】', andVarsValue: ['@props_350 > 0'], },
         # { title: '【小院】',toScene: 'C000A_V_MAP_-3_-1'},
         # { title: '【西市三街】',toScene: 'C000A_V_MAP_-2_-1'},
         # { title: '【路口】',toScene: 'C000A_V_MAP_-2_-3'},
@@ -1243,7 +1243,7 @@ scenes: [
 
           { key: 'P3', content: ['“我要住店。”李森炎道。','“好嘞，公子要住多少钱一晚的？”',
           '“……”','“就住个一百文的吧……”',],
-          btn: [{title: '住店（-100文）',tokey: "P4",},]},
+          btn: [{title: '住店',tokey: "P4",},]},
 
           { key: 'P4', content: ['这一百文的厢房，还没有家里住的舒服。','下次可再也不来了',
           '痛失一百文，离开',],
@@ -1426,7 +1426,7 @@ scenes: [
         id: 'C1', desc: "街道来往车马行人都井然有序,\n不过却少了一些人气",
         options: [ 
         { title: '【逛一会儿】', nextChat: 'C2'},   
-         { title: '【商铺】',toScene: 'C000A_V_MAP_3_-1'},
+        { title: '【商铺】',toScene: 'C000A_V_MAP_3_-1'},
          # { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
         # { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
         # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
@@ -1435,7 +1435,7 @@ scenes: [
         ],
       }, 
       { 
-        id: 'C2', desc: "这条街有很多杂耍,\n李森炎见惯了这种东西", 
+        id: 'C2', desc: "这条街有很多杂耍\n李森炎见惯了这种东西", 
         options: [ 
          { title: '没什么稀奇，离开', nextChat: 'C1' }, 
         ],

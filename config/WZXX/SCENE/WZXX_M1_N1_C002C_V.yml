@@ -123,7 +123,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002C_V7', desc: '二穿', 
         options: [ 
-         { title: '【发生什么事了】', animations: { id: 11, data: { worldId: '灵修界', desc: '突然，眼前一变，周围的景色完全不同', toChapter: 'WZXX_M1_N1_C004_[N2]' } } }, 
+         { title: '【发生什么事了】', animations: { id: 11, data: { worldId: '灵修界', desc: '突然，眼前一变，周围的景色完全不同', toChapter: 'WZXX_M1_N1_C004_[N1]' } } }, 
         ],
       },
 
@@ -131,19 +131,19 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002C_V8', desc: '打斗', 
         options: [ 
-          { title: "【可……这里是什么鬼地方】",toChapter: "WZXX_M1_N1_C005_[N1]"  },
+          { title: "【可……这里是什么鬼地方】",toChapter: "WZXX_M1_N1_C005"  },
         ],
       },
       { 
         id: 'WZXX_M1_N1_C002C_V9', desc: '陶老', 
         options: [ 
-          { title: "【他们是谁？为什么愿意帮他】",toChapter: "WZXX_M1_N1_C006_[N1]"  },
+          { title: "【他们是谁？为什么愿意帮他】",toChapter: "WZXX_M1_N1_C006"  },
         ],
       },
       { 
         id: 'WZXX_M1_N1_C002C_V10', desc: '雪落', 
         options: [ 
-          { title: "【啊啊啊啊啊】",toChapter: "WZXX_M1_N1_C007_[N1]"  },
+          { title: "【啊啊啊啊啊】",toChapter: "WZXX_M1_N1_C007"  },
         ],
       },
 
