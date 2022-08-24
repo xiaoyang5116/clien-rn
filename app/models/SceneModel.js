@@ -85,6 +85,11 @@ class PropertyActionBuilder {
       allActions.push({ id: "__attrs_{0}".format(payload.alertAttrs), cmd: 'attrs', params: payload.alertAttrs });
     }
 
+    // 生成角色修行值修改动作
+    if (payload.alertXiuXing != undefined && lo.isNumber(payload.alertXiuXing)) {
+      allActions.push({ id: "__xiuxing_{0}".format(payload.alertXiuXing), cmd: 'xiuxing', params: payload.alertXiuXing });
+    }
+
     // 生成世界时间修改动作
     if (payload.alertWorldTime != undefined && typeof(payload.alertWorldTime) == 'string') {
       allActions.push({ id: "__wtime_{0}".format(payload.alertWorldTime), cmd: 'wtime', params: payload.alertWorldTime });
@@ -234,6 +239,7 @@ const ACTIONS_MAP = [
   { cmd: 'delay',         handler: '__onDelayCommand' },
   { cmd: 'copper',        handler: '__onCopperCommand' },
   { cmd: 'attrs',         handler: '__onAttrsCommand' },
+  { cmd: 'xiuxing',       handler: '__onXiuXingCommand' },
   { cmd: 'wtime',         handler: '__onWorldTimeCommand' },
   { cmd: 'var',           handler: '__onVarCommand' },
   { cmd: 'useProps',      handler: '__onUsePropsCommand' },
@@ -622,6 +628,15 @@ export default {
       });
 
       yield put.resolve(action('UserModel/alertAttrs')(affects));
+    },
+
+    *__onXiuXingCommand({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+      const alertValue = parseInt(payload.params);
+
+      if (alertValue != 0) {
+        yield put.resolve(action('UserModel/addXiuXing')({ value: alertValue }));
+      }
     },
 
     *__onWorldTimeCommand({ payload }, { put, select }) {
