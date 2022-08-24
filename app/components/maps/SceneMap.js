@@ -9,6 +9,7 @@ import {
 
 import {
   Animated,
+  DeviceEventEmitter,
   PanResponder,
 } from 'react-native';
 
@@ -21,8 +22,8 @@ import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
 import { getFixedWidthScale, px2pd } from '../../constants/resolution';
 import Easing from 'react-native/Libraries/Animated/Easing';
+import LeiDaAnimation from '../../components/effects/LeiDaAnimation';
 import Toast from '../toast';
-import SpriteSheet from '../SpriteSheet';
 
 const WIN_SIZE = getWindowSize();
 
@@ -78,37 +79,30 @@ const getLineConfig = (p1, p2) => {
 }
 
 const CentPointAnimation = (props) => {
-  const sheet = React.createRef(null);
+  const opacity = React.useRef(new Animated.Value(0)).current;
 
   React.useEffect(() => {
-    const play = type => {
-      sheet.current.play({
-        type,
-        fps: Number(18),
-        resetAfterFinish: false,
-        loop: true,
-      });
-    };
-    play('walk');
+    const listener = DeviceEventEmitter.addListener('__@CentPointAnimation.swith', (status) => {
+      if (lo.isEqual(status, 'ON')) {
+        opacity.setValue(1);
+      } else if (lo.isEqual(status, 'OFF')) {
+        opacity.setValue(0);
+      }
+    });
+    return () => {
+      listener.remove();
+    }
   }, []);
 
   return (
-  <View style={{ position: 'absolute', width: 50, height: 50 }}>
-    <SpriteSheet
-      ref={ref => (sheet.current = ref)}
-      source={require('../../../assets/animations/flower_effect_1.png')}
-      columns={8}
-      rows={6}
-      frameWidth={200}
-      frameHeight={200}
-      imageStyle={{}}
-      viewStyle={{ left: -74, top: -74, transform: [{ scale: getFixedWidthScale() }] }}
-      animations={{
-        walk: lo.range(48),
-      }}
-    />
-  </View>
+  <Animated.View style={{ position: 'absolute', transform: [{ scale: getFixedWidthScale() }], zIndex: -10, opacity: opacity }}>
+    <LeiDaAnimation />
+  </Animated.View>
   );
+}
+
+const setCentPointAnimationStatus = (status) => {
+  DeviceEventEmitter.emit('__@CentPointAnimation.swith', status);
 }
 
 const SceneMap = (props) => {
@@ -224,6 +218,7 @@ const SceneMap = (props) => {
         setBigPointerEvent('auto');
       }
     });
+    setCentPointAnimationStatus('ON');
   }
 
   // 大地图最小化
@@ -239,6 +234,7 @@ const SceneMap = (props) => {
         setBigPointerEvent('none');
       }
     });
+    setCentPointAnimationStatus('OFF');
   }
 
   // 大地图缩小
@@ -348,8 +344,12 @@ const SceneMap = (props) => {
       ? require('../../../assets/button/scene_map_button.png') 
       : require('../../../assets/button/scene_map_button2.png');
 
+    const borderEffect = isCenterPoint 
+      ? { borderWidth: 1.5, borderColor: '#31aac8', borderRadius: 5 } 
+      : {};
+
     grids.push((
-      <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}
+      <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT,  justifyContent: 'center', alignItems: 'center' }, { left, top }, borderEffect]}
         onTouchStart={() => {
           touchStart.current = true;
         }}
