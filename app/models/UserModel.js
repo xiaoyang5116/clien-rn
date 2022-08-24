@@ -104,7 +104,7 @@ export default {
     },
 
     // 修改铜币属性
-    *alertCopper({ payload }, { put, call, select }) {
+    *alterCopper({ payload }, { put, call, select }) {
       const userState = yield select(state => state.UserModel);
       const value = parseInt(payload.value);
       if (value == 0)
@@ -119,7 +119,7 @@ export default {
     },
 
     // 修改阅读器属性
-    *alertAttrs({ payload }, { put, call, select }) {
+    *alterAttrs({ payload }, { put, call, select }) {
       const userState = yield select(state => state.UserModel);
       
       payload.forEach(e => {

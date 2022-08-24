@@ -60,9 +60,9 @@ scenes: [
           # 以下选项在【询问周围的乞丐】&【尝试起身】点击后替换
           { title: '【询问周围的乞丐】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v6'], andVarsOff: ['v10'], dialogs: ['p7'] }, 
           { title: '【尝试起身】', andVarsOn: ['v1', 'v2', 'v3', 'v4', 'v5'], andVarsOff: ['v10'], dialogs: ['p7'] }, 
-          { title: '【睡觉】', andVarsOn: ['v10'], andVarsOff: ['v11'], varsOn: ['v_2DayOpenThrough'], alertWorldTime: '@day/1/6', nextChat: 'c3' }, 
+          { title: '【睡觉】', andVarsOn: ['v10'], andVarsOff: ['v11'], varsOn: ['v_2DayOpenThrough'], alterWorldTime: '@day/1/6', nextChat: 'c3' }, 
           { title: '>>>【走出破庙】', andVarsOn: ['v_2DayOpenThrough'], andVarsOff: ['v12'], toScene: 'pomiaomk' }, 
-          { title: '【睡觉到下一天】', andVarsOn: ['hutongkou/v3'], andVarsOff: ['v12'], alertWorldTime: '@day/1/6', nextChat: 'c3' }, 
+          { title: '【睡觉到下一天】', andVarsOn: ['hutongkou/v3'], andVarsOff: ['v12'], alterWorldTime: '@day/1/6', nextChat: 'c3' }, 
           # 在集市一角拿到菜刀或画后
           { title: '【商量花钱】', andVarsOn: ['jishiyijiao/v21'], andVarsOff: ['v12'], dialogs: ['p17']},
           { title: '【听大哥的话，大吃大喝先花光】', andVarsOn: ['v12'], andVarsOff: ['v13'], dialogs: ['p19'],},
@@ -72,7 +72,7 @@ scenes: [
           { title: '【镇口大门】', andVarsOn: ['v14'], andVarsOff: ['v15']}, 
           { title: '【……】', andVarsOn: ['v15'], andVarsOff: ['v16'], dialogs: ['p26']}, 
           { title: '【现在也许不行，今后会说服你的。】', andVarsOn: ['v15'], andVarsOff: ['v16'],dialogs: ['p27']}, 
-          { title: '【不说了，睡觉】', andVarsOn: ['v16'], alertWorldTime: '@day/1/6', nextChat: 'c1'}, 
+          { title: '【不说了，睡觉】', andVarsOn: ['v16'], alterWorldTime: '@day/1/6', nextChat: 'c1'}, 
         ],
       },
       {

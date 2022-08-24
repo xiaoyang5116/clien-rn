@@ -51,23 +51,23 @@ export class PropertyActions {
       }
   
       // 生成铜币修改动作
-      if (payload.alertCopper != undefined && typeof(payload.alertCopper) == 'string') {
-        allActions.push({ id: "__copper_{0}".format(payload.alertCopper), cmd: 'copper', params: payload.alertCopper });
+      if (payload.alterCopper != undefined && typeof(payload.alterCopper) == 'string') {
+        allActions.push({ id: "__copper_{0}".format(payload.alterCopper), cmd: 'copper', params: payload.alterCopper });
       }
   
       // 生成角色属性修改动作
-      if (payload.alertAttrs != undefined && Array.isArray(payload.alertAttrs)) {
-        allActions.push({ id: "__attrs_{0}".format(payload.alertAttrs), cmd: 'attrs', params: payload.alertAttrs });
+      if (payload.alterAttrs != undefined && Array.isArray(payload.alterAttrs)) {
+        allActions.push({ id: "__attrs_{0}".format(payload.alterAttrs), cmd: 'attrs', params: payload.alterAttrs });
       }
   
       // 生成角色修行值修改动作
-      if (payload.alertXiuXing != undefined && lo.isNumber(payload.alertXiuXing)) {
-        allActions.push({ id: "__xiuxing_{0}".format(payload.alertXiuXing), cmd: 'xiuxing', params: payload.alertXiuXing });
+      if (payload.alterXiuXing != undefined && lo.isNumber(payload.alterXiuXing)) {
+        allActions.push({ id: "__xiuxing_{0}".format(payload.alterXiuXing), cmd: 'xiuxing', params: payload.alterXiuXing });
       }
   
       // 生成世界时间修改动作
-      if (payload.alertWorldTime != undefined && typeof(payload.alertWorldTime) == 'string') {
-        allActions.push({ id: "__wtime_{0}".format(payload.alertWorldTime), cmd: 'wtime', params: payload.alertWorldTime });
+      if (payload.alterWorldTime != undefined && typeof(payload.alterWorldTime) == 'string') {
+        allActions.push({ id: "__wtime_{0}".format(payload.alterWorldTime), cmd: 'wtime', params: payload.alterWorldTime });
       }
   
       // 使用道具

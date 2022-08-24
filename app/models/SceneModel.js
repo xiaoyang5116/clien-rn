@@ -197,17 +197,17 @@ export default {
     },
 
     // 修改世界时间
-    // 参数: { worldId:xxx, alertValue: xxx }
-    *alertWorldTime({ payload }, { put, select }) {
+    // 参数: { worldId:xxx, alterValue: xxx }
+    *alterWorldTime({ payload }, { put, select }) {
       const sceneState = yield select(state => state.SceneModel);
       const worldId = payload.worldId;
-      const alertValue = parseInt(payload.alertValue);
+      const alterValue = parseInt(payload.alterValue);
 
       const wt = sceneState.__data.time.worlds.find(e => e.worldId == worldId);
       if (wt != undefined) {
-        wt.time += alertValue;
+        wt.time += alterValue;
       } else {
-        sceneState.__data.time.worlds.push({ worldId: worldId, time: alertValue });
+        sceneState.__data.time.worlds.push({ worldId: worldId, time: alterValue });
       }
     },
 
@@ -237,16 +237,16 @@ export default {
 
     // 修改场景时间
     // 参数：{ sceneId:xxx, time: xxx }
-    *alertSceneTime({ payload }, { put, select }) {
+    *alterSceneTime({ payload }, { put, select }) {
       const sceneState = yield select(state => state.SceneModel);
       const sceneId = payload.sceneId;
-      const alertValue = payload.alertValue;
+      const alterValue = payload.alterValue;
 
       const st = sceneState.__data.time.scenes.find(e => e.sceneId == sceneId);
       if (st != undefined) {
-        st.time += alertValue;
+        st.time += alterValue;
       } else {
-        sceneState.__data.time.scenes.push({ sceneId: sceneId, time: alertValue });
+        sceneState.__data.time.scenes.push({ sceneId: sceneId, time: alterValue });
       }
     },
 
@@ -387,15 +387,15 @@ export default {
 
     *__onCopperCommand({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
-      let alertValue = 0;
+      let alterValue = 0;
       if (payload.params.indexOf('%') != -1) {
-        alertValue = Math.ceil((parseFloat(payload.params.replace('%', '')) / 100) * userState.copper);
+        alterValue = Math.ceil((parseFloat(payload.params.replace('%', '')) / 100) * userState.copper);
       } else {
-        alertValue = parseInt(payload.params);
+        alterValue = parseInt(payload.params);
       }
 
-      if (alertValue != 0) {
-        yield put.resolve(action('UserModel/alertCopper')({ value: alertValue }));
+      if (alterValue != 0) {
+        yield put.resolve(action('UserModel/alterCopper')({ value: alterValue }));
       }
     },
 
@@ -408,21 +408,21 @@ export default {
         affects.push({ key, value });
       });
 
-      yield put.resolve(action('UserModel/alertAttrs')(affects));
+      yield put.resolve(action('UserModel/alterAttrs')(affects));
     },
 
     *__onXiuXingCommand({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
-      const alertValue = parseInt(payload.params);
+      const alterValue = parseInt(payload.params);
 
-      if (alertValue != 0) {
-        yield put.resolve(action('UserModel/addXiuXing')({ value: alertValue }));
+      if (alterValue != 0) {
+        yield put.resolve(action('UserModel/addXiuXing')({ value: alterValue }));
       }
     },
 
     *__onWorldTimeCommand({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
-      let alertWorldTime = 0;
+      let alterWorldTime = 0;
 
       if (payload.params.indexOf('@') == 0) {
         // 隔天隔月增减
@@ -433,15 +433,15 @@ export default {
 
         if (type == '@day') {
           const nwt = DateTime.toDays(wt, parseInt(v1), parseInt(v2)); // 到第几天的某个时间
-          alertWorldTime = nwt - wt;
+          alterWorldTime = nwt - wt;
         }
       } else {
         // 直接增减时间
-        alertWorldTime = parseInt(payload.params)
+        alterWorldTime = parseInt(payload.params)
       }
 
-      if (alertWorldTime != 0) {
-        yield put.resolve(action('alertWorldTime')({ worldId: userState.worldId, alertValue: alertWorldTime }));
+      if (alterWorldTime != 0) {
+        yield put.resolve(action('alterWorldTime')({ worldId: userState.worldId, alterValue: alterWorldTime }));
       }
     },
 
