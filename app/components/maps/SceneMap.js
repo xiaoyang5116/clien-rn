@@ -19,9 +19,10 @@ import {
 
 import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
-import { px2pd } from '../../constants/resolution';
+import { getFixedWidthScale, px2pd } from '../../constants/resolution';
 import Easing from 'react-native/Libraries/Animated/Easing';
 import Toast from '../toast';
+import SpriteSheet from '../SpriteSheet';
 
 const WIN_SIZE = getWindowSize();
 
@@ -74,6 +75,40 @@ const getLineConfig = (p1, p2) => {
     return { direction: 4, style: (p1[1] < p2[1]) ? { left: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), bottom: GRID_SLASH_FIXED } : { right: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), top: GRID_SLASH_FIXED } };
   else
     return null;
+}
+
+const CentPointAnimation = (props) => {
+  const sheet = React.createRef(null);
+
+  React.useEffect(() => {
+    const play = type => {
+      sheet.current.play({
+        type,
+        fps: Number(18),
+        resetAfterFinish: false,
+        loop: true,
+      });
+    };
+    play('walk');
+  }, []);
+
+  return (
+  <View style={{ position: 'absolute', width: 50, height: 50 }}>
+    <SpriteSheet
+      ref={ref => (sheet.current = ref)}
+      source={require('../../../assets/animations/flower_effect_1.png')}
+      columns={8}
+      rows={6}
+      frameWidth={200}
+      frameHeight={200}
+      imageStyle={{}}
+      viewStyle={{ left: -74, top: -74, transform: [{ scale: getFixedWidthScale() }] }}
+      animations={{
+        walk: lo.range(48),
+      }}
+    />
+  </View>
+  );
 }
 
 const SceneMap = (props) => {
@@ -328,6 +363,7 @@ const SceneMap = (props) => {
       >
         <FastImage style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} source={gridImg} />
         <Text style={{ color: '#000', zIndex: 1 }}>{e.title}</Text>
+        {(isCenterPoint) ? <CentPointAnimation /> : <></>}
       </View>
       ));
   });
