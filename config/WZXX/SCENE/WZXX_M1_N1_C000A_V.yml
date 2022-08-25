@@ -8,7 +8,9 @@ scenes: [
       # 变量定义
       vars: [
       { id: "v1", min: 0, max: 1 },
-      { id: "renwubiaoqian_100", min: 0, max: 1 },
+      { id: "v_icon_100", min: 0, max: 1 },
+      
+      # { id: "renwubiaoqian_100", min: 0, max: 1 },
       
       ],
 
@@ -1643,6 +1645,7 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "v_icon_100", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
@@ -1655,7 +1658,7 @@ scenes: [
        { 
         id: 'C1', desc: '这里很多店，但是很偏没什么人来', 
         options: [ 
-        { title: '【逛一会儿】',  dialogs: ['Screen16'] },
+        { title: '【逛一会儿】',  dialogs: ['Screen16'] ,  },
         # { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'}, 
         # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
         # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
@@ -1780,7 +1783,7 @@ scenes: [
             links: [[3, -1],] 
             },
           { point: [3, -1], title: '商铺',
-           toScene: 'C000A_V_MAP_3_-1', icon: { id: 100, bindVar: 'renwubiaoqian_100' }, varsOn: ['renwubiaoqian_100'], 
+           toScene: 'C000A_V_MAP_3_-1', icon: { id: 100, bindVar: 'v_icon_100' },
            links: [] 
            },
           { point: [2, 1], title: '东市二街',
