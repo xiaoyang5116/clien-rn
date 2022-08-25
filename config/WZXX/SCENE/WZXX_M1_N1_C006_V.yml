@@ -97,7 +97,7 @@ scenes: [
       #   options: [ 
       #   { title: "恭喜游戏成功，获得灵石+1",dropIds: ['WZXX_M1_N1_C006_drop2'],   },
       #     { title: "悟性+1", dropIds: [ 'WZXX_M1_N1_C006_drop1'], },
-      #     #alertAttrs: ['WZXX_M1_N1_C006_xuan1悟性',]   
+      #     #alterAttrs: ['WZXX_M1_N1_C006_xuan1悟性',]   
 
       #   ],
       # },

@@ -17,8 +17,8 @@
 #       varsOff:        触发指定的变量修改为OFF
 #       dialogs:        显示的对话框/旁白列表(对话框/旁白ID)
 #       nextChat:       跳转到下一个对话框(对话ID)
-#       alertCopper:    增减铜币数量(可指定百分比)
-#       alertWorldTime: 增减世界时间(单位毫秒)
+#       alterCopper:    增减铜币数量(可指定百分比)
+#       alterWorldTime: 增减世界时间(单位毫秒)
 #       toScene:        切换到某个场景
 #       toChapter:      切换到某个章节
 #       selector:       世界/章节选择器
@@ -168,6 +168,7 @@ scenes: [
           { title: '【默认商店】', andVarsOn: ['v_shop'], toShop: 'default' }, 
           { title: '【获得剧情道具】', sendProps: '405,1' }, 
           { title: '【获得碎片】', sendProps: '500,5' }, 
+          { title: '【获得修行值】', alterXiuXing: 1230 }, 
           { title: '【--测试选项进度条--】', toScene: 'S_00Test01' }, 
           { title: '【--DEBUG跳过序章移动到破庙--】', toScene: 'M01_S01_luoyuezhen_pomiao' },
           

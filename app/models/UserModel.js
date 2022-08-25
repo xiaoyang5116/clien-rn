@@ -19,6 +19,7 @@ import {
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 import Toast from '../components/toast';
+import * as DateTime from '../utils/DateTimeUtils';
 
 export default {
   namespace: 'UserModel',
@@ -40,6 +41,8 @@ export default {
     xiuxingStatus: { // 修行状态
       value: 0, // 当前修行值
       limit: 0, // 修行上限
+      lastOnlineTime: 0, // 在线修为时间
+      cdTime: 0,  // 突破失败后等待时间
     },
     
     xiuxingAttrs: [ // 修行属性
@@ -85,18 +88,23 @@ export default {
       }
 
       if (userCache != null) {
+        if (userCache.xiuxingStatus != undefined) {
+          // 缓存内必要数据重置
+          userCache.xiuxingStatus.lastOnlineTime = DateTime.now();
+        }
         yield put(action('updateState')({ ...userCache }));
       } else {
         if (userState.__data.xiuxingConfig.length > 0) {
           const first = userState.__data.xiuxingConfig[0];
           userState.xiuxingStatus.limit = first.limit;
+          userState.xiuxingStatus.lastOnlineTime = DateTime.now();
         }
         yield put(action('updateState')({ attrs: userAttrs }));
       }
     },
 
     // 修改铜币属性
-    *alertCopper({ payload }, { put, call, select }) {
+    *alterCopper({ payload }, { put, call, select }) {
       const userState = yield select(state => state.UserModel);
       const value = parseInt(payload.value);
       if (value == 0)
@@ -111,7 +119,7 @@ export default {
     },
 
     // 修改阅读器属性
-    *alertAttrs({ payload }, { put, call, select }) {
+    *alterAttrs({ payload }, { put, call, select }) {
       const userState = yield select(state => state.UserModel);
       
       payload.forEach(e => {
@@ -162,6 +170,7 @@ export default {
     // 突破修行值
     *upgradeXiuXing({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
+      const { prop } = payload;
 
       if (userState.xiuxingStatus.value < userState.xiuxingStatus.limit)
         return false;
@@ -184,14 +193,36 @@ export default {
         return false;
       }
 
-      if (lo.random(100) > currentXiuXing.successRate) {
-        Toast.show('突破失败!');
-        return false;
+      let propSuccessRate = 0;
+      if (prop != undefined && prop != null) {
+        const result = yield put.resolve(action('PropsModel/reduce')({ propsId: [ prop.id ], num: 1, mode: 1 }));
+        if (result) {
+          propSuccessRate = prop.incSuccessRate;
+        }
       }
 
-      userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
-      userState.xiuxingStatus.limit = nextXiuXing.limit;
+      let success = true;
+      if (lo.random(100) <= (currentXiuXing.successRate + propSuccessRate)) {
+        userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
+        userState.xiuxingStatus.limit = nextXiuXing.limit;
+        currentXiuXing.attrs.forEach(e => {
+          const found = userState.xiuxingAttrs.find(x => lo.isEqual(x.key, e.key));
+          if (found != undefined) {
+            found.value = e.value;
+          }
+        });
+      } else {
+        userState.xiuxingStatus.cdTime = DateTime.now() + (currentXiuXing.failCDTime * 1000);
+        success = false;
+      }
 
+      if (success) {
+        Toast.show('突破成功!');
+      } else {
+        Toast.show('突破失败');
+      }
+
+      //
       yield put(action('updateState')({}));
       yield put.resolve(action('syncData')({}));
       
@@ -200,14 +231,52 @@ export default {
       return true;
     },
 
+    // 检测在线修行
+    *checkXiuXing({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+      const currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
+      if (currentXiuXing == undefined)
+        return;
+
+      const diffMillis = DateTime.now() - userState.xiuxingStatus.lastOnlineTime;
+      const minutes = Math.floor(diffMillis / 1000 / 60);
+      if (minutes > 0) {
+        const addXiuXing = minutes * currentXiuXing.increaseXiuXingPerMinute;
+        userState.xiuxingStatus.value += addXiuXing;
+        userState.xiuxingStatus.lastOnlineTime = DateTime.now();
+
+        yield put(action('updateState')({}));
+        yield put.resolve(action('syncData')({}));
+        
+        // 通知角色属性刷新
+        DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
+        Toast.show(`获得在线修为${addXiuXing}`);
+      }
+    },
+
     // 获取合并属性值(装备、修行等)
     *getMergeAttrs({}, { select }) {
       const userState = yield select(state => state.UserModel);
 
       const all = [];
+
+      // 装备
       if (lo.isArray(userState.equips) && userState.equips.length > 0) {
         lo.forEach(userState.equips, (v) => {
           all.push(...v.affect);
+        });
+      }
+
+      // 修行
+      if (lo.isArray(userState.xiuxingAttrs) && userState.xiuxingAttrs.length > 0) {
+        lo.forEach(userState.xiuxingAttrs, (v) => {
+          let key = v.key;
+          if (lo.isEqual(key, '防御')) {
+            key = '普通防御';
+          } else if (lo.isEqual(key, '攻击')) {
+            key = '普通攻击';
+          }
+          all.push({ key: key, value: v.value });
         });
       }
 

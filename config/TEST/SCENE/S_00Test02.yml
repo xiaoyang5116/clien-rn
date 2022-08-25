@@ -17,8 +17,8 @@
 #       varsOff:        触发指定的变量修改为OFF
 #       dialogs:        显示的对话框/旁白列表(对话框/旁白ID)
 #       nextChat:       跳转到下一个对话框(对话ID)
-#       alertCopper:    增减铜币数量(可指定百分比)
-#       alertWorldTime: 增减世界时间(单位毫秒)
+#       alterCopper:    增减铜币数量(可指定百分比)
+#       alterWorldTime: 增减世界时间(单位毫秒)
 #       toScene:        切换到某个场景
 #
 #     特殊标识符：
@@ -185,7 +185,7 @@ scenes: [
       {
         id: 'c9', desc: '千钧一发，小师弟的剑就要砍来，李森炎举起剑……', 
         options: [ 
-          { title: '奋力相击', toChapter: "WZXX_M1_N1_C004_[N1]"  }, 
+          { title: '奋力相击', toChapter: "WZXX_M1_N1_C004_[N2]"  }, 
         ]
       },
     ],

@@ -42,8 +42,8 @@ class PropsTabPage extends Component {
         this.props.dispatch(action('PropsModel/filter')({ type: '' }));
     }
 
-    _alertCopper(value) {
-        this.props.dispatch(action('UserModel/alertCopper')({ value: value }));
+    _alterCopper(value) {
+        this.props.dispatch(action('UserModel/alterCopper')({ value: value }));
     }
 
     _propSelected(item) {

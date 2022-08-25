@@ -56,7 +56,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002B_V1', desc: '落霞峰', 
         options: [ 
-          { title: "【只是现在……】",toChapter: "WZXX_M1_N1_C008_[N1]"  },
+          { title: "【只是现在……】",toChapter: "WZXX_M1_N1_C008"  },
         ],
       },
 
@@ -203,7 +203,7 @@ scenes: [
           { id: 'C002B_fangshiA',style: 6, title: '不去坊市', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P9', content: ['不过，初尝修炼甜头的李森炎却不为所动','“有时间当用来修炼才是，逛什么坊市，不去。”','话虽这么说，实则他心里在想，哥穷得叮当响，还想让我花钱，休想！','就这样，云云一直怂恿李森炎不成。','直至数日后——','“我还是没办法突破”','经过这一周的修行，却始终无法突破四重','他多次尝试冲击第四重，却都以失败告终','“你在这地方闷头修炼半个月了，都说了修炼要张弛有度，去附近坊市逛逛吧，换个地方换个心情，说不定还能淘到些对你修为有帮助的好东西呢。”','云云没有放弃，再一次怂恿。','这回李森炎没有再反抗了，毕竟修炼遇到瓶颈，总得想办法解决，当即点头答应了下来。',],
-          btn: [{title: '去坊市',toChapter: "WZXX_M1_N1_C010_[N1]"},]},
+          btn: [{title: '去坊市',toChapter: "WZXX_M1_N1_C010"},]},
 
          
         ],
@@ -213,7 +213,7 @@ scenes: [
           { id: 'C002B_fangshiB',style: 6, title: '去坊市看看', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P10', content: ['李森炎想想觉得也行，毕竟他这些天的修行虽然升到了炼气三重了','不过却也，遇到了瓶颈了。','再想往上突破一层的话，没那么容易','而且修仙需要张弛有度，说不定去坊市还能淘到什么好东西',],
-          btn: [{title: "去坊市", toChapter: "WZXX_M1_N1_C010_[N1]",},]},
+          btn: [{title: "去坊市", toChapter: "WZXX_M1_N1_C010",},]},
         ],
     },
 

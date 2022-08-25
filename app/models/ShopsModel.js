@@ -95,7 +95,7 @@ export default {
             yield put.resolve(action('PropsModel/reduce')({ propsId: [item.propId], num: 1, mode: 1 }));
           }
           if (item.copper != undefined && item.copper > 0) {
-            yield put.resolve(action('UserModel/alertCopper')({ value: -Math.abs(item.copper) }));
+            yield put.resolve(action('UserModel/alterCopper')({ value: -Math.abs(item.copper) }));
           }
         }
       }

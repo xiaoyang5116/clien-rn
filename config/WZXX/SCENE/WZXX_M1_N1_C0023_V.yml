@@ -25,7 +25,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0023_V', desc: '小队的邀请', 
         options: [ 
-          { title: "【似乎有点意思】",toChapter: "WZXX_M1_N1_C025_[N1]",},
+          { title: "【似乎有点意思】",toChapter: "WZXX_M1_N1_C025",},
         
         ],
       },
@@ -34,7 +34,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0023_V1', desc: '小队的邀请', 
         options: [ 
-          { title: "【加入小队】",toChapter: "WZXX_M1_N1_C026_[N1]",},
+          { title: "【加入小队】",toChapter: "WZXX_M1_N1_C026",},
           { title: "【不加入小队】",toChapter: "WZXX_M1_N1_C031_[N1]",},
         ],
       },
@@ -42,7 +42,7 @@ scenes: [
        { 
         id: 'WZXX_M1_N1_C0023_V2', desc: '小队的邀请', 
         options: [ 
-          { title: "【两个废物……】",toChapter: "WZXX_M1_N1_C027_[N1]",},
+          { title: "【两个废物……】",toChapter: "WZXX_M1_N1_C027",},
 
         ],
       },
@@ -50,7 +50,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0023_V3', desc: '小队的邀请', 
         options: [ 
-          { title: "【战斗持续】",toChapter: "WZXX_M1_N1_C028_[N1]",},
+          { title: "【战斗持续】",toChapter: "WZXX_M1_N1_C028",},
 
         ],
       },
@@ -59,7 +59,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0023_V4', desc: '小队的邀请', 
         options: [ 
-          { title: "【这或许，只是个骗局】",toChapter: "WZXX_M1_N1_C030_[N1]",},
+          { title: "【这或许，只是个骗局】",toChapter: "WZXX_M1_N1_C030",},
 
         ],
       },

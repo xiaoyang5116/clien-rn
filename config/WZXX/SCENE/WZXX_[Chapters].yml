@@ -85,14 +85,14 @@ scenes: [
           { id: "WZXX_M1_N1_C004_[N2]",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C004_[N2]FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C005_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C005_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C005",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C005FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C006_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C006_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C006",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C006FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C007_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C007_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C007",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C007FZ",min: 0, max: 1 },
             #
 
         
@@ -103,8 +103,8 @@ scenes: [
           { id: "WZXX_M1_N1_C009_[N1]",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C009_[N1]FZ",min: 0, max: 1 },
             #
-          { id: "WZXX_M1_N1_C010_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C010_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C010",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C010FZ",min: 0, max: 1 },
 
           { id: "WZXX_M1_N1_C011_[N1]",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C011_[N1]FZ",min: 0, max: 1 },
@@ -162,41 +162,41 @@ scenes: [
           { id: "WZXX_M1_N1_C021",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C021FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C022_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C022_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C022",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C022FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C023_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C023_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C023",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C023FZ",min: 0, max: 1 },
 
           { id: "WZXX_M1_N1_C024_[N1]",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C024_[N1]FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C025_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C025_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C025",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C025FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C026_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C026_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C026",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C026FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C027_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C027_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C027",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C027FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C028_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C028_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C028",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C028FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C029_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C029_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C029",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C029FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C030_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C030_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C030",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C030FZ",min: 0, max: 1 },
 
           { id: "WZXX_M1_N1_C031_[N1]",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C031_[N1]FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C032_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C032_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C032",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C032FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C033_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C033_[N1]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C033",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C033FZ",min: 0, max: 1 },
 
           { id: "WZXX_M1_N1_C030",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C033",min: 0, max: 1 },

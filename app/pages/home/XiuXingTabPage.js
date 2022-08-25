@@ -26,6 +26,7 @@ import { Panel } from '../../components/panel';
 import RootView from '../../components/RootView';
 import PropSelector from '../../components/prop/PropSelector';
 import Toast from '../../components/toast';
+import * as DateTime from '../../utils/DateTimeUtils';
 
 const PROGRESS_BAR_WIDTH = px2pd(800);
 
@@ -99,12 +100,14 @@ const PropsBar = (props) => {
 }
 
 const PropPlaceHolder = (props) => {
-    const refProp = React.useRef(null);
     const [prop, setProp] = React.useState(<AntDesign name='plus' size={24} />);
 
     const onSelectedProp = ({ e }) => {
         setProp(<PropGrid prop={e} />);
-        refProp.current = e;
+
+        if (props.onSelected != undefined) {
+            props.onSelected(e);
+        }
     }
     const chooseProp = () => {
         const key = RootView.add(<PropSelector attrFilter={'修行'} onSelected={onSelectedProp} onClose={() => {
@@ -113,7 +116,7 @@ const PropPlaceHolder = (props) => {
     }
     return (
         <TouchableWithoutFeedback onPress={chooseProp}>
-            <View style={{ width: 45, height: 45, borderWidth: 2, borderColor: '#333', backgroundColor: '#aaa', borderRadius: 5, alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ width: 45, height: 45, borderWidth: 2, borderColor: '#333', backgroundColor: '#aaa', borderRadius: 5, alignItems: 'center', justifyContent: 'center' }} pointerEvents='box-only'>
                 {prop}
             </View>
         </TouchableWithoutFeedback>
@@ -124,11 +127,11 @@ const PropPlaceHolder = (props) => {
 const TuPoSubPage = (props) => {
     const TUPO_CALLBACK = '__@TuPoSubPage.cb';
 
+    const refPropSelected = React.useRef(null);
+    const [propRate, setPropRate] = React.useState(0);
+
     React.useEffect(() => {
         const listener = DeviceEventEmitter.addListener(TUPO_CALLBACK, (v) => {
-            if (v) {
-                Toast.show('突破成功！');
-            }
             if (props.onClose != undefined) {
                 props.onClose();
             }
@@ -139,7 +142,12 @@ const TuPoSubPage = (props) => {
     }, []);
 
     const onTuPo = () => {
-        AppDispath({ type: 'UserModel/upgradeXiuXing', payload: {}, retmsg: TUPO_CALLBACK });
+        AppDispath({ type: 'UserModel/upgradeXiuXing', payload: { prop: refPropSelected.current }, retmsg: TUPO_CALLBACK });
+    }
+
+    const onSelectedProp = (prop) => {
+        refPropSelected.current = prop;
+        setPropRate(prop.incSuccessRate);
     }
 
     return (
@@ -156,12 +164,21 @@ const TuPoSubPage = (props) => {
                     <Text style={{ fontSize: 24, color: '#000' }}>修法突破</Text>
                 </View>
                 <View style={{ width: '100%', marginTop: 50, alignItems: 'center', justifyContent: 'center' }}>
-                    <PropPlaceHolder />
-                    <View style={{ marginTop: 5 }}><Text>服用突破丹</Text></View>
-                    <View style={{ marginTop: 20, flexDirection: 'row' }}>
-                        <Text style={{ color: '#000', fontWeight: 'bold' }}>成功率:</Text>
-                        <Text style={{ color: 'red', fontWeight: 'bold', marginLeft: 5 }}>5.00%</Text>
-                    </View>
+                    <PropPlaceHolder onSelected={onSelectedProp} />
+                    {
+                    (propRate > 0)
+                    ? (
+                    <>
+                        <View style={{ marginTop: 5 }}><Text>服用{(refPropSelected.current.name)}</Text></View>
+                        <View style={{ marginTop: 20, flexDirection: 'row' }}>
+                            <Text style={{ color: '#000', fontWeight: 'bold' }}>成功率:</Text>
+                            <Text style={{ color: 'red', fontWeight: 'bold', marginLeft: 5 }}>+{propRate}%</Text>
+                        </View>
+                    </>
+                    )
+                    : <View style={{ marginTop: 5 }}><Text>请选择突破丹</Text></View>
+                    }
+
                 </View>
                 <View style={{ position: 'absolute', bottom: 20, width: '100%', flexDirection: 'row', justifyContent: 'space-evenly' }}>
                     <TextButton title={'再等等'} onPress={() => {
@@ -179,6 +196,10 @@ const TuPoSubPage = (props) => {
 // 主界面
 const XiuXingTabPage = (props) => {
 
+    React.useEffect(() => {
+        AppDispath({ type: 'UserModel/checkXiuXing', payload: {} });
+    }, []);
+
     const onTuPo = () => {
         const key = RootView.add(<TuPoSubPage onClose={() => {
             RootView.remove(key);
@@ -191,6 +212,7 @@ const XiuXingTabPage = (props) => {
     }
 
     const currentXiuXingConfig = props.user.__data.xiuxingConfig.find(e => e.limit == props.user.xiuxingStatus.limit);
+    const cdForbiden = (props.user.xiuxingStatus.cdTime > 0 && DateTime.now() < props.user.xiuxingStatus.cdTime);
 
     return (
         <Panel patternId={3}>
@@ -213,8 +235,17 @@ const XiuXingTabPage = (props) => {
                     <View style={{ marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
                         <FastImage style={{ width: px2pd(607), height: px2pd(785) }} source={require('../../../assets/bg/xiuxing_bg.png')} />
                         <View style={{ position: 'absolute' }}>
-                            <TextButton title={'突破'} disabled={!(props.user.xiuxingStatus.value >= props.user.xiuxingStatus.limit)} onPress={onTuPo} />
+                            <TextButton title={'突破'} disabled={((props.user.xiuxingStatus.value < props.user.xiuxingStatus.limit) || cdForbiden)} onPress={onTuPo} />
                         </View>
+                        {
+                        (cdForbiden)
+                        ? (
+                        <View style={{ position: 'absolute', bottom: 50 }}>
+                            <Text style={{ color: '#829358', fontSize: 14, fontWeight: 'bold' }}>等待时间: {DateTime.format(props.user.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
+                        </View>
+                        )
+                        : <></>
+                        }
                     </View>
                     <View style={{ marginTop: 20 }}>
                         <Text style={{ fontSize: 24, color: '#000' }}>{currentXiuXingConfig.title}</Text>
