@@ -8,6 +8,8 @@ scenes: [
       # 变量定义
       vars: [
       { id: "v1", min: 0, max: 1 },
+      { id: "renwubiaoqian_100", min: 0, max: 1 },
+      
       ],
 
       # 动作定义
@@ -237,7 +239,7 @@ scenes: [
       { 
         id: 'C1', desc: '玄德中街', 
         options: [ 
-        { title: '【四处看看】', nextChat: 'X1'},
+        { title: '【四处看看】', nextChat: 'X1',},
         # { title: '【东市】', toScene: 'C000A_V_MAP_1_0'},
         # { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'},
         # { title: '【官府】', toScene: 'C000A_V_MAP_0_2'}, 
@@ -1778,7 +1780,7 @@ scenes: [
             links: [[3, -1],] 
             },
           { point: [3, -1], title: '商铺',
-           toScene: 'C000A_V_MAP_3_-1', 
+           toScene: 'C000A_V_MAP_3_-1', icon: { id: 100, bindVar: 'renwubiaoqian_100' }, varsOn: ['renwubiaoqian_100'], 
            links: [] 
            },
           { point: [2, 1], title: '东市二街',

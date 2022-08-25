@@ -38,12 +38,17 @@ directory: [
 
         { point: [2, 0], title: '第一章  跟踪结束',
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]' ,
-        toChapter: 'WZXX_M1_N1_C001B_[C2]',links: [], path: [[2, -1], [1, -1],[0, -1],] 
+        toChapter: 'WZXX_M1_N1_C001B_[C2]',links: [], path: [[2, -1], [1, -1],] 
         },
 
-        { point: [0, -1], title: '第一章  行动',
+        { point: [0, -1], title: '第一章  回忆现代',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B' ,
         toChapter: 'WZXX_M1_N1_C001B', links: [[-1, -2],[0, -2],[1, -2],[0, 1], ] 
+        },
+
+         { point: [1, -1], title: '第一章  行动',
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[N1]' ,
+        toChapter: 'WZXX_M1_N1_C001B_[N1]', links: [[0, -1], ] 
         },
 
         { point: [-1, -2], title: '第一章  选择身份记忆1 修真世家',
