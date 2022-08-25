@@ -41,7 +41,7 @@ const TabIcon = (props) => {
   const theme = React.useContext(ThemeContext);
 
   const button = (
-    <View style={[theme.tabBottomImgStyle, { position: 'absolute', left: 5, top: -30 }]}>
+    <View style={[theme.tabBottomImgStyle, { position: 'absolute', left: -9, top: -30 }]}>
       <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={theme.tabBottomImage} />
       <View style={[theme.tabBottomLabelStyle, { position: 'absolute', width: 24 }]}>
         <Text style={{ fontSize: px2pd(60), color: props.color }}>{props.title}</Text>
@@ -86,6 +86,10 @@ const defaultScreenOptions = {
     height: 70,
     borderTopWidth: 0, // 去掉底部边框
     backgroundColor: 'rgba(0,0,0,0)',
+  },
+  tabBarItemStyle: { // 缩小底部响应区域防止误点边缘
+    marginLeft: 20,
+    marginRight: 20,
   },
   tabBarInactiveTintColor: '#fff',
   tabBarBackground: () => <TabBarBackground />,

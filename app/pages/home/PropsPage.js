@@ -112,9 +112,10 @@ const PropsPage = (props) => {
                 </View>
                 <View style={{ flex: 1, paddingLeft: 10, paddingRight: 10, marginBottom: 10, }}>
                     <FlatList
-                        style={{ paddingTop: 2 }}
+                        style={{ paddingTop: 2, alignContent: 'stretch' }}
                         data={props.listData}
                         renderItem={renderItem}
+                        initialNumToRender={25}
                         keyExtractor={item => item.recordId}
                     />
                 </View>
