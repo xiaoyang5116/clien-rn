@@ -45,9 +45,9 @@ const FragmentPage = (props) => {
                             <Text>{props.toPropConfig.name}, 你已拥有足够碎片！</Text>
                             <Text>(当前碎片 {props.fragment.num}/{props.fragment.composite.requireNum})</Text>
                         </View>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', marginTop: 5, marginBottom: 5 }}>
                         <PropGrid showNum={false} prop={props.fragment} labelStyle={{ color: '#000' }} />
-                        <AntDesign name='doubleright' size={28} style={{ marginLeft: 5, marginTop: 8, marginRight: 10 }} />
+                        <AntDesign name='doubleright' size={28} style={{ marginLeft: 10, marginTop: 8, marginRight: 10 }} />
                         <PropGrid showNum={false} prop={props.toPropConfig} labelStyle={{ color: '#000' }} />
                         </View>
                     </View>

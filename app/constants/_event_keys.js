@@ -4,7 +4,6 @@
 export class EventKeys {
 
     static USER_ATTR_UPDATE = 'USER_ATTR_UPDATE';
-    static USER_EQUIP_UPDATE = 'USER_EQUIP_UPDATE';
     static OPTIONS_HIDE = 'OPTIONS_HIDE';
     static APP_SET_STATE = 'APP_SET_STATE';
     static APP_DISPATCH = 'APP_DISPATCH';

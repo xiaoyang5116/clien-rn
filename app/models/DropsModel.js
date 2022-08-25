@@ -56,7 +56,7 @@ export default {
         if (lo.indexOf(dropsState.ids, dropId) != -1)
           return
 
-        const actions = lo.pick(found, ['sendProps', 'alertAttrs']);
+        const actions = lo.pick(found, ['sendProps', 'alterAttrs']);
         if (lo.keys(actions).length > 0) {
           yield put.resolve(action('SceneModel/processActions')({ ...actions }));
         }

@@ -9,6 +9,7 @@ import {
 
 import {
   Animated,
+  DeviceEventEmitter,
   PanResponder,
 } from 'react-native';
 
@@ -19,9 +20,11 @@ import {
 
 import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
-import { px2pd } from '../../constants/resolution';
+import { getFixedWidthScale, px2pd } from '../../constants/resolution';
 import Easing from 'react-native/Libraries/Animated/Easing';
+import LeiDaAnimation from '../../components/effects/LeiDaAnimation';
 import Toast from '../toast';
+import { BtnIcon } from '../button/BtnIcon';
 
 const WIN_SIZE = getWindowSize();
 
@@ -74,6 +77,33 @@ const getLineConfig = (p1, p2) => {
     return { direction: 4, style: (p1[1] < p2[1]) ? { left: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), bottom: GRID_SLASH_FIXED } : { right: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), top: GRID_SLASH_FIXED } };
   else
     return null;
+}
+
+const CentPointAnimation = (props) => {
+  const opacity = React.useRef(new Animated.Value(0)).current;
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener('__@CentPointAnimation.swith', (status) => {
+      if (lo.isEqual(status, 'ON')) {
+        opacity.setValue(1);
+      } else if (lo.isEqual(status, 'OFF')) {
+        opacity.setValue(0);
+      }
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  return (
+  <Animated.View style={{ position: 'absolute', transform: [{ scale: getFixedWidthScale() }], zIndex: -10, opacity: opacity }}>
+    <LeiDaAnimation />
+  </Animated.View>
+  );
+}
+
+const setCentPointAnimationStatus = (status) => {
+  DeviceEventEmitter.emit('__@CentPointAnimation.swith', status);
 }
 
 const SceneMap = (props) => {
@@ -189,6 +219,7 @@ const SceneMap = (props) => {
         setBigPointerEvent('auto');
       }
     });
+    setCentPointAnimationStatus('ON');
   }
 
   // 大地图最小化
@@ -204,6 +235,7 @@ const SceneMap = (props) => {
         setBigPointerEvent('none');
       }
     });
+    setCentPointAnimationStatus('OFF');
   }
 
   // 大地图缩小
@@ -313,8 +345,12 @@ const SceneMap = (props) => {
       ? require('../../../assets/button/scene_map_button.png') 
       : require('../../../assets/button/scene_map_button2.png');
 
+    const borderEffect = isCenterPoint 
+      ? { borderWidth: 1.5, borderColor: '#31aac8', borderRadius: 5 } 
+      : {};
+
     grids.push((
-      <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }]}
+      <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT,  justifyContent: 'center', alignItems: 'center' }, { left, top }, borderEffect]}
         onTouchStart={() => {
           touchStart.current = true;
         }}
@@ -328,6 +364,8 @@ const SceneMap = (props) => {
       >
         <FastImage style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} source={gridImg} />
         <Text style={{ color: '#000', zIndex: 1 }}>{e.title}</Text>
+        {(isCenterPoint) ? <CentPointAnimation /> : <></>}
+        {(e.icon != undefined && e.icon.show) ? (<BtnIcon id={e.icon.id} style={{}} />) : <></>}
       </View>
       ));
   });

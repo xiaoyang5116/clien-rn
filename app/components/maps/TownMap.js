@@ -80,6 +80,7 @@ const MAP_DATA = [
         },
         farPoints: [
             { style: { left: 70, top: 150 }, name: 'ZhenYaoTa', title: '镇妖塔' },
+            { style: { left: 10, top: 300 }, name: 'LianDanFang', title: '炼丹房' },
         ],
         nearPoints: [
             { style: { left: 160, top: 300 }, textStyle: { top: 22 }, name: 'ShiChang', title: '市场' },
