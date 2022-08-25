@@ -16,7 +16,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const AlchemyRoom = props => {
   useEffect(() => {
-    props.dispatch(action('AlchemyModel/getDanFangData')());
+    props.dispatch(action('AlchemyModel/getDanFangList')());
   }, []);
 
   const openDanFangPage = () => {

@@ -2,6 +2,8 @@ import { View, Text, SafeAreaView, ImageBackground, Image } from 'react-native';
 import React from 'react';
 import { px2pd } from '../../constants/resolution';
 
+import FastImage from 'react-native-fast-image';
+
 export const HalfPanel = props => {
     const { source } = props
 
@@ -17,7 +19,7 @@ export const HalfPanel = props => {
                             overflow: 'hidden',
                             ...props.style
                         }}>
-                        <Image style={{ width: "100%", height: "100%", position: "absolute", zIndex: 0, }} source={source} />
+                        <FastImage style={{ width: "100%", height: "100%", position: "absolute", zIndex: 0, }} source={source} />
                         {props.children}
                     </View>
                 </View>

@@ -11,26 +11,40 @@ import React, { useEffect } from 'react';
 
 import { px2pd } from '../../constants/resolution';
 import { action, connect } from '../../constants';
+import RootView from '../RootView';
 
 import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
+import DanFangDetailPage from './DanFangDetailPage';
 
 const DanFangPage = props => {
   const { danFangList } = props;
 
   useEffect(() => {
     if (danFangList.length === 0) {
-      props.dispatch(action('AlchemyModel/getDanFangData')());
+      props.dispatch(action('AlchemyModel/getDanFangList')());
     }
   }, []);
+
+  const openDanFangDetailPage = (item) => {
+    const key = RootView.add(
+      <DanFangDetailPage
+        danFang={item}
+        onCloseDanFangPage={props.onClose}
+        onClose={() => {
+          RootView.remove(key);
+        }}
+      />,
+    );
+  }
 
   const DanFangComponent = () => {
     const renderItem = ({ item, index }) => {
       return (
         <TouchableOpacity
           style={styles.danFangItemContainer}
-          onPress={() => { }}>
+          onPress={() => { openDanFangDetailPage(item) }}>
           <ImageCapInset
             style={{ width: '100%', height: '100%', position: 'absolute' }}
             source={require('../../../assets/button/40dpi_gray.png')}
@@ -41,7 +55,8 @@ const DanFangPage = props => {
             {!item.valid ? (
               <Text style={{ fontSize: 14, color: '#585858' }}>材料不足</Text>
             ) : (
-              <Text style={{ fontSize: 14, color: '#000' }}>材料满足</Text>
+              // <Text style={{ fontSize: 14, color: '#000' }}>可选</Text>
+              <></>
             )}
           </View>
         </TouchableOpacity>
@@ -74,6 +89,7 @@ const DanFangPage = props => {
       </View>
     )
   }
+
   return (
     <View style={{ flex: 1 }}>
       <FastImage
