@@ -96,7 +96,7 @@ const CentPointAnimation = (props) => {
   }, []);
 
   return (
-  <Animated.View style={{ position: 'absolute', transform: [{ scale: getFixedWidthScale() }], zIndex: -10, opacity: opacity }}>
+  <Animated.View style={{ position: 'absolute', top: 16, paddingLeft: 8, transform: [{ scale: getFixedWidthScale() }], zIndex: -10, opacity: opacity }}>
     <LeiDaAnimation />
   </Animated.View>
   );
