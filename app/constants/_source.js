@@ -49,6 +49,11 @@ const _images = {
         { id: 5, img: require('../../assets/button_icon/5.png'), top: 0, right: 0 },
         { id: 6, img: require('../../assets/button_icon/6.png'), top: 0, left: 10 },
         { id: 7, img: require('../../assets/button_icon/7.png'), top: 0, left: 10 },
+
+        { id: 100, img: require('../../assets/button_icon/100.png'), top: -8, right: 5, width: px2pd(60), height: px2pd(60) },
+        { id: 101, img: require('../../assets/button_icon/101.png'), top: -8, right: 5, width: px2pd(60), height: px2pd(60) },
+        { id: 102, img: require('../../assets/button_icon/102.png'), top: -8, right: 5, width: px2pd(60), height: px2pd(60) },
+        { id: 103, img: require('../../assets/button_icon/103.png'), top: -8, right: 5, width: px2pd(60), height: px2pd(60) },
     ],
     propIcons: [
         { id: 1, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_1.png') },

@@ -109,6 +109,7 @@ scenes: [
       { id: 'v10', min: 0, max: 1 },
       { id: 'v20', min: 0, max: 1 },
       { id: 'v_shop', min: 0, max: 1 },
+      { id: 'v_icon_100', min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -138,7 +139,7 @@ scenes: [
           { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
           { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
           { point: [-2, 0], title: '老者', toScene: 'pomiao', links: [[-1, 0]] },
-          { point: [-1, -1], title: '地主', toScene: 'pomiao', links: [[-1, 0], [0, -1]], path: [[-1, -2], [0, -2], [1, -2], [1, -1], [1, 0]] },
+          { point: [-1, -1], title: '地主', toScene: 'pomiao', icon: { id: 100, bindVar: 'v_icon_100' }, links: [[-1, 0], [0, -1]], path: [[-1, -2], [0, -2], [1, -2], [1, -1], [1, 0]] },
         ]
       },
       {
@@ -168,7 +169,8 @@ scenes: [
           { title: '【默认商店】', andVarsOn: ['v_shop'], toShop: 'default' }, 
           { title: '【获得剧情道具】', sendProps: '405,1' }, 
           { title: '【获得碎片】', sendProps: '500,5' }, 
-          { title: '【获得修行值】', alterXiuXing: 1230 }, 
+          # { title: '【获得修行值】', alterXiuXing: 1230 }, 
+          { title: '【修改选项按钮变量】', varsOn: ['v_icon_100'] }, 
           { title: '【--测试选项进度条--】', toScene: 'S_00Test01' }, 
           { title: '【--DEBUG跳过序章移动到破庙--】', toScene: 'M01_S01_luoyuezhen_pomiao' },
           

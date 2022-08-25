@@ -24,6 +24,7 @@ import { getFixedWidthScale, px2pd } from '../../constants/resolution';
 import Easing from 'react-native/Libraries/Animated/Easing';
 import LeiDaAnimation from '../../components/effects/LeiDaAnimation';
 import Toast from '../toast';
+import { BtnIcon } from '../button/BtnIcon';
 
 const WIN_SIZE = getWindowSize();
 
@@ -364,6 +365,7 @@ const SceneMap = (props) => {
         <FastImage style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} source={gridImg} />
         <Text style={{ color: '#000', zIndex: 1 }}>{e.title}</Text>
         {(isCenterPoint) ? <CentPointAnimation /> : <></>}
+        {(e.icon != undefined && e.icon.show) ? (<BtnIcon id={e.icon.id} style={{}} />) : <></>}
       </View>
       ));
   });
