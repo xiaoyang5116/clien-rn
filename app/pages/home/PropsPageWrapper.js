@@ -11,7 +11,7 @@ const PropsPageWrapper = (props) => {
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ width: '100%', height: 40, justifyContent: 'center', alignItems: 'center' }}>
                     <View style={{ position: 'absolute', left: 10 }}>
-                        <AntDesign name='left' size={28} onPress={() => {
+                        <AntDesign name='left' color={'#333'} size={28} onPress={() => {
                             if (props.onClose != undefined) {
                                 props.onClose();
                             }

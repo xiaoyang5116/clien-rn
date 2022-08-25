@@ -17,7 +17,7 @@ import {
 } from '../../constants/native-ui';
 
 import {
-    TabButton,
+    TabButton, TextButton,
 } from '../../constants/custom-ui';
 
 import FastImage from 'react-native-fast-image';
@@ -110,13 +110,18 @@ const PropsPage = (props) => {
                         <Text style={{ marginRight: 20, textAlign: 'right', fontSize: 14, color: '#929292' }}>数量</Text>
                     </View>
                 </View>
-                <View style={{ flex: 1, paddingLeft: 10, paddingRight: 10, marginBottom: 40, }}>
+                <View style={{ flex: 1, paddingLeft: 10, paddingRight: 10, marginBottom: 10, }}>
                     <FlatList
                         style={{ paddingTop: 2 }}
                         data={props.listData}
                         renderItem={renderItem}
                         keyExtractor={item => item.recordId}
                     />
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
+                    <TextButton title="尘界" />
+                    <TextButton title="现实" />
+                    <TextButton title="灵修界" />
                 </View>
             </View>
         </View>

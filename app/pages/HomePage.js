@@ -28,9 +28,7 @@ import { Platform, TouchableWithoutFeedback } from 'react-native';
 import { px2pd } from '../constants/resolution';
 import TownTabPage from './home/TownTabPage';
 import RoleTabPage from './home/RoleTabPage';
-import RootView from '../components/RootView';
-import PropsPageWrapper from './home/PropsPageWrapper';
-import ExplorePage from './home/ExplorePage';
+import PageUtils from '../utils/PageUtils';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,27 +49,15 @@ const TabIcon = (props) => {
     </View>
   );
 
-  const openPropsPage = () => {
-    const key = RootView.add(<PropsPageWrapper onClose={() => {
-      RootView.remove(key);
-    }} />);
-  }
-
-  const openExplorePage = () => {
-    const key = RootView.add(<ExplorePage onClose={() => {
-      RootView.remove(key);
-    }} />);
-  }
-
   if (lo.isEqual(props.title, '道具')) {
     return (
-      <TouchableWithoutFeedback onPress={openPropsPage}>
+      <TouchableWithoutFeedback onPress={() => PageUtils.openPropsPage() }>
         {button}
       </TouchableWithoutFeedback>
     )
   } else if (lo.isEqual(props.title, '探索')) {
     return (
-      <TouchableWithoutFeedback onPress={openExplorePage}>
+      <TouchableWithoutFeedback onPress={() => PageUtils.openExplorePage() }>
         {button}
       </TouchableWithoutFeedback>
     )
