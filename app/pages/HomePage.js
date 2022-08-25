@@ -8,7 +8,6 @@ import {
 import {
   connect,
   Component,
-  StyleSheet,
   ThemeContext,
   statusBarHeight
 } from "../constants";
@@ -20,32 +19,65 @@ import {
   Text,
 } from '../constants/native-ui';
 
+import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
 import StoryTabPage from './home/StoryTabPage';
 import ProfileTabPage from './home/ProfileTabPage';
-import PropsTabPage from './home/PropsTabPage';
-import ExploreTabPage from './home/ExploreTabPage';
 import CollectionTabPage from './home/CollectionTabPage';
-import { Platform } from 'react-native';
+import { Platform, TouchableWithoutFeedback } from 'react-native';
 import { px2pd } from '../constants/resolution';
 import TownTabPage from './home/TownTabPage';
 import RoleTabPage from './home/RoleTabPage';
+import RootView from '../components/RootView';
+import PropsPageWrapper from './home/PropsPageWrapper';
+import ExplorePage from './home/ExplorePage';
 
 const Tab = createBottomTabNavigator();
+
+const EmptyPage = (props) => {
+  return (<></>);
+}
 
 const TabIcon = (props) => {
 
   const theme = React.useContext(ThemeContext);
 
-  return (
+  const button = (
     <View style={[theme.tabBottomImgStyle, { position: 'absolute', left: 5, top: -30 }]}>
       <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={theme.tabBottomImage} />
       <View style={[theme.tabBottomLabelStyle, { position: 'absolute', width: 24 }]}>
         <Text style={{ fontSize: px2pd(60), color: props.color }}>{props.title}</Text>
       </View>
     </View>
-
   );
+
+  const openPropsPage = () => {
+    const key = RootView.add(<PropsPageWrapper onClose={() => {
+      RootView.remove(key);
+    }} />);
+  }
+
+  const openExplorePage = () => {
+    const key = RootView.add(<ExplorePage onClose={() => {
+      RootView.remove(key);
+    }} />);
+  }
+
+  if (lo.isEqual(props.title, '道具')) {
+    return (
+      <TouchableWithoutFeedback onPress={openPropsPage}>
+        {button}
+      </TouchableWithoutFeedback>
+    )
+  } else if (lo.isEqual(props.title, '探索')) {
+    return (
+      <TouchableWithoutFeedback onPress={openExplorePage}>
+        {button}
+      </TouchableWithoutFeedback>
+    )
+  } else {
+    return (button);
+  }
 }
 
 const HeaderTitle = (props) => {
@@ -89,7 +121,7 @@ class HomePage extends Component {
             title: "世界",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'世界'} />),
           }} />
-          <Tab.Screen name="Explore" component={ExploreTabPage} options={{
+          <Tab.Screen name="Explore" component={EmptyPage} options={{
             title: "探索",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'探索'} />),
           }} />
@@ -105,7 +137,7 @@ class HomePage extends Component {
             title: "设置",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'设置'} />),
           }} />
-          <Tab.Screen name="Props" component={PropsTabPage} options={{
+          <Tab.Screen name="Props" component={EmptyPage} options={{
             title: "道具",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'道具'} />),
           }} />
