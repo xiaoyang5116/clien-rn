@@ -1623,7 +1623,7 @@ scenes: [
           }, 
 
           { key: 'P3', content: ['李森炎直接交了钱','将自己刚才找的情报告诉老板','情报阁老板摸摸胡须，很痛快的告诉了他','“你方才找到的这些消息中，有真有假”','随后将真的线索告诉了李森炎','【郊外山谷有丹参，郊区有野生白芍，森林中有何首乌，天水阁有白术】',],
-          btn: [{title: '先去森林找',toScene: 'C000A_V_MAP_-1_5',VarsOff: ['WZXX_M1_N1_C000A_V/v_icon_101',],
+          btn: [{title: '先去森林找',toScene: 'C000A_V_MAP_-1_5',varsOff: ['WZXX_M1_N1_C000A_V/v_icon_101',],
           # addCluesId: ["xiansuo1"]
           },]},
 
@@ -1675,7 +1675,7 @@ scenes: [
           btn: [{title: '我要买簪子' ,toShop: 'default', tokey: "P2",}, ]},
 
           { key: 'P2', content: ['“客官，慢走，下次再来啊。”',['盖章过关'],'买到母亲心爱的簪子了，请选择行动……',],
-          btn: [{title: '买到簪子离开集市，回去',toChapter: "WZXX_M1_N1_C002_[N3]" , VarsOff: ['WZXX_M1_N1_C000A_V/v_icon_100'], },]},
+          btn: [{title: '买到簪子离开集市，回去',toChapter: "WZXX_M1_N1_C002_[N3]" , varsOff: ['WZXX_M1_N1_C000A_V/v_icon_100'], },]},
 
     ],},
     ],

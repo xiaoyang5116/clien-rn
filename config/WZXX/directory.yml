@@ -162,9 +162,14 @@ directory: [
         toChapter: 'WZXX_M1_N1_C008', links: [[0, -20]] 
         },
 
-        { point: [0, -20], title: '第九章 炼气',
+        { point: [-1, -20], title: '第九章 炼气',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C009_[N1]' ,
-         toChapter: 'WZXX_M1_N1_C009_[N1]', links: [[0, -21], ] 
+         toChapter: 'WZXX_M1_N1_C009_[N1]', links: [[1, -20],[0, -21], ] 
+        },
+
+         { point: [1, -20], title: '第九章 打坐',
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C009_[N2]' ,
+         toChapter: 'WZXX_M1_N1_C009_[N2]', links: [[-1, -20],[0, -21], ] 
         },
 
         { point: [0, -21], title: '第十章 医灵',
