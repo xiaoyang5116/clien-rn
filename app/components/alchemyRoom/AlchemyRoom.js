@@ -14,6 +14,7 @@ import { now } from '../../utils/DateTimeUtils';
 import DanFangPage from './DanFangPage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ProgressBar from './components/ProgressBar';
+import { TextButton } from '../../constants/custom-ui';
 
 const AlchemyRoom = props => {
   const { alchemyData } = props
@@ -109,13 +110,15 @@ const AlchemyRoom = props => {
     }
 
     return (
-      <View style={{ position: 'absolute', bottom: '5%', justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ fontSize: 24, color: "#000" }}>{alchemyData.danFangName}</Text>
-        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
-          <ProgressBar needTime={alchemyData.needTime} currentNeedTime={currentNeedTime} onFinish={onFinish} />
+      <>
+        <Text style={{ fontSize: 30, color: "#000", position: "absolute", top: 12 }}>炼制中</Text>
+        <View style={{ position: 'absolute', bottom: '20%', justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ fontSize: 24, color: "#000" }}>{alchemyData.danFangName}</Text>
+          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <ProgressBar needTime={alchemyData.needTime} currentNeedTime={currentNeedTime} onFinish={onFinish} />
+          </View>
         </View>
-        <Text style={{ fontSize: 30, color: "#000" }}>炼制中</Text>
-      </View>
+      </>
     )
   }
 
@@ -123,10 +126,13 @@ const AlchemyRoom = props => {
     <View style={{ flex: 1, backgroundColor: '#ccc' }}>
       <SafeAreaView style={{ flex: 1 }}>
         <Header />
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: "flex-end", alignItems: 'center' }}>
           {
             alchemyData ? <Refining /> : <ChooseRecipe />
           }
+          <View style={{ width: "90%", marginBottom: 20 }} >
+            <TextButton onPress={props.onClose} title={"离开"} />
+          </View>
         </View>
       </SafeAreaView>
     </View>
