@@ -171,7 +171,7 @@ const AlchemyRoom = props => {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#ccc' }}>
+    <View style={{ flex: 1, backgroundColor: '#ccc', zIndex: 99 }}>
       <SafeAreaView style={{ flex: 1 }}>
         <Header />
         <View style={{ flex: 1, justifyContent: "flex-end", alignItems: 'center' }}>
