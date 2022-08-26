@@ -178,20 +178,5 @@ props: [
    { id:  889, name: '白银', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },
    { id:  890, name: '黄金饰品', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
 
-    #草药
-   { id:  1000, name: '百草哭', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  1001, name: '摄魂草', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  1002, name: '寸筋草', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  1003, name: '烈阳草', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  1004, name: '薄荷粉', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  1005, name: '田七', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  1006, name: '火绒花', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  1007, name: '长生草', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  1008, name: '石猿泪', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  1009, name: '腐髓草', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  1010, name: '兽骨粉', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-   { id:  1011, name: '野生白芍', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
-   { id:  1012, name: '何首乌', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
-   { id:  1013, name: '白术', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
-   { id:  1014, name: '丹参', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
+  
 ]
