@@ -58,10 +58,10 @@ const PropsPage = (props) => {
                     <View style={{ position: 'absolute', left: 0 }}>
                         <FastImage style={{ width: px2pd(120), height: px2pd(120), borderRadius: 5, backgroundColor: quality_style.backgroundColor, borderWidth: 1, borderColor: quality_style.borderColor, transform: [{ scale: 0.7 }] }} source={require('../../../assets/props/v_1.png')} />
                     </View>
-                    <View style={{ flex: 1, flexDirection: 'row' }} >
-                        <Text style={[{ marginLeft: 45, fontSize: 22 }, { color: quality_style.fontColor }]}>{data.item.name}</Text>
+                    <View style={{ width: '70%', flexDirection: 'row' }} >
+                        <Text style={[{ marginLeft: 45, fontSize: 22 }, { color: quality_style.fontColor }]} numberOfLines={1}>{data.item.name}</Text>
                     </View>
-                    <View style={{ flex: 1 }}>
+                    <View style={{ width: '30%' }}>
                         <Text style={{ marginRight: 20, fontSize: 22, color: '#424242', textAlign: 'right' }}>x{data.item.num}</Text>
                     </View>
                 </View>
