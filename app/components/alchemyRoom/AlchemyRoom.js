@@ -48,11 +48,11 @@ const RewardsPage = (props) => {
     childs.push(<RewardItem key={key++} propId={e.danFangId} iconId={e.iconId} num={e.num} name={e.name} />);
   });
   return (
-    <TouchableWithoutFeedback onPress={() => {
+    <TouchableWithoutFeedback style={{ zIndex: 100 }} onPress={() => {
       props.getAward()
       props.onClose()
     }}>
-      <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.65)' }}>
+      <View style={{ flex: 1, zIndex: 99, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.65)' }}>
         <View>
           <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>获得丹药</Text>
         </View>

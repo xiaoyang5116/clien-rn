@@ -89,7 +89,7 @@ const DanFangPage = props => {
   }
 
   return (
-    <View style={{ flex: 1, zIndex: 1 }}>
+    <View style={{ flex: 1, zIndex: 99 }}>
       <FastImage
         style={{ position: 'absolute', width: px2pd(1080), height: px2pd(2400) }}
         source={require('../../../assets/plant/plantBg.jpg')}
