@@ -9,8 +9,10 @@ import {
 
 import lo from 'lodash';
 import { TextButton } from '../../constants/custom-ui';
+import qualityStyle from '../../themes/qualityStyle';
 import { confirm } from '../../components/dialog';
 import { AppDispath } from '../../constants';
+import PropGrid from '../prop/PropGrid';
 
 const PropTips = (props) => {
 
@@ -48,16 +50,7 @@ const PropTips = (props) => {
         });
     }
 
-    let propNameColor = {};
-    if (prop.quality != undefined) {
-        if (prop.quality == '1') {
-            propNameColor = styles.quality1;
-        } else if (prop.quality == '2') {
-            propNameColor = styles.quality2;
-        } else if (prop.quality == '3') {
-            propNameColor = styles.quality3;
-        }
-    }
+    const quality_style = (prop.quality != undefined) ? qualityStyle.styles.find(e => e.id == prop.quality) : {};
 
     return (
         <View style={styles.viewContainer} onTouchStart={() => {
@@ -70,10 +63,10 @@ const PropTips = (props) => {
             }}>
                 <View style={{ flexDirection: 'row' }}>
                     <View style={styles.icon}>
-                        <Image source={require('../../../assets/props/prop_1.png')} />
+                        {(prop.id != undefined) ? <PropGrid prop={prop} showLabel={false} showNum={false} /> : <></>}
                     </View>
                     <View style={{ marginLeft: 10 }}>
-                        <Text style={[{ fontSize: 24 }, propNameColor]}>{prop.name}</Text>
+                        <Text style={[{ fontSize: 24 }, { color: quality_style.fontColor }]}>{prop.name}</Text>
                         <Text></Text>
                     </View>
                 </View>
@@ -117,14 +110,12 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     icon: {
-        width: 60,
-        height: 60,
-        borderWidth: 2,
-        borderColor: '#222',
-        borderRadius: 8,
+        marginTop: 5, 
+        marginLeft: 5,
+        marginRight: 5,
+        transform: [{ scale: 1.2 }],
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#ccc',
     },
     bottomButtons: {
         position: 'absolute',
@@ -135,15 +126,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-    },
-    quality1: {
-        color: '#929292'
-    },
-    quality2: {
-        color: '#0433ff'
-    },
-    quality3: {
-        color: '#00f900'
     },
 });
 

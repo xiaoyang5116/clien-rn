@@ -24,6 +24,7 @@ import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../constants/resolution';
 import RootView from '../../components/RootView';
 import PropTips from '../../components/tips/PropTips';
+import qualityStyle from '../../themes/qualityStyle';
 
 const PropsPage = (props) => {
 
@@ -48,23 +49,17 @@ const PropsPage = (props) => {
     }
 
     const renderItem = (data) => {
-        let color = {};
-        if (data.item.quality != undefined) {
-            if (data.item.quality == '1') {
-                color = styles.quality1;
-            } else if (data.item.quality == '2') {
-                color = styles.quality2;
-            } else if (data.item.quality == '3') {
-                color = styles.quality3;
-            }
-        }
+        const quality_style = qualityStyle.styles.find(e => e.id == parseInt(data.item.quality));
         return (
         <TouchableOpacity onPress={() => propSelected(data.item)} activeOpacity={1}>
             <View style={[styles.propsItem, (data.item.id == 1) ? styles.propsTopBorder : {}]}>
                 {(selectId == data.item.id) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={theme.propSelectedImage} /> : <></>}
                 <View style={styles.propsBorder}>
+                    <View style={{ position: 'absolute', left: 0 }}>
+                        <FastImage style={{ width: px2pd(120), height: px2pd(120), borderRadius: 5, backgroundColor: quality_style.backgroundColor, borderWidth: 1, borderColor: quality_style.borderColor, transform: [{ scale: 0.7 }] }} source={require('../../../assets/props/v_1.png')} />
+                    </View>
                     <View style={{ flex: 1, flexDirection: 'row' }} >
-                        <Text style={[{ marginLeft: 20, fontSize: 22 }, color]}>{data.item.name}</Text>
+                        <Text style={[{ marginLeft: 45, fontSize: 22 }, { color: quality_style.fontColor }]}>{data.item.name}</Text>
                     </View>
                     <View style={{ flex: 1 }}>
                         <Text style={{ marginRight: 20, fontSize: 22, color: '#424242', textAlign: 'right' }}>x{data.item.num}</Text>

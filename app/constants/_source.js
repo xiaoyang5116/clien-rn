@@ -56,11 +56,12 @@ const _images = {
         { id: 103, img: require('../../assets/button_icon/103.png'), top: -8, right: 3, width: px2pd(50), height: px2pd(50) },
     ],
     propIcons: [
-        { id: 1, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_1.png') },
-        { id: 2, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_2.png') },
-        { id: 3, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_3.png') },
-        { id: 4, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_4.png') },
-        { id: 5, width: px2pd(48), height: px2pd(44), img: require('../../assets/props/prop_5.png') },
+        { id: 1, width: px2pd(120), height: px2pd(120), img: require('../../assets/props/v_1.png') },
+        { id: 2, width: px2pd(120), height: px2pd(120), img: require('../../assets/props/v_1.png') },
+        { id: 3, width: px2pd(120), height: px2pd(120), img: require('../../assets/props/v_1.png') },
+        { id: 4, width: px2pd(120), height: px2pd(120), img: require('../../assets/props/v_1.png') },
+        { id: 5, width: px2pd(120), height: px2pd(120), img: require('../../assets/props/v_1.png') },
+        { id: 6, width: px2pd(120), height: px2pd(120), img: require('../../assets/props/v_1.png') },
     ],
     bust: [
         { id: 1, img: require('../../assets/avatar/1.jpg') },

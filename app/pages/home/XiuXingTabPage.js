@@ -25,7 +25,6 @@ import PropGrid from '../../components/prop/PropGrid';
 import { Panel } from '../../components/panel';
 import RootView from '../../components/RootView';
 import PropSelector from '../../components/prop/PropSelector';
-import Toast from '../../components/toast';
 import * as DateTime from '../../utils/DateTimeUtils';
 
 const PROGRESS_BAR_WIDTH = px2pd(800);
@@ -78,7 +77,7 @@ const PropsBar = (props) => {
             lo.forEach(data, (v, k) => {
                 views.push(
                 <TouchableWithoutFeedback key={k} onPress={() => useProp(v)}>
-                    <PropGrid prop={v} style={{ marginRight: 10 }} labelStyle={{ color: '#000' }} />
+                    <PropGrid prop={v} style={{ marginRight: 10 }} showNum={true} labelStyle={{ color: '#000' }} />
                 </TouchableWithoutFeedback>
                 );
             });
