@@ -9,15 +9,10 @@ import {
 } from 'react-native';
 import React, { useEffect, useState } from 'react'
 
-import { px2pd } from '../../constants/resolution';
-import { action, connect } from '../../constants';
-import RootView from '../RootView';
-import { h_m_s_Format } from '../../utils/DateTimeUtils'
 import Toast from '../toast';
 
 import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import FastImage from 'react-native-fast-image';
 import { HalfPanel } from '../panel/HalfPanel'
 import { TextButton } from '../../constants/custom-ui';
 
@@ -72,7 +67,7 @@ const AuxiliaryMaterialsPop = (props) => {
   }
 
   return (
-    <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"} source={require('../../../assets/plant/plantBg.jpg')} borderRadius={10}>
+    <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"} source={require('../../../assets/plant/plantBg.jpg')} borderRadius={10} zIndex={3}>
       <Header />
       <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, }}>
         <FlatList

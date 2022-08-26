@@ -3,20 +3,27 @@ import {
   Text,
   View,
   SafeAreaView,
-  TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
 import React, { useEffect } from 'react';
 
 import { action, connect } from '../../constants';
 import RootView from '../RootView';
+import { now } from '../../utils/DateTimeUtils';
 
 import DanFangPage from './DanFangPage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import ProgressBar from './components/ProgressBar';
 
 const AlchemyRoom = props => {
+  const { alchemyData } = props
+
+  // const 
   useEffect(() => {
-    props.dispatch(action('AlchemyModel/getDanFangList')());
+    if (alchemyData === undefined) {
+      props.dispatch(action('AlchemyModel/getAlchemyData')())
+    }
+
   }, []);
 
   const openDanFangPage = () => {
@@ -69,12 +76,57 @@ const AlchemyRoom = props => {
       </View>
     );
   };
+
+  const Refining = () => {
+    // console.log("alchemyData", alchemyData);
+    // {"danFangId": 1, "danFangName": "突破丹", "needTime": 100, "refiningTime": 1661481254117, "targets": [{"id": 440, "num": 1, "range": [Array], "rate": 20}]}
+    // 时间差
+    const diffTime = Math.floor((now() - alchemyData.refiningTime) / 1000)
+    // 当前需要的时间
+    const currentNeedTime = alchemyData.needTime - diffTime
+
+    const onFinish = () => {
+      props.dispatch(action('AlchemyModel/alchemyFinish')())
+    }
+
+    if (currentNeedTime < 0) {
+      return (
+        <View style={{ position: 'absolute', bottom: '5%', justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ fontSize: 24, color: "#000" }}>{alchemyData.danFangName}</Text>
+          <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ height: 15, width: 300, backgroundColor: "#e0e0e0", borderRadius: 12, overflow: 'hidden', }}>
+              <View style={{
+                position: "absolute", top: 0, left: 0, height: 15, width: "100%", backgroundColor: "#33ad85", zIndex: 0,
+              }} ></View>
+            </View>
+            <Text style={{ textAlign: 'center', position: "absolute" }}>100%</Text>
+          </View>
+          <TouchableOpacity onPress={onFinish}>
+            <Text style={{ fontSize: 30, color: "#000" }}>炼制完成,点击领取</Text>
+          </TouchableOpacity>
+        </View>
+      )
+    }
+
+    return (
+      <View style={{ position: 'absolute', bottom: '5%', justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: 24, color: "#000" }}>{alchemyData.danFangName}</Text>
+        <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
+          <ProgressBar needTime={alchemyData.needTime} currentNeedTime={currentNeedTime} onFinish={onFinish} />
+        </View>
+        <Text style={{ fontSize: 30, color: "#000" }}>炼制中</Text>
+      </View>
+    )
+  }
+
   return (
     <View style={{ flex: 1, backgroundColor: '#ccc' }}>
       <SafeAreaView style={{ flex: 1 }}>
         <Header />
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ChooseRecipe />
+          {
+            alchemyData ? <Refining /> : <ChooseRecipe />
+          }
         </View>
       </SafeAreaView>
     </View>

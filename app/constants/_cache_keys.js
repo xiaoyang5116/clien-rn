@@ -43,4 +43,7 @@ export class LocalCacheKeys {
     // 收藏品数据
     static COLLECTION_DATA = 'COLLECTION_DATA';
 
+    // 炼丹数据
+    static ALCHEMY_DATA = "ALCHEMY_DATA"
+
 }

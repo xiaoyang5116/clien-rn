@@ -18,6 +18,9 @@ import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 import AuxiliaryMaterialsPop from './AuxiliaryMaterialsPop'
+import { TextButton } from '../../constants/custom-ui';
+import SelectQuantityPop from './SelectQuantityPop';
+import Toast from '../toast';
 
 
 // 原材料
@@ -178,12 +181,15 @@ const AuxiliaryMaterials = (props) => {
   )
 }
 
+// 丹方详细页面
 const DanFangDetailPage = (props) => {
-  const { danFang } = props
+  const { danFang, onCloseDanFangPage } = props
   const [danFangDetail, setDanFangDetail] = useState({})
 
   // 辅助材料
   const [auxiliaryMaterials, setAuxiliaryMaterials] = useState([])
+
+  // console.log("danFangDetail", danFangDetail);
 
   useEffect(() => {
     props.dispatch(action('AlchemyModel/getDanFangDetail')(danFang)).then((result) => {
@@ -193,8 +199,8 @@ const DanFangDetailPage = (props) => {
 
   const Header = () => {
     return (
-      <View style={{ justifyContent: 'center', marginTop: 12 }}>
-        <View style={{ position: 'absolute', zIndex: 2 }}>
+      <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: 'center', marginTop: 12, overflow: 'hidden' }}>
+        <View style={{ position: 'absolute', left: 0, zIndex: 2, }}>
           <TouchableOpacity onPress={props.onClose}>
             <AntDesign name='left' color={"#fff"} size={23} style={{ marginLeft: 12, }} />
           </TouchableOpacity>
@@ -216,8 +222,33 @@ const DanFangDetailPage = (props) => {
     )
   }
 
+  // 炼丹按钮
+  const Alchemy = () => {
+    const selectQuantity = () => {
+      if (!danFang.valid) {
+        return Toast.show("材料不足")
+      }
+      const key = RootView.add(
+        <SelectQuantityPop
+          danFangDetail={danFangDetail}
+          auxiliaryMaterials={auxiliaryMaterials}
+          onCloseDanFangPage={onCloseDanFangPage}
+          onCloseDanFangDetailPage={props.onClose}
+          onClose={() => {
+            RootView.remove(key);
+          }} />
+      )
+    }
+
+    return (
+      <View style={{ justifyContent: "center", alignItems: 'center', marginBottom: 12 }}>
+        <TextButton title={"炼丹"} onPress={selectQuantity} />
+      </View>
+    )
+  }
+
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, zIndex: 2 }}>
       <FastImage
         style={{ position: 'absolute', width: px2pd(1080), height: px2pd(2400) }}
         source={require('../../../assets/plant/plantBg.jpg')}
@@ -225,6 +256,7 @@ const DanFangDetailPage = (props) => {
       <SafeAreaView style={{ flex: 1 }}>
         <Header />
         <DanFangDetail />
+        <Alchemy />
       </SafeAreaView>
     </View>
   )

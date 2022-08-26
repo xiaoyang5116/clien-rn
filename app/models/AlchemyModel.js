@@ -1,7 +1,8 @@
 
 import {
   action,
-  LocalCacheKeys
+  LocalCacheKeys,
+  BOTTOM_TOP_SMOOTH
 } from '../constants';
 
 import lo, { range } from 'lodash';
@@ -17,17 +18,15 @@ export default {
 
   state: {
     danFangList: [],  // 丹方集合
-    // danFangDetail: {
-    //   id: null,  // 配方id
-    //   stuffsDetail: [],  // 原材料
-    //   propsDetail: [],  // 辅助材料
-    //   targets: []  // 产品
-    // }
+    danFangConfig: [],  // 丹方配置数据
+    alchemyData: null,  // 炼丹数据
   },
 
   effects: {
     *reload({ }, { select, put, call }) {
-
+      // 挂载炼丹数据
+      const storageAlchemy = yield call(LocalStorage.get, LocalCacheKeys.ALCHEMY_DATA);
+      yield put(action('updateState')({ alchemyData: storageAlchemy }))
     },
 
     // 获取丹方列表
@@ -48,17 +47,7 @@ export default {
             break;
           }
         }
-        // 判断需求道具
-        // if (enough) {
-        //   for (let k in item.props) {
-        //     const prop = item.props[k];
-        //     const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: prop.id }));
-        //     if (propNum < prop.num) {
-        //       enough = false;
-        //       break;
-        //     }
-        //   }
-        // }
+
         if (enough) {
           validData.push({ ...item, valid: enough })
         } else {
@@ -67,7 +56,7 @@ export default {
       }
 
       const newDanFangList = [...validData, ...notValidData]
-      yield put(action("updateState")({ danFangList: newDanFangList }))
+      yield put(action("updateState")({ danFangList: newDanFangList, danFangConfig: rules }))
     },
 
     // 获取丹方详情
@@ -77,7 +66,7 @@ export default {
         const stuff = payload.stuffs[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: stuff.id }));
         const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: stuff.id }));
-        stuffsDetail.push({ name: propConfig.name, reqNum: stuff.num, currNum: propNum });
+        stuffsDetail.push({ id: stuff.id, name: propConfig.name, reqNum: stuff.num, currNum: propNum });
       }
 
       const propsDetail = [];
@@ -93,7 +82,7 @@ export default {
         const item = payload.targets[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.id }));
         const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: item.id }));
-        targets.push({ name: propConfig.name, desc: propConfig.desc, currNum: propNum, productNum: item.num });
+        targets.push({ id: item.id, name: propConfig.name, desc: propConfig.desc, currNum: propNum, productNum: item.num });
       }
 
       return {
@@ -110,6 +99,111 @@ export default {
       //     targets,
       //   },
       // }));
+    },
+
+    // 获取可以炼制的数量
+    *getRefiningNum({ payload }, { call, put, select }) {
+      const { stuffsDetail, propsDetail } = payload
+      let num = 1
+      let isOk = true
+      while (isOk) {
+        const currentNum = num + 1
+        for (let index = 0; index < stuffsDetail.length; index++) {
+          const item = stuffsDetail[index];
+          if (item.currNum - (item.reqNum * currentNum) < 0) {
+            isOk = false
+          }
+        }
+        for (let index = 0; index < propsDetail.length; index++) {
+          const item = propsDetail[index];
+          if (item.currNum - (item.reqNum * currentNum) < 0) {
+            isOk = false
+          }
+        }
+        num++
+      };
+
+      return num - 1
+    },
+
+    // 炼丹
+    *alchemy({ payload }, { call, put, select }) {
+      const { danFangData, refiningNum, } = payload
+      const { danFangConfig } = yield select(state => state.AlchemyModel);
+      const currentDanFangConfig = danFangConfig.find(item => item.id === danFangData.id)
+
+      // 扣除原料
+      for (let k in currentDanFangConfig.stuffs) {
+        const stuff = currentDanFangConfig.stuffs[k];
+        yield put.resolve(action('PropsModel/use')({ propId: stuff.id, num: (stuff.num * refiningNum), quiet: true }));
+      }
+      // 扣除辅助材料
+      for (let k in danFangData.propsDetail) {
+        const props = danFangData.propsDetail[k];
+        yield put.resolve(action('PropsModel/use')({ propId: props.id, num: (props.reqNum * refiningNum), quiet: true }));
+      }
+
+      // 随机产生丹药
+      let danYaoArr = []
+      for (let k = 0; k < refiningNum; k++) {
+        const sortTargets = currentDanFangConfig.targets.map(e => ({ ...e }))
+        sortTargets.sort((a, b) => b.rate - a.rate);
+        let prevRange = 0;
+        sortTargets.forEach(e => {
+          e.range = [prevRange, prevRange + e.rate];
+          prevRange = e.range[1];
+        });
+        const randValue = lo.random(0, 100, false);
+        let hit = sortTargets.find(e => randValue >= e.range[0] && randValue < e.range[1]);
+        if (hit == undefined) hit = sortTargets[sortTargets.length - 1];
+
+        // 重复的就增加数量
+        if (danYaoArr.find(item => item.id === hit.id) === undefined) {
+          const danYaoName = danFangData.targets.find(item => item.id === hit.id).name
+          danYaoArr.push({ ...hit, name: danYaoName })
+        }
+        else {
+          danYaoArr = danYaoArr.map(item => item.id === hit.id ? { ...item, num: item.num + 1 } : item)
+        }
+      }
+      // 发送道具，这就先存储
+      // yield put.resolve(action('PropsModel/sendProps')({ propId: hit.id, num: hit.num, quiet: true }));
+
+      const alchemyData = {
+        danFangId: currentDanFangConfig.id,
+        danFangName: currentDanFangConfig.name,
+        needTime: currentDanFangConfig.time * refiningNum,
+        refiningTime: now(),
+        targets: danYaoArr,
+        status: 0,
+      }
+
+      yield call(LocalStorage.set, LocalCacheKeys.ALCHEMY_DATA, alchemyData);
+      yield put(action("updateState")({ alchemyData }))
+    },
+
+    // 炼丹完成
+    *alchemyFinish({ payload }, { call, put, select }) {
+      const { alchemyData } = yield select(state => state.AlchemyModel);
+
+      for (let index = 0; index < alchemyData.targets.length; index++) {
+        const prop = alchemyData.targets[index];
+        yield put.resolve(action('PropsModel/sendProps')({ propId: prop.id, num: prop.num, quiet: true }));
+      }
+
+      let num = 0
+      let timer = setInterval(() => {
+        if (alchemyData.targets.length > num) {
+          Toast.show(`获得${alchemyData.targets[num].name} * ${alchemyData.targets[num].num}`, BOTTOM_TOP_SMOOTH)
+          num++
+        }
+        else {
+          clearInterval(timer)
+        }
+      }, 500);
+
+      yield call(LocalStorage.set, LocalCacheKeys.ALCHEMY_DATA, null);
+      yield put(action("updateState")({ alchemyData: null }))
     }
   },
 
@@ -128,13 +222,5 @@ export default {
         return dispatch({ 'type': 'reload' });
       });
     },
-  }
-}
-
-function compareSort(property) {
-  return function (obj1, obj2) {
-    var value1 = obj1[property];
-    var value2 = obj2[property];
-    return value1 - value2;     // 升序
   }
 }
