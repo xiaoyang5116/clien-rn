@@ -77,6 +77,7 @@ const models = [
   require('./models/DropsModel').default,
   require('./models/ShopsModel').default,
   require('./models/CollectionModel').default,
+  require('./models/AlchemyModel').default,
 ];
 
 const defaultDataContext = {

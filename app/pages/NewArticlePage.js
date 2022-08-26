@@ -58,6 +58,9 @@ import readerStyle from '../themes/readerStyle';
 import BagAnimation from '../components/animation/BagAnimation';
 import PropTips from '../components/tips/PropTips';
 import PageUtils from '../utils/PageUtils';
+import MenuOptions from '../components/article/MenuOptions';
+import UserAttributesHolder from './article/UserAttributesHolder'
+import Clues from '../components/cluesList';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -187,66 +190,6 @@ const ReaderXianGaoImageView = () => {
   <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
     {image}
   </View>
-  );
-}
-
-const UserAttributesHolder = (props) => {
-  const [ data, setData ] = React.useState(props.config);
-
-  React.useEffect(() => {
-    const listener = DeviceEventEmitter.addListener(EventKeys.USER_ATTR_UPDATE, () => {
-      const cb = (result) => {
-        const newData = lo.cloneDeep(data);
-        result.forEach(e => {
-          const { key, value } = e;
-          newData.forEach(e => {
-            e.data.forEach(e => {
-              e.forEach(e => {
-                if (e.key == key) {
-                  e.value = value;
-                }
-              })
-            });
-          });
-        });
-        //
-        setData(newData);
-      };
-      AppDispath({ type: 'UserModel/getAttrs', cb });
-    });
-
-    // 更新角色属性
-    DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
-    
-    return () => {
-      listener.remove();
-    }
-  }, []);
-
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1 }}>
-        <AntDesign name='left' size={23} style={{ margin: 5 }} />
-        <View style={{ flex: 1 }} onTouchStart={(e) => e.stopPropagation()}>
-          <Collapse 
-            data={data}
-            renderItem={(item) => {
-              return (
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                  <View style={{ width: 50 }}><Text>{item.title}:</Text></View>
-                  <View><Text style={{ color: '#666' }}>{item.value}</Text></View>
-                </View>
-              );
-            }}
-            renderGroupHeader={(section) => {
-              return (
-                <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
-              );
-            }}
-          />
-        </View>
-      </View>
-    </SafeAreaView>
   );
 }
 
@@ -619,73 +562,6 @@ const DarkLightSelector = (props) => {
   );
 }
 
-const MENU_OPTIONS = [
-  { id: 1, title: '返回主页', icon: 'exit-outline', type: 'Ionicons' },
-  { id: 2, title: '功能未解锁', icon: 'laptop', type: 'AntDesign' },
-  { id: 3, title: '功能未解锁', icon: 'linechart', type: 'AntDesign' },
-  { id: 4, title: '功能未解锁', icon: 'filter', type: 'AntDesign' },
-  { id: 5, title: '功能未解锁', icon: 'sharealt', type: 'AntDesign' },
-  { id: 6, title: '功能未解锁', icon: 'notification', type: 'AntDesign' },
-  { id: 7, title: '功能未解锁', icon: 'customerservice', type: 'AntDesign' },
-  { id: 8, title: '功能未解锁', icon: 'clouddownloado', type: 'AntDesign' },
-  { id: 9, title: '功能未解锁', icon: 'search1', type: 'AntDesign' },
-  { id: 10, title: '功能未解锁', icon: 'dashboard', type: 'AntDesign' },
-];
-
-const MenuOptions = (props) => {
-
-  const renderItem = (data) => {
-    const { item } = data;
-    let icon = (<></>);
-    if (lo.isEqual(item.type, 'Ionicons')) {
-      icon = <Ionicons name={item.icon} size={20} />
-    } else if (lo.isEqual(item.type, 'AntDesign')) {
-      icon = <AntDesign name={item.icon} size={20} />
-    }
-
-    let pressHandler = null;
-    if (!lo.isFunction(item.action)) {
-      if (item.id == 1) {
-        pressHandler = () => {
-          props.navigation.navigate('First');
-          AppDispath({ type: 'ArticleModel/cleanup' });
-        }
-      }
-    } else {
-      pressHandler = item.action;
-    }
-
-    return (
-      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-        <TouchableWithoutFeedback onPress={pressHandler}>
-          <View style={styles.menuOptionsItem}>
-            <View style={{ width: 50, alignItems: 'center' }}>{icon}</View>
-            <View style={{ width: 130 }}><Text style={{ color: (pressHandler != null ? '#000' : '#999'), fontSize: 20 }}>{item.title}</Text></View>
-          </View>
-        </TouchableWithoutFeedback>
-      </View>
-    )
-  }
-
-  return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#eee' }}>
-      <View style={{ flex: 1, alignItems: 'flex-end' }}>
-        <View style={{ width: '70%' }}>
-          <AntDesign name='left' size={23} style={{ margin: 5 }} />
-        </View>
-        <View style={{ flex: 1, width: '70%' }} onTouchStart={(e) =>{ e.stopPropagation(); }}>
-          <FlatList 
-            data={MENU_OPTIONS}
-            style={{ alignSelf: 'stretch' }}
-            keyExtractor={item => item.id}
-            renderItem={renderItem}
-          />
-        </View>
-      </View>
-    </SafeAreaView>
-  );
-}
-
 class NewArticlePage extends Component {
 
   static contextType = DataContext;
@@ -818,6 +694,15 @@ class NewArticlePage extends Component {
                 <Text style={styles.bannerButtonText}>阅读设置</Text>
               </View>
             </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress={()=>{
+                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+                Clues.show()
+              }}>
+              <View style={styles.bannerButton}>
+                <AntDesign name={'carryout'} size={23} />
+                <Text style={styles.bannerButtonText}>线索</Text>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
         </HeaderContainer>
         <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
@@ -929,8 +814,8 @@ const styles = StyleSheet.create({
   },
   bannerButton: {
     width: 55,
-    marginLeft: 10, 
-    marginRight: 10,
+    marginLeft: 2, 
+    marginRight: 2,
     marginTop: 10,
     marginBottom: 10,
     justifyContent: 'center',
