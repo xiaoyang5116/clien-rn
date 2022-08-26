@@ -70,7 +70,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002B_V3A', desc: '采集草药', 
         options: [ 
-          { title: "【采集草药】",dialogs: ['C002B_caijicaoyaoA'],},
+          { title: "【采集草药】",dialogs: ['C002B_caijicaoyaoA'],dropIds: ["WZXX_M1_N1_C002B_V_Vdrop7","WZXX_M1_N1_C002B_V_Vdrop8","WZXX_M1_N1_C002B_V_Vdrop9",],},
         ],
       },
 
