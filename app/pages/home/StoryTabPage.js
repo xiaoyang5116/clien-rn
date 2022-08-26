@@ -240,26 +240,30 @@ const StoryTabPage = (props) => {
 
   return (
     <View style={props.currentStyles.viewContainer}>
-      <View style={[props.currentStyles.positionBar, { flexDirection: 'row', justifyContent: 'space-between' }]}>
-        <View>
-          <Text style={[props.currentStyles.positionLabel, {color: props.currentStyles.navigation.text}]}>位置:</Text>
-          <Text style={[props.currentStyles.positionLabel, {color: props.currentStyles.navigation.text}]}>{props.position}</Text>
+      <TouchableWithoutFeedback onPress={()=>{DeviceEventEmitter.emit("ARTICLE_PAGE_PRESS")}}>
+        <View style={props.currentStyles.viewContainer}>
+          <View style={[props.currentStyles.positionBar, { flexDirection: 'row', justifyContent: 'space-between' }]}>
+            <View>
+              <Text style={[props.currentStyles.positionLabel, { color: props.currentStyles.navigation.text }]}>位置:</Text>
+              <Text style={[props.currentStyles.positionLabel, { color: props.currentStyles.navigation.text }]}>{props.position}</Text>
+            </View>
+            <View>
+              <SceneTimeLabel {...props} datetimes={(props.time > 0) ? getFmtDateTimes(props.time) : []} />
+            </View>
+          </View>
+          <SceneImage {...props} />
+          <View style={props.currentStyles.chatContainer}>
+            <SectionList
+              style={props.currentStyles.chatList}
+              sections={props.sectionData}
+              extraData={props}
+              keyExtractor={(item, index) => item + index}
+              renderItem={renderItem}
+              renderSectionHeader={renderSectionHeader}
+            />
+          </View>
         </View>
-        <View>
-          <SceneTimeLabel {...props} datetimes={(props.time > 0) ? getFmtDateTimes(props.time) : []} />
-        </View>
-      </View>
-      <SceneImage {...props} />
-      <View style={props.currentStyles.chatContainer}>
-        <SectionList
-          style={props.currentStyles.chatList}
-          sections={props.sectionData}
-          extraData={props}
-          keyExtractor={(item, index) => item + index}
-          renderItem={renderItem}
-          renderSectionHeader={renderSectionHeader}
-        />
-      </View>
+      </TouchableWithoutFeedback >
       {renderSceneProgress()}
       <MissionBar />
       {renderMap()}

@@ -5,6 +5,7 @@ import {
     Dimensions,
     SafeAreaView,
     TouchableOpacity,
+    Image
 } from 'react-native'
 import React, { useEffect, useContext, useState, useRef } from 'react'
 
@@ -19,6 +20,7 @@ import {
 
 import TabBarComponent from './TabBarComponent';
 import CluesContent from './CluesContent';
+import FastImage from 'react-native-fast-image';
 import { TextButton } from '../../constants/custom-ui';
 
 
@@ -163,7 +165,8 @@ const CluesList = (props) => {
     }
 
     return (
-        <View style={{ flex: 1, backgroundColor: '#efefef' }}>
+        <View style={{ flex: 1, }}>
+            <FastImage source={require('../../../assets/themes/blue/bg/dialog_bg2.png')} style={{ position: "absolute", width: '100%', height: "100%" }} />
             <SafeAreaView style={{ flex: 1 }}>
                 <TabBarComponent
                     tabData={tabData}

@@ -1,6 +1,7 @@
 import React from 'react';
 import RootView from '../components/RootView';
 import XiuXingTabPage from './home/XiuXingTabPage';
+import AlchemyRoomModal from '../components/alchemyRoom';
 
 export default class OpenUI {
 
@@ -10,7 +11,10 @@ export default class OpenUI {
                 const key = RootView.add(<XiuXingTabPage onClose={() => {
                     RootView.remove(key);
                 }} />);
-                break
+                break;
+            case 'LianDanFang':
+                AlchemyRoomModal.show()
+                break;
         }
     }
 

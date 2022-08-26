@@ -30,6 +30,10 @@ const DirMapPage = (props) => {
     if (e.toChapter != undefined) {
       confirm("是否重新阅读该章节?", () => {
         DeviceEventEmitter.emit(EventKeys.HIDE_DIRECTORY_MAP);
+
+        //关闭 按钮浮层页面
+        DeviceEventEmitter.emit(EventKeys.OPTIONS_HIDE);
+
         setTimeout(() => {
           AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: e.toChapter } });
         }, 300);
