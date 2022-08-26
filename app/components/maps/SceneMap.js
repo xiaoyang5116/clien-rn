@@ -15,7 +15,8 @@ import {
 
 import { 
   AppDispath,
-  getWindowSize
+  getWindowSize,
+  EventKeys
 } from '../../constants';
 
 import lo from 'lodash';
@@ -220,6 +221,7 @@ const SceneMap = (props) => {
       }
     });
     setCentPointAnimationStatus('ON');
+    DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER)
   }
 
   // 大地图最小化
