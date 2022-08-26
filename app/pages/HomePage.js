@@ -8,7 +8,6 @@ import {
 import {
   connect,
   Component,
-  StyleSheet,
   ThemeContext,
   statusBarHeight
 } from "../constants";
@@ -20,32 +19,51 @@ import {
   Text,
 } from '../constants/native-ui';
 
+import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
 import StoryTabPage from './home/StoryTabPage';
 import ProfileTabPage from './home/ProfileTabPage';
-import PropsTabPage from './home/PropsTabPage';
-import ExploreTabPage from './home/ExploreTabPage';
 import CollectionTabPage from './home/CollectionTabPage';
-import { Platform } from 'react-native';
+import { Platform, TouchableWithoutFeedback } from 'react-native';
 import { px2pd } from '../constants/resolution';
 import TownTabPage from './home/TownTabPage';
 import RoleTabPage from './home/RoleTabPage';
+import PageUtils from '../utils/PageUtils';
 
 const Tab = createBottomTabNavigator();
+
+const EmptyPage = (props) => {
+  return (<></>);
+}
 
 const TabIcon = (props) => {
 
   const theme = React.useContext(ThemeContext);
 
-  return (
-    <View style={[theme.tabBottomImgStyle, { position: 'absolute', left: 5, top: -30 }]}>
+  const button = (
+    <View style={[theme.tabBottomImgStyle, { position: 'absolute', left: -9, top: -30 }]}>
       <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={theme.tabBottomImage} />
       <View style={[theme.tabBottomLabelStyle, { position: 'absolute', width: 24 }]}>
         <Text style={{ fontSize: px2pd(60), color: props.color }}>{props.title}</Text>
       </View>
     </View>
-
   );
+
+  if (lo.isEqual(props.title, '道具')) {
+    return (
+      <TouchableWithoutFeedback onPress={() => PageUtils.openPropsPage() }>
+        {button}
+      </TouchableWithoutFeedback>
+    )
+  } else if (lo.isEqual(props.title, '探索')) {
+    return (
+      <TouchableWithoutFeedback onPress={() => PageUtils.openExplorePage() }>
+        {button}
+      </TouchableWithoutFeedback>
+    )
+  } else {
+    return (button);
+  }
 }
 
 const HeaderTitle = (props) => {
@@ -69,6 +87,10 @@ const defaultScreenOptions = {
     borderTopWidth: 0, // 去掉底部边框
     backgroundColor: 'rgba(0,0,0,0)',
   },
+  tabBarItemStyle: { // 缩小底部响应区域防止误点边缘
+    marginLeft: 20,
+    marginRight: 20,
+  },
   tabBarInactiveTintColor: '#fff',
   tabBarBackground: () => <TabBarBackground />,
 }
@@ -89,7 +111,7 @@ class HomePage extends Component {
             title: "世界",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'世界'} />),
           }} />
-          <Tab.Screen name="Explore" component={ExploreTabPage} options={{
+          <Tab.Screen name="Explore" component={EmptyPage} options={{
             title: "探索",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'探索'} />),
           }} />
@@ -105,7 +127,7 @@ class HomePage extends Component {
             title: "设置",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'设置'} />),
           }} />
-          <Tab.Screen name="Props" component={PropsTabPage} options={{
+          <Tab.Screen name="Props" component={EmptyPage} options={{
             title: "道具",
             tabBarIcon: ({ color }) => (<TabIcon color={color} title={'道具'} />),
           }} />

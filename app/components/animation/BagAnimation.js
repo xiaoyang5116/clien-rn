@@ -10,13 +10,13 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import RootView from '../RootView';
-import PropsTabPage from '../../pages/home/PropsTabPage';
+import PropsPage from '../../pages/home/PropsPage';
 
 const PropsWrapper = (props) => {
     return (
         <View style={[styles.viewContainer2, { backgroundColor: props.readerStyle.bgColor }]}>
             <View style={{ width: '96%', height: '86%', marginTop: 80, marginBottom: 40, borderRadius: 4, backgroundColor: 'rgba(255,255,255,0.75)' }}>
-                <PropsTabPage />
+                <PropsPage />
             </View>
             <View style={{ position: 'absolute', top: 45, left: 20 }}>
                 <TouchableWithoutFeedback onPress={() => {
