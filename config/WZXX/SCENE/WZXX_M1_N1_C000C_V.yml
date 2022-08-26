@@ -691,7 +691,10 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
+    { id: "biaoqianv1", min: 0, max: 1 } ,
+    { id: "biaoqianv2", min: 0, max: 1 } ,
+    { id: "biaoqianv3", min: 0, max: 1 } ,
+    { id: "biaoqianv4", min: 0, max: 1 } ,
     ],
 
     # 动作定义
@@ -709,13 +712,13 @@ scenes: [
       { 
         id: 'C1', desc: '回到家，你决定首先————', 
         options: [ 
-          { title: '【电脑桌】', toScene: 'C000C_V2_MAP_-2_4'},
+          { title: '【电脑桌】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
           # { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5'},
           # { title: '【换件衣服】', toScene: 'C000C_V2_MAP_-1_5'},  
-          { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6'},
+          { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
           # { title: '【洗衣服】', toScene: 'C000C_V2_MAP_-1_6'},
-          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7'},
-          { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5'},
+          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
+          { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5',  icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
           # { title: '【去洗手间】', toScene: 'C000C_V2_MAP_0_4'},
         ],
       },
@@ -739,7 +742,13 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
+    { id: "biaoqianv1", min: 0, max: 1 } ,
+    { id: "biaoqianv2", min: 0, max: 1 } ,
+    { id: "biaoqianv3", min: 0, max: 1 } ,
+    { id: "biaoqianv4", min: 0, max: 1 } ,
+    { id: "biaoqianv5", min: 0, max: 1 } ,
+    { id: "biaoqianv6", min: 0, max: 1 } ,
+    { id: "biaoqianv7", min: 0, max: 1 } ,
     ],
 
     # 动作定义
@@ -779,14 +788,18 @@ scenes: [
           { id: 'Screen1',style: 6, title: '电脑桌', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['当个司机，就算最后给董事长开车，接触到舒瑶了，又能怎样','两人之间只是距离上更近了，但事实上，还是有着天渊之别','不可能走到一起','想要真正意义上的接近舒瑶，必须壮大自己！','况且，再不努力，可就要中年危机了！','趁着现在还有精力，不如拼一把，尝试创业！','创业，选对方向很重要！','先打开电脑，看看论坛，了解目前经济趋势',],
-          btn: [{title: '【最近生物科技很火】',tokey: "P2", },{title: '【短视频领域好像也不错】',tokey: "P3", },{title: '【元宇宙概念开始进入大众视野】',tokey: "P4", },
+          btn: [{title: '【最近生物科技很火】',tokey: "P2",  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          {title: '【短视频领域好像也不错】',tokey: "P3", icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] },
+          {title: '【元宇宙概念开始进入大众视野】',tokey: "P4", icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] },
           ]},
 
           { key: 'P2', content: ['生物科学涉及的学科太多','门槛太高','自己以前没有打好基础','现在才开始钻研，落后太多','还是不凑这个热闹了',],
-          btn: [{title: '【短视频领域好像也不错】',tokey: "P3", },{title: '【元宇宙概念开始进入大众视野】',tokey: "P4", },]},
+          btn: [{title: '【短视频领域好像也不错】',tokey: "P3", icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] },
+          {title: '【元宇宙概念开始进入大众视野】',tokey: "P4", icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},]},
 
           { key: 'P3', content: ['李森炎想到了做短视频涨粉变现这条路','本来这方面他是有点基础的','因为拍了老女人的日常，他涨了一波粉','可因为导致老女人在公司待不下去','老女人被辞后，他也没办法继续更新了','粉丝一看没有新的东西可看，也陆续离开','再加上老女人找人疯狂举报他','导致他很多以前的视频都被封','后面还找水军来黑他，导致他疯狂掉粉','短视频这条路，也让他没有心思再碰',],
-          btn: [{title: '【元宇宙概念开始进入大众视野】',tokey: "P4", },{title: '【短视频领域好像也不错】',tokey: "P3", },]},
+          btn: [{title: '【元宇宙概念开始进入大众视野】',tokey: "P4", icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] },
+          {title: '【最近生物科技很火】',tokey: "P3", icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']},]},
 
           { key: 'P4', content: ['刚接触到元宇宙的概念','李森炎就被深深吸引！','他一直梦想着有这么一个世界','可以让他短暂逃离现实','在其中遨游，探索！','很多大公司接触到这个概念后，都开始入资','这个项目，未来的前景肯定一片大好！','能将自己喜欢的东西变成工作，也不失为一件好事','兴趣使然，才能动力满满！',],
           btn: [{title: '开始小宇宙项目！',toChapter: "WZXX_M1_N1_C001B_[N1]" },]},
@@ -811,7 +824,9 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
+    { id: "biaoqianv1", min: 0, max: 1 } ,
+    { id: "biaoqianv2", min: 0, max: 1 } ,
+    { id: "biaoqianv3", min: 0, max: 1 } ,
     ],
 
     # 动作定义
@@ -838,11 +853,11 @@ scenes: [
         id: 'C2', desc: '不知不自觉一觉睡到了大天亮', 
         options: [ 
           # { title: '【换件衣服】', toScene: 'C000C_V2_MAP_-1_5'},  
-          { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6'},
-          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7'},
+          { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
           # { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5'},
           # { title: '【洗漱睡觉】', toScene: 'C000C_V2_MAP_0_4'},
-          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4'},
+          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
       
         ],
       },
@@ -867,6 +882,9 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 } ,
+    { id: "biaoqianv2", min: 0, max: 1 } ,
+    { id: "biaoqianv3", min: 0, max: 1 } ,
 
     ],
 
@@ -893,11 +911,11 @@ scenes: [
       { 
         id: 'C2', desc: '卸下一天的疲惫，换一身睡衣', 
         options: [ 
-          { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_4'},
-          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7'},
+          { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_4',  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
           # { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5'},
           # { title: '【洗漱睡觉】', toScene: 'C000C_V2_MAP_0_4'},
-          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4'},
+          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
           # { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5'},
       
         ],
@@ -923,6 +941,9 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 } ,
+    { id: "biaoqianv2", min: 0, max: 1 } ,
+    { id: "biaoqianv3", min: 0, max: 1 } ,
 
     ],
 
@@ -950,11 +971,11 @@ scenes: [
         id: 'C2', desc: '先喝瓶啤酒醒醒脑吧，再想想做啥', 
         options: [ 
           # { title: '【换件衣服】', toScene: 'C000C_V2_MAP_-1_5'},  
-          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7'},
+          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
           # { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5'},
           # { title: '【洗漱睡觉】', toScene: 'C000C_V2_MAP_0_4'},
-          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4'},
-          { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5'},
+          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+          { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5',  icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
       
         ],
       },
@@ -979,6 +1000,8 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 } ,
+    { id: "biaoqianv2", min: 0, max: 1 } ,
 
     ],
 
@@ -997,11 +1020,11 @@ scenes: [
       { 
         id: 'C1', desc: '没什么衣服要洗的……考虑做点别的吧', 
         options: [ 
-          { title: '【换件衣服】', toScene: 'C000C_V2_MAP_-1_5'},  
+          { title: '【换件衣服】', toScene: 'C000C_V2_MAP_-1_5',  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},  
           # { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7'},
           # { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5'},
           # { title: '【洗漱睡觉】', toScene: 'C000C_V2_MAP_0_4'},
-          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4'},
+          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
           # { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5'},
           # { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6'},
       
@@ -1028,6 +1051,9 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 } ,
+    { id: "biaoqianv2", min: 0, max: 1 } ,
+    { id: "biaoqianv3", min: 0, max: 1 } ,
 
     ],
 
@@ -1056,10 +1082,10 @@ scenes: [
         options: [ 
           # { title: '【换件衣服】', toScene: 'C000C_V2_MAP_-1_5'},  
           # { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5'},
-          { title: '【洗漱睡觉】', toScene: 'C000C_V2_MAP_0_4'},
-          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4'},
+          { title: '【洗漱睡觉】', toScene: 'C000C_V2_MAP_0_4',  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
           # { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5'},
-          { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6'},
+          { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
       
         ],
       },
@@ -1084,6 +1110,9 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 } ,
+    { id: "biaoqianv2", min: 0, max: 1 } ,
+    { id: "biaoqianv3", min: 0, max: 1 } ,
 
     ],
 
@@ -1104,9 +1133,9 @@ scenes: [
         options: [ 
           # { title: '【换件衣服】', toScene: 'C000C_V2_MAP_-1_5'},  
           # { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7'},
-          { title: '【洗漱睡觉】', toScene: 'C000C_V2_MAP_0_4'},
-          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4'},
-          { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5'},
+          { title: '【洗漱睡觉】', toScene: 'C000C_V2_MAP_0_4',  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+          { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5',  icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
           # { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6'},
       
         ],
@@ -1132,6 +1161,9 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 } ,
+    { id: "biaoqianv2", min: 0, max: 1 } ,
+    { id: "biaoqianv3", min: 0, max: 1 } ,
 
     ],
 
@@ -1157,9 +1189,9 @@ scenes: [
        { 
         id: 'C2', desc: '洗完澡精神满满，做点什么呢？', 
         options: [ 
-          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7'},
-          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4'},
-          { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5'},
+          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+          { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5',  icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
           # { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6'},
       
         ],
