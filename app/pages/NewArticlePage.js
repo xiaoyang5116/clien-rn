@@ -57,10 +57,10 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import readerStyle from '../themes/readerStyle';
 import BagAnimation from '../components/animation/BagAnimation';
 import PropTips from '../components/tips/PropTips';
-import Clues from '../components/cluesList';
-
+import PageUtils from '../utils/PageUtils';
 import MenuOptions from '../components/article/MenuOptions';
 import UserAttributesHolder from './article/UserAttributesHolder'
+import Clues from '../components/cluesList';
 
 const WIN_SIZE = getWindowSize();
 const Tab = createMaterialTopTabNavigator();
@@ -95,10 +95,10 @@ const WORLD = [
 const TAB_BUTTONS = [
   { title: '人物', action: () => { RootNavigation.navigate('Home', { screen: 'Role' }) } },
   { title: '世界', action: () => { RootNavigation.navigate('Home', { screen: 'World' }) } },
-  { title: '探索', action: () => { RootNavigation.navigate('Home', { screen: 'Explore' }) } },
+  { title: '探索', action: () => { PageUtils.openExplorePage() } },
   { title: '城镇', action: () => { RootNavigation.navigate('Home', { screen: 'Town' }) } },
   { title: '收藏', action: () => { RootNavigation.navigate('Home', { screen: 'Collection' }) } },
-  { title: '道具', action: () => { RootNavigation.navigate('Home', { screen: 'Props' }) } },
+  { title: '道具', action: () => { PageUtils.openPropsPage() } },
 ]
 
 const WorldSelector = () => {

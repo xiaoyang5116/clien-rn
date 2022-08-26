@@ -136,7 +136,7 @@ const ExploreProgress = (props) => {
 };
 
 // 探索主页面
-class ExploreMainPopPage extends Component {
+class ExploreMainPage extends Component {
 
     static contextType = ThemeContext
 
@@ -266,4 +266,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default connect((state) => ({ ...state.ExploreModel, ...state.AppModel }))(ExploreMainPopPage);
+export default connect((state) => ({ ...state.ExploreModel, ...state.AppModel }))(ExploreMainPage);

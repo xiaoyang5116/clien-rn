@@ -102,6 +102,23 @@ export default {
       }
       newSectionData.push(sectionItem);
 
+      // 场景地图图标
+      if (lo.isArray(scene.mapData) && scene.mapData.length > 0) {
+        for (let key in scene.mapData) {
+          const item = scene.mapData[key];
+          if (item.icon == undefined)
+            continue
+          const { bindVar } = item.icon;
+          if (bindVar != undefined) {
+            const checkVar = { andVarsOn: [bindVar], __sceneId: payload.__sceneId };
+            const match = yield put.resolve(action('SceneModel/testCondition')(checkVar));
+            item.icon = { ...item.icon, show: match };
+          } else {
+            item.icon = { ...item.icon, show: true };
+          }
+        }
+      }
+
       // 获取当前场景的世界时间
       const worldTime = yield put.resolve(action('SceneModel/getWorldTime')({ worldId: userState.worldId }));
 

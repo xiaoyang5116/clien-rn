@@ -216,13 +216,14 @@ class ExploreMapsPage extends Component {
                     </View>
                     <View style={{ flexDirection: 'row', height: 80, justifyContent: 'space-around', alignItems: 'center' }} >
                         <TextButton {...this.props} title={'返回'} onPress={() => {
-                            this.props.onClose();
+                            if (this.props.onClose != undefined) {
+                                this.props.onClose();
+                            }
                         }} />
                         <TextButton {...this.props} title={'开始探索'} onPress={() => {
                             if (this.state.selectMapId <= 0) {
                                 Toast.show('请选择探索地图', 'CenterToTop');
                             } else {
-                                this.props.onClose();
                                 this.props.dispatch(action('ExploreModel/start')({ mapId: this.state.selectMapId }));
                                 DeviceEventEmitter.emit(EventKeys.EXPLORETABPAGE_SHOW, 'ExploreMainPage');
                             }

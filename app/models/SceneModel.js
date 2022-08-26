@@ -40,6 +40,7 @@ import ShopsUtils from '../utils/ShopsUtils';
 import { VarUtils } from "./scene/utils";
 import { ScenePropertyInjectBuilder } from "./scene/builders";
 import { ACTIONS_MAP, PropertyActions } from "./scene/actions";
+import OpenUI from "../pages/OpenUI";
 
 export default {
   namespace: 'SceneModel',
@@ -575,6 +576,11 @@ export default {
 
     *__onShopCommand({ payload }, { put }) {
       ShopsUtils.show(payload.params);
+    },
+
+    *__onOpenUICommand({ payload }, { put }) {
+      const name = payload.params;
+      OpenUI.open(lo.trim(name));
     },
 
     *__onMsgCommand({ payload }, { put }) {

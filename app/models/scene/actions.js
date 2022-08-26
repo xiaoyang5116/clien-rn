@@ -26,6 +26,7 @@ export const ACTIONS_MAP = [
     { cmd: 'dropIds',       handler: '__onDropIdsCommand' },
     { cmd: 'shop',          handler: '__onShopCommand' },
     { cmd: 'msg',           handler: '__onMsgCommand' },
+    { cmd: 'openUI',        handler: '__onOpenUICommand' },
 ];
 
 // 提供便捷的属性指定动作配置, 如: { varsOn: [...] }
@@ -152,6 +153,11 @@ export class PropertyActions {
       // 生成商店动作
       if (payload.toShop != undefined && typeof(payload.toShop) == 'string') {
         allActions.push({ id: "__shop_{0}".format(payload.toShop), cmd: 'shop', params: payload.toShop });
+      }
+
+      // 打开UI指令
+      if (payload.openUI != undefined && typeof(payload.openUI) == 'string') {
+        allActions.push({ id: "__openUI_{0}".format(payload.toMsg), cmd: 'openUI', params: payload.openUI });
       }
   
       // 发送消息指令
