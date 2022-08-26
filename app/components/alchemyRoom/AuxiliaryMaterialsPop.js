@@ -67,7 +67,7 @@ const AuxiliaryMaterialsPop = (props) => {
   }
 
   return (
-    <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"} source={require('../../../assets/plant/plantBg.jpg')} borderRadius={10} zIndex={3}>
+    <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"} source={require('../../../assets/plant/plantBg.jpg')} borderRadius={10} zIndex={99}>
       <Header />
       <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, }}>
         <FlatList

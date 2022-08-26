@@ -54,7 +54,7 @@ const SelectQuantityPop = (props) => {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.4)", justifyContent: "center", alignItems: 'center', zIndex: 4 }}>
+    <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.4)", justifyContent: "center", alignItems: 'center', zIndex: 99 }}>
       <View style={{ width: 300, height: 250, backgroundColor: "#484747", borderRadius: 5, borderWidth: 1, borderColor: "#CBCBCB" }}>
         <ImageCapInset
           style={{ width: '100%', height: '100%', position: 'absolute' }}
