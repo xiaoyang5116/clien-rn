@@ -39,6 +39,7 @@ const ProgressBar = (props) => {
         percent = (percent > 1) ? 1 : percent;
         const progressWidth = (1 - percent) * PROGRESS_BAR_WIDTH;
 
+        translateX.setValue(-PROGRESS_BAR_WIDTH);
         Animated.timing(translateX, {
          toValue: -progressWidth,
          duration: 600,
@@ -90,10 +91,21 @@ const PropsBar = (props) => {
     }, []);
 
     return (
-        <View style={{ height: 100, backgroundColor: '#beb9b3' }}>
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} style={{ marginLeft: 10, marginRight: 10, marginTop: 20 }}>
+        <View style={{ height: 80, paddingLeft: 10, paddingRight: 10, backgroundColor: '#beb9b3', alignItems: 'center', justifyContent: 'center' }}>
+            {
+            (items.length > 0)
+            ? (
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} style={{ width: '100%', marginTop: 8 }}>
                 {items}
             </ScrollView>
+            )
+            : (
+            <>
+                <Text style={{ lineHeight: 24, color: '#000' }}>使用道具可以加速修行</Text>
+                <Text style={{ lineHeight: 24, color: '#000' }}>当前没有可用的道具</Text>
+            </>
+            )
+            }
         </View>
     );
 }
