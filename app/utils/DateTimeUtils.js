@@ -153,3 +153,18 @@ export function h_m_s_Format(s) {
 
 
 }
+
+// 倒计时 - 00:00:00 (小时:分钟:秒)
+export function timeLeft(currentTime) {
+    var h = checkTime(Math.floor(currentTime / 3600))
+    var m = checkTime(Math.floor(currentTime / 60 % 60))
+    var s = checkTime(Math.floor(currentTime % 60))
+    return result = h + ":" + m + ":" + s
+}
+
+function checkTime(i) { // 将 0-9 的数字前面加上 0，例 1 变为 01
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}

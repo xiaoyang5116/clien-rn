@@ -53,7 +53,7 @@ const SelectQuantityPop = (props) => {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.4)", justifyContent: "center", alignItems: 'center' }}>
+    <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.4)", justifyContent: "center", alignItems: 'center', zIndex: 4 }}>
       <View style={{ width: 300, height: 250, backgroundColor: "#484747", borderRadius: 5, borderWidth: 1, borderColor: "#CBCBCB" }}>
         <View style={{ borderRadius: 5, borderWidth: 1, borderColor: "#CBCBCB", margin: 8, height: 200 }}>
           <View>
