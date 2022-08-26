@@ -4,10 +4,13 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
+  ImageBackground,
+  TouchableWithoutFeedback,
+  Image
 } from 'react-native';
 import React, { useEffect } from 'react';
 
-import { action, connect } from '../../constants';
+import { action, connect, ThemeContext, getPropIcon } from '../../constants';
 import RootView from '../RootView';
 import { now } from '../../utils/DateTimeUtils';
 
@@ -15,6 +18,56 @@ import DanFangPage from './DanFangPage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ProgressBar from './components/ProgressBar';
 import { TextButton } from '../../constants/custom-ui';
+import FastImage from 'react-native-fast-image';
+
+
+// 奖励物品组件
+const RewardItem = (props) => {
+  // const icon = PROPS_ICON.find(e => e.iconId == props.iconId);
+  const icon = getPropIcon(props.iconId);
+  return (
+    <View style={{ flexDirection: 'column', margin: 10, justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ width: 64, height: 64 }}>
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#333', borderRadius: 10 }}>
+          <Image source={icon.img} />
+          <Text style={{ position: 'absolute', top: 46, right: 5, color: '#fff' }}>{props.num}</Text>
+        </View>
+      </View>
+      <Text style={{ color: '#000', marginTop: 3 }}>{props.name}</Text>
+    </View>
+  );
+}
+
+// 奖励显示页面
+const RewardsPage = (props) => {
+  const { alchemyData } = props
+  const theme = React.useContext(ThemeContext)
+  const childs = [];
+  let key = 0;
+  alchemyData.targets.forEach(e => {
+    childs.push(<RewardItem key={key++} propId={e.danFangId} iconId={e.iconId} num={e.num} name={e.name} />);
+  });
+  return (
+    <TouchableWithoutFeedback onPress={() => {
+      props.getAward()
+      props.onClose()
+    }}>
+      <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.65)' }}>
+        <View>
+          <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>获得丹药</Text>
+        </View>
+        <ImageBackground style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#a6c2cb' }} source={theme.blockBg_5_img}>
+          <FastImage style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: 2 }} resizeMode='stretch' source={require('../../../assets/bg/dialog_line.png')} />
+          {childs}
+          <FastImage style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: 2 }} resizeMode='stretch' source={require('../../../assets/bg/dialog_line.png')} />
+        </ImageBackground>
+        <View>
+          <Text style={{ marginTop: 20, color: '#fff', fontSize: 20 }}>点击任意区域关闭</Text>
+        </View>
+      </View>
+    </TouchableWithoutFeedback>
+  );
+}
 
 const AlchemyRoom = props => {
   const { alchemyData } = props
@@ -87,25 +140,20 @@ const AlchemyRoom = props => {
     const currentNeedTime = alchemyData.needTime - diffTime
 
     const onFinish = () => {
-      props.dispatch(action('AlchemyModel/alchemyFinish')())
+      const key = RootView.add(<RewardsPage
+        alchemyData={alchemyData}
+        getAward={() => { props.dispatch(action('AlchemyModel/alchemyFinish')()) }}
+        onClose={() => {
+          RootView.remove(key);
+        }} />);
     }
 
     if (currentNeedTime < 0) {
+      setTimeout(() => {
+        onFinish()
+      }, 0)
       return (
-        <View style={{ position: 'absolute', bottom: '5%', justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ fontSize: 24, color: "#000" }}>{alchemyData.danFangName}</Text>
-          <View style={{ height: 50, justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ height: 15, width: 300, backgroundColor: "#e0e0e0", borderRadius: 12, overflow: 'hidden', }}>
-              <View style={{
-                position: "absolute", top: 0, left: 0, height: 15, width: "100%", backgroundColor: "#33ad85", zIndex: 0,
-              }} ></View>
-            </View>
-            <Text style={{ textAlign: 'center', position: "absolute" }}>100%</Text>
-          </View>
-          <TouchableOpacity onPress={onFinish}>
-            <Text style={{ fontSize: 30, color: "#000" }}>炼制完成,点击领取</Text>
-          </TouchableOpacity>
-        </View>
+        <ChooseRecipe />
       )
     }
 

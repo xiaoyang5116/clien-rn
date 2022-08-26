@@ -157,10 +157,11 @@ export default {
         let hit = sortTargets.find(e => randValue >= e.range[0] && randValue < e.range[1]);
         if (hit == undefined) hit = sortTargets[sortTargets.length - 1];
 
+        const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: hit.id }));
+
         // 重复的就增加数量
         if (danYaoArr.find(item => item.id === hit.id) === undefined) {
-          const danYaoName = danFangData.targets.find(item => item.id === hit.id).name
-          danYaoArr.push({ ...hit, name: danYaoName })
+          danYaoArr.push({ ...hit, name: propConfig.name, iconId: propConfig.iconId })
         }
         else {
           danYaoArr = danYaoArr.map(item => item.id === hit.id ? { ...item, num: item.num + 1 } : item)
