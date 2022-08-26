@@ -9,6 +9,7 @@ import { action, connect } from '../../constants';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Slider from '@react-native-community/slider';
+import ImageCapInset from 'react-native-image-capinsets-next';
 
 
 // 选择炼丹数量
@@ -55,6 +56,11 @@ const SelectQuantityPop = (props) => {
   return (
     <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.4)", justifyContent: "center", alignItems: 'center', zIndex: 4 }}>
       <View style={{ width: 300, height: 250, backgroundColor: "#484747", borderRadius: 5, borderWidth: 1, borderColor: "#CBCBCB" }}>
+        <ImageCapInset
+          style={{ width: '100%', height: '100%', position: 'absolute' }}
+          source={require('../../../assets/button/40dpi_gray.png')}
+          capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+        />
         <View style={{ borderRadius: 5, borderWidth: 1, borderColor: "#CBCBCB", margin: 8, height: 200 }}>
           <View>
             <Text style={{ fontSize: 24, color: "#fff", textAlign: "center", marginTop: 8, }}>炼制数量</Text>
