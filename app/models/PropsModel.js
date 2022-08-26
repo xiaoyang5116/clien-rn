@@ -13,6 +13,7 @@ import { GetEquipsDataApi } from '../services/GetEquipsDataApi';
 import EventListeners from '../utils/EventListeners';
 import Toast from '../components/toast';
 import lo from 'lodash';
+import WorldUtils from '../utils/WorldUtils';
 
 export default {
   namespace: 'PropsModel',
@@ -68,11 +69,15 @@ export default {
     *filter({ payload }, { put, select }) {
       const propsState = yield select(state => state.PropsModel);
       const userState = yield select(state => state.UserModel);
-      const { type } = payload;
+      const { type, worldId } = payload;
+      
+      const chooseWorldId = WorldUtils.isValidWorldId(worldId) 
+            ? worldId 
+            : userState.worldId;
 
       propsState.listData.length = 0;
-      for (let key in propsState.__data.bags[userState.worldId]) {
-        const item = propsState.__data.bags[userState.worldId][key];
+      for (let key in propsState.__data.bags[chooseWorldId]) {
+        const item = propsState.__data.bags[chooseWorldId][key];
         if ((item.attrs.indexOf(type) != -1) || (type == '全部') || type == '') {
           propsState.listData.push(item);
         }
