@@ -192,16 +192,10 @@ export default {
         yield put.resolve(action('PropsModel/sendProps')({ propId: prop.id, num: prop.num, quiet: true }));
       }
 
-      let num = 0
-      let timer = setInterval(() => {
-        if (alchemyData.targets.length > num) {
-          Toast.show(`获得${alchemyData.targets[num].name} * ${alchemyData.targets[num].num}`, BOTTOM_TOP_SMOOTH)
-          num++
-        }
-        else {
-          clearInterval(timer)
-        }
-      }, 500);
+      const message = alchemyData.targets.map(item => {
+        return `获得${item.name} * ${item.num}`
+      })
+      Toast.show(message, BOTTOM_TOP_SMOOTH)
 
       yield call(LocalStorage.set, LocalCacheKeys.ALCHEMY_DATA, null);
       yield put(action("updateState")({ alchemyData: null }))
