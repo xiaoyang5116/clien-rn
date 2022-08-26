@@ -12,6 +12,8 @@ scenes: [
       { id: "v_icon_101", min: 0, max: 1 },
       { id: "v_icon_102", min: 0, max: 1 },
       { id: "v_icon_103", min: 0, max: 1 },
+      { id: "v_icon_104", min: 0, max: 1 },
+      
 
       ],
 
@@ -28,15 +30,14 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000C_V', desc: '回忆', 
         options: [ 
-          { title: "【辞职当天】",toScene: 'C000C_V_MAP_0_4', varsOn: ['v_icon_100','v_icon_101','v_icon_102',]},
+          { title: "【辞职当天】",toScene: 'C000C_V_MAP_0_4', varsOn: ['v_icon_100','v_icon_103',]},
         ],
       },
 
     
         ],
 
-  
-    },
+  },
 
  #===========事件场景==============
        {
@@ -64,8 +65,8 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  dialogs: ['d3'],  nextChat: 'C1'  },
-
+       { type: 'enter',  dialogs: ['d3'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
     ],
 
     # 对话选项
@@ -74,12 +75,13 @@ scenes: [
       { 
         id: 'C1', desc: '前台的小姐姐正在埋头工作', 
         options: [ 
-         { title: '【去找李小姐】', toScene: 'C000C_V_MAP_-1_3'}, 
-      
-      
+         { title: '【去找李小姐】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000C_V_MAP_-1_3'}, 
         ],
       },
        #
+
+
+
     ],
  # 对话框
     dialogs: [    
@@ -120,7 +122,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100', 'WZXX_M1_N1_C000C_V/v_icon_101', 'WZXX_M1_N1_C000C_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104'] },
     ],
 
     # 对话选项
@@ -145,7 +147,7 @@ scenes: [
           sections: [
           { key: 'P1', content: ['李小姐：','“可以啊，李森炎，没想到你还有这本事”','“赵姐都被你给整走了，这下你开心了吧？”','李森炎听不得别人阴阳怪气',
           '反正也不在这干了，也不再跟她客气','“最高兴的应该是你吧？”','“我把赵雅弄下台了，你不就有机会上位了？”','李小姐脸色一变：“你别瞎说！我可没这心思。”','李森炎冷冷一笑，转身离开，留给她一个潇洒的背影',],
-          btn: [{title: '找王经理',toScene: 'C000C_V_MAP_-1_2',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_100',],},]},
+          btn: [{title: '找王经理',toScene: 'C000C_V_MAP_-1_2',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_100',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',]},]},
 
          
     ],},
@@ -179,7 +181,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100', 'WZXX_M1_N1_C000C_V/v_icon_101', 'WZXX_M1_N1_C000C_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104'] },
     ],
 
     # 对话选项
@@ -202,7 +204,7 @@ scenes: [
           sections: [
           { key: 'P1', content: ['王经理：','“其实挺可惜的，你的工作态度和能力我都看在眼里。”','李森炎填完离职手续，感觉一身轻松，没所谓地笑了笑。','“没事的，正好我也想做点自己的事情。”',
           '“找到下家了吗？”','“没有，我打算自己创业。”','王经理不置可否，创业十有九输，但他不想打击眼前这个年轻人。','就算失败了，也是一项值得肯定的阅历。','毕竟他敢迈出这一步，从一个司机到一个创业者。','这种变化不可谓不大，属实难得。','“加油！”',],
-          btn: [{title: '去财务部',toScene: 'C000C_V_MAP_0_1',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_101',]},]},
+          btn: [{title: '去财务部',toScene: 'C000C_V_MAP_0_1',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_101',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',]},]},
 
          
     ],},
@@ -236,7 +238,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100', 'WZXX_M1_N1_C000C_V/v_icon_101', 'WZXX_M1_N1_C000C_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104'] },
     ],
 
     # 对话选项
@@ -258,7 +260,7 @@ scenes: [
           sections: [
           { key: 'P1', content: ['财务主管：','“你来财务部干嘛？薪水下个月发。”','李森炎：“……”','这人怎么见谁都以为是来跟他讨钱的啊！',
           ],
-          btn: [{title: '去找赵某',toScene: 'C000C_V_MAP_1_2',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',]},]},
+          btn: [{title: '去找赵某',toScene: 'C000C_V_MAP_1_2',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104',]},]},
     ],},
     ],
   },
@@ -289,7 +291,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100', 'WZXX_M1_N1_C000C_V/v_icon_101', 'WZXX_M1_N1_C000C_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104'] },
     ],
 
     # 对话选项
@@ -390,6 +392,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100', 'WZXX_M1_N1_C000C_V/v_icon_101', 'WZXX_M1_N1_C000C_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104'] },
 
     ],
 
@@ -438,7 +441,7 @@ scenes: [
            toScene: 'C000C_V_MAP_0_0',
             links: [[0, -1],], 
             },
-          { point: [0, -1], title: '总经理办公室',
+          { point: [0, -1], title: '总经理办公室', icon: { id: 100, bindVar: 'WZXX_M1_N1_C000C_V/v_icon_104' },
            toScene: 'C000C_V_MAP_0_-1', 
            links: [],
             },
@@ -957,7 +960,7 @@ scenes: [
 
      {id: 'Screen2',style: "1", 
         sections: [
-         '李森炎处理完离职事宜','从公司出来后，便回到了小区', '这还是他头一次天还没黑就到家','回想起这些日子辛勤工作','最终却落得这样一个结局……','心中难免泛着写酸楚',],
+         '李森炎处理完离职事宜','从公司出来后，便回到了小区', '这还是他头一次天还没黑就到家',],
    }
     ],
   },
@@ -1175,7 +1178,7 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C1' ,varsOn: ['v_icon_103']},
+       { type: 'enter',  nextChat: 'C1' },
 
     ],
 
@@ -1239,7 +1242,7 @@ scenes: [
       { 
         id: 'C1', desc: '电脑桌上有很多随笔和便签，看上去杂乱但有序', 
         options: [ 
-         { title: '【李森炎在房间里坐下，冷静思考】', dialogs: ['Screen1'] }, 
+         { title: '【李森炎在房间里坐下，冷静思考】', dialogs: ['Screen1'],varsOn: ['v_icon_103'] }, 
         ],
       },
 
