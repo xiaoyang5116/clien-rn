@@ -54,7 +54,7 @@ export class Panel extends React.Component {
             <View style={{ flex: 1, backgroundColor: '#fafbfa' }} >
                 <FastImage style={{ position: 'absolute', left: 0, top: -100, width: size.width, height: 250, opacity: 0.1 }} resizeMode='cover' 
                     source={require('../../../assets/bg/panel_a.png')} />
-                <Animated.Image style={{ transform: [{rotate: spin}], position: 'absolute', left: size.width / 4, top: size.height / 4 - 60, width: '50%', height: '50%', opacity: 0.05 }} resizeMode='contain' 
+                <Animated.Image style={{ transform: [{rotate: spin}], position: 'absolute', left: size.width / 4, top: size.height / 4, width: '50%', height: '50%', opacity: 0.05 }} resizeMode='contain' 
                     source={patternImage} />
                 <FastImage style={{ position: 'absolute', left: 0, bottom: -100, width: size.width, height: 250, opacity: 0.1 }} resizeMode='cover' 
                     source={require('../../../assets/bg/panel_c.png')} />
