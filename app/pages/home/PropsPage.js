@@ -3,7 +3,6 @@ import React from 'react';
 import {
     action,
     connect,
-    Component,
     StyleSheet,
     ThemeContext,
     ScrollView,
@@ -24,7 +23,29 @@ import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../constants/resolution';
 import RootView from '../../components/RootView';
 import PropTips from '../../components/tips/PropTips';
-import qualityStyle from '../../themes/qualityStyle';
+import WorldUtils from '../../utils/WorldUtils';
+
+const WorldButton = (props) => {
+    const worldId = WorldUtils.getWorldIdByName(props.name);
+
+    const onSelected = (worldId) => {
+        props.dispatch(action('PropsModel/filter')({ type: '', worldId: worldId }));
+        if (props.onWorldChanged != undefined) {
+            props.onWorldChanged(worldId);
+        }
+    }
+
+    return (
+        <View>
+            <TextButton title={props.name} onPress={() => onSelected(worldId)} />
+            {
+            (props.user.worldId != worldId)
+            ? (<View style={{ position: 'absolute', borderRadius: 5, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)' }} pointerEvents='none' />)
+            : <></>
+            }
+        </View>
+    )
+}
 
 const PropsPage = (props) => {
 
@@ -115,9 +136,9 @@ const PropsPage = (props) => {
                     />
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                    <TextButton title="尘界" />
-                    <TextButton title="现实" />
-                    <TextButton title="灵修界" />
+                    <WorldButton name={'尘界'} {...props} />
+                    <WorldButton name={'现实'} {...props} />
+                    <WorldButton name={'灵修界'} {...props} />
                 </View>
             </View>
         </View>

@@ -167,7 +167,7 @@ scenes: [
           { title: '【思考】', andVarsOn: ['v5'], nextChat: 'c7' }, 
           { title: '【移动地图中心点_P1】', toMapPoint: [0, 0] }, 
           { title: '【默认商店】', andVarsOn: ['v_shop'], toShop: 'default' }, 
-          { title: '【获得剧情道具】', sendProps: '405,1' }, 
+          { title: '【获得剧情道具】', sendProps: '1003,1' }, 
           { title: '【获得碎片】', sendProps: '500,5' }, 
           { title: '【获得修行值】', alterXiuXing: 1230, openUI: 'XiuXing' }, 
           { title: '【修改选项按钮变量】', varsOn: ['v_icon_100'] }, 
