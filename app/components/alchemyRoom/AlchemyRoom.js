@@ -10,30 +10,23 @@ import {
 } from 'react-native';
 import React, { useEffect } from 'react';
 
-import { action, connect, ThemeContext, getPropIcon } from '../../constants';
+import { action, connect, ThemeContext } from '../../constants';
 import RootView from '../RootView';
 import { now } from '../../utils/DateTimeUtils';
 
 import DanFangPage from './DanFangPage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ProgressBar from './components/ProgressBar';
+import PropGrid from '../../components/prop/PropGrid';
 import { TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 
 
 // 奖励物品组件
 const RewardItem = (props) => {
-  // const icon = PROPS_ICON.find(e => e.iconId == props.iconId);
-  const icon = getPropIcon(props.iconId);
   return (
-    <View style={{ flexDirection: 'column', margin: 10, justifyContent: 'center', alignItems: 'center' }}>
-      <View style={{ width: 64, height: 64 }}>
-        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#333', borderRadius: 10 }}>
-          <Image source={icon.img} />
-          <Text style={{ position: 'absolute', top: 46, right: 5, color: '#fff' }}>{props.num}</Text>
-        </View>
-      </View>
-      <Text style={{ color: '#000', marginTop: 3 }}>{props.name}</Text>
+    <View style={{ flexDirection: 'column', margin: 8, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+      <PropGrid prop={props} labelStyle={{ color: '#000' }} />
     </View>
   );
 }
@@ -45,7 +38,7 @@ const RewardsPage = (props) => {
   const childs = [];
   let key = 0;
   alchemyData.targets.forEach(e => {
-    childs.push(<RewardItem key={key++} propId={e.danFangId} iconId={e.iconId} num={e.num} name={e.name} />);
+    childs.push(<RewardItem key={key++} propId={e.danFangId} iconId={e.iconId} num={e.num} name={e.name} quality={e.quality} />);
   });
   return (
     <TouchableWithoutFeedback style={{ zIndex: 100 }} onPress={() => {

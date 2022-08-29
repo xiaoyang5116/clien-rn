@@ -4,19 +4,20 @@ import PropTypes from 'prop-types';
 import { TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { errorMessage, getPropIcon } from '../../constants';
-import { px2pd } from '../../constants/resolution';
 import qualityStyle from '../../themes/qualityStyle';
 import lo from 'lodash';
 
 const PropGrid = (props) => {
-
-    const quality_style = qualityStyle.styles.find(e => e.id == props.prop.quality);
   
     let propImage = <></>
     let propLabel = <></>
     let propNum = <></>
-
     const viewContainerStyle = {};
+
+    const quality_style = qualityStyle.styles.find(e => e.id == props.prop.quality);
+    if (quality_style == undefined) {
+      errorMessage('PropGrid未指定道具品质属性!');
+    }
 
     if (props.prop != undefined) {
       const image = getPropIcon(props.prop.iconId);
