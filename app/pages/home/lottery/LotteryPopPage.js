@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, Platform } from 'react-native'
+import { ImageBackground } from 'react-native'
 
 import {
     action,
@@ -23,16 +23,9 @@ import {
 import { TextButton, ImageButton, Header1 } from '../../../constants/custom-ui';
 import ProgressBar from '../../../components/ProgressBar';
 import RootView from '../../../components/RootView';
+import PropGrid from '../../../components/prop/PropGrid';
 import FastImage from 'react-native-fast-image';
 import lo from 'lodash';
-
-const PROPS_ICON = [
-    { iconId: 1, img: require('../../../../assets/props/prop_1.png') },
-    { iconId: 2, img: require('../../../../assets/props/prop_2.png') },
-    { iconId: 3, img: require('../../../../assets/props/prop_3.png') },
-    { iconId: 4, img: require('../../../../assets/props/prop_4.png') },
-    { iconId: 5, img: require('../../../../assets/props/prop_5.png') },
-];
 
 // 点击宝箱二次确认框
 const BoxConfirmDialog = (props) => {
@@ -169,16 +162,9 @@ const BottomBar = (props) => {
 
 // 奖励物品组件
 const RewardItem = (props) => {
-    const icon = PROPS_ICON.find(e => e.iconId == props.iconId);
     return (
-        <View style={{ flexDirection: 'column', margin: 10, justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ width: 64, height: 64 }}>
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#333', borderRadius: 10 }}>
-                    <Image source={icon.img} />
-                    <Text style={{ position: 'absolute', top: 46, right: 5, color: '#fff' }}>{props.num}</Text>
-                </View>
-            </View>
-            <Text style={{ color: '#000', marginTop: 3 }}>{props.name}</Text>
+        <View style={{ flexDirection: 'column', margin: 8, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+            <PropGrid prop={props} labelStyle={{ color: '#000' }} />
         </View>
     );
 }
@@ -189,7 +175,7 @@ const RewardsPage = (props) => {
     const childs = [];
     let key = 0;
     props.data.forEach(e => {
-        childs.push(<RewardItem key={key++} propId={e.propId} iconId={e.iconId} num={e.num} name={e.name} />);
+        childs.push(<RewardItem key={key++} propId={e.propId} iconId={e.iconId} num={e.num} name={e.name} quality={e.quality} />);
     });
     return (
         <TouchableWithoutFeedback onPress={() => { props.onClose() }}>

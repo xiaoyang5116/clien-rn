@@ -19,6 +19,7 @@ import { px2pd } from '../../constants/resolution';
 import StoryUtils from '../../utils/StoryUtils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
+import PropGrid from '../../components/prop/PropGrid';
 
 // 两页的格子映射表
 const ID_IDX_MAP = [
@@ -44,26 +45,14 @@ const BoxItem = (props) => {
     }
   }
 
-  let propImage = <></>
-  let propLabel = <></>
-  let propNum = <></>
-  if (props.prop != undefined) {
-    const image = getPropIcon(props.prop.iconId);
-    propImage = (
-      <FastImage source={image.img} style={{ width: image.width, height: image.height }} />
-    );
-    propLabel = <Text numberOfLines={1} style={{ color: '#fff', fontSize: 13 }}>{props.prop.name}</Text>
-    propNum = <Text style={{ position: 'absolute', bottom: 1, right: 5, color: '#ccc', fontSize: 12 }}>{props.prop.num}</Text>
-  }
-
   return (
     <TouchableWithoutFeedback onPress={() => onClick(props.prop)}>
       <View style={[props.style, styles.boxItem]}>
-        {propImage} 
-        {propNum}
-        <View style={{ position: 'absolute', bottom: -20, width: 50, justifyContent: 'center', alignItems: 'center' }}>
-          {propLabel}
-        </View>
+        {
+        (props.prop != undefined)
+        ? <PropGrid prop={props.prop} imageStyle={{ width: px2pd(110), height: px2pd(110) }} />
+        : <></>
+        }
       </View>
     </TouchableWithoutFeedback>
   );
@@ -196,7 +185,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     borderWidth: 1, 
     borderColor: '#ccc', 
-    borderRadius: 10, 
+    borderRadius: 5, 
     backgroundColor: '#666',
     justifyContent: 'center',
     alignItems: 'center',

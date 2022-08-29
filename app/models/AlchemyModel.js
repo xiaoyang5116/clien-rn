@@ -161,7 +161,7 @@ export default {
 
         // 重复的就增加数量
         if (danYaoArr.find(item => item.id === hit.id) === undefined) {
-          danYaoArr.push({ ...hit, name: propConfig.name, iconId: propConfig.iconId })
+          danYaoArr.push({ ...hit, name: propConfig.name, iconId: propConfig.iconId, quality: propConfig.quality })
         }
         else {
           danYaoArr = danYaoArr.map(item => item.id === hit.id ? { ...item, num: item.num + 1 } : item)

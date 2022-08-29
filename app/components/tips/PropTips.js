@@ -17,7 +17,7 @@ import PropGrid from '../prop/PropGrid';
 const PropTips = (props) => {
 
     const [ prop, setProp ] = React.useState({});
-    const [ num, setNum ] = React.useState(0);
+    const [ num, setNum ] = React.useState('');
 
     React.useEffect(() => {
         AppDispath({ type: 'PropsModel/getPropConfig', payload: { propId: props.propId }, cb: (v) => {
@@ -65,7 +65,7 @@ const PropTips = (props) => {
                     <View style={styles.icon}>
                         {(prop.id != undefined) ? <PropGrid prop={prop} showLabel={false} showNum={false} /> : <></>}
                     </View>
-                    <View style={{ marginLeft: 10 }}>
+                    <View style={{ marginLeft: 10, marginTop: 0 }}>
                         <Text style={[{ fontSize: 24 }, { color: quality_style.fontColor }]}>{prop.name}</Text>
                         <Text></Text>
                     </View>
@@ -110,16 +110,16 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     icon: {
-        marginTop: 5, 
-        marginLeft: 5,
-        marginRight: 5,
+        marginTop: 8, 
+        marginLeft: 8,
+        marginRight: 8,
         transform: [{ scale: 1.2 }],
         justifyContent: 'center',
         alignItems: 'center',
     },
     bottomButtons: {
         position: 'absolute',
-        bottom: 0, 
+        bottom: 10, 
         marginLeft: 10, 
         width: '100%', 
         height: 50, 

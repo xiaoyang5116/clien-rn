@@ -301,12 +301,8 @@ const GridItem = (props) => {
 // 袋子物品
 const BagItem = (props) => {
   return (
-  <View style={{ flexDirection: 'column', margin: 10, justifyContent: 'center', alignItems: 'center' }}>
-      <View style={{ width: 64, height: 64 }}>
-          <View style={{ flex: 1, paddingBottom: 20, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-              <PropGrid prop={props} labelStyle={{ color: '#000' }} />
-          </View>
-      </View>
+  <View style={{ flexDirection: 'column', margin: 8, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+    <PropGrid prop={props} labelStyle={{ color: '#000' }} />
   </View>
   );
 }

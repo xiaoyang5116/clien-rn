@@ -4,8 +4,18 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import PropsPage from './PropsPage';
 import { SafeAreaView, Text, View } from 'react-native';
 import { Panel } from '../../components/panel';
+import WorldUtils from '../../utils/WorldUtils';
+import { connect } from 'react-redux';
 
 const PropsPageWrapper = (props) => {
+
+    const [worldName, setWorldName] = React.useState('');
+
+    React.useEffect(() => {
+        const worldName = WorldUtils.getWorldNameById(props.user.worldId);
+        setWorldName(worldName);
+    }, []);
+
     return (
         <Panel patternId={2}>
             <SafeAreaView style={{ flex: 1 }}>
@@ -18,13 +28,19 @@ const PropsPageWrapper = (props) => {
                         }} />
                     </View>
                     <Text style={{ fontSize: 26, color: '#000' }}>道具</Text>
+                    <View style={{ position: 'absolute', right: 20, bottom: 10 }}>
+                        <Text style={{ fontSize: 20, color: '#000' }}>--- {worldName}</Text>
+                    </View>
                 </View>
                 <View style={{ flex: 1 }}>
-                    <PropsPage />
+                    <PropsPage onWorldChanged={(worldId) => {
+                        const worldName = WorldUtils.getWorldNameById(worldId);
+                        setWorldName(worldName);
+                    }} />
                 </View> 
             </SafeAreaView>
         </Panel>
     );
 }
 
-export default PropsPageWrapper;
+export default connect((state) => ({ user: { ...state.UserModel } }))(PropsPageWrapper);
