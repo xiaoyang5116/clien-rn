@@ -24,6 +24,7 @@ import { px2pd } from '../../constants/resolution';
 import RootView from '../../components/RootView';
 import PropTips from '../../components/tips/PropTips';
 import WorldUtils from '../../utils/WorldUtils';
+import qualityStyle from '../../themes/qualityStyle';
 
 const WorldButton = (props) => {
     const worldId = WorldUtils.getWorldIdByName(props.name);
