@@ -7,6 +7,7 @@ import {
     ThemeContext,
     ScrollView,
     getPropIcon,
+    DEBUG_MODE,
 } from "../../constants";
 
 import { 
@@ -26,6 +27,7 @@ import RootView from '../../components/RootView';
 import PropTips from '../../components/tips/PropTips';
 import WorldUtils from '../../utils/WorldUtils';
 import qualityStyle from '../../themes/qualityStyle';
+import { confirm } from '../../components/dialog';
 
 const WorldButton = (props) => {
     const worldId = WorldUtils.getWorldIdByName(props.name);
@@ -60,6 +62,12 @@ const PropsPage = (props) => {
 
     const typeFilter = (type) => {
         props.dispatch(action('PropsModel/filter')({ type: type, worldId: props.worldId }));
+    }
+
+    const testHandler = () => {
+        confirm(`在 [${WorldUtils.getWorldNameById(props.user.worldId)}] 批量发放所有道具*10`, () => {
+            props.dispatch(action('PropsModel/test')());
+        });
     }
 
     const propSelected = (item) => {
@@ -125,6 +133,11 @@ const PropsPage = (props) => {
                         <TabButton title='丹药' style={{ marginRight: 15 }} onPress={() => { typeFilter('丹药')}} />
                         <TabButton title='碎片' style={{ marginRight: 15 }} onPress={() => { typeFilter('碎片') }} />
                         <TabButton title='特殊' style={{ marginRight: 10 }} onPress={() => { typeFilter('特殊') }} />
+                        {
+                        (DEBUG_MODE)
+                        ? <TabButton title='测试' style={{ marginRight: 10 }} onPress={() => { testHandler() }} />
+                        : <></>
+                        }
                     </ScrollView>
                 </View>
                 <View style={{ height: 30, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>

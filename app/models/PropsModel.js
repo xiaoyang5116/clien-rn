@@ -48,6 +48,13 @@ export default {
         propsState.__data.propsConfig.push(...equipsData.equips);
       }
 
+      // 过滤掉配置表的num字段
+      for (let key in propsState.__data.propsConfig) {
+        const item = propsState.__data.propsConfig[key];
+        const filterObj = lo.pickBy(item, (v, k) => !lo.isEqual(k, 'num'));
+        propsState.__data.propsConfig[key] = filterObj;
+      }
+
       if (cache != null) {
         propsState.__data.bags.push(...cache);
         // 计算当前最大记录ID
@@ -300,6 +307,17 @@ export default {
       
       yield put(action('updateState')({}));
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
+    },
+
+    *test({ }, { put, select }) {
+      const propsState = yield select(state => state.PropsModel);
+
+      const batchProps = [];
+      propsState.__data.propsConfig.forEach(e => {
+        batchProps.push({ propId: e.id, num: 10 });
+      });
+
+      yield put.resolve(action('sendPropsBatch')({ props: batchProps }));
     },
 
     *_processFragmentCompose({ payload }, { put, call, select }) {
