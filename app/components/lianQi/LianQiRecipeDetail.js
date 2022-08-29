@@ -17,7 +17,7 @@ import { h_m_s_Format } from '../../utils/DateTimeUtils'
 import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
-import AuxiliaryMaterialsPop from './AuxiliaryMaterialsPop'
+import AuxiliaryMaterialsPop from '../alchemyRoom/AuxiliaryMaterialsPop'
 import { Header3, TextButton } from '../../constants/custom-ui';
 import SelectQuantityPop from './SelectQuantityPop';
 import Toast from '../toast';
@@ -181,42 +181,42 @@ const AuxiliaryMaterials = (props) => {
   )
 }
 
-// 丹方详细页面
-const DanFangDetailPage = (props) => {
-  const { danFang, onCloseDanFangPage } = props
-  const [danFangDetail, setDanFangDetail] = useState({})
+// 炼器图纸详细页面
+const LianQiRecipeDetail = (props) => {
+  const { recipe, onCloseRecipePage } = props
+  const [recipeDetail, setRecipeDetail] = useState({})
 
   // 辅助材料
   const [auxiliaryMaterials, setAuxiliaryMaterials] = useState([])
 
   useEffect(() => {
-    props.dispatch(action('AlchemyModel/getDanFangDetail')(danFang)).then((result) => {
-      setDanFangDetail(result)
+    props.dispatch(action('LianQiModel/getLianQiTuZhiDetail')(recipe)).then((result) => {
+      setRecipeDetail(result)
     })
   }, [])
 
-  const DanFangDetail = () => {
+  const LianQiRecipeDetail = () => {
     return (
       <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, marginTop: 12 }}>
-        <StuffsComponent stuffsDetail={danFangDetail.stuffsDetail} />
-        <TargetsComponent targets={danFangDetail.targets} time={danFang.time} />
-        <AuxiliaryMaterials propsDetail={danFangDetail.propsDetail} auxiliaryMaterials={auxiliaryMaterials} setAuxiliaryMaterials={setAuxiliaryMaterials} />
+        <StuffsComponent stuffsDetail={recipeDetail.stuffsDetail} />
+        <TargetsComponent targets={recipeDetail.targets} time={recipe.time} />
+        <AuxiliaryMaterials propsDetail={recipeDetail.propsDetail} auxiliaryMaterials={auxiliaryMaterials} setAuxiliaryMaterials={setAuxiliaryMaterials} />
       </View>
     )
   }
 
-  // 炼丹按钮
-  const Alchemy = () => {
+  // 炼器按钮
+  const LianQiButton = () => {
     const selectQuantity = () => {
-      if (!danFang.valid) {
+      if (!recipe.valid) {
         return Toast.show("材料不足")
       }
       const key = RootView.add(
         <SelectQuantityPop
-          danFangDetail={danFangDetail}
+          recipeDetail={recipeDetail}
           auxiliaryMaterials={auxiliaryMaterials}
-          onCloseDanFangPage={onCloseDanFangPage}
-          onCloseDanFangDetailPage={props.onClose}
+          onCloseRecipePage={onCloseRecipePage}
+          onCloseRecipeDetailPage={props.onClose}
           onClose={() => {
             RootView.remove(key);
           }} />
@@ -225,7 +225,7 @@ const DanFangDetailPage = (props) => {
 
     return (
       <View style={{ justifyContent: "center", alignItems: 'center', marginBottom: 12 }}>
-        <TextButton title={"炼丹"} onPress={selectQuantity} />
+        <TextButton title={"炼器"} onPress={selectQuantity} />
       </View>
     )
   }
@@ -242,14 +242,14 @@ const DanFangDetailPage = (props) => {
           onClose={props.onClose}
           containerStyle={{ marginTop: 12 }}
         />
-        <DanFangDetail />
-        <Alchemy />
+        <LianQiRecipeDetail />
+        <LianQiButton />
       </SafeAreaView>
     </View>
   )
 }
 
-export default connect(state => ({ ...state.AlchemyModel }))(DanFangDetailPage)
+export default connect(state => ({ ...state.LianQiModel }))(LianQiRecipeDetail)
 
 const styles = StyleSheet.create({
   title_box: {

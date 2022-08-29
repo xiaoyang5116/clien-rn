@@ -22,7 +22,7 @@ import { ComposeUtils } from '../../pages/home/ComposePage';
 import ShopsUtils from '../../utils/ShopsUtils';
 import LotteryUtils from '../../utils/LotteryUtils';
 import AlchemyRoomModal from '../alchemyRoom';
-import RefinerPage from '../refiner';
+import lianQiPage from '../lianQi';
 
 const MAP_DATA = [
     {
@@ -102,7 +102,7 @@ const EntryButton = (props) => {
                             PlantPage.show();
                             break;
                         case 'LianQiFeng':
-                            RefinerPage.show();
+                            lianQiPage.show();
                             break;
                         case 'ShiChang':
                             ShopsUtils.show();

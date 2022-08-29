@@ -3,16 +3,16 @@ import React from 'react'
 
 import RootView from '../RootView';
 
-import Refiner from './Refiner'
+import LianQi from './LianQi'
 
-class RefinerPage {
+class LianQiPage {
   static show() {
     const key = RootView.add(
-      <Refiner onClose={() => {
+      <LianQi onClose={() => {
         RootView.remove(key);
       }} />
     );
   }
 }
 
-export default RefinerPage
+export default LianQiPage
