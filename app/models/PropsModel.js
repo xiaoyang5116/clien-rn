@@ -20,6 +20,8 @@ export default {
 
   state: {
     listData: [],
+    worldId: 0, // 当前道具列表数据对应的世界ID（注意：非角色当前世界ID）
+
     __data: {
       propsConfig: [],  // 道具配置
       bags: [],         // 玩家背包
@@ -83,6 +85,7 @@ export default {
         }
       }
 
+      propsState.worldId = chooseWorldId;
       yield put(action('updateState')({}));
     },
 
