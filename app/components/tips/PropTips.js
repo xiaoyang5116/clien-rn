@@ -17,7 +17,7 @@ import PropGrid from '../prop/PropGrid';
 const PropTips = (props) => {
 
     const [ prop, setProp ] = React.useState({});
-    const [ num, setNum ] = React.useState(0);
+    const [ num, setNum ] = React.useState('');
 
     React.useEffect(() => {
         AppDispath({ type: 'PropsModel/getPropConfig', payload: { propId: props.propId }, cb: (v) => {
