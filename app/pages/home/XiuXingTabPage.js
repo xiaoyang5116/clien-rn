@@ -78,7 +78,7 @@ const PropsBar = (props) => {
             lo.forEach(data, (v, k) => {
                 views.push(
                 <TouchableWithoutFeedback key={k} onPress={() => useProp(v)}>
-                    <PropGrid prop={v} style={{ marginRight: 10 }} showNum={true} labelStyle={{ color: '#000' }} />
+                    <PropGrid prop={v} style={{ marginRight: 10 }} imageStyle={{ width: px2pd(120), height: px2pd(120) }} showNum={true} labelStyle={{ color: '#000' }} />
                 </TouchableWithoutFeedback>
                 );
             });
