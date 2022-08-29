@@ -110,9 +110,9 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     icon: {
-        marginTop: 5, 
-        marginLeft: 5,
-        marginRight: 5,
+        marginTop: 15, 
+        marginLeft: 15,
+        marginRight: 10,
         transform: [{ scale: 1.2 }],
         justifyContent: 'center',
         alignItems: 'center',
