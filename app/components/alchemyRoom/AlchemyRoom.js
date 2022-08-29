@@ -65,13 +65,6 @@ const RewardsPage = (props) => {
 const AlchemyRoom = props => {
   const { alchemyData } = props
 
-  useEffect(() => {
-    if (alchemyData === undefined) {
-      props.dispatch(action('AlchemyModel/getAlchemyData')())
-    }
-
-  }, []);
-
   const openDanFangPage = () => {
     const key = RootView.add(
       <DanFangPage

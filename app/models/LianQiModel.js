@@ -126,7 +126,7 @@ export default {
       return num - 1
     },
 
-    // 炼丹
+    // 炼器
     *lianQi({ payload }, { call, put, select }) {
       const { recipeData, refiningNum, } = payload
       const { lianQiTuZhiConfig } = yield select(state => state.LianQiModel);
@@ -161,7 +161,7 @@ export default {
 
         // 重复的就增加数量
         if (danYaoArr.find(item => item.id === hit.id) === undefined) {
-          danYaoArr.push({ ...hit, name: propConfig.name, iconId: propConfig.iconId })
+          danYaoArr.push({ ...hit, name: propConfig.name, iconId: propConfig.iconId, quality: propConfig.quality })
         }
         else {
           danYaoArr = danYaoArr.map(item => item.id === hit.id ? { ...item, num: item.num + 1 } : item)
@@ -171,8 +171,8 @@ export default {
       // yield put.resolve(action('PropsModel/sendProps')({ propId: hit.id, num: hit.num, quiet: true }));
 
       const lianQiData = {
-        danFangId: currentLianQiTuZhiConfig.id,
-        danFangName: currentLianQiTuZhiConfig.name,
+        recipeId: currentLianQiTuZhiConfig.id,
+        recipeName: currentLianQiTuZhiConfig.name,
         needTime: currentLianQiTuZhiConfig.time * refiningNum,
         refiningTime: now(),
         targets: danYaoArr,
@@ -184,21 +184,21 @@ export default {
     },
 
     // 炼丹完成
-    *alchemyFinish({ payload }, { call, put, select }) {
-      const { alchemyData } = yield select(state => state.AlchemyModel);
+    *lianQiFinish({ payload }, { call, put, select }) {
+      const { lianQiData } = yield select(state => state.LianQiModel);
 
-      for (let index = 0; index < alchemyData.targets.length; index++) {
-        const prop = alchemyData.targets[index];
+      for (let index = 0; index < lianQiData.targets.length; index++) {
+        const prop = lianQiData.targets[index];
         yield put.resolve(action('PropsModel/sendProps')({ propId: prop.id, num: prop.num, quiet: true }));
       }
 
-      const message = alchemyData.targets.map(item => {
+      const message = lianQiData.targets.map(item => {
         return `获得${item.name} * ${item.num}`
       })
       Toast.show(message, BOTTOM_TOP_SMOOTH)
 
-      yield call(LocalStorage.set, LocalCacheKeys.ALCHEMY_DATA, null);
-      yield put(action("updateState")({ alchemyData: null }))
+      yield call(LocalStorage.set, LocalCacheKeys.LIANQI_DATA, null);
+      yield put(action("updateState")({ lianQiData: null }))
     }
   },
 
