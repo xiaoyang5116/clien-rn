@@ -54,7 +54,7 @@ const PropsPage = (props) => {
     const [selectId, setSelectId] = React.useState(-1);
 
     React.useEffect(() => {
-        props.dispatch(action('PropsModel/filter')({ type: '', worldId: props.worldId }));
+        props.dispatch(action('PropsModel/filter')({ type: '', worldId: props.user.worldId }));
     }, []);
 
     const typeFilter = (type) => {

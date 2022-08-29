@@ -75,6 +75,15 @@ const MainPage = (props) => {
     }
   }, []);
 
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.SET_CURRENT_WORLD, (e) => {
+      props.dispatch(action('UserModel/setWorld')({ name: e.name }));
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
   // 导航栏切换至相应的页面
   const stateChangeHandler = (state) => {
     let route = state.routes[state.index];

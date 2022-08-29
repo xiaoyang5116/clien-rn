@@ -2,7 +2,7 @@ import React from 'react';
 
 import lo from 'lodash';
 
-const WORLDS = ['尘界', '现实', '灵修界'];
+const WORLDS = ['尘界', '现实', '灵修界']; // 对应worldId: 0, 1, 2
 
 export default class WorldUtils {
 

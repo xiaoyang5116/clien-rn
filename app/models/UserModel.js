@@ -4,6 +4,7 @@ import {
   LocalCacheKeys,
   DeviceEventEmitter,
   EventKeys,
+  errorMessage,
 } from "../constants";
 
 import lo from 'lodash';
@@ -20,6 +21,7 @@ import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 import Toast from '../components/toast';
 import * as DateTime from '../utils/DateTimeUtils';
+import WorldUtils from "../utils/WorldUtils";
 
 export default {
   namespace: 'UserModel',
@@ -148,6 +150,26 @@ export default {
     *getAttrs({}, { select }) {
       const userState = yield select(state => state.UserModel);
       return userState.attrs;
+    },
+
+    // 世界设置
+    *setWorld({ payload }, { put, call, select }) {
+      const userState = yield select(state => state.UserModel);
+      const { name } = payload;
+      const worldId = WorldUtils.getWorldIdByName(name);
+
+      if (worldId < 0) {
+        errorMessage('世界设置错误，请检查世界名称！');
+        return
+      }
+
+      if (worldId == userState.worldId)
+        return // 没更改
+
+      userState.worldId = worldId;
+      
+      yield put(action('updateState')({}));
+      yield put.resolve(action('syncData')({}));
     },
 
     // 添加修行值
