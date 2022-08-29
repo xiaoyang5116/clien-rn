@@ -38,6 +38,10 @@ export default {
       for (let i = 0; i < rules.length; i++) {
         const item = rules[i];
         let enough = true;
+
+        // 道具配置
+        const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.propId }));
+
         // 判断原料
         for (let k in item.stuffs) {
           const stuff = item.stuffs[k];
@@ -49,9 +53,9 @@ export default {
         }
 
         if (enough) {
-          validData.push({ ...item, valid: enough })
+          validData.push({ ...item, valid: enough, iconId: propConfig.iconId })
         } else {
-          notValidData.push({ ...item, valid: enough })
+          notValidData.push({ ...item, valid: enough, iconId: propConfig.iconId })
         }
       }
 
@@ -66,7 +70,7 @@ export default {
         const stuff = payload.stuffs[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: stuff.id }));
         const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: stuff.id }));
-        stuffsDetail.push({ id: stuff.id, name: propConfig.name, reqNum: stuff.num, currNum: propNum });
+        stuffsDetail.push({ id: stuff.id, name: propConfig.name, reqNum: stuff.num, currNum: propNum, iconId: propConfig.iconId, quality: propConfig.quality });
       }
 
       const propsDetail = [];
@@ -74,7 +78,7 @@ export default {
         const prop = payload.props[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: prop.id }));
         const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: prop.id }));
-        propsDetail.push({ id: prop.id, name: propConfig.name, reqNum: prop.num, currNum: propNum });
+        propsDetail.push({ id: prop.id, name: propConfig.name, reqNum: prop.num, currNum: propNum, iconId: propConfig.iconId, quality: propConfig.quality });
       }
 
       const targets = [];
@@ -82,7 +86,7 @@ export default {
         const item = payload.targets[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.id }));
         const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: item.id }));
-        targets.push({ id: item.id, name: propConfig.name, desc: propConfig.desc, currNum: propNum, productNum: item.num });
+        targets.push({ id: item.id, name: propConfig.name, desc: propConfig.desc, currNum: propNum, productNum: item.num, iconId: propConfig.iconId, quality: propConfig.quality });
       }
 
       return {

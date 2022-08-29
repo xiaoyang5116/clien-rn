@@ -8,6 +8,6 @@
 
 rules: [
 
-  { id: 1 , name: '风雷剑', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 886, num: 1 },{ id: 1001, num: 1 }], props: [{id: 1006, num: 1},{id: 1003, num: 1}], targets: [{ id: 317, num: 1, rate: 80 },{ id: 314, num: 1, rate: 20 }], time: 5, desc: '锻骨期最佳武器' },
-  { id: 2 , name: '修行丹', tags: [], attrs: ['材料'], quality: 3, stuffs: [{ id: 1003, num: 20 },{ id: 1004, num: 20 }], props: [{id: 450, num: 1}], targets: [{ id: 450, num: 1, rate: 80 },{ id: 451, num: 1, rate: 20 }], time: 7260, desc: '加快修炼速度' },
+  { id: 1 , propId: 317, name: '风雷剑', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 886, num: 1 },{ id: 1001, num: 1 }], props: [{id: 1006, num: 1},{id: 1003, num: 1}], targets: [{ id: 317, num: 1, rate: 80 },{ id: 314, num: 1, rate: 20 }], time: 5, desc: '锻骨期最佳武器' },
+  { id: 2 , propId: 318, name: '金刚剑', tags: [], attrs: ['材料'], quality: 3, stuffs: [{ id: 886, num: 1 },{ id: 1001, num: 1 }], props: [{id: 1006, num: 1}], targets: [{ id: 317, num: 1, rate: 80 },{ id: 314, num: 1, rate: 20 }], time: 10, desc: '加快修炼速度' },
 ]

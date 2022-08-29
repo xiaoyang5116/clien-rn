@@ -15,6 +15,7 @@ import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { HalfPanel } from '../panel/HalfPanel'
 import { Header3, TextButton } from '../../constants/custom-ui';
+import PropIcon from './components/PropIcon';
 
 
 const AuxiliaryMaterialsPop = (props) => {
@@ -27,14 +28,15 @@ const AuxiliaryMaterialsPop = (props) => {
     const { name, currNum, reqNum, id } = item
     return (
       <TouchableOpacity onPress={() => { setCheckedMaterial([item]) }}>
-        <View style={{ height: 50, borderWidth: 1, borderColor: checkedMaterial.find(i => i.id === item.id) !== undefined ? "#F34141" : '#000', borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
+        <View style={{ height: 45, borderWidth: 1, borderColor: checkedMaterial.find(i => i.id === item.id) !== undefined ? "#0BD86A" : '#000', borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
           <ImageCapInset
             style={{ width: '100%', height: '100%', position: 'absolute' }}
             source={require('../../../assets/button/40dpi_gray.png')}
             capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
           />
           <View style={{ flex: 1, flexDirection: "row", paddingTop: 8, paddingBottom: 8, paddingLeft: 12, paddingRight: 12, alignItems: 'center' }}>
-            <Text style={{ flex: 1, fontSize: 16, color: "#000", }}>
+            <PropIcon item={item} />
+            <Text style={{ flex: 1, fontSize: 16, color: "#000", marginLeft: 8 }}>
               {name}
             </Text>
             <View style={{ flexDirection: "row", alignItems: 'center' }}>

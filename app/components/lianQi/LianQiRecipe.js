@@ -18,6 +18,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 import { TextButton, Header3 } from '../../constants/custom-ui';
 import LianQiRecipeDetail from './LianQiRecipeDetail';
+import PropIcon from '../alchemyRoom/components/PropIcon';
 
 
 const LianQiRecipe = (props) => {
@@ -51,6 +52,7 @@ const LianQiRecipe = (props) => {
             capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
           />
           <View style={styles.lianQiItemContent_Container}>
+            <PropIcon item={item} />
             <Text style={styles.lianQiName}>{item.name}</Text>
             {!item.valid ? (
               <Text style={{ fontSize: 14, color: '#585858' }}>材料不足</Text>
@@ -95,7 +97,7 @@ export default connect(state => ({ ...state.LianQiModel }))(LianQiRecipe)
 
 const styles = StyleSheet.create({
   lianQiItemContainer: {
-    height: 40,
+    height: 45,
     borderWidth: 1,
     borderColor: '#000',
     borderRadius: 3,
@@ -115,5 +117,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     color: '#000',
+    marginLeft: 8
   },
 });
