@@ -16,29 +16,32 @@ import RootView from '../RootView';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
-import DanFangDetailPage from './DanFangDetailPage';
 import { TextButton, Header3 } from '../../constants/custom-ui';
 
-const DanFangPage = props => {
+
+const Recipe = (props) => {
   const { danFangList } = props;
 
-  useEffect(() => {
-    props.dispatch(action('AlchemyModel/getDanFangList')());
-  }, []);
+  // useEffect(() => {
+  //   props.dispatch(action('AlchemyModel/getDanFangList')());
+  // }, []);
 
-  const openDanFangDetailPage = (item) => {
-    const key = RootView.add(
-      <DanFangDetailPage
-        danFang={item}
-        onCloseDanFangPage={props.onClose}
-        onClose={() => {
-          RootView.remove(key);
-        }}
-      />,
-    );
+  const Header = () => {
+    return (
+      <View style={{ justifyContent: 'center', marginTop: 12 }}>
+        <View style={{ position: 'absolute', zIndex: 2 }}>
+          <TouchableOpacity onPress={props.onClose}>
+            <AntDesign name='left' color={"#fff"} size={23} style={{ marginLeft: 12, }} />
+          </TouchableOpacity>
+        </View>
+        <Text style={{ textAlign: 'center', fontSize: 24, color: '#fff' }}>
+          丹方选择
+        </Text>
+      </View>
+    )
   }
 
-  const DanFangComponent = () => {
+  const RecipeComponent = () => {
     const renderItem = ({ item, index }) => {
       return (
         <TouchableOpacity
@@ -71,7 +74,7 @@ const DanFangPage = props => {
         />
       </View>
     );
-  };
+  }
 
   return (
     <View style={{ flex: 1, zIndex: 99 }}>
@@ -81,39 +84,16 @@ const DanFangPage = props => {
       />
       <SafeAreaView style={{ flex: 1 }}>
         <Header3
-          title={"丹方选择"}
+          title={"炼器图纸"}
           onClose={props.onClose}
           containerStyle={{ marginTop: 12 }}
         />
-        <DanFangComponent />
+        <RecipeComponent />
       </SafeAreaView>
     </View>
-  );
-};
+  )
+}
 
-export default connect(state => ({ ...state.AlchemyModel }))(DanFangPage);
+export default Recipe
 
-const styles = StyleSheet.create({
-  danFangItemContainer: {
-    height: 40,
-    borderWidth: 1,
-    borderColor: '#000',
-    borderRadius: 3,
-    marginTop: 12,
-    backgroundColor: 'rgba(255,255,255,0.5)',
-  },
-  danFangItemContent_Container: {
-    flex: 1,
-    flexDirection: 'row',
-    paddingTop: 8,
-    paddingBottom: 8,
-    paddingLeft: 12,
-    paddingRight: 12,
-    alignItems: 'center',
-  },
-  danFangName: {
-    flex: 1,
-    fontSize: 16,
-    color: '#000',
-  },
-});
+const styles = StyleSheet.create({})

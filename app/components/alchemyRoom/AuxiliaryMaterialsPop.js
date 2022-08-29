@@ -14,7 +14,7 @@ import Toast from '../toast';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { HalfPanel } from '../panel/HalfPanel'
-import { TextButton } from '../../constants/custom-ui';
+import { Header3, TextButton } from '../../constants/custom-ui';
 
 
 const AuxiliaryMaterialsPop = (props) => {
@@ -22,21 +22,6 @@ const AuxiliaryMaterialsPop = (props) => {
   const { propsDetail, setAuxiliaryMaterials } = props
 
   const [checkedMaterial, setCheckedMaterial] = useState([])
-
-  const Header = () => {
-    return (
-      <View style={{ justifyContent: 'center', marginTop: 12, }}>
-        <View style={{ position: 'absolute', zIndex: 2 }}>
-          <TouchableOpacity onPress={props.onClose}>
-            <AntDesign name='left' color={"#fff"} size={23} style={{ marginLeft: 12, }} />
-          </TouchableOpacity>
-        </View>
-        <Text style={{ textAlign: 'center', fontSize: 24, color: '#fff' }}>
-          辅助材料选择
-        </Text>
-      </View>
-    )
-  }
 
   const renderItem = ({ item, index }) => {
     const { name, currNum, reqNum, id } = item
@@ -68,7 +53,11 @@ const AuxiliaryMaterialsPop = (props) => {
 
   return (
     <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"} source={require('../../../assets/plant/plantBg.jpg')} borderRadius={10} zIndex={99}>
-      <Header />
+      <Header3
+        title={"辅助材料选择"}
+        onClose={props.onClose}
+        containerStyle={{ marginTop: 12 }}
+      />
       <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, }}>
         <FlatList
           data={propsDetail}

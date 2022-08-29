@@ -17,7 +17,7 @@ import { now } from '../../utils/DateTimeUtils';
 import DanFangPage from './DanFangPage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ProgressBar from './components/ProgressBar';
-import { TextButton } from '../../constants/custom-ui';
+import { TextButton, Header3 } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 
 
@@ -72,7 +72,6 @@ const RewardsPage = (props) => {
 const AlchemyRoom = props => {
   const { alchemyData } = props
 
-  // const 
   useEffect(() => {
     if (alchemyData === undefined) {
       props.dispatch(action('AlchemyModel/getAlchemyData')())
@@ -107,26 +106,6 @@ const AlchemyRoom = props => {
             选择配方
           </Text>
         </TouchableOpacity>
-      </View>
-    );
-  };
-
-  const Header = () => {
-    return (
-      <View style={{ justifyContent: 'center', marginTop: 12 }}>
-        <View style={{ position: 'absolute', zIndex: 2 }}>
-          <TouchableOpacity onPress={props.onClose}>
-            <AntDesign
-              name="left"
-              color={'#000'}
-              size={23}
-              style={{ marginLeft: 12 }}
-            />
-          </TouchableOpacity>
-        </View>
-        <Text style={{ textAlign: 'center', fontSize: 24, color: '#000' }}>
-          炼丹房
-        </Text>
       </View>
     );
   };
@@ -173,7 +152,13 @@ const AlchemyRoom = props => {
   return (
     <View style={{ flex: 1, backgroundColor: '#ccc', zIndex: 99 }}>
       <SafeAreaView style={{ flex: 1 }}>
-        <Header />
+        <Header3
+          title={'炼丹房'}
+          fontStyle={{ color: '#000' }}
+          iconColor={'#000'}
+          containerStyle={{ marginTop: 12 }}
+          onClose={props.onClose}
+        />
         <View style={{ flex: 1, justifyContent: "flex-end", alignItems: 'center' }}>
           {
             alchemyData ? <Refining /> : <ChooseRecipe />

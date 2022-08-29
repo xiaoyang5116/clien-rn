@@ -18,7 +18,7 @@ import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 import AuxiliaryMaterialsPop from './AuxiliaryMaterialsPop'
-import { TextButton } from '../../constants/custom-ui';
+import { Header3, TextButton } from '../../constants/custom-ui';
 import SelectQuantityPop from './SelectQuantityPop';
 import Toast from '../toast';
 
@@ -197,21 +197,6 @@ const DanFangDetailPage = (props) => {
     })
   }, [])
 
-  const Header = () => {
-    return (
-      <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: 'center', marginTop: 12, overflow: 'hidden' }}>
-        <View style={{ position: 'absolute', left: 0, zIndex: 2, }}>
-          <TouchableOpacity onPress={props.onClose}>
-            <AntDesign name='left' color={"#fff"} size={23} style={{ marginLeft: 12, }} />
-          </TouchableOpacity>
-        </View>
-        <Text style={{ textAlign: 'center', fontSize: 24, color: '#fff' }}>
-          材料选择
-        </Text>
-      </View>
-    )
-  }
-
   const DanFangDetail = () => {
     return (
       <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, marginTop: 12 }}>
@@ -254,7 +239,11 @@ const DanFangDetailPage = (props) => {
         source={require('../../../assets/plant/plantBg.jpg')}
       />
       <SafeAreaView style={{ flex: 1 }}>
-        <Header />
+        <Header3
+          title={"材料选择"}
+          onClose={props.onClose}
+          containerStyle={{ marginTop: 12 }}
+        />
         <DanFangDetail />
         <Alchemy />
       </SafeAreaView>

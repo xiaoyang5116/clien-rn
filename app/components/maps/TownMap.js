@@ -22,6 +22,7 @@ import { ComposeUtils } from '../../pages/home/ComposePage';
 import ShopsUtils from '../../utils/ShopsUtils';
 import LotteryUtils from '../../utils/LotteryUtils';
 import AlchemyRoomModal from '../alchemyRoom';
+import RefinerPage from '../refiner';
 
 const MAP_DATA = [
     {
@@ -59,6 +60,7 @@ const MAP_DATA = [
         ],
         nearPoints: [
             { style: { left: 75, top: 320 }, name: 'LianQiFeng', title: '练器峰' },
+            { style: { left: 155, top: 340 }, name: 'HeChengFeng', title: '合成峰' },
         ],
     },
     {
@@ -100,7 +102,7 @@ const EntryButton = (props) => {
                             PlantPage.show();
                             break;
                         case 'LianQiFeng':
-                            ComposeUtils.show();
+                            RefinerPage.show();
                             break;
                         case 'ShiChang':
                             ShopsUtils.show();
@@ -110,6 +112,9 @@ const EntryButton = (props) => {
                             break;
                         case 'LianDanFang':
                             AlchemyRoomModal.show();
+                            break;
+                        case 'HeChengFeng':
+                            ComposeUtils.show();
                             break;
                     }
                     DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
