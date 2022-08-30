@@ -129,10 +129,10 @@ props: [
   #  { id:  351, name: '白色护脉丹', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ', incSuccessRate: 10  },
   #  { id:  352, name: '绿色护脉丹', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ' , incSuccessRate: 20 },
 
-   { id:  351, name: '护脉丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ',  useEffects: [{ xiuxing: 10000 }]  },
-   { id:  352, name: '白色护脉丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ',  useEffects: [{ xiuxing: 10000 }]  },
-   { id:  353, name: '绿色护脉丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ' ,  useEffects: [{ xiuxing: 10000 }]  },
-  
+   { id:  351, name: '白色护脉丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ',  useEffects: [{ xiuxing: 10000 }]  },
+   { id:  352, name: '绿色护脉丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ' ,  useEffects: [{ xiuxing: 10000 }]  },
+   { id:  353, name: '护脉丹', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: '可在突破境界时，每回合增加百分之五十的突破几率',  useEffects: [{ xiuxing: 10000 }] },
+
   #  { id:  352, name: '突破丹.LV2', iconId: 2, num:  10, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ', incSuccessRate: 20 },
   #  { id:  442, name: '突破丹.LV3', iconId: 2, num:  10, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ', incSuccessRate: 30 },
   #  { id:  450, name: '金行丹', iconId: 2, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'],  capacity: 100, desc: ' ', useEffects: [{ xiuxing: 1000 }] },
@@ -166,7 +166,7 @@ props: [
    { id:  1015, name: '黄心叶', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
    { id:  1016, name: '百络花', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
    { id:  1017, name: '子星草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
-   { id:  1018, name: '不知名草药', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+   { id:  1018, name: '不知名草药', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
 
    #功法书籍
    { id:  600, name: '《白城笑话大全》', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													

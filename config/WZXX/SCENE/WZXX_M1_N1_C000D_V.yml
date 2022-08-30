@@ -757,7 +757,7 @@ scenes: [
       { 
         id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
         options: [ 
-         { title: '【继续往前走】', toScene: 'C000D_V1_MAP_-1_3'}, 
+         { title: '【去种植】', openUI: 'ZhongZhi',}, 
         ],
       },
 

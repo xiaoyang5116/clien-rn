@@ -8,7 +8,7 @@
 
 rules: [
 
-  { id: 1 , propId: 351, name: '护脉丹', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 1015, num: 1 },{ id: 1016, num: 1 },{ id: 1017, num: 1 },], 
+  { id: 1 , propId: 353, name: '护脉丹', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 1015, num: 1 },{ id: 1016, num: 1 },{ id: 1017, num: 1 },], 
   props: [], 
   targets: [{ id: 351, num: 1, rate: 80 },{ id: 352, num: 1, rate: 20 }], 
   time: 5, desc: '突破练气期的最佳丹药' },
