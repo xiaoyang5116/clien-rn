@@ -129,9 +129,9 @@ props: [
   #  { id:  351, name: '白色护脉丹', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ', incSuccessRate: 10  },
   #  { id:  352, name: '绿色护脉丹', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ' , incSuccessRate: 20 },
 
-   { id:  351, name: '白色护脉丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ',  useEffects: [{ xiuxing: 10000 }]  },
-   { id:  352, name: '绿色护脉丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ' ,  useEffects: [{ xiuxing: 10000 }]  },
-
+   { id:  351, name: '护脉丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ',  useEffects: [{ xiuxing: 10000 }]  },
+   { id:  352, name: '白色护脉丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ',  useEffects: [{ xiuxing: 10000 }]  },
+   { id:  353, name: '绿色护脉丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ' ,  useEffects: [{ xiuxing: 10000 }]  },
   
   #  { id:  352, name: '突破丹.LV2', iconId: 2, num:  10, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ', incSuccessRate: 20 },
   #  { id:  442, name: '突破丹.LV3', iconId: 2, num:  10, quality: 2, type: 0, tags: ['普通'], attrs: ['修行'], capacity: 100, desc: ' ', incSuccessRate: 30 },

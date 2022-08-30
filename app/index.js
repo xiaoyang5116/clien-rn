@@ -78,6 +78,7 @@ const models = [
   require('./models/ShopsModel').default,
   require('./models/CollectionModel').default,
   require('./models/AlchemyModel').default,
+  require('./models/LianQiModel').default,
 ];
 
 const defaultDataContext = {

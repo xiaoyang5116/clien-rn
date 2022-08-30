@@ -87,9 +87,9 @@ const CollectionTabPage = (props) => {
     return (
         <View style={styles.viewContainer}>
             <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                <Text>金: 0</Text>
-                <Text>银: 0</Text>
-                <Text>铜: {props.user.copper}</Text>
+                <Text style={{color:'#111'}}>金: 0</Text>
+                <Text style={{color:'#111'}}>银: 0</Text>
+                <Text style={{color:'#111'}}>铜: {props.user.copper}</Text>
             </View>
             <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
                 <TextButton title={'金'} onPress={() => selectCategory('金')} />

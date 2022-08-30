@@ -16,22 +16,23 @@ import RootView from '../RootView';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
-import DanFangDetailPage from './DanFangDetailPage';
 import { TextButton, Header3 } from '../../constants/custom-ui';
-import PropIcon from './components/PropIcon';
+import LianQiRecipeDetail from './LianQiRecipeDetail';
+import PropIcon from '../alchemyRoom/components/PropIcon';
 
-const DanFangPage = props => {
-  const { danFangList } = props;
+
+const LianQiRecipe = (props) => {
+  const { lianQiTuZhiList } = props;
 
   useEffect(() => {
-    props.dispatch(action('AlchemyModel/getDanFangList')());
+    props.dispatch(action('LianQiModel/getLianQiTuZhiList')());
   }, []);
 
-  const openDanFangDetailPage = (item) => {
+  const openlianQiDetailPage = (item) => {
     const key = RootView.add(
-      <DanFangDetailPage
-        danFang={item}
-        onCloseDanFangPage={props.onClose}
+      <LianQiRecipeDetail
+        recipe={item}
+        onCloseRecipePage={props.onClose}
         onClose={() => {
           RootView.remove(key);
         }}
@@ -39,24 +40,23 @@ const DanFangPage = props => {
     );
   }
 
-  const DanFangComponent = () => {
+  const RecipeComponent = () => {
     const renderItem = ({ item, index }) => {
       return (
         <TouchableOpacity
-          style={styles.danFangItemContainer}
-          onPress={() => { openDanFangDetailPage(item) }}>
+          style={styles.lianQiItemContainer}
+          onPress={() => { openlianQiDetailPage(item) }}>
           <ImageCapInset
             style={{ width: '100%', height: '100%', position: 'absolute' }}
             source={require('../../../assets/button/40dpi_gray.png')}
             capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
           />
-          <View style={styles.danFangItemContent_Container}>
+          <View style={styles.lianQiItemContent_Container}>
             <PropIcon item={item} />
-            <Text style={styles.danFangName}>{item.name}</Text>
+            <Text style={styles.lianQiName}>{item.name}</Text>
             {!item.valid ? (
               <Text style={{ fontSize: 14, color: '#585858' }}>材料不足</Text>
             ) : (
-              // <Text style={{ fontSize: 14, color: '#000' }}>可选</Text>
               <></>
             )}
           </View>
@@ -67,13 +67,13 @@ const DanFangPage = props => {
       <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, marginTop: 12, }}>
         <FlatList
           showsVerticalScrollIndicator={false}
-          data={danFangList}
+          data={lianQiTuZhiList}
           renderItem={renderItem}
           keyExtractor={item => item.id}
         />
       </View>
     );
-  };
+  }
 
   return (
     <View style={{ flex: 1, zIndex: 99 }}>
@@ -83,20 +83,20 @@ const DanFangPage = props => {
       />
       <SafeAreaView style={{ flex: 1 }}>
         <Header3
-          title={"丹方选择"}
+          title={"炼器图纸"}
           onClose={props.onClose}
           containerStyle={{ marginTop: 12 }}
         />
-        <DanFangComponent />
+        <RecipeComponent />
       </SafeAreaView>
     </View>
-  );
-};
+  )
+}
 
-export default connect(state => ({ ...state.AlchemyModel }))(DanFangPage);
+export default connect(state => ({ ...state.LianQiModel }))(LianQiRecipe)
 
 const styles = StyleSheet.create({
-  danFangItemContainer: {
+  lianQiItemContainer: {
     height: 45,
     borderWidth: 1,
     borderColor: '#000',
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     marginTop: 12,
     backgroundColor: 'rgba(255,255,255,0.5)',
   },
-  danFangItemContent_Container: {
+  lianQiItemContent_Container: {
     flex: 1,
     flexDirection: 'row',
     paddingTop: 8,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     paddingRight: 12,
     alignItems: 'center',
   },
-  danFangName: {
+  lianQiName: {
     flex: 1,
     fontSize: 16,
     color: '#000',

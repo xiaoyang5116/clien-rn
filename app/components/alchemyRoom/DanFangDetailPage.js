@@ -18,9 +18,10 @@ import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 import AuxiliaryMaterialsPop from './AuxiliaryMaterialsPop'
-import { TextButton } from '../../constants/custom-ui';
+import { Header3, TextButton } from '../../constants/custom-ui';
 import SelectQuantityPop from './SelectQuantityPop';
 import Toast from '../toast';
+import PropIcon from './components/PropIcon';
 
 
 // 原材料
@@ -30,14 +31,15 @@ const StuffsComponent = (props) => {
   const renderStuffs = ({ item, index }) => {
     const { name, currNum, reqNum } = item
     return (
-      <View style={{ height: 40, borderWidth: 1, borderColor: "#000", borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
+      <View style={{ height: 45, borderWidth: 1, borderColor: "#000", borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
         <ImageCapInset
           style={{ width: '100%', height: '100%', position: 'absolute' }}
           source={require('../../../assets/button/40dpi_gray.png')}
           capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
         />
         <View style={{ flex: 1, flexDirection: "row", paddingTop: 8, paddingBottom: 8, paddingLeft: 12, paddingRight: 12, alignItems: 'center' }}>
-          <Text style={{ flex: 1, fontSize: 16, color: "#000", }}>
+          <PropIcon item={item} />
+          <Text style={{ flex: 1, fontSize: 16, color: "#000", marginLeft: 8 }}>
             {name}
           </Text>
           <View style={{ flexDirection: "row", alignItems: 'center' }}>
@@ -71,14 +73,15 @@ const TargetsComponent = (props) => {
   const renderTargets = ({ item }) => {
     const { name, productNum } = item
     return (
-      <View style={{ height: 40, borderWidth: 1, borderColor: "#000", borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
+      <View style={{ height: 45, borderWidth: 1, borderColor: "#000", borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
         <ImageCapInset
           style={{ width: '100%', height: '100%', position: 'absolute' }}
           source={require('../../../assets/button/40dpi_gray.png')}
           capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
         />
         <View style={{ flex: 1, flexDirection: "row", paddingTop: 8, paddingBottom: 8, paddingLeft: 12, paddingRight: 12, alignItems: 'center' }}>
-          <Text style={{ flex: 1, fontSize: 16, color: "#000", }}>
+          <PropIcon item={item} />
+          <Text style={{ flex: 1, fontSize: 16, color: "#000", marginLeft: 8 }}>
             {name}
           </Text>
           <View style={{ flexDirection: "row", alignItems: 'center' }}>
@@ -127,7 +130,7 @@ const AuxiliaryMaterials = (props) => {
     if (auxiliaryMaterials.length === 0) {
       return (
         <TouchableOpacity style={{ marginTop: 12, }} onPress={openAuxiliaryMaterialsPop}>
-          <View style={{ height: 40, borderWidth: 1, borderColor: "#000", borderRadius: 3, backgroundColor: "rgba(255,255,255,0.5)" }}>
+          <View style={{ height: 45, borderWidth: 1, borderColor: "#000", borderRadius: 3, backgroundColor: "rgba(255,255,255,0.5)" }}>
             <ImageCapInset
               style={{ width: '100%', height: '100%', position: 'absolute' }}
               source={require('../../../assets/button/40dpi_gray.png')}
@@ -143,14 +146,15 @@ const AuxiliaryMaterials = (props) => {
       const { name, currNum, reqNum } = auxiliaryMaterials[0]
       return (
         <TouchableOpacity style={{ marginTop: 12, }} onPress={openAuxiliaryMaterialsPop}>
-          <View style={{ height: 40, borderWidth: 1, borderColor: "#000", borderRadius: 3, backgroundColor: "rgba(255,255,255,0.5)" }}>
+          <View style={{ height: 45, borderWidth: 1, borderColor: "#000", borderRadius: 3, backgroundColor: "rgba(255,255,255,0.5)" }}>
             <ImageCapInset
               style={{ width: '100%', height: '100%', position: 'absolute' }}
               source={require('../../../assets/button/40dpi_gray.png')}
               capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
             />
             <View style={{ flex: 1, flexDirection: "row", paddingTop: 8, paddingBottom: 8, paddingLeft: 12, paddingRight: 12, alignItems: 'center' }}>
-              <Text style={{ flex: 1, fontSize: 16, color: "#000", }}>
+              <PropIcon item={auxiliaryMaterials[0]} />
+              <Text style={{ flex: 1, fontSize: 16, color: "#000", marginLeft: 8 }}>
                 {name}
               </Text>
               <View style={{ flexDirection: "row", alignItems: 'center' }}>
@@ -189,28 +193,11 @@ const DanFangDetailPage = (props) => {
   // 辅助材料
   const [auxiliaryMaterials, setAuxiliaryMaterials] = useState([])
 
-  // console.log("danFangDetail", danFangDetail);
-
   useEffect(() => {
     props.dispatch(action('AlchemyModel/getDanFangDetail')(danFang)).then((result) => {
       setDanFangDetail(result)
     })
   }, [])
-
-  const Header = () => {
-    return (
-      <View style={{ flexDirection: 'row', alignItems: "center", justifyContent: 'center', marginTop: 12, overflow: 'hidden' }}>
-        <View style={{ position: 'absolute', left: 0, zIndex: 2, }}>
-          <TouchableOpacity onPress={props.onClose}>
-            <AntDesign name='left' color={"#fff"} size={23} style={{ marginLeft: 12, }} />
-          </TouchableOpacity>
-        </View>
-        <Text style={{ textAlign: 'center', fontSize: 24, color: '#fff' }}>
-          材料选择
-        </Text>
-      </View>
-    )
-  }
 
   const DanFangDetail = () => {
     return (
@@ -225,9 +212,6 @@ const DanFangDetailPage = (props) => {
   // 炼丹按钮
   const Alchemy = () => {
     const selectQuantity = () => {
-      if (!danFang.valid) {
-        return Toast.show("材料不足")
-      }
       const key = RootView.add(
         <SelectQuantityPop
           danFangDetail={danFangDetail}
@@ -241,8 +225,15 @@ const DanFangDetailPage = (props) => {
     }
 
     return (
-      <View style={{ justifyContent: "center", alignItems: 'center', marginBottom: 12 }}>
-        <TextButton title={"炼丹"} onPress={selectQuantity} />
+      // <View style={{ justifyContent: "center", alignItems: 'center', marginBottom: 12 }}>
+      //   <TextButton title={"炼丹"} onPress={selectQuantity} />
+      // </View>
+      <View style={{ marginBottom: 12, paddingLeft: 12, paddingRight: 12 }}>
+        {danFang.valid ? (
+          <TextButton title={'炼丹'} onPress={selectQuantity} />
+        ) : (
+          <TextButton title={'材料不足,无法炼制'} disabled={true} />
+        )}
       </View>
     )
   }
@@ -254,7 +245,11 @@ const DanFangDetailPage = (props) => {
         source={require('../../../assets/plant/plantBg.jpg')}
       />
       <SafeAreaView style={{ flex: 1 }}>
-        <Header />
+        <Header3
+          title={"材料选择"}
+          onClose={props.onClose}
+          containerStyle={{ marginTop: 12 }}
+        />
         <DanFangDetail />
         <Alchemy />
       </SafeAreaView>

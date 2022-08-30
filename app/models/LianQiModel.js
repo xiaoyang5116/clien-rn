@@ -6,7 +6,7 @@ import {
 } from '../constants';
 
 import lo, { range } from 'lodash';
-import { GetDanFangDataApi } from '../services/GetDanFangDataApi';
+import { GetLianQiTuzhiApi } from '../services/GetLianQiTuzhiApi';
 
 import EventListeners from '../utils/EventListeners';
 import LocalStorage from '../utils/LocalStorage';
@@ -14,24 +14,24 @@ import Toast from '../components/toast';
 import { now } from '../utils/DateTimeUtils';
 
 export default {
-  namespace: 'AlchemyModel',
+  namespace: 'LianQiModel',
 
   state: {
-    danFangList: [],  // 丹方集合
-    danFangConfig: [],  // 丹方配置数据
-    alchemyData: null,  // 炼丹数据
+    lianQiTuZhiList: [],  // 炼器图纸集合
+    lianQiTuZhiConfig: [],  // 炼器图纸配置数据
+    lianQiData: null,  // 炼器数据
   },
 
   effects: {
     *reload({ }, { select, put, call }) {
-      // 挂载炼丹数据
-      const storageAlchemy = yield call(LocalStorage.get, LocalCacheKeys.ALCHEMY_DATA);
-      yield put(action('updateState')({ alchemyData: storageAlchemy }))
+      // 挂载炼器数据
+      const storageLianQiData = yield call(LocalStorage.get, LocalCacheKeys.LIANQI_DATA);
+      yield put(action('updateState')({ lianQiData: storageLianQiData }))
     },
 
-    // 获取丹方列表
-    *getDanFangList({ payload }, { call, put, select }) {
-      const { rules } = yield call(GetDanFangDataApi);
+    // 获取炼器图纸列表
+    *getLianQiTuZhiList({ payload }, { call, put, select }) {
+      const { rules } = yield call(GetLianQiTuzhiApi);
 
       let validData = []
       let notValidData = []
@@ -59,12 +59,12 @@ export default {
         }
       }
 
-      const newDanFangList = [...validData, ...notValidData]
-      yield put(action("updateState")({ danFangList: newDanFangList, danFangConfig: rules }))
+      const lianQiTuZhiList = [...validData, ...notValidData]
+      yield put(action("updateState")({ lianQiTuZhiList, lianQiTuZhiConfig: rules }))
     },
 
-    // 获取丹方详情
-    *getDanFangDetail({ payload }, { call, put, select }) {
+    // 获取炼器图纸详情
+    *getLianQiTuZhiDetail({ payload }, { call, put, select }) {
       const stuffsDetail = []
       for (let k in payload.stuffs) {
         const stuff = payload.stuffs[k];
@@ -122,27 +122,29 @@ export default {
       return num - 1
     },
 
-    // 炼丹
-    *alchemy({ payload }, { call, put, select }) {
-      const { danFangData, refiningNum, } = payload
-      const { danFangConfig } = yield select(state => state.AlchemyModel);
-      const currentDanFangConfig = danFangConfig.find(item => item.id === danFangData.id)
+    // 炼器
+    *lianQi({ payload }, { call, put, select }) {
+      const { recipeData, refiningNum, } = payload
+      const { lianQiTuZhiConfig } = yield select(state => state.LianQiModel);
+      const currentLianQiTuZhiConfig = lianQiTuZhiConfig.find(item => item.id === recipeData.id)
 
       // 扣除原料
-      for (let k in currentDanFangConfig.stuffs) {
-        const stuff = currentDanFangConfig.stuffs[k];
+      for (let k in currentLianQiTuZhiConfig.stuffs) {
+        const stuff = currentLianQiTuZhiConfig.stuffs[k];
         yield put.resolve(action('PropsModel/use')({ propId: stuff.id, num: (stuff.num * refiningNum), quiet: true }));
       }
       // 扣除辅助材料
-      for (let k in danFangData.propsDetail) {
-        const props = danFangData.propsDetail[k];
-        yield put.resolve(action('PropsModel/use')({ propId: props.id, num: (props.reqNum * refiningNum), quiet: true }));
+      for (let k in recipeData.propsDetail) {
+        const props = recipeData.propsDetail[k];
+        yield put.resolve(action('PropsModel/use')({ propId: props.propId, num: (props.reqNum * refiningNum), quiet: true }));
       }
+
+      console.log("recipeData.propsDetail", recipeData.propsDetail);
 
       // 随机产生丹药
       let danYaoArr = []
       for (let k = 0; k < refiningNum; k++) {
-        const sortTargets = currentDanFangConfig.targets.map(e => ({ ...e }))
+        const sortTargets = currentLianQiTuZhiConfig.targets.map(e => ({ ...e }))
         sortTargets.sort((a, b) => b.rate - a.rate);
         let prevRange = 0;
         sortTargets.forEach(e => {
@@ -166,35 +168,35 @@ export default {
       // 发送道具，这就先存储
       // yield put.resolve(action('PropsModel/sendProps')({ propId: hit.id, num: hit.num, quiet: true }));
 
-      const alchemyData = {
-        recipeId: currentDanFangConfig.id,
-        recipeName: currentDanFangConfig.name,
-        needTime: currentDanFangConfig.time * refiningNum,
+      const lianQiData = {
+        recipeId: currentLianQiTuZhiConfig.id,
+        recipeName: currentLianQiTuZhiConfig.name,
+        needTime: currentLianQiTuZhiConfig.time * refiningNum,
         refiningTime: now(),
         targets: danYaoArr,
         status: 0,
       }
 
-      yield call(LocalStorage.set, LocalCacheKeys.ALCHEMY_DATA, alchemyData);
-      yield put(action("updateState")({ alchemyData }))
+      yield call(LocalStorage.set, LocalCacheKeys.ALCHEMY_DATA, lianQiData);
+      yield put(action("updateState")({ lianQiData }))
     },
 
     // 炼丹完成
-    *alchemyFinish({ payload }, { call, put, select }) {
-      const { alchemyData } = yield select(state => state.AlchemyModel);
+    *lianQiFinish({ payload }, { call, put, select }) {
+      const { lianQiData } = yield select(state => state.LianQiModel);
 
-      for (let index = 0; index < alchemyData.targets.length; index++) {
-        const prop = alchemyData.targets[index];
+      for (let index = 0; index < lianQiData.targets.length; index++) {
+        const prop = lianQiData.targets[index];
         yield put.resolve(action('PropsModel/sendProps')({ propId: prop.id, num: prop.num, quiet: true }));
       }
 
-      const message = alchemyData.targets.map(item => {
+      const message = lianQiData.targets.map(item => {
         return `获得${item.name} * ${item.num}`
       })
       Toast.show(message, BOTTOM_TOP_SMOOTH)
 
-      yield call(LocalStorage.set, LocalCacheKeys.ALCHEMY_DATA, null);
-      yield put(action("updateState")({ alchemyData: null }))
+      yield call(LocalStorage.set, LocalCacheKeys.LIANQI_DATA, null);
+      yield put(action("updateState")({ lianQiData: null }))
     }
   },
 

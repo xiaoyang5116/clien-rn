@@ -46,4 +46,7 @@ export class LocalCacheKeys {
     // 炼丹数据
     static ALCHEMY_DATA = "ALCHEMY_DATA"
 
+    // 炼器数据
+    static LIANQI_DATA = "LIANQI_DATA"
+
 }

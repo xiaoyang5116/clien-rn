@@ -39,7 +39,7 @@ const TabBarComponent = (props) => {
         return (
             <TouchableWithoutFeedback onPress={props.onClose}>
                 <View style={styles.close}>
-                    <AntDesign name='close' size={24} />
+                    <AntDesign name='close' color={"#111"} size={24} />
                 </View>
             </TouchableWithoutFeedback>
         )

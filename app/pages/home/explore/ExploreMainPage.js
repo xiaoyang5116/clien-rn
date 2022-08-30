@@ -123,7 +123,7 @@ const ExploreProgress = (props) => {
     }, []);
 
     return (
-        <Text style={{ ...props.style }}>探索度 {progress}/100</Text>
+        <Text style={{ ...props.style, color:"#111" }}>探索度 {progress}/100</Text>
     );
 };
 
@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
         width: 60, height: 60, justifyContent: 'center', alignItems: 'center',
     },
     textBox: {
-        borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5,
+        borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5, color:"#111"
     },
     timeBannerContainer: {
         flexDirection: 'row', borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', overflow: 'hidden',
