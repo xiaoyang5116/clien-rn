@@ -21,47 +21,8 @@ import PropGrid from '../../components/prop/PropGrid';
 import { TextButton, Header3 } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import LianQiRecipe from './LianQiRecipe';
+import RewardsPage from '../alchemyRoom/components/RewardsPage';
 
-
-// 奖励物品组件
-const RewardItem = (props) => {
-  return (
-    <View style={{ flexDirection: 'column', margin: 8, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
-      <PropGrid prop={props} labelStyle={{ color: '#000' }} />
-    </View>
-  );
-}
-
-// 奖励显示页面
-const RewardsPage = (props) => {
-  const { lianQiData } = props
-  const theme = React.useContext(ThemeContext)
-  const childs = [];
-  let key = 0;
-  lianQiData.targets.forEach(e => {
-    childs.push(<RewardItem key={key++} propId={e.danFangId} iconId={e.iconId} num={e.num} name={e.name} quality={e.quality} />);
-  });
-  return (
-    <TouchableWithoutFeedback style={{ zIndex: 100 }} onPress={() => {
-      props.getAward()
-      props.onClose()
-    }}>
-      <View style={{ flex: 1, zIndex: 99, flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0,0,0,0.65)' }}>
-        <View>
-          <Text style={{ marginBottom: 20, color: '#ccc', fontSize: 36 }}>获得丹药</Text>
-        </View>
-        <ImageBackground style={{ width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'flex-start', backgroundColor: '#a6c2cb' }} source={theme.blockBg_5_img}>
-          <FastImage style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: 2 }} resizeMode='stretch' source={require('../../../assets/bg/dialog_line.png')} />
-          {childs}
-          <FastImage style={{ position: 'absolute', left: 0, bottom: 0, width: '100%', height: 2 }} resizeMode='stretch' source={require('../../../assets/bg/dialog_line.png')} />
-        </ImageBackground>
-        <View>
-          <Text style={{ marginTop: 20, color: '#fff', fontSize: 20 }}>点击任意区域关闭</Text>
-        </View>
-      </View>
-    </TouchableWithoutFeedback>
-  );
-}
 
 const LianQi = props => {
 
@@ -105,7 +66,8 @@ const LianQi = props => {
 
     const onFinish = () => {
       const key = RootView.add(<RewardsPage
-        lianQiData={lianQiData}
+        title={"获得道具"}
+        recipe={lianQiData}
         getAward={() => { props.dispatch(action('LianQiModel/lianQiFinish')()) }}
         onClose={() => {
           RootView.remove(key);

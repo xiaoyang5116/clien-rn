@@ -18,6 +18,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 import DanFangDetailPage from './DanFangDetailPage';
 import { TextButton, Header3 } from '../../constants/custom-ui';
+import PropIcon from './components/PropIcon';
 
 const DanFangPage = props => {
   const { danFangList } = props;
@@ -50,6 +51,7 @@ const DanFangPage = props => {
             capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
           />
           <View style={styles.danFangItemContent_Container}>
+            <PropIcon item={item} />
             <Text style={styles.danFangName}>{item.name}</Text>
             {!item.valid ? (
               <Text style={{ fontSize: 14, color: '#585858' }}>材料不足</Text>
@@ -95,7 +97,7 @@ export default connect(state => ({ ...state.AlchemyModel }))(DanFangPage);
 
 const styles = StyleSheet.create({
   danFangItemContainer: {
-    height: 40,
+    height: 45,
     borderWidth: 1,
     borderColor: '#000',
     borderRadius: 3,
@@ -115,5 +117,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     color: '#000',
+    marginLeft: 8
   },
 });
