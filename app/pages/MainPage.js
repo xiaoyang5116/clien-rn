@@ -19,7 +19,7 @@ import {
 
 import lo from 'lodash';
 import HomePage from './/HomePage';
-import NewArticlePage from './NewArticlePage';
+import ArticlePage from './ArticlePage';
 import FirstPage from './FirstPage';
 import SettingsPage from './SettingsPage';
 import BookMainPage from './BookMainPage'
@@ -99,7 +99,7 @@ const MainPage = (props) => {
     <NavigationContainer theme={{ colors: props.currentStyles.navigation }} ref={navigationRef} onStateChange={stateChangeHandler}>
       <Stack.Navigator initialRouteName='First' screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
         <Stack.Screen name='Home' options={{ headerShown: false }} component={HomePage} />
-        <Stack.Screen name='Article' options={{ headerShown: false }} component={NewArticlePage} />
+        <Stack.Screen name='Article' options={{ headerShown: false }} component={ArticlePage} />
         <Stack.Screen name="First" options={{ headerShown: false }} component={FirstPage} />
         <Stack.Screen name="Settings" options={{ headerShown: false }} component={SettingsPage} />
         <Stack.Screen name="BookMain" options={{ headerShown: false }} component={BookMainPage} />
