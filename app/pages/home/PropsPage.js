@@ -70,10 +70,10 @@ const PropsPage = (props) => {
         });
     }
 
-    const propSelected = (item) => {
-        setSelectId(item.id);
+    const propSelected = (data) => {
+        setSelectId(data.index);
         setTimeout(() => {
-            const key = RootView.add(<PropTips propId={item.id} onClose={() => {
+            const key = RootView.add(<PropTips propId={data.item.id} onClose={() => {
                 RootView.remove(key);
             }} />);
         }, 0);
@@ -83,9 +83,9 @@ const PropsPage = (props) => {
         const quality_style = qualityStyle.styles.find(e => e.id == parseInt(data.item.quality));
         const image = getPropIcon(data.item.iconId);
         return (
-        <TouchableOpacity onPress={() => propSelected(data.item)} activeOpacity={1}>
-            <View style={[styles.propsItem, (data.item.id == 1) ? styles.propsTopBorder : {}]}>
-                {(selectId == data.item.id) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={theme.propSelectedImage} /> : <></>}
+        <TouchableOpacity onPress={() => propSelected(data)} activeOpacity={1}>
+            <View style={[styles.propsItem, (data.index == 0) ? styles.propsTopBorder : {}]}>
+                {(selectId == data.index) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={theme.propSelectedImage} /> : <></>}
                 <View style={styles.propsBorder}>
                     <View style={{ position: 'absolute', left: 0 }}>
                         <FastImage style={{ 

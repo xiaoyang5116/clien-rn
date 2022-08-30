@@ -1,0 +1,46 @@
+# ===========================================
+# 世界配置
+# ===========================================
+world: {
+  left: [
+    {
+      andVarsOn: [''],
+      andVarsOff: [''],
+      dialog: {
+        content: '',
+      },
+      desc: '',
+      toChapter: '',
+    },
+    {
+      andVarsOn: [''],
+      andVarsOff: [''],
+      dialog: {
+        content: '',
+      },
+      desc: '',
+      toChapter: '',
+    },
+  ],
+  
+  right: [
+    {
+      andVarsOn: [''],
+      andVarsOff: [''],
+      dialog: {
+        content: '',
+      },
+      desc: '',
+      toChapter: '',
+    },
+    {
+      andVarsOn: [''],
+      andVarsOff: [''],
+      dialog: {
+        content: '',
+      },
+      desc: '',
+      toChapter: '',
+    },
+  ]
+}

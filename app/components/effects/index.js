@@ -13,6 +13,7 @@ import Animation from '../animation';
 import XueHuaAnimation from './XueHuaAnimation';
 import FlyAnimation from './FlyAnimation';
 import WorldPreview from '../carousel/WorldPreview';
+import WorldUtils from '../../utils/WorldUtils';
 
 export default class EffectAnimations {
 
@@ -61,17 +62,15 @@ export default class EffectAnimations {
                     RootView.remove(key);
                 }} />);
             } else if (id == 11) { // 世界切换
-                const kvmap = [{ key: '现实', worldId: 0 }, { key: '尘界', worldId: 1 }, { key: '灵修界', worldId: 2 }];
-                const found = kvmap.find(kv => lo.isEqual(kv.key, e.data.worldId));
-                if (found != undefined) {
+                const worldId = WorldUtils.getWorldIdByName(e.data.worldId);
+                if (worldId >= 0) {
                     const key = RootView.add(<WorldPreview 
                         item={{ 
-                            worldId: found.worldId, 
+                            worldId: worldId, 
                             title: e.data.worldId, 
                             desc: e.data.desc, 
                             toChapter: e.data.toChapter 
                         }} 
-                        index={found.worldId} 
                         animation={true}
                         onClose={() => {
                             RootView.remove(key);

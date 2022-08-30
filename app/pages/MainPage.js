@@ -13,13 +13,14 @@ import {
 import {
   action,
   connect,
+  DataContext,
   DeviceEventEmitter,
   EventKeys,
 } from '../constants';
 
 import lo from 'lodash';
 import HomePage from './/HomePage';
-import NewArticlePage from './NewArticlePage';
+import ArticlePage from './ArticlePage';
 import FirstPage from './FirstPage';
 import SettingsPage from './SettingsPage';
 import BookMainPage from './BookMainPage'
@@ -27,10 +28,13 @@ import { navigationRef } from '../utils/RootNavigation';
 import { Appearance } from 'react-native';
 import readerStyle from '../themes/readerStyle';
 import ViewListeners from './ViewListeners';
+import WorldUtils from '../utils/WorldUtils';
 
 const Stack = createStackNavigator();
 
 const MainPage = (props) => {
+
+  const context = React.useContext(DataContext);
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener(EventKeys.APP_DISPATCH, (params) => {
@@ -76,8 +80,12 @@ const MainPage = (props) => {
   }, []);
 
   React.useEffect(() => {
+    context.currentWorldName = WorldUtils.getWorldNameById(props.user.worldId);
+    context.currentWorldId = props.user.worldId;
     const listener = DeviceEventEmitter.addListener(EventKeys.SET_CURRENT_WORLD, (e) => {
       props.dispatch(action('UserModel/setWorld')({ name: e.name }));
+      context.currentWorldName = e.name;
+      context.currentWorldId = WorldUtils.getWorldIdByName(e.name);
     });
     return () => {
       listener.remove();
@@ -99,7 +107,7 @@ const MainPage = (props) => {
     <NavigationContainer theme={{ colors: props.currentStyles.navigation }} ref={navigationRef} onStateChange={stateChangeHandler}>
       <Stack.Navigator initialRouteName='First' screenOptions={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }}>
         <Stack.Screen name='Home' options={{ headerShown: false }} component={HomePage} />
-        <Stack.Screen name='Article' options={{ headerShown: false }} component={NewArticlePage} />
+        <Stack.Screen name='Article' options={{ headerShown: false }} component={ArticlePage} />
         <Stack.Screen name="First" options={{ headerShown: false }} component={FirstPage} />
         <Stack.Screen name="Settings" options={{ headerShown: false }} component={SettingsPage} />
         <Stack.Screen name="BookMain" options={{ headerShown: false }} component={BookMainPage} />
@@ -109,4 +117,4 @@ const MainPage = (props) => {
   );
 }
 
-export default connect((state) => ({ ...state.AppModel }))(MainPage);
+export default connect((state) => ({ ...state.AppModel, user: { ...state.UserModel } }))(MainPage);

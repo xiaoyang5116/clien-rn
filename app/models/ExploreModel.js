@@ -387,7 +387,7 @@ export default {
       const rewards = [...exploreState.rewards];
       exploreState.rewards.length = 0;
 
-      yield put.resolve(action('PropsModel/sendPropsBatch')(rewards));
+      yield put.resolve(action('PropsModel/sendPropsBatch')({ props: rewards }));
     },
 
     // 开始探索

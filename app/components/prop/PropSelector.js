@@ -23,6 +23,7 @@ import { TextButton } from '../../constants/custom-ui';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../constants/resolution';
+import PropGrid from '../../components/prop/PropGrid';
 
 // 选择道具通用组件
 const PropSelector = (props) => {
@@ -65,7 +66,7 @@ const PropSelector = (props) => {
         }
         return (
         <TouchableOpacity activeOpacity={1} onPress={() => {
-            setSelect(data.item.id);
+            setSelect(data.index);
             setTimeout(() => {
                 DeviceEventEmitter.emit('__@PropSelector.select', { tag: props.tag, e: data.item });
                 if (props.onClose != undefined) {
@@ -74,9 +75,10 @@ const PropSelector = (props) => {
             }, 200);
         }}>
             <View style={[selectorStyles.propsItem, (data.index == 0) ? selectorStyles.propsTopBorder : {}]}>
-                {(select == data.item.id) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={context.propSelectedImage} /> : <></>}
+                {(select == data.index) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={context.propSelectedImage} /> : <></>}
                 <View style={selectorStyles.propsBorder}>
-                    <View style={{ flex: 1, flexDirection: 'row' }} >
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }} >
+                        <PropGrid prop={data.item} showLabel={false} showNum={false} imageStyle={{ width: px2pd(100), height: px2pd(100) }} />
                         <Text style={[{ marginLeft: 20, fontSize: 22 }, color]}>{data.item.name}</Text>
                     </View>
                     <View style={{ flex: 1 }}>
@@ -142,7 +144,6 @@ const selectorStyles = StyleSheet.create({
     },
     selectorView: {
         width: '94%',
-        height: 500,
         borderWidth: 1,
         borderColor: '#333',
         borderRadius: 8,
@@ -188,7 +189,7 @@ const selectorStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: px2pd(108),
+        height: px2pd(120),
     },
     propsBorder: {
         flex: 1, 

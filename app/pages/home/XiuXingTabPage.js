@@ -114,7 +114,7 @@ const PropPlaceHolder = (props) => {
     const [prop, setProp] = React.useState(<AntDesign name='plus' size={24} />);
 
     const onSelectedProp = ({ e }) => {
-        setProp(<PropGrid prop={e} />);
+        setProp(<PropGrid prop={e} showNum={false} showLabel={false} imageStyle={{ width: px2pd(110), height: px2pd(110) }} />);
 
         if (props.onSelected != undefined) {
             props.onSelected(e);
