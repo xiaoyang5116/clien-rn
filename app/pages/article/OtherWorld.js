@@ -32,8 +32,6 @@ const OtherWorld = (props) => {
         if (!lo.isEqual(routeName, v.routeName))
           return
 
-        console.debug(v)
-
         const worldItems = WORLD_MAPS.find(e => lo.isEqual(e.primary, context.currentWorldName));
         if (worldItems != undefined) {
           let worldName = '';

@@ -9,7 +9,7 @@ const WorldUnlockView = (props) => {
       props.navigation.navigate('PrimaryWorld');
       props.onClose();
     }
-    console.debug(props.content)
+
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f5f5f5' }}>
         <View style={{ 
