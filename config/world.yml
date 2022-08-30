@@ -1,0 +1,20 @@
+# ===========================================
+# 世界配置
+# ===========================================
+world: [
+  { 
+    middle: { title: '尘界' }, 
+    left:   { title: '现实' }, 
+    right:  { title: '灵修界' }
+  },
+  { 
+    middle: { title: '灵修界' }, 
+    left:   { title: '尘界' }, 
+    right:  { title: '现实' }
+  },
+  { 
+    middle: { title: '现实' }, 
+    left:   { title: '灵修界' }, 
+    right:  { title: '尘界' }
+  },
+]

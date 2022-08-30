@@ -149,7 +149,7 @@ const PrimaryWorld = (props) => {
     return (
       <View style={[{ flex: 1 }, {  }]}>
         <FlatList
-          style={{ alignSelf: 'stretch' }}
+          style={{ alignSelf: 'stretch', marginTop: 35 }}
           ref={(ref) => refList.current = ref}
           data={props.sections}
           renderItem={(data) => <Block data={data.item} />}
