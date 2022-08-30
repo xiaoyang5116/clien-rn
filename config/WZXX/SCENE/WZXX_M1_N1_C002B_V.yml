@@ -2,7 +2,8 @@ scenes: [
     #
     {
       id: 'WZXX_M1_N1_C002B_V',
-      name: "定义对应标题名当前章节内的选项和变量",
+      #定义对应标题名当前章节内的选项和变量
+      name: "",
 
       # 变量定义
       vars: [
@@ -46,7 +47,9 @@ scenes: [
 
       # 事件定义
       # 故事中的场景事件暂时没什么意义
-      events: [],
+      events: [
+      { type: 'enter', nextChat: 'WZXX_M1_N1_C002B_V3A',}, 
+      ],
 
 
     
@@ -68,9 +71,9 @@ scenes: [
       },
 
       { 
-        id: 'WZXX_M1_N1_C002B_V3A', desc: '采集草药', 
+        id: 'WZXX_M1_N1_C002B_V3A', desc: '时间不多了，是时候动身去寻找云云了', 
         options: [ 
-          { title: "【采集草药】",dialogs: ['C002B_caijicaoyaoA'],dropIds: ["WZXX_M1_N1_C002B_V_Vdrop7","WZXX_M1_N1_C002B_V_Vdrop8","WZXX_M1_N1_C002B_V_Vdrop9",],},
+          { title: "【去找云云】",dialogs: ['C002B_quzhaoyunyunA'],},
         ],
       },
 
@@ -207,7 +210,7 @@ scenes: [
     },
 
   #选项对话3A
-          { id: 'C002B_caijicaoyaoA',style: 6, title: '采集草药', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'C002B_quzhaoyunyunA',style: 6, title: '修炼丹药', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P9', content: ['采集到三种材料后，李森炎双手捧着，看向云云。','“难道你要我用手来炼丹吗？”','“药鼎我有！”','话音刚落，一个小小药鼎从她身上掉了出来。','李森炎赶忙接住，药鼎模样很精致，就是体积小了点。','如此小巧玲珑的药鼎，一次性能够炼制的丹药不多，不过胜在便捷，方便携带。','“这个随身药鼎，你拿着，开炼吧。”','李森炎面露喜色，也不废话，当即开炉炼药。',],
           btn: [{title: '去炼丹',openUI: 'LianDanFang', tokey: "P10",},]},
