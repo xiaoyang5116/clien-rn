@@ -1,9 +1,10 @@
 import React from 'react';
 import lo from 'lodash';
 
-import { View, Animated, StyleSheet } from 'react-native';
+import { View, Animated, StyleSheet, DeviceEventEmitter } from 'react-native';
 import WorldPreview from '../../components/carousel/WorldPreview';
-import { DataContext } from '../../constants';
+import WorldUnlockView from './WorldUnlockView';
+import { AppDispath, DataContext } from '../../constants';
 import WorldUtils from '../../utils/WorldUtils';
 
 const WORLD_MAPS = [
@@ -14,6 +15,8 @@ const WORLD_MAPS = [
 
 const OtherWorld = (props) => {
 
+    const CALLBACK_EVENT = '__@OtherWorld.cb';
+
     const maskOpacity = React.useRef(new Animated.Value(1)).current;
     const [preview, setPreview] = React.useState(<></>);
     const context = React.useContext(DataContext);
@@ -23,6 +26,49 @@ const OtherWorld = (props) => {
     const index = state.index;
     const activeRouteName = state.routeNames[index];
     const routeName = props.route.name;
+
+    React.useEffect(() => {
+      const listener = DeviceEventEmitter.addListener(CALLBACK_EVENT, (v) => {
+        if (!lo.isEqual(routeName, v.routeName))
+          return
+
+        console.debug(v)
+
+        const worldItems = WORLD_MAPS.find(e => lo.isEqual(e.primary, context.currentWorldName));
+        if (worldItems != undefined) {
+          let worldName = '';
+          if (lo.isEqual(v.routeName, 'LeftWorld')) worldName = worldItems.left;
+          if (lo.isEqual(v.routeName, 'RightWorld')) worldName = worldItems.right;
+  
+          if (!lo.isEmpty(worldName)) {
+            const worldId = WorldUtils.getWorldIdByName(worldName);
+            if (v.data == null) {
+              setPreview(<WorldUnlockView {...props} onClose={() => {}} />);
+            } else if (v.data.dialog != undefined && !lo.isEmpty(v.data.dialog.content)) {
+              setPreview(<WorldUnlockView {...props} content={v.data.dialog.content} onClose={() => {}} />);
+            } else {
+              setPreview(
+                <WorldPreview 
+                  item={{ 
+                    worldId: worldId, 
+                    title: worldName, 
+                    desc: v.data.desc, 
+                    toChapter: v.data.toChapter, 
+                  }} 
+                  animation={true}
+                  onClose={() => {
+                    props.navigation.navigate('PrimaryWorld');
+                  }}
+                />
+              );
+            }
+          }
+        }
+      });
+      return () => {
+        listener.remove();
+      }
+    }, []);
   
     // 通过透明度播放过度效果
     React.useEffect(() => {
@@ -38,30 +84,7 @@ const OtherWorld = (props) => {
         })
       ]).start();
 
-      const worldItems = WORLD_MAPS.find(e => lo.isEqual(e.primary, context.currentWorldName));
-      if (worldItems != undefined) {
-        let worldName = '';
-        if (lo.isEqual(activeRouteName, 'LeftWorld')) worldName = worldItems.left;
-        if (lo.isEqual(activeRouteName, 'RightWorld')) worldName = worldItems.right;
-
-        if (!lo.isEmpty(worldName)) {
-          const worldId = WorldUtils.getWorldIdByName(worldName);
-          setPreview(
-            <WorldPreview 
-              item={{ 
-                worldId: worldId, 
-                title: worldName, 
-                desc: '', 
-                toChapter: '' 
-              }} 
-              animation={true}
-              onClose={() => {
-              }}
-            />
-          );
-        }
-      }
-
+      AppDispath({ type: 'ArticleModel/getTransWorld', payload: { routeName: activeRouteName }, retmsg: CALLBACK_EVENT});
     }, [props]);
   
     return (

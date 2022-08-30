@@ -9,12 +9,12 @@ const WorldUnlockView = (props) => {
       props.navigation.navigate('PrimaryWorld');
       props.onClose();
     }
-  
+    console.debug(props.content)
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f5f5f5' }}>
         <View style={{ 
           width: '80%', 
-          height: 150, 
+          // height: 150, 
           flexDirection: 'column',
           justifyContent: 'space-around',
           alignItems: 'center',
@@ -26,11 +26,15 @@ const WorldUnlockView = (props) => {
             width: 0,
             height: 0,
           },
+          paddingTop: 20, 
+          paddingBottom: 20,
+          paddingLeft: 5,
+          paddingRight: 5,
           shadowOpacity: 0.4,
           shadowRadius: 6, }}>
-            <Text style={{ fontSize: 24, color: '#000' }}>当前世界未解锁</Text>
+            <Text style={{ fontSize: 24, color: '#000', lineHeight: 30 }}>{lo.isEmpty(props.content) ? '当前世界未解锁' : props.content}</Text>
             <TouchableWithoutFeedback onPress={back}>
-              <View style={{ width: 130, height: 30, borderWidth: 1, borderColor: '#bbb', justifyContent: 'center', alignItems: 'center' }}>
+              <View style={{ width: 130, height: 30, borderWidth: 1, marginTop: 10, borderColor: '#bbb', justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={{ color: '#000' }}>返回</Text>
               </View>
             </TouchableWithoutFeedback>

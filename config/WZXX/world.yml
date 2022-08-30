@@ -2,37 +2,36 @@
 # 世界配置
 # ===========================================
 world: {
+  # 左侧世界树状结构(匹配最后一个满足条件的条目)
   left: [
     {
-      andVarsOn: [''],
-      andVarsOff: [''],
+      # 判断变量全满足ON，可配置多个(默认数组为空，别增加引号)
+      # 变量必须为跨场景
+      andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001'],
+      # 判断变量全满足OFF，可配置多个(默认数组为空，别增加引号)
+      andVarsOff: [],
+      # (优先)弹出对话框，上述andVarsOn, andVarsOff均满足条件且dialog.content指定内容时显示。
+      # 内容需换行请使用 \n 分隔。
       dialog: {
         content: '',
       },
-      desc: '',
-      toChapter: '',
+      # 世界切换描述语句
+      desc: 'Hello',
+      # 世界切换按钮点击跳转章节
+      toChapter: 'WZXX_M1_N1_C005',
     },
     {
-      andVarsOn: [''],
-      andVarsOff: [''],
+      andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001A'],
+      andVarsOff: [],
       dialog: {
-        content: '',
+        content: "这里可以指定对话框内容\n这里可以指定对话框内容\n这里可以指定对话框内容",
       },
-      desc: '',
+      desc: 'xxx',
       toChapter: '',
     },
   ],
-  
+  # 右侧世界树状结构(匹配最后一个满足条件的条目)
   right: [
-    {
-      andVarsOn: [''],
-      andVarsOff: [''],
-      dialog: {
-        content: '',
-      },
-      desc: '',
-      toChapter: '',
-    },
     {
       andVarsOn: [''],
       andVarsOff: [''],

@@ -14,6 +14,7 @@ import { GetAttrsDataApi } from '../services/GetAttrsDataApi';
 import { GetArticleDataApi } from '../services/GetArticleDataApi';
 import { GetArticleIndexDataApi } from '../services/GetArticleIndexDataApi';
 import { GetBookDirDataApi } from '../services/GetBookDirDataApi';
+import { GetArticleWorldDataApi } from '../services/GetArticleWorldDataApi';
 import Toast from "../components/toast";
 import Modal from "../components/modal";
 import lo from 'lodash';
@@ -110,6 +111,9 @@ export default {
 
     // 当前是否起始页
     isStartPage: false,
+
+    // 当前阅读的书本ID
+    bookId: 0,
   },
 
   effects: {
@@ -218,6 +222,11 @@ export default {
         }
       }
 
+      // 记录当前看的是那本书
+      if (payload.id != undefined) {
+        articleState.bookId = payload.id;
+      }
+      
       if (payload.continue != undefined && payload.continue) {
         yield put(action('updateState')({ sections: [...articleState.sections, ...data], continueView: true }));
       } else {
@@ -227,7 +236,7 @@ export default {
 
       // 记录当前阅读
       yield call(LocalStorage.set, LocalCacheKeys.ARTICLE_HISTORY, payload);
-
+      
       setTimeout(() => {
         DeviceEventEmitter.emit(EventKeys.OPTIONS_HIDE);
       }, 0);
@@ -502,6 +511,39 @@ export default {
 
       yield call(LocalStorage.set, LocalCacheKeys.READER_STYLE, NewReaderStyle);
       yield put(action('updateState')({ readerStyle: NewReaderStyle }));
+    },
+
+    *getTransWorld({ payload }, { call, put, select }) {
+      const articleState = yield select(state => state.ArticleModel);
+      const { routeName } = payload;
+
+      //
+      const result = { ...payload, data: null };
+
+      const worldData = yield call(GetArticleWorldDataApi, articleState.bookId);
+      if (worldData == undefined)
+        return result;
+
+      let treeConfig = null;
+      if (lo.isEqual(routeName, 'LeftWorld')) treeConfig = worldData.world.left;
+      if (lo.isEqual(routeName, 'RightWorld')) treeConfig = worldData.world.right;
+      if (treeConfig == null)
+        return result;
+
+      let lastItem = null;
+      for (let key in treeConfig) {
+        const item = treeConfig[key];
+        const checkVars = lo.pickBy(item, (v, k) => lo.isEqual(k, 'andVarsOn') || lo.isEqual(k, 'andVarsOff'));
+        const result = yield put.resolve(action('SceneModel/testCondition')(checkVars));
+        if (result) {
+          lastItem = item;
+        } else {
+          break
+        }
+      }
+    
+      result.data = lastItem;
+      return result;
     },
   },
 

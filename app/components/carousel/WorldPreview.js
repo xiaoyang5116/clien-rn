@@ -105,7 +105,7 @@ const WorldPreview = (props) => {
                       (!propEnough)
                       ? (
                       <View style={styles.tipsContainer}>
-                        <Text style={{ color: '#ff1112' }}>* 木瓜数量不足，当前数量={propNum}</Text>
+                        <Text style={{ color: '#ff1112' }}>* 道具数量不足，当前数量={propNum}</Text>
                       </View>
                       ) : (<></>)
                     }
