@@ -13,6 +13,7 @@ import {
 import {
   action,
   connect,
+  DataContext,
   DeviceEventEmitter,
   EventKeys,
 } from '../constants';
@@ -27,10 +28,13 @@ import { navigationRef } from '../utils/RootNavigation';
 import { Appearance } from 'react-native';
 import readerStyle from '../themes/readerStyle';
 import ViewListeners from './ViewListeners';
+import WorldUtils from '../utils/WorldUtils';
 
 const Stack = createStackNavigator();
 
 const MainPage = (props) => {
+
+  const context = React.useContext(DataContext);
 
   React.useEffect(() => {
     const listener = DeviceEventEmitter.addListener(EventKeys.APP_DISPATCH, (params) => {
@@ -76,8 +80,12 @@ const MainPage = (props) => {
   }, []);
 
   React.useEffect(() => {
+    context.currentWorldName = WorldUtils.getWorldNameById(props.user.worldId);
+    context.currentWorldId = props.user.worldId;
     const listener = DeviceEventEmitter.addListener(EventKeys.SET_CURRENT_WORLD, (e) => {
       props.dispatch(action('UserModel/setWorld')({ name: e.name }));
+      context.currentWorldName = e.name;
+      context.currentWorldId = WorldUtils.getWorldIdByName(e.name);
     });
     return () => {
       listener.remove();
@@ -109,4 +117,4 @@ const MainPage = (props) => {
   );
 }
 
-export default connect((state) => ({ ...state.AppModel }))(MainPage);
+export default connect((state) => ({ ...state.AppModel, user: { ...state.UserModel } }))(MainPage);
