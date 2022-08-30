@@ -662,14 +662,14 @@ class NewArticlePage extends Component {
               }, 500);
             }}>
               <View style={styles.bannerButton}>
-                <AntDesign name={'menufold'} size={21} />
+                <AntDesign name={'menufold'} color={"#111"} size={21} />
                 <Text style={styles.bannerButtonText}>菜单选项</Text>
               </View>
             </TouchableWithoutFeedback>
 
             <TouchableWithoutFeedback onPress={this.openDirectory}>
               <View style={styles.bannerButton}>
-                <AntDesign name={'bars'} size={23} />
+                <AntDesign name={'bars'} color={"#111"} size={23} />
                 <Text style={styles.bannerButtonText}>章节目录</Text>
               </View>
             </TouchableWithoutFeedback>
@@ -678,7 +678,7 @@ class NewArticlePage extends Component {
               this.refPropsContainer.current.open();
             }}>
               <View style={styles.bannerButton}>
-                <AntDesign name={'hearto'} size={21} />
+                <AntDesign name={'hearto'} color={"#111"} size={21} />
                 <Text style={styles.bannerButtonText}>角色属性</Text>
               </View>
             </TouchableWithoutFeedback>
@@ -690,7 +690,7 @@ class NewArticlePage extends Component {
                 const key =RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
               }}>
               <View style={styles.bannerButton}>
-                <Ionicons name={'ios-text'} size={23} />
+                <Ionicons name={'ios-text'} color={"#111"} size={23} />
                 <Text style={styles.bannerButtonText}>阅读设置</Text>
               </View>
             </TouchableWithoutFeedback>
@@ -699,7 +699,7 @@ class NewArticlePage extends Component {
                 Clues.show()
               }}>
               <View style={styles.bannerButton}>
-                <AntDesign name={'carryout'} size={23} />
+                <AntDesign name={'carryout'} color={"#111"} size={23} />
                 <Text style={styles.bannerButtonText}>线索</Text>
               </View>
             </TouchableWithoutFeedback>

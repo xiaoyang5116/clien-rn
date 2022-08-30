@@ -220,6 +220,7 @@ const styles = StyleSheet.create({
     },
     filterOption_title: {
         fontSize: 20,
+        color: "#111"
     },
     filterOption_option: {
         marginLeft: 12,
