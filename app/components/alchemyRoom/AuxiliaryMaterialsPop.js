@@ -25,10 +25,10 @@ const AuxiliaryMaterialsPop = (props) => {
   const [checkedMaterial, setCheckedMaterial] = useState([])
 
   const renderItem = ({ item, index }) => {
-    const { name, currNum, reqNum, id } = item
+    const { name, currNum, reqNum, propId } = item
     return (
       <TouchableOpacity onPress={() => { setCheckedMaterial([item]) }}>
-        <View style={{ height: 45, borderWidth: 1, borderColor: checkedMaterial.find(i => i.id === item.id) !== undefined ? "#0BD86A" : '#000', borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
+        <View style={{ height: 45, borderWidth: 1, borderColor: checkedMaterial.find(i => i.propId === propId) !== undefined ? "#0BD86A" : '#000', borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
           <ImageCapInset
             style={{ width: '100%', height: '100%', position: 'absolute' }}
             source={require('../../../assets/button/40dpi_gray.png')}

@@ -70,7 +70,7 @@ export default {
         const stuff = payload.stuffs[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: stuff.id }));
         const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: stuff.id }));
-        stuffsDetail.push({ id: stuff.id, name: propConfig.name, reqNum: stuff.num, currNum: propNum, iconId: propConfig.iconId, quality: propConfig.quality });
+        stuffsDetail.push({ propId: stuff.id, name: propConfig.name, reqNum: stuff.num, currNum: propNum, iconId: propConfig.iconId, quality: propConfig.quality });
       }
 
       const propsDetail = [];
@@ -78,7 +78,7 @@ export default {
         const prop = payload.props[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: prop.id }));
         const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: prop.id }));
-        propsDetail.push({ id: prop.id, name: propConfig.name, reqNum: prop.num, currNum: propNum, iconId: propConfig.iconId, quality: propConfig.quality });
+        propsDetail.push({ propId: prop.id, name: propConfig.name, reqNum: prop.num, currNum: propNum, iconId: propConfig.iconId, quality: propConfig.quality });
       }
 
       const targets = [];
@@ -86,7 +86,7 @@ export default {
         const item = payload.targets[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.id }));
         const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: item.id }));
-        targets.push({ id: item.id, name: propConfig.name, desc: propConfig.desc, currNum: propNum, productNum: item.num, iconId: propConfig.iconId, quality: propConfig.quality });
+        targets.push({ propId: item.id, name: propConfig.name, desc: propConfig.desc, currNum: propNum, productNum: item.num, iconId: propConfig.iconId, quality: propConfig.quality });
       }
 
       return {
@@ -95,14 +95,6 @@ export default {
         propsDetail,
         targets,
       }
-      // yield put(action('updateState')({
-      //   danFangDetail: {
-      //     id: payload.id,
-      //     stuffsDetail,
-      //     propsDetail,
-      //     targets,
-      //   },
-      // }));
     },
 
     // 获取可以炼制的数量
@@ -144,8 +136,10 @@ export default {
       // 扣除辅助材料
       for (let k in recipeData.propsDetail) {
         const props = recipeData.propsDetail[k];
-        yield put.resolve(action('PropsModel/use')({ propId: props.id, num: (props.reqNum * refiningNum), quiet: true }));
+        yield put.resolve(action('PropsModel/use')({ propId: props.propId, num: (props.reqNum * refiningNum), quiet: true }));
       }
+
+      console.log("recipeData.propsDetail", recipeData.propsDetail);
 
       // 随机产生丹药
       let danYaoArr = []

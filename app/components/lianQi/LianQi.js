@@ -13,7 +13,7 @@ import React from 'react';
 import { action, connect, ThemeContext, getPropIcon } from '../../constants';
 import RootView from '../RootView';
 import { now } from '../../utils/DateTimeUtils';
-import { useRootViewAdd } from '../../utils/CustomHooks';
+import { px2pd } from '../../constants/resolution';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ProgressBar from '../alchemyRoom/components/ProgressBar';
@@ -137,10 +137,14 @@ const LianQi = props => {
   return (
     <View style={{ flex: 1, backgroundColor: '#ccc', zIndex: 99 }}>
       <SafeAreaView style={{ flex: 1 }}>
+        <FastImage
+          style={{ position: 'absolute', width: px2pd(1080), height: px2pd(2400) }}
+          source={require('../../../assets/plant/plantBg.jpg')}
+        />
         <Header3
           title={'炼器峰'}
-          fontStyle={{ color: '#000' }}
-          iconColor={'#000'}
+          fontStyle={{ color: '#fff' }}
+          iconColor={'#fff'}
           containerStyle={{ marginTop: 12 }}
           onClose={props.onClose}
         />
