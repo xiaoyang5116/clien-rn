@@ -222,7 +222,7 @@ export default {
       for (let k in bag) {
         const v = bag[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: v.propId }));
-        const item = { ...v, iconId: propConfig.iconId, name: propConfig.name };
+        const item = { ...v, iconId: propConfig.iconId, name: propConfig.name, quality: propConfig.quality };
         list.push(item);
       }
 

@@ -14,7 +14,8 @@ import Toast from '../toast';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { HalfPanel } from '../panel/HalfPanel'
-import { TextButton } from '../../constants/custom-ui';
+import { Header3, TextButton } from '../../constants/custom-ui';
+import PropIcon from './components/PropIcon';
 
 
 const AuxiliaryMaterialsPop = (props) => {
@@ -23,33 +24,19 @@ const AuxiliaryMaterialsPop = (props) => {
 
   const [checkedMaterial, setCheckedMaterial] = useState([])
 
-  const Header = () => {
-    return (
-      <View style={{ justifyContent: 'center', marginTop: 12, }}>
-        <View style={{ position: 'absolute', zIndex: 2 }}>
-          <TouchableOpacity onPress={props.onClose}>
-            <AntDesign name='left' color={"#fff"} size={23} style={{ marginLeft: 12, }} />
-          </TouchableOpacity>
-        </View>
-        <Text style={{ textAlign: 'center', fontSize: 24, color: '#fff' }}>
-          辅助材料选择
-        </Text>
-      </View>
-    )
-  }
-
   const renderItem = ({ item, index }) => {
-    const { name, currNum, reqNum, id } = item
+    const { name, currNum, reqNum, propId } = item
     return (
       <TouchableOpacity onPress={() => { setCheckedMaterial([item]) }}>
-        <View style={{ height: 50, borderWidth: 1, borderColor: checkedMaterial.find(i => i.id === item.id) !== undefined ? "#F34141" : '#000', borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
+        <View style={{ height: 45, borderWidth: 1, borderColor: checkedMaterial.find(i => i.propId === propId) !== undefined ? "#0BD86A" : '#000', borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
           <ImageCapInset
             style={{ width: '100%', height: '100%', position: 'absolute' }}
             source={require('../../../assets/button/40dpi_gray.png')}
             capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
           />
           <View style={{ flex: 1, flexDirection: "row", paddingTop: 8, paddingBottom: 8, paddingLeft: 12, paddingRight: 12, alignItems: 'center' }}>
-            <Text style={{ flex: 1, fontSize: 16, color: "#000", }}>
+            <PropIcon item={item} />
+            <Text style={{ flex: 1, fontSize: 16, color: "#000", marginLeft: 8 }}>
               {name}
             </Text>
             <View style={{ flexDirection: "row", alignItems: 'center' }}>
@@ -68,7 +55,11 @@ const AuxiliaryMaterialsPop = (props) => {
 
   return (
     <HalfPanel backgroundColor={"rgba(0,0,0,0.7)"} source={require('../../../assets/plant/plantBg.jpg')} borderRadius={10} zIndex={99}>
-      <Header />
+      <Header3
+        title={"辅助材料选择"}
+        onClose={props.onClose}
+        containerStyle={{ marginTop: 12 }}
+      />
       <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, }}>
         <FlatList
           data={propsDetail}

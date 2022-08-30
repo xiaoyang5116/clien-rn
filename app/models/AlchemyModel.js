@@ -38,6 +38,10 @@ export default {
       for (let i = 0; i < rules.length; i++) {
         const item = rules[i];
         let enough = true;
+
+        // 道具配置
+        const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.propId }));
+
         // 判断原料
         for (let k in item.stuffs) {
           const stuff = item.stuffs[k];
@@ -49,9 +53,9 @@ export default {
         }
 
         if (enough) {
-          validData.push({ ...item, valid: enough })
+          validData.push({ ...item, valid: enough, iconId: propConfig.iconId })
         } else {
-          notValidData.push({ ...item, valid: enough })
+          notValidData.push({ ...item, valid: enough, iconId: propConfig.iconId })
         }
       }
 
@@ -66,7 +70,7 @@ export default {
         const stuff = payload.stuffs[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: stuff.id }));
         const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: stuff.id }));
-        stuffsDetail.push({ id: stuff.id, name: propConfig.name, reqNum: stuff.num, currNum: propNum });
+        stuffsDetail.push({ propId: stuff.id, name: propConfig.name, reqNum: stuff.num, currNum: propNum, iconId: propConfig.iconId, quality: propConfig.quality });
       }
 
       const propsDetail = [];
@@ -74,7 +78,7 @@ export default {
         const prop = payload.props[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: prop.id }));
         const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: prop.id }));
-        propsDetail.push({ id: prop.id, name: propConfig.name, reqNum: prop.num, currNum: propNum });
+        propsDetail.push({ propId: prop.id, name: propConfig.name, reqNum: prop.num, currNum: propNum, iconId: propConfig.iconId, quality: propConfig.quality });
       }
 
       const targets = [];
@@ -82,7 +86,7 @@ export default {
         const item = payload.targets[k];
         const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.id }));
         const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: item.id }));
-        targets.push({ id: item.id, name: propConfig.name, desc: propConfig.desc, currNum: propNum, productNum: item.num });
+        targets.push({ propId: item.id, name: propConfig.name, desc: propConfig.desc, currNum: propNum, productNum: item.num, iconId: propConfig.iconId, quality: propConfig.quality });
       }
 
       return {
@@ -91,14 +95,6 @@ export default {
         propsDetail,
         targets,
       }
-      // yield put(action('updateState')({
-      //   danFangDetail: {
-      //     id: payload.id,
-      //     stuffsDetail,
-      //     propsDetail,
-      //     targets,
-      //   },
-      // }));
     },
 
     // 获取可以炼制的数量
@@ -161,7 +157,7 @@ export default {
 
         // 重复的就增加数量
         if (danYaoArr.find(item => item.id === hit.id) === undefined) {
-          danYaoArr.push({ ...hit, name: propConfig.name, iconId: propConfig.iconId })
+          danYaoArr.push({ ...hit, name: propConfig.name, iconId: propConfig.iconId, quality: propConfig.quality })
         }
         else {
           danYaoArr = danYaoArr.map(item => item.id === hit.id ? { ...item, num: item.num + 1 } : item)
@@ -171,8 +167,8 @@ export default {
       // yield put.resolve(action('PropsModel/sendProps')({ propId: hit.id, num: hit.num, quiet: true }));
 
       const alchemyData = {
-        danFangId: currentDanFangConfig.id,
-        danFangName: currentDanFangConfig.name,
+        recipeId: currentDanFangConfig.id,
+        recipeName: currentDanFangConfig.name,
         needTime: currentDanFangConfig.time * refiningNum,
         refiningTime: now(),
         targets: danYaoArr,
@@ -192,16 +188,10 @@ export default {
         yield put.resolve(action('PropsModel/sendProps')({ propId: prop.id, num: prop.num, quiet: true }));
       }
 
-      let num = 0
-      let timer = setInterval(() => {
-        if (alchemyData.targets.length > num) {
-          Toast.show(`获得${alchemyData.targets[num].name} * ${alchemyData.targets[num].num}`, BOTTOM_TOP_SMOOTH)
-          num++
-        }
-        else {
-          clearInterval(timer)
-        }
-      }, 500);
+      const message = alchemyData.targets.map(item => {
+        return `获得${item.name} * ${item.num}`
+      })
+      Toast.show(message, BOTTOM_TOP_SMOOTH)
 
       yield call(LocalStorage.set, LocalCacheKeys.ALCHEMY_DATA, null);
       yield put(action("updateState")({ alchemyData: null }))

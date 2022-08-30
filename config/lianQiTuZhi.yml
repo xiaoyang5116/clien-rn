@@ -1,0 +1,13 @@
+# ===========================================
+# 炼器图纸配置
+# stuffs: 原材料
+# props: 辅助材料
+# targets: 目标道具
+# time: 所需时间(秒)
+# ===========================================
+
+rules: [
+
+  { id: 1 , propId: 317, name: '风雷剑', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 886, num: 1 },{ id: 1001, num: 1 }], props: [{id: 1006, num: 1},{id: 1003, num: 1}], targets: [{ id: 317, num: 1, rate: 80 },{ id: 314, num: 1, rate: 20 }], time: 5, desc: '锻骨期最佳武器' },
+  { id: 2 , propId: 318, name: '金刚剑', tags: [], attrs: ['材料'], quality: 3, stuffs: [{ id: 886, num: 1 },{ id: 1001, num: 1 }], props: [{id: 1006, num: 1}], targets: [{ id: 317, num: 1, rate: 80 },{ id: 314, num: 1, rate: 20 }], time: 10, desc: '加快修炼速度' },
+]

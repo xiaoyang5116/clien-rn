@@ -5,6 +5,7 @@ import {
     Text,
     DeviceEventEmitter,
     SafeAreaView,
+    Animated,
 } from 'react-native';
 
 import {
@@ -35,6 +36,7 @@ const previewImages = [
 const WorldPreview = (props) => {
     const { item } = props;
     const [propNum, setPropNum] = React.useState(-1);
+    const opacity = React.useRef(new Animated.Value(0)).current;
   
     React.useEffect(() => {
       AppDispath({ 
@@ -45,14 +47,22 @@ const WorldPreview = (props) => {
         }
       });
     }, []);
+
+    React.useEffect(() => {
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 600,
+        useNativeDriver: false,
+      }).start();
+    }, []);
   
     if (propNum >= 0) {
       const prevImg = previewImages.find(e => e.worldId == item.worldId).img;
       const propEnough = propNum > 0;
       return (
-        <Modal isVisible={true} coverScreen={false} style={{padding: 0, margin: 0, flex: 1, zIndex: 1, backgroundColor:"#fff"}} animationIn='fadeIn' animationOut='fadeOut' animationInTiming={2000} backdropOpacity={0}>
-          <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+          <SafeAreaView style={{ flex: 1, justifyContent: 'center' }}>
+            <Animated.View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', opacity: opacity }}>
               <View style={styles.bodyContainer}>
                   <View style={styles.viewContainer}>
                     <View style={styles.titleContainer}>
@@ -95,7 +105,7 @@ const WorldPreview = (props) => {
                       (!propEnough)
                       ? (
                       <View style={styles.tipsContainer}>
-                        <Text style={{ color: '#ff1112' }}>* 木瓜数量不足，当前数量={propNum}</Text>
+                        <Text style={{ color: '#ff1112' }}>* 道具数量不足，当前数量={propNum}</Text>
                       </View>
                       ) : (<></>)
                     }
@@ -109,9 +119,9 @@ const WorldPreview = (props) => {
                     resizeMode='cover' 
                     source={require('../../../assets/bg/panel_c.png')} />
               </View>
-            </View>
+            </Animated.View>
           </SafeAreaView>
-        </Modal>
+        </View>
       );
     } else {
       return (<></>);
@@ -123,11 +133,8 @@ export default WorldPreview;
 const styles = StyleSheet.create({
     bodyContainer: {
       width: '94%', 
-      height: '100%', 
-      // overflow: 'hidden',
-      backgroundColor: '#fff',
-      // justifyContent: 'center',
-      // alignItems: 'center',
+      height: '98%', 
+      marginTop: 12,
     },
     viewContainer: {
       flex: 1, 
@@ -186,4 +193,4 @@ const styles = StyleSheet.create({
       shadowRadius: 3,
       // display: 'none',
     },
-  });
+});

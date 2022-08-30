@@ -17,6 +17,8 @@ import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 import DanFangDetailPage from './DanFangDetailPage';
+import { TextButton, Header3 } from '../../constants/custom-ui';
+import PropIcon from './components/PropIcon';
 
 const DanFangPage = props => {
   const { danFangList } = props;
@@ -49,6 +51,7 @@ const DanFangPage = props => {
             capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
           />
           <View style={styles.danFangItemContent_Container}>
+            <PropIcon item={item} />
             <Text style={styles.danFangName}>{item.name}</Text>
             {!item.valid ? (
               <Text style={{ fontSize: 14, color: '#585858' }}>材料不足</Text>
@@ -67,26 +70,10 @@ const DanFangPage = props => {
           data={danFangList}
           renderItem={renderItem}
           keyExtractor={item => item.id}
-        // extraData={update}
         />
       </View>
     );
   };
-
-  const Header = () => {
-    return (
-      <View style={{ justifyContent: 'center', marginTop: 12 }}>
-        <View style={{ position: 'absolute', zIndex: 2 }}>
-          <TouchableOpacity onPress={props.onClose}>
-            <AntDesign name='left' color={"#fff"} size={23} style={{ marginLeft: 12, }} />
-          </TouchableOpacity>
-        </View>
-        <Text style={{ textAlign: 'center', fontSize: 24, color: '#fff' }}>
-          丹方选择
-        </Text>
-      </View>
-    )
-  }
 
   return (
     <View style={{ flex: 1, zIndex: 99 }}>
@@ -95,7 +82,11 @@ const DanFangPage = props => {
         source={require('../../../assets/plant/plantBg.jpg')}
       />
       <SafeAreaView style={{ flex: 1 }}>
-        <Header />
+        <Header3
+          title={"丹方选择"}
+          onClose={props.onClose}
+          containerStyle={{ marginTop: 12 }}
+        />
         <DanFangComponent />
       </SafeAreaView>
     </View>
@@ -106,7 +97,7 @@ export default connect(state => ({ ...state.AlchemyModel }))(DanFangPage);
 
 const styles = StyleSheet.create({
   danFangItemContainer: {
-    height: 40,
+    height: 45,
     borderWidth: 1,
     borderColor: '#000',
     borderRadius: 3,
@@ -126,5 +117,6 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     color: '#000',
+    marginLeft: 8
   },
 });

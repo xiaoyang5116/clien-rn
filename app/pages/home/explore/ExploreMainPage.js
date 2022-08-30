@@ -15,7 +15,6 @@ import {
 import {
     View,
     Text,
-    Image,
     SafeAreaView,
     TouchableWithoutFeedback,
 } from '../../../constants/native-ui';
@@ -24,6 +23,7 @@ import { TextButton } from '../../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import RootView from '../../../components/RootView';
 import Toast from '../../../components/toast';
+import PropGrid from '../../../components/prop/PropGrid';
 
 import ExploreXunBaoPage from './ExploreXunBaoPage';
 import ExploreBossPage from './ExploreBossPage';
@@ -31,21 +31,13 @@ import ExploreXianSuoPage from './ExploreXianSuoPage';
 import ExploreQiYuPage from './ExploreQiYuPage';
 import MessageList from './MessageList';
 import TimeBanner from './TimeBanner';
-import { PROPS_ICON } from './config';
 import { px2pd } from '../../../constants/resolution';
 
 // 奖励物品组件
 const RewardItem = (props) => {
-    const icon = PROPS_ICON.find(e => e.iconId == props.iconId);
     return (
-        <View style={{ flexDirection: 'column', margin: 10, justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ width: 68, height: 68 }}>
-                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', borderColor: '#ccc', borderWidth: 0, backgroundColor: '#333' }}>
-                    <Image source={icon.img} />
-                    <Text style={{ position: 'absolute', top: 53, right: 0, color: '#fff' }}>{props.num}</Text>
-                </View>
-            </View>
-            <Text style={{ color: '#000', marginTop: 3 }}>{props.name}</Text>
+        <View style={{ flexDirection: 'column', margin: 8, paddingBottom: 20, justifyContent: 'center', alignItems: 'center' }}>
+            <PropGrid prop={props} labelStyle={{ color: '#000' }} />
         </View>
     );
 }
@@ -56,7 +48,7 @@ const RewardsPage = (props) => {
     const childs = [];
     let key = 0;
     props.data.forEach(e => {
-        childs.push(<RewardItem key={key++} propId={e.propId} iconId={e.iconId} num={e.num} name={e.name} />);
+        childs.push(<RewardItem key={key++} propId={e.propId} iconId={e.iconId} num={e.num} name={e.name} quality={e.quality} />);
     });
     return (
         <TouchableWithoutFeedback onPress={() => {
@@ -131,7 +123,7 @@ const ExploreProgress = (props) => {
     }, []);
 
     return (
-        <Text style={{ ...props.style }}>探索度 {progress}/100</Text>
+        <Text style={{ ...props.style, color:"#111" }}>探索度 {progress}/100</Text>
     );
 };
 
@@ -258,7 +250,7 @@ const styles = StyleSheet.create({
         width: 60, height: 60, justifyContent: 'center', alignItems: 'center',
     },
     textBox: {
-        borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5,
+        borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', paddingLeft: 10, paddingRight: 10, paddingTop: 5, paddingBottom: 5, color:"#111"
     },
     timeBannerContainer: {
         flexDirection: 'row', borderColor: '#999', borderWidth: 1, backgroundColor: '#ddd', overflow: 'hidden',

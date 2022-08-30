@@ -13,12 +13,15 @@ import { GetEquipsDataApi } from '../services/GetEquipsDataApi';
 import EventListeners from '../utils/EventListeners';
 import Toast from '../components/toast';
 import lo from 'lodash';
+import WorldUtils from '../utils/WorldUtils';
 
 export default {
   namespace: 'PropsModel',
 
   state: {
     listData: [],
+    worldId: 0, // 当前道具列表数据对应的世界ID（注意：非角色当前世界ID）
+
     __data: {
       propsConfig: [],  // 道具配置
       bags: [],         // 玩家背包
@@ -29,7 +32,7 @@ export default {
   effects: {
     *reload({ }, { select, call }) {
       const propsState = yield select(state => state.PropsModel);
-      const propsCache = yield call(LocalStorage.get, LocalCacheKeys.PROPS_DATA);
+      const cache = yield call(LocalStorage.get, LocalCacheKeys.PROPS_DATA);
 
       propsState.listData.length = 0;
       propsState.__data.bags.length = 0;
@@ -45,59 +48,63 @@ export default {
         propsState.__data.propsConfig.push(...equipsData.equips);
       }
 
-      if (propsCache != null) {
-        propsState.__data.bags.push(...propsCache);
-        // 计算当前最大记录ID
-        if (lo.isArray(propsCache)) {
-          propsCache.forEach(e => {
-            if (e.recordId > propsState.__data.recordId) {
-              propsState.__data.recordId = e.recordId;
-            }
-          });
-        }
-      } else {
-        for (let key in propsState.__data.propsConfig) {
-          const item = propsState.__data.propsConfig[key];
-          if (item.num <= 0)
-            continue
+      // 过滤掉配置表的num字段
+      for (let key in propsState.__data.propsConfig) {
+        const item = propsState.__data.propsConfig[key];
+        const filterObj = lo.pickBy(item, (v, k) => !lo.isEqual(k, 'num'));
+        propsState.__data.propsConfig[key] = filterObj;
+      }
 
-          if (item.stack != undefined && !item.stack) {
-            // 不堆叠则分开几条记录
-            for (let i = 0; i < item.num; i++) {
-              propsState.__data.bags.push({ recordId: propsState.__data.recordId + 1, ...item, num: 1 });
-              propsState.__data.recordId += 1;
-            }
-          } else {
-            propsState.__data.bags.push({ recordId: propsState.__data.recordId + 1, ...item });
-            propsState.__data.recordId += 1;
+      if (cache != null) {
+        propsState.__data.bags.push(...cache);
+        // 计算当前最大记录ID
+        if (lo.isArray(cache)) {
+          for (let key in cache) {
+            const worldProps = cache[key];
+            worldProps.forEach(e => {
+              if (e.recordId > propsState.__data.recordId) {
+                propsState.__data.recordId = e.recordId;
+              }
+            });
           }
         }
+      } else {
+        // 初始化三个世界的背包道具
+        propsState.__data.bags.push(...[[], [], []]);
         yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
       }
     },
 
     *filter({ payload }, { put, select }) {
       const propsState = yield select(state => state.PropsModel);
-      const { type } = payload;
+      const userState = yield select(state => state.UserModel);
+      const { type, worldId } = payload;
+      
+      const chooseWorldId = WorldUtils.isValidWorldId(worldId) 
+            ? worldId 
+            : userState.worldId;
 
       propsState.listData.length = 0;
-      for (let key in propsState.__data.bags) {
-        const item = propsState.__data.bags[key];
+      for (let key in propsState.__data.bags[chooseWorldId]) {
+        const item = propsState.__data.bags[chooseWorldId][key];
         if ((item.attrs.indexOf(type) != -1) || (type == '全部') || type == '') {
           propsState.listData.push(item);
         }
       }
 
+      propsState.worldId = chooseWorldId;
       yield put(action('updateState')({}));
     },
 
     *use({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
+      const userState = yield select(state => state.UserModel);
+
       const propId = parseInt(payload.propId);
       const num = parseInt(payload.num);
       const quiet = payload.quiet != undefined && payload.quiet;
 
-      const found = propsState.__data.bags.find((e) => e.id == propId);
+      const found = propsState.__data.bags[userState.worldId].find((e) => e.id == propId);
       const config = propsState.__data.propsConfig.find((e) => e.id == propId);
       if (found == undefined || config == undefined) {
         if (!quiet) Toast.show('道具不存在！');
@@ -123,7 +130,7 @@ export default {
       }
 
       if (found.num <= 0) {
-        propsState.__data.bags = propsState.__data.bags.filter((e) => e.num > 0);
+        propsState.__data.bags[userState.worldId] = propsState.__data.bags[userState.worldId].filter((e) => e.num > 0);
         propsState.listData = propsState.listData.filter((e) => e.num > 0);
       }
 
@@ -135,6 +142,7 @@ export default {
 
     *reduce({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
+      const userState = yield select(state => state.UserModel);
       const { propsId, num, mode } = payload;
 
       if (!lo.isArray(propsId) || num == undefined || mode == null) {
@@ -147,7 +155,7 @@ export default {
         let totalNum = 0;
         for (let key in propsId) {
           const propId = propsId[key];
-          const found = propsState.__data.bags.find((e) => e.id == propId);
+          const found = propsState.__data.bags[userState.worldId].find((e) => e.id == propId);
           if (found != undefined) totalNum += found.num;
         }
 
@@ -159,7 +167,7 @@ export default {
         let reduceNum = num;
         for (let key in propsId) {
           const propId = propsId[key];
-          const found = propsState.__data.bags.find((e) => e.id == propId);
+          const found = propsState.__data.bags[userState.worldId].find((e) => e.id == propId);
           if (found != undefined) {
             if (found.num >= reduceNum) {
               found.num -= reduceNum;
@@ -172,7 +180,7 @@ export default {
         }
 
         // 移除扣光的道具
-        propsState.__data.bags = propsState.__data.bags.filter((e) => e.num > 0);
+        propsState.__data.bags[userState.worldId] = propsState.__data.bags[userState.worldId].filter((e) => e.num > 0);
         propsState.listData = propsState.listData.filter((e) => e.num > 0);
 
         yield put(action('updateState')({}));
@@ -185,10 +193,11 @@ export default {
 
     *getPropNum({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
+      const userState = yield select(state => state.UserModel);
       const { propId } = payload;
 
       let totalNum = 0;
-      propsState.__data.bags.forEach(e => {
+      propsState.__data.bags[userState.worldId].forEach(e => {
         if (e.id == propId)
           totalNum += e.num;
       });
@@ -197,7 +206,6 @@ export default {
     },
 
     *getPropsNum({ payload }, { put, call, select }) {
-      const propsState = yield select(state => state.PropsModel);
       const { propsId } = payload;
 
       const result = [];
@@ -214,11 +222,12 @@ export default {
 
     *getPropsFromAttr({ payload }, { put, select }) {
       const propsState = yield select(state => state.PropsModel);
+      const userState = yield select(state => state.UserModel);
       const { attr } = payload;
 
       const props = [];
-      for (let key in propsState.__data.bags) {
-        const item = propsState.__data.bags[key];
+      for (let key in propsState.__data.bags[userState.worldId]) {
+        const item = propsState.__data.bags[userState.worldId][key];
         if ((item.attrs.indexOf(attr) != -1) || lo.isEmpty(attr) || lo.isEqual(attr, '全部')) {
           props.push(item);
         }
@@ -229,7 +238,8 @@ export default {
 
     *getBagProps({}, { select }) {
       const propsState = yield select(state => state.PropsModel);
-      return propsState.__data.bags;
+      const userState = yield select(state => state.UserModel);
+      return propsState.__data.bags[userState.worldId];
     },
 
     *getPropConfig({ payload }, { put, call, select }) {
@@ -240,6 +250,8 @@ export default {
 
     *sendProps({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
+      const userState = yield select(state => state.UserModel);
+
       const propId = parseInt(payload.propId);
       const num = parseInt(payload.num);
       const quiet = payload.quiet != undefined && payload.quiet;
@@ -253,11 +265,11 @@ export default {
         return;
       }
 
-      const found = propsState.__data.bags.find((e) => e.id == propId);
+      const found = propsState.__data.bags[userState.worldId].find((e) => e.id == propId);
       if (config.stack != undefined && !config.stack) {
             // 不堆叠则分开几条记录
             for (let i = 0; i < num; i++) {
-              propsState.__data.bags.push({ recordId: propsState.__data.recordId + 1, ...config, num: 1 });
+              propsState.__data.bags[userState.worldId].push({ recordId: propsState.__data.recordId + 1, ...config, num: 1 });
               propsState.__data.recordId += 1;
             }
       } else {
@@ -266,7 +278,7 @@ export default {
         } else {
           const item = { recordId: propsState.__data.recordId + 1, ...config, num: num };
           propsState.__data.recordId += 1;
-          propsState.__data.bags.push(item);
+          propsState.__data.bags[userState.worldId].push(item);
         }
       }
 
@@ -297,8 +309,20 @@ export default {
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
     },
 
+    *test({ }, { put, select }) {
+      const propsState = yield select(state => state.PropsModel);
+
+      const batchProps = [];
+      propsState.__data.propsConfig.forEach(e => {
+        batchProps.push({ propId: e.id, num: 10 });
+      });
+
+      yield put.resolve(action('sendPropsBatch')({ props: batchProps }));
+    },
+
     *_processFragmentCompose({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
+      const userState = yield select(state => state.UserModel);
       const { propId } = payload;
 
       const fragmentConfig = propsState.__data.propsConfig.find((e) => e.id == propId);
@@ -309,11 +333,11 @@ export default {
       if (toPropConfig == undefined)
         return
 
-      const fragment = propsState.__data.bags.find((e) => e.id == propId);
+      const fragment = propsState.__data.bags[userState.worldId].find((e) => e.id == propId);
       if (fragment == undefined)
         return
 
-      const toProp = propsState.__data.bags.find((e) => e.id == fragmentConfig.composite.propId);
+      const toProp = propsState.__data.bags[userState.worldId].find((e) => e.id == fragmentConfig.composite.propId);
       if (toProp != undefined && toProp.num > 0) {
         return // 道具已经存在，不再自动合成
       }
@@ -328,16 +352,17 @@ export default {
 
     *discard({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
+      const userState = yield select(state => state.UserModel);
       const { propId } = payload;
 
-      const found = propsState.__data.bags.find((e) => e.id == propId);
+      const found = propsState.__data.bags[userState.worldId].find((e) => e.id == propId);
       if (found == undefined) {
         Toast.show('道具不存在！');
         return;
       }
 
       found.num = 0;
-      propsState.__data.bags = propsState.__data.bags.filter((e) => e.num > 0);
+      propsState.__data.bags[userState.worldId] = propsState.__data.bags[userState.worldId].filter((e) => e.num > 0);
       propsState.listData = propsState.listData.filter((e) => e.num > 0);
 
       Toast.show('道具已丢弃!');

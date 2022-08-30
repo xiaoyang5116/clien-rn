@@ -3,10 +3,11 @@ import React from 'react';
 import {
     action,
     connect,
-    Component,
     StyleSheet,
     ThemeContext,
     ScrollView,
+    getPropIcon,
+    DEBUG_MODE,
 } from "../../constants";
 
 import { 
@@ -24,6 +25,31 @@ import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../constants/resolution';
 import RootView from '../../components/RootView';
 import PropTips from '../../components/tips/PropTips';
+import WorldUtils from '../../utils/WorldUtils';
+import qualityStyle from '../../themes/qualityStyle';
+import { confirm } from '../../components/dialog';
+
+const WorldButton = (props) => {
+    const worldId = WorldUtils.getWorldIdByName(props.name);
+
+    const onSelected = (worldId) => {
+        props.dispatch(action('PropsModel/filter')({ type: '', worldId: worldId }));
+        if (props.onWorldChanged != undefined) {
+            props.onWorldChanged(worldId);
+        }
+    }
+
+    return (
+        <View>
+            <TextButton title={props.name} onPress={() => onSelected(worldId)} />
+            {
+            (props.user.worldId != worldId)
+            ? (<View style={{ position: 'absolute', borderRadius: 5, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)' }} pointerEvents='none' />)
+            : <></>
+            }
+        </View>
+    )
+}
 
 const PropsPage = (props) => {
 
@@ -31,42 +57,49 @@ const PropsPage = (props) => {
     const [selectId, setSelectId] = React.useState(-1);
 
     React.useEffect(() => {
-        props.dispatch(action('PropsModel/filter')({ type: '' }));
+        props.dispatch(action('PropsModel/filter')({ type: '', worldId: props.user.worldId }));
     }, []);
 
     const typeFilter = (type) => {
-        props.dispatch(action('PropsModel/filter')({ type: type }));
+        props.dispatch(action('PropsModel/filter')({ type: type, worldId: props.worldId }));
     }
 
-    const propSelected = (item) => {
-        setSelectId(item.id);
+    const testHandler = () => {
+        confirm(`在 [${WorldUtils.getWorldNameById(props.user.worldId)}] 批量发放所有道具*10`, () => {
+            props.dispatch(action('PropsModel/test')());
+        });
+    }
+
+    const propSelected = (data) => {
+        setSelectId(data.index);
         setTimeout(() => {
-            const key = RootView.add(<PropTips propId={item.id} onClose={() => {
+            const key = RootView.add(<PropTips propId={data.item.id} onClose={() => {
                 RootView.remove(key);
             }} />);
         }, 0);
     }
 
     const renderItem = (data) => {
-        let color = {};
-        if (data.item.quality != undefined) {
-            if (data.item.quality == '1') {
-                color = styles.quality1;
-            } else if (data.item.quality == '2') {
-                color = styles.quality2;
-            } else if (data.item.quality == '3') {
-                color = styles.quality3;
-            }
-        }
+        const quality_style = qualityStyle.styles.find(e => e.id == parseInt(data.item.quality));
+        const image = getPropIcon(data.item.iconId);
         return (
-        <TouchableOpacity onPress={() => propSelected(data.item)} activeOpacity={1}>
-            <View style={[styles.propsItem, (data.item.id == 1) ? styles.propsTopBorder : {}]}>
-                {(selectId == data.item.id) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={theme.propSelectedImage} /> : <></>}
+        <TouchableOpacity onPress={() => propSelected(data)} activeOpacity={1}>
+            <View style={[styles.propsItem, (data.index == 0) ? styles.propsTopBorder : {}]}>
+                {(selectId == data.index) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={theme.propSelectedImage} /> : <></>}
                 <View style={styles.propsBorder}>
-                    <View style={{ flex: 1, flexDirection: 'row' }} >
-                        <Text style={[{ marginLeft: 20, fontSize: 22 }, color]}>{data.item.name}</Text>
+                    <View style={{ position: 'absolute', left: 0 }}>
+                        <FastImage style={{ 
+                                width: px2pd(100), height: px2pd(100), 
+                                borderRadius: 5, borderWidth: 1, borderColor: quality_style.borderColor,
+                                backgroundColor: quality_style.backgroundColor, 
+                            }} 
+                            source={image.img}
+                        />
                     </View>
-                    <View style={{ flex: 1 }}>
+                    <View style={{ width: '70%', flexDirection: 'row' }} >
+                        <Text style={[{ marginLeft: 45, fontSize: 22 }, { color: quality_style.fontColor }]} numberOfLines={1}>{data.item.name}</Text>
+                    </View>
+                    <View style={{ width: '30%' }}>
                         <Text style={{ marginRight: 20, fontSize: 22, color: '#424242', textAlign: 'right' }}>x{data.item.num}</Text>
                     </View>
                 </View>
@@ -100,6 +133,11 @@ const PropsPage = (props) => {
                         <TabButton title='丹药' style={{ marginRight: 15 }} onPress={() => { typeFilter('丹药')}} />
                         <TabButton title='碎片' style={{ marginRight: 15 }} onPress={() => { typeFilter('碎片') }} />
                         <TabButton title='特殊' style={{ marginRight: 10 }} onPress={() => { typeFilter('特殊') }} />
+                        {
+                        (DEBUG_MODE)
+                        ? <TabButton title='测试' style={{ marginRight: 10 }} onPress={() => { testHandler() }} />
+                        : <></>
+                        }
                     </ScrollView>
                 </View>
                 <View style={{ height: 30, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
@@ -120,9 +158,9 @@ const PropsPage = (props) => {
                     />
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                    <TextButton title="尘界" />
-                    <TextButton title="现实" />
-                    <TextButton title="灵修界" />
+                    <WorldButton name={'尘界'} {...props} />
+                    <WorldButton name={'现实'} {...props} />
+                    <WorldButton name={'灵修界'} {...props} />
                 </View>
             </View>
         </View>
@@ -140,7 +178,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: px2pd(108),
+        height: px2pd(120),
     },
     propsBorder: {
         flex: 1, 
