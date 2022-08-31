@@ -1,0 +1,33 @@
+collects: [
+  {
+    id: '6',
+
+    # 背景图片
+    background: 'collect_default',
+
+    # 阶段列表
+    periods: [
+      { itemsNum: 3 },
+      { itemsNum: 2 },
+      { itemsNum: 1 },
+    ], 
+#1016百络花
+    # 宝箱配置
+    items: [
+      { id: 4, time: 5, props: [{ propId: 1016, num: 1 }] },
+      { id: 4, props: [{ propId: 1016, num: 1 }] },
+      { id: 4, time: 7, props: [{ propId: 1016, num: 1 }] },
+      # { id: 4, props: [{ propId: 23, num: 1 }] },
+      # { id: 5, time: 7, props: [{ propId: 24, num: 1 }] },
+      # { id: 6, props: [{ propId: 25, num: 1 }] },
+      # { id: 7, time: 3,  props: [{ propId: 26, num: 1 }] },
+    ],
+
+    # 总量控制
+    limits: [
+    ],
+
+    # 刷新周期(单位秒)
+    refresh_period: 300,
+  },
+]

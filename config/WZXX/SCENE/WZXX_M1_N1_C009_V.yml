@@ -1,0 +1,422 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_C009_V',
+      #定义对应标题名当前章节内的选项和变量
+      name: "落霞峰",
+       #不显示时间
+      worldTimeHidden: true,
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "v2", min: 0, max: 1 },
+      { id: "v3", min: 0, max: 1 },
+      { id: "v4", min: 0, max: 1 },
+      { id: "v5D", min: 0, max: 1 },
+      { id: "v5E", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+      { id: "biaoqianv5", min: 0, max: 1 } ,
+      { id: "biaoqianv6", min: 0, max: 1 } ,
+      { id: "biaoqianv7", min: 0, max: 1 } ,
+      { id: "biaoqianv8", min: 0, max: 1 } ,
+
+      
+      ],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [ { type: 'enter',andVarsOff: ['v5D'], nextChat: 'WZXX_M1_N1_C009_V1',},
+       { type: 'enter',andVarsOn: ['v5D', ], nextChat: 'WZXX_M1_N1_C009_V11',},
+        ],
+
+
+    
+      chats: [
+      #
+
+        { 
+        id: 'WZXX_M1_N1_C009_V', desc: '去山道看看', 
+        options: [ 
+          { title: "【扛着锄头的村民】",dialogs: ['C009A_npcA'],},
+          { title: "【采花姑娘】",dialogs: ['C009A_npcB'],},
+          { title: "【砍柴的少年】",dialogs: ['C009A_npcC'],},
+        
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C009_V1', desc:  '采集草药', 
+        options: [ 
+        #1015黄心叶
+          { title: "【去迷雾森林中探索】", andVarsOff: ['v2'], varsOn: ['v2'],
+           collect: '5',
+          #  dropIds: ["WZXX_M1_N1_C009_V_Vdrop7",]
+           },
+          #1016百络花
+          { title: "【前往荒凉僻静的小径】", andVarsOn: ['v2'], andVarsOff: ['v3'], varsOn: ['v3',], 
+          collect: '6',
+          # dropIds: ["WZXX_M1_N1_C009_V_Vdrop8",]
+          },
+          
+          #1017子星草
+          { title: "【幽暗森林】",andVarsValue: ['@clues_liuyan6 == 1'], andVarsOn: ['v2', 'v3'], andVarsOff: ['v4'], varsOn: ['v4'], dialogs: ['mengshou'],   },
+
+          { title: "【山谷里面查看查看】",andVarsValue: ['@clues_liuyan6 != 1'], andVarsOn: ['v2', 'v3'], varsOn: ['v5D'], collect: '7', nextChat: 'WZXX_M1_N1_C009_V2',
+          # dropIds: ["WZXX_M1_N1_C009_V_Vdrop9",] 
+           },
+
+          { title: "【山谷里面查看查看】", andVarsOn: ['v2', 'v3','v4'], varsOn: ['v5D'],  collect: '7', nextChat: 'WZXX_M1_N1_C009_V2',
+          # dropIds: ["WZXX_M1_N1_C00 9_V_Vdrop9",]  
+          },
+         
+    
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C009_V11', desc:  '这里已经采集完毕了，去别的地方看看吧', 
+        options: [ 
+       
+          { title: "【离开】", nextChat: 'WZXX_M1_N1_C009_V2',
+          
+          },
+         
+    
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C009_V2', desc: "将所有药材都采集完毕后，李森炎回到了落霞峰脚下村落\n此时正好遇见之前的那个采花女\n采花女热情的与李森炎打招呼\n“你回来了啊！怎么样，东西找到了没有？”\n“找到了，多谢！”\n“那太好了，我现在要回家了，一起走吗？”", 
+        options: [ 
+          { title: "【去】",dialogs: ['C009A_caihuaguniangA'],},
+          { title: "【不去】",dialogs: ['C009A_caihuaguniangB'],},
+         
+        
+        ],
+      },
+      
+
+ 
+     
+        ],
+
+
+      # 对话框
+      dialogs:
+        [
+          {
+             id: 'mengshou', style: "9B", textAnimationType: 'TextSingle',
+                 sections: [
+                  {
+                     key: 'p1',
+                      content: ['在幽暗森林中', '李森炎遇到了猛虎', '那个砍柴的让他帮忙砍柴就算了居然还给他错误的情报！', '不过幸好李森炎身手敏捷成功从猛兽口中脱险', ],
+                   },
+                   
+                   ]
+                   },
+        
+           #选项对话
+          { id: 'C009A_npcA',style: 6, title: '询问草药的下落', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+         
+          { key: 'P2', 
+          content: [
+            '村民正在锄地，李森炎走了过去','“大爷，我想问……”',
+            '“谁是你大爷！”','村民抬起头来，顶着一头白发：“我才二十五！”',
+            '二十五啊，那是显老了点……','李森炎尴尬一笑，连忙改口叫大哥','接着问他知不知道那些药材的出处','村民没有立即回答，转而问起李森炎','“你姓什么？”','“我姓李。”','“哦，不是姓王就行，要是姓王的我肯定不告诉他！”','李森炎大汗，你对姓王的是有多大的怨念啊！',
+            [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan4"] } 
+              }, 
+            }],
+         '“黄心叶我知道，在幽暗森林，山谷这两个地方都有，至于你说其他两个，我就不清楚了。”',
+          ],
+          btn: [{title: '采花姑娘',tokey: "P2A"},{title: '一个砍柴的少年',tokey: "P2B"},]},
+
+           { key: 'P2A', content: ['姑娘正在采集花叶，看到李森炎眼前一亮','“这位大哥，要不要去我家里坐坐？”',
+          '李森炎颇感意外。','现在的姑娘，都这么大胆了吗？',
+          '但是姑娘接下来的一句话，就让李森炎彻底打消了念头','“我家里有上好的茶叶。”','“不用了不用了！”','李森炎担心她下一秒就要开始卖茶叶了','连忙截住她的话，说自己还有要事，顺带把自己的需求提出来','姑娘眼中难掩失望','“你不去的话我就不告诉你。”','“你先告诉我，等我把药草拿到手了，我再回来找你。”','“真的吗？你不要骗我哦！”',
+          '“真的，不骗你！”','采花姑娘点了点头，把她知道的地点告诉了李森炎',
+          [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan5"] } 
+              }, 
+            }],
+            '“如果我记得没错的话，荒凉僻静的小径就有百络花。”',],
+          btn: [{title: '一个砍柴的少年',tokey: "P3"},]},
+
+            { key: 'P3', content: ['李森炎上前问话，少年看了李森炎一眼','灵动的双眸转了转',
+          '提出如果李森炎帮他砍柴的话，就告诉他那些草药在哪',],
+          btn: [{title: '帮忙砍柴',tokey: "P5"},{title: '不帮',tokey: "P6"},]},
+
+          { key: 'P5', content: ['砍柴是个体力活，不过李森炎也不缺力气','挥起斧头，三下五除二把活儿干完了',
+          '少年露出了微笑，说道：“谢谢大哥！”',
+          [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan6"] } 
+              }, 
+            }],'“我知道子星草在迷雾森林。”',
+        ],
+          btn: [{title: '直接去山野草屋',dialogs: ['C009A_sycw'],toChapter: "WZXX_M1_N1_C009_[N3]",},]},
+
+           { key: 'P5', content: ['李森炎下意识觉得，这个少年是想骗他干活','然后信口胡诌一个地方',
+          '这种伎俩，怎么能骗得了他？','李森炎没有搭理他，转身离开',
+          ],
+          btn: [{title: '直接去山野草屋',dialogs: ['C009A_sycw'],toChapter: "WZXX_M1_N1_C009_[N3]",},]},
+
+            { key: 'P2B', content: ['李森炎上前问话，少年看了李森炎一眼','灵动的双眸转了转',
+          '提出如果李森炎帮他砍柴的话，就告诉他那些草药在哪',],
+          btn: [{title: '帮忙砍柴',tokey: "P6"},{title: '不帮',tokey: "P7"},]},
+
+          { key: 'P6', content: ['砍柴是个体力活，不过李森炎也不缺力气','挥起斧头，三下五除二把活儿干完了',
+          '少年露出了微笑，说道：“谢谢大哥！”',
+          [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan6"] } 
+              }, 
+            }],'“我知道子星草在迷雾森林。”',
+        ],
+          btn: [{title: '采花姑娘',tokey: "P8"}]},
+
+           { key: 'P7', content: ['李森炎下意识觉得，这个少年是想骗他干活','然后信口胡诌一个地方',
+          '这种伎俩，怎么能骗得了他？','李森炎没有搭理他，转身离开',
+          ],
+          btn: [{title: '采花姑娘',tokey: "P8"}]},
+
+           { key: 'P8', content: ['姑娘正在采集花叶，看到李森炎眼前一亮','“这位大哥，要不要去我家里坐坐？”',
+          '李森炎颇感意外。','现在的姑娘，都这么大胆了吗？',
+          '但是姑娘接下来的一句话，就让李森炎彻底打消了念头','“我家里有上好的茶叶。”','“不用了不用了！”','李森炎担心她下一秒就要开始卖茶叶了','连忙截住她的话，说自己还有要事，顺带把自己的需求提出来','姑娘眼中难掩失望','“你不去的话我就不告诉你。”','“你先告诉我，等我把药草拿到手了，我再回来找你。”','“真的吗？你不要骗我哦！”',
+          '“真的，不骗你！”','采花姑娘点了点头，把她知道的地点告诉了李森炎',
+          [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan5"] } 
+              }, 
+            }],
+            '“如果我记得没错的话，荒凉僻静的小径就有百络花。”',],
+          btn: [{title: '直接去山野草屋',dialogs: ['C009A_sycw'],toChapter: "WZXX_M1_N1_C009_[N3]",},]},
+           ]  
+        },
+
+
+         #选项对话
+          { id: 'C009A_npcB',style: 6, title: '询问草药的下落', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+
+           { key: 'P1', content: ['姑娘正在采集花叶，看到李森炎眼前一亮','“这位大哥，要不要去我家里坐坐？”',
+          '李森炎颇感意外。','现在的姑娘，都这么大胆了吗？',
+          '但是姑娘接下来的一句话，就让李森炎彻底打消了念头','“我家里有上好的茶叶。”','“不用了不用了！”','李森炎担心她下一秒就要开始卖茶叶了','连忙截住她的话，说自己还有要事，顺带把自己的需求提出来','姑娘眼中难掩失望','“你不去的话我就不告诉你。”','“你先告诉我，等我把药草拿到手了，我再回来找你。”','“真的吗？你不要骗我哦！”',
+          '“真的，不骗你！”','采花姑娘点了点头，把她知道的地点告诉了李森炎',
+          [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan5"] } 
+              }, 
+            }],
+            '“如果我记得没错的话，荒凉僻静的小径就有百络花。”',],
+          btn: [{title: '一个扛着锄头的村民',tokey: "P2"},
+          {title: '一个砍柴的少年',tokey: "P3"},]},
+
+          { key: 'P2', 
+          content: [
+            '村民正在锄地，李森炎走了过去','“大爷，我想问……”',
+            '“谁是你大爷！”','村民抬起头来，顶着一头白发：“我才二十五！”',
+            '二十五啊，那是显老了点……','李森炎尴尬一笑，连忙改口叫大哥','接着问他知不知道那些药材的出处','村民没有立即回答，转而问起李森炎','“你姓什么？”','“我姓李。”','“哦，不是姓王就行，要是姓王的我肯定不告诉他！”','李森炎大汗，你对姓王的是有多大的怨念啊！',
+            [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan4"] } 
+              }, 
+            }],
+         '“黄心叶我知道，在幽暗森林，山谷这两个地方都有，至于你说其他两个，我就不清楚了。”',
+          ],
+          btn: [{title: '一个砍柴的少年',tokey: "P4"},]},
+
+            { key: 'P4', content: ['李森炎上前问话，少年看了李森炎一眼','灵动的双眸转了转',
+          '提出如果李森炎帮他砍柴的话，就告诉他那些草药在哪',],
+          btn: [{title: '帮忙砍柴',tokey: "P5"},{title: '不帮',tokey: "P6"},]},
+
+          { key: 'P5', content: ['砍柴是个体力活，不过李森炎也不缺力气','挥起斧头，三下五除二把活儿干完了',
+          '少年露出了微笑，说道：“谢谢大哥！”',
+          [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan6"] } 
+              }, 
+            }],'“我知道子星草在迷雾森林。”',
+        ],
+          btn: [{title: '直接去山野草屋',dialogs: ['C009A_sycw'],toChapter: "WZXX_M1_N1_C009_[N3]",},]},
+
+           { key: 'P6', content: ['李森炎下意识觉得，这个少年是想骗他干活','然后信口胡诌一个地方',
+          '这种伎俩，怎么能骗得了他？','李森炎没有搭理他，转身离开',
+          ],
+          btn: [{title: '直接去山野草屋',dialogs: ['C009A_sycw'],toChapter: "WZXX_M1_N1_C009_[N3]",},]},
+
+
+          { key: 'P3', content: ['李森炎上前问话，少年看了李森炎一眼','灵动的双眸转了转',
+          '提出如果李森炎帮他砍柴的话，就告诉他那些草药在哪',],
+          btn: [{title: '帮忙砍柴',tokey: "P10"},{title: '不帮',tokey: "P11"},]},
+
+          { key: 'P10', content: ['砍柴是个体力活，不过李森炎也不缺力气','挥起斧头，三下五除二把活儿干完了',
+          '少年露出了微笑，说道：“谢谢大哥！”',
+          [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan6"] } 
+              }, 
+            }],'“我知道子星草在迷雾森林。”',
+        ],
+          btn: [{title: '一个扛着锄头的村民',tokey: "P20"},]},
+
+           { key: 'P11', content: ['李森炎下意识觉得，这个少年是想骗他干活','然后信口胡诌一个地方',
+          '这种伎俩，怎么能骗得了他？','李森炎没有搭理他，转身离开',
+          ],
+          btn: [{title: '一个扛着锄头的村民',tokey: "P20"},]},
+
+           { key: 'P20', 
+          content: [
+            '村民正在锄地，李森炎走了过去','“大爷，我想问……”',
+            '“谁是你大爷！”','村民抬起头来，顶着一头白发：“我才二十五！”',
+            '二十五啊，那是显老了点……','李森炎尴尬一笑，连忙改口叫大哥','接着问他知不知道那些药材的出处','村民没有立即回答，转而问起李森炎','“你姓什么？”','“我姓李。”','“哦，不是姓王就行，要是姓王的我肯定不告诉他！”','李森炎大汗，你对姓王的是有多大的怨念啊！',
+            [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan4"] } 
+              }, 
+            }],
+         '“黄心叶我知道，在幽暗森林，山谷这两个地方都有，至于你说其他两个，我就不清楚了。”',
+          ],
+          btn: [{title: '直接去山野草屋',dialogs: ['C009A_sycw'],toChapter: "WZXX_M1_N1_C009_[N3]",},]},
+
+           ]  
+        },
+
+
+         #选项对话
+          { id: 'C009A_npcC',style: 6, title: '询问草药的下落', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+
+            { key: 'P1', content: ['李森炎上前问话，少年看了李森炎一眼','灵动的双眸转了转',
+          '提出如果李森炎帮他砍柴的话，就告诉他那些草药在哪',],
+          btn: [{title: '帮忙砍柴',tokey: "P2"},{title: '不帮',tokey: "P3"},]},
+
+          { key: 'P2', content: ['砍柴是个体力活，不过李森炎也不缺力气','挥起斧头，三下五除二把活儿干完了',
+          '少年露出了微笑，说道：“谢谢大哥！”',
+          [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan6"] } 
+              }, 
+            }],'“我知道子星草在迷雾森林。”',
+        ],
+          btn: [{title: '一个扛着锄头的村民',tokey: "P4"},{title: '采花姑娘',tokey: "P5"}]},
+
+           { key: 'P3', content: ['李森炎下意识觉得，这个少年是想骗他干活','然后信口胡诌一个地方',
+          '这种伎俩，怎么能骗得了他？','李森炎没有搭理他，转身离开',
+          ],
+          btn: [{title: '一个扛着锄头的村民',tokey: "P4"},{title: '采花姑娘',tokey: "P5"}]},
+
+
+          { key: 'P5', content: ['姑娘正在采集花叶，看到李森炎眼前一亮','“这位大哥，要不要去我家里坐坐？”',
+          '李森炎颇感意外。','现在的姑娘，都这么大胆了吗？',
+          '但是姑娘接下来的一句话，就让李森炎彻底打消了念头','“我家里有上好的茶叶。”','“不用了不用了！”','李森炎担心她下一秒就要开始卖茶叶了','连忙截住她的话，说自己还有要事，顺带把自己的需求提出来','姑娘眼中难掩失望','“你不去的话我就不告诉你。”','“你先告诉我，等我把药草拿到手了，我再回来找你。”','“真的吗？你不要骗我哦！”',
+          '“真的，不骗你！”','采花姑娘点了点头，把她知道的地点告诉了李森炎',
+          [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan5"] } 
+              }, 
+            }],
+            '“如果我记得没错的话，荒凉僻静的小径就有百络花。”',],
+          btn: [{title: '一个扛着锄头的村民',tokey: "P6"},]},
+
+         
+           { key: 'P6', 
+          content: [
+            '村民正在锄地，李森炎走了过去','“大爷，我想问……”',
+            '“谁是你大爷！”','村民抬起头来，顶着一头白发：“我才二十五！”',
+            '二十五啊，那是显老了点……','李森炎尴尬一笑，连忙改口叫大哥','接着问他知不知道那些药材的出处','村民没有立即回答，转而问起李森炎','“你姓什么？”','“我姓李。”','“哦，不是姓王就行，要是姓王的我肯定不告诉他！”','李森炎大汗，你对姓王的是有多大的怨念啊！',
+            [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan4"] } 
+              }, 
+            }],
+         '“黄心叶我知道，在幽暗森林，山谷这两个地方都有，至于你说其他两个，我就不清楚了。”',
+          ],
+          btn: [{title: '直接去山野草屋',dialogs: ['C009A_sycw'],toChapter: "WZXX_M1_N1_C009_[N3]",}]},
+
+
+           { key: 'P4', 
+          content: [
+            '村民正在锄地，李森炎走了过去','“大爷，我想问……”',
+            '“谁是你大爷！”','村民抬起头来，顶着一头白发：“我才二十五！”',
+            '二十五啊，那是显老了点……','李森炎尴尬一笑，连忙改口叫大哥','接着问他知不知道那些药材的出处','村民没有立即回答，转而问起李森炎','“你姓什么？”','“我姓李。”','“哦，不是姓王就行，要是姓王的我肯定不告诉他！”','李森炎大汗，你对姓王的是有多大的怨念啊！',
+            [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan4"] } 
+              }, 
+            }],
+         '“黄心叶我知道，在幽暗森林，山谷这两个地方都有，至于你说其他两个，我就不清楚了。”',
+          ],
+          btn: [{title: '采花姑娘',tokey: "P7"},]},
+
+           { key: 'P7', content: ['姑娘正在采集花叶，看到李森炎眼前一亮','“这位大哥，要不要去我家里坐坐？”',
+          '李森炎颇感意外。','现在的姑娘，都这么大胆了吗？',
+          '但是姑娘接下来的一句话，就让李森炎彻底打消了念头','“我家里有上好的茶叶。”','“不用了不用了！”','李森炎担心她下一秒就要开始卖茶叶了','连忙截住她的话，说自己还有要事，顺带把自己的需求提出来','姑娘眼中难掩失望','“你不去的话我就不告诉你。”','“你先告诉我，等我把药草拿到手了，我再回来找你。”','“真的吗？你不要骗我哦！”',
+          '“真的，不骗你！”','采花姑娘点了点头，把她知道的地点告诉了李森炎',
+          [{  
+              toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan5"] } 
+              }, 
+            }],
+            '“如果我记得没错的话，荒凉僻静的小径就有百络花。”',],
+          btn: [{title: '直接去山野草屋',dialogs: ['C009A_sycw'],toChapter: "WZXX_M1_N1_C009_[N3]",},]},
+
+           ]  
+        },
+          #选项对话2
+        { id: 'C009A_sycw',style: 10, textAnimationType: 'TextSingle',
+            sections: [
+            { figureId: "01", location: "right", content: ['“大爷你好。”', ], },
+            { figureId: "02", location: "left", content: ['“你好。”',], },
+            { figureId: "01", location: "right", content: ['“大爷你知道黄心叶、百络花、子星草这些东西在哪吗？”',], },
+            { figureId: "02", location: "left", content: ['“第一个是黄什么？”', ], },
+            { figureId: "01", location: "right", content: ['“黄心叶。”',], },
+            { figureId: "02", location: "left", content: ['“第二个呢？”', ], },
+            { figureId: "01", location: "right", content: ['“百络花。”',], },
+            { figureId: "02", location: "left", content: ['“第三个呢？”', ], },
+            { figureId: "01", location: "right", content: ['“子星草。”',], },
+            { figureId: "02", location: "left", content: ['“哦哦，那第一个呢？”', ], },
+            { figureId: "01", location: "right", content: ['“……”','“第一个是黄心叶，第二个是百络花，第三个是子星草。”',], },
+            { figureId: "02", location: "left", content: ['“哦哦，第一个是黄心叶，那第二个呢。”',], },
+            { figureId: "01", location: "right", content: ['“……”','“大爷你好好歇着吧。”',], },
+            { figureId: "02", location: "left", content: ['“好嘞。”', ], },
+            ]
+            },
+
+
+              #选项对话2
+          { id: 'C009A_caihuaguniangA',style: 6, title: '采花姑娘的邀约', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P3', content: ['“好吧，那就去坐一会儿。','李森炎跟着她去到山间小屋。','“啊，你家在这啊？”','李森炎想起白天时候来到过这里',
+          '“你家里是不是有个大爷？”','“对，那是我爷爷。”','“孙女回来啦。”','大爷从屋里走出，看到李森炎的瞬间，眼睛微微放大','“我记得你！”','李森炎苦笑，您老这个时候记性大可不必这么好！'
+          ,'“哈哈哈，来来来，喝两杯茶再走。”','兴许是住在山野之中，极少有客来往',
+          '大爷和姑娘都非常热情，李森炎这才知道是自己想多了','人家姑娘并不卖茶','离开的时候还给了李森炎一些不知名的草药的种子'],
+          btn: [{title: '离开去寻找云云',toScene:  "WZXX_M1_N1_C002B_V",dropIds: ['WZXX_M1_N1_C009_V_Vdrop1'],}]},
+        ],
+    },
+
+       #选项对话2
+          { id: 'C009A_caihuaguniangB',style: 6, title: '采花姑娘的邀约', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P3', content: ['“天色已晚，我觉得还是算了吧。”','“不是都说好了嘛！哼，果然男人都是骗子！”','采花姑娘负气而走，李森炎愣在原地，不由得苦笑起来','又走了一会儿，忽然李森炎路过山村的时候捡到了一些不知名的草药种子','虽然不知道是做什么的，但是收着说不定以后有用',
+          ],
+          btn: [{title: '离开去寻找云云',toScene: 'WZXX_M1_N1_C002B_V',dropIds: ['WZXX_M1_N1_C009_V_Vdrop2'],},]},
+        ],
+    },
+
+
+
+                   ]
+  
+    }
+]

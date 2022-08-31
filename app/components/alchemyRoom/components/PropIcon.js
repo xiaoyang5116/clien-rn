@@ -26,6 +26,7 @@ const PropIcon = props => {
   const openPropDetail = () => {
     const key = RootView.add(
       <PropTips
+        zIndex={99}
         viewOnly={true}
         propId={item.propId}
         onClose={() => {

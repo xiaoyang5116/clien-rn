@@ -7,7 +7,7 @@
 #{ id: 'D1000000', sendProps: '40,10', alterAttrs: ['气运,1', '道行,2'] },
 # ===========================================
 drops: [
-  #
+  #887铜币
   { id: 'WZXX_M1_N1_C001V_drop1', sendProps: '887,10,showBag', },
   { id: 'WZXX_M1_N1_C001V_drop2',  alterAttrs: ['悟性,1'] },
   { id: 'WZXX_M1_N1_C001V_drop3',  alterAttrs: ['悟性,1'] },
@@ -17,12 +17,15 @@ drops: [
   { id: 'WZXX_M1_N1_C001V_drop7',  alterAttrs: ['智慧,1'] },
   { id: 'WZXX_M1_N1_C001V_drop8',  alterAttrs: ['智慧,-1'] },
   { id: 'WZXX_M1_N1_C001V_drop9',  alterAttrs: ['身法,1'] },
-  #
+  #887铜币
   { id: 'WZXX_M1_N1_C001A_V_Vdrop1', sendProps: '887,10,showBag', },
-  #
+  #600白城冷笑话
   { id: 'WZXX_M1_N1_C002A_V_Vdrop1', sendProps: '600,1,showBag', },
+  #601思无邪
   { id: 'WZXX_M1_N1_C002A_V_Vdrop2', sendProps: '601,1,showBag', },
+  #602凌云决
   { id: 'WZXX_M1_N1_C002A_V_Vdrop3', sendProps: '602,1,showBag',},
+  #887铜币
   { id: 'WZXX_M1_N1_C002A_V_Vdrop4', sendProps: '887,10,showBag',},
   { id: 'WZXX_M1_N1_C002A_V_Vdrop5',  alterAttrs: ['变化,1'] },
   { id: 'WZXX_M1_N1_C002A_V_Vdrop6',  alterAttrs: ['变化,1'] },
@@ -31,6 +34,7 @@ drops: [
   { id: 'WZXX_M1_N1_C002A_V_Vdrop9',  alterAttrs: ['身法,1'] },
   #
   { id: 'WZXX_M1_N1_C002B_V_Vdrop1',  alterAttrs: ['仙缘,1'] },
+  #887铜币
   { id: 'WZXX_M1_N1_C002B_V_Vdrop2', sendProps: '887,100,showBag', },
   { id: 'WZXX_M1_N1_C002B_V_Vdrop3',  alterAttrs: ['善良,1'] },
   { id: 'WZXX_M1_N1_C002B_V_Vdrop4',  alterAttrs: ['冷漠,1'] },
@@ -48,49 +52,71 @@ drops: [
   #
   { id: 'WZXX_M1_N1_C005_VA_Vdrop1',  alterAttrs: ['善良,1'] },
   { id: 'WZXX_M1_N1_C005_VA_Vdrop2',  alterAttrs: ['冷漠,1','自由,1'] },
+  #887铜币
   { id: 'WZXX_M1_N1_C005_VA_Vdrop3', sendProps: '887,100,showBag', },
+  #887铜币
   { id: 'WZXX_M1_N1_C005_VA_Vdrop4', sendProps: '887,100,showBag', },
+  #887铜币
   { id: 'WZXX_M1_N1_C005_VA_Vdrop5', sendProps: '887,100,showBag', },
   { id: 'WZXX_M1_N1_C005_VA_Vdrop6',  alterAttrs: ['善良,1'] },
   { id: 'WZXX_M1_N1_C005_VA_Vdrop7',  alterAttrs: ['冷漠,1','自由,1'] },
+  #887铜币
   { id: 'WZXX_M1_N1_C005_VA_Vdrop8', sendProps: '887,100,showBag', },
+  #887铜币
   { id: 'WZXX_M1_N1_C005_VA_Vdrop9', sendProps: '887,100, showBag',},
+  #887铜币
   { id: 'WZXX_M1_N1_C005_VA_Vdrop10', sendProps: '887,100, showBag',},
-  #
+  #887铜币
   { id: 'WZXX_M1_N1_C006_V_Vdrop1', sendProps: '887,100, showBag',},
+  #887铜币
   { id: 'WZXX_M1_N1_C006_V_Vdrop2', sendProps: '887,100, showBag', },
+  #887铜币
   { id: 'WZXX_M1_N1_C006_V_Vdrop3', sendProps: '887,100, showBag',},
+  #887铜币
   { id: 'WZXX_M1_N1_C006_V_Vdrop4', sendProps: '887,-100, showBag',},
   #
   { id: 'WZXX_M1_N1_C006_drop1',  alterAttrs: ['悟性,1'] },
+  #887铜币
   { id: 'WZXX_M1_N1_C006_drop2', sendProps: '886,1, showBag',},
   #
   { id: 'WZXX_M1_N1_C0017_V_Vdrop1',  alterAttrs: ['入魔,1'] },
   #
   { id: 'WZXX_M1_N1_C0019_V_Vdrop1',  alterAttrs: ['体魄,1'] },
   { id: 'WZXX_M1_N1_C0019_V_Vdrop2',  alterAttrs: ['自由,1'] },
-  #
+  #886灵石
   { id: 'WZXX_M1_N1_C0020_V_Vdrop1',  sendProps: '886,16,showBag', },
+  #886灵石
   { id: 'WZXX_M1_N1_C0020_V_Vdrop2',  sendProps: '886,16,showBag',},
+  #890黄金饰品
   { id: 'WZXX_M1_N1_C0020_V_Vdrop3',  sendProps: '890,3,showBag',},
-  #
+  #608符纸
   { id: 'WZXX_M1_N1_C0021_V_Vdrop1',  sendProps: '608,10,showBag',},
-  #
+  #338草药
   { id: 'WZXX_M1_N1_C0026_V_Vdrop1',  sendProps: '338,10,showBag',},
+  #339不知名的蛋
   { id: 'WZXX_M1_N1_C0026_V_Vdrop2',  sendProps: '339,2,showBag',},
+  #886灵石
   { id: 'WZXX_M1_N1_C0026_V_Vdrop3',  sendProps: '886,16,showBag',},
-
+#349玄铁重剑
   { id: 'WZXX_M1_N1_C0026_V_Vdrop4',  sendProps: '349,1,showBag',},
+  #333小还丹
   { id: 'WZXX_M1_N1_C0026_V_Vdrop5',  sendProps: '333,3,showBag',},
+  #332大还丹
   { id: 'WZXX_M1_N1_C0026_V_Vdrop6',  sendProps: '332,1,showBag',},
+  #319回气散
   { id: 'WZXX_M1_N1_C0026_V_Vdrop7',  sendProps: '319,1,showBag',},
 
   { id: 'WZXX_M1_N1_C0026_V_Vdrop8',   alterAttrs: ['善良,1'] },
   { id: 'WZXX_M1_N1_C0026_V_Vdrop9',   alterAttrs: ['冷漠,1'] },
-
-  { id: 'WZXX_M1_N1_C002B_V_Vdrop7',  sendProps: '1015,1,showBag',},
-  { id: 'WZXX_M1_N1_C002B_V_Vdrop8',  sendProps: '1016,1,showBag',},
-  { id: 'WZXX_M1_N1_C002B_V_Vdrop9',  sendProps: '1017,1,showBag',},
+#1015黄心叶
+  { id: 'WZXX_M1_N1_C009_V_Vdrop7',  sendProps: '1015,1,showBag',},
+  #1016百络花
+  { id: 'WZXX_M1_N1_C009_V_Vdrop8',  sendProps: '1016,1,showBag',},
+  #1017子星草
+  { id: 'WZXX_M1_N1_C009_V_Vdrop9',  sendProps: '1017,1,showBag',},
+#1018不知名草药
+  { id: 'WZXX_M1_N1_C009_V_Vdrop1',  sendProps: '1018,10,showBag',},
+  { id: 'WZXX_M1_N1_C009_V_Vdrop2',  sendProps: '1018,10,showBag',},
   
 
 

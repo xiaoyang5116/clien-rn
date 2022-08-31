@@ -53,7 +53,7 @@ const PropTips = (props) => {
     const quality_style = (prop.quality != undefined) ? qualityStyle.styles.find(e => e.id == prop.quality) : {};
 
     return (
-        <View style={styles.viewContainer} onTouchStart={() => {
+        <View style={[styles.viewContainer,{zIndex: props.zIndex ? props.zIndex : null}]} onTouchStart={() => {
             if (props.onClose != undefined) {
                 props.onClose();
             }

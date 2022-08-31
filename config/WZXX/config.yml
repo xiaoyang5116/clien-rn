@@ -12,6 +12,7 @@ book: {
         "WZXX_M1_N1_C000A_V",
         "WZXX_M1_N1_C000B_V",
         "WZXX_M1_N1_C000C_V",
+        "WZXX_M1_N1_C000D_V",
         "WZXX_M1_N1_C000B_VA",
         "WZXX_M1_N1_C001A_V",
         "WZXX_M1_N1_C001B_V",
@@ -24,6 +25,7 @@ book: {
         "WZXX_M1_N1_C005_V",
         "WZXX_M1_N1_C005_VA",
         "WZXX_M1_N1_C006_V",
+        "WZXX_M1_N1_C009_V",
         "WZXX_M1_N1_C0017_V",
         "WZXX_M1_N1_C0018_V",
         "WZXX_M1_N1_C0018_VA",
@@ -48,6 +50,9 @@ book: {
       'collect_2',
       'collect_3',
       'collect_4',
+      'collect_5',
+      'collect_6',
+      'collect_7',
     ],
     
   }
