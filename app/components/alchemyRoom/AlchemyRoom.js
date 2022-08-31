@@ -127,7 +127,7 @@ const AlchemyRoom = props => {
       />
       <SafeAreaView style={{ flex: 1 }}>
         <Header3
-          title={'炼丹房'}
+          title={'炼丹炉'}
           fontStyle={{ color: '#fff' }}
           iconColor={'#fff'}
           containerStyle={{ marginTop: 12 }}
