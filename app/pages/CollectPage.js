@@ -179,6 +179,9 @@ const CollectProgress = (props) => {
         return sec - 1;
       });
     }, 1000);
+    return () => {
+      clearInterval(timer);
+    }
   }, []);
 
   const percent = seconds / props.time;
