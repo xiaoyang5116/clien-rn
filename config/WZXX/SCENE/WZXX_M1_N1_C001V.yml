@@ -42,7 +42,7 @@ scenes: [
         options: [  
            
             {title: "【急中生智！】",dialogs: ['Screen1'], },
-            {title: "【跳过此段剧情】",toChapter: " WZXX_M1_N1_C001B"},
+            {title: "【跳过此段剧情】",toChapter: "WZXX_M1_N1_C001B"},
            
           
         ],
