@@ -33,7 +33,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000D_V1', desc: '种植', 
         options: [ 
-          { title: "【去荒废的园子】",toScene: 'C000D_V1_MAP_-2_4', },
+          { title: "【在荒废的院子里种植东西】",toScene: 'C000D_V1_MAP_-2_4', },
         ],
       },
 

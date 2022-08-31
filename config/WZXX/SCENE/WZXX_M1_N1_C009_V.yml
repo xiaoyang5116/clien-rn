@@ -3,7 +3,7 @@ scenes: [
     {
       id: 'WZXX_M1_N1_C009_V',
       #定义对应标题名当前章节内的选项和变量
-      name: "",
+      name: "落霞峰",
        #不显示时间
       worldTimeHidden: true,
 
