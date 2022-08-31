@@ -13,6 +13,8 @@ scenes: [
       { id: "v2", min: 0, max: 1 },
       { id: "v3", min: 0, max: 1 },
       { id: "v4", min: 0, max: 1 },
+      { id: "v5D", min: 0, max: 1 },
+      { id: "v5E", min: 0, max: 1 },
       { id: "biaoqianv1", min: 0, max: 1 } ,
       { id: "biaoqianv2", min: 0, max: 1 } ,
       { id: "biaoqianv3", min: 0, max: 1 } ,
@@ -30,7 +32,9 @@ scenes: [
 
       # 事件定义
       # 故事中的场景事件暂时没什么意义
-      events: [ { type: 'enter', nextChat: 'WZXX_M1_N1_C009_V1',}, ],
+      events: [ { type: 'enter',andVarsOff: ['v5D'], nextChat: 'WZXX_M1_N1_C009_V1',},
+       { type: 'enter',andVarsOn: ['v5D', ], nextChat: 'WZXX_M1_N1_C009_V11',},
+        ],
 
 
     
@@ -68,8 +72,20 @@ scenes: [
           # dropIds: ["WZXX_M1_N1_C009_V_Vdrop9",] 
            },
 
-          { title: "【山谷里面查看查看】", andVarsOn: ['v2', 'v3','v4'], collect: '7', nextChat: 'WZXX_M1_N1_C009_V2',
+          { title: "【山谷里面查看查看】", andVarsOn: ['v2', 'v3','v4'], varsOn: ['v5D'],  collect: '7', nextChat: 'WZXX_M1_N1_C009_V2',
           # dropIds: ["WZXX_M1_N1_C00 9_V_Vdrop9",]  
+          },
+         
+    
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C009_V11', desc:  '这里已经采集完毕了，去别的地方看看吧', 
+        options: [ 
+       
+          { title: "【离开】", nextChat: 'WZXX_M1_N1_C009_V2',
+          
           },
          
     
@@ -370,7 +386,7 @@ scenes: [
             { figureId: "02", location: "left", content: ['“第三个呢？”', ], },
             { figureId: "01", location: "right", content: ['“子星草。”',], },
             { figureId: "02", location: "left", content: ['“哦哦，那第一个呢？”', ], },
-            { figureId: "01", location: "right", content: ['“……”','“第一个是黄心叶，第二个是百络花，第三个是子星草。”','',], },
+            { figureId: "01", location: "right", content: ['“……”','“第一个是黄心叶，第二个是百络花，第三个是子星草。”',], },
             { figureId: "02", location: "left", content: ['“哦哦，第一个是黄心叶，那第二个呢。”',], },
             { figureId: "01", location: "right", content: ['“……”','“大爷你好好歇着吧。”',], },
             { figureId: "02", location: "left", content: ['“好嘞。”', ], },
