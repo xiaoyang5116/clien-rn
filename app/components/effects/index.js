@@ -12,6 +12,7 @@ import SubTitleAnimation from './SubTitleAnimation';
 import Animation from '../animation';
 import XueHuaAnimation from './XueHuaAnimation';
 import FlyAnimation from './FlyAnimation';
+import ShiKongAnimation from './ShiKongAnimation';
 import WorldPreview from '../carousel/WorldPreview';
 import WorldUtils from '../../utils/WorldUtils';
 
@@ -77,6 +78,10 @@ export default class EffectAnimations {
                         }}
                     />);
                 }
+            } else if (id == 12) { // 扭转时空
+                const key = RootView.add(<ShiKongAnimation onClose={() => {
+                    RootView.remove(key);
+                }} />);
             }
         });
     }

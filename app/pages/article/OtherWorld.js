@@ -4,7 +4,7 @@ import lo from 'lodash';
 import { View, Animated, StyleSheet, DeviceEventEmitter } from 'react-native';
 import WorldPreview from '../../components/carousel/WorldPreview';
 import WorldUnlockView from './WorldUnlockView';
-import { AppDispath, DataContext } from '../../constants';
+import { AppDispath, DataContext, EventKeys } from '../../constants';
 import WorldUtils from '../../utils/WorldUtils';
 
 const WORLD_MAPS = [
@@ -83,6 +83,9 @@ const OtherWorld = (props) => {
       ]).start();
 
       AppDispath({ type: 'ArticleModel/getTransWorld', payload: { routeName: activeRouteName }, retmsg: CALLBACK_EVENT});
+
+      // 强制隐藏功能浮层
+      DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
     }, [props]);
   
     return (
