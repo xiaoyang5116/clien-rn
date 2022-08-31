@@ -14,9 +14,9 @@ collects: [
 #丹参
     # 宝箱配置
     items: [
-      { id: 4, time: 5, props: [{ propId: 1014, num: 1 }] },
+      { id: 4, time: 2, props: [{ propId: 1014, num: 1 }] },
       { id: 4, props: [{ propId: 1014, num: 1 }] },
-      { id: 4, time: 5, props: [{ propId: 1014, num: 1 }] },
+      { id: 4, time: 2, props: [{ propId: 1014, num: 1 }] },
       # { id: 4, props: [{ propId: 23, num: 1 }] },
       # { id: 5, time: 7, props: [{ propId: 24, num: 1 }] },
       # { id: 6, props: [{ propId: 25, num: 1 }] },

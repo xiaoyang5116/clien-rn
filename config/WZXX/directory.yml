@@ -172,9 +172,9 @@ directory: [
         #  toChapter: 'WZXX_M1_N1_C009_[N3]', links: [[2, -20], ] 
         # },
 
-        { point: [2, -20], title: '第九章 打坐',
+        { point: [1, -20], title: '第九章 打坐',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C009_[N2]' ,
-         toChapter: 'WZXX_M1_N1_C009_[N2]', links: [], path: [[2, -21], [1, -21],[0, -21]] 
+         toChapter: 'WZXX_M1_N1_C009_[N2]', links: [], path: [ [1, -21],[0, -21]] 
         },
 
 
