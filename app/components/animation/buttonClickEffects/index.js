@@ -47,8 +47,8 @@ class ButtonClickEffects extends PureComponent {
       <Animated.View style={{
         position: "absolute",
         opacity: this.opacity,
-        top: -60,
-        left: -50,
+        top: -70,
+        // left: -50,
       }}>
         <SpriteSheet
           ref={ref => (this.sheet.current = ref)}
