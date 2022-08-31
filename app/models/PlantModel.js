@@ -7,13 +7,11 @@ import {
 import lo, { range } from 'lodash';
 import { GetPlantComposeDataApi } from '../services/GetPlantComposeDataApi';
 import { GetLingTianDataApi } from '../services/GetLingTianDataApi';
-import RootView from '../components/RootView';
 
 import EventListeners from '../utils/EventListeners';
 import LocalStorage from '../utils/LocalStorage';
 import Toast from '../components/toast';
 import { now } from '../utils/DateTimeUtils';
-import RewardsPage from '../components/alchemyRoom/components/RewardsPage';
 
 export default {
     namespace: 'PlantModel',
@@ -213,8 +211,8 @@ export default {
             yield put.resolve(action("updateLingTianData")(composeState.lingTianData))
         },
 
-        // 采集
-        *collection({ payload }, { put, select, call }) {
+        // 获取采集的道具数据
+        *getCollectionData({ payload }, { put, select, call }) {
             const composeState = yield select(state => state.PlantModel);
 
             let targetsData = {}  // {"id": 1006, "num": 1, "range": [0, 80], "rate": 80}
@@ -232,30 +230,21 @@ export default {
                 }
             }
 
-            // 发放道具
-            yield put.resolve(action('PropsModel/sendProps')({ propId: targetsData.id, num: targetsData.num, quiet: true }));
-
             // 获取道具配置
             const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: targetsData.id }));
-            // const key = RootView.add(
-            //     <RewardsPage
-            //         title={"获得道具"}
-            //         recipe={propConfig}
-            //         getAward={() => {
-            //             // props.dispatch(action('AlchemyModel/alchemyFinish')());
-            //             Toast.show(`采集成功，获得道具id:${targetsData.id} !!!'`, 'CenterToTop');
-            //             yield put.resolve(action("updateLingTianData")(composeState.lingTianData))
-            //         }}
-            //         onClose={() => {
-            //             RootView.remove(key);
-            //         }}
-            //     />,
-            // );
+
+            return { propConfig, currentLingTianData: composeState.lingTianData, targetsData }
+        },
+        // 采集
+        *collection({ payload }, { put, select, call }) {
+            const { lingTianData, targetsData, propConfig } = payload
+
+            // 发放道具
+            yield put.resolve(action('PropsModel/sendProps')({ propId: targetsData.id, num: targetsData.num, quiet: true }));
             Toast.show(`采集成功，获得道具: ${propConfig.name}`, 'CenterToTop');
 
-
             // 更新数据
-            yield put.resolve(action("updateLingTianData")(composeState.lingTianData))
+            yield put.resolve(action("updateLingTianData")(lingTianData))
         },
 
         // 改变灵田状态
