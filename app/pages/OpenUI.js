@@ -2,6 +2,7 @@ import React from 'react';
 import RootView from '../components/RootView';
 import XiuXingTabPage from './home/XiuXingTabPage';
 import AlchemyRoomModal from '../components/alchemyRoom';
+import { PlantPage } from '../components/plant';
 
 export default class OpenUI {
 
@@ -14,6 +15,9 @@ export default class OpenUI {
                 break;
             case 'LianDanFang':
                 AlchemyRoomModal.show()
+                break;
+            case 'ZhongZhi':
+                PlantPage.show();
                 break;
         }
     }
