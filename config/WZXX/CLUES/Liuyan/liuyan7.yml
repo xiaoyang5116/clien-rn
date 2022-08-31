@@ -1,7 +1,7 @@
 # 线索1
 clues:
   {
-    id: 'liuyan3',
+    id: 'liuyan7',
     type: '流言',
     filterCondition: {locaton: '郊外',},
     title: '孩童的话',

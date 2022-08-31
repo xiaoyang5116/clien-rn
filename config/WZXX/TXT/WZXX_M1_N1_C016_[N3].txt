@@ -1,8 +1,8 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C016_[N2]']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C016_[N2]FZ'] }, 
-     { header: '第十六章 灵田' },
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C016_[N3]']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C016_[N3]FZ'] }, 
+     { header: '第十六章 炸桶' },
 ]
 #END==========================================
 

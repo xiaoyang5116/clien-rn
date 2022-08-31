@@ -128,17 +128,17 @@ directory: [
 
         { point: [0, -14], title: '第三章 被猫撞',
       #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C003_[N3]' ,
-        toChapter: 'WZXX_M1_N1_C003_[N3]', links: [[-1, -15],[1, -15], ] 
+        toChapter: 'WZXX_M1_N1_C003_[N3]', links: [[0, -15], ] 
         },
 
-        { point: [1, -15], title: '第四章 灵修界',
+        { point: [0, -15], title: '第四章 灵修界',
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N1]' ,
-        toChapter: 'WZXX_M1_N1_C004_[N1]', links: [[-1, -15],[0, -16]]
+        toChapter: 'WZXX_M1_N1_C004_[N1]', links: [[1, -15],]
         },
 
-        { point: [-1, -15], title: '第四章 打斗开始',
+        { point: [1, -15], title: '第四章 打斗开始',
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N2]' ,
-        toChapter: 'WZXX_M1_N1_C004_[N2]', links: [[1, -15],[0, -16]],
+        toChapter: 'WZXX_M1_N1_C004_[N2]', links: [],path: [[1, -16], [0, -16],] 
         },
 
 
@@ -162,29 +162,35 @@ directory: [
         toChapter: 'WZXX_M1_N1_C008', links: [[0, -20]] 
         },
 
-        { point: [-1, -20], title: '第九章 炼气',
+        { point: [0, -20], title: '第九章 炼气',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C009_[N1]' ,
-         toChapter: 'WZXX_M1_N1_C009_[N1]', links: [[1, -20],[0, -21], ] 
+         toChapter: 'WZXX_M1_N1_C009_[N1]', links: [[1, -20], ] 
         },
 
          { point: [1, -20], title: '第九章 打坐',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C009_[N2]' ,
-         toChapter: 'WZXX_M1_N1_C009_[N2]', links: [[-1, -20],[0, -21], ] 
+         toChapter: 'WZXX_M1_N1_C009_[N2]', links: [[2, -20], ] 
         },
+
+        { point: [2, -20], title: '第九章 采药人文字打斗',
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C009_[N3]' ,
+         toChapter: 'WZXX_M1_N1_C009_[N3]', links: [], path: [[2, -21], [1, -21],[0, -21]] 
+        },
+
 
         { point: [0, -21], title: '第十章 医灵',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C010' ,
-        toChapter: 'WZXX_M1_N1_C010', links: [[-1, -22],[1, -22],],
+        toChapter: 'WZXX_M1_N1_C010', links: [[0, -22],],
         },
 
-        { point: [-1, -22], title: '第十一章 识人 ',
+        { point: [0, -22], title: '第十一章 识人 ',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C011_[N1]' ,
-        toChapter: 'WZXX_M1_N1_C011_[N1]', links: [[1, -22], [0, -23]] 
+        toChapter: 'WZXX_M1_N1_C011_[N1]', links: [[1, -22], ]
         },
 
         { point: [1, -22], title: '第十一章 守夜 ',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C011_[N2]' , 
-          toChapter: 'WZXX_M1_N1_C011_[N2]', links: [[-1, -22], [0, -23], ] 
+          toChapter: 'WZXX_M1_N1_C011_[N2]', links: [ ], path: [[1, -23], [0, -23],] 
         },
 
         { point: [0, -23], title: '第十二章 小小保镖',
@@ -219,17 +225,27 @@ directory: [
 
         { point: [0, -29], title: '第十六章 再遇陶老',
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C016_[N1]' , 
-          toChapter: 'WZXX_M1_N1_C016_[N1]', links: [[-1, -30], [1, -30]],  
+          toChapter: 'WZXX_M1_N1_C016_[N1]', links: [[1, -29],],  
         },
 
-        { point: [-1, -30], title: '第十七章 赔钱',
+        { point: [1, -29], title: '第十六章 灵田',
+        #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C016_[N2]' , 
+          toChapter: 'WZXX_M1_N1_C016_[N2]', links: [[2, -29], ],  
+        },
+
+        { point: [2, -29], title: '第十六章 炸桶',
+        #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C016_[N3]' , 
+          toChapter: 'WZXX_M1_N1_C016_[N3]', links: [],  path: [[2, -30], [1, -30],] 
+        },
+
+        { point: [1, -30], title: '第十七章 赔钱',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C017_[N1]' , 
-          toChapter: 'WZXX_M1_N1_C017_[N1]', links: [[0, -31], [1, -30]],  
+          toChapter: 'WZXX_M1_N1_C017_[N1]', links: [[0, -30], ],  
         },
 
-        { point: [1, -30], title: '第十七章 突破炼气四重', 
+        { point: [0, -30], title: '第十七章 突破炼气四重', 
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C017_[N2]' ,
-          toChapter: 'WZXX_M1_N1_C017_[N2]', links: [[0, -31], [-1, -30]],  
+          toChapter: 'WZXX_M1_N1_C017_[N2]', links: [[0, -31], ],  
         },
 
         { point: [0, -31], title: '第十八章对话陶老',

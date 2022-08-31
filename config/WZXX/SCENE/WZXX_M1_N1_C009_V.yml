@@ -53,18 +53,24 @@ scenes: [
         #1015黄心叶
           { title: "【去迷雾森林中探索】", andVarsOff: ['v2'], varsOn: ['v2'],
            collect: '5',
-           dropIds: ["WZXX_M1_N1_C009_V_Vdrop7",]},
+          #  dropIds: ["WZXX_M1_N1_C009_V_Vdrop7",]
+           },
           #1016百络花
           { title: "【前往荒凉僻静的小径】", andVarsOn: ['v2'], andVarsOff: ['v3'], varsOn: ['v3',], 
           collect: '6',
-          dropIds: ["WZXX_M1_N1_C009_V_Vdrop8",]},
+          # dropIds: ["WZXX_M1_N1_C009_V_Vdrop8",]
+          },
           
           #1017子星草
           { title: "【幽暗森林】",andVarsValue: ['@clues_liuyan6 == 1'], andVarsOn: ['v2', 'v3'], andVarsOff: ['v4'], varsOn: ['v4'], dialogs: ['mengshou'],   },
 
-          { title: "【山谷里面查看查看】",andVarsValue: ['@clues_liuyan6 != 1'], andVarsOn: ['v2', 'v3'], collect: '7', nextChat: 'WZXX_M1_N1_C009_V2',dropIds: ["WZXX_M1_N1_C009_V_Vdrop9",]  },
+          { title: "【山谷里面查看查看】",andVarsValue: ['@clues_liuyan6 != 1'], andVarsOn: ['v2', 'v3'], collect: '7', nextChat: 'WZXX_M1_N1_C009_V2',
+          # dropIds: ["WZXX_M1_N1_C009_V_Vdrop9",] 
+           },
 
-          { title: "【山谷里面查看查看】", andVarsOn: ['v2', 'v3','v4'], collect: '7', nextChat: 'WZXX_M1_N1_C009_V2',dropIds: ["WZXX_M1_N1_C009_V_Vdrop9",]  },
+          { title: "【山谷里面查看查看】", andVarsOn: ['v2', 'v3','v4'], collect: '7', nextChat: 'WZXX_M1_N1_C009_V2',
+          # dropIds: ["WZXX_M1_N1_C00 9_V_Vdrop9",]  
+          },
          
     
         ],
@@ -378,7 +384,7 @@ scenes: [
           { key: 'P3', content: ['“好吧，那就去坐一会儿。','李森炎跟着她去到山间小屋。','“啊，你家在这啊？”','李森炎想起白天时候来到过这里',
           '“你家里是不是有个大爷？”','“对，那是我爷爷。”','“孙女回来啦。”','大爷从屋里走出，看到李森炎的瞬间，眼睛微微放大','“我记得你！”','李森炎苦笑，您老这个时候记性大可不必这么好！'
           ,'“哈哈哈，来来来，喝两杯茶再走。”','兴许是住在山野之中，极少有客来往',
-          '大爷和姑娘都非常热情，李森炎这才知道是自己想多了','人家姑娘并不卖茶','离开的时候还给了李森炎一些不知名草药的种子'],
+          '大爷和姑娘都非常热情，李森炎这才知道是自己想多了','人家姑娘并不卖茶','离开的时候还给了李森炎一些不知名的草药的种子'],
           btn: [{title: '离开去寻找云云',toScene:  "WZXX_M1_N1_C002B_V",dropIds: ['WZXX_M1_N1_C009_V_Vdrop1'],}]},
         ],
     },
@@ -386,9 +392,9 @@ scenes: [
        #选项对话2
           { id: 'C009A_caihuaguniangB',style: 6, title: '采花姑娘的邀约', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'P3', content: ['“天色已晚，我觉得还是算了吧。”','“不是都说好了嘛！哼，果然男人都是骗子！”','采花姑娘负气而走，李森炎愣在原地，不由得苦笑起来',
+          { key: 'P3', content: ['“天色已晚，我觉得还是算了吧。”','“不是都说好了嘛！哼，果然男人都是骗子！”','采花姑娘负气而走，李森炎愣在原地，不由得苦笑起来','又走了一会儿，忽然李森炎路过山村的时候捡到了一些不知名的草药种子','虽然不知道是做什么的，但是收着说不定以后有用',
           ],
-          btn: [{title: '离开去寻找云云',toScene: 'WZXX_M1_N1_C002B_V',},]},
+          btn: [{title: '离开去寻找云云',toScene: 'WZXX_M1_N1_C002B_V',dropIds: ['WZXX_M1_N1_C009_V_Vdrop2'],},]},
         ],
     },
 

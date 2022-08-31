@@ -2,6 +2,7 @@ scenes: [
 
     #
     {
+    #纳戒小世界地图
       id: 'WZXX_M1_N1_C000D_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
@@ -757,7 +758,7 @@ scenes: [
       { 
         id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
         options: [ 
-         { title: '【去种植】', openUI: 'ZhongZhi',}, 
+         { title: '【去种植】', openUI: 'ZhongZhi',toChapter: "WZXX_M1_N1_C016_[N3]",}, 
         ],
       },
 
