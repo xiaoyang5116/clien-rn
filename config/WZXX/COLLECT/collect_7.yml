@@ -7,9 +7,9 @@ collects: [
 
     # 阶段列表
     periods: [
-      { itemsNum: 16 },
-      { itemsNum: 10 },
-      { itemsNum: 7 },
+      { itemsNum: 3 },
+      { itemsNum: 3 },
+      { itemsNum: 1 },
     ], 
 #1017子星草
     # 宝箱配置
