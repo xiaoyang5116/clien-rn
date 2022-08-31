@@ -393,6 +393,7 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C1' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100', 'WZXX_M1_N1_C000C_V/v_icon_101', 'WZXX_M1_N1_C000C_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104'] },
+       
 
     ],
 

@@ -117,7 +117,11 @@ drops: [
 #1018不知名草药
   { id: 'WZXX_M1_N1_C009_V_Vdrop1',  sendProps: '1018,10,showBag',},
   { id: 'WZXX_M1_N1_C009_V_Vdrop2',  sendProps: '1018,10,showBag',},
-  
+
+
+
+  { id: 'S_00Test03_Vdrop1',  sendProps: '887,100,showBag',},
+  { id: 'S_00Test03_Vdrop2',  alterAttrs: ['勇气,-1'],},
 
 
   
