@@ -1,0 +1,11 @@
+# 线索1
+clues:
+  {
+    id: 'liuyan7',
+    type: '流言',
+    filterCondition: {locaton: '郊外',},
+    title: '孩童的话',
+    content: '森林中有白术，丹参、郊外山谷也有丹参',
+    condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
+    groupId: '李家村',
+  }

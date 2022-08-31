@@ -65,7 +65,7 @@ const _images = {
     ],
     bust: [
         { id: 1, img: require('../../assets/avatar/1.jpg') },
-        { id: 2, img: require('../../assets/avatar/2.jpg') },
+        { id: 2, img: require('../../assets/avatar/6.png') },
     ],
     world_bg: [
         { id: 'ShiJieBeiJing_V1', source: require('../../assets/bg/world_bg1.png') },

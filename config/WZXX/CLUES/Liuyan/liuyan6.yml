@@ -1,0 +1,11 @@
+# 线索1
+clues:
+  {
+    id: 'liuyan6',
+    type: '流言',
+    filterCondition: {locaton: '落霞峰',},
+    title: '砍柴少年',
+    content: '子星草在迷雾森林',
+    condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
+    groupId: '李家村',
+  }

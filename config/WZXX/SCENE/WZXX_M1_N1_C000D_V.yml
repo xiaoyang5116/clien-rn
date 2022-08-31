@@ -1,0 +1,928 @@
+scenes: [
+
+    #
+    {
+    #纳戒小世界地图
+      id: 'WZXX_M1_N1_C000D_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      
+      
+
+      ],
+
+      # 动作定义
+      actions: [],
+      #不显示时间
+      worldTimeHidden: true,
+      # 事件定义# 故事中的场景事件暂时没什么意义
+      events: [],
+
+      chats: [
+      #
+
+      { 
+        id: 'WZXX_M1_N1_C000D_V', desc: '回忆', 
+        options: [ 
+          { title: "【纳戒里的小世界】",toScene: 'C000D_V_MAP_-2_1', },
+        ],
+      },
+      { 
+        id: 'WZXX_M1_N1_C000D_V1', desc: '种植', 
+        options: [ 
+          { title: "【在荒废的院子里种植东西】",toScene: 'C000D_V1_MAP_-2_4', },
+        ],
+      },
+
+    
+        ],
+
+  },
+
+
+       {
+  # NPC2
+    id: 'C000D_V_MAP_-2_1', name: '降临之地',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V_MAP_-2_1',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, 1],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  dialogs: ['d3'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '看上去极度荒凉，不见人烟，草木稀少', 
+        options: [ 
+         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_2'}, 
+        ],
+      },
+       #
+      #  { 
+      #   id: 'C2', desc: '又重新回到了原地', 
+      #   options: [ 
+      #    { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_2'}, 
+      #   ],
+      # },
+
+
+
+    ],
+ # 对话框
+    dialogs: [    
+
+     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+        sections: [
+         {
+          key: 'p1',
+          content: ['李森炎看见脚下是砂石铺就的路面', '偶尔可见巨石分布左右','有稀稀疏疏的杂草在石缝中艰难生长','四下无人，也没有留下任何人行走过的痕迹',],
+    },]}
+    ],
+  },
+
+   #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000D_V_MAP_-3_2', name: '矮木林',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V_MAP_-3_2',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, 2],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  dialogs: ['d3'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '杂乱无章的木林，若是好好修整，说不定会变出别一番景色', 
+        options: [ 
+         { title: '【继续往前走】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_3'}, 
+        ],
+      },
+
+      
+       #
+
+
+
+    ],
+ # 对话框
+    dialogs: [    
+
+     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+        sections: [
+         {
+          key: 'p1',
+          content: ['这边入目可见一片稀疏木林', '树的高度只比一个成年人高不了多少','错落无序，野蛮生长','林中路面被落叶铺满，底层的落叶已经腐败','与泥土混合在一起，散发出腐朽的气息',],
+    },]}
+    ],
+  },
+         
+  #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000D_V_MAP_-3_3', name: '狭窄溪流',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V_MAP_-3_3',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, 3],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  dialogs: ['d3'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '这片溪流看起来倒是异常清澈，不知是从哪里流下来的水流', 
+        options: [ 
+         { title: '【继续往前走】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-2_4'}, 
+        ],
+      },
+
+      
+       #
+
+
+
+    ],
+ # 对话框
+    dialogs: [    
+
+     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+        sections: [
+         {
+          key: 'p1',
+          content: ['一条长而狭窄的溪流，不知何处是源头', '也不是何处是尽头','潺潺流水清澈，深可见底','鱼翔浅底，虾蟹遨游，颇具野趣',],
+    },]}
+    ],
+  },
+
+    #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000D_V_MAP_-2_4', name: '荒废的园子',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V_MAP_-2_4',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, 4],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  dialogs: ['d3'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
+        options: [ 
+         { title: '【继续往前走】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-1_3'}, 
+        ],
+      },
+
+      
+       #
+
+
+
+    ],
+ # 对话框
+    dialogs: [    
+
+     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+        sections: [
+         {
+          key: 'p1',
+          content: ['一座貌不惊人的园子，门口有巨型古朴石碑', '上面原有的笔划已被岁月侵蚀磨灭','不过仔细辨认下','依然可以看出“灵药园”三个字',],
+    },]}
+    ],
+  },
+  #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000D_V_MAP_-1_3', name: '泥泞土坑',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V_MAP_-1_3',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 3],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  dialogs: ['d3'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '这里平平无奇，看不出有什么特色，只是看上去比较危险', 
+        options: [ 
+         { title: '【快些离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-1_2'}, 
+        ],
+      },
+
+
+
+    ],
+ # 对话框
+    dialogs: [    
+
+     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+        sections: [
+         {
+          key: 'p1',
+          content: ['一片灰色泥泞的土坑，与寻常路面没有大的差距', '但实际上如同沼泽地','一旦经过，极易深陷其中'],
+    },]}
+    ],
+  },
+   #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000D_V_MAP_-1_2', name: '光秃山坡',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V_MAP_-1_2',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 2],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  dialogs: ['d3'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: "光秃秃的山坡看上去毫无生机\n前面就是最初始来的地方了\n这些地方看起来都平平无奇\n唯有方才那个荒凉的园子有些特色", 
+        options: [ 
+         { title: '【回到荒凉的园子】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toChapter: "WZXX_M1_N1_C016_[N2]",}, 
+        ],
+      },
+
+
+
+    ],
+ # 对话框
+    dialogs: [    
+
+     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+        sections: [
+         {
+          key: 'p1',
+          content: ['一片光秃秃的山坡，什么也没有，呈现一片黢黑的泥土', '已经失去大部分水分','完全硬结，植物无法生长','只有一些长相奇怪的虫子，在黑泥中钻出一个个孔洞',],
+    },]}
+    ],
+  },
+ #=================================场景地图的设置==================================
+    maps: [
+      {
+        id: 'C000D_V_MAP_-2_1',
+        data: [
+          { 
+          point: [-2, 1], title: '降临之地', 
+          #toScene: 'C000D_V_MAP_-2_1', 
+          links: [[-3, 2], ] },
+          { point: [-3, 2], title: '？？？',
+           #toScene: 'C000D_V_MAP_-3_2',
+           links: [] },
+        ]
+      },
+      
+      {
+        id: 'C000D_V_MAP_-3_2',
+        data: [
+        { 
+          point: [-2, 1], title: '降临之地', 
+          #toScene: 'C000D_V_MAP_-2_1', 
+          links: [[-3, 2], ] },
+          { 
+          point: [-3, 2], title: '矮木林',
+           #toScene: 'C000D_V_MAP_-3_2',
+            links: [[-3, 3], ] },
+          { 
+          point: [-3, 3], title: '？？？', 
+         # toScene: 'C000D_V_MAP_-3_3',
+           links: [] 
+           },
+
+        ]
+      },
+      {
+        id: 'C000D_V_MAP_-3_3',
+        data: [
+          { 
+          point: [-2, 1], title: '降临之地', 
+          #toScene: 'C000D_V_MAP_-2_1', 
+          links: [[-3, 2], ] },
+          { 
+          point: [-3, 2], title: '矮木林',
+           #toScene: 'C000D_V_MAP_-3_2',
+            links: [[-3, 3], ] },
+          { 
+          point: [-3, 3], title: '狭窄溪流', 
+         # toScene: 'C000D_V_MAP_-3_3',
+           links: [[-2, 4],] 
+           },
+            { 
+          point: [-2, 4], title: '？？？', 
+         # toScene: 'C000D_V_MAP_-2_4',
+           links: [] 
+           },
+        ]
+      },
+
+       {
+        id: 'C000D_V_MAP_-2_4',
+        data: [
+          { 
+          point: [-2, 1], title: '降临之地', 
+          #toScene: 'C000D_V_MAP_-2_1', 
+          links: [[-3, 2], ] },
+          { 
+          point: [-3, 2], title: '矮木林',
+           #toScene: 'C000D_V_MAP_-3_2',
+            links: [[-3, 3], ] },
+          { 
+          point: [-3, 3], title: '狭窄溪流', 
+         # toScene: 'C000D_V_MAP_-3_3',
+           links: [[-2, 4],] 
+           },
+            { 
+          point: [-2, 4], title: '荒废的园子', 
+         # toScene: 'C000D_V_MAP_-2_4',
+           links: [[-1, 3]] 
+           },
+            { 
+          point: [-1, 3], title: '？？？', 
+         # toScene: 'C000D_V_MAP_-1_3',
+           links: [] 
+           },
+        ]
+      },
+
+
+       {
+        id: 'C000D_V_MAP_-1_3',
+        data: [
+
+          { 
+          point: [-2, 1], title: '降临之地', 
+          #toScene: 'C000D_V_MAP_-2_1', 
+          links: [[-3, 2], ] },
+          { 
+          point: [-3, 2], title: '矮木林',
+           #toScene: 'C000D_V_MAP_-3_2',
+            links: [[-3, 3], ] },
+          { 
+          point: [-3, 3], title: '狭窄溪流', 
+         # toScene: 'C000D_V_MAP_-3_3',
+           links: [[-2, 4],] 
+           },
+            { 
+          point: [-2, 4], title: '荒废的园子', 
+         # toScene: 'C000D_V_MAP_-2_4',
+           links: [[-1, 3]] 
+           },
+            { 
+          point: [-1, 3], title: '泥泞土坑', 
+         # toScene: 'C000D_V_MAP_-1_3',
+           links: [[-1, 2]] 
+           },
+           { 
+          point: [-1, 2], title: '？？？', 
+         # toScene: 'C000D_V_MAP_-1_2',
+           links: [] 
+           },
+
+        ]
+      },
+
+       {
+        id: 'C000D_V_MAP_-1_2',
+        data: [
+
+          { 
+          point: [-2, 1], title: '降临之地', 
+          #toScene: 'C000D_V_MAP_-2_1', 
+          links: [[-3, 2], ] },
+          { 
+          point: [-3, 2], title: '矮木林',
+           #toScene: 'C000D_V_MAP_-3_2',
+            links: [[-3, 3], ] },
+          { 
+          point: [-3, 3], title: '狭窄溪流', 
+         # toScene: 'C000D_V_MAP_-3_3',
+           links: [[-2, 4],] 
+           },
+            { 
+          point: [-2, 4], title: '荒废的园子', 
+         # toScene: 'C000D_V_MAP_-2_4',
+           links: [[-1, 3]] 
+           },
+            { 
+          point: [-1, 3], title: '泥泞土坑', 
+         # toScene: 'C000D_V_MAP_-1_3',
+           links: [[-1, 2]] 
+           },
+           { 
+          point: [-1, 2], title: '光秃山坡', 
+         # toScene: 'C000D_V_MAP_-1_2',
+           links: [[-2, 1]] 
+           },
+
+
+        ]
+      },
+    ],
+       {
+  # NPC2
+    id: 'C000D_V1_MAP_-2_1', name: '降临之地',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V1_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, 1],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '看上去极度荒凉，不见人烟，草木稀少', 
+        options: [ 
+         { title: '【往前探索】',toScene: 'C000D_V1_MAP_-3_2'}, 
+        ],
+      },
+       #
+      #  { 
+      #   id: 'C2', desc: '又重新回到了原地', 
+      #   options: [ 
+      #    { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_2'}, 
+      #   ],
+      # },
+
+
+
+    ],
+#  # 对话框
+#     dialogs: [    
+
+#      {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+#         sections: [
+#          {
+#           key: 'p1',
+#           content: ['李森炎看见脚下是砂石铺就的路面', '偶尔可见巨石分布左右','有稀稀疏疏的杂草在石缝中艰难生长','四下无人，也没有留下任何人行走过的痕迹',],
+#     },]}
+#     ],
+  },
+
+   #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000D_V1_MAP_-3_2', name: '矮木林',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V1_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, 2],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '杂乱无章的木林，若是好好修整，说不定会变出别一番景色', 
+        options: [ 
+         { title: '【继续往前走】', toScene: 'C000D_V1_MAP_-3_3'}, 
+        ],
+      },
+
+      
+       #
+
+
+
+    ],
+#  # 对话框
+#     dialogs: [    
+
+#      {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+#         sections: [
+#          {
+#           key: 'p1',
+#           content: ['这边入目可见一片稀疏木林', '树的高度只比一个成年人高不了多少','错落无序，野蛮生长','林中路面被落叶铺满，底层的落叶已经腐败','与泥土混合在一起，散发出腐朽的气息',],
+#     },]}
+#     ],
+  },
+         
+  #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000D_V1_MAP_-3_3', name: '狭窄溪流',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V1_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, 3],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '这片溪流看起来倒是异常清澈，不知是从哪里流下来的水流', 
+        options: [ 
+         { title: '【继续往前走】', toScene: 'C000D_V1_MAP_-2_4'}, 
+        ],
+      },
+
+      
+       #
+
+
+
+    ],
+#  # 对话框
+#     dialogs: [    
+
+#      {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+#         sections: [
+#          {
+#           key: 'p1',
+#           content: ['一条长而狭窄的溪流，不知何处是源头', '也不是何处是尽头','潺潺流水清澈，深可见底','鱼翔浅底，虾蟹遨游，颇具野趣',],
+#     },]}
+#     ],
+  },
+
+    #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000D_V1_MAP_-2_4', name: '荒废的园子',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V1_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, 4],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
+        options: [ 
+         { title: '【去种植】', openUI: 'ZhongZhi',toChapter: "WZXX_M1_N1_C016_[N3]",}, 
+        ],
+      },
+
+      
+       #
+
+
+
+    ],
+#  # 对话框
+#     dialogs: [    
+
+#      {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+#         sections: [
+#          {
+#           key: 'p1',
+#           content: ['一座貌不惊人的园子，门口有巨型古朴石碑', '上面原有的笔划已被岁月侵蚀磨灭','不过仔细辨认下','依然可以看出“灵药园”三个字',],
+#     },]}
+#     ],
+  },
+  #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000D_V1_MAP_-1_3', name: '泥泞土坑',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V1_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 3],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '这里平平无奇，看不出有什么特色，只是看上去比较危险', 
+        options: [ 
+         { title: '【快些离开】', toScene: 'C000D_V1_MAP_-1_2'}, 
+        ],
+      },
+
+
+
+    ],
+#  # 对话框
+#     dialogs: [    
+
+#      {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+#         sections: [
+#          {
+#           key: 'p1',
+#           content: ['一片灰色泥泞的土坑，与寻常路面没有大的差距', '但实际上如同沼泽地','一旦经过，极易深陷其中'],
+#     },]}
+#     ],
+  },
+   #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000D_V1_MAP_-1_2', name: '光秃山坡',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V1_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 2],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '光秃秃的山坡看上去毫无生机', 
+        options: [ 
+         { title: '【回到荒凉的园子】', toChapter: "WZXX_M1_N1_C009_[N1]",}, 
+        ],
+      },
+
+
+
+    ],
+#  # 对话框
+#     dialogs: [    
+
+#      {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+#         sections: [
+#          {
+#           key: 'p1',
+#           content: ['一片光秃秃的山坡，什么也没有，呈现一片黢黑的泥土', '已经失去大部分水分','完全硬结，植物无法生长','只有一些长相奇怪的虫子，在黑泥中钻出一个个孔洞',],
+#     },]}
+#     ],
+  },
+
+
+#=================================场景地图的设置==================================
+    maps: [
+    {
+            id: 'C000D_V1_MAP_0_0',
+            data: [
+
+              { 
+              point: [-2, 1], title: '降临之地', 
+              toScene: 'C000D_V1_MAP_-2_1', 
+              links: [[-3, 2], ] },
+              { 
+              point: [-3, 2], title: '矮木林',
+              toScene: 'C000D_V1_MAP_-3_2',
+                links: [[-3, 3], ] },
+              { 
+              point: [-3, 3], title: '狭窄溪流', 
+              toScene: 'C000D_V1_MAP_-3_3',
+              links: [[-2, 4],] 
+              },
+                { 
+              point: [-2, 4], title: '荒废的园子', 
+              toScene: 'C000D_V1_MAP_-2_4',
+              links: [[-1, 3]] 
+              },
+                { 
+              point: [-1, 3], title: '泥泞土坑', 
+              toScene: 'C000D_V1_MAP_-1_3',
+              links: [[-1, 2]] 
+              },
+              { 
+              point: [-1, 2], title: '光秃山坡', 
+              toScene: 'C000D_V1_MAP_-1_2',
+              links: [[-2, 1]] 
+              },
+
+
+            ]
+          },
+   ],
+  ]

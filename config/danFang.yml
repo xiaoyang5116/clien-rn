@@ -8,8 +8,12 @@
 
 rules: [
 
-  { id: 1 , propId: 351, name: '护脉丹', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 1015, num: 1 },{ id: 1016, num: 1 },{ id: 1017, num: 1 },], 
-  props: [], 
+  { id: 1 , propId: 353, name: '护脉丹', tags: [], attrs: ['材料'], quality: 2, 
+  #1015黄心叶  1016百络花  1017子星草
+  stuffs: [{ id: 1015, num: 1 },{ id: 1016, num: 1 },{ id: 1017, num: 1 },], 
+  #1018不知名草药
+  props: [{id: 1018, num: 1},], 
+  #351白色护脉丹   352绿色护脉丹   3
   targets: [{ id: 351, num: 1, rate: 80 },{ id: 352, num: 1, rate: 20 }], 
   time: 5, desc: '突破练气期的最佳丹药' },
 
