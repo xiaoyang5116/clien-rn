@@ -106,28 +106,28 @@ scenes: [
         { 
         id: 'WZXX_M1_N1_C009_V3', desc: '询问采药人', 
         options: [ 
-          { title: "【上前和村民交谈】",dialogs: ['C009A_npcA'],},
+          { title: "【上前和村民交谈】",dialogs: ['C009A_npcA'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C009_V4', desc: '询问采药人', 
         options: [ 
-          { title: "【与采花姑娘交谈】",dialogs: ['C009A_npcB'],},
+          { title: "【与采花姑娘交谈】",dialogs: ['C009A_npcB'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C009_V5', desc: '询问采药人', 
         options: [ 
-          { title: "【询问砍柴的少年】",dialogs: ['C009A_npcC'],},
+          { title: "【询问砍柴的少年】",dialogs: ['C009A_npcC'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C009_V6', desc: '遇见老头', 
         options: [ 
-          { title: "【前面有个老头上前问问情况】",dialogs: ['C009A_sycw'],},
+          { title: "【前面有个老头上前问问情况】",dialogs: ['C009A_sycw'], icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
         ],
       },
 
@@ -204,7 +204,13 @@ scenes: [
                  sections: [
                   {
                      key: 'p1',
-                      content: ['根据砍柴少年给的线索，李森炎来到幽暗森林中寻找子星草', '然而他非但没有在幽暗森林中找到子星草', '反而还遇到了猛虎', '不过幸好李森炎身手敏捷成功从猛兽口中脱险','……','李森炎寻遍幽暗森林，却毫无所获','这才确定砍柴少年给的是条假线索！','小小年纪就这么狡猾！可恶！','李森炎狼狈离开幽暗森林，前往山谷寻子星草', ],
+                      content: ['根据砍柴少年给的线索','李森炎来到幽暗森林中寻找子星草',
+                       '然而,他非但没有在幽暗森林中找到子星草',
+                       '反而还遇到了猛虎', 
+                       '不过幸好李森炎身手敏捷成功从猛兽口中脱险',
+                       '……','李森炎寻遍幽暗森林，却毫无所获',
+                       '这才确定','砍柴少年给的是条假线索！','小小年纪就这么狡猾！可恶！',
+                       '李森炎狼狈离开幽暗森林，前往山谷寻子星草……', ],
                    },  
                    ]
                    },

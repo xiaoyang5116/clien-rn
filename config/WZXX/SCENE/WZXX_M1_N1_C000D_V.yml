@@ -451,14 +451,14 @@ scenes: [
       { 
         id: 'C1', desc: "这些地方看起来都平平无奇\n唯有方才那个荒凉的园子有些特色", 
         options: [ 
-         { title: '【回到荒凉的园子】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toChapter: "WZXX_M1_N1_C016_[N2]",}, 
+         { title: '【回到荒凉的园子】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V1_MAP_-2_4'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
       { 
         id: 'C2', desc: '光秃秃的山坡看上去毫无生机,前面就是最初始来的地方了', 
         options: [ 
-         { title: '【回到荒凉的园子】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toChapter: "WZXX_M1_N1_C016_[N2]",}, 
+         { title: '【回到荒凉的园子】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V1_MAP_-2_4'}, 
          
         ],
       },
@@ -852,7 +852,8 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter',  andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C2'  },
     ],
 
     # 对话选项
@@ -861,11 +862,19 @@ scenes: [
       { 
         id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
         options: [ 
-         { title: '【去种植】', openUI: 'ZhongZhi',toChapter: "WZXX_M1_N1_C016_[N3]",}, 
+        { title: '【似乎有些发现】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toChapter: "WZXX_M1_N1_C016_[N2]",}, 
+         
         ],
       },
 
-      
+       #
+      { 
+        id: 'C2', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
+        options: [ 
+       
+         { title: '【去种植】', openUI: 'ZhongZhi',toChapter: "WZXX_M1_N1_C016_[N3]",}, 
+        ],
+      },
        #
 
 
@@ -970,7 +979,9 @@ scenes: [
       { 
         id: 'C1', desc: '光秃秃的山坡看上去毫无生机', 
         options: [ 
-         { title: '【回到荒凉的园子】', toChapter: "WZXX_M1_N1_C009_[N1]",}, 
+       { title: '【这儿没什么好看的】', toScene: 'C000D_V1_MAP_-2_1'}, 
+        
+         
         ],
       },
 

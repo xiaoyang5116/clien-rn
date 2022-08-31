@@ -133,7 +133,7 @@ scenes: [
       { 
         id: 'c0', desc: '李森炎看出他外强中干，也丝毫不慌', 
         options: [ 
-          { title: '交战', toScene: 'S_00Test03',}, 
+          { title: '交战', andVarsValue: ['@clues_liuyan6 != 1','@clues_liuyan4 != 1','@clues_liuyan5 != 1'],toScene: 'S_00Test03',}, 
         ],
       },
       { 
