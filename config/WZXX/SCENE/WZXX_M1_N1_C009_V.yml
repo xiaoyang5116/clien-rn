@@ -68,7 +68,7 @@ scenes: [
           #1017子星草
           { title: "【幽暗森林】",andVarsValue: ['@clues_liuyan6 == 1'], andVarsOn: ['v2', 'v3'], andVarsOff: ['v4'], varsOn: ['v4'], dialogs: ['mengshou'],   },
 
-          { title: "【山谷里面查看查看】",andVarsValue: ['@clues_liuyan6 != 1'], andVarsOn: ['v2', 'v3'], collect: '7', nextChat: 'WZXX_M1_N1_C009_V2',
+          { title: "【山谷里面查看查看】",andVarsValue: ['@clues_liuyan6 != 1'], andVarsOn: ['v2', 'v3'], varsOn: ['v5D'], collect: '7', nextChat: 'WZXX_M1_N1_C009_V2',
           # dropIds: ["WZXX_M1_N1_C009_V_Vdrop9",] 
            },
 
