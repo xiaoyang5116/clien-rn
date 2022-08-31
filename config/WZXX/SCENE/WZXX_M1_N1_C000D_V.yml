@@ -78,9 +78,18 @@ scenes: [
       { 
         id: 'C1', desc: '看上去极度荒凉，不见人烟，草木稀少', 
         options: [ 
-         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_2'}, 
+         { title: '【离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_2'}, 
+         { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
+      { 
+        id: 'C2', desc: '身前有一个散发青色光效的阵法，一明一暗之间，尽显玄妙。', 
+        options: [ 
+         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_2'}, 
+         
+        ],
+      },
+      
        #
       #  { 
       #   id: 'C2', desc: '又重新回到了原地', 
@@ -94,8 +103,12 @@ scenes: [
     ],
      # 对话框 1黑旁白2白旁白
     dialogs: [
-      { id: 'p0', style: 1, sections: ['李森炎看见脚下是砂石铺就的路面', '偶尔可见巨石分布左右','有稀稀疏疏的杂草在石缝中艰难生长','四下无人，也没有留下任何人行走过的痕迹',], },
-      
+     
+      {             id: 'p0',
+                    style: "1B",
+                    title: '降临之地',
+                    content: '李森炎看见脚下是砂石铺就的路面', '偶尔可见巨石分布左右','有稀稀疏疏的杂草在石缝中艰难生长','四下无人，也没有留下任何人行走过的痕迹',
+                  }
     ],
   },
 #  # 对话框
@@ -146,11 +159,17 @@ scenes: [
       { 
         id: 'C1', desc: '杂乱无章的木林，若是好好修整，说不定会变出别一番景色', 
         options: [ 
-         { title: '【继续往前走】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_3'}, 
+         { title: '【继续走】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_3'}, 
+         { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
-
-      
+      { 
+        id: 'C2', desc: '这边十分寻常，没有什么好看的', 
+        options: [ 
+         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_3'}, 
+         
+        ],
+      },
        #
 
 
@@ -159,8 +178,12 @@ scenes: [
  
  # 对话框 1黑旁白2白旁白
     dialogs: [
-      { id: 'p0', style: 1, sections: ['这边入目可见一片稀疏木林', '树的高度只比一个成年人高不了多少','错落无序，野蛮生长','林中路面被落叶铺满，底层的落叶已经腐败','与泥土混合在一起，散发出腐朽的气息',], },
-      
+     
+      {             id: 'p0',
+                    style: "1B",
+                    title: '矮木林',
+                    content: '这边入目可见一片稀疏木林', '树的高度只比一个成年人高不了多少','错落无序，野蛮生长','林中路面被落叶铺满，底层的落叶已经腐败','与泥土混合在一起，散发出腐朽的气息'
+                  }
     ],
      
   },
@@ -201,10 +224,17 @@ scenes: [
       { 
         id: 'C1', desc: '这片溪流看起来倒是异常清澈，不知是从哪里流下来的水流', 
         options: [ 
-         { title: '【继续往前走】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-2_4'}, 
+         { title: '【再往里看看】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-2_4'}, 
+         { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
-
+      { 
+        id: 'C2', desc: '水清澈见底，或许还能抓一些灵虾解馋', 
+        options: [ 
+         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-2_4'}, 
+         
+        ],
+      },
       
        #
 
@@ -213,8 +243,13 @@ scenes: [
     ],
     # 对话框 1黑旁白2白旁白
     dialogs: [
-      { id: 'p0', style: 1, sections: ['一条长而狭窄的溪流，不知何处是源头', '也不是何处是尽头','潺潺流水清澈，深可见底','鱼翔浅底，虾蟹遨游，颇具野趣',], },
       
+      {
+                    id: 'p0',
+                    style: "1B",
+                    title: '狭窄溪流',
+                    content: '一条长而狭窄的溪流，不知何处是源头', '也不是何处是尽头','潺潺流水清澈，深可见底','鱼翔浅底，虾蟹遨游，颇具野趣',
+                  }
     ],
      
   },
@@ -266,10 +301,17 @@ scenes: [
       { 
         id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
         options: [ 
-         { title: '【继续往前走】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-1_3'}, 
+         { title: '【去前面探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-1_3'}, 
+         { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
-
+      { 
+        id: 'C2', desc: '园顶有霞光照耀而下，犹如祥瑞降世，平凡之中却见不凡，让人忍不住想去探索', 
+        options: [ 
+         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-1_3'}, 
+         
+        ],
+      },
       
        #
 
@@ -279,8 +321,13 @@ scenes: [
 
      # 对话框 1黑旁白2白旁白
     dialogs: [
-      { id: 'p0', style: 1, sections: ['一座貌不惊人的园子，门口有巨型古朴石碑', '上面原有的笔划已被岁月侵蚀磨灭','不过仔细辨认下','依然可以看出“灵药园”三个字',], },
-      
+     
+      {
+                    id: 'p0',
+                    style: "1B",
+                    title: '荒废的园子',
+                    content: '一座貌不惊人的园子，门口有巨型古朴石碑', '上面原有的笔划已被岁月侵蚀磨灭','不过仔细辨认下','依然可以看出“灵药园”三个字',
+                  }
     ],
      
   },
@@ -329,19 +376,31 @@ scenes: [
     chats: [
       #
       { 
-        id: 'C1', desc: '这里平平无奇，看不出有什么特色，只是看上去比较危险', 
+        id: 'C1', desc: '这里平平无奇，看不出有什么特色，看上去比较危险', 
         options: [ 
-         { title: '【快些离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-1_2'}, 
+         { title: '【还是快些离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-1_2'}, 
+         { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
-
+      { 
+        id: 'C2', desc: '往前走着，差点不慎掉入泥潭，那泥潭之中仿佛危机四伏', 
+        options: [ 
+         { title: '【快快离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-1_2'}, 
+         
+        ],
+      },
 
 
     ],
      # 对话框 1黑旁白2白旁白
     dialogs: [
-      { id: 'p0', style: 1, sections: ['一片灰色泥泞的土坑，与寻常路面没有大的差距', '但实际上如同沼泽地','一旦经过，极易深陷其中'], },
-      
+     
+       {
+                    id: 'p0',
+                    style: "1B",
+                    title: '泥泞土坑',
+                    content: '一片灰色泥泞的土坑，与寻常路面没有大的差距', '但实际上如同沼泽地','一旦经过，极易深陷其中'
+                  }
     ],
      
   },
@@ -390,9 +449,17 @@ scenes: [
     chats: [
       #
       { 
-        id: 'C1', desc: "光秃秃的山坡看上去毫无生机\n前面就是最初始来的地方了\n这些地方看起来都平平无奇\n唯有方才那个荒凉的园子有些特色", 
+        id: 'C1', desc: "这些地方看起来都平平无奇\n唯有方才那个荒凉的园子有些特色", 
         options: [ 
          { title: '【回到荒凉的园子】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toChapter: "WZXX_M1_N1_C016_[N2]",}, 
+         { title: '【观察四周】', nextChat: 'C2'},
+        ],
+      },
+      { 
+        id: 'C2', desc: '光秃秃的山坡看上去毫无生机,前面就是最初始来的地方了', 
+        options: [ 
+         { title: '【回到荒凉的园子】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toChapter: "WZXX_M1_N1_C016_[N2]",}, 
+         
         ],
       },
 
@@ -401,8 +468,13 @@ scenes: [
     ],
      # 对话框 1黑旁白2白旁白
     dialogs: [
-      { id: 'p0', style: 1, sections: ['一片光秃秃的山坡，什么也没有，呈现一片黢黑的泥土', '已经失去大部分水分','完全硬结，植物无法生长','只有一些长相奇怪的虫子，在黑泥中钻出一个个孔洞',], },
-      
+    
+      {
+                    id: 'p0',
+                    style: "1B",
+                    title: '光秃山坡',
+                    content: '一片光秃秃的山坡，什么也没有，呈现一片黢黑的泥土', '已经失去大部分水分','完全硬结，植物无法生长','只有一些长相奇怪的虫子，在黑泥中钻出一个个孔洞',
+                  }
     ],
      
   },
