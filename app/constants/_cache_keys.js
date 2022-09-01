@@ -49,4 +49,7 @@ export class LocalCacheKeys {
     // 炼器数据
     static LIANQI_DATA = "LIANQI_DATA"
 
+    // 供奉数据
+    static WORSHIP_DATA = "WORSHIP_DATA"
+
 }
