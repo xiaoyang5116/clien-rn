@@ -23,6 +23,7 @@ import UndoneProgressBar from './farmComponents/UndoneProgressBar';
 import Improve from './Improve';
 import Accelerate from './Accelerate';
 import SpriteSheet from '../SpriteSheet';
+import RewardsPage from '../alchemyRoom/components/RewardsPage';
 
 
 // 状态 status: 0-未开启, 1-开启但未种植, 2-种植中, 3-已成熟
@@ -140,7 +141,23 @@ const Farm = (props) => {
         const onPress = () => {
             if (item.status === 3) {
                 // return Toast.show("请先采集")
-                return props.dispatch(action("PlantModel/collection")({ lingTianName, lingTianId: item.id }))
+                return props.dispatch(action("PlantModel/getCollectionData")({ lingTianName, lingTianId: item.id })).then(result => {
+                    const { propConfig, currentLingTianData, targetsData } = result
+                    const data = {}
+                    data.targets = [propConfig]
+                    const key = RootView.add(
+                        <RewardsPage
+                            title={"获得道具"}
+                            recipe={data}
+                            getAward={() => {
+                                props.dispatch(action("PlantModel/collection")({ lingTianData: currentLingTianData, targetsData, propConfig }))
+                            }}
+                            onClose={() => {
+                                RootView.remove(key);
+                            }}
+                        />,
+                    );
+                })
             }
             if (item.status === 2) {
                 return Toast.show("已种植")

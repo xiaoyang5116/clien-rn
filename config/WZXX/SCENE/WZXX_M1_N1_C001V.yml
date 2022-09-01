@@ -39,10 +39,11 @@ scenes: [
       #
       { 
         id: 'WZXX_M1_N1_C001V', desc: '选项', 
-        options: [  
-          { 
-            title: "【急中生智！】",dialogs: ['Screen1'], 
-          },
+        options: [     
+            {title: "【急中生智！】",dialogs: ['Screen1'], },
+            {title: "【跳过此段剧情】",toChapter: "WZXX_M1_N1_C001B"},
+           
+          
         ],
       },
       #

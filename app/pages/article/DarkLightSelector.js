@@ -22,7 +22,7 @@ const DarkLightSelector = (props) => {
     }
   
     const button = darkMode.current
-      ? <FontAwesome name={'moon-o'} size={23} /> : <Fontisto name={'day-sunny'} size={23} />
+      ? <FontAwesome name={'moon-o'} color={"#111"} size={23} /> : <Fontisto name={'day-sunny'} color={"#111"} size={23} />
     const text = darkMode.current
       ?  <Text style={styles.bannerButtonText}>夜间模式</Text> :  <Text style={styles.bannerButtonText}>白天模式</Text>
   
