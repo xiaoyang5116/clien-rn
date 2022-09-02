@@ -112,6 +112,7 @@ const StoryTabPage = (props) => {
   }, []);
 
   const onClickItem = (e) => {
+    DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER)
     if (e.item != null && e.item.duration != undefined 
       && (completedProgressIds.current.indexOf(e.item.progressId) == -1)) {
       return // 倒计时选项没结束不能点击

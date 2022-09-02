@@ -113,15 +113,21 @@ const AlchemyRoom = props => {
     );
   };
 
+  const img = alchemyData ? require('../../../assets/bg/xianglu_open.png') : require('../../../assets/bg/xianglu_close.png')
+
   return (
     <View style={{ flex: 1, backgroundColor: '#ccc', zIndex: 99 }}>
       <FastImage
         style={{ position: 'absolute', width: px2pd(1080), height: px2pd(2400) }}
         source={require('../../../assets/plant/plantBg.jpg')}
       />
+      <FastImage
+        style={{ position: 'absolute', width: px2pd(1080), height: px2pd(2400) }}
+        source={img}
+      />
       <SafeAreaView style={{ flex: 1 }}>
         <Header3
-          title={'炼丹房'}
+          title={'炼丹炉'}
           fontStyle={{ color: '#fff' }}
           iconColor={'#fff'}
           containerStyle={{ marginTop: 12 }}

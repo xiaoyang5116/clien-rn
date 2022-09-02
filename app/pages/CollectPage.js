@@ -179,6 +179,9 @@ const CollectProgress = (props) => {
         return sec - 1;
       });
     }, 1000);
+    return () => {
+      clearInterval(timer);
+    }
   }, []);
 
   const percent = seconds / props.time;
@@ -442,6 +445,7 @@ const CollectPage = (props) => {
       <View style={styles.bodyContainer}>
         <View style={styles.topBarContainer}>
           <TouchableWithoutFeedback onPress={() => {
+              props.dispatch(action('CollectModel/getBagItems')({ collectId: props.collectId }));
               if (props.onClose != undefined) {
                 props.onClose();
               }
