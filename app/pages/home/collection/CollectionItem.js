@@ -14,6 +14,7 @@ import RootView from '../../../components/RootView';
 import FastImage from 'react-native-fast-image';
 import StarsBanner from './StarsBanner';
 import ActivationPage from './ActivationPage';
+import UpgradePage from './UpgradePage';
 
 const BACKGROUND_IMAGES = [
     require('../../../../assets/collection/bg_1.png'),
@@ -43,7 +44,9 @@ const CollectionItem = (props) => {
                 RootView.remove(key);
             }} />);
         } else {
-            
+            const key = RootView.add(<UpgradePage data={props.data} onClose={() => {
+                RootView.remove(key);
+            }} />);
         }
     }}>
         <View style={{ width: px2pd(220), height: px2pd(230),  }}>

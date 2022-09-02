@@ -91,6 +91,29 @@ export default {
       
       return true;
     },
+
+    *upgrade({ payload }, { call, put, select }) {
+      const collectionState = yield select(state => state.CollectionModel);
+      const userState = yield select(state => state.UserModel);
+      const { id } = payload;
+
+      const found = collectionState.items.find(e => e.id == id);
+      if (found == undefined || !found.actived)
+        return false;
+
+      // 改良需要扣除铜币
+      const upgradeItem = lo.find(found.upgrade, (v, k) => v.lv == (found.level + 1));
+      if (upgradeItem != undefined && upgradeItem.copper > 0 && userState.copper >= upgradeItem.copper) {
+        yield put.resolve(action('UserModel/alterCopper')({ value: -upgradeItem.copper }));
+      } else {
+        return false;
+      }
+
+      found.level += 1;
+      yield call(LocalStorage.set, LocalCacheKeys.COLLECTION_DATA, collectionState.items);
+
+      return true;
+    },
     
   },
   

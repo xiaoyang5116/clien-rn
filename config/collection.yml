@@ -16,6 +16,72 @@ collections: [
       lv1: [{ key: '速度', value: 10 }, { key: '防御', value: 5 }],
       lv2: [{ key: '速度', value: 20 }, { key: '防御', value: 10 }],
       lv3: [{ key: '速度', value: 30 }, { key: '防御', value: 20 }],
+    },
+
+    # 解锁道具
+    propId: 700,
+
+    # 星级
+    stars: 3,
+
+    # 升级
+    upgrade: [
+      { lv: 1, copper: 200 },
+      { lv: 2, copper: 300 },
+      { lv: 3, copper: 400 },
+    ]
+  },
+
+  {
+    # 收藏品唯一ID
+    id: 2,
+
+    # 收藏品名称
+    name: '金手镯',
+
+    # 所属分类
+    categories: ['金'],
+
+    # 收藏品属性加成
+    attrs: {
+      lv1: [{ key: '速度', value: 10 }, { key: '防御', value: 5 }],
+      lv2: [{ key: '速度', value: 20 }, { key: '防御', value: 10 }],
+      lv3: [{ key: '速度', value: 30 }, { key: '防御', value: 20 }],
+      lv4: [{ key: '速度', value: 40 }, { key: '防御', value: 20 }],
+      lv5: [{ key: '速度', value: 50 }, { key: '防御', value: 30 }],
+    },
+
+    # 解锁道具
+    propId: 700,
+
+    # 星级
+    stars: 5,
+
+    # 升级
+    upgrade: [
+      { lv: 1, copper: 200 },
+      { lv: 2, copper: 300 },
+      { lv: 3, copper: 400 },
+      { lv: 4, copper: 500 },
+      { lv: 5, copper: 600 },
+    ]
+  },
+
+  {
+    # 收藏品唯一ID
+    id: 3,
+
+    # 收藏品名称
+    name: '金戒指',
+
+    # 所属分类
+    categories: ['金'],
+
+    # 收藏品属性加成
+    attrs: {
+      lv1: [{ key: '速度', value: 10 }, { key: '防御', value: 5 }],
+      lv2: [{ key: '速度', value: 20 }, { key: '防御', value: 10 }],
+      lv3: [{ key: '速度', value: 30 }, { key: '防御', value: 20 }],
       lv4: [{ key: '速度', value: 40 }, { key: '防御', value: 20 }],
       lv5: [{ key: '速度', value: 50 }, { key: '防御', value: 30 }],
       lv6: [{ key: '速度', value: 60 }, { key: '防御', value: 60 }],
