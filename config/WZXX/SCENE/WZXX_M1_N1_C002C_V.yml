@@ -116,7 +116,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002C_V6', desc: '白月光', 
         options: [ 
-          { title: "【动之以情，让她庇护】",toChapter: "WZXX_M1_N1_C003_[N3]" , icon: { id: 7, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] },
+          { title: "【动之以情，让她庇护】",toChapter: "WZXX_M1_N1_C003_[N3]" ,dropIds: ['WZXX_M1_N1_C002C_Vdrop1',], icon: { id: 7, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] },
           { title: "【将她作为人质，要挟白府】",dialogs: ['C002C_baiyueguangB'], icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},
         ],
       },

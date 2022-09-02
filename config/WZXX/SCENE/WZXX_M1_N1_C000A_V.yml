@@ -10,6 +10,7 @@ scenes: [
       { id: "v1", min: 0, max: 1 },
       { id: "v_icon_100", min: 0, max: 1 },
       { id: "v_icon_101", min: 0, max: 1 },
+      { id: "v_icon_102", min: 0, max: 1 },
       
       
       # { id: "renwubiaoqian_100", min: 0, max: 1 },
@@ -36,7 +37,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000A_V1', desc: '去打听情报', 
         options: [ 
-          { title: "【寻找药材】",toScene: 'C000A_V_MAP_2_2', varsOn: ['v_icon_101'] },
+          { title: "【寻找药材】",toScene: 'C000A_V_MAP_2_2', varsOn: ['v_icon_102'] },
         ],
       },
       # { 
@@ -1516,6 +1517,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+      
     ],
     # 对话选项
     chats: [
@@ -1542,7 +1544,14 @@ scenes: [
           btn: [{title: '去问孩童',tokey: "P4"},]},
 
           { key: 'P4', content: ['李森炎问了问路边的孩子','那孩子吵着要吃糖才告诉李森炎','李森炎转头买了一个糖葫芦递给他','他笑着说了好些个地方','情报收集的差不多了，是时候验证情报真假','听说鉴宝阁里有专门鉴定情报真假的情报阁','是否前往验证？'],
-          btn: [{title: '去验证情报的真假',toScene: 'C000A_V_MAP_3_1',addCluesId: ["liuyan3"],  },{title: '不去就在原地再想想',tokey: "C1",addCluesId: ["liuyan3"]},]},
+          btn: [{title: '去验证情报的真假',toScene: 'C000A_V_MAP_3_1',addCluesId: ["liuyan3"],
+           varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,
+           varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',] 
+           },
+          {title: '不去就在原地再想想',tokey: "C1",addCluesId: ["liuyan3"],
+           varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,
+           varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',]
+          },]},
     ],},
     ],
   },
@@ -1797,7 +1806,7 @@ scenes: [
            links: [] 
            },
           { point: [2, 2], title: '巷子',
-           toScene: 'C000A_V_MAP_2_2',
+           toScene: 'C000A_V_MAP_2_2', icon: { id: 100, bindVar: 'WZXX_M1_N1_C000A_V/v_icon_102' },
             links: [] 
             },
           

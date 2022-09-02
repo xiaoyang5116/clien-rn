@@ -51,7 +51,7 @@ scenes: [
     # 当前场景地图
     mapId: 'C000C_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [-1, 1],
+    mapCenterPoint: [0, 4],
 
      # 变量定义
     vars: [
@@ -260,7 +260,7 @@ scenes: [
           sections: [
           { key: 'P1', content: ['财务主管：','“你来财务部干嘛？薪水下个月发。”','李森炎：“……”','这人怎么见谁都以为是来跟他讨钱的啊！',
           ],
-          btn: [{title: '去找赵某',toScene: 'C000C_V_MAP_1_2',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104',]},]},
+          btn: [{title: '去找总经理',toScene: 'C000C_V_MAP_0_-1',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104',]},]},
     ],},
     ],
   },

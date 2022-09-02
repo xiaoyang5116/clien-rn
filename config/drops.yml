@@ -123,7 +123,7 @@ drops: [
   { id: 'S_00Test03_Vdrop1',  sendProps: '887,100,showBag',},
   { id: 'S_00Test03_Vdrop2',  alterAttrs: ['勇气,-1'],},
 
-
+  { id: 'WZXX_M1_N1_C002C_Vdrop1',  sendProps: '44,1,showBag',},
   
 
 
