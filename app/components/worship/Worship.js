@@ -13,33 +13,44 @@ import { px2pd } from '../../constants/resolution';
 import { action, connect, getPropIcon } from '../../constants';
 import qualityStyle from '../../themes/qualityStyle';
 import RootView from '../RootView';
+import { now, timeLeft } from '../../utils/DateTimeUtils';
 
 import FastImage from 'react-native-fast-image';
 import { TextButton, Header3 } from '../../constants/custom-ui';
 import OfferingModal from './OfferingModal';
 
 
-const DATA = [
-  // {id: 1, propId: 20, name: '西瓜', iconId: 1, quality: 1},
-  // {id: 2, propId: 21, name: '苹果', iconId: 2, quality: 1},
-  // {id: 3, propId: 22, name: '樱桃', iconId: 3, quality: 1},
-  // {id: 4, propId: 23, name: '杏', iconId: 4, quality: 1},
-
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-  { id: 4 },
-];
-
 const Worship = props => {
   const { worshipData } = props;
 
+  const addWorshipProp = ({ worshipProp, gridId }) => {
+    props.dispatch(action('WorshipModel/addWorshipProp')({ worshipProp, gridId }))
+  }
+
+  const cancelWorship = (item) => {
+    props.dispatch(action('WorshipModel/cancelWorship')(item))
+  }
+
+  // const LeftTime = () => {
+  //   if (worshipData[0].propId !== undefined) {
+  //     const diffTime = Math.floor((now() - worshipData[0].beginTime) / 1000);
+  //     // 当前需要的时间
+  //     const currentNeedTime = worshipData[0].needTime - diffTime;
+  //     return (
+  //       // <Text>{worshipData[0]}</Text>
+  //       <Text>{timeLeft(currentNeedTime)}</Text>
+  //     )
+  //   }
+  // }
+
   const SpaceGrid = ({ item }) => {
-    const addOffering = () => {
+    const openOfferingPop = () => {
       props.dispatch(action('WorshipModel/getOfferingProps')()).then(result => {
         if (Array.isArray(result)) {
           const key = RootView.add(
             <OfferingModal
+              addWorshipProp={addWorshipProp}
+              gridId={item.id}
               data={result}
               onClose={() => {
                 RootView.remove(key);
@@ -51,7 +62,7 @@ const Worship = props => {
     };
 
     return (
-      <TouchableOpacity style={styles.gridContainer} onPress={addOffering}>
+      <TouchableOpacity style={styles.gridContainer} onPress={openOfferingPop}>
         <View
           style={{
             width: px2pd(160),
@@ -65,13 +76,14 @@ const Worship = props => {
     );
   };
 
-  const PropGrid = ({ item }) => {
+  const SeedGrid = ({ item }) => {
     const quality_style = qualityStyle.styles.find(
       e => e.id == parseInt(item.quality),
     );
     const image = getPropIcon(item.iconId);
+
     return (
-      <TouchableOpacity style={styles.gridContainer} onPress={() => { }}>
+      <TouchableOpacity style={styles.gridContainer} onPress={() => { cancelWorship(item) }}>
         <FastImage
           style={{
             width: px2pd(160),
@@ -88,11 +100,11 @@ const Worship = props => {
   };
 
   const renderGrid = ({ item }) => {
-    if (item.propId !== undefined) {
-      return <PropGrid item={item} />;
+    if (item.status === 0) {
+      return <SpaceGrid item={item} />;
+    } else if (item.status === 1) {
+      return <SeedGrid item={item} />;
     }
-
-    return <SpaceGrid item={item} />;
   };
 
   return (
@@ -104,9 +116,11 @@ const Worship = props => {
           iconColor={'#000'}
           onClose={props.onClose}
         />
+
         <View style={styles.container}>
+          {/* <LeftTime /> */}
           <FlatList
-            data={worshipData.length > 0 ? worshipData : DATA}
+            data={worshipData}
             renderItem={renderGrid}
             horizontal={false}
             numColumns={4}
