@@ -7,6 +7,9 @@
 #{ id: 'D1000000', sendProps: '40,10', alterAttrs: ['气运,1', '道行,2'] },
 # ===========================================
 drops: [
+
+  
+
   #887铜币
   { id: 'WZXX_M1_N1_C001V_drop1', sendProps: '887,10,showBag', },
   { id: 'WZXX_M1_N1_C001V_drop2',  alterAttrs: ['悟性,1'] },
@@ -17,6 +20,7 @@ drops: [
   { id: 'WZXX_M1_N1_C001V_drop7',  alterAttrs: ['智慧,1'] },
   { id: 'WZXX_M1_N1_C001V_drop8',  alterAttrs: ['智慧,-1'] },
   { id: 'WZXX_M1_N1_C001V_drop9',  alterAttrs: ['身法,1'] },
+  { id: 'WZXX_M1_N1_C001V_drop10',  sendProps: '44,100,showBag',},
   #887铜币
   { id: 'WZXX_M1_N1_C001A_V_Vdrop1', sendProps: '887,10,showBag', },
   #600白城冷笑话

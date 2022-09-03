@@ -3,6 +3,7 @@
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C033']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C033FZ'] }, 
      { header: '第三十三章 生死不明' },
+      { world: { name: '灵修界' } },
 ]
 #END==========================================
 　　

@@ -3,6 +3,7 @@
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C002_[N9]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C002_[N9]FZ'] }, 
      { header: '第二章 成功见到母亲' },
+     { world: { name: '尘界' } },
 ]
 #END==========================================
 

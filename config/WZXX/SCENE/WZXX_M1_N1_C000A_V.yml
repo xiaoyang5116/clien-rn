@@ -37,7 +37,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000A_V1', desc: '去打听情报', 
         options: [ 
-          { title: "【寻找药材】",toScene: 'C000A_V_MAP_2_2', varsOn: ['v_icon_102'] },
+          { title: "【寻找药材】",toScene: 'C000A_V_MAP_2_2', varsOn: ['v_icon_101'] },
         ],
       },
       # { 
@@ -1517,7 +1517,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-      
+     
     ],
     # 对话选项
     chats: [
@@ -1545,12 +1545,12 @@ scenes: [
 
           { key: 'P4', content: ['李森炎问了问路边的孩子','那孩子吵着要吃糖才告诉李森炎','李森炎转头买了一个糖葫芦递给他','他笑着说了好些个地方','情报收集的差不多了，是时候验证情报真假','听说鉴宝阁里有专门鉴定情报真假的情报阁','是否前往验证？'],
           btn: [{title: '去验证情报的真假',toScene: 'C000A_V_MAP_3_1',addCluesId: ["liuyan3"],
-           varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,
-           varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',] 
+           
+          #  varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',] 
            },
           {title: '不去就在原地再想想',tokey: "C1",addCluesId: ["liuyan3"],
-           varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,
-           varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',]
+          
+          #  varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',]
           },]},
     ],},
     ],
@@ -1583,12 +1583,12 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: '这里的路人看上去不是一般的有钱', 
+        id: 'C1', desc: "找人打听之后，可以来情报阁判断线索的真假\n巷子里似乎有很多路人能打听\n说不定能打听到一些线索",
         options: [ 
         # { title: '【逛一会儿】', nextChat: 'C2'},
         { title: '【情报阁】', 
         #当簪子道具大于零的时候，就等于有这个道具，就可以点击这个选项
-        andVarsValue: ['@props_350 > 0'],
+        andVarsValue: ['@props_350 > 0','@clues_liuyan1 == 1'],
         #当线索1获得之后，才会开启这个选项
         # andVarsValue: ['@clues_liuyan1 == 1'], 
         dialogs: ['Screen16'] }, 
@@ -1632,7 +1632,7 @@ scenes: [
           }, 
 
           { key: 'P3', content: ['李森炎直接交了钱','将自己刚才找的情报告诉老板','情报阁老板摸摸胡须，很痛快的告诉了他','“你方才找到的这些消息中，有真有假”','随后将真的线索告诉了李森炎','【郊外山谷有丹参，郊区有野生白芍，森林中有何首乌，天水阁有白术】',],
-          btn: [{title: '先去森林找',toScene: 'C000A_V_MAP_-1_5',varsOff: ['WZXX_M1_N1_C000A_V/v_icon_101',],
+          btn: [{title: '先去森林找',toScene: 'C000A_V_MAP_-1_5',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_101',] ,
           # addCluesId: ["xiansuo1"]
           },]},
 
@@ -1801,12 +1801,12 @@ scenes: [
            toScene: 'C000A_V_MAP_2_1', 
            links: [[2, 2],[3, 1],] 
            },
-          { point: [3, 1], title: '鉴宝阁', 
-          toScene: 'C000A_V_MAP_3_1', icon: { id: 100, bindVar: 'WZXX_M1_N1_C000A_V/v_icon_101' },
+          { point: [3, 1], title: '鉴宝阁', icon: { id: 100, bindVar: 'WZXX_M1_N1_C000A_V/v_icon_101' }, 
+          toScene: 'C000A_V_MAP_3_1',
            links: [] 
            },
           { point: [2, 2], title: '巷子',
-           toScene: 'C000A_V_MAP_2_2', icon: { id: 100, bindVar: 'WZXX_M1_N1_C000A_V/v_icon_102' },
+           toScene: 'C000A_V_MAP_2_2',
             links: [] 
             },
           

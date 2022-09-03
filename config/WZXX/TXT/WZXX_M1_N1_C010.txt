@@ -3,6 +3,7 @@
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C010'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C010FZ'] }, 
     { header: '第十章 医灵' },
+     { world: { name: '灵修界' } },
 ]
 #END==========================================
 　　通往坊市的途中。

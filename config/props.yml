@@ -61,8 +61,8 @@ props: [
 #剧情道具
 
    #阅读器道具
-   { id:  300, name: '锻骨灵液', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  301, name: '太虚空鉴', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
+   { id:  300, name: '锻骨灵液', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: '分为不同阶段可使用不同级别的锻骨灵液，初级较为温和，适宜初学的修士，中级较为激烈，适用于筑基期以下的修士，高级十分猛烈，用于筑基期，使用后会淬炼修炼者的肉身，大幅增强体质，但若使用不慎，也会有一定的危险' },													
+   { id:  301, name: '太虚宝鉴', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: '内有宗主的神照意志，可照出所有降临之人的境界及重要过往' },
    { id:  302, name: '假死丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
    { id:  303, name: '筑基粉', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
    { id:  304, name: '筑基护体丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
@@ -93,9 +93,9 @@ props: [
    { id:  329, name: '混元鼎', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
    { id:  330, name: '梵音香', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
    { id:  331, name: '天栾衣', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },
-   { id:  332, name: '大还丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
+   { id:  332, name: '大还丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: '补充大量气血，恢复伤势' },	
    { id:  333, name: '小还丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  334, name: '归元丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
+   { id:  334, name: '归元丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: '这种丹药能够恢复人的元气，亦能治疗身体内的一些隐疾，消除隐患' },													
    { id:  335, name: '蛛矛', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },		
    { id:  336, name: '玉珏', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
    { id:  337, name: '镇毒丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
@@ -111,7 +111,7 @@ props: [
    { id:  347, name: '定身符', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
    { id:  348, name: '结界符', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
    { id:  349, name: '玄铁重剑', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
-   { id:  350, name: '簪子', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
+   { id:  350, name: '簪子', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: '一只普通的素簪，通体碧绿，簪头雕撰了一朵莲花，素雅端庄' },	
    
 
 
@@ -140,6 +140,14 @@ props: [
   #  { id:  452, name: '水行丹', iconId: 4, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 10000 }] },
   #  { id:  453, name: '火行丹', iconId: 5, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 20000 }] },
   #  { id:  454, name: '土行丹', iconId: 1, num:  50, quality: 2, type: 0, tags: ['普通'], attrs: ['修行丹'], capacity: 100, desc: ' ', useEffects: [{ xiuxing: 50000 }] },
+  { id:  354, name: '子母罗仪', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '分为子罗仪和母罗仪，子罗仪用于定位，母罗仪可以查看子罗仪的定位位置' },
+  { id:  355, name: '醒神丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '能短暂提升精神力，时效过后，精神会有些萎靡' },
+  { id:  356, name: '融灵丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '是有市无价的稀有丹药，能够增强体质，提升灵气吸收效率，有助于修炼' },
+  { id:  357, name: '纳戒', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '自带空间的戒指，比储物袋更高级，有了纳戒，储物会变得方便许多' },
+  { id:  358, name: '抑灵丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '能够抑制灵根发挥效果的神奇丹药' },
+  { id:  359, name: '玄天宝鉴', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '用于修士之间传讯的宝器' },
+  { id:  360, name: '护体丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '能够保护修士体内筋脉不受伤害，且能恢复一定法力' },
+
 
    # 碎片
    { id:  500, name: '碎片1', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['碎片'], capacity: 100, desc: ' ', composite: { propId: 700, requireNum: 20 } },
