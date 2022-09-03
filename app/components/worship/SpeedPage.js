@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 
-import { timeLeft } from '../../utils/DateTimeUtils';
+import { timeLeft, h_m_s_Format } from '../../utils/DateTimeUtils';
 import Toast from '../toast';
 
 import { HalfPanel } from '../panel';
@@ -10,24 +10,24 @@ import { TextButton } from '../../constants/custom-ui';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import PropIcon from '../alchemyRoom/components/PropIcon';
 
-const OfferingModal = props => {
-  const { data, onClose, addWorshipProp, gridId } = props;
-  const [worshipProp, setWorship] = useState({})
+const SpeedPage = props => {
+  const { data, onClose, worshipSpeedUp } = props;
+  const [prop, setProp] = useState({})
 
   const renderItem = ({ item }) => {
-    const { name, worshipTime } = item;
+    const { name, speedUp } = item;
     const propIconData = {
       propId: item.id,
       iconId: item.iconId,
       quality: item.quality,
     };
     return (
-      <TouchableOpacity onPress={() => { setWorship(item) }}>
+      <TouchableOpacity onPress={() => { setProp(item) }}>
         <View
           style={{
             height: 45,
             borderWidth: 1,
-            borderColor: worshipProp.id === item.id ? "#0BD86A" : '#000',
+            borderColor: prop.id === item.id ? "#0BD86A" : '#000',
             borderRadius: 3,
             marginTop: 12,
             backgroundColor: 'rgba(255,255,255,0.5)',
@@ -52,7 +52,7 @@ const OfferingModal = props => {
               {name}
             </Text>
             <Text style={{ flex: 1, fontSize: 16, color: '#000', marginLeft: 8 }}>
-              {timeLeft(worshipTime)}
+              {h_m_s_Format(speedUp)}
             </Text>
           </View>
         </View>
@@ -87,8 +87,8 @@ const OfferingModal = props => {
         <TextButton
           title={'确定'}
           onPress={() => {
-            if (worshipProp.id === undefined) return Toast.show("请选择供奉材料")
-            addWorshipProp({ worshipProp, gridId })
+            if (prop.id === undefined) return Toast.show("请选择供奉材料")
+            worshipSpeedUp(prop)
             onClose();
           }}
         />
@@ -98,6 +98,6 @@ const OfferingModal = props => {
   );
 };
 
-export default OfferingModal;
+export default SpeedPage;
 
 const styles = StyleSheet.create({});
