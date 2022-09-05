@@ -19,6 +19,7 @@ import FastImage from 'react-native-fast-image';
 import { TextButton, Header3 } from '../../constants/custom-ui';
 import OfferingModal from './OfferingModal';
 import SpeedPage from './SpeedPage';
+import SpeedPropPage from './SpeedPropPage';
 
 
 // icon 数据
@@ -31,7 +32,7 @@ const IconData = (item) => {
 }
 
 const LeftTime = (props) => {
-  const { needTime, currentNeedTime, onFinish } = props
+  const { currentNeedTime, onFinish } = props
   const [seconds, setSeconds] = React.useState(currentNeedTime);
 
   React.useEffect(() => {
@@ -68,27 +69,30 @@ const Worship = props => {
 
   // console.log("worshipData", worshipData);
 
+  // 添加贡品
   const addWorshipProp = ({ worshipProp, gridId }) => {
     props.dispatch(action('WorshipModel/addWorshipProp')({ worshipProp, gridId }))
   }
 
+  // 供奉加速
   const worshipSpeedUp = (prop) => {
     props.dispatch(action('WorshipModel/worshipSpeedUp')(prop))
   }
 
+  // 取消供奉
   const cancelWorship = (item) => {
     props.dispatch(action('WorshipModel/cancelWorship')(item))
   }
 
+  // 打开宝箱
   const openTreasureChest = (item) => {
-
+    props.dispatch(action('WorshipModel/openTreasureChest')(item))
   }
 
+  // 改变供奉状态
   const changeWorship = (worshipProp) => {
     props.dispatch(action('WorshipModel/changeWorship')(worshipProp))
   }
-
-
 
   const Title = () => {
     const worshipProp = worshipData.find(item => item.status === 2)
@@ -174,18 +178,17 @@ const Worship = props => {
     const { quality_style, image } = IconData(item)
 
     const openSpeedPage = () => {
-      props.dispatch(action('WorshipModel/getSpeedUpProps')()).then(result => {
-        if (Array.isArray(result)) {
-          const key = RootView.add(
-            <SpeedPage
-              worshipSpeedUp={worshipSpeedUp}
-              data={result}
-              onClose={() => {
-                RootView.remove(key);
-              }}
-            />,
-          );
-        }
+      props.dispatch(action('WorshipModel/getWorshipSpeedUpTime')()).then(result => {
+        console.log("result", result);
+        const key = RootView.add(
+          <SpeedPage
+            worshipSpeedUp={worshipSpeedUp}
+            data={result}
+            onClose={() => {
+              RootView.remove(key);
+            }}
+          />,
+        );
       })
     };
 

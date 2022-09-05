@@ -2,17 +2,20 @@ import LocalStorage from '../utils/LocalStorage';
 import { action, LocalCacheKeys } from '../constants';
 import EventListeners from '../utils/EventListeners';
 import { now } from '../utils/DateTimeUtils';
+import { GetWorshipDataApi } from '../services/GetWorshipDataApi';
 
 export default {
   namespace: 'WorshipModel',
 
   state: {
     worshipData: [],
+    worshipConfig: {}
   },
 
   effects: {
     *reload({ payload }, { call, put, select }) {
       const data = yield call(LocalStorage.get, LocalCacheKeys.WORSHIP_DATA);
+      const worshipConfig = yield call(GetWorshipDataApi)
       if (data != null) {
         yield put(action('updateState')({ worshipData: data }));
       } else {
@@ -27,12 +30,21 @@ export default {
           }),
         );
       }
+
+      yield put(action('updateState')({ worshipConfig: worshipConfig.data }))
     },
 
     // 获取献祭道具数据
     *getOfferingProps({ payload }, { put, select, call }) {
       const allProps = yield put.resolve(action('PropsModel/getBagProps')());
-      const propsData = allProps.filter(i => i.type === 200);
+      let propsData = allProps.filter(i => i.type === 200);
+      const { worshipConfig } = yield select(state => state.WorshipModel);
+      for (let index = 0; index < propsData.length; index++) {
+        const item = propsData[index];
+        const propsConfig = worshipConfig.props.find(f => f.id === item.id)
+        Object.assign(item, propsConfig)
+      }
+
       return propsData;
     },
 
@@ -73,6 +85,7 @@ export default {
         iconId: worshipProp.iconId,
         quality: worshipProp.quality,
         needTime: worshipProp.worshipTime,
+        treasureChestId: worshipProp.treasureChestId,
       };
       const newWorshipData = removeEmpty(_worshipData)
       yield call(LocalStorage.set, LocalCacheKeys.WORSHIP_DATA, newWorshipData);
@@ -114,12 +127,44 @@ export default {
       yield put(action('updateState')({ worshipData: _worshipData }));
     },
 
-    // 获取加速道具数据
-    *getSpeedUpProps({ payload }, { put, select, call }) {
-      const allProps = yield put.resolve(action('PropsModel/getBagProps')());
-      const propsData = allProps.filter(i => i.type === 201);
-      return propsData;
+    // 获取供奉加速时间
+    *getWorshipSpeedUpTime({ payload }, { put, select, call }) {
+      const { worshipData } = yield select(state => state.WorshipModel);
+      // 获取供奉可以加速的时间, 约定 数量1 为 1秒
+      const worshipSpeedUpTime = yield put.resolve(action('PropsModel/getPropNum')({ propId: 200 }));
+
+      // 总共的供奉时间
+      let allSpeedTime = 0
+      // 当前供奉道具需要的时间
+      let currentNeedTime = 0
+      for (let index = 0; index < worshipData.length; index++) {
+        const item = worshipData[index];
+        if (item.status === 0 || item === 3) continue
+        if (item.status === 1) {
+          allSpeedTime += item.needTime
+        }
+        if (item.status === 2) {
+          const diffTime = Math.floor((now() - item.beginTime) / 1000);
+          // 当前需要的时间
+          currentNeedTime = item.needTime - diffTime;
+          allSpeedTime += currentNeedTime
+        }
+      }
+
+      return {
+        allSpeedTime,
+        currentNeedTime,
+        worshipSpeedUpTime
+      }
+
     },
+
+    // 获取加速道具数据
+    // *getSpeedUpProps({ payload }, { put, select, call }) {
+    //   const allProps = yield put.resolve(action('PropsModel/getBagProps')());
+    //   const propsData = allProps.filter(i => i.type === 201);
+    //   return propsData;
+    // },
 
     // 供奉加速
     *worshipSpeedUp({ payload }, { put, select, call }) {
@@ -174,6 +219,12 @@ export default {
       yield call(LocalStorage.set, LocalCacheKeys.WORSHIP_DATA, _worshipData);
       yield put(action('updateState')({ worshipData: _worshipData }));
 
+    },
+
+    // 开宝箱
+    *openTreasureChest({ payload }, { put, select, call }) {
+      // console.log("payload", payload);
+      const { treasureChestId, id } = payload
     },
   },
 

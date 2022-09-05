@@ -1,0 +1,32 @@
+### 供奉道具配置
+
+data:
+  {
+    # 道具映射
+    props:
+      [
+        {id: 1500, worshipTime: 1000, treasureChestId: 1},
+        {id: 1501, worshipTime: 10, treasureChestId: 1},
+
+      ],
+
+    # 宝箱配置
+    treasureChest: [
+        {
+          # ID
+          id: 1,
+          # 是否宝箱类型
+          box: true,
+          # 产出配置
+          products: {
+              # 随机道具
+              props:
+                {
+                  p100: [{propId: 26, num: 1, rate: 20}, {propId: 27, num: 2, rate: 20}],
+                  p1000: [{propId: 28, num: 1, rate: 200}, {propId: 29, num: 2, rate: 300}],
+                  p10000: [{propId: 30, num: 1, rate: 800}],
+                },
+            },
+        },
+      ],
+  }
