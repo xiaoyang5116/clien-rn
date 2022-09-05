@@ -19,7 +19,7 @@ import {
 import lo from 'lodash';
 import { TextButton } from '../../constants/custom-ui';
 import CollectionItem from './collection/CollectionItem';
-
+ 
 const CollectionTabPage = (props) => {
 
     const GET_LIST_EVENT_KEY = '__@CollectionTabPage.getList';
