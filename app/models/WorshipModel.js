@@ -123,18 +123,57 @@ export default {
 
     // 供奉加速
     *worshipSpeedUp({ payload }, { put, select, call }) {
-      // {"attrs": ["测试"], "capacity": 100, "desc": "供奉加速道具",
-      // "iconId": 2, "id": 2000, "name": "时间1", "num": 10, "quality": 2, "recordId": 4374, "speedUp": 10, "tags": ["普通"], "type": 201}
       const { worshipData } = yield select(state => state.WorshipModel);
       const _worshipData = [...worshipData]
-      const index = _worshipData.findIndex(item => item.status === 2)
-      // const currentNeedTime = _worshipData[index].needTime - payload.speedUp
-      // _worshipData[index] = {
-      //   ..._worshipData[index],
-      //   needTime: currentNeedTime > 0 ? currentNeedTime : 0
-      // }
-      // yield call(LocalStorage.set, LocalCacheKeys.WORSHIP_DATA, _worshipData);
-      // yield put(action('updateState')({ worshipData: _worshipData }));
+      let speedUpTime = payload.speedUpTime
+      const speedPropId = payload.id
+
+      // 使用道具
+      yield put.resolve(action('PropsModel/use')({ propId: speedPropId, num: 1, quiet: true }));
+
+      // 当前 状态为供奉中 的索引
+      const worshipDataIndex = _worshipData.findIndex(item => item.status === 2)
+
+      // 循环后续供奉,减少供奉需要的时间,如果加速时间还剩余,则继续
+      for (let index = worshipDataIndex; index < _worshipData.length; index++) {
+        const item = _worshipData[index];
+
+        if (speedUpTime < 0) continue
+        if (item.status === 0) continue
+        if (item.status === 3) continue
+
+        if (item.status === 1) {
+          speedUpTime = speedUpTime - item.needTime
+          if (speedUpTime >= 0) {
+            item.status = 3
+            item.needTime = 0
+          } else {
+            item.beginTime = now()
+            item.needTime = -speedUpTime
+            item.status = 2
+          }
+          continue
+        }
+        if (item.status === 2) {
+          const diffTime = Math.floor((now() - item.beginTime) / 1000);
+          // 当前需要的时间
+          const currentNeedTime = item.needTime - diffTime;
+          if (currentNeedTime <= 0) continue
+          speedUpTime = speedUpTime - currentNeedTime
+          if (speedUpTime >= 0) {
+            item.status = 3
+            item.needTime = 0
+          }
+          if (speedUpTime < 0) {
+            item.needTime = -speedUpTime
+          }
+          continue
+        }
+      }
+
+      yield call(LocalStorage.set, LocalCacheKeys.WORSHIP_DATA, _worshipData);
+      yield put(action('updateState')({ worshipData: _worshipData }));
+
     },
   },
 

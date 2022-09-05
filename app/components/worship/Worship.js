@@ -96,7 +96,7 @@ const Worship = props => {
     if (worshipProp !== undefined) {
       const diffTime = Math.floor((now() - worshipProp.beginTime) / 1000);
       // 当前需要的时间
-      const currentNeedTime = worshipData[0].needTime - diffTime;
+      const currentNeedTime = worshipProp.needTime - diffTime;
       if (currentNeedTime > 0) {
         return (
           <View style={{ alignItems: "center" }}>

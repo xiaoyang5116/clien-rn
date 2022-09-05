@@ -15,7 +15,7 @@ const SpeedPage = props => {
   const [prop, setProp] = useState({})
 
   const renderItem = ({ item }) => {
-    const { name, speedUp } = item;
+    const { name, speedUpTime } = item;
     const propIconData = {
       propId: item.id,
       iconId: item.iconId,
@@ -52,7 +52,7 @@ const SpeedPage = props => {
               {name}
             </Text>
             <Text style={{ flex: 1, fontSize: 16, color: '#000', marginLeft: 8 }}>
-              {h_m_s_Format(speedUp)}
+              {h_m_s_Format(speedUpTime)}
             </Text>
           </View>
         </View>
@@ -67,7 +67,7 @@ const SpeedPage = props => {
       borderRadius={10}
       zIndex={99}>
       <Header3
-        title={'供奉材料选择'}
+        title={'供奉加速'}
         onClose={props.onClose}
         containerStyle={{ marginTop: 12 }}
       />
