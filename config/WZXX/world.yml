@@ -7,7 +7,7 @@ world: {
     {
       # 判断变量全满足ON，可配置多个(默认数组为空，别增加引号)
       # 变量必须为跨场景
-      andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001'],
+      andVarsOn: [],
       # 判断变量全满足OFF，可配置多个(默认数组为空，别增加引号)
       andVarsOff: [],
       # (优先)弹出对话框，上述andVarsOn, andVarsOff均满足条件且dialog.content指定内容时显示。
@@ -16,29 +16,61 @@ world: {
         content: '',
       },
       # 世界切换描述语句
-      desc: 'Hello',
+      desc: '现实世界',
       # 世界切换按钮点击跳转章节
-      toChapter: 'WZXX_M1_N1_C005',
+      toChapter: '',
     },
     {
-      andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001A'],
+      andVarsOn: [],
       andVarsOff: [],
       dialog: {
-        content: "这里可以指定对话框内容\n这里可以指定对话框内容\n这里可以指定对话框内容",
+        content: "未找到去此世界的办法\n获得线索和道具后可成功开启",
       },
-      desc: 'xxx',
+      desc: '现实世界',
       toChapter: '',
     },
   ],
   # 右侧世界树状结构(匹配最后一个满足条件的条目)
   right: [
     {
-      andVarsOn: [''],
-      andVarsOff: [''],
+      andVarsOn: [],
+      andVarsOff: [],
+      dialog: {
+        content: "未找到去此世界的办法\n获得线索和道具后可成功开启",
+      },
+      desc: '灵修界',
+      toChapter: '',
+    },
+    {
+      # 判断变量全满足ON，可配置多个(默认数组为空，别增加引号)
+      # 变量必须为跨场景
+      andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C003_[N3]'],
+      # 判断变量全满足OFF，可配置多个(默认数组为空，别增加引号)
+      andVarsOff: [],
+      # (优先)弹出对话框，上述andVarsOn, andVarsOff均满足条件且dialog.content指定内容时显示。
+      # 内容需换行请使用 \n 分隔。
       dialog: {
         content: '',
       },
+      # 世界切换描述语句
+      desc: '灵修界',
+      # 世界切换按钮点击跳转章节
+      toChapter: 'WZXX_M1_N1_C004_[N1]',
+    },
+    {
+      # 判断变量全满足ON，可配置多个(默认数组为空，别增加引号)
+      # 变量必须为跨场景
+      andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C004_[N1]'],
+      # 判断变量全满足OFF，可配置多个(默认数组为空，别增加引号)
+      andVarsOff: [],
+      # (优先)弹出对话框，上述andVarsOn, andVarsOff均满足条件且dialog.content指定内容时显示。
+      # 内容需换行请使用 \n 分隔。
+      dialog: {
+        content: "未找到去此世界的办法\n获得线索和道具后可成功开启",
+      },
+      # 世界切换描述语句
       desc: '',
+      # 世界切换按钮点击跳转章节
       toChapter: '',
     },
   ]

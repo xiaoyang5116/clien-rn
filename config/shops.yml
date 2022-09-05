@@ -23,7 +23,7 @@ shops: [
             },
             # 消耗设定
             consume: [
-               { propId: 887, num: 10 },
+               { propId: 887, num: 1 },
                # { copper: 2000 },
             ]
          },
@@ -53,7 +53,7 @@ shops: [
             },
             # 消耗设定
             consume: [
-               { propId: 200, num: 1 },
+               { propId: 887, num: 1 },
             ]
          },
 

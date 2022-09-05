@@ -136,7 +136,7 @@ directory: [
         toChapter: 'WZXX_M1_N1_C004_[N1]', links: [[1, -15],]
         },
 
-        { point: [1, -15], title: '第四章 打斗开始',
+        { point: [1, -15], title: '第四章 打斗之后',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N2]' ,
         toChapter: 'WZXX_M1_N1_C004_[N2]', links: [],path: [[1, -16], [0, -16],] 
         },

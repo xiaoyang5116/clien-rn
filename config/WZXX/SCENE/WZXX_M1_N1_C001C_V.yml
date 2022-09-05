@@ -354,7 +354,7 @@ scenes: [
           sections: [
           { key: 'P1', content: ['紧接着李森炎看见那杀手四处张望了下','好似极为警惕的样子','李森炎紧紧盯着他，只见他又拐进了一条小道','周围杂草丛生看上去很不好跟踪','李森炎决定',],
           btn: [{title: '大步流星，赶紧跟上杀手',dialogs: ['gameover01'] , icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
-          {title: '小心翼翼的走，不着急', tokey: "N1B1",  icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},]},
+          {title: '小心翼翼的走，不着急', tokey: "N1B1",  icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},]},
 
           { key: 'N1B1', content: ['李森炎小心翼翼地走着','突然看见杀手挥剑向上砍去','嘴里还喊道：“谁放的暗器？”','结果那“暗器”粘在剑上了','杀手定睛一看，是鸟屎','李森炎：“噗……”',], 
           btn: [{title: '偷笑', dialogs: ['gameover02'], icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},

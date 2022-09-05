@@ -3,6 +3,7 @@
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C003_[N3]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C003_[N3]FZ'] }, 
      { header: '第三章 被猫撞' },
+     { world: { name: '尘界' } },
 ]
 #END==========================================
 
