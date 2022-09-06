@@ -138,6 +138,7 @@ export default {
 
       yield put(action('updateState')({}));
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
+      DeviceEventEmitter.emit(EventKeys.PROPS_NUM_CHANGED);
     },
 
     *reduce({ payload }, { put, call, select }) {
@@ -185,6 +186,7 @@ export default {
 
         yield put(action('updateState')({}));
         yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
+        DeviceEventEmitter.emit(EventKeys.PROPS_NUM_CHANGED);
         return true;
       }
 
@@ -286,6 +288,7 @@ export default {
         if (!quiet)  Toast.show(`获得${config.name}*${num}`);
         yield put(action('updateState')({}));
         yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
+        DeviceEventEmitter.emit(EventKeys.PROPS_NUM_CHANGED);
       }
 
       // 特殊类型道具发送消息通知
@@ -307,6 +310,7 @@ export default {
       
       yield put(action('updateState')({}));
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
+      DeviceEventEmitter.emit(EventKeys.PROPS_NUM_CHANGED);
     },
 
     *test({ }, { put, select }) {

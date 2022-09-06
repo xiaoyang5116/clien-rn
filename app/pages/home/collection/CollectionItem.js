@@ -30,13 +30,13 @@ const CollectionItem = (props) => {
     let backgroundImage = BACKGROUND_IMAGES[0];
     if (props.data.level > 0) {
         if (props.data.stars <= 3) {
-            backgroundImage = BACKGROUND_IMAGES[1];
+            backgroundImage = BACKGROUND_IMAGES[1]; // 绿
         } else if (props.data.stars == 4) {
-            backgroundImage = BACKGROUND_IMAGES[2];
+            backgroundImage = BACKGROUND_IMAGES[2]; // 蓝
         } else if (props.data.stars == 5) {
-            backgroundImage = BACKGROUND_IMAGES[3];
+            backgroundImage = BACKGROUND_IMAGES[3]; // 紫
         } else if (props.data.stars == 6) {
-            backgroundImage = BACKGROUND_IMAGES[4];
+            backgroundImage = BACKGROUND_IMAGES[4]; // 橙
         }
     }
 

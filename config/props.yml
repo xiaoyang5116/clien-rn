@@ -189,5 +189,13 @@ props: [
    { id:  889, name: '白银', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },
    { id:  890, name: '黄金饰品', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
 
-  
+  # 收藏系统专用
+  { id:  3001, name: '绿色药水', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['收藏品药水'], capacity: 100, desc: ' ' },
+  { id:  3002, name: '蓝色药水', iconId: 2, num:  1, quality: 3, type: 0, tags: ['普通'], attrs: ['收藏品药水'], capacity: 100, desc: ' ' },		
+  { id:  3003, name: '紫色药水', iconId: 2, num:  1, quality: 4, type: 0, tags: ['普通'], attrs: ['收藏品药水'], capacity: 100, desc: ' ' },
+  { id:  3004, name: '橙色药水', iconId: 2, num:  1, quality: 5, type: 0, tags: ['普通'], attrs: ['收藏品药水'], capacity: 100, desc: ' ' },
+  { id:  3101, name: '金项链碎片[绿]', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },		
+  { id:  3102, name: '金手镯碎片[蓝]', iconId: 2, num:  1, quality: 3, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },
+  { id:  3103, name: '金戒指碎片[紫]', iconId: 2, num:  1, quality: 4, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },		
+  { id:  3104, name: '木棍子[橙]', iconId: 2, num:  1, quality: 5, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },
 ]

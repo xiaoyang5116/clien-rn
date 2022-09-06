@@ -24,13 +24,13 @@ const UpgradePage = (props) => {
     const scale = React.useRef(new Animated.Value(0)).current;
 
     const attrs = [];
-    lo.forEach(props.data.attrs[`lv${props.data.level + 1}`], (v, k) => {
+    lo.forEach(props.data.attrs[props.data.level], (v, k) => {
         attrs.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{v.key}: +{v.value}</Text>);
     });
 
     const attrsFull = [];
     if (attrs.length == 0) {
-        lo.forEach(props.data.attrs[`lv${props.data.stars}`], (v, k) => {
+        lo.forEach(props.data.attrs[props.data.stars-1], (v, k) => {
             attrsFull.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{v.key}: +{v.value}</Text>);
         });
     }

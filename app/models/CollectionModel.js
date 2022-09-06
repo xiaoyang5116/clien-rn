@@ -78,9 +78,8 @@ export default {
         return false;
 
       // 激活需要扣除铜币
-      const upgradeItem = found.upgrade[0];
-      if (upgradeItem.lv == 1 && upgradeItem.copper > 0 && userState.copper >= upgradeItem.copper) {
-        yield put.resolve(action('UserModel/alterCopper')({ value: -upgradeItem.copper }));
+      if (found.activation.copper > 0 && userState.copper >= found.activation.copper) {
+        yield put.resolve(action('UserModel/alterCopper')({ value: -found.activation.copper }));
       } else {
         return false;
       }

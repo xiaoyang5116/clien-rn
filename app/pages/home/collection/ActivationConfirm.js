@@ -49,9 +49,6 @@ const ActivationConfirm = (props) => {
         }
     }, []);
 
-    // 激活所需物品
-    const upgradeItem = props.data.upgrade[0];
-
     return (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -66,12 +63,12 @@ const ActivationConfirm = (props) => {
                         <View style={{ width: '100%', marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
                             <View style={{ width: 50, height: 50, borderWidth: 1, borderColor: '#333', borderRadius: 5, backgroundColor: '#ccc', justifyContent: 'center', alignItems: 'center' }}>
                                 <Text>铜币</Text>
-                                <Text style={{ position: 'absolute', bottom: -20 }}>{upgradeItem.copper}</Text>
+                                <Text style={{ position: 'absolute', bottom: -20 }}>{props.data.activation.copper}</Text>
                             </View>
                         </View>
                     </View>
                     <View style={{ width: '94%', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                        <TextButton title={'确认'} disabled={(props.user.copper < upgradeItem.copper)} onPress={() => {
+                        <TextButton title={'确认'} disabled={(props.user.copper < props.data.activation.copper)} onPress={() => {
                             AppDispath({ type: 'CollectionModel/activate', payload: { id: props.data.id }, retmsg: CALLBACK_EVENT_KEY});
                         }} />
                         <TextButton title={'取消'} onPress={() => {
