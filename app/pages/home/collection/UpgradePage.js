@@ -17,7 +17,7 @@ import { px2pd } from '../../../constants/resolution';
 import { TextButton } from '../../../constants/custom-ui';
 import RootView from '../../../components/RootView';
 import StarsBanner from './StarsBanner';
-import UpgradeConfirm from './UpgradeConfirm';
+import UpgradeSubPage from './UpgradeSubPage';
 
 const UpgradePage = (props) => {
 
@@ -77,7 +77,7 @@ const UpgradePage = (props) => {
                                 props.onClose();
                             }
                             setTimeout(() => {
-                                const key = RootView.add(<UpgradeConfirm data={props.data} onClose={() => {
+                                const key = RootView.add(<UpgradeSubPage data={props.data} onClose={() => {
                                     RootView.remove(key);
                                 }} />);
                             }, 200);

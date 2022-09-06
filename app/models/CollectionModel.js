@@ -100,18 +100,50 @@ export default {
       if (found == undefined || !found.actived)
         return false;
 
-      // 改良需要扣除铜币
-      const upgradeItem = lo.find(found.upgrade, (v, k) => v.lv == (found.level + 1));
-      if (upgradeItem != undefined && upgradeItem.copper > 0 && userState.copper >= upgradeItem.copper) {
-        yield put.resolve(action('UserModel/alterCopper')({ value: -upgradeItem.copper }));
-      } else {
+      const upgradeItems = found.upgrade[found.level - 1].items;
+      let currentItem = null;
+
+      for (let key in upgradeItems) {
+        const items = upgradeItems[key];
+        let stop = false;
+        for (let kk in items) {
+          const item = items[kk];
+          if (item.finished == undefined) {
+            stop = true;
+            currentItem = item;
+            break
+          }
+        }
+        if (stop) break;
+      }
+      
+      if (currentItem == null)
         return false;
+        
+      // 标注已完成
+      currentItem.finished = true;
+
+      // 判断当前是卡位是否已经升满
+      let full = true;
+      lo.forEach(upgradeItems, (v, k) => {
+        lo.forEach(v, (vv, kk) => {
+          if (vv.finished == undefined || (lo.isBoolean(vv.finished) && !vv.finished)) {
+            full = false;
+          }
+        });
+      });
+
+      // 复制一份数据返回，不包括升星的(用于显示最后状态)
+      const result = lo.cloneDeep(found);
+      if (full) result.__full = true;
+
+      // 小阶段满级，升星
+      if (full && (found.level < found.stars)) {
+        found.level += 1;
       }
 
-      found.level += 1;
-      yield call(LocalStorage.set, LocalCacheKeys.COLLECTION_DATA, collectionState.items);
-
-      return true;
+      // yield call(LocalStorage.set, LocalCacheKeys.COLLECTION_DATA, collectionState.items);
+      return result;
     },
     
   },
