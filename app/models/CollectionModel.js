@@ -142,7 +142,7 @@ export default {
         found.level += 1;
       }
 
-      // yield call(LocalStorage.set, LocalCacheKeys.COLLECTION_DATA, collectionState.items);
+      yield call(LocalStorage.set, LocalCacheKeys.COLLECTION_DATA, collectionState.items);
       return result;
     },
     
