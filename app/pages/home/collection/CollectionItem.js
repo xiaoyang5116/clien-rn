@@ -15,6 +15,7 @@ import FastImage from 'react-native-fast-image';
 import StarsBanner from './StarsBanner';
 import ActivationPage from './ActivationPage';
 import UpgradePage from './UpgradePage';
+import CollectionUtils from '../../../utils/CollectionUtils';
 
 const BACKGROUND_IMAGES = [
     require('../../../../assets/collection/bg_0.png'),
@@ -29,15 +30,8 @@ const CollectionItem = (props) => {
     // 衬底图片
     let backgroundImage = BACKGROUND_IMAGES[0];
     if (props.data.level > 0) {
-        if (props.data.stars <= 3) {
-            backgroundImage = BACKGROUND_IMAGES[1]; // 绿
-        } else if (props.data.stars == 4) {
-            backgroundImage = BACKGROUND_IMAGES[2]; // 蓝
-        } else if (props.data.stars == 5) {
-            backgroundImage = BACKGROUND_IMAGES[3]; // 紫
-        } else if (props.data.stars == 6) {
-            backgroundImage = BACKGROUND_IMAGES[4]; // 橙
-        }
+        const imageId = CollectionUtils.getImageIdByStars(props.data.stars);
+        backgroundImage = BACKGROUND_IMAGES[imageId];
     }
 
     return (

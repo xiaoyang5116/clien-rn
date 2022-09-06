@@ -43,8 +43,8 @@ export default {
       const { category } = payload;
 
       let updateCache = false;
-      for (let key in collectionState.__data.config) {
-        const item = collectionState.__data.config[key];
+      for (let key in collectionState.__data.config.items) {
+        const item = collectionState.__data.config.items[key];
         const found = collectionState.items.find(e => e.id == item.id);
         if (found != undefined)
           continue; // 已经初始化

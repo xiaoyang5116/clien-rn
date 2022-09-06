@@ -122,13 +122,16 @@ const CollectionTabPage = (props) => {
         );
     }
 
+    // 改良所需道具
+    const improvementProps = props.__data.config.improvementProps;
+
     return (
         <View style={styles.viewContainer}>
             <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                <PropYaoShui color={'green'} propId={3001} />
-                <PropYaoShui color={'blue'} propId={3002} />
-                <PropYaoShui color={'purple'} propId={3003} />
-                <PropYaoShui color={'orange'} propId={3004} />
+                <PropYaoShui color={'green'} propId={improvementProps[0]} />
+                <PropYaoShui color={'blue'} propId={improvementProps[1]} />
+                <PropYaoShui color={'purple'} propId={improvementProps[2]} />
+                <PropYaoShui color={'orange'} propId={improvementProps[3]} />
             </View>
             <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
                 <TextButton title={'金'} onPress={() => selectCategory('金')} />
@@ -159,4 +162,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default connect((state) => ({ ...state.AppModel, user: { ...state.UserModel } }))(CollectionTabPage);
+export default connect((state) => ({ ...state.AppModel, ...state.CollectionModel, user: { ...state.UserModel } }))(CollectionTabPage);

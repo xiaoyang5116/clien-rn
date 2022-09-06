@@ -1,116 +1,330 @@
 # 收藏品 (绿2->蓝3->紫4->橙5)
-collections: [
-  {
-    # 收藏品唯一ID
-    id: 1,
+collections: {
+  # 改良需要消耗对应品质的道具
+  improvementProps: [ 3001, 3002, 3003, 3004 ], # 必须为4个, 用于在收藏品页面顶部显示道具数量
 
-    # 收藏品名称
-    name: '金项链',
+  # 定义所有收藏品
+  items: [
+    {
+      # 收藏品唯一ID
+      id: 1,
 
-    # 所属分类
-    categories: ['金'],
+      # 收藏品名称
+      name: '金项链',
 
-    # 解锁道具
-    propId: 700,
+      # 所属分类
+      categories: ['金'],
 
-    # 星级
-    stars: 3,
+      # 解锁道具
+      propId: 700,
 
-    # 激活消耗
-    activation: {
-      copper: 200,
+      # 星级
+      stars: 3,
+
+      # 激活消耗
+      activation: {
+        copper: 200,
+      },
+
+      # 收藏品属性加成
+      attrs: [
+        [{ key: '速度', value: 10 }, { key: '防御', value: 5 }], # 1星
+        [{ key: '速度', value: 20 }, { key: '防御', value: 10 }], # 2星
+        [{ key: '速度', value: 30 }, { key: '防御', value: 20 }], # 3星
+      ],
+
+      # 升级
+      upgrade: [
+        # 1星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+            ],
+            # 第二个卡位
+            [
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+            ],
+            # 第三个卡位
+            [
+              { propId: 3001, num: 3 },
+            ],
+          ]
+        },
+
+        # 2星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+            ],
+            # 第二个卡位
+            [
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+            ],
+            # 第三个卡位
+            [
+              { propId: 3001, num: 3 },
+            ],
+          ]
+        },
+
+        # 3星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+            ],
+            # 第二个卡位
+            [
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+            ],
+            # 第三个卡位
+            [
+              { propId: 3001, num: 3 },
+            ],
+          ]
+        },
+      ]
     },
 
-    # 收藏品属性加成
-    attrs: [
-      [{ key: '速度', value: 10 }, { key: '防御', value: 5 }], # 1星
-      [{ key: '速度', value: 20 }, { key: '防御', value: 10 }], # 2星
-      [{ key: '速度', value: 30 }, { key: '防御', value: 20 }], # 3星
-    ],
+    {
+      # 收藏品唯一ID
+      id: 2,
 
-    # 升级
-    upgrade: [
-      # 1星
-      {
-        # 阶段升级
-        items: [
-          # 第一个卡位
-          [
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-          ],
-          # 第二个卡位
-          [
-            { propId: 100, num: 2 },
-            { propId: 100, num: 2 },
-            { propId: 100, num: 2 },
-            { propId: 100, num: 2 },
-            { propId: 100, num: 2 },
-          ],
-          # 第三个卡位
-          [
-            { propId: 100, num: 3 },
-          ],
-        ]
+      # 收藏品名称
+      name: '金手镯',
+
+      # 所属分类
+      categories: ['金'],
+
+      # 解锁道具
+      propId: 700,
+
+      # 星级
+      stars: 5,
+
+      # 激活消耗
+      activation: {
+        copper: 200,
       },
 
-      # 2星
-      {
-        # 阶段升级
-        items: [
-          # 第一个卡位
-          [
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-          ],
-          # 第二个卡位
-          [
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-          ],
-          # 第三个卡位
-          [
-            { propId: 100, num: 1 },
-          ],
-        ]
-      },
+      # 收藏品属性加成
+      attrs: [
+        [{ key: '速度', value: 10 }, { key: '防御', value: 5 }], # 1星
+        [{ key: '速度', value: 20 }, { key: '防御', value: 10 }], # 2星
+        [{ key: '速度', value: 30 }, { key: '防御', value: 20 }], # 3星
+        [{ key: '速度', value: 40 }, { key: '防御', value: 30 }], # 4星
+        [{ key: '速度', value: 50 }, { key: '防御', value: 40 }], # 5星
+      ],
 
-      # 3星
-      {
-        # 阶段升级
-        items: [
-          # 第一个卡位
-          [
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-          ],
-          # 第二个卡位
-          [
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-            { propId: 100, num: 1 },
-          ],
-          # 第三个卡位
-          [
-            { propId: 100, num: 1 },
-          ],
-        ]
-      },
-    ]
-  },
+      # 升级
+      upgrade: [
+        # 1星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+            ],
+            # 第三个卡位
+            [
+              { propId: 3001, num: 3 },
+            ],
+          ]
+        },
 
-]
+        # 2星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+            ],
+            # 第二个卡位
+            [
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+            ],
+            # 第三个卡位
+            [
+              { propId: 3001, num: 3 },
+            ],
+          ]
+        },
+
+        # 3星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+            ],
+            # 第二个卡位
+            [
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+            ],
+            # 第三个卡位
+            [
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+            ],
+            # 第四个卡位
+            [
+              { propId: 3002, num: 2 },
+              { propId: 3002, num: 2 },
+              { propId: 3002, num: 2 },
+              { propId: 3002, num: 2 },
+              { propId: 3002, num: 2 },
+            ],
+            # 第五个卡位
+            [
+              { propId: 3003, num: 3 },
+            ],
+          ]
+        },
+
+        # 4星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+            ],
+            # 第二个卡位
+            [
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+            ],
+            # 第三个卡位
+            [
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+            ],
+            # 第四个卡位
+            [
+              { propId: 3002, num: 2 },
+              { propId: 3002, num: 2 },
+              { propId: 3002, num: 2 },
+              { propId: 3002, num: 2 },
+              { propId: 3002, num: 2 },
+            ],
+            # 第五个卡位
+            [
+              { propId: 3003, num: 3 },
+            ],
+          ]
+        },
+
+        # 5星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+              { propId: 3001, num: 1 },
+            ],
+            # 第二个卡位
+            [
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+            ],
+            # 第三个卡位
+            [
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+              { propId: 3001, num: 2 },
+            ],
+            # 第四个卡位
+            [
+              { propId: 3002, num: 2 },
+              { propId: 3002, num: 2 },
+              { propId: 3002, num: 2 },
+              { propId: 3002, num: 2 },
+              { propId: 3002, num: 2 },
+            ],
+            # 第五个卡位
+            [
+              { propId: 3003, num: 3 },
+            ],
+          ]
+        },
+      ]
+    },
+  ]
+}
