@@ -13,7 +13,9 @@ scenes: [
       { id: "v_icon_102", min: 0, max: 1 },
       { id: "v_icon_103", min: 0, max: 1 },
       { id: "v_icon_104", min: 0, max: 1 },
-      
+      { id: "v_icon_101D", min: 0, max: 1 },
+      { id: "v_icon_102D", min: 0, max: 1 },
+      { id: "v_icon_100D", min: 0, max: 1 },
 
       ],
 
@@ -75,7 +77,7 @@ scenes: [
       { 
         id: 'C1', desc: '前台的小姐姐正在埋头工作', 
         options: [ 
-         { title: '【去找李小姐】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000C_V_MAP_-1_3'}, 
+         { title: '【去找李小姐对话】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000C_V_MAP_-1_3'}, 
         ],
       },
        #
@@ -98,7 +100,7 @@ scenes: [
  #===========事件场景==============
        {
   # NPC2
-    id: 'C000C_V_MAP_-1_3', name: '李小姐',
+    id: 'C000C_V_MAP_-1_3', name: '李小姐座位旁',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
@@ -122,7 +124,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100', 'WZXX_M1_N1_C000C_V/v_icon_101', 'WZXX_M1_N1_C000C_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104'] },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  },
     ],
 
     # 对话选项
@@ -143,11 +145,11 @@ scenes: [
    
  # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '李小姐', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen1',style: 6, title: '李小姐谈话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李小姐：','“可以啊，李森炎，没想到你能把赵雅弄走。”','李森炎不确定她是不是在挖苦，没说话','“悄悄跟你说，其实我也不喜欢她。”',
           '“你把她弄走了，我还要谢谢你呢!”','李森炎笑了笑，“没事，等你上位了记得请我吃饭就行”','“没问题，就算不晋升我也可以请你哦。”','说完李小姐向他抛了个媚眼','这话李森炎可不敢接，找了个借口离去',],
-          btn: [{title: '找王经理',toScene: 'C000C_V_MAP_-1_2',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_100',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',]},]},
+          btn: [{title: '找王经理',toScene: 'C000C_V_MAP_-1_2',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_100',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101','WZXX_M1_N1_C000C_V/v_icon_100D',]},]},
 
          
     ],},
@@ -157,13 +159,13 @@ scenes: [
  #===========事件场景==============
        {
   # NPC2
-    id: 'C000C_V_MAP_-1_2', name: '王经理',
+    id: 'C000C_V_MAP_-1_2', name: '王经理办公室',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
-    # 当前场景地图
+    # 当前场景地图 
     mapId: 'C000C_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 2],
@@ -180,8 +182,8 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100', 'WZXX_M1_N1_C000C_V/v_icon_101', 'WZXX_M1_N1_C000C_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104'] },
+       { type: 'enter',  nextChat: 'C2' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],nextChat: 'C1' },
     ],
 
     # 对话选项
@@ -190,9 +192,14 @@ scenes: [
       { 
         id: 'C1', desc: '人事部的经理为人和善，起码对李森炎还算不错', 
         options: [ 
-         { title: '【找财务主管】', toScene: 'C000C_V_MAP_0_1'}, 
+         { title: '【找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
          { title: '【遇见王经理】', dialogs: ['Screen1'] }, 
-      
+        ],
+      },
+      { 
+        id: 'C2', desc: '人事部的经理为人和善，但是他现在似乎很忙', 
+        options: [ 
+         { title: '【找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
         ],
       },
        #
@@ -200,11 +207,11 @@ scenes: [
    
  # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '王经理', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen1',style: 6, title: '王经理对话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['王经理：','“其实挺可惜的，你的工作态度和能力我都看在眼里。”','李森炎填完离职手续，感觉一身轻松，没所谓地笑了笑。','“没事的，正好我也想做点自己的事情。”',
           '“找到下家了吗？”','“没有，我打算自己创业。”','王经理不置可否，创业十有九输，但他不想打击眼前这个年轻人。','就算失败了，也是一项值得肯定的阅历。','毕竟他敢迈出这一步，从一个司机到一个创业者。','这种变化不可谓不大，属实难得。','“加油！”',],
-          btn: [{title: '去财务部',toScene: 'C000C_V_MAP_0_1',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_101',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',]},]},
+          btn: [{title: '去财务部',toScene: 'C000C_V_MAP_0_1',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_101',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_102','WZXX_M1_N1_C000C_V/v_icon_101D']},]},
 
          
     ],},
@@ -214,12 +221,12 @@ scenes: [
    #===========事件场景==============
        {
   # NPC2
-    id: 'C000C_V_MAP_0_1', name: '财务主管',
+    id: 'C000C_V_MAP_0_1', name: '财务主管工位',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000C_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -229,7 +236,6 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
     ],
 
     # 动作定义
@@ -237,8 +243,8 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100', 'WZXX_M1_N1_C000C_V/v_icon_101', 'WZXX_M1_N1_C000C_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104'] },
+       { type: 'enter',  nextChat: 'C2' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102'], nextChat: 'C1' },
     ],
 
     # 对话选项
@@ -247,27 +253,32 @@ scenes: [
       { 
         id: 'C1', desc: '一部分人在埋头工作，还有人在窃窃私语，似乎是在说关于李森炎的话题', 
         options: [ 
-         { title: '【找赵某】', toScene: 'C000C_V_MAP_1_2'}, 
-         { title: '【找财务部主管】', dialogs: ['Screen1'] }, 
-      
+         { title: '【找赵某对话】', toScene: 'C000C_V_MAP_1_2'}, 
+         { title: '【找财务部主管对话】', dialogs: ['Screen1'] }, 
+        ],
+      },
+      { 
+        id: 'C2', desc: '一部分人在埋头工作，还有人在窃窃私语，总之也没什么人搭理你', 
+        options: [ 
+         { title: '【找赵某对话】', toScene: 'C000C_V_MAP_1_2'},       
         ],
       },
     ],
    
  # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '财务部主管', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen1',style: 6, title: '财务部主管对话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['财务主管：','“你来财务部干嘛？薪水下个月发。”','李森炎：“……”','这人怎么见谁都以为是来跟他讨钱的啊！',
           ],
-          btn: [{title: '去找总经理',toScene: 'C000C_V_MAP_0_-1',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104',]},]},
+          btn: [{title: '去找总经理对话',toScene: 'C000C_V_MAP_0_-1',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,varsOn: ['WZXX_M1_N1_C000C_V/v_icon_102D','WZXX_M1_N1_C000C_V/v_icon_104']},]},
     ],},
     ],
   },
    #===========事件场景==============
        {
   # NPC2
-    id: 'C000C_V_MAP_1_2', name: '赵某',
+    id: 'C000C_V_MAP_1_2', name: '赵某旁边',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
@@ -291,7 +302,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100', 'WZXX_M1_N1_C000C_V/v_icon_101', 'WZXX_M1_N1_C000C_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104'] },
+       
+     
     ],
 
     # 对话选项
@@ -305,11 +317,12 @@ scenes: [
       
         ],
       },
+      
     ],
    
  # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '赵某', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen1',style: 6, title: '与赵某聊天', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['赵某：','“……”','“……”','“你有什么事情吗？”','“没什么，我就随便看看，我今天就离职了。”','赵某沉默了一下。','思考着有什么可以用来祝福的词汇。','最后，他开口。','“一路好走。”','“……”','这人可真会说话。',
           ],
@@ -320,7 +333,7 @@ scenes: [
   #===========事件场景==============
        {
   # NPC2
-    id: 'C000C_V_MAP_0_0', name: '董事长秘书',
+    id: 'C000C_V_MAP_0_0', name: '董事长秘书工位',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
@@ -391,10 +404,8 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100', 'WZXX_M1_N1_C000C_V/v_icon_101', 'WZXX_M1_N1_C000C_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_104'] },
-       
-
+       { type: 'enter',  nextChat: 'C2' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100D', 'WZXX_M1_N1_C000C_V/v_icon_101D', 'WZXX_M1_N1_C000C_V/v_icon_102D'], nextChat: 'C1'  },
     ],
 
     # 对话选项
@@ -404,6 +415,14 @@ scenes: [
         id: 'C1', desc: '未经总经理同意，不可随意进入', 
         options: [ 
          { title: '【离开公司】', toScene: 'C000C_V1_MAP_1_5'}, 
+        
+     
+        ],
+      },
+       { 
+        id: 'C2', desc: '未经总经理同意，不可随意进入', 
+        options: [ 
+         { title: '【离开】', toScene: 'C000C_V_MAP_0_0'}, 
         
      
         ],
