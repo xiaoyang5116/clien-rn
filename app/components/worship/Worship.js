@@ -179,11 +179,11 @@ const Worship = props => {
 
     const openSpeedPage = () => {
       props.dispatch(action('WorshipModel/getWorshipSpeedUpTime')()).then(result => {
-        console.log("result", result);
         const key = RootView.add(
           <SpeedPage
-            worshipSpeedUp={worshipSpeedUp}
+            onSpeedUp={worshipSpeedUp}
             data={result}
+            prop={item}
             onClose={() => {
               RootView.remove(key);
             }}

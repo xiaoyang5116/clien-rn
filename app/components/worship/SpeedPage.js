@@ -11,6 +11,8 @@ import ImageCapInset from 'react-native-image-capinsets-next';
 import PropIcon from '../alchemyRoom/components/PropIcon';
 
 const SpeedPage = props => {
+  const { onClose, onSpeedUp, prop } = props
+  const { allSpeedTime, currentNeedTime, worshipSpeedUpTime } = props.data
   return (
     <HalfPanel
       backgroundColor={'rgba(0,0,0,0.7)'}
@@ -22,6 +24,16 @@ const SpeedPage = props => {
         onClose={props.onClose}
         containerStyle={{ marginTop: 12 }}
       />
+      <View>
+        <Text>全部贡品加速:{h_m_s_Format(allSpeedTime)}</Text>
+      </View>
+      <View>
+        <Text>可加速时间: {h_m_s_Format(worshipSpeedUpTime)}</Text>
+      </View>
+      <View>
+        <Text>{prop.name}: {h_m_s_Format(currentNeedTime)}</Text>
+      </View>
+
     </HalfPanel>
   )
 };

@@ -78,6 +78,7 @@ export default {
           status: 1,
         };
       }
+
       _worshipData[worshipDataIndex] = {
         ..._worshipData[worshipDataIndex],
         name: worshipProp.name,
@@ -88,19 +89,23 @@ export default {
         treasureChestId: worshipProp.treasureChestId,
       };
       const newWorshipData = removeEmpty(_worshipData)
+
+      // 使用道具
+      yield put.resolve(action('PropsModel/use')({ propId: worshipProp.id, num: 1, quiet: true }));
       yield call(LocalStorage.set, LocalCacheKeys.WORSHIP_DATA, newWorshipData);
       yield put(action('updateState')({ worshipData: newWorshipData }));
     },
 
     // 取消供奉
     *cancelWorship({ payload }, { put, select, call }) {
-      // console.log("payload", payload);
       const { worshipData } = yield select(state => state.WorshipModel);
       const _worshipData = worshipData.map(item =>
         item.id === payload.id ? { id: item.id, status: 0 } : item,
       );
       // 排除空的
       const newWorshipData = removeEmpty(_worshipData)
+      // 退回道具
+      yield put.resolve(action('PropsModel/sendProps')({ propId: payload.propId, num: 1, quiet: true }));
       yield call(LocalStorage.set, LocalCacheKeys.WORSHIP_DATA, newWorshipData);
       yield put(action('updateState')({ worshipData: newWorshipData }));
     },
