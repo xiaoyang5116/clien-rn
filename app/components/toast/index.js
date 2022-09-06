@@ -5,6 +5,7 @@ import { BOTTOM_TOP } from '../../constants'
 
 import RootView from '../RootView';
 import ToastView from './ToastView';
+import LongTimeToast from './LongTimeToast';
 
 class Toast {
 
@@ -17,6 +18,14 @@ class Toast {
                 }
             }} />
         )
+    }
+
+    static longTimeToast(){
+        const key = RootView.add(
+            <LongTimeToast
+              onClose={() => { RootView.remove(key) }}
+            />
+          )
     }
 }
 

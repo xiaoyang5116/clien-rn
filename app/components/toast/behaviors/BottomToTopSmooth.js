@@ -119,29 +119,6 @@ export default BottomToTopSmooth = (props) => {
         }
     }, [])
 
-    // if (Array.isArray(message)) {
-    //     let num = 0
-    //     let timer = setInterval(() => {
-    //         if (num < message.length) {
-    //             // setArr([...arr, <AnimatedComponent message={message[num]} currentStyles={currentStyles} />])
-    //             arr.push(<AnimatedComponent message={message[num]} currentStyles={currentStyles} />)
-    //             num++
-    //         } else {
-    //             clearInterval(timer)
-    //         }
-    //     }, 500)
-
-    // } else {
-    //     // setArr([<AnimatedComponent message={message} currentStyles={currentStyles} />])
-    //     arr.push(<AnimatedComponent message={message} currentStyles={currentStyles} />)
-    // }
-
-    // return arr.map((item, index) => (
-    //     <View key={index} pointerEvents="box-none" style={currentStyles.tooltipWrap}>
-
-    //     </View>
-    // ))
-
     if (Array.isArray(message)) {
         return (
             <View pointerEvents="box-none" style={currentStyles.tooltipWrap}>
