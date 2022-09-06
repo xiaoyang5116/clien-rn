@@ -16,9 +16,8 @@ import { TextButton } from '../../../constants/custom-ui';
 import Toast from '../../../components/toast';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { connect } from 'react-redux';
-import { AppDispath } from '../../../constants';
-
-const UPGRADE_COMPLETED = '__@UpgradeSubPage.completed';
+import RootView from '../../../components/RootView';
+import UpgradeConfirm from './UpgradeConfirm';
 
 const ItemProgress = (props) => {
     return (
@@ -31,7 +30,9 @@ const ItemProgress = (props) => {
 const SubItem = (props) => {
 
     const onUpgrade = () => {
-        AppDispath({ type: 'CollectionModel/upgrade', payload: { id: props.data.id }, retmsg: UPGRADE_COMPLETED });
+        const key = RootView.add(<UpgradeConfirm data={props.data} onClose={() => {
+            RootView.remove(key);
+        }} />);
     }
 
     let finishedNum = 0;
@@ -63,7 +64,6 @@ const SubItem = (props) => {
 
 const UpgradeSubPage = (props) => {
 
-    const CALLBACK_EVENT_KEY = '__@UpgradeSubPage.activate';
     const scale = React.useRef(new Animated.Value(0)).current;
     const [data, setData] = React.useState(props.data);
 
@@ -76,25 +76,7 @@ const UpgradeSubPage = (props) => {
     }, []);
 
     React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener(CALLBACK_EVENT_KEY, (v) => {
-            if (!v) {
-                Toast.show('改良失败!');
-                return
-            }
-            Toast.show('改良成功!');
-
-            DeviceEventEmitter.emit('__@CollectionTabPage.refresh');
-            if (props.onClose != undefined) {
-                props.onClose();
-            }
-        });
-        return () => {
-            listener.remove();
-        }
-    }, []);
-
-    React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener(UPGRADE_COMPLETED, (v) => {
+        const listener = DeviceEventEmitter.addListener('__@UpgradeSubPage.completed', (v) => {
             if (lo.isBoolean(v) && !v)
                 return
             //
@@ -109,6 +91,8 @@ const UpgradeSubPage = (props) => {
                         props.onClose();
                     }
                 }, 1000);
+            } else {
+                Toast.show('改良成功!');
             }
         });
         return () => {
