@@ -119,6 +119,10 @@ export default {
       
       if (currentItem == null)
         return false;
+
+      // 扣除道具
+      const success = yield put.resolve(action('PropsModel/reduce')({ propsId: [currentItem.propId], num: currentItem.num, mode: 1 }));
+      if (!success) return false;
         
       // 标注已完成
       currentItem.finished = true;

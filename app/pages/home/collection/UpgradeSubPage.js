@@ -30,7 +30,7 @@ const ItemProgress = (props) => {
 const SubItem = (props) => {
 
     const onUpgrade = () => {
-        const key = RootView.add(<UpgradeConfirm data={props.data} onClose={() => {
+        const key = RootView.add(<UpgradeConfirm value={props.value} data={props.data} onClose={() => {
             RootView.remove(key);
         }} />);
     }

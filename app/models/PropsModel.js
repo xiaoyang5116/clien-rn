@@ -244,6 +244,21 @@ export default {
       return propsState.__data.bags[userState.worldId];
     },
 
+    *getBagProp({ payload }, { put, call, select }) {
+      const propsState = yield select(state => state.PropsModel);
+      const userState = yield select(state => state.UserModel);
+      const { propId, always } = payload;
+
+      const found = propsState.__data.bags[userState.worldId].find(e => e.id == propId);
+      if (found != undefined) {
+        return lo.cloneDeep(found);
+      } else if ((always != undefined) && always) {
+        const config = yield put.resolve(action('getPropConfig')({ propId }));
+        return { ...config, num: 0 };
+      }
+      return null;
+    },
+
     *getPropConfig({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
       const { propId } = payload;

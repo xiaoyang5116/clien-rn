@@ -19,7 +19,9 @@ import { connect } from 'react-redux';
 
 const UpgradeConfirm = (props) => {
 
+    const MSG_ID_GET_BAG_PROP = '__@UpgradeConfirm.getBagProp';
     const scale = React.useRef(new Animated.Value(0)).current;
+    const [prop, setProp] = React.useState(null);
 
     React.useEffect(() => {
         Animated.timing(scale, {
@@ -27,6 +29,28 @@ const UpgradeConfirm = (props) => {
             duration: 200,
             useNativeDriver: true,
         }).start();
+    }, []);
+
+    let currentItem = null;
+    for (let key in props.value) {
+        const item = props.value[key];
+        if (item.finished == undefined) {
+            currentItem = item;
+            break;
+        }
+    }
+
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener(MSG_ID_GET_BAG_PROP, (v) => {
+            setProp(v);
+        });
+        return () => {
+            listener.remove();
+        }
+    }, []);
+
+    React.useEffect(() => {
+        AppDispath({ type: 'PropsModel/getBagProp', payload: { propId: currentItem.propId, always: true }, retmsg: MSG_ID_GET_BAG_PROP });
     }, []);
 
     return (
@@ -40,14 +64,17 @@ const UpgradeConfirm = (props) => {
                         <View style={{ width: '100%', height: 80, justifyContent: 'center', alignItems: 'center' }}>
                             <Text>升级收藏品，获得更好的属性</Text>
                         </View>
-                        <View style={{ width: '100%', marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
-                            <View style={{ width: 50, height: 50, borderWidth: 1, borderColor: '#333', borderRadius: 5, backgroundColor: '#ccc', justifyContent: 'center', alignItems: 'center' }}>
-                                <PropGrid prop={{ id: 3001, iconId: 1, quality: 2, num: 5, name: 'xxx' }} labelStyle={{ color: '#000' }} />
+                        <View style={{ width: '100%', marginTop: 10, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ width: 60, height: 60, borderWidth: 1, borderColor: '#333', borderRadius: 5, backgroundColor: '#ccc', justifyContent: 'center', alignItems: 'center' }}>
+                                {(prop != null) ? <PropGrid prop={prop} showNum={true} showLabel={false} labelStyle={{ color: '#000' }} /> : <></>}
+                            </View>
+                            <View style={{ marginTop: 16 }}>
+                                <Text>所需道具: {(prop != null) ? prop.name : ''} x {currentItem.num}</Text>
                             </View>
                         </View>
                     </View>
                     <View style={{ width: '94%', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                        <TextButton title={'改良'} disabled={false} onPress={() => {
+                        <TextButton title={'改良'} disabled={!(prop != null && prop.num >= currentItem.num)} onPress={() => {
                             AppDispath({ type: 'CollectionModel/upgrade', payload: { id: props.data.id }, retmsg: '__@UpgradeSubPage.completed' });
                             if (props.onClose != undefined) {
                                 props.onClose();
