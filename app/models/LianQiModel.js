@@ -139,8 +139,6 @@ export default {
         yield put.resolve(action('PropsModel/use')({ propId: props.propId, num: (props.reqNum * refiningNum), quiet: true }));
       }
 
-      console.log("recipeData.propsDetail", recipeData.propsDetail);
-
       // 随机产生丹药
       let danYaoArr = []
       for (let k = 0; k < refiningNum; k++) {
@@ -181,7 +179,7 @@ export default {
       yield put(action("updateState")({ lianQiData }))
     },
 
-    // 炼丹完成
+    // 炼器完成
     *lianQiFinish({ payload }, { call, put, select }) {
       const { lianQiData } = yield select(state => state.LianQiModel);
 
@@ -193,7 +191,7 @@ export default {
       const message = lianQiData.targets.map(item => {
         return `获得${item.name} * ${item.num}`
       })
-      Toast.show(message, BOTTOM_TOP_SMOOTH)
+      Toast.show(message, BOTTOM_TOP_SMOOTH, 500)
 
       yield call(LocalStorage.set, LocalCacheKeys.LIANQI_DATA, null);
       yield put(action("updateState")({ lianQiData: null }))
