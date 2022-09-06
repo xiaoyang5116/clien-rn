@@ -103,7 +103,7 @@ const UpgradeSubPage = (props) => {
             if (v.__full != undefined && lo.isBoolean(v.__full) && v.__full) {
                 Toast.show('升星突破!');
                 DeviceEventEmitter.emit('__@CollectionTabPage.refresh');
-                
+
                 setTimeout(() => {
                     if (props.onClose != undefined) {
                         props.onClose();
@@ -139,6 +139,7 @@ const UpgradeSubPage = (props) => {
                     </View>
                     <View style={{ width: '94%', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
                         <TextButton title={'返回'} onPress={() => {
+                            DeviceEventEmitter.emit('__@CollectionTabPage.refresh');
                             if (props.onClose != undefined) {
                                 props.onClose();
                             }
