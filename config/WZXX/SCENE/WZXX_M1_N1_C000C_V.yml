@@ -16,6 +16,7 @@ scenes: [
       { id: "v_icon_101D", min: 0, max: 1 },
       { id: "v_icon_102D", min: 0, max: 1 },
       { id: "v_icon_100D", min: 0, max: 1 },
+      
 
       ],
 
@@ -59,7 +60,7 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
+    # { id: "v_icon_100E", min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -67,22 +68,38 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  dialogs: ['d3'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
-       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  dialogs: ['d3'], andVarsOff: ['ONE_OPEN_0',],   nextChat: 'C1'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
 
     # 对话选项
     chats: [
-      #
       { 
         id: 'C1', desc: '前台的小姐姐正在埋头工作', 
         options: [ 
-         { title: '【去找李小姐对话】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000C_V_MAP_-1_3'}, 
+         { title: '【这里没人搭理你】',varsOn: ['ONE_OPEN_0',], toScene: 'C000C_V_MAP_1_2'}, 
         ],
       },
-       #
-
-
+      { 
+        id: 'C2', desc: '去找李小姐沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
+        ],
+      },
+      { 
+        id: 'C3', desc: '去找王经理沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
+        ],
+      },
 
     ],
  # 对话框
@@ -124,7 +141,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
 
     # 对话选项
@@ -139,6 +157,19 @@ scenes: [
         ],
       },
       #
+       { 
+        id: 'C3', desc: '去找王经理沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
+        ],
+      },
+
     
        #
     ],
@@ -184,10 +215,23 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C2' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],nextChat: 'C1' },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C3'  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
-
     # 对话选项
     chats: [
+       { 
+        id: 'C3', desc: '去找李小姐沟通，或许可以解锁新的东西', 
+        options: [ 
+        { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
+        ],
+      },
       #
       { 
         id: 'C1', desc: '人事部的经理为人和善，起码对李森炎还算不错', 
@@ -245,11 +289,25 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C2' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102'], nextChat: 'C1' },
+        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],nextChat: 'C4' },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C3'  },
+       
     ],
-
     # 对话选项
     chats: [
-      #
+       { 
+        id: 'C3', desc: '去找李小姐沟通，或许可以解锁新的东西', 
+        options: [ 
+        { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '去找王经理沟通，或许可以解锁新的东西', 
+        options: [ 
+        { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
+        ],
+      },
+ 
       { 
         id: 'C1', desc: '一部分人在埋头工作，还有人在窃窃私语，似乎是在说关于李森炎的话题', 
         options: [ 
@@ -302,21 +360,40 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       
-     
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
 
     # 对话选项
     chats: [
-      #
-      { 
+     { 
         id: 'C1', desc: '技术部的人不太熟悉，随便看看', 
         options: [ 
          { title: '【找董事长秘书】', toScene: 'C000C_V_MAP_0_0'}, 
-         { title: '【程序员赵某】', dialogs: ['Screen1'] }, 
-      
         ],
       },
+      { 
+        id: 'C2', desc: '去找李小姐沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
+         { title: '【遇见程序员赵某】', dialogs: ['Screen1'] }
+        ],
+      },
+      { 
+        id: 'C3', desc: '去找王经理沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
+        ],
+      },
+      #
+      
       
     ],
    
@@ -357,13 +434,14 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
 
     # 对话选项
     chats: [
-      #
-      { 
+     { 
         id: 'C1', desc: '董事长秘书让你没事不要随便来这边', 
         options: [ 
          { title: '【总经理办公室】', toScene: 'C000C_V_MAP_0_-1'}, 
@@ -371,6 +449,32 @@ scenes: [
       
         ],
       },
+     { 
+        id: 'C1', desc: '技术部的人不太熟悉，随便看看', 
+        options: [ 
+         { title: '【找董事长秘书】', toScene: 'C000C_V_MAP_0_0'}, 
+        ],
+      },
+      { 
+        id: 'C2', desc: '去找李小姐沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
+         { title: '【遇见程序员赵某】', dialogs: ['Screen1'] }
+        ],
+      },
+      { 
+        id: 'C3', desc: '去找王经理沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
+        ],
+      },
+      #
 
    
     ],
