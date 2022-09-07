@@ -44,6 +44,14 @@ export default {
       }
     },
 
+    // 清除消息
+    *clearToastMessages({ payload }, { put, call, select }) {
+      const { _isToastShow } = yield select(state => state.ToastModel);
+      if (_isToastShow === true) {
+        yield put(action('updateState')({ toastMessages: [], _isToastShow: false }))
+      }
+    },
+
     *getToastMessages({ payload }, { put, call, select }) {
 
     },

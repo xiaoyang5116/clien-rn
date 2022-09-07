@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { action, connect } from "../../constants"
 
-import LeftToRightSwiper from './longTimeComponent/LeftToRightSwiper'
+import AttributesComponent from './longTimeComponent/LeftToRightSwiper'
 
 const LongTimeToast = (props) => {
   // console.log("props", props);
@@ -12,11 +12,11 @@ const LongTimeToast = (props) => {
   const [msgIndex, setMsgIndex] = useState(0)
   const toastMsgLength = useRef(toastMessages.length)
   const timer = useRef(null)
+  const animCount = useRef(0)
 
   useEffect(() => {
     toastMsgLength.current = toastMessages.length
     timer.current = setInterval(() => {
-      // console.log("sss");
       if (msgIndex < toastMsgLength.current - 1) {
         setMsgIndex(msgIndex + 1)
       }
@@ -32,11 +32,19 @@ const LongTimeToast = (props) => {
     }
   }, [])
 
-  console.log("msgIndex", msgIndex);
+  const closeToast = (num) => {
+    animCount.current += num
+    if (animCount.current === toastMsgLength.current) {
+      props.dispatch(action("ToastModel/clearToastMessages")()).then((result) => {
+        props.onClose()
+      })
+    }
+  }
+
 
   const _renderMessages = ({ item, index }) => {
     if (index <= msgIndex) {
-      return <LeftToRightSwiper msg={item} />
+      return <AttributesComponent msg={item} closeToast={closeToast} />
     }
   }
   return (
@@ -69,7 +77,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: "5%",
     top: "15%",
-    backgroundColor: "red",
   }
 
 })

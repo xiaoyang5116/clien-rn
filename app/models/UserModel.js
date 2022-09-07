@@ -124,7 +124,7 @@ export default {
     *alterAttrs({ payload }, { put, call, select }) {
       const userState = yield select(state => state.UserModel);
       
-      // let messages = []
+      let messages = []
       payload.forEach(e => {
         const { key, value } = e;
         if (lo.isEmpty(key) || value == 0)
@@ -137,12 +137,16 @@ export default {
           }
 
           entry.value += value;
-          entry.value = (entry.value < 0) ? 0 : entry.value;
-          // messages.push(entry)
+          // entry.value = (entry.value < 0) ? 0 : entry.value;
+          messages.push({
+            key:e.key,
+            value: entry.value,
+            changeValue: e.value
+          })
       });
 
       // 提示属性改变
-      // yield put(action('ToastModel/toastShow')(messages));
+      yield put(action('ToastModel/toastShow')(messages));
 
       yield put(action('updateState')({}));
       yield put.resolve(action('syncData')({}));
