@@ -4,9 +4,9 @@ import React, { useContext } from 'react';
 import {
   action,
   connect,
-  Component,
   ThemeContext,
   EventKeys,
+  getSceneTopBackgroundImage,
 } from "../../constants";
 
 import { 
@@ -26,10 +26,6 @@ import SceneMap from '../../components/maps/SceneMap';
 import { DeviceEventEmitter } from 'react-native';
 import MissionBar from '../../components/mission/MissionBar';
 
-const SCENE_BG = [
-  { name: 'default', img: require('../../../assets/scene/bg_default.jpg') },
-];
-
 const ICONS = [
   { id: 1, img: require('../../../assets/button_icon/1.png'), top: 0, left: 10 },
   { id: 2, img: require('../../../assets/button_icon/2.png'), top: -1, left: 10 },
@@ -45,11 +41,11 @@ const SceneImage = (props) => {
   if (lo.isEmpty(sceneImage)) {
     return (<></>);
   } else {
-    const img = SCENE_BG.find(e => e.name == sceneImage).img;
+    const img = getSceneTopBackgroundImage(sceneImage);
     return (
       <View style={{ alignSelf: 'stretch', height: 100 }}>
         <View style={{ flex: 1, marginLeft: 10, marginRight: 10, borderColor: '#999', borderWidth: 2 }}>
-          <FastImage style={{ width: '100%', height: '100%' }} source={img} resizeMode='cover'  />
+          <FastImage style={{ width: '100%', height: '100%' }} source={img.img} resizeMode='cover'  />
         </View>
       </View>
       );

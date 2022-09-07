@@ -226,7 +226,7 @@ const XiuXingTabPage = (props) => {
     const cdForbiden = (props.user.xiuxingStatus.cdTime > 0 && DateTime.now() < props.user.xiuxingStatus.cdTime);
 
     return (
-        <Panel patternId={3}>
+        <Panel patternId={0}>
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={styles.viewContainer}>
                     <View style={{ width: '90%', alignItems: 'center', marginBottom: 10 }}>
@@ -244,15 +244,16 @@ const XiuXingTabPage = (props) => {
                         <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>攻击： {getXiuXingAttrValue('攻击')}</Text></View>
                     </View>
                     <View style={{ marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
-                        <FastImage style={{ width: px2pd(607), height: px2pd(785) }} source={require('../../../assets/bg/xiuxing_bg.png')} />
+                        {/* <FastImage style={{ width: px2pd(607), height: px2pd(785) }} source={require('../../../assets/bg/dazuo_v1.png')} /> */}
+                        <FastImage style={{ width: px2pd(511), height: px2pd(660) }} source={require('../../../assets/bg/dazuo_v2.png')} />
                         <View style={{ position: 'absolute' }}>
                             <TextButton title={'突破'} disabled={((props.user.xiuxingStatus.value < props.user.xiuxingStatus.limit) || cdForbiden)} onPress={onTuPo} />
                         </View>
                         {
                         (cdForbiden)
                         ? (
-                        <View style={{ position: 'absolute', bottom: 50 }}>
-                            <Text style={{ color: '#829358', fontSize: 14, fontWeight: 'bold' }}>等待时间: {DateTime.format(props.user.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
+                        <View style={{ position: 'absolute', bottom: 35 }}>
+                            <Text style={styles.cdFontStyle}>等待时间: {DateTime.format(props.user.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
                         </View>
                         )
                         : <></>
@@ -288,6 +289,14 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
+    cdFontStyle: {
+        color: '#829358', 
+        fontWeight: 'bold', 
+        fontSize: 12, 
+        textShadowColor: '#000', 
+        textShadowRadius: 2, 
+        shadowOpacity: 0,
+    }
 });
 
 export default connect((state) => ({ ...state.AppModel, user: { ...state.UserModel } }))(XiuXingTabPage);
