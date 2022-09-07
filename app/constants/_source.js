@@ -69,7 +69,7 @@ const _images = {
     ],
     world_bg: [
         { id: 'ShiJieBeiJing_V1', source: require('../../assets/bg/world_bg1.png') },
-    ]
+    ],
 }
 
 // 获得头像
