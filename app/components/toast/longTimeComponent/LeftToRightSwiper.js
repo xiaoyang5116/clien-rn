@@ -3,6 +3,10 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const viewWidth = 200;
 
+const changeValueFormat = (changeValue) => {
+  return Number(changeValue) > 0 ? `+${changeValue}` : `${changeValue}`
+}
+
 const GoodAndEvil = ({ msg }) => {
   const maxValue = 100
   const translateX = (50 / maxValue) * msg.value
@@ -15,7 +19,7 @@ const GoodAndEvil = ({ msg }) => {
         <View style={{ width: 1, height: 10, backgroundColor: "red", transform: [{ translateX: -translateX }] }}></View>
       </View>
       <Text style={styles.title}>冷漠</Text>
-      <Text style={styles.title}>{msg.changeValue > 0 ? `+${msg.changeValue}` : `-${msg.changeValue}`}</Text>
+      <Text style={styles.title}>{changeValueFormat(msg.changeValue)}</Text>
     </View>
   )
 }
@@ -90,7 +94,7 @@ const AttributesComponent = (props) => {
         <View style={{ height: 20, width: 100 }}>
         </View>
         <Text style={styles.title}>{msg.value}</Text>
-        <Text style={styles.title}>{msg.changeValue > 0 ? `+${msg.changeValue}` : `-${msg.changeValue}`}</Text>
+        <Text style={styles.title}>{changeValueFormat(msg.changeValue)}</Text>
       </View>
     </LeftToRightSwiper>
   )
