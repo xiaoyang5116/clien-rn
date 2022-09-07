@@ -1386,7 +1386,8 @@ scenes: [
        { 
         id: 'C1', desc:  "这边不太繁华，比之西市,\n差得不是一星半点",
         options: [ 
-        { title: '【逛逛】', nextChat: 'C2'},   
+        { title: '【观察灰毛猴子】', dialogs: ['Screen15'] }, 
+        # { title: '【逛逛】', nextChat: 'C0'},   
         # { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'},
         # { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
         # { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
@@ -1402,6 +1403,21 @@ scenes: [
          { title: '这条街并不值得游玩，离开', nextChat: 'C1' }, 
         ],
       },
+      # { 
+      #   id: 'C0', desc: '逛了一圈，也没发现什么有趣的地方', 
+      #   options: [ 
+      #    { title: '这条街并不值得游玩，离开', nextChat: 'C1' }, 
+      #   ],
+      # },
+     ],
+       # 对话框
+    dialogs: [
+          { id: 'Screen15',style: 6, title: '观察灰毛猴子', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['原来这个花满楼就是茶楼啊','里面许多文人雅士在喝茶吟赋','这时和李森炎格格不入','其实主要还是没钱……',],
+          btn: [{title: '离开',tokey: "C1",},]},
+
+    ],},
     ],
   },
  #===========事件场景==============
@@ -1477,23 +1493,35 @@ scenes: [
        { 
         id: 'C1', desc:  "这条街类似不法之地,\n路过的人看上去都不太好惹",
         options: [ 
-        { title: '【逛一会儿】', nextChat: 'C2'},
-        # { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
-        # { title: '【鉴宝阁】',toScene: 'C000A_V_MAP_3_1'},
-        # { title: '【巷子】',toScene: 'C000A_V_MAP_2_2'},
-        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
-
+        { title: '【失落的醉汉】', nextChat: 'C2'},
         ],
       }, 
       { 
-        id: 'C2', desc: '这条街似乎很乱', 
+        id: 'C2', desc: '这个大叔躺在路边，衣着邋遢，满脸胡茬，双目无神，一副生无可恋的样子', 
         options: [ 
-         { title: '醉汉倒在自己脚下，疑似碰瓷……晦气，离开', nextChat: 'C1' }, 
+         { title: '【看起来需要别人的帮助】',dialogs: ['Screen15'] },
+         { title: '【别管他，走远一点】',nextChat: 'C1'},
         ],
       },
+      { 
+        id: 'C3', desc: '请根据醉汉指示的方向，前往东市寻找抢葫芦的猴子', 
+        options: [ 
+         { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
+        ],
+      },
+   ],
+       # 对话框
+    dialogs: [
+          { id: 'Screen15',style: 6, title: '帮助醉汉', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“大叔，你怎么了？”','“有只该死的猴子，抢走了我的酒葫芦！”','大叔既悲伤又愤怒，向李森炎哭诉','“那猴子跑得太快，我追不上它，你能帮我把酒葫芦夺回来吗？”',],
+          btn: [{title: '包在我身上',nextChat: 'C3',  },{title: '不行我还有事忙',nextChat: 'C1',},]},
+
+          
+    ],},
     ],
   },
+
 
   #===========事件场景==============
        {
