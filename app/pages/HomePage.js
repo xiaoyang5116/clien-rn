@@ -25,7 +25,7 @@ import StoryTabPage from './home/StoryTabPage';
 import ProfileTabPage from './home/ProfileTabPage';
 import CollectionTabPage from './home/CollectionTabPage';
 import { Platform, TouchableWithoutFeedback } from 'react-native';
-import { px2pd } from '../constants/resolution';
+import { isPad, px2pd } from '../constants/resolution';
 import TownTabPage from './home/TownTabPage';
 import RoleTabPage from './home/RoleTabPage';
 import PageUtils from '../utils/PageUtils';
@@ -41,7 +41,7 @@ const TabIcon = (props) => {
   const theme = React.useContext(ThemeContext);
 
   const button = (
-    <View style={[theme.tabBottomImgStyle, { position: 'absolute', top: -px2pd(40), justifyContent: 'center', alignItems: 'center' }]}>
+    <View style={[theme.tabBottomImgStyle, { position: 'absolute', top: -px2pd(40), justifyContent: 'center', alignItems: 'center', transform: [{ scale: (isPad() ? 0.8 : 1) }] }]}>
       <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={theme.tabBottomImage} />
       <View style={[{ width: px2pd(60) }]}>
         <Text style={{ fontSize: px2pd(60), color: props.color }}>{props.title}</Text>
