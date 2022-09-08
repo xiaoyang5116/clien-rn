@@ -17,9 +17,9 @@ import { px2pd } from '../../../constants/resolution';
 import { TextButton } from '../../../constants/custom-ui';
 import RootView from '../../../components/RootView';
 import StarsBanner from './StarsBanner';
-import ActivationConfirm from './ActivationConfirm';
+import UpgradeSubPage from './UpgradeSubPage';
 
-const ActivationPage = (props) => {
+const UpgradePage = (props) => {
 
     const scale = React.useRef(new Animated.Value(0)).current;
 
@@ -27,6 +27,13 @@ const ActivationPage = (props) => {
     lo.forEach(props.data.attrs[props.data.level], (v, k) => {
         attrs.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{v.key}: +{v.value}</Text>);
     });
+
+    const attrsFull = [];
+    if (attrs.length == 0) {
+        lo.forEach(props.data.attrs[props.data.stars-1], (v, k) => {
+            attrsFull.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{v.key}: +{v.value}</Text>);
+        });
+    }
 
     React.useEffect(() => {
         Animated.timing(scale, {
@@ -59,20 +66,26 @@ const ActivationPage = (props) => {
                         </View>
                     </View>
                     <View style={{ width: '94%', height: 140, marginBottom: 20, borderWidth: 1, borderColor: '#333', borderRadius: 5, backgroundColor: '#ccc', padding: 5}}>
-                        <Text style={{ color: '#ce6a6f', lineHeight: 26 }}>激活后，获得以下属性效果</Text>
-                        {attrs}
+                        { (attrs.length > 0) ? attrs : attrsFull }
                     </View>
                     <View style={{ width: '94%', justifyContent: 'center', alignItems: 'center' }}>
-                        <TextButton title={'激活'} onPress={() => {
+                        {
+                        (attrs.length > 0)
+                        ? (
+                        <TextButton title={'改良'} onPress={() => {
                             if (props.onClose != undefined) {
                                 props.onClose();
                             }
                             setTimeout(() => {
-                                const key = RootView.add(<ActivationConfirm data={props.data} onClose={() => {
+                                const key = RootView.add(<UpgradeSubPage data={props.data} onClose={() => {
                                     RootView.remove(key);
                                 }} />);
                             }, 200);
                         }} />
+                        )
+                        : <Text style={{ color: '#000' }}>已满级</Text>
+                        }
+
                     </View>
                 </Animated.View>
             </SafeAreaView>
@@ -80,4 +93,4 @@ const ActivationPage = (props) => {
     );
 }
 
-export default ActivationPage;
+export default UpgradePage;

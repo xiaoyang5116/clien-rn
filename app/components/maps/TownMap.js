@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 import lo from 'lodash';
-import { px2pd } from '../../constants/resolution';
+import { isPad, px2pd, SCALE_FACTOR } from '../../constants/resolution';
 import { EventKeys, getWindowSize, ThemeContext } from '../../constants';
 import { confirm } from '../dialog/ConfirmDialog';
 import Flower from '../animation/Flower';
@@ -32,7 +32,7 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_01.png'),
         },
         farPoints: [
-            { style: { left: 70, top: 260 }, name: 'BaiShouShan', title: '百兽山' },
+            { style: { left: px2pd(200) * SCALE_FACTOR, top: px2pd(730) }, name: 'BaiShouShan', title: '百兽山' },
         ],
         nearPoints: [
         ],
@@ -44,8 +44,8 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_02.png'),
         },
         farPoints: [
-            { style: { left: 10, top: 380 }, name: 'LingYaoTian', title: '灵药田' },
-            { style: { left: 110, top: 200 }, textStyle: { top: 22 }, name: 'XunBao', title: '寻宝' },
+            { style: { left: px2pd(20) * SCALE_FACTOR, top: px2pd(1050) * (isPad() ? 0.94 : 1) }, name: 'LingYaoTian', title: '灵药田' },
+            { style: { left: px2pd(300) * SCALE_FACTOR, top: px2pd(550) * (isPad() ? 1.12 : 1) }, name: 'XunBao', title: '寻宝' },
         ],
         nearPoints: [
         ],
@@ -59,8 +59,8 @@ const MAP_DATA = [
         farPoints: [
         ],
         nearPoints: [
-            { style: { left: 75, top: 320 }, name: 'LianQiFeng', title: '练器峰' },
-            { style: { left: 155, top: 340 }, name: 'HeChengFeng', title: '合成峰' },
+            { style: { left: px2pd(200) * SCALE_FACTOR, top: px2pd(880) * (isPad() ? 0.76 : 1) }, name: 'LianQiFeng', title: '练器峰' },
+            { style: { left: px2pd(430) * SCALE_FACTOR, top: px2pd(950) * (isPad() ? 0.76 : 1) }, name: 'HeChengFeng', title: '合成峰' },
         ],
     },
     {
@@ -70,7 +70,7 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_04.png'),
         },
         farPoints: [
-            { style: { left: 55, top: 280 }, name: 'YanWuTing', title: '演武亭' },
+            { style: { left: px2pd(130) * SCALE_FACTOR, top: px2pd(800) }, name: 'YanWuTing', title: '演武亭' },
         ],
         nearPoints: [
         ],
@@ -82,11 +82,11 @@ const MAP_DATA = [
             middle: require('../../../assets/maps/town/mid_05.png'),
         },
         farPoints: [
-            { style: { left: 70, top: 150 }, name: 'ZhenYaoTa', title: '镇妖塔' },
-            { style: { left: 10, top: 300 }, name: 'LianDanFang', title: '炼丹房' },
+            { style: { left: px2pd(190) * SCALE_FACTOR, top: px2pd(430) * (isPad() ? 1.2 : 1) }, name: 'ZhenYaoTa', title: '镇妖塔' },
+            { style: { left: px2pd(20) * SCALE_FACTOR, top: px2pd(810) }, name: 'LianDanFang', title: '炼丹房' },
         ],
         nearPoints: [
-            { style: { left: 160, top: 300 }, textStyle: { top: 22 }, name: 'ShiChang', title: '市场' },
+            { style: { left: px2pd(410) * (isPad() ? 0.66 : 1), top: px2pd(810) * (isPad() ? 0.76 : 1) }, name: 'ShiChang', title: '市场' },
         ],
     },
 ];
@@ -121,8 +121,10 @@ const EntryButton = (props) => {
                 });
             }}>
             <View style={{ ...props.style }}>
-                <FastImage style={{ width: px2pd(84), height: px2pd(211) }} source={themeStyle.townMapButtonImage} />
-                <Text style={[{ position: 'absolute', left: 8, top: 12, width: 20 }, props.textStyle, { ...themeStyle.townMapButtonLabel }]}>{props.title}</Text>
+                <FastImage style={{ width: px2pd(84) * SCALE_FACTOR, height: px2pd(211) * SCALE_FACTOR }} source={themeStyle.townMapButtonImage} />
+                <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={[{ width: px2pd(40), textAlign: 'center' }, props.textStyle, { ...themeStyle.townMapButtonLabel }]}>{props.title}</Text>
+                </View>
             </View>
         </TouchableWithoutFeedback>
     );
@@ -168,10 +170,10 @@ const TownMap = (props) => {
         return (
             <View style={{ width: 'auto', height: '100%', backgroundColor: '#fff' }}>
                 {/* 中景图 */}
-                <FastImage style={{ width: px2pd(500), height: px2pd(1300), top: fixedTop }} source={item.images.middle} />
+                <FastImage style={{ width: px2pd(500) * SCALE_FACTOR, height: px2pd(1300) * SCALE_FACTOR, top: fixedTop }} source={item.images.middle} />
                 {/* 前景图 */}
                 <Animated.View style={{ position: 'absolute', left: leftPos, top: fixedTop }} pointerEvents='none'>
-                    <FastImage style={{ width: px2pd(500), height: px2pd(1300) }} source={item.images.front} />
+                    <FastImage style={{ width: px2pd(500) * SCALE_FACTOR, height: px2pd(1300) * SCALE_FACTOR }} source={item.images.front} />
                 </Animated.View>
                 {farPoints}
                 {nearPoints}

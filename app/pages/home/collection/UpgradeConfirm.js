@@ -13,15 +13,15 @@ import {
 
 import lo from 'lodash';
 import { TextButton } from '../../../constants/custom-ui';
+import PropGrid from '../../../components/prop/PropGrid';
 import { AppDispath } from '../../../constants';
-import Toast from '../../../components/toast';
 import { connect } from 'react-redux';
 
-const ActivationConfirm = (props) => {
+const UpgradeConfirm = (props) => {
 
-    const CALLBACK_EVENT_KEY = '__@ActivationConfirm.activate';
-
+    const MSG_ID_GET_BAG_PROP = '__@UpgradeConfirm.getBagProp';
     const scale = React.useRef(new Animated.Value(0)).current;
+    const [prop, setProp] = React.useState(null);
 
     React.useEffect(() => {
         Animated.timing(scale, {
@@ -31,22 +31,26 @@ const ActivationConfirm = (props) => {
         }).start();
     }, []);
 
-    React.useEffect(() => {
-        const listener = DeviceEventEmitter.addListener(CALLBACK_EVENT_KEY, (v) => {
-            if (!v) {
-                Toast.show('激活失败!');
-                return
-            }
-            Toast.show('激活成功!');
+    let currentItem = null;
+    for (let key in props.value) {
+        const item = props.value[key];
+        if (item.finished == undefined) {
+            currentItem = item;
+            break;
+        }
+    }
 
-            DeviceEventEmitter.emit('__@CollectionTabPage.refresh');
-            if (props.onClose != undefined) {
-                props.onClose();
-            }
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener(MSG_ID_GET_BAG_PROP, (v) => {
+            setProp(v);
         });
         return () => {
             listener.remove();
         }
+    }, []);
+
+    React.useEffect(() => {
+        AppDispath({ type: 'PropsModel/getBagProp', payload: { propId: currentItem.propId, always: true }, retmsg: MSG_ID_GET_BAG_PROP });
     }, []);
 
     return (
@@ -58,18 +62,23 @@ const ActivationConfirm = (props) => {
                     </View>
                     <View style={{ width: '94%', height: 240, marginBottom: 15, borderWidth: 1, borderColor: '#333', borderRadius: 5 }}>
                         <View style={{ width: '100%', height: 80, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text>是否激活收藏品，获得属性效果？</Text>
+                            <Text>升级收藏品，获得更好的属性</Text>
                         </View>
-                        <View style={{ width: '100%', marginTop: 20, justifyContent: 'center', alignItems: 'center' }}>
-                            <View style={{ width: 50, height: 50, borderWidth: 1, borderColor: '#333', borderRadius: 5, backgroundColor: '#ccc', justifyContent: 'center', alignItems: 'center' }}>
-                                <Text>铜币</Text>
-                                <Text style={{ position: 'absolute', bottom: -20 }}>{props.data.activation.copper}</Text>
+                        <View style={{ width: '100%', marginTop: 10, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ width: 60, height: 60, borderWidth: 1, borderColor: '#333', borderRadius: 5, backgroundColor: '#ccc', justifyContent: 'center', alignItems: 'center' }}>
+                                {(prop != null) ? <PropGrid prop={prop} showNum={true} showLabel={false} labelStyle={{ color: '#000' }} /> : <></>}
+                            </View>
+                            <View style={{ marginTop: 16 }}>
+                                <Text>所需道具: {(prop != null) ? prop.name : ''} x {currentItem.num}</Text>
                             </View>
                         </View>
                     </View>
                     <View style={{ width: '94%', flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                        <TextButton title={'确认'} disabled={(props.user.copper < props.data.activation.copper)} onPress={() => {
-                            AppDispath({ type: 'CollectionModel/activate', payload: { id: props.data.id }, retmsg: CALLBACK_EVENT_KEY});
+                        <TextButton title={'改良'} disabled={!(prop != null && prop.num >= currentItem.num)} onPress={() => {
+                            AppDispath({ type: 'CollectionModel/upgrade', payload: { id: props.data.id }, retmsg: '__@UpgradeSubPage.completed' });
+                            if (props.onClose != undefined) {
+                                props.onClose();
+                            }
                         }} />
                         <TextButton title={'取消'} onPress={() => {
                             if (props.onClose != undefined) {
@@ -83,4 +92,4 @@ const ActivationConfirm = (props) => {
     );
 }
 
-export default connect((state) => ({ user: { ...state.UserModel } }))(ActivationConfirm);
+export default connect((state) => ({ user: { ...state.UserModel } }))(UpgradeConfirm);

@@ -31,7 +31,7 @@ import ExploreXianSuoPage from './ExploreXianSuoPage';
 import ExploreQiYuPage from './ExploreQiYuPage';
 import MessageList from './MessageList';
 import TimeBanner from './TimeBanner';
-import { px2pd } from '../../../constants/resolution';
+import { isPad, px2pd } from '../../../constants/resolution';
 
 // 奖励物品组件
 const RewardItem = (props) => {
@@ -221,7 +221,7 @@ class ExploreMainPage extends Component {
                         </View>
                         <View style={styles.timeBannerContainer} >
                             <TimeBanner key={this.props.areaId * 100} time={currentArea.time} interval={currentArea.interval} onStep={this.onStep} />
-                            <FastImage style={{ position: 'absolute', left: 70, width: px2pd(185), height: px2pd(166) }} source={require('../../../../assets/bg/explore_person.png')} />
+                            <FastImage style={{ position: 'absolute', left: 70, width: px2pd(185) * (isPad() ? 0.5 : 1), height: px2pd(166) * (isPad() ? 0.5 : 1) }} source={require('../../../../assets/bg/explore_person.png')} />
                         </View>
                         <View style={{ flexDirection: 'row', height: 80, justifyContent: 'space-evenly', alignItems: 'center' }} >
                             <TextButton {...this.props} title={'终止'} onPress={() => {

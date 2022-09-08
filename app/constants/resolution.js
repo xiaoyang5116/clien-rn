@@ -24,6 +24,8 @@ const fwScale = 1 / pxRatio / fwDesignScale;
 
 export const px2pd = (px) => (px * fwScale);
 export const getFixedWidthScale = () => fwScale;
+export const isPad = () => ((pxHeight / pxWidth) <= 1.7);
+export const SCALE_FACTOR = isPad() ? 0.76 : 1;
 
 console.debug(`
 ================================
@@ -35,5 +37,6 @@ console.debug(`
     屏幕像素高度: ${pxHeight}(px)
     设计分辨率: ${designSize.width} X ${designSize.height}
     固定宽度适配: 宽=${fwWidth}, 高=${fwHeight}, 比例=${fwScale}
+    是否Pad窄屏: ${isPad()}
 ================================
 `);
