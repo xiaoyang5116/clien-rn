@@ -9,7 +9,7 @@ import { DialogRoutes } from '../dialog';
 class Modal {
     static show(payload) {
         const { style } = payload;
-        if ((style >= 5 && style <= 10) || (style === "9A" || style === "9B") || (style === "5A" || style === "5B")) {
+        if ((style >= 5 && style <= 10) || (style === "9A" || style === "9B")) {
             const key = RootView.add(
                 <View style={{ flex: 1, zIndex: 1, backgroundColor: "rgba(102, 102, 102, 0.6)" }}>
                     <DialogRoutes viewData={payload} onDialogCancel={() => {

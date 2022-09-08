@@ -1,23 +1,16 @@
 import {
-  SafeAreaView,
   StyleSheet,
-  Text,
-  View,
-  TouchableWithoutFeedback,
-  FlatList,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import FastImage from 'react-native-fast-image';
-import {getBgDialog_bgImage, getVideo} from '../../../constants';
+import { getBgDialog_bgImage, getVideo } from '../../../constants';
 
-import TextAnimation from '../../textAnimation';
-import Video from 'react-native-video';
 import TopToBottomShow from './TopToBottomShow';
 import BottomShow from './BottomShow';
+import BarrageShow from './BarrageShow';
 
 const BgDialog = props => {
-  const {viewData, onDialogCancel} = props;
+  const { viewData, onDialogCancel, actionMethod } = props;
 
   // 对话内容索引
   const [dialogIndex, setDialogIndex] = useState(-1);
@@ -45,7 +38,7 @@ const BgDialog = props => {
 
   useEffect(() => {
     let timer = null;
-    if (play) {
+    if (play && section.type != "Barrage") {
       timer = setTimeout(() => {
         if (sectionIndex === -1) {
           bgColor.current = _color;
@@ -82,16 +75,30 @@ const BgDialog = props => {
       sectionIndex === viewData.sections.length - 1
     ) {
       onDialogCancel();
+      actionMethod(viewData)
     }
     _scrollToEnd();
   };
 
+  // 弹幕点击事件
+  const handlerBarrageClick = () => {
+    if (sectionIndex < viewData.sections.length - 1) {
+      bgColor.current = null;
+      setDialogIndex(-1);
+      setSectionIndex(sectionIndex => sectionIndex + 1);
+    }
+    if (sectionIndex === viewData.sections.length - 1) {
+      onDialogCancel();
+      actionMethod(viewData)
+    }
+  }
+
   // 滚动到最下面
   const _scrollToEnd = () => {
-    refFlatList.current.scrollToEnd({animated: true});
+    refFlatList.current.scrollToEnd({ animated: true });
   };
 
-  if (viewData.style === 5 || viewData.style === '5A') {
+  if (section.type === "TopToBottom") {
     return (
       <TopToBottomShow
         {...props}
@@ -106,7 +113,7 @@ const BgDialog = props => {
         loop={loop}
       />
     );
-  } else {
+  } else if (section.type === "Bottom") {
     return (
       <BottomShow
         {...props}
@@ -119,6 +126,17 @@ const BgDialog = props => {
         bgColor={bgColor}
         _scrollToEnd={_scrollToEnd}
         loop={loop}
+      />
+    );
+  } else if (section.type === "Barrage") {
+    return (
+      <BarrageShow
+        {...props}
+        handlerBarrageClick={handlerBarrageClick}
+        section={section}
+        currentBgImage={currentBgImage}
+        currentVideo={currentVideo}
+        bgColor={bgColor}
       />
     );
   }

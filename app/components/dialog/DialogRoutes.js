@@ -64,7 +64,7 @@ const DialogRoutes = (props) => {
         });
     }
 
-    if (style === 5 || style === "5A" || style === "5B") {
+    if (style === 5) {
         return (
             <BgDialog
                 {...props}

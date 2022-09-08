@@ -79,14 +79,6 @@ const BottomShow = (props) => {
           onEnd={end}
         />
       )}
-      {/* <View
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'absolute',
-          backgroundColor: bgColor.current,
-        }}
-      /> */}
       <TouchableWithoutFeedback onPress={handlerClick}>
         <SafeAreaView style={{ flex: 1, alignItems: 'center' }}>
           <View
