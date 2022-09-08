@@ -2,7 +2,7 @@ import { View, Text, Image, Platform } from 'react-native';
 import React from 'react';
 
 import { ThemeContext, statusBarHeight } from '../../constants';
-import { isPad } from '../../constants/resolution';
+import { SCALE_FACTOR } from '../../constants/resolution';
 
 export const Header1 = props => {
     const { title, style, marginTop } = props;
@@ -21,7 +21,7 @@ export const Header1 = props => {
             }}
         >
             <Image
-                style={{ ...theme.headerBg_size, position: 'absolute', transform: [{ scaleY: (isPad() ? 0.76 : 1) }] }}
+                style={{ ...theme.headerBg_size, position: 'absolute', transform: [{ scaleY: SCALE_FACTOR }] }}
                 source={theme.headerBg}
             />
             <Text style={{ fontSize: 24, color: theme.button.color }}>{title}</Text>

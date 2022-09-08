@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ThemeContext } from '../../constants';
-import { isPad, px2pd } from '../../constants/resolution';
+import { px2pd, SCALE_FACTOR } from '../../constants/resolution';
 import FastImage from 'react-native-fast-image';
 
 export const LongTextButton = props => {
@@ -59,14 +59,14 @@ const styles = StyleSheet.create({
     },
     btnContainer: {
         width: px2pd(1013),
-        height: px2pd(102) * (isPad() ? 0.76 : 1),
+        height: px2pd(102) * SCALE_FACTOR,
         borderWidth: px2pd(3),
         borderRadius: 3,
         zIndex: 1,
     },
     imageContainer: {
         width: px2pd(1010),
-        height: px2pd(96) * (isPad() ? 0.76 : 1),
+        height: px2pd(96) * SCALE_FACTOR,
     },
     patternContainer: {
         position: 'absolute',
