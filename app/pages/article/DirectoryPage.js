@@ -45,7 +45,7 @@ const DirectoryPage = (props) => {
     } else {
       button = <>
         <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/button/dir_button_disabled.png')} /> 
-        <FastImage style={{ position: 'absolute', right: 25, width: px2pd(48), height: px2pd(64) }} source={require('../../../assets/bg/lock_big.png')} />
+        <FastImage style={{ position: 'absolute', right: px2pd(60), width: px2pd(48), height: px2pd(64) }} source={require('../../../assets/bg/lock_big.png')} />
       </>
     }
     return (
