@@ -4,7 +4,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ThemeContext } from '../../constants';
-import { px2pd } from '../../constants/resolution';
+import { isPad, px2pd } from '../../constants/resolution';
+import FastImage from 'react-native-fast-image';
 
 export const LongTextButton = props => {
     const { title, onPress, fontSize } = props;
@@ -30,13 +31,13 @@ export const LongTextButton = props => {
                 ]}
                 onPress={onPressHandler}
             >
-                <Image
+                <FastImage
                     style={styles.imageContainer}
                     source={theme.LongTBBgImage}
                 />
             </TouchableHighlight>
             <View pointerEvents="none" style={styles.patternContainer}>
-                <Image style={styles.imageContainer} source={theme.LongTBBorderImage} />
+                <FastImage style={styles.imageContainer} resizeMode={'stretch'} source={theme.LongTBBorderImage} />
             </View>
             <View pointerEvents="none" style={styles.textContainer}>
                 <Text style={{
@@ -57,15 +58,15 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     btnContainer: {
-        width: px2pd(1016),
-        height: px2pd(102),
+        width: px2pd(1013),
+        height: px2pd(102) * (isPad() ? 0.76 : 1),
         borderWidth: px2pd(3),
         borderRadius: 3,
         zIndex: 1,
     },
     imageContainer: {
         width: px2pd(1010),
-        height: px2pd(96),
+        height: px2pd(96) * (isPad() ? 0.76 : 1),
     },
     patternContainer: {
         position: 'absolute',
