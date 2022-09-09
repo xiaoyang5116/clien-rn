@@ -33,12 +33,22 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000C_V', desc: '回忆', 
         options: [ 
-          { title: "【辞职当天】",toScene: 'C000C_V_MAP_0_4', varsOn: ['v_icon_100','v_icon_103',]},
+          { title: "【辞职当天】",dialogs: ['d3'],toScene: 'C000C_V_MAP_0_4', varsOn: ['v_icon_100','v_icon_103',]},
         ],
       },
-
+   
     
         ],
+          # 对话框
+    dialogs: [    
+
+     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+        sections: [
+         {
+          key: 'p1',
+          content: ['李森炎回忆起自己离职当天', '那些人的音容还历历在目','如果我没有穿越的话','或许还能再见到他们……',],
+    },]}
+    ],
 
   },
 
@@ -68,7 +78,9 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  dialogs: ['d3'], andVarsOff: ['ONE_OPEN_0',],   nextChat: 'C1'  },
+       { type: 'enter',  
+      #  dialogs: ['d3'], 
+      andVarsOff: ['ONE_OPEN_0',],   nextChat: 'C1'  },
        { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
        { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
        { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
@@ -102,16 +114,16 @@ scenes: [
       },
 
     ],
- # 对话框
-    dialogs: [    
+#  # 对话框
+#     dialogs: [    
 
-     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
-        sections: [
-         {
-          key: 'p1',
-          content: ['李森炎回忆起自己离职当天', '那些人的音容还历历在目','如果我没有穿越的话','或许还能再见到他们……',],
-    },]}
-    ],
+#      {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+#         sections: [
+#          {
+#           key: 'p1',
+#           content: ['李森炎回忆起自己离职当天', '那些人的音容还历历在目','如果我没有穿越的话','或许还能再见到他们……',],
+#     },]}
+#     ],
   },
           
  #===========事件场景==============
@@ -444,22 +456,14 @@ scenes: [
      { 
         id: 'C1', desc: '董事长秘书让你没事不要随便来这边', 
         options: [ 
-         { title: '【总经理办公室】', toScene: 'C000C_V_MAP_0_-1'}, 
-         
-      
-        ],
-      },
-     { 
-        id: 'C1', desc: '技术部的人不太熟悉，随便看看', 
-        options: [ 
-         { title: '【找董事长秘书】', toScene: 'C000C_V_MAP_0_0'}, 
+         { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
         ],
       },
       { 
         id: 'C2', desc: '去找李小姐沟通，或许可以解锁新的东西', 
         options: [ 
          { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
-         { title: '【遇见程序员赵某】', dialogs: ['Screen1'] }
+         { title: '【和董事长秘书谈话】', nextChat: 'C1' }
         ],
       },
       { 
