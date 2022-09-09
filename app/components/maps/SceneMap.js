@@ -11,8 +11,10 @@ import {
   Animated,
   BackHandler,
   DeviceEventEmitter,
+  Easing,
   PanResponder,
   SafeAreaView,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import { 
@@ -252,14 +254,14 @@ const SceneBigMap = (props) => {
     y: ((MAP_BIG_SIZE.height - MAP_MARGIN_VALUE * 2) / 2) - (GRID_PX_HEIGHT / 2) + (props.initialCenterPoint[1] * (GRID_PX_HEIGHT + GRID_SPACE)),
   }
 
-  // 大地图坐标
-  const bigMapTransY = React.useRef(new Animated.Value(WIN_SIZE.height)).current;
   // 大地图缩放
   const bigMapScale = React.useRef(new Animated.Value(1)).current;
   // 大地图移动坐标
   const bigMapPos = React.useRef(new Animated.ValueXY(bigMapInitXY)).current;
   // 各种状态数据
   const status = React.useRef({ prevX: 0, prevY: 0 }).current;
+  // 进出缩放效果
+  const translateY = React.useRef(new Animated.Value(WIN_SIZE.height)).current;
 
   // 地图滑动处理器
   const panResponder = React.useRef(PanResponder.create({
@@ -352,11 +354,22 @@ const SceneBigMap = (props) => {
     }
   }, []);
 
+  React.useEffect(() => {
+    Animated.timing(translateY, {
+      toValue: 0,
+      duration: 500,
+      easing: Easing.cubic,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
   return (
     <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.8)' }} onTouchStart={closeMapHandler}>
       <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <View style={[{ width: MAP_BIG_SIZE.width, height: MAP_BIG_SIZE.height + 10 }]} onTouchStart={(e) => { e.stopPropagation(); }} {...panResponder.panHandlers}>
-          <Animated.View style={[{ position: 'absolute', bottom: 0 }, { ...MAP_BIG_SIZE }]}>
+        <View style={[{ width: MAP_BIG_SIZE.width, height: MAP_BIG_SIZE.height + 10 }]} onTouchStart={(e) => { 
+          e.stopPropagation(); 
+        }} {...panResponder.panHandlers}>
+          <Animated.View style={[{ position: 'absolute', bottom: 0 }, { ...MAP_BIG_SIZE }, { transform: [{ translateY: translateY }] }]}>
             <FastImage style={[{ position: 'absolute', width: '100%', height: '100%'}]} source={require('../../../assets/bg/scene_map_big_new.png')} />
             {/* 大地图网格 */}
             <View style={{ flex: 1, margin: 4, overflow: 'hidden' }}>
@@ -442,7 +455,7 @@ const SceneMap = (props) => {
       <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/bg/scene_map.png')} />
       {/* 小地图隐藏过后显示按钮 */}
       <Animated.View style={{ opacity: showButtonOpacity }} onTouchStart={showSmallMapHandler}>
-        <FastImage style={{ position: 'absolute', right: 20, top: -110, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_maximize_button.png')} />
+        <FastImage style={{ position: 'absolute', right: 20, top: -126, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_maximize_button.png')} />
       </Animated.View>
 
       {/* 小地图网格(静止) */}
