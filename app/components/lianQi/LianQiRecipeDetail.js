@@ -32,7 +32,7 @@ const StuffsComponent = props => {
     return (
       <View
         style={{
-          height: 45,
+          height: px2pd(120),
           borderWidth: 1,
           borderColor: '#000',
           borderRadius: 3,
@@ -95,7 +95,7 @@ const TargetsComponent = props => {
     return (
       <View
         style={{
-          height: 45,
+          height: px2pd(120),
           borderWidth: 1,
           borderColor: '#000',
           borderRadius: 3,
@@ -170,7 +170,7 @@ const AuxiliaryMaterials = props => {
           onPress={openAuxiliaryMaterialsPop}>
           <View
             style={{
-              height: 45,
+              height: px2pd(120),
               borderWidth: 1,
               borderColor: '#000',
               borderRadius: 3,
@@ -196,7 +196,7 @@ const AuxiliaryMaterials = props => {
           onPress={openAuxiliaryMaterialsPop}>
           <View
             style={{
-              height: 45,
+              height: px2pd(120),
               borderWidth: 1,
               borderColor: '#000',
               borderRadius: 3,

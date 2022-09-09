@@ -13,7 +13,7 @@ import React, { useEffect } from 'react';
 import { action, connect, ThemeContext } from '../../constants';
 import RootView from '../RootView';
 import { now } from '../../utils/DateTimeUtils';
-import { px2pd } from '../../constants/resolution';
+import { px2pd, SCALE_FACTOR } from '../../constants/resolution';
 
 import DanFangPage from './DanFangPage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -116,15 +116,17 @@ const AlchemyRoom = props => {
   const img = alchemyData ? require('../../../assets/bg/xianglu_open.png') : require('../../../assets/bg/xianglu_close.png')
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#ccc', zIndex: 99 }}>
+    <View style={{ flex: 1, backgroundColor: '#ccc', zIndex: 99, }}>
       <FastImage
         style={{ position: 'absolute', width: px2pd(1080), height: px2pd(2400) }}
         source={require('../../../assets/plant/plantBg.jpg')}
       />
-      <FastImage
-        style={{ position: 'absolute', width: px2pd(1080), height: px2pd(2400) }}
-        source={img}
-      />
+      <View style={{ width: '100%', alignItems: 'center' }}>
+        <FastImage
+          style={{ position: 'absolute', width: px2pd(1080) * SCALE_FACTOR, height: px2pd(2400) * SCALE_FACTOR }}
+          source={img}
+        />
+      </View>
       <SafeAreaView style={{ flex: 1 }}>
         <Header3
           title={'炼丹炉'}
