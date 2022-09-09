@@ -46,7 +46,7 @@ const UpgradePage = (props) => {
     return (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Animated.View style={[{ width: 300, height: 370, backgroundColor: '#eee', alignItems: 'center', borderRadius: 5 }, { transform: [{ scale: scale }] }]}>
+                <Animated.View style={[{ width: px2pd(800), height: px2pd(1050), backgroundColor: '#eee', alignItems: 'center', borderRadius: 5 }, { transform: [{ scale: scale }] }]}>
                     <View style={{ width: '100%', alignItems: 'flex-end' }}>
                         <AntDesign name='close' size={30} onPress={() => {
                             if (props.onClose != undefined) {
@@ -68,11 +68,11 @@ const UpgradePage = (props) => {
                     <View style={{ width: '94%', height: 140, marginBottom: 20, borderWidth: 1, borderColor: '#333', borderRadius: 5, backgroundColor: '#ccc', padding: 5}}>
                         { (attrs.length > 0) ? attrs : attrsFull }
                     </View>
-                    <View style={{ width: '94%', justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                         {
                         (attrs.length > 0)
                         ? (
-                        <TextButton title={'改良'} onPress={() => {
+                        <TextButton style={{ width: px2pd(300) }} title={'改良'} onPress={() => {
                             if (props.onClose != undefined) {
                                 props.onClose();
                             }
