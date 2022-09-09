@@ -81,6 +81,9 @@ export class CButton extends Component {
             const defaultStyle = {
                 backgroundColor: (this.props.disabled ? '#999' : this.props.color),
                 ...styles.border,
+                justifyContent:'center',
+                alignItems:'center',
+                overflow:"hidden"
             };
             const imgBg = this.props.disabled ? this.context.btnPattern_2_img : this.context.btnPattern_1_img;
             return (
