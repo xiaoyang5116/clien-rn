@@ -16,6 +16,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import { HalfPanel } from '../panel/HalfPanel'
 import { Header3, TextButton } from '../../constants/custom-ui';
 import PropIcon from './components/PropIcon';
+import { px2pd } from '../../constants/resolution';
 
 
 const AuxiliaryMaterialsPop = (props) => {
@@ -28,7 +29,7 @@ const AuxiliaryMaterialsPop = (props) => {
     const { name, currNum, reqNum, propId } = item
     return (
       <TouchableOpacity onPress={() => { setCheckedMaterial([item]) }}>
-        <View style={{ height: 45, borderWidth: 1, borderColor: checkedMaterial.find(i => i.propId === propId) !== undefined ? "#0BD86A" : '#000', borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
+        <View style={{ height: px2pd(120), borderWidth: 1, borderColor: checkedMaterial.find(i => i.propId === propId) !== undefined ? "#0BD86A" : '#000', borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
           <ImageCapInset
             style={{ width: '100%', height: '100%', position: 'absolute' }}
             source={require('../../../assets/button/40dpi_gray.png')}

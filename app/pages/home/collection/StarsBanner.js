@@ -12,7 +12,7 @@ const StarsBanner = (props) => {
     const items = [];
     lo.forEach(lo.range(props.max), (v, k) => {
         items.push(
-            <View key={k} style={{ width: 10 }}>
+            <View key={k} style={{ width: px2pd(24) }}>
             {
                 (props.star >= (k + 1))
                 ? <FastImage style={{ width: px2pd(37), height: px2pd(37) }} source={require('../../../../assets/collection/star.png')} />

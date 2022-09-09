@@ -31,7 +31,7 @@ const StuffsComponent = (props) => {
   const renderStuffs = ({ item, index }) => {
     const { name, currNum, reqNum } = item
     return (
-      <View style={{ height: 45, borderWidth: 1, borderColor: "#000", borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
+      <View style={{ height: px2pd(120), borderWidth: 1, borderColor: "#000", borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
         <ImageCapInset
           style={{ width: '100%', height: '100%', position: 'absolute' }}
           source={require('../../../assets/button/40dpi_gray.png')}
@@ -73,7 +73,7 @@ const TargetsComponent = (props) => {
   const renderTargets = ({ item }) => {
     const { name, productNum } = item
     return (
-      <View style={{ height: 45, borderWidth: 1, borderColor: "#000", borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
+      <View style={{ height: px2pd(120), borderWidth: 1, borderColor: "#000", borderRadius: 3, marginTop: 12, backgroundColor: "rgba(255,255,255,0.5)" }}>
         <ImageCapInset
           style={{ width: '100%', height: '100%', position: 'absolute' }}
           source={require('../../../assets/button/40dpi_gray.png')}
@@ -130,7 +130,7 @@ const AuxiliaryMaterials = (props) => {
     if (auxiliaryMaterials.length === 0) {
       return (
         <TouchableOpacity style={{ marginTop: 12, }} onPress={openAuxiliaryMaterialsPop}>
-          <View style={{ height: 45, borderWidth: 1, borderColor: "#000", borderRadius: 3, backgroundColor: "rgba(255,255,255,0.5)" }}>
+          <View style={{ height: px2pd(120), borderWidth: 1, borderColor: "#000", borderRadius: 3, backgroundColor: "rgba(255,255,255,0.5)" }}>
             <ImageCapInset
               style={{ width: '100%', height: '100%', position: 'absolute' }}
               source={require('../../../assets/button/40dpi_gray.png')}
@@ -146,7 +146,7 @@ const AuxiliaryMaterials = (props) => {
       const { name, currNum, reqNum } = auxiliaryMaterials[0]
       return (
         <TouchableOpacity style={{ marginTop: 12, }} onPress={openAuxiliaryMaterialsPop}>
-          <View style={{ height: 45, borderWidth: 1, borderColor: "#000", borderRadius: 3, backgroundColor: "rgba(255,255,255,0.5)" }}>
+          <View style={{ height: px2pd(120), borderWidth: 1, borderColor: "#000", borderRadius: 3, backgroundColor: "rgba(255,255,255,0.5)" }}>
             <ImageCapInset
               style={{ width: '100%', height: '100%', position: 'absolute' }}
               source={require('../../../assets/button/40dpi_gray.png')}

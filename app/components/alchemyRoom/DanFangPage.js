@@ -97,7 +97,7 @@ export default connect(state => ({ ...state.AlchemyModel }))(DanFangPage);
 
 const styles = StyleSheet.create({
   danFangItemContainer: {
-    height: 45,
+    height: px2pd(120),
     borderWidth: 1,
     borderColor: '#000',
     borderRadius: 3,

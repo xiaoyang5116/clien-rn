@@ -16,6 +16,7 @@ import { TextButton } from '../../../constants/custom-ui';
 import PropGrid from '../../../components/prop/PropGrid';
 import { AppDispath } from '../../../constants';
 import { connect } from 'react-redux';
+import { px2pd } from '../../../constants/resolution';
 
 const UpgradeConfirm = (props) => {
 
@@ -68,7 +69,7 @@ const UpgradeConfirm = (props) => {
                             <View style={{ width: 60, height: 60, borderWidth: 1, borderColor: '#333', borderRadius: 5, backgroundColor: '#ccc', justifyContent: 'center', alignItems: 'center' }}>
                                 {(prop != null) ? <PropGrid prop={prop} showNum={true} showLabel={false} labelStyle={{ color: '#000' }} /> : <></>}
                             </View>
-                            <View style={{ marginTop: 16 }}>
+                            <View style={{ marginTop: px2pd(40) }}>
                                 <Text>所需道具: {(prop != null) ? prop.name : ''} x {currentItem.num}</Text>
                             </View>
                         </View>

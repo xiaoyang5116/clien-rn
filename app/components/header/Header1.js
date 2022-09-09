@@ -9,7 +9,7 @@ export const Header1 = props => {
 
     const theme = React.useContext(ThemeContext);
 
-    const defaultMarginTop = Platform.OS == 'ios' ? statusBarHeight + 10 : 30
+    const defaultMarginTop = Platform.OS == 'ios' ? statusBarHeight + 10 : 15
 
     return (
         <View

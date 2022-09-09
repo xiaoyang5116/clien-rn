@@ -21,7 +21,7 @@ import ProgressBar from '../../components/ProgressBar';
 import * as DateTime from '../../utils/DateTimeUtils';
 import FastImage from 'react-native-fast-image';
 import lo from 'lodash';
-import { px2pd } from '../../constants/resolution';
+import { px2pd, SCALE_FACTOR } from '../../constants/resolution';
 import SceneMap from '../../components/maps/SceneMap';
 import { DeviceEventEmitter } from 'react-native';
 import MissionBar from '../../components/mission/MissionBar';
@@ -162,8 +162,8 @@ const StoryTabPage = (props) => {
     return (
       <View style={theme.chatItem}>
         <TouchableWithoutFeedback onPress={() => onClickItem(data)}>
-          <View style={{ height: px2pd(117), justifyContent: 'center', alignItems: 'center' }}>
-            <Image style={{ width: '100%', height: '100%', position: 'absolute' }} source={theme.optionButtonImage} />
+          <View style={{ height: px2pd(117) * SCALE_FACTOR, justifyContent: 'center', alignItems: 'center' }}>
+            <FastImage style={{ width: '100%', height: '100%', position: 'absolute' }} resizeMode={'stretch'} source={theme.optionButtonImage} />
             <Text style={{ fontSize: 18, color: theme.options.fontColor }}>{data.item.title}</Text>
             {iconComponent}
           </View>
