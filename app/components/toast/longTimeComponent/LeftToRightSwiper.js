@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { px2pd } from '../../../constants/resolution';
 import FastImage from 'react-native-fast-image';
 
-const viewWidth = 200;
+const viewWidth = px2pd(500);
 const progressWidth = 60
 
 const TheArrow = ({ changeValue }) => {

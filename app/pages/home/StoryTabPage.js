@@ -140,7 +140,7 @@ const StoryTabPage = (props) => {
     // 进度条记录起来，倒计时没完成前不影响。
     if (data.item.progressId != undefined) {
       progressView = (
-      <View style={{ position: 'absolute', left: 0, right: 0, top: 37, height: 4, paddingLeft: 3, paddingRight: 3 }}>
+      <View style={{ position: 'absolute', left: 0, right: 0, top: px2pd(100) * SCALE_FACTOR, height: 4, paddingLeft: 3, paddingRight: 3 }}>
         <ProgressBar percent={100} toPercent={0} duration={data.item.duration} onStart={() => onProgressStart(data) } onCompleted={() => onProgressCompleted(data)} />
       </View>
       );
