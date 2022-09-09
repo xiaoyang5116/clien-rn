@@ -31,6 +31,7 @@ const _images = {
         { id: 'TaoLaoLiKai_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/TaoLaoLiKai_1080.png') },
         { id: 'BaiYueGuangCeMian_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/BaiYueGuangCeMian_1080.png') },
         { id: 'BaiYueGuangZhengMian_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/BaiYueGuangZhengMian_1080.png') },
+        { id: 'ZhuJuSiWang_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/ZhuJuSiWang_1080.png') },
 
         { id: 'BAI_FU', width: px2pd(750), height: px2pd(1000), source: require('../../assets/chapter/BAI_FU.webp') },
         { id: 'HUAIBIAO', width: px2pd(720), height: px2pd(720), source: require('../../assets/chapter/HUAIBIAO.webp') },
