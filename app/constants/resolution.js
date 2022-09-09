@@ -24,7 +24,9 @@ const fwScale = 1 / pxRatio / fwDesignScale;
 
 export const px2pd = (px) => (px * fwScale);
 export const getFixedWidthScale = () => fwScale;
-export const isPad = () => ((pxHeight / pxWidth) <= 1.7);
+
+// 适配窄屏
+export const isPad = () => (fwScale >= 0.6);
 export const SCALE_FACTOR = isPad() ? 0.76 : 1;
 
 console.debug(`
