@@ -217,7 +217,7 @@ const Farm = (props) => {
 
         return (
             <TouchableWithoutFeedback onPress={onPress}>
-                <ImageBackground source={bgImg(item.status)} style={{ width: px2pd(904), height: px2pd(242), justifyContent: "center", alignItems: "center" }}>
+                <ImageBackground source={bgImg(item.status)} style={{ width: px2pd(954), height: px2pd(242), justifyContent: "center", alignItems: "center", transform: [{ scale: 0.9 }] }}>
                     <Title />
                     <ProgressBar />
                 </ImageBackground>
@@ -326,7 +326,7 @@ const Farm = (props) => {
                     alignItems: 'center'
                 }]} >
                     <HeaderTitle {...item} />
-                    <View style={{ width: "100%", flexDirection: 'row', marginTop: 8, justifyContent: "space-around", paddingLeft: 4, paddingRight: 4 }}>
+                    <View style={{ width: "100%", flexDirection: 'row', marginTop: 8, justifyContent: "center", paddingLeft: 4, paddingRight: 4 }}>
                         <Grade {...item} />
                         <Plant {...item} />
                     </View>
