@@ -3,6 +3,7 @@
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C001C_[N2]'] , andVarsOn: [ 'WZXX_[Chapters]/WZXX_M1_N1_C001C_[N2]FZ' ] },
     { header: '第一章  贫穷包子铺小子' },
+    { world: { name: '尘界' } },
 ]
 #END==========================================
 

@@ -3,6 +3,7 @@
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C015_[V1]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C015_[V1]'] }, 
     { header: '第十五章 挑战成功' },
+     { world: { name: '灵修界' } },
 ]
 #END==========================================
 

@@ -3,6 +3,7 @@
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C002_[N7]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C002_[N7]FZ'] }, 
      { header: '第二章 循环' },
+     { world: { name: '尘界' } },
 ]
 #END==========================================
 

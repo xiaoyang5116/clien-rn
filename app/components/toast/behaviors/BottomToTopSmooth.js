@@ -1,14 +1,18 @@
-import React, { useRef } from 'react'
-import { View, Text, Animated, TouchableOpacity, Easing } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react'
+import { View, Text, Animated, TouchableOpacity, Easing, DeviceEventEmitter } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../../constants/resolution';
 
 
-export default BottomToTopSmooth = (props) => {
+const AnimatedComponent = (props) => {
 
-    const { currentStyles, time, message } = props
+    const { currentStyles, message } = props
 
     // let dismissHandler = null
+
+    const onEnd = () => {
+        DeviceEventEmitter.emit("BottomToTopSmooth", 1)
+    }
 
     const bottomAnim = useRef(new Animated.Value(50)).current
     const opacityAnim = useRef(new Animated.Value(0)).current
@@ -55,32 +59,84 @@ export default BottomToTopSmooth = (props) => {
                     }
                 ),
             ])
-        ]).start(props.onHide)
+        ]).start(onEnd)
 
     }, [bottomAnim, opacityAnim])
 
     return (
-        <View pointerEvents="box-none" style={currentStyles.tooltipWrap}>
-            <Animated.View                 // 使用专门的可动画化的View组件
-                style={{
-                    // ...currentStyles.tooltip,
-                    position: "absolute",
-                    width: "80%",
-                    bottom: bottomAnim,
-                    opacity: opacityAnim,
-                }}
-            >
-                <TouchableOpacity onPress={props.onHide}>
-                    <View style={currentStyles.tooltipContainer}>
-                        <View style={currentStyles.tooltipImg}></View>
-                        <FastImage style={{ width: px2pd(1042), height: px2pd(84), position: 'absolute' }} source={require('../../../../assets/bg/toast.png')} />
-                        <Text style={currentStyles.tooltipText}>
-                            {message}
-                        </Text>
-                    </View>
-                </TouchableOpacity>
-            </Animated.View>
-        </View>
+        <Animated.View                 // 使用专门的可动画化的View组件
+            style={{
+                // ...currentStyles.tooltip,
+                position: "absolute",
+                width: "80%",
+                bottom: bottomAnim,
+                opacity: opacityAnim,
+            }}
+        >
+            <TouchableOpacity onPress={props.onHide}>
+                <View style={currentStyles.tooltipContainer}>
+                    <View style={currentStyles.tooltipImg}></View>
+                    <FastImage style={{ width: px2pd(1042), height: px2pd(84), position: 'absolute' }} source={require('../../../../assets/bg/toast.png')} />
+                    <Text style={currentStyles.tooltipText}>
+                        {message}
+                    </Text>
+                </View>
+            </TouchableOpacity>
+        </Animated.View>
     )
 }
 
+export default BottomToTopSmooth = (props) => {
+    const { currentStyles, time, message } = props
+    const [index, setIndex] = useState(1)
+
+    useEffect(() => {
+        let timer = null
+        if (Array.isArray(message)) {
+            timer = setInterval(() => {
+                if (index < message.length) {
+                    setIndex((index) => index + 1)
+                } else {
+                    clearInterval(timer)
+                }
+            }, time)
+        }
+
+        let count = 0
+        const listener = DeviceEventEmitter.addListener('BottomToTopSmooth', (num) => {
+            count += num
+            if (Array.isArray(message) && count > message.length - 1) {
+                props.onHide()
+            }
+            if (!Array.isArray(message) && count === 1) {
+                props.onHide()
+            }
+        })
+
+        return () => {
+            listener.remove();
+            clearInterval(timer)
+        }
+    }, [])
+
+    if (Array.isArray(message)) {
+        return (
+            <View pointerEvents="box-none" style={currentStyles.tooltipWrap}>
+                {
+                    message.map((item, i) => {
+                        if (i < index) {
+                            return <AnimatedComponent key={i} message={item} currentStyles={currentStyles} />
+                        }
+                    })
+                }
+            </View>
+        )
+    }
+
+    return (
+        <View pointerEvents="box-none" style={currentStyles.tooltipWrap}>
+            <AnimatedComponent message={message} currentStyles={currentStyles} />
+        </View>
+    )
+
+}

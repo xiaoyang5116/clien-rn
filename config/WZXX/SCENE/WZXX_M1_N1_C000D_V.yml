@@ -494,11 +494,11 @@ scenes: [
       {
         id: 'C000D_V_MAP_-2_1',
         data: [
-          { 
+          {
           point: [-2, 1], title: '降临之地', 
           #toScene: 'C000D_V_MAP_-2_1', 
           links: [[-3, 2], ] },
-          { point: [-3, 2], title: '？？？',
+          {point: [-3, 2], title: '？？？',
            #toScene: 'C000D_V_MAP_-3_2',
            links: [] },
         ]
