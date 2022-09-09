@@ -1,10 +1,23 @@
 import { StyleSheet, Text, View, Animated } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
+import { px2pd } from '../../../constants/resolution';
+import FastImage from 'react-native-fast-image';
+
 const viewWidth = 200;
+const progressWidth = 60
+
+const TheArrow = ({ changeValue }) => {
+  return Number(changeValue) > 0
+    ? <FastImage style={styles.theArrow} source={require('../../../../assets/linshi/red_Top_theArrow.png')} />
+    : <FastImage style={styles.theArrow} source={require('../../../../assets/linshi/blue_bottom_theArrow.png')} />
+}
 
 const changeValueFormat = (changeValue) => {
-  return Number(changeValue) > 0 ? `+${changeValue}` : `${changeValue}`
+  // return Number(changeValue) > 0 ? `+${changeValue}` : `${changeValue}`
+  return Number(changeValue) > 0 
+  ? <Text style={{fontSize: 14,color:"#CF0303"}}>{`+${changeValue}`}</Text>
+  : <Text style={{fontSize: 14,color:"#1B7DCB"}}>{`${changeValue}`}</Text>
 }
 
 const GoodAndEvil = ({ msg }) => {
@@ -13,13 +26,19 @@ const GoodAndEvil = ({ msg }) => {
 
   return (
     <View style={styles.box}>
+      <FastImage
+        source={require('../../../../assets/linshi/attributeBg.png')}
+        style={{ position: "absolute", width: px2pd(498), height: px2pd(98) }}
+      />
       <Text style={styles.title}>{msg.key}</Text>
-      <View style={{ height: 20, width: 100, flexDirection: "row", justifyContent: 'center', alignItems: 'center' }}>
-        <View style={{ width: 100, backgroundColor: "#fff", height: 5, position: "absolute" }}></View>
-        <View style={{ width: 1, height: 10, backgroundColor: "red", transform: [{ translateX: -translateX }] }}></View>
+      <View style={{ height: 20, width: progressWidth, flexDirection: "row", justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ width: progressWidth, backgroundColor: "#fff", height: 5, position: "absolute" }}></View>
+        <View style={{ width: 1, height: 10, backgroundColor: "#fff", transform: [{ translateX: -translateX }] }}></View>
       </View>
       <Text style={styles.title}>冷漠</Text>
+      
       <Text style={styles.title}>{changeValueFormat(msg.changeValue)}</Text>
+      <TheArrow changeValue={msg.changeValue} />
     </View>
   )
 }
@@ -47,7 +66,7 @@ const LeftToRightSwiper = props => {
       Animated.timing(opacityAnim, {
         toValue: 0,
         duration: 2000,
-        delay: 1200,
+        delay: 3000,
         useNativeDriver: false,
       }),
     ]).start(onHide);
@@ -63,12 +82,10 @@ const LeftToRightSwiper = props => {
         marginTop: 12,
         transform: [{ translateX: translateXAnim }],
         width: viewWidth,
-        height: 40,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         opacity: opacityAnim,
-        backgroundColor: "green"
       }}>
       {children}
     </Animated.View>
@@ -90,11 +107,16 @@ const AttributesComponent = (props) => {
   return (
     <LeftToRightSwiper animationEndEvent={() => { closeToast(1) }}>
       <View style={styles.box}>
+        <FastImage
+          source={require('../../../../assets/linshi/attributeBg.png')}
+          style={{ position: "absolute", width: px2pd(498), height: px2pd(98) }}
+        />
         <Text style={styles.title}>{msg.key}</Text>
-        <View style={{ height: 20, width: 100 }}>
-        </View>
+        <View style={{ height: 20, width: progressWidth }} />
         <Text style={styles.title}>{msg.value}</Text>
+        
         <Text style={styles.title}>{changeValueFormat(msg.changeValue)}</Text>
+        <TheArrow changeValue={msg.changeValue} />
       </View>
     </LeftToRightSwiper>
   )
@@ -107,9 +129,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: 200,
-    height: "100%",
-    backgroundColor: '#ccc',
+    width: px2pd(498),
+    height: px2pd(98),
     paddingLeft: 8,
     paddingRight: 8,
   },
@@ -120,5 +141,9 @@ const styles = StyleSheet.create({
   changeValue: {
     fontSize: 18,
     color: '#B60000',
+  },
+  theArrow: {
+    width: px2pd(46),
+    height: px2pd(64)
   }
 });

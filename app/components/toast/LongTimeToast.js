@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   view_location: {
     position: "absolute",
-    left: "5%",
+    left: "2%",
     top: "15%",
   }
 
