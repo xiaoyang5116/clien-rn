@@ -8,6 +8,12 @@ const viewWidth = 200;
 const progressWidth = 60
 
 const TheArrow = ({ changeValue }) => {
+  if (Math.abs(Number(changeValue)) >= 5) {
+    return Number(changeValue) > 0
+      ? <FastImage style={styles.bigTheArrow} source={require('../../../../assets/linshi/big_red_theArrow.png')} />
+      : <FastImage style={styles.bigTheArrow} source={require('../../../../assets/linshi/big_blue_theArrow.png')} />
+  }
+
   return Number(changeValue) > 0
     ? <FastImage style={styles.theArrow} source={require('../../../../assets/linshi/red_Top_theArrow.png')} />
     : <FastImage style={styles.theArrow} source={require('../../../../assets/linshi/blue_bottom_theArrow.png')} />
@@ -15,9 +21,9 @@ const TheArrow = ({ changeValue }) => {
 
 const changeValueFormat = (changeValue) => {
   // return Number(changeValue) > 0 ? `+${changeValue}` : `${changeValue}`
-  return Number(changeValue) > 0 
-  ? <Text style={{fontSize: 14,color:"#CF0303"}}>{`+${changeValue}`}</Text>
-  : <Text style={{fontSize: 14,color:"#1B7DCB"}}>{`${changeValue}`}</Text>
+  return Number(changeValue) > 0
+    ? <Text style={{ fontSize: 14, color: "#CF0303" }}>{`+${changeValue}`}</Text>
+    : <Text style={{ fontSize: 14, color: "#1B7DCB" }}>{`${changeValue}`}</Text>
 }
 
 const GoodAndEvil = ({ msg }) => {
@@ -36,7 +42,7 @@ const GoodAndEvil = ({ msg }) => {
         <View style={{ width: 1, height: 10, backgroundColor: "#fff", transform: [{ translateX: -translateX }] }}></View>
       </View>
       <Text style={styles.title}>冷漠</Text>
-      
+
       <Text style={styles.title}>{changeValueFormat(msg.changeValue)}</Text>
       <TheArrow changeValue={msg.changeValue} />
     </View>
@@ -114,7 +120,7 @@ const AttributesComponent = (props) => {
         <Text style={styles.title}>{msg.key}</Text>
         <View style={{ height: 20, width: progressWidth }} />
         <Text style={styles.title}>{msg.value}</Text>
-        
+
         <Text style={styles.title}>{changeValueFormat(msg.changeValue)}</Text>
         <TheArrow changeValue={msg.changeValue} />
       </View>
@@ -144,6 +150,10 @@ const styles = StyleSheet.create({
   },
   theArrow: {
     width: px2pd(46),
+    height: px2pd(64)
+  },
+  bigTheArrow: {
+    width: px2pd(65),
     height: px2pd(64)
   }
 });
