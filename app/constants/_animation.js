@@ -43,7 +43,6 @@ function knifeLightAction(type) {
 // ========= 屏幕中心 图片伸缩
 // 通关1
 const pass_1 = require('../../assets/notice/pass_1.png');
-const pass_2 = require('../../assets/animations/onomatopoeia/feiwu.png');
 
 // ==========动画动作
 export const animationAction = type => {
@@ -133,11 +132,6 @@ export const animationAction = type => {
                 type: ONOMATOPOEIA,
                 typeId: 10,
             };
-        case "废物":
-            return {
-                type: SCREEN_CENTER_STRETCH,
-                action: pass_2,
-            };
         case "谁!!!":
             return {
                 type: ONOMATOPOEIA,
@@ -152,6 +146,11 @@ export const animationAction = type => {
             return {
                 type: ONOMATOPOEIA,
                 typeId: 13,
+            };
+        case "废物":
+            return {
+                type: ONOMATOPOEIA,
+                typeId: 14,
             };
         case "拔刀":
             return {

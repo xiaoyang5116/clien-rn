@@ -14,6 +14,7 @@ import ShanModal from './Shan'
 import ShuiModal from './Shui'
 import HouHouHouModal from './HouHouHou'
 import PuChiModal from './PuChi'
+import FeiwuModal from './Feiwu'
 
 
 const Onomatopoeia = (props) => {
@@ -45,6 +46,8 @@ const Onomatopoeia = (props) => {
             return HouHouHouModal.show(props)
         case 13:
             return PuChiModal.show(props)
+        case 14:
+            return FeiwuModal.show(props)
     }
 }
 
