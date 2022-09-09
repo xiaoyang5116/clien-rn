@@ -68,7 +68,7 @@ const TabIcon = (props) => {
 
 const HeaderTitle = (props) => {
   return (
-    <Header1 style={{ marginTop: (Platform.OS == 'ios' ? statusBarHeight + 10 : 20), marginBottom: 10, }} title={props.options.title} />
+    <Header1 style={{ marginTop: (Platform.OS == 'ios' ? (statusBarHeight + 10) : 15), marginBottom: 10, }} title={props.options.title} />
   )
 }
 
