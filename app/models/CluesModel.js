@@ -100,6 +100,8 @@ export default {
 
       newCluesList = yield put.resolve(action('changeCluesStatus')(payload));
 
+      // 获得的线索
+      let messages = []
       if (addCluesId !== undefined) {
         for (let index = 0; index < addCluesId.length; index++) {
           // 跳过已经存在的线索
@@ -108,11 +110,16 @@ export default {
           const clues = __allCluesData.find(item => item.id === addCluesId[index])
           if (clues === undefined) return console.debug("未找到线索")
           newCluesList.unshift({ ...clues, status: 1 })
-          setTimeout(() => {
-            Toast.show(`获得${clues.type}: ${clues.title}`, BOTTOM_TOP_SMOOTH)
-          }, 600)
+          messages.push({
+            content: clues.content,
+            title: clues.title,
+            cluesType: clues.type
+          })
         }
       }
+
+      // 提示获得线索
+      yield put(action('ToastModel/toastShow')({ messages, type: "clues" }));
 
       yield put.resolve(action('saveCluesList')(newCluesList));
     },
@@ -122,6 +129,9 @@ export default {
       const { cluesList } = yield select(state => state.CluesModel);
       const { useCluesId, invalidCluesId } = payload
 
+      // 提示消息
+      let msg = []
+
       let newCluesList = [...cluesList]
       if (invalidCluesId !== undefined && invalidCluesId.length > 0) {
         for (let index = 0; index < invalidCluesId.length; index++) {
@@ -129,9 +139,7 @@ export default {
             const item = newCluesList[c];
             if (item.id === invalidCluesId[index] && item.status !== 3) {
               item.status = 3
-              setTimeout(() => {
-                Toast.show(`${item.title} - 已失效`, BOTTOM_TOP_SMOOTH)
-              }, 1100)
+              msg.push(`${item.title} - 已失效`)
             }
           }
         }
@@ -143,12 +151,14 @@ export default {
             const item = newCluesList[c];
             if (item.id === useCluesId[index] && item.status !== 2) {
               item.status = 2
-              setTimeout(() => {
-                Toast.show(`${item.title} - 已使用`, BOTTOM_TOP_SMOOTH)
-              }, 100)
+              msg.push(`${item.title} - 已使用`)
             }
           }
         }
+      }
+
+      if (msg.length > 0) {
+        Toast.show(msg, BOTTOM_TOP_SMOOTH)
       }
 
       return newCluesList

@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { action, connect } from "../../constants"
 
 import AttrToast from './longTimeComponent/AttrToast'
+import CluesToast from './longTimeComponent/CluesToast'
 
 const LongTimeToast = (props) => {
   const { onClose, toastMessages } = props
@@ -18,6 +19,9 @@ const LongTimeToast = (props) => {
     timer.current = setInterval(() => {
       if (msgIndex < toastMsgLength.current - 1) {
         setMsgIndex(msgIndex + 1)
+      }
+      else{
+        clearInterval(timer.current)
       }
     }, 500);
     return () => {
@@ -44,6 +48,9 @@ const LongTimeToast = (props) => {
     if (index <= msgIndex) {
       if (item.type === "attr") {
         return <AttrToast msg={item} closeToast={closeToast} />
+      }
+      if (item.type === "clues") {
+        return <CluesToast msg={item} closeToast={closeToast} />
       }
     }
   }
