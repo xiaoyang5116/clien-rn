@@ -107,6 +107,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_47',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -161,6 +163,8 @@ scenes: [
     id: 'C000A_V_MAP_0_-2', name: '玄德大街',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_35',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -219,11 +223,13 @@ scenes: [
 #===========事件场景==============
        {
   # NPC2
-    id: 'C000A_V_MAP_0_0', name: '这条街人潮汹涌，大小商铺错落有致',
+    id: 'C000A_V_MAP_0_0', name: '玄德中街',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_36',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -242,7 +248,7 @@ scenes: [
     # 对话选项
     chats: [
       { 
-        id: 'C1', desc: '玄德中街', 
+        id: 'C1', desc: '这条街人潮汹涌，大小商铺错落有致', 
         options: [ 
         { title: '【四处看看】', nextChat: 'X1',},
         # { title: '【东市】', toScene: 'C000A_V_MAP_1_0'},
@@ -272,6 +278,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_40',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -328,6 +336,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_34',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -376,6 +386,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_29',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -431,6 +443,8 @@ scenes: [
     id: 'C000A_V_MAP_-1_5', name: '森林',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_38',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -483,6 +497,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_37',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -532,6 +548,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_26',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -580,6 +598,8 @@ scenes: [
     id: 'C000A_V_MAP_-1_-3', name: '布庄',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_39',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -632,6 +652,8 @@ scenes: [
     id: 'C000A_V_MAP_-1_-2', name: '春花阁',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_44',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -692,6 +714,8 @@ scenes: [
     id: 'C000A_V_MAP_-1_-1', name: '西市一街',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_41',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -735,6 +759,8 @@ scenes: [
     id: 'C000A_V_MAP_-1_0', name: '西市',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_46',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -784,6 +810,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_49',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -860,6 +888,8 @@ scenes: [
     id: 'C000A_V_MAP_-1_1', name: '西市二街',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_42',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -905,6 +935,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_31',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -950,6 +982,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_30',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1000,6 +1034,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_34',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1043,6 +1079,8 @@ scenes: [
     id: 'C000A_V_MAP_-3_-2', name: '白府',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_50',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1103,6 +1141,8 @@ scenes: [
     id: 'C000A_V_MAP_-2_-3', name: '路口',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_46',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1149,6 +1189,8 @@ scenes: [
     id: 'C000A_V_MAP_-3_-3', name: '街角',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_41',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1206,6 +1248,8 @@ scenes: [
     id: 'C000A_V_MAP_1_-3', name: '来福客栈',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_30',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1270,6 +1314,8 @@ scenes: [
     id: 'C000A_V_MAP_1_-2', name: '老人故居',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_48',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1319,6 +1365,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_33',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1366,6 +1414,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_43',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1414,6 +1464,8 @@ scenes: [
       worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
+     #横图显示
+    sceneImage: 'BGT_37',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [2, -1],
      # 变量定义
@@ -1455,6 +1507,8 @@ scenes: [
     id: 'C000A_V_MAP_2_1', name: '东市二街',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_34',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1501,6 +1555,8 @@ scenes: [
     id: 'C000A_V_MAP_2_2', name: '巷子',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_30',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1511,6 +1567,7 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101'], nextChat: 'C2' },
     ],
     # 动作定义
     actions: [ ],
@@ -1521,8 +1578,17 @@ scenes: [
     ],
     # 对话选项
     chats: [
-       { 
+    { 
         id: 'C1', desc: '此处人来人往，一片和谐', 
+        options: [ 
+        # { title: '【找人询问】', dialogs: ['Screen15'] }, 
+        { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        ],
+      },
+       { 
+        id: 'C2', desc: '此处人来人往，一片和谐', 
         options: [ 
         { title: '【找人询问】', dialogs: ['Screen15'] }, 
         # { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
@@ -1564,6 +1630,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_45',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1579,6 +1647,7 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C1' },
        { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C3' },
+       
     ],
     # 对话选项
     chats: [
@@ -1648,6 +1717,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_36',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点

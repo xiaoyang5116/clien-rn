@@ -7,6 +7,9 @@ scenes: [
       # 变量定义
       vars: [
       { id: "v1", min: 0, max: 1 },
+      { id: "v_icon_1", min: 0, max: 1 },
+      { id: "v_icon_2", min: 0, max: 1 },
+      { id: "v_icon_3", min: 0, max: 1 },
       ],
 
       # 动作定义
@@ -21,7 +24,7 @@ scenes: [
    { 
         id: 'WZXX_M1_N1_C000B_V1', desc: '打工还是守夜', 
         options: [ 
-          { title: "【去打工】",toScene: 'C000B_V_MAP_-1_2',},
+          { title: "【去打工】",toScene: 'C000B_V_MAP_-1_2', varsOn: ['v_icon_1','v_icon_2','v_icon_3',], },
           { title: "【去守夜】",toChapter: "WZXX_M1_N1_C011_[N2]",},
         ],
       },
@@ -255,6 +258,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000B_VA/v_icon_1'], nextChat: 'C4' },
+       
     ],
     # 对话选项
     chats: [
@@ -284,7 +289,14 @@ scenes: [
         ],
       },
 
+      { 
+        id: 'C4', desc: '远处有不错的风景，那是富家人靠近小河的院墙。', 
+        options: [ 
+         { title: '【远望景色】', dialogs: ['Screen2']}, 
+         { title: '【没什么可看的】',nextChat: 'X1'}, 
 
+        ],
+      },
       #
       { 
         id: 'X1', desc: '选择移动位置', 
@@ -307,6 +319,13 @@ scenes: [
      
   ],
   },
+      {
+                     id: 'Screen2',style: "9A", textAnimationType: 'TextSingle',
+                   sections: [
+                   { key: 'p2', content: ['那是一片绿意盎然的小型园林，有点像当年逛过的公园一角。', '那是公园中专门培养一些稀奇花草的地方，用很多大型的花盆堆积起来。', '可惜同样的美景，却分别在于两个不同的世界。', '……'], btn: [{ title: '离开', sendProps: '363,1',nextChat: 'C1'}] },
+                  
+                    ]
+                }
   ],
 
  },
@@ -485,6 +504,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000B_VA/v_icon_2'], nextChat: 'C2' },
     ],
     # 对话选项
     chats: [
@@ -494,7 +514,55 @@ scenes: [
          { title: '【赌摊】',toScene: 'C000B_VA_MAP_-3_2'}, 
          { title: '【医馆】',toScene: 'C000B_VA_MAP_-1_2'}, 
         ],
-      },],},
+      },
+       { 
+        id: 'C2', desc: '这条街相当热闹，除交易外还有很多娱乐活动', 
+        options: [ 
+         { title: '【观察卖包子的小贩】',nextChat: 'C3' }, 
+        
+        ],
+      },
+      { 
+        id: 'C3', desc: '这条街相当热闹，除交易外还有很多娱乐活动', 
+        options: [ 
+         { title: '【回想原本卖过包子】',dialogs: ['Screen1'] }, 
+         { title: '【回想现实世界的情景】',dialogs: ['Screen2'] }, 
+         { title: '【现在并不饿】',nextChat: 'C4'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '算了，不要瞎想，还有别的事情要做', 
+        options: [ 
+         { title: '【赌摊】',toScene: 'C000B_VA_MAP_-3_2'}, 
+         { title: '【医馆】',toScene: 'C000B_VA_MAP_-1_2'}, 
+        ],
+      },
+     
+      
+      ],
+      
+      dialogs:
+        [
+           #选项对话1
+          { id: 'Screen1',style: "9A", title: '继续盯着', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['突然会想到，这原身之前也是卖过包子的。','本来混进市井之中，这种突然的感慨也是莫名奇妙而出。',
+          ],
+          btn: [{title: '不要瞎想，还有别的事',nextChat: 'C4' },]},
+     
+  ],
+  },
+      {
+                     id: 'Screen2',style: "9A", textAnimationType: 'TextSingle',
+                   sections: [
+                   { key: 'p2', content: ['想起在现实世界中，上学的时候也经常用包子来做早点。', '可惜现在的感受完全不同。', '之前的同窗再也联系不上，这种在陌生世界的孤独气氛一下子让人沉默。', '……','难道真的无法重新穿越世界。','重回到熟悉的世界吗？'], 
+                   btn: [{ title: '不要瞎想，还有别的事', sendProps: '363,1',nextChat: 'C4'}] },
+                  
+                    ]
+                }
+  ],
+
+ },
 
 #===========事件场景==============
        {
@@ -526,9 +594,6 @@ scenes: [
         options: [ 
          { title: '【赌一把】', nextChat: 'C2'}, 
          { title: '【我与赌毒不共戴天】',nextChat: 'C3'}, 
-        
-
-         #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
         ],
       },
      { 
@@ -546,6 +611,7 @@ scenes: [
        
         ],
       },
+      
 
 
        #
@@ -941,6 +1007,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000B_VA/v_icon_3'], nextChat: 'C0' },
     ],
     # 对话选项
     chats: [
@@ -954,6 +1021,14 @@ scenes: [
          #{ title: '【对话】',nextChat: 'C2' toChapter: "WZXX_M1_N1_C001B_[C2]" }, 
         ],
       },
+       { 
+        id: 'C0', desc: '远处，一列马车行进', 
+        options: [ 
+         { title: '【观察远处的车队】',dialogs: ['Screen2'],}, 
+         { title: '【不去凑什么热闹】',nextChat: 'C1'}, 
+        ],
+      },
+      
       
 
      { 
@@ -985,6 +1060,14 @@ scenes: [
           btn: [{title: '挑战开始', games: { id: 3, words: ['不', '知', '道', ] },nextChat: 'C3' },]},
   ],
   },
+     {
+                     id: 'Screen2',style: "9A", textAnimationType: 'TextSingle',
+                   sections: [
+                   { key: 'p2', content: ['不知名的马车队伍正在大街中央行进，后面的车厢托着不少麻袋装运的货物', '马车，想起来这些东西也是经常看到呢，现在已经觉得并不稀奇了。', '要是在现实世界，这样的情景应该是一些旅游景观之类的才会出现的吧。', '唯独缺少了周围拿着相机的游客','究竟那边才是现实，那边才是梦？','李森炎不注意出神起来','一段时间过去','……',], 
+                   btn: [{ title: '不要瞎想了', sendProps: '363,1',nextChat: 'C1'}] },
+                  
+                    ]
+                }
   ],
 
  },
@@ -993,20 +1076,61 @@ scenes: [
       {
         id: 'C000B_VA_MAP_0_0',
         data: [
-          { point: [0, 0], title: '坊市出入口', toScene: 'C000B_VA_MAP_0_0', links: [ [0, 1]] },
-          { point: [0, 1], title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', links: [[0, 2] ] },
-          { point: [0, 2], title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', links: [[-1, 2], [1, 2]] },
-          { point: [1, 2], title: '东街', toScene: 'C000B_VA_MAP_1_2', links: [ [2, 2]] },
-          { point: [2, 2], title: '酒肆', toScene: 'C000B_VA_MAP_2_2', links: [ ] },
-          { point: [-1, 2], title: '医馆', toScene: 'C000B_VA_MAP_-1_2', links: [[0, 2], [-2, 2], [-1, 3]]},
-          { point: [-2, 2], title: '西街', toScene: 'C000B_VA_MAP_-2_2', links: [[-3, 2]] },
-          { point: [-3, 2], title: '赌摊', toScene: 'C000B_VA_MAP_-3_2', links: [ ] },
-          { point: [-1, 3], title: '当铺', toScene: 'C000B_VA_MAP_-1_3', links: [[-1, 4], [-2, 3], [0, 3]] },
-          { point: [-2, 3], title: '饭馆', toScene: 'C000B_VA_MAP_-2_3', links: [ ] },
-          { point: [-1, 4], title: '兵器铺', toScene: 'C000B_VA_MAP_-1_4', links: [[-1, 5]] },
-          { point: [-1, 5], title: '小集市', toScene: 'C000B_VA_MAP_-1_5', links: [ ] },
-          { point: [0, 3], title: '珍宝阁', toScene: 'C000B_VA_MAP_0_3', links: [[1, 3]] },
-          { point: [1, 3], title: '客栈', toScene: 'C000B_VA_MAP_1_3', links: [ ] },
+          { point: [0, 0], title: '坊市出入口',
+           toScene: 'C000B_VA_MAP_0_0', 
+           links: [ [0, 1]] },
+
+          { point: [0, 1], title: '天机阁摊位', 
+          toScene: 'C000B_VA_MAP_0_1', 
+          links: [[0, 2] ] },
+
+          { point: [0, 2], title: '坊市主道',
+           toScene: 'C000B_VA_MAP_0_2',
+            links: [[-1, 2], [1, 2]] },
+
+          { point: [1, 2], title: '东街',
+           toScene: 'C000B_VA_MAP_1_2' , icon: { id: 102, bindVar: 'WZXX_M1_N1_C000B_VA/v_icon_1' },
+           links: [ [2, 2]] },
+
+          { point: [2, 2], title: '酒肆',
+           toScene: 'C000B_VA_MAP_2_2',
+            links: [ ] },
+
+          { point: [-1, 2], title: '医馆',
+           toScene: 'C000B_VA_MAP_-1_2', 
+           links: [[0, 2], [-2, 2], [-1, 3]]},
+
+          { point: [-2, 2], title: '西街', icon: { id: 102, bindVar: 'WZXX_M1_N1_C000B_VA/v_icon_2' },
+           toScene: 'C000B_VA_MAP_-2_2',
+            links: [[-3, 2]] },
+
+          { point: [-3, 2], title: '赌摊',
+           toScene: 'C000B_VA_MAP_-3_2',
+            links: [ ] },
+
+          { point: [-1, 3], title: '当铺',
+           toScene: 'C000B_VA_MAP_-1_3', 
+           links: [[-1, 4], [-2, 3], [0, 3]] },
+
+          { point: [-2, 3], title: '饭馆', 
+          toScene: 'C000B_VA_MAP_-2_3', 
+          links: [ ] },
+
+          { point: [-1, 4], title: '兵器铺',
+           toScene: 'C000B_VA_MAP_-1_4', 
+           links: [[-1, 5]] },
+
+          { point: [-1, 5], title: '小集市', icon: { id: 102, bindVar: 'WZXX_M1_N1_C000B_VA/v_icon_3' },
+           toScene: 'C000B_VA_MAP_-1_5', 
+           links: [ ] },
+
+          { point: [0, 3], title: '珍宝阁',
+           toScene: 'C000B_VA_MAP_0_3', 
+           links: [[1, 3]] },
+
+          { point: [1, 3], title: '客栈', 
+          toScene: 'C000B_VA_MAP_1_3', 
+          links: [ ] },
         ]
       },
     ]
