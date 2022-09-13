@@ -6,7 +6,15 @@
 # 2. alterAttrs 修改属性 ['属性名称,变动值',...] （如：['成神,-1']）
 #{ id: 'D1000000', sendProps: '40,10', alterAttrs: ['气运,1', '道行,2'] },
 # ===========================================
-drops: [
+drops: [ 
+  { id: 'WZXX_M1_N1_C000A_V_drop1', sendProps: '363,1,showBag', },
+  { id: 'WZXX_M1_N1_C000A_V_drop2', sendProps: '887,1,showBag', },
+
+  { id: 'WZXX_M1_N1_C000A_V_drop3', sendProps: '887,1000,showBag', },
+  { id: 'WZXX_M1_N1_C000A_V_drop4', sendProps: '363,1,showBag', },
+
+  { id: 'WZXX_M1_N1_C000A_V_drop5', sendProps: '887,20,showBag', },
+  { id: 'WZXX_M1_N1_C000A_V_drop6', sendProps: '363,1,showBag', },
 
   
 

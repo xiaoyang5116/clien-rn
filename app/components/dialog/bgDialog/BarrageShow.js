@@ -26,12 +26,18 @@ const BarrageShow = (props) => {
   React.useEffect(() => {
     if (refVideo.current != null) {
       refVideo.current.seek(0);
+      const key = RootView.add(<BarrageAnimation data={section.data} onClose={() => {
+        handlerBarrageClick()
+        RootView.remove(key);
+      }} />);
     }
 
-    const key = RootView.add(<BarrageAnimation data={section.data} onClose={() => {
-      handlerBarrageClick()
-      RootView.remove(key);
-    }} />);
+    if (currentBgImage != undefined || currentVideo != undefined) {
+      const key = RootView.add(<BarrageAnimation data={section.data} onClose={() => {
+        handlerBarrageClick()
+        RootView.remove(key);
+      }} />);
+    }
   }, []);
 
   const end = () => { };

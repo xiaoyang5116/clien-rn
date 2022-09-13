@@ -123,6 +123,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_26',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图
@@ -196,6 +198,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_27',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图
@@ -298,6 +302,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_38',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图
@@ -401,6 +407,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_28',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图
@@ -485,6 +493,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_29',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图
@@ -555,6 +565,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_47',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图

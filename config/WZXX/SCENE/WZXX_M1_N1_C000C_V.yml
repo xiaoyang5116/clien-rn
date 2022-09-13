@@ -16,6 +16,7 @@ scenes: [
       { id: "v_icon_101D", min: 0, max: 1 },
       { id: "v_icon_102D", min: 0, max: 1 },
       { id: "v_icon_100D", min: 0, max: 1 },
+      
 
       ],
 
@@ -32,12 +33,22 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000C_V', desc: '回忆', 
         options: [ 
-          { title: "【辞职当天】",toScene: 'C000C_V_MAP_0_4', varsOn: ['v_icon_100','v_icon_103',]},
+          { title: "【辞职当天】",dialogs: ['d3'],toScene: 'C000C_V_MAP_0_4', varsOn: ['v_icon_100','v_icon_103',]},
         ],
       },
-
+   
     
         ],
+          # 对话框
+    dialogs: [    
+
+     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+        sections: [
+         {
+          key: 'p1',
+          content: ['李森炎回忆起自己离职当天', '那些人的音容还历历在目','如果我没有穿越的话','或许还能再见到他们……',],
+    },]}
+    ],
 
   },
 
@@ -48,6 +59,7 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     sceneImage: 'BGT_18',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -59,7 +71,7 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
+    # { id: "v_icon_100E", min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -67,34 +79,52 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  dialogs: ['d3'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
-       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  
+      #  dialogs: ['d3'], 
+      andVarsOff: ['ONE_OPEN_0',],   nextChat: 'C1'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
 
     # 对话选项
     chats: [
-      #
       { 
         id: 'C1', desc: '前台的小姐姐正在埋头工作', 
         options: [ 
-         { title: '【去找李小姐对话】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000C_V_MAP_-1_3'}, 
+         { title: '【这里没人搭理你】',varsOn: ['ONE_OPEN_0',], toScene: 'C000C_V_MAP_1_2'}, 
         ],
       },
-       #
-
-
+      { 
+        id: 'C2', desc: '去找李小姐沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
+        ],
+      },
+      { 
+        id: 'C3', desc: '去找王经理沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
+        ],
+      },
 
     ],
- # 对话框
-    dialogs: [    
+#  # 对话框
+#     dialogs: [    
 
-     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
-        sections: [
-         {
-          key: 'p1',
-          content: ['李森炎回忆起自己离职当天', '那些人的音容还历历在目','如果我没有穿越的话','或许还能再见到他们……',],
-    },]}
-    ],
+#      {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+#         sections: [
+#          {
+#           key: 'p1',
+#           content: ['李森炎回忆起自己离职当天', '那些人的音容还历历在目','如果我没有穿越的话','或许还能再见到他们……',],
+#     },]}
+#     ],
   },
           
  #===========事件场景==============
@@ -104,6 +134,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_8',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -124,7 +156,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
 
     # 对话选项
@@ -133,12 +166,24 @@ scenes: [
       { 
         id: 'C1', desc: '一进公司第一眼看到的便是市场部，同事大部分都出去跑业务了', 
         options: [ 
-         { title: '【找王经理】', toScene: 'C000C_V_MAP_-1_2'}, 
          { title: '【找李小姐谈话】', dialogs: ['Screen1'] }, 
       
         ],
       },
       #
+       { 
+        id: 'C3', desc: '去找王经理沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
+        ],
+      },
+
     
        #
     ],
@@ -163,6 +208,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_16',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图 
@@ -184,15 +231,27 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C2' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],nextChat: 'C1' },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C3'  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
-
     # 对话选项
     chats: [
+       { 
+        id: 'C3', desc: '去找李小姐沟通，或许可以解锁新的东西', 
+        options: [ 
+        { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
+        ],
+      },
       #
       { 
         id: 'C1', desc: '人事部的经理为人和善，起码对李森炎还算不错', 
         options: [ 
-         { title: '【找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
          { title: '【遇见王经理】', dialogs: ['Screen1'] }, 
         ],
       },
@@ -225,6 +284,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_9',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图
@@ -245,15 +306,28 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C2' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102'], nextChat: 'C1' },
+        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],nextChat: 'C4' },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C3'  },
+       
     ],
-
     # 对话选项
     chats: [
-      #
+       { 
+        id: 'C3', desc: '去找李小姐沟通，或许可以解锁新的东西', 
+        options: [ 
+        { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '去找王经理沟通，或许可以解锁新的东西', 
+        options: [ 
+        { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
+        ],
+      },
+ 
       { 
         id: 'C1', desc: '一部分人在埋头工作，还有人在窃窃私语，似乎是在说关于李森炎的话题', 
         options: [ 
-         { title: '【找赵某对话】', toScene: 'C000C_V_MAP_1_2'}, 
          { title: '【找财务部主管对话】', dialogs: ['Screen1'] }, 
         ],
       },
@@ -284,6 +358,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_11',
     # 当前场景地图
     mapId: 'C000C_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -302,21 +378,39 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       
-     
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
 
     # 对话选项
     chats: [
-      #
-      { 
+     { 
         id: 'C1', desc: '技术部的人不太熟悉，随便看看', 
         options: [ 
          { title: '【找董事长秘书】', toScene: 'C000C_V_MAP_0_0'}, 
-         { title: '【程序员赵某】', dialogs: ['Screen1'] }, 
-      
         ],
       },
+      { 
+        id: 'C2', desc: '去找李小姐沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【遇见程序员赵某】', dialogs: ['Screen1'] }
+        ],
+      },
+      { 
+        id: 'C3', desc: '去找王经理沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
+        ],
+      },
+      #
+      
       
     ],
    
@@ -339,6 +433,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_1',
     # 当前场景地图
     mapId: 'C000C_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -357,20 +453,39 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
 
     # 对话选项
     chats: [
-      #
-      { 
+     { 
         id: 'C1', desc: '董事长秘书让你没事不要随便来这边', 
         options: [ 
-         { title: '【总经理办公室】', toScene: 'C000C_V_MAP_0_-1'}, 
-         
-      
+         { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
         ],
       },
+      { 
+        id: 'C2', desc: '去找李小姐沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
+         { title: '【和董事长秘书谈话】', nextChat: 'C1' }
+        ],
+      },
+      { 
+        id: 'C3', desc: '去找王经理沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
+        options: [ 
+         { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
+        ],
+      },
+      #
 
    
     ],
@@ -382,11 +497,12 @@ scenes: [
        {
   # NPC2
     id: 'C000C_V_MAP_0_-1', name: '总经理办公室',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
+    #图片配置：
+    sceneImage: 'BGT_17',
     # 当前场景地图
     mapId: 'C000C_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -423,8 +539,6 @@ scenes: [
         id: 'C2', desc: '未经总经理同意，不可随意进入', 
         options: [ 
          { title: '【离开】', toScene: 'C000C_V_MAP_0_0'}, 
-        
-     
         ],
       },
     ],
@@ -478,6 +592,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_20',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -572,10 +688,12 @@ scenes: [
  #===========事件场景==============
        {
   # NPC2
-    id: 'C000C_V1_MAP_-1_3', name: '李小姐',
+    id: 'C000C_V1_MAP_-1_3', name: '李小姐座位旁',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_8',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -631,10 +749,12 @@ scenes: [
  #===========事件场景==============
        {
   # NPC2
-    id: 'C000C_V1_MAP_-1_2', name: '王经理',
+    id: 'C000C_V1_MAP_-1_2', name: '王经理办公室',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_16',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -688,10 +808,12 @@ scenes: [
    #===========事件场景==============
        {
   # NPC2
-    id: 'C000C_V1_MAP_0_1', name: '财务主管',
+    id: 'C000C_V1_MAP_0_1', name: '财务主管工位',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_9',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -741,12 +863,14 @@ scenes: [
    #===========事件场景==============
        {
   # NPC2
-    id: 'C000C_V1_MAP_1_2', name: '赵某',
+    id: 'C000C_V1_MAP_1_2', name: '赵某旁边',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_11',
     # 当前场景地图
     mapId: 'C000C_V1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -794,12 +918,14 @@ scenes: [
   #===========事件场景==============
        {
   # NPC2
-    id: 'C000C_V1_MAP_0_0', name: '董事长秘书',
+    id: 'C000C_V1_MAP_0_0', name: '董事长秘书工位',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_1',
     # 当前场景地图
     mapId: 'C000C_V1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -848,6 +974,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+      #图片配置：
+    sceneImage: 'BGT_17',
     # 当前场景地图
     mapId: 'C000C_V1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -934,6 +1062,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_19',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -991,6 +1121,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_12',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1050,6 +1182,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+       #横图显示
+    sceneImage: 'BGT_13',
     # 当前场景地图
     mapId: 'C000C_V3_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1104,6 +1238,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+     #横图显示
+    sceneImage: 'BGT_22',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1178,6 +1314,8 @@ scenes: [
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
+      #横图显示
+    sceneImage: 'BGT_21',
     # 当前场景地图
     mapId: 'C000C_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1227,6 +1365,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_7',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1321,6 +1461,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_23',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1379,6 +1521,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_4',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1438,6 +1582,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_24',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1497,6 +1643,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_5',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1548,6 +1696,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_25',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1607,6 +1757,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_10',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1658,6 +1810,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_3',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
