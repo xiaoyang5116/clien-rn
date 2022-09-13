@@ -57,7 +57,7 @@ collections: {
             ],
             # 第三个卡位
             [
-              { props: [{ propId: 3001, num: 3 }] },
+              { props: [{ propId: 3001, num: 3 }, { propId: 3101, num: 1 }] },
             ],
           ]
         },
@@ -84,7 +84,7 @@ collections: {
             ],
             # 第三个卡位
             [
-              { props: [{ propId: 3001, num: 3 }] },
+              { props: [{ propId: 3001, num: 3 }, { propId: 3101, num: 2 }] },
             ],
           ]
         },
@@ -111,7 +111,7 @@ collections: {
             ],
             # 第三个卡位
             [
-              { props: [{ propId: 3001, num: 3 }] },
+              { props: [{ propId: 3001, num: 3 }, { propId: 3101, num: 3 }] },
             ],
           ]
         },
@@ -164,7 +164,7 @@ collections: {
             ],
             # 第三个卡位
             [
-              { props: [{ propId: 3001, num: 3 }] },
+              { props: [{ propId: 3001, num: 3 }, { propId: 3102, num: 1 }] },
             ],
           ]
         },
@@ -191,7 +191,7 @@ collections: {
             ],
             # 第三个卡位
             [
-              { props: [{ propId: 3001, num: 3 }] },
+              { props: [{ propId: 3001, num: 3 }, { propId: 3102, num: 2 }] },
             ],
           ]
         },
@@ -234,7 +234,7 @@ collections: {
             ],
             # 第五个卡位
             [
-              { props: [{ propId: 3003, num: 3 }] },
+              { props: [{ propId: 3003, num: 3 }, { propId: 3102, num: 3 }] },
             ],
           ]
         },
@@ -277,7 +277,7 @@ collections: {
             ],
             # 第五个卡位
             [
-              { props: [{ propId: 3003, num: 3 }] },
+              { props: [{ propId: 3003, num: 3 }, { propId: 3102, num: 4 }] },
             ],
           ]
         },
@@ -320,7 +320,7 @@ collections: {
             ],
             # 第五个卡位
             [
-              { props: [{ propId: 3003, num: 3 }] },
+              { props: [{ propId: 3003, num: 3 }, { propId: 3102, num: 5 }] },
             ],
           ]
         },
