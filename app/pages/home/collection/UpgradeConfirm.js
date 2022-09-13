@@ -73,6 +73,15 @@ const UpgradeConfirm = (props) => {
         });
     }
 
+    const attrs = [];
+    lo.forEach(props.data.attrs, (v, k) => {
+        const found = lo.find(currentItem.attrs, (e) => lo.isEqual(e.key, v.key));
+        attrs.push(<View key={k} style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ color: (found != undefined) ? '#669900' : '#333', lineHeight: 26 }}>{v.key}: {v.value}</Text>
+            {(found != undefined) ? <Text style={{ color: '#669900' }}> +{found.value}</Text> : <></>}
+        </View>);
+    });
+
     return (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -81,8 +90,11 @@ const UpgradeConfirm = (props) => {
                         <Text style={{ fontSize: 24, lineHeight: 40 }}>{props.data.name}</Text>
                     </View>
                     <View style={{ width: '94%', marginBottom: 15, borderWidth: 1, borderColor: '#333', borderRadius: 5 }}>
-                        <View style={{ width: '100%', height: 80, justifyContent: 'center', alignItems: 'center' }}>
-                            <Text>升级收藏品，获得更好的属性</Text>
+                        <View style={{ width: '100%', marginTop: 10, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ color: '#000', fontWeight: 'bold' }}>升级收藏品，获得更好的属性</Text>
+                            <View>
+                                {attrs}
+                            </View>
                         </View>
                         <View style={{ width: '100%', marginTop: 5, justifyContent: 'center', alignItems: 'center' }}>
                             <View style={{ width: '90%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly', alignItems: 'center' }}>

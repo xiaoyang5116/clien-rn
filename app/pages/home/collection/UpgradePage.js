@@ -24,16 +24,9 @@ const UpgradePage = (props) => {
     const scale = React.useRef(new Animated.Value(0)).current;
 
     const attrs = [];
-    lo.forEach(props.data.attrs[props.data.level], (v, k) => {
+    lo.forEach(props.data.attrs, (v, k) => {
         attrs.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{v.key}: +{v.value}</Text>);
     });
-
-    const attrsFull = [];
-    if (attrs.length == 0) {
-        lo.forEach(props.data.attrs[props.data.stars-1], (v, k) => {
-            attrsFull.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{v.key}: +{v.value}</Text>);
-        });
-    }
 
     React.useEffect(() => {
         Animated.timing(scale, {
@@ -42,7 +35,7 @@ const UpgradePage = (props) => {
             useNativeDriver: true,
         }).start();
     }, []);
-
+    
     return (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -66,11 +59,11 @@ const UpgradePage = (props) => {
                         </View>
                     </View>
                     <View style={{ width: '94%', height: 140, marginBottom: 20, borderWidth: 1, borderColor: '#333', borderRadius: 5, backgroundColor: '#ccc', padding: 5}}>
-                        { (attrs.length > 0) ? attrs : attrsFull }
+                        {attrs}
                     </View>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                         {
-                        (attrs.length > 0)
+                        (props.data.stars > props.data.level)
                         ? (
                         <TextButton style={{ width: px2pd(300) }} title={'改良'} onPress={() => {
                             if (props.onClose != undefined) {
