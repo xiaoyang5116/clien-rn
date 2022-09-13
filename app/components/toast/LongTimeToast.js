@@ -3,10 +3,9 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { action, connect } from "../../constants"
 
-import AttributesComponent from './longTimeComponent/LeftToRightSwiper'
+import AttrToast from './longTimeComponent/AttrToast'
 
 const LongTimeToast = (props) => {
-  // console.log("props", props);
   const { onClose, toastMessages } = props
 
   const [msgIndex, setMsgIndex] = useState(0)
@@ -41,12 +40,14 @@ const LongTimeToast = (props) => {
     }
   }
 
-
   const _renderMessages = ({ item, index }) => {
     if (index <= msgIndex) {
-      return <AttributesComponent msg={item} closeToast={closeToast} />
+      if (item.type === "attr") {
+        return <AttrToast msg={item} closeToast={closeToast} />
+      }
     }
   }
+
   return (
     <View style={styles.viewContainer} pointerEvents="box-none">
       <View style={styles.view_location}>
@@ -57,7 +58,6 @@ const LongTimeToast = (props) => {
           extraData={msgIndex}
         />
       </View>
-
     </View>
   )
 }

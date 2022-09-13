@@ -99,7 +99,7 @@ const LeftToRightSwiper = props => {
 };
 
 
-const AttributesComponent = (props) => {
+const AttrToast = (props) => {
   const { msg, closeToast, } = props;
 
   if (msg.key === "善良") {
@@ -128,7 +128,7 @@ const AttributesComponent = (props) => {
   )
 }
 
-export default AttributesComponent;
+export default AttrToast;
 
 const styles = StyleSheet.create({
   box: {
