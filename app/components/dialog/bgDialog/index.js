@@ -40,7 +40,7 @@ const BgDialog = props => {
     let timer = null;
     if (play && section.type != "Barrage") {
       timer = setTimeout(() => {
-        if (sectionIndex === -1) {
+        if (dialogIndex === -1) {
           bgColor.current = _color;
           setDialogIndex(0);
         }
@@ -49,7 +49,7 @@ const BgDialog = props => {
     return () => {
       clearTimeout(timer);
     };
-  }, [sectionIndex]);
+  }, [dialogIndex]);
 
   // 点击事件
   const handlerClick = () => {
