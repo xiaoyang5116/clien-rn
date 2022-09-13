@@ -15,7 +15,7 @@ import {
 } from '../../constants/native-ui';
 
 import lo from 'lodash';
-import { px2pd } from '../../constants/resolution';
+import { isPad, px2pd } from '../../constants/resolution';
 import StoryUtils from '../../utils/StoryUtils';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
@@ -70,7 +70,7 @@ const MissionBar = (props) => {
 
   const min = () => {
     Animated.timing(translateY, {
-      toValue: 250,
+      toValue: isPad() ? px2pd(570) : px2pd(696),
       duration: 300,
       useNativeDriver: true,
     }).start((r) => {
@@ -153,8 +153,8 @@ const MissionBar = (props) => {
 
   return (
       <Animated.View style={[styles.viewContainer, { transform: [{ translateY: translateY }], opacity: opacity, zIndex: zIndex }]}>
-        <Animated.View style={[{ position: 'absolute', right: 80, top: -103 }, { opacity: showBtnOpacity }]}>
-          <AntDesign name='upcircleo' color={'#000'} size={20} onPress={() => show()} />
+        <Animated.View style={[{ position: 'absolute', right: px2pd(220), top: -120 }, { opacity: showBtnOpacity }]}>
+          <AntDesign name='upcircleo' color={'#000'} size={isPad() ? 30 : 20} onPress={() => show()} />
         </Animated.View>
         <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false} style={{}}>
           <View style={{ flexWrap: 'wrap' }}>

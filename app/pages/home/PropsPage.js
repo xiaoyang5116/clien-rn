@@ -87,7 +87,7 @@ const PropsPage = (props) => {
             <View style={[styles.propsItem, (data.index == 0) ? styles.propsTopBorder : {}]}>
                 {(selectId == data.index) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={theme.propSelectedImage} /> : <></>}
                 <View style={styles.propsBorder}>
-                    <View style={{ position: 'absolute', left: 0 }}>
+                    <View style={{ }}>
                         <FastImage style={{ 
                                 width: px2pd(100), height: px2pd(100), 
                                 borderRadius: 5, borderWidth: 1, borderColor: quality_style.borderColor,
@@ -96,11 +96,11 @@ const PropsPage = (props) => {
                             source={image.img}
                         />
                     </View>
-                    <View style={{ width: '70%', flexDirection: 'row' }} >
-                        <Text style={[{ marginLeft: 45, fontSize: 22 }, { color: quality_style.fontColor }]} numberOfLines={1}>{data.item.name}</Text>
+                    <View style={{ flexDirection: 'row', marginLeft: px2pd(24) }} >
+                        <Text style={[{ fontSize: 22 }, { color: quality_style.fontColor }]} numberOfLines={1}>{data.item.name}</Text>
                     </View>
-                    <View style={{ width: '30%' }}>
-                        <Text style={{ marginRight: 20, fontSize: 22, color: '#424242', textAlign: 'right' }}>x{data.item.num}</Text>
+                    <View style={{ position: 'absolute', right: 0 }}>
+                        <Text style={{ marginRight: 10, fontSize: 22, color: '#424242', textAlign: 'right' }}>x{data.item.num}</Text>
                     </View>
                 </View>
             </View>
@@ -183,7 +183,6 @@ const styles = StyleSheet.create({
     propsBorder: {
         flex: 1, 
         flexDirection: 'row',
-        justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
         borderBottomWidth: 1,

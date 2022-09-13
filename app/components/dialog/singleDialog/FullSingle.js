@@ -1,16 +1,14 @@
 import {
     View,
-    Text,
     TouchableWithoutFeedback,
     FlatList,
     Dimensions,
-    SafeAreaView
 } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 
 import { ThemeContext } from '../../../constants';
 
-import { TextButton, LongTextButton, Header1, BtnIcon } from '../../../constants/custom-ui';
+import { LongTextButton, Header1, BtnIcon } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 import FastImage from 'react-native-fast-image';
 
@@ -79,7 +77,7 @@ const FullSingle = props => {
     const renderBtn = ({ item }) => {
         if (currentIndex >= currentDialogueLength) {
             return (
-                <View style={{ marginTop: 8, height: 40, justifyContent: 'center', }}>
+                <View style={{ marginTop: 8, justifyContent: 'center' }}>
                     {
                         item.icon
                             ? (<HaveBtnIcon item={item} />)
@@ -138,7 +136,7 @@ const FullSingle = props => {
                             </View>
 
                             {/* 按钮区域 */}
-                            <View style={{ marginTop: 12, }}>
+                            <View style={{ marginTop: 12, justifyContent: 'center', alignItems: 'center' }}>
                                 <FlatList
                                     data={showBtnList}
                                     renderItem={renderBtn}

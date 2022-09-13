@@ -31,6 +31,7 @@ const _images = {
         { id: 'TaoLaoLiKai_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/TaoLaoLiKai_1080.png') },
         { id: 'BaiYueGuangCeMian_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/BaiYueGuangCeMian_1080.png') },
         { id: 'BaiYueGuangZhengMian_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/BaiYueGuangZhengMian_1080.png') },
+        { id: 'ZhuJueSiWang_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/ZhuJueSiWang_1080.png') },
 
         { id: 'BAI_FU', width: px2pd(750), height: px2pd(1000), source: require('../../assets/chapter/BAI_FU.webp') },
         { id: 'HUAIBIAO', width: px2pd(720), height: px2pd(720), source: require('../../assets/chapter/HUAIBIAO.webp') },
@@ -70,6 +71,16 @@ const _images = {
     world_bg: [
         { id: 'ShiJieBeiJing_V1', source: require('../../assets/bg/world_bg1.png') },
     ],
+    bgDialog_bgImages: [
+        { id: 1, img: require('../../assets/bg/first_bg.jpg') },
+        { id: 2, img: require('../../assets/bg/lottery_bg.jpg') },
+    ],
+}
+
+const _videos = {
+    bgDialog_video: [
+        { id: 1, video: require('../../assets/mp4/FLY_480x960.mp4') },
+    ],
 }
 
 // 获得头像
@@ -106,4 +117,14 @@ export const getPropIcon = (iconId) => {
 // 世界背景
 export const getWorldBackgroundImage = (id) => {
     return _images.world_bg.find(e => lo.isEqual(e.id, id));
+}
+
+// 获取背景对话框 背景
+export const getBgDialog_bgImage = (bgImageId) => {
+    return _images.bgDialog_bgImages.find(e => e.id === bgImageId).img;
+}
+
+// 获取video 视屏资源
+export const getVideo = (videoId) => {
+    return _videos.bgDialog_video.find(e => e.id === videoId).video;
 }

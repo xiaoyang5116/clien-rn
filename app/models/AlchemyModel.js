@@ -191,7 +191,7 @@ export default {
       const message = alchemyData.targets.map(item => {
         return `获得${item.name} * ${item.num}`
       })
-      Toast.show(message, BOTTOM_TOP_SMOOTH)
+      Toast.show(message, BOTTOM_TOP_SMOOTH, 500)
 
       yield call(LocalStorage.set, LocalCacheKeys.ALCHEMY_DATA, null);
       yield put(action("updateState")({ alchemyData: null }))

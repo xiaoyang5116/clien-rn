@@ -44,7 +44,12 @@ class ButtonClickEffects extends PureComponent {
   render() {
     const { data } = this.imgData
     return (
-      <Animated.View style={{ position: "absolute", opacity: this.opacity }}>
+      <Animated.View style={{
+        position: "absolute",
+        opacity: this.opacity,
+        top: -70,
+        // left: -50,
+      }}>
         <SpriteSheet
           ref={ref => (this.sheet.current = ref)}
           source={data[0].source}

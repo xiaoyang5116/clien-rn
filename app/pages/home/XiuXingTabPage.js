@@ -91,11 +91,11 @@ const PropsBar = (props) => {
     }, []);
 
     return (
-        <View style={{ height: 80, paddingLeft: 10, paddingRight: 10, backgroundColor: '#beb9b3', alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ height: px2pd(210), paddingLeft: 10, paddingRight: 10, backgroundColor: '#beb9b3', alignItems: 'center', justifyContent: 'center' }}>
             {
             (items.length > 0)
             ? (
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} style={{ width: '100%', marginTop: 8 }}>
+            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} pagingEnabled={true} style={{ width: '100%' }} contentContainerStyle={{ alignItems: 'center', paddingBottom: 20 }}>
                 {items}
             </ScrollView>
             )

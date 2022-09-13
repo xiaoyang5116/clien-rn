@@ -58,7 +58,7 @@ const BlackDialog = (props) => {
   const renderBtn = ({ item }) => {
     if (currentIndex >= currentDialogueLength) {
       return (
-        <View style={{ marginTop: 8, height: 40, justifyContent: 'center' }}>
+        <View style={{ marginTop: 8, justifyContent: 'center' }}>
           <LongTextButton
             title={item.title}
             onPress={() => {

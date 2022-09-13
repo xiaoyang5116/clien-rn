@@ -4,7 +4,7 @@ import lo from 'lodash';
 import { TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
 import { ThemeContext } from '../../constants';
 import FastImage from 'react-native-fast-image';
-import { px2pd } from '../../constants/resolution';
+import { isPad, px2pd } from '../../constants/resolution';
 import PageUtils from '../../utils/PageUtils';
 import * as RootNavigation from '../../utils/RootNavigation';
 
@@ -27,9 +27,11 @@ const FooterTabBar = (props) => {
       const { title, action } = e;
       buttons.push(
         <TouchableWithoutFeedback key={key++} onPress={action}>
-          <View style={styles.bottomBannerButton}>
-            <FastImage style={[theme.tabBottomImgStyle, { position: 'absolute' }]} source={theme.tabBottomImage} />
-            <Text style={[theme.tabBottomLabelStyle, { position: 'absolute', width: 24, fontSize: px2pd(60), color: '#fff' }]}>{title}</Text>
+          <View style={[theme.tabBottomImgStyle, { justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10, transform: [{ scale: (isPad() ? 0.8 : 1) }] }]}>
+            <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={theme.tabBottomImage} />
+            <View style={[{ width: px2pd(60) }]}>
+              <Text style={{ fontSize: px2pd(60), color: '#fff' }}>{title}</Text>
+            </View>
           </View>
         </TouchableWithoutFeedback>
       );
@@ -55,8 +57,7 @@ const styles = StyleSheet.create({
     bannerStyle: {
         flex: 1, 
         flexDirection: 'row', 
-        // flexWrap: 'wrap', 
-        justifyContent: 'center', 
+        justifyContent: 'space-evenly', 
         alignItems: 'center', 
     },
 });

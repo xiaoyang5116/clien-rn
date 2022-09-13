@@ -13,6 +13,7 @@ import SingleDialog from './singleDialog';
 import MultiplayerDialog from './MultiplayerDialog';
 import BlackAndWhiteClickDialog from './blackAndWhiteClickDialog';
 import BustDialog from './bustDialog';
+import BgDialog from './bgDialog';
 
 
 const DialogRoutes = (props) => {
@@ -63,7 +64,15 @@ const DialogRoutes = (props) => {
         });
     }
 
-    if (style === 6 || style === 7) {
+    if (style === 5) {
+        return (
+            <BgDialog
+                {...props}
+                actionMethod={actionMethod}
+                specialEffects={specialEffects}
+            />
+        )
+    } else if (style === 6 || style === 7) {
         return (
             <SingleDialog
                 {...props}

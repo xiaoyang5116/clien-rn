@@ -181,6 +181,7 @@ class ArticlePage extends Component {
                 <Text style={styles.bannerButtonText}>阅读设置</Text>
               </View>
             </TouchableWithoutFeedback>
+
             <TouchableWithoutFeedback onPress={()=>{
                 DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
                 Clues.show()
@@ -296,7 +297,7 @@ const styles = StyleSheet.create({
     flex: 1, 
     flexDirection: 'row', 
     // flexWrap: 'wrap', 
-    justifyContent: 'center', 
+    justifyContent: 'space-evenly', 
     alignItems: 'center', 
   },
   bannerButton: {
