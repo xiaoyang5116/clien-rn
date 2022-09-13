@@ -92,7 +92,7 @@ export default {
         for (let key in found.config.consume) {
           const item = found.config.consume[key];
           if (item.propId != undefined) {
-            yield put.resolve(action('PropsModel/reduce')({ propsId: [item.propId], num: 1, mode: 1 }));
+            yield put.resolve(action('PropsModel/reduce')({ propsId: [item.propId], num: 1 }));
           }
           if (item.copper != undefined && item.copper > 0) {
             yield put.resolve(action('UserModel/alterCopper')({ value: -Math.abs(item.copper) }));

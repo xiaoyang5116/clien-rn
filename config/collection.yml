@@ -41,23 +41,23 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 3 },
+              { props: [{ propId: 3001, num: 3 }] },
             ],
           ]
         },
@@ -68,23 +68,23 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 3 },
+              { props: [{ propId: 3001, num: 3 }] },
             ],
           ]
         },
@@ -95,23 +95,23 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 3 },
+              { props: [{ propId: 3001, num: 3 }] },
             ],
           ]
         },
@@ -156,15 +156,15 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }, { propId: 3002, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 3 },
+              { props: [{ propId: 3001, num: 3 }] },
             ],
           ]
         },
@@ -175,23 +175,23 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 3 },
+              { props: [{ propId: 3001, num: 3 }] },
             ],
           ]
         },
@@ -202,39 +202,39 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
             ],
             # 第四个卡位
             [
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
+              { props: [{ propId: 3002, num: 2 }] },
+              { props: [{ propId: 3002, num: 2 }] },
+              { props: [{ propId: 3002, num: 2 }] },
+              { props: [{ propId: 3002, num: 2 }] },
+              { props: [{ propId: 3002, num: 2 }] },
             ],
             # 第五个卡位
             [
-              { propId: 3003, num: 3 },
+              { props: [{ propId: 3003, num: 3 }] },
             ],
           ]
         },
@@ -245,39 +245,39 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
             ],
             # 第四个卡位
             [
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
+              { props: [{ propId: 3002, num: 2 }] },
+              { props: [{ propId: 3002, num: 2 }] },
+              { props: [{ propId: 3002, num: 2 }] },
+              { props: [{ propId: 3002, num: 2 }] },
+              { props: [{ propId: 3002, num: 2 }] },
             ],
             # 第五个卡位
             [
-              { propId: 3003, num: 3 },
+              { props: [{ propId: 3003, num: 3 }] },
             ],
           ]
         },
@@ -288,39 +288,39 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
+              { props: [{ propId: 3001, num: 1 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
+              { props: [{ propId: 3001, num: 2 }] },
             ],
             # 第四个卡位
             [
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
+              { props: [{ propId: 3002, num: 2 }] },
+              { props: [{ propId: 3002, num: 2 }] },
+              { props: [{ propId: 3002, num: 2 }] },
+              { props: [{ propId: 3002, num: 2 }] },
+              { props: [{ propId: 3002, num: 2 }] },
             ],
             # 第五个卡位
             [
-              { propId: 3003, num: 3 },
+              { props: [{ propId: 3003, num: 3 }] },
             ],
           ]
         },

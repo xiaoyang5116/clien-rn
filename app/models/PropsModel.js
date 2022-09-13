@@ -144,14 +144,38 @@ export default {
     *reduce({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
       const userState = yield select(state => state.UserModel);
-      const { propsId, num, mode } = payload;
 
-      if (!lo.isArray(propsId) || num == undefined || mode == null) {
-        errorMessage('PropsModel.reduce 参数异常!');
-        return false;
-      }
-      
-      if (mode == 1) { // 模式1: 按顺序优先扣除
+      if (lo.isArray(payload)) { // 数组内各项分别扣除 [{ propId: xxx, num: xxx }, { propId: xxx, num: xxx }, ...]
+        // 检查背包道具是否足够
+        let enough = true;
+        for (let key in payload) {
+          const { propId, num } = payload[key];
+          const found = propsState.__data.bags[userState.worldId].find((e) => e.id == propId);
+          if (found == undefined || found.num < num) {
+            enough = false;
+            break;
+          }
+        }
+
+        // 道具不足
+        if (!enough)
+          return false;
+
+        // 扣除道具
+        for (let key in payload) {
+          const { propId, num } = payload[key];
+          const found = propsState.__data.bags[userState.worldId].find((e) => e.id == propId);
+          if (found != undefined) {
+            found.num -= num;
+            if (found.num < 0)
+              found.num = 0;
+          }
+        }
+      } else if (lo.isObject(payload)) { // 支持按顺序优先扣除propsId数组内指定的道具
+        const { propsId, num } = payload;
+        if (!lo.isArray(propsId) || !lo.isNumber(num))
+          return false;
+
         // 检查背包道具是否足够
         let totalNum = 0;
         for (let key in propsId) {
@@ -179,18 +203,18 @@ export default {
             }
           }
         }
-
-        // 移除扣光的道具
-        propsState.__data.bags[userState.worldId] = propsState.__data.bags[userState.worldId].filter((e) => e.num > 0);
-        propsState.listData = propsState.listData.filter((e) => e.num > 0);
-
-        yield put(action('updateState')({}));
-        yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
-        DeviceEventEmitter.emit(EventKeys.PROPS_NUM_CHANGED);
-        return true;
+      } else {
+        return false;
       }
 
-      return false;
+      // 移除扣光的道具
+      propsState.__data.bags[userState.worldId] = propsState.__data.bags[userState.worldId].filter((e) => e.num > 0);
+      propsState.listData = propsState.listData.filter((e) => e.num > 0);
+
+      yield put(action('updateState')({}));
+      yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
+      DeviceEventEmitter.emit(EventKeys.PROPS_NUM_CHANGED);
+      return true;
     },
 
     *getPropNum({ payload }, { put, call, select }) {
@@ -238,12 +262,6 @@ export default {
       return props;
     },
 
-    *getBagProps({}, { select }) {
-      const propsState = yield select(state => state.PropsModel);
-      const userState = yield select(state => state.UserModel);
-      return propsState.__data.bags[userState.worldId];
-    },
-
     *getBagProp({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
       const userState = yield select(state => state.UserModel);
@@ -255,6 +273,30 @@ export default {
       } else if ((always != undefined) && always) {
         const config = yield put.resolve(action('getPropConfig')({ propId }));
         return { ...config, num: 0 };
+      }
+      return null;
+    },
+
+    *getBagProps({ payload }, { put, call, select }) {
+      const propsState = yield select(state => state.PropsModel);
+      const userState = yield select(state => state.UserModel);
+      const { propsId, always } = payload;
+
+      if (propsId == undefined) {
+        return lo.cloneDeep(propsState.__data.bags[userState.worldId]);
+      } else if (lo.isArray(propsId)) {
+        const result = [];
+        for (let key in propsId) {
+          const propId = propsId[key];
+          const found = propsState.__data.bags[userState.worldId].find(e => e.id == propId);
+          if (found != undefined) {
+            result.push(lo.cloneDeep(found));
+          } else if ((always != undefined) && always) {
+            const config = yield put.resolve(action('getPropConfig')({ propId }));
+            result.push({ ...config, num: 0 });
+          }
+        }
+        return result;
       }
       return null;
     },
