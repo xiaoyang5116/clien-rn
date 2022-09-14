@@ -28,6 +28,7 @@ export default {
 
   effects: {
     *toastShow({ payload }, { put, call, select }) {
+      const { messages, type } = payload
       const { _isToastShow, toastMessages } = yield select(state => state.ToastModel);
 
       if (!_isToastShow) {
@@ -35,12 +36,12 @@ export default {
         yield put(action('updateState')({ _isToastShow: true }))
       }
 
-      if (Array.isArray(payload)) {
-        const newMessage = payload.map(item => ({ ...item, isShow: true }))
+      if (Array.isArray(messages)) {
+        const newMessage = messages.map(item => ({ ...item, type }))
         yield put(action('updateState')({ toastMessages: [...toastMessages, ...newMessage] }))
       }
       else {
-        yield put(action('updateState')({ toastMessages: [...toastMessages, { ...payload, isShow: true }] }))
+        yield put(action('updateState')({ toastMessages: [...toastMessages, { ...messages, type }] }))
       }
     },
 

@@ -121,11 +121,21 @@ export default {
         return false;
 
       // 扣除道具
-      const success = yield put.resolve(action('PropsModel/reduce')({ propsId: [currentItem.propId], num: currentItem.num, mode: 1 }));
+      const success = yield put.resolve(action('PropsModel/reduce')(currentItem.props));
       if (!success) return false;
         
       // 标注已完成
       currentItem.finished = true;
+
+      // 属性增加
+      if (currentItem.attrs != undefined && lo.isArray(currentItem.attrs)) {
+        lo.forEach(currentItem.attrs, (e) => {
+          const foundAttr = lo.find(found.attrs, (x) => lo.isEqual(x.key, e.key));
+          if (foundAttr != undefined) {
+            foundAttr.value += e.value;
+          }
+        });
+      }
 
       // 判断当前是卡位是否已经升满
       let full = true;

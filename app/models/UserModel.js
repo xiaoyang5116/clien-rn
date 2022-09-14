@@ -146,7 +146,7 @@ export default {
       });
 
       // 提示属性改变
-      yield put(action('ToastModel/toastShow')(messages));
+      yield put(action('ToastModel/toastShow')({ messages, type: "attr" }));
 
       yield put(action('updateState')({}));
       yield put.resolve(action('syncData')({}));
@@ -226,7 +226,7 @@ export default {
 
       let propSuccessRate = 0;
       if (prop != undefined && prop != null) {
-        const result = yield put.resolve(action('PropsModel/reduce')({ propsId: [ prop.id ], num: 1, mode: 1 }));
+        const result = yield put.resolve(action('PropsModel/reduce')({ propsId: [ prop.id ], num: 1 }));
         if (result) {
           propSuccessRate = prop.incSuccessRate;
         }
@@ -351,7 +351,7 @@ export default {
       }
 
       // 扣除一个相应的道具
-      const status = yield put.resolve(action('PropsModel/reduce')({ propsId: [equipId], num: 1, mode: 1 }));
+      const status = yield put.resolve(action('PropsModel/reduce')({ propsId: [equipId], num: 1 }));
       if (status) {
         // tags[0] = 部位标签
         userState.equips.push({ id: equipId, tag: equipConfig.tags[0], affect: lo.cloneDeep(equipConfig.affect) });

@@ -82,7 +82,7 @@ const WorldPreview = (props) => {
                             } else {
                               confirm(`进入${item.title}消耗道具：时空宝玉x1`, () => {
                                 props.onClose();
-                                AppDispath({ type: 'PropsModel/reduce', payload: { propsId: [PROP_ID], num: 1, mode: 1 } });
+                                AppDispath({ type: 'PropsModel/reduce', payload: { propsId: [PROP_ID], num: 1 } });
                                 const key = RootView.add(<TransAnimation onCompleted={() => {
                                   if (props.animation != undefined && props.animation) {
                                     if (props.item.toChapter != undefined) {

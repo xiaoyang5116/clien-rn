@@ -25,6 +25,7 @@ import { px2pd, SCALE_FACTOR } from '../../constants/resolution';
 import SceneMap from '../../components/maps/SceneMap';
 import { DeviceEventEmitter } from 'react-native';
 import MissionBar from '../../components/mission/MissionBar';
+import { BtnIcon } from '../../components/button';
 
 const ICONS = [
   { id: 1, img: require('../../../assets/button_icon/1.png'), top: 0, left: 10 },
@@ -148,15 +149,7 @@ const StoryTabPage = (props) => {
 
     let iconComponent = <></>;
     if (lo.isObject(data.item.icon) && lo.isBoolean(data.item.icon.show) && data.item.icon.show) {
-      const icon = ICONS.find(e => e.id == data.item.icon.id);
-      const attrs = {};
-      if (icon.top != undefined) attrs.top = icon.top;
-      if (icon.left != undefined) attrs.left = icon.left;
-      if (icon.right != undefined) attrs.right = icon.right;
-
-      iconComponent = (<View style={{ position: 'absolute', ...attrs }}>
-                          <Image source={icon.img} style={{ width: px2pd(100), height: px2pd(100) }} />
-                      </View>);
+      iconComponent = <BtnIcon id={data.item.icon.id} style={{ height: 5, marginTop: px2pd(16) }} />
     }
 
     return (
