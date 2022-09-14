@@ -70,7 +70,7 @@ class ArticlePage extends Component {
   componentDidMount() {
     // 判断是否继续阅读
     if (this.context.continueReading != undefined && this.context.continueReading) {
-      AppDispath({ type: 'ArticleModel/getArticleHistory', payload: { }, cb: (v) => {
+      AppDispath({ type: 'StateModel/getArticleState', payload: { }, cb: (v) => {
         if (v != null) {
           this.props.dispatch(action('ArticleModel/show')(v));
         } else {

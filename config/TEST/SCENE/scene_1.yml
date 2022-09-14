@@ -96,7 +96,7 @@ scenes: [
   {
     id: 'wzkj', name: '未知空间',
     worldTimeHidden: true,
-    sceneImage: 'default',
+    sceneImage: 'BGT_1',
 
     # 变量定义
     vars: [

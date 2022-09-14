@@ -57,6 +57,7 @@ preloadImages(images);
 const models = [
   require('./models/AppModel').default,
   require('./models/UserModel').default,
+  require('./models/StateModel').default,
   require('./models/SceneModel').default,
   require('./models/StoryModel').default,
   require('./models/MaskModel').default,

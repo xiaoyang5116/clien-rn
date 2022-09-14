@@ -26,11 +26,10 @@ collections: {
         copper: 200,
       },
 
-      # 收藏品属性加成
+      # 收藏品属性加成(激活后初始属性)
       attrs: [
-        [{ key: '速度', value: 10 }, { key: '防御', value: 5 }], # 1星
-        [{ key: '速度', value: 20 }, { key: '防御', value: 10 }], # 2星
-        [{ key: '速度', value: 30 }, { key: '防御', value: 20 }], # 3星
+        { key: '速度', value: 10 },
+        { key: '防御', value: 10 },
       ],
 
       # 升级
@@ -41,23 +40,23 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 3 },
+              { props: [{ propId: 3001, num: 3 }, { propId: 3101, num: 1 }] },
             ],
           ]
         },
@@ -68,23 +67,23 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 3 },
+              { props: [{ propId: 3001, num: 3 }, { propId: 3101, num: 2 }] },
             ],
           ]
         },
@@ -95,23 +94,23 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 3 },
+              { props: [{ propId: 3001, num: 3 }, { propId: 3101, num: 3 }] },
             ],
           ]
         },
@@ -139,13 +138,10 @@ collections: {
         copper: 200,
       },
 
-      # 收藏品属性加成
+      # 收藏品属性加成(激活后初始属性)
       attrs: [
-        [{ key: '速度', value: 10 }, { key: '防御', value: 5 }], # 1星
-        [{ key: '速度', value: 20 }, { key: '防御', value: 10 }], # 2星
-        [{ key: '速度', value: 30 }, { key: '防御', value: 20 }], # 3星
-        [{ key: '速度', value: 40 }, { key: '防御', value: 30 }], # 4星
-        [{ key: '速度', value: 50 }, { key: '防御', value: 40 }], # 5星
+        { key: '速度', value: 20 },
+        { key: '防御', value: 20 },
       ],
 
       # 升级
@@ -156,15 +152,15 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }, { propId: 3002, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 3 },
+              { props: [{ propId: 3001, num: 3 }, { propId: 3102, num: 1 }] },
             ],
           ]
         },
@@ -175,23 +171,23 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 3 },
+              { props: [{ propId: 3001, num: 3 }, { propId: 3102, num: 2 }] },
             ],
           ]
         },
@@ -202,39 +198,39 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 3 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 3 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 3 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 3 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 3 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 4 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 4 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 4 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 4 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 4 }] },
             ],
             # 第四个卡位
             [
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '防御', value: 3 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '防御', value: 3 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '防御', value: 3 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '防御', value: 3 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '防御', value: 3 }] },
             ],
             # 第五个卡位
             [
-              { propId: 3003, num: 3 },
+              { props: [{ propId: 3003, num: 3 }, { propId: 3102, num: 3 }] },
             ],
           ]
         },
@@ -245,39 +241,39 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 3 }, { key: '防御', value: 3 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 3 }, { key: '防御', value: 3 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 3 }, { key: '防御', value: 3 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 3 }, { key: '防御', value: 3 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 3 }, { key: '防御', value: 3 }] },
             ],
             # 第四个卡位
             [
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 4 }, { key: '防御', value: 4 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 4 }, { key: '防御', value: 4 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 4 }, { key: '防御', value: 4 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 4 }, { key: '防御', value: 4 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 4 }, { key: '防御', value: 4 }] },
             ],
             # 第五个卡位
             [
-              { propId: 3003, num: 3 },
+              { props: [{ propId: 3003, num: 3 }, { propId: 3102, num: 4 }] },
             ],
           ]
         },
@@ -288,39 +284,39 @@ collections: {
           items: [
             # 第一个卡位
             [
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
-              { propId: 3001, num: 1 },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 5 }, { key: '防御', value: 5 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 5 }, { key: '防御', value: 5 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 5 }, { key: '防御', value: 5 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 5 }, { key: '防御', value: 5 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 5 }, { key: '防御', value: 5 }] },
             ],
             # 第二个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 6 }, { key: '防御', value: 6 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 6 }, { key: '防御', value: 6 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 6 }, { key: '防御', value: 6 }]},
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 6 }, { key: '防御', value: 6 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 6 }, { key: '防御', value: 6 }] },
             ],
             # 第三个卡位
             [
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
-              { propId: 3001, num: 2 },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 7 }, { key: '防御', value: 7 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 7 }, { key: '防御', value: 7 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 7 }, { key: '防御', value: 7 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 7 }, { key: '防御', value: 7 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 7 }, { key: '防御', value: 7 }] },
             ],
             # 第四个卡位
             [
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
-              { propId: 3002, num: 2 },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 8 }, { key: '防御', value: 8 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 8 }, { key: '防御', value: 8 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 8 }, { key: '防御', value: 8 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 8 }, { key: '防御', value: 8 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 8 }, { key: '防御', value: 8 }] },
             ],
             # 第五个卡位
             [
-              { propId: 3003, num: 3 },
+              { props: [{ propId: 3003, num: 3 }, { propId: 3102, num: 5 }] },
             ],
           ]
         },
