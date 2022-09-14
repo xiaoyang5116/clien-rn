@@ -130,7 +130,7 @@ export default {
       if (data != null) AddLoadedListHandler(articleState.__data.loadedList, { id, path, stop: HasStopDirective(data) });
       articleState.isStartPage = lo.isEqual(path, '[START]'); // 标注是否起始页
 
-      if (articleState.isStartPage) {
+      if (articleState.isStartPage || (lo.isEmpty(articleState.dirData) && (id != undefined))) {
         const data = yield call(GetBookDirDataApi, id);
         articleState.dirData = data.directory;
       }
