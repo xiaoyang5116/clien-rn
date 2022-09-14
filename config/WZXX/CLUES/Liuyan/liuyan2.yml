@@ -5,7 +5,7 @@ clues:
     type: '流言',
     filterCondition: {locaton: '天水阁',},
     title: '不得志书生的情报',
-    content: '森林中有丹参、天水阁有白术，郊外山谷有何首乌',
+    content: '森林中有丹参','天水阁有白术','郊外山谷有何首乌',
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
     groupId: '李家村',
   }

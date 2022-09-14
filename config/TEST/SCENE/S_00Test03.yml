@@ -107,7 +107,7 @@ scenes: [
 
     # 动作定义
     actions: [
-    #体力+10
+      #体力+10
       { id: 'a1', cmd: 'var', params: '__progress1__ += 10' },
       #技能状态-10
       { id: 'a2', cmd: 'var', params: '__progress2__ -= 10' },
@@ -123,7 +123,8 @@ scenes: [
 
     # 事件定义
     events: [
-       { type: 'enter', nextChat: 'c1',}, 
+       { type: 'enter', andVarsValue: ['@clues_liuyan4 != 1','@clues_liuyan5 != 1'], dialogs: ['p0'],}, 
+       { type: 'enter', andVarsValue: ['@clues_liuyan4 == 1','@clues_liuyan5 == 1'], nextChat: 'c0',}, 
       # { type: 'enter', dialogs: ['Screen1']},
     ],
 
@@ -133,7 +134,7 @@ scenes: [
       { 
         id: 'c0', desc: '李森炎看出他外强中干，也丝毫不慌', 
         options: [ 
-          { title: '交战', andVarsValue: ['@clues_liuyan6 != 1','@clues_liuyan4 != 1','@clues_liuyan5 != 1'],toScene: 'S_00Test03',}, 
+          { title: '交战', toScene: 'S_00Test03',}, 
         ],
       },
       { 
@@ -187,7 +188,12 @@ scenes: [
 
    # 对话框
     dialogs: [
-     
+                   {id: 'p0',
+                    style: "1A",
+                    title: '情报获得',
+                    content: '获得线索之后才可开启后续剧情',
+                    toChapter: "WZXX_M1_N1_C009_[N1]",
+                  },
       #死亡1
       {
         id: 'gameover01',

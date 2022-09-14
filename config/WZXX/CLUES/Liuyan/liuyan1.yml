@@ -5,7 +5,7 @@ clues:
     type: '流言',
     filterCondition: {locaton: '白城',},
     title: '老人的情报',
-    content: '郊区有野生白芍，森林中有何首乌',
+    content: '郊区有野生白芍','森林中有何首乌',
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
     groupId: '李家村',
   }

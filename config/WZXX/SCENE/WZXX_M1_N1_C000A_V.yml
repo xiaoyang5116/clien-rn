@@ -715,7 +715,7 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
      #横图显示
-    sceneImage: 'BGT_41',
+    sceneImage: 'BGT_34',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1035,7 +1035,7 @@ scenes: [
     #不显示时间
       worldTimeHidden: true,
        #横图显示
-    sceneImage: 'BGT_34',
+    sceneImage: 'BGT_41',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1177,7 +1177,7 @@ scenes: [
     dialogs: [
           { id: 'Screen11',style: 6, title: '和他搭话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'P1', content: ['李森炎走近，准备和他打招呼','才发现原来这人是个哑巴','那哑巴在你身上看来看去','然后咿咿呀呀的走了',],
+          { key: 'P1', content: ['李森炎走近，准备和他打招呼','才发现原来这人是个哑巴','那哑巴在 他身上看来看去','然后咿咿呀呀的走了',],
           btn: [{title: '离开',tokey: "C1",},]},
 
     ],},
@@ -1567,13 +1567,14 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-    { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101'], nextChat: 'C2' },
+    
     ],
     # 动作定义
     actions: [ ],
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/v_icon_101'], nextChat: 'C2' },
      
     ],
     # 对话选项

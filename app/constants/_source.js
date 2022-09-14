@@ -74,12 +74,14 @@ const _images = {
     bgDialog_bgImages: [
         { id: 1, img: require('../../assets/bg/first_bg.jpg') },
         { id: 2, img: require('../../assets/bg/lottery_bg.jpg') },
+        { id: 3, img: require('../../assets/bg/BAIYUN_1080.webp') },
     ],
 }
 
 const _videos = {
     bgDialog_video: [
         { id: 1, video: require('../../assets/mp4/FLY_480x960.mp4') },
+        // { id: 1, video: require('../../assets/mp4/FLY_480x960.mp4') },
     ],
 }
 
