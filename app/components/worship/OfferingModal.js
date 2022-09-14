@@ -75,7 +75,6 @@ const OfferingModal = props => {
         <FlatList
           data={data}
           renderItem={renderItem}
-        // extraData={checkedMaterial}
         />
       </View>
       <View

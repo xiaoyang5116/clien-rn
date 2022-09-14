@@ -5,7 +5,7 @@ data:
     # 道具映射
     props:
       [
-        {id: 1500, worshipTime: 1000, treasureChestId: 1},
+        {id: 1500, worshipTime: 20, treasureChestId: 1},
         {id: 1501, worshipTime: 10, treasureChestId: 1},
 
       ],

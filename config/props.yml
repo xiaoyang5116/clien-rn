@@ -198,10 +198,10 @@ props: [
    { id:  890, name: '黄金饰品', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
 
   # 供奉道具 type:200
-  { id: 1500, name: '猪猡', iconId: 2, num:  1, quality: 2, type: 200, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: '祭祀用品',},
-  { id: 1501, name: '鸡', iconId: 2, num:  1, quality: 2, type: 200, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: '祭祀用品',},
+  { id: 1500, name: '猪猡', iconId: 2, num: 1, quality: 2, type: 200, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: '祭祀用品',},
+  { id: 1501, name: '鸡', iconId: 2, num: 1, quality: 2, type: 200, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: '祭祀用品',},
   # 供奉加速道具
-  { id: 2000, name:  '供奉时间', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['加速'], capacity: 100, desc: '供奉加速道具' }
+  { id: 2000, name:  '供奉时间', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: ['加速'], capacity: 100, desc: '供奉加速道具' }
   
 
 ]

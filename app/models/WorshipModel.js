@@ -4,6 +4,7 @@ import EventListeners from '../utils/EventListeners';
 import { now } from '../utils/DateTimeUtils';
 import { GetWorshipDataApi } from '../services/GetWorshipDataApi';
 
+// 0-空格子, 1-供品, 2-供奉中, 3-宝箱
 export default {
   namespace: 'WorshipModel',
 
@@ -34,7 +35,7 @@ export default {
       yield put(action('updateState')({ worshipConfig: worshipConfig.data }))
     },
 
-    // 获取献祭道具数据
+    // 获取贡品道具数据
     *getOfferingProps({ payload }, { put, select, call }) {
       const allProps = yield put.resolve(action('PropsModel/getBagProps')());
       let propsData = allProps.filter(i => i.type === 200);
@@ -136,94 +137,121 @@ export default {
     *getWorshipSpeedUpTime({ payload }, { put, select, call }) {
       const { worshipData } = yield select(state => state.WorshipModel);
       // 获取供奉可以加速的时间, 约定 数量1 为 1秒
-      const worshipSpeedUpTime = yield put.resolve(action('PropsModel/getPropNum')({ propId: 200 }));
+      const worshipSpeedUpTime = yield put.resolve(action('PropsModel/getPropNum')({ propId: 2000 }));
 
-      // 总共的供奉时间
-      let allSpeedTime = 0
+      // 总共的加速时间
+      let allWorshipNeedTime = 0
       // 当前供奉道具需要的时间
       let currentNeedTime = 0
       for (let index = 0; index < worshipData.length; index++) {
         const item = worshipData[index];
         if (item.status === 0 || item === 3) continue
         if (item.status === 1) {
-          allSpeedTime += item.needTime
+          allWorshipNeedTime += item.needTime
         }
         if (item.status === 2) {
           const diffTime = Math.floor((now() - item.beginTime) / 1000);
           // 当前需要的时间
           currentNeedTime = item.needTime - diffTime;
-          allSpeedTime += currentNeedTime
+          allWorshipNeedTime += currentNeedTime
         }
       }
 
       return {
-        allSpeedTime,
+        allWorshipNeedTime,
         currentNeedTime,
         worshipSpeedUpTime
       }
-
     },
-
-    // 获取加速道具数据
-    // *getSpeedUpProps({ payload }, { put, select, call }) {
-    //   const allProps = yield put.resolve(action('PropsModel/getBagProps')());
-    //   const propsData = allProps.filter(i => i.type === 201);
-    //   return propsData;
-    // },
 
     // 供奉加速
     *worshipSpeedUp({ payload }, { put, select, call }) {
       const { worshipData } = yield select(state => state.WorshipModel);
-      const _worshipData = [...worshipData]
-      let speedUpTime = payload.speedUpTime
-      const speedPropId = payload.id
+      let _worshipData = [...worshipData]
+      const { time, type } = payload
 
-      // 使用道具
-      yield put.resolve(action('PropsModel/use')({ propId: speedPropId, num: 1, quiet: true }));
+      const { allWorshipNeedTime, currentNeedTime, worshipSpeedUpTime } = yield put.resolve(action('getWorshipSpeedUpTime')());
 
-      // 当前 状态为供奉中 的索引
-      const worshipDataIndex = _worshipData.findIndex(item => item.status === 2)
-
-      // 循环后续供奉,减少供奉需要的时间,如果加速时间还剩余,则继续
-      for (let index = worshipDataIndex; index < _worshipData.length; index++) {
-        const item = _worshipData[index];
-
-        if (speedUpTime < 0) continue
-        if (item.status === 0) continue
-        if (item.status === 3) continue
-
-        if (item.status === 1) {
-          speedUpTime = speedUpTime - item.needTime
-          if (speedUpTime >= 0) {
-            item.status = 3
-            item.needTime = 0
-          } else {
-            item.beginTime = now()
-            item.needTime = -speedUpTime
-            item.status = 2
-          }
-          continue
+      // 加速所有贡品
+      if (type === "allSpeedTime") {
+        for (let index = 0; index < _worshipData.length; index++) {
+          const item = _worshipData[index];
+          if (item.status === 0) continue
+          if (item.status === 3) continue
+          item.status = 3
+          item.needTime = 0
         }
-        if (item.status === 2) {
-          const diffTime = Math.floor((now() - item.beginTime) / 1000);
-          // 当前需要的时间
-          const currentNeedTime = item.needTime - diffTime;
-          if (currentNeedTime <= 0) continue
-          speedUpTime = speedUpTime - currentNeedTime
-          if (speedUpTime >= 0) {
-            item.status = 3
-            item.needTime = 0
-          }
-          if (speedUpTime < 0) {
-            item.needTime = -speedUpTime
-          }
-          continue
+
+        // 使用加速道具
+        yield put.resolve(action('PropsModel/use')({ propId: 2000, num: allWorshipNeedTime, quiet: true }))
+      }
+
+      // 加速当前贡品
+      if (type === "currentSpeedTime") {
+        // 当前 状态为供奉中 的索引
+        const worshipDataIndex = _worshipData.findIndex(item => item.status === 2)
+        _worshipData[worshipDataIndex].status = 3
+        _worshipData[worshipDataIndex].needTime = 0
+        if (_worshipData[worshipDataIndex + 1].status === 1) {
+          _worshipData[worshipDataIndex + 1].status = 2
+          _worshipData[worshipDataIndex + 1].beginTime = now()
         }
+
+        yield put.resolve(action('PropsModel/use')({ propId: 2000, num: currentNeedTime, quiet: true }))
+      }
+
+      if (type === "canSpeedTime") {
+        let speedUpTime = worshipSpeedUpTime
+        let useTime = 0
+        // 当前 状态为供奉中 的索引
+        const worshipDataIndex = _worshipData.findIndex(item => item.status === 2)
+        // 循环后续供奉,减少供奉需要的时间,如果加速时间还剩余,则继续
+        for (let index = worshipDataIndex; index < _worshipData.length; index++) {
+          const item = _worshipData[index];
+
+          if (speedUpTime < 0) continue
+          if (item.status === 0) continue
+          if (item.status === 3) continue
+
+          if (item.status === 1) {
+            speedUpTime = speedUpTime - item.needTime
+            if (speedUpTime >= 0) {
+              useTime += item.needTime
+              item.status = 3
+              item.needTime = 0
+            } else {
+              // 这里的 speedUpTime 是剩余时间
+              useTime += item.needTime + speedUpTime
+              item.beginTime = now()
+              item.needTime = -speedUpTime
+              item.status = 2
+            }
+            continue
+          }
+          if (item.status === 2) {
+            const diffTime = Math.floor((now() - item.beginTime) / 1000);
+            // 当前需要的时间
+            const currentNeedTime = item.needTime - diffTime;
+            if (currentNeedTime <= 0) continue
+            speedUpTime = speedUpTime - currentNeedTime
+            if (speedUpTime >= 0) {
+              useTime += currentNeedTime
+              item.status = 3
+              item.needTime = 0
+            }
+            if (speedUpTime < 0) {
+              useTime += currentNeedTime + speedUpTime
+              item.needTime = -speedUpTime
+            }
+            continue
+          }
+        }
+
+        yield put.resolve(action('PropsModel/use')({ propId: 2000, num: useTime, quiet: true }))
       }
 
       yield call(LocalStorage.set, LocalCacheKeys.WORSHIP_DATA, _worshipData);
       yield put(action('updateState')({ worshipData: _worshipData }));
-
     },
 
     // 开宝箱

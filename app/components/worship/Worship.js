@@ -75,8 +75,8 @@ const Worship = props => {
   }
 
   // 供奉加速
-  const worshipSpeedUp = (prop) => {
-    props.dispatch(action('WorshipModel/worshipSpeedUp')(prop))
+  const worshipSpeedUp = (data) => {
+    props.dispatch(action('WorshipModel/worshipSpeedUp')(data))
   }
 
   // 取消供奉
@@ -121,7 +121,9 @@ const Worship = props => {
     return <Text>添加供奉</Text>
   }
 
+  // 空格子
   const SpaceGrid = ({ item }) => {
+    // 打开贡品选择弹窗
     const openOfferingPop = () => {
       props.dispatch(action('WorshipModel/getOfferingProps')()).then(result => {
         if (Array.isArray(result)) {
@@ -154,6 +156,7 @@ const Worship = props => {
     );
   };
 
+  // 贡品格子
   const OfferingGrid = ({ item }) => {
     const { quality_style, image } = IconData(item)
 
@@ -174,9 +177,11 @@ const Worship = props => {
     );
   };
 
+  // 供奉中的格子
   const WorshipInGrid = ({ item }) => {
     const { quality_style, image } = IconData(item)
 
+    // 打开加速时间页面
     const openSpeedPage = () => {
       props.dispatch(action('WorshipModel/getWorshipSpeedUpTime')()).then(result => {
         const key = RootView.add(
@@ -212,6 +217,7 @@ const Worship = props => {
     );
   }
 
+  // 宝箱格子
   const TreasureChestGrid = ({ item }) => {
     const { quality_style, image } = IconData(item)
 
