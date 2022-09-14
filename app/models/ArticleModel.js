@@ -235,15 +235,11 @@ export default {
       }
 
       // 记录当前阅读
-      yield call(LocalStorage.set, LocalCacheKeys.ARTICLE_HISTORY, payload);
+      yield put(action('StateModel/saveArticleState')(payload));
       
       setTimeout(() => {
         DeviceEventEmitter.emit(EventKeys.OPTIONS_HIDE);
       }, 0);
-    },
-
-    *getArticleHistory({}, { call, put, select }) {
-      return yield call(LocalStorage.get, LocalCacheKeys.ARTICLE_HISTORY);
     },
 
     *cleanup({ payload }, { select }) {
