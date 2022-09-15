@@ -160,7 +160,7 @@ const ShopPage = (props) => {
         <TouchableOpacity activeOpacity={1} onPress={() => {
             setSelect(data.item.propId);
             setTimeout(() => {
-                const key = RootView.add(<PropTips propId={data.item.propId} viewOnly={true} onClose={() => {
+                const key = RootView.add(<PropTips zIndex={99} propId={data.item.propId} viewOnly={true} onClose={() => {
                     RootView.remove(key);
                 }} />);
             }, 0);

@@ -1,41 +1,326 @@
-# 收藏品
-collections: [
+# 收藏品 (绿2->蓝3->紫4->橙5)
+collections: {
+  # 改良需要消耗对应品质的道具
+  improvementProps: [ 3001, 3002, 3003, 3004 ], # 必须为4个, 用于在收藏品页面顶部显示道具数量
 
-  {
-    # 收藏品唯一ID
-    id: 1,
+  # 定义所有收藏品
+  items: [
+    {
+      # 收藏品唯一ID
+      id: 1,
 
-    # 收藏品名称
-    name: '金项链',
+      # 收藏品名称
+      name: '金项链',
 
-    # 所属分类
-    categories: ['金'],
+      # 所属分类
+      categories: ['金'],
 
-    # 收藏品属性加成
-    attrs: {
-      lv1: [{ key: '速度', value: 10 }, { key: '防御', value: 5 }],
-      lv2: [{ key: '速度', value: 20 }, { key: '防御', value: 10 }],
-      lv3: [{ key: '速度', value: 30 }, { key: '防御', value: 20 }],
-      lv4: [{ key: '速度', value: 40 }, { key: '防御', value: 20 }],
-      lv5: [{ key: '速度', value: 50 }, { key: '防御', value: 30 }],
-      lv6: [{ key: '速度', value: 60 }, { key: '防御', value: 60 }],
+      # 解锁道具
+      propId: 700,
+
+      # 星级
+      stars: 3,
+
+      # 激活消耗
+      activation: {
+        copper: 200,
+      },
+
+      # 收藏品属性加成(激活后初始属性)
+      attrs: [
+        { key: '速度', value: 10 },
+        { key: '防御', value: 10 },
+      ],
+
+      # 升级
+      upgrade: [
+        # 1星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+            ],
+            # 第二个卡位
+            [
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+            ],
+            # 第三个卡位
+            [
+              { props: [{ propId: 3001, num: 3 }, { propId: 3101, num: 1 }] },
+            ],
+          ]
+        },
+
+        # 2星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+            ],
+            # 第二个卡位
+            [
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+            ],
+            # 第三个卡位
+            [
+              { props: [{ propId: 3001, num: 3 }, { propId: 3101, num: 2 }] },
+            ],
+          ]
+        },
+
+        # 3星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+            ],
+            # 第二个卡位
+            [
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+            ],
+            # 第三个卡位
+            [
+              { props: [{ propId: 3001, num: 3 }, { propId: 3101, num: 3 }] },
+            ],
+          ]
+        },
+      ]
     },
 
-    # 解锁道具
-    propId: 700,
+    {
+      # 收藏品唯一ID
+      id: 2,
 
-    # 星级
-    stars: 6,
+      # 收藏品名称
+      name: '金手镯',
 
-    # 升级
-    upgrade: [
-      { lv: 1, copper: 200 },
-      { lv: 2, copper: 300 },
-      { lv: 3, copper: 400 },
-      { lv: 4, copper: 500 },
-      { lv: 5, copper: 600 },
-      { lv: 6, copper: 700 },
-    ]
-  },
+      # 所属分类
+      categories: ['金'],
 
-]
+      # 解锁道具
+      propId: 700,
+
+      # 星级
+      stars: 5,
+
+      # 激活消耗
+      activation: {
+        copper: 200,
+      },
+
+      # 收藏品属性加成(激活后初始属性)
+      attrs: [
+        { key: '速度', value: 20 },
+        { key: '防御', value: 20 },
+      ],
+
+      # 升级
+      upgrade: [
+        # 1星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { props: [{ propId: 3001, num: 1 }, { propId: 3002, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }] },
+            ],
+            # 第三个卡位
+            [
+              { props: [{ propId: 3001, num: 3 }, { propId: 3102, num: 1 }] },
+            ],
+          ]
+        },
+
+        # 2星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 2 }] },
+            ],
+            # 第二个卡位
+            [
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 1 }] },
+            ],
+            # 第三个卡位
+            [
+              { props: [{ propId: 3001, num: 3 }, { propId: 3102, num: 2 }] },
+            ],
+          ]
+        },
+
+        # 3星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 3 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 3 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 3 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 3 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 3 }] },
+            ],
+            # 第二个卡位
+            [
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '防御', value: 2 }] },
+            ],
+            # 第三个卡位
+            [
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 4 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 4 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 4 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 4 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 4 }] },
+            ],
+            # 第四个卡位
+            [
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '防御', value: 3 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '防御', value: 3 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '防御', value: 3 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '防御', value: 3 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '防御', value: 3 }] },
+            ],
+            # 第五个卡位
+            [
+              { props: [{ propId: 3003, num: 3 }, { propId: 3102, num: 3 }] },
+            ],
+          ]
+        },
+
+        # 4星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 1 }, { key: '防御', value: 1 }] },
+            ],
+            # 第二个卡位
+            [
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 2 }, { key: '防御', value: 2 }] },
+            ],
+            # 第三个卡位
+            [
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 3 }, { key: '防御', value: 3 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 3 }, { key: '防御', value: 3 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 3 }, { key: '防御', value: 3 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 3 }, { key: '防御', value: 3 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 3 }, { key: '防御', value: 3 }] },
+            ],
+            # 第四个卡位
+            [
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 4 }, { key: '防御', value: 4 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 4 }, { key: '防御', value: 4 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 4 }, { key: '防御', value: 4 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 4 }, { key: '防御', value: 4 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 4 }, { key: '防御', value: 4 }] },
+            ],
+            # 第五个卡位
+            [
+              { props: [{ propId: 3003, num: 3 }, { propId: 3102, num: 4 }] },
+            ],
+          ]
+        },
+
+        # 5星
+        {
+          # 阶段升级
+          items: [
+            # 第一个卡位
+            [
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 5 }, { key: '防御', value: 5 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 5 }, { key: '防御', value: 5 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 5 }, { key: '防御', value: 5 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 5 }, { key: '防御', value: 5 }] },
+              { props: [{ propId: 3001, num: 1 }], attrs: [{ key: '速度', value: 5 }, { key: '防御', value: 5 }] },
+            ],
+            # 第二个卡位
+            [
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 6 }, { key: '防御', value: 6 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 6 }, { key: '防御', value: 6 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 6 }, { key: '防御', value: 6 }]},
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 6 }, { key: '防御', value: 6 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 6 }, { key: '防御', value: 6 }] },
+            ],
+            # 第三个卡位
+            [
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 7 }, { key: '防御', value: 7 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 7 }, { key: '防御', value: 7 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 7 }, { key: '防御', value: 7 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 7 }, { key: '防御', value: 7 }] },
+              { props: [{ propId: 3001, num: 2 }], attrs: [{ key: '速度', value: 7 }, { key: '防御', value: 7 }] },
+            ],
+            # 第四个卡位
+            [
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 8 }, { key: '防御', value: 8 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 8 }, { key: '防御', value: 8 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 8 }, { key: '防御', value: 8 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 8 }, { key: '防御', value: 8 }] },
+              { props: [{ propId: 3002, num: 2 }], attrs: [{ key: '速度', value: 8 }, { key: '防御', value: 8 }] },
+            ],
+            # 第五个卡位
+            [
+              { props: [{ propId: 3003, num: 3 }, { propId: 3102, num: 5 }] },
+            ],
+          ]
+        },
+      ]
+    },
+  ]
+}

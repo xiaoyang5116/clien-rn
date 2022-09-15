@@ -3,6 +3,7 @@ import React from 'react';
 import {
     AppDispath,
     connect,
+    EventKeys,
     StyleSheet,
 } from "../../constants";
 
@@ -19,7 +20,44 @@ import {
 import lo from 'lodash';
 import { TextButton } from '../../constants/custom-ui';
 import CollectionItem from './collection/CollectionItem';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
+const PropYaoShui = (props) => {
+    const CALLBACK_EVENT_KEY = `__@PropYaoShui_${props.propId}`;
+    
+    const [num, setNum] = React.useState('');
+
+    const updateHandler = () => {
+        AppDispath({ type: 'PropsModel/getPropNum', payload: { propId: props.propId }, retmsg: CALLBACK_EVENT_KEY });
+    }
+
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener(CALLBACK_EVENT_KEY, (v) => {
+            setNum(v);
+        });
+        return () => {
+            listener.remove();
+        }
+    }, []);
+    
+    React.useEffect(() => {
+        updateHandler();
+        const listener = DeviceEventEmitter.addListener(EventKeys.PROPS_NUM_CHANGED, () => {
+            updateHandler();
+        });
+        return () => {
+            listener.remove();
+        }
+    }, []);
+
+    return (
+    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <AntDesign name='appstore1' color={props.color} size={20} />
+        <Text style={{color:'#111'}}>: {num}</Text>
+    </View>
+    );
+}
+ 
 const CollectionTabPage = (props) => {
 
     const GET_LIST_EVENT_KEY = '__@CollectionTabPage.getList';
@@ -84,12 +122,16 @@ const CollectionTabPage = (props) => {
         );
     }
 
+    // 改良所需道具
+    const improvementProps = props.__data.config.improvementProps;
+
     return (
         <View style={styles.viewContainer}>
             <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-                <Text style={{color:'#111'}}>金: 0</Text>
-                <Text style={{color:'#111'}}>银: 0</Text>
-                <Text style={{color:'#111'}}>铜: {props.user.copper}</Text>
+                <PropYaoShui color={'green'} propId={improvementProps[0]} />
+                <PropYaoShui color={'blue'} propId={improvementProps[1]} />
+                <PropYaoShui color={'purple'} propId={improvementProps[2]} />
+                <PropYaoShui color={'orange'} propId={improvementProps[3]} />
             </View>
             <View style={{ width: '96%', marginTop: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: 'rgba(238,212,183,0.5)', borderRadius: 5, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
                 <TextButton title={'金'} onPress={() => selectCategory('金')} />
@@ -120,4 +162,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default connect((state) => ({ ...state.AppModel, user: { ...state.UserModel } }))(CollectionTabPage);
+export default connect((state) => ({ ...state.AppModel, ...state.CollectionModel, user: { ...state.UserModel } }))(CollectionTabPage);

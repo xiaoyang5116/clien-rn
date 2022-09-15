@@ -43,8 +43,8 @@ export default {
       const { category } = payload;
 
       let updateCache = false;
-      for (let key in collectionState.__data.config) {
-        const item = collectionState.__data.config[key];
+      for (let key in collectionState.__data.config.items) {
+        const item = collectionState.__data.config.items[key];
         const found = collectionState.items.find(e => e.id == item.id);
         if (found != undefined)
           continue; // 已经初始化
@@ -78,9 +78,8 @@ export default {
         return false;
 
       // 激活需要扣除铜币
-      const upgradeItem = found.upgrade[0];
-      if (upgradeItem.lv == 1 && upgradeItem.copper > 0 && userState.copper >= upgradeItem.copper) {
-        yield put.resolve(action('UserModel/alterCopper')({ value: -upgradeItem.copper }));
+      if (found.activation.copper > 0 && userState.copper >= found.activation.copper) {
+        yield put.resolve(action('UserModel/alterCopper')({ value: -found.activation.copper }));
       } else {
         return false;
       }
@@ -90,6 +89,75 @@ export default {
       yield call(LocalStorage.set, LocalCacheKeys.COLLECTION_DATA, collectionState.items);
       
       return true;
+    },
+
+    *upgrade({ payload }, { call, put, select }) {
+      const collectionState = yield select(state => state.CollectionModel);
+      const userState = yield select(state => state.UserModel);
+      const { id } = payload;
+
+      const found = collectionState.items.find(e => e.id == id);
+      if (found == undefined || !found.actived)
+        return false;
+
+      const upgradeItems = found.upgrade[found.level - 1].items;
+      let currentItem = null;
+
+      for (let key in upgradeItems) {
+        const items = upgradeItems[key];
+        let stop = false;
+        for (let kk in items) {
+          const item = items[kk];
+          if (item.finished == undefined) {
+            stop = true;
+            currentItem = item;
+            break
+          }
+        }
+        if (stop) break;
+      }
+      
+      if (currentItem == null)
+        return false;
+
+      // 扣除道具
+      const success = yield put.resolve(action('PropsModel/reduce')(currentItem.props));
+      if (!success) return false;
+        
+      // 标注已完成
+      currentItem.finished = true;
+
+      // 属性增加
+      if (currentItem.attrs != undefined && lo.isArray(currentItem.attrs)) {
+        lo.forEach(currentItem.attrs, (e) => {
+          const foundAttr = lo.find(found.attrs, (x) => lo.isEqual(x.key, e.key));
+          if (foundAttr != undefined) {
+            foundAttr.value += e.value;
+          }
+        });
+      }
+
+      // 判断当前是卡位是否已经升满
+      let full = true;
+      lo.forEach(upgradeItems, (v, k) => {
+        lo.forEach(v, (vv, kk) => {
+          if (vv.finished == undefined || (lo.isBoolean(vv.finished) && !vv.finished)) {
+            full = false;
+          }
+        });
+      });
+
+      // 复制一份数据返回，不包括升星的(用于显示最后状态)
+      const result = lo.cloneDeep(found);
+      if (full) result.__full = true;
+
+      // 小阶段满级，升星
+      if (full && (found.level < found.stars)) {
+        found.level += 1;
+      }
+
+      yield call(LocalStorage.set, LocalCacheKeys.COLLECTION_DATA, collectionState.items);
+      return result;
     },
     
   },

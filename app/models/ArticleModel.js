@@ -130,7 +130,7 @@ export default {
       if (data != null) AddLoadedListHandler(articleState.__data.loadedList, { id, path, stop: HasStopDirective(data) });
       articleState.isStartPage = lo.isEqual(path, '[START]'); // 标注是否起始页
 
-      if (articleState.isStartPage) {
+      if (articleState.isStartPage || (lo.isEmpty(articleState.dirData) && (id != undefined))) {
         const data = yield call(GetBookDirDataApi, id);
         articleState.dirData = data.directory;
       }
@@ -235,15 +235,11 @@ export default {
       }
 
       // 记录当前阅读
-      yield call(LocalStorage.set, LocalCacheKeys.ARTICLE_HISTORY, payload);
+      yield put(action('StateModel/saveArticleState')(payload));
       
       setTimeout(() => {
         DeviceEventEmitter.emit(EventKeys.OPTIONS_HIDE);
       }, 0);
-    },
-
-    *getArticleHistory({}, { call, put, select }) {
-      return yield call(LocalStorage.get, LocalCacheKeys.ARTICLE_HISTORY);
     },
 
     *cleanup({ payload }, { select }) {

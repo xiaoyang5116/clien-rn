@@ -2,7 +2,7 @@ scenes: [
 
     #
     {
-    #纳戒小世界地图
+    #纳戒空间地图
       id: 'WZXX_M1_N1_C000D_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
@@ -27,7 +27,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000D_V', desc: '回忆', 
         options: [ 
-          { title: "【探索纳戒里的小世界】",toScene: 'C000D_V_MAP_-2_1', },
+          { title: "【探索纳戒里的空间】",toScene: 'C000D_V_MAP_-2_1', },
         ],
       },
       { 

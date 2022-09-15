@@ -25,7 +25,7 @@ import StoryTabPage from './home/StoryTabPage';
 import ProfileTabPage from './home/ProfileTabPage';
 import CollectionTabPage from './home/CollectionTabPage';
 import { Platform, TouchableWithoutFeedback } from 'react-native';
-import { px2pd } from '../constants/resolution';
+import { isPad, px2pd } from '../constants/resolution';
 import TownTabPage from './home/TownTabPage';
 import RoleTabPage from './home/RoleTabPage';
 import PageUtils from '../utils/PageUtils';
@@ -41,9 +41,9 @@ const TabIcon = (props) => {
   const theme = React.useContext(ThemeContext);
 
   const button = (
-    <View style={[theme.tabBottomImgStyle, { position: 'absolute', left: -9, top: -30 }]}>
+    <View style={[theme.tabBottomImgStyle, { position: 'absolute', top: -px2pd(40), justifyContent: 'center', alignItems: 'center', transform: [{ scale: (isPad() ? 0.8 : 1) }] }]}>
       <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={theme.tabBottomImage} />
-      <View style={[theme.tabBottomLabelStyle, { position: 'absolute', width: 24 }]}>
+      <View style={[{ width: px2pd(60) }]}>
         <Text style={{ fontSize: px2pd(60), color: props.color }}>{props.title}</Text>
       </View>
     </View>
@@ -68,14 +68,16 @@ const TabIcon = (props) => {
 
 const HeaderTitle = (props) => {
   return (
-    <Header1 style={{ marginTop: (Platform.OS == 'ios' ? statusBarHeight + 10 : 30), marginBottom: 10, }} title={props.options.title} />
+    <Header1 style={{ marginTop: (Platform.OS == 'ios' ? (statusBarHeight + 10) : 15), marginBottom: 10, }} title={props.options.title} />
   )
 }
 
 const TabBarBackground = (props) => {
   const theme = React.useContext(ThemeContext);
   return (
-    <FastImage style={{ position: 'absolute', left: 0, top: -25, width: '100%', height: '100%' }} resizeMode='contain' source={theme.tabBannerBg} />
+    <View style={{ alignItems: 'center' }}>
+      <FastImage style={{ width: '100%', height: px2pd(135) }} resizeMode='stretch' source={theme.tabBannerBg} />
+    </View>
   );
 }
 
@@ -83,7 +85,7 @@ const defaultScreenOptions = {
   header: (props) => <HeaderTitle {...props} />,
   tabBarShowLabel: false,
   tabBarStyle: {
-    height: 70,
+    height: px2pd(200) + (Platform.OS == 'ios' ? 20 : 0),
     borderTopWidth: 0, // 去掉底部边框
     backgroundColor: 'rgba(0,0,0,0)',
   },

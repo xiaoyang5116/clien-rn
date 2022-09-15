@@ -44,6 +44,13 @@ class ProfileTabPage extends React.Component {
                     RootNavigation.navigate('Settings', { screen: 'Sound', });
                 }
             },
+            {
+                id: 4,
+                title: '回到主页',
+                cb: () => {
+                    RootNavigation.navigate('First');
+                }
+            },
         ];
     }
 

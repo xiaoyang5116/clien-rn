@@ -165,25 +165,25 @@ class FirstPage extends Component {
                   // })
 
                   // 单人对话框
-                  // Modal.show({
-                  //   style: 6, title: '神秘阵盘', dialogType: 'HalfScreen', textAnimationType: 'TextSingle',
-                  //   sections: [
-                  //     {
-                  //       key: 'p1',
-                  //       content: ['你迅速跑过去，地面有些东西。', [{games: {id: 5,word: ["雷"]}}], '走开走开，马夫大喝， 正从远处拨开人群走来。', '获得几颗石头珠子，看起来能卖不少钱。'],
-                  //       btn: [{
-                  //         title: '去拿菜刀', tokey: "",
-                  //         toMsg: {
-                  //           action: 'CluesModel/useClues', params: {
-                  //             addCluesId: ["xiansuo4"], useCluesId: ["xiansuo1"], invalidCluesId: ["xiansuo3"]
-                  //           },
-                  //         }
-                  //       }, { title: '去拿画轴', tokey: "p3", animation: ['边缘闪烁绿'] }]
-                  //     },
-                  //     { key: 'p2', content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
-                  //     { key: 'p3', content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
-                  //   ]
-                  // })
+                  Modal.show({
+                    style: 6, title: '神秘阵盘', dialogType: 'HalfScreen', textAnimationType: 'TextSingle',
+                    sections: [
+                      {
+                        key: 'p1',
+                        content: ['你迅速跑过去，地面有些东西。', ["废物"], '走开走开，马夫大喝， 正从远处拨开人群走来。', '获得几颗石头珠子，看起来能卖不少钱。'],
+                        btn: [{
+                          title: '去拿菜刀', tokey: "",
+                          toMsg: {
+                            action: 'CluesModel/useClues', params: {
+                              addCluesId: ["xiansuo4"], useCluesId: ["xiansuo1"], invalidCluesId: ["xiansuo3"]
+                            },
+                          }
+                        }, { title: '去拿画轴', tokey: "p3", animation: ['边缘闪烁绿'] }]
+                      },
+                      { key: 'p2', content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
+                      { key: 'p3', content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
+                    ]
+                  })
 
                   // 多人对话框
                   // Modal.show({
@@ -214,22 +214,41 @@ class FirstPage extends Component {
                   // 黑白对话框
                   // Modal.show({
                   //   style: "9B", textAnimationType: 'TextSingle',
-                  //   sections: [
-                  //     {
-                  //       key: 'p1',
-                  //       content: ['你迅速跑过去，地面有些东西。', '走开走开，马夫大喝， 正从远处拨开人群走来。', '获得几颗石头珠子，看起来能卖不少钱。', '获得几颗石头珠子，看起来能卖不少钱。', '获得几颗石头珠子，看起来能卖不少钱。', '获得几颗石头珠子，看起来能卖不少钱。', '获得几颗石头珠子，看起来能卖不少钱。','来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。','来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。','来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。'],
-                  //     },
-                  //     { key: 'p2', content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
-                  //     { key: 'p3', content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
-                  //   ]
+                  // sections: [
+                  //   {
+                  //     key: 'p1',
+                  //     content: ['你迅速跑过去，地面有些东西。', '走开走开，马夫大喝， 正从远处拨开人群走来。', '获得几颗石头珠子，看起来能卖不少钱。', '获得几颗石头珠子，看起来能卖不少钱。', '获得几颗石头珠子，看起来能卖不少钱。', '获得几颗石头珠子，看起来能卖不少钱。', '获得几颗石头珠子，看起来能卖不少钱。','来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。','来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。','来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。'],
+                  //   },
+                  //   { key: 'p2', content: ['来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
+                  //   { key: 'p3', content: ['那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。', '动不了', '动不了', '动不了'], btn: [{ title: '退出', tokey: "next" }] },
+                  // ]
                   // })
 
                   // 只有确认弹窗
-                  Modal.show({
-                    style: "1B",
-                    title: '乞丐李大哥：',
-                    content: '平时讨乞的位置是在附近的东街市，我们一起走',
-                  })
+                  // Modal.show({
+                  //   style: "1B",
+                  //   title: '乞丐李大哥：',
+                  //   content: '平时讨乞的位置是在附近的东街市，我们一起走',
+                  // })
+
+                  // 背景对话框
+                  // Modal.show({
+                  //   style: 5,
+                  //   textAnimationType: 'TextSingle',
+                  //   sections: [
+                  //     { type: "TopToBottom", bgImageId: 1, loop: true, play: true, videoId: 1, content: ["你迅速跑过去，地面有些东西。", "来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。", "那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。",] },
+                  //     { type: "Bottom", bgImageId: 2, play: true, content: ["动不了", "动不了", "动不了"] },
+                  //     {
+                  //       type: "Barrage", videoId: 1, data: [
+                  //         { title: '路人甲：竟然是黑光！', posIdx: 200, speed: 9 },
+                  //         { title: '路人乙：天呐！黑光来了有好戏看了', posIdx: 2, speed: 10 },
+                  //         { title: '为什么叫黑光，难道就因为皮肤黑又是光头吗', posIdx: 4, speed: 8, delay: 2000 },
+                  //         { title: '客栈掌柜：有瓜子和西瓜没？', posIdx: 7, speed: 10, delay: 600 },
+                  //         { title: '黑光是恶霸，这小子完了', posIdx: 8, speed: 8, delay: 800 },
+                  //       ]
+                  //     },
+                  //   ]
+                  // })
 
                 }} />
               </View>

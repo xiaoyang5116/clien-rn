@@ -68,7 +68,7 @@ export default {
         checkProps = lottery.useProps;
       }
 
-      const result = yield put.resolve(action('PropsModel/reduce')({ ...checkProps, mode: 1 }));
+      const result = yield put.resolve(action('PropsModel/reduce')({ ...checkProps }));
       if (result && lo.isObject(lottery.products) && lo.isObject(lottery.products.props)) {
         const rateTargets = [];
         if (lottery.products.props.p100 != undefined) rateTargets.push(...lottery.products.props.p100.map(e => ({ ...e, rate: e.rate * 100 })));

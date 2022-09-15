@@ -18,7 +18,7 @@ import { px2pd } from '../../constants/resolution';
 import Toast from '../toast';
 
 // 格子间隔
-const GRID_SPACE = 20;
+const GRID_SPACE = px2pd(47);
 // 斜线修正
 const GRID_SLASH_FIXED = 4;
 // 格子宽度
@@ -59,9 +59,9 @@ const getLineConfig = (p1, p2) => {
   else if (p1[0] != p2[0] && p1[1] == p2[1])
     return { direction: 2, style: (p1[0] < p2[0]) ? { right: (0 - GRID_SPACE - GRID_PX_WIDTH / 2) } : { left: (0 - GRID_SPACE - GRID_PX_WIDTH / 2) } };
   else if ((p1[0] < p2[0] && p1[1] < p2[1]) || (p1[0] > p2[0] && p1[1] > p2[1]))
-    return { direction: 3, style: (p1[1] < p2[1]) ? { right: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), bottom: GRID_SLASH_FIXED } : { left: 0 - (GRID_SPACE + GRID_SLASH_FIXED + 8), top: GRID_SLASH_FIXED } };
+    return { direction: 3, style: (p1[1] < p2[1]) ? { right: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), bottom: GRID_SLASH_FIXED } : { left: 0 - (GRID_SPACE + GRID_SLASH_FIXED + px2pd(35)), top: GRID_SLASH_FIXED } };
   else if ((p1[0] < p2[0] && p1[1] > p2[1]) || (p1[0] > p2[0] && p1[1] < p2[1]))
-    return { direction: 4, style: (p1[1] < p2[1]) ? { left: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), bottom: GRID_SLASH_FIXED } : { right: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), top: GRID_SLASH_FIXED } };
+    return { direction: 4, style: (p1[1] < p2[1]) ? { left: (0 - GRID_SPACE - GRID_SLASH_FIXED - 8), bottom: GRID_SLASH_FIXED } : { right: (0 - GRID_SPACE - GRID_SLASH_FIXED - px2pd(35)), top: GRID_SLASH_FIXED } };
   else
     return null;
 }
@@ -273,19 +273,19 @@ const DirMap = (props) => {
       </View>
     </Animated.View>
     {/* 大地图缩小按钮 */}
-    <View style={{ position: 'absolute', left: 8, top: -9 }} onTouchStart={zoomOutBigMapHandler}>
+    <View style={{ position: 'absolute', left: px2pd(20), top: -9 }} onTouchStart={zoomOutBigMapHandler}>
       <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_out_button.png')} />
     </View>
     {/* 大地图放大按钮 */}
-    <View style={{ position: 'absolute', left: 60, top: -9 }} onTouchStart={zoomInBigMapHandler}>
+    <View style={{ position: 'absolute', left: px2pd(160), top: -9 }} onTouchStart={zoomInBigMapHandler}>
       <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_in_button.png')} />
     </View>
     {/* 大地图还原按钮 */}
-    <View style={{ position: 'absolute', left: 112, top: -9 }} onTouchStart={zoomRestoreBigMapHandler}>
+    <View style={{ position: 'absolute', left: px2pd(298), top: -9 }} onTouchStart={zoomRestoreBigMapHandler}>
       <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_restore_button.png')} />
     </View>
     {/* 大地图关闭按钮 */}
-    <View style={{ position: 'absolute', right: 10, top: -9 }} onTouchStart={props.onClose}>
+    <View style={{ position: 'absolute', right: px2pd(20), top: -9 }} onTouchStart={props.onClose}>
       <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_close_button.png')} />
     </View>
   </View>

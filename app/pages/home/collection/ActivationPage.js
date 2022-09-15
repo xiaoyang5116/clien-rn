@@ -24,7 +24,7 @@ const ActivationPage = (props) => {
     const scale = React.useRef(new Animated.Value(0)).current;
 
     const attrs = [];
-    lo.forEach(props.data.attrs[`lv${props.data.level + 1}`], (v, k) => {
+    lo.forEach(props.data.attrs, (v, k) => {
         attrs.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{v.key}: +{v.value}</Text>);
     });
 
@@ -39,7 +39,7 @@ const ActivationPage = (props) => {
     return (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Animated.View style={[{ width: 300, height: 370, backgroundColor: '#eee', alignItems: 'center', borderRadius: 5 }, { transform: [{ scale: scale }] }]}>
+                <Animated.View style={[{ width: px2pd(800), height: px2pd(1050), backgroundColor: '#eee', alignItems: 'center', borderRadius: 5 }, { transform: [{ scale: scale }] }]}>
                     <View style={{ width: '100%', alignItems: 'flex-end' }}>
                         <AntDesign name='close' size={30} onPress={() => {
                             if (props.onClose != undefined) {
@@ -62,8 +62,8 @@ const ActivationPage = (props) => {
                         <Text style={{ color: '#ce6a6f', lineHeight: 26 }}>激活后，获得以下属性效果</Text>
                         {attrs}
                     </View>
-                    <View style={{ width: '94%', justifyContent: 'center', alignItems: 'center' }}>
-                        <TextButton title={'激活'} onPress={() => {
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <TextButton style={{ width: px2pd(300) }} title={'激活'} onPress={() => {
                             if (props.onClose != undefined) {
                                 props.onClose();
                             }

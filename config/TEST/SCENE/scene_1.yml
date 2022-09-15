@@ -96,7 +96,7 @@ scenes: [
   {
     id: 'wzkj', name: '未知空间',
     worldTimeHidden: true,
-    sceneImage: 'default',
+    sceneImage: 'BGT_1',
 
     # 变量定义
     vars: [
@@ -169,7 +169,7 @@ scenes: [
           { title: '【默认商店】', andVarsOn: ['v_shop'], toShop: 'default' }, 
           { title: '【获得剧情道具】', sendProps: '1003,1' }, 
           { title: '【获得碎片】', sendProps: '500,5' }, 
-          { title: '【获得修行值】', alterXiuXing: 1230, openUI: 'XiuXing' }, 
+          { title: '【获得修行值】', alterXiuXing: 10000, openUI: 'XiuXing' }, 
           { title: '【修改选项按钮变量】', varsOn: ['v_icon_100'] }, 
           { title: '【--测试选项进度条--】', toScene: 'S_00Test01' }, 
           { title: '【--DEBUG跳过序章移动到破庙--】', toScene: 'M01_S01_luoyuezhen_pomiao' },

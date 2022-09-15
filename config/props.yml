@@ -34,7 +34,9 @@ props: [
   { id: 44 , name: '时空宝玉', iconId: 4, num: 10, quality: 1, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: '用于切换世界。' }, 
   { id: 51 , name: '西瓜刀', iconId: 5, num: 0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: '比正常水果刀要长，使用需要一些小技巧' }, 
   { id: 52 , name: '西瓜拼盘', iconId: 1, num: 0, quality: 1, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: '样式漂亮的水果拼盘' }, 
-  { id: 53 , name: '优秀的西瓜拼盘', iconId: 2, num: 0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: '样式漂亮的水果拼盘' }, 
+  { id: 53 , name: '优秀的西瓜拼盘', iconId: 2, num: 0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: '样式漂亮的水果拼盘' },
+
+   
   # 抽奖专用
   { id: 54 , name: '白嫖券', iconId: 3, num: 100, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 1000, desc: '抽奖专用' }, 
   { id: 55 , name: '消费券', iconId: 4, num: 20000, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 1000, desc: '抽奖专用' }, 
@@ -147,6 +149,15 @@ props: [
   { id:  358, name: '抑灵丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '能够抑制灵根发挥效果的神奇丹药' },
   { id:  359, name: '玄天宝鉴', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '用于修士之间传讯的宝器' },
   { id:  360, name: '护体丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '能够保护修士体内筋脉不受伤害，且能恢复一定法力' },
+  
+   #完成人任务需要使用的道具
+  { id:  361, name: '糖葫芦', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
+  { id:  362, name: '酒葫芦', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
+  { id:  363, name: '李森炎的记忆碎片', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },														
+  { id:  364, name: '手镯', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },						
+  { id:  365, name: '锄头', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },												
+  { id:  366, name: '黑麒麟', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+
 
 
    # 碎片
@@ -201,7 +212,15 @@ props: [
   { id: 1500, name: '猪猡', iconId: 2, num: 1, quality: 2, type: 200, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: '祭祀用品',},
   { id: 1501, name: '鸡', iconId: 2, num: 1, quality: 2, type: 200, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: '祭祀用品',},
   # 供奉加速道具
-  { id: 2000, name:  '供奉时间', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: ['加速'], capacity: 100, desc: '供奉加速道具' }
+  { id: 2000, name:  '供奉时间', iconId: 2, num: 1, quality: 2, type: 0, tags: ['普通'], attrs: ['加速'], capacity: 100, desc: '供奉加速道具' },
   
-
+# 收藏系统专用
+  { id:  3001, name: '绿色药水', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['收藏品药水'], capacity: 100, desc: ' ' },
+  { id:  3002, name: '蓝色药水', iconId: 2, num:  1, quality: 3, type: 0, tags: ['普通'], attrs: ['收藏品药水'], capacity: 100, desc: ' ' },		
+  { id:  3003, name: '紫色药水', iconId: 2, num:  1, quality: 4, type: 0, tags: ['普通'], attrs: ['收藏品药水'], capacity: 100, desc: ' ' },
+  { id:  3004, name: '橙色药水', iconId: 2, num:  1, quality: 5, type: 0, tags: ['普通'], attrs: ['收藏品药水'], capacity: 100, desc: ' ' },
+  { id:  3101, name: '金项链碎片[绿]', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },		
+  { id:  3102, name: '金手镯碎片[蓝]', iconId: 2, num:  1, quality: 3, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },
+  { id:  3103, name: '金戒指碎片[紫]', iconId: 2, num:  1, quality: 4, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },		
+  { id:  3104, name: '木棍子[橙]', iconId: 2, num:  1, quality: 5, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },
 ]

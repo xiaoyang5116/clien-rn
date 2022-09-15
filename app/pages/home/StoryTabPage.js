@@ -4,9 +4,9 @@ import React, { useContext } from 'react';
 import {
   action,
   connect,
-  Component,
   ThemeContext,
   EventKeys,
+  getSceneTopBackgroundImage,
 } from "../../constants";
 
 import { 
@@ -21,14 +21,11 @@ import ProgressBar from '../../components/ProgressBar';
 import * as DateTime from '../../utils/DateTimeUtils';
 import FastImage from 'react-native-fast-image';
 import lo from 'lodash';
-import { px2pd } from '../../constants/resolution';
+import { px2pd, SCALE_FACTOR } from '../../constants/resolution';
 import SceneMap from '../../components/maps/SceneMap';
 import { DeviceEventEmitter } from 'react-native';
 import MissionBar from '../../components/mission/MissionBar';
-
-const SCENE_BG = [
-  { name: 'default', img: require('../../../assets/scene/bg_default.jpg') },
-];
+import { BtnIcon } from '../../components/button';
 
 const ICONS = [
   { id: 1, img: require('../../../assets/button_icon/1.png'), top: 0, left: 10 },
@@ -45,11 +42,11 @@ const SceneImage = (props) => {
   if (lo.isEmpty(sceneImage)) {
     return (<></>);
   } else {
-    const img = SCENE_BG.find(e => e.name == sceneImage).img;
+    const img = getSceneTopBackgroundImage(sceneImage);
     return (
       <View style={{ alignSelf: 'stretch', height: 100 }}>
         <View style={{ flex: 1, marginLeft: 10, marginRight: 10, borderColor: '#999', borderWidth: 2 }}>
-          <FastImage style={{ width: '100%', height: '100%' }} source={img} resizeMode='cover'  />
+          <FastImage style={{ width: '100%', height: '100%' }} source={img.img} resizeMode='cover'  />
         </View>
       </View>
       );
@@ -144,7 +141,7 @@ const StoryTabPage = (props) => {
     // 进度条记录起来，倒计时没完成前不影响。
     if (data.item.progressId != undefined) {
       progressView = (
-      <View style={{ position: 'absolute', left: 0, right: 0, top: 37, height: 4, paddingLeft: 3, paddingRight: 3 }}>
+      <View style={{ position: 'absolute', left: 0, right: 0, top: px2pd(100) * SCALE_FACTOR, height: 4, paddingLeft: 3, paddingRight: 3 }}>
         <ProgressBar percent={100} toPercent={0} duration={data.item.duration} onStart={() => onProgressStart(data) } onCompleted={() => onProgressCompleted(data)} />
       </View>
       );
@@ -152,22 +149,14 @@ const StoryTabPage = (props) => {
 
     let iconComponent = <></>;
     if (lo.isObject(data.item.icon) && lo.isBoolean(data.item.icon.show) && data.item.icon.show) {
-      const icon = ICONS.find(e => e.id == data.item.icon.id);
-      const attrs = {};
-      if (icon.top != undefined) attrs.top = icon.top;
-      if (icon.left != undefined) attrs.left = icon.left;
-      if (icon.right != undefined) attrs.right = icon.right;
-
-      iconComponent = (<View style={{ position: 'absolute', ...attrs }}>
-                          <Image source={icon.img} style={{ width: px2pd(100), height: px2pd(100) }} />
-                      </View>);
+      iconComponent = <BtnIcon id={data.item.icon.id} style={{ height: 5, marginTop: px2pd(16) }} />
     }
 
     return (
       <View style={theme.chatItem}>
         <TouchableWithoutFeedback onPress={() => onClickItem(data)}>
-          <View style={{ height: px2pd(117), justifyContent: 'center', alignItems: 'center' }}>
-            <Image style={{ width: '100%', height: '100%', position: 'absolute' }} source={theme.optionButtonImage} />
+          <View style={{ height: px2pd(117) * SCALE_FACTOR, justifyContent: 'center', alignItems: 'center' }}>
+            <FastImage style={{ width: '100%', height: '100%', position: 'absolute' }} resizeMode={'stretch'} source={theme.optionButtonImage} />
             <Text style={{ fontSize: 18, color: theme.options.fontColor }}>{data.item.title}</Text>
             {iconComponent}
           </View>
