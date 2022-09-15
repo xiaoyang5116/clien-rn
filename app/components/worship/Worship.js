@@ -19,25 +19,24 @@ import FastImage from 'react-native-fast-image';
 import { TextButton, Header3 } from '../../constants/custom-ui';
 import OfferingModal from './OfferingModal';
 import SpeedPage from './SpeedPage';
-import SpeedPropPage from './SpeedPropPage';
-
+import RewardsPage from '../alchemyRoom/components/RewardsPage';
 
 // icon 数据
-const IconData = (item) => {
+const IconData = item => {
   const quality_style = qualityStyle.styles.find(
     e => e.id == parseInt(item.quality),
   );
   const image = getPropIcon(item.iconId);
-  return { quality_style, image }
-}
+  return { quality_style, image };
+};
 
-const LeftTime = (props) => {
-  const { currentNeedTime, onFinish } = props
+const LeftTime = props => {
+  const { currentNeedTime, onFinish } = props;
   const [seconds, setSeconds] = React.useState(currentNeedTime);
 
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setSeconds((sec) => {
+      setSeconds(sec => {
         if (sec <= 0) {
           clearInterval(timer);
           setTimeout(() => {
@@ -50,52 +49,72 @@ const LeftTime = (props) => {
     }, 1000);
     return () => {
       clearInterval(timer);
-    }
+    };
   }, []);
 
   const timeOutHandler = () => {
-    onFinish()
-  }
+    onFinish();
+  };
 
-  return (
-    <Text>{timeLeft(seconds)}</Text>
-  )
-
-}
+  return <Text>{timeLeft(seconds)}</Text>;
+};
 
 // 0-空格子, 1-供品, 2-供奉中, 3-宝箱
 const Worship = props => {
-  const { worshipData } = props;
+  const { worshipData, bigTreasureProgress } = props;
 
   // console.log("worshipData", worshipData);
 
   // 添加贡品
   const addWorshipProp = ({ worshipProp, gridId }) => {
-    props.dispatch(action('WorshipModel/addWorshipProp')({ worshipProp, gridId }))
-  }
+    props.dispatch(
+      action('WorshipModel/addWorshipProp')({ worshipProp, gridId }),
+    );
+  };
 
   // 供奉加速
-  const worshipSpeedUp = (data) => {
-    props.dispatch(action('WorshipModel/worshipSpeedUp')(data))
-  }
+  const worshipSpeedUp = data => {
+    props.dispatch(action('WorshipModel/worshipSpeedUp')(data));
+  };
 
   // 取消供奉
-  const cancelWorship = (item) => {
-    props.dispatch(action('WorshipModel/cancelWorship')(item))
-  }
+  const cancelWorship = item => {
+    props.dispatch(action('WorshipModel/cancelWorship')(item));
+  };
 
   // 打开宝箱
-  const openTreasureChest = (item) => {
-    props.dispatch(action('WorshipModel/openTreasureChest')(item))
-  }
+  const openTreasureChest = item => {
+    props
+      .dispatch(action('WorshipModel/openTreasureChest')(item))
+      .then(result => {
+        const key = RootView.add(
+          <RewardsPage
+            title={'获得道具'}
+            recipe={{ targets: result }}
+            getAward={() => {
+              props.dispatch(
+                action('WorshipModel/getRewardsProps')({
+                  rewards: result,
+                  item
+                  // TreasureChestId: item.treasureChestConfig.id,
+                }),
+              );
+            }}
+            onClose={() => {
+              RootView.remove(key);
+            }}
+          />,
+        );
+      });
+  };
 
   // 改变供奉状态
-  const changeWorship = (worshipProp) => {
-    props.dispatch(action('WorshipModel/changeWorship')(worshipProp))
-  }
+  const changeWorship = worshipProp => {
+    props.dispatch(action('WorshipModel/changeWorship')(worshipProp));
+  };
 
   const Title = () => {
-    const worshipProp = worshipData.find(item => item.status === 2)
+    const worshipProp = worshipData.find(item => item.status === 2);
     // console.log("worshipProp", worshipProp);
     if (worshipProp !== undefined) {
       const diffTime = Math.floor((now() - worshipProp.beginTime) / 1000);
@@ -103,22 +122,56 @@ const Worship = props => {
       const currentNeedTime = worshipProp.needTime - diffTime;
       if (currentNeedTime > 0) {
         return (
-          <View style={{ alignItems: "center" }}>
+          <View style={{ alignItems: 'center' }}>
             <Text>{worshipProp.name}</Text>
-            <LeftTime currentNeedTime={currentNeedTime} onFinish={() => { changeWorship(worshipProp) }} />
+            <LeftTime
+              currentNeedTime={currentNeedTime}
+              onFinish={() => {
+                changeWorship(worshipProp);
+              }}
+            />
           </View>
-        )
+        );
       } else {
-        changeWorship(worshipProp)
+        changeWorship(worshipProp);
       }
       return (
         <View>
           <Text>{worshipProp.name}</Text>
           <Text>00:00:00</Text>
         </View>
-      )
+      );
     }
-    return <Text>添加供奉</Text>
+    return (
+      <View>
+        <Text>添加供奉</Text>
+        <Text></Text>
+      </View>
+    );
+  };
+
+  // 宝箱进度
+  const BigTreasureProgress = () => {
+
+    const openBigTreasure = () => {
+      props.dispatch(action('WorshipModel/openBigTreasureChest')())
+    }
+
+    return (
+      <View>
+        <Text>供奉进度: {`${bigTreasureProgress}%`}</Text>
+        {
+          bigTreasureProgress > 100 ? (
+            <TouchableWithoutFeedback onPress={openBigTreasure}>
+              <View style={{ marginTop: 20 }}>
+                <Text style={{ fontSize: 20, color: "#000" }}>领取大宝箱</Text>
+              </View>
+            </TouchableWithoutFeedback>
+          ) : <></>
+        }
+
+      </View>
+    )
   }
 
   // 空格子
@@ -138,7 +191,7 @@ const Worship = props => {
             />,
           );
         }
-      })
+      });
     };
 
     return (
@@ -158,10 +211,14 @@ const Worship = props => {
 
   // 贡品格子
   const OfferingGrid = ({ item }) => {
-    const { quality_style, image } = IconData(item)
+    const { quality_style, image } = IconData(item);
 
     return (
-      <TouchableOpacity style={styles.gridContainer} onPress={() => { cancelWorship(item) }}>
+      <TouchableOpacity
+        style={styles.gridContainer}
+        onPress={() => {
+          cancelWorship(item);
+        }}>
         <FastImage
           style={{
             width: px2pd(160),
@@ -179,27 +236,33 @@ const Worship = props => {
 
   // 供奉中的格子
   const WorshipInGrid = ({ item }) => {
-    const { quality_style, image } = IconData(item)
+    const { quality_style, image } = IconData(item);
 
     // 打开加速时间页面
     const openSpeedPage = () => {
-      props.dispatch(action('WorshipModel/getWorshipSpeedUpTime')()).then(result => {
-        const key = RootView.add(
-          <SpeedPage
-            onSpeedUp={worshipSpeedUp}
-            data={result}
-            prop={item}
-            onClose={() => {
-              RootView.remove(key);
-            }}
-          />,
-        );
-      })
+      props
+        .dispatch(action('WorshipModel/getWorshipSpeedUpTime')())
+        .then(result => {
+          const key = RootView.add(
+            <SpeedPage
+              onSpeedUp={worshipSpeedUp}
+              data={result}
+              prop={item}
+              onClose={() => {
+                RootView.remove(key);
+              }}
+            />,
+          );
+        });
     };
 
     return (
       <View style={{ alignItems: 'center' }}>
-        <TouchableOpacity style={styles.gridContainer} onPress={() => { openSpeedPage(item) }}>
+        <TouchableOpacity
+          style={styles.gridContainer}
+          onPress={() => {
+            openSpeedPage(item);
+          }}>
           <FastImage
             style={{
               width: px2pd(160),
@@ -215,15 +278,23 @@ const Worship = props => {
         <Text>供奉中...</Text>
       </View>
     );
-  }
+  };
 
   // 宝箱格子
   const TreasureChestGrid = ({ item }) => {
-    const { quality_style, image } = IconData(item)
+    const { treasureChestConfig } = item;
+    const { quality_style, image } = IconData({
+      iconId: treasureChestConfig.iconId,
+      quality: treasureChestConfig.quality,
+    });
 
     return (
       <View style={{ alignItems: 'center' }}>
-        <TouchableOpacity style={styles.gridContainer} onPress={() => { openTreasureChest(item) }}>
+        <TouchableOpacity
+          style={styles.gridContainer}
+          onPress={() => {
+            openTreasureChest(item);
+          }}>
           <FastImage
             style={{
               width: px2pd(160),
@@ -239,7 +310,7 @@ const Worship = props => {
         <Text>已完成</Text>
       </View>
     );
-  }
+  };
 
   const renderGrid = ({ item }) => {
     if (item.status === 0) {
@@ -254,16 +325,23 @@ const Worship = props => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
-      <SafeAreaView style={{ flex: 1, }}>
+    <View style={{ flex: 1, backgroundColor: '#fff' }}>
+      <SafeAreaView style={{ flex: 1 }}>
         <Header3
           title={'供奉'}
           fontStyle={{ color: '#000' }}
           iconColor={'#000'}
           onClose={props.onClose}
         />
-        <View style={{ position: "absolute", top: "30%", width: '100%', alignItems: 'center' }}>
+        <View
+          style={{
+            position: 'absolute',
+            top: '30%',
+            width: '100%',
+            alignItems: 'center',
+          }}>
           <Title />
+          <BigTreasureProgress />
         </View>
         <View style={styles.container}>
           <FlatList

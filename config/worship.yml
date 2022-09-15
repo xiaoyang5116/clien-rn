@@ -1,32 +1,88 @@
 ### 供奉道具配置
 
-data:
-  {
+data: {
     # 道具映射
     props:
       [
         {id: 1500, worshipTime: 20, treasureChestId: 1},
-        {id: 1501, worshipTime: 10, treasureChestId: 1},
-
+        {id: 1501, worshipTime: 10, treasureChestId: 2},
       ],
 
     # 宝箱配置
     treasureChest: [
         {
-          # ID
-          id: 1,
+          id: 1, iconId: 1, quality: 2, 
+          bigTreasureProgressAdd: 40,
+          bigTreasureChestConfig: {id: 3, rate: 20},
           # 是否宝箱类型
           box: true,
           # 产出配置
           products: {
               # 随机道具
-              props:
-                {
-                  p100: [{propId: 26, num: 1, rate: 20}, {propId: 27, num: 2, rate: 20}],
-                  p1000: [{propId: 28, num: 1, rate: 200}, {propId: 29, num: 2, rate: 300}],
-                  p10000: [{propId: 30, num: 1, rate: 800}],
+              props: {
+                  p100: [
+                      { props: [{propId: 26, num: 1}, {propId: 27, num: 1}], rate: 20, },
+                      { props: [{propId: 26, num: 3}, {propId: 27, num: 3}], rate: 80, },
+                  ],
                 },
-            },
+          },
+        },
+        {
+          id: 2, iconId: 1, quality: 2, 
+          bigTreasureProgressAdd: 40,
+          bigTreasureChestConfig: {id: 4, rate: 20},
+          # 是否宝箱类型
+          box: true,
+          # 产出配置
+          products: {
+              # 随机道具
+              props: {
+                  p100: [
+                      { props: [{propId: 26, num: 1}, {propId: 27, num: 1}], rate: 20, },
+                      { props: [{propId: 26, num: 3}, {propId: 27, num: 3}], rate: 80, },
+                  ],
+                },
+          },
+        },
+
+        #=================#
+        #                 #
+        # ---- 大宝箱 ---- #
+        #                 #
+        #=================#
+        {
+          id: 3, 
+          iconId: 1, 
+          quality: 2, 
+          # 是否宝箱类型
+          box: true,
+          # 产出配置
+          products: {
+              # 随机道具
+              props: {
+                  p100: [
+                      { props: [{propId: 26, num: 1}, {propId: 27, num: 1}], rate: 20, },
+                      { props: [{propId: 26, num: 3}, {propId: 27, num: 3}], rate: 80, },
+                  ],
+                },
+          },
+        },
+        {
+          id: 4, 
+          iconId: 1, 
+          quality: 2, 
+          # 是否宝箱类型
+          box: true,
+          # 产出配置
+          products: {
+              # 随机道具
+              props: {
+                  p100: [
+                      { props: [{propId: 26, num: 1}, {propId: 27, num: 1}], rate: 20, },
+                      { props: [{propId: 26, num: 3}, {propId: 27, num: 3}], rate: 80, },
+                  ],
+                },
+          },
         },
       ],
   }
