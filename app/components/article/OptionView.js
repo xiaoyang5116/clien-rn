@@ -11,10 +11,9 @@ import {
     EventKeys,
 } from "../../constants";
 
-import RootView from '../../components/RootView';
-import OptionsPage from '../../pages/OptionsPage';
 import { BtnIcon } from '../button'
 import OptionComponents from './optionComponents'
+import { ArticleOptionActions } from '.';
 
 
 class OptionView extends PureComponent {
@@ -35,24 +34,15 @@ class OptionView extends PureComponent {
     }
 
     optionPressHandler = (data) => {
-        this.props.dispatch(action('SceneModel/processActions')(data))
-            .then(e => {
-                // 仅在不切换章节时刷新
-                if (data.toChapter == undefined) {
-                    this.props.dispatch(action('ArticleModel/getValidOptions')({ options: this.state.options }))
-                        .then(r => {
-                            this.setState({ options: r });
-                        });
-                }
-                // 如果是切换场景，显示选项页面
-                if (data.toScene != undefined) {
-                    const key = RootView.add(<OptionsPage onClose={() => {
-                        RootView.remove(key);
-                    }} />);
-                }
-                // 记录点击动作
-                this.props.dispatch(action('StateModel/saveArticleBtnClickState')(data));
-            });
+        ArticleOptionActions.invoke(data, (v) => {
+            // 仅在不切换章节时刷新
+            if (data.toChapter == undefined) {
+                this.props.dispatch(action('ArticleModel/getValidOptions')({ options: this.state.options }))
+                    .then(r => {
+                        this.setState({ options: r });
+                    });
+            }
+        });
     }
 
     render() {
