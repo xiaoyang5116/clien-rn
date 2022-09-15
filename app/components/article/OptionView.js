@@ -9,6 +9,7 @@ import {
     action,
     DeviceEventEmitter,
     EventKeys,
+    AppDispath,
 } from "../../constants";
 
 import { BtnIcon } from '../button'
@@ -42,6 +43,8 @@ class OptionView extends PureComponent {
                         this.setState({ options: r });
                     });
             }
+            // 记录点击动作
+            AppDispath({ type: 'StateModel/saveArticleBtnClickState', payload: data });
         });
     }
 

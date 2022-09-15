@@ -46,6 +46,7 @@ import WorldTabBar from './article/WorldTabBar';
 import WorldSelector from './article/WorldSelector';
 import OtherWorld from './article/OtherWorld';
 import PrimaryWorld from './article/PrimaryWorld';
+import ObjectUtils from '../utils/ObjectUtils';
 import { ArticleOptionActions } from '../components/article';
 
 const Tab = createMaterialTopTabNavigator();
@@ -72,12 +73,16 @@ class ArticlePage extends Component {
     // 判断是否继续阅读
     if (this.context.continueReading != undefined && this.context.continueReading) {
       AppDispath({ type: 'StateModel/getAllStates', payload: {}, cb: (states) => {
-        const { articleState, articleBtnClickState } = states;
+        const { articleState, articleBtnClickState, articleSceneClickState } = states;
         if (articleState != null) {
           this.props.dispatch(action('ArticleModel/show')(articleState)).then(r => {
-            if (articleBtnClickState != null) {
-              setTimeout(() => {
-                ArticleOptionActions.invoke(articleBtnClickState);
+            if (articleBtnClickState != null && ObjectUtils.hasProperty(articleBtnClickState, ['toScene', 'dialogs'])) {
+              setTimeout(() => { 
+                ArticleOptionActions.invoke(articleBtnClickState, (v) => { // 打开场景选项或者对话框
+                  if (articleSceneClickState != null && ObjectUtils.hasProperty(articleSceneClickState, ['nextChat'])) {
+                    ArticleOptionActions.invoke(articleSceneClickState);  // 切换场景选项
+                  }
+                });
               }, 0);
             }
           });

@@ -59,9 +59,6 @@ export class ArticleOptionActions {
                   }} />);
             }
 
-            // 记录点击动作
-            AppDispath({ type: 'StateModel/saveArticleBtnClickState', payload: payload });
-
             // 执行回调方法
             if (callback != undefined) {
                 callback(v);

@@ -5,6 +5,7 @@ import {
     connect,
     action,
     DataContext,
+    AppDispath,
 } from "../../constants";
 
 import { TouchableWithoutFeedback } from 'react-native';
@@ -16,7 +17,10 @@ const PlainOption = (props) => {
     const bgOpacity = React.useRef(new Animated.Value(0)).current;
 
     const optionPressHandler = (data) => {
-        ArticleOptionActions.invoke(data);
+        ArticleOptionActions.invoke(data, (v) => {
+            // 记录点击动作
+            AppDispath({ type: 'StateModel/saveArticleBtnClickState', payload: data });
+        });
         Animated.sequence([
             Animated.timing(bgOpacity, {
                 toValue: 1,
