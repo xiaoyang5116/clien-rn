@@ -274,6 +274,64 @@ directory: [
         },
 
 
+        { point: [3, 3], title: '现实世界 第二篇',
+          andVarsValue: ['@props_363 == 2'],
+          toChapter: 'WZXX_M1_N1_C988', links: [[]],  
+        },
+
+        { point: [3, 1], title: '现实世界 第三篇', 
+         andVarsValue: ['@props_363 == 4'],
+          toChapter: 'WZXX_M1_N1_C989', links: [[]],  
+        },
+
+        { point: [3, -1], title: '现实世界 第四篇', 
+         andVarsValue: ['@props_363 == 6'],
+          toChapter: 'WZXX_M1_N1_C990', links: [[]],  
+        },
+
+        { point: [3, -3], title: '现实世界 第五篇', 
+          andVarsValue: ['@props_363 == 8'],
+          toChapter: 'WZXX_M1_N1_C991', links: [[]],  
+        },
+
+        { point: [3, -5], title: '现实世界 第六篇', 
+          andVarsValue: ['@props_363 == 10'],
+          toChapter: 'WZXX_M1_N1_C992', links: [[]],  
+        },
+
+        { point: [3, -7], title: '现实世界 第七篇', 
+          andVarsValue: ['@props_363 == 12'],
+          toChapter: 'WZXX_M1_N1_C993', links: [[]],  
+        },
+
+        { point: [3, -9], title: '现实世界 第八篇', 
+          andVarsValue: ['@props_363 == 14'],
+          toChapter: 'WZXX_M1_N1_C994', links: [[]],  
+        },
+
+        { point: [3, -11], title: '现实世界 第九篇', 
+          andVarsValue: ['@props_363 == 16'],
+          toChapter: 'WZXX_M1_N1_C995', links: [[]],  
+        },
+
+        { point: [3, -13], title: '现实世界 第十篇', 
+          andVarsValue: ['@props_363 == 18'],
+          toChapter: 'WZXX_M1_N1_C996', links: [[]],  
+        },
+
+        { point: [3, -15], title: '现实世界 第十一篇', 
+          andVarsValue: ['@props_363 == 20'],
+          toChapter: 'WZXX_M1_N1_C997', links: [[]],  
+        },
+
+        { point: [3, -17], title: '现实世界 第十二篇', 
+          andVarsValue: ['@props_363 == 22'],
+          toChapter: 'WZXX_M1_N1_C998', links: [[]],  
+        },
+
+
+
+
     ]
 
 

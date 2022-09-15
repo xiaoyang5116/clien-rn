@@ -983,7 +983,7 @@ scenes: [
      #横图显示
     sceneImage: 'BGT_42',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1726,7 +1726,7 @@ scenes: [
     # 对话选项
     chats: [
        { 
-        id: 'C1', desc: "街道来往车马行人都井然有序,\n不过却少了一些人气",
+        id: 'C1', desc: "街道来往车马行人都井然有序\n不过却少了一些人气",
         options: [ 
         { title: '【逛一会儿】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},   
         { title: '【商铺】',toScene: 'C000A_V_MAP_3_-1'},
