@@ -5,7 +5,7 @@ clues:
     type: '情报',
     filterCondition: {locaton: '白城',},
     title: '兵械管制',
-    content: '西市暂行兵械管制','携兵器者行动将受到限制',
+    content: ['西市暂行兵械管制','携兵器者行动将受到限制',],
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
     groupId: '李家村',
   }

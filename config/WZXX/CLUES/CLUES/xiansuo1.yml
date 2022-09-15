@@ -6,6 +6,6 @@ clues:
     groupId: '李家村',
     filterCondition: {locaton: '白城', biaoqian: '丹药'},
     title: '丹药的线索',
-    content: '郊区有白芍','森林中有何首乌','天水阁有白术','郊外的山谷有丹参',
+    content: ['郊区有白芍','森林中有何首乌','天水阁有白术','郊外的山谷有丹参',],
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
   }

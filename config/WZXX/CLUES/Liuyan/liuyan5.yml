@@ -5,7 +5,7 @@ clues:
     type: '流言',
     filterCondition: {locaton: '落霞峰',},
     title: '采花姑娘',
-    content: '荒凉僻静的小径就有百络花',
+    content: ['荒凉僻静的小径就有百络花',],
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
     groupId: '李家村',
   }
