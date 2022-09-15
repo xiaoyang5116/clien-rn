@@ -8,6 +8,9 @@ import OptionView from './OptionView';
 import PlainOptionView from './PlainOptionView';
 import OverView from './OverView';
 import ImageView from './ImageView';
+import { AppDispath } from '../../constants';
+import RootView from '../RootView';
+import OptionsPage from '../../pages/OptionsPage';
 
 export default class ArticleBlock extends React.PureComponent {
 
@@ -38,6 +41,29 @@ export default class ArticleBlock extends React.PureComponent {
             }
         }
         return (<></>);
+    }
+
+}
+
+/**
+ * 文章选项点击响应入口
+ */
+export class ArticleOptionActions {
+
+    static invoke(payload, callback) {
+        AppDispath({ type: 'SceneModel/processActions', payload: payload, cb: (v) => {
+            // 如果是切换场景，显示选项页面
+            if (payload.toScene != undefined) {
+                const key = RootView.add(<OptionsPage onClose={() => {
+                    RootView.remove(key);
+                  }} />);
+            }
+
+            // 执行回调方法
+            if (callback != undefined) {
+                callback(v);
+            }
+        }});
     }
 
 }

@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View, Animated, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Animated, FlatList, TouchableWithoutFeedback } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { px2pd } from '../../../constants/resolution';
 
 import TextAnimation from '../../textAnimation';
+import Clues from '../../cluesList';
 
 const viewWidth = px2pd(1000);
 const LeftToRightSwiper = props => {
@@ -92,15 +93,17 @@ const ContentComponent = (props) => {
   })
 
   return (
-    <View style={{
-      height: 90,
-      width: "100%",
-      justifyContent: "flex-end",
-      marginLeft: 80,
-      overflow: 'hidden',
-    }}>
-      {renderItem}
-    </View>
+    <TouchableWithoutFeedback onPress={() => { Clues.show() }}>
+      <View style={{
+        height: 90,
+        width: "100%",
+        justifyContent: "flex-end",
+        marginLeft: 80,
+        overflow: 'hidden',
+      }}>
+        {renderItem}
+      </View>
+    </TouchableWithoutFeedback>
   )
 }
 

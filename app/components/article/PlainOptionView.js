@@ -5,11 +5,11 @@ import {
     connect,
     action,
     DataContext,
+    AppDispath,
 } from "../../constants";
 
-import RootView from '../../components/RootView';
-import OptionsPage from '../../pages/OptionsPage';
 import { TouchableWithoutFeedback } from 'react-native';
+import { ArticleOptionActions } from '.';
 
 const PlainOption = (props) => {
     const { option, readerStyle } = props
@@ -17,16 +17,10 @@ const PlainOption = (props) => {
     const bgOpacity = React.useRef(new Animated.Value(0)).current;
 
     const optionPressHandler = (data) => {
-        props.dispatch(action('SceneModel/processActions')(data))
-        .then(e => {
-            // 如果是切换场景，显示选项页面
-            if (data.toScene != undefined) {
-                const key = RootView.add(<OptionsPage onClose={() => {
-                    RootView.remove(key);
-                  }} />);
-            }
+        ArticleOptionActions.invoke(data, (v) => {
+            // 记录点击动作
+            AppDispath({ type: 'StateModel/saveArticleBtnClickState', payload: data });
         });
-
         Animated.sequence([
             Animated.timing(bgOpacity, {
                 toValue: 1,
