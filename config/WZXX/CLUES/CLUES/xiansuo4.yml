@@ -6,6 +6,6 @@ clues:
     groupId: '李家村',
     filterCondition: {location: '李家村', chapter: '第四章'},
     title: '线索4',
-    content: 'REDER线索1...在发射点发生范德萨发士大夫萨芬，发生发，手动阀四分发士大夫，1',
+    content: ['REDER线索1', '上飞机啊佛', '分开是佛阿含经分开久了', '我红薯干啥了', '我红薯干啥了', '我红薯干啥了', '我红薯干啥了',],
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
   }

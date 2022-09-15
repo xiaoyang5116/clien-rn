@@ -146,7 +146,7 @@ export default {
       });
 
       // 提示属性改变
-      yield put(action('ToastModel/toastShow')(messages));
+      yield put(action('ToastModel/toastShow')({ messages, type: "attr" }));
 
       yield put(action('updateState')({}));
       yield put.resolve(action('syncData')({}));
