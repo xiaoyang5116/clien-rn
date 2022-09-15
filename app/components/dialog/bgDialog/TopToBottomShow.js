@@ -52,7 +52,10 @@ const TopToBottomShow = props => {
               }
               fontSize={20}
               type={viewData.textAnimationType}
-              style={{ color: '#fff', opacity: dialogIndex === index ? 1 : 0.5 }}>
+              style={{
+                opacity: dialogIndex === index ? 1 : 0.5,
+                ...styles.text,
+              }}>
               {item}
             </TextAnimation>
           </View>
@@ -107,4 +110,11 @@ const TopToBottomShow = props => {
 
 export default TopToBottomShow;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  text: {
+    color: '#fff',
+    textShadowColor: '#000',
+    textShadowRadius: 3,
+    shadowOpacity: 0,
+  }
+});
