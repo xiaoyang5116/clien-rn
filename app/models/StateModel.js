@@ -13,7 +13,8 @@ export default {
 
   // 所有Model都接收到
   state: {
-    articleState: null, // 文章状态
+    articleState: null,           // 文章状态
+    articleBtnClickState: null,   // 文章按钮最近一次点击
   },
 
   effects: {
@@ -25,6 +26,11 @@ export default {
       }
     },
 
+    *getAllStates({}, { call, put, select }) {
+      const state = yield select(state => state.StateModel);
+      return state;
+    },
+
     *getArticleState({}, { call, put, select }) {
       const state = yield select(state => state.StateModel);
       return state.articleState;
@@ -33,6 +39,17 @@ export default {
     *saveArticleState({ payload }, { call, put, select }) {
       const state = yield select(state => state.StateModel);
       state.articleState = lo.cloneDeep(payload);
+      yield put(action('saveAll')());
+    },
+
+    *getArticleBtnClickState({}, { call, put, select }) {
+      const state = yield select(state => state.StateModel);
+      return state.articleBtnClickState;
+    },
+
+    *saveArticleBtnClickState({ payload }, { call, put, select }) {
+      const state = yield select(state => state.StateModel); 
+      state.articleBtnClickState = lo.cloneDeep(payload);
       yield put(action('saveAll')());
     },
 

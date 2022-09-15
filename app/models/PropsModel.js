@@ -280,7 +280,8 @@ export default {
     *getBagProps({ payload }, { put, call, select }) {
       const propsState = yield select(state => state.PropsModel);
       const userState = yield select(state => state.UserModel);
-      const { propsId, always } = payload;
+      const { propsId } = (payload.propsId != undefined) ? payload : undefined;
+      const { always } = (payload.always != undefined) ? payload : false;
 
       if (propsId == undefined) {
         return lo.cloneDeep(propsState.__data.bags[userState.worldId]);

@@ -70,9 +70,14 @@ class ArticlePage extends Component {
   componentDidMount() {
     // 判断是否继续阅读
     if (this.context.continueReading != undefined && this.context.continueReading) {
-      AppDispath({ type: 'StateModel/getArticleState', payload: { }, cb: (v) => {
-        if (v != null) {
-          this.props.dispatch(action('ArticleModel/show')(v));
+      AppDispath({ type: 'StateModel/getAllStates', payload: { }, cb: (states) => {
+        const { articleState, articleBtnClickState } = states;
+        if (articleState != null) {
+          this.props.dispatch(action('ArticleModel/show')(articleState)).then(r => {
+            if (articleBtnClickState != null) {
+              this.props.dispatch(action('SceneModel/processActions')(articleBtnClickState));
+            }
+          });
         } else {
           this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
         }

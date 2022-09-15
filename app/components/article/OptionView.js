@@ -50,6 +50,8 @@ class OptionView extends PureComponent {
                         RootView.remove(key);
                     }} />);
                 }
+                // 记录点击动作
+                this.props.dispatch(action('StateModel/saveArticleBtnClickState')(data));
             });
     }
 

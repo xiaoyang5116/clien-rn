@@ -21,7 +21,6 @@ import {
   View
 } from '../constants/native-ui';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import StoryTabPage from './home/StoryTabPage';
 import HeaderContainer from '../components/article/HeaderContainer';
 import LeftContainer from '../components/article/LeftContainer';
