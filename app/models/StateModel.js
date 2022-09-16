@@ -6,6 +6,7 @@ import {
 
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
+import * as DateTime from '../utils/DateTimeUtils';
 import lo from 'lodash';
 
 export default {
@@ -15,6 +16,7 @@ export default {
   state: {
     articleState: null,           // 文章状态
     articleBtnClickState: null,   // 文章按钮最近一次点击
+    articleSceneClickState: null, // 文章弹出场景选项点击状态
   },
 
   effects: {
@@ -38,7 +40,11 @@ export default {
 
     *saveArticleState({ payload }, { call, put, select }) {
       const state = yield select(state => state.StateModel);
+      if (payload == null || payload == undefined || !lo.isObject(payload))
+        return;
+
       state.articleState = lo.cloneDeep(payload);
+      state.articleState.__time = DateTime.now();
       yield put(action('saveAll')());
     },
 
@@ -48,8 +54,27 @@ export default {
     },
 
     *saveArticleBtnClickState({ payload }, { call, put, select }) {
-      const state = yield select(state => state.StateModel); 
+      const state = yield select(state => state.StateModel);
+      if (payload == null || payload == undefined || !lo.isObject(payload))
+        return;
+
       state.articleBtnClickState = lo.cloneDeep(payload);
+      state.articleBtnClickState.__time = DateTime.now();
+      yield put(action('saveAll')());
+    },
+
+    *getArticleSceneClickState({}, { call, put, select }) {
+      const state = yield select(state => state.StateModel);
+      return state.articleSceneClickState;
+    },
+
+    *saveArticleSceneClickState({ payload }, { call, put, select }) {
+      const state = yield select(state => state.StateModel);
+      if (payload == null || payload == undefined || !lo.isObject(payload))
+        return;
+
+      state.articleSceneClickState = lo.cloneDeep(payload);
+      state.articleSceneClickState.__time = DateTime.now();
       yield put(action('saveAll')());
     },
 

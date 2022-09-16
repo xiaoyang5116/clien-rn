@@ -27,14 +27,6 @@ import { DeviceEventEmitter } from 'react-native';
 import MissionBar from '../../components/mission/MissionBar';
 import { BtnIcon } from '../../components/button';
 
-const ICONS = [
-  { id: 1, img: require('../../../assets/button_icon/1.png'), top: 0, left: 10 },
-  { id: 2, img: require('../../../assets/button_icon/2.png'), top: -1, left: 10 },
-  { id: 3, img: require('../../../assets/button_icon/3.png'), top: 0, left: 10 },
-  { id: 4, img: require('../../../assets/button_icon/4.png'), top: 0, left: 10 },
-  { id: 5, img: require('../../../assets/button_icon/5.png'), top: 0, right: 0 },
-];
-
 const SceneImage = (props) => {
   const { scene } = props;
   const sceneImage = (scene != null && lo.isString(scene.sceneImage)) ? scene.sceneImage : '';
@@ -114,7 +106,10 @@ const StoryTabPage = (props) => {
       && (completedProgressIds.current.indexOf(e.item.progressId) == -1)) {
       return // 倒计时选项没结束不能点击
     }
-    props.dispatch(action('StoryModel/click')(e.item));
+    props.dispatch(action('StoryModel/click')(e.item))
+    .then(r => {
+      props.dispatch(action('StateModel/saveArticleSceneClickState')(e.item));
+    });
   }
 
   const onProgressStart = (data) => {

@@ -46,6 +46,8 @@ import WorldTabBar from './article/WorldTabBar';
 import WorldSelector from './article/WorldSelector';
 import OtherWorld from './article/OtherWorld';
 import PrimaryWorld from './article/PrimaryWorld';
+import ObjectUtils from '../utils/ObjectUtils';
+import { ArticleOptionActions } from '../components/article';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -70,12 +72,18 @@ class ArticlePage extends Component {
   componentDidMount() {
     // 判断是否继续阅读
     if (this.context.continueReading != undefined && this.context.continueReading) {
-      AppDispath({ type: 'StateModel/getAllStates', payload: { }, cb: (states) => {
-        const { articleState, articleBtnClickState } = states;
+      AppDispath({ type: 'StateModel/getAllStates', payload: {}, cb: (states) => {
+        const { articleState, articleBtnClickState, articleSceneClickState } = states;
         if (articleState != null) {
           this.props.dispatch(action('ArticleModel/show')(articleState)).then(r => {
-            if (articleBtnClickState != null) {
-              this.props.dispatch(action('SceneModel/processActions')(articleBtnClickState));
+            if (articleBtnClickState != null && ObjectUtils.hasProperty(articleBtnClickState, ['toScene', 'dialogs'])) {
+              setTimeout(() => { 
+                ArticleOptionActions.invoke(articleBtnClickState, (v) => { // 打开场景选项或者对话框
+                  if (articleSceneClickState != null && ObjectUtils.hasProperty(articleSceneClickState, ['nextChat'])) {
+                    ArticleOptionActions.invoke(articleSceneClickState);  // 切换场景选项
+                  }
+                });
+              }, 0);
             }
           });
         } else {
@@ -87,33 +95,27 @@ class ArticlePage extends Component {
       this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
     }
 
+    // 注册系列事件
     this.listeners.push(
+      // 文章长按点击
       DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
         WorldSelector();
-      })
-    );
-
-    this.listeners.push(
+      }),
+      // 文章单击
       DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_PRESS, (e) => {
         this.refMenuOptions.current.close();
-      })
-    );
-
-    this.listeners.push(
+      }),
+      // 进入章节地图
       DeviceEventEmitter.addListener(EventKeys.GOTO_DIRECTORY_MAP, (id) => {
         this.refDirectory.current.close();
         this.refDirMap.current.open();
-      })
-    );
-
-    this.listeners.push(
+      }),
+      // 返回章节目录
       DeviceEventEmitter.addListener(EventKeys.BACK_DIRECTORY, () => {
         this.refDirectory.current.open();
         this.refDirMap.current.close();
-      })
-    );
-
-    this.listeners.push(
+      }),
+      // 显示背包动画
       DeviceEventEmitter.addListener(EventKeys.ARTICLE_SHOW_BAG_ANIMATION, () => {
         if (!this.hasBagAnimation) {
           this.hasBagAnimation = true;

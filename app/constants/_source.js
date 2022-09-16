@@ -22,6 +22,7 @@ const _images = {
         { id: 'V4_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V4_1080.png') },
         { id: 'V5_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V5_1080.png') },
         { id: 'V6_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V6_1080.png') },
+        { id: 'V7_1080', width: px2pd(1080), height: px2pd(1800), source: require('../../assets/chapter/V7_1080.png') },
         { id: 'BAIYUN_1080', width: px2pd(1080), height: px2pd(2400), source: require('../../assets/chapter/BAIYUN_1080.webp') },
 
         { id: 'HuaLing_1080', width: px2pd(1080), height: px2pd(2300), source: require('../../assets/chapter/HuaLing_1080.png') },
@@ -74,12 +75,14 @@ const _images = {
     bgDialog_bgImages: [
         { id: 1, img: require('../../assets/bg/first_bg.jpg') },
         { id: 2, img: require('../../assets/bg/lottery_bg.jpg') },
+        { id: 3, img: require('../../assets/bg/BAIYUN_1080.webp') },
     ],
 }
 
 const _videos = {
     bgDialog_video: [
         { id: 1, video: require('../../assets/mp4/FLY_480x960.mp4') },
+        // { id: 1, video: require('../../assets/mp4/FLY_480x960.mp4') },
     ],
 }
 

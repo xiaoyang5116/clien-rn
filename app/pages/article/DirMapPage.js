@@ -51,8 +51,11 @@ const DirMapPage = (props) => {
       if (item != undefined) {
         const tmpObj = {};
         lo.forEach(item.map, (v, k) => {
-          if (v.bindVar != undefined && (v.lock == undefined || v.lock)) {
-            tmpObj[k] = { andVarsOn: [v.bindVar] };
+          if ((v.bindVar != undefined || v.andVarsValue != undefined) && (v.lock == undefined || v.lock)) {
+            const obj = {};
+            if (v.bindVar != undefined) obj.andVarsOn = [v.bindVar];
+            if (v.andVarsValue != undefined) obj.andVarsValue = v.andVarsValue;
+            tmpObj[k] = obj;
           }
         });
 
