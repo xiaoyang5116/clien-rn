@@ -19,7 +19,6 @@ import {
 import { 
   Animated, 
   DeviceEventEmitter, 
-  Image,
 } from 'react-native';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -30,6 +29,7 @@ import SpriteSheet from '../components/SpriteSheet';
 import RootView from '../components/RootView';
 import Toast from '../components/toast';
 import PropGrid from '../components/prop/PropGrid';
+import { confirm } from '../components/dialog/ConfirmDialog';
 
 const pxWidth = 1000; // 像素宽度
 const pxHeight = 1300; // 像素高度
@@ -145,6 +145,12 @@ const AnimationLayer = (props) => {
             clearInterval(timer);
           }
         }, 60);
+        if (grids.length > 0) {
+          setTimeout(() => {
+            confirm('你可以歇一歇暂时离开游戏', { title: '确认', cb: () => {
+            }});
+          }, 1000);
+        }
       } });
     });
     return () => {
