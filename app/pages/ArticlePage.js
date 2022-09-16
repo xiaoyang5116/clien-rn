@@ -78,10 +78,16 @@ class ArticlePage extends Component {
           this.props.dispatch(action('ArticleModel/show')(articleState)).then(r => {
             if (articleBtnClickState != null && ObjectUtils.hasProperty(articleBtnClickState, ['toScene', 'dialogs', 'openUI'])) {
               setTimeout(() => { 
-                ArticleOptionActions.invoke(articleBtnClickState, (v) => { // 打开场景选项或者对话框
+                // 恢复场景或者对话框、openUI打开的功能
+                ArticleOptionActions.invoke(articleBtnClickState, (v) => {
+                  // 恢复场景选项、采集系统
                   if (articleSceneClickState != null && ObjectUtils.hasProperty(articleSceneClickState, ['nextChat', 'collect'])) {
-                    ArticleOptionActions.invoke(articleSceneClickState);  // 切换场景选项、采集系统
+                    ArticleOptionActions.invoke(articleSceneClickState);
                   }
+                  // 清理数据
+                  AppDispath({ type: 'StateModel/resetStates', payload: { 
+                    keys: ['articleBtnClickState', 'articleSceneClickState'] 
+                  }});
                 });
               }, 0);
             }
