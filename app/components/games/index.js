@@ -9,6 +9,7 @@ import Scratch from './Scratch';
 import CopyBook from './CopyBook'
 import { AppDispath } from '../../constants';
 import SmashEggs from './SmashEggs'
+import SmallUniverseProject from './SmallUniverseProject';
 
 
 const afterGameClosed = (params) => {
@@ -50,6 +51,11 @@ export default class Games {
             }} />);
         } else if (id == 6) {  // 砸鸡蛋
             const key = RootView.add(<SmashEggs {...params} onClose={() => {
+                RootView.remove(key);
+                afterGameClosed(params);
+            }} />);
+        } else if (id == 7) {  // 小宇宙项目
+            const key = RootView.add(<SmallUniverseProject {...params} onClose={() => {
                 RootView.remove(key);
                 afterGameClosed(params);
             }} />);
