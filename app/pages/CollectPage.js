@@ -8,6 +8,7 @@ import {
   connect,
   action,
   AppDispath,
+  UserPersistedKeys,
 } from "../constants";
 
 import {
@@ -35,6 +36,9 @@ const pxWidth = 1000; // 像素宽度
 const pxHeight = 1300; // 像素高度
 const pxGridWidth = 160;  // 格子像素宽度
 const pxGridHeight = 160; // 格子像素高度
+
+// 是否已经弹窗提示
+let hasConfirmed = false;
 
 const SCENE_ITEMS = [
   { id: 1, source: require('../../assets/collect/item_1.png') },
@@ -145,12 +149,6 @@ const AnimationLayer = (props) => {
             clearInterval(timer);
           }
         }, 60);
-        if (grids.length > 0) {
-          setTimeout(() => {
-            confirm('你可以歇一歇暂时离开游戏', { title: '确认', cb: () => {
-            }});
-          }, 1000);
-        }
       } });
     });
     return () => {
@@ -173,6 +171,17 @@ const CollectProgress = (props) => {
   }
 
   React.useEffect(() => {
+    // 首次提示
+    if (props.time >= 3 && !hasConfirmed) {
+      hasConfirmed = true;
+      AppDispath({ 
+        type: 'UserModel/setPersistedState', 
+        payload: { key: UserPersistedKeys.COLLECT_CONFIRM } 
+      });
+      setTimeout(() => {
+        confirm('你可以歇一歇暂时离开游戏', { title: '确认', cb: () => {}});
+      }, 1000);
+    }
     const timer = setInterval(() => {
       setSeconds((sec) => {
         if (sec <= 0) {
@@ -436,6 +445,10 @@ const CollectPage = (props) => {
         array.push(<GridItem key={g.id} {...g} collectId={props.collectId} />);
       });
       setGrids(array);
+    });
+    props.dispatch(action('UserModel/hasPersistedState')({ key: UserPersistedKeys.COLLECT_CONFIRM }))
+    .then(r => {
+      hasConfirmed = r;
     });
   }, []);
 
