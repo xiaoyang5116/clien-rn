@@ -76,11 +76,11 @@ class ArticlePage extends Component {
         const { articleState, articleBtnClickState, articleSceneClickState } = states;
         if (articleState != null) {
           this.props.dispatch(action('ArticleModel/show')(articleState)).then(r => {
-            if (articleBtnClickState != null && ObjectUtils.hasProperty(articleBtnClickState, ['toScene', 'dialogs'])) {
+            if (articleBtnClickState != null && ObjectUtils.hasProperty(articleBtnClickState, ['toScene', 'dialogs', 'openUI'])) {
               setTimeout(() => { 
                 ArticleOptionActions.invoke(articleBtnClickState, (v) => { // 打开场景选项或者对话框
-                  if (articleSceneClickState != null && ObjectUtils.hasProperty(articleSceneClickState, ['nextChat'])) {
-                    ArticleOptionActions.invoke(articleSceneClickState);  // 切换场景选项
+                  if (articleSceneClickState != null && ObjectUtils.hasProperty(articleSceneClickState, ['nextChat', 'collect'])) {
+                    ArticleOptionActions.invoke(articleSceneClickState);  // 切换场景选项、采集系统
                   }
                 });
               }, 0);
