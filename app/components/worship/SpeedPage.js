@@ -40,7 +40,7 @@ const SpeedPage = props => {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => {
-          if (worshipSpeedUpTime < 0) return Toast.show("供奉时间不足")
+          if (worshipSpeedUpTime <= 0) return Toast.show("供奉时间不足")
           worshipSpeed({ type: "canSpeedTime", time: worshipSpeedUpTime })
         }}>
           <View style={styles.item_container}>

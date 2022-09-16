@@ -19,7 +19,6 @@ export default {
   effects: {
     *reload({ payload }, { call, put, select }) {
       const data = yield call(LocalStorage.get, LocalCacheKeys.WORSHIP_DATA);
-      console.log("data", data);
       const worshipConfig = yield call(GetWorshipDataApi);
       if (data != null) {
         yield put(
@@ -395,8 +394,38 @@ export default {
 
     // 打开大宝箱
     *openBigTreasureChest({ payload }, { put, select, call }) {
-      const { worshipData, worshipConfig, treasureRecords, bigTreasureProgress } = yield select(state => state.WorshipModel);
-      // console.log("treasureRecords", treasureRecords, bigTreasureProgress);
+      const { worshipConfig, } = yield select(state => state.WorshipModel);
+      const { newWorshipData, newBigTreasureProgress, newTreasureRecords } = payload
+      const bigTreasureProgress = newBigTreasureProgress - 100
+
+      // 随机产生宝箱
+      const sortTargets = newTreasureRecords.map(e => ({ ...e }))
+      sortTargets.sort((a, b) => b.rate - a.rate);
+      let prevRange = 0;
+      sortTargets.forEach(e => {
+        e.range = [prevRange, prevRange + e.rate];
+        prevRange = e.range[1];
+      });
+      const randValue = lo.random(0, 100, false);
+      let hit = sortTargets.find(e => randValue >= e.range[0] && randValue < e.range[1]);
+      if (hit == undefined) hit = sortTargets[sortTargets.length - 1];
+      const bigTreasureChest = worshipConfig.treasureChest.find(t => t.id === hit.id)
+      const rewards = yield put.resolve(action('openTreasureChest')({ treasureChestConfig: bigTreasureChest }))
+
+      // 批量发放道具
+      yield put.resolve(action('PropsModel/sendPropsBatch')({ props: rewards }));
+
+      yield call(LocalStorage.set, LocalCacheKeys.WORSHIP_DATA, {
+        worshipData: newWorshipData,
+        bigTreasureProgress,
+        treasureRecords: []
+      });
+      yield put(action('updateState')({
+        worshipData: newWorshipData,
+        bigTreasureProgress,
+        treasureRecords: []
+      }));
+      return rewards
     },
 
     // 领取奖励道具
@@ -421,7 +450,7 @@ export default {
       if (treasureRecords.find(f => f.id === treasureChestConfig.bigTreasureChestConfig.id) === undefined) {
         newTreasureRecords.push({
           ...treasureChestConfig.bigTreasureChestConfig,
-          increase: treasureChestConfig.bigTreasureProgressAdd
+          // increase: treasureChestConfig.bigTreasureProgressAdd
         })
       } else {
         newTreasureRecords = treasureRecords.map(w =>
@@ -429,22 +458,26 @@ export default {
             ? {
               ...w,
               rate: w.rate + treasureChestConfig.bigTreasureChestConfig.rate,
-              increase: w.increase + treasureChestConfig.bigTreasureProgressAdd
+              // increase: w.increase + treasureChestConfig.bigTreasureProgressAdd
             }
             : w,
         );
       }
 
-      yield call(LocalStorage.set, LocalCacheKeys.WORSHIP_DATA, {
-        worshipData: newWorshipData,
-        bigTreasureProgress: newBigTreasureProgress,
-        treasureRecords: newTreasureRecords
-      });
-      yield put(action('updateState')({
-        worshipData: newWorshipData,
-        bigTreasureProgress: newBigTreasureProgress,
-        treasureRecords: newTreasureRecords
-      }));
+      if (newBigTreasureProgress >= 100) {
+        return yield put.resolve(action('openBigTreasureChest')({ newWorshipData, newBigTreasureProgress, newTreasureRecords }));
+      } else {
+        yield call(LocalStorage.set, LocalCacheKeys.WORSHIP_DATA, {
+          worshipData: newWorshipData,
+          bigTreasureProgress: newBigTreasureProgress,
+          treasureRecords: newTreasureRecords
+        });
+        yield put(action('updateState')({
+          worshipData: newWorshipData,
+          bigTreasureProgress: newBigTreasureProgress,
+          treasureRecords: newTreasureRecords
+        }));
+      }
     },
   },
 

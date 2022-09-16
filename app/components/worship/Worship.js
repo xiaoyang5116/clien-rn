@@ -92,13 +92,20 @@ const Worship = props => {
             title={'获得道具'}
             recipe={{ targets: result }}
             getAward={() => {
-              props.dispatch(
-                action('WorshipModel/getRewardsProps')({
-                  rewards: result,
-                  item
-                  // TreasureChestId: item.treasureChestConfig.id,
-                }),
-              );
+              props.dispatch(action('WorshipModel/getRewardsProps')({ rewards: result, item }))
+                .then((result) => {
+                  if (result === undefined) return
+                  const key = RootView.add(
+                    <RewardsPage
+                      title={'获得供奉奖励'}
+                      recipe={{ targets: result }}
+                      getAward={() => {}}
+                      onClose={() => {
+                        RootView.remove(key);
+                      }}
+                    />,
+                  );
+                });
             }}
             onClose={() => {
               RootView.remove(key);
@@ -115,14 +122,13 @@ const Worship = props => {
 
   const Title = () => {
     const worshipProp = worshipData.find(item => item.status === 2);
-    // console.log("worshipProp", worshipProp);
     if (worshipProp !== undefined) {
       const diffTime = Math.floor((now() - worshipProp.beginTime) / 1000);
       // 当前需要的时间
       const currentNeedTime = worshipProp.needTime - diffTime;
       if (currentNeedTime > 0) {
         return (
-          <View style={{ alignItems: 'center' }}>
+          <View style={styles.titleContainer}>
             <Text>{worshipProp.name}</Text>
             <LeftTime
               currentNeedTime={currentNeedTime}
@@ -136,14 +142,14 @@ const Worship = props => {
         changeWorship(worshipProp);
       }
       return (
-        <View>
+        <View style={styles.titleContainer}>
           <Text>{worshipProp.name}</Text>
           <Text>00:00:00</Text>
         </View>
       );
     }
     return (
-      <View>
+      <View style={styles.titleContainer}>
         <Text>添加供奉</Text>
         <Text></Text>
       </View>
@@ -153,14 +159,14 @@ const Worship = props => {
   // 宝箱进度
   const BigTreasureProgress = () => {
 
-    const openBigTreasure = () => {
-      props.dispatch(action('WorshipModel/openBigTreasureChest')())
-    }
+    // const openBigTreasure = () => {
+    //   // props.dispatch(action('WorshipModel/openBigTreasureChest')())
+    // }
 
     return (
       <View>
         <Text>供奉进度: {`${bigTreasureProgress}%`}</Text>
-        {
+        {/* {
           bigTreasureProgress > 100 ? (
             <TouchableWithoutFeedback onPress={openBigTreasure}>
               <View style={{ marginTop: 20 }}>
@@ -168,8 +174,7 @@ const Worship = props => {
               </View>
             </TouchableWithoutFeedback>
           ) : <></>
-        }
-
+        } */}
       </View>
     )
   }
@@ -369,4 +374,8 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     marginRight: 8,
   },
+  titleContainer: {
+    alignItems: 'center',
+    height: 50
+  }
 });

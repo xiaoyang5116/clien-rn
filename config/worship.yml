@@ -61,8 +61,8 @@ data: {
               # 随机道具
               props: {
                   p100: [
-                      { props: [{propId: 26, num: 1}, {propId: 27, num: 1}], rate: 20, },
-                      { props: [{propId: 26, num: 3}, {propId: 27, num: 3}], rate: 80, },
+                      { props: [{propId: 28, num: 1}, {propId: 29, num: 1}], rate: 20, },
+                      { props: [{propId: 28, num: 3}, {propId: 29, num: 3}], rate: 80, },
                   ],
                 },
           },
@@ -78,8 +78,8 @@ data: {
               # 随机道具
               props: {
                   p100: [
-                      { props: [{propId: 26, num: 1}, {propId: 27, num: 1}], rate: 20, },
-                      { props: [{propId: 26, num: 3}, {propId: 27, num: 3}], rate: 80, },
+                      { props: [{propId: 28, num: 1}, {propId: 29, num: 1}], rate: 20, },
+                      { props: [{propId: 28, num: 3}, {propId: 29, num: 3}], rate: 80, },
                   ],
                 },
           },
