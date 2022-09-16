@@ -111,12 +111,6 @@ class FirstPage extends Component {
             <ImageButton {...BTN_STYLE} source={require('../../assets/button/quit_read.png')} selectedSource={require('../../assets/button/quit_read_selected.png')} onPress={() => {
               RootNavigation.navigate('BookMain');
             }} />
-
-            {/* 供奉 */}
-            <ImageButton {...BTN_STYLE} source={require('../../assets/button/quit_read.png')} selectedSource={require('../../assets/button/quit_read_selected.png')} onPress={() => {
-              // RootNavigation.navigate('BookMain');
-              WorshipModal.show()
-            }} />
           </View>
           <Drawer ref={this.refDrawer} direction={'left'} margin={60} style={{ backgroundColor: '#a49f99', borderRadius: 10, overflow: 'hidden' }}>
             <SafeAreaView style={{ flex: 1 }}>
