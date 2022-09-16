@@ -1,6 +1,6 @@
 
 import { 
-  action, errorMessage,
+  action, errorMessage, LocalCacheKeys,
 } from "../constants";
 
 import lo from 'lodash';
@@ -11,6 +11,7 @@ import { GetBooksDataApi } from "../services/GetBooksDataApi";
 import { GetBookConfigDataApi } from "../services/GetBookConfigDataApi";
 import { GetCollectDataApi } from "../services/GetCollectDataApi";
 import { now } from '../utils/DateTimeUtils';
+import LocalStorage from "../utils/LocalStorage";
 
 const pxWidth = 1000; // 像素宽度
 const pxHeight = 1300; // 像素高度
@@ -55,6 +56,16 @@ export default {
           }
         }
       }
+
+      const cache = yield call(LocalStorage.get, LocalCacheKeys.COLLECT_DATA);
+      if (cache != null && lo.isObject(cache)) {
+        lo.assign(collectState, cache);
+      }
+    },
+
+    *save({}, { call, put, select }) {
+      const collectState = yield select(state => state.CollectModel);
+      yield call(LocalStorage.set, LocalCacheKeys.COLLECT_DATA, lo.pick(collectState, ['gridsData', 'status', 'bags']));
     },
 
     *generateGridData({ payload }, { call, put }) {
@@ -174,6 +185,9 @@ export default {
           status.times += 1;
         }
       }
+
+      // 保存状态
+      yield put.resolve(action('save')());
       return collectState.gridsData[collectId];
     },
 
@@ -204,6 +218,9 @@ export default {
           bag.push({ propId, num });
         }
       });
+
+      // 保存状态
+      yield put.resolve(action('save')());
     },
 
     *getVisableGrids({payload}, { call, put, select }) {
@@ -232,6 +249,8 @@ export default {
         bag.length = 0;
       }
 
+      // 保存状态
+      yield put.resolve(action('save')());
       return list;
     },
   },
