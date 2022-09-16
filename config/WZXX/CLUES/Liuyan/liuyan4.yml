@@ -5,7 +5,7 @@ clues:
     type: '流言',
     filterCondition: {locaton: '落霞峰',},
     title: '扛着锄头的村民',
-    content: '幽暗森林和山谷里面都可能有黄心叶',
+    content: ['幽暗森林和山谷里面都可能有黄心叶',],
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
     groupId: '李家村',
   }

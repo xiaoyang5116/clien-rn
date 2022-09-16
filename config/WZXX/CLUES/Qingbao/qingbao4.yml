@@ -5,7 +5,7 @@ clues:
     type: '情报',
     filterCondition: {locaton: '白城',},
     title: '杀手线索',
-    content: '寻找到杀手的常居点',
+    content: ['寻找到杀手的常居点',],
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
     groupId: '李家村',
   }

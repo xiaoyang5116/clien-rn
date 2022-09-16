@@ -100,6 +100,7 @@ scenes: [
       { id: 'v2', min: 0, max: 1 },
       { id: 'v3', min: 0, max: 1 },
       { id: 'v4', min: 0, max: 1 },
+      { id: 'v888', min: 0, max: 1 },
 
       { id: '__progress1__', min: 0, max: 100, defaultValue: 80, alias: '【李森炎的体力状态】' },
       { id: '__progress2__', min: 0, max: 100, defaultValue: 50, alias: '【李森炎的技能状态】' },
@@ -107,7 +108,7 @@ scenes: [
 
     # 动作定义
     actions: [
-    #体力+10
+      #体力+10
       { id: 'a1', cmd: 'var', params: '__progress1__ += 10' },
       #技能状态-10
       { id: 'a2', cmd: 'var', params: '__progress2__ -= 10' },
@@ -123,8 +124,9 @@ scenes: [
 
     # 事件定义
     events: [
-       { type: 'enter', nextChat: 'c1',}, 
-      # { type: 'enter', dialogs: ['Screen1']},
+       { type: 'enter', andVarsValue: ['@clues_liuyan4 != 1','@clues_liuyan5 != 1'], dialogs: ['p0'],}, 
+       { type: 'enter', andVarsValue: ['@clues_liuyan4 == 1','@clues_liuyan5 == 1'], nextChat: 'c0',}, 
+      { type: 'enter', andVarsOn: ['v888'], nextChat: 'c1',},
     ],
 
     # 对话选项
@@ -133,7 +135,7 @@ scenes: [
       { 
         id: 'c0', desc: '李森炎看出他外强中干，也丝毫不慌', 
         options: [ 
-          { title: '交战', andVarsValue: ['@clues_liuyan6 != 1','@clues_liuyan4 != 1','@clues_liuyan5 != 1'],toScene: 'S_00Test03',}, 
+          { title: '交战', varsOn: ['v888'], toScene: 'S_00Test03',}, 
         ],
       },
       { 
@@ -187,7 +189,12 @@ scenes: [
 
    # 对话框
     dialogs: [
-     
+                   {id: 'p0',
+                    style: "1A",
+                    title: '情报获得',
+                    content: '获得线索之后才可开启后续剧情',
+                    toChapter: "WZXX_M1_N1_C009_[N1]",
+                  },
       #死亡1
       {
         id: 'gameover01',

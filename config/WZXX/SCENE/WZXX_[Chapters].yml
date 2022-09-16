@@ -215,13 +215,54 @@ scenes: [
           { id: "WZXX_M1_N1_C033",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C033FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_C030",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_C033",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C034",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C034FZ",min: 0, max: 1 },
+
           { id: "WZXX_M1_N1_C035",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C035FZ",min: 0, max: 1 },
+
           { id: "WZXX_M1_N1_C036",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C036FZ",min: 0, max: 1 },
+
           { id: "WZXX_M1_N1_C037",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C037FZ",min: 0, max: 1 },
+
           { id: "WZXX_M1_N1_C038",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C038FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C988",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C988FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C989",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C989FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C990",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C990FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C991",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C991FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C992",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C992FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C993",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C993FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C994",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C994FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C995",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C995FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C996",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C996FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C997",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C997FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C998",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C998FZ",min: 0, max: 1 },
+
           { id: "WZXX_M1_N1_C999",min: 0, max: 1 },
         ],
 

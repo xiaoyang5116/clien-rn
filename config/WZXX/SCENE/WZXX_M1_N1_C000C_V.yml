@@ -16,6 +16,9 @@ scenes: [
       { id: "v_icon_101D", min: 0, max: 1 },
       { id: "v_icon_102D", min: 0, max: 1 },
       { id: "v_icon_100D", min: 0, max: 1 },
+
+      { id: "yangtai_1", min: 0, max: 1 },
+      # { id: "bingxiang_1", min: 0, max: 1 },
       
 
       ],
@@ -33,22 +36,24 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000C_V', desc: '回忆', 
         options: [ 
-          { title: "【辞职当天】",dialogs: ['d3'],toScene: 'C000C_V_MAP_0_4', varsOn: ['v_icon_100','v_icon_103',]},
+          { title: "【辞职当天】",
+          # dialogs: ['d3'],
+          toScene: 'C000C_V_MAP_0_4', varsOn: ['v_icon_100',]},
         ],
       },
    
     
         ],
           # 对话框
-    dialogs: [    
+    # dialogs: [    
 
-     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
-        sections: [
-         {
-          key: 'p1',
-          content: ['李森炎回忆起自己离职当天', '那些人的音容还历历在目','如果我没有穿越的话','或许还能再见到他们……',],
-    },]}
-    ],
+    #  {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+    #     sections: [
+    #      {
+    #       key: 'p1',
+    #       content: ['李森炎回忆起自己离职当天', '那些人的音容还历历在目','如果我没有穿越的话','或许还能再见到他们……',],
+    # },]}
+    # ],
 
   },
 
@@ -80,7 +85,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  
-      #  dialogs: ['d3'], 
+       dialogs: ['d3'], 
       andVarsOff: ['ONE_OPEN_0',],   nextChat: 'C1'  },
        { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
        { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
@@ -89,42 +94,44 @@ scenes: [
 
     # 对话选项
     chats: [
-      { 
-        id: 'C1', desc: '前台的小姐姐正在埋头工作', 
+      {
+        id: 'C1', desc: "前台小姐姐正在埋头工作,\n无所事事，去市场部找李小姐谈谈吧",
         options: [ 
-         { title: '【这里没人搭理你】',varsOn: ['ONE_OPEN_0',], toScene: 'C000C_V_MAP_1_2'}, 
+         { title: '【这里没人搭理你，离开】',varsOn: ['ONE_OPEN_0',], toScene: 'C000C_V_MAP_-1_3'}, 
         ],
       },
+
       { 
         id: 'C2', desc: '去找李小姐沟通，或许可以解锁新的东西', 
         options: [ 
          { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
         ],
       },
+
       { 
         id: 'C3', desc: '去找王经理沟通，或许可以解锁新的东西', 
         options: [ 
          { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
         ],
       },
+
       { 
         id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
         options: [ 
          { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
         ],
       },
-
     ],
-#  # 对话框
-#     dialogs: [    
+ # 对话框
+    dialogs: [    
 
-#      {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
-#         sections: [
-#          {
-#           key: 'p1',
-#           content: ['李森炎回忆起自己离职当天', '那些人的音容还历历在目','如果我没有穿越的话','或许还能再见到他们……',],
-#     },]}
-#     ],
+     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+        sections: [
+         {
+          key: 'p1',
+          content: ['李森炎回忆起自己离职当天', '那些人的音容还历历在目','如果我没有穿越的话','或许还能再见到他们……',],
+    },]}
+    ],
   },
           
  #===========事件场景==============
@@ -147,7 +154,8 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "v1", min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -166,21 +174,22 @@ scenes: [
       { 
         id: 'C1', desc: '一进公司第一眼看到的便是市场部，同事大部分都出去跑业务了', 
         options: [ 
-         { title: '【找李小姐谈话】', dialogs: ['Screen1'] }, 
-      
+        { title: '【和市场部的李小姐谈话】', varsOn: ['v1','biaoqianv1',],  dialogs: ['Screen1'], icon: { id: 1, bindVar: 'biaoqianv1' },}, 
+        { title: '【去找王经理对话】', andVarsOn: ['v1'], toScene: 'C000C_V_MAP_-1_2'}, 
         ],
       },
       #
        { 
         id: 'C3', desc: '去找王经理沟通，或许可以解锁新的东西', 
         options: [ 
-         { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
+        { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
         ],
       },
+      
       { 
         id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
         options: [ 
-         { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
+        { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
         ],
       },
 
@@ -190,11 +199,11 @@ scenes: [
    
  # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '李小姐谈话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen1',style: 6, title: '和李小姐谈话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['李小姐：','“可以啊，李森炎，没想到你能把赵雅弄走。”','李森炎不确定她是不是在挖苦，没说话','“悄悄跟你说，其实我也不喜欢她。”',
           '“你把她弄走了，我还要谢谢你呢!”','李森炎笑了笑，“没事，等你上位了记得请我吃饭就行”','“没问题，就算不晋升我也可以请你哦。”','说完李小姐向他抛了个媚眼','这话李森炎可不敢接，找了个借口离去',],
-          btn: [{title: '找王经理',toScene: 'C000C_V_MAP_-1_2',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_100',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101','WZXX_M1_N1_C000C_V/v_icon_100D',]},]},
+          btn: [{title: '找王经理', nextChat: 'C1' ,varsOff: ['WZXX_M1_N1_C000C_V/v_icon_100',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101','WZXX_M1_N1_C000C_V/v_icon_100D',]},]},
 
          
     ],},
@@ -221,6 +230,8 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "v1", min: 0, max: 1 },
 
     ],
 
@@ -248,11 +259,12 @@ scenes: [
          { title: '【去找财务主管对话】', toScene: 'C000C_V_MAP_0_1'}, 
         ],
       },
-      #
+       
       { 
         id: 'C1', desc: '人事部的经理为人和善，起码对李森炎还算不错', 
         options: [ 
-         { title: '【遇见王经理】', dialogs: ['Screen1'] }, 
+        { title: '【见到王经理，顺便聊两句】', varsOn: ['v1','biaoqianv1',],dialogs: ['Screen1'] , icon: { id: 1, bindVar: 'biaoqianv1' },},
+         { title: '【去找财务主管对话】',andVarsOn: ['v1'], toScene: 'C000C_V_MAP_0_1'}, 
         ],
       },
       { 
@@ -266,11 +278,11 @@ scenes: [
    
  # 对话框
     dialogs: [
-          { id: 'Screen1',style: 6, title: '王经理对话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen1',style: 6, title: '和王经理对话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['王经理：','“其实挺可惜的，你的工作态度和能力我都看在眼里。”','李森炎填完离职手续，感觉一身轻松，没所谓地笑了笑。','“没事的，正好我也想做点自己的事情。”',
           '“找到下家了吗？”','“没有，我打算自己创业。”','王经理不置可否，创业十有九输，但他不想打击眼前这个年轻人。','就算失败了，也是一项值得肯定的阅历。','毕竟他敢迈出这一步，从一个司机到一个创业者。','这种变化不可谓不大，属实难得。','“加油！”',],
-          btn: [{title: '去财务部',toScene: 'C000C_V_MAP_0_1',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_101',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_102','WZXX_M1_N1_C000C_V/v_icon_101D']},]},
+          btn: [{title: '去财务部',nextChat: 'C1' ,varsOff: ['WZXX_M1_N1_C000C_V/v_icon_101',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_102','WZXX_M1_N1_C000C_V/v_icon_101D']},]},
 
          
     ],},
@@ -297,6 +309,8 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "v1", min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -318,6 +332,7 @@ scenes: [
         { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
         ],
       },
+
       { 
         id: 'C4', desc: '去找王经理沟通，或许可以解锁新的东西', 
         options: [ 
@@ -328,9 +343,11 @@ scenes: [
       { 
         id: 'C1', desc: '一部分人在埋头工作，还有人在窃窃私语，似乎是在说关于李森炎的话题', 
         options: [ 
-         { title: '【找财务部主管对话】', dialogs: ['Screen1'] }, 
+        { title: '【找财务部主管对话】', varsOn: ['v1','biaoqianv1',],dialogs: ['Screen1'] , icon: { id: 1, bindVar: 'biaoqianv1' },},
+        { title: '【去找总经理谈谈】', andVarsOn: ['v1'], toScene: 'C000C_V_MAP_0_-1'},
         ],
       },
+
       { 
         id: 'C2', desc: '一部分人在埋头工作，还有人在窃窃私语，总之也没什么人搭理你', 
         options: [ 
@@ -345,7 +362,7 @@ scenes: [
           sections: [
           { key: 'P1', content: ['财务主管：','“你来财务部干嘛？薪水下个月发。”','李森炎：“……”','这人怎么见谁都以为是来跟他讨钱的啊！',
           ],
-          btn: [{title: '去找总经理对话',toScene: 'C000C_V_MAP_0_-1',varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,varsOn: ['WZXX_M1_N1_C000C_V/v_icon_102D','WZXX_M1_N1_C000C_V/v_icon_104']},]},
+          btn: [{title: '去找总经理对话',nextChat: 'C1' , varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,varsOn: ['WZXX_M1_N1_C000C_V/v_icon_102D','WZXX_M1_N1_C000C_V/v_icon_104']},]},
     ],},
     ],
   },
@@ -353,7 +370,6 @@ scenes: [
        {
   # NPC2
     id: 'C000C_V_MAP_1_2', name: '赵某旁边',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
@@ -420,7 +436,7 @@ scenes: [
           sections: [
           { key: 'P1', content: ['赵某：','“……”','“……”','“你有什么事情吗？”','“没什么，我就随便看看，我今天就离职了。”','赵某沉默了一下。','思考着有什么可以用来祝福的词汇。','最后，他开口。','“一路好走。”','“……”','这人可真会说话。',
           ],
-          btn: [{title: '去找董事长秘书',toScene: 'C000C_V_MAP_0_0',},]},
+          btn: [{title: '去找董事长秘书',nextChat: 'C1'},]},
     ],},
     ],
   },
@@ -466,6 +482,7 @@ scenes: [
          { title: '【去找李小姐对话】', toScene: 'C000C_V_MAP_-1_3'}, 
         ],
       },
+
       { 
         id: 'C2', desc: '去找李小姐沟通，或许可以解锁新的东西', 
         options: [ 
@@ -473,12 +490,14 @@ scenes: [
          { title: '【和董事长秘书谈话】', nextChat: 'C1' }
         ],
       },
+
       { 
         id: 'C3', desc: '去找王经理沟通，或许可以解锁新的东西', 
         options: [ 
          { title: '【去找王经理对话】', toScene: 'C000C_V_MAP_-1_2'}, 
         ],
       },
+
       { 
         id: 'C4', desc: '去找财务主管沟通，或许可以解锁新的东西', 
         options: [ 
@@ -528,9 +547,9 @@ scenes: [
     chats: [
       #
       { 
-        id: 'C1', desc: '未经总经理同意，不可随意进入', 
+        id: 'C1', desc: "未经总经理同意，不可随意进入,\n想想也没什么可说的，干脆离开吧", 
         options: [ 
-         { title: '【离开公司】', toScene: 'C000C_V1_MAP_1_5'}, 
+         { title: '【离开这里】', toScene: 'C000C_V1_MAP_1_5'}, 
         
      
         ],
@@ -623,7 +642,7 @@ scenes: [
       { 
         id: 'C1', desc: '挑高的门厅和气派的大门，彰显华贵', 
         options: [ 
-         { title: '【直接回小区】', toScene: 'C000C_V3_MAP_1_-1'}, 
+         { title: '【离开公司，回自家小区】', toScene: 'C000C_V3_MAP_1_-1'}, 
       
       
         ],
@@ -1093,7 +1112,7 @@ scenes: [
       { 
         id: 'C1', desc: '时间还早，小区门口没什么人', 
         options: [ 
-         { title: '【小区王大姐】', dialogs: ['Screen1'] }, 
+         { title: '【刚好遇到了物业王大姐】', dialogs: ['Screen1'] }, 
       
         ],
       },
@@ -1152,7 +1171,7 @@ scenes: [
       { 
         id: 'C1', desc: '楼下有很多居民在散步，几个大妈坐在一起唠嗑', 
         options: [ 
-         { title: '【小区李阿姨】', dialogs: ['Screen1'] }, 
+         { title: '【被保洁李阿姨拦着聊天】', dialogs: ['Screen1'] }, 
          
       
         ],
@@ -1211,10 +1230,10 @@ scenes: [
       
        #
       { 
-        id: 'C1', desc: '迎面遇上房东阿姨', 
+        id: 'C1', desc: '迎面遇上租房的房东', 
         options: [ 
        
-         { title: '【房东】', dialogs: ['Screen2'] }, 
+         { title: '【对房东问声好】', dialogs: ['Screen2'] }, 
       
         ],
       },
@@ -1223,7 +1242,7 @@ scenes: [
  # 对话框
     dialogs: [
    
-          { id: 'Screen2',style: 6, title: '与房东说话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen2',style: 6, title: '与房东的对话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['“李森炎，你合同快到期了，这个月续的话，要涨房租了。”','“啊，要涨房租吗？”','“是啊，最近房价大涨，附近这片小区早就已经涨了，我已经尽量给你延后了。”','说话间，房东无意瞥到李森炎手中的离职证明：“你离职了？”','“是啊，那公司待不下去了。”','“那行吧。”','房东转身就走开了。','李森炎愣了一下，喊道：“涨房租的事情怎么算，你还没说涨多少啊……”','“先不涨了，等你找到工作再说。” ','“……”','李森炎心中一暖',
           ],
@@ -1346,13 +1365,13 @@ scenes: [
       { 
         id: 'C1', desc: '回到家，你决定首先————', 
         options: [ 
-          { title: '【打开电脑】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
           # { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5'},
           # { title: '【换件衣服】', toScene: 'C000C_V2_MAP_-1_5'},  
           { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
           # { title: '【洗衣服】', toScene: 'C000C_V2_MAP_-1_6'},
           { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
           { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5',  icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
+          { title: '【打开电脑】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
           # { title: '【去洗手间】', toScene: 'C000C_V2_MAP_0_4'},
         ],
       },
@@ -1385,6 +1404,9 @@ scenes: [
     { id: "biaoqianv5", min: 0, max: 1 } ,
     { id: "biaoqianv6", min: 0, max: 1 } ,
     { id: "biaoqianv7", min: 0, max: 1 } ,
+    { id: "biaoqianv8", min: 0, max: 1 } ,
+    { id: "biaoqianv9", min: 0, max: 1 } ,
+    { id: "biaoqianv10", min: 0, max: 1 } ,
     ],
 
     # 动作定义
@@ -1392,7 +1414,8 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter',  nextChat: 'C0' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/yangtai_1'], nextChat: 'C1' },
 
     ],
 
@@ -1400,9 +1423,42 @@ scenes: [
     chats: [
       #
       { 
+        id: 'C0', desc: '电脑桌上有很多随笔和便签，看上去杂乱但有序', 
+        options: [ 
+         { title: '【打开电脑】', nextChat: 'C2'}, 
+        ],
+      },
+
+       { 
+        id: 'C2', desc: '打开电脑，李森炎下意识的对着电脑发呆，该做点什么呢？', 
+        options: [ 
+         { title: '【玩游戏】', nextChat: 'C3'}, 
+         { title: '【写点东西】', nextChat: 'C4'}, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: "李森炎打开游戏，熟练的玩了一会儿游戏\n觉得没什么意思，索性关掉电脑",
+        options: [ 
+         { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8']},
+          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9']},
+          { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5', icon: { id: 1, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10']},
+        ],
+      },
+
+       { 
+        id: 'C4', desc: "打开电脑，李森炎点开文档\n心中一大堆志向和抱负想要去写出来，但是却又无从下手",
+        options: [ 
+         { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8']},
+          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9']},
+          { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5', icon: { id: 1, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10']},
+        ],
+      },
+
+      { 
         id: 'C1', desc: '电脑桌上有很多随笔和便签，看上去杂乱但有序', 
         options: [ 
-         { title: '【李森炎在房间里坐下，冷静思考】', dialogs: ['Screen1'],varsOn: ['v_icon_103'] }, 
+         { title: '【李森炎坐下，冷静思考】', dialogs: ['Screen1'],varsOn: ['v_icon_103'] }, 
         ],
       },
 
@@ -1616,7 +1672,7 @@ scenes: [
       { 
         id: 'C1', desc: '只有几个鸡蛋和几瓶啤酒，里里外外都透露着穷酸二字……', 
         options: [ 
-         { title: '【随便喝点】',nextChat: 'C2' },
+         { title: '【随便喝点】',  nextChat: 'C2' },
       
         ],
       },
@@ -1730,18 +1786,18 @@ scenes: [
       { 
         id: 'C1', desc: '微风拂过，拿瓶啤酒，抽根烟，也还算惬意', 
         options: [ 
-         { title: '【休息一会儿，思考人生】', nextChat: 'C2' },
+         { title: '【休息一会儿，思考人生】', varsOn: ['WZXX_M1_N1_C000C_V/yangtai_1','WZXX_M1_N1_C000C_V/v_icon_103'] , nextChat: 'C2' },
       
         ],
       },
 
       { 
-        id: 'C2', desc: '没劲，去做点别的', 
+        id: 'C2', desc: '脑海中忽然闪过一个点子，你决定——', 
         options: [ 
           # { title: '【换件衣服】', toScene: 'C000C_V2_MAP_-1_5'},  
           # { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5'},
           { title: '【洗漱睡觉】', toScene: 'C000C_V2_MAP_0_4',  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
-          { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+          { title: '【去电脑桌把想法记下来】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
           # { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5'},
           { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
       
@@ -1872,7 +1928,7 @@ scenes: [
            links: [], path: [[-2, 2],[-2, 3],[-2, 4], ]
            },
           { point: [-2, 4], title: '电脑桌',
-           toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 100, bindVar: 'WZXX_M1_N1_C000C_V/v_icon_103' },
+           toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 100, bindVar: 'WZXX_M1_N1_C000C_V/v_icon_103', }, 
            links: [[-2, 5],] ,
            },
           { point: [-2, 5], title: '床', 

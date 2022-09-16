@@ -49,7 +49,7 @@ scenes: [
         { 
           id: 'WZXX_M1_N1_C001C_TO_C002', desc: '选项', 
           options: [ 
-            { title: "【阅读下一章】", toChapter: "WZXX_M1_N1_C002_[N1]" },
+            { title: "【继续回忆】", toChapter: "WZXX_M1_N1_C002_[N1]" },
           ],
         },
         #
