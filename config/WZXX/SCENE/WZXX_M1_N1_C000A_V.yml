@@ -11,6 +11,8 @@ scenes: [
       { id: "v_icon_100", min: 0, max: 1 },
       { id: "v_icon_101", min: 0, max: 1 },
       { id: "v_icon_102", min: 0, max: 1 },
+      { id: "LRGJ_A", min: 0, max: 1 },
+      { id: "LRGJ_B", min: 0, max: 1 },
       
       
       # { id: "renwubiaoqian_100", min: 0, max: 1 },
@@ -566,6 +568,8 @@ scenes: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "v1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
@@ -578,25 +582,60 @@ scenes: [
       { 
         id: 'C1', desc: '这亭子建的很好看，路过的人经常在亭中纳凉', 
         options: [ 
-         { title: '【就在这儿采集草药】', andVarsValue: ['@clues_xiansuo1 == 1'],collect: '4',nextChat: 'C2'   }, 
+         { title: '【就在这儿采集草药】', andVarsValue: ['@clues_xiansuo1 == 1'], collect: '4', nextChat: 'C2'   }, 
          { title: '【去旁边看看】', nextChat: 'C3', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'], },  
         #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
         #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
         #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       }, 
+
       { 
-        id: 'C2', desc: '四味药草全备齐了', 
-        options: [ 
-         { title: '吃下药丸',toChapter: "WZXX_M1_N1_C002_[N6]" },
+        id: 'C2', desc: '四味药草全备齐了，只需要一个炼丹炉将草药炼成药丸，需要寻找一个能够炼丹的地方', 
+        options: [  
+         { title: '找路人打听一下',nextChat: 'C1' },
         ],
       },
+
+
        { 
         id: 'C3', desc: '坐了一会儿，周围路人全无交流，气氛有点尴尬，李森炎起身离开', 
         options: [ 
          { title: '离开',nextChat: 'C1' },
         ],
-      },],
+      },
+
+       { 
+        id: 'C4', desc: "天水亭离市区太远\n迎来送往的人并不多\n而且各自看上去都神色匆匆\n希望能有人知道哪里可以炼制丹药",
+        options: [  
+        { title: '【神色奇怪的农民】',  varsOn: ['v1','biaoqianv2',], nextChat: 'C4A' ,icon: { id: 1, bindVar: 'biaoqianv2' },}, 
+        { title: '【坐在亭子中休歇的中年男人】', andVarsOn: ['v1'], nextChat: 'C4B'}, 
+        ],
+      },
+
+      { 
+        id: 'C4A', desc:  "李森炎半天才拦住了一个神色奇怪的农民\n询问农民知不知道哪里有炼制丹药的地方\n农民奇怪的看了他一眼\n摆摆手，快步离开了",
+        options: [
+        { title: '【好吧……】',  nextChat: 'C4' }, 
+        ],
+      },  
+
+       { 
+        id: 'C4B', desc:  "李森炎坐进亭子里和那中年男人搭话\n“大哥你好，你知道那边能够炼制丹药吗？”\n听着李森炎的话，中年男人颇为意外的上下打量了他一眼\n“你要炼制丹药？”\n语气带着不可置信，等李森炎肯定的点点头后他才说\n“我也不太熟知，只是听人说起过，老人故居里面有位德高望重的老人似乎可以炼制丹药。”",
+        options: [
+        { title: '【机不可失，立刻赶去老人故居】', varsOff: ['v1'], varsOn: ['WZXX_M1_N1_C000A_V/LRGJ_A',],   toScene: 'C000A_V_MAP_1_-2'},
+        { title: '【严谨一点，详细追问一下】',   nextChat: 'C5'}, 
+        ],
+      },  
+
+      { 
+        id: 'C4A', desc:  "李森炎赶紧拿出刚才采的一些多余的草药送给中年男人\n“大哥，你真是帮了我大忙了，这些草药虽然不是什么名贵的药材，但是也能滋养身体，您务必收下。”\n那中年大叔，看见李森炎这么会来事，乐呵呵的说\n“哎哟，你这小伙子，也不是什么大忙，我这儿还有一壶好酒，我算是喝不上了，你带着去见那老人吧，那老头是个酒痴你带上这个，他会帮你的。”",
+        options: [
+        { title: '【意外收获，收下前往老人故居】', useProps: '1012,3', sendProps: '367,1', varsOn: ['WZXX_M1_N1_C000A_V/LRGJ_B',], toScene: 'C000A_V_MAP_1_-2' }, 
+        ],
+      }, 
+
+      ],
         # 对话框
     # dialogs: [
     #       { id: 'Screen4',style: 6, title: '在亭子里坐坐', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
@@ -882,8 +921,8 @@ scenes: [
         #  { title: '【李家】', toScene: 'C000A_V_MAP_-2_0'},  
         #  { title: '【西市二街】', toScene: 'C000A_V_MAP_-1_1'},    
         #  { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
-        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
         { 
@@ -931,8 +970,8 @@ scenes: [
          { title: '【米铺】', toScene: 'C000A_V_MAP_-3_0'},
         #  { title: '【西市三街】', toScene: 'C000A_V_MAP_-2_-1'},      
         #  { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'}, 
-        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+         { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+         { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
       
@@ -1178,6 +1217,7 @@ scenes: [
         # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
+
       { 
         id: 'C2', desc: '这边很程度中规中矩', 
         options: [ 
@@ -1193,7 +1233,7 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
      #横图显示
-    sceneImage: 'BGT_50',
+    sceneImage: 'BGT_64',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -1555,6 +1595,9 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/LRGJ_A'], nextChat: 'C3' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/LRGJ_B'], nextChat: 'C4' },
+       
     ],
     # 对话选项
     chats: [
@@ -1576,8 +1619,29 @@ scenes: [
          { title: '离开', nextChat: 'C1' }, 
         ],
       },
+
+       { 
+        id: 'C3', desc: "李森炎匆忙赶来老人故居\n果然看见一个老人在里面神神叨叨的说些什么\n李森炎礼貌走近，开口询问炼丹的事情\n那老人深深打量他一眼，摆摆手说很没空，让他快些离开",   
+        options: [ 
+         { title: '得想个办法让老人愿意帮他', nextChat: 'C3A' }, 
+        ],
+      },
+
+      { 
+        id: 'C3A', desc: "李森炎灵光一闪，觉得自己刚才匆匆上门，着实有点莽撞了\n起码得带点东西上门\n得找人打探一下老人的喜好\n刚走出们准备找人打听一下老人的喜好\n忽然听见还未阖上门的房中幽幽传来一声\n“酒后高歌且放狂，门前闲事莫思量”",   
+        options: [ 
+         { title: '酒！去买酒！', nextChat: 'C3B' }, 
+        ],
+      },
+
+      { 
+        id: 'C3B', desc: "李森炎准备去买酒\n但反应过来，原身是个穷小子，身上怎么可能会有钱\n眼下只能把刚采集的野草卖了换钱再去买酒",   
+        options: [ 
+         { title: '去商铺', toScene: 'C000A_V_MAP_3_-1' }, 
+        ],
+      },
       ],
-       # 对话框
+    # 对话框
     # dialogs: [
     #       { id: 'Screen14',style: 6, title: '和他聊聊天', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
     #       sections: [
@@ -1730,13 +1794,14 @@ scenes: [
         options: [ 
         { title: '【逛一会儿】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},   
         { title: '【商铺】',toScene: 'C000A_V_MAP_3_-1'},
-         # { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
+        # { title: '【东市】',toScene: 'C000A_V_MAP_1_0'},
         # { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
         # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
         # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
 
         ],
       }, 
+
       { 
         id: 'C2', desc: "这条街有很多杂耍\n李森炎见惯了这种东西", 
         options: [ 

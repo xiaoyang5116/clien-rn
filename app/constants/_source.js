@@ -82,6 +82,7 @@ const _images = {
 const _videos = {
     bgDialog_video: [
         { id: 1, video: require('../../assets/mp4/FLY_480x960.mp4') },
+        { id: 2, video: require('../../assets/mp4/NIU_ZHUAN_SHI_KONG.mp4') },
         // { id: 1, video: require('../../assets/mp4/FLY_480x960.mp4') },
     ],
 }

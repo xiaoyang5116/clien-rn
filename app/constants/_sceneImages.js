@@ -65,6 +65,7 @@ const topBgImages = [
     { name: 'BGT_61', img: require('../../assets/scene/BGT_61.webp') },
     { name: 'BGT_62', img: require('../../assets/scene/BGT_62.webp') },
     { name: 'BGT_63', img: require('../../assets/scene/BGT_63.webp') },
+    { name: 'BGT_64', img: require('../../assets/scene/BGT_64.webp') },
     
 
 
