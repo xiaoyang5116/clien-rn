@@ -13,6 +13,8 @@ scenes: [
       { id: "v_icon_102", min: 0, max: 1 },
       { id: "LRGJ_A", min: 0, max: 1 },
       { id: "LRGJ_B", min: 0, max: 1 },
+      { id: "maicaoyao_A", min: 0, max: 1 },
+      { id: "maicaoyao_B", min: 0, max: 1 },
       
       
       # { id: "renwubiaoqian_100", min: 0, max: 1 },
@@ -591,9 +593,9 @@ scenes: [
       }, 
 
       { 
-        id: 'C2', desc: '四味药草全备齐了，只需要一个炼丹炉将草药炼成药丸，需要寻找一个能够炼丹的地方', 
+        id: 'C2', desc: '四味药草全备齐了，需要寻找一个能够炼丹的地方将草药炼成药丸', 
         options: [  
-         { title: '找路人打听一下',nextChat: 'C1' },
+         { title: '找路人打听一下',nextChat: 'C4' },
         ],
       },
 
@@ -629,7 +631,7 @@ scenes: [
       },  
 
       { 
-        id: 'C4A', desc:  "李森炎赶紧拿出刚才采的一些多余的草药送给中年男人\n“大哥，你真是帮了我大忙了，这些草药虽然不是什么名贵的药材，但是也能滋养身体，您务必收下。”\n那中年大叔，看见李森炎这么会来事，乐呵呵的说\n“哎哟，你这小伙子，也不是什么大忙，我这儿还有一壶好酒，我算是喝不上了，你带着去见那老人吧，那老头是个酒痴你带上这个，他会帮你的。”",
+        id: 'C5', desc:  "李森炎赶紧拿出刚才采的一些多余的草药送给中年男人\n“大哥，你真是帮了我大忙了，这些草药虽然不是什么名贵的药材，但是也能滋养身体，您务必收下。”\n那中年大叔，看见李森炎这么会来事，乐呵呵的说\n“哎哟，你这小伙子，也不是什么大忙，我这儿还有一壶好酒，我算是喝不上了，你带着去见那老人吧，那老头是个酒痴你带上这个，他会帮你的。”",
         options: [
         { title: '【意外收获，收下前往老人故居】', useProps: '1012,3', sendProps: '367,1', varsOn: ['WZXX_M1_N1_C000A_V/LRGJ_B',], toScene: 'C000A_V_MAP_1_-2' }, 
         ],
@@ -1597,6 +1599,7 @@ scenes: [
        { type: 'enter',  nextChat: 'C1' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/LRGJ_A'], nextChat: 'C3' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/LRGJ_B'], nextChat: 'C4' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], nextChat: 'C4' },
        
     ],
     # 对话选项
@@ -1628,7 +1631,7 @@ scenes: [
       },
 
       { 
-        id: 'C3A', desc: "李森炎灵光一闪，觉得自己刚才匆匆上门，着实有点莽撞了\n起码得带点东西上门\n得找人打探一下老人的喜好\n刚走出们准备找人打听一下老人的喜好\n忽然听见还未阖上门的房中幽幽传来一声\n“酒后高歌且放狂，门前闲事莫思量”",   
+        id: 'C3A', desc: "李森炎灵光一闪，觉得自己刚才匆匆上门，着实有点莽撞了\n起码得带点东西上门\n得找人打探一下老人的喜好\n刚走出门\n忽然听见还未阖上门的房中幽幽传来一声\n“酒后高歌且放狂，门前闲事莫思量”",   
         options: [ 
          { title: '酒！去买酒！', nextChat: 'C3B' }, 
         ],
@@ -1637,7 +1640,14 @@ scenes: [
       { 
         id: 'C3B', desc: "李森炎准备去买酒\n但反应过来，原身是个穷小子，身上怎么可能会有钱\n眼下只能把刚采集的野草卖了换钱再去买酒",   
         options: [ 
-         { title: '去商铺', toScene: 'C000A_V_MAP_3_-1' }, 
+         { title: '去商铺', varsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_A'], varsOff: ['WZXX_M1_N1_C000A_V/LRGJ_A'], toScene: 'C000A_V_MAP_3_-1' }, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: "李森炎拿着换来的好酒敲门进去\n果然老人一看见美酒，眼睛都直了\n很慷慨大方的帮他炼制好了丹药",   
+        options: [ 
+         { title: '吃下丹药', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], toChapter: "WZXX_M1_N1_C002_[N6]" }, 
         ],
       },
       ],
@@ -2045,6 +2055,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_A'], nextChat: 'C3' },
     ],
     # 对话选项
     chats: [
@@ -2064,6 +2075,20 @@ scenes: [
         # { title: '【再逛逛】',toScene: 'C000A_V_MAP_2_-1'}, 
         # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
         # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        ],
+      },
+
+      { 
+        id: 'C3', desc: "李森炎到商铺后，一眼就在柜台上看中了一壶酒\n上次在这个商铺买过簪子，和掌柜也算是面熟\n于是就直接开门见山的说了自己想要用草药换酒的想法\n掌柜看着这小伙老实想了想，说要看看李森炎采的草药\n李森炎将草药拿出来，掌柜的一看到白芍眼睛都亮了\n追问李森炎到哪里才得，并且同意一个白芍能换一壶酒", 
+        options: [ 
+        { title: '【用白芍换酒】', toShop: 'shop_sell_test_1', nextChat: 'C4', },
+        ],
+      },
+
+      { 
+        id: 'C4', desc: '换到酒之后，李森炎将白芍的情报告诉了掌柜的，随后便匆忙离开了', 
+        options: [ 
+        { title: '【去老人故居】', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_A'],  varsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_B'] ,toScene: 'C000A_V_MAP_1_-2' },
         ],
       },
       ],

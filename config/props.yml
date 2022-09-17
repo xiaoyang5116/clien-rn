@@ -177,7 +177,7 @@ props: [
    { id:  1008, name: '石猿泪', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
    { id:  1009, name: '腐髓草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
    { id:  1010, name: '兽骨粉', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  1011, name: '野生白芍', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
+   { id:  1011, name: '野生白芍', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' , sell: [{ propId: 367, num: 1 }] },	
    { id:  1012, name: '何首乌', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
    { id:  1013, name: '白术', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
    { id:  1014, name: '丹参', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
