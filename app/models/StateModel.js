@@ -33,6 +33,22 @@ export default {
       return state;
     },
 
+    *resetStates({ payload }, { call, put, select }) {
+      const state = yield select(state => state.StateModel);
+      const { keys } = payload;
+
+      if (!lo.isArray(keys))
+        return
+
+      lo.forEach(keys, (v, k) => {
+        if (state[v] != undefined) {
+          state[v] = null;
+        }
+      });
+
+      yield put(action('saveAll')());
+    },
+
     *getArticleState({}, { call, put, select }) {
       const state = yield select(state => state.StateModel);
       return state.articleState;
