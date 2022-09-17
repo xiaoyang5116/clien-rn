@@ -5,14 +5,21 @@ import {
     FlatList,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    SectionList
+    SectionList,
+    Image
 } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
 import { ThemeContext } from '../../constants'
 
 import { TextButton } from '../../constants/custom-ui';
+import { px2pd } from '../../constants/resolution';
+import ImageCapInset from 'react-native-image-capinsets-next';
 
+const title_Bg = [
+    { img: require("../../../assets/clues/title_bg.png") },
+    { img: require("../../../assets/clues/title_bg2.png") },
+]
 
 const Separator = (props) => {
     const { title, style } = props
@@ -38,12 +45,24 @@ const UnusedCluesItem = (props) => {
     return (
         <TouchableOpacity onPress={() => { setCheckedCluesId(item.id) }}>
             <View style={styles.itemContainer}>
-                <View style={[styles.item_titleContainer, { backgroundColor: isChecked ? "#656565" : null }]}>
-                    <Text style={[styles.title, { color: isChecked ? "#fff" : "#000" }]}>{item.title}</Text>
-                </View>
-
                 <View style={isChecked ? styles.selectItem : styles.Unselected}>
-                    <Text style={[styles.content, { color: "#000" }]}>{item.content}</Text>
+                    <View style={{ height: px2pd(70), justifyContent: 'center', }}>
+                        <Image
+                            style={{ position: 'absolute', width: "100%", height: px2pd(70) }}
+                            source={isChecked ? title_Bg[1].img : title_Bg[0].img}
+                        />
+                        <Text style={[styles.title, { color: isChecked ? "#fff" : "#000" }]}>{item.title}</Text>
+                    </View>
+                    <View style={{ marginTop: 4, marginBottom: 4, paddingLeft: 4, paddingRight: 4, alignItems: 'center', }}>
+                        <ImageCapInset
+                            style={{ width: '100%', height: '100%', position: 'absolute', }}
+                            source={require('../../../assets/clues/clues_40dpi_gray.png')}
+                            capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                        />
+                        <View style={{ width: "100%", marginTop: 8, marginBottom: 8, paddingLeft: 8, paddingRight: 8 }}>
+                            <Text style={[styles.content, { color: "#000" }]}>{item.content.map(c => c)}</Text>
+                        </View>
+                    </View>
                 </View>
             </View >
         </TouchableOpacity>
@@ -55,13 +74,25 @@ const CompletedCluesItem = (props) => {
     return (
         <TouchableOpacity onPress={() => { setCheckedCluesId(item.id) }}>
             <View style={styles.itemContainer}>
-                <View style={[styles.item_titleContainer, { backgroundColor: isChecked ? "#656565" : null }]}>
-                    <Text style={[styles.title, { color: isChecked ? "#fff" : "#7C7C7C" }]}>{item.title}</Text>
-                    {isChecked ? null : <Text style={[styles.title, { color: "#00BD2D" }]}> (已完成)</Text>}
-                </View>
-
                 <View style={isChecked ? styles.selectItem : styles.Unselected}>
-                    <Text style={[styles.content, { color: "#7C7C7C" }]}>{item.content}</Text>
+                    <View style={{ height: px2pd(70), flexDirection: 'row', alignItems: 'center', justifyContent: "flex-start", }}>
+                        <Image
+                            style={{ position: 'absolute', width: "100%", height: px2pd(70) }}
+                            source={isChecked ? title_Bg[1].img : title_Bg[0].img}
+                        />
+                        <Text style={[styles.title, { color: isChecked ? "#fff" : "#000" }]}>{item.title}</Text>
+                        <Text style={[styles.title, { color: isChecked ? "#00D432" : "#00BD2D" }]}> (已完成)</Text>
+                    </View>
+                    <View style={{ marginTop: 4, marginBottom: 4, paddingLeft: 4, paddingRight: 4, alignItems: 'center', }}>
+                        <ImageCapInset
+                            style={{ width: '100%', height: '100%', position: 'absolute', }}
+                            source={require('../../../assets/clues/clues_40dpi_gray.png')}
+                            capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                        />
+                        <View style={{ width: "100%", marginTop: 8, marginBottom: 8, paddingLeft: 8, paddingRight: 8 }}>
+                            <Text style={[styles.content, { color: "#000" }]}>{item.content.map(c => c)}</Text>
+                        </View>
+                    </View>
                 </View>
             </View >
         </TouchableOpacity>
@@ -73,13 +104,25 @@ const InvalidCluesItem = (props) => {
     return (
         <TouchableOpacity onPress={() => { setCheckedCluesId(item.id) }}>
             <View style={styles.itemContainer}>
-                <View style={[styles.item_titleContainer, { backgroundColor: isChecked ? "#656565" : null }]}>
-                    <Text style={[styles.title, { color: isChecked ? "#fff" : "#7C7C7C" }]}>{item.title}</Text>
-                    {isChecked ? null : <Text style={[styles.title, { color: "#7C7C7C" }]}> (已失效)</Text>}
-                </View>
-
                 <View style={isChecked ? styles.selectItem : styles.Unselected}>
-                    <Text style={[styles.content, { color: "#7C7C7C" }]}>{item.content}</Text>
+                    <View style={{ height: px2pd(70), flexDirection: 'row', alignItems: 'center', justifyContent: "flex-start", }}>
+                        <Image
+                            style={{ position: 'absolute', width: "100%", height: px2pd(70) }}
+                            source={isChecked ? title_Bg[1].img : title_Bg[0].img}
+                        />
+                        <Text style={[styles.title, { color: isChecked ? "#fff" : "#000" }]}>{item.title}</Text>
+                        <Text style={[styles.title, { color: isChecked ? "#B0B0B0" : "#7C7C7C" }]}> (已失效)</Text>
+                    </View>
+                    <View style={{ marginTop: 4, marginBottom: 4, paddingLeft: 4, paddingRight: 4, alignItems: 'center', }}>
+                        <ImageCapInset
+                            style={{ width: '100%', height: '100%', position: 'absolute', }}
+                            source={require('../../../assets/clues/clues_40dpi_gray.png')}
+                            capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                        />
+                        <View style={{ width: "100%", marginTop: 8, marginBottom: 8, paddingLeft: 8, paddingRight: 8 }}>
+                            <Text style={[styles.content, { color: "#000" }]}>{item.content.map(c => c)}</Text>
+                        </View>
+                    </View>
                 </View>
             </View >
         </TouchableOpacity>
@@ -167,8 +210,6 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingLeft: 12,
         paddingRight: 12,
-        // marginBottom: 60,
-        // backgroundColor:"red"
     },
     item: {
         marginTop: 20,
@@ -176,15 +217,20 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
     selectItem: {
-        borderColor: "#656565",
+        borderColor: "#000",
+        overflow: "hidden",
+        borderRadius: 3,
         borderWidth: 1,
-        padding: 11,
     },
     Unselected: {
-        padding: 12,
+        borderColor: "#999",
+        overflow: "hidden",
+        borderRadius: 3,
+        borderWidth: 1,
     },
     title: {
         fontSize: 18,
+        paddingLeft: 12
     },
     content: {
         fontSize: 14,
@@ -195,6 +241,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         width: "100%",
         position: 'relative',
+        backgroundColor: "#fff",
     },
     item_titleContainer: {
         position: "absolute",

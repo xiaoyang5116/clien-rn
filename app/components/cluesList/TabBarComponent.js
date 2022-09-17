@@ -8,8 +8,9 @@ import {
 } from 'react-native'
 import React, { useRef, useContext } from 'react'
 import { ThemeContext } from '../../constants'
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
+import ImageCapInset from 'react-native-image-capinsets-next';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
 const TabBarComponent = (props) => {
@@ -39,14 +40,19 @@ const TabBarComponent = (props) => {
         return (
             <TouchableWithoutFeedback onPress={props.onClose}>
                 <View style={styles.close}>
-                    <AntDesign name='close' color={"#111"} size={24} />
+                    <AntDesign name='close' color={"#fff"} size={24} />
                 </View>
             </TouchableWithoutFeedback>
         )
     }
 
     return (
-        <View style={[styles.container, { backgroundColor: "#656565" }]}>
+        <View style={[styles.container, { backgroundColor: "#4B4B4B" }]}>
+            <ImageCapInset
+                style={{ width: '100%', height: '100%', position: 'absolute', }}
+                source={require('../../../assets/button/40dpi_gray.png')}
+                capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+            />
             <ScrollView
                 style={{ height: "100%", width: "100%" }}
                 ref={scrollRef}

@@ -76,6 +76,7 @@ const _images = {
         { id: 1, img: require('../../assets/bg/first_bg.jpg') },
         { id: 2, img: require('../../assets/bg/lottery_bg.jpg') },
         { id: 3, img: require('../../assets/bg/BAIYUN_1080.webp') },
+        { id: 4, img: require('../../assets/bg/bgDialog_clock.webp') },
     ],
 }
 
