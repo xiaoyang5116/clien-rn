@@ -87,7 +87,7 @@ const SellConfirm = (props) => {
     }
 
     return (
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }} onTouchStart={() => {
+        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', zIndex: 100 }} onTouchStart={() => {
                 if (props.onClose != undefined) {
                     props.onClose();
                 }
