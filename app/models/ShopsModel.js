@@ -110,6 +110,48 @@ export default {
       return true;
     },
 
+    *sell({ payload }, { put, select, call }) {
+      const shopsState = yield select(state => state.ShopsModel);
+      const userState = yield select(state => state.UserModel);
+      const { shopId, propId, num } = payload;
+
+      if (shopId == undefined || lo.isEmpty(shopId))
+        return false;
+
+      let shop = shopsState.shops.find(e => lo.isEqual(e.shopId, shopId));
+      if (shop == undefined)
+        return false;
+
+      const found = shop.listData.find(e => e.propId == propId);
+      if (found == undefined || found.num <= 0)
+        return false;
+      
+      const prop = yield put.resolve(action('PropsModel/getBagProp')({ propId: found.propId }));
+      if (prop == null || prop.num < num) {
+        Toast.show(`道具数量不足！`);
+        return false;
+      }
+
+      if (!lo.isArray(prop.sell)) {
+        Toast.show('道具无法出售！');
+        return false;
+      }
+      
+      // 扣除道具
+      yield put.resolve(action('PropsModel/reduce')({ propsId: [found.propId], num: num }));
+      
+      // 发放道具
+      const getProps = [];
+      for (let key in prop.sell) {
+        const item = { ...prop.sell[key] };
+        item.num = item.num * num;
+        getProps.push(item);
+      }
+      yield put.resolve(action('PropsModel/sendPropsBatch')({ props: getProps }));
+
+      return true;
+    },
+
     *getList({ payload }, { put, select, call }) {
       const shopsState = yield select(state => state.ShopsModel);
       const { shopId } = payload;
@@ -127,16 +169,27 @@ export default {
         shopsState.shops.push(shop);
       }
       
-      if (shop.refreshTime <= 0 || DateTime.now() >= shop.refreshTime || lo.isEmpty(shop.listData)) {
-        shop.listData = yield put.resolve(action('renew')({ shopId }));
-        shop.refreshTime = DateTime.now() + ((shopConfig.cdValue > 0 ? shopConfig.cdValue : (86400*365*100)) * 1000);
-        yield call(LocalStorage.set, LocalCacheKeys.SHOPS_DATA, { shops: shopsState.shops });
+      if (shopConfig.buy_list != undefined) {
+        if (shop.refreshTime <= 0 || DateTime.now() >= shop.refreshTime || lo.isEmpty(shop.listData)) {
+          shop.listData = yield put.resolve(action('renew')({ shopId }));
+          shop.refreshTime = DateTime.now() + ((shopConfig.cdValue > 0 ? shopConfig.cdValue : (86400*365*100)) * 1000);
+          yield call(LocalStorage.set, LocalCacheKeys.SHOPS_DATA, { shops: shopsState.shops });
+        }
+      } else if (shopConfig.sell_list != undefined) {
+        shop.listData.length = 0;
+        for (let key in shopConfig.sell_list) {
+          const item = shopConfig.sell_list[key];
+          const num = yield put.resolve(action('PropsModel/getPropNum')({ propId: item.propId })); 
+          shop.listData.push({ propId: item.propId, num: num, config: lo.cloneDeep(item) });
+        }
       }
 
       const data = [];
       if (shop.listData.length > 0) {
         for (let key in shop.listData) {
           const item = shop.listData[key];
+          const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.propId }));
+
           if (lo.isArray(item.config.consume)) {
             for (let key in item.config.consume) {
               const kv = item.config.consume[key];
@@ -146,9 +199,19 @@ export default {
                 kv.propConfig = propConfig;
               }
             }
+          } else {
+            if (propConfig.sell != undefined) {
+              for (let key in propConfig.sell) {
+                const kv = propConfig.sell[key];
+                const { propId } = kv;
+                if (propId != undefined && kv.propConfig == undefined) { // 只加载一次
+                  const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: propId }));
+                  kv.propConfig = propConfig;
+                }
+              }
+            }
           }
 
-          const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: item.propId }));
           data.push({ ...item, propConfig: propConfig });
         }
       }
@@ -164,11 +227,11 @@ export default {
         return
 
       const shopConfig = shopsState.__data.shopsConfig.find(e => lo.isEqual(e.id, shopId));
-      if (shopConfig == undefined)
+      if (shopConfig == undefined || shopConfig.buy_list == undefined)
         return
 
       const newList = [];
-      shopConfig.list.forEach(x => {
+      shopConfig.buy_list.forEach(x => {
         const rateTargets = [];
         if (x.rates.p100 != undefined) rateTargets.push(...x.rates.p100.map(e => ({ ...e, rate: e.rate * 100 })));
         if (x.rates.p1000 != undefined) rateTargets.push(...x.rates.p1000.map(e => ({ ...e, rate: e.rate * 10 })));

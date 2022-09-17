@@ -85,9 +85,9 @@ class ArticlePage extends Component {
                     ArticleOptionActions.invoke(articleSceneClickState);
                   }
                   // 清理数据
-                  AppDispath({ type: 'StateModel/resetStates', payload: { 
-                    keys: ['articleBtnClickState', 'articleSceneClickState'] 
-                  }});
+                  // AppDispath({ type: 'StateModel/resetStates', payload: { 
+                  //   keys: ['articleBtnClickState', 'articleSceneClickState', 'dialogBtnClickState'] 
+                  // }});
                 });
               }, 0);
             }

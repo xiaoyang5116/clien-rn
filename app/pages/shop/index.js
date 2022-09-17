@@ -3,6 +3,7 @@ import React from 'react';
 import {
     AppDispath,
     connect,
+    errorMessage,
     getWindowSize,
     ThemeContext,
 } from "../../constants";
@@ -14,6 +15,7 @@ import {
 } from '../../constants/native-ui';
 
 import { 
+    DeviceEventEmitter,
     FlatList, 
     SafeAreaView, 
     StyleSheet, 
@@ -28,49 +30,21 @@ import { TextButton } from '../../constants/custom-ui';
 import * as DateTime from '../../utils/DateTimeUtils';
 import RootView from '../../components/RootView';
 import PropTips from '../../components/tips/PropTips';
+import PropGrid from '../../components/prop/PropGrid';
+import Slider from '@react-native-community/slider';
 
 const WIN_SIZE = getWindowSize();
 
-const EconomicAttrs = (props) => {
+const ItemsBar = (props) => {
 
     const [data, setData] = React.useState([]);
-    const copper = React.useRef(null);
 
     React.useEffect(() => {
-        const consumablePropList = []; // 消耗的道具列表
-        let occurCopper = false; // 是否需要消耗铜币
-
-        props.data.forEach(e => {
-            e.config.consume.forEach(e => {
-                if (e.propId != undefined) {
-                    if (consumablePropList.find(x => x.propId == e.propId) == undefined) {
-                        consumablePropList.push({ propId: e.propId, propName: e.propConfig.name });
-                    }
-                } else if (e.copper != undefined) {
-                    occurCopper = true;
-                }
-            });
-        });
-
-        if (consumablePropList != undefined) {
-            const propIdList = [];
-            consumablePropList.forEach(e => propIdList.push(e.propId));
-            if (propIdList.length > 0) {
-                AppDispath({ type: 'PropsModel/getPropsNum', payload: { propsId: propIdList }, cb: (result) => {
-                    const list = [];
-                    consumablePropList.forEach(e => {
-                        const found = result.find(x => x.propId == e.propId);
-                        list.push({ ...e, num: (found != null ? found.num : 0) })
-                    });
-                    setData(list);
-                }});
+        AppDispath({ type: 'PropsModel/getBagProps', payload: { propsId: props.itemsId, always: true }, cb: (result) => {
+            if (lo.isArray(result) && result.length > 0) {
+                setData(result);
             }
-        }
-
-        if (occurCopper) {
-            copper.current = props.user.copper;
-        }
-
+        }});
     }, []);
 
     const subViews = [];
@@ -78,25 +52,72 @@ const EconomicAttrs = (props) => {
         lo.forEach(data, (v, k) => {
             subViews.push(
                 <View key={k} style={{ marginRight: 10 }}>
-                    <Text>{v.propName}: {v.num}</Text>
+                    <Text>{v.name}: {v.num}</Text>
                 </View>
             );
         });
     }
 
-    let copperView = <></>;
-    if (copper.current != null) {
-        copperView = (
-        <View key={'copper'} style={{ marginRight: 10 }}>
-            <Text>铜币: {copper.current}</Text>
-        </View>
-        );
-    }
-
     return (
         <View style={{ width: '100%', flexDirection: 'row' }}>
             {subViews}
-            {copperView}
+        </View>
+    );
+}
+
+const SellConfirm = (props) => {
+
+    const maxValue = React.useRef(props.maxNum);
+    const sliderValue = React.useRef((props.maxNum > 1 ? Math.floor(props.maxNum / 2) : props.maxNum));
+    const [selectNum, setSelectNum] = React.useState((props.maxNum > 1 ? Math.floor(props.maxNum / 2) : props.maxNum));
+
+    const onValueChanged = (value) => {
+        setSelectNum(value);
+    }
+
+    const onSell = () => {
+        AppDispath({ type: 'ShopsModel/sell', payload: { shopId: props.shopId, propId: props.propId, num: selectNum }, cb: (v) => {
+            if (v) {
+                DeviceEventEmitter.emit('__@ShopPage.refresh');
+            }
+            if (props.onClose != undefined) {
+                props.onClose();
+            }
+        } });
+    }
+
+    return (
+        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', zIndex: 100 }} onTouchStart={() => {
+                if (props.onClose != undefined) {
+                    props.onClose();
+                }
+            }}>
+            <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ width: px2pd(900), height: px2pd(900), backgroundColor: '#eee', alignItems: 'center' }} onTouchStart={(e) => {
+                        e.stopPropagation();
+                    }}>
+                    <View style={{ width: '96%', height: px2pd(120), marginTop: 5, backgroundColor: '#aaa', borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ color: '#333', fontSize: 26, fontWeight: 'bold' }}>选择出售数量</Text>
+                    </View>
+                    <View style={{ width: '90%', marginTop: px2pd(160), marginBottom: px2pd(160) }}>
+                        <Slider
+                            value={sliderValue.current}
+                            step={1}
+                            maximumValue={maxValue.current}
+                            minimumValue={1}
+                            minimumTrackTintColor="#333"
+                            maximumTrackTintColor={"#ccc"}
+                            onValueChange={onValueChanged}
+                        />
+                    </View>
+                    <View style={{ width: '90%', justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ color: '#333', fontWeight: 'bold' }}>选择数量: {selectNum}</Text>
+                    </View>
+                    <View style={{ width: '90%', marginTop: px2pd(80), justifyContent: 'center', alignItems: 'center' }}>
+                        <TextButton style={{ width: 100 }} title={'出售'} onPress={onSell} />
+                    </View>
+                </View>
+            </SafeAreaView>
         </View>
     );
 }
@@ -129,58 +150,87 @@ const ShopPage = (props) => {
         } });
     }
 
+    const sell = (propId, maxNum) => {
+        const key = RootView.add(<SellConfirm shopId={props.shopId} propId={propId} maxNum={maxNum} onClose={() => {
+            RootView.remove(key);
+        }} />);
+    }
+
     React.useEffect(() => {
         refresh();
+        const listener = DeviceEventEmitter.addListener('__@ShopPage.refresh', () => {
+            refresh();
+        });
+        return () => {
+            listener.remove();
+        }
     }, []);
 
-    const renderItem = (data) => {
+    const renderItem = ({ item, index }) => {
         let color = {};
-        if (data.item.propConfig.quality != undefined) {
-            if (data.item.propConfig.quality == '1') {
+        if (item.propConfig.quality != undefined) {
+            if (item.propConfig.quality == '1') {
                 color = styles.quality1;
-            } else if (data.item.propConfig.quality == '2') {
+            } else if (item.propConfig.quality == '2') {
                 color = styles.quality2;
-            } else if (data.item.propConfig.quality == '3') {
+            } else if (item.propConfig.quality == '3') {
                 color = styles.quality3;
             }
         }
 
-        const consumeList = [];
-        if (lo.isArray(data.item.config.consume)) {
-            data.item.config.consume.forEach(e => {
+        let labelItems = '';
+        let labelNum = '';
+        const itemList = [];
+        let btnView = null;
+
+        if (lo.isArray(item.config.consume)) {
+            labelItems = '消耗:';
+            labelNum = '库存';
+            item.config.consume.forEach(e => {
                 if (e.propConfig != undefined) {
-                    consumeList.push(`${e.propConfig.name}x${e.num}`);
-                } else if (e.copper != undefined) {
-                    consumeList.push(`铜币x${e.copper}`);
+                    itemList.push(`${e.propConfig.name}x${e.num}`);
                 }
             });
+            btnView = ((item.num > 0)
+                ? <TextButton title='购买' fontSize={16} onPress={() => buy(item.propId)} />
+                : <TextButton title='购买' fontSize={16} disabled={true} />
+            );
+        } else if (lo.isArray(item.propConfig.sell)) {
+            labelItems = '获得:';
+            labelNum = '拥有';
+            item.propConfig.sell.forEach(e => {
+                itemList.push(`${e.propConfig.name}x${e.num}`);
+            });
+            btnView = ((item.num > 0)
+                ? <TextButton title='出售' fontSize={16} onPress={() => sell(item.propId, item.num)} />
+                : <TextButton title='出售' fontSize={16} disabled={true} />
+            );
+        } else {
+            errorMessage("商城道具错误，请检查商城道具是否已指定消耗或卖出配置");
         }
 
         return (
         <TouchableOpacity activeOpacity={1} onPress={() => {
-            setSelect(data.item.propId);
+            setSelect(item.propId);
             setTimeout(() => {
-                const key = RootView.add(<PropTips zIndex={99} propId={data.item.propId} viewOnly={true} onClose={() => {
+                const key = RootView.add(<PropTips zIndex={99} propId={item.propId} viewOnly={true} onClose={() => {
                     RootView.remove(key);
                 }} />);
             }, 0);
         }}>
-            <View style={[styles.propsItem, (data.index == 0) ? styles.propsTopBorder : {}]}>
-                {(select == data.item.propId) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={context.propSelectedImage} /> : <></>}
+            <View style={[styles.propsItem, (index == 0) ? styles.propsTopBorder : {}]}>
+                {(select == item.propId) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={context.propSelectedImage} /> : <></>}
                 <View style={styles.propsBorder}>
                     <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }} >
-                        <Text style={[{ marginLeft: 20, fontSize: 22 }, color]}>{data.item.propConfig.name}</Text>
-                        <Text style={[{ marginLeft: 5, fontSize: 14 }, color]}>(库存: {data.item.num})</Text>
+                        <PropGrid prop={item.propConfig} showNum={false} showLabel={false} imageStyle={{ width: px2pd(100), height: px2pd(100) }} />
+                        <Text numberOfLines={1} style={[{ marginLeft: 5, fontSize: 22 }, color]}>{item.propConfig.name}</Text>
+                        <Text style={[{ marginLeft: 5, fontSize: 13 }, color]}>({labelNum}: {item.num})</Text>
                     </View>
                     <View style={{ flex: 1 }}>
-                        <Text style={{ marginRight: 20, fontSize: 16, color: '#424242', textAlign: 'right' }}>{lo.join(consumeList, ',')}</Text>
+                        <Text style={{ marginRight: 20, fontSize: 13, color: '#424242', textAlign: 'right' }}>{labelItems} {lo.join(itemList, ',')}</Text>
                     </View>
-                    <View style={{ width: 60, height: 32 }}>
-                        {
-                        (data.item.num > 0)
-                        ? <TextButton title='购买' fontSize={16} onPress={() => buy(data.item.propId)} />
-                        : <TextButton title='购买' fontSize={16} disabled={true} />
-                        }
+                    <View style={{ height: 32, flexDirection: 'row', alignItems: 'center' }}>
+                        {btnView}
                     </View>
                 </View>
             </View>
@@ -195,6 +245,23 @@ const ShopPage = (props) => {
 
     if (data != null) {
         forceUIRefreshKey.current += 1;
+    }
+
+    const itemsId = [];
+    if (shopConfig.current != null) {
+        if (shopConfig.current.buy_list != undefined) {
+            lo.forEach(shopConfig.current.buy_list, (v, k) => {
+                if (v.consume != undefined && lo.isArray(v.consume)) {
+                    lo.forEach(v.consume, (v2, k2) => {
+                        if (lo.indexOf(itemsId, v2.propId) == -1) {
+                            itemsId.push(v2.propId);
+                        }
+                    });
+                }
+            })
+        } else if (shopConfig.current.sell_list != undefined) {
+            itemsId.push(887); // 默认铜币道具
+        }
     }
 
     return (
@@ -214,7 +281,7 @@ const ShopPage = (props) => {
                         <Text style={{ fontSize: 22, color: '#000' }}>{(shopConfig.current != null) ? shopConfig.current.name : ''}</Text>
                     </View>
                     <View style={styles.attrsView}>
-                        <EconomicAttrs key={forceUIRefreshKey.current} user={props.user} data={data} />
+                        <ItemsBar key={forceUIRefreshKey.current} itemsId={itemsId} />
                     </View>
                     <View style={styles.listView}>
                         <FlatList
@@ -301,7 +368,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: px2pd(108),
+        height: px2pd(120),
     },
     propsBorder: {
         flex: 1, 

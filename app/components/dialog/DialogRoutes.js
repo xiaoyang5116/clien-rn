@@ -50,6 +50,9 @@ const DialogRoutes = (props) => {
             // addCluesId: ["xiansuo4"]
             props.dispatch(action('CluesModel/addClues')({ addCluesId: item.addCluesId }));
         }
+
+        // 记录点击动作数据
+        props.dispatch(action('StateModel/saveDialogBtnClickState')(item));
     }
 
     // 特效方法

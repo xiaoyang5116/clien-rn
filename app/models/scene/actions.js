@@ -90,7 +90,7 @@ export class PropertyActions {
       if (payload.dialogs != undefined && Array.isArray(payload.dialogs)) {
         let dialogActions = [];
         payload.dialogs.forEach(e => {
-          dialogActions.push({ id: "__dialog_{0}".format(e), cmd: 'dialog', params: e });
+          dialogActions.push({ id: "__dialog_{0}".format(e), cmd: 'dialog', params: e, __tokey: (payload?.__tokey || undefined) });
         });
         allActions.push(...dialogActions);
       }

@@ -3,6 +3,7 @@ import { DeviceEventEmitter } from 'react-native';
 
 import { EventKeys, connect, action } from '../../../constants';
 
+import lo from 'lodash';
 import FullSingle from './FullSingle'
 import HalfSingle from './HalfSingle'
 import GameOverDialog from '../gameOverDialog';
@@ -10,13 +11,19 @@ import GameOverDialog from '../gameOverDialog';
 const SingleDialog = (props) => {
 
     // props 传入
-    const { sections, style, dialogType, __sceneId } = props.viewData;
+    const { sections, style, dialogType, __sceneId, __tokey } = props.viewData;
     const { actionMethod, specialEffects } = props
+
+    let defaultSection = sections[0];
+    if (__tokey != undefined) {
+       const found = sections.find(e => lo.isEqual(e.key, __tokey));
+       if (found != undefined) defaultSection = found;
+    }
 
     // 定义变量
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [currentTextList, setCurrentTextList] = useState(sections[0].content);
-    const [showBtnList, setShowBtnList] = useState(sections[0].btn);
+    const [currentTextList, setCurrentTextList] = useState(defaultSection.content);
+    const [showBtnList, setShowBtnList] = useState(defaultSection.btn);
     const animationEndListener = useRef(null)
     let currentDialogueLength = currentTextList.length - 1;
 

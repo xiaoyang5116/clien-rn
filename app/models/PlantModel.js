@@ -1,7 +1,8 @@
 
 import {
     action,
-    LocalCacheKeys
+    LocalCacheKeys,
+    UserPersistedKeys
 } from '../constants';
 
 import lo, { range } from 'lodash';
@@ -12,6 +13,7 @@ import EventListeners from '../utils/EventListeners';
 import LocalStorage from '../utils/LocalStorage';
 import Toast from '../components/toast';
 import { now } from '../utils/DateTimeUtils';
+import { confirm } from '../components/dialog/ConfirmDialog';
 
 export default {
     namespace: 'PlantModel',
@@ -33,7 +35,7 @@ export default {
         selectedLingTian: {
             lingTianName: null,
             lingTianId: null,
-        }
+        },
     },
 
     effects: {
@@ -207,6 +209,16 @@ export default {
                 }
             }
             Toast.show("种植成功")
+
+            // 种植时间
+            if (payload.time >= 100) {
+                const v = yield put.resolve(action('UserModel/checkAndSetPersistedState')({ key: UserPersistedKeys.PLANT_CONFIRM }));
+                if (v) {
+                    setTimeout(() => {
+                        confirm('你可以歇一歇暂时离开游戏', { title: '确认', cb: () => {}});
+                    }, 1000);
+                }
+            }
 
             yield put.resolve(action("updateLingTianData")(composeState.lingTianData))
         },

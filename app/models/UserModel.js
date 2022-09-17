@@ -53,6 +53,8 @@ export default {
       { key: '法力', value: 0 },
       { key: '攻击', value: 0 },
     ],
+
+    persistedStates: [], // 持久状态，记录一次性状态, 值为KEY
   },
 
   effects: {
@@ -404,6 +406,32 @@ export default {
         return equips
       }
       return [];
+    },
+
+    *hasPersistedState({ payload }, { select, call, put }) {
+      const userState = yield select(state => state.UserModel);
+      const { key } = payload;
+      return lo.indexOf(userState.persistedStates, key) != -1;
+    },
+
+    *setPersistedState({ payload }, { select, call, put }) {
+      const userState = yield select(state => state.UserModel);
+      const { key } = payload;
+
+      if (lo.indexOf(userState.persistedStates, key) == -1) {
+        userState.persistedStates.push(key);
+        yield put.resolve(action('syncData')({}));
+      }
+    },
+
+    *checkAndSetPersistedState({ payload }, { select, call, put }) {
+      const { key } = payload;
+      const v = yield put.resolve(action('hasPersistedState')({ key }));
+      if (!v) {
+        yield put.resolve(action('setPersistedState')({ key }));
+        return true;
+      }
+      return false;
     },
 
     *syncData({ }, { select, call }) {
