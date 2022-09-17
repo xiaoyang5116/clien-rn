@@ -87,9 +87,12 @@ const TopToBottomShow = props => {
           width: '100%',
           height: '100%',
           position: 'absolute',
-          backgroundColor: bgColor.current,
+          // backgroundColor: bgColor.current,
         }}
       />
+      {bgColor.current != null && <FastImage
+        style={{ width: "100%", height: "100%", position: "absolute", opacity: 0.2, }}
+        source={require('../../../../assets/bg/dialog_bg.png')} />}
       <TouchableWithoutFeedback onPress={handlerClick}>
         <SafeAreaView style={{ flex: 1 }}>
           <View

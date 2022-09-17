@@ -172,7 +172,7 @@ class FirstPage extends Component {
                             toMsg: {
                               action: 'CluesModel/useClues',
                               params: {
-                                addCluesId: ["xiansuo1"], useCluesId: ["xiansuo2",],
+                                addCluesId: ["xiansuo1"], useCluesId: ["xiansuo2",], invalidCluesId: ['xiansuo3']
                               },
                             }
                             , animation: ['边缘闪烁绿']
@@ -235,7 +235,9 @@ class FirstPage extends Component {
                   //   style: 5,
                   //   textAnimationType: 'TextSingle',
                   //   sections: [
-                  //     { type: "TopToBottom", bgImageId: 1, loop: true, play: true, videoId: 1, content: ["你迅速跑过去，地面有些东西。", "来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。", "那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。",] },
+                  //     { type: "TopToBottom", bgImageId: 4, loop: true, 
+                  //     // videoId: 1,
+                  //      content: ["你迅速跑过去，地面有些东西。", "来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。", "那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。",] },
                   //     { type: "Bottom", bgImageId: 2, play: true, content: ["动不了", "动不了", "动不了"] },
                   //     {
                   //       type: "Barrage", videoId: 1, data: [
