@@ -357,10 +357,10 @@ export default {
     },
 
     *__onDialogCommand({ payload }, { select }) {
-      const sceneState = yield select(state => state.SceneModel);   
+      const sceneState = yield select(state => state.SceneModel);
       const dialog = sceneState.__data.cfgReader.getSceneDialog(payload.__sceneId, payload.params);
       if (dialog != null) {
-        Modal.show(dialog);
+        Modal.show({ ...dialog, __tokey: payload.__tokey });
       }
     },
 

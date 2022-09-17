@@ -17,6 +17,7 @@ export default {
     articleState: null,           // 文章状态
     articleBtnClickState: null,   // 文章按钮最近一次点击
     articleSceneClickState: null, // 文章弹出场景选项点击状态
+    dialogBtnClickState: null,    // 对话框最近一次动作
   },
 
   effects: {
@@ -76,6 +77,8 @@ export default {
 
       state.articleBtnClickState = lo.cloneDeep(payload);
       state.articleBtnClickState.__time = DateTime.now();
+      state.articleSceneClickState = null;
+      state.dialogBtnClickState = null;
       yield put(action('saveAll')());
     },
 
@@ -91,6 +94,24 @@ export default {
 
       state.articleSceneClickState = lo.cloneDeep(payload);
       state.articleSceneClickState.__time = DateTime.now();
+      yield put(action('saveAll')());
+    },
+
+    *saveDialogBtnClickState({ payload }, { call, put, select }) {
+      const state = yield select(state => state.StateModel);
+      if (payload == null || payload == undefined || !lo.isObject(payload))
+        return;
+
+      state.dialogBtnClickState = lo.cloneDeep(payload);
+      state.dialogBtnClickState.__time = DateTime.now();
+
+      // 更新对话框操作
+      if (state.dialogBtnClickState.tokey != undefined 
+        && state.articleBtnClickState != null 
+        && state.articleBtnClickState.dialogs != undefined) {
+        state.articleBtnClickState.__tokey = state.dialogBtnClickState.tokey;
+      }
+
       yield put(action('saveAll')());
     },
 
