@@ -15,6 +15,7 @@ import {
 } from '../../constants/native-ui';
 
 import { 
+    DeviceEventEmitter,
     FlatList, 
     SafeAreaView, 
     StyleSheet, 
@@ -30,6 +31,7 @@ import * as DateTime from '../../utils/DateTimeUtils';
 import RootView from '../../components/RootView';
 import PropTips from '../../components/tips/PropTips';
 import PropGrid from '../../components/prop/PropGrid';
+import Slider from '@react-native-community/slider';
 
 const WIN_SIZE = getWindowSize();
 
@@ -63,6 +65,63 @@ const ItemsBar = (props) => {
     );
 }
 
+const SellConfirm = (props) => {
+
+    const maxValue = React.useRef(props.maxNum);
+    const sliderValue = React.useRef((props.maxNum > 1 ? Math.floor(props.maxNum / 2) : props.maxNum));
+    const [selectNum, setSelectNum] = React.useState((props.maxNum > 1 ? Math.floor(props.maxNum / 2) : props.maxNum));
+
+    const onValueChanged = (value) => {
+        setSelectNum(value);
+    }
+
+    const onSell = () => {
+        AppDispath({ type: 'ShopsModel/sell', payload: { shopId: props.shopId, propId: props.propId, num: selectNum }, cb: (v) => {
+            if (v) {
+                DeviceEventEmitter.emit('__@ShopPage.refresh');
+            }
+            if (props.onClose != undefined) {
+                props.onClose();
+            }
+        } });
+    }
+
+    return (
+        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }} onTouchStart={() => {
+                if (props.onClose != undefined) {
+                    props.onClose();
+                }
+            }}>
+            <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ width: px2pd(900), height: px2pd(900), backgroundColor: '#eee', alignItems: 'center' }} onTouchStart={(e) => {
+                        e.stopPropagation();
+                    }}>
+                    <View style={{ width: '96%', height: px2pd(120), marginTop: 5, backgroundColor: '#aaa', borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ color: '#333', fontSize: 26, fontWeight: 'bold' }}>选择出售数量</Text>
+                    </View>
+                    <View style={{ width: '90%', marginTop: px2pd(160), marginBottom: px2pd(160) }}>
+                        <Slider
+                            value={sliderValue.current}
+                            step={1}
+                            maximumValue={maxValue.current}
+                            minimumValue={1}
+                            minimumTrackTintColor="#333"
+                            maximumTrackTintColor={"#ccc"}
+                            onValueChange={onValueChanged}
+                        />
+                    </View>
+                    <View style={{ width: '90%', justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ color: '#333', fontWeight: 'bold' }}>选择数量: {selectNum}</Text>
+                    </View>
+                    <View style={{ width: '90%', marginTop: px2pd(80), justifyContent: 'center', alignItems: 'center' }}>
+                        <TextButton style={{ width: 100 }} title={'出售'} onPress={onSell} />
+                    </View>
+                </View>
+            </SafeAreaView>
+        </View>
+    );
+}
+
 const ShopPage = (props) => {
 
     const [data, setData] = React.useState([]);
@@ -91,16 +150,20 @@ const ShopPage = (props) => {
         } });
     }
 
-    const sell = (propId) => {
-        AppDispath({ type: 'ShopsModel/sell', payload: { shopId: props.shopId, propId: propId }, cb: (v) => {
-            if (v) {
-                refresh();
-            }
-        } });
+    const sell = (propId, maxNum) => {
+        const key = RootView.add(<SellConfirm shopId={props.shopId} propId={propId} maxNum={maxNum} onClose={() => {
+            RootView.remove(key);
+        }} />);
     }
 
     React.useEffect(() => {
         refresh();
+        const listener = DeviceEventEmitter.addListener('__@ShopPage.refresh', () => {
+            refresh();
+        });
+        return () => {
+            listener.remove();
+        }
     }, []);
 
     const renderItem = ({ item, index }) => {
@@ -139,7 +202,7 @@ const ShopPage = (props) => {
                 itemList.push(`${e.propConfig.name}x${e.num}`);
             });
             btnView = ((item.num > 0)
-                ? <TextButton title='出售' fontSize={16} onPress={() => sell(item.propId)} />
+                ? <TextButton title='出售' fontSize={16} onPress={() => sell(item.propId, item.num)} />
                 : <TextButton title='出售' fontSize={16} disabled={true} />
             );
         } else {

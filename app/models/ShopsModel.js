@@ -113,7 +113,7 @@ export default {
     *sell({ payload }, { put, select, call }) {
       const shopsState = yield select(state => state.ShopsModel);
       const userState = yield select(state => state.UserModel);
-      const { shopId, propId } = payload;
+      const { shopId, propId, num } = payload;
 
       if (shopId == undefined || lo.isEmpty(shopId))
         return false;
@@ -127,7 +127,7 @@ export default {
         return false;
       
       const prop = yield put.resolve(action('PropsModel/getBagProp')({ propId: found.propId }));
-      if (prop == null || prop.num <= 0) {
+      if (prop == null || prop.num < num) {
         Toast.show(`道具数量不足！`);
         return false;
       }
@@ -138,10 +138,16 @@ export default {
       }
       
       // 扣除道具
-      yield put.resolve(action('PropsModel/reduce')({ propsId: [found.propId], num: 1 }));
+      yield put.resolve(action('PropsModel/reduce')({ propsId: [found.propId], num: num }));
       
       // 发放道具
-      yield put.resolve(action('PropsModel/sendPropsBatch')({ props: prop.sell }));
+      const getProps = [];
+      for (let key in prop.sell) {
+        const item = { ...prop.sell[key] };
+        item.num = item.num * num;
+        getProps.push(item);
+      }
+      yield put.resolve(action('PropsModel/sendPropsBatch')({ props: getProps }));
 
       return true;
     },
