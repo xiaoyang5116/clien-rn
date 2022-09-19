@@ -9,6 +9,7 @@ import {
   action,
   AppDispath,
   UserPersistedKeys,
+  getCollectBackgroundImage,
 } from "../constants";
 
 import {
@@ -48,10 +49,6 @@ const SCENE_ITEMS = [
   { id: 5, source: require('../../assets/collect/item_5.png') },
   { id: 6, source: require('../../assets/collect/item_6.png') },
   { id: 7, source: require('../../assets/collect/item_7.png') },
-];
-
-const BACKGROUNDS = [
-  { name: 'collect_default', source: require('../../assets/bg/collect_default.png') },
 ];
 
 const EFFECTS = [
@@ -472,7 +469,7 @@ const CollectPage = (props) => {
             <AntDesign name={'left'} size={30} />
           </TouchableWithoutFeedback>
         </View>
-        <FastImage style={{ width: px2pd(1020), height: px2pd(1320), overflow: 'visible' }} source={BACKGROUNDS.find(e => lo.isEqual(e.name, config.background)).source}>
+        <FastImage style={{ width: px2pd(1020), height: px2pd(1320), overflow: 'visible' }} source={getCollectBackgroundImage(config.background).source}>
           <View style={styles.mapContainer}>
             {grids}
             <AnimationLayer collectId={props.collectId} />

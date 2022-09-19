@@ -77,6 +77,9 @@ const _images = {
         { id: 2, img: require('../../assets/bg/lottery_bg.jpg') },
         { id: 3, img: require('../../assets/bg/BAIYUN_1080.webp') },
     ],
+    collectBackgroundImages: [
+        { name: 'collect_default', source: require('../../assets/bg/collect_default.png') },
+    ],
 }
 
 const _videos = {
@@ -130,4 +133,9 @@ export const getBgDialog_bgImage = (bgImageId) => {
 // 获取video 视屏资源
 export const getVideo = (videoId) => {
     return _videos.bgDialog_video.find(e => e.id === videoId).video;
+}
+
+// 获取采集背景图片
+export const getCollectBackgroundImage = (name) => {
+    return _images.collectBackgroundImages.find(e => lo.isEqual(e.name, name));
 }
