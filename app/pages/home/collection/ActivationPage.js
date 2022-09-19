@@ -18,10 +18,12 @@ import { TextButton } from '../../../constants/custom-ui';
 import RootView from '../../../components/RootView';
 import StarsBanner from './StarsBanner';
 import ActivationConfirm from './ActivationConfirm';
+import * as Animatable from 'react-native-animatable';
 
 const ActivationPage = (props) => {
 
     const scale = React.useRef(new Animated.Value(0)).current;
+    const refView = React.createRef();
 
     const attrs = [];
     lo.forEach(props.data.attrs, (v, k) => {
@@ -29,17 +31,44 @@ const ActivationPage = (props) => {
     });
 
     React.useEffect(() => {
-        Animated.timing(scale, {
-            toValue: 1,
-            duration: 200,
-            useNativeDriver: true,
-        }).start();
+        // refView.current.bounceInDown();
+        // refView.current.bounceInUp();
+        // refView.current.bounceInLeft();
+        // refView.current.bounceInRight();
+
+        refView.current.zoomIn();
+        // refView.current.zoomOut();
+        // refView.current.zoomInDown();
+        // refView.current.zoomInUp();
+
+        // refView.current.jello();
+        // refView.current.pulse();
+        // refView.current.rotate();
+        // refView.current.rubberBand();
+        // refView.current.shake();
+        // refView.current.swing();
+        // refView.current.tada();
+        // refView.current.wobble();
+
+        // refView.current.fadeInDown();
+        // refView.current.fadeInUp();
+        // refView.current.fadeInLeftBig();
+        // refView.current.fadeInRightBig();
+        // refView.current.fadeOutDownBig();
+
+        // refView.current.flipInX();
+        // refView.current.flipInY();
+
+        // refView.current.lightSpeedIn();
+        // refView.current.lightSpeedOut();
+        // refView.current.slideInDown();
+        // refView.current.slideInUp();
     }, []);
 
     return (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Animated.View style={[{ width: px2pd(800), height: px2pd(1050), backgroundColor: '#eee', alignItems: 'center', borderRadius: 5 }, { transform: [{ scale: scale }] }]}>
+                <Animatable.View ref={refView} duration={600} style={[{ width: px2pd(800), height: px2pd(1050), backgroundColor: '#eee', alignItems: 'center', borderRadius: 5 }, { transform: [{ scale: scale }] }]}>
                     <View style={{ width: '100%', alignItems: 'flex-end' }}>
                         <AntDesign name='close' size={30} onPress={() => {
                             if (props.onClose != undefined) {
@@ -74,7 +103,7 @@ const ActivationPage = (props) => {
                             }, 200);
                         }} />
                     </View>
-                </Animated.View>
+                </Animatable.View>
             </SafeAreaView>
         </View>
     );
