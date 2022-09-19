@@ -1,0 +1,85 @@
+# ============================
+# 小宇宙项目 配置
+# ============================
+# mainAttrs: 主属性
+# levelConfig: 主属性等级配置
+# grade: 等级
+# needProps: 升级需求道具
+# subAttrs: 副属性
+
+data: {
+
+  # 总等级
+  overallGrade: 12,
+
+  # 副属性
+  allSubAttrs: [
+    { key: "实力", name: "实力" },
+    { key: "主炮", name: "主炮" },
+    { key: "装甲", name: "装甲" },
+  ],
+
+  # 主属性
+  mainAttrs: [
+    # ===== 1 ======
+    {
+      name: '火炮舱',
+      desc: "主力输出",
+      props: [
+        { key: "金币", propsId: 4000,},
+        { key: "铜币", propsId: 4001,},
+      ],
+      levelConfig: [
+        { grade: 1, subAttrs: ['实力,100','主炮,100'], },
+        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 3, subAttrs: ['实力,300','主炮,300'], needProps: ['金币,10', '铜币,10'] },
+      ],
+    },
+
+    # ===== 2 ======
+    {
+      name: '侧甲板',
+      desc: "主要防御",
+      props: [
+        { key: "金币", propsId: 4000,},
+        { key: "铜币", propsId: 4001,},
+      ],
+      levelConfig: [
+        { grade: 1, subAttrs: ['实力,100','装甲,100'], },
+        { grade: 2, subAttrs: ['实力,200','装甲,200'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 3, subAttrs: ['实力,300','装甲,300'], needProps: ['金币,10', '铜币,10'] },
+      ],
+    },
+
+    # ===== 3 ======
+    {
+      name: '画画',
+      desc: "主要防御",
+      props: [
+        { key: "金币", propsId: 4000,},
+        { key: "铜币", propsId: 4001,},
+      ],
+      levelConfig: [
+        { grade: 1, subAttrs: ['实力,100','主炮,100'], },
+        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 3, subAttrs: ['实力,300','主炮,300'], needProps: ['金币,10', '铜币,10'] },
+      ],
+    },
+
+    # ===== 4 ======
+    {
+      name: '计算机',
+      desc: "主要防御",
+      props: [
+        { key: "金币", propsId: 4000,},
+        { key: "铜币", propsId: 4001,},
+      ],
+      levelConfig: [
+        { grade: 1, subAttrs: ['实力,100','主炮,100'], },
+        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 3, subAttrs: ['实力,300','主炮,300'], needProps: ['金币,10', '铜币,10'] },
+      ],
+    },
+    
+  ],
+}
