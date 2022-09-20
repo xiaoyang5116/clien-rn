@@ -78,7 +78,12 @@ const _images = {
         { id: 3, img: require('../../assets/bg/BAIYUN_1080.webp') },
     ],
     collectBackgroundImages: [
-        { name: 'collect_default', source: require('../../assets/bg/collect_default.png') },
+        { name: 'YanJiang', source: require('../../assets/collect/bg/YanJiang.png') },
+        { name: 'XueDi', source: require('../../assets/collect/bg/XueDi.png') },
+        { name: 'CaoDi', source: require('../../assets/collect/bg/CaoDi.png') },
+        { name: 'HuangTu_1', source: require('../../assets/collect/bg/HuangTu_1.png') },
+        { name: 'HuangTu_2', source: require('../../assets/collect/bg/HuangTu_2.png') },
+        { name: 'HuangTu_3', source: require('../../assets/collect/bg/HuangTu_3.png') },
     ],
 }
 

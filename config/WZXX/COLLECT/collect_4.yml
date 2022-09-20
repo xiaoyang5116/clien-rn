@@ -3,7 +3,7 @@ collects: [
     id: '4',
 
     # 背景图片
-    background: 'collect_default',
+    background: 'HuangTu_1',
 
     # 阶段列表
     periods: [

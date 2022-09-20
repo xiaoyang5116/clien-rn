@@ -457,7 +457,6 @@ const CollectPage = (props) => {
 
   return (
     <View style={styles.viewContainer}>
-      <FastImage style={{ position: 'absolute', zIndex: -10, width: px2pd(1080), height: px2pd(1708) }} source={require('../../assets/bg/collect_border_bg.jpg')} />
       <View style={styles.bodyContainer}>
         <View style={styles.topBarContainer}>
           <TouchableWithoutFeedback onPress={() => {
@@ -469,7 +468,7 @@ const CollectPage = (props) => {
             <AntDesign name={'left'} size={30} />
           </TouchableWithoutFeedback>
         </View>
-        <FastImage style={{ width: px2pd(1020), height: px2pd(1320), overflow: 'visible' }} source={getCollectBackgroundImage(config.background).source}>
+        <FastImage style={{ width: px2pd(1080), height: px2pd(1508), overflow: 'visible', justifyContent: 'center', alignItems: 'center' }} source={getCollectBackgroundImage(config.background).source}>
           <View style={styles.mapContainer}>
             {grids}
             <AnimationLayer collectId={props.collectId} />

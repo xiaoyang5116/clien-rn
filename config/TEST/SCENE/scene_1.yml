@@ -183,7 +183,12 @@ scenes: [
           # { title: '【动效1】', animations: { id: 3 } }, 
           { title: '【飞行动效】', animations: { id: 10 } }, 
           { title: '【切换世界】', animations: { id: 11, data: { worldId: '灵修界', desc: 'xxx', toChapter: 'WZXX_M1_N1_C001' } } }, 
+          { title: '【打开采集页面(1)】', collect: '1' }, 
           { title: '【打开采集页面(2)】', collect: '2' }, 
+          { title: '【打开采集页面(3)】', collect: '3' }, 
+          { title: '【打开采集页面(4)】', collect: '4' }, 
+          { title: '【打开采集页面(5)】', collect: '5' }, 
+          { title: '【打开采集页面(6)】', collect: '6' }, 
         ],
       },
       { 
