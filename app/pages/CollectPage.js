@@ -25,7 +25,7 @@ import {
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { ImageButton } from '../constants/custom-ui';
-import { getFixedWidthScale, px2pd } from '../constants/resolution';
+import { getFixedWidthScale, isPad, px2pd } from '../constants/resolution';
 import FastImage from 'react-native-fast-image';
 import SpriteSheet from '../components/SpriteSheet';
 import RootView from '../components/RootView';
@@ -58,7 +58,7 @@ const EFFECTS = [
 ];
 
 const MOV_SPEED = 1000; // 物品飞入速度
-const BAG_POSITION = { x: 300, y: 430 };
+const BAG_POSITION = { x: px2pd(850), y: px2pd(1300) };
 const PROGRESS_WIDTH = 60;
 
 const AnimatedTarget = (props) => {
@@ -276,6 +276,7 @@ const GridItem = (props) => {
         position: 'absolute',
         width: px2pd(pxGridWidth), height: px2pd(pxGridHeight), 
         top: props.top, left: props.left,
+        justifyContent: 'center', alignItems: 'center',
         opacity: opacity.current,
       }}
       onTouchStart={(e) => {
@@ -475,17 +476,17 @@ const CollectPage = (props) => {
           </View>
         </FastImage>
       </View>
-      <View style={{ position: 'absolute', bottom: 50, width: '100%', zIndex: -1, marginTop: 10, justifyContent: 'center', alignItems: 'center' }}>
-        <ImageButton 
-          width={px2pd(624)} 
-          height={px2pd(130)} 
-          source={require('../../assets/button/collect_all_button.png')}
-          selectedSource={require('../../assets/button/collect_all_button.png')}
-          onPress={collectAll}
-        />
-      </View>
       <View style={{ width: '100%', zIndex: 2, marginTop: 0, marginRight: 20, justifyContent: 'center', alignItems: 'flex-end' }}>
-        <View style={{ position: 'absolute', top: -35, right: -10, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ position: 'absolute', top: (isPad() ? -px2pd(70) : -px2pd(20)), width: '100%', zIndex: -1, justifyContent: 'center', alignItems: 'center' }}>
+          <ImageButton 
+            width={px2pd(624)} 
+            height={px2pd(130)} 
+            source={require('../../assets/button/collect_all_button.png')}
+            selectedSource={require('../../assets/button/collect_all_button.png')}
+            onPress={collectAll}
+          />
+        </View>
+        <View style={{ position: 'absolute', top: -px2pd(200), right: -px2pd(20), justifyContent: 'center', alignItems: 'center' }}>
           <BagButton {...props} />
         </View>
       </View>
@@ -502,6 +503,7 @@ const styles = StyleSheet.create({
   },
 
   bodyContainer: {
+    marginBottom: px2pd(50)
   },
 
   topBarContainer: {
@@ -517,12 +519,12 @@ const styles = StyleSheet.create({
 
   progressView: {
     position: 'absolute', 
-    left: 0, 
+    // left: 0, 
     bottom: -12, 
     width: PROGRESS_WIDTH, 
     height: 18, 
     borderWidth: 1, 
-    borderColor: '#fff', 
+    borderColor: '#000', 
     borderRadius: 5, 
     backgroundColor: '#999',
     overflow: 'hidden',
