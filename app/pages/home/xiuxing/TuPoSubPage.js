@@ -96,7 +96,7 @@ const TuPoSubPage = (props) => {
                 ref={(ref) => refSucceedVideo.current = ref}
                 source={require('../../../../assets/mp4/XIUXING_TUPO.mp4')}
                 fullscreen={false}
-                resizeMode={'stretch'}
+                resizeMode={'cover'}
                 repeat={false}
                 paused={displaySucceedVideo == 'none'}
                 onEnd={() => {
@@ -110,7 +110,7 @@ const TuPoSubPage = (props) => {
                 ref={(ref) => refFailureVideo.current = ref}
                 source={require('../../../../assets/mp4/XIUXING_TUPO.mp4')}
                 fullscreen={false}
-                resizeMode={'stretch'}
+                resizeMode={'cover'}
                 repeat={false}
                 paused={displayFailureVideo == 'none'}
                 onEnd={() => {

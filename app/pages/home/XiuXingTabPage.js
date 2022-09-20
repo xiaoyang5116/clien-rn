@@ -148,10 +148,10 @@ const XiuXingTabPage = (props) => {
                     ref={(ref) => refBgVideo.current = ref}
                     source={require('../../../assets/mp4/XIUXING_BG.mp4')}
                     fullscreen={false}
-                    resizeMode={'stretch'}
+                    resizeMode={'cover'}
                     repeat={true}
                     onEnd={() => {}}
-                    onLoadStart={() => {
+                    onReadyForDisplay={() => {
                         refTrans.current.trans();
                     }}
                 />
