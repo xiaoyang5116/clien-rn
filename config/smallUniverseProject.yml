@@ -26,13 +26,15 @@ data: {
       name: '火炮舱',
       desc: "主力输出",
       props: [
-        { key: "金币", propsId: 4000,},
-        { key: "铜币", propsId: 4001,},
+        { key: "金币", propId: 4000,},
+        { key: "铜币", propId: 4001,},
       ],
       levelConfig: [
-        { grade: 1, subAttrs: ['实力,100','主炮,100'], },
-        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 1, subAttrs: ['实力,100','主炮,100'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['金币,10', '铜币,10'] },
         { grade: 3, subAttrs: ['实力,300','主炮,300'], needProps: ['金币,10', '铜币,10'] },
+        { grade: 4, subAttrs: ['实力,300','主炮,300'], needProps: ['金币,10', '铜币,10'] },
+        { grade: 5, subAttrs: ['实力,300','主炮,300'], needProps: ['金币,10', '铜币,10'] },
       ],
     },
 
@@ -41,13 +43,13 @@ data: {
       name: '侧甲板',
       desc: "主要防御",
       props: [
-        { key: "金币", propsId: 4000,},
-        { key: "铜币", propsId: 4001,},
+        { key: "金币", propId: 4000,},
+        { key: "铜币", propId: 4001,},
       ],
       levelConfig: [
-        { grade: 1, subAttrs: ['实力,100','装甲,100'], },
-        { grade: 2, subAttrs: ['实力,200','装甲,200'], needProps: ['金币,2', '铜币,2'] },
-        { grade: 3, subAttrs: ['实力,300','装甲,300'], needProps: ['金币,10', '铜币,10'] },
+        { grade: 1, subAttrs: ['实力,100','装甲,100'], needProps: ['金币,2', '铜币,2']},
+        { grade: 2, subAttrs: ['实力,200','装甲,200'], needProps: ['金币,10', '铜币,10'] },
+        { grade: 3, subAttrs: ['实力,300','装甲,300'], },
       ],
     },
 
@@ -56,13 +58,13 @@ data: {
       name: '画画',
       desc: "主要防御",
       props: [
-        { key: "金币", propsId: 4000,},
-        { key: "铜币", propsId: 4001,},
+        { key: "金币", propId: 4000,},
+        { key: "铜币", propId: 4001,},
       ],
       levelConfig: [
-        { grade: 1, subAttrs: ['实力,100','主炮,100'], },
-        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['金币,2', '铜币,2'] },
-        { grade: 3, subAttrs: ['实力,300','主炮,300'], needProps: ['金币,10', '铜币,10'] },
+        { grade: 1, subAttrs: ['实力,100','主炮,100'], needProps: ['金币,2', '铜币,2']},
+        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['金币,10', '铜币,10'] },
+        { grade: 3, subAttrs: ['实力,300','主炮,300'], },
       ],
     },
 
@@ -71,13 +73,13 @@ data: {
       name: '计算机',
       desc: "主要防御",
       props: [
-        { key: "金币", propsId: 4000,},
-        { key: "铜币", propsId: 4001,},
+        { key: "金币", propId: 4000,},
+        { key: "铜币", propId: 4001,},
       ],
       levelConfig: [
-        { grade: 1, subAttrs: ['实力,100','主炮,100'], },
-        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['金币,2', '铜币,2'] },
-        { grade: 3, subAttrs: ['实力,300','主炮,300'], needProps: ['金币,10', '铜币,10'] },
+        { grade: 1, subAttrs: ['实力,100','主炮,100'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['金币,10', '铜币,10'] },
+        { grade: 3, subAttrs: ['实力,300','主炮,300'], },
       ],
     },
     

@@ -15,14 +15,19 @@ const SmallUniverseProject = props => {
 
   const MainAttrsComponent = () => {
     const upgrade = (item) => {
-      const key = RootView.add(
-        <UpgradePage
-          mainAttr={item}
-          onClose={() => {
-            RootView.remove(key);
-          }}
-        />
-      );
+      props.dispatch(action('SmallUniverseProjectModel/getMainAttrInfo')(item)).then((result) => {
+        if (result !== undefined) {
+          const key = RootView.add(
+            <UpgradePage
+              mainAttr={item}
+              {...result}
+              onClose={() => {
+                RootView.remove(key);
+              }}
+            />
+          );
+        }
+      })
     }
 
     const MainAttrs = mainAttrs.map(item => {
@@ -104,7 +109,7 @@ const SmallUniverseProject = props => {
   );
 };
 
-export default connect((state) => ({ ...state.SmallUniverseProject }))(SmallUniverseProject);
+export default connect((state) => ({ ...state.SmallUniverseProjectModel }))(SmallUniverseProject);
 
 const styles = StyleSheet.create({
   viewContainer: {
