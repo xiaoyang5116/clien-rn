@@ -261,7 +261,7 @@ export default {
       
       // 通知角色属性刷新
       DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
-      return true;
+      return { success };
     },
 
     // 检测在线修行

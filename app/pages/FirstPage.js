@@ -169,13 +169,14 @@ class FirstPage extends Component {
                           { title: '去拿菜刀', tokey: "", games: { id: 7 } },
                           {
                             title: '去拿画轴', tokey: "",
-                            toMsg: {
-                              action: 'CluesModel/useClues',
-                              params: {
-                                addCluesId: ["xiansuo1"], useCluesId: ["xiansuo2",], invalidCluesId: ['xiansuo3']
-                              },
-                            }
-                            , animation: ['边缘闪烁绿']
+                            // toMsg: {
+                            //   action: 'CluesModel/useClues',
+                            //   params: {
+                            //     addCluesId: ["xiansuo1"], useCluesId: ["xiansuo2",], invalidCluesId: ['xiansuo3']
+                            //   },
+                            // }，
+                            addCluesId: ["liuyan1"] ,
+                            animation: ['边缘闪烁绿']
                           }
                         ]
                       },

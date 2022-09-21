@@ -3,24 +3,24 @@ collects: [
     id: '3',
 
     # 背景图片
-    background: 'collect_default',
+    background: 'HuangTu_3',
 
     # 阶段列表
     periods: [
-      { itemsNum: 16 },
-      { itemsNum: 10 },
-      { itemsNum: 7 },
+      { itemsNum: 2 },
+      { itemsNum: 3 },
+      { itemsNum: 2 },
     ], 
 #白术
     # 宝箱配置
     items: [
       { id: 3, time: 5, props: [{ propId: 38, num: 1 }] },
-      { id: 4, props: [{ propId: 1013, num: 1 }] },
-      { id: 4, time: 5, props: [{ propId: 1013, num: 1 }] },
+      { id: 4, props: [{ propId: 1013, num: 2 }] },
+      { id: 4, time: 5, props: [{ propId: 1013, num: 3 }] },
       # { id: 4, props: [{ propId: 23, num: 1 }] },
       # { id: 5, time: 10, props: [{ propId: 24, num: 1 }] },
       # { id: 6, props: [{ propId: 25, num: 1 }] },
-       { id: 1, time: 3,  props: [{ propId: 26, num: 1 }] },
+      #  { id: 1, time: 3,  props: [{ propId: 26, num: 1 }] },
     ],
 
     # 总量控制

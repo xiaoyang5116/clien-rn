@@ -105,7 +105,7 @@ class ArticlePage extends Component {
     this.listeners.push(
       // 文章长按点击
       DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_LONG_PRESS, (e) => {
-        WorldSelector();
+        // WorldSelector();
       }),
       // 文章单击
       DeviceEventEmitter.addListener(EventKeys.ARTICLE_PAGE_PRESS, (e) => {
