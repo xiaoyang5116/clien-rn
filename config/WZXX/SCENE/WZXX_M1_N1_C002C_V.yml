@@ -127,7 +127,6 @@ scenes: [
         ],
       },
 
-      
       { 
         id: 'WZXX_M1_N1_C002C_V8', desc: '打斗', 
         options: [ 
@@ -143,7 +142,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002C_V10', desc: '雪落', 
         options: [ 
-          { title: "【啊啊啊啊啊】",toChapter: "WZXX_M1_N1_C007"  },
+          { title: "【啊啊啊啊啊】",toChapter: "WZXX_M1_N1_C007"},
         ],
       },
 
@@ -322,7 +321,7 @@ scenes: [
     },
     
            #选项对话1
-          { id: 'C002C_duihuaA',style: 6, title: '见到母亲', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'C002C_duihuaA',style: 6, title: '见到母亲', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P11', content: ['林婕吓了一跳，这不怪她，换谁被看上去至少得有八十的老头叫一声娘，虎躯不得震上一震？','“是我啊！咱们进去说话。”',
           ],

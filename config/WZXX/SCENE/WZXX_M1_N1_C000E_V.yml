@@ -66,14 +66,21 @@ scenes: [
       {
         id: 'C1', desc: "李森炎独自一人走在山道上\n没过多久，他远远看到，前方出现了一个人影\n李森炎走近了些，看到一个村民正在锄地",
         options: [ 
-         { title: '【上前和村民交谈】',nextChat: 'C2' }, 
+         { title: '【上前和村民交谈】',nextChat: 'C1A' }, 
+        ],
+      },
+
+       {
+        id: 'C1A', desc: "“大爷，我想问……”\n“谁是你大爷！”\n村民抬起头，顶着一头白发：“我才二十五！”\n二十五啊，那是显老了点……",
+        options: [ 
+         { title: '【尴尬……】',nextChat: 'C2' }, 
         ],
       },
 
       { 
-        id: 'C2', desc: "“大爷，我想问……”\n“谁是你大爷！”\n村民抬起头，顶着一头白发：“我才二十五！”\n二十五啊，那是显老了点……\n李森炎尴尬一笑，连忙改口叫大哥\n接着问他知不知道那些药材的出处\n村民没有立即回答，转而问起李森炎\n“你姓什么？”\n“我姓李。”\n“哦，不是姓王就行，要是姓王的我肯定不告诉他！”\n李森炎大汗，你对姓王的是有多大的怨念啊！",
+        id: 'C2', desc: "李森炎尴尬一笑，连忙改口叫大哥\n接着问他知不知道那些药材的出处\n村民没有立即回答，转而问起李森炎\n“你姓什么？”\n“我姓李。”\n“哦，不是姓王就行，要是姓王的我肯定不告诉他！”\n李森炎大汗！",
         options: [ 
-         { title: '【与村民细说】', nextChat: 'C3' ,
+         { title: '【这是对姓王的是有多大的怨念啊】', nextChat: 'C3' ,
          toMsg: { 
                 action: 'CluesModel/addClues', params: { addCluesId: ["liuyan4"] } 
               }, 
@@ -95,7 +102,6 @@ scenes: [
        {
   # NPC2
     id: 'C000E_V_MAP_-1_-18', name: '山间小径',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #横图显示
@@ -134,13 +140,20 @@ scenes: [
       },
       #
        { 
-        id: 'C2', desc: "李森炎担心她下一秒就要开始卖茶叶了\n连忙截住她的话，说自己还有要事，顺带把自己的需求提出来\n姑娘眼中难掩失望\n“你不去的话我就不告诉你。”\n“你先告诉我，等我把药草拿到手了，我再回来找你。”\n“真的吗？你不要骗我哦！”\n“真的，不骗你！”\n采花姑娘点了点头，把她知道的地点告诉了李森炎",
+        id: 'C2', desc: "李森炎担心她下一秒就要开始卖茶叶了\n连忙截住她的话，说自己还有要事，顺带把自己的需求提出来\n姑娘眼中难掩失望\n“你不去的话我就不告诉你。”",
+        options: [ 
+         { title: '【编个理由】', nextChat: 'C2A'}, 
+        ],
+      },
+      { 
+        id: 'C2A', desc: "“你先告诉我，等我把药草拿到手了，我再回来找你。”\n“真的吗？你不要骗我哦！”\n“真的，不骗你！”\n采花姑娘点了点头，把她知道的地点告诉了李森炎",
         options: [ 
         { title: '【有关得到百络花的流言】', nextChat: 'C3',
         toMsg: { 
                 action: 'CluesModel/addClues', params: { addCluesId: ["liuyan5"] } 
               }, 
         }, 
+
         ],
       },
       
@@ -162,7 +175,6 @@ scenes: [
        {
   # NPC2
     id: 'C000E_V_MAP_0_-18', name: '枯木丛',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #横图显示
@@ -177,8 +189,6 @@ scenes: [
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
-    
-
     ],
 
     # 动作定义
@@ -235,7 +245,6 @@ scenes: [
        {
   # NPC2
     id: 'C000E_V_MAP_1_-18', name: '山野草屋',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #横图显示
@@ -310,8 +319,7 @@ scenes: [
     #横图显示
     sceneImage: 'BGT_72',
     #不显示时间
-      worldTimeHidden: true,
-  
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000E_V_MAP_0_4',
     # 地图中心点，也是进入地图后的点
@@ -335,13 +343,22 @@ scenes: [
 
     # 对话选项
     chats: [
-
       { 
-        id: 'C1', desc:  "被大爷彻底“折服”的李森炎离开草屋，走上一条羊肠小道\n不多时，又见到一个人影\n李森炎看到这人身上背负竹篓，好像是个采药人\n相信他应该是有药材的线索，于是上前询问\n“你要的这些东西，我都有啊！”\n听到采药人的话，李森炎一开始是惊喜\n但问了价格后，就是惊吓了！\n一株药草竟然卖到一千铜钱！“你怎么不去抢啊？”\n“那我还真就抢了，把钱都交出来！”话音刚落，对方从竹篓里掏出了把刀", 
+        id: 'C1', desc:  "被大爷彻底“折服”的李森炎离开草屋，走上一条羊肠小道\n不多时，又见到一个人影\n李森炎看到这人身上背负竹篓，好像是个采药人", 
         options: [ 
-        { title: '【交战】',toScene: 'S_00Test03'}, 
+        { title: '【和采药人对话】',dialogs: ['Screen16'] ,}, 
         ],
       },
+    ], 
+     # 对话框
+    dialogs: [
+        { id: 'Screen1',style: 6, title: '和采药人对话', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎觉得他应该是有药材的线索，于是上前询问','“你要的这些东西，我都有啊！”',
+          '听到采药人的话，李森炎一开始是惊喜','但问了价格后，就是惊吓了！',
+          '一株药草竟然卖到一千铜钱！“你怎么不去抢啊？”','“那我还真就抢了，把钱都交出来！”话音刚落，对方从竹篓里掏出了把刀',],
+          btn: [{title: '【交战】' ,toScene: 'S_00Test03' }, ]},
+    ],},
     ],
   },
 
@@ -353,39 +370,63 @@ scenes: [
         data: [
           { 
           point: [-1, -19], title: '山道', 
-          links: [[-1, -18], ] },
-          { point: [-1, -18], title: '？？？', links: [] },
+          links: [[-1, -18], ] 
+          },
+
+          { 
+          point: [-1, -18], title: '？？？', links: [] 
+          },
         ]
       },
       
       {
         id: 'C000E_V_MAP_0_1',
         data: [
-          { point: [0, -18], title: '？？？', links: [] },
           { 
-          point: [-1, -18], title: '山间小径',
-            links: [[0, -18], ] },
+          point: [0, -18],
+          title: '？？？', 
+          links: [] 
+          },
+
           { 
-          point: [-1, -19], title: '山道',  
-          links: [[-1, -18], ] },
+          point: [-1, -18], 
+          title: '山间小径',
+          links: [[0, -18], ] 
+          },
+
+          { 
+          point: [-1, -19], 
+          title: '山道',  
+          links: [[-1, -18], ] 
+          },
         ]
       },
       {
         id: 'C000E_V_MAP_0_2',
         data: [
-          { point: [1, -18], title: '？？？', links: [[], ] },
+          { 
+          point: [1, -18], 
+          title: '？？？', 
+          links: [[], ] 
+          },
           
           { 
-          point: [0, -18], title: '枯木丛',
-             links: [[1, -18], ] 
-             },
+          point: [0, -18], 
+          title: '枯木丛',
+          links: [[1, -18], ] 
+          },
 
          { 
-          point: [-1, -18], title: '山间小径',
-            links: [[0, -18], ] },
+          point: [-1, -18], 
+          title: '山间小径',
+          links: [[0, -18], ] 
+          },
+
           { 
-          point: [-1, -19], title: '山道', 
-          links: [[-1, -18], ] },
+          point: [-1, -19], 
+          title: '山道', 
+          links: [[-1, -18], ] 
+          },
 
         ]
       },
@@ -393,24 +434,35 @@ scenes: [
        {
         id: 'C000E_V_MAP_0_3',
         data: [
-          { point: [0, -17], title: '？？？',
-           links: [[], ] },
-          { 
-          point: [1, -18], title: '山野草屋', 
-            links: [ ] ,  path: [[1, -17],[0, -17], ]
-            },
+          {
+          point: [0, -17], 
+          title: '？？？',
+          links: [[], ] 
+          },
 
           { 
-          point: [0, -18], title: '枯木丛',
-             links: [[1, -18], ] 
-             },
+          point: [1, -18], 
+          title: '山野草屋', 
+          links: [ ] ,  path: [[1, -17],[0, -17], ]
+          },
+
+          { 
+          point: [0, -18], 
+          title: '枯木丛',
+          links: [[1, -18], ] 
+          },
 
          { 
-          point: [-1, -18], title: '山间小径',
-            links: [[0, -18], ] },
+          point: [-1, -18], 
+          title: '山间小径',
+          links: [[0, -18], ] 
+         },
+
           { 
-          point: [-1, -19], title: '山道', 
-          links: [[-1, -18], ] },
+          point: [-1, -19], 
+          title: '山道', 
+          links: [[-1, -18], ] 
+          },
 
         ]
       },
@@ -418,29 +470,40 @@ scenes: [
        {
         id: 'C000E_V_MAP_0_4',
         data: [
-          { point: [0, -17], title: '羊肠小道',
+          { 
+          point: [0, -17], 
+          title: '羊肠小道',
           #toScene: 'C000E_V_MAP_0_-17',
-           links: [[], ] },
-          { 
-          point: [1, -18], title: '山野草屋', 
-           #toScene: 'C000E_V_MAP_1_-18',
-            links: [ ] , path: [[1, -17],[0, -17], ]
-            },
+          links: [[], ] 
+          },
 
           { 
-          point: [0, -18], title: '枯木丛',
-           # toScene: 'C000E_V_MAP_0_-18',
-             links: [[1, -18], ] 
-             },
+          point: [1, -18], 
+          title: '山野草屋', 
+          #toScene: 'C000E_V_MAP_1_-18',
+          links: [ ] , path: [[1, -17],[0, -17], ]
+          },
 
-         { 
-          point: [-1, -18], title: '山间小径',
-           #toScene: 'C000E_V_MAP_-1_-18',
-            links: [[0, -18], ] },
           { 
-          point: [-1, -19], title: '山道', 
+          point: [0, -18], 
+          title: '枯木丛',
+          # toScene: 'C000E_V_MAP_0_-18',
+          links: [[1, -18], ] 
+          },
+
+          { 
+          point: [-1, -18],
+          title: '山间小径',
+          #toScene: 'C000E_V_MAP_-1_-18',
+          links: [[0, -18], ] 
+          },
+
+          { 
+          point: [-1, -19], 
+          title: '山道', 
           #toScene: 'C000E_V_MAP_-1_-19', 
-          links: [[-1, -18], ] },
+          links: [[-1, -18], ] 
+          },
             
 
         ]
