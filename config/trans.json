@@ -8,5 +8,10 @@
     "id": "OPEN_XIUXING_UI",
     "name": "黑色过渡",
     "comment": "人物页面修行入口"
+  },
+  {
+    "id": "OPEN_SCENE_FROM_ARTICLE",
+    "name": "开门",
+    "comment": "从阅读器打开场景页面"
   }
 ]
