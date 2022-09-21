@@ -222,4 +222,8 @@ props: [
   { id:  3102, name: '金手镯碎片[蓝]', iconId: 2, num:  1, quality: 3, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },
   { id:  3103, name: '金戒指碎片[紫]', iconId: 2, num:  1, quality: 4, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },		
   { id:  3104, name: '木棍子[橙]', iconId: 2, num:  1, quality: 5, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },
+
+  # 小宇宙项目道具
+  { id: 4000, name: '金币', iconId: 2, num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ''},
+  { id: 4001, name: '铜币', iconId: 2, num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ''},
 ]

@@ -82,6 +82,7 @@ const models = [
   require('./models/LianQiModel').default,
   require('./models/ToastModel').default,
   require('./models/WorshipModel').default,
+  require('./models/games/SmallUniverseProjectModel').default,
 ];
 
 const defaultDataContext = {

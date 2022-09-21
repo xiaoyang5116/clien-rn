@@ -1,0 +1,92 @@
+# ============================
+# 小宇宙项目 配置
+# ============================
+# mainAttrs: 主属性
+# levelConfig: 主属性等级配置
+# grade: 等级
+# needProps: 升级需求道具
+# subAttrs: 副属性
+
+data: {
+
+  # 总等级
+  overallGrade: 12,
+
+  # 副属性
+  allSubAttrs: [
+    { key: "实力", name: "实力" },
+    { key: "主炮", name: "主炮" },
+    { key: "装甲", name: "装甲" },
+  ],
+
+  # 主属性
+  mainAttrs: [
+    # ===== 1 ======
+    {
+      name: '火炮舱',
+      desc: "主力输出",
+      props: [
+        { key: "金币", propId: 4000,},
+        { key: "铜币", propId: 4001,},
+      ],
+      levelConfig: [
+        { grade: 1, subAttrs: ['实力,100','主炮,100'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 3, subAttrs: ['实力,300','主炮,300'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 4, subAttrs: ['实力,400','主炮,400'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 5, subAttrs: ['实力,500','主炮,500'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 6, subAttrs: ['实力,600','主炮,600'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 7, subAttrs: ['实力,700','主炮,700'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 8, subAttrs: ['实力,800','主炮,800'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 9, subAttrs: ['实力,900','主炮,900'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 10, subAttrs: ['实力,1000','主炮,1000'], needProps: ['金币,2', '铜币,2'] },
+      ],
+    },
+
+    # ===== 2 ======
+    {
+      name: '侧甲板',
+      desc: "主要防御",
+      props: [
+        { key: "金币", propId: 4000,},
+        { key: "铜币", propId: 4001,},
+      ],
+      levelConfig: [
+        { grade: 1, subAttrs: ['实力,100','装甲,100'], needProps: ['金币,2', '铜币,2']},
+        { grade: 2, subAttrs: ['实力,200','装甲,200'], needProps: ['金币,10', '铜币,10'] },
+        { grade: 3, subAttrs: ['实力,300','装甲,300'], },
+      ],
+    },
+
+    # ===== 3 ======
+    {
+      name: '画画',
+      desc: "主要防御",
+      props: [
+        { key: "金币", propId: 4000,},
+        { key: "铜币", propId: 4001,},
+      ],
+      levelConfig: [
+        { grade: 1, subAttrs: ['实力,100','主炮,100'], needProps: ['金币,2', '铜币,2']},
+        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['金币,10', '铜币,10'] },
+        { grade: 3, subAttrs: ['实力,300','主炮,300'], },
+      ],
+    },
+
+    # ===== 4 ======
+    {
+      name: '计算机',
+      desc: "主要防御",
+      props: [
+        { key: "金币", propId: 4000,},
+        { key: "铜币", propId: 4001,},
+      ],
+      levelConfig: [
+        { grade: 1, subAttrs: ['实力,100','主炮,100'], needProps: ['金币,2', '铜币,2'] },
+        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['金币,10', '铜币,10'] },
+        { grade: 3, subAttrs: ['实力,300','主炮,300'], },
+      ],
+    },
+    
+  ],
+}

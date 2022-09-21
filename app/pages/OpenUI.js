@@ -3,15 +3,17 @@ import RootView from '../components/RootView';
 import XiuXingTabPage from './home/XiuXingTabPage';
 import AlchemyRoomModal from '../components/alchemyRoom';
 import { PlantPage } from '../components/plant';
+import Transitions from '../components/transition';
 
 export default class OpenUI {
 
     static open(name) {
         switch (name) {
             case 'XiuXing':
-                const key = RootView.add(<XiuXingTabPage onClose={() => {
-                    RootView.remove(key);
-                }} />);
+                const key = RootView.add(
+                <Transitions id={'OPEN_XIUXING_UI'}>
+                    <XiuXingTabPage onClose={() => { RootView.remove(key); }} />
+                </Transitions>);
                 break;
             case 'LianDanFang':
                 AlchemyRoomModal.show()

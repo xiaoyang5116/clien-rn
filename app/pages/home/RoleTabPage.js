@@ -25,6 +25,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import EquippedSideBar from '../../components/equips/EquippedSideBar';
 import XiuXingTabPage from './XiuXingTabPage';
+import Transitions from '../../components/transition';
 
 const AttrsPage = (props) => {
     return (
@@ -129,9 +130,10 @@ const SimpleInfo = (props) => {
     }, []);
 
     const onDetailHandler = () => {
-        const key = RootView.add(<AttrsPage onClose={() => {
-            RootView.remove(key);
-        }} />);
+        const key = RootView.add(
+        <Transitions id={'OPEN_USER_ATTRS_DETAIL'}>
+            <AttrsPage onClose={() => { RootView.remove(key) }} />
+        </Transitions>);
     }
 
     const getAffectValue = (array, key) => {
@@ -205,9 +207,10 @@ const SimpleInfo = (props) => {
 const FuncButtons = (props) => {
 
     const openXiuXing = () => {
-        const key = RootView.add(<XiuXingTabPage onClose={() => {
-            RootView.remove(key);
-        }} />)
+        const key = RootView.add(
+        <Transitions id={'OPEN_XIUXING_UI'}>
+            <XiuXingTabPage onClose={() => { RootView.remove(key); }} />
+        </Transitions>);
     }
 
     return (

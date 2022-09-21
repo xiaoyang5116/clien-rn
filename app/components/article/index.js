@@ -11,6 +11,7 @@ import ImageView from './ImageView';
 import { AppDispath } from '../../constants';
 import RootView from '../RootView';
 import OptionsPage from '../../pages/OptionsPage';
+import Transitions from '../../components/transition';
 
 export default class ArticleBlock extends React.PureComponent {
 
@@ -54,9 +55,11 @@ export class ArticleOptionActions {
         AppDispath({ type: 'SceneModel/processActions', payload: payload, cb: (v) => {
             // 如果是切换场景，显示选项页面
             if (payload.toScene != undefined) {
-                const key = RootView.add(<OptionsPage onClose={() => {
-                    RootView.remove(key);
-                  }} />);
+                const key = RootView.add(
+                <Transitions id={'OPEN_SCENE_FROM_ARTICLE'}>
+                    <OptionsPage onClose={() => { RootView.remove(key); }} />
+                </Transitions>
+                );
             }
 
             // 执行回调方法
