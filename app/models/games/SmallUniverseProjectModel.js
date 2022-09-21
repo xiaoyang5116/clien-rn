@@ -75,12 +75,43 @@ export default {
         upgradeProps.push(Object.assign(item, propData))
       }
 
+      // 0-可以升级, 1-已经达到最高等级, 2-道具不足
+      let status = 0
+      // 判读 升级需要的道具 数量是否 足够
+      let isNeedPropsEnough = payload.needProps.every(item => {
+        if (upgradeProps.find(f => f.key === item.split(',')[0]).num >= parseInt(item.split(',')[1])) {
+          return true
+        } else {
+          return false
+        }
+      })
+
+
       // 下一级的信息 { grade, subAttrs, needProps }
       const nextLevelConfig = mainAttrConfig.levelConfig.find(item => item.grade === payload.grade + 1)
+
+      if (nextLevelConfig === undefined) {
+        status = 1
+        return {
+          upgradeProps,
+          status,
+        }
+      }
+      if (nextLevelConfig !== undefined && !isNeedPropsEnough) {
+        status = 2
+        return {
+          upgradeProps,
+          nextGrade: nextLevelConfig.grade,
+          nextSubAttrs: nextLevelConfig.subAttrs,
+          status,
+        }
+      }
+
       return {
         upgradeProps,
         nextGrade: nextLevelConfig.grade,
         nextSubAttrs: nextLevelConfig.subAttrs,
+        status,
       }
     },
 
@@ -153,6 +184,7 @@ export default {
 
       const currentMainAttr = mainAttrs.find(item => item.name === mainAttr.name)
       const mainAttrInfo = yield put.resolve(action('getMainAttrInfo')(currentMainAttr))
+
       return {
         mainAttr: currentMainAttr,
         ...mainAttrInfo

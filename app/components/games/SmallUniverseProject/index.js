@@ -6,11 +6,11 @@ import RootView from "../../RootView";
 
 import { TextButton } from '../../../constants/custom-ui';
 import UpgradePage from './UpgradePage';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../../constants/resolution';
 
 const SmallUniverseProject = props => {
   const { onClose, smallUniverseProject_data } = props
-
-  // console.log("smallUniverseProject_data", smallUniverseProject_data);
   const { mainAttrs, allSubAttrs, levelProgress } = smallUniverseProject_data
 
   const MainAttrsComponent = () => {
@@ -39,14 +39,15 @@ const SmallUniverseProject = props => {
               <Text style={{ fontSize: 18, color: '#000' }}>{item.name}</Text>
             </View>
           </TouchableOpacity>
-          <Text style={{ width: 80, backgroundColor: "#A0A0A0", fontSize: 16, paddingTop: 4, paddingBottom: 4, marginTop: 12, textAlign: 'center' }}>
+          {/* <Text style={{ width: 80, backgroundColor: "#A0A0A0", fontSize: 16, paddingTop: 4, paddingBottom: 4, marginTop: 12, textAlign: 'center' }}>
             {shiLi}
-          </Text>
+          </Text> */}
         </View>
       )
     })
     return (
-      <View style={{ height: "80%", width: "100%", flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ height: "80%", width: "100%", flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', paddingTop: 30 }}>
+        <FastImage style={{ position: 'absolute', width: px2pd(432), height: px2pd(432) }} source={require('../../../../assets/games/SmallUniverseProject/leida.png')} />
         {MainAttrs}
       </View>
     )
@@ -91,9 +92,16 @@ const SmallUniverseProject = props => {
 
   return (
     <View style={styles.viewContainer}>
+      <FastImage
+        style={{ width: '100%', height: '100%', position: 'absolute' }}
+        source={require("../../../../assets/games/SmallUniverseProject/bg.png")}
+      />
       <SafeAreaView style={{ flex: 1, }}>
         <View style={styles.container}>
           <View style={styles.topContainer}>
+            <FastImage
+              style={{ width: px2pd(997), height: px2pd(1011), position: 'absolute', opacity: 0.9 }}
+              source={require('../../../../assets/games/SmallUniverseProject/attr_bg.png')} />
             <MainAttrsComponent />
             <LevelProgressComponent />
           </View>
@@ -117,7 +125,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     zIndex: 99,
-    backgroundColor: '#ccc',
+    // backgroundColor: '#ccc',
   },
   container: {
     justifyContent: "space-between",
@@ -125,9 +133,9 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     width: "90%",
+    alignItems: 'center',
+    justifyContent: 'center',
     height: '55%',
-    borderColor: '#000',
-    borderWidth: 1,
   },
   bottomContainer: {
     width: "90%",
