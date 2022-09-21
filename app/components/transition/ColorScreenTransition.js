@@ -32,6 +32,13 @@ const ColorScreenTransition = (props) => {
     }
 
     React.useEffect(() => {
+        // 指定时间触发
+        if (props.config.duration != undefined) {
+            setTimeout(() => {
+                DeviceEventEmitter.emit(EventKeys.SCREEN_TRANSITION_START, 'ColorScreenTransition');
+            }, props.config.duration);
+        }
+        // 通过消息触发(解决一些需要加载的例如MP4视频的情况)
         const listener = DeviceEventEmitter.addListener(EventKeys.SCREEN_TRANSITION_START, (name) => { 
             if (lo.isEqual(name, 'ColorScreenTransition')) {
                 trans();

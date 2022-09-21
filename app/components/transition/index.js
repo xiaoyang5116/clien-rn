@@ -18,15 +18,15 @@ const Transitions = (props) => {
     switch(found.name) {
         case 'BlackScreen':
         case '黑色过渡':
-            return (<ColorScreenTransition>{props.children}</ColorScreenTransition>);
+            return (<ColorScreenTransition config={found}>{props.children}</ColorScreenTransition>);
         
         case 'WhiteScreen':
         case '白色过渡':
-            return (<ColorScreenTransition color={'#fff'}>{props.children}</ColorScreenTransition>);
+            return (<ColorScreenTransition config={found} color={'#fff'}>{props.children}</ColorScreenTransition>);
 
         case 'OpenScreen':
         case '开门':
-            return (<OpenTransition>{props.children}</OpenTransition>);
+            return (<OpenTransition config={found}>{props.children}</OpenTransition>);
 
         default:
             errorMessage(`"${found.name}" 转场不存在`);
