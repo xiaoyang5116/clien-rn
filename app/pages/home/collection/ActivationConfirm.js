@@ -15,6 +15,7 @@ import lo from 'lodash';
 import { TextButton } from '../../../constants/custom-ui';
 import { AppDispath } from '../../../constants';
 import Toast from '../../../components/toast';
+import * as Animatable from 'react-native-animatable';
 import { connect } from 'react-redux';
 
 const ActivationConfirm = (props) => {
@@ -22,13 +23,10 @@ const ActivationConfirm = (props) => {
     const CALLBACK_EVENT_KEY = '__@ActivationConfirm.activate';
 
     const scale = React.useRef(new Animated.Value(0)).current;
+    const refView = React.createRef();
 
     React.useEffect(() => {
-        Animated.timing(scale, {
-            toValue: 1,
-            duration: 200,
-            useNativeDriver: true,
-        }).start();
+        refView.current.zoomIn();
     }, []);
 
     React.useEffect(() => {
@@ -52,7 +50,7 @@ const ActivationConfirm = (props) => {
     return (
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Animated.View style={[{ width: 300, height: 370, backgroundColor: '#eee', alignItems: 'center', borderRadius: 5 }, { transform: [{ scale: scale }] }]}>
+                <Animatable.View ref={refView} duration={600} style={[{ width: 300, height: 370, backgroundColor: '#eee', alignItems: 'center', borderRadius: 5 }, { transform: [{ scale: scale }] }]}>
                     <View style={{ width: '94%', marginTop: 10, marginBottom: 15, backgroundColor: '#ccc', borderWidth: 1, borderColor: '#333', borderRadius: 5, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 24, lineHeight: 40 }}>{props.data.name}</Text>
                     </View>
@@ -77,7 +75,7 @@ const ActivationConfirm = (props) => {
                             }
                         }} />
                     </View>
-                </Animated.View>
+                </Animatable.View>
             </SafeAreaView>
         </View>
     );

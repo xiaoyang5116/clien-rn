@@ -78,6 +78,14 @@ const _images = {
         { id: 3, img: require('../../assets/bg/BAIYUN_1080.webp') },
         { id: 4, img: require('../../assets/bg/bgDialog_clock.webp') },
     ],
+    collectBackgroundImages: [
+        { name: 'YanJiang', source: require('../../assets/collect/bg/YanJiang.png') },
+        { name: 'XueDi', source: require('../../assets/collect/bg/XueDi.png') },
+        { name: 'CaoDi', source: require('../../assets/collect/bg/CaoDi.png') },
+        { name: 'HuangTu_1', source: require('../../assets/collect/bg/HuangTu_1.png') },
+        { name: 'HuangTu_2', source: require('../../assets/collect/bg/HuangTu_2.png') },
+        { name: 'HuangTu_3', source: require('../../assets/collect/bg/HuangTu_3.png') },
+    ],
 }
 
 const _videos = {
@@ -132,4 +140,9 @@ export const getBgDialog_bgImage = (bgImageId) => {
 // 获取video 视屏资源
 export const getVideo = (videoId) => {
     return _videos.bgDialog_video.find(e => e.id === videoId).video;
+}
+
+// 获取采集背景图片
+export const getCollectBackgroundImage = (name) => {
+    return _images.collectBackgroundImages.find(e => lo.isEqual(e.name, name));
 }
