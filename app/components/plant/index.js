@@ -19,7 +19,7 @@ import { px2pd } from '../../constants/resolution'
 import Carousel from 'react-native-snap-carousel'
 import Farm from './Farm'
 import { TextButton } from '../../constants/custom-ui'
-
+import Transitions from '../../components/transition';
 
 const img = [
     { source: require('../../../assets/plant/header/title_bg.png') },
@@ -108,7 +108,9 @@ export default Plant
 export class PlantPage {
     static show() {
         const key = RootView.add(
+        <Transitions id={'OPEN_ZHONG_ZHI'}>
             <Plant onClose={() => { RootView.remove(key) }} />
+        </Transitions>
         )
     }
 }

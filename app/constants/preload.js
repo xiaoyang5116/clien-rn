@@ -43,6 +43,11 @@ export const images = [
     require('../../assets/animations/leiyun/leiyun12-13.png'),
     require('../../assets/animations/leiyun/leiyun13-14.png'),
     require('../../assets/animations/leiyun/leiyun14-15.png'),
+
+    require('../../assets/bg/open_trans_left.png'),
+    require('../../assets/bg/open_trans_right.png'),
+    require('../../assets/bg/open_trans_y.png'),
+    require('../../assets/bg/circle_trans_black.png'),
 ];
 
 // 需要预热的字体
