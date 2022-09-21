@@ -30,8 +30,8 @@ const Transitions = (props) => {
             return (<OpenTransition config={found}>{props.children}</OpenTransition>);
 
         case 'CircleScreen':
-            case '圆形过渡':
-                return (<CircleTransition config={found}>{props.children}</CircleTransition>);
+        case '圆形过渡':
+            return (<CircleTransition config={found}>{props.children}</CircleTransition>);
 
         default:
             errorMessage(`"${found.name}" 转场不存在`);
