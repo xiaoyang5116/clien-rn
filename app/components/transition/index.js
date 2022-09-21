@@ -37,5 +37,5 @@ OpenTransition.propTypes = {
 };
 
 OpenTransition.defaultProps = {
-    id: undefined,
+    id: 'BlackScreen',
 };
