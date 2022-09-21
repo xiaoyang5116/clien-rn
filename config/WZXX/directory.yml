@@ -71,7 +71,7 @@ directory: [
         toChapter: 'WZXX_M1_N1_C001C', links: [[0, -4]] 
         },
 
-        { point: [0, -4], title: '第二章N1回忆开始',
+        { point: [0, -4], title: '第二章回忆开始',
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N1]' ,
         toChapter: 'WZXX_M1_N1_C002_[N1]', links: [[1, -4],] 
         },

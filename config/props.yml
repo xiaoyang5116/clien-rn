@@ -150,15 +150,14 @@ props: [
   { id:  359, name: '玄天宝鉴', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '用于修士之间传讯的宝器' },
   { id:  360, name: '护体丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '能够保护修士体内筋脉不受伤害，且能恢复一定法力' },
   
-   #完成人任务需要使用的道具
+   #完成任务需要使用的道具
   { id:  361, name: '糖葫芦', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
   { id:  362, name: '酒葫芦', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
   { id:  363, name: '李森炎的记忆碎片', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },														
   { id:  364, name: '手镯', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },						
   { id:  365, name: '锄头', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },												
   { id:  366, name: '黑麒麟', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
-
-
+  { id:  367, name: '一壶好酒', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
 
    # 碎片
    { id:  500, name: '碎片1', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['碎片'], capacity: 100, desc: ' ', composite: { propId: 700, requireNum: 20 } },
@@ -178,7 +177,7 @@ props: [
    { id:  1008, name: '石猿泪', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
    { id:  1009, name: '腐髓草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
    { id:  1010, name: '兽骨粉', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  1011, name: '野生白芍', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
+   { id:  1011, name: '野生白芍', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' , sell: [{ propId: 887, num: 10 }] },	
    { id:  1012, name: '何首乌', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
    { id:  1013, name: '白术', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
    { id:  1014, name: '丹参', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
@@ -223,4 +222,8 @@ props: [
   { id:  3102, name: '金手镯碎片[蓝]', iconId: 2, num:  1, quality: 3, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },
   { id:  3103, name: '金戒指碎片[紫]', iconId: 2, num:  1, quality: 4, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },		
   { id:  3104, name: '木棍子[橙]', iconId: 2, num:  1, quality: 5, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },
+
+  # 小宇宙项目道具
+  { id: 4000, name: '金币', iconId: 2, num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ''},
+  { id: 4001, name: '铜币', iconId: 2, num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ''},
 ]

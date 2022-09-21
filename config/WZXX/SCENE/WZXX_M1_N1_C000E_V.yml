@@ -1,0 +1,519 @@
+scenes: [
+
+    #
+    {
+      id: 'WZXX_M1_N1_C000E_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+
+      ],
+
+      # 动作定义
+      actions: [],
+      #不显示时间
+      worldTimeHidden: true,
+      # 事件定义# 故事中的场景事件暂时没什么意义
+      events: [],
+
+      chats: [
+      { 
+        id: 'WZXX_M1_N1_C000E_V', desc: '采药', 
+        options: [ 
+          { title: "【去落霞峰山脚下采药】",toScene: 'C000E_V_MAP_-1_-19',},
+        ],
+      },
+
+        ],
+  },
+
+ #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000E_V_MAP_-1_-19', name: '山道',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_70',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000E_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, -19],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    # { id: "v_icon_100E", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter', nextChat: 'C1'  },
+      
+    ],
+
+    # 对话选项
+    chats: [
+      {
+        id: 'C1', desc: "李森炎独自一人走在山道上\n没过多久，他远远看到，前方出现了一个人影\n李森炎走近了些，看到一个村民正在锄地",
+        options: [ 
+         { title: '【上前和村民交谈】',nextChat: 'C1A' }, 
+        ],
+      },
+
+       {
+        id: 'C1A', desc: "“大爷，我想问……”\n“谁是你大爷！”\n村民抬起头，顶着一头白发：“我才二十五！”\n二十五啊，那是显老了点……",
+        options: [ 
+         { title: '【尴尬……】',nextChat: 'C2' }, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: "李森炎尴尬一笑，连忙改口叫大哥\n接着问他知不知道那些药材的出处\n村民没有立即回答，转而问起李森炎\n“你姓什么？”\n“我姓李。”\n“哦，不是姓王就行，要是姓王的我肯定不告诉他！”\n李森炎大汗！",
+        options: [ 
+         { title: '【这是对姓王的是有多大的怨念啊】', nextChat: 'C3' ,
+         toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan4"] } 
+              }, 
+        }, 
+        ],
+      }, 
+
+      {
+        id: 'C3', desc: "黄心叶我知道，在北药山沟，山谷这两个地方都有，至于你说其他两个，我就不清楚了。”\n李森炎谢过村民，继续往前走",
+        options: [ 
+         { title: '【前面有一位挎着花篮的姑娘】',toScene: 'C000E_V_MAP_-1_-18' }, 
+        ],
+      },
+
+    ],
+  },
+          
+ #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000E_V_MAP_-1_-18', name: '山间小径',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_68',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000E_V_MAP_0_1',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, -18],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+      
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: "姑娘正在采集花叶，看到李森炎眼前一亮\n“这位大哥，要不要去我家里坐坐？”\n李森炎颇感意外，现在的姑娘，都这么大胆了吗？\n但是姑娘接下来的一句话，就让李森炎彻底打消了念头\n“我家里有上好的茶叶。”",
+        options: [ 
+        { title: '【不用了不用了】', nextChat: 'C2'}, 
+
+        ],
+      },
+      #
+       { 
+        id: 'C2', desc: "李森炎担心她下一秒就要开始卖茶叶了\n连忙截住她的话，说自己还有要事，顺带把自己的需求提出来\n姑娘眼中难掩失望\n“你不去的话我就不告诉你。”",
+        options: [ 
+         { title: '【编个理由】', nextChat: 'C2A'}, 
+        ],
+      },
+      { 
+        id: 'C2A', desc: "“你先告诉我，等我把药草拿到手了，我再回来找你。”\n“真的吗？你不要骗我哦！”\n“真的，不骗你！”\n采花姑娘点了点头，把她知道的地点告诉了李森炎",
+        options: [ 
+        { title: '【有关得到百络花的流言】', nextChat: 'C3',
+        toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan5"] } 
+              }, 
+        }, 
+
+        ],
+      },
+      
+      { 
+        id: 'C3', desc: '获得百络花线索后，李森炎继续前行，一个砍柴少年进入他的视野', 
+        options: [ 
+        { title: '【与砍柴少年交流】', toScene: 'C000E_V_MAP_0_-18'}, 
+        ],
+      },
+
+    
+       #
+    ],
+   
+
+  },
+
+ #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000E_V_MAP_0_-18', name: '枯木丛',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_69',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图 
+    mapId: 'C000E_V_MAP_0_2',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, -17],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc: "李森炎上前问话，少年看了李森炎一眼\n灵动的双眸转了转\n提出如果李森炎帮他砍柴的话，就告诉他那些草药在哪",
+        options: [ 
+        { title: '【帮忙砍柴】', nextChat: 'C2'}, 
+        { title: '【不帮】', nextChat: 'C3'}, 
+
+        ],
+      },
+     { 
+        id: 'C2', desc: "砍柴是个体力活，不过李森炎也不缺力气\n挥起斧头，三下五除二把活儿干完了\n少年露出了微笑，说道：“谢谢大哥！”",
+        options: [ 
+        { title: '【获得有关于子星草的流言】', nextChat: 'C4',
+        toMsg: { 
+                action: 'CluesModel/addClues', params: { addCluesId: ["liuyan6"] } 
+              }, 
+        }, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: "李森炎下意识觉得，这个少年是想骗他干活\n然后信口胡诌一个地方\n这种伎俩，怎么能骗得了他？\n李森炎没有搭理他，转身离开",
+        options: [ 
+        { title: '【继续往前走】', toScene: 'C000E_V_MAP_1_-18'}, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: "李森炎得到一些线索后，准备前去采药\n路过一间山野草屋",
+        options: [ 
+        { title: '【进去看看】', toScene: 'C000E_V_MAP_1_-18'}, 
+
+        ],
+      },
+       
+     
+       #
+    ],
+   
+ 
+  },
+
+   #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000E_V_MAP_1_-18', name: '山野草屋',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_71',
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000E_V_MAP_0_3',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, -18],
+
+     # 变量定义
+    vars: [
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "v1", min: 0, max: 1 },
+    
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+       
+       
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc:  "走近见到一个老大爷\n正在门口悠然晒着太阳\n李森炎决定上前询问，再确定一下自己的线索", 
+        options: [ 
+        { title: '【与老大爷交流】',varsOn: ['v1','biaoqianv1',], dialogs: ['Screen1'],icon: { id: 1, bindVar: 'biaoqianv1' },}, 
+        { title: '【离开继续往前】', andVarsOn: ['v1'], toScene: 'C000E_V_MAP_0_-17'}, 
+
+        ],
+      },
+       
+ 
+     
+    ],
+   
+ # 对话框
+    dialogs: [
+     { id: 'Screen1',style: 10, textAnimationType: 'TextSingle',
+            sections: [
+            { figureId: "01", location: "right", content: ['“大爷你好。”', ], },
+            { figureId: "02", location: "left", content: ['“你好。”',], },
+            { figureId: "01", location: "right", content: ['“大爷你知道黄心叶、百络花、子星草这些东西在哪吗？”',], },
+            { figureId: "02", location: "left", content: ['“第一个是黄什么？”', ], },
+            { figureId: "01", location: "right", content: ['“黄心叶。”',], },
+            { figureId: "02", location: "left", content: ['“第二个呢？”', ], },
+            { figureId: "01", location: "right", content: ['“百络花。”',], },
+            { figureId: "02", location: "left", content: ['“第三个呢？”', ], },
+            { figureId: "01", location: "right", content: ['“子星草。”',], },
+            { figureId: "02", location: "left", content: ['“哦哦，那第一个呢？”', ], },
+            { figureId: "01", location: "right", content: ['“……”','“第一个是黄心叶，第二个是百络花，第三个是子星草。”',], },
+            { figureId: "02", location: "left", content: ['“哦哦，第一个是黄心叶，那第二个呢。”',], },
+            { figureId: "01", location: "right", content: ['“……”','“大爷你好好歇着吧。”',], },
+            { figureId: "02", location: "left", content: ['“好嘞。”', ], },
+            ],
+            
+            },
+    ],
+  },
+   #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000E_V_MAP_0_-17', name: '羊肠小道',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_72',
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000E_V_MAP_0_4',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, -16],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+       
+    ],
+
+    # 对话选项
+    chats: [
+      { 
+        id: 'C1', desc:  "被大爷彻底“折服”的李森炎离开草屋，走上一条羊肠小道\n不多时，又见到一个人影\n李森炎看到这人身上背负竹篓，好像是个采药人", 
+        options: [ 
+        { title: '【和采药人对话】',dialogs: ['Screen16'] ,}, 
+        ],
+      },
+    ], 
+     # 对话框
+    dialogs: [
+        { id: 'Screen1',style: 6, title: '和采药人对话', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎觉得他应该是有药材的线索，于是上前询问','“你要的这些东西，我都有啊！”',
+          '听到采药人的话，李森炎一开始是惊喜','但问了价格后，就是惊吓了！',
+          '一株药草竟然卖到一千铜钱！“你怎么不去抢啊？”','“那我还真就抢了，把钱都交出来！”话音刚落，对方从竹篓里掏出了把刀',],
+          btn: [{title: '【交战】' ,toScene: 'S_00Test03' }, ]},
+    ],},
+    ],
+  },
+
+
+#=================================场景地图的设置==================================
+    maps: [
+      {
+        id: 'C000E_V_MAP_0_0',
+        data: [
+          { 
+          point: [-1, -19], title: '山道', 
+          links: [[-1, -18], ] 
+          },
+
+          { 
+          point: [-1, -18], title: '？？？', links: [] 
+          },
+        ]
+      },
+      
+      {
+        id: 'C000E_V_MAP_0_1',
+        data: [
+          { 
+          point: [0, -18],
+          title: '？？？', 
+          links: [] 
+          },
+
+          { 
+          point: [-1, -18], 
+          title: '山间小径',
+          links: [[0, -18], ] 
+          },
+
+          { 
+          point: [-1, -19], 
+          title: '山道',  
+          links: [[-1, -18], ] 
+          },
+        ]
+      },
+      {
+        id: 'C000E_V_MAP_0_2',
+        data: [
+          { 
+          point: [1, -18], 
+          title: '？？？', 
+          links: [[], ] 
+          },
+          
+          { 
+          point: [0, -18], 
+          title: '枯木丛',
+          links: [[1, -18], ] 
+          },
+
+         { 
+          point: [-1, -18], 
+          title: '山间小径',
+          links: [[0, -18], ] 
+          },
+
+          { 
+          point: [-1, -19], 
+          title: '山道', 
+          links: [[-1, -18], ] 
+          },
+
+        ]
+      },
+
+       {
+        id: 'C000E_V_MAP_0_3',
+        data: [
+          {
+          point: [0, -17], 
+          title: '？？？',
+          links: [[], ] 
+          },
+
+          { 
+          point: [1, -18], 
+          title: '山野草屋', 
+          links: [ ] ,  path: [[1, -17],[0, -17], ]
+          },
+
+          { 
+          point: [0, -18], 
+          title: '枯木丛',
+          links: [[1, -18], ] 
+          },
+
+         { 
+          point: [-1, -18], 
+          title: '山间小径',
+          links: [[0, -18], ] 
+         },
+
+          { 
+          point: [-1, -19], 
+          title: '山道', 
+          links: [[-1, -18], ] 
+          },
+
+        ]
+      },
+
+       {
+        id: 'C000E_V_MAP_0_4',
+        data: [
+          { 
+          point: [0, -17], 
+          title: '羊肠小道',
+          #toScene: 'C000E_V_MAP_0_-17',
+          links: [[], ] 
+          },
+
+          { 
+          point: [1, -18], 
+          title: '山野草屋', 
+          #toScene: 'C000E_V_MAP_1_-18',
+          links: [ ] , path: [[1, -17],[0, -17], ]
+          },
+
+          { 
+          point: [0, -18], 
+          title: '枯木丛',
+          # toScene: 'C000E_V_MAP_0_-18',
+          links: [[1, -18], ] 
+          },
+
+          { 
+          point: [-1, -18],
+          title: '山间小径',
+          #toScene: 'C000E_V_MAP_-1_-18',
+          links: [[0, -18], ] 
+          },
+
+          { 
+          point: [-1, -19], 
+          title: '山道', 
+          #toScene: 'C000E_V_MAP_-1_-19', 
+          links: [[-1, -18], ] 
+          },
+            
+
+        ]
+      },
+
+      
+    ],
+
+
+    
+
+  ]
+   

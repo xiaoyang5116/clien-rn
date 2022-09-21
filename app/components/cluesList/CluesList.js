@@ -110,8 +110,11 @@ const FilterOption = (props) => {
                             key={index}
                             onPress={() => { changeOptionHandler(item.filterType, value) }}
                         >
-                            <View>
-                                <Text style={[styles.filterOption_option, item.checkedOption === value ? theme.titleColor3 : { color: "#A4A4A4" }]}>
+                            <View style={[
+                                item.checkedOption === value ? { borderBottomColor: "#686868", borderBottomWidth: 1, } : {},
+                                { marginLeft: 8, marginRight: 8 }
+                            ]}>
+                                <Text style={[styles.filterOption_option, { color: "#686868" }]}>
                                     {value}
                                 </Text>
                             </View>
@@ -166,7 +169,10 @@ const CluesList = (props) => {
 
     return (
         <View style={{ flex: 1, }}>
-            <FastImage source={require('../../../assets/themes/blue/bg/dialog_bg2.png')} style={{ position: "absolute", width: '100%', height: "100%" }} />
+            <FastImage
+                source={require('../../../assets/clues/clues_bg.png')}
+                style={{ position: "absolute", width: '100%', height: "100%" }} 
+            />
             <SafeAreaView style={{ flex: 1 }}>
                 <TabBarComponent
                     tabData={tabData}
@@ -223,7 +229,8 @@ const styles = StyleSheet.create({
         color: "#111"
     },
     filterOption_option: {
-        marginLeft: 12,
+        // marginLeft: 12,
         fontSize: 20,
+        textAlign: 'center'
     },
 });

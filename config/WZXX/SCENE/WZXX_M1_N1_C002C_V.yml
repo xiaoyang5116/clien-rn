@@ -127,7 +127,6 @@ scenes: [
         ],
       },
 
-      
       { 
         id: 'WZXX_M1_N1_C002C_V8', desc: '打斗', 
         options: [ 
@@ -143,7 +142,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002C_V10', desc: '雪落', 
         options: [ 
-          { title: "【啊啊啊啊啊】",toChapter: "WZXX_M1_N1_C007"  },
+          { title: "【啊啊啊啊啊】",toChapter: "WZXX_M1_N1_C007"},
         ],
       },
 
@@ -168,7 +167,8 @@ scenes: [
           '李森炎心中生出要尽快见到母亲的强烈意愿','融合了前身的记忆后',
           '他也继承了部分原身的情感',
           '血浓于水的亲情，无论如何也无法割舍','一路径直朝着家的方向飞奔',
-          '突然，一道寒光闪过，意识瞬间归于混沌',],
+          '突然，一道寒光闪过，意识瞬间归于混沌',
+          ['边缘闪烁红'],],
           btn: [{title: '什么情况？',toChapter: "WZXX_M1_N1_C002_[N7]" } 
           ,]},
            ]  
@@ -187,7 +187,8 @@ scenes: [
           '果然有杀手埋伏……','再次回到西市路口，李森炎心里有底','初步总结，死亡后回溯的时间节点可以由个人意志控制','如果在死亡的那一瞬间没有意识去刻意控制，回溯的时间节点就会是完全随机的',
           '但无论是意志控制还是完全随机，最多不会超过三个时辰~”','也就是说，他死后，最多回到死亡前三个时辰内的时间节点','其二，是否需要死亡才能触发回档，这个结果他还没有试验出来','反正他暂时还没有遇到过这种情况，姑且不论',
           '请选择行动——',],
-            btn: [{title: '绕路回家！',tokey: "P4", icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},
+            btn: [
+            {title: '绕路回家！',tokey: "P4", icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},
             {title: '先想想别的办法！',tokey: "P5", icon: { id: 7, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']},]},
           
            { key: 'P4', content: [
@@ -216,9 +217,11 @@ scenes: [
            { key: 'P9', content: ['李森炎就近找到一个兵器买卖的小摊','这种摊位买卖的兵器肯定不会太好',
           '但人家摊主都没嫌他穷','他也不敢嫌弃人家的兵器不上档次','驻足片刻后，有三件兵器入他的眼',
           '但他身上的钱所剩不多，估计只能买一件',],
-          btn: [{title: '一把黑色弯刀',tokey: "P9_1", icon: { id: 6, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12'] },
+          btn: [
+          {title: '一把黑色弯刀',tokey: "P9_1", icon: { id: 6, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12'] },
           {title: '一把银色长剑',tokey: "P9_2", icon: { id: 6, bindVar: 'biaoqianv13' }, varsOn: ['biaoqianv13']},
-          {title: '一杆红缨长枪',tokey: "P9_3", icon: { id: 6, bindVar: 'biaoqianv14' }, varsOn: ['biaoqianv14']}]},
+          {title: '一杆红缨长枪',tokey: "P9_3", icon: { id: 6, bindVar: 'biaoqianv14' }, varsOn: ['biaoqianv14']},
+          ]},
           
           { key: 'P10', content: [ '李森炎认真想了想',
           '可能还是自己的容颜太过亮眼！','如鹤立鸡群，在人群中太有辨识度。',
@@ -318,7 +321,7 @@ scenes: [
     },
     
            #选项对话1
-          { id: 'C002C_duihuaA',style: 6, title: '见到母亲', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          { id: 'C002C_duihuaA',style: 6, title: '见到母亲', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P11', content: ['林婕吓了一跳，这不怪她，换谁被看上去至少得有八十的老头叫一声娘，虎躯不得震上一震？','“是我啊！咱们进去说话。”',
           ],

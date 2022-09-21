@@ -76,6 +76,7 @@ const _images = {
         { id: 1, img: require('../../assets/bg/first_bg.jpg') },
         { id: 2, img: require('../../assets/bg/lottery_bg.jpg') },
         { id: 3, img: require('../../assets/bg/BAIYUN_1080.webp') },
+        { id: 4, img: require('../../assets/bg/bgDialog_clock.webp') },
     ],
     collectBackgroundImages: [
         { name: 'YanJiang', source: require('../../assets/collect/bg/YanJiang.png') },
@@ -90,6 +91,7 @@ const _images = {
 const _videos = {
     bgDialog_video: [
         { id: 1, video: require('../../assets/mp4/FLY_480x960.mp4') },
+        { id: 2, video: require('../../assets/mp4/NIU_ZHUAN_SHI_KONG.mp4') },
         // { id: 1, video: require('../../assets/mp4/FLY_480x960.mp4') },
     ],
 }

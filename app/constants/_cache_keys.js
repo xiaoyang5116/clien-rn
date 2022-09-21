@@ -55,4 +55,7 @@ export class LocalCacheKeys {
     // 采集数据
     static COLLECT_DATA = "COLLECT_DATA";
 
+    // 小宇宙项目数据
+    static SMALL_UNIVERSE_PROJECT_DATA = "SMALL_UNIVERSE_PROJECT_DATA"
+
 }
