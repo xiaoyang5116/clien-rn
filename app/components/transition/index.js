@@ -7,7 +7,7 @@ import OpenTransition from './OpenTransition';
 import lo from 'lodash';
 import * as trans from '../../../config/trans.json';
 import { errorMessage } from '../../constants';
-import CircleTransition from './CircleTransition';
+import BlackCircleTransition from './BlackCircleTransition';
 
 const Transitions = (props) => {
     const found = lo.find(trans.default, (e) => lo.isEqual(e.id, props.id));
@@ -29,9 +29,9 @@ const Transitions = (props) => {
         case '开门':
             return (<OpenTransition config={found}>{props.children}</OpenTransition>);
 
-        case 'CircleScreen':
-        case '圆形过渡':
-            return (<CircleTransition config={found}>{props.children}</CircleTransition>);
+        case 'BlackCircleScreen':
+        case '黑色圆形过渡':
+            return (<BlackCircleTransition config={found}>{props.children}</BlackCircleTransition>);
 
         default:
             errorMessage(`"${found.name}" 转场不存在`);
@@ -41,9 +41,9 @@ const Transitions = (props) => {
 
 export default Transitions;
 
-OpenTransition.propTypes = {
+Transitions.propTypes = {
     id: PropTypes.string,
 };
 
-OpenTransition.defaultProps = {
+Transitions.defaultProps = {
 };
