@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ColorScreenTransition from './ColorScreenTransition';
-import OpenTransition from './OpenTransition';
+import OpenXTransition from './OpenXTransition';
 
 import lo from 'lodash';
 import * as trans from '../../../config/trans.json';
@@ -25,9 +25,9 @@ const Transitions = (props) => {
         case '白色过渡':
             return (<ColorScreenTransition config={found} color={'#fff'}>{props.children}</ColorScreenTransition>);
 
-        case 'OpenScreen':
-        case '开门':
-            return (<OpenTransition config={found}>{props.children}</OpenTransition>);
+        case 'OpenXScreen':
+        case '左右开门':
+            return (<OpenXTransition config={found}>{props.children}</OpenXTransition>);
 
         case 'BlackCircleScreen':
         case '黑色圆形过渡':

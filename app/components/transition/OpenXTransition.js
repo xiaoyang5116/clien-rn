@@ -11,7 +11,7 @@ import {
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../constants/resolution';
 
-const OpenTransition = (props) => {
+const OpenXTransition = (props) => {
 
     const [display, setDisplay] = React.useState('none');
     const [pointerEvents, setPointerEvents] = React.useState('auto');
@@ -63,7 +63,7 @@ const OpenTransition = (props) => {
     )
 }
 
-export default OpenTransition;
+export default OpenXTransition;
 
 const styles = StyleSheet.create({
     maskContainer: {
@@ -76,10 +76,10 @@ const styles = StyleSheet.create({
     },
 });
 
-OpenTransition.propTypes = {
+OpenXTransition.propTypes = {
     color: PropTypes.string,
 };
 
-OpenTransition.defaultProps = {
+OpenXTransition.defaultProps = {
     color: '#fff',
 };
