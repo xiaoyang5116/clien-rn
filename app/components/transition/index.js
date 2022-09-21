@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ColorScreenTransition from './ColorScreenTransition';
-import OpenXTransition from './OpenXTransition';
-
 import lo from 'lodash';
 import * as trans from '../../../config/trans.json';
 import { errorMessage } from '../../constants';
+
+import ColorScreenTransition from './ColorScreenTransition';
+import OpenXTransition from './OpenXTransition';
 import BlackCircleTransition from './BlackCircleTransition';
+import OpenYTransition from './OpenYTransition';
 
 const Transitions = (props) => {
     const found = lo.find(trans.default, (e) => lo.isEqual(e.id, props.id));
@@ -28,6 +29,10 @@ const Transitions = (props) => {
         case 'OpenXScreen':
         case '左右开门':
             return (<OpenXTransition config={found}>{props.children}</OpenXTransition>);
+
+        case 'OpenYScreen':
+        case '上下开门':
+            return (<OpenYTransition config={found}>{props.children}</OpenYTransition>);
 
         case 'BlackCircleScreen':
         case '黑色圆形过渡':
