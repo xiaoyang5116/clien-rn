@@ -11,8 +11,8 @@ import { errorMessage } from '../../constants';
 const Transitions = (props) => {
     const found = lo.find(trans.default, (e) => lo.isEqual(e.id, props.id));
     if (found == undefined) {
-        errorMessage(`${props.id}转场ID无效`);
-        return;
+        errorMessage(`"${props.id}" 转场ID无效`);
+        return <></>;
     }
 
     switch(found.name) {
@@ -27,6 +27,10 @@ const Transitions = (props) => {
         case 'OpenScreen':
         case '开门':
             return (<OpenTransition>{props.children}</OpenTransition>);
+
+        default:
+            errorMessage(`"${found.name}" 转场不存在`);
+            return <></>;
     }
 }
 
