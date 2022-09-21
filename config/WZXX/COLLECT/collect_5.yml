@@ -8,7 +8,7 @@ collects: [
     # 阶段列表
     periods: [
     #每次循环出现的草药数量
-      { itemsNum: 4 },
+      { itemsNum: 3 },
       { itemsNum: 3 },
       { itemsNum: 2 },
     ], 
@@ -19,9 +19,9 @@ collects: [
       { id: 2, props: [{ propId: 1015, num: 1 }] },
       { id: 2, time: 3, props: [{ propId: 1015, num: 1 }] },
       { id: 4, props: [{ propId: 23, num: 1 }] },
-      { id: 5, time: 7, props: [{ propId: 24, num: 1 }] },
-      { id: 6, props: [{ propId: 25, num: 1 }] },
-      { id: 7, time: 3,  props: [{ propId: 26, num: 1 }] },
+      # { id: 5, time: 7, props: [{ propId: 24, num: 1 }] },
+      # { id: 6, props: [{ propId: 25, num: 1 }] },
+      # { id: 7, time: 3,  props: [{ propId: 26, num: 1 }] },
     ],
 
     # 总量控制

@@ -203,7 +203,7 @@ scenes: [
           sections: [
           { key: 'P1', content: ['李小姐：','“可以啊，李森炎，没想到你能把赵雅弄走。”','李森炎不确定她是不是在挖苦，没说话','“悄悄跟你说，其实我也不喜欢她。”',
           '“你把她弄走了，我还要谢谢你呢!”','李森炎笑了笑，“没事，等你上位了记得请我吃饭就行”','“没问题，就算不晋升我也可以请你哦。”','说完李小姐向他抛了个媚眼','这话李森炎可不敢接，找了个借口离去',],
-          btn: [{title: '找王经理', nextChat: 'C1' ,varsOff: ['WZXX_M1_N1_C000C_V/v_icon_100',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101','WZXX_M1_N1_C000C_V/v_icon_100D',]},]},
+          btn: [{title: '离开', nextChat: 'C1' ,varsOff: ['WZXX_M1_N1_C000C_V/v_icon_100',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101','WZXX_M1_N1_C000C_V/v_icon_100D',]},]},
 
          
     ],},
@@ -282,7 +282,7 @@ scenes: [
           sections: [
           { key: 'P1', content: ['王经理：','“其实挺可惜的，你的工作态度和能力我都看在眼里。”','李森炎填完离职手续，感觉一身轻松，没所谓地笑了笑。','“没事的，正好我也想做点自己的事情。”',
           '“找到下家了吗？”','“没有，我打算自己创业。”','王经理不置可否，创业十有九输，但他不想打击眼前这个年轻人。','就算失败了，也是一项值得肯定的阅历。','毕竟他敢迈出这一步，从一个司机到一个创业者。','这种变化不可谓不大，属实难得。','“加油！”',],
-          btn: [{title: '去财务部',nextChat: 'C1' ,varsOff: ['WZXX_M1_N1_C000C_V/v_icon_101',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_102','WZXX_M1_N1_C000C_V/v_icon_101D']},]},
+          btn: [{title: '谈话完毕',nextChat: 'C1' ,varsOff: ['WZXX_M1_N1_C000C_V/v_icon_101',], varsOn: ['WZXX_M1_N1_C000C_V/v_icon_102','WZXX_M1_N1_C000C_V/v_icon_101D']},]},
 
          
     ],},
@@ -362,7 +362,7 @@ scenes: [
           sections: [
           { key: 'P1', content: ['财务主管：','“你来财务部干嘛？薪水下个月发。”','李森炎：“……”','这人怎么见谁都以为是来跟他讨钱的啊！',
           ],
-          btn: [{title: '去找总经理对话',nextChat: 'C1' , varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,varsOn: ['WZXX_M1_N1_C000C_V/v_icon_102D','WZXX_M1_N1_C000C_V/v_icon_104']},]},
+          btn: [{title: '离开',nextChat: 'C1' , varsOff: ['WZXX_M1_N1_C000C_V/v_icon_102',] ,varsOn: ['WZXX_M1_N1_C000C_V/v_icon_102D','WZXX_M1_N1_C000C_V/v_icon_104']},]},
     ],},
     ],
   },
@@ -640,7 +640,7 @@ scenes: [
     chats: [
       #
       { 
-        id: 'C1', desc: '挑高的门厅和气派的大门，彰显华贵', 
+        id: 'C1', desc: '上班时间，此时大门非常冷清', 
         options: [ 
          { title: '【离开公司，回自家小区】', toScene: 'C000C_V3_MAP_1_-1'}, 
       
@@ -942,8 +942,8 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+    #横图显示
     sceneImage: 'BGT_1',
     # 当前场景地图
     mapId: 'C000C_V1_MAP_0_0',
@@ -1407,6 +1407,10 @@ scenes: [
     { id: "biaoqianv8", min: 0, max: 1 } ,
     { id: "biaoqianv9", min: 0, max: 1 } ,
     { id: "biaoqianv10", min: 0, max: 1 } ,
+    { id: "biaoqianv11", min: 0, max: 1 } ,
+    { id: "biaoqianv12", min: 0, max: 1 } ,
+    { id: "biaoqianv13", min: 0, max: 1 } ,
+
     ],
 
     # 动作定义
@@ -1449,9 +1453,9 @@ scenes: [
        { 
         id: 'C4', desc: "打开电脑，李森炎点开文档\n心中一大堆志向和抱负想要去写出来，但是却又无从下手",
         options: [ 
-         { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8']},
-          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9']},
-          { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5', icon: { id: 1, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10']},
+         { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11']},
+          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12']},
+          { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5', icon: { id: 1, bindVar: 'biaoqianv13' }, varsOn: ['biaoqianv13']},
         ],
       },
 

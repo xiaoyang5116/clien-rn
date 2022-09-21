@@ -124,7 +124,7 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
      #横图显示
-    sceneImage: 'BGT_26',
+    sceneImage: 'BGT_27',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图
@@ -207,7 +207,7 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
      #横图显示
-    sceneImage: 'BGT_27',
+    sceneImage: 'BGT_26',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图
@@ -448,7 +448,7 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
      #横图显示
-    sceneImage: 'BGT_28',
+    sceneImage: 'BGT_29',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图
@@ -556,7 +556,7 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
      #横图显示
-    sceneImage: 'BGT_29',
+    sceneImage: 'BGT_28',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图
@@ -605,7 +605,7 @@ scenes: [
         id: 'C3', desc: "杀手刚才休息的不错，什么也没发现\n继续往前走\n四周的人越来越多\n这个杀手应该是想进城\n此时李森炎决定——",
         options: [ 
          { title: '【进城】',toScene: 'C001C_V_MAP_0_5' , icon: { id: 1, bindVar: 'biaoqianv15' }, varsOn: ['biaoqianv15']}, 
-         { title: '【继续跟着杀手】',nextChat: 'C1' ,  icon: { id: 1, bindVar: 'biaoqianv16' }, varsOn: ['biaoqianv16']}, 
+         { title: '【继续跟着杀手】',nextChat: 'C4' ,  icon: { id: 1, bindVar: 'biaoqianv16' }, varsOn: ['biaoqianv16']}, 
         ],
       },
 
@@ -642,7 +642,7 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
      #横图显示
-    sceneImage: 'BGT_47',
+    sceneImage: 'BGT_65',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图

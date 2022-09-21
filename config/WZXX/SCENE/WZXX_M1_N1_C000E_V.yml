@@ -36,6 +36,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_70',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -96,6 +98,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_68',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -161,6 +165,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_69',
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图 
@@ -232,6 +238,8 @@ scenes: [
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_71',
     #不显示时间
     worldTimeHidden: true,
     # 当前场景地图
@@ -299,6 +307,8 @@ scenes: [
     id: 'C000E_V_MAP_0_-17', name: '羊肠小道',
     # 指定场景为NPC或MAP场景
     isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_72',
     #不显示时间
       worldTimeHidden: true,
   
@@ -438,6 +448,9 @@ scenes: [
 
       
     ],
+
+
+    
 
   ]
    

@@ -72,6 +72,7 @@ export default {
       if (!Array.isArray(addCluesId)) return console.debug("cluesId 是一个数组")
 
       let newCluesList = [];
+      let messages = []
       for (let index = 0; index < addCluesId.length; index++) {
         // 跳过已经存在的线索
         if (cluesList.filter(item => item.id === addCluesId[index]).length !== 0) continue;
@@ -79,8 +80,16 @@ export default {
         const clues = __allCluesData.find(item => item.id === addCluesId[index])
         if (clues === undefined) return console.debug("未找到线索")
         newCluesList.push({ ...clues, status: 1 })
-        Toast.show(`获得${clues.type}: ${clues.title}`)
+        // Toast.show(`获得${clues.type}: ${clues.title}`)
+        messages.push({
+          content: clues.content,
+          title: clues.title,
+          cluesType: clues.type
+        })
       }
+
+      // 提示获得线索
+      yield put(action('ToastModel/toastShow')({ messages, type: "clues" }));
       yield put.resolve(action('saveCluesList')([...newCluesList, ...cluesList]));
     },
 

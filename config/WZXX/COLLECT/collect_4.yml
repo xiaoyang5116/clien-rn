@@ -6,21 +6,22 @@ collects: [
     background: 'collect_default',
 
     # 阶段列表
+    #前期不要出现太多道具（此代表屏幕中出现采集单位的数量）
     periods: [
-      { itemsNum: 16 },
-      { itemsNum: 10 },
-      { itemsNum: 7 },
+      { itemsNum: 2 },
+      { itemsNum: 2 },
+      { itemsNum: 2 },
     ], 
 #丹参
     # 宝箱配置
     items: [
-      { id: 4, time: 2, props: [{ propId: 1014, num: 1 }] },
-      { id: 4, props: [{ propId: 1014, num: 1 }] },
-      { id: 4, time: 2, props: [{ propId: 1014, num: 1 }] },
-      { id: 4, props: [{ propId: 23, num: 1 }] },
-      { id: 5, time: 7, props: [{ propId: 24, num: 1 }] },
-      { id: 6, props: [{ propId: 25, num: 1 }] },
-      { id: 7, time: 3,  props: [{ propId: 26, num: 1 }] },
+      { id: 4, time: 2, props: [{ propId: 1014, num: 2 }] },
+      { id: 4, props: [{ propId: 1014, num: 2 }] },
+      # { id: 4, time: 2, props: [{ propId: 1014, num: 1 }] },
+      # { id: 4, props: [{ propId: 23, num: 1 }] },
+      # { id: 5, time: 7, props: [{ propId: 24, num: 1 }] },
+      # { id: 6, props: [{ propId: 25, num: 1 }] },
+      # { id: 7, time: 3,  props: [{ propId: 26, num: 1 }] },
     ],
 
     # 总量控制
