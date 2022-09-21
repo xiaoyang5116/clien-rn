@@ -1,0 +1,12 @@
+[
+  {
+    "id": "OPEN_USER_ATTRS_DETAIL",
+    "name": "开门",
+    "comment": "人物页面详细属性"
+  },
+  {
+    "id": "OPEN_XIUXING_UI",
+    "name": "黑色过渡",
+    "comment": "人物页面修行入口"
+  }
+]

@@ -16,6 +16,7 @@ import Video from 'react-native-video';
 import {
     AppDispath,
     connect,
+    EventKeys,
     StyleSheet,
 } from "../../constants";
 
@@ -30,7 +31,6 @@ import PropGrid from '../../components/prop/PropGrid';
 import { Panel } from '../../components/panel';
 import RootView from '../../components/RootView';
 import * as DateTime from '../../utils/DateTimeUtils';
-import ColorScreenTransition from '../../components/animation/ColorScreenTransition';
 import TuPoSubPage from './xiuxing/TuPoSubPage';
 
 const PROGRESS_BAR_WIDTH = px2pd(800);
@@ -120,7 +120,6 @@ const PropsBar = (props) => {
 const XiuXingTabPage = (props) => {
 
     const refBgVideo = React.useRef(null);
-    const refTrans = React.createRef();
 
     React.useEffect(() => {
         AppDispath({ type: 'UserModel/checkXiuXing', payload: {} });
@@ -141,71 +140,69 @@ const XiuXingTabPage = (props) => {
     const cdForbiden = (props.user.xiuxingStatus.cdTime > 0 && DateTime.now() < props.user.xiuxingStatus.cdTime);
 
     return (
-        <ColorScreenTransition color={'#000'} ref={refTrans}>
-            <Panel patternId={0}>
-                <Video 
-                    style={{ position: 'absolute', width: '100%', height: '100%' }}
-                    ref={(ref) => refBgVideo.current = ref}
-                    source={require('../../../assets/mp4/XIUXING_BG.mp4')}
-                    fullscreen={false}
-                    resizeMode={'cover'}
-                    repeat={true}
-                    onEnd={() => {}}
-                    onReadyForDisplay={() => {
-                        refTrans.current.trans();
-                    }}
-                />
-                <SafeAreaView style={{ flex: 1 }}>
-                    <View style={styles.viewContainer}>
-                        <View style={{ width: '90%', alignItems: 'center', marginBottom: 10 }}>
-                            <Text style={{ fontSize: 26, color: '#fff', fontWeight: 'bold' }}>修行</Text>
-                            <AntDesign style={{ position: 'absolute', left: -10 }} name='left' size={30} color={'#333'} onPress={() => {
-                                if (props.onClose != undefined) {
-                                    props.onClose();
-                                }
-                            }} />
-                        </View>
-                        <View style={{ width: '90%', marginTop: 10, borderRadius: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: '#677d8e', flexDirection: 'row', flexWrap: 'wrap' }}>
-                            <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>体力： {getXiuXingAttrValue('体力')}</Text></View>
-                            <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>防御： {getXiuXingAttrValue('防御')}</Text></View>
-                            <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>法力： {getXiuXingAttrValue('法力')}</Text></View>
-                            <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>攻击： {getXiuXingAttrValue('攻击')}</Text></View>
-                        </View>
-                        <View style={{ marginTop: px2pd(550), justifyContent: 'center', alignItems: 'center' }}>
-                            <View style={{ position: 'absolute', paddingLeft: px2pd(40) }}>
-                                <TextButton title={'突破'} disabled={((props.user.xiuxingStatus.value < props.user.xiuxingStatus.limit) || cdForbiden)} onPress={onTuPo} />
-                            </View>
-                            {
-                            (cdForbiden)
-                            ? (
-                            <View style={{ position: 'absolute', bottom: 35 }}>
-                                <Text style={styles.cdFontStyle}>等待时间: {DateTime.format(props.user.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
-                            </View>
-                            )
-                            : <></>
+        <Panel patternId={0}>
+            <Video 
+                style={{ position: 'absolute', width: '100%', height: '100%' }}
+                ref={(ref) => refBgVideo.current = ref}
+                source={require('../../../assets/mp4/XIUXING_BG.mp4')}
+                fullscreen={false}
+                resizeMode={'cover'}
+                repeat={true}
+                onEnd={() => {}}
+                onReadyForDisplay={() => {
+                    DeviceEventEmitter.emit(EventKeys.SCREEN_TRANSITION_START, 'ColorScreenTransition');
+                }}
+            />
+            <SafeAreaView style={{ flex: 1 }}>
+                <View style={styles.viewContainer}>
+                    <View style={{ width: '90%', alignItems: 'center', marginBottom: 10 }}>
+                        <Text style={{ fontSize: 26, color: '#fff', fontWeight: 'bold' }}>修行</Text>
+                        <AntDesign style={{ position: 'absolute', left: -10 }} name='left' size={30} color={'#333'} onPress={() => {
+                            if (props.onClose != undefined) {
+                                props.onClose();
                             }
+                        }} />
+                    </View>
+                    <View style={{ width: '90%', marginTop: 10, borderRadius: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: '#677d8e', flexDirection: 'row', flexWrap: 'wrap' }}>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>体力： {getXiuXingAttrValue('体力')}</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>防御： {getXiuXingAttrValue('防御')}</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>法力： {getXiuXingAttrValue('法力')}</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>攻击： {getXiuXingAttrValue('攻击')}</Text></View>
+                    </View>
+                    <View style={{ marginTop: px2pd(550), justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ position: 'absolute', paddingLeft: px2pd(40) }}>
+                            <TextButton title={'突破'} disabled={((props.user.xiuxingStatus.value < props.user.xiuxingStatus.limit) || cdForbiden)} onPress={onTuPo} />
                         </View>
-                        <View style={{ marginTop: px2pd(100) }}>
-                            <Text style={{ fontSize: 24, color: '#eee' }}>{currentXiuXingConfig.title}</Text>
+                        {
+                        (cdForbiden)
+                        ? (
+                        <View style={{ position: 'absolute', bottom: 35 }}>
+                            <Text style={styles.cdFontStyle}>等待时间: {DateTime.format(props.user.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
                         </View>
-                        <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
-                            <View style={{ width: PROGRESS_BAR_WIDTH, height: 40 }}>
-                                <ProgressBar value={props.user.xiuxingStatus.value} limit={props.user.xiuxingStatus.limit} />
-                            </View>
-                        </View>
-                        <View style={{ flexDirection: 'row' , marginTop: 10 }}>
-                            <Text style={{ fontSize: 22, color: '#ccc' }}>修为：</Text>
-                            <Text style={{ fontSize: 22, color: '#829358' }}>+{currentXiuXingConfig.increaseXiuXingPerMinute}/分钟</Text>
-                        </View>
-                        <View style={{ width: '100%', marginTop: 20, backgroundColor: '#565452' }}>
-                            <View style={{ marginLeft: 3, marginRight: 3, marginTop: 5, marginBottom: 5, borderWidth: 1, borderColor: '#494745' }}>
-                                <PropsBar />
-                            </View>
+                        )
+                        : <></>
+                        }
+                    </View>
+                    <View style={{ marginTop: px2pd(100) }}>
+                        <Text style={{ fontSize: 24, color: '#eee' }}>{currentXiuXingConfig.title}</Text>
+                    </View>
+                    <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
+                        <View style={{ width: PROGRESS_BAR_WIDTH, height: 40 }}>
+                            <ProgressBar value={props.user.xiuxingStatus.value} limit={props.user.xiuxingStatus.limit} />
                         </View>
                     </View>
-                </SafeAreaView>
-            </Panel>
-        </ColorScreenTransition>
+                    <View style={{ flexDirection: 'row' , marginTop: 10 }}>
+                        <Text style={{ fontSize: 22, color: '#ccc' }}>修为：</Text>
+                        <Text style={{ fontSize: 22, color: '#829358' }}>+{currentXiuXingConfig.increaseXiuXingPerMinute}/分钟</Text>
+                    </View>
+                    <View style={{ width: '100%', marginTop: 20, backgroundColor: '#565452' }}>
+                        <View style={{ marginLeft: 3, marginRight: 3, marginTop: 5, marginBottom: 5, borderWidth: 1, borderColor: '#494745' }}>
+                            <PropsBar />
+                        </View>
+                    </View>
+                </View>
+            </SafeAreaView>
+        </Panel>
     );
 
 }
