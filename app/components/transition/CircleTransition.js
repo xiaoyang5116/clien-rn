@@ -19,7 +19,7 @@ const CircleTransition = (props) => {
         Animated.parallel([
             Animated.timing(opacity, {
                 toValue: 0,
-                duration: 1000,
+                duration: 800,
                 useNativeDriver: false,
             })
         ]).start((r) => {
