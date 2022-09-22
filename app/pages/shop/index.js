@@ -32,6 +32,7 @@ import RootView from '../../components/RootView';
 import PropTips from '../../components/tips/PropTips';
 import PropGrid from '../../components/prop/PropGrid';
 import Slider from '@react-native-community/slider';
+import DarkBlurView from '../../components/extends/DarkBlurView';
 
 const WIN_SIZE = getWindowSize();
 
@@ -213,9 +214,11 @@ const ShopPage = (props) => {
         <TouchableOpacity activeOpacity={1} onPress={() => {
             setSelect(item.propId);
             setTimeout(() => {
-                const key = RootView.add(<PropTips zIndex={99} propId={item.propId} viewOnly={true} onClose={() => {
-                    RootView.remove(key);
-                }} />);
+                const key = RootView.add(
+                <DarkBlurView>
+                    <PropTips zIndex={99} propId={item.propId} viewOnly={true} onClose={() => { RootView.remove(key); }} />
+                </DarkBlurView>
+                );
             }, 0);
         }}>
             <View style={[styles.propsItem, (index == 0) ? styles.propsTopBorder : {}]}>
