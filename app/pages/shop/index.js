@@ -266,6 +266,7 @@ const ShopPage = (props) => {
 
     return (
         <View style={styles.mainContainer}>
+            <FastImage style={{ position: 'absolute', width: px2pd(1080), height: px2pd(2400) }} source={require('../../../assets/bg/shop_bg.webp')} />
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={styles.viewContainer}>
                     <TouchableWithoutFeedback onPress={() => {

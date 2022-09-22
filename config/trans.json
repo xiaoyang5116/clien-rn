@@ -1,7 +1,7 @@
 [
   {
     "id": "OPEN_USER_ATTRS_DETAIL",
-    "name": "模糊过渡",
+    "name": "黑色圆形过渡",
     "comment": "人物页面详细属性"
   },
   {
@@ -31,5 +31,10 @@
     "name": "黑色过渡",
     "duration": 300,
     "comment": "打开采集页面"
+  },
+  {
+    "id": "OPEN_EXPLORE",
+    "name": "模糊过渡",
+    "comment": "打开探索页面"
   }
 ]
