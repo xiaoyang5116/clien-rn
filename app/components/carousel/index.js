@@ -21,6 +21,8 @@ import RootView from '../../components/RootView';
 import { TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import WorldPreview from './WorldPreview';
+import DarkBlurView from '../extends/DarkBlurView';
+import { px2pd } from '../../constants/resolution';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
@@ -114,26 +116,28 @@ export default class CarouselView extends Component {
       <TouchableWithoutFeedback onPress={() => {
         this.props.onClose();
       }}>
-        <View style={styles.container}>
-          <Carousel
-              layout="default"
-              layoutCardOffset={0}
-              ref={this.refCarousel}
-              data={this.props.data}
-              renderItem={CarouselCardItem}
-              sliderWidth={SLIDER_WIDTH}
-              itemWidth={ITEM_WIDTH}
-              inactiveSlideShift={0}
-              useScrollView={false}
-              firstItem={this.props.initialIndex}
-              onSnapToItem={this.onSnapToItem}
-          />
-          <View style={styles.bottomBar}>
-              <TextButton title='退出' onPress={() => {
-                  this.props.onClose();
-              }} />
+        <DarkBlurView>
+          <View style={styles.container}>
+            <Carousel
+                layout="default"
+                layoutCardOffset={0}
+                ref={this.refCarousel}
+                data={this.props.data}
+                renderItem={CarouselCardItem}
+                sliderWidth={SLIDER_WIDTH}
+                itemWidth={ITEM_WIDTH}
+                inactiveSlideShift={0}
+                useScrollView={false}
+                firstItem={this.props.initialIndex}
+                onSnapToItem={this.onSnapToItem}
+            />
+            <View style={styles.bottomBar}>
+                <TextButton title='退出' onPress={() => {
+                    this.props.onClose();
+                }} />
+            </View>
           </View>
-        </View>
+        </DarkBlurView>
       </TouchableWithoutFeedback>
     );
   }
@@ -163,7 +167,7 @@ const styles = StyleSheet.create({
         position: 'absolute', 
         left: 0, top: 0, 
         width: '100%', height: '100%', 
-        backgroundColor: 'rgba(0,0,0, 0.7)',
+        // backgroundColor: 'rgba(0,0,0, 0.7)',
         flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
     },
     bottomBar: {
@@ -209,7 +213,7 @@ const styles = StyleSheet.create({
       paddingRight: 20
     },
     textBody: {
-      height: 360,
+      height: px2pd(900),
       marginTop: 10,
       color: "#222",
       fontSize: 16,
