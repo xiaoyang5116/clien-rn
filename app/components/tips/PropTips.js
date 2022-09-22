@@ -13,6 +13,7 @@ import qualityStyle from '../../themes/qualityStyle';
 import { confirm } from '../../components/dialog';
 import { AppDispath } from '../../constants';
 import PropGrid from '../prop/PropGrid';
+import DarkBlurView from '../extends/DarkBlurView';
 
 const PropTips = (props) => {
 
@@ -53,41 +54,43 @@ const PropTips = (props) => {
     const quality_style = (prop.quality != undefined) ? qualityStyle.styles.find(e => e.id == prop.quality) : {};
 
     return (
-        <View style={[styles.viewContainer,{zIndex: props.zIndex ? props.zIndex : null}]} onTouchStart={() => {
-            if (props.onClose != undefined) {
-                props.onClose();
-            }
-        }}>
-            <View style={styles.bodyContainer} onTouchStart={(e) => {
-                e.stopPropagation();
-            }}>
-                <View style={{ flexDirection: 'row' }}>
-                    <View style={styles.icon}>
-                        {(prop.id != undefined) ? <PropGrid prop={prop} showLabel={false} showNum={false} /> : <></>}
+        <DarkBlurView>
+            <View style={[styles.viewContainer,{zIndex: props.zIndex ? props.zIndex : null}]} onTouchStart={() => {
+                if (props.onClose != undefined) {
+                    props.onClose();
+                }
+                }}>
+                <View style={styles.bodyContainer} onTouchStart={(e) => {
+                    e.stopPropagation();
+                }}>
+                    <View style={{ flexDirection: 'row' }}>
+                        <View style={styles.icon}>
+                            {(prop.id != undefined) ? <PropGrid prop={prop} showLabel={false} showNum={false} /> : <></>}
+                        </View>
+                        <View style={{ marginLeft: 10, marginTop: 0 }}>
+                            <Text style={[{ fontSize: 24 }, { color: quality_style.fontColor }]}>{prop.name}</Text>
+                            <Text></Text>
+                        </View>
                     </View>
-                    <View style={{ marginLeft: 10, marginTop: 0 }}>
-                        <Text style={[{ fontSize: 24 }, { color: quality_style.fontColor }]}>{prop.name}</Text>
-                        <Text></Text>
+                    <View style={{ marginTop: 15 }}>
+                        <Text style={{ color: '#333', fontSize: 16 }}>{prop.desc}</Text>
                     </View>
+                    <View style={{ marginTop: 30, flexDirection: 'row', alignItems: 'center' }}>
+                        <Text style={{ color: '#a69582', fontSize: 16 }}>拥有数量：</Text>
+                        <Text style={{ color: '#333' }}>{num}</Text>
+                    </View>
+                    {
+                    (lo.isBoolean(props.viewOnly) && props.viewOnly)
+                    ? <></>
+                    : (
+                    <View style={styles.bottomButtons}>
+                        <TextButton title={'使用'} onPress={useHandler} />
+                        <TextButton title={'丢弃'} onPress={discardHandler} />
+                    </View>
+                    )}
                 </View>
-                <View style={{ marginTop: 15 }}>
-                    <Text style={{ color: '#fff', fontSize: 16 }}>{prop.desc}</Text>
-                </View>
-                <View style={{ marginTop: 30, flexDirection: 'row', alignItems: 'center' }}>
-                    <Text style={{ color: '#a69582', fontSize: 16 }}>拥有数量：</Text>
-                    <Text style={{ color: '#fff' }}>{num}</Text>
-                </View>
-                {
-                (lo.isBoolean(props.viewOnly) && props.viewOnly)
-                ? <></>
-                : (
-                <View style={styles.bottomButtons}>
-                    <TextButton title={'使用'} onPress={useHandler} />
-                    <TextButton title={'丢弃'} onPress={discardHandler} />
-                </View>
-                )}
             </View>
-        </View>
+        </DarkBlurView>
     );
 }
 
@@ -98,7 +101,6 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(0,0,0,0.5)',
     },
     bodyContainer: {
         width: 350,
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#333',
         borderRadius: 6,
-        backgroundColor: '#191919',
+        backgroundColor: '#ddd',
         padding: 10,
     },
     icon: {

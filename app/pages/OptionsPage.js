@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { TextButton } from '../constants/custom-ui';
+
 import {
   Platform,
   StyleSheet,
@@ -38,7 +38,7 @@ const OptionsPage = (props) => {
   const refMenuOptions = useRef()
   const refDirectory = useRef()
   const refDirMap = useRef()
-  const refreshKey = useRef()
+  const refreshKey = useRef(0)
   const refPropsContainer = useRef()
 
   React.useEffect(() => {
@@ -58,6 +58,12 @@ const OptionsPage = (props) => {
         refDirMap.current.open();
       })
     );
+    listeners.push(
+      DeviceEventEmitter.addListener(EventKeys.BACK_DIRECTORY, (id) => {
+        refDirectory.current.open();
+        refDirMap.current.close();
+      })
+    );
 
     return () => {
       listeners.forEach(e => e.remove());
@@ -71,6 +77,9 @@ const OptionsPage = (props) => {
       refDirectory.current.open();
     }, 500);
   }
+
+  // 提供给需强制刷新的组件
+  refreshKey.current += 1;
 
   return (
     <View style={{ flex: 1 }}>
@@ -128,11 +137,6 @@ const OptionsPage = (props) => {
       </HeaderContainer>
       <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(255,255,255,1)' }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          {/* <View style={{ width: '100%', marginRight: 20, justifyContent: 'center', alignItems: 'flex-end' }}>
-            <TextButton style={{ width: 100 }} title={'退出'} onPress={() => {
-                props.onClose();
-              }} />
-        </View> */}
           <StoryTabPage />
         </View>
       </SafeAreaView>
@@ -148,7 +152,7 @@ const OptionsPage = (props) => {
       </LeftContainer>
       {/* 章节目录地图 */}
       <RightContainer ref={refDirMap}>
-        <DirMapPage key={refreshKey} data={props.dirData} />
+        <DirMapPage key={refreshKey.current} data={props.dirData} />
       </RightContainer>
 
       {/* 角色属性 */}
@@ -157,7 +161,6 @@ const OptionsPage = (props) => {
       </RightContainer>
 
     </View>
-
   );
 }
 

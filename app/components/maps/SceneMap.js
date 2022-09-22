@@ -30,6 +30,7 @@ import LeiDaAnimation from '../../components/effects/LeiDaAnimation';
 import Toast from '../toast';
 import { BtnIcon } from '../button/BtnIcon';
 import RootView from '../RootView';
+import DarkBlurView from '../extends/DarkBlurView';
 
 let touchStart = false;
 const WIN_SIZE = getWindowSize();
@@ -364,40 +365,42 @@ const SceneBigMap = (props) => {
   }, []);
 
   return (
-    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.8)' }} onTouchStart={closeMapHandler}>
-      <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <View style={[{ width: MAP_BIG_SIZE.width, height: MAP_BIG_SIZE.height + 10 }]} onTouchStart={(e) => { 
-          e.stopPropagation(); 
-        }} {...panResponder.panHandlers}>
-          <Animated.View style={[{ position: 'absolute', bottom: 0 }, { ...MAP_BIG_SIZE }, { transform: [{ translateY: translateY }] }]}>
-            <FastImage style={[{ position: 'absolute', width: '100%', height: '100%'}]} source={require('../../../assets/bg/scene_map_big_new.png')} />
-            {/* 大地图网格 */}
-            <View style={{ flex: 1, margin: 4, overflow: 'hidden' }}>
-              <Animated.View style={{ position: 'absolute', transform: [{ translateX: bigMapPos.x }, { translateY: bigMapPos.y }, { scale: bigMapScale }] }}>
-                {lines}
-                {grids}
-              </Animated.View>
-            </View>
-            {/* 大地图最小化按钮 */}
-            <View style={{ position: 'absolute', right: 20, top: -px2pd(20) }} onTouchStart={closeMapHandler}>
-              <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_min_button.png')} />
-            </View>
-            {/* 大地图缩小按钮 */}
-            <View style={{ position: 'absolute', left: px2pd(40), top: -px2pd(20) }} onTouchStart={zoomOutBigMapHandler}>
-              <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_out_button.png')} />
-            </View>
-            {/* 大地图放大按钮 */}
-            <View style={{ position: 'absolute', left: px2pd(180), top: -px2pd(20) }} onTouchStart={zoomInBigMapHandler}>
-              <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_in_button.png')} />
-            </View>
-            {/* 大地图还原按钮 */}
-            <View style={{ position: 'absolute', left: px2pd(320), top: -px2pd(20) }} onTouchStart={zoomRestoreBigMapHandler}>
-              <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_restore_button.png')} />
-            </View>
-          </Animated.View>
-        </View>
-      </SafeAreaView>
-    </View>
+    <DarkBlurView>
+      <View style={{ flex: 1 }} onTouchStart={closeMapHandler}>
+        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={[{ width: MAP_BIG_SIZE.width, height: MAP_BIG_SIZE.height + 10 }]} onTouchStart={(e) => { 
+            e.stopPropagation(); 
+          }} {...panResponder.panHandlers}>
+            <Animated.View style={[{ position: 'absolute', bottom: 0 }, { ...MAP_BIG_SIZE }, { transform: [{ translateY: translateY }] }]}>
+              <FastImage style={[{ position: 'absolute', width: '100%', height: '100%'}]} source={require('../../../assets/bg/scene_map_big_new.png')} />
+              {/* 大地图网格 */}
+              <View style={{ flex: 1, margin: 4, overflow: 'hidden' }}>
+                <Animated.View style={{ position: 'absolute', transform: [{ translateX: bigMapPos.x }, { translateY: bigMapPos.y }, { scale: bigMapScale }] }}>
+                  {lines}
+                  {grids}
+                </Animated.View>
+              </View>
+              {/* 大地图最小化按钮 */}
+              <View style={{ position: 'absolute', right: 20, top: -px2pd(20) }} onTouchStart={closeMapHandler}>
+                <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_min_button.png')} />
+              </View>
+              {/* 大地图缩小按钮 */}
+              <View style={{ position: 'absolute', left: px2pd(40), top: -px2pd(20) }} onTouchStart={zoomOutBigMapHandler}>
+                <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_out_button.png')} />
+              </View>
+              {/* 大地图放大按钮 */}
+              <View style={{ position: 'absolute', left: px2pd(180), top: -px2pd(20) }} onTouchStart={zoomInBigMapHandler}>
+                <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_zoom_in_button.png')} />
+              </View>
+              {/* 大地图还原按钮 */}
+              <View style={{ position: 'absolute', left: px2pd(320), top: -px2pd(20) }} onTouchStart={zoomRestoreBigMapHandler}>
+                <FastImage style={{ width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_restore_button.png')} />
+              </View>
+            </Animated.View>
+          </View>
+        </SafeAreaView>
+      </View>
+    </DarkBlurView>
   );
 }
 
