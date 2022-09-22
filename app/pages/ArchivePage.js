@@ -73,19 +73,6 @@ class ArchivePage extends Component {
     }, 500);
   }
 
-  componentDidMount() {
-    // const play = type => {
-    //   this.mummy.play({
-    //     type,
-    //     fps: Number(30),
-    //     loop: true,
-    //     resetAfterFinish: false,
-    //     onFinish: () => console.log('hi')
-    //   });
-    // };
-    // play('walk');
-  }
-
   render() {
     return (
       <DarkBlurView>
@@ -105,19 +92,7 @@ class ArchivePage extends Component {
                       keyExtractor={item => item.id}
                   />
               </View>
-              <View style={{ position: 'absolute', top: -100, left: 80, transform: [{ scale: 1.4 }] }}>
-                {/* <SpriteSheet
-                  ref={ref => (this.mummy = ref)}
-                  source={require('../../assets/animations/effect.png')}
-                  columns={10}
-                  rows={6}
-                  // height={200} // set either, none, but not both
-                  // width={200}
-                  imageStyle={{ marginTop: -1 }}
-                  animations={{
-                    walk: range(60),
-                  }}
-                /> */}
+              <View style={{ position: 'absolute' }}>
               </View>
               <ImageBackground
               source={this.context.dialogBg_2_footer_img}
