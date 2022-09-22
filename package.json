@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@klarna/react-native-vector-drawable": "^0.3.0",
+    "@react-native-community/blur": "^4.2.0",
     "@react-native-community/slider": "^4.2.2",
     "@react-navigation/bottom-tabs": "^6.2.0",
     "@react-navigation/drawer": "^6.4.1",
