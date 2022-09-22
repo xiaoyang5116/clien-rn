@@ -75,6 +75,11 @@ const topBgImages = [
     { name: 'BGT_71', img: require('../../assets/scene/BGT_71.webp') },
     { name: 'BGT_72', img: require('../../assets/scene/BGT_72.webp') },
     { name: 'BGT_73', img: require('../../assets/scene/BGT_73.webp') },
+    { name: 'BGT_74', img: require('../../assets/scene/BGT_74.webp') },
+    { name: 'BGT_75', img: require('../../assets/scene/BGT_75.webp') },
+    { name: 'BGT_76', img: require('../../assets/scene/BGT_76.webp') },
+    { name: 'BGT_77', img: require('../../assets/scene/BGT_77.webp') },
+
     
 
 

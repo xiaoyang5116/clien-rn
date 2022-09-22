@@ -166,10 +166,10 @@ props: [
    { id:  700, name: '齿轮', iconId: 3, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['碎片'], capacity: 100, desc: '碎片合成的产物' },
    
     #草药
-   { id:  1000, name: '百草哭', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  1001, name: '摄魂草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  1002, name: '寸筋草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  1003, name: '烈阳草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
+   { id:  1000, name: '百草哭', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
+   { id:  1001, name: '摄魂草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
+   { id:  1002, name: '寸筋草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
+   { id:  1003, name: '烈阳草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
    { id:  1004, name: '薄荷粉', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
    { id:  1005, name: '田七', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
    { id:  1006, name: '火绒花', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													

@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C014A'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C014AFZ'] }, 
-    { header: '第十八章 不离开医馆医馆' },
+    { header: '第十八章 绛云镇' },
      { world: { name: '灵修界' } },
 ]
 #END==========================================

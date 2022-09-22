@@ -182,7 +182,7 @@ scenes: [
       {
         id: 'c7', desc: '剑拔弩张之间，李森炎冷笑一声，反手把刀架在他脖子上：“说，哪里有我要找的东西？”', 
         options: [ 
-          { title: '“子星草在山谷里，大侠饶命啊！”',toScene: 'WZXX_M1_N1_C009_V',dropIds: ["S_00Test03_Vdrop1",]}, 
+          { title: '“子星草在山谷里，大侠饶命啊！”',toScene: 'WZXX_M1_N1_C000E_V',dropIds: ["S_00Test03_Vdrop1",]}, 
         ]
       },
     ],
