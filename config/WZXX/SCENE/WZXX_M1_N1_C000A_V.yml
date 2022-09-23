@@ -2095,7 +2095,7 @@ scenes: [
       ],
        # 对话框
     dialogs: [
-          { id: 'Screen16',style: 6, title: '买簪子', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          { id: 'Screen16',style: 6, title: '店铺', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['“客官，可要买点什么？”掌柜的笑吟吟','李森炎看了一眼琳琅满目的商柜','脱口而出',],
           btn: [{title: '我要买簪子' , tokey: "P1A",}, ]},
