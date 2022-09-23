@@ -11,6 +11,7 @@ import BlackCircleTransition from './BlackCircleTransition';
 import OpenYTransition from './OpenYTransition';
 import BlurTransition from './BlurTransition';
 import XuanWoTransition from './XuanWoTransition';
+import { View } from 'react-native';
 
 const Transitions = (props) => {
 
@@ -63,8 +64,7 @@ const Transitions = (props) => {
             return (<XuanWoTransition>{props.children}</XuanWoTransition>);
 
         default:
-            errorMessage(`"${transitionName}" 转场不存在`);
-            return <></>;
+            return <View style={{ flex: 1 }}>{props.children}</View>;
     }
 }
 
