@@ -56,7 +56,7 @@ export class ArticleOptionActions {
             // 如果是切换场景，显示选项页面
             if (payload.toScene != undefined) {
                 const key = RootView.add(
-                <Transitions id={'OPEN_SCENE_FROM_ARTICLE'}>
+                <Transitions transitionName={payload.transitionAnimation}>
                     <OptionsPage onClose={() => { RootView.remove(key); }} />
                 </Transitions>
                 );

@@ -33,7 +33,8 @@ const ColorScreenTransition = (props) => {
 
     React.useEffect(() => {
         // 指定时间触发
-        if (props.config.duration != undefined) {
+        if (props.config != undefined 
+            && props.config.duration != undefined) {
             setTimeout(() => {
                 DeviceEventEmitter.emit(EventKeys.SCREEN_TRANSITION_START, 'ColorScreenTransition');
             }, props.config.duration);
