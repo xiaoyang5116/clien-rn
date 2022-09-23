@@ -31,6 +31,9 @@ drops: [
   { id: 'WZXX_M1_N1_C000F_V_drop3', sendProps: '369,1,showBag', },
   { id: 'WZXX_M1_N1_C000F_V_drop4', sendProps: '369,1,showBag', },
 
+   { id: 'WZXX_M1_N1_C000F_V_drop5', sendProps: '369,1,showBag', },
+    { id: 'WZXX_M1_N1_C000F_V_drop6', sendProps: '369,1,showBag', },
+
   
 
   #887铜币
@@ -43,7 +46,7 @@ drops: [
   { id: 'WZXX_M1_N1_C001V_drop7',  alterAttrs: ['智慧,1'] },
   { id: 'WZXX_M1_N1_C001V_drop8',  alterAttrs: ['智慧,-1'] },
   { id: 'WZXX_M1_N1_C001V_drop9',  alterAttrs: ['身法,1'] },
-  { id: 'WZXX_M1_N1_C001V_drop10',  sendProps: '44,100,showBag',},
+  # { id: 'WZXX_M1_N1_C001V_drop10',  sendProps: '44,100,showBag',},
   { id: 'WZXX_M1_N1_C001V_drop11',  sendProps: '887,100,showBag',},
   #887铜币
   { id: 'WZXX_M1_N1_C001A_V_Vdrop1', sendProps: '887,10,showBag', },

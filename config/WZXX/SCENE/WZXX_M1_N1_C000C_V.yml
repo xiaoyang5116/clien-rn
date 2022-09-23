@@ -105,9 +105,9 @@ scenes: [
        { type: 'enter',  
        dialogs: ['d3'], 
       andVarsOff: ['ONE_OPEN_0',],   nextChat: 'C1'  },
-       { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
-       { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
-       { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
+     { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C1'  },
+      #  { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
+      #  { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
 
     # 对话选项
@@ -182,8 +182,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
-       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
+      #  { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
+      #  { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
 
     # 对话选项
@@ -258,10 +258,10 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C2' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],nextChat: 'C1' },
-       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C3'  },
-       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
+       { type: 'enter',  nextChat: 'C1' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],nextChat: 'C1' },
+      #  { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C3'  },
+      #  { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
     # 对话选项
     chats: [
@@ -336,10 +336,10 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C2' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102'], nextChat: 'C1' },
-        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],nextChat: 'C4' },
-       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C3'  },
+       { type: 'enter',  nextChat: 'C1' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102'], nextChat: 'C1' },
+      #   { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],nextChat: 'C4' },
+      #  { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C3'  },
        
     ],
     # 对话选项
@@ -412,9 +412,9 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
-       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
-       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
+      #  { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
+      #  { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
+      #  { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
 
     # 对话选项
@@ -487,9 +487,9 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
-       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
-       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
+      #  { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C2'  },
+      #  { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
+      #  { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
 
     # 对话选项
@@ -557,8 +557,8 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C2' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100D', 'WZXX_M1_N1_C000C_V/v_icon_101D', 'WZXX_M1_N1_C000C_V/v_icon_102D'], nextChat: 'C1'  },
+       { type: 'enter',  nextChat: 'C1' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000C_V/v_icon_100D', 'WZXX_M1_N1_C000C_V/v_icon_101D', 'WZXX_M1_N1_C000C_V/v_icon_102D'], nextChat: 'C1'  },
     ],
 
     # 对话选项

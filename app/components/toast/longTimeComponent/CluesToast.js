@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Animated, FlatList, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
-import { px2pd } from '../../../constants/resolution';
+import { isPad, px2pd } from '../../../constants/resolution';
 
 import TextAnimation from '../../textAnimation';
 import Clues from '../../cluesList';
@@ -39,7 +39,9 @@ const LeftToRightSwiper = props => {
   return (
     <Animated.View
       style={{
-        marginTop: index === 0 ? "25%" : 30,
+        marginTop: index === 0
+          ? isPad() ? 0 : "25%"
+          : 30,
         transform: [{ translateX: translateXAnim }],
         width: viewWidth,
         flexDirection: 'row',
@@ -99,7 +101,7 @@ const ContentComponent = (props) => {
       <View style={{
         height: 90,
         justifyContent: "flex-end",
-        marginLeft: 20,
+        marginLeft: isPad() ? 30 : 20,
         overflow: 'hidden',
       }}>
         {renderItem}
@@ -135,9 +137,9 @@ const CluesToast = (props) => {
         flexDirection: 'row',
         justifyContent: "flex-start",
         alignItems: 'flex-end',
-        paddingBottom: 25,
+        paddingBottom: isPad() ? 55 : 25,
       }}>
-        <Text style={{ fontSize: 14, color: "#fff", marginLeft: 23 }}>获得新{msg.cluesType}</Text>
+        <Text style={{ fontSize: 14, color: "#fff", marginLeft: isPad() ? 40 : 23 }}>获得新{msg.cluesType}</Text>
         <ContentComponent content={msg.content} showEnd={showEnd} />
       </View>
     </LeftToRightSwiper>

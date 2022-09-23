@@ -37,7 +37,7 @@ const SmallUniverseProject = props => {
       { top: "55%", right: "10%" },
     ]
     const MainAttrs = mainAttrs.map((item, index) => {
-      const shiLi = item.subAttrs.find(f => f.split(',')[0] === "实力").split(',')[1]
+      const shiLi = item.subAttrs.find(f => f.split(',')[0] === "评价").split(',')[1]
       return (
         <View key={item.name} style={{ justifyContent: "center", alignItems: 'center', position: 'absolute', ...position[index] }}>
           <FastImage

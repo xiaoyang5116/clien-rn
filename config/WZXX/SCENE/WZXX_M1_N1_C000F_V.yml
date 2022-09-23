@@ -10,9 +10,13 @@ scenes: [
       { id: "v1", min: 0, max: 1 },
 #床上
       { id: "chuang_A", min: 0, max: 1 },
+
+       { id: "v_icon_100", min: 0, max: 1 },
+        { id: "v_icon_101", min: 0, max: 1 },
+         { id: "v_icon_102", min: 0, max: 1 },
      
    
-      
+     
       ],
 
       # 动作定义
@@ -30,7 +34,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000F_VA', desc: '小宇宙项目', 
         options: [ 
-          { title: "【回忆继续】",toScene: 'C000F_V2_MAP_-2_5', varsOn: ['WZXX_M1_N1_C000F_V/chuang_A'],   },
+          { title: "【思考完毕】",toScene: 'C000F_V2_MAP_-2_5', varsOn: ['WZXX_M1_N1_C000F_V/chuang_A', 'WZXX_M1_N1_C000F_V/v_icon_100','WZXX_M1_N1_C000F_V/v_icon_101','WZXX_M1_N1_C000F_V/v_icon_102'],   },
         ],
       }, 
 
@@ -330,7 +334,7 @@ scenes: [
       { 
         id: 'C1', desc: '只有几个鸡蛋和几瓶啤酒，里里外外都透露着穷酸二字……', 
         options: [ 
-         { title: '【随便喝点】',  nextChat: 'C2',dropIds: [ 'WZXX_M1_N1_C000F_V_drop4',], games: {id: 7}, },
+         { title: '【随便喝点】',  nextChat: 'C2',dropIds: [ 'WZXX_M1_N1_C000F_V_drop4',], },
       
         ],
       },
@@ -441,7 +445,7 @@ scenes: [
       { 
         id: 'C1', desc: '微风拂过，拿瓶啤酒，抽根烟，也还算惬意', 
         options: [ 
-         { title: '【休息一会儿，思考人生】',  nextChat: 'C2' ,dropIds: [ 'WZXX_M1_N1_C000F_V_drop3',], games: {id: 7},},
+         { title: '【休息一会儿，思考人生】',  nextChat: 'C2' ,dropIds: [ 'WZXX_M1_N1_C000F_V_drop3',], },
       
         ],
       },
@@ -776,7 +780,7 @@ scenes: [
       {
         id: 'C2', desc: "植物园太大了，一个下午逛到闭馆还没逛完\n期间还驻足看了一会儿有人在写生画画\n确实收获到了不少灵感和素材",
         options: [ 
-         { title: '【离开>>>】',nextChat: 'C3' }, 
+         { title: '【离开>>>】',nextChat: 'C3' , varsOff: ['WZXX_M1_N1_C000F_V/v_icon_101'] ,dropIds: [ 'WZXX_M1_N1_C000F_V_drop5',]}, 
         ],
       },
 
@@ -831,7 +835,7 @@ scenes: [
       {
         id: 'C2', desc: "买票进入动物园\n逛了一下午，确实看到了许多新奇的动物\n平时工作加班连轴转，逛一逛确实觉得自己十分放松\n也收集到了很多灵感",
         options: [ 
-         { title: '【离开>>>】',nextChat: 'C3', games: {id: 7}, dropIds: [ 'WZXX_M1_N1_C000F_V_drop1',]}, 
+         { title: '【离开>>>】',nextChat: 'C3', varsOff: ['WZXX_M1_N1_C000F_V/v_icon_100'] ,dropIds: [ 'WZXX_M1_N1_C000F_V_drop1',]}, 
         ],
       },
 
@@ -885,9 +889,9 @@ scenes: [
         ],
       },
       {
-        id: 'C2', desc: "买票进入动物园\n逛了一下午，确实看到了许多新奇的动物\n平时工作加班连轴转，逛一逛确实觉得自己十分放松\n也收集到了很多灵感",
+        id: 'C2', desc: "人越来越多，大多都是父母带着孩子来玩\n走廊全被熊孩子们占领了",
         options: [ 
-         { title: '【离开>>>】',nextChat: 'C3' }, 
+         { title: '【离开>>>】',nextChat: 'C3', varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'] ,dropIds: [ 'WZXX_M1_N1_C000F_V_drop6',] }, 
         ],
       },
 
@@ -1138,19 +1142,19 @@ scenes: [
               },
 
               { 
-              point: [-1, 3], title: '植物园', 
+              point: [-1, 3], title: '植物园',  icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F_V/v_icon_101', },   
               toScene: 'C000F_V_MAP_-1_3',
               links: [[-1, 4],] 
               },
 
               { 
-              point: [1, 3], title: '动物园', 
+              point: [1, 3], title: '动物园',  icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F_V/v_icon_100', },  
               toScene: 'C000F_V_MAP_1_3',
               links: [[1, 4]] 
               },
 
               { 
-              point: [-1, 4], title: '音乐走廊', 
+              point: [-1, 4], title: '音乐走廊',  icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F_V/v_icon_102', },   
               toScene: 'C000F_V_MAP_-1_4',
               links: [[-1, 5]] 
               },
