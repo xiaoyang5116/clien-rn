@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View, Animated, FlatList, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, Text, View, Animated, FlatList, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { px2pd } from '../../../constants/resolution';
 
 import TextAnimation from '../../textAnimation';
 import Clues from '../../cluesList';
+import FastImage from 'react-native-fast-image';
 
-const viewWidth = px2pd(1000);
+
+const viewWidth = Dimensions.get('window').width;
 const LeftToRightSwiper = props => {
   const { animationEndEvent, children, opacityAnim } = props;
 
@@ -37,7 +39,7 @@ const LeftToRightSwiper = props => {
   return (
     <Animated.View
       style={{
-        marginTop: 12,
+        marginTop: "25%",
         transform: [{ translateX: translateXAnim }],
         width: viewWidth,
         flexDirection: 'row',
@@ -70,14 +72,14 @@ const ContentComponent = (props) => {
   }, [contentIndex])
 
   const renderItem = content.map((item, index) => {
-    if (index <= contentIndex) {
+    if (index <= contentIndex && index > contentIndex - 3) {
       if (index < contentIndex - 1) {
         return (
           <TextAnimation
             key={index}
             fontSize={18}
             type={'TextFadeIn'}
-            style={{ color: '#fff', opacity: 0.5 }}>
+            style={{ color: '#fff', opacity: 0.5, ...styles.textStyle }}>
             {item}
           </TextAnimation>
         )
@@ -86,7 +88,7 @@ const ContentComponent = (props) => {
         key={index}
         fontSize={18}
         type={'TextFadeIn'}
-        style={{ color: '#fff', opacity: 1 }}>
+        style={{ color: '#fff', opacity: 1, ...styles.textStyle, }}>
         {item}
       </TextAnimation>
     }
@@ -96,9 +98,8 @@ const ContentComponent = (props) => {
     <TouchableWithoutFeedback onPress={() => { Clues.show() }}>
       <View style={{
         height: 90,
-        width: "100%",
         justifyContent: "flex-end",
-        marginLeft: 80,
+        marginLeft: 20,
         overflow: 'hidden',
       }}>
         {renderItem}
@@ -124,9 +125,20 @@ const CluesToast = (props) => {
 
   return (
     <LeftToRightSwiper opacityAnim={opacityAnim}>
-      <View style={{ flex: 1, backgroundColor: '#ccc' }}>
+      <FastImage
+        style={{ width: px2pd(1080), height: px2pd(312), position: 'absolute' }}
+        source={require('../../../../assets/clues/clues_toast_bg.png')}
+      />
+      <View style={{
+        width: px2pd(1080),
+        height: px2pd(312),
+        flexDirection: 'row',
+        justifyContent: "flex-start",
+        alignItems: 'flex-end',
+        paddingBottom: 25,
+      }}>
+        <Text style={{ fontSize: 14, color: "#fff", marginLeft: 23 }}>获得新{msg.cluesType}</Text>
         <ContentComponent content={msg.content} showEnd={showEnd} />
-        <Text style={{ fontSize: 18, color: "#000" }}>获得新{msg.cluesType}</Text>
       </View>
     </LeftToRightSwiper>
   )
@@ -135,4 +147,9 @@ const CluesToast = (props) => {
 export default CluesToast
 
 const styles = StyleSheet.create({
+  textStyle: {
+    textShadowColor: '#000',
+    textShadowRadius: 3,
+    shadowOpacity: 0,
+  }
 })

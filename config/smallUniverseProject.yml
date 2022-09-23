@@ -23,7 +23,9 @@ data: {
   mainAttrs: [
     # ===== 1 ======
     {
-      name: '火炮舱',
+      iconId: 1,
+      quality: 1,
+      name: '画面',
       desc: "主力输出",
       props: [
         { key: "金币", propId: 4000,},
@@ -45,7 +47,9 @@ data: {
 
     # ===== 2 ======
     {
-      name: '侧甲板',
+      iconId: 1,
+      quality: 1,
+      name: '剧情',
       desc: "主要防御",
       props: [
         { key: "金币", propId: 4000,},
@@ -60,7 +64,9 @@ data: {
 
     # ===== 3 ======
     {
-      name: '画画',
+      iconId: 1,
+      quality: 1,
+      name: '细节',
       desc: "主要防御",
       props: [
         { key: "金币", propId: 4000,},
@@ -75,7 +81,9 @@ data: {
 
     # ===== 4 ======
     {
-      name: '计算机',
+      iconId: 1,
+      quality: 1,
+      name: '操作',
       desc: "主要防御",
       props: [
         { key: "金币", propId: 4000,},

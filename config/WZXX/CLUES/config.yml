@@ -29,6 +29,13 @@ cluesConfigData: {
               {filterType: 'location', filterTypeName: '地址'},
             ],
         },
+        {
+          type: '情报',
+          filterCondition:
+            [
+              {filterType: 'location', filterTypeName: '地址'},
+            ],
+        },
     ],
 
     # 线索配置注册
