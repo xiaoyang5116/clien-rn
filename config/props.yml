@@ -152,7 +152,7 @@ props: [
   #丹药
   { id:  368, name: '炼气丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },				
 
-  { id:  369, name: '灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
+  													
 									
 
   
@@ -238,6 +238,5 @@ props: [
   { id:  3104, name: '木棍子[橙]', iconId: 2, num:  1, quality: 5, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },
 
   # 小宇宙项目道具
-  { id: 4000, name: '金币', iconId: 2, num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ''},
-  { id: 4001, name: '铜币', iconId: 2, num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ''},
+  { id: 369, name: '灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
 ]

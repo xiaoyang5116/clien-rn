@@ -316,8 +316,8 @@ directory: [
         },
 
 
-        { point: [3, 3], title: '现实世界 第二篇',
-          andVarsValue: ['@props_363 >= 2'],
+        { point: [3, 3], title: '现实世界',
+          #  andVarsValue: ['@props_363 >= 2'],
           toChapter: 'WZXX_M1_N1_C988', links: [[]],  
         },
 

@@ -3,11 +3,14 @@ scenes: [
     #
    {
       id: 'WZXX_M1_N1_C000F_V',
-      name: "定义对应标题名当前章节内的选项和变量",
+      name: "公园",
 
       # 变量定义
       vars: [
       { id: "v1", min: 0, max: 1 },
+#床上
+      { id: "chuang_A", min: 0, max: 1 },
+     
    
       
       ],
@@ -17,9 +20,19 @@ scenes: [
       #不显示时间
       worldTimeHidden: true,
       # 事件定义# 故事中的场景事件暂时没什么意义
-      events: [],
+      events: [
+      
+       ],
 
       chats: [
+      
+
+      { 
+        id: 'WZXX_M1_N1_C000F_VA', desc: '小宇宙项目', 
+        options: [ 
+          { title: "【回忆继续】",toScene: 'C000F_V2_MAP_-2_5', varsOn: ['WZXX_M1_N1_C000F_V/chuang_A'],   },
+        ],
+      }, 
 
       { 
         id: 'WZXX_M1_N1_C000F_V', desc: '去公园', 
@@ -29,6 +42,601 @@ scenes: [
       }, 
         ],  
     },
+   #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000F_V2_MAP_-1_2', name: '家门口',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+      #横图显示
+    sceneImage: 'BGT_21',
+    # 当前场景地图
+    mapId: 'C000F_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 2],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '回到家，你决定首先————', 
+        options: [ 
+          # { title: '【上床躺一会儿】', toScene: 'C000F_V2_MAP_-2_5'},
+          # { title: '【换件衣服】', toScene: 'C000F_V2_MAP_-1_5'},  
+          { title: '【从冰箱里拿点吃的】', toScene: 'C000F_V2_MAP_0_6',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv4']},
+          # { title: '【洗衣服】', toScene: 'C000F_V2_MAP_-1_6'},
+          { title: '【去阳台抽根烟】', toScene: 'C000F_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv8']},
+          { title: '【去厨房做饭】', toScene: 'C000F_V2_MAP_0_5',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv7' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv7']},
+          { title: '【打开电脑】', toScene: 'C000F_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv1']},
+          # { title: '【去洗手间】', toScene: 'C000F_V2_MAP_0_4'},
+        ],
+      },
+    ],
+  },
+#===========事件场景=================
+       { 
+  # NPC2
+    id: 'C000F_V2_MAP_-2_4', name: '电脑桌',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_7',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000F_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, 4],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C0' },
+      
+
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C0', desc: '电脑桌上有很多随笔和便签，看上去杂乱但有序', 
+        options: [ 
+         { title: '【继续小宇宙项目】', nextChat: 'C2',dropIds: [ 'WZXX_M1_N1_C000F_V_drop2',], games: {id: 7},}, 
+        ],
+      },
+
+       { 
+        id: 'C2', desc: "李森炎正式开启小宇宙计划之后\n便专心致志的研究\n虽然已经完成了一些程序上的问题，但是灵感依旧很匮乏\n想了想，他忽然记起家附近有一个不错的公园，去逛逛说不定能激发一些灵感", 
+        options: [ 
+        { title: '【去公园里逛逛】',  toScene: 'C000F_V_MAP_0_2' },
+      
+        ],
+      },
+
+      
+    ],
+  },
+      #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000F_V2_MAP_-2_5', name: '床',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_23',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000F_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, 5],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C2' },
+       { type: 'enter', 
+        andVarsOn: ['WZXX_M1_N1_C000F_V/chuang_A'] , 
+       nextChat: 'C1' },
+        
+
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C0', desc: '小小的床，看起来也十分温馨', 
+        options: [ 
+        { title: '【休息躺一会儿】', nextChat: 'C1' },
+      
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '不知不自觉一觉睡到了大天亮，已经休息够了，去做点别的', 
+        options: [ 
+          # { title: '【换件衣服】', toScene: 'C000F_V2_MAP_-1_5'},  
+          { title: '【从冰箱里拿点吃的】', toScene: 'C000F_V2_MAP_0_6',  
+           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv4'],},
+          { title: '【去阳台抽根烟】', toScene: 'C000F_V2_MAP_-1_7',  
+           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv8'], },
+          # { title: '【去厨房做饭】', toScene: 'C000F_V2_MAP_0_5'},
+          # { title: '【洗漱睡觉】', toScene: 'C000F_V2_MAP_0_4'},
+          { title: '【打开电脑工作】', toScene: 'C000F_V2_MAP_-2_4',  
+            icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv1', ], },
+      
+
+      
+        ],
+      },
+
+      { 
+        id: 'C1', desc: '不知不自觉一觉睡到了大天亮，已经休息够了，去做点别的', 
+        options: [ 
+          # { title: '【换件衣服】', toScene: 'C000F_V2_MAP_-1_5'},  
+          { title: '【从冰箱里拿点吃的】', toScene: 'C000F_V2_MAP_0_6',  dialogs: ['d3'] , 
+           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv4'],varsOff: ['WZXX_M1_N1_C000F_V/chuang_A']},
+          { title: '【去阳台抽根烟】', toScene: 'C000F_V2_MAP_-1_7',   dialogs: ['d3'] ,
+           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv8'], varsOff: ['WZXX_M1_N1_C000F_V/chuang_A']},
+          # { title: '【去厨房做饭】', toScene: 'C000F_V2_MAP_0_5'},
+          # { title: '【洗漱睡觉】', toScene: 'C000F_V2_MAP_0_4'},
+          { title: '【打开电脑工作】', toScene: 'C000F_V2_MAP_-2_4',  dialogs: ['d3'] ,
+            icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv1', ], varsOff: ['WZXX_M1_N1_C000F_V/chuang_A']},
+      
+
+      
+        ],
+      },
+    ],
+    # 对话框
+   dialogs: [    
+     {id: 'd3',style: "1B",title: '提示：',content: '在家中行动时，某些地点会掉落惊喜道具，可用于升级特殊属性！',}
+    ],
+  },
+      #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000F_V2_MAP_-1_5', name: '衣柜',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_4',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000F_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 5],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '衣柜里的衣服虽然不多，但叠的很整洁', 
+        options: [ 
+        { title: '【换衣服】',nextChat: 'C2' },
+      
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '卸下一天的疲惫，换一身睡衣', 
+        options: [ 
+          { title: '【从冰箱里拿点吃的】', toScene: 'C000F_V2_MAP_0_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv4']},
+          { title: '【去阳台抽根烟】', toScene: 'C000F_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv8']},
+          # { title: '【去厨房做饭】', toScene: 'C000F_V2_MAP_0_5'},
+          # { title: '【洗漱睡觉】', toScene: 'C000F_V2_MAP_0_4'},
+          { title: '【打开电脑工作】', toScene: 'C000F_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv1']},
+          # { title: '【上床躺一会儿】', toScene: 'C000F_V2_MAP_-2_5'},
+      
+        ],
+      },
+    ],
+   
+  },
+      #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000F_V2_MAP_0_6', name: '冰箱',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_24',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000F_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 6],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+     { type: 'enter',  nextChat: 'C1' }, 
+
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '只有几个鸡蛋和几瓶啤酒，里里外外都透露着穷酸二字……', 
+        options: [ 
+         { title: '【随便喝点】',  nextChat: 'C2',dropIds: [ 'WZXX_M1_N1_C000F_V_drop4',], games: {id: 7}, },
+      
+        ],
+      },
+
+       { 
+        id: 'C2', desc: '先喝瓶啤酒醒醒脑吧，再想想做啥', 
+        options: [ 
+          # { title: '【换件衣服】', toScene: 'C000F_V2_MAP_-1_5'},  
+          { title: '【去阳台抽根烟】', toScene: 'C000F_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv8']},
+          # { title: '【去厨房做饭】', toScene: 'C000F_V2_MAP_0_5'},
+          # { title: '【洗漱睡觉】', toScene: 'C000F_V2_MAP_0_4'},
+          { title: '【打开电脑工作】', toScene: 'C000F_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv1']},
+          { title: '【上床躺一会儿】', toScene: 'C000F_V2_MAP_-2_5'},
+      
+        ],
+      },
+    ],
+   
+  },
+      #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000F_V2_MAP_-1_6', name: '洗衣机',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_5',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000F_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 6],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '没什么衣服要洗的……考虑做点别的吧', 
+        options: [ 
+          { title: '【换件衣服】', toScene: 'C000F_V2_MAP_-1_5',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv3' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv3']},  
+          # { title: '【去阳台抽根烟】', toScene: 'C000F_V2_MAP_-1_7'},
+          # { title: '【去厨房做饭】', toScene: 'C000F_V2_MAP_0_5'},
+          # { title: '【洗漱睡觉】', toScene: 'C000F_V2_MAP_0_4'},
+          { title: '【打开电脑工作】', toScene: 'C000F_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv1']},
+          # { title: '【上床躺一会儿】', toScene: 'C000F_V2_MAP_-2_5'},
+          # { title: '【从冰箱里拿点吃的】', toScene: 'C000F_V2_MAP_0_6'},
+      
+        ],
+      },
+    ],
+   
+  },
+      #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000F_V2_MAP_-1_7', name: '阳台',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_25',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000F_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 7],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+ 
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '微风拂过，拿瓶啤酒，抽根烟，也还算惬意', 
+        options: [ 
+         { title: '【休息一会儿，思考人生】',  nextChat: 'C2' ,dropIds: [ 'WZXX_M1_N1_C000F_V_drop3',], games: {id: 7},},
+      
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '这样惬意的人生，简直太舒服不过了', 
+        options: [ 
+          # { title: '【换件衣服】', toScene: 'C000F_V2_MAP_-1_5'},  
+          # { title: '【去厨房做饭】', toScene: 'C000F_V2_MAP_0_5'},
+          { title: '【洗漱睡觉】', toScene: 'C000F_V2_MAP_0_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv2']},
+          # { title: '【去电脑桌把想法记下来】', toScene: 'C000F_V2_MAP_-2_4'},
+          # { title: '【上床躺一会儿】', toScene: 'C000F_V2_MAP_-2_5'},
+          { title: '【从冰箱里拿点吃的】', toScene: 'C000F_V2_MAP_0_6',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv4']},
+      
+        ],
+      },
+    ],
+   
+  },
+      #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000F_V2_MAP_0_5', name: '厨房',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_10',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000F_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 5],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 } ,
+    { id: "biaoqianv2", min: 0, max: 1 } ,
+    { id: "biaoqianv3", min: 0, max: 1 } ,
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '这些年都是外面，很少下厨，手艺都快忘了', 
+        options: [ 
+          # { title: '【换件衣服】', toScene: 'C000F_V2_MAP_-1_5'},  
+          # { title: '【去阳台抽根烟】', toScene: 'C000F_V2_MAP_-1_7'},
+          { title: '【洗漱睡觉】', toScene: 'C000F_V2_MAP_0_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv6' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv6']},
+          { title: '【打开电脑工作】', toScene: 'C000F_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv1']},
+          { title: '【上床躺一会儿】', toScene: 'C000F_V2_MAP_-2_5',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv2']},
+          # { title: '【从冰箱里拿点吃的】', toScene: 'C000F_V2_MAP_0_6'},
+      
+        ],
+      },
+    ],
+  },
+
+ #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000F_V2_MAP_0_4', name: '厕所',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_3',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000F_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 4],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 } ,
+    { id: "biaoqianv2", min: 0, max: 1 } ,
+    { id: "biaoqianv3", min: 0, max: 1 } ,
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '洗去一天的疲惫，冲个凉', 
+        options: [ 
+         { title: '【洗澡】', nextChat: 'C2' }, 
+      
+        ],
+      },
+       { 
+        id: 'C2', desc: '洗完澡精神满满，做点什么呢？', 
+        options: [ 
+          { title: '【去阳台抽根烟】', toScene: 'C000F_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv8']},
+          { title: '【打开电脑工作】', toScene: 'C000F_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv1']},
+          { title: '【上床躺一会儿】', toScene: 'C000F_V2_MAP_-2_5',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv2']},
+          # { title: '【从冰箱里拿点吃的】', toScene: 'C000F_V2_MAP_0_6'},
+      
+        ],
+      },
+    ],
+   
+  },
+
+#=================================场景地图的设置==================================
+    maps: [
+      {
+        id: 'C000F_V2_MAP_0_0',
+        data: [
+          { 
+          point: [-1, 2], title: '家门口', 
+          toScene: 'C000F_V2_MAP_-1_2',
+          links: [], path: [[-2, 2],[-2, 3],[-2, 4], ]
+          },
+
+          {
+          point: [-2, 4], title: '电脑桌',
+          toScene: 'C000F_V2_MAP_-2_4',
+          links: [[-2, 5],] ,
+           },
+
+          { 
+          point: [-2, 5], title: '床', 
+          toScene: 'C000F_V2_MAP_-2_5', 
+          links: [[-1, 5],  ] ,
+          },
+
+          { 
+          point: [-1, 5], title: '衣柜',
+          toScene: 'C000F_V2_MAP_-1_5', 
+          links: [[0, 5],[-1, 6], ]
+          },
+
+          { 
+          point: [0, 6], title: '冰箱',
+          toScene: 'C000F_V2_MAP_0_6',
+          links: [ ], 
+          },
+
+          {
+          point: [-1, 6], title: '洗衣机',
+          toScene: 'C000F_V2_MAP_-1_6',
+          links: [[-1, 7],[0, 6],], 
+          },
+
+          {
+          point: [0, 4], title: '厕所',
+          toScene: 'C000F_V2_MAP_0_4', 
+          links: [[0, 6],],
+          },
+
+          { 
+          point: [0, 5], title: '厨房',
+          toScene: 'C000F_V2_MAP_0_5', 
+          links: [[0, 6], [0, 4]],
+          },
+
+          {
+          point: [-1, 7], title: '阳台',
+          toScene: 'C000F_V2_MAP_-1_7', 
+          links: [],
+          },
+            
+        ]
+      },
+    
+    ],
+
 
  #===========事件场景==============
        {
@@ -223,15 +831,15 @@ scenes: [
       {
         id: 'C2', desc: "买票进入动物园\n逛了一下午，确实看到了许多新奇的动物\n平时工作加班连轴转，逛一逛确实觉得自己十分放松\n也收集到了很多灵感",
         options: [ 
-         { title: '【离开>>>】',nextChat: 'C3' }, 
+         { title: '【离开>>>】',nextChat: 'C3', games: {id: 7}, dropIds: [ 'WZXX_M1_N1_C000F_V_drop1',]}, 
         ],
       },
 
       {
-        id: 'C3', desc: "选择行动地址————",
+        id: 'C3', desc: "恭喜您您获得了一个灵感钥匙",
         options: [ 
-         { title: '【便利店】',toScene: 'C000F_V_MAP_1_4', }, 
-         { title: '【动物园】',toScene: 'C000F_V_MAP_1_3', }, 
+         { title: '【离开回家】',toScene: 'C000F_V2_MAP_-1_2', }, 
+         { title: '【再逛逛】',toScene: 'C000F_V_MAP_1_3', }, 
         ],
       },
 
@@ -288,6 +896,7 @@ scenes: [
         options: [ 
          { title: '【便利店】',toScene: 'C000F_V_MAP_1_4', }, 
          { title: '【动物园】',toScene: 'C000F_V_MAP_1_3', }, 
+         { title: '【回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-1_2', }, 
         ],
       },
 
@@ -335,6 +944,7 @@ scenes: [
         options: [ 
          { title: '【便利店】',toScene: 'C000F_V_MAP_1_4', }, 
          { title: '【展览馆】',toScene: 'C000F_V_MAP_-1_5', }, 
+          { title: '【离开回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-1_2', }, 
         ],
       },
 
@@ -392,6 +1002,7 @@ scenes: [
         options: [ 
          { title: '【观景地】',toScene: 'C000F_V_MAP_1_5', }, 
          { title: '【展览馆】',toScene: 'C000F_V_MAP_-1_5', }, 
+          { title: '【离开回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-1_2', }, 
         ],
       },
 
@@ -440,6 +1051,7 @@ scenes: [
         options: [ 
          { title: '【观景地】',toScene: 'C000F_V_MAP_1_5', }, 
          { title: '【公园入口】',toScene: 'C000F_V_MAP_0_2', }, 
+          { title: '【离开回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-1_2', }, 
         ],
       },
 
@@ -496,6 +1108,7 @@ scenes: [
         options: [ 
          { title: '【公告栏】',toScene: 'C000F_V_MAP_0_3', }, 
          { title: '【公园入口】',toScene: 'C000F_V_MAP_0_2', }, 
+          { title: '【离开回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-1_2', }, 
         ],
       },
 
