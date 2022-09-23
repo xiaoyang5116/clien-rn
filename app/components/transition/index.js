@@ -10,6 +10,7 @@ import OpenXTransition from './OpenXTransition';
 import BlackCircleTransition from './BlackCircleTransition';
 import OpenYTransition from './OpenYTransition';
 import BlurTransition from './BlurTransition';
+import XuanWoTransition from './XuanWoTransition';
 
 const Transitions = (props) => {
     const found = lo.find(trans.default, (e) => lo.isEqual(e.id, props.id));
@@ -42,6 +43,10 @@ const Transitions = (props) => {
         case 'BlurScreen':
         case '模糊过渡':
             return (<BlurTransition config={found}>{props.children}</BlurTransition>);
+
+        case 'XuanWoScreen':
+        case '时空漩涡':
+            return (<XuanWoTransition config={found}>{props.children}</XuanWoTransition>);
 
         default:
             errorMessage(`"${found.name}" 转场不存在`);
