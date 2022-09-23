@@ -1,40 +1,37 @@
 [
   {
     "id": "OPEN_USER_ATTRS_DETAIL",
-    "name": "黑色圆形过渡",
+    "name": "时空漩涡转场",
     "comment": "人物页面详细属性"
   },
   {
     "id": "OPEN_XIUXING_UI",
-    "name": "黑色过渡",
-    "comment": "打开修行页面(不需要指定duration, 因为需要等待MP4加载完毕后才过渡)"
+    "name": "黑色视频转场",
+    "comment": "打开修行页面"
   },
   {
     "id": "OPEN_SCENE_FROM_ARTICLE",
-    "name": "左右开门",
+    "name": "左右开门转场",
     "comment": "从阅读器打开场景页面"
   },
   {
     "id": "OPEN_LIAN_DAN_FANG",
-    "name": "黑色过渡",
-    "duration": 300,
+    "name": "黑色转场",
     "comment": "打开炼丹房页面"
   },
   {
     "id": "OPEN_ZHONG_ZHI",
-    "name": "黑色过渡",
-    "duration": 300,
+    "name": "黑色转场",
     "comment": "打开种植页面"
   },
   {
     "id": "OPEN_CAI_JI",
-    "name": "黑色过渡",
-    "duration": 300,
+    "name": "黑色转场",
     "comment": "打开采集页面"
   },
   {
     "id": "OPEN_EXPLORE",
-    "name": "模糊过渡",
+    "name": "模糊转场",
     "comment": "打开探索页面"
   }
 ]

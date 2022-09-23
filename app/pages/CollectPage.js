@@ -304,7 +304,7 @@ const GridItem = (props) => {
         frameWidth={200}
         frameHeight={200}
         imageStyle={{}}
-        viewStyle={{ left: -74, top: -74, transform: [{ scale: getFixedWidthScale() }] }}
+        viewStyle={{ left: 0, top: 0, transform: [{ scale: getFixedWidthScale() }] }}
         animations={{
           walk: lo.range(effect.framesNum),
         }}
@@ -424,7 +424,7 @@ const BagButton = (props) => {
       }}>
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <Animated.Image style={{ width: px2pd(210), height: px2pd(210), transform: [{ scale: scale.current }] }} source={buttonImage} />
-        <FastImage style={{ position: 'absolute', bottom: -18, right: 10, width: px2pd(232), height: px2pd(88) }} source={require('../../assets/button/collect_bag_button.png')} />
+        <FastImage style={{ position: 'absolute', bottom: -18, right: 0, width: px2pd(232), height: px2pd(88) }} source={require('../../assets/button/collect_bag_button.png')} />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -469,7 +469,7 @@ const CollectPage = (props) => {
             <AntDesign name={'left'} size={30} />
           </TouchableWithoutFeedback>
         </View>
-        <FastImage style={{ width: px2pd(1080), height: px2pd(1508), overflow: 'visible', justifyContent: 'center', alignItems: 'center' }} source={getCollectBackgroundImage(config.background).source}>
+        <FastImage style={{ width: px2pd(1080), height: px2pd(1531), overflow: 'visible', justifyContent: 'center', alignItems: 'center' }} source={getCollectBackgroundImage(config.background).source}>
           <View style={styles.mapContainer}>
             {grids}
             <AnimationLayer collectId={props.collectId} />
