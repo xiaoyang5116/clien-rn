@@ -50,7 +50,7 @@ const GoodAndEvil = ({ msg }) => {
 }
 
 const LeftToRightSwiper = props => {
-  const { animationEndEvent, children } = props;
+  const { animationEndEvent, children, index } = props;
 
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const translateXAnim = useRef(new Animated.Value(-viewWidth)).current;
@@ -85,7 +85,7 @@ const LeftToRightSwiper = props => {
   return (
     <Animated.View
       style={{
-        marginTop: "30%",
+        marginTop: index === 0 ? "25%" : 30,
         marginLeft: '2%',
         transform: [{ translateX: translateXAnim }],
         width: viewWidth,
@@ -101,7 +101,7 @@ const LeftToRightSwiper = props => {
 
 
 const AttrToast = (props) => {
-  const { msg, closeToast, } = props;
+  const { msg, closeToast, index } = props;
 
   if (msg.key === "善良") {
     return (
@@ -112,7 +112,7 @@ const AttrToast = (props) => {
   }
 
   return (
-    <LeftToRightSwiper animationEndEvent={() => { closeToast(1) }}>
+    <LeftToRightSwiper animationEndEvent={() => { closeToast(1) }} index={index}>
       <View style={styles.box}>
         <FastImage
           source={require('../../../../assets/linshi/attributeBg.png')}
