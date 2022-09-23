@@ -16,12 +16,12 @@
   },
   {
     "id": "OPEN_LIAN_DAN",
-    "name": "黑色圆形转场",
+    "name": "黑色转场",
     "comment": "打开炼丹页面"
   },
   {
     "id": "OPEN_LIAN_QI",
-    "name": "黑色圆形转场",
+    "name": "黑色转场",
     "comment": "打开练气页面"
   }
 ]
