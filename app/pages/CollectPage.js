@@ -469,7 +469,7 @@ const CollectPage = (props) => {
             <AntDesign name={'left'} size={30} />
           </TouchableWithoutFeedback>
         </View>
-        <FastImage style={{ width: px2pd(1080), height: px2pd(1508), overflow: 'visible', justifyContent: 'center', alignItems: 'center' }} source={getCollectBackgroundImage(config.background).source}>
+        <FastImage style={{ width: px2pd(1080), height: px2pd(1531), overflow: 'visible', justifyContent: 'center', alignItems: 'center' }} source={getCollectBackgroundImage(config.background).source}>
           <View style={styles.mapContainer}>
             {grids}
             <AnimationLayer collectId={props.collectId} />
