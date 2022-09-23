@@ -96,8 +96,8 @@ const AttrDetail = props => {
             }}>
             <FastImage
               style={{
-                width: px2pd(80),
-                height: px2pd(80),
+                width: px2pd(120),
+                height: px2pd(120),
                 borderRadius: 5,
                 borderWidth: 1,
                 borderColor: quality_style.borderColor,

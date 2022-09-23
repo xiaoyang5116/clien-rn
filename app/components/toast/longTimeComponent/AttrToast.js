@@ -85,7 +85,8 @@ const LeftToRightSwiper = props => {
   return (
     <Animated.View
       style={{
-        marginTop: 12,
+        marginTop: "30%",
+        marginLeft: '2%',
         transform: [{ translateX: translateXAnim }],
         width: viewWidth,
         flexDirection: 'row',

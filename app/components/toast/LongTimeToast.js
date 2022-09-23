@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
     zIndex: 999
   },
   view_location: {
-    position: "absolute",
-    left: "2%",
-    top: "15%",
+    // position: "absolute",
+    // left: "2%",
+    // top: "15%",
   }
 
 })
