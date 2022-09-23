@@ -55,11 +55,6 @@ files:
     "WZXX_M1_N1_C013_[N2].txt",
     "WZXX_M1_N1_C014_[N1].txt",
     "WZXX_M1_N1_C014A.txt",
-    "WZXX_M1_N2_C014.txt",
-    "WZXX_M1_N2_C015.txt",
-    "WZXX_M1_N2_C016.txt",
-    "WZXX_M1_N2_C017.txt",
-    "WZXX_M1_N2_C018.txt",
     "WZXX_M1_N1_C015_[N1].txt",
     "WZXX_M1_N1_C015_[V1].txt",
     "WZXX_M1_N1_C016_[N1].txt",
@@ -83,7 +78,6 @@ files:
     "WZXX_M1_N1_C028.txt", 
     "WZXX_M1_N1_C029.txt",
     "WZXX_M1_N1_C030.txt",
-    "WZXX_M1_N1_C030.txt",
     "WZXX_M1_N1_C031_[N1].txt",
     "WZXX_M1_N1_C032.txt",
     "WZXX_M1_N1_C033.txt",
@@ -93,6 +87,8 @@ files:
     "WZXX_M1_N1_C036.txt",
     "WZXX_M1_N1_C037.txt",
     "WZXX_M1_N1_C038.txt",
+    "WZXX_M1_N1_C039.txt",
+    "WZXX_M1_N1_C040.txt",
 
     ##
     "WZXX_M1_N1_C988.txt",
@@ -113,5 +109,15 @@ files:
     "WZXX_M1_N1_C999.txt",
     #地图测试
     "WZXX_M1_N1_C1000.txt",
+    #第二个分支内容
+    "WZXX_M1_N2_C014.txt",
+    "WZXX_M1_N2_C015.txt",
+    "WZXX_M1_N2_C016.txt",
+    "WZXX_M1_N2_C017.txt",
+    "WZXX_M1_N2_C018.txt",
+    "WZXX_M1_N2_C019.txt",
+    "WZXX_M1_N2_C020.txt",
+    "WZXX_M1_N2_C021.txt",
+    "WZXX_M1_N2_C022.txt",
 #
   ]

@@ -17,6 +17,15 @@ rules: [
   targets: [{ id: 351, num: 1, rate: 80 },{ id: 352, num: 1, rate: 20 }], 
   time: 5, desc: '突破练气期的最佳丹药' },
 
+  { id: 2 , propId: 368, name: '炼气丹', tags: [], attrs: ['材料'], quality: 2, 
+  #1019归元草  1020化生草  1021固灵草
+  stuffs: [{ id: 1019, num: 1 },{ id: 1020, num: 1 },{ id: 1021, num: 1 },], 
+  #1018不知名草药
+  props: [{id: 1018, num: 1},], 
+  #351白色护脉丹   352绿色护脉丹   3
+  targets: [{ id: 368, num: 1, rate: 80 },], 
+  time: 5, desc: '突破炼气境时使用，有一定的成功率' },
+
 #   { id: 1 , name: '突破丹', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 1000, num: 1 },{ id: 1001, num: 1 }], props: [{id: 440, num: 1},{id: 450, num: 1}], targets: [{ id: 440, num: 1, rate: 80 },{ id: 441, num: 1, rate: 20 }], time: 60, desc: '突破练气期的最佳丹药' },
 #   { id: 2 , name: '修行丹', tags: [], attrs: ['材料'], quality: 3, stuffs: [{ id: 1003, num: 20 },{ id: 1004, num: 20 }], props: [{id: 450, num: 1}], targets: [{ id: 450, num: 1, rate: 80 },{ id: 451, num: 1, rate: 20 }], time: 7260, desc: '加快修炼速度' },
 ]

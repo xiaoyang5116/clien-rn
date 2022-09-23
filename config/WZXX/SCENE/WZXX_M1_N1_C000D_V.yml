@@ -27,13 +27,13 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000D_V', desc: '回忆', 
         options: [ 
-          { title: "【探索纳戒里的空间】",toScene: 'C000D_V_MAP_-2_1', },
+          { title: "【探索纳戒里的空间】",toScene: 'C000D_V_MAP_-2_1', transitionAnimation: '左右开门转场'  },
         ],
       },
       { 
         id: 'WZXX_M1_N1_C000D_V1', desc: '种植', 
         options: [ 
-          { title: "【在荒废的院子里种植东西】",toScene: 'C000D_V1_MAP_-2_4', },
+          { title: "【在荒废的院子里种植东西】",toScene: 'C000D_V1_MAP_-2_4', transitionAnimation: '左右开门转场'  },
         ],
       },
 

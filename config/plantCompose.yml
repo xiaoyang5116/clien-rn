@@ -14,6 +14,33 @@ rules: [
    #目标道具
    targets: [{ id: 1006 , num: 1, rate: 80 },],
     time: 100, lingQiZhi: 10, desc: '可达到驱寒的功效，添加在炼丹炉中可增加获得高阶丹药的几率' },
+
+    { id: 1019 , name: '归元草', tags: [], attrs: ['材料'], quality: 2,
+  #原材料
+   stuffs: [{ id: 1022, num: 1 },], 
+   #辅助材料
+   props: [], 
+   #目标道具
+   targets: [{ id: 1019 , num: 1, rate: 80 },],
+    time: 100, lingQiZhi: 10, desc: '突破炼气境时使用，有一定的成功率' },
+
+    { id: 1020 , name: '化生草', tags: [], attrs: ['材料'], quality: 2,
+  #原材料
+   stuffs: [{ id: 1023, num: 1 },], 
+   #辅助材料
+   props: [], 
+   #目标道具
+   targets: [{ id: 1020 , num: 1, rate: 80 },],
+    time: 100, lingQiZhi: 10, desc: '突破炼气境时使用，有一定的成功率' },
+
+    { id: 1021 , name: '固灵草', tags: [], attrs: ['材料'], quality: 2,
+  #原材料
+   stuffs: [{ id: 1024, num: 1 },], 
+   #辅助材料
+   props: [], 
+   #目标道具
+   targets: [{ id: 1021 , num: 1, rate: 80 },],
+    time: 100, lingQiZhi: 10, desc: '突破炼气境时使用，有一定的成功率' },
   # { id: 102 , name: '橘子', tags: [], attrs: ['材料'], quality: 3, stuffs: [{ id: 20, num: 1000 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], time: 7260, lingQiZhi: 10, desc: '被咬过的苹果' },
   # { id: 103, name: '苹果', tags: [], attrs: ['材料'], quality: 1, stuffs: [{ id: 20, num: 1000 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], time: 60, lingQiZhi: 10, desc: '被咬过的苹果' },
   # { id: 104 , name: '香蕉', tags: [], attrs: ['材料'], quality: 2, stuffs: [{ id: 20, num: 1 },{ id: 21, num: 2 }], props: [{id: 51, num: 1}], targets: [{ id: 52, num: 1, rate: 80 },{ id: 53, num: 1, rate: 20 }], time: 86400, lingQiZhi: 10, desc: '冰镇西瓜' },
