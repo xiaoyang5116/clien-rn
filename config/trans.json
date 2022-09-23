@@ -3,5 +3,30 @@
     "id": "OPEN_XIUXING_UI",
     "name": "黑色视频转场",
     "comment": "打开修行页面"
+  },
+  {
+    "id": "OPEN_CAIJI",
+    "name": "左右开门转场",
+    "comment": "打开采集页面"
+  },
+  {
+    "id": "OPEN_CAI_JI",
+    "name": "左右开门转场",
+    "comment": "打开采集页面"
+  },
+  {
+    "id": "OPEN_ZHONG_ZHI",
+    "name": "左右开门转场",
+    "comment": "打开种植页面"
+  },
+  {
+    "id": "OPEN_LIAN_DAN",
+    "name": "左右开门转场",
+    "comment": "打开炼丹页面"
+  },
+  {
+    "id": "OPEN_LIAN_QI",
+    "name": "左右开门转场",
+    "comment": "打开练气页面"
   }
 ]
