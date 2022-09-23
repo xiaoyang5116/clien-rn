@@ -424,7 +424,7 @@ const BagButton = (props) => {
       }}>
       <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <Animated.Image style={{ width: px2pd(210), height: px2pd(210), transform: [{ scale: scale.current }] }} source={buttonImage} />
-        <FastImage style={{ position: 'absolute', bottom: -18, right: 10, width: px2pd(232), height: px2pd(88) }} source={require('../../assets/button/collect_bag_button.png')} />
+        <FastImage style={{ position: 'absolute', bottom: -18, right: 0, width: px2pd(232), height: px2pd(88) }} source={require('../../assets/button/collect_bag_button.png')} />
       </View>
     </TouchableWithoutFeedback>
   );
