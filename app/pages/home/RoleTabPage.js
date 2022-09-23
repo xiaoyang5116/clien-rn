@@ -131,9 +131,8 @@ const SimpleInfo = (props) => {
 
     const onDetailHandler = () => {
         const key = RootView.add(
-        <Transitions id={'OPEN_USER_ATTRS_DETAIL'}>
             <AttrsPage onClose={() => { RootView.remove(key) }} />
-        </Transitions>);
+        );
     }
 
     const getAffectValue = (array, key) => {
