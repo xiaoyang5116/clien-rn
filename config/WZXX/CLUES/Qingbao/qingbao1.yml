@@ -3,7 +3,7 @@ clues:
   {
     id: 'qingbao1',
     type: '情报',
-    filterCondition: {locaton: '白城',},
+    filterCondition: {location: '白城',},
     title: '西市',
     content: ['西市直通李家的必经之路','有使飞刀的黑衣人埋伏',],
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
