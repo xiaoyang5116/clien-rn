@@ -4,13 +4,14 @@ import React from 'react'
 import RootView from '../RootView';
 
 import LianQi from './LianQi'
+import Transitions from '../transition';
 
 class LianQiPage {
   static show() {
     const key = RootView.add(
-      <LianQi onClose={() => {
-        RootView.remove(key);
-      }} />
+      <Transitions id={"OPEN_LIAN_QI"}>
+        <LianQi onClose={() => { RootView.remove(key); }} />
+      </Transitions>
     );
   }
 }
