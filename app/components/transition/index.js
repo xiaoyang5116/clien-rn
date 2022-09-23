@@ -21,7 +21,7 @@ const Transitions = (props) => {
         const found = lo.find(trans.default, (e) => lo.isEqual(e.id, props.id));
         if (found == undefined) {
             errorMessage(`"${props.id}" 转场ID无效`);
-            return <></>;
+            return (<View style={{ flex: 1 }}>{props.children}</View>);
         }
         transitionName = found.name;
     }
@@ -64,7 +64,7 @@ const Transitions = (props) => {
             return (<XuanWoTransition>{props.children}</XuanWoTransition>);
 
         default:
-            return <View style={{ flex: 1 }}>{props.children}</View>;
+            return (<View style={{ flex: 1 }}>{props.children}</View>);
     }
 }
 
