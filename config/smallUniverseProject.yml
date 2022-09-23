@@ -23,6 +23,8 @@ data: {
   mainAttrs: [
     # ===== 1 ======
     {
+      iconId: 1,
+      quality: 1,
       name: '画面',
       desc: "主力输出",
       props: [
@@ -45,6 +47,8 @@ data: {
 
     # ===== 2 ======
     {
+      iconId: 1,
+      quality: 1,
       name: '剧情',
       desc: "主要防御",
       props: [
@@ -60,6 +64,8 @@ data: {
 
     # ===== 3 ======
     {
+      iconId: 1,
+      quality: 1,
       name: '细节',
       desc: "主要防御",
       props: [
@@ -75,6 +81,8 @@ data: {
 
     # ===== 4 ======
     {
+      iconId: 1,
+      quality: 1,
       name: '操作',
       desc: "主要防御",
       props: [

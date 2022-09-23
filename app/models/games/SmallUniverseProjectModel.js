@@ -23,7 +23,13 @@ export default {
 
       } else {
         // 主属性
-        const mainAttrs = data.mainAttrs.map(item => ({ name: item.name, desc: item.desc, ...item.levelConfig[0] }))
+        const mainAttrs = data.mainAttrs.map(item => ({
+          name: item.name,
+          desc: item.desc,
+          iconId: item.iconId,
+          quality: item.quality,
+          ...item.levelConfig[0]
+        }))
         // 副属性
         let allSubAttrs = []
         for (let index = 0; index < data.allSubAttrs.length; index++) {
