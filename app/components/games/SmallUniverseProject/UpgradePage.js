@@ -12,7 +12,7 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 
 import { connect, action, getPropIcon } from '../../../constants';
-import { px2pd } from '../../../constants/resolution';
+import { isPad, px2pd } from '../../../constants/resolution';
 import qualityStyle from '../../../themes/qualityStyle';
 import { Platform } from 'react-native';
 import RootView from '../../RootView';
@@ -162,10 +162,12 @@ const AttrDetail = props => {
             alignItems: 'center',
             borderBottomColor: '#000',
             borderBottomWidth: 1,
+            paddingLeft: 12,
+            paddingRight: 12
           }}>
           <View style={{ flexDirection: 'row', width: '50%' }}>
-            <Text style={{ fontSize: 17, color: '#000' }}>{key}</Text>
-            <Text style={{ fontSize: 17, color: '#000', marginLeft: 12 }}>
+            <Text style={{ fontSize: 16, color: '#000' }}>{key}</Text>
+            <Text style={{ fontSize: 16, color: '#000', marginLeft: 12 }}>
               +{value}
             </Text>
           </View>
@@ -204,42 +206,56 @@ const AttrDetail = props => {
 
     if (status === 1) {
       return (
-        <View style={{ marginTop: 20 }}>
-          <Header />
-          {/* 属性icon 和 等级 */}
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <AttrIcon grade={mainAttr.grade} />
-          </View>
-          {/* 描述 */}
-          <View
-            style={{
-              marginTop: 12,
-              borderBottomColor: '#000',
-              borderBottomWidth: 1,
-              height: 30,
-              justifyContent: 'center',
-            }}>
-            <Text style={{ fontSize: 18, color: '#000' }}>{mainAttr.desc}</Text>
-          </View>
-
-          {/* 副属性列表 */}
-          <View style={{ marginTop: 8 }}>{subAttrsList}</View>
-          {/* 升级需求 */}
-          <View>
+        <View style={{ alignItems: 'center' }}>
+          <View style={{ width: px2pd(1001), height: "65%", alignItems: 'center', backgroundColor: '#ccc', }}>
+            <FastImage
+              resizeMode={"stretch"}
+              style={{ width: '100%', height: "100%", position: 'absolute' }}
+              source={require('../../../../assets/games/SmallUniverseProject/grade_attr.png')}
+            />
+            <Header />
+            {/* 属性icon 和 等级 */}
             <View
               style={{
-                width: 150,
-                height: 35,
-                backgroundColor: '#A0A0A0',
+                width: px2pd(740),
+                marginTop: px2pd(77),
+                flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginTop: 30,
               }}>
+              <AttrIcon grade={mainAttr.grade} img={require('../../../../assets/games/SmallUniverseProject/grade_iconBorder_right.png')} />
+            </View>
+            {/* 描述 */}
+            <View
+              style={{
+                width: px2pd(740),
+                marginTop: 12,
+                borderBottomColor: '#000',
+                borderBottomWidth: 1,
+                height: 30,
+                justifyContent: 'center',
+                paddingLeft: 12,
+              }}>
+              <Text style={{ fontSize: 16, color: '#000' }}>{mainAttr.desc}</Text>
+            </View>
+
+            {/* 副属性列表 */}
+            <View style={{ width: px2pd(740), }}>
+              {subAttrsList}
+            </View>
+          </View>
+
+          {/* 升级需求 */}
+          <View style={{ width: px2pd(998), height: px2pd(435), marginTop: 20, backgroundColor: "#ccc" }}>
+            <FastImage
+              style={{ position: 'absolute', width: px2pd(998), height: px2pd(435) }}
+              source={require('../../../../assets/games/SmallUniverseProject/grede_needProp_bg.png')}
+            />
+            <View style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: isPad() ? 34 : 12,
+            }}>
               <Text style={{ fontSize: 20, color: '#000' }}>升级需求</Text>
             </View>
             <View
@@ -247,7 +263,7 @@ const AttrDetail = props => {
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
-                paddingTop: 30,
+                paddingTop: 50,
               }}>
               <Text style={{ fontSize: 20, color: '#000' }}>
                 已经达到最高等级
@@ -260,9 +276,10 @@ const AttrDetail = props => {
 
     return (
       <View style={{ alignItems: 'center' }}>
-        <View style={{ width: px2pd(1001), height: px2pd(1011), alignItems: 'center', backgroundColor: '#ccc', }}>
+        <View style={{ width: px2pd(1001), height: "65%", alignItems: 'center', backgroundColor: '#ccc', }}>
           <FastImage
-            style={{ width: px2pd(1001), height: px2pd(1011), position: 'absolute' }}
+            resizeMode={"stretch"}
+            style={{ width: '100%', height: "100%", position: 'absolute' }}
             source={require('../../../../assets/games/SmallUniverseProject/grade_attr.png')}
           />
           <Header />
@@ -307,7 +324,7 @@ const AttrDetail = props => {
           <View style={{
             justifyContent: 'center',
             alignItems: 'center',
-            marginTop: 12,
+            marginTop: isPad() ? 34 : 12,
           }}>
             <Text style={{ fontSize: 20, color: '#000' }}>升级需求</Text>
           </View>
@@ -490,7 +507,7 @@ const UpgradePage = props => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)' }}>
+    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 99 }}>
       <SafeAreaView style={{ flex: 1 }}>
         <View
           style={{
@@ -532,7 +549,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: isPad() ? 70 : 30,
   },
   goBackContainer: {
     marginBottom: 12,
