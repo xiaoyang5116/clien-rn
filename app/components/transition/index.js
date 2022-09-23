@@ -9,38 +9,62 @@ import ColorScreenTransition from './ColorScreenTransition';
 import OpenXTransition from './OpenXTransition';
 import BlackCircleTransition from './BlackCircleTransition';
 import OpenYTransition from './OpenYTransition';
+import BlurTransition from './BlurTransition';
+import XuanWoTransition from './XuanWoTransition';
+import { View } from 'react-native';
 
 const Transitions = (props) => {
-    const found = lo.find(trans.default, (e) => lo.isEqual(e.id, props.id));
-    if (found == undefined) {
-        errorMessage(`"${props.id}" 转场ID无效`);
-        return <></>;
+
+    let transitionName = props.transitionName;
+    
+    if (props.id != undefined) {
+        const found = lo.find(trans.default, (e) => lo.isEqual(e.id, props.id));
+        if (found == undefined) {
+            errorMessage(`"${props.id}" 转场ID无效`);
+            return (<View style={{ flex: 1 }}>{props.children}</View>);
+        }
+        transitionName = found.name;
     }
 
-    switch(found.name) {
+    switch(transitionName) {
         case 'BlackScreen':
-        case '黑色过渡':
-            return (<ColorScreenTransition config={found}>{props.children}</ColorScreenTransition>);
-        
+        case '黑色转场':
+            return (<ColorScreenTransition config={{ duration: 300 }}>{props.children}</ColorScreenTransition>);
+
         case 'WhiteScreen':
-        case '白色过渡':
-            return (<ColorScreenTransition config={found} color={'#fff'}>{props.children}</ColorScreenTransition>);
+        case '白色转场':
+            return (<ColorScreenTransition config={{ duration: 300 }} color={'#fff'}>{props.children}</ColorScreenTransition>);
+        
+        case 'BlackVideoScreen':
+        case '黑色视频转场':
+            return (<ColorScreenTransition>{props.children}</ColorScreenTransition>);
+        
+        case 'WhiteVideoScreen':
+        case '白色视频转场':
+            return (<ColorScreenTransition color={'#fff'}>{props.children}</ColorScreenTransition>);
 
         case 'OpenXScreen':
-        case '左右开门':
-            return (<OpenXTransition config={found}>{props.children}</OpenXTransition>);
+        case '左右开门转场':
+            return (<OpenXTransition>{props.children}</OpenXTransition>);
 
         case 'OpenYScreen':
-        case '上下开门':
-            return (<OpenYTransition config={found}>{props.children}</OpenYTransition>);
+        case '上下开门转场':
+            return (<OpenYTransition>{props.children}</OpenYTransition>);
 
         case 'BlackCircleScreen':
-        case '黑色圆形过渡':
-            return (<BlackCircleTransition config={found}>{props.children}</BlackCircleTransition>);
+        case '黑色圆形转场':
+            return (<BlackCircleTransition>{props.children}</BlackCircleTransition>);
+
+        case 'BlurScreen':
+        case '模糊转场':
+            return (<BlurTransition>{props.children}</BlurTransition>);
+
+        case 'XuanWoScreen':
+        case '时空漩涡转场':
+            return (<XuanWoTransition>{props.children}</XuanWoTransition>);
 
         default:
-            errorMessage(`"${found.name}" 转场不存在`);
-            return <></>;
+            return (<View style={{ flex: 1 }}>{props.children}</View>);
     }
 }
 
@@ -48,6 +72,7 @@ export default Transitions;
 
 Transitions.propTypes = {
     id: PropTypes.string,
+    transitionName: PropTypes.string,
 };
 
 Transitions.defaultProps = {

@@ -25,7 +25,8 @@ import DarkBlurView from '../extends/DarkBlurView';
 import { px2pd } from '../../constants/resolution';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
-const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+// const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+const ITEM_WIDTH = px2pd(800);
 
 const EnterButton = (props) => {
   const [visable, setVisable] = React.useState('none');
@@ -65,7 +66,8 @@ const CarouselCardItem = ({ item, index }) => {
     );
   } else {
     contentView = (
-      <View style={styles.cardItem} key={index}>
+      <View style={[styles.cardItem, { overflow: 'hidden' } ]} key={index}>
+        <FastImage style={{ position: 'absolute', width: px2pd(800), height: px2pd(1200) }} source={require('../../../assets/bg/carousel_item_bg.png')} />
         <Text style={styles.header}>{item.title}</Text>
         <Text style={styles.textBody}>{item.body}</Text>
         <EnterButton item={item} index={index} />
@@ -182,6 +184,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       borderRadius: 8,
       width: ITEM_WIDTH,
+      height: px2pd(1200),
       paddingBottom: 40,
       shadowColor: "#000",
       shadowOffset: {
