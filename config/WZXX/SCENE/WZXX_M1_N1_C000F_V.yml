@@ -1,0 +1,140 @@
+scenes: [
+
+    #
+   {
+      id: 'WZXX_M1_N1_C000F_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+   
+      
+      ],
+
+      # 动作定义
+      actions: [],
+      #不显示时间
+      worldTimeHidden: true,
+      # 事件定义# 故事中的场景事件暂时没什么意义
+      events: [],
+
+      chats: [
+
+      { 
+        id: 'WZXX_M1_N1_C000F_V', desc: '去公园', 
+        options: [ 
+          { title: "【去公园】",toScene: 'C000F_V_MAP_0_2',   },
+        ],
+      },
+
+    
+        ],
+
+  
+    },
+
+ #===========事件场景==============
+       {
+  # NPC2
+    id: 'C000F_V_MAP_0_2', name: '公园入口',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_70',
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000F_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 2],
+    # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    # { id: "v_icon_100E", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter', nextChat: 'C1'  },
+    ],
+    # 对话选项
+    chats: [
+      {
+        id: 'C1', desc: "李森炎独自一人走在山道上\n没过多久，他远远看到，前方出现了一个人影\n李森炎走近了些，看到一个村民正在锄地",
+        options: [ 
+         { title: '【上前和村民交谈】',nextChat: 'C1A' }, 
+        ],
+      },
+
+
+    ],
+  },
+          
+
+
+#=================================场景地图的设置==================================
+    maps: [
+    {
+            id: 'C000F_V_MAP_0_0',
+            data: [
+              { 
+              point: [0, 2], title: '公园入口', 
+              toScene: 'C000F_V_MAP_0_2', 
+              links: [[0, 3], ] 
+              },
+
+              { 
+              point: [0, 3], title: '公告栏',
+              toScene: 'C000F_V_MAP_0_3',
+              links: [[-1, 3],[1, 3] ] 
+              },
+
+              { 
+              point: [-1, 3], title: '植物园', 
+              toScene: 'C000F_V_MAP_-1_3',
+              links: [[-1, 4],] 
+              },
+
+              { 
+              point: [1, 3], title: '动物园', 
+              toScene: 'C000F_V_MAP_1_3',
+              links: [[1, 4]] 
+              },
+
+              { 
+              point: [-1, 4], title: '音乐走廊', 
+              toScene: 'C000F_V_MAP_-1_4',
+              links: [[-1, 5]] 
+              },
+
+              { 
+              point: [0, 4], title: '中心广场', 
+              toScene: 'C000F_V_MAP_0_4',
+              links: [[-1, 4],[1, 4]] 
+              },
+
+              { 
+              point: [1, 4], title: '便利店', 
+              toScene: 'C000F_V_MAP_1_4',
+              links: [[-2, 1]] 
+              },
+
+              { 
+              point: [-1, 5], title: '展览馆', 
+              toScene: 'C000F_V_MAP_-1_5',
+              links: [[1, 5]] 
+              },
+
+              { 
+              point: [1, 5], title: '观景地', 
+              toScene: 'C000F_V_MAP_1_5',
+              links: [[-1, 5]] 
+              },
+            ]
+          },
+   ],
+  ]

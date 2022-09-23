@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C014E'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C014EFZ'] }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N2_C017'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N2_C017FZ'] }, 
     { header: '第十七章 众生山脉' },
      { world: { name: '灵修界' } },
 ]
@@ -128,7 +128,6 @@
 #
 [
     { sceneId: 'WZXX_M1_N1_C000D_VA', chatId: 'WZXX_M1_N1_C000D_VA' },
-  
 ]
 #END==========================================
 

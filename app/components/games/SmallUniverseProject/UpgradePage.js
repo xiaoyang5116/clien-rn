@@ -452,7 +452,7 @@ const UpgradePage = props => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)' }}>
+    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 99 }}>
       <SafeAreaView style={{ flex: 1 }}>
         <View
           style={{

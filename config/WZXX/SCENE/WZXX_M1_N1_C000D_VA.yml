@@ -862,7 +862,7 @@ scenes: [
       { 
         id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
         options: [ 
-        { title: '【似乎有些发现】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toChapter: "WZXX_M1_N1_C014F",}, 
+        { title: '【似乎有些发现】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toChapter: "WZXX_M1_N2_C018",}, 
          
         ],
       },
@@ -872,7 +872,7 @@ scenes: [
         id: 'C2', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
         options: [ 
        
-         { title: '【去种植】', openUI: 'ZhongZhi',toChapter: "WZXX_M1_N1_C014F",}, 
+         { title: '【去种植】', openUI: 'ZhongZhi',toChapter: "WZXX_M1_N2_C018",}, 
         ],
       },
        #

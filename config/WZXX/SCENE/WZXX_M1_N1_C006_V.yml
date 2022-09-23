@@ -108,7 +108,7 @@ scenes: [
         id: 'WZXX_M1_N1_C006_V6', desc: '重大选择', 
         options: [ 
           { title: "【我走！】", toChapter: "WZXX_M1_N1_C014_[N1]" },
-          { title: "【我不想走了】", toChapter: "WZXX_M1_N1_C014B" },
+          { title: "【我不想走了】", toChapter: "WZXX_M1_N2_C014" },
          
         ],
       },

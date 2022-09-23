@@ -219,28 +219,28 @@ directory: [
         },
 #==============================选择分支线================================
         { point: [-1, -28], title: '第十四章 小世界', 
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C014B' ,
-          toChapter: 'WZXX_M1_N1_C014B', links: [[-1, -29],], 
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N2_C014' ,
+          toChapter: 'WZXX_M1_N2_C014', links: [[-1, -29],], 
         },
         
         { point: [-1, -29], title: '第十五章 美貌女修', 
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C014C' ,
-          toChapter: 'WZXX_M1_N1_C014C', links: [[-1, -30],], 
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N2_C015' ,
+          toChapter: 'WZXX_M1_N2_C015', links: [[-1, -30],], 
         },
 
         { point: [-1, -30], title: '第十六章 鞭子', 
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C014D' ,
-          toChapter: 'WZXX_M1_N1_C014D', links: [[-1, -31],], 
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N2_C016' ,
+          toChapter: 'WZXX_M1_N2_C016', links: [[-1, -31],], 
         },
 
         { point: [-1, -31], title: '第十七章 众生山脉', 
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C014E' ,
-          toChapter: 'WZXX_M1_N1_C014E', links: [[-1, -32],], 
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N2_C017' ,
+          toChapter: 'WZXX_M1_N2_C017', links: [[-1, -32],], 
         },
 
         { point: [-1, -32], title: '第十八章 绛云镇 ', 
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C014F' ,
-          toChapter: 'WZXX_M1_N1_C014F', links: [[],], 
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N2_C018' ,
+          toChapter: 'WZXX_M1_N2_C018', links: [[],], 
         },
 #==============================选择分支线================================
         { point: [1, -28], title: '第十四章 离开医馆',
@@ -448,7 +448,7 @@ directory: [
     id: 3, 
     title: '未开启',
     map: [
-      #  { point: [0, 0], title: '坊市地图测试',toChapter: 'WZXX_M1_N1_C037', links: [[],[]] },
+       { point: [0, 0], title: '现代地图测试',toChapter: 'WZXX_M1_N1_C1000', links: [[],[]] },
     ]
   },
 
