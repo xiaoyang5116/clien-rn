@@ -50,6 +50,10 @@ export const images = [
     require('../../assets/animations/levelup/levelup-3-4.png'),
     require('../../assets/animations/levelup/levelup-4-5.png'),
 
+    require('../../assets/animations/xuanwo/xuanwo-0-1.png'),
+    require('../../assets/animations/xuanwo/xuanwo-1-2.png'),
+    require('../../assets/animations/xuanwo/xuanwo-2-3.png'),
+
     require('../../assets/bg/open_trans_left.png'),
     require('../../assets/bg/open_trans_right.png'),
     require('../../assets/bg/open_trans_y.png'),
