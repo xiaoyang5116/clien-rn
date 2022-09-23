@@ -21,9 +21,12 @@ import RootView from '../../components/RootView';
 import { TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import WorldPreview from './WorldPreview';
+import DarkBlurView from '../extends/DarkBlurView';
+import { px2pd } from '../../constants/resolution';
 
 const SLIDER_WIDTH = Dimensions.get('window').width;
-const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+// const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+const ITEM_WIDTH = px2pd(800);
 
 const EnterButton = (props) => {
   const [visable, setVisable] = React.useState('none');
@@ -63,7 +66,8 @@ const CarouselCardItem = ({ item, index }) => {
     );
   } else {
     contentView = (
-      <View style={styles.cardItem} key={index}>
+      <View style={[styles.cardItem, { overflow: 'hidden' } ]} key={index}>
+        <FastImage style={{ position: 'absolute', width: px2pd(800), height: px2pd(1200) }} source={require('../../../assets/bg/carousel_item_bg.png')} />
         <Text style={styles.header}>{item.title}</Text>
         <Text style={styles.textBody}>{item.body}</Text>
         <EnterButton item={item} index={index} />
@@ -114,26 +118,28 @@ export default class CarouselView extends Component {
       <TouchableWithoutFeedback onPress={() => {
         this.props.onClose();
       }}>
-        <View style={styles.container}>
-          <Carousel
-              layout="default"
-              layoutCardOffset={0}
-              ref={this.refCarousel}
-              data={this.props.data}
-              renderItem={CarouselCardItem}
-              sliderWidth={SLIDER_WIDTH}
-              itemWidth={ITEM_WIDTH}
-              inactiveSlideShift={0}
-              useScrollView={false}
-              firstItem={this.props.initialIndex}
-              onSnapToItem={this.onSnapToItem}
-          />
-          <View style={styles.bottomBar}>
-              <TextButton title='退出' onPress={() => {
-                  this.props.onClose();
-              }} />
+        <DarkBlurView>
+          <View style={styles.container}>
+            <Carousel
+                layout="default"
+                layoutCardOffset={0}
+                ref={this.refCarousel}
+                data={this.props.data}
+                renderItem={CarouselCardItem}
+                sliderWidth={SLIDER_WIDTH}
+                itemWidth={ITEM_WIDTH}
+                inactiveSlideShift={0}
+                useScrollView={false}
+                firstItem={this.props.initialIndex}
+                onSnapToItem={this.onSnapToItem}
+            />
+            <View style={styles.bottomBar}>
+                <TextButton title='退出' onPress={() => {
+                    this.props.onClose();
+                }} />
+            </View>
           </View>
-        </View>
+        </DarkBlurView>
       </TouchableWithoutFeedback>
     );
   }
@@ -163,7 +169,7 @@ const styles = StyleSheet.create({
         position: 'absolute', 
         left: 0, top: 0, 
         width: '100%', height: '100%', 
-        backgroundColor: 'rgba(0,0,0, 0.7)',
+        // backgroundColor: 'rgba(0,0,0, 0.7)',
         flexDirection: 'row', justifyContent: 'center', alignItems: 'center',
     },
     bottomBar: {
@@ -178,6 +184,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       borderRadius: 8,
       width: ITEM_WIDTH,
+      height: px2pd(1200),
       paddingBottom: 40,
       shadowColor: "#000",
       shadowOffset: {
@@ -209,7 +216,7 @@ const styles = StyleSheet.create({
       paddingRight: 20
     },
     textBody: {
-      height: 360,
+      height: px2pd(900),
       marginTop: 10,
       color: "#222",
       fontSize: 16,

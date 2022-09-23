@@ -16,6 +16,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import { px2pd } from '../../../constants/resolution';
 import { TextButton } from '../../../constants/custom-ui';
 import RootView from '../../../components/RootView';
+import DarkBlurView from '../../../components/extends/DarkBlurView';
 import StarsBanner from './StarsBanner';
 import ActivationConfirm from './ActivationConfirm';
 import * as Animatable from 'react-native-animatable';
@@ -31,42 +32,11 @@ const ActivationPage = (props) => {
     });
 
     React.useEffect(() => {
-        // refView.current.bounceInDown();
-        // refView.current.bounceInUp();
-        // refView.current.bounceInLeft();
-        // refView.current.bounceInRight();
-
         refView.current.zoomIn();
-        // refView.current.zoomOut();
-        // refView.current.zoomInDown();
-        // refView.current.zoomInUp();
-
-        // refView.current.jello();
-        // refView.current.pulse();
-        // refView.current.rotate();
-        // refView.current.rubberBand();
-        // refView.current.shake();
-        // refView.current.swing();
-        // refView.current.tada();
-        // refView.current.wobble();
-
-        // refView.current.fadeInDown();
-        // refView.current.fadeInUp();
-        // refView.current.fadeInLeftBig();
-        // refView.current.fadeInRightBig();
-        // refView.current.fadeOutDownBig();
-
-        // refView.current.flipInX();
-        // refView.current.flipInY();
-
-        // refView.current.lightSpeedIn();
-        // refView.current.lightSpeedOut();
-        // refView.current.slideInDown();
-        // refView.current.slideInUp();
     }, []);
 
     return (
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)' }}>
+        <DarkBlurView>
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Animatable.View ref={refView} duration={600} style={[{ width: px2pd(800), height: px2pd(1050), backgroundColor: '#eee', alignItems: 'center', borderRadius: 5 }, { transform: [{ scale: scale }] }]}>
                     <View style={{ width: '100%', alignItems: 'flex-end' }}>
@@ -85,6 +55,7 @@ const ActivationPage = (props) => {
                         </View>
                         <View style={{ position: 'absolute', right: 60 }}>
                             <Text style={{ fontSize: 24, color: '#000' }}>{props.data.name}</Text>
+                            
                         </View>
                     </View>
                     <View style={{ width: '94%', height: 140, marginBottom: 20, borderWidth: 1, borderColor: '#333', borderRadius: 5, backgroundColor: '#ccc', padding: 5}}>
@@ -105,7 +76,7 @@ const ActivationPage = (props) => {
                     </View>
                 </Animatable.View>
             </SafeAreaView>
-        </View>
+        </DarkBlurView>
     );
 }
 

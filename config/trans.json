@@ -31,5 +31,10 @@
     "name": "黑色过渡",
     "duration": 300,
     "comment": "打开采集页面"
+  },
+  {
+    "id": "OPEN_EXPLORE",
+    "name": "模糊过渡",
+    "comment": "打开探索页面"
   }
 ]

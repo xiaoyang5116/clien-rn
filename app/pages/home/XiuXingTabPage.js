@@ -155,7 +155,7 @@ const XiuXingTabPage = (props) => {
             />
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={styles.viewContainer}>
-                    <View style={{ width: '90%', alignItems: 'center', marginBottom: 10 }}>
+                    <View style={{ position: 'absolute', width: '90%', alignItems: 'center', top: 10 }}>
                         <Text style={{ fontSize: 26, color: '#fff', fontWeight: 'bold' }}>修行</Text>
                         <AntDesign style={{ position: 'absolute', left: -10 }} name='left' size={30} color={'#333'} onPress={() => {
                             if (props.onClose != undefined) {
@@ -163,7 +163,7 @@ const XiuXingTabPage = (props) => {
                             }
                         }} />
                     </View>
-                    <View style={{ width: '90%', marginTop: 10, borderRadius: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: '#677d8e', flexDirection: 'row', flexWrap: 'wrap' }}>
+                    <View style={{ position: 'absolute', width: '90%', top: px2pd(200), borderRadius: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: '#677d8e', flexDirection: 'row', flexWrap: 'wrap' }}>
                         <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>体力： {getXiuXingAttrValue('体力')}</Text></View>
                         <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>防御： {getXiuXingAttrValue('防御')}</Text></View>
                         <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>法力： {getXiuXingAttrValue('法力')}</Text></View>
@@ -186,16 +186,16 @@ const XiuXingTabPage = (props) => {
                     <View style={{ marginTop: px2pd(100) }}>
                         <Text style={{ fontSize: 24, color: '#eee' }}>{currentXiuXingConfig.title}</Text>
                     </View>
-                    <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
+                    <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: px2pd(100) }}>
                         <View style={{ width: PROGRESS_BAR_WIDTH, height: 40 }}>
                             <ProgressBar value={props.user.xiuxingStatus.value} limit={props.user.xiuxingStatus.limit} />
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'row' , marginTop: 10 }}>
+                    <View style={{ flexDirection: 'row' , marginTop: px2pd(25) }}>
                         <Text style={{ fontSize: 22, color: '#ccc' }}>修为：</Text>
                         <Text style={{ fontSize: 22, color: '#829358' }}>+{currentXiuXingConfig.increaseXiuXingPerMinute}/分钟</Text>
                     </View>
-                    <View style={{ width: '100%', marginTop: 20, backgroundColor: '#565452' }}>
+                    <View style={{ position: 'absolute', width: '100%', bottom: px2pd(120), backgroundColor: '#565452' }}>
                         <View style={{ marginLeft: 3, marginRight: 3, marginTop: 5, marginBottom: 5, borderWidth: 1, borderColor: '#494745' }}>
                             <PropsBar />
                         </View>

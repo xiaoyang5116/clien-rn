@@ -9,6 +9,7 @@ import ColorScreenTransition from './ColorScreenTransition';
 import OpenXTransition from './OpenXTransition';
 import BlackCircleTransition from './BlackCircleTransition';
 import OpenYTransition from './OpenYTransition';
+import BlurTransition from './BlurTransition';
 
 const Transitions = (props) => {
     const found = lo.find(trans.default, (e) => lo.isEqual(e.id, props.id));
@@ -37,6 +38,10 @@ const Transitions = (props) => {
         case 'BlackCircleScreen':
         case '黑色圆形过渡':
             return (<BlackCircleTransition config={found}>{props.children}</BlackCircleTransition>);
+
+        case 'BlurScreen':
+        case '模糊过渡':
+            return (<BlurTransition config={found}>{props.children}</BlurTransition>);
 
         default:
             errorMessage(`"${found.name}" 转场不存在`);
