@@ -44,6 +44,12 @@ export const images = [
     require('../../assets/animations/leiyun/leiyun13-14.png'),
     require('../../assets/animations/leiyun/leiyun14-15.png'),
 
+    require('../../assets/animations/levelup/levelup-0-1.png'),
+    require('../../assets/animations/levelup/levelup-1-2.png'),
+    require('../../assets/animations/levelup/levelup-2-3.png'),
+    require('../../assets/animations/levelup/levelup-3-4.png'),
+    require('../../assets/animations/levelup/levelup-4-5.png'),
+
     require('../../assets/bg/open_trans_left.png'),
     require('../../assets/bg/open_trans_right.png'),
     require('../../assets/bg/open_trans_y.png'),

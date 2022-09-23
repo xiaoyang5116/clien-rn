@@ -181,7 +181,7 @@ scenes: [
           { title: '【商店一】', toShop: 'shop2' }, 
           { title: '【商店二】', toShop: 'shop_sell_test' }, 
           # { title: '【动效1】', animations: { id: 3 } }, 
-          { title: '【飞行动效】', animations: { id: 10 } }, 
+          { title: '【升级动效】', animations: { id: 13 } }, 
           { title: '【切换世界】', animations: { id: 11, data: { worldId: '灵修界', desc: 'xxx', toChapter: 'WZXX_M1_N1_C001' } } }, 
           { title: '【打开采集页面(1)】', collect: '1' }, 
           { title: '【打开采集页面(2)】', collect: '2' }, 
