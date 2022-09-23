@@ -29,7 +29,7 @@ class SheetItem extends React.Component {
         const play = type => {
             this.sheet.current.play({
                 type,
-                fps: Number(18),
+                fps: Number(16),
                 resetAfterFinish: false,
                 loop: false,
                 onFinish: () => {
