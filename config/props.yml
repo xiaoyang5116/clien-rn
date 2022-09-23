@@ -149,6 +149,12 @@ props: [
   { id:  358, name: '抑灵丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '能够抑制灵根发挥效果的神奇丹药' },
   { id:  359, name: '玄天宝鉴', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '用于修士之间传讯的宝器' },
   { id:  360, name: '护体丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '能够保护修士体内筋脉不受伤害，且能恢复一定法力' },
+  #丹药
+  { id:  368, name: '炼气丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },				
+
+  													
+									
+
   
    #完成任务需要使用的道具
   { id:  361, name: '糖葫芦', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
@@ -166,10 +172,10 @@ props: [
    { id:  700, name: '齿轮', iconId: 3, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['碎片'], capacity: 100, desc: '碎片合成的产物' },
    
     #草药
-   { id:  1000, name: '百草哭', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  1001, name: '摄魂草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  1002, name: '寸筋草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
-   { id:  1003, name: '烈阳草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
+   { id:  1000, name: '百草哭', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
+   { id:  1001, name: '摄魂草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
+   { id:  1002, name: '寸筋草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
+   { id:  1003, name: '烈阳草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
    { id:  1004, name: '薄荷粉', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
    { id:  1005, name: '田七', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
    { id:  1006, name: '火绒花', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
@@ -185,6 +191,14 @@ props: [
    { id:  1016, name: '百络花', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
    { id:  1017, name: '子星草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },	
    { id:  1018, name: '不知名草药', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },
+   { id:  1019, name: '归元草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+   { id:  1020, name: '化生草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+   { id:  1021, name: '固灵草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+
+   { id:  1022, name: '归元草种子', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+   { id:  1023, name: '化生草种子', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+   { id:  1024, name: '固灵草种子', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+
 
    #功法书籍
    { id:  600, name: '《白城笑话大全》', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
@@ -224,6 +238,5 @@ props: [
   { id:  3104, name: '木棍子[橙]', iconId: 2, num:  1, quality: 5, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },
 
   # 小宇宙项目道具
-  { id: 4000, name: '金币', iconId: 2, num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ''},
-  { id: 4001, name: '铜币', iconId: 2, num: 1, quality: 1, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ''},
+  { id: 369, name: '灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
 ]

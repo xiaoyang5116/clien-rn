@@ -49,6 +49,21 @@ scenes: [
         ],
       },
 
+       { 
+        id: 'WZXX_M1_N1_C0029_V4', desc: '选择尝试', 
+        options: [ 
+          { title: "【服用冰灵果】",toChapter: "WZXX_M1_N1_C034",}
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C0029_V5', desc: '选择尝试', 
+        options: [ 
+          { title: "【就硬扛！】",dialogs: ['C0029A_yingkangA'],},
+          { title: "【直接使用锻骨灵液！】",toChapter: "WZXX_M1_N1_C035",}
+        ],
+      },
+
 
         ],
 
@@ -86,6 +101,19 @@ scenes: [
               '李森炎故意往反方向走','此时江依依的音容笑貌却在脑海不断浮现','李森炎实在承受不了内心的煎熬',
               '“就去看看怎么回事也好”','“这要是不去，晚上做梦都不踏实！”',],
               btn: [{title: '……',toChapter: "WZXX_M1_N1_C033",},]
+              },
+            ]  
+          },
+
+          { 
+            id: 'C0029A_yingkangA',style: 6, title: '硬抗', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              { 
+              key: 'B1', 
+              content: ['李森炎咬牙抵抗体内寒力的侵袭','片刻之后，他的眉眼都已经结霜','他坚定信念，相信自己一定能扛过去','甚至开始念起了净心神咒，让自己镇定下来',
+              '净心神咒很有效，他很快心无波澜','整个人都被冻成了冰雕','……',
+              ],
+              btn: [{title: '还是使用锻骨灵液吧',toChapter: "WZXX_M1_N1_C035",},]
               },
             ]  
           },
