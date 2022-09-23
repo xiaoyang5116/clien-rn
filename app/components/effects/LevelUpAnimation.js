@@ -7,6 +7,7 @@ import {
     View,
     StyleSheet,
 } from 'react-native';
+import { getFixedWidthScale } from '../../constants/resolution';
 
 const IMAGES = [
     { id: 0, source: require('../../../assets/animations/levelup/levelup-0-1.png'), frameWidth: 480, frameHeight: 960, frameNums: 8, columns: 4, rows: 2 },
@@ -50,7 +51,7 @@ class SheetItem extends React.Component {
 
     render() {
         return (
-            <Animated.View style={{ opacity: this.opacity }}>
+            <Animated.View style={{ opacity: this.opacity, transform: [{ scale: getFixedWidthScale() * (1080 / 480) }] }}>
                 <SpriteSheet
                     ref={ref => (this.sheet.current = ref)}
                     source={this.props.data.source}
