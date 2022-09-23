@@ -1,7 +1,7 @@
 import React from 'react';
 import RootView from '../components/RootView';
-import CollectPage from '../pages/CollectPage';
 import Transitions from '../components/transition';
+import CollectPage from '../pages/CollectPage';
 
 export default class CollectUtils {
     static show(collectId) {

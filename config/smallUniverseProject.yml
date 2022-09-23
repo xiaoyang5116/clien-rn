@@ -10,74 +10,109 @@
 data: {
 
   # 总等级
-  overallGrade: 14,
+  overallGrade: 40,
 
   # 副属性
   allSubAttrs: [
-    { key: "实力", name: "实力" },
-    { key: "主炮", name: "主炮" },
-    { key: "装甲", name: "装甲" },
+    { key: "评价", name: "评价" },
+    { key: "艺术", name: "艺术" },
+    { key: "演出", name: "演出" },
+    { key: "细致", name: "细致" },
+    { key: "流畅", name: "流畅" },
   ],
 
   # 主属性
   mainAttrs: [
     # ===== 1 ======
     {
+      iconId: 1,
+      quality: 1,
       name: '画面',
-      desc: "主力输出",
+      desc: "项目的画面",
       props: [
         { key: "灵感钥匙", propId: 369,},
        
       ],
       levelConfig: [
-        { grade: 1, subAttrs: ['实力,100','主炮,100'], needProps: ['灵感钥匙,1'] },
-        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['灵感钥匙,1'] },
-        { grade: 3, subAttrs: ['实力,300','主炮,300'], needProps: ['灵感钥匙,1'] },
-        { grade: 4, subAttrs: ['实力,400','主炮,400'], needProps: ['灵感钥匙,1'] },
-        { grade: 5, subAttrs: ['实力,500','主炮,500'], needProps: ['灵感钥匙,1'] },
-   
+        { grade: 1, subAttrs: ['评价,10','艺术,10'], needProps: ['灵感钥匙,1'] },
+        { grade: 2, subAttrs: ['评价,20','艺术,20'], needProps: ['灵感钥匙,1'] },
+        { grade: 3, subAttrs: ['评价,30','艺术,30'], needProps: ['灵感钥匙,1'] },
+        { grade: 4, subAttrs: ['评价,40','艺术,40'], needProps: ['灵感钥匙,1'] },
+        { grade: 5, subAttrs: ['评价,50','艺术,50'], needProps: ['灵感钥匙,1'] },
+        { grade: 6, subAttrs: ['评价,60','艺术,60'], needProps: ['灵感钥匙,1'] },
+        { grade: 7, subAttrs: ['评价,70','艺术,70'], needProps: ['灵感钥匙,1'] },
+        { grade: 8, subAttrs: ['评价,80','艺术,80'], needProps: ['灵感钥匙,1'] },
+        { grade: 9, subAttrs: ['评价,90','艺术,90'], needProps: ['灵感钥匙,1'] },
+        { grade: 10, subAttrs: ['评价,100','艺术,100'], },
       ],
     },
 
     # ===== 2 ======
     {
+      iconId: 1,
+      quality: 1,
       name: '剧情',
-      desc: "主要防御",
+      desc: "项目的剧情",
       props: [
         { key: "灵感钥匙", propId: 369,},
       ],
       levelConfig: [
-        { grade: 1, subAttrs: ['实力,100','装甲,100'], needProps: ['灵感钥匙,1']},
-        { grade: 2, subAttrs: ['实力,200','装甲,200'], needProps: ['灵感钥匙,1'] },
-        { grade: 3, subAttrs: ['实力,300','装甲,300'], },
+        { grade: 1, subAttrs: ['评价,10','演出,10'], needProps: ['灵感钥匙,1'] },
+        { grade: 2, subAttrs: ['评价,20','演出,20'], needProps: ['灵感钥匙,1'] },
+        { grade: 3, subAttrs: ['评价,30','演出,30'], needProps: ['灵感钥匙,1'] },
+        { grade: 4, subAttrs: ['评价,40','演出,40'], needProps: ['灵感钥匙,1'] },
+        { grade: 5, subAttrs: ['评价,50','演出,50'], needProps: ['灵感钥匙,1'] },
+        { grade: 6, subAttrs: ['评价,60','演出,60'], needProps: ['灵感钥匙,1'] },
+        { grade: 7, subAttrs: ['评价,70','演出,70'], needProps: ['灵感钥匙,1'] },
+        { grade: 8, subAttrs: ['评价,80','演出,80'], needProps: ['灵感钥匙,1'] },
+        { grade: 9, subAttrs: ['评价,90','演出,90'], needProps: ['灵感钥匙,1'] },
+        { grade: 10, subAttrs: ['评价,100','演出,100'], },
       ],
     },
 
     # ===== 3 ======
     {
+      iconId: 1,
+      quality: 1,
       name: '细节',
-      desc: "主要防御",
+      desc: "项目的细节",
       props: [
        { key: "灵感钥匙", propId: 369,},
       ],
       levelConfig: [
-        { grade: 1, subAttrs: ['实力,100','主炮,100'], needProps: ['灵感钥匙,1']},
-        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['灵感钥匙,1'] },
-        { grade: 3, subAttrs: ['实力,300','主炮,300'], },
+        { grade: 1, subAttrs: ['评价,10','细致,10'], needProps: ['灵感钥匙,1']},
+        { grade: 2, subAttrs: ['评价,20','细致,20'], needProps: ['灵感钥匙,1'] },
+        { grade: 3, subAttrs: ['评价,30','细致,30'], needProps: ['灵感钥匙,1'] },
+        { grade: 4, subAttrs: ['评价,40','细致,40'], needProps: ['灵感钥匙,1'] },
+        { grade: 5, subAttrs: ['评价,50','细致,50'], needProps: ['灵感钥匙,1'] },
+        { grade: 6, subAttrs: ['评价,60','细致,60'], needProps: ['灵感钥匙,1'] },
+        { grade: 7, subAttrs: ['评价,70','细致,70'], needProps: ['灵感钥匙,1'] },
+        { grade: 8, subAttrs: ['评价,80','细致,80'], needProps: ['灵感钥匙,1'] },
+        { grade: 9, subAttrs: ['评价,90','细致,90'], needProps: ['灵感钥匙,1'] },
+        { grade: 10, subAttrs: ['评价,100','细致,100'], },
       ],
     },
 
     # ===== 4 ======
     {
+      iconId: 1,
+      quality: 1,
       name: '操作',
-      desc: "主要防御",
+      desc: "项目的操作",
       props: [
         { key: "灵感钥匙", propId: 369,},
       ],
       levelConfig: [
-        { grade: 1, subAttrs: ['实力,100','主炮,100'], needProps: ['灵感钥匙,1'] },
-        { grade: 2, subAttrs: ['实力,200','主炮,200'], needProps: ['灵感钥匙,1'] },
-        { grade: 3, subAttrs: ['实力,300','主炮,300'], },
+        { grade: 1, subAttrs: ['评价,10','流畅,10'], needProps: ['灵感钥匙,1']},
+        { grade: 2, subAttrs: ['评价,20','流畅,20'], needProps: ['灵感钥匙,1'] },
+        { grade: 3, subAttrs: ['评价,30','流畅,30'], needProps: ['灵感钥匙,1'] },
+        { grade: 4, subAttrs: ['评价,40','流畅,40'], needProps: ['灵感钥匙,1'] },
+        { grade: 5, subAttrs: ['评价,50','流畅,50'], needProps: ['灵感钥匙,1'] },
+        { grade: 6, subAttrs: ['评价,60','流畅,60'], needProps: ['灵感钥匙,1'] },
+        { grade: 7, subAttrs: ['评价,70','流畅,70'], needProps: ['灵感钥匙,1'] },
+        { grade: 8, subAttrs: ['评价,80','流畅,80'], needProps: ['灵感钥匙,1'] },
+        { grade: 9, subAttrs: ['评价,90','流畅,90'], needProps: ['灵感钥匙,1'] },
+        { grade: 10, subAttrs: ['评价,100','流畅,100'], },
       ],
     },
     

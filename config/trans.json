@@ -1,23 +1,13 @@
 [
   {
-    "id": "OPEN_USER_ATTRS_DETAIL",
-    "name": "时空漩涡转场",
-    "comment": "人物页面详细属性"
-  },
-  {
     "id": "OPEN_XIUXING_UI",
     "name": "黑色视频转场",
     "comment": "打开修行页面"
   },
   {
-    "id": "OPEN_SCENE_FROM_ARTICLE",
-    "name": "左右开门转场",
-    "comment": "从阅读器打开场景页面"
-  },
-  {
-    "id": "OPEN_LIAN_DAN_FANG",
-    "name": "黑色转场",
-    "comment": "打开炼丹房页面"
+    "id": "OPEN_CAI_JI",
+    "name": "白色转场",
+    "comment": "打开采集页面"
   },
   {
     "id": "OPEN_ZHONG_ZHI",
@@ -25,13 +15,13 @@
     "comment": "打开种植页面"
   },
   {
-    "id": "OPEN_CAI_JI",
+    "id": "OPEN_LIAN_DAN",
     "name": "黑色转场",
-    "comment": "打开采集页面"
+    "comment": "打开炼丹页面"
   },
   {
-    "id": "OPEN_EXPLORE",
-    "name": "模糊转场",
-    "comment": "打开探索页面"
+    "id": "OPEN_LIAN_QI",
+    "name": "黑色转场",
+    "comment": "打开练气页面"
   }
 ]

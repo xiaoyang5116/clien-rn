@@ -12,7 +12,7 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 
 import { connect, action, getPropIcon } from '../../../constants';
-import { px2pd } from '../../../constants/resolution';
+import { isPad, px2pd } from '../../../constants/resolution';
 import qualityStyle from '../../../themes/qualityStyle';
 import { Platform } from 'react-native';
 import RootView from '../../RootView';
@@ -66,32 +66,47 @@ const AttrDetail = props => {
   const Header = () => {
     return (
       <View style={styles.headerContainer}>
+        <FastImage style={{ width: px2pd(708), height: px2pd(117), position: "absolute" }}
+          source={require('../../../../assets/games/SmallUniverseProject/grade_title.png')} />
         <Text style={{ fontSize: 20, color: '#000' }}>{mainAttr.name}</Text>
       </View>
     );
   };
   const Attr = () => {
-    const AttrIcon = ({ grade }) => {
+    const AttrIcon = ({ grade, img }) => {
+      const { quality_style, image } = IconData(mainAttr);
       return (
         <View
           style={{
-            height: 180,
-            width: '45%',
-            backgroundColor: '#A0A0A0',
+            height: px2pd(370),
+            width: px2pd(336),
             justifyContent: 'center',
             alignItems: 'center',
           }}>
+          <FastImage
+            style={{ width: px2pd(336), height: px2pd(370), position: 'absolute' }}
+            source={img}
+          />
           <View
             style={{
-              width: 80,
-              height: 80,
-              backgroundColor: '#fff',
-              borderRadius: 40,
+              height: px2pd(260),
               justifyContent: 'center',
               alignItems: 'center',
               overflow: 'hidden',
-            }}></View>
-          <Text style={{ marginTop: 12, fontSize: 18, color: '#000' }}>
+            }}>
+            <FastImage
+              style={{
+                width: px2pd(120),
+                height: px2pd(120),
+                borderRadius: 5,
+                borderWidth: 1,
+                borderColor: quality_style.borderColor,
+                backgroundColor: quality_style.backgroundColor,
+              }}
+              source={image.img}
+            />
+          </View>
+          <Text style={{ fontSize: 16, color: '#fff' }}>
             {grade}级
           </Text>
         </View>
@@ -115,16 +130,21 @@ const AttrDetail = props => {
               alignItems: 'center',
               borderBottomColor: '#000',
               borderBottomWidth: 1,
+              paddingLeft: 12,
+              paddingRight: 12
             }}>
             <View style={{ flexDirection: 'row', width: '50%' }}>
-              <Text style={{ fontSize: 17, color: '#000' }}>{key}</Text>
-              <Text style={{ fontSize: 17, color: '#000', marginLeft: 12 }}>
+              <Text style={{ fontSize: 16, color: '#000' }}>{key}</Text>
+              <Text style={{ fontSize: 16, color: '#000', marginLeft: 12 }}>
                 +{value}
               </Text>
             </View>
-            <AntDesign name="doubleright" size={24} color={'#000'} />
+            <FastImage
+              style={{ width: px2pd(49), height: px2pd(34) }}
+              source={require('../../../../assets/games/SmallUniverseProject/subAttr_jiantou.png')}
+            />
             <View style={{ width: '30%' }}>
-              <Text style={{ fontSize: 17, color: '#6089D3', marginLeft: 12 }}>
+              <Text style={{ fontSize: 16, color: '#6089D3', }}>
                 +{nextValue}
               </Text>
             </View>
@@ -142,10 +162,12 @@ const AttrDetail = props => {
             alignItems: 'center',
             borderBottomColor: '#000',
             borderBottomWidth: 1,
+            paddingLeft: 12,
+            paddingRight: 12
           }}>
           <View style={{ flexDirection: 'row', width: '50%' }}>
-            <Text style={{ fontSize: 17, color: '#000' }}>{key}</Text>
-            <Text style={{ fontSize: 17, color: '#000', marginLeft: 12 }}>
+            <Text style={{ fontSize: 16, color: '#000' }}>{key}</Text>
+            <Text style={{ fontSize: 16, color: '#000', marginLeft: 12 }}>
               +{value}
             </Text>
           </View>
@@ -184,41 +206,56 @@ const AttrDetail = props => {
 
     if (status === 1) {
       return (
-        <View style={{ marginTop: 20 }}>
-          {/* 属性icon 和 等级 */}
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <AttrIcon grade={mainAttr.grade} />
-          </View>
-          {/* 描述 */}
-          <View
-            style={{
-              marginTop: 12,
-              borderBottomColor: '#000',
-              borderBottomWidth: 1,
-              height: 30,
-              justifyContent: 'center',
-            }}>
-            <Text style={{ fontSize: 18, color: '#000' }}>{mainAttr.desc}</Text>
-          </View>
-
-          {/* 副属性列表 */}
-          <View style={{ marginTop: 8 }}>{subAttrsList}</View>
-          {/* 升级需求 */}
-          <View>
+        <View style={{ alignItems: 'center' }}>
+          <View style={{ width: px2pd(1001), height: "65%", alignItems: 'center', backgroundColor: '#ccc', }}>
+            <FastImage
+              resizeMode={"stretch"}
+              style={{ width: '100%', height: "100%", position: 'absolute' }}
+              source={require('../../../../assets/games/SmallUniverseProject/grade_attr.png')}
+            />
+            <Header />
+            {/* 属性icon 和 等级 */}
             <View
               style={{
-                width: 150,
-                height: 35,
-                backgroundColor: '#A0A0A0',
+                width: px2pd(740),
+                marginTop: px2pd(77),
+                flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
-                marginTop: 30,
               }}>
+              <AttrIcon grade={mainAttr.grade} img={require('../../../../assets/games/SmallUniverseProject/grade_iconBorder_right.png')} />
+            </View>
+            {/* 描述 */}
+            <View
+              style={{
+                width: px2pd(740),
+                marginTop: 12,
+                borderBottomColor: '#000',
+                borderBottomWidth: 1,
+                height: 30,
+                justifyContent: 'center',
+                paddingLeft: 12,
+              }}>
+              <Text style={{ fontSize: 16, color: '#000' }}>{mainAttr.desc}</Text>
+            </View>
+
+            {/* 副属性列表 */}
+            <View style={{ width: px2pd(740), }}>
+              {subAttrsList}
+            </View>
+          </View>
+
+          {/* 升级需求 */}
+          <View style={{ width: px2pd(998), height: px2pd(435), marginTop: 20, backgroundColor: "#ccc" }}>
+            <FastImage
+              style={{ position: 'absolute', width: px2pd(998), height: px2pd(435) }}
+              source={require('../../../../assets/games/SmallUniverseProject/grede_needProp_bg.png')}
+            />
+            <View style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: isPad() ? 34 : 12,
+            }}>
               <Text style={{ fontSize: 20, color: '#000' }}>升级需求</Text>
             </View>
             <View
@@ -226,7 +263,7 @@ const AttrDetail = props => {
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center',
-                paddingTop: 30,
+                paddingTop: 50,
               }}>
               <Text style={{ fontSize: 20, color: '#000' }}>
                 已经达到最高等级
@@ -238,45 +275,57 @@ const AttrDetail = props => {
     }
 
     return (
-      <View style={{ marginTop: 20 }}>
-        {/* 属性icon 和 等级 */}
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-          <AttrIcon grade={mainAttr.grade} />
-          <AntDesign name="arrowright" size={30} color={'#000'} />
-          <AttrIcon grade={nextGrade} />
-        </View>
-
-        {/* 描述 */}
-        <View
-          style={{
-            marginTop: 12,
-            borderBottomColor: '#000',
-            borderBottomWidth: 1,
-            height: 30,
-            justifyContent: 'center',
-          }}>
-          <Text style={{ fontSize: 18, color: '#000' }}>{mainAttr.desc}</Text>
-        </View>
-
-        {/* 副属性列表 */}
-        <View style={{ marginTop: 8 }}>{subAttrsList}</View>
-
-        {/* 升级需求 */}
-        <View>
+      <View style={{ alignItems: 'center' }}>
+        <View style={{ width: px2pd(1001), height: "65%", alignItems: 'center', backgroundColor: '#ccc', }}>
+          <FastImage
+            resizeMode={"stretch"}
+            style={{ width: '100%', height: "100%", position: 'absolute' }}
+            source={require('../../../../assets/games/SmallUniverseProject/grade_attr.png')}
+          />
+          <Header />
+          {/* 属性icon 和 等级 */}
           <View
             style={{
-              width: 150,
-              height: 35,
-              backgroundColor: '#A0A0A0',
-              justifyContent: 'center',
+              width: px2pd(740),
+              marginTop: px2pd(77),
+              flexDirection: 'row',
+              justifyContent: 'space-between',
               alignItems: 'center',
-              marginTop: 30,
             }}>
+            <FastImage style={{ position: 'absolute', width: px2pd(283), height: px2pd(181), zIndex: 2, left: "31%" }} source={require('../../../../assets/games/SmallUniverseProject/grade_jiantou.png')} />
+            <AttrIcon grade={mainAttr.grade} img={require('../../../../assets/games/SmallUniverseProject/grade_iconBorder_left.png')} />
+            <AttrIcon grade={nextGrade} img={require('../../../../assets/games/SmallUniverseProject/grade_iconBorder_right.png')} />
+          </View>
+
+          {/* 描述 */}
+          <View
+            style={{
+              width: px2pd(740),
+              marginTop: 12,
+              borderBottomColor: '#000',
+              borderBottomWidth: 1,
+              height: 30,
+              justifyContent: 'center',
+              paddingLeft: 12
+            }}>
+            <Text style={{ fontSize: 16, color: '#000' }}>{mainAttr.desc}</Text>
+          </View>
+
+          {/* 副属性列表 */}
+          <View style={{ width: px2pd(740), }}>{subAttrsList}</View>
+        </View>
+
+        {/* 升级需求 */}
+        <View style={{ width: px2pd(998), height: px2pd(435), marginTop: 20, backgroundColor: "#ccc" }}>
+          <FastImage
+            style={{ position: 'absolute', width: px2pd(998), height: px2pd(435) }}
+            source={require('../../../../assets/games/SmallUniverseProject/grede_needProp_bg.png')}
+          />
+          <View style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginTop: isPad() ? 34 : 12,
+          }}>
             <Text style={{ fontSize: 20, color: '#000' }}>升级需求</Text>
           </View>
           <View
@@ -325,12 +374,11 @@ const AttrDetail = props => {
         position: 'absolute',
         top: 0,
         left: gradeLeft,
-        backgroundColor: '#ccc',
+        // backgroundColor: '#ccc',
         borderRadius: 5,
         paddingLeft: 12,
         paddingRight: 12,
       }}>
-      <Header />
       <Attr />
     </Animated.View>
   );
@@ -412,16 +460,23 @@ const UpgradePage = props => {
   const UpgradePropsComponent = () => {
     return (
       <View style={styles.upgradePropsContainer}>
+        <FastImage style={{
+          width: px2pd(998),
+          height: px2pd(127),
+          position: 'absolute'
+        }}
+          source={require('../../../../assets/games/SmallUniverseProject/grade_header.png')}
+        />
         {currentUpgradeProps.current.map((item, index) => {
           const { quality_style, image } = IconData(item);
           return (
             <View
               key={index}
-              style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
+              style={{ flexDirection: 'row', alignItems: 'center', flex: 1, paddingLeft: 12 }}>
               <FastImage
                 style={{
-                  width: px2pd(80),
-                  height: px2pd(80),
+                  width: px2pd(60),
+                  height: px2pd(60),
                   borderRadius: 5,
                   borderWidth: 1,
                   borderColor: quality_style.borderColor,
@@ -460,6 +515,7 @@ const UpgradePage = props => {
             paddingLeft: 12,
             paddingRight: 12,
             justifyContent: 'space-between',
+            alignItems: 'center'
           }}>
           <UpgradePropsComponent />
           <AttrContainer />
@@ -480,8 +536,9 @@ export default connect(state => ({ ...state.SmallUniverseProjectModel }))(
 const styles = StyleSheet.create({
   upgradePropsContainer: {
     marginTop: Platform.OS == 'android' ? 8 : 0,
-    width: '100%',
-    height: 40,
+    // 998 × 127
+    width: px2pd(998),
+    height: px2pd(127),
     backgroundColor: '#ccc',
     flexDirection: 'row',
     alignItems: 'center',
@@ -490,15 +547,13 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     width: '100%',
-    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#A0A0A0',
-    marginTop: 12,
-    borderRadius: 8,
+    marginTop: isPad() ? 70 : 30,
   },
   goBackContainer: {
     marginBottom: 12,
+    width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
   },

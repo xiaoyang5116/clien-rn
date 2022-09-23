@@ -7,7 +7,7 @@ import RootView from "../../RootView";
 import { TextButton } from '../../../constants/custom-ui';
 import UpgradePage from './UpgradePage';
 import FastImage from 'react-native-fast-image';
-import { px2pd } from '../../../constants/resolution';
+import { isPad, px2pd } from '../../../constants/resolution';
 
 const SmallUniverseProject = props => {
   const { onClose, smallUniverseProject_data } = props
@@ -31,13 +31,13 @@ const SmallUniverseProject = props => {
     }
 
     const position = [
-      { top: "15%", left: "6%" },
+      { top: "15%", left: "10%" },
       { top: "8%", right: "10%" },
       { top: "61%", left: "12%" },
-      { top: "55%", right: "5%" },
+      { top: "55%", right: "10%" },
     ]
     const MainAttrs = mainAttrs.map((item, index) => {
-      const shiLi = item.subAttrs.find(f => f.split(',')[0] === "实力").split(',')[1]
+      const shiLi = item.subAttrs.find(f => f.split(',')[0] === "评价").split(',')[1]
       return (
         <View key={item.name} style={{ justifyContent: "center", alignItems: 'center', position: 'absolute', ...position[index] }}>
           <FastImage
@@ -89,15 +89,17 @@ const SmallUniverseProject = props => {
       )
     }
     return (
-      <View style={{ paddingLeft: 12, paddingRight: 12, alignItems: 'center' }}>
+      <View style={{ alignItems: 'center', width: "100%", height: '100%' }}>
         <FastImage
-          style={{ position: 'absolute', width: px2pd(998), height: px2pd(768), }}
+          resizeMode={"stretch"}
+          // style={{ position: 'absolute', width: px2pd(998), height: px2pd(768), }}
+          style={{ position: 'absolute', width: "100%", height: "100%", }}
           source={require('../../../../assets/games/SmallUniverseProject/subAttr_bg.png')}
         />
-        <View style={{ marginTop: 12, justifyContent: "center", alignItems: 'center' }}>
-          <Text style={{ fontSize: 18, color: "#000" }}>属性列表</Text>
+        <View style={{ justifyContent: "center", alignItems: 'center', height: (isPad() ? 50 : 30) }}>
+          <Text style={{ fontSize: 18, color: "#000", }}>属性列表</Text>
         </View>
-        <View style={{ marginTop: 12, width: "100%", paddingRight: 12, paddingLeft: 12 }}>
+        <View style={{ marginTop: 12, width: "100%", paddingRight: 24, paddingLeft: 34 }}>
           <FlatList
             data={allSubAttrs}
             renderItem={subAttrItem}
@@ -122,6 +124,7 @@ const SmallUniverseProject = props => {
           <View style={styles.topContainer}>
             <FastImage
               style={{ width: px2pd(997), height: px2pd(1011), position: 'absolute', opacity: 0.9 }}
+              // style={{ width: px2pd(997), height: px2pd(1011), position: 'absolute', opacity: 0.9 }}
               source={require('../../../../assets/games/SmallUniverseProject/attr_bg.png')} />
             <MainAttrsComponent />
             <LevelProgressComponent />
@@ -154,13 +157,18 @@ const styles = StyleSheet.create({
   topContainer: {
     width: px2pd(997),
     height: px2pd(1011),
+    // width: "90%",
+    // height: "40%",
     alignItems: 'center',
     justifyContent: 'center',
 
   },
   bottomContainer: {
+    // width: px2pd(998),
+    // height: px2pd(768),
     width: px2pd(998),
-    height: px2pd(768),
+    height: "30%",
+    // backgroundColor: "red",
     marginTop: 20,
   },
   goBackContainer: {

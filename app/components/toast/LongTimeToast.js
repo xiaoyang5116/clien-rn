@@ -20,7 +20,7 @@ const LongTimeToast = (props) => {
       if (msgIndex < toastMsgLength.current - 1) {
         setMsgIndex(msgIndex + 1)
       }
-      else{
+      else {
         clearInterval(timer.current)
       }
     }, 500);
@@ -47,10 +47,10 @@ const LongTimeToast = (props) => {
   const _renderMessages = ({ item, index }) => {
     if (index <= msgIndex) {
       if (item.type === "attr") {
-        return <AttrToast msg={item} closeToast={closeToast} />
+        return <AttrToast msg={item} closeToast={closeToast} index={index} />
       }
       if (item.type === "clues") {
-        return <CluesToast msg={item} closeToast={closeToast} />
+        return <CluesToast msg={item} closeToast={closeToast} index={index} />
       }
     }
   }
@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
     zIndex: 999
   },
   view_location: {
-    position: "absolute",
-    left: "2%",
-    top: "15%",
+    // position: "absolute",
+    // left: "2%",
+    // top: "15%",
   }
 
 })

@@ -274,7 +274,7 @@ const Farm = (props) => {
                 }]}>
                     <View style={styles.statusContainer}>
                         <Image source={require('../../../assets/plant/status_bg.png')} style={styles.status_bg} />
-                        <Text style={{ fontSize: 16, color: "#000", textAlign: "center" }}>未解锁</Text>
+                        <Text style={{ fontSize: 16, color: "#000", textAlign: "center" }}>小世界升级之后可解锁</Text>
                     </View>
                 </ImageBackground>
             </View>
