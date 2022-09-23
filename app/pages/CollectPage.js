@@ -304,7 +304,7 @@ const GridItem = (props) => {
         frameWidth={200}
         frameHeight={200}
         imageStyle={{}}
-        viewStyle={{ left: -74, top: -74, transform: [{ scale: getFixedWidthScale() }] }}
+        viewStyle={{ left: 0, top: 0, transform: [{ scale: getFixedWidthScale() }] }}
         animations={{
           walk: lo.range(effect.framesNum),
         }}
