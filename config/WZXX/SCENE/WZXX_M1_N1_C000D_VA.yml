@@ -9,6 +9,8 @@ scenes: [
       # 变量定义
       vars: [
       { id: "v1", min: 0, max: 1 },
+#种植
+      { id: "zhongzhi_A", min: 0, max: 1 },
       
       
 
@@ -27,15 +29,24 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000D_VA', desc: '回忆', 
         options: [ 
-          { title: "【探索纳戒里的空间】",toScene: 'C000D_V_MAP_-2_1', },
+          { title: "【探索纳戒里的空间】",toScene: 'C000D_VA_MAP_-2_1', transitionAnimation: '左右开门转场'  },
         ],
       },
+
       { 
-        id: 'WZXX_M1_N1_C000D_V1', desc: '种植', 
+        id: 'WZXX_M1_N1_C000D_VA1', desc: '种植', 
         options: [ 
-          { title: "【在荒废的院子里种植东西】",toScene: 'C000D_V1_MAP_-2_4', },
+          { title: "【在荒废的院子里种植东西】",toScene: 'C000D_VA1_MAP_-2_4', transitionAnimation: '左右开门转场'  },
         ],
       },
+
+      { 
+        id: 'WZXX_M1_N1_C000D_VA2', desc: '种植', 
+        options: [ 
+          { title: "【获得草药，去小世界里种些东西】", varsOn: ['zhongzhi_A'], transitionAnimation: '左右开门转场' , toScene: 'C000D_VA1_MAP_-2_4',dropIds: [ 'WZXX_M1_N1_C000D_VA_V_drop1','WZXX_M1_N1_C000D_VA_V_drop2','WZXX_M1_N1_C000D_VA_V_drop3',] },
+        ],
+      },
+
 
     
         ],
@@ -45,14 +56,14 @@ scenes: [
 
        {
   # NPC2
-    id: 'C000D_V_MAP_-2_1', name: '降临之地',
+    id: 'C000D_VA_MAP_-2_1', name: '降临之地',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
-    mapId: 'C000D_V_MAP_-2_1',
+    mapId: 'C000D_VA_MAP_-2_1',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-2, 1],
 
@@ -78,14 +89,14 @@ scenes: [
       { 
         id: 'C1', desc: '看上去极度荒凉，不见人烟，草木稀少', 
         options: [ 
-         { title: '【离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_2'}, 
+         { title: '【离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA_MAP_-3_2'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
       { 
         id: 'C2', desc: '身前有一个散发青色光效的阵法，一明一暗之间，尽显玄妙。', 
         options: [ 
-         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_2'}, 
+         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA_MAP_-3_2'}, 
          
         ],
       },
@@ -94,7 +105,7 @@ scenes: [
       #  { 
       #   id: 'C2', desc: '又重新回到了原地', 
       #   options: [ 
-      #    { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_2'}, 
+      #    { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA_MAP_-3_2'}, 
       #   ],
       # },
 
@@ -126,14 +137,14 @@ scenes: [
    #===========事件场景==============
        {
   # NPC2
-    id: 'C000D_V_MAP_-3_2', name: '矮木林',
+    id: 'C000D_VA_MAP_-3_2', name: '矮木林',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
-    mapId: 'C000D_V_MAP_-3_2',
+    mapId: 'C000D_VA_MAP_-3_2',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-3, 2],
 
@@ -159,14 +170,14 @@ scenes: [
       { 
         id: 'C1', desc: '杂乱无章的木林，若是好好修整，说不定会变出别一番景色', 
         options: [ 
-         { title: '【继续走】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_3'}, 
+         { title: '【继续走】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA_MAP_-3_3'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
       { 
         id: 'C2', desc: '这边十分寻常，没有什么好看的', 
         options: [ 
-         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_3'}, 
+         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA_MAP_-3_3'}, 
          
         ],
       },
@@ -191,14 +202,14 @@ scenes: [
   #===========事件场景==============
        {
   # NPC2
-    id: 'C000D_V_MAP_-3_3', name: '狭窄溪流',
+    id: 'C000D_VA_MAP_-3_3', name: '狭窄溪流',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
-    mapId: 'C000D_V_MAP_-3_3',
+    mapId: 'C000D_VA_MAP_-3_3',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-3, 3],
 
@@ -224,14 +235,14 @@ scenes: [
       { 
         id: 'C1', desc: '这片溪流看起来倒是异常清澈，不知是从哪里流下来的水流', 
         options: [ 
-         { title: '【再往里看看】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-2_4'}, 
+         { title: '【再往里看看】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA_MAP_-2_4'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
       { 
         id: 'C2', desc: '水清澈见底，或许还能抓一些灵虾解馋', 
         options: [ 
-         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-2_4'}, 
+         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA_MAP_-2_4'}, 
          
         ],
       },
@@ -268,14 +279,14 @@ scenes: [
     #===========事件场景==============
        {
   # NPC2
-    id: 'C000D_V_MAP_-2_4', name: '荒废的园子',
+    id: 'C000D_VA_MAP_-2_4', name: '荒废的园子',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
-    mapId: 'C000D_V_MAP_-2_4',
+    mapId: 'C000D_VA_MAP_-2_4',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-2, 4],
 
@@ -301,14 +312,14 @@ scenes: [
       { 
         id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
         options: [ 
-         { title: '【去前面探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-1_3'}, 
+         { title: '【去前面探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA_MAP_-1_3'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
       { 
         id: 'C2', desc: '园顶有霞光照耀而下，犹如祥瑞降世，平凡之中却见不凡，让人忍不住想去探索', 
         options: [ 
-         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-1_3'}, 
+         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA_MAP_-1_3'}, 
          
         ],
       },
@@ -345,14 +356,14 @@ scenes: [
   #===========事件场景==============
        {
   # NPC2
-    id: 'C000D_V_MAP_-1_3', name: '泥泞土坑',
+    id: 'C000D_VA_MAP_-1_3', name: '泥泞土坑',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
-    mapId: 'C000D_V_MAP_-1_3',
+    mapId: 'C000D_VA_MAP_-1_3',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 3],
 
@@ -378,14 +389,14 @@ scenes: [
       { 
         id: 'C1', desc: '这里平平无奇，看不出有什么特色，看上去比较危险', 
         options: [ 
-         { title: '【还是快些离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-1_2'}, 
+         { title: '【还是快些离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA_MAP_-1_2'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
       { 
         id: 'C2', desc: '往前走着，差点不慎掉入泥潭，那泥潭之中仿佛危机四伏', 
         options: [ 
-         { title: '【快快离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-1_2'}, 
+         { title: '【快快离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA_MAP_-1_2'}, 
          
         ],
       },
@@ -418,14 +429,14 @@ scenes: [
    #===========事件场景==============
        {
   # NPC2
-    id: 'C000D_V_MAP_-1_2', name: '光秃山坡',
+    id: 'C000D_VA_MAP_-1_2', name: '光秃山坡',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
-    mapId: 'C000D_V_MAP_-1_2',
+    mapId: 'C000D_VA_MAP_-1_2',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 2],
 
@@ -451,14 +462,14 @@ scenes: [
       { 
         id: 'C1', desc: "这些地方看起来都平平无奇\n唯有方才那个荒凉的园子有些特色", 
         options: [ 
-         { title: '【回到荒凉的园子】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V1_MAP_-2_4'}, 
+         { title: '【回到荒凉的园子】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA1_MAP_-2_4'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
       { 
         id: 'C2', desc: '光秃秃的山坡看上去毫无生机,前面就是最初始来的地方了', 
         options: [ 
-         { title: '【回到荒凉的园子】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V1_MAP_-2_4'}, 
+         { title: '【回到荒凉的园子】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA1_MAP_-2_4'}, 
          
         ],
       },
@@ -492,85 +503,85 @@ scenes: [
  #=================================场景地图的设置==================================
     maps: [
       {
-        id: 'C000D_V_MAP_-2_1',
+        id: 'C000D_VA_MAP_-2_1',
         data: [
           {
           point: [-2, 1], title: '降临之地', 
-          #toScene: 'C000D_V_MAP_-2_1', 
+          #toScene: 'C000D_VA_MAP_-2_1', 
           links: [[-3, 2], ] },
           {point: [-3, 2], title: '？？？',
-           #toScene: 'C000D_V_MAP_-3_2',
+           #toScene: 'C000D_VA_MAP_-3_2',
            links: [] },
         ]
       },
       
       {
-        id: 'C000D_V_MAP_-3_2',
+        id: 'C000D_VA_MAP_-3_2',
         data: [
         { 
           point: [-2, 1], title: '降临之地', 
-          #toScene: 'C000D_V_MAP_-2_1', 
+          #toScene: 'C000D_VA_MAP_-2_1', 
           links: [[-3, 2], ] },
           { 
           point: [-3, 2], title: '矮木林',
-           #toScene: 'C000D_V_MAP_-3_2',
+           #toScene: 'C000D_VA_MAP_-3_2',
             links: [[-3, 3], ] },
           { 
           point: [-3, 3], title: '？？？', 
-         # toScene: 'C000D_V_MAP_-3_3',
+         # toScene: 'C000D_VA_MAP_-3_3',
            links: [] 
            },
 
         ]
       },
       {
-        id: 'C000D_V_MAP_-3_3',
+        id: 'C000D_VA_MAP_-3_3',
         data: [
           { 
           point: [-2, 1], title: '降临之地', 
-          #toScene: 'C000D_V_MAP_-2_1', 
+          #toScene: 'C000D_VA_MAP_-2_1', 
           links: [[-3, 2], ] },
           { 
           point: [-3, 2], title: '矮木林',
-           #toScene: 'C000D_V_MAP_-3_2',
+           #toScene: 'C000D_VA_MAP_-3_2',
             links: [[-3, 3], ] },
           { 
           point: [-3, 3], title: '狭窄溪流', 
-         # toScene: 'C000D_V_MAP_-3_3',
+         # toScene: 'C000D_VA_MAP_-3_3',
            links: [[-2, 4],] 
            },
             { 
           point: [-2, 4], title: '？？？', 
-         # toScene: 'C000D_V_MAP_-2_4',
+         # toScene: 'C000D_VA_MAP_-2_4',
            links: [] 
            },
         ]
       },
 
        {
-        id: 'C000D_V_MAP_-2_4',
+        id: 'C000D_VA_MAP_-2_4',
         data: [
           { 
           point: [-2, 1], title: '降临之地', 
-          #toScene: 'C000D_V_MAP_-2_1', 
+          #toScene: 'C000D_VA_MAP_-2_1', 
           links: [[-3, 2], ] },
           { 
           point: [-3, 2], title: '矮木林',
-           #toScene: 'C000D_V_MAP_-3_2',
+           #toScene: 'C000D_VA_MAP_-3_2',
             links: [[-3, 3], ] },
           { 
           point: [-3, 3], title: '狭窄溪流', 
-         # toScene: 'C000D_V_MAP_-3_3',
+         # toScene: 'C000D_VA_MAP_-3_3',
            links: [[-2, 4],] 
            },
             { 
           point: [-2, 4], title: '荒废的园子', 
-         # toScene: 'C000D_V_MAP_-2_4',
+         # toScene: 'C000D_VA_MAP_-2_4',
            links: [[-1, 3]] 
            },
             { 
           point: [-1, 3], title: '？？？', 
-         # toScene: 'C000D_V_MAP_-1_3',
+         # toScene: 'C000D_VA_MAP_-1_3',
            links: [] 
            },
         ]
@@ -578,35 +589,35 @@ scenes: [
 
 
        {
-        id: 'C000D_V_MAP_-1_3',
+        id: 'C000D_VA_MAP_-1_3',
         data: [
 
           { 
           point: [-2, 1], title: '降临之地', 
-          #toScene: 'C000D_V_MAP_-2_1', 
+          #toScene: 'C000D_VA_MAP_-2_1', 
           links: [[-3, 2], ] },
           { 
           point: [-3, 2], title: '矮木林',
-           #toScene: 'C000D_V_MAP_-3_2',
+           #toScene: 'C000D_VA_MAP_-3_2',
             links: [[-3, 3], ] },
           { 
           point: [-3, 3], title: '狭窄溪流', 
-         # toScene: 'C000D_V_MAP_-3_3',
+         # toScene: 'C000D_VA_MAP_-3_3',
            links: [[-2, 4],] 
            },
             { 
           point: [-2, 4], title: '荒废的园子', 
-         # toScene: 'C000D_V_MAP_-2_4',
+         # toScene: 'C000D_VA_MAP_-2_4',
            links: [[-1, 3]] 
            },
             { 
           point: [-1, 3], title: '泥泞土坑', 
-         # toScene: 'C000D_V_MAP_-1_3',
+         # toScene: 'C000D_VA_MAP_-1_3',
            links: [[-1, 2]] 
            },
            { 
           point: [-1, 2], title: '？？？', 
-         # toScene: 'C000D_V_MAP_-1_2',
+         # toScene: 'C000D_VA_MAP_-1_2',
            links: [] 
            },
 
@@ -614,35 +625,35 @@ scenes: [
       },
 
        {
-        id: 'C000D_V_MAP_-1_2',
+        id: 'C000D_VA_MAP_-1_2',
         data: [
 
           { 
           point: [-2, 1], title: '降临之地', 
-          #toScene: 'C000D_V_MAP_-2_1', 
+          #toScene: 'C000D_VA_MAP_-2_1', 
           links: [[-3, 2], ] },
           { 
           point: [-3, 2], title: '矮木林',
-           #toScene: 'C000D_V_MAP_-3_2',
+           #toScene: 'C000D_VA_MAP_-3_2',
             links: [[-3, 3], ] },
           { 
           point: [-3, 3], title: '狭窄溪流', 
-         # toScene: 'C000D_V_MAP_-3_3',
+         # toScene: 'C000D_VA_MAP_-3_3',
            links: [[-2, 4],] 
            },
             { 
           point: [-2, 4], title: '荒废的园子', 
-         # toScene: 'C000D_V_MAP_-2_4',
+         # toScene: 'C000D_VA_MAP_-2_4',
            links: [[-1, 3]] 
            },
             { 
           point: [-1, 3], title: '泥泞土坑', 
-         # toScene: 'C000D_V_MAP_-1_3',
+         # toScene: 'C000D_VA_MAP_-1_3',
            links: [[-1, 2]] 
            },
            { 
           point: [-1, 2], title: '光秃山坡', 
-         # toScene: 'C000D_V_MAP_-1_2',
+         # toScene: 'C000D_VA_MAP_-1_2',
            links: [[-2, 1]] 
            },
 
@@ -652,14 +663,14 @@ scenes: [
     ],
        {
   # NPC2
-    id: 'C000D_V1_MAP_-2_1', name: '降临之地',
+    id: 'C000D_VA1_MAP_-2_1', name: '降临之地',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
-    mapId: 'C000D_V1_MAP_0_0',
+    mapId: 'C000D_VA1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-2, 1],
 
@@ -684,14 +695,14 @@ scenes: [
       { 
         id: 'C1', desc: '看上去极度荒凉，不见人烟，草木稀少', 
         options: [ 
-         { title: '【往前探索】',toScene: 'C000D_V1_MAP_-3_2'}, 
+         { title: '【往前探索】',toScene: 'C000D_VA1_MAP_-3_2'}, 
         ],
       },
        #
       #  { 
       #   id: 'C2', desc: '又重新回到了原地', 
       #   options: [ 
-      #    { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_-3_2'}, 
+      #    { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_VA_MAP_-3_2'}, 
       #   ],
       # },
 
@@ -713,14 +724,14 @@ scenes: [
    #===========事件场景==============
        {
   # NPC2
-    id: 'C000D_V1_MAP_-3_2', name: '矮木林',
+    id: 'C000D_VA1_MAP_-3_2', name: '矮木林',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
-    mapId: 'C000D_V1_MAP_0_0',
+    mapId: 'C000D_VA1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-3, 2],
 
@@ -746,7 +757,7 @@ scenes: [
       { 
         id: 'C1', desc: '杂乱无章的木林，若是好好修整，说不定会变出别一番景色', 
         options: [ 
-         { title: '【继续往前走】', toScene: 'C000D_V1_MAP_-3_3'}, 
+         { title: '【继续往前走】', toScene: 'C000D_VA1_MAP_-3_3'}, 
         ],
       },
 
@@ -771,14 +782,14 @@ scenes: [
   #===========事件场景==============
        {
   # NPC2
-    id: 'C000D_V1_MAP_-3_3', name: '狭窄溪流',
+    id: 'C000D_VA1_MAP_-3_3', name: '狭窄溪流',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
-    mapId: 'C000D_V1_MAP_0_0',
+    mapId: 'C000D_VA1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-3, 3],
 
@@ -804,7 +815,7 @@ scenes: [
       { 
         id: 'C1', desc: '这片溪流看起来倒是异常清澈，不知是从哪里流下来的水流', 
         options: [ 
-         { title: '【继续往前走】', toScene: 'C000D_V1_MAP_-2_4'}, 
+         { title: '【继续往前走】', toScene: 'C000D_VA1_MAP_-2_4'}, 
         ],
       },
 
@@ -829,7 +840,7 @@ scenes: [
     #===========事件场景==============
        {
   # NPC2
-    id: 'C000D_V1_MAP_-2_4', name: '荒废的园子',
+    id: 'C000D_VA1_MAP_-2_4', name: '荒废的园子',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
@@ -852,27 +863,40 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
-       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C2'  },
+       { type: 'enter',   nextChat: 'C1',},
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000D_VA/zhongzhi_A'] ,  nextChat: 'C2'  },
+      
     ],
 
     # 对话选项
     chats: [
-      #
       { 
-        id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
+        id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么，说不定能种出草药炼丹，帮助自己修炼！', 
         options: [ 
-        { title: '【似乎有些发现】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toChapter: "WZXX_M1_N1_C014F",}, 
-         
+       
+         { title: '【去坊市买需要的装备】', toChapter: "WZXX_M1_N2_C018",}, 
         ],
       },
 
-       #
-      { 
-        id: 'C2', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
+     { 
+        id: 'C2', desc: '刚才买的草药种子，正好能炼成炼气丹，说不定能种出草药炼丹，帮助自己修炼！', 
         options: [ 
-       
-         { title: '【去种植】', openUI: 'ZhongZhi',toChapter: "WZXX_M1_N1_C014F",}, 
+         { title: '【去种植】', openUI: 'ZhongZhi', nextChat: 'C3'}, 
+        ],
+      },
+
+      
+     { 
+        id: 'C3', desc: '果不其然，竟然真的种出了草药，李森炎大喜，赶紧拿出在坊市买的炼丹炉准备炼制', 
+        options: [ 
+         { title: '【炼制丹药】', openUI: 'LianDanFang', nextChat: 'C4',}, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: '一切都进行的都顺利让李森炎诧异，在这个小世界当中似乎实力和效率都会大增', 
+        options: [ 
+         { title: '【赶紧修炼打坐】', openUI: 'XiuXing' , toChapter: "WZXX_M1_N2_C019",}, 
         ],
       },
        #
@@ -894,14 +918,14 @@ scenes: [
   #===========事件场景==============
        {
   # NPC2
-    id: 'C000D_V1_MAP_-1_3', name: '泥泞土坑',
+    id: 'C000D_VA1_MAP_-1_3', name: '泥泞土坑',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
-    mapId: 'C000D_V1_MAP_0_0',
+    mapId: 'C000D_VA1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 3],
 
@@ -926,7 +950,7 @@ scenes: [
       { 
         id: 'C1', desc: '这里平平无奇，看不出有什么特色，只是看上去比较危险', 
         options: [ 
-         { title: '【快些离开】', toScene: 'C000D_V1_MAP_-1_2'}, 
+         { title: '【快些离开】', toScene: 'C000D_VA1_MAP_-1_2'}, 
         ],
       },
 
@@ -947,14 +971,14 @@ scenes: [
    #===========事件场景==============
        {
   # NPC2
-    id: 'C000D_V1_MAP_-1_2', name: '光秃山坡',
+    id: 'C000D_VA1_MAP_-1_2', name: '光秃山坡',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
-    mapId: 'C000D_V1_MAP_0_0',
+    mapId: 'C000D_VA1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 2],
 
@@ -979,7 +1003,7 @@ scenes: [
       { 
         id: 'C1', desc: '光秃秃的山坡看上去毫无生机', 
         options: [ 
-       { title: '【这儿没什么好看的】', toScene: 'C000D_V1_MAP_-2_1'}, 
+       { title: '【这儿没什么好看的】', toScene: 'C000D_VA1_MAP_-2_1'}, 
         
          
         ],
@@ -1004,35 +1028,35 @@ scenes: [
 #=================================场景地图的设置==================================
     maps: [
     {
-            id: 'C000D_V1_MAP_0_0',
+            id: 'C000D_VA1_MAP_0_0',
             data: [
 
               { 
               point: [-2, 1], title: '降临之地', 
-              toScene: 'C000D_V1_MAP_-2_1', 
+              toScene: 'C000D_VA1_MAP_-2_1', 
               links: [[-3, 2], ] },
               { 
               point: [-3, 2], title: '矮木林',
-              toScene: 'C000D_V1_MAP_-3_2',
+              toScene: 'C000D_VA1_MAP_-3_2',
                 links: [[-3, 3], ] },
               { 
               point: [-3, 3], title: '狭窄溪流', 
-              toScene: 'C000D_V1_MAP_-3_3',
+              toScene: 'C000D_VA1_MAP_-3_3',
               links: [[-2, 4],] 
               },
                 { 
               point: [-2, 4], title: '荒废的园子', 
-              toScene: 'C000D_V1_MAP_-2_4',
+              toScene: 'C000D_VA1_MAP_-2_4',
               links: [[-1, 3]] 
               },
                 { 
               point: [-1, 3], title: '泥泞土坑', 
-              toScene: 'C000D_V1_MAP_-1_3',
+              toScene: 'C000D_VA1_MAP_-1_3',
               links: [[-1, 2]] 
               },
               { 
               point: [-1, 2], title: '光秃山坡', 
-              toScene: 'C000D_V1_MAP_-1_2',
+              toScene: 'C000D_VA1_MAP_-1_2',
               links: [[-2, 1]] 
               },
 

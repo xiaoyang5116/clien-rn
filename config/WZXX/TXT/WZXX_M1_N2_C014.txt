@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C014B'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C014BFZ'] }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N2_C014'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N2_C014FZ'] }, 
     { header: '第十四章 小世界' },
      { world: { name: '灵修界' } },
 ]

@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C014D'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C014DFZ'] }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N2_C016'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N2_C016FZ'] }, 
     { header: '第十六章 鞭子' },
      { world: { name: '灵修界' } },
 ]

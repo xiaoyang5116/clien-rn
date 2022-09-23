@@ -3,7 +3,7 @@ scenes: [
     #
     {
       id: 'WZXX_M1_N1_C000E_V',
-      name: "定义对应标题名当前章节内的选项和变量",
+      name: "落霞峰山脚下",
 
       # 变量定义
       vars: [
@@ -16,7 +16,10 @@ scenes: [
       #不显示时间
       worldTimeHidden: true,
       # 事件定义# 故事中的场景事件暂时没什么意义
-      events: [],
+      events: [
+      { type: 'enter', andVarsValue: ['@clues_liuyan4 == 1', '@clues_liuyan5 == 1', '@clues_liuyan6 == 1'], nextChat: 'WZXX_M1_N1_C000E_V1' },
+      { type: 'enter', andVarsValue: ['@clues_liuyan4 == 1', '@clues_liuyan5 == 1','@clues_liuyan6 != 1' ], nextChat: 'WZXX_M1_N1_C000E_V2' },
+      ],
 
       chats: [
       { 
@@ -25,6 +28,21 @@ scenes: [
           { title: "【去落霞峰山脚下采药】",toScene: 'C000E_V_MAP_-1_-19',},
         ],
       },
+
+       { 
+        id: 'WZXX_M1_N1_C000E_V1', desc: '先决定去哪儿采药……', 
+        options: [ 
+          { title: "【先去最近的迷雾森林采药】",toScene: 'C000E_V1_MAP_-1_5',},
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C000E_V2', desc: '先决定去哪儿采药……', 
+        options: [ 
+          { title: "【先去最近的迷雾森林采药】",toScene: 'C000E_V2_MAP_-1_5',},
+        ],
+      },
+
 
         ],
   },
@@ -148,7 +166,7 @@ scenes: [
       { 
         id: 'C2A', desc: "“你先告诉我，等我把药草拿到手了，我再回来找你。”\n“真的吗？你不要骗我哦！”\n“真的，不骗你！”\n采花姑娘点了点头，把她知道的地点告诉了李森炎",
         options: [ 
-        { title: '【有关得到百络花的流言】', nextChat: 'C3',
+        { title: '【得到有关百络花的流言】', nextChat: 'C3',
         toMsg: { 
                 action: 'CluesModel/addClues', params: { addCluesId: ["liuyan5"] } 
               }, 
@@ -346,7 +364,7 @@ scenes: [
       { 
         id: 'C1', desc:  "被大爷彻底“折服”的李森炎离开草屋，走上一条羊肠小道\n不多时，又见到一个人影\n李森炎看到这人身上背负竹篓，好像是个采药人", 
         options: [ 
-        { title: '【和采药人对话】',dialogs: ['Screen16'] ,}, 
+        { title: '【和采药人对话】',dialogs: ['Screen1'] ,}, 
         ],
       },
     ], 
@@ -513,7 +531,464 @@ scenes: [
     ],
 
 
-    
+#==========================事件场景=======================
+       {
+  # NPC2
+    id: 'C000E_V1_MAP_-1_5', name: '迷雾森林',
 
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_75',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000E_V1_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 2],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '绕过落霞峰山脚下的小道，终于到了迷雾森林，山如其名，这里看上去果然很危险', 
+        options: [ 
+       { title: '【小心翼翼采集草药】', collect: '5',toScene: 'C000E_V1_MAP_0_4'},          
+        ],
+      },
+    ],
+  },
+  #==========================事件场景==========================
+       {
+  # NPC2
+    id: 'C000E_V1_MAP_0_4', name: '北药山沟',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_76',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000E_V1_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 2],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '这边光秃秃的山坡看上去没什么生机的样子，真的会有草药吗？', 
+        options: [ 
+       { title: '【进去一探究竟】', collect: '6',toScene: 'C000E_V1_MAP_-1_3'}, 
+        
+         
+        ],
+      },
+
+
+
+    ],
+
+  },
+#=============================事件场景================================
+       {
+  # NPC2
+    id: 'C000E_V1_MAP_-1_3', name: '幽暗森林',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_74',
+    # 当前场景地图
+    mapId: 'C000E_V1_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 2],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '似乎越走越远了，前面的林子阴森还透着一股寒气', 
+        options: [ 
+       { title: '【硬着头破进入】',dialogs: ['mengshou'], }, 
+       { title: '【还是离开吧】', toScene: 'C000E_V1_MAP_0_3'},
+        
+         
+        ],
+      },
+    ],
+    # 对话框
+      dialogs:
+        [
+         {id: 'mengshou', style: "9B", textAnimationType: 'TextSingle',
+                 sections: [
+                  {
+                     key: 'p1',
+                      content: ['根据砍柴少年给的线索','李森炎来到幽暗森林中寻找子星草',
+                       '然而,他非但没有在幽暗森林中找到子星草',
+                       '反而还遇到了猛虎', 
+                       '不过幸好李森炎身手敏捷成功从猛兽口中脱险',
+                       '……','李森炎寻遍幽暗森林，却毫无所获',
+                       '这才确定','砍柴少年给的是条假线索！','小小年纪就这么狡猾！可恶！',
+                       '李森炎狼狈离开幽暗森林，前往山谷寻子星草……', 
+                       [{ toScene: 'C000E_V1_MAP_0_3'}],
+                       ],
+                   },  
+                   ],
+                   
+                   },
+    ],
+  },
+#==========================事件场景=============================
+       {
+  # NPC2
+    id: 'C000E_V1_MAP_0_3', name: '山谷',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_77',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000E_V1_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 2],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '走到这边，阴森可怖的氛围终于消散', 
+        options: [ 
+       { title: '【进入山谷采集草药】',  collect: '7',nextChat: 'C2' }, 
+        ],
+      },
+       { 
+        id: 'C2', desc: "将所有药材都采集完毕后，李森炎回到了落霞峰脚下村落\n此时正好遇见之前的那个采花女\n采花女热情的与李森炎打招呼\n“你回来了啊！怎么样，东西找到了没有？”\n“找到了，多谢！”\n“那太好了，我现在要回家了，一起走吗？”", 
+        options: [ 
+       { title: "【去】",dialogs: ['C009A_caihuaguniangA'],},
+       { title: "【不去】",dialogs: ['C009A_caihuaguniangB'],},
+        ],
+      },
+    ],
+ dialogs:
+        [
+          #选项对话2
+          { id: 'C009A_caihuaguniangA',style: 6, title: '采花姑娘的邀约', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P3', content: ['“好吧，那就去坐一会儿。','李森炎跟着她去到山间小屋。','“啊，你家在这啊？”','李森炎想起白天时候来到过这里',
+          '“你家里是不是有个大爷？”','“对，那是我爷爷。”','“孙女回来啦。”','大爷从屋里走出，看到李森炎的瞬间，眼睛微微放大','“我记得你！”','李森炎苦笑，您老这个时候记性大可不必这么好！'
+          ,'“哈哈哈，来来来，喝两杯茶再走。”','兴许是住在山野之中，极少有客来往',
+          '大爷和姑娘都非常热情，李森炎这才知道是自己想多了','人家姑娘并不卖茶','离开的时候还给了李森炎一些不知名的草药的种子'],
+          btn: [{title: '离开去寻找云云',toScene:  "WZXX_M1_N1_C002B_V",dropIds: ['WZXX_M1_N1_C009_V_Vdrop1'],}]},
+        ],
+    },
+
+    
+       #选项对话2
+          { id: 'C009A_caihuaguniangB',style: 6, title: '采花姑娘的邀约', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P3', content: ['“天色已晚，我觉得还是算了吧。”','“不是都说好了嘛！哼，果然男人都是骗子！”','采花姑娘负气而走，李森炎愣在原地，不由得苦笑起来','又走了一会儿，忽然李森炎路过山村的时候捡到了一些不知名的草药种子','虽然不知道是做什么的，但是收着说不定以后有用',
+          ],
+          btn: [{title: '离开去寻找云云',toScene: 'WZXX_M1_N1_C002B_V',dropIds: ['WZXX_M1_N1_C009_V_Vdrop2'],},]},
+        ],
+    },
+        ],
+  },
+
+
+#=================================场景地图的设置==================================
+    maps: [
+    {
+            id: 'C000E_V1_MAP_0_0',
+            data: [
+
+              { 
+              point: [-1, 5], title: '迷雾森林', 
+              toScene: 'C000E_V1_MAP_-1_5', 
+              links: [[0, 4], ] 
+              },
+
+              { 
+              point: [0, 4], title: '北药山沟',
+              toScene: 'C000E_V1_MAP_0_4',
+              links: [[-1, 3], ]
+              },
+
+              { 
+              point: [-1, 3], title: '幽暗森林', 
+              toScene: 'C000E_V1_MAP_-1_3',
+              links: [[0, 3],] 
+              },
+
+              { 
+              point: [0, 3], title: '山谷', 
+              toScene: 'C000E_V1_MAP_0_3',
+              links: [] 
+              },
+                
+
+
+            ]
+          },
+   ],
+
+   #==========================事件场景=======================
+       {
+  # NPC2
+    id: 'C000E_V2_MAP_-1_5', name: '迷雾森林',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_75',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000E_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 2],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '绕过落霞峰山脚下的小道，终于到了迷雾森林，山如其名，这里看上去果然很危险', 
+        options: [ 
+       { title: '【小心翼翼采集草药】', collect: '5',toScene: 'C000E_V2_MAP_0_4'},          
+        ],
+      },
+    ],
+  },
+  #==========================事件场景==========================
+       {
+  # NPC2
+    id: 'C000E_V2_MAP_0_4', name: '北药山沟',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_76',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000E_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 2],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '这边光秃秃的山坡看上去没什么生机的样子，真的会有草药吗？', 
+        options: [ 
+       { title: '【进去一探究竟】', collect: '6',toScene: 'C000E_V2_MAP_0_3'}, 
+        
+         
+        ],
+      },
+
+
+
+    ],
+
+  },
+
+#==========================事件场景=============================
+       {
+  # NPC2
+    id: 'C000E_V2_MAP_0_3', name: '山谷',
+
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_77',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000E_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 2],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '走到这边，阴森可怖的氛围终于消散', 
+        options: [ 
+       { title: '【进入山谷采集草药】',  collect: '7',nextChat: 'C2' }, 
+        ],
+      },
+       { 
+        id: 'C2', desc: "将所有药材都采集完毕后，李森炎回到了落霞峰脚下村落\n此时正好遇见之前的那个采花女\n采花女热情的与李森炎打招呼\n“你回来了啊！怎么样，东西找到了没有？”\n“找到了，多谢！”\n“那太好了，我现在要回家了，一起走吗？”", 
+        options: [ 
+       { title: "【去】",dialogs: ['C009A_caihuaguniangA'],},
+       { title: "【不去】",dialogs: ['C009A_caihuaguniangB'],},
+        ],
+      },
+    ],
+ dialogs:
+        [
+          #选项对话2
+          { id: 'C009A_caihuaguniangA',style: 6, title: '采花姑娘的邀约', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P3', content: ['“好吧，那就去坐一会儿。','李森炎跟着她去到山间小屋。','“啊，你家在这啊？”','李森炎想起白天时候来到过这里',
+          '“你家里是不是有个大爷？”','“对，那是我爷爷。”','“孙女回来啦。”','大爷从屋里走出，看到李森炎的瞬间，眼睛微微放大','“我记得你！”','李森炎苦笑，您老这个时候记性大可不必这么好！'
+          ,'“哈哈哈，来来来，喝两杯茶再走。”','兴许是住在山野之中，极少有客来往',
+          '大爷和姑娘都非常热情，李森炎这才知道是自己想多了','人家姑娘并不卖茶','离开的时候还给了李森炎一些不知名的草药的种子'],
+          btn: [{title: '离开去寻找云云',toScene:  "WZXX_M1_N1_C002B_V",dropIds: ['WZXX_M1_N1_C009_V_Vdrop1'],}]},
+        ],
+    },
+
+    
+       #选项对话2
+          { id: 'C009A_caihuaguniangB',style: 6, title: '采花姑娘的邀约', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P3', content: ['“天色已晚，我觉得还是算了吧。”','“不是都说好了嘛！哼，果然男人都是骗子！”','采花姑娘负气而走，李森炎愣在原地，不由得苦笑起来','又走了一会儿，忽然李森炎路过山村的时候捡到了一些不知名的草药种子','虽然不知道是做什么的，但是收着说不定以后有用',
+          ],
+          btn: [{title: '离开去寻找云云',toScene: 'WZXX_M1_N1_C002B_V',dropIds: ['WZXX_M1_N1_C009_V_Vdrop2'],},]},
+        ],
+    },
+        ],
+  },
+
+
+#=================================场景地图的设置==================================
+    maps: [
+    {
+            id: 'C000E_V2_MAP_0_0',
+            data: [
+
+              { 
+              point: [-1, 5], title: '迷雾森林', 
+              toScene: 'C000E_V2_MAP_-1_5', 
+              links: [[0, 4], ] 
+              },
+
+              { 
+              point: [0, 4], title: '北药山沟',
+              toScene: 'C000E_V2_MAP_0_4',
+              links: [[0, 3], ]
+              },
+
+              { 
+              point: [0, 3], title: '山谷', 
+              toScene: 'C000E_V2_MAP_0_3',
+              links: [] 
+              },
+                
+
+
+            ]
+          },
+   ],
   ]
-   

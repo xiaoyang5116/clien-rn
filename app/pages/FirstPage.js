@@ -175,7 +175,7 @@ class FirstPage extends Component {
                             //     addCluesId: ["xiansuo1"], useCluesId: ["xiansuo2",], invalidCluesId: ['xiansuo3']
                             //   },
                             // }，
-                            addCluesId: ["liuyan1"] ,
+                            addCluesId: ["liuyan1", "liuyan2"],
                             animation: ['边缘闪烁绿']
                           }
                         ]

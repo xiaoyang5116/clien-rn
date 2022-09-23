@@ -10,7 +10,7 @@ import FastImage from 'react-native-fast-image';
 
 const viewWidth = Dimensions.get('window').width;
 const LeftToRightSwiper = props => {
-  const { animationEndEvent, children, opacityAnim } = props;
+  const { animationEndEvent, children, opacityAnim, index } = props;
 
   // const opacityAnim = useRef(new Animated.Value(0)).current;
   const translateXAnim = useRef(new Animated.Value(-viewWidth)).current;
@@ -39,7 +39,7 @@ const LeftToRightSwiper = props => {
   return (
     <Animated.View
       style={{
-        marginTop: "25%",
+        marginTop: index === 0 ? "25%" : 30,
         transform: [{ translateX: translateXAnim }],
         width: viewWidth,
         flexDirection: 'row',
@@ -109,7 +109,7 @@ const ContentComponent = (props) => {
 }
 
 const CluesToast = (props) => {
-  const { msg, closeToast, } = props;
+  const { msg, closeToast, index } = props;
   const opacityAnim = useRef(new Animated.Value(0)).current;
 
   // {"cluesType": "线索", "content": ["REDER线索1", "上飞机啊佛", "分开是佛阿含经分开久了"], "title": "线索4", "type": "clues"}
@@ -124,7 +124,7 @@ const CluesToast = (props) => {
   }
 
   return (
-    <LeftToRightSwiper opacityAnim={opacityAnim}>
+    <LeftToRightSwiper opacityAnim={opacityAnim} index={index}>
       <FastImage
         style={{ width: px2pd(1080), height: px2pd(312), position: 'absolute' }}
         source={require('../../../../assets/clues/clues_toast_bg.png')}
