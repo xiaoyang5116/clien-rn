@@ -112,6 +112,7 @@ scenes: [
       { id: 'v20', min: 0, max: 1 },
       { id: 'v_shop', min: 0, max: 1 },
       { id: 'v_icon_100', min: 0, max: 1 },
+      { id: 'v_icon_104', min: 0, max: 1, defaultValue: 1 },
     ],
 
     # 动作定义
@@ -136,7 +137,7 @@ scenes: [
         id: 'map1',
         data: [
           { point: [0, 0], title: '神兽', toScene: 'pomiao', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
-          { point: [0, 1], title: '原神', toScene: 'wzkj', links: [] },
+          { point: [0, 1], title: '原神', toScene: 'wzkj', links: [], icon: { id: 104, bindVar: 'v_icon_104' } },
           { point: [1, 0], title: '天仙', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
           { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
           { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
@@ -176,8 +177,8 @@ scenes: [
           { title: '【--测试选项进度条--】', toScene: 'S_00Test01' }, 
           { title: '【--DEBUG跳过序章移动到破庙--】', toScene: 'M01_S01_luoyuezhen_pomiao' },
 
-          { title: '【修改时间(直接加毫秒)】', alterWorldTime: '86400000' }, 
-          { title: '【修改时间(跳到明天早上6点)】', alterWorldTime: '@day/1/6' }, 
+          { title: '【修改世界时间(直接加毫秒)】', alterWorldTime: '86400000' }, 
+          { title: '【修改世界时间(跳到明天早上6点)】', alterWorldTime: '@day/1/6' }, 
           { title: '【进入测试副本】', toScene: 'pomiaomk' }, 
           
           # { title: '【移动地图中心点_P2】', toMapPoint: [-1, 0] }, 
