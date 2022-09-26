@@ -73,8 +73,8 @@ export class PropertyActions {
       }
 
       // 生成副本时间修改动作
-      if (payload.setMissionTime != undefined && lo.isObject(payload.setMissionTime)) {
-        allActions.push({ id: "__missionTime_{0}".format(payload.setMissionTime), cmd: 'missionTime', params: payload.setMissionTime });
+      if (payload.missionTime != undefined && lo.isObject(payload.missionTime)) {
+        allActions.push({ id: "__missionTime_{0}".format(payload.missionTime), cmd: 'missionTime', params: payload.missionTime });
       }
   
       // 使用道具

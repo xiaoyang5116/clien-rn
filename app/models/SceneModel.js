@@ -447,9 +447,15 @@ export default {
     },
 
     *__onMissionTimeCommand({ payload }, { put, select }) {
-      const { missionId, datetime } = payload.params;
-      const timestamp = DateTime.parseFormat(datetime);
-      yield put.resolve(action('setMissionTime')({ missionId: missionId, time: timestamp }));
+      const { missionId } = payload.params;
+      if (payload.params.setTime != undefined) {
+        const { setTime } = payload.params;
+        const timestamp = DateTime.parseFormat(setTime);
+        yield put.resolve(action('setMissionTime')({ missionId: missionId, time: timestamp }));
+      } else if (payload.params.alterTime != undefined) {
+        const { alterTime } = payload.params;
+        yield put.resolve(action('alterMissionTime')({ missionId: missionId, alterValue: alterTime }));
+      }
     },
 
     *__onVarCommand({ payload }, { put, select }) {
@@ -682,8 +688,10 @@ export default {
           if (id == '@world_time_hours') {
             const value = yield put.resolve(action('getWorldTime')({ worldId: userState.worldId }));
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
-          } else if (id == '@scene_time_hours') {
-            const value = yield put.resolve(action('getSceneTime')({ sceneId: payload.__sceneId }));
+          } else if (id.indexOf('@missionTime_') == 0) {
+            const [_k, v] = id.split('_');
+            const missionId = lo.trim(v);
+            const value = yield put.resolve(action('getMissionTime')({ missionId: missionId }));
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
           } else if (id.indexOf('@props_') == 0) {
             const [_k, v] = id.split('_');
