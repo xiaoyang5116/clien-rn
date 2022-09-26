@@ -19,7 +19,7 @@ drops: [
   #小世界地图获取道具
   #归元草
   { id: 'WZXX_M1_N1_C000D_VA_V_drop1', sendProps: '1022,3,showBag', },
-  #化生草&
+  #化生草
   { id: 'WZXX_M1_N1_C000D_VA_V_drop2', sendProps: '1023,3,showBag', },
   #固灵草
   { id: 'WZXX_M1_N1_C000D_VA_V_drop3', sendProps: '1024,3,showBag', },
@@ -28,11 +28,11 @@ drops: [
   { id: 'WZXX_M1_N1_C000F_V_drop1', sendProps: '369,1,showBag', },
 
   { id: 'WZXX_M1_N1_C000F_V_drop2', sendProps: '369,1,showBag', },
-  { id: 'WZXX_M1_N1_C000F_V_drop3', sendProps: '369,1,showBag', },
-  { id: 'WZXX_M1_N1_C000F_V_drop4', sendProps: '369,1,showBag', },
+  { id: 'WZXX_M1_N1_C000F_V_drop3', sendProps: '370,1,showBag', },
+  { id: 'WZXX_M1_N1_C000F_V_drop4', sendProps: '371,1,showBag', },
 
-   { id: 'WZXX_M1_N1_C000F_V_drop5', sendProps: '369,1,showBag', },
-    { id: 'WZXX_M1_N1_C000F_V_drop6', sendProps: '369,1,showBag', },
+  { id: 'WZXX_M1_N1_C000F_V_drop5', sendProps: '372,1,showBag', },
+  { id: 'WZXX_M1_N1_C000F_V_drop6', sendProps: '372,1,showBag', },
 
   
 

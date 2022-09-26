@@ -238,5 +238,10 @@ props: [
   { id:  3104, name: '木棍子[橙]', iconId: 2, num:  1, quality: 5, type: 0, tags: ['普通'], attrs: ['收藏品碎片'], capacity: 100, desc: ' ' },
 
   # 小宇宙项目道具
-  { id: 369, name: '灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+  { id:  369, name: '画面灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+  { id:  370, name: '剧情灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+  { id:  371, name: '细节灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+  { id:  372, name: '操作灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+
+
 ]
