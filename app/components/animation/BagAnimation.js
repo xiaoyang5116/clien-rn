@@ -9,9 +9,11 @@ import {
     StyleSheet,
     TouchableWithoutFeedback,
     SafeAreaView,
+    DeviceEventEmitter,
 } from 'react-native';
 import RootView from '../RootView';
 import PropsPage from '../../pages/home/PropsPage';
+import { EventKeys } from '../../constants';
 
 const PropsWrapper = (props) => {
     return (
@@ -40,27 +42,44 @@ const BagAnimation = (props) => {
 
     const scale = React.useRef(new Animated.Value(0)).current;
 
-    React.useEffect(() => {
+    const refAnimation = React.useRef(
         Animated.sequence([
             Animated.timing(scale, {
-              toValue: 1.2,
-              duration: 200,
-              useNativeDriver: false,
+                toValue: 1.2,
+                duration: 200,
+                useNativeDriver: false,
             }),
             Animated.timing(scale, {
-              toValue: 1,
-              duration: 200,
-              useNativeDriver: false,
+                toValue: 1,
+                duration: 200,
+                useNativeDriver: false,
             }),
-            Animated.delay(20 * 1000),
-          ]).start(r => {
-            const { finished } = r;
+            Animated.delay(6 * 1000),
+        ])).current;
+
+    React.useEffect(() => {
+        refAnimation.start(({ finished }) => {
             if (finished) {
                 if (props.onClose != undefined) {
                     props.onClose();
                 }
             }
-          });
+        });
+        return () => {
+            refAnimation.stop();
+        }
+    }, []);
+
+    React.useEffect(() => {
+        const listener = DeviceEventEmitter.addListener(EventKeys.OPTION_CLICKED, () => {
+            refAnimation.stop();
+            if (props.onClose != undefined) {
+                props.onClose();
+            }
+        });
+        return () => {
+            listener.remove();
+        }
     }, []);
 
     return (
