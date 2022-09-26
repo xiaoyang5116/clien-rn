@@ -538,7 +538,7 @@ scenes: [
     #横图显示
     sceneImage: 'BGT_3',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000F_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
