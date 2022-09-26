@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Animated, FlatList, TouchableWithoutFeedback, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Animated, Easing, TouchableWithoutFeedback, Dimensions } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { isPad, px2pd } from '../../../constants/resolution';
@@ -9,39 +9,39 @@ import FastImage from 'react-native-fast-image';
 
 
 const viewWidth = Dimensions.get('window').width;
-const LeftToRightSwiper = props => {
-  const { animationEndEvent, children, opacityAnim, index } = props;
 
-  // const opacityAnim = useRef(new Animated.Value(0)).current;
+const LeftToRightSwiper = props => {
+  const { animationEndEvent, children, maoPaoFlashing } = props;
+
+  const opacityAnim = useRef(new Animated.Value(0)).current;
   const translateXAnim = useRef(new Animated.Value(-viewWidth)).current;
 
   useEffect(() => {
-    Animated.sequence([
-      Animated.parallel([
-        Animated.timing(opacityAnim, {
-          toValue: 1,
-          duration: 300,
-          useNativeDriver: false,
-        }),
-        Animated.timing(translateXAnim, {
-          toValue: 0,
-          duration: 600,
-          useNativeDriver: false,
-        }),
-      ]),
-    ]).start();
-  }, []);
+    const timer = setTimeout(() => {
+      Animated.sequence([
+        Animated.parallel([
+          Animated.timing(opacityAnim, {
+            toValue: 1,
+            duration: 300,
+            useNativeDriver: false,
+          }),
+          Animated.timing(translateXAnim, {
+            toValue: 0,
+            duration: 600,
+            useNativeDriver: false,
+          }),
+        ]),
+      ]).start(maoPaoFlashing);
+    }, 400);
 
-  // const onHide = () => {
-  //   animationEndEvent()
-  // }
+    return () => {
+      clearTimeout(timer)
+    }
+  }, []);
 
   return (
     <Animated.View
       style={{
-        marginTop: index === 0
-          ? isPad() ? 0 : "25%"
-          : 30,
         transform: [{ translateX: translateXAnim }],
         width: viewWidth,
         flexDirection: 'row',
@@ -66,7 +66,7 @@ const ContentComponent = (props) => {
         clearInterval(timer)
         showEnd()
       }
-    }, 1000);
+    }, 1700);
 
     return () => {
       clearInterval(timer)
@@ -112,7 +112,10 @@ const ContentComponent = (props) => {
 
 const CluesToast = (props) => {
   const { msg, closeToast, index } = props;
-  const opacityAnim = useRef(new Animated.Value(0)).current;
+  const opacityAnim = useRef(new Animated.Value(1)).current;
+  const bgOpacityAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(0)).current;
+
 
   // {"cluesType": "线索", "content": ["REDER线索1", "上飞机啊佛", "分开是佛阿含经分开久了"], "title": "线索4", "type": "clues"}
 
@@ -125,24 +128,67 @@ const CluesToast = (props) => {
     }).start(() => closeToast(1))
   }
 
+  const maoPaoFlashing = () => {
+    Animated.timing(scaleAnim, {
+      toValue: 1,
+      duration: 400,
+      easing: Easing.out(Easing.exp),
+      useNativeDriver: false,
+    }).start()
+  }
+
+  useEffect(() => {
+    Animated.timing(bgOpacityAnim, {
+      toValue: 1,
+      duration: 800,
+      useNativeDriver: false,
+    }).start()
+  }, [])
+
   return (
-    <LeftToRightSwiper opacityAnim={opacityAnim} index={index}>
-      <FastImage
-        style={{ width: px2pd(1080), height: px2pd(312), position: 'absolute' }}
-        source={require('../../../../assets/clues/clues_toast_bg.png')}
+    <Animated.View style={{
+      opacity: opacityAnim,
+      marginTop: index === 0
+        ? isPad() ? 0 : "25%"
+        : 30,
+    }}>
+      <Animated.Image
+        style={{
+          position: 'absolute',
+          width: px2pd(1080),
+          height: px2pd(404),
+          opacity: bgOpacityAnim,
+        }}
+        source={require('../../../../assets/clues/clues_bg_1.png')}
       />
-      <View style={{
-        width: px2pd(1080),
-        height: px2pd(312),
-        flexDirection: 'row',
-        justifyContent: "flex-start",
-        alignItems: 'flex-end',
-        paddingBottom: isPad() ? 55 : 25,
-      }}>
-        <Text style={{ fontSize: 14, color: "#fff", marginLeft: isPad() ? 40 : 23 }}>获得新{msg.cluesType}</Text>
-        <ContentComponent content={msg.content} showEnd={showEnd} />
-      </View>
-    </LeftToRightSwiper>
+      <LeftToRightSwiper maoPaoFlashing={maoPaoFlashing}>
+        <FastImage
+          style={{ width: px2pd(1080), height: px2pd(200), position: 'absolute' }}
+          source={require('../../../../assets/clues/clues_bg_2.png')}
+        />
+        <Animated.Image
+          style={{
+            width: px2pd(180), height: px2pd(62), position: 'absolute',
+            marginLeft: isPad() ? 23 : 6,
+            transform: [{ scale: scaleAnim }]
+          }}
+          source={require('../../../../assets/clues/maopao.png')}
+        />
+        <View style={{
+          width: px2pd(1080),
+          height: px2pd(312),
+          flexDirection: 'row',
+          justifyContent: "flex-start",
+          alignItems: 'flex-end',
+          alignContent: 'center',
+          alignSelf: "center",
+          paddingBottom: isPad() ? 50 : 22,
+        }}>
+          <Text style={{ fontSize: 14, color: "#fff", marginLeft: isPad() ? 40 : 23, height: 20 }}>获得新{msg.cluesType}</Text>
+          <ContentComponent content={msg.content} showEnd={showEnd} />
+        </View>
+      </LeftToRightSwiper>
+    </Animated.View>
   )
 }
 
