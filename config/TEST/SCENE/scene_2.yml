@@ -3,6 +3,8 @@ scenes: [
   {
     id: 'pomiao', name: '破庙',
 
+    missionId: 'mission1',
+
     # 变量定义
     vars: [
       { id: 'v1', min: 0, max: 1 },

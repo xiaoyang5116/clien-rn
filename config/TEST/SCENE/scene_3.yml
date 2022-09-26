@@ -1,7 +1,11 @@
 scenes: [
   # 破庙门口场景
   {
-    id: 'pomiaomk', name: '破庙门口',
+    id: 'pomiaomk', 
+    
+    name: '破庙门口',
+
+    missionId: 'mission1',
 
     # 变量定义
     vars: [
@@ -13,7 +17,7 @@ scenes: [
 
     # 事件定义
     events: [
-      { type: 'enter', nextChat: 'c1' },
+      { type: 'enter', nextChat: 'c1', missionTime: { missionId: 'mission1', setTime: '2022/10/01 00:00:00' } },
     ],
 
     # 对话选项
@@ -24,6 +28,9 @@ scenes: [
         options: [ 
          { title: '【>>>落月镇西-胡同口】', toScene: 'hutongkou' }, 
          { title: '【>>>进入破庙】', toScene: 'pomiao' }, 
+         { title: '【测试： 时间增加1小时】', missionTime: { missionId: 'mission1', alterSeconds: 3600 } }, 
+         { title: '【傍晚之后出现】', andVarsValue: ['@missionTime_mission1 >= 17'] }, 
+         { title: '【清晨出现】', andVarsValue: ['@missionTime_mission1 >= 6', '@missionTime_mission1 <= 7'] }, 
         ],
       }
     ],
