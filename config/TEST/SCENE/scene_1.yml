@@ -95,7 +95,7 @@ scenes: [
   # 新手村场景
   {
     id: 'wzkj', name: '未知空间',
-    worldTimeHidden: true,
+    worldTimeHidden: false,
     sceneImage: 'BGT_1',
 
     # 变量定义
@@ -173,6 +173,9 @@ scenes: [
           { title: '【修改选项按钮变量】', varsOn: ['v_icon_100'] }, 
           { title: '【--测试选项进度条--】', toScene: 'S_00Test01' }, 
           { title: '【--DEBUG跳过序章移动到破庙--】', toScene: 'M01_S01_luoyuezhen_pomiao' },
+
+          { title: '【修改时间(直接加毫秒)】', alterWorldTime: '86400000' }, 
+          { title: '【修改时间(跳到明天早上6点)】', alterWorldTime: '@day/1/6' }, 
           
           # { title: '【移动地图中心点_P2】', toMapPoint: [-1, 0] }, 
           # { title: '【小游戏：劈砖头】', games: { id: 1 }, dropIds: [ 'WZXX_M1_N1_C001V_Vdrop1'], }, 

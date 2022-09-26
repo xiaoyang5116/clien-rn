@@ -53,7 +53,7 @@ const ColorScreenTransition = (props) => {
     return (
         <View style={{ flex: 1 }}>
             {props.children}
-            <Animated.View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: props.color, opacity: opacity }} pointerEvents={pointerEvents} />
+            <Animated.View style={{ position: 'absolute', zIndex: 99, width: '100%', height: '100%', backgroundColor: props.color, opacity: opacity }} pointerEvents={pointerEvents} />
         </View>
     )
 }
