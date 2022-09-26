@@ -25,7 +25,7 @@ export default class TextSingle extends PureComponent {
                             iconShow: true,
                         });
                     }
-                }, 18);
+                }, 20);
             }, 0);
         }
     };

@@ -14,6 +14,7 @@ scenes: [
        { id: "v_icon_100", min: 0, max: 1 },
         { id: "v_icon_101", min: 0, max: 1 },
          { id: "v_icon_102", min: 0, max: 1 },
+         { id: "zhuxiankaishi_A", min: 0, max: 1 },
      
    
      
@@ -125,6 +126,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C0' },
+        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] ,nextChat: 'C3' },
       
 
     ],
@@ -143,6 +145,14 @@ scenes: [
         id: 'C2', desc: "李森炎正式开启小宇宙计划之后\n便专心致志的研究\n虽然已经完成了一些程序上的问题，但是灵感依旧很匮乏\n想了想，他忽然记起家附近有一个不错的公园，去逛逛说不定能激发一些灵感", 
         options: [ 
         { title: '【去公园里逛逛】',  toScene: 'C000F_V_MAP_0_2' },
+      
+        ],
+      },
+
+      { 
+        id: 'C3', desc: "有了灵感后，李森炎对于小宇宙的开发越来越顺利……", 
+        options: [ 
+        { title: '【回忆结束离开】',  toChapter: "WZXX_M1_N1_C001B_[N1]" },
       
         ],
       },
@@ -842,7 +852,7 @@ scenes: [
       {
         id: 'C3', desc: "恭喜您您获得了一个灵感钥匙",
         options: [ 
-         { title: '【离开回家】',toScene: 'C000F_V2_MAP_-1_2', }, 
+         { title: '【离开回家】',toScene: 'C000F_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] ,}, 
          { title: '【再逛逛】',toScene: 'C000F_V_MAP_1_3', }, 
         ],
       },
@@ -900,7 +910,7 @@ scenes: [
         options: [ 
          { title: '【便利店】',toScene: 'C000F_V_MAP_1_4', }, 
          { title: '【动物园】',toScene: 'C000F_V_MAP_1_3', }, 
-         { title: '【回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-1_2', }, 
+         { title: '【回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] , }, 
         ],
       },
 
@@ -948,7 +958,7 @@ scenes: [
         options: [ 
          { title: '【便利店】',toScene: 'C000F_V_MAP_1_4', }, 
          { title: '【展览馆】',toScene: 'C000F_V_MAP_-1_5', }, 
-          { title: '【离开回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-1_2', }, 
+          { title: '【离开回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] , }, 
         ],
       },
 
@@ -1006,7 +1016,7 @@ scenes: [
         options: [ 
          { title: '【观景地】',toScene: 'C000F_V_MAP_1_5', }, 
          { title: '【展览馆】',toScene: 'C000F_V_MAP_-1_5', }, 
-          { title: '【离开回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-1_2', }, 
+          { title: '【离开回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] ,  }, 
         ],
       },
 
@@ -1055,7 +1065,7 @@ scenes: [
         options: [ 
          { title: '【观景地】',toScene: 'C000F_V_MAP_1_5', }, 
          { title: '【公园入口】',toScene: 'C000F_V_MAP_0_2', }, 
-          { title: '【离开回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-1_2', }, 
+          { title: '【离开回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] , }, 
         ],
       },
 
@@ -1112,7 +1122,7 @@ scenes: [
         options: [ 
          { title: '【公告栏】',toScene: 'C000F_V_MAP_0_3', }, 
          { title: '【公园入口】',toScene: 'C000F_V_MAP_0_2', }, 
-          { title: '【离开回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-1_2', }, 
+          { title: '【离开回家】',andVarsValue: ['@props_369 >= 0'] ,toScene: 'C000F_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] , }, 
         ],
       },
 
