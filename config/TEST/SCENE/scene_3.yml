@@ -22,7 +22,6 @@ scenes: [
 
     # 对话选项
     chats: [
-      #
       { 
         id: 'c1', desc: '请选择移动', 
         options: [ 
