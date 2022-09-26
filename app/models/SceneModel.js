@@ -452,9 +452,9 @@ export default {
         const { setTime } = payload.params;
         const timestamp = DateTime.parseFormat(setTime);
         yield put.resolve(action('setMissionTime')({ missionId: missionId, time: timestamp }));
-      } else if (payload.params.alterTime != undefined) {
-        const { alterTime } = payload.params;
-        yield put.resolve(action('alterMissionTime')({ missionId: missionId, alterValue: alterTime }));
+      } else if (payload.params.alterSeconds != undefined) {
+        const { alterSeconds } = payload.params;
+        yield put.resolve(action('alterMissionTime')({ missionId: missionId, alterValue: (alterSeconds * 1000) }));
       }
     },
 
