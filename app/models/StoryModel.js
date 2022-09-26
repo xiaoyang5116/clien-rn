@@ -119,15 +119,24 @@ export default {
         }
       }
 
-      // 获取当前场景的世界时间
-      const worldTime = yield put.resolve(action('SceneModel/getWorldTime')({ worldId: userState.worldId }));
-
       // 获取当前场景变量
       const sceneVars = yield put.resolve(action('SceneModel/getSceneVars')({ sceneId: payload.__sceneId }));
+
+      // 当前世界时间
+      const worldTime = yield put.resolve(action('SceneModel/getWorldTime')({ worldId: userState.worldId }));
+
+      // 缺省显示世界时间, 如果为副本则显示副本时间
+      let showTime = worldTime;
+
+      // 当前副本时间
+      if (scene.missionId != undefined) {
+        const missionTime = yield put.resolve(action('SceneModel/getMissionTime')({ missionId: scene.missionId }));
+        if (missionTime != null) showTime = missionTime;
+      }
   
       // 重新渲染
       yield put(action('updateState')({ 
-        time: worldTime,
+        time: showTime,
         position: scene.name,
         chatId: chatId,
         scene: scene,

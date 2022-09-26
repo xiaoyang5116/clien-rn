@@ -49,6 +49,8 @@
 #
 #     isNpc: true/false, 指定是否NPC场景，缺省为普通场景。
 #
+#     missionId: 副本ID
+#
 #     vars: 变量定义
 #       id: 变量名称
 #       min: 变量最小值
@@ -176,16 +178,18 @@ scenes: [
 
           { title: '【修改时间(直接加毫秒)】', alterWorldTime: '86400000' }, 
           { title: '【修改时间(跳到明天早上6点)】', alterWorldTime: '@day/1/6' }, 
+          { title: '【进入测试副本】', toScene: 'pomiaomk' }, 
           
           # { title: '【移动地图中心点_P2】', toMapPoint: [-1, 0] }, 
           # { title: '【小游戏：劈砖头】', games: { id: 1 }, dropIds: [ 'WZXX_M1_N1_C001V_Vdrop1'], }, 
           # { title: '【小游戏：撸猫】', games: { id: 2, toScene: 'M01_S01_luoyuezhen_pomiao' } }, 
-          # { title: '【小游戏：记忆力训练】', games: { id: 3, words: ['不', '知', '道', ] } }, 
+          # { title: '【小游戏：记忆力训练】', games: { id: 3, words: ['不', '知', '道', ] } },
+
           { title: '【商店一】', toShop: 'shop2' }, 
           { title: '【商店二】', toShop: 'shop_sell_test' }, 
-          # { title: '【动效1】', animations: { id: 3 } }, 
           { title: '【升级动效】', animations: { id: 13 } }, 
-          { title: '【切换世界】', animations: { id: 11, data: { worldId: '灵修界', desc: 'xxx', toChapter: 'WZXX_M1_N1_C001' } } }, 
+          { title: '【切换世界】', animations: { id: 11, data: { worldId: '灵修界', desc: 'xxx', toChapter: 'WZXX_M1_N1_C001' } } },
+
           { title: '【打开采集页面(1)】', collect: '1' }, 
           { title: '【打开采集页面(2)】', collect: '2' }, 
           { title: '【打开采集页面(3)】', collect: '3' }, 

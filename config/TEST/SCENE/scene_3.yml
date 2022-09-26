@@ -1,7 +1,11 @@
 scenes: [
   # 破庙门口场景
   {
-    id: 'pomiaomk', name: '破庙门口',
+    id: 'pomiaomk', 
+    
+    name: '破庙门口',
+
+    missionId: 'mission1',
 
     # 变量定义
     vars: [
@@ -13,7 +17,7 @@ scenes: [
 
     # 事件定义
     events: [
-      { type: 'enter', nextChat: 'c1' },
+      { type: 'enter', nextChat: 'c1', setMissionTime: { missionId: 'mission1', datetime: '2022/10/01 00:00:00' } },
     ],
 
     # 对话选项
