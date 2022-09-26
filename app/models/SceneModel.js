@@ -210,6 +210,7 @@ export default {
       } else {
         sceneState.__data.time.worlds.push({ worldId: worldId, time: alterValue });
       }
+      yield put.resolve(action('syncData')({}));
     },
 
     // 获取世界时间
