@@ -85,6 +85,11 @@ export function now() {
     return new Date().getTime();
 }
 
+export function parseFormat(str) {
+    const dt = str.replace(/-/g, "/");
+    return Date.parse(dt);
+}
+
 export function formatDateTime(obj) {
     if (obj == null) {
         return null

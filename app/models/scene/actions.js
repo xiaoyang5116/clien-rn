@@ -11,6 +11,7 @@ export const ACTIONS_MAP = [
     { cmd: 'attrs',         handler: '__onAttrsCommand' },
     { cmd: 'xiuxing',       handler: '__onXiuXingCommand' },
     { cmd: 'wtime',         handler: '__onWorldTimeCommand' },
+    { cmd: 'missionTime',   handler: '__onMissionTimeCommand' },
     { cmd: 'var',           handler: '__onVarCommand' },
     { cmd: 'useProps',      handler: '__onUsePropsCommand' },
     { cmd: 'sendProps',     handler: '__onSendPropsCommand' },
@@ -69,6 +70,11 @@ export class PropertyActions {
       // 生成世界时间修改动作
       if (payload.alterWorldTime != undefined && typeof(payload.alterWorldTime) == 'string') {
         allActions.push({ id: "__wtime_{0}".format(payload.alterWorldTime), cmd: 'wtime', params: payload.alterWorldTime });
+      }
+
+      // 生成副本时间修改动作
+      if (payload.missionTime != undefined && lo.isObject(payload.missionTime)) {
+        allActions.push({ id: "__missionTime_{0}".format(payload.missionTime), cmd: 'missionTime', params: payload.missionTime });
       }
   
       // 使用道具

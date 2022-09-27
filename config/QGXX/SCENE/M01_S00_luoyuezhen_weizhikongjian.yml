@@ -24,7 +24,7 @@
 #
 #     特殊标识符：
 #       @world_time_hours:  当前世界时间的小时数
-#       @scene_time_hours:  当前场景时间的小时数
+#       @missionTime_[...]: 当前副本时间
 #       @previous:          上一个场景
 #       @day/天数/小时       跳转到指定天数后的第N个小时
 #

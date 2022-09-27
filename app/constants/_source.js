@@ -56,6 +56,7 @@ const _images = {
         { id: 101, img: require('../../assets/button_icon/101.png'), top: -8, right: 3, width: px2pd(50), height: px2pd(50) },
         { id: 102, img: require('../../assets/button_icon/102.png'), top: -8, right: 3, width: px2pd(50), height: px2pd(50) },
         { id: 103, img: require('../../assets/button_icon/103.png'), top: -8, right: 3, width: px2pd(50), height: px2pd(50) },
+        { id: 104, img: require('../../assets/button_icon/104.png'), top: -8, left: 3, width: px2pd(50), height: px2pd(50) },
     ],
     propIcons: [
         { id: 1, width: px2pd(160), height: px2pd(160), img: require('../../assets/props/v_1.png') },

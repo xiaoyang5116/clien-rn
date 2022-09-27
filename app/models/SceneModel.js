@@ -52,8 +52,8 @@ export default {
 
       // 时间线
       time: {
-        scenes: [], // 场景时间(副本)
-        worlds: [   // 世界出生点时间(2012/29998/49998)
+        missions: [], // 副本时间
+        worlds: [   // 世界出生点时间(2012/29998/49998) =>（尘界, 现实, 灵修界）
           { worldId: 0, time: 1325376000000 }, 
           { worldId: 1, time: 884478240000000 }, 
           { worldId: 2, time: 1515617280000000 }
@@ -210,6 +210,7 @@ export default {
       } else {
         sceneState.__data.time.worlds.push({ worldId: worldId, time: alterValue });
       }
+      yield put.resolve(action('syncData')({}));
     },
 
     // 获取世界时间
@@ -221,43 +222,42 @@ export default {
       return wt != undefined ? wt.time: undefined;
     },
 
-    // 设置场景时间
-    // 参数：{ sceneId:xxx, time: xxx }
-    *setSceneTime({ payload }, { put, select }) {
+    // 设置副本时间
+    // 参数：{ missionId:xxx, time: xxx }
+    *setMissionTime({ payload }, { put, select }) {
       const sceneState = yield select(state => state.SceneModel);
-      const sceneId = payload.sceneId;
-      const time = payload.time;
+      const { missionId, time } = payload;
 
-      const st = sceneState.__data.time.scenes.find(e => e.sceneId == sceneId);
+      const st = sceneState.__data.time.missions.find(e => e.missionId == missionId);
       if (st != undefined) {
         st.time = time;
       } else {
-        sceneState.__data.time.scenes.push({ sceneId: sceneId, time: time });
+        sceneState.__data.time.missions.push({ missionId: missionId, time: time });
       }
     },
 
-    // 修改场景时间
-    // 参数：{ sceneId:xxx, time: xxx }
-    *alterSceneTime({ payload }, { put, select }) {
+    // 修改副本时间
+    // 参数：{ missionId:xxx, time: xxx }
+    *alterMissionTime({ payload }, { put, select }) {
       const sceneState = yield select(state => state.SceneModel);
-      const sceneId = payload.sceneId;
-      const alterValue = payload.alterValue;
+      const { missionId, alterValue } = payload;
 
-      const st = sceneState.__data.time.scenes.find(e => e.sceneId == sceneId);
+      const st = sceneState.__data.time.missions.find(e => e.missionId == missionId);
       if (st != undefined) {
         st.time += alterValue;
       } else {
-        sceneState.__data.time.scenes.push({ sceneId: sceneId, time: alterValue });
+        sceneState.__data.time.missions.push({ missionId: missionId, time: alterValue });
       }
     },
 
-    // 获取场景时间
-    // 参数：{ worldId: xxx }
-    *getSceneTime({ payload }, { put, select }) {
+    // 获取副本时间
+    // 参数：{ missionId: xxx }
+    *getMissionTime({ payload }, { put, select }) {
       const sceneState = yield select(state => state.SceneModel);
-      const sceneId = payload.sceneId;
-      const st = sceneState.__data.time.scenes.find(e => e.sceneId == sceneId);
-      return st != undefined ? st.time: undefined;
+      const { missionId } = payload;
+
+      const st = sceneState.__data.time.missions.find(e => e.missionId == missionId);
+      return st != undefined ? st.time: null;
     },
 
     // 获取场景变量
@@ -443,6 +443,18 @@ export default {
 
       if (alterWorldTime != 0) {
         yield put.resolve(action('alterWorldTime')({ worldId: userState.worldId, alterValue: alterWorldTime }));
+      }
+    },
+
+    *__onMissionTimeCommand({ payload }, { put, select }) {
+      const { missionId } = payload.params;
+      if (payload.params.setTime != undefined) {
+        const { setTime } = payload.params;
+        const timestamp = DateTime.parseFormat(setTime);
+        yield put.resolve(action('setMissionTime')({ missionId: missionId, time: timestamp }));
+      } else if (payload.params.alterSeconds != undefined) {
+        const { alterSeconds } = payload.params;
+        yield put.resolve(action('alterMissionTime')({ missionId: missionId, alterValue: (alterSeconds * 1000) }));
       }
     },
 
@@ -676,8 +688,10 @@ export default {
           if (id == '@world_time_hours') {
             const value = yield put.resolve(action('getWorldTime')({ worldId: userState.worldId }));
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
-          } else if (id == '@scene_time_hours') {
-            const value = yield put.resolve(action('getSceneTime')({ sceneId: payload.__sceneId }));
+          } else if (id.indexOf('@missionTime_') == 0) {
+            const [_k, v] = id.split('_');
+            const missionId = lo.trim(v);
+            const value = yield put.resolve(action('getMissionTime')({ missionId: missionId }));
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
           } else if (id.indexOf('@props_') == 0) {
             const [_k, v] = id.split('_');
