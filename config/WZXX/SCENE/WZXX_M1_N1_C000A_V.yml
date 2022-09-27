@@ -27,6 +27,15 @@ scenes: [
       { id: "daoju_A", min: 0, max: 1 },
       #回溯 换装
       { id: "huanzhuang_A", min: 0, max: 1 },
+      #郊区采集
+      { id: "v_icon_107", min: 0, max: 1 },
+      #森林采集
+      { id: "v_icon_108", min: 0, max: 1 },
+      #天水亭采集
+      { id: "v_icon_109", min: 0, max: 1 },
+      #郊外采集
+      { id: "v_icon_110", min: 0, max: 1 },
+
       
       ],
 
@@ -367,7 +376,7 @@ scenes: [
         options: [ 
          { title: '【四处观察】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'],}, 
          { title: '【想起来，该去买簪子了】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
-         { title: '【是时候该去深林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
+         { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
         #  { title: '【官府】', toScene: 'C000A_V_MAP_0_2'}, 
         #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
         #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
@@ -2011,7 +2020,7 @@ scenes: [
           }, 
 
           { key: 'P3', content: ['李森炎直接交了钱','将自己刚才找的情报告诉老板','情报阁老板摸摸胡须，很痛快的告诉了他','“你方才找到的这些消息中，有真有假”','随后将真的线索告诉了李森炎','【郊外山谷有丹参，郊区有野生白芍，森林中有何首乌，天水阁有白术】',],
-          btn: [{title: '先去森林找', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_101'] ,toScene: 'C000A_V_MAP_-1_5', },]
+          btn: [{title: '先去森林找', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_101'] ,  varsOn: ['WZXX_M1_N1_C000A_V/v_icon_107','WZXX_M1_N1_C000A_V/v_icon_108','WZXX_M1_N1_C000A_V/v_icon_109','WZXX_M1_N1_C000A_V/v_icon_110'] ,toScene: 'C000A_V_MAP_-1_5', },]
           },
 
     ],},
@@ -2155,24 +2164,24 @@ scenes: [
           },
 
           { 
-          point: [0, 5], title: '郊区',
+          point: [0, 5], title: '郊区', icon: { id: 104, bindVar: 'WZXX_M1_N1_C000A_V/v_icon_107' },
           toScene: 'C000A_V_MAP_0_5', 
           links: [[0, 6],[-1, 5],[1, 5],[0, 2],],
           },
 
-          {point: [-1, 5], title: '森林', 
+          {point: [-1, 5], title: '森林', icon: { id: 104, bindVar: 'WZXX_M1_N1_C000A_V/v_icon_108' },
           toScene: 'C000A_V_MAP_-1_5', 
           links: []
           },
 
           {
-          point: [1, 5], title: '天水亭',
+          point: [1, 5], title: '天水亭', icon: { id: 104, bindVar: 'WZXX_M1_N1_C000A_V/v_icon_109' },
           toScene: 'C000A_V_MAP_1_5', 
           links: [] 
           },
 
           { 
-          point: [0, 6], title: '郊外',
+          point: [0, 6], title: '郊外', icon: { id: 104, bindVar: 'WZXX_M1_N1_C000A_V/v_icon_110' },
           toScene: 'C000A_V_MAP_0_6', 
           links: [[-1, 5]] 
           },
@@ -2880,7 +2889,7 @@ scenes: [
       { 
         id: 'C6', desc: "李森炎直接交了钱\n将自己刚才找的情报告诉老板\n情报阁老板摸摸胡须，很痛快的告诉了他\n“你方才找到的这些消息中，有真有假”\n随后将真的线索告诉了李森炎", 
         options: [ 
-         {title: '先去森林找', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_101'] ,toScene: 'C000A_V_MAP_-1_5', }
+         {title: '先去森林找', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_101'] , varsOn: ['WZXX_M1_N1_C000A_V/v_icon_107','WZXX_M1_N1_C000A_V/v_icon_108','WZXX_M1_N1_C000A_V/v_icon_109','WZXX_M1_N1_C000A_V/v_icon_110'] ,toScene: 'C000A_V_MAP_-1_5', }
         ],
       },
     ],

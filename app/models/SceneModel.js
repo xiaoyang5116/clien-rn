@@ -690,6 +690,7 @@ export default {
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;
           } else if (id.indexOf('@missionTime_') == 0) {
             const [_k, v] = id.split('_');
+            console.debug('---->', _k, v)
             const missionId = lo.trim(v);
             const value = yield put.resolve(action('getMissionTime')({ missionId: missionId }));
             compareValue = (value != undefined) ? DateTime.HourUtils.fromMillis(value) : 0;

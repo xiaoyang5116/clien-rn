@@ -23,95 +23,93 @@ data: {
 
   # 主属性
   mainAttrs: [
-    # ===== 1 ======
+# ======================= 1 ===========================
     {
       iconId: 1,
       quality: 1,
       name: '画面',
       desc: "项目的画面",
       props: [
-        { key: "灵感钥匙", propId: 369,},
-       
+        { key: "画面灵感钥匙", propId: 369,},
       ],
       levelConfig: [
-        { grade: 1, subAttrs: ['评价,10','艺术,10'], needProps: ['灵感钥匙,1'] },
-        { grade: 2, subAttrs: ['评价,20','艺术,20'], needProps: ['灵感钥匙,1'] },
-        { grade: 3, subAttrs: ['评价,30','艺术,30'], needProps: ['灵感钥匙,1'] },
-        { grade: 4, subAttrs: ['评价,40','艺术,40'], needProps: ['灵感钥匙,1'] },
-        { grade: 5, subAttrs: ['评价,50','艺术,50'], needProps: ['灵感钥匙,1'] },
-        { grade: 6, subAttrs: ['评价,60','艺术,60'], needProps: ['灵感钥匙,1'] },
-        { grade: 7, subAttrs: ['评价,70','艺术,70'], needProps: ['灵感钥匙,1'] },
-        { grade: 8, subAttrs: ['评价,80','艺术,80'], needProps: ['灵感钥匙,1'] },
-        { grade: 9, subAttrs: ['评价,90','艺术,90'], needProps: ['灵感钥匙,1'] },
+        { grade: 1, subAttrs: ['评价,10','艺术,10'], needProps: ['画面灵感钥匙,1'] },
+        { grade: 2, subAttrs: ['评价,20','艺术,20'], needProps: ['画面灵感钥匙,1'] },
+        { grade: 3, subAttrs: ['评价,30','艺术,30'], needProps: ['画面灵感钥匙,1'] },
+        { grade: 4, subAttrs: ['评价,40','艺术,40'], needProps: ['画面灵感钥匙,1'] },
+        { grade: 5, subAttrs: ['评价,50','艺术,50'], needProps: ['画面灵感钥匙,1'] },
+        { grade: 6, subAttrs: ['评价,60','艺术,60'], needProps: ['画面灵感钥匙,1'] },
+        { grade: 7, subAttrs: ['评价,70','艺术,70'], needProps: ['画面灵感钥匙,1'] },
+        { grade: 8, subAttrs: ['评价,80','艺术,80'], needProps: ['画面灵感钥匙,1'] },
+        { grade: 9, subAttrs: ['评价,90','艺术,90'], needProps: ['画面灵感钥匙,1'] },
         { grade: 10, subAttrs: ['评价,100','艺术,100'], },
       ],
     },
 
-    # ===== 2 ======
+# ========================= 2 ==============================
     {
       iconId: 1,
       quality: 1,
       name: '剧情',
       desc: "项目的剧情",
       props: [
-        { key: "灵感钥匙", propId: 369,},
+        { key: "剧情灵感钥匙", propId: 370,},
       ],
       levelConfig: [
-        { grade: 1, subAttrs: ['评价,10','演出,10'], needProps: ['灵感钥匙,1'] },
-        { grade: 2, subAttrs: ['评价,20','演出,20'], needProps: ['灵感钥匙,1'] },
-        { grade: 3, subAttrs: ['评价,30','演出,30'], needProps: ['灵感钥匙,1'] },
-        { grade: 4, subAttrs: ['评价,40','演出,40'], needProps: ['灵感钥匙,1'] },
-        { grade: 5, subAttrs: ['评价,50','演出,50'], needProps: ['灵感钥匙,1'] },
-        { grade: 6, subAttrs: ['评价,60','演出,60'], needProps: ['灵感钥匙,1'] },
-        { grade: 7, subAttrs: ['评价,70','演出,70'], needProps: ['灵感钥匙,1'] },
-        { grade: 8, subAttrs: ['评价,80','演出,80'], needProps: ['灵感钥匙,1'] },
-        { grade: 9, subAttrs: ['评价,90','演出,90'], needProps: ['灵感钥匙,1'] },
+        { grade: 1, subAttrs: ['评价,10','演出,10'], needProps: ['剧情灵感钥匙,1'] },
+        { grade: 2, subAttrs: ['评价,20','演出,20'], needProps: ['剧情灵感钥匙,1'] },
+        { grade: 3, subAttrs: ['评价,30','演出,30'], needProps: ['剧情灵感钥匙,1'] },
+        { grade: 4, subAttrs: ['评价,40','演出,40'], needProps: ['剧情灵感钥匙,1'] },
+        { grade: 5, subAttrs: ['评价,50','演出,50'], needProps: ['剧情灵感钥匙,1'] },
+        { grade: 6, subAttrs: ['评价,60','演出,60'], needProps: ['剧情灵感钥匙,1'] },
+        { grade: 7, subAttrs: ['评价,70','演出,70'], needProps: ['剧情灵感钥匙,1'] },
+        { grade: 8, subAttrs: ['评价,80','演出,80'], needProps: ['剧情灵感钥匙,1'] },
+        { grade: 9, subAttrs: ['评价,90','演出,90'], needProps: ['剧情灵感钥匙,1'] },
         { grade: 10, subAttrs: ['评价,100','演出,100'], },
       ],
     },
 
-    # ===== 3 ======
+# ======================= 3 ==============================
     {
       iconId: 1,
       quality: 1,
       name: '细节',
       desc: "项目的细节",
       props: [
-       { key: "灵感钥匙", propId: 369,},
+       { key: "细节灵感钥匙", propId: 371,},
       ],
       levelConfig: [
-        { grade: 1, subAttrs: ['评价,10','细致,10'], needProps: ['灵感钥匙,1']},
-        { grade: 2, subAttrs: ['评价,20','细致,20'], needProps: ['灵感钥匙,1'] },
-        { grade: 3, subAttrs: ['评价,30','细致,30'], needProps: ['灵感钥匙,1'] },
-        { grade: 4, subAttrs: ['评价,40','细致,40'], needProps: ['灵感钥匙,1'] },
-        { grade: 5, subAttrs: ['评价,50','细致,50'], needProps: ['灵感钥匙,1'] },
-        { grade: 6, subAttrs: ['评价,60','细致,60'], needProps: ['灵感钥匙,1'] },
-        { grade: 7, subAttrs: ['评价,70','细致,70'], needProps: ['灵感钥匙,1'] },
-        { grade: 8, subAttrs: ['评价,80','细致,80'], needProps: ['灵感钥匙,1'] },
-        { grade: 9, subAttrs: ['评价,90','细致,90'], needProps: ['灵感钥匙,1'] },
+        { grade: 1, subAttrs: ['评价,10','细致,10'], needProps: ['细节灵感钥匙,1']},
+        { grade: 2, subAttrs: ['评价,20','细致,20'], needProps: ['细节灵感钥匙,1'] },
+        { grade: 3, subAttrs: ['评价,30','细致,30'], needProps: ['细节灵感钥匙,1'] },
+        { grade: 4, subAttrs: ['评价,40','细致,40'], needProps: ['细节灵感钥匙,1'] },
+        { grade: 5, subAttrs: ['评价,50','细致,50'], needProps: ['细节灵感钥匙,1'] },
+        { grade: 6, subAttrs: ['评价,60','细致,60'], needProps: ['细节灵感钥匙,1'] },
+        { grade: 7, subAttrs: ['评价,70','细致,70'], needProps: ['细节灵感钥匙,1'] },
+        { grade: 8, subAttrs: ['评价,80','细致,80'], needProps: ['细节灵感钥匙,1'] },
+        { grade: 9, subAttrs: ['评价,90','细致,90'], needProps: ['细节灵感钥匙,1'] },
         { grade: 10, subAttrs: ['评价,100','细致,100'], },
       ],
     },
-
-    # ===== 4 ======
+# ========================== 4 ===========================
     {
       iconId: 1,
       quality: 1,
       name: '操作',
       desc: "项目的操作",
       props: [
-        { key: "灵感钥匙", propId: 369,},
+        { key: "操作灵感钥匙", propId: 372,},
       ],
       levelConfig: [
-        { grade: 1, subAttrs: ['评价,10','流畅,10'], needProps: ['灵感钥匙,1']},
-        { grade: 2, subAttrs: ['评价,20','流畅,20'], needProps: ['灵感钥匙,1'] },
-        { grade: 3, subAttrs: ['评价,30','流畅,30'], needProps: ['灵感钥匙,1'] },
-        { grade: 4, subAttrs: ['评价,40','流畅,40'], needProps: ['灵感钥匙,1'] },
-        { grade: 5, subAttrs: ['评价,50','流畅,50'], needProps: ['灵感钥匙,1'] },
-        { grade: 6, subAttrs: ['评价,60','流畅,60'], needProps: ['灵感钥匙,1'] },
-        { grade: 7, subAttrs: ['评价,70','流畅,70'], needProps: ['灵感钥匙,1'] },
-        { grade: 8, subAttrs: ['评价,80','流畅,80'], needProps: ['灵感钥匙,1'] },
-        { grade: 9, subAttrs: ['评价,90','流畅,90'], needProps: ['灵感钥匙,1'] },
+        { grade: 1, subAttrs: ['评价,10','流畅,10'], needProps: ['操作灵感钥匙,1']},
+        { grade: 2, subAttrs: ['评价,20','流畅,20'], needProps: ['操作灵感钥匙,1'] },
+        { grade: 3, subAttrs: ['评价,30','流畅,30'], needProps: ['操作灵感钥匙,1'] },
+        { grade: 4, subAttrs: ['评价,40','流畅,40'], needProps: ['操作灵感钥匙,1'] },
+        { grade: 5, subAttrs: ['评价,50','流畅,50'], needProps: ['操作灵感钥匙,1'] },
+        { grade: 6, subAttrs: ['评价,60','流畅,60'], needProps: ['操作灵感钥匙,1'] },
+        { grade: 7, subAttrs: ['评价,70','流畅,70'], needProps: ['操作灵感钥匙,1'] },
+        { grade: 8, subAttrs: ['评价,80','流畅,80'], needProps: ['操作灵感钥匙,1'] },
+        { grade: 9, subAttrs: ['评价,90','流畅,90'], needProps: ['操作灵感钥匙,1'] },
         { grade: 10, subAttrs: ['评价,100','流畅,100'], },
       ],
     },
