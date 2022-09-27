@@ -25,13 +25,14 @@ import {
     Text,
 } from '../../constants/native-ui';
 
-import { TextButton } from '../../constants/custom-ui';
+import Toast from '../../components/toast';
 import { px2pd } from '../../constants/resolution';
 import PropGrid from '../../components/prop/PropGrid';
 import { Panel } from '../../components/panel';
 import RootView from '../../components/RootView';
 import * as DateTime from '../../utils/DateTimeUtils';
 import TuPoSubPage from './xiuxing/TuPoSubPage';
+import FastImage from 'react-native-fast-image';
 
 const PROGRESS_BAR_WIDTH = px2pd(800);
 
@@ -116,6 +117,79 @@ const PropsBar = (props) => {
     );
 }
 
+// 突破按钮
+const TupoButton = (props) => {
+    const spinBack = React.useRef(new Animated.Value(0)).current;
+    const spinBackAnimation = React.useRef(
+        Animated.loop(
+            Animated.timing(
+                spinBack,
+                {
+                    toValue: 1,
+                    duration: 3000,
+                    easing: Easing.linear,
+                    useNativeDriver: true
+                }
+            )
+        )
+    ).current;
+
+    const spinFront = React.useRef(new Animated.Value(0)).current;
+    const spinFrontAnimation = React.useRef(
+        Animated.loop(
+            Animated.timing(
+                spinFront,
+                {
+                    toValue: 1,
+                    duration: 3000,
+                    easing: Easing.linear,
+                    useNativeDriver: true
+                }
+            )
+        )
+    ).current;
+
+    React.useEffect(() => {
+        spinBackAnimation.start();
+        spinFrontAnimation.start();
+        return () => {
+            spinBackAnimation.stop();
+            spinFrontAnimation.stop();
+        }
+    }, []);
+
+    const spinBackValue = spinBack.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+    });
+
+    const spinFrontValue = spinFront.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['360deg', '0deg']
+    });
+
+    const onPressHandler = () => {
+        if (props.disabled) {
+            Toast.show('无法突破');
+            return;
+        }
+        if (props.onPress != undefined) {
+            props.onPress();
+        }
+    }
+
+    return (
+        <TouchableWithoutFeedback onPress={onPressHandler}>
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <FastImage style={{ width: px2pd(312), height: px2pd(312) }} source={require('../../../assets/button/tupo_btn_bg.png')} />
+                <Animated.Image style={{ position: 'absolute', width: px2pd(250), height: px2pd(250), transform: [{ rotate: spinFrontValue }] }} source={require('../../../assets/button/tupo_btn_yy.png')} />
+                <Animated.Image style={{ position: 'absolute', opacity: 0.5, width: px2pd(260), height: px2pd(260), transform: [{ rotate: spinBackValue }] }} source={require('../../../assets/button/tupo_btn_mask.png')} />
+                <FastImage style={{ position: 'absolute', width: px2pd(183), height: px2pd(108) }} source={require('../../../assets/button/tupo_btn_txt.png')} />
+            </View>
+        </TouchableWithoutFeedback>
+    )
+}
+
 // 主界面
 const XiuXingTabPage = (props) => {
 
@@ -169,14 +243,13 @@ const XiuXingTabPage = (props) => {
                         <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>法力： {getXiuXingAttrValue('法力')}</Text></View>
                         <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>攻击： {getXiuXingAttrValue('攻击')}</Text></View>
                     </View>
-                    <View style={{ marginTop: px2pd(550), justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ marginTop: px2pd(300), marginBottom: px2pd(150), justifyContent: 'center', alignItems: 'center' }}>
                         <View style={{ position: 'absolute', paddingLeft: px2pd(40) }}>
-                            <TextButton title={'突破'} disabled={((props.user.xiuxingStatus.value < props.user.xiuxingStatus.limit) || cdForbiden)} onPress={onTuPo} />
+                            <TupoButton disabled={((props.user.xiuxingStatus.value < props.user.xiuxingStatus.limit) || cdForbiden)} onPress={onTuPo} />
                         </View>
-                        {
-                        (cdForbiden)
+                        {(cdForbiden)
                         ? (
-                        <View style={{ position: 'absolute', bottom: 35 }}>
+                        <View style={{ position: 'absolute', top: px2pd(180) }}>
                             <Text style={styles.cdFontStyle}>等待时间: {DateTime.format(props.user.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
                         </View>
                         )
