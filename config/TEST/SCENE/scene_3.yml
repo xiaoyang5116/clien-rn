@@ -29,7 +29,7 @@ scenes: [
          { title: '【>>>进入破庙】', toScene: 'pomiao' }, 
          { title: '【测试： 时间增加1小时】', missionTime: { missionId: 'mission1', alterSeconds: 3600 } }, 
          { title: '【傍晚之后出现】', andVarsValue: ['@missionTime_mission1 >= 17'] }, 
-         { title: '【清晨出现】', andVarsValue: ['@missionTime_mission1 >= 6', '@missionTime_mission1 <= 7'] }, 
+         { title: '【清晨出现】', andVarsValue: ['@missionTime_mission1 >= 19', '@missionTime_mission1 <= 24'] }, 
         ],
       }
     ],

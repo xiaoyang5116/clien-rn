@@ -34,6 +34,8 @@ drops: [
   { id: 'WZXX_M1_N1_C000F_V_drop5', sendProps: '372,1,showBag', },
   { id: 'WZXX_M1_N1_C000F_V_drop6', sendProps: '372,1,showBag', },
 
+  { id: 'WZXX_M1_N1_C000F_V_drop7', sendProps: '369,1,showBag', },
+
   
 
   #887铜币

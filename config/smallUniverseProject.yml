@@ -30,7 +30,7 @@ data: {
       name: '画面',
       desc: "项目的画面",
       props: [
-        { key: "灵感钥匙", propId: 369,},
+        { key: "画面灵感钥匙", propId: 369,},
       ],
       levelConfig: [
         { grade: 1, subAttrs: ['评价,10','艺术,10'], needProps: ['画面灵感钥匙,1'] },
@@ -53,7 +53,7 @@ data: {
       name: '剧情',
       desc: "项目的剧情",
       props: [
-        { key: "灵感钥匙", propId: 369,},
+        { key: "剧情灵感钥匙", propId: 370,},
       ],
       levelConfig: [
         { grade: 1, subAttrs: ['评价,10','演出,10'], needProps: ['剧情灵感钥匙,1'] },
@@ -76,7 +76,7 @@ data: {
       name: '细节',
       desc: "项目的细节",
       props: [
-       { key: "灵感钥匙", propId: 369,},
+       { key: "细节灵感钥匙", propId: 371,},
       ],
       levelConfig: [
         { grade: 1, subAttrs: ['评价,10','细致,10'], needProps: ['细节灵感钥匙,1']},
@@ -98,7 +98,7 @@ data: {
       name: '操作',
       desc: "项目的操作",
       props: [
-        { key: "灵感钥匙", propId: 369,},
+        { key: "操作灵感钥匙", propId: 372,},
       ],
       levelConfig: [
         { grade: 1, subAttrs: ['评价,10','流畅,10'], needProps: ['操作灵感钥匙,1']},
