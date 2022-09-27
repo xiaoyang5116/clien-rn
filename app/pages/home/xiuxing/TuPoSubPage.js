@@ -108,7 +108,7 @@ const TuPoSubPage = (props) => {
             <Video 
                 style={{ position: 'absolute', width: '100%', height: '100%', display: displayFailureVideo }}
                 ref={(ref) => refFailureVideo.current = ref}
-                source={require('../../../../assets/mp4/XIUXING_TUPO.mp4')}
+                source={require('../../../../assets/mp4/XIUXING_TUPO_FAILURE.mp4')}
                 fullscreen={false}
                 resizeMode={'cover'}
                 repeat={false}

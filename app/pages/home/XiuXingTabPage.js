@@ -25,7 +25,6 @@ import {
     Text,
 } from '../../constants/native-ui';
 
-import Toast from '../../components/toast';
 import { px2pd } from '../../constants/resolution';
 import PropGrid from '../../components/prop/PropGrid';
 import { Panel } from '../../components/panel';
@@ -169,10 +168,6 @@ const TupoButton = (props) => {
     });
 
     const onPressHandler = () => {
-        if (props.disabled) {
-            Toast.show('无法突破');
-            return;
-        }
         if (props.onPress != undefined) {
             props.onPress();
         }
@@ -245,7 +240,10 @@ const XiuXingTabPage = (props) => {
                     </View>
                     <View style={{ marginTop: px2pd(400), marginBottom: px2pd(150), justifyContent: 'center', alignItems: 'center' }}>
                         <View style={{ position: 'absolute', paddingLeft: px2pd(20) }}>
-                            <TupoButton disabled={((props.user.xiuxingStatus.value < props.user.xiuxingStatus.limit) || cdForbiden)} onPress={onTuPo} />
+                            {((props.user.xiuxingStatus.value < props.user.xiuxingStatus.limit) || cdForbiden)
+                            ? <></>
+                            : <TupoButton onPress={onTuPo} />
+                            }
                         </View>
                         {(cdForbiden)
                         ? (
