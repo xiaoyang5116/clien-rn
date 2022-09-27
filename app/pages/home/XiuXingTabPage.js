@@ -141,7 +141,7 @@ const TupoButton = (props) => {
                 spinFront,
                 {
                     toValue: 1,
-                    duration: 3000,
+                    duration: 8000,
                     easing: Easing.linear,
                     useNativeDriver: true
                 }
@@ -183,7 +183,7 @@ const TupoButton = (props) => {
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                 <FastImage style={{ width: px2pd(312), height: px2pd(312) }} source={require('../../../assets/button/tupo_btn_bg.png')} />
                 <Animated.Image style={{ position: 'absolute', width: px2pd(250), height: px2pd(250), transform: [{ rotate: spinFrontValue }] }} source={require('../../../assets/button/tupo_btn_yy.png')} />
-                <Animated.Image style={{ position: 'absolute', opacity: 0.5, width: px2pd(260), height: px2pd(260), transform: [{ rotate: spinBackValue }] }} source={require('../../../assets/button/tupo_btn_mask.png')} />
+                <Animated.Image style={{ position: 'absolute', opacity: 0.5, width: px2pd(180), height: px2pd(180), transform: [{ rotate: spinBackValue }] }} source={require('../../../assets/button/tupo_btn_mask.png')} />
                 <FastImage style={{ position: 'absolute', width: px2pd(183), height: px2pd(108) }} source={require('../../../assets/button/tupo_btn_txt.png')} />
             </View>
         </TouchableWithoutFeedback>
@@ -243,8 +243,8 @@ const XiuXingTabPage = (props) => {
                         <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>法力： {getXiuXingAttrValue('法力')}</Text></View>
                         <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>攻击： {getXiuXingAttrValue('攻击')}</Text></View>
                     </View>
-                    <View style={{ marginTop: px2pd(300), marginBottom: px2pd(150), justifyContent: 'center', alignItems: 'center' }}>
-                        <View style={{ position: 'absolute', paddingLeft: px2pd(40) }}>
+                    <View style={{ marginTop: px2pd(400), marginBottom: px2pd(150), justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ position: 'absolute', paddingLeft: px2pd(20) }}>
                             <TupoButton disabled={((props.user.xiuxingStatus.value < props.user.xiuxingStatus.limit) || cdForbiden)} onPress={onTuPo} />
                         </View>
                         {(cdForbiden)
