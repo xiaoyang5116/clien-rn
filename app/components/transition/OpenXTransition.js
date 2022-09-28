@@ -40,7 +40,13 @@ const OpenXTransition = (props) => {
                     toValue: 0,
                     duration: 600,
                     useNativeDriver: false,
-                }).start();
+                }).start(({ finished }) => {
+                    if (finished) {
+                        if (props.onCompleted != undefined) {
+                            props.onCompleted();
+                        }
+                    }
+                });
             }
         });
     }, []);
@@ -78,6 +84,7 @@ const styles = StyleSheet.create({
 
 OpenXTransition.propTypes = {
     color: PropTypes.string,
+    onCompleted: PropTypes.func,
 };
 
 OpenXTransition.defaultProps = {
