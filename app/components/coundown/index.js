@@ -61,9 +61,13 @@ const CountDown = (props) => {
             <View style={{ width: 'auto', height: LINE_HEIGHT * 3, justifyContent: 'center', alignItems: 'center' }}>
                 <Animated.View key={'top'} style={{ position: 'absolute', opacity: opacityTop, transform: [{ translateY: translateYTop }] }}>
                     <Text style={styles.textStyle}>{textTop.current}</Text>
+                    <Text style={[styles.textStyle, { position: 'absolute' }]}>{textTop.current}</Text>
+                    <Text style={[styles.textStyle, { position: 'absolute' }]}>{textTop.current}</Text>
                 </Animated.View>
                 <Animated.View key={'middle'} style={{ position: 'absolute', opacity: opacityMiddle, transform: [{ translateY: translateYMiddle }] }}>
                     <Text style={styles.textStyle}>{textMiddle.current}</Text>
+                    <Text style={[styles.textStyle, { position: 'absolute' }]}>{textMiddle.current}</Text>
+                    <Text style={[styles.textStyle, { position: 'absolute' }]}>{textMiddle.current}</Text>
                 </Animated.View>
             </View>
         );
