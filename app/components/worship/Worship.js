@@ -201,15 +201,16 @@ const Worship = props => {
 
     return (
       <TouchableOpacity style={styles.gridContainer} onPress={openOfferingPop}>
-        <View
-          style={{
-            width: px2pd(160),
-            height: px2pd(160),
-            borderRadius: 5,
-            borderWidth: 1,
-            borderColor: '#000',
-          }}
-        />
+        <View style={styles.grid}>
+          <FastImage
+            style={{ width: '100%', height: "100%" }}
+            source={require('../../../assets/worship/worship_grid_bg.png')}
+          />
+          <FastImage
+            style={{ width: px2pd(78), height: px2pd(77), position: 'absolute' }}
+            source={require('../../../assets/worship/worship_grid_icon.png')}
+          />
+        </View>
       </TouchableOpacity>
     );
   };
@@ -224,17 +225,25 @@ const Worship = props => {
         onPress={() => {
           cancelWorship(item);
         }}>
-        <FastImage
-          style={{
-            width: px2pd(160),
-            height: px2pd(160),
-            borderRadius: 5,
-            borderWidth: 1,
-            borderColor: quality_style.borderColor,
-            backgroundColor: quality_style.backgroundColor,
-          }}
-          source={image.img}
-        />
+        <View style={styles.grid}>
+          <FastImage
+            style={{ width: '100%', height: "100%" }}
+            source={require('../../../assets/worship/worship_grid_bg.png')}
+          />
+          <FastImage
+            style={{
+              position: 'absolute',
+              width: px2pd(120),
+              height: px2pd(120),
+              borderRadius: 5,
+              borderWidth: 1,
+              borderColor: quality_style.borderColor,
+              backgroundColor: quality_style.backgroundColor,
+            }}
+            source={image.img}
+          />
+        </View>
+
       </TouchableOpacity>
     );
   };
@@ -268,17 +277,24 @@ const Worship = props => {
           onPress={() => {
             openSpeedPage(item);
           }}>
-          <FastImage
-            style={{
-              width: px2pd(160),
-              height: px2pd(160),
-              borderRadius: 5,
-              borderWidth: 1,
-              borderColor: quality_style.borderColor,
-              backgroundColor: quality_style.backgroundColor,
-            }}
-            source={image.img}
-          />
+          <View style={styles.grid}>
+            <FastImage
+              style={{ width: '100%', height: "100%" }}
+              source={require('../../../assets/worship/worship_grid_bg.png')}
+            />
+            <FastImage
+              style={{
+                position: "absolute",
+                width: px2pd(120),
+                height: px2pd(120),
+                borderRadius: 5,
+                borderWidth: 1,
+                borderColor: quality_style.borderColor,
+                backgroundColor: quality_style.backgroundColor,
+              }}
+              source={image.img}
+            />
+          </View>
         </TouchableOpacity>
         <Text>供奉中...</Text>
       </View>
@@ -300,17 +316,24 @@ const Worship = props => {
           onPress={() => {
             openTreasureChest(item);
           }}>
-          <FastImage
-            style={{
-              width: px2pd(160),
-              height: px2pd(160),
-              borderRadius: 5,
-              borderWidth: 1,
-              borderColor: quality_style.borderColor,
-              backgroundColor: quality_style.backgroundColor,
-            }}
-            source={image.img}
-          />
+          <View style={styles.grid}>
+            <FastImage
+              style={{ width: '100%', height: "100%" }}
+              source={require('../../../assets/worship/worship_grid_bg.png')}
+            />
+            <FastImage
+              style={{
+                position: 'absolute',
+                width: px2pd(120),
+                height: px2pd(120),
+                borderRadius: 5,
+                borderWidth: 1,
+                borderColor: quality_style.borderColor,
+                backgroundColor: quality_style.backgroundColor,
+              }}
+              source={image.img}
+            />
+          </View>
         </TouchableOpacity>
         <Text>已完成</Text>
       </View>
@@ -330,7 +353,11 @@ const Worship = props => {
   };
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#fff' }}>
+    <View style={{ flex: 1, }}>
+      <FastImage
+        style={{ position: 'absolute', width: '100%', height: "100%" }}
+        source={require('../../../assets/worship/worship_bg.png')}
+      />
       <SafeAreaView style={{ flex: 1 }}>
         <Header3
           title={'供奉'}
@@ -366,7 +393,7 @@ export default connect(state => ({ ...state.WorshipModel }))(Worship);
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: '65%',
+    top: '70%',
     width: '100%',
     alignItems: 'center',
   },
@@ -377,5 +404,11 @@ const styles = StyleSheet.create({
   titleContainer: {
     alignItems: 'center',
     height: 50
+  },
+  grid: {
+    width: px2pd(163),
+    height: px2pd(163),
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
