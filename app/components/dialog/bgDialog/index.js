@@ -1,5 +1,6 @@
 import {
   StyleSheet,
+  Animated
 } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -98,8 +99,9 @@ const BgDialog = props => {
     refFlatList.current.scrollToEnd({ animated: true });
   };
 
+  let children = <></>
   if (section.type === "TopToBottom") {
-    return (
+    children = (
       <TopToBottomShow
         {...props}
         handlerClick={handlerClick}
@@ -114,7 +116,7 @@ const BgDialog = props => {
       />
     );
   } else if (section.type === "Bottom") {
-    return (
+    children = (
       <BottomShow
         {...props}
         handlerClick={handlerClick}
@@ -129,7 +131,7 @@ const BgDialog = props => {
       />
     );
   } else if (section.type === "Barrage") {
-    return (
+    children = (
       <BarrageShow
         {...props}
         handlerBarrageClick={handlerBarrageClick}
@@ -140,6 +142,12 @@ const BgDialog = props => {
       />
     );
   }
+
+  return (
+    <Animated.View style={{ flex: 1, }}>
+      {children}
+    </Animated.View>
+  )
 };
 
 export default BgDialog;
