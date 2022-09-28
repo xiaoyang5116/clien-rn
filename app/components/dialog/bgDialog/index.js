@@ -5,7 +5,9 @@ import {
 import React, { useEffect, useRef, useState } from 'react';
 
 import { getBgDialog_bgImage, getVideo } from '../../../constants';
+import RootView from '../../RootView';
 
+import Transitions from '../../transition';
 import TopToBottomShow from './TopToBottomShow';
 import BottomShow from './BottomShow';
 import BarrageShow from './BarrageShow';
@@ -75,7 +77,7 @@ const BgDialog = props => {
       dialogIndex === currentContent.length - 1 &&
       sectionIndex === viewData.sections.length - 1
     ) {
-      onDialogCancel();
+      closeDialog()
       actionMethod(viewData)
     }
     _scrollToEnd();
@@ -89,7 +91,7 @@ const BgDialog = props => {
       setSectionIndex(sectionIndex => sectionIndex + 1);
     }
     if (sectionIndex === viewData.sections.length - 1) {
-      onDialogCancel();
+      closeDialog();
       actionMethod(viewData)
     }
   }
@@ -98,6 +100,14 @@ const BgDialog = props => {
   const _scrollToEnd = () => {
     refFlatList.current.scrollToEnd({ animated: true });
   };
+
+  // 关闭
+  const closeDialog = () => {
+    onDialogCancel();
+    const key = RootView.add(<Transitions duration={100} transitionName={"白色转场"} onCompleted={() => {
+      RootView.remove(key);
+    }} />);
+  }
 
   let children = <></>
   if (section.type === "TopToBottom") {

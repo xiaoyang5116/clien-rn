@@ -29,11 +29,11 @@ const Transitions = (props) => {
     switch(transitionName) {
         case 'BlackScreen':
         case '黑色转场':
-            return (<ColorScreenTransition config={{ duration: 300 }} onCompleted={props.onCompleted}>{props.children}</ColorScreenTransition>);
+            return (<ColorScreenTransition config={{ duration: props.duration }} onCompleted={props.onCompleted}>{props.children}</ColorScreenTransition>);
 
         case 'WhiteScreen':
         case '白色转场':
-            return (<ColorScreenTransition config={{ duration: 300 }} color={'#fff'} onCompleted={props.onCompleted}>{props.children}</ColorScreenTransition>);
+            return (<ColorScreenTransition config={{ duration: props.duration }} color={'#fff'} onCompleted={props.onCompleted}>{props.children}</ColorScreenTransition>);
         
         case 'BlackVideoScreen':
         case '黑色视频转场':
@@ -74,7 +74,9 @@ Transitions.propTypes = {
     id: PropTypes.string,
     transitionName: PropTypes.string,
     onCompleted: PropTypes.func,
+    duration: PropTypes.number,
 };
 
 Transitions.defaultProps = {
+    duration: 300,
 };
