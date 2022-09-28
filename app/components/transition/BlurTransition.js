@@ -84,6 +84,9 @@ const BlurTransition = (props) => {
         ]).start(({ finished }) => {
             if (finished) {
                 setPointerEvents('auto');
+                if (props.onCompleted != undefined) {
+                    props.onCompleted();
+                }
             }
         });
     }, []);
@@ -104,6 +107,7 @@ const BlurTransition = (props) => {
 export default BlurTransition;
 
 BlurTransition.propTypes = {
+    onCompleted: PropTypes.func,
 };
 
 BlurTransition.defaultProps = {

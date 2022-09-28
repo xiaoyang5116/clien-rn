@@ -26,6 +26,8 @@ import { Animated, DeviceEventEmitter } from 'react-native';
 import MissionBar from '../../components/mission/MissionBar';
 import { BtnIcon } from '../../components/button';
 import CountDown from '../../components/coundown';
+import RootView from '../../components/RootView';
+import Transitions from '../../components/transition';
 
 const CountDownAnimation = (props) => {
 
@@ -179,10 +181,17 @@ const StoryTabPage = (props) => {
       && (completedProgressIds.current.indexOf(e.item.progressId) == -1)) {
       return // 倒计时选项没结束不能点击
     }
+
     props.dispatch(action('StoryModel/click')(e.item))
     .then(r => {
       props.dispatch(action('StateModel/saveArticleSceneClickState')(e.item));
     });
+
+    if (e.item.toScene != undefined && e.item.transitionAnimation != undefined) {
+      const key = RootView.add(<Transitions transitionName={e.item.transitionAnimation} onCompleted={() => {
+        RootView.remove(key);
+      }} />);
+    }
   }
 
   const onProgressStart = (data) => {

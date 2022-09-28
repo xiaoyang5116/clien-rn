@@ -179,7 +179,7 @@ scenes: [
 
           { title: '【修改世界时间(直接加毫秒)】', alterWorldTime: '86400000' }, 
           { title: '【修改世界时间(跳到明天早上6点)】', alterWorldTime: '@day/1/6' }, 
-          { title: '【进入测试副本】', toScene: 'pomiaomk' }, 
+          { title: '【进入测试副本】', toScene: 'pomiaomk', transitionAnimation: '黑色圆形转场' }, 
           
           # { title: '【移动地图中心点_P2】', toMapPoint: [-1, 0] }, 
           # { title: '【小游戏：劈砖头】', games: { id: 1 }, dropIds: [ 'WZXX_M1_N1_C001V_Vdrop1'], }, 

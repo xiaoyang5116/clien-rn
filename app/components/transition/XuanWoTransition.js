@@ -103,6 +103,9 @@ const XuanWoTransition = (props) => {
         ]).start(({ finished }) => {
             if (finished) {
                 setPointerEvents('auto');
+                if (props.onCompleted != undefined) {
+                    props.onCompleted();
+                }
             }
         });
     }, []);
@@ -126,6 +129,7 @@ const XuanWoTransition = (props) => {
 export default XuanWoTransition;
 
 XuanWoTransition.propTypes = {
+    onCompleted: PropTypes.func,
 };
 
 XuanWoTransition.defaultProps = {
