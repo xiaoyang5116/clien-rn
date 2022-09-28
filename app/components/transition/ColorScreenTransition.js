@@ -27,6 +27,9 @@ const ColorScreenTransition = (props) => {
             const { finished } = r;
             if (finished) {
                 setPointerEvents('none');
+                if (props.onCompleted != undefined) {
+                    props.onCompleted();
+                }
             }
         });
     }
@@ -62,6 +65,7 @@ export default ColorScreenTransition;
 
 ColorScreenTransition.propTypes = {
     color: PropTypes.string,
+    onCompleted: PropTypes.func,
 };
 
 ColorScreenTransition.defaultProps = {

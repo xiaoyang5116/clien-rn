@@ -48,6 +48,9 @@ const BlackCircleTransition = (props) => {
             const { finished } = r;
             if (finished) {
                 setPointerEvents('none');
+                if (props.onCompleted != undefined) {
+                    props.onCompleted();
+                }
             }
         });
     }, []);
@@ -91,6 +94,7 @@ const styles = StyleSheet.create({
 
 BlackCircleTransition.propTypes = {
     color: PropTypes.string,
+    onCompleted: PropTypes.func,
 };
 
 BlackCircleTransition.defaultProps = {

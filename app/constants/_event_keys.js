@@ -24,10 +24,17 @@ export class EventKeys {
     static SET_CURRENT_WORLD = 'SET_CURRENT_WORLD';
     static SCREEN_TRANSITION_START = 'SCREEN_TRANSITION_START';
 
+    // 选项点击后出发
+    static OPTION_CLICKED = 'OPTION_CLICKED';
+
     // 动画结束
     static ANIMATION_END = 'ANIMATION_END';
+
     // 系统颜色方案发生变化（黑夜模式切换）
     static COLOR_SCHEME_CHANGED = 'COLOR_SCHEME_CHANGED';
+
+    // 副本时间发生变化
+    static MISSION_TIME_CHANGED = 'MISSION_TIME_CHANGED';
 
     // 探索相关消息
     static EXPLORE_MSGLIST_ADD = 'EXPLORE_MSGLIST_ADD';

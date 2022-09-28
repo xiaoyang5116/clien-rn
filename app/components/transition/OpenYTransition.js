@@ -64,6 +64,9 @@ const OpenYTransition = (props) => {
             const { finished } = r;
             if (finished) {
                 setPointerEvents('none');
+                if (props.onCompleted != undefined) {
+                    props.onCompleted();
+                }
             }
         });
     }, []);
@@ -112,6 +115,7 @@ const styles = StyleSheet.create({
 
 OpenYTransition.propTypes = {
     color: PropTypes.string,
+    onCompleted: PropTypes.func,
 };
 
 OpenYTransition.defaultProps = {

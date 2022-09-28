@@ -7,28 +7,29 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 
-import {px2pd} from '../../constants/resolution';
-import {action, connect} from '../../constants';
+import { px2pd } from '../../constants/resolution';
+import { action, connect } from '../../constants';
 import RootView from '../RootView';
-import {h_m_s_Format} from '../../utils/DateTimeUtils';
+import { h_m_s_Format } from '../../utils/DateTimeUtils';
 import Toast from '../toast';
 
 import ImageCapInset from 'react-native-image-capinsets-next';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FastImage from 'react-native-fast-image';
 import AuxiliaryMaterialsPop from '../alchemyRoom/AuxiliaryMaterialsPop';
-import {Header3, TextButton} from '../../constants/custom-ui';
+import { Header3, TextButton } from '../../constants/custom-ui';
 import SelectQuantityPop from './SelectQuantityPop';
 import PropIcon from '../alchemyRoom/components/PropIcon';
+import { TitleComponent } from '../alchemyRoom/DanFangDetailPage'
 
 // 原材料
 const StuffsComponent = props => {
-  const {stuffsDetail} = props;
+  const { stuffsDetail } = props;
 
-  const renderStuffs = ({item, index}) => {
-    const {name, currNum, reqNum} = item;
+  const renderStuffs = ({ item, index }) => {
+    const { name, currNum, reqNum } = item;
     return (
       <View
         style={{
@@ -40,9 +41,9 @@ const StuffsComponent = props => {
           backgroundColor: 'rgba(255,255,255,0.5)',
         }}>
         <ImageCapInset
-          style={{width: '100%', height: '100%', position: 'absolute'}}
+          style={{ width: '100%', height: '100%', position: 'absolute' }}
           source={require('../../../assets/button/40dpi_gray.png')}
-          capInsets={{top: 12, right: 12, bottom: 12, left: 12}}
+          capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
         />
         <View
           style={{
@@ -55,10 +56,10 @@ const StuffsComponent = props => {
             alignItems: 'center',
           }}>
           <PropIcon item={item} />
-          <Text style={{flex: 1, fontSize: 16, color: '#000', marginLeft: 8}}>
+          <Text style={{ flex: 1, fontSize: 16, color: '#000', marginLeft: 8 }}>
             {name}
           </Text>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Text
               style={{
                 fontSize: 16,
@@ -66,7 +67,7 @@ const StuffsComponent = props => {
               }}>
               {currNum}
             </Text>
-            <Text style={{fontSize: 16, color: '#000'}}>/{reqNum}</Text>
+            <Text style={{ fontSize: 16, color: '#000' }}>/{reqNum}</Text>
           </View>
         </View>
       </View>
@@ -74,9 +75,7 @@ const StuffsComponent = props => {
   };
   return (
     <View>
-      <Text style={[styles.title_box, {width: 120, marginTop: 12}]}>
-        原材料数
-      </Text>
+      <TitleComponent title={"原材料数"} style={{ marginTop: 12 }} />
       <FlatList
         data={stuffsDetail}
         renderItem={renderStuffs}
@@ -88,10 +87,10 @@ const StuffsComponent = props => {
 
 // 目标道具
 const TargetsComponent = props => {
-  const {targets, time} = props;
+  const { targets, time } = props;
 
-  const renderTargets = ({item}) => {
-    const {name, productNum} = item;
+  const renderTargets = ({ item }) => {
+    const { name, productNum } = item;
     return (
       <View
         style={{
@@ -103,9 +102,9 @@ const TargetsComponent = props => {
           backgroundColor: 'rgba(255,255,255,0.5)',
         }}>
         <ImageCapInset
-          style={{width: '100%', height: '100%', position: 'absolute'}}
+          style={{ width: '100%', height: '100%', position: 'absolute' }}
           source={require('../../../assets/button/40dpi_gray.png')}
-          capInsets={{top: 12, right: 12, bottom: 12, left: 12}}
+          capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
         />
         <View
           style={{
@@ -118,11 +117,11 @@ const TargetsComponent = props => {
             alignItems: 'center',
           }}>
           <PropIcon item={item} />
-          <Text style={{flex: 1, fontSize: 16, color: '#000', marginLeft: 8}}>
+          <Text style={{ flex: 1, fontSize: 16, color: '#000', marginLeft: 8 }}>
             {name}
           </Text>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{fontSize: 16, color: '#000'}}>{productNum}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Text style={{ fontSize: 16, color: '#000' }}>{productNum}</Text>
           </View>
         </View>
       </View>
@@ -132,8 +131,12 @@ const TargetsComponent = props => {
   return (
     <View>
       <View style={styles.expected_container}>
-        <Text style={styles.title_box}>预计耗时: {h_m_s_Format(time)}</Text>
-        <Text style={[styles.title_box, {marginLeft: 24}]}>有概率获得</Text>
+        <TitleComponent
+          title={`预计耗时:${h_m_s_Format(time)}`}
+          source={require('../../../assets/button/lianDan2.png')}
+          style={{ width: px2pd(500), height: px2pd(108) }}
+        />
+        <TitleComponent title={"有概率获得"} style={{ marginLeft: 24 }} />
       </View>
       <View>
         <FlatList
@@ -148,7 +151,7 @@ const TargetsComponent = props => {
 
 // 辅助材料
 const AuxiliaryMaterials = props => {
-  const {propsDetail, auxiliaryMaterials, setAuxiliaryMaterials} = props;
+  const { propsDetail, auxiliaryMaterials, setAuxiliaryMaterials } = props;
 
   const openAuxiliaryMaterialsPop = () => {
     const key = RootView.add(
@@ -166,7 +169,7 @@ const AuxiliaryMaterials = props => {
     if (auxiliaryMaterials.length === 0) {
       return (
         <TouchableOpacity
-          style={{marginTop: 12}}
+          style={{ marginTop: 12 }}
           onPress={openAuxiliaryMaterialsPop}>
           <View
             style={{
@@ -177,22 +180,22 @@ const AuxiliaryMaterials = props => {
               backgroundColor: 'rgba(255,255,255,0.5)',
             }}>
             <ImageCapInset
-              style={{width: '100%', height: '100%', position: 'absolute'}}
+              style={{ width: '100%', height: '100%', position: 'absolute' }}
               source={require('../../../assets/button/40dpi_gray.png')}
-              capInsets={{top: 12, right: 12, bottom: 12, left: 12}}
+              capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
             />
             <View
-              style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+              style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
               <AntDesign name="pluscircleo" color={'#000'} size={23} />
             </View>
           </View>
         </TouchableOpacity>
       );
     } else {
-      const {name, currNum, reqNum} = auxiliaryMaterials[0];
+      const { name, currNum, reqNum } = auxiliaryMaterials[0];
       return (
         <TouchableOpacity
-          style={{marginTop: 12}}
+          style={{ marginTop: 12 }}
           onPress={openAuxiliaryMaterialsPop}>
           <View
             style={{
@@ -203,9 +206,9 @@ const AuxiliaryMaterials = props => {
               backgroundColor: 'rgba(255,255,255,0.5)',
             }}>
             <ImageCapInset
-              style={{width: '100%', height: '100%', position: 'absolute'}}
+              style={{ width: '100%', height: '100%', position: 'absolute' }}
               source={require('../../../assets/button/40dpi_gray.png')}
-              capInsets={{top: 12, right: 12, bottom: 12, left: 12}}
+              capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
             />
             <View
               style={{
@@ -219,10 +222,10 @@ const AuxiliaryMaterials = props => {
               }}>
               <PropIcon item={auxiliaryMaterials[0]} />
               <Text
-                style={{flex: 1, fontSize: 16, color: '#000', marginLeft: 8}}>
+                style={{ flex: 1, fontSize: 16, color: '#000', marginLeft: 8 }}>
                 {name}
               </Text>
-              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Text
                   style={{
                     fontSize: 16,
@@ -230,7 +233,7 @@ const AuxiliaryMaterials = props => {
                   }}>
                   {currNum}
                 </Text>
-                <Text style={{fontSize: 16, color: '#000'}}>/{reqNum}</Text>
+                <Text style={{ fontSize: 16, color: '#000' }}>/{reqNum}</Text>
               </View>
             </View>
           </View>
@@ -248,7 +251,7 @@ const AuxiliaryMaterials = props => {
           justifyContent: 'flex-start',
           alignItems: 'center',
         }}>
-        <Text style={[styles.title_box, {width: 120}]}>辅助材料</Text>
+        <TitleComponent title={"辅助材料"} />
       </View>
       <View>
         <AddAuxiliaryMaterialsComponent />
@@ -259,7 +262,7 @@ const AuxiliaryMaterials = props => {
 
 // 炼器图纸详细页面
 const LianQiRecipeDetail = props => {
-  const {recipe, onCloseRecipePage} = props;
+  const { recipe, onCloseRecipePage } = props;
   const [recipeDetail, setRecipeDetail] = useState({});
 
   // 辅助材料
@@ -275,7 +278,7 @@ const LianQiRecipeDetail = props => {
 
   const LianQiRecipeDetail = () => {
     return (
-      <View style={{flex: 1, paddingLeft: 12, paddingRight: 12, marginTop: 12}}>
+      <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, marginTop: 12 }}>
         <StuffsComponent stuffsDetail={recipeDetail.stuffsDetail} />
         <TargetsComponent targets={recipeDetail.targets} time={recipe.time} />
         <AuxiliaryMaterials
@@ -303,7 +306,7 @@ const LianQiRecipeDetail = props => {
       );
     };
     return (
-      <View style={{marginBottom: 12, paddingLeft: 12, paddingRight: 12}}>
+      <View style={{ marginBottom: 12, paddingLeft: 12, paddingRight: 12 }}>
         {recipe.valid ? (
           <TextButton title={'炼器'} onPress={selectQuantity} />
         ) : (
@@ -314,16 +317,16 @@ const LianQiRecipeDetail = props => {
   };
 
   return (
-    <View style={{flex: 1, zIndex: 99}}>
+    <View style={{ flex: 1, zIndex: 99 }}>
       <FastImage
-        style={{position: 'absolute', width: px2pd(1080), height: px2pd(2400)}}
+        style={{ position: 'absolute', width: px2pd(1080), height: px2pd(2400) }}
         source={require('../../../assets/plant/plantBg.jpg')}
       />
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <Header3
           title={'材料选择'}
           onClose={props.onClose}
-          containerStyle={{marginTop: 12}}
+          containerStyle={{ marginTop: 12 }}
         />
         <LianQiRecipeDetail />
         <LianQiButton />
@@ -332,19 +335,9 @@ const LianQiRecipeDetail = props => {
   );
 };
 
-export default connect(state => ({...state.LianQiModel}))(LianQiRecipeDetail);
+export default connect(state => ({ ...state.LianQiModel }))(LianQiRecipeDetail);
 
 const styles = StyleSheet.create({
-  title_box: {
-    height: 40,
-    lineHeight: 40,
-    paddingLeft: 12,
-    paddingRight: 12,
-    backgroundColor: '#389e0d',
-    fontSize: 16,
-    color: '#1f1f1f',
-    textAlign: 'center',
-  },
   expected_container: {
     flexDirection: 'row',
     marginTop: 12,

@@ -8,10 +8,11 @@ import OptionView from './OptionView';
 import PlainOptionView from './PlainOptionView';
 import OverView from './OverView';
 import ImageView from './ImageView';
-import { AppDispath } from '../../constants';
+import { AppDispath, EventKeys } from '../../constants';
 import RootView from '../RootView';
 import OptionsPage from '../../pages/OptionsPage';
 import Transitions from '../../components/transition';
+import { DeviceEventEmitter } from 'react-native';
 
 export default class ArticleBlock extends React.PureComponent {
 
@@ -61,6 +62,9 @@ export class ArticleOptionActions {
                 </Transitions>
                 );
             }
+
+            // 通知点击事件
+            DeviceEventEmitter.emit(EventKeys.OPTION_CLICKED, payload);
 
             // 执行回调方法
             if (callback != undefined) {

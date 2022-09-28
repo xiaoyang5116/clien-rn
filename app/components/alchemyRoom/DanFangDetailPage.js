@@ -6,6 +6,7 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  ImageBackground
 } from 'react-native';
 import React, { useEffect, useState } from 'react'
 
@@ -23,6 +24,17 @@ import SelectQuantityPop from './SelectQuantityPop';
 import Toast from '../toast';
 import PropIcon from './components/PropIcon';
 
+
+export const TitleComponent = ({ title, style, source, }) => {
+
+  const img = source ? source : require('../../../assets/button/lianDan.png')
+  const widthAndHeight = source ? {} : { width: px2pd(385), height: px2pd(108), }
+  return (
+    <ImageBackground style={{ ...widthAndHeight, justifyContent: 'center', alignItems: 'center', ...style }} source={img} >
+      <Text style={styles.title_box}>{title}</Text>
+    </ImageBackground>
+  )
+}
 
 // 原材料
 const StuffsComponent = (props) => {
@@ -56,7 +68,7 @@ const StuffsComponent = (props) => {
   }
   return (
     <View>
-      <Text style={[styles.title_box, { width: 120, marginTop: 12 }]}>原材料数</Text>
+      <TitleComponent title={"原材料数"} style={{ marginTop: 12 }} />
       <FlatList
         data={stuffsDetail}
         renderItem={renderStuffs}
@@ -97,8 +109,12 @@ const TargetsComponent = (props) => {
   return (
     <View>
       <View style={styles.expected_container}>
-        <Text style={styles.title_box}>预计耗时: {h_m_s_Format(time)}</Text>
-        <Text style={[styles.title_box, { marginLeft: 24 }]}>有概率获得</Text>
+        <TitleComponent
+          title={`预计耗时:${h_m_s_Format(time)}`}
+          source={require('../../../assets/button/lianDan2.png')}
+          style={{ width: px2pd(500), height: px2pd(108) }}
+        />
+        <TitleComponent title={"有概率获得"} style={{ marginLeft: 24 }} />
       </View>
       <View>
         <FlatList
@@ -175,7 +191,7 @@ const AuxiliaryMaterials = (props) => {
   return (
     <View>
       <View style={{ flexDirection: 'row', marginTop: 12, justifyContent: "flex-start", alignItems: "center" }}>
-        <Text style={[styles.title_box, { width: 120, }]}>辅助材料</Text>
+        <TitleComponent title={"辅助材料"} />
       </View>
       <View>
         <AddAuxiliaryMaterialsComponent />
@@ -261,14 +277,8 @@ export default connect(state => ({ ...state.AlchemyModel }))(DanFangDetailPage)
 
 const styles = StyleSheet.create({
   title_box: {
-    height: 40,
-    lineHeight: 40,
-    paddingLeft: 12,
-    paddingRight: 12,
-    backgroundColor: "#389e0d",
     fontSize: 16,
     color: "#1f1f1f",
-    textAlign: 'center',
   },
   expected_container: {
     flexDirection: "row",
