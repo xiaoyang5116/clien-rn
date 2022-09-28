@@ -33,6 +33,9 @@ export class EventKeys {
     // 系统颜色方案发生变化（黑夜模式切换）
     static COLOR_SCHEME_CHANGED = 'COLOR_SCHEME_CHANGED';
 
+    // 副本时间发生变化
+    static MISSION_TIME_CHANGED = 'MISSION_TIME_CHANGED';
+
     // 探索相关消息
     static EXPLORE_MSGLIST_ADD = 'EXPLORE_MSGLIST_ADD';
     static EXPLORE_MSGLIST_ADDALL = 'EXPLORE_MSGLIST_ADDALL';

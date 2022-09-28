@@ -12,7 +12,6 @@ import {
 import { 
   Text, 
   View, 
-  Image,
   SectionList, 
   TouchableWithoutFeedback 
 } from '../../constants/native-ui';
@@ -23,9 +22,81 @@ import FastImage from 'react-native-fast-image';
 import lo from 'lodash';
 import { px2pd, SCALE_FACTOR } from '../../constants/resolution';
 import SceneMap from '../../components/maps/SceneMap';
-import { DeviceEventEmitter } from 'react-native';
+import { Animated, DeviceEventEmitter } from 'react-native';
 import MissionBar from '../../components/mission/MissionBar';
 import { BtnIcon } from '../../components/button';
+import CountDown from '../../components/coundown';
+
+const CountDownAnimation = (props) => {
+
+  const opacity = React.useRef(new Animated.Value(0)).current;
+  const translateX = React.useRef(new Animated.Value(0)).current;
+  const refUniqueId = React.useRef(1);
+  const [countdown, setCountDown] = React.useState([]);
+
+  const onCountDownCompleted = () => {
+    Animated.sequence([
+      Animated.delay(1200),
+      Animated.timing(opacity, {
+        toValue: 0,
+        duration: 600,
+        useNativeDriver: true
+      })
+    ]).start(({ finished }) => {
+      if (finished) {
+        setCountDown(<></>);
+      }
+    });
+  }
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(EventKeys.MISSION_TIME_CHANGED, (v) => {
+      if (!lo.isObject(v) || v.hours == undefined)
+        return
+      
+      Animated.sequence([
+        Animated.timing(translateX, {
+          toValue: px2pd(1030),
+          duration: 0,
+          useNativeDriver: true
+        }),
+        Animated.timing(opacity, {
+          toValue: 1,
+          duration: 0,
+          useNativeDriver: true
+        }),
+        Animated.timing(translateX, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: true
+        })
+      ]).start(({ finished }) => {
+        if (finished) {
+          setCountDown(<CountDown key={refUniqueId.current} delay={800} sequeue={v.hours} onCompleted={onCountDownCompleted} />);
+          refUniqueId.current += 1;
+        }
+      });
+    });
+    return () => {
+      listener.remove();
+    }
+  }, []);
+
+  return (
+    <Animated.View style={{ position: 'absolute', 
+        opacity: opacity,
+        transform: [{ translateX: translateX }], 
+        width: px2pd(1030), height: px2pd(277), 
+        justifyContent: 'center', alignItems: 'flex-end', 
+        top: 0, right: 10, overflow: 'hidden' }}
+      >
+      <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/bg/mission_time_bg.png')} />
+      <View style={{ marginRight: px2pd(120) }}>
+        {countdown}
+      </View>
+    </Animated.View>
+  )
+}
 
 const SceneImage = (props) => {
   const { scene } = props;
@@ -40,6 +111,8 @@ const SceneImage = (props) => {
         <View style={{ flex: 1, marginLeft: 10, marginRight: 10, borderColor: '#999', borderWidth: 2 }}>
           <FastImage style={{ width: '100%', height: '100%' }} source={img.img} resizeMode='cover'  />
         </View>
+        {/* 时间切换动效 */}
+        <CountDownAnimation />
       </View>
       );
   }

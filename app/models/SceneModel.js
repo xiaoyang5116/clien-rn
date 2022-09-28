@@ -242,11 +242,29 @@ export default {
       const sceneState = yield select(state => state.SceneModel);
       const { missionId, alterValue } = payload;
 
+      let oldTime = 0;
+      let newTime = 0;
+
       const st = sceneState.__data.time.missions.find(e => e.missionId == missionId);
       if (st != undefined) {
+        oldTime = st.time;
         st.time += alterValue;
+        newTime = st.time;
       } else {
         sceneState.__data.time.missions.push({ missionId: missionId, time: alterValue });
+      }
+
+      if (oldTime > 0 && newTime > 0) {
+        let dt = new Date();
+        dt.setTime(oldTime);
+        const oldTimeName = DateTime.DayPeriod.format(dt.getHours());
+
+        dt.setTime(newTime);
+        const newTimeName = DateTime.DayPeriod.format(dt.getHours());
+
+        if (!lo.isEqual(oldTimeName, newTimeName)) {
+          DeviceEventEmitter.emit(EventKeys.MISSION_TIME_CHANGED, { hours: [oldTimeName, newTimeName] });
+        }
       }
     },
 

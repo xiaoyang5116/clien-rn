@@ -5,6 +5,8 @@ scenes: [
     
     name: '破庙门口',
 
+    sceneImage: 'BGT_1',
+
     missionId: 'mission1',
 
     # 变量定义
