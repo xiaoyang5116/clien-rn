@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated, Text, View } from 'react-native';
+import { Animated, StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { px2pd } from '../../constants/resolution';
@@ -60,10 +60,10 @@ const CountDown = (props) => {
         const views = (
             <View style={{ width: 'auto', height: LINE_HEIGHT * 3, justifyContent: 'center', alignItems: 'center' }}>
                 <Animated.View key={'top'} style={{ position: 'absolute', opacity: opacityTop, transform: [{ translateY: translateYTop }] }}>
-                    <Text style={{ lineHeight: LINE_HEIGHT, color: '#000', fontSize: 24 }}>{textTop.current}</Text>
+                    <Text style={styles.textStyle}>{textTop.current}</Text>
                 </Animated.View>
                 <Animated.View key={'middle'} style={{ position: 'absolute', opacity: opacityMiddle, transform: [{ translateY: translateYMiddle }] }}>
-                    <Text style={{ lineHeight: LINE_HEIGHT, color: '#000', fontSize: 24 }}>{textMiddle.current}</Text>
+                    <Text style={styles.textStyle}>{textMiddle.current}</Text>
                 </Animated.View>
             </View>
         );
@@ -101,6 +101,17 @@ const CountDown = (props) => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    textStyle: {
+        color: '#fff', 
+        lineHeight: LINE_HEIGHT,
+        fontSize: 24, 
+        textShadowColor: '#000', 
+        textShadowRadius: 2, 
+        shadowOpacity: 0,
+    },
+});
 
 CountDown.propTypes = {
     sequeue: PropTypes.array,
