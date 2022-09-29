@@ -1,0 +1,65 @@
+#####################
+#  配置测试
+#####################
+
+scenes: [
+    {
+      id: 'test_scenes',
+      name: '配置测试',
+      worldTimeHidden: false,
+      sceneImage: 'BGT_1',
+
+      # 变量定义
+      vars: [
+        { id: 'v1', min: 0, max: 1 }
+      ],
+
+      # 动作定义
+      actions: [],
+
+      # 剧情道具
+      plotPropsId: [1000, 1001, 1002],
+
+      # 事件定义
+      events: [
+        { type: 'enter', nextChat: 'c0' }
+      ],
+
+      # 注册地图
+      # maps: [],
+
+      # 当前场景地图
+      # mapId: 'map1',
+      # 地图中心点
+      # mapCenterPoint: [-1, 0],
+
+      # 对话选项
+      chats: [
+          {  
+            id: 'c0', desc: '配置测试', 
+            options: [
+              { title: '【背景对话框(5 号)】', dialogs: ['p1'] },
+              { title: '航海探索', games: {id: 8} }
+            ],
+          },
+        ],
+
+      # 对话框 1黑旁白2白旁白
+      dialogs:
+        [
+          {
+            id: 'p1', style: 5, textAnimationType: 'TextSingle',
+            sections: [
+              {
+                type: 'TopToBottom', bgImageId: 4, loop: true,
+                content: [
+                  '你迅速跑过去，地面有些东西。',
+                  '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
+                  '那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。',
+                ],
+              },
+            ],
+          },
+        ],
+    },
+  ]

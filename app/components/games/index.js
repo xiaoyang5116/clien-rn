@@ -10,6 +10,7 @@ import CopyBook from './CopyBook'
 import { AppDispath } from '../../constants';
 import SmashEggs from './SmashEggs'
 import SmallUniverseProject from './SmallUniverseProject';
+import NauticalExploration from './nauticalExploration';
 
 
 const afterGameClosed = (params) => {
@@ -56,6 +57,11 @@ export default class Games {
             }} />);
         } else if (id == 7) {  // 小宇宙项目
             const key = RootView.add(<SmallUniverseProject {...params} onClose={() => {
+                RootView.remove(key);
+                afterGameClosed(params);
+            }} />);
+        } else if (id == 8) {  // 航海探索
+            const key = RootView.add(<NauticalExploration {...params} onClose={() => {
                 RootView.remove(key);
                 afterGameClosed(params);
             }} />);
