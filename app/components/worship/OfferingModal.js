@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
 import React, { useState } from 'react';
 
 import { timeLeft } from '../../utils/DateTimeUtils';
@@ -9,6 +9,8 @@ import { Header3 } from '../header';
 import { TextButton } from '../../constants/custom-ui';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import PropIcon from '../alchemyRoom/components/PropIcon';
+import { px2pd } from '../../constants/resolution';
+import FastImage from 'react-native-fast-image';
 
 const OfferingModal = props => {
   const { data, onClose, addWorshipProp, gridId } = props;
@@ -25,13 +27,24 @@ const OfferingModal = props => {
       <TouchableOpacity onPress={() => { setWorship(item) }}>
         <View
           style={{
-            height: 45,
-            borderWidth: 1,
-            borderColor: worshipProp.id === item.id ? "#0BD86A" : '#000',
-            borderRadius: 3,
+            padding: 2,
+            width: px2pd(880),
+            height: px2pd(171),
             marginTop: 12,
-            backgroundColor: 'rgba(255,255,255,0.5)',
+            justifyContent: "center",
+            alignItems: 'center'
           }}>
+          <FastImage
+            source={require('../../../assets/worship/cailiao_bg2.png')}
+            style={{
+              width: px2pd(880),
+              height: px2pd(171),
+              position: "absolute",
+              borderWidth: 1,
+              borderRadius: 3,
+              borderColor: worshipProp.id === item.id ? "#0BD86A" : '#000',
+            }}
+          />
           <ImageCapInset
             style={{ width: '100%', height: '100%', position: 'absolute' }}
             source={require('../../../assets/button/40dpi_gray.png')}
@@ -40,18 +53,20 @@ const OfferingModal = props => {
           <View
             style={{
               flex: 1,
+              width: "100%",
               flexDirection: 'row',
               paddingTop: 8,
               paddingBottom: 8,
               paddingLeft: 12,
               paddingRight: 12,
               alignItems: 'center',
+              justifyContent: "flex-start",
             }}>
             <PropIcon item={propIconData} />
-            <Text style={{ flex: 1, fontSize: 16, color: '#000', marginLeft: 8 }}>
+            <Text style={{ fontSize: 16, color: '#000', marginLeft: 12 }}>
               {name}
             </Text>
-            <Text style={{ flex: 1, fontSize: 16, color: '#000', marginLeft: 8 }}>
+            <Text style={{ fontSize: 18, color: '#000', position: 'absolute', right: 12, }}>
               {timeLeft(worshipTime)}
             </Text>
           </View>
@@ -63,15 +78,25 @@ const OfferingModal = props => {
   return (
     <HalfPanel
       backgroundColor={'rgba(0,0,0,0.7)'}
-      source={require('../../../assets/plant/plantBg.jpg')}
-      borderRadius={10}
-      zIndex={99}>
-      <Header3
-        title={'供奉材料选择'}
-        onClose={props.onClose}
-        containerStyle={{ marginTop: 12 }}
-      />
-      <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12 }}>
+      width={px2pd(997)}
+      height={px2pd(1651)}
+      source={require('../../../assets/worship/cailiao_bg.png')}
+      zIndex={99}
+    >
+      <View style={{ width: "100%", height: px2pd(137), justifyContent: 'center' }}>
+        <View style={{ width: "100%", position: "absolute", alignItems: 'center' }}>
+          <FastImage
+            source={require('../../../assets/worship/cailiao_title.png')}
+            style={{ width: px2pd(987), height: px2pd(137), }}
+          />
+        </View>
+        <Header3
+          title={'奉上供品'}
+          onClose={props.onClose}
+        />
+      </View>
+
+      <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, alignItems: 'center' }}>
         <FlatList
           data={data}
           renderItem={renderItem}
