@@ -1,4 +1,6 @@
 
+import lo from 'lodash';
+
 export default class SceneConfigReader {
 
   constructor(scenes) {
@@ -107,6 +109,16 @@ export default class SceneConfigReader {
         return chat;
     }
     return null;
+  }
+
+  getSceneIdsForMission(missionId) {
+    const ids = [];
+    lo.forEach(this._scenes, (v, k) => {
+      if (v.missionId != undefined && lo.isEqual(v.missionId, missionId)) {
+        ids.push(v.id);
+      }
+    })
+    return ids;
   }
 
 }

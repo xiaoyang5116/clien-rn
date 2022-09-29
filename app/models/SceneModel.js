@@ -266,6 +266,14 @@ export default {
           DeviceEventEmitter.emit(EventKeys.MISSION_TIME_CHANGED, { hours: [oldTimeName, newTimeName] });
         }
       }
+
+      const sceneIds = sceneState.__data.cfgReader.getSceneIdsForMission(missionId);
+      if (sceneIds.length > 0) {
+        for (let key in sceneIds) {
+          const sceneId = sceneIds[key];
+          yield put.resolve(action('raiseSceneEvents')({ sceneId: sceneId, eventType: 'timeChanged' }));
+        }
+      }
     },
 
     // 获取副本时间
@@ -364,7 +372,7 @@ export default {
 
       for (let key in events) {
         const ev = events[key];
-        if (ev.type != eventType)
+        if (!lo.isEqual(ev.type, eventType))
           continue;
         //
         if (!(yield put.resolve(action('testCondition')({ ...ev }))))

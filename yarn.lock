@@ -1002,7 +1002,7 @@
     "pirates" "^4.0.5"
     "source-map-support" "^0.5.16"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.15.4", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@*", "@babel/runtime@^7.0.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.15.4", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   "integrity" "sha512-hzeyJyMA1YGdJTuWU0e/j4wKXrU4OMFvY2MSlaI9B7VQb0r5cxTE3EAIS2Q7Tn2RIcDkRvTA/v2JsAEhxe99uw=="
   "resolved" "https://registry.npmmirror.com/@babel/runtime/-/runtime-7.17.2.tgz"
   "version" "7.17.2"
@@ -2527,6 +2527,11 @@
   "resolved" "https://registry.npmmirror.com/cjs-module-lexer/-/cjs-module-lexer-0.6.0.tgz"
   "version" "0.6.0"
 
+"clamp@^1.0.1":
+  "integrity" "sha512-kgMuFyE78OC6Dyu3Dy7vcx4uy97EIbVxJB/B0eJ3bUNAkwdNcxYzgKltnyADiYwsR7SEqkkUPsEUT//OVS6XMA=="
+  "resolved" "https://registry.npmmirror.com/clamp/-/clamp-1.0.1.tgz"
+  "version" "1.0.1"
+
 "class-utils@^0.3.5":
   "integrity" "sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg=="
   "resolved" "https://registry.npmmirror.com/class-utils/-/class-utils-0.3.6.tgz"
@@ -2710,6 +2715,13 @@
     "on-headers" "~1.0.2"
     "safe-buffer" "5.1.2"
     "vary" "~1.1.2"
+
+"concat-color-matrices@^1.0.0":
+  "integrity" "sha512-K0IMtl4m9LcHg4vVFb40Txmie/GwCJBkquGSn6wtA9yIcszzFZgGc6co4sSnjFdqeJAv+q2LrCHMUSb2GHAChA=="
+  "resolved" "https://registry.npmmirror.com/concat-color-matrices/-/concat-color-matrices-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "invariant" "^2.2.4"
 
 "concat-map@0.0.1":
   "integrity" "sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg=="
@@ -5259,6 +5271,11 @@
   "resolved" "https://registry.npmmirror.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz"
   "version" "4.5.0"
 
+"lodash.pick@^4.4.0":
+  "integrity" "sha512-hXt6Ul/5yWjfklSGvLQl8vM//l3FtyHZeuelpzK6mm99pNvN9yTDruNZPEJZD1oWrqo+izBmB7oUfWgcCX7s4Q=="
+  "resolved" "https://registry.npmmirror.com/lodash.pick/-/lodash.pick-4.4.0.tgz"
+  "version" "4.4.0"
+
 "lodash.throttle@^4.1.1":
   "integrity" "sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ=="
   "resolved" "https://registry.npmmirror.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz"
@@ -6452,6 +6469,18 @@
   "resolved" "https://registry.npmjs.org/react-native-image-capinsets-next/-/react-native-image-capinsets-next-0.6.1.tgz"
   "version" "0.6.1"
 
+"react-native-image-filter-kit@^0.8.0":
+  "integrity" "sha512-YAJua9CJCCBwrpXWb4py3Tdgd/6gLuZDJHYsXhSKpualiMCHBgBw9jXA33dSUeQSpixl/5I8HyYdwZEe/Q797Q=="
+  "resolved" "https://registry.npmmirror.com/react-native-image-filter-kit/-/react-native-image-filter-kit-0.8.0.tgz"
+  "version" "0.8.0"
+  dependencies:
+    "concat-color-matrices" "^1.0.0"
+    "lodash.pick" "^4.4.0"
+    "react-is" "^17.0.2"
+    "rgba-to-rgb" "^1.0.2"
+    "rn-color-matrices" "^4.1.0"
+    "ts-tiny-invariant" "0.0.3"
+
 "react-native-modal@^13.0.0":
   "integrity" "sha512-k6r9T31mc7HIDFj1V53ceAAN1dwc8052c4JLtDVEmEQ19Bbq9yiLXoDsQuNb+hB8A+2tVOXmo5Gq4IQfb11upw=="
   "resolved" "https://registry.npmmirror.com/react-native-modal/-/react-native-modal-13.0.0.tgz"
@@ -6900,6 +6929,13 @@
   "resolved" "https://registry.npmmirror.com/reusify/-/reusify-1.0.4.tgz"
   "version" "1.0.4"
 
+"rgba-to-rgb@^1.0.2":
+  "integrity" "sha512-NJwOHyz5xotmPAjblT0+Ma22j/g8dVJF3mWu4OZfEquNugaR5cgyP/I34Lur7knXenasFCeqSl51geC8I8s+FA=="
+  "resolved" "https://registry.npmmirror.com/rgba-to-rgb/-/rgba-to-rgb-1.0.2.tgz"
+  "version" "1.0.2"
+  dependencies:
+    "invariant" "^2.2.4"
+
 "rimraf@^2.5.4", "rimraf@2.6.3":
   "integrity" "sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA=="
   "resolved" "https://registry.npmmirror.com/rimraf/-/rimraf-2.6.3.tgz"
@@ -6925,6 +6961,13 @@
   "integrity" "sha512-R5KMKHnPAQaZMqLOsyuyUmcIjSeDm+73eoqQpaXA7AZ22BL+6C+1mcUscgOsNd8WVlJuvlgAPsegcx7pjlV0Dg=="
   "resolved" "https://registry.npmmirror.com/rimraf/-/rimraf-2.2.8.tgz"
   "version" "2.2.8"
+
+"rn-color-matrices@^4.1.0":
+  "integrity" "sha512-a8++z3Zi4GhA0oWwKS3etdrVuVQ2q/ByTMh6lMxo+vaSv3SRSSg5SzpZk65GS0NCAqMhFT8WSvgSgNhO/F+xag=="
+  "resolved" "https://registry.npmmirror.com/rn-color-matrices/-/rn-color-matrices-4.1.0.tgz"
+  "version" "4.1.0"
+  dependencies:
+    "clamp" "^1.0.1"
 
 "rsvp@^4.8.4":
   "integrity" "sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA=="
@@ -7658,6 +7701,11 @@
 "tr46@~0.0.3":
   "integrity" "sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw=="
   "resolved" "https://registry.npmmirror.com/tr46/-/tr46-0.0.3.tgz"
+  "version" "0.0.3"
+
+"ts-tiny-invariant@0.0.3":
+  "integrity" "sha512-EiaBUsUta7PPzVKpvZurcSDgaSkymxwiUc2rhX6Wu30bws2maipT6ihbEY072dU9lz6/FoFWEc6psXdlo0xqtg=="
+  "resolved" "https://registry.npmmirror.com/ts-tiny-invariant/-/ts-tiny-invariant-0.0.3.tgz"
   "version" "0.0.3"
 
 "ts-toolbelt@^6.15.1":

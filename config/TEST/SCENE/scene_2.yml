@@ -28,9 +28,7 @@ scenes: [
       { id: 'VAR2', min: 0, max: 1 },
       { id: 'VAR3', min: 0, max: 1 },
       { id: 'VAR4', min: 0, max: 1 },
-
-
-
+      { id: 'varTimeChanged', min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -40,6 +38,7 @@ scenes: [
     # 事件定义
     events: [
       { type: 'enter', nextChat: 'c1' },
+      { type: 'timeChanged', varsOn: ['varTimeChanged'] },
     ],
 
     # 当前场景地图
