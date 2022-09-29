@@ -17,6 +17,8 @@ scenes: [
       #植物园
       { id: "v_icon_101", min: 0, max: 1 },
       #音乐走廊
+      { id: "v_icon_102", min: 0, max: 1 },
+      #中心广场
       { id: "v_icon_103", min: 0, max: 1 },
       #便利店
       { id: "v_icon_104", min: 0, max: 1 },
@@ -24,6 +26,8 @@ scenes: [
       { id: "v_icon_105", min: 0, max: 1 },
       #公告栏
       { id: "v_icon_106", min: 0, max: 1 },
+      #公告栏克制开启变量
+      { id: "GGL_1", min: 0, max: 1 },
       #冰箱
       { id: "v_icon_107", min: 0, max: 1 },
       #电脑桌
@@ -449,10 +453,10 @@ scenes: [
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv3' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv3']
           },
 
-          { 
-          title: '【去阳台抽根烟】', toScene: 'C000F_V2_MAP_-1_7', 
-          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv8']
-          },
+          # { 
+          # title: '【去阳台抽根烟】', toScene: 'C000F_V2_MAP_-1_7', 
+          # icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv8']
+          # },
 
           { 
           title: '【洗漱上个厕所】', toScene: 'C000F_V2_MAP_0_4', 
@@ -699,16 +703,16 @@ scenes: [
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv3' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv3']
           },  
 
-          { 
-          title: '【去阳台抽根烟】', toScene: 'C000F_V2_MAP_-1_7',
-          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv2']
-          },
+          # { 
+          # title: '【去阳台抽根烟】', toScene: 'C000F_V2_MAP_-1_7',
+          # icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv2']
+          # },
 
-          # { title: '【去厨房做饭】', toScene: 'C000F_V2_MAP_0_5'},
-          { 
-          title: '【上个厕所】', toScene: 'C000F_V2_MAP_0_4', 
-          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv6' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv6']
-          },
+          # # { title: '【去厨房做饭】', toScene: 'C000F_V2_MAP_0_5'},
+          # { 
+          # title: '【上个厕所】', toScene: 'C000F_V2_MAP_0_4', 
+          # icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv6' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv6']
+          # },
 
           { 
           title: '【打开电脑工作】', toScene: 'C000F_V2_MAP_-2_4',
@@ -934,14 +938,20 @@ scenes: [
       },
 
       { 
-        id: 'C1', desc: '洗去一天的疲惫，冲个凉', 
+        id: 'C1', desc: '冲个凉，洗去一天的疲惫', 
         options: [ 
          { 
          title: '【洗澡】', nextChat: 'C2',
          missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }  
          }, 
-        #  { title: '【太晚了去休息下吧】',toScene: 'C000F_V2_MAP_-2_5',andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24']}, 
-      
+         { title: '【去休息下吧】',toScene: 'C000F_V2_MAP_-2_5',andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24']}, 
+        ],
+      },
+
+      { 
+        id: 'C1A', desc: '时间太晚了，上个厕所，就去睡觉吧', 
+        options: [ 
+        { title: '【去睡觉】', toScene: 'C000F_V2_MAP_-2_5'},
         ],
       },
 
@@ -1163,10 +1173,11 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter', nextChat: 'C1'  },
+        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/GGL_1'], nextChat: 'C1B'  },
        { type: 'enter',  andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24'], nextChat: 'C1A' },
        { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,nextChat: 'C4' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C4A' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C4B' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C4A' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C4B' },
 
 
       
@@ -1185,7 +1196,17 @@ scenes: [
       {
         id: 'C1', desc: "公告栏上会每天更新公园情况和活动\n很多人都围着一块探头探脑的看着\n看来最近有什么大型活动要举行",
         options: [ 
-         { title: '【查看公告栏】',nextChat: 'C2' ,varsOff: ['WZXX_M1_N1_C000F_V/v_icon_106'], varsOn: ['WZXX_M1_N1_C000F_V/v_icon_100','WZXX_M1_N1_C000F_V/v_icon_101']},
+         { title: '【查看公告栏】',nextChat: 'C2' ,varsOff: ['WZXX_M1_N1_C000F_V/v_icon_106'], varsOn: ['WZXX_M1_N1_C000F_V/v_icon_100','WZXX_M1_N1_C000F_V/v_icon_101','WZXX_M1_N1_C000F_V/GGL_1']},
+         { title: '【离开>>>】',nextChat: 'C3' },  
+        
+
+        ],
+      },
+
+      {
+        id: 'C1B', desc: "公告栏上会每天更新公园情况和活动\n很多人都围着一块探头探脑的看着\n看来最近有什么大型活动要举行",
+        options: [ 
+         { title: '【查看公告栏】',nextChat: 'C2' ,},
          { title: '【离开>>>】',nextChat: 'C3' },  
         
 
@@ -1224,23 +1245,23 @@ scenes: [
         ],
       },
 
-      {
-        id: 'C4A', desc: "公告栏上会每天更新公园情况和活动\n看看明天有什么活动\n说不定能得到什么有用的消息",
-        options: [ 
-         { title: '【查看公告栏】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],nextChat: 'C5' },
-         { title: '【离开>>>】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],nextChat: 'C3' },  
+      # {
+      #   id: 'C4A', desc: "公告栏上会每天更新公园情况和活动\n看看明天有什么活动\n说不定能得到什么有用的消息",
+      #   options: [ 
+      #    { title: '【查看公告栏】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],nextChat: 'C5' },
+      #    { title: '【离开>>>】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],nextChat: 'C3' },  
         
-        ],
-      },
+      #   ],
+      # },
 
-      {
-        id: 'C4B', desc: "公告栏上会每天更新公园情况和活动\n看看明天有什么活动\n说不定能得到什么有用的消息",
-        options: [ 
-         { title: '【查看公告栏】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],nextChat: 'C5' },
-         { title: '【离开>>>】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],nextChat: 'C3' },  
+      # {
+      #   id: 'C4B', desc: "公告栏上会每天更新公园情况和活动\n看看明天有什么活动\n说不定能得到什么有用的消息",
+      #   options: [ 
+      #    { title: '【查看公告栏】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],nextChat: 'C5' },
+      #    { title: '【离开>>>】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],nextChat: 'C3' },  
         
-        ],
-      },
+      #   ],
+      # },
 
       {
         id: 'C5', desc: "公告：今日早晨中心广场有广场舞比赛\n下午音乐长廊将有音乐学院的学生进行交流\n四号下午14:00将会举行科技展览\n同时观景地有美术学院的学生写生",
@@ -1279,10 +1300,9 @@ scenes: [
        { type: 'enter', nextChat: 'C1'  },
        { type: 'enter',  andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24'], nextChat: 'C1A' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,nextChat: 'C4' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C4A' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C4B' },
-       #可全局操控能，当达到某个时间后，设定的叹号任务变量自动开启，不需要全局配置
-       { type: 'timeChanged', varsOn: ['WZXX_M1_N1_C000F_V/v_icon_101'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'],  },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C4A' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C4B' },
+      
     ],
     # 对话选项
     chats: [
@@ -1318,27 +1338,26 @@ scenes: [
         options: [ 
         { title: '【进入参观】',nextChat: 'C2' ,missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
         { title: '【进入参观】',nextChat: 'C2' ,missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
-
         ],
       },
 
-       {
-        id: 'C4A', desc: "昨天已经来过植物园了，但是逛了三个小时都没有逛完\n昨天收获到了不少灵感和素材\n再加上今天植物园还是免门票\n白嫖还能获取灵感，香！",
-        options: [ 
-        { title: '【进入参观】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'], nextChat: 'C2' ,missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
-        { title: '【进入参观】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'], nextChat: 'C2' ,missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
+      #  {
+      #   id: 'C4A', desc: "昨天已经来过植物园了，但是逛了三个小时都没有逛完\n昨天收获到了不少灵感和素材\n再加上今天植物园还是免门票\n白嫖还能获取灵感，香！",
+      #   options: [ 
+      #   { title: '【进入参观】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'], nextChat: 'C2' ,missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
+      #   { title: '【进入参观】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'], nextChat: 'C2' ,missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
 
-        ],
-      },
+      #   ],
+      # },
 
-       {
-        id: 'C4B', desc: "昨天已经来过植物园了，但是逛了三个小时都没有逛完\n昨天收获到了不少灵感和素材\n再加上今天植物园还是免门票\n白嫖还能获取灵感，香！",
-        options: [ 
-        { title: '【进入参观】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'], nextChat: 'C2' ,missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
-        { title: '【进入参观】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'], nextChat: 'C2' ,missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
+      #  {
+      #   id: 'C4B', desc: "昨天已经来过植物园了，但是逛了三个小时都没有逛完\n昨天收获到了不少灵感和素材\n再加上今天植物园还是免门票\n白嫖还能获取灵感，香！",
+      #   options: [ 
+      #   { title: '【进入参观】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'], nextChat: 'C2' ,missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
+      #   { title: '【进入参观】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'], nextChat: 'C2' ,missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
 
-        ],
-      },
+      #   ],
+      # },
 
       {
         id: 'C3', desc: "选择行动地址————",
@@ -1405,8 +1424,8 @@ scenes: [
     events: [
        { type: 'enter', nextChat: 'C1'  },
        { type: 'enter',  andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24'], nextChat: 'C1A' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C1B' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C1C' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C1B' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C1C' },
 
 
      
@@ -1421,27 +1440,27 @@ scenes: [
         ],
       },
 
-      {
-        id: 'C1B', desc: "动物园绿树葱茏，花团锦簇，景色宜人\n有许多家长带着孩子来玩\n也有不少大学生",
-        options: [ 
-         { title: '【进去看看】',nextChat: 'C2' ,
-         varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],
-         missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
-         { title: '【离开>>>】',
-         varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],nextChat: 'C3' }, 
-        ],
-      },
+      # {
+      #   id: 'C1B', desc: "动物园绿树葱茏，花团锦簇，景色宜人\n有许多家长带着孩子来玩\n也有不少大学生",
+      #   options: [ 
+      #    { title: '【进去看看】',nextChat: 'C2' ,
+      #    varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],
+      #    missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
+      #    { title: '【离开>>>】',
+      #    varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],nextChat: 'C3' }, 
+      #   ],
+      # },
 
-      {
-        id: 'C1C', desc: "动物园绿树葱茏，花团锦簇，景色宜人\n有许多家长带着孩子来玩\n也有不少大学生",
-        options: [ 
-         { title: '【进去看看】',nextChat: 'C2' ,
-         varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],
-         missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
-         { title: '【离开>>>】',
-         varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],nextChat: 'C3' }, 
-        ],
-      },
+      # {
+      #   id: 'C1C', desc: "动物园绿树葱茏，花团锦簇，景色宜人\n有许多家长带着孩子来玩\n也有不少大学生",
+      #   options: [ 
+      #    { title: '【进去看看】',nextChat: 'C2' ,
+      #    varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],
+      #    missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
+      #    { title: '【离开>>>】',
+      #    varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],nextChat: 'C3' }, 
+      #   ],
+      # },
 
       {
         id: 'C1', desc: "动物园绿树葱茏，花团锦簇，景色宜人\n有许多家长带着孩子来玩\n也有不少大学生",
@@ -1513,7 +1532,9 @@ scenes: [
        { type: 'enter', nextChat: 'C1'  },
        { type: 'enter',  andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24'], nextChat: 'C1A' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'],nextChat: 'C4' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C1B' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C1B' },
+      #全局判断变量，当满足某一条件的时候自动开启某个变量
+       { type: 'timeChanged', varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'] ,andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 16'],  },
 
 
     ],
@@ -1527,13 +1548,13 @@ scenes: [
         ],
       },
 
-       {
-        id: 'C1B', desc: "这边经常会有音乐学院的人来开交流会\n需要到公告栏查看时间才能遇到\n今天看来是没有了，只是有许多人在这边拍照打卡",
-        options: [ 
-         { title: '【在这边驻足看一会儿】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],nextChat: 'C2' }, 
-         { title: '【离开>>>】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],nextChat: 'C3' }, 
-        ],
-      },
+      #  {
+      #   id: 'C1B', desc: "这边经常会有音乐学院的人来开交流会\n需要到公告栏查看时间才能遇到\n今天看来是没有了，只是有许多人在这边拍照打卡",
+      #   options: [ 
+      #    { title: '【在这边驻足看一会儿】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],nextChat: 'C2' }, 
+      #    { title: '【离开>>>】',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],nextChat: 'C3' }, 
+      #   ],
+      # },
 
       {
         id: 'C1', desc: "这边经常会有音乐学院的人来开交流会\n需要到公告栏查看时间才能遇到\n今天看来是没有了，只是有许多人在这边拍照打卡",
@@ -1582,7 +1603,7 @@ scenes: [
       {
         id: 'C4', desc: "李森炎看见不少学生在这边集合，带着各式各样的乐器\n有个搬古筝的女生，看上去十分吃力\n李森炎下意识帮她搭了把手，本来也没觉得什么\n女生非是说要感谢他，顺便问他愿不愿意当听众给她些意见",
         options: [ 
-         { title: '【何乐而不为，留下听音乐顺便找点灵感】',nextChat: 'C5' , missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 },}, 
+         { title: '【何乐而不为，留下听音乐顺便找点灵感】',  nextChat: 'C5' , missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 },}, 
          { title: '【离开>>>】',nextChat: 'C3' }, 
         ],
       },
@@ -1591,23 +1612,23 @@ scenes: [
         id: 'C5', desc: "不知不觉听了三个小时\n李森炎和音乐学院的学生们聊得很开心\n意外的打成一片\n约定之后要是还有活动继续参加\n时间不早了学生们回学校了",
         options: [ 
          { 
-         title: '【便利店】',toScene: 'C000F_V_MAP_1_4',
+         title: '【便利店】',toScene: 'C000F_V_MAP_1_4',varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'] ,
          
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv15' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv15']
          }, 
 
          { 
-         title: '【动物园】',toScene: 'C000F_V_MAP_1_3', 
+         title: '【动物园】',toScene: 'C000F_V_MAP_1_3', varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'] ,
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv12' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv12']
          }, 
 
          { 
-         title: '【植物园】',toScene: 'C000F_V_MAP_-1_3', 
+         title: '【植物园】',toScene: 'C000F_V_MAP_-1_3',varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'] , 
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv11' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv11']
          }, 
 
          { 
-         title: '【中心广场】',toScene: 'C000F_V_MAP_-1_4', 
+         title: '【中心广场】',toScene: 'C000F_V_MAP_-1_4', varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'] ,
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv14']
          }, 
         #  { title: '【回家】',andVarsValue: ['@props_372 >= 0'] ,toScene: 'C000F_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] , }, 
@@ -1645,8 +1666,10 @@ scenes: [
        { type: 'enter', nextChat: 'C1'  },
        { type: 'enter',  andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24'], nextChat: 'C1A' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'],nextChat: 'C3' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C1B' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C1C' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C1B' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C1C' },
+        #可全局操控能，当达到某个时间后，设定的叹号任务变量自动开启，不需要全局配置
+       { type: 'timeChanged', varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'] ,andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'],  },
 
 
     ],
@@ -1660,19 +1683,19 @@ scenes: [
         ],
       },
      
-     {
-        id: 'C1B', desc: "中心广场这边有许多人围在一块下棋聊天的\n今天没有什么活动，所以李森炎没待多久就走了",
-        options: [ 
-          { title: '【离开>>>】',nextChat: 'C2', varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
-        ],
-      },
+    #  {
+    #     id: 'C1B', desc: "中心广场这边有许多人围在一块下棋聊天的\n今天没有什么活动，所以李森炎没待多久就走了",
+    #     options: [ 
+    #       { title: '【离开>>>】',nextChat: 'C2', varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
+    #     ],
+    #   },
 
-       {
-        id: 'C1C', desc: "中心广场这边有许多人围在一块下棋聊天的\n今天没有什么活动，所以李森炎没待多久就走了",
-        options: [ 
-          { title: '【离开>>>】',nextChat: 'C2', varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
-        ],
-      },
+    #    {
+    #     id: 'C1C', desc: "中心广场这边有许多人围在一块下棋聊天的\n今天没有什么活动，所以李森炎没待多久就走了",
+    #     options: [ 
+    #       { title: '【离开>>>】',nextChat: 'C2', varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
+    #     ],
+    #   },
 
       {
         id: 'C1', desc: "中心广场这边有许多人围在一块下棋聊天的\n今天没有什么活动，所以李森炎没待多久就走了",
@@ -1718,7 +1741,7 @@ scenes: [
       {
         id: 'C4', desc: "李森炎赶紧上前帮助小孩\n小男孩看上去四五岁的样子\n哭起来话也说不利索\n李森炎问了老半天也才打听出来他是走丢了，奶奶去跳广场舞了",
         options: [ 
-          { title: '【继续帮助他……】', varsOff: ['WZXX_M1_N1_C000F_V/v_icon_103'] ,nextChat: 'C5', }, 
+          { title: '【继续帮助他……】',nextChat: 'C5', }, 
         ],
       },
 
@@ -1728,18 +1751,10 @@ scenes: [
           { title: '【那就……好人当到底吧】',nextChat: 'C6', missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
         ],
       },
-
       {
-        id: 'C6', desc: "李森炎牵着小男孩然后去跳广场舞的人群里找了一圈\n没有遇上小孩的奶奶\n不过倒是遇到了她奶奶的熟人朋友\n只是她也要开始比赛了\n于是联系上了他奶奶之后，拜托李森炎帮忙带一下孙子",
+        id: 'C6', desc: "李森炎也没有想到，这一等就等了三个小时\n老太太结束之后，喜悦又担心的跑过来和孙子团聚\n嘴上不停的感谢李森炎，说什么也非要拉他回家吃个饭\n李森炎婉拒了，汗颜提醒老太太以后可别这么粗心了",
         options: [ 
-          { title: '【那就……好人当到底吧】',nextChat: 'C7', missionTime: { missionId: 'C000Fshijian', alterSeconds: 10800 } }, 
-        ],
-      },
-
-      {
-        id: 'C7', desc: "李森炎也没有想到，这一等就等了三个小时\n老太太结束之后，喜悦又担心的跑过来和孙子团聚\n嘴上不停的感谢李森炎，说什么也非要拉他回家吃个饭\n李森炎婉拒了，汗颜提醒老太太以后可别这么粗心了",
-        options: [ 
-          { title: '【不过肚子倒是真的有点饿，去便利店】', toScene: 'C000F_V_MAP_1_4',  }, 
+          { title: '【不过肚子倒是真的有点饿，去便利店】',varsOff: ['WZXX_M1_N1_C000F_V/v_icon_103'] , toScene: 'C000F_V_MAP_1_4',  }, 
         ],
       },
     ],
@@ -1772,8 +1787,8 @@ scenes: [
        { type: 'enter', nextChat: 'C1'  },
        { type: 'enter',  andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24'], nextChat: 'C1A' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,nextChat: 'C4' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C4A' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C4B' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C4A' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C4B' },
 
 
     ],
@@ -1805,23 +1820,27 @@ scenes: [
       {
         id: 'C4', desc: "李森炎去便利店买了份面\n找了个位置坐下来吃\n店里恰巧不忙\n便利店老板索性坐下来和他聊了会儿天",
         options: [ 
-         { title: '【与便利店老板交流】',nextChat: 'C5',varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 3600 } }, 
+         { title: '【与便利店老板交流】',nextChat: 'C5',
+        #  varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'],
+         missionTime: { missionId: 'C000Fshijian', alterSeconds: 3600 } }, 
         ],
       },
 
-       {
-        id: 'C4A', desc: "李森炎去便利店买了份面\n找了个位置坐下来吃\n店里恰巧不忙\n便利店老板索性坐下来和他聊了会儿天",
-        options: [ 
-         { title: '【和便利店老板交流】',nextChat: 'C5',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 3600 } }, 
-        ],
-      },
+      #  {
+      #   id: 'C4A', desc: "李森炎去便利店买了份面\n找了个位置坐下来吃\n店里恰巧不忙\n便利店老板索性坐下来和他聊了会儿天",
+      #   options: [ 
+      #    { title: '【和便利店老板交流】',nextChat: 'C5',
+      #   #  varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],
+      #    missionTime: { missionId: 'C000Fshijian', alterSeconds: 3600 } }, 
+      #   ],
+      # },
 
-      {
-        id: 'C4B', desc: "李森炎去便利店买了份面\n找了个位置坐下来吃\n店里恰巧不忙\n便利店老板索性坐下来和他聊了会儿天",
-        options: [ 
-         { title: '【和便利店老板交流】',nextChat: 'C5',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 3600 } }, 
-        ],
-      },
+      # {
+      #   id: 'C4B', desc: "李森炎去便利店买了份面\n找了个位置坐下来吃\n店里恰巧不忙\n便利店老板索性坐下来和他聊了会儿天",
+      #   options: [ 
+      #    { title: '【和便利店老板交流】',nextChat: 'C5',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 3600 } }, 
+      #   ],
+      # },
 
        {
         id: 'C5', desc: "老板倒是个挺健谈的人，和李森炎也很聊得来\n老板好奇他怎么在工作日还有时间来逛公园\n李森炎索性把自己离职创业的事情和他说了\n谁知竟然这么巧，老板的说自己儿子最近也离职创业了，改天可以介绍他们认识下",
@@ -1884,8 +1903,8 @@ scenes: [
     events: [
        { type: 'enter', nextChat: 'C1'  },
        { type: 'enter',  andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24'], nextChat: 'C1A' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C1B' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C1C' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C1B' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C1C' },
 
 
        
@@ -1907,18 +1926,19 @@ scenes: [
         ],
       },
 
-      {
-        id: 'C1B', desc: "这边时常有各式各样奇异的展览开房观看\n不过今天貌似没有\n看起来空空如也",
-        options: [ 
-         { title: '【等有展览再来看看】',nextChat: 'C2',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
-        ],
-      },
-       {
-        id: 'C1C', desc: "这边时常有各式各样奇异的展览开房观看\n不过今天貌似没有\n看起来空空如也",
-        options: [ 
-         { title: '【等有展览再来看看】',nextChat: 'C2',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
-        ],
-      },
+      # {
+      #   id: 'C1B', desc: "这边时常有各式各样奇异的展览开房观看\n不过今天貌似没有\n看起来空空如也",
+      #   options: [ 
+      #    { title: '【等有展览再来看看】',nextChat: 'C2',
+      #    varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
+      #   ],
+      # },
+      #  {
+      #   id: 'C1C', desc: "这边时常有各式各样奇异的展览开房观看\n不过今天貌似没有\n看起来空空如也",
+      #   options: [ 
+      #    { title: '【等有展览再来看看】',nextChat: 'C2',varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
+      #   ],
+      # },
 
        {
         id: 'C2', desc: "选择行动地址————",
@@ -1970,8 +1990,8 @@ scenes: [
     events: [
        { type: 'enter', nextChat: 'C1'  },
        { type: 'enter',  andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24'], nextChat: 'C1A' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C1B' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C1C' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C1B' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C1C' },
 
     ],
     # 对话选项
@@ -1993,23 +2013,23 @@ scenes: [
         ],
       },
 
-      {
-        id: 'C1B', desc: "公园后山的风景着实不错\n有很多美术学院的学生在此写生",
-        options: [ 
-         { title: '【静坐观赏风景】',nextChat: 'C2' ,varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
-         { title: '【和美术生聊天】',nextChat: 'C2' ,dropIds: [ 'WZXX_M1_N1_C000F_V_drop7',] ,varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'], andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
-         { title: '【离开>>>】', nextChat: 'C3' }, 
-        ],
-      },
+      # {
+      #   id: 'C1B', desc: "公园后山的风景着实不错\n有很多美术学院的学生在此写生",
+      #   options: [ 
+      #    { title: '【静坐观赏风景】',nextChat: 'C2' ,varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
+      #    { title: '【和美术生聊天】',nextChat: 'C2' ,dropIds: [ 'WZXX_M1_N1_C000F_V_drop7',] ,varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'], andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
+      #    { title: '【离开>>>】', nextChat: 'C3' }, 
+      #   ],
+      # },
 
-       {
-        id: 'C1C', desc: "公园后山的风景着实不错\n有很多美术学院的学生在此写生",
-        options: [ 
-         { title: '【静坐观赏风景】',nextChat: 'C2' ,varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
-         { title: '【和美术生聊天】',nextChat: 'C2' ,dropIds: [ 'WZXX_M1_N1_C000F_V_drop7',] , andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
-         { title: '【离开>>>】', varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],nextChat: 'C3' }, 
-        ],
-      },
+      #  {
+      #   id: 'C1C', desc: "公园后山的风景着实不错\n有很多美术学院的学生在此写生",
+      #   options: [ 
+      #    { title: '【静坐观赏风景】',nextChat: 'C2' ,varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
+      #    { title: '【和美术生聊天】',nextChat: 'C2' ,dropIds: [ 'WZXX_M1_N1_C000F_V_drop7',] , andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
+      #    { title: '【离开>>>】', varsOn: ['WZXX_M1_N1_C000F_V/v_icon_102'],nextChat: 'C3' }, 
+      #   ],
+      # },
 
       {
         id: 'C2', desc: "李森炎坐了一会儿，忽然有美术学院的学生上前搭话\n随后就很快的聊了起来\n仅仅一下午李森炎凭借自己的聪慧和幽默和学生们打的火热",
@@ -2081,14 +2101,14 @@ scenes: [
 
               { 
               point: [-1, 4], title: '音乐走廊',
-              icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F_V/v_icon_102',},   
+              icon: { id: 102, bindVar: 'WZXX_M1_N1_C000F_V/v_icon_102',},   
               toScene: 'C000F_V_MAP_-1_4',
               links: [[-1, 5]] 
               },
 
               { 
               point: [0, 4], title: '中心广场', 
-              icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F_V/v_icon_103', },
+              icon: { id: 102, bindVar: 'WZXX_M1_N1_C000F_V/v_icon_103', },
               toScene: 'C000F_V_MAP_0_4',
               links: [[-1, 4],[1, 4]] 
               },
