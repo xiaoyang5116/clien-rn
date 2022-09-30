@@ -95,7 +95,6 @@
         [
             {
             type: "TopToBottom",
-            loop: true,
             play: true,
             videoId: 2,
             content:
