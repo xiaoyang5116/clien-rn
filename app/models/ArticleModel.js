@@ -390,7 +390,6 @@ export default {
           // 处理线稿背景图渐隐效果
           if (lo.isEqual(articleState.__data.eventTargetEffectId, 'BackgroundArt') && (articleState.__data.startOffsetY > 0)) {
             const value = 1 - (offsetY - articleState.__data.startOffsetY) / DETECTION_AREA_HEIGHT;
-            console.debug('alpha', value);
             if (value >= 0 && value <= 1) {
               switch (articleState.__data.eventTargetAreaId) {
                 case 1:
