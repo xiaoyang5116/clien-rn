@@ -6,6 +6,7 @@ import { URL, URLSearchParams } from 'react-native-url-polyfill';
 import WorldUnlockView from './WorldUnlockView';
 import RootView from '../../components/RootView';
 import { action, DataContext, EventKeys, getWindowSize } from '../../constants';
+import { ARTICLE_FLATLIST_MARGIN_TOP } from "../../constants/custom-ui";
 import PropTips from '../../components/tips/PropTips';
 import TipsView from '../../components/article/TipsView';
 import Block from '../../components/article';
@@ -149,7 +150,7 @@ const PrimaryWorld = (props) => {
     return (
       <View style={[{ flex: 1 }, {  }]}>
         <FlatList
-          style={{ alignSelf: 'stretch', marginTop: 35 }}
+          style={{ alignSelf: 'stretch', marginTop: ARTICLE_FLATLIST_MARGIN_TOP }}
           ref={(ref) => refList.current = ref}
           data={props.sections}
           renderItem={(data) => <Block data={data.item} />}
