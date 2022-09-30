@@ -1495,10 +1495,7 @@ scenes: [
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv14']
         }, 
         ],
-      },
-
-   
-      
+      },      
 
 
     ],
