@@ -94,6 +94,8 @@ export default {
 
       // 区域检测开始位置
       startOffsetY: 0,
+      // 背景图是否已经初始化
+      bgImageInited: false,
       // 区域检测对象KEY
       eventTargetKey: '',
       // 区域检测目标区域
@@ -361,6 +363,7 @@ export default {
           // 显示背景图
           if (background != undefined) {
             articleState.__data.startOffsetY = 0;
+            articleState.__data.bgImageInited = true;
             DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, background);
           }
           // 效果事件
@@ -388,19 +391,21 @@ export default {
 
         if (articleState.__data.eventTargetAreaId > 0 && lo.isEqual(articleState.__data.eventTargetKey, item.key)) {
           // 处理线稿背景图渐隐效果
-          if (lo.isEqual(articleState.__data.eventTargetEffectId, 'BackgroundArt') && (articleState.__data.startOffsetY > 0)) {
+          if (lo.isEqual(articleState.__data.eventTargetEffectId, 'BackgroundArt') 
+            && (articleState.__data.startOffsetY > 0)
+            && (articleState.__data.bgImageInited)) {
             const value = 1 - (offsetY - articleState.__data.startOffsetY) / DETECTION_AREA_HEIGHT;
             if (value >= 0 && value <= 1) {
               switch (articleState.__data.eventTargetAreaId) {
-                case 1:
+                case AREA_TOP:
                   textOpacity.setValue(1 - value);
                   bgImgOpacity.setValue(value);
                   break;
-                case 2:
+                case AREA_MIDDLE:
                   textOpacity.setValue(value);
                   bgImgOpacity.setValue(1 - value);
                   break;
-                case 3:
+                case AREA_BOTTOM:
                   break;
               }
             } else {
@@ -409,6 +414,9 @@ export default {
                 || (articleState.__data.eventTargetAreaId == 3 && value < 0)) {
                 textOpacity.setValue(1);
                 bgImgOpacity.setValue(0);
+                // 重置背景线稿图
+                articleState.__data.bgImageInited = false;
+                DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, { imageId: '' });
               } else if ((articleState.__data.eventTargetAreaId == 1 && value > 1)
                 || (articleState.__data.eventTargetAreaId == 2 && (value < 0 && value > -1))) {
                 textOpacity.setValue(0);
@@ -419,6 +427,9 @@ export default {
                 || (articleState.__data.eventTargetAreaId == 3 && value >= 1)) {
                 textOpacity.setValue(1);
                 bgImgOpacity.setValue(0);
+                // 重置背景线稿图
+                articleState.__data.bgImageInited = false;
+                DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, { imageId: '' });
               }
             }
           }
