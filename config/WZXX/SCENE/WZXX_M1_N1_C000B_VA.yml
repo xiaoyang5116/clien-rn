@@ -1029,8 +1029,6 @@ scenes: [
         ],
       },
       
-      
-
      { 
         id: 'C2', desc: '发现有游戏可以玩', 
         options: [ 
@@ -1038,7 +1036,7 @@ scenes: [
      
         ],
       },
-      #
+      
       { 
         id: 'C3', desc: '离开', 
         options: [ 
@@ -1060,14 +1058,14 @@ scenes: [
           btn: [{title: '挑战开始', games: { id: 3, words: ['不', '知', '道', ] },nextChat: 'C3' },]},
   ],
   },
-     {
-                     id: 'Screen2',style: "9A", textAnimationType: 'TextSingle',
-                   sections: [
-                   { key: 'p2', content: ['不知名的马车队伍正在大街中央行进，后面的车厢托着不少麻袋装运的货物', '马车，想起来这些东西也是经常看到呢，现在已经觉得并不稀奇了。', '要是在现实世界，这样的情景应该是一些旅游景观之类的才会出现的吧。', '唯独缺少了周围拿着相机的游客','究竟那边才是现实，那边才是梦？','李森炎不注意出神起来','一段时间过去','……',], 
-                   btn: [{ title: '不要瞎想了', sendProps: '363,1',nextChat: 'C1'}] },
-                  
-                    ]
-                }
+          {
+          id: 'Screen2',style: "9A", textAnimationType: 'TextSingle',
+          sections: [
+          { key: 'p2', content: ['不知名的马车队伍正在大街中央行进，后面的车厢托着不少麻袋装运的货物', '马车，想起来这些东西也是经常看到呢，现在已经觉得并不稀奇了。', '要是在现实世界，这样的情景应该是一些旅游景观之类的才会出现的吧。', '唯独缺少了周围拿着相机的游客','究竟那边才是现实，那边才是梦？','李森炎不注意出神起来','一段时间过去','……',], 
+          btn: [{ title: '不要瞎想了', sendProps: '363,1',nextChat: 'C1'}] },
+
+          ]
+          }
   ],
 
  },
@@ -1089,7 +1087,7 @@ scenes: [
             links: [[-1, 2], [1, 2]] },
 
           { point: [1, 2], title: '东街',
-           toScene: 'C000B_VA_MAP_1_2' , icon: { id: 102, bindVar: 'WZXX_M1_N1_C000B_VA/v_icon_1' },
+           toScene: 'C000B_VA_MAP_1_2' , 
            links: [ [2, 2]] },
 
           { point: [2, 2], title: '酒肆',
@@ -1100,17 +1098,22 @@ scenes: [
            toScene: 'C000B_VA_MAP_-1_2', 
            links: [[0, 2], [-2, 2], [-1, 3]]},
 
-          { point: [-2, 2], title: '西街', icon: { id: 102, bindVar: 'WZXX_M1_N1_C000B_VA/v_icon_2' },
+          { point: [-2, 2], title: '西街', 
            toScene: 'C000B_VA_MAP_-2_2',
-            links: [[-3, 2]] },
+            links: [[-3, 2]] 
+          },
 
-          { point: [-3, 2], title: '赌摊',
+          { 
+           point: [-3, 2], title: '赌摊',
            toScene: 'C000B_VA_MAP_-3_2',
-            links: [ ] },
+            links: [ ] 
+          },
 
-          { point: [-1, 3], title: '当铺',
+          { 
+           point: [-1, 3], title: '当铺',
            toScene: 'C000B_VA_MAP_-1_3', 
-           links: [[-1, 4], [-2, 3], [0, 3]] },
+           links: [[-1, 4], [-2, 3], [0, 3]] 
+          },
 
           { point: [-2, 3], title: '饭馆', 
           toScene: 'C000B_VA_MAP_-2_3', 
@@ -1120,7 +1123,7 @@ scenes: [
            toScene: 'C000B_VA_MAP_-1_4', 
            links: [[-1, 5]] },
 
-          { point: [-1, 5], title: '小集市', icon: { id: 102, bindVar: 'WZXX_M1_N1_C000B_VA/v_icon_3' },
+          { point: [-1, 5], title: '小集市',
            toScene: 'C000B_VA_MAP_-1_5', 
            links: [ ] },
 
