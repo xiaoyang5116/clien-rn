@@ -41,11 +41,11 @@ scenes: [
               { title: '【背景对话框(5 号)】', dialogs: ['p1'] },
               { title: '航海探索', games: {id: 8} },
               { title: '抽签选项', dialogs: ['p2'] },
+              { title: '透明黑旁白', dialogs: ['p3'] }
             ],
           },
         ],
 
-      # 对话框 1黑旁白2白旁白
       dialogs:
         [
           {
@@ -73,6 +73,7 @@ scenes: [
               { id: 5, iconId: 1, rate: ">=,80", content: '下下签', dialogs: ['p1'] },
             ]
           },
+          { id: 'p3', style: 3, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '……',],  },
         ],
     },
   ]
