@@ -13,7 +13,7 @@ const WorldUnlockView = (props) => {
 
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <LightBlurView style={{ borderRadius: 4 }}>
+          <LightBlurView inner={true} style={{ borderRadius: 4, width: '90%', justifyContent: 'center', alignItems: 'center' }}>
             <View style={styles.viewStyle}>
                 <Text style={{ fontSize: 22, color: '#000', marginLeft: 10, marginRight: 10, lineHeight: 30 }}>{lo.isEmpty(props.content) ? '当前世界未解锁' : props.content}</Text>
                 <TouchableWithoutFeedback onPress={back}>
@@ -29,25 +29,19 @@ const WorldUnlockView = (props) => {
 
 const styles = StyleSheet.create({
   viewStyle: {
-    width: '90%', 
+    width: '100%',
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
+
     borderWidth: 1, 
     borderColor: 'rgba(255,255,255,0.5)',
     borderRadius: 4,
+
     paddingTop: 20, 
     paddingBottom: 20,
     paddingLeft: 5,
     paddingRight: 5,
-
-    // shadowColor: "#0d152c",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 0,
-    // },
-    // shadowOpacity: 0.8,
-    // shadowRadius: 1,
   }
 });
 
