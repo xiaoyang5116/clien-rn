@@ -11,7 +11,7 @@ const DarkBlurView = (props) => {
             <BlurView
                 style = {props.style}
                 blurType = "dark"
-                blurAmount = {10}
+                blurAmount = {props.blurAmount}
                 reducedTransparencyFallbackColor="white">
                 {props.children}
             </BlurView>
@@ -22,7 +22,7 @@ const DarkBlurView = (props) => {
                 <BlurView
                     style = {{ position: 'absolute', width: '100%', height: '100%' }}
                     blurType = "dark"
-                    blurAmount = {10}
+                    blurAmount = {props.blurAmount}
                     reducedTransparencyFallbackColor="white" />
                 {props.children}
             </View>
@@ -34,10 +34,12 @@ export default DarkBlurView;
 
 DarkBlurView.propTypes = {
     style: PropTypes.object,
+    blurAmount: PropTypes.number,
     inner: PropTypes.bool, // 子节点是否嵌套在模糊层内(嵌套在内会自动裁剪子节点溢出的内容)
 };
 
 DarkBlurView.defaultProps = {
     style: { flex: 1 },
+    blurAmount: 10,
     inner: false,
 };
