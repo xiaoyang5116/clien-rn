@@ -39,7 +39,8 @@ scenes: [
             id: 'c0', desc: '配置测试', 
             options: [
               { title: '【背景对话框(5 号)】', dialogs: ['p1'] },
-              { title: '航海探索', games: {id: 8} }
+              { title: '航海探索', games: {id: 8} },
+              { title: '抽签选项', dialogs: ['p2'] },
             ],
           },
         ],
@@ -59,6 +60,18 @@ scenes: [
                 ],
               },
             ],
+          },
+          {
+            id: 'p2', 
+            style: 11,
+            title: '随机抽签......',
+            sections: [
+              { id: 1, iconId: 1, rate: "<,25", content: '上上签', dialogs: ['p1'] },
+              { id: 2, iconId: 1, rate: "<,50", content: '上吉签', dialogs: ['p1'] },
+              { id: 3, iconId: 1, rate: "<,75", content: '中吉签', dialogs: ['p1'] },
+              { id: 4, iconId: 1, rate: "<,80", content: '中平签', dialogs: ['p1'] },
+              { id: 5, iconId: 1, rate: ">=,80", content: '下下签', dialogs: ['p1'] },
+            ]
           },
         ],
     },

@@ -14,6 +14,7 @@ import MultiplayerDialog from './MultiplayerDialog';
 import BlackAndWhiteClickDialog from './blackAndWhiteClickDialog';
 import BustDialog from './bustDialog';
 import BgDialog from './bgDialog';
+import DrawLotsOption from './drawLotsOption'
 
 
 const DialogRoutes = (props) => {
@@ -102,6 +103,14 @@ const DialogRoutes = (props) => {
     } else if (style === 10) {
         return (
             <BustDialog
+                {...props}
+                actionMethod={actionMethod}
+                specialEffects={specialEffects}
+            />
+        )
+    } else if (style === 11) {
+        return (
+            <DrawLotsOption
                 {...props}
                 actionMethod={actionMethod}
                 specialEffects={specialEffects}
