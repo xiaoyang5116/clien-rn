@@ -7,7 +7,8 @@ import {
   LocalCacheKeys,
   DeviceEventEmitter,
   EventKeys,
-  AppDispath
+  AppDispath,
+  statusBarHeight
 } from "../constants";
 
 import { GetAttrsDataApi } from '../services/GetAttrsDataApi';
@@ -24,9 +25,14 @@ import defaultReaderStyle from '../themes/readerStyle';
 import Games from "../components/games";
 import { playSound } from "../components/sound/utils";
 import EffectAnimations from "../components/effects";
+import { ARTICLE_EVENT_AREA_MARGIN, ARTICLE_FLATLIST_MARGIN_TOP } from "../constants/custom-ui";
 
 const WIN_SIZE = getWindowSize();
 const DETECTION_AREA_HEIGHT = 200;
+
+const AREA_TOP = 1;
+const AREA_MIDDLE = 2;
+const AREA_BOTTOM = 3;
 
 const AddLoadedListHandler = (list, obj) => {
   if (lo.isEqual(obj.path, '[START]')) {
@@ -49,17 +55,20 @@ const HasStopDirective = (data) => {
 }
 
 const checkTop = (offsetY, totalOffsetY) => {
-  const validY = offsetY + WIN_SIZE.height / 2 - 80 - (DETECTION_AREA_HEIGHT / 2) - 35;     // 80: FlatList至顶部空间
+  const flatList2Top = statusBarHeight + ARTICLE_FLATLIST_MARGIN_TOP;
+  const validY = offsetY + WIN_SIZE.height / 2 - flatList2Top - (DETECTION_AREA_HEIGHT / 2) - ARTICLE_EVENT_AREA_MARGIN;
   return (validY > totalOffsetY && (validY - DETECTION_AREA_HEIGHT) < totalOffsetY);
 }
 
 const checkMiddle = (offsetY, totalOffsetY) => {
-  const validY = offsetY + WIN_SIZE.height / 2 - 80 + (DETECTION_AREA_HEIGHT / 2);          // 80: FlatList至顶部空间
+  const flatList2Top = statusBarHeight + ARTICLE_FLATLIST_MARGIN_TOP;
+  const validY = offsetY + WIN_SIZE.height / 2 - flatList2Top + (DETECTION_AREA_HEIGHT / 2);
   return (validY > totalOffsetY && (validY - DETECTION_AREA_HEIGHT) < totalOffsetY);
 }
 
 const checkBottom = (offsetY, totalOffsetY) => {
-  const validY3 = offsetY + WIN_SIZE.height / 2 - 80 + (DETECTION_AREA_HEIGHT * 1.5) + 35;  // 80: FlatList至顶部空间
+  const flatList2Top = statusBarHeight + ARTICLE_FLATLIST_MARGIN_TOP;
+  const validY3 = offsetY + WIN_SIZE.height / 2 - flatList2Top + (DETECTION_AREA_HEIGHT * 1.5) + ARTICLE_EVENT_AREA_MARGIN;
   return (validY3 > totalOffsetY && (validY3 - DETECTION_AREA_HEIGHT) < totalOffsetY);
 }
 
@@ -85,6 +94,8 @@ export default {
 
       // 区域检测开始位置
       startOffsetY: 0,
+      // 背景图是否已经初始化
+      bgImageInited: false,
       // 区域检测对象KEY
       eventTargetKey: '',
       // 区域检测目标区域
@@ -322,17 +333,17 @@ export default {
         });
 
         // 检测线
-        const line2 = totalOffsetY - (WIN_SIZE.height / 2) - (DETECTION_AREA_HEIGHT / 2) + 80;
-        const line1 = line2 + DETECTION_AREA_HEIGHT + 35;
-        const line3 = line2 - DETECTION_AREA_HEIGHT - 35;
+        const lineMiddle = totalOffsetY - (WIN_SIZE.height / 2) - (DETECTION_AREA_HEIGHT / 2) + (statusBarHeight + ARTICLE_FLATLIST_MARGIN_TOP);
+        const lineTop = lineMiddle + DETECTION_AREA_HEIGHT + ARTICLE_EVENT_AREA_MARGIN;
+        const lineBottom = lineMiddle - DETECTION_AREA_HEIGHT - ARTICLE_EVENT_AREA_MARGIN;
 
         if (checkTop(offsetY, totalOffsetY)) { // 事件触发区域(顶部)
           if (effect != undefined) {
-            enterEffectArea(articleState, item, 1, line1);
+            enterEffectArea(articleState, item, AREA_TOP, lineTop);
           }
         } else if (checkBottom(offsetY, totalOffsetY)) {  // 事件触发区域(底部)
           if (effect != undefined) {
-            enterEffectArea(articleState, item, 3, line3);
+            enterEffectArea(articleState, item, AREA_BOTTOM, lineBottom);
           }
         } else if (checkMiddle(offsetY, totalOffsetY)) { // 事件触发区域(中心区域)
           // 弹出提示
@@ -352,11 +363,12 @@ export default {
           // 显示背景图
           if (background != undefined) {
             articleState.__data.startOffsetY = 0;
+            articleState.__data.bgImageInited = true;
             DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, background);
           }
           // 效果事件
           if (effect != undefined) {
-            enterEffectArea(articleState, item, 2, line2);
+            enterEffectArea(articleState, item, AREA_MIDDLE, lineMiddle);
           }
           // 子游戏
           if (games != undefined) {
@@ -377,40 +389,48 @@ export default {
           }
         }
 
-        if (articleState.__data.eventTargetAreaId > 0
-          && lo.isEqual(articleState.__data.eventTargetKey, item.key)
-          && lo.isEqual(articleState.__data.eventTargetEffectId, 'BackgroundArt')
-          && (articleState.__data.startOffsetY > 0)) {
-          const value = 1 - (offsetY - articleState.__data.startOffsetY) / DETECTION_AREA_HEIGHT;
-          if (value >= 0 && value <= 1) {
-            switch (articleState.__data.eventTargetAreaId) {
-              case 1:
-                textOpacity.setValue(1 - value);
-                bgImgOpacity.setValue(value);
-                break;
-              case 2:
-                textOpacity.setValue(value);
-                bgImgOpacity.setValue(1 - value);
-                break;
-              case 3:
-                break;
-            }
-          } else {
-            // 非检测区域强制指定状态
-            if ((articleState.__data.eventTargetAreaId == 2 && value >= 1) 
-              || (articleState.__data.eventTargetAreaId == 3 && value < 0)) {
-              textOpacity.setValue(1);
-              bgImgOpacity.setValue(0);
-            } else if ((articleState.__data.eventTargetAreaId == 1 && value > 1)
-              || (articleState.__data.eventTargetAreaId == 2 && (value < 0 && value > -1))) {
-              textOpacity.setValue(0);
-              bgImgOpacity.setValue(1);
-            }
-            if ((articleState.__data.eventTargetAreaId == 1 && value <= -1)
-              || (articleState.__data.eventTargetAreaId == 2 && value <= -1)
-              || (articleState.__data.eventTargetAreaId == 3 && value >= 1)) {
-              textOpacity.setValue(1);
-              bgImgOpacity.setValue(0);
+        if (articleState.__data.eventTargetAreaId > 0 && lo.isEqual(articleState.__data.eventTargetKey, item.key)) {
+          // 处理线稿背景图渐隐效果
+          if (lo.isEqual(articleState.__data.eventTargetEffectId, 'BackgroundArt') 
+            && (articleState.__data.startOffsetY > 0)
+            && (articleState.__data.bgImageInited)) {
+            const value = 1 - (offsetY - articleState.__data.startOffsetY) / DETECTION_AREA_HEIGHT;
+            if (value >= 0 && value <= 1) {
+              switch (articleState.__data.eventTargetAreaId) {
+                case AREA_TOP:
+                  textOpacity.setValue(1 - value);
+                  bgImgOpacity.setValue(value);
+                  break;
+                case AREA_MIDDLE:
+                  textOpacity.setValue(value);
+                  bgImgOpacity.setValue(1 - value);
+                  break;
+                case AREA_BOTTOM:
+                  break;
+              }
+            } else {
+              // 非检测区域强制指定状态
+              if ((articleState.__data.eventTargetAreaId == 2 && value >= 1) 
+                || (articleState.__data.eventTargetAreaId == 3 && value < 0)) {
+                textOpacity.setValue(1);
+                bgImgOpacity.setValue(0);
+                // 重置背景线稿图
+                articleState.__data.bgImageInited = false;
+                DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, { imageId: '' });
+              } else if ((articleState.__data.eventTargetAreaId == 1 && value > 1)
+                || (articleState.__data.eventTargetAreaId == 2 && (value < 0 && value > -1))) {
+                textOpacity.setValue(0);
+                bgImgOpacity.setValue(1);
+              }
+              if ((articleState.__data.eventTargetAreaId == 1 && value <= -1)
+                || (articleState.__data.eventTargetAreaId == 2 && value <= -1)
+                || (articleState.__data.eventTargetAreaId == 3 && value >= 1)) {
+                textOpacity.setValue(1);
+                bgImgOpacity.setValue(0);
+                // 重置背景线稿图
+                articleState.__data.bgImageInited = false;
+                DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, { imageId: '' });
+              }
             }
           }
         }

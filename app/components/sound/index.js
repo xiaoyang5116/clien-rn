@@ -110,6 +110,10 @@ const SoundProvider = (props) => {
 
     const effectOnEnd = ({ id, soundId }) => {
         effectPendingRemoveQueue.current.push(id);
+        setEffectViews((list) => {
+            const validList = list.filter(e => (e.props.id != id));
+            return [...validList];
+        });
     }
 
     const playBGM = () => {

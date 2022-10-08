@@ -46,3 +46,7 @@ export const ImageButton = (props) => {
         <CButton {...props} onPress={props.onPress} />
     );
 }
+
+/** UI常量 */
+export const ARTICLE_FLATLIST_MARGIN_TOP = 35;
+export const ARTICLE_EVENT_AREA_MARGIN = 35;

@@ -1,11 +1,15 @@
 import React from 'react';
 import lo from 'lodash';
 
-import { View, Animated, StyleSheet, DeviceEventEmitter } from 'react-native';
+import { View, StyleSheet, DeviceEventEmitter } from 'react-native';
+import Video from 'react-native-video';
+
 import WorldPreview from '../../components/carousel/WorldPreview';
 import WorldUnlockView from './WorldUnlockView';
 import { AppDispath, DataContext, EventKeys } from '../../constants';
 import WorldUtils from '../../utils/WorldUtils';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../constants/resolution';
 
 const WORLD_MAPS = [
   { primary: '尘界', left: '现实', right: '灵修界' },
@@ -17,9 +21,11 @@ const OtherWorld = (props) => {
 
     const CALLBACK_EVENT = '__@OtherWorld.cb';
 
-    const maskOpacity = React.useRef(new Animated.Value(1)).current;
     const [preview, setPreview] = React.useState(<></>);
     const context = React.useContext(DataContext);
+
+    const refVideo = React.useRef(null);
+    const [pauseBGVideo, setPauseBGVideo] = React.useState(true);
   
     const { navigation } = props;
     const state = navigation.getState();
@@ -42,8 +48,14 @@ const OtherWorld = (props) => {
             const worldId = WorldUtils.getWorldIdByName(worldName);
             if (v.data == null) {
               setPreview(<WorldUnlockView {...props} onClose={() => {}} />);
+              // 播放背景动画
+              refVideo.current.seek(0);
+              setPauseBGVideo(false);
             } else if (v.data.dialog != undefined && !lo.isEmpty(v.data.dialog.content)) {
               setPreview(<WorldUnlockView {...props} content={v.data.dialog.content} onClose={() => {}} />);
+              // 播放背景动画
+              refVideo.current.seek(0);
+              setPauseBGVideo(false);
             } else {
               setPreview(
                 <WorldPreview 
@@ -70,29 +82,32 @@ const OtherWorld = (props) => {
   
     // 通过透明度播放过度效果
     React.useEffect(() => {
-      if (!lo.isEqual(routeName, activeRouteName)) {
-        maskOpacity.setValue(1);
-        return;
-      }
-      Animated.sequence([
-        Animated.timing(maskOpacity, {
-          toValue: 0,
-          duration: 1000,
-          useNativeDriver: false,
-        })
-      ]).start();
-
+      // 获取世界转场数据
       AppDispath({ type: 'ArticleModel/getTransWorld', payload: { routeName: activeRouteName }, retmsg: CALLBACK_EVENT});
 
       // 强制隐藏功能浮层
       DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+
+      // 页面切走时，停止播放背景动画
+      return () => {
+        setPauseBGVideo(true);
+      }
     }, [props]);
   
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff' }}>
+        <Video 
+            ref={(ref) => refVideo.current = ref}
+            style={{ position: 'absolute', width: '100%', height: '100%', display: (pauseBGVideo ? 'none' : 'flex') }}
+            source={require('../../../assets/mp4/ARTICLE_LEFT_RIGHT_BG.mp4')}
+            fullscreen={false}
+            // repeat={true}
+            resizeMode={'stretch'}
+            paused={pauseBGVideo}
+            onEnd={() => {}}
+        />
+        <FastImage source={require('../../../assets/bg/world_unlock_bg.png')} style={{ position: 'absolute', width: px2pd(1080), height: px2pd(555) }} />
         {preview}
-        {/* 白色遮盖层 */}
-        <Animated.View style={[styles.maskView, { opacity: maskOpacity }]} pointerEvents='none' />
     </View>
     );
 }

@@ -43,11 +43,11 @@ import { ReaderBackgroundImageView, ReaderXianGaoImageView } from './article/Ima
 import FooterTabBar from './article/FooterTabBar';
 import DarkLightSelector from './article/DarkLightSelector';
 import WorldTabBar from './article/WorldTabBar';
-import WorldSelector from './article/WorldSelector';
 import OtherWorld from './article/OtherWorld';
 import PrimaryWorld from './article/PrimaryWorld';
 import ObjectUtils from '../utils/ObjectUtils';
 import { ArticleOptionActions } from '../components/article';
+import { ARTICLE_EVENT_AREA_MARGIN } from '../constants/custom-ui';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -206,7 +206,7 @@ class ArticlePage extends Component {
             </TouchableWithoutFeedback>
           </View>
         </HeaderContainer>
-        <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
+        <View style={[styles.bodyContainer, {}]}>
           <ReaderBackgroundImageView />
           <ReaderXianGaoImageView />
           <Tab.Navigator initialRouteName='PrimaryWorld' 
@@ -275,7 +275,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   debugView1: {
-    marginBottom: 35,
+    marginBottom: ARTICLE_EVENT_AREA_MARGIN,
     borderWidth: 1, 
     borderColor: '#999', 
     width: '100%', 
@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.1)',
   },
   debugView3: {
-    marginTop: 35,
+    marginTop: ARTICLE_EVENT_AREA_MARGIN,
     borderWidth: 1, 
     borderColor: '#999', 
     width: '100%', 

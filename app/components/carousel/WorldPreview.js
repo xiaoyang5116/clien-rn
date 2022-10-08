@@ -60,7 +60,7 @@ const WorldPreview = (props) => {
       const prevImg = previewImages.find(e => e.worldId == item.worldId).img;
       const propEnough = propNum > 0;
       return (
-        <View style={{ flex: 1, backgroundColor: '#fff' }}>
+        <View style={{ flex: 1, width: '100%', backgroundColor: '#fff' }}>
           <SafeAreaView style={{ flex: 1, justifyContent: 'center' }}>
             <Animated.View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', opacity: opacity }}>
               <View style={styles.bodyContainer}>
