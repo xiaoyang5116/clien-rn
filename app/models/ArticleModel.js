@@ -219,7 +219,7 @@ export default {
         }
       }
 
-      // 预处理
+      // 选项预处理
       for (let k in data) {
         const item = data[k];
         if (!lo.isEqual(item.type, 'code') || item.object == null)
@@ -230,6 +230,29 @@ export default {
           const chat = yield put.resolve(action('SceneModel/getChat')({ sceneId: item.object.sceneId, chatId: item.object.chatId }));
           if (lo.isBoolean(chat.plain)) item.object.plain = chat.plain;
           item.object.options = yield put.resolve(action('getValidOptions')({ options: chat.options }));
+        }
+      }
+
+      // 背景线稿图效果预处理
+      let previousBackground = null;
+      for (let k in data) {
+        const item = data[k];
+        if (!lo.isEqual(item.type, 'code') || item.object == null)
+          continue;
+
+        if (item.object.background == undefined && item.object.effect == undefined)
+          continue;
+
+        if (lo.isObject(item.object.background) && item.object.background.imageId != undefined) {
+            previousBackground = item.object.background;
+            continue;
+        }
+
+        if (lo.isObject(item.object.effect) 
+          && item.object.effect.imageId == undefined 
+          && previousBackground != null) {
+          // 绑定上面出现的background
+          item.object.effect.imageId = previousBackground.imageId;
         }
       }
 
@@ -344,6 +367,12 @@ export default {
         } else if (checkBottom(offsetY, totalOffsetY)) {  // 事件触发区域(底部)
           if (effect != undefined) {
             enterEffectArea(articleState, item, AREA_BOTTOM, lineBottom);
+          } else if (background != undefined) {
+            if (articleState.__data.bgImageInited) {
+              // 重置背景线稿图
+              articleState.__data.bgImageInited = false;
+              DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, { imageId: '' });
+            }
           }
         } else if (checkMiddle(offsetY, totalOffsetY)) { // 事件触发区域(中心区域)
           // 弹出提示
@@ -393,7 +422,8 @@ export default {
           // 处理线稿背景图渐隐效果
           if (lo.isEqual(articleState.__data.eventTargetEffectId, 'BackgroundArt') 
             && (articleState.__data.startOffsetY > 0)
-            && (articleState.__data.bgImageInited)) {
+            && (articleState.__data.bgImageInited)
+            ) {
             const value = 1 - (offsetY - articleState.__data.startOffsetY) / DETECTION_AREA_HEIGHT;
             if (value >= 0 && value <= 1) {
               switch (articleState.__data.eventTargetAreaId) {
@@ -410,26 +440,20 @@ export default {
               }
             } else {
               // 非检测区域强制指定状态
-              if ((articleState.__data.eventTargetAreaId == 2 && value >= 1) 
-                || (articleState.__data.eventTargetAreaId == 3 && value < 0)) {
+              if ((articleState.__data.eventTargetAreaId == AREA_MIDDLE && value >= 1) 
+                || (articleState.__data.eventTargetAreaId == AREA_BOTTOM && value < 0)) {
                 textOpacity.setValue(1);
                 bgImgOpacity.setValue(0);
-                // 重置背景线稿图
-                articleState.__data.bgImageInited = false;
-                DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, { imageId: '' });
-              } else if ((articleState.__data.eventTargetAreaId == 1 && value > 1)
-                || (articleState.__data.eventTargetAreaId == 2 && (value < 0 && value > -1))) {
+              } else if ((articleState.__data.eventTargetAreaId == AREA_TOP && value > 1)
+                || (articleState.__data.eventTargetAreaId == AREA_MIDDLE && (value < 0 && value > -1))) {
                 textOpacity.setValue(0);
                 bgImgOpacity.setValue(1);
               }
-              if ((articleState.__data.eventTargetAreaId == 1 && value <= -1)
-                || (articleState.__data.eventTargetAreaId == 2 && value <= -1)
-                || (articleState.__data.eventTargetAreaId == 3 && value >= 1)) {
+              if ((articleState.__data.eventTargetAreaId == AREA_TOP && value <= -1)
+                || (articleState.__data.eventTargetAreaId == AREA_MIDDLE && value <= -1)
+                || (articleState.__data.eventTargetAreaId == AREA_BOTTOM && value >= 1)) {
                 textOpacity.setValue(1);
                 bgImgOpacity.setValue(0);
-                // 重置背景线稿图
-                articleState.__data.bgImageInited = false;
-                DeviceEventEmitter.emit(EventKeys.READER_BACKGROUND_IMG_UPDATE, { imageId: '' });
               }
             }
           }
