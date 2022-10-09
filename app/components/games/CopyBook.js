@@ -19,10 +19,14 @@ import Toast from '../toast'
 import FastImage from 'react-native-fast-image';
 import HuoYanAnimation from '../animation/HuoYan';
 
-
+// 笔画次数配置时候需要多加一笔
 const ziTieArr = [
     {
-        id: 0, name: "木", img: require('../../../assets/games/ziTie/mu.png'), detectionArea: [
+        id: 0,
+        name: "木",
+        img: require('../../../assets/games/ziTie/mu.png'),
+        strokes: 5,
+        detectionArea: [
             { origin: [89, 95], width: 15, height: 14 },
             { origin: [120, 95], width: 15, height: 14 },
             { origin: [145, 95], width: 15, height: 14 },
@@ -34,7 +38,11 @@ const ziTieArr = [
         ]
     },
     {
-        id: 1, name: "仙", img: require('../../../assets/games/ziTie/xian.png'), detectionArea: [
+        id: 1,
+        name: "仙",
+        strokes: 7,
+        img: require('../../../assets/games/ziTie/xian.png'),
+        detectionArea: [
             { origin: [108, 80], width: 13, height: 12 },
             { origin: [168, 80], width: 14, height: 14 },
             { origin: [99, 109], width: 15, height: 15 },
@@ -48,7 +56,11 @@ const ziTieArr = [
         ]
     },
     {
-        id: 2, name: "火", img: require('../../../assets/games/ziTie/huo.png'), detectionArea: [
+        id: 2,
+        name: "火",
+        strokes: 5,
+        img: require('../../../assets/games/ziTie/huo.png'),
+        detectionArea: [
             { origin: [81, 94], width: 13, height: 13 },
             { origin: [223, 94], width: 15, height: 17 },
             { origin: [62, 137], width: 13, height: 14 },
@@ -61,7 +73,11 @@ const ziTieArr = [
         ]
     },
     {
-        id: 2, name: "雷", img: require('../../../assets/games/ziTie/lei.png'), detectionArea: [
+        id: 3,
+        name: "雷",
+        strokes: 16,
+        img: require('../../../assets/games/ziTie/lei.png'),
+        detectionArea: [
             // 雨
             { origin: [77, 46], width: 25, height: 20 },
             { origin: [200, 46], width: 25, height: 20 },
@@ -210,6 +226,10 @@ const CopyBook = (props) => {
 
     let ziTie = useRef(currentZiTieArr).current
 
+    const strokes = useRef(0)  // 笔画次数
+    const failuresNumber = 3  // 可以失败次数
+    const curFailuresNumber = useRef(0)  // 当前失败次数
+
     // 起点的 X 坐标
     let firstX = 0
 
@@ -255,8 +275,23 @@ const CopyBook = (props) => {
             // 动作释放后做的动作
             onPanResponderRelease: (evt, gestureState) => {
                 MousePositions.current.push(path.current)
-                statusHandler()
-                setLastX(0)
+                const status = statusHandler()
+                if (status === false) {
+                    strokes.current += 1
+                    if (strokes.current >= ziTie[ziTieIndex.current].strokes) {
+                        curFailuresNumber.current += 1
+                        if (curFailuresNumber.current >= failuresNumber) {
+                            Toast.show("过关失败")
+                            onClear()
+                            props.onClose(false)
+                        } else {
+                            Toast.show("还差一点点!!!,重新开始")
+                            strokes.current = 0
+                            onClear()
+                        }
+                    }
+                }
+                // setLastX(0)
             },
         })
     ).current
@@ -281,14 +316,13 @@ const CopyBook = (props) => {
         if (ziTieIndex.current < ziTie.length - 1) {
             ziTieIndex.current += 1
             isShowHuoYan.current = false
-            // ziTieFadeIn()
+            strokes.current = 0
+            curFailuresNumber.current = 0
             onClear()
-            // setIsShowHuoYan(false)
-            // ziTieFadeIn()
         }
         else {
             onClear()
-            props.onClose()
+            props.onClose(true)
         }
     }
 
