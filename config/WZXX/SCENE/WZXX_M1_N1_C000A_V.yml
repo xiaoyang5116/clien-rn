@@ -293,7 +293,7 @@ scenes: [
         options: [ 
          { title: '【进去看看】', nextChat: 'C2' ,icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'],},
          { title: '【想起来，该去买簪子了】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
-         { title: '【想起来还得去森林里采集草药】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },  
+        #  { title: '【想起来还得去森林里采集草药】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },  
         #  { title: '【玄德中街】', toScene: 'C000A_V_MAP_0_0'}, 
         #  { title: '【仁德街】', toScene: 'C000A_V_MAP_0_4'},
         #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
@@ -376,7 +376,7 @@ scenes: [
         options: [ 
          { title: '【四处观察】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'],}, 
          { title: '【想起来，该去买簪子了】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
-         { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
+        #  { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
         #  { title: '【官府】', toScene: 'C000A_V_MAP_0_2'}, 
         #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
         #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
@@ -396,13 +396,13 @@ scenes: [
 
   #===========事件场景==============
        {
-  # NPC2
+  #白芍
     id: 'C000A_V_MAP_0_5', name: '郊区',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+    #横图显示
     sceneImage: 'BGT_29',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
@@ -426,8 +426,8 @@ scenes: [
         id: 'C1', desc: '白城的边缘地带，这里的房屋很少，人迹罕至', 
         options: [ 
          { title: '【四处观察】', nextChat: 'C2',icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'], },
-         { title: '【在这儿采集草药】',andVarsValue: ['@clues_xiansuo1 == 1'],collect: '1' , nextChat: 'C3' },
-         { title: '【仁德街】', toScene: 'C000A_V_MAP_0_4'}, 
+         { title: '【在这儿采集草药】',andVarsValue: ['@clues_xiansuo1 == 1'],collect: '1' , nextChat: 'C3' ,varsOff: ['WZXX_M1_N1_C000A_V/v_icon_107'],},
+        #  { title: '【仁德街】', toScene: 'C000A_V_MAP_0_4'}, 
         #  { title: '【森林】', toScene: 'C000A_V_MAP_-1_5'},  
         #  { title: '【天水亭】', toScene: 'C000A_V_MAP_1_5'},  
         #  { title: '【郊外】', toScene: 'C000A_V_MAP_0_6'},
@@ -445,7 +445,7 @@ scenes: [
       },
 
       { 
-        id: 'C3', desc: '还差两味草药，继续寻找……', 
+        id: 'C3', desc: '还差一味草药，继续寻找……', 
         options: [ 
          { title: '去郊外的山谷中挖丹参',  toScene: 'C000A_V_MAP_0_6'},
         ],
@@ -485,7 +485,7 @@ scenes: [
       { 
         id: 'C1', desc: '一片茂密丛林，鸟兽颇多，人烟稀少', 
         options: [ 
-         { title: '【就在这儿采集草药】', andVarsValue: ['@clues_xiansuo1 == 1'], collect: '2' ,nextChat: 'C2', },
+        #  { title: '【就在这儿采集草药】', andVarsValue: ['@clues_xiansuo1 == 1'], collect: '2' ,nextChat: 'C2', },
          { title: '【到处走动】', nextChat: 'C3', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'],},
          { title: '【郊外】', toScene: 'C000A_V_MAP_0_6'}, 
         #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
@@ -493,12 +493,12 @@ scenes: [
         #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
-       { 
-        id: 'C2', desc: '搜寻完毕，去郊区', 
-        options: [ 
-         { title: '去郊区找野生白芍', toScene: 'C000A_V_MAP_0_5'}, 
-        ],
-      },
+      #  { 
+      #   id: 'C2', desc: '搜寻完毕，去郊区', 
+      #   options: [ 
+      #    { title: '去郊区找野生白芍', toScene: 'C000A_V_MAP_0_5'}, 
+      #   ],
+      # },
       { 
         id: 'C3', desc: '森林里好像什么都没有,兜兜转转好无聊,连个兔子都抓不到', 
         options: [ 
@@ -521,8 +521,8 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+    #横图显示
     sceneImage: 'BGT_73',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
@@ -547,8 +547,8 @@ scenes: [
       { 
         id: 'C1', desc: '这亭子建的很好看，路过的人经常在亭中纳凉', 
         options: [ 
-         { title: '【就在这儿采集草药】', andVarsValue: ['@clues_xiansuo1 == 1'], collect: '4', nextChat: 'C2'   }, 
-         { title: '【去旁边看看】', nextChat: 'C3', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'], },  
+        #  { title: '【就在这儿采集草药】', andVarsValue: ['@clues_xiansuo1 == 1'], collect: '4', nextChat: 'C2'   }, 
+         { title: '【去旁边看看】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'], },  
         #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
         #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
         #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
@@ -556,12 +556,11 @@ scenes: [
       }, 
 
       { 
-        id: 'C2', desc: '四味药草全备齐了，需要寻找一个能够炼丹的地方将草药炼成药丸', 
+        id: 'C2', desc: '两味药草全备齐了，需要寻找一个能够炼丹的地方将草药炼成药丸', 
         options: [  
          { title: '找路人打听一下',nextChat: 'C4' },
         ],
       },
-
 
        { 
         id: 'C3', desc: '坐了一会儿，周围路人全无交流，气氛有点尴尬，李森炎起身离开', 
@@ -572,7 +571,7 @@ scenes: [
 
        { 
         id: 'C4', desc: "天水亭离市区太远\n迎来送往的人并不多\n而且各自看上去都神色匆匆\n希望能有人知道哪里可以炼制丹药",
-        options: [  
+        options: [
         { title: '【神色奇怪的农民】',  varsOn: ['v1','biaoqianv2',], nextChat: 'C4A' ,icon: { id: 1, bindVar: 'biaoqianv2' },}, 
         { title: '【坐在亭子中休歇的中年男人】', andVarsOn: ['v1'], nextChat: 'C4B'}, 
         ],
@@ -595,7 +594,7 @@ scenes: [
       { 
         id: 'C4B1', desc:  "等李森炎肯定的点点头后他才说\n“我也不太熟知，只是听人说起过，老人故居里面有位德高望重的老人似乎可以炼制丹药。”",
         options: [
-        { title: '【机不可失，立刻赶去老人故居】', varsOff: ['v1'], varsOn: ['WZXX_M1_N1_C000A_V/LRGJ_A',],   toScene: 'C000A_V_MAP_1_-2'},
+        # { title: '【机不可失，立刻赶去老人故居】', varsOff: ['v1'], varsOn: ['WZXX_M1_N1_C000A_V/LRGJ_A',],   toScene: 'C000A_V_MAP_1_-2'},
         { title: '【严谨一点，详细追问一下】',   nextChat: 'C5'}, 
         ],
       }, 
@@ -603,7 +602,7 @@ scenes: [
       { 
         id: 'C5', desc:  "李森炎赶紧拿出刚才采的一些多余的草药送给中年男人\n“大哥，你真是帮了我大忙了，这些草药虽然不是什么名贵的药材，但是也能滋养身体，您务必收下。”",
         options: [
-        { title: '【送出草药】', useProps: '1012,3',  nextChat: 'C6' }, 
+        { title: '【送出草药】', useProps: '1011,1',  nextChat: 'C6' }, 
         ],
       }, 
 
@@ -622,9 +621,9 @@ scenes: [
     #       btn: [{title: '离开',tokey: "C1",},]},
     # ],},],
   },
-#===========事件场景==============
-       {
-    # NPC2
+#===========================事件场景==============================
+   {
+    # 丹参
     id: 'C000A_V_MAP_0_6', name: '郊外',
     # 指定场景为NPC或MAP场景
     isNpc: true,
@@ -657,20 +656,20 @@ scenes: [
          { title: '【去危险的山谷中】',  nextChat: 'C2',   }, 
         #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
         #  { title: '【森林】', toScene: 'C000A_V_MAP_-1_5'}, 
-        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0']},
+        #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]"},
         ],
       },
       { 
         id: 'C2', desc: '坑坑洼洼的土路，路很难走，偶尔能见到野兽出来觅食', 
         options: [ 
-         { title: '赶紧采集，采完就走',nextChat: 'C3',andVarsValue: ['@clues_xiansuo1 == 1'], collect: '3',  }, 
+         { title: '采集完赶紧走',nextChat: 'C3',andVarsValue: ['@clues_xiansuo1 == 1'], collect: '3',  }, 
         ],
       },
       { 
-        id: 'C3', desc: '已搜寻到三味药草，还剩下最后一味', 
+        id: 'C3', desc: '草药都搜寻到了', 
         options: [ 
-         { title: '去天水亭！', toScene: 'C000A_V_MAP_1_5'}, 
+         { title: '去天水亭！',varsOff: ['WZXX_M1_N1_C000A_V/v_icon_110'], toScene: 'C000A_V_MAP_1_5'}, 
         ],
       },
       { 
@@ -709,7 +708,6 @@ scenes: [
     ],
     # 对话选项
     chats: [
-
       { 
         id: 'C1', desc: '这布庄看上去很奢华', 
         options: [ 
@@ -738,9 +736,7 @@ scenes: [
   #         { key: 'P1', content: ['“公子你想买什么衣服？”','李森炎逛了一圈，价格昂贵，显然是来宰客的','算了，离开',
   #         ],
   #        btn: [{title: '离开',tokey: "C1",},]},
-
   #          ], },
-
   # ],
   },
 
@@ -778,7 +774,7 @@ scenes: [
         options: [ 
          { title: '【进去看看】',nextChat: 'C2' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'],},
          { title: '【想什么呢，现在是去买簪子的时候】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
-         { title: '【想什么呢，去森林采草药才是正事！】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
+        #  { title: '【想什么呢，去森林采草药才是正事！】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
         #  { title: '【西市一街】', toScene: 'C000A_V_MAP_-1_-1'},  
         #  { title: '【布庄】', toScene: 'C000A_V_MAP_-1_-3'},     
         #  { title: '【玄德大街】', toScene: 'C000A_V_MAP_0_-2'}, 
@@ -830,12 +826,12 @@ scenes: [
      #横图显示
     sceneImage: 'BGT_34',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, -1],
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
@@ -844,7 +840,8 @@ scenes: [
     # 动作定义
     actions: [ ],
     # 事件定义
-    events: [
+    events: 
+    [
        { type: 'enter',  nextChat: 'C1' },
     ],
     # 对话选项
@@ -853,7 +850,7 @@ scenes: [
         id: 'C1', desc: '这边人很多，绝大部分是男人和醉汉', 
         options: [ 
           { title: '【进去看看】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'],}, 
-         { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'},
+          { title: '【西市】', toScene: 'C000A_V_MAP_-1_0'},
         #  { title: '【春花阁】', toScene: 'C000A_V_MAP_-1_-2'},
         #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
         #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
@@ -900,7 +897,7 @@ scenes: [
         options: [ 
           { title: '【进去看看】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'],}, 
           { title: '【想起来，该去买簪子了】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
-         { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
+        #  { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
         #  { title: '【西市一街】', toScene: 'C000A_V_MAP_-1_-1'},
         #  { title: '【李家】', toScene: 'C000A_V_MAP_-2_0'},  
         #  { title: '【西市二街】', toScene: 'C000A_V_MAP_-1_1'},    
@@ -909,7 +906,7 @@ scenes: [
          { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
-        { 
+      { 
         id: 'C2', desc: '完全逛完整个西市估摸着要半天的时间', 
         options: [ 
          { title: '没那么多时间，离开', nextChat: 'C1' }, 
@@ -972,7 +969,7 @@ scenes: [
         options: [ 
          { title: '决定出去逛逛', nextChat: 'C1' },
          { title: '【想起来，该去买簪子了】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
-         { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
+        #  { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
         
         ],
       },
@@ -1133,7 +1130,7 @@ scenes: [
         options: [ 
         { title: '【找小女孩聊聊天】', nextChat: 'C2' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
         { title: '【想起来，该去买簪子了】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
-        { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' }, 
+        # { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' }, 
         { title: '【西市三街】',toScene: 'C000A_V_MAP_-2_-1'},
         # { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
         # { title: '【米铺】', toScene: 'C000A_V_MAP_-3_0'},
@@ -1243,7 +1240,7 @@ scenes: [
         options: [ 
         { title: '【四处逛逛】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
         { title: '【想起来，该去买簪子了】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
-        { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
+        # { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
         # { title: '【小院】',toScene: 'C000A_V_MAP_-3_-1'},
         # { title: '【西市三街】',toScene: 'C000A_V_MAP_-2_-1'},
         # { title: '【路口】',toScene: 'C000A_V_MAP_-2_-3'},
@@ -1579,9 +1576,9 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/LRGJ_A'], nextChat: 'C3' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/LRGJ_A'], nextChat: 'C3' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/LRGJ_B'], nextChat: 'C4' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], nextChat: 'C4' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], nextChat: 'C4' },
        
     ],
     # 对话选项
@@ -1605,26 +1602,26 @@ scenes: [
         ],
       },
 
-       { 
-        id: 'C3', desc: "李森炎匆忙赶来老人故居\n果然看见一个老人在里面神神叨叨的说些什么\n李森炎礼貌走近，开口询问炼丹的事情\n那老人深深打量他一眼，摆摆手说很没空，让他快些离开",   
-        options: [ 
-         { title: '得想个办法让老人愿意帮他', nextChat: 'C3A' }, 
-        ],
-      },
+      #  { 
+      #   id: 'C3', desc: "李森炎匆忙赶来老人故居\n果然看见一个老人在里面神神叨叨的说些什么\n李森炎礼貌走近，开口询问炼丹的事情\n那老人深深打量他一眼，摆摆手说很没空，让他快些离开",   
+      #   options: [ 
+      #    { title: '得想个办法让老人愿意帮他', nextChat: 'C3A' }, 
+      #   ],
+      # },
 
-      { 
-        id: 'C3A', desc: "李森炎灵光一闪，觉得自己刚才匆匆上门，着实有点莽撞了\n起码得带点东西上门\n得找人打探一下老人的喜好\n正这么想着\n忽然听见还未阖上门的房中幽幽传来一声\n“酒后高歌且放狂，门前闲事莫思量”",   
-        options: [ 
-         { title: '暗示我去买酒吗？买酒去！', nextChat: 'C3B' }, 
-        ],
-      },
+      # { 
+      #   id: 'C3A', desc: "李森炎灵光一闪，觉得自己刚才匆匆上门，着实有点莽撞了\n起码得带点东西上门\n得找人打探一下老人的喜好\n正这么想着\n忽然听见还未阖上门的房中幽幽传来一声\n“酒后高歌且放狂，门前闲事莫思量”",   
+      #   options: [ 
+      #    { title: '暗示我去买酒吗？买酒去！', nextChat: 'C3B' }, 
+      #   ],
+      # },
 
-      { 
-        id: 'C3B', desc: "李森炎准备去买酒\n但反应过来，原身是个穷小子，身上怎么可能会有钱\n眼下只能把刚采集的野草卖了换钱再去买酒",   
-        options: [ 
-         { title: '去商铺', varsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_A'], varsOff: ['WZXX_M1_N1_C000A_V/LRGJ_A'], toScene: 'C000A_V_MAP_3_-1' }, 
-        ],
-      },
+      # { 
+      #   id: 'C3B', desc: "李森炎准备去买酒\n但反应过来，原身是个穷小子，身上怎么可能会有钱\n眼下只能把刚采集的野草卖了换钱再去买酒",   
+      #   options: [ 
+      #    { title: '去商铺', varsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_A'], varsOff: ['WZXX_M1_N1_C000A_V/LRGJ_A'], toScene: 'C000A_V_MAP_3_-1' }, 
+      #   ],
+      # },
 
       { 
         id: 'C4', desc: "李森炎拿着换来的好酒敲门进去\n果然老人一看见美酒，眼睛都直了\n很慷慨大方的帮他炼制好了丹药",   
@@ -1633,15 +1630,6 @@ scenes: [
         ],
       },
       ],
-    # 对话框
-    # dialogs: [
-    #       { id: 'Screen14',style: 6, title: '和他聊聊天', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
-    #       sections: [
-    #       { key: 'P1', content: ['“菩提本无树 ，明镜亦非台，本来无一物，何处惹尘埃”那人嘴里奇奇怪怪的说着什么','李森炎走过去看了他一眼','觉得他神经兮兮的，还是赶快走吧，别靠近'],
-    #       btn: [{title: '离开',tokey: "C1",},]},
-
-    # ],},
-    # ],
   },
 
 #===========事件场景==============
@@ -1651,8 +1639,8 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+    #横图显示
     sceneImage: 'BGT_33',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
@@ -1664,7 +1652,6 @@ scenes: [
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "biaoqianv1", min: 0, max: 1 },
     { id: "v1", min: 0, max: 1 },
-
     ],
     # 动作定义
     actions: [ ],
@@ -1693,15 +1680,6 @@ scenes: [
         ],
       },
       ],
-       # 对话框
-    # dialogs: [
-    #       { id: 'Screen15',style: 6, title: '进去看看', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
-    #       sections: [
-    #       { key: 'P1', content: ['原来这个花满楼就是茶楼啊','里面许多文人雅士在喝茶吟赋','这时和李森炎格格不入','其实主要还是没钱……',],
-    #       btn: [{title: '离开',tokey: "C1",},]},
-
-    # ],},
-    # ],
   },
 
   #===========事件场景==============
@@ -1920,27 +1898,26 @@ scenes: [
         ],
       },],
        # 对话框
-    dialogs: [
-          { id: 'Screen15',style: 6, title: '询问', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'P1', content: ['前面有个佝偻老人','李森炎上前和他谈话','老人跟李森炎唠起了家常','很显然，他把李森炎当成了儿子','李森炎耐心与他说话','最后找到机会问出了情报','【郊区有野生白芍，森林中有何首乌】',],
-          btn: [{title: '继续找询问年轻男子询问',tokey: "P2", addCluesId: ["liuyan1"] },]},
+    # dialogs: [
+    #       { id: 'Screen15',style: 6, title: '询问', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+    #       sections: [
+    #       { key: 'P1', content: ['前面有个佝偻老人','李森炎上前和他谈话','老人跟李森炎唠起了家常','很显然，他把李森炎当成了儿子','李森炎耐心与他说话','最后找到机会问出了情报',],
+    #       btn: [{title: '继续找询问年轻男子询问',tokey: "P2", addCluesId: ["liuyan1"] },]},
 
-          { key: 'P2', content: ['远处有个年轻男子一身儒衫','看上去是个不得志的读书人','他说自己什么都知道','一口气给李森炎说了好多','【森林中有丹参、天水阁有白术，郊外山谷有何首乌】',],
-          btn: [{title: '再询问衣着光鲜的姑娘',tokey: "P3", addCluesId: ["liuyan2"]},]},
+    #       { key: 'P2', content: ['远处有个年轻男子一身儒衫','看上去是个不得志的读书人','他说自己什么都知道','一口气给李森炎说了好多',],
+    #       btn: [{title: '再询问衣着光鲜的姑娘',tokey: "P3", addCluesId: ["liuyan2"]},]},
 
-          { key: 'P3', content: ['“你说的都是些治疗内伤的东西，我可以帮你”','“你不用去找药了”','说着姑娘对李森炎抛了个媚眼','李森炎觉得不靠谱','拔腿就跑',],
-          btn: [{title: '去问孩童',tokey: "P4"},]},
+    #       { key: 'P3', content: ['“你说的都是些治疗内伤的东西，我可以帮你”','“你不用去找药了”','说着姑娘对李森炎抛了个媚眼','李森炎觉得不靠谱','拔腿就跑',],
+    #       btn: [{title: '去问孩童',tokey: "P4"},]},
 
-          { key: 'P4', content: ['李森炎问了问路边的孩子','那孩子吵着要吃糖才告诉李森炎','李森炎转头买了一个糖葫芦递给他','他笑着说了好些个地方','情报收集的差不多了，是时候验证情报真假','听说鉴宝阁里有专门鉴定情报真假的情报阁','是否前往验证？'],
-          btn: [{title: '去验证情报的真假',toScene: 'C000A_V_MAP_3_1',addCluesId: ["liuyan3"],
-          #  varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',] 
-           },
-          {title: '不去就在原地再想想',tokey: "C1",addCluesId: ["liuyan3"],
-          #  varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',]
-          },]},
-    ],},
-    ],
+    #       { key: 'P4', content: ['李森炎问了问路边的孩子','那孩子吵着要吃糖才告诉李森炎','李森炎转头买了一个糖葫芦递给他','他笑着说了好些个地方','情报收集的差不多了，是时候验证情报真假','听说鉴宝阁里有专门鉴定情报真假的情报阁','是否前往验证？'],
+    #       btn: [{title: '去验证情报的真假',toScene: 'C000A_V_MAP_3_1',addCluesId: ["liuyan3"],
+    #        },
+    #       {title: '不去就在原地再想想',tokey: "C1",addCluesId: ["liuyan3"],
+    #       #  varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',]
+    #       },]},
+    # ],},
+    # ],
   },
 
  #===========事件场景==============
@@ -1968,7 +1945,6 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C1' },
        { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C3' },
-       
     ],
     # 对话选项
     chats: [
@@ -2019,8 +1995,8 @@ scenes: [
           btn: [{title: '自己探索，先去森林',toScene: 'C000A_V_MAP_-1_5',},]
           }, 
 
-          { key: 'P3', content: ['李森炎直接交了钱','将自己刚才找的情报告诉老板','情报阁老板摸摸胡须，很痛快的告诉了他','“你方才找到的这些消息中，有真有假”','随后将真的线索告诉了李森炎','【郊外山谷有丹参，郊区有野生白芍，森林中有何首乌，天水阁有白术】',],
-          btn: [{title: '先去森林找', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_101'] ,  varsOn: ['WZXX_M1_N1_C000A_V/v_icon_107','WZXX_M1_N1_C000A_V/v_icon_108','WZXX_M1_N1_C000A_V/v_icon_109','WZXX_M1_N1_C000A_V/v_icon_110'] ,toScene: 'C000A_V_MAP_-1_5', },]
+          { key: 'P3', content: ['李森炎直接交了钱','将自己刚才找的情报告诉老板','情报阁老板摸摸胡须，很痛快的告诉了他','“你方才找到的这些消息中，有真有假”','随后将真的线索告诉了李森炎',],
+          btn: [{title: '先去郊区找', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_101'] , varsOn: ['WZXX_M1_N1_C000A_V/v_icon_107','WZXX_M1_N1_C000A_V/v_icon_110'] ,toScene: 'C000A_V_MAP_0_5', },]
           },
 
     ],},
@@ -2052,7 +2028,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_A'], nextChat: 'C3' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_A'], nextChat: 'C3' },
     ],
     # 对话选项
     chats: [
@@ -2075,32 +2051,32 @@ scenes: [
         ],
       },
 
-      { 
-        id: 'C3', desc: "李森炎到商铺后，一眼就在柜台上看中了一壶酒\n上次在这个商铺买过簪子，和掌柜也算是面熟\n于是就直接开门见山的说了自己想要用草药换酒的想法", 
-        options: [ 
-        { title: '【用白芍换酒】', nextChat: 'C3A', },
-        ],
-      },
+      # { 
+      #   id: 'C3', desc: "李森炎到商铺后，一眼就在柜台上看中了一壶酒\n上次在这个商铺买过簪子，和掌柜也算是面熟\n于是就直接开门见山的说了自己想要用草药换酒的想法", 
+      #   options: [ 
+      #   { title: '【用白芍换酒】', nextChat: 'C3A', },
+      #   ],
+      # },
 
-      { 
-        id: 'C3A', desc: "掌柜看着这小伙老实想了想，说要看看李森炎采的草药\n李森炎将草药拿出来，掌柜的一看到白芍眼睛都亮了\n追问李森炎到哪里才才到的，并且同意一个白芍能换十个铜币\n这样的话只需要两个白芍就能换酒", 
-        options: [ 
-        { title: '【卖出白芍】', toShop: 'shop_sell_test_1', nextChat: 'C3B', },
-        ],
-      },
-      { 
-        id: 'C3B', desc: "拿到白芍之后，掌柜心满意足的给了李森炎钱，并让他挑选一壶酒", 
-        options: [ 
-        { title: '【买一壶好酒】', toShop: 'shop2', nextChat: 'C4', },
-        ],
-      },
+      # { 
+      #   id: 'C3A', desc: "掌柜看着这小伙老实想了想，说要看看李森炎采的草药\n李森炎将草药拿出来，掌柜的一看到白芍眼睛都亮了\n追问李森炎到哪里才才到的，并且同意一个白芍能换十个铜币\n这样的话只需要两个白芍就能换酒", 
+      #   options: [ 
+      #   { title: '【卖出白芍】', toShop: 'shop_sell_test_1', nextChat: 'C3B', },
+      #   ],
+      # },
+      # { 
+      #   id: 'C3B', desc: "拿到白芍之后，掌柜心满意足的给了李森炎钱，并让他挑选一壶酒", 
+      #   options: [ 
+      #   { title: '【买一壶好酒】', toShop: 'shop2', nextChat: 'C4', },
+      #   ],
+      # },
 
-      { 
-        id: 'C4', desc: '换到酒之后，李森炎将白芍的情报告诉了掌柜的，随后便匆忙离开了', 
-        options: [ 
-        { title: '【去老人故居】', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_A'],  varsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_B'] ,toScene: 'C000A_V_MAP_1_-2' },
-        ],
-      },
+      # { 
+      #   id: 'C4', desc: '换到酒之后，李森炎将白芍的情报告诉了掌柜的，随后便匆忙离开了', 
+      #   options: [ 
+      #   { title: '【去老人故居】', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_A'],  varsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_B'] ,toScene: 'C000A_V_MAP_1_-2' },
+      #   ],
+      # },
       ],
        # 对话框
     dialogs: [
@@ -2169,13 +2145,13 @@ scenes: [
           links: [[0, 6],[-1, 5],[1, 5],[0, 2],],
           },
 
-          {point: [-1, 5], title: '森林', icon: { id: 104, bindVar: 'WZXX_M1_N1_C000A_V/v_icon_108' },
+          {point: [-1, 5], title: '森林',
           toScene: 'C000A_V_MAP_-1_5', 
           links: []
           },
 
           {
-          point: [1, 5], title: '天水亭', icon: { id: 104, bindVar: 'WZXX_M1_N1_C000A_V/v_icon_109' },
+          point: [1, 5], title: '天水亭', 
           toScene: 'C000A_V_MAP_1_5', 
           links: [] 
           },
@@ -2422,7 +2398,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/LRGJ_A'], nextChat: 'C3' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/LRGJ_A'], nextChat: 'C3' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/LRGJ_B'], nextChat: 'C4' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], nextChat: 'C4' },
        
@@ -2458,12 +2434,12 @@ scenes: [
         ],
       },
 
-      { 
-        id: 'C3B', desc: "李森炎准备去买酒\n但反应过来，原身是个穷小子，身上怎么可能会有钱\n眼下只能把刚采集的野草卖了换钱再去买酒",   
-        options: [ 
-         { title: '去商铺', varsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_A'], varsOff: ['WZXX_M1_N1_C000A_V/LRGJ_A'], toScene: 'C000A_V2_MAP_3_-1' }, 
-        ],
-      },
+      # { 
+      #   id: 'C3B', desc: "李森炎准备去买酒\n但反应过来，原身是个穷小子，身上怎么可能会有钱\n眼下只能把刚采集的野草卖了换钱再去买酒",   
+      #   options: [ 
+      #    { title: '去商铺', varsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_A'], varsOff: ['WZXX_M1_N1_C000A_V/LRGJ_A'], toScene: 'C000A_V2_MAP_3_-1' }, 
+      #   ],
+      # },
 
       { 
         id: 'C4', desc: "李森炎拿着换来的好酒敲门进去\n果然老人一看见美酒，眼睛都直了\n很慷慨大方的帮他炼制好了丹药",   
@@ -2475,14 +2451,14 @@ scenes: [
   },
 
 #===========事件场景==============
-       {
+    {
   # NPC2
     id: 'C000A_V2_MAP_1_-1', name: '花满楼',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+     #横图显示
     sceneImage: 'BGT_33',
     # 当前场景地图
     mapId: 'C000A_V2_MAP_0_0',
@@ -2531,7 +2507,7 @@ scenes: [
   },
 
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V2_MAP_1_0', name: '东市',
     # 指定场景为NPC或MAP场景
@@ -2575,7 +2551,7 @@ scenes: [
     ],
   },
  #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V2_MAP_2_-1', name: '东市一街',
     # 指定场景为NPC或MAP场景
@@ -2599,7 +2575,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/v_icon_105'], nextChat: 'C3' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/v_icon_105'], nextChat: 'C3' },
        { type: 'enter',  dialogs: ['d3'], andVarsOn: ['WZXX_M1_N1_C000A_V/v_icon_100',],   nextChat: 'C1'  },
     ],
     # 对话选项
@@ -2619,21 +2595,21 @@ scenes: [
         ],
       },
 
-      { 
-        id: 'C3', desc: "你说的都是些治疗内伤的东西，我可以帮你\n“你不用去找药了”\n说着姑娘对李森炎抛了个媚眼\n李森炎觉得不靠谱\n拔腿就跑", 
-        options: [ 
-         { title: '赶紧走，再去别的地方看看', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_105'], varsOn: ['WZXX_M1_N1_C000A_V/v_icon_106'], nextChat: 'C4' }, 
-        ],
-      },
+      # { 
+      #   id: 'C3', desc: "你说的都是些治疗内伤的东西，我可以帮你\n“你不用去找药了”\n说着姑娘对李森炎抛了个媚眼\n李森炎觉得不靠谱\n拔腿就跑", 
+      #   options: [ 
+      #    { title: '赶紧走，再去别的地方看看', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_105'], varsOn: ['WZXX_M1_N1_C000A_V/v_icon_106'], nextChat: 'C4' }, 
+      #   ],
+      # },
 
-      { 
-        id: 'C4', desc: '请选择要去的地方：', 
-        options: [ 
-        { title: '【东市】', toScene: 'C000A_V2_MAP_1_0', }, 
-        { title: '【商铺】',  toScene: 'C000A_V2_MAP_3_-1' ,  }, 
-        { title: '【鉴宝阁】', toScene: 'C000A_V2_MAP_3_1' }, 
-        ],
-      },
+      # { 
+      #   id: 'C4', desc: '请选择要去的地方：', 
+      #   options: [ 
+      #   { title: '【东市】', toScene: 'C000A_V2_MAP_1_0', }, 
+      #   { title: '【商铺】',  toScene: 'C000A_V2_MAP_3_-1' ,  }, 
+      #   { title: '【鉴宝阁】', toScene: 'C000A_V2_MAP_3_1' }, 
+      #   ],
+      # },
     ],
  # 对话框
     dialogs: [    
@@ -2675,31 +2651,38 @@ scenes: [
         options: [ 
         { title: '【逛一会儿】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
         { title: '【东市】',toScene: 'C000A_V2_MAP_1_0'},
-
         ],
       }, 
+
       { 
         id: 'C2', desc: '这条街似乎很乱', 
         options: [ 
          { title: '醉汉倒在自己脚下，疑似碰瓷……晦气，离开', nextChat: 'C1' }, 
         ],
       },
-      { 
-        id: 'C3', desc: "远处有个年轻男子一身儒衫\n看上去是个不得志的读书人\n他说自己什么都知道\n一口气给李森炎说了好多\n【森林中有丹参、天水阁有白术、郊外山谷有何首乌】",
+
+      { id: 'C3', desc: "远处有个年轻男子一身儒衫\n看上去是个不得志的读书人\n他说自己什么都知道\n一口气给李森炎说了好多",
         options: [ 
-         { title: '离开再去别处看看', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_104'], varsOn: ['WZXX_M1_N1_C000A_V/v_icon_105'] ,
-          toMsg: {
-              action: 'CluesModel/useClues',
-              params: {
-              addCluesId: ["liuyan2"],
-             
-              },
-            },  nextChat: 'C4' ,
-             }, 
+        { title: '去验证情报的真假', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_104'], varsOn: ['WZXX_M1_N1_C000A_V/v_icon_101'] ,
+        toMsg: {
+        action: 'CluesModel/useClues',
+        params: {
+        addCluesId: ["liuyan2"],
+        },
+        },  toScene: 'C000A_V2_MAP_3_1',
+        }, 
+        {title: '不去就在原地再想想', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_106'], varsOn: ['WZXX_M1_N1_C000A_V/v_icon_101'], 
+        toMsg: {
+        action: 'CluesModel/useClues',
+        params: {
+        addCluesId: ["liuyan2"],
+        },
+        },
+        nextChat: 'C1' ,},
         ],
       },
-
-       { 
+    
+      { 
         id: 'C4', desc: '请选择要去的地方：', 
         options: [ 
         { title: '【东市】', toScene: 'C000A_V2_MAP_1_0', }, 
@@ -2728,7 +2711,6 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-    
     ],
     # 动作定义
     actions: [ ],
@@ -2842,7 +2824,7 @@ scenes: [
         # { title: '【逛一会儿】', nextChat: 'C2'},
         { title: '【情报阁】', 
         #当簪子道具大于零的时候，就等于有这个道具，就可以点击这个选项
-        andVarsValue: ['@props_350 > 0','@clues_liuyan1 == 1', '@clues_liuyan2 == 1', '@clues_liuyan3 == 1'],
+        andVarsValue: ['@props_350 > 0','@clues_liuyan1 == 1', '@clues_liuyan2 == 1', ],
         #当线索1获得之后，才会开启这个选项
         # andVarsValue: ['@clues_liuyan1 == 1'], 
         dialogs: ['Screen16'] }, 
@@ -2872,7 +2854,7 @@ scenes: [
             toMsg: { 
               action: 'CluesModel/useClues', 
               params: { 
-              addCluesId: ["xiansuo1"], useCluesId: ["liuyan1","liuyan2","liuyan3"],
+              addCluesId: ["xiansuo1"], useCluesId: ["liuyan1","liuyan2",],
               },
             },},
          {title: '算了，能省则省',nextChat: 'C5' ,}
@@ -2889,38 +2871,15 @@ scenes: [
       { 
         id: 'C6', desc: "李森炎直接交了钱\n将自己刚才找的情报告诉老板\n情报阁老板摸摸胡须，很痛快的告诉了他\n“你方才找到的这些消息中，有真有假”\n随后将真的线索告诉了李森炎", 
         options: [ 
-         {title: '先去森林找', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_101'] , varsOn: ['WZXX_M1_N1_C000A_V/v_icon_107','WZXX_M1_N1_C000A_V/v_icon_108','WZXX_M1_N1_C000A_V/v_icon_109','WZXX_M1_N1_C000A_V/v_icon_110'] ,toScene: 'C000A_V_MAP_-1_5', }
+         {title: '先去郊区找',varsOff: ['WZXX_M1_N1_C000A_V/v_icon_101'] , varsOn: ['WZXX_M1_N1_C000A_V/v_icon_107','WZXX_M1_N1_C000A_V/v_icon_110'] ,toScene: 'C000A_V_MAP_0_5', }
         ],
       },
     ],
-  # 对话框
-    dialogs: [
-          { id: 'Screen16',style: 6, title: '鉴别真假', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'P1', content: ['“公子来我们情报阁有何事啊？”','老板问道','李森炎说出了自己的来意','老板点头，幽幽开口','“想要打听这些情报真假，需要付出十枚铜钱”',],
-          btn: [{title: '交钱，验证情报',tokey: "P3" ,
-            toMsg: { 
-              action: 'CluesModel/useClues', 
-              params: { 
-              addCluesId: ["xiansuo1"], useCluesId: ["liuyan1","liuyan2","liuyan3"],
-              },
-            },},
-            {title: '算了，能省则省',tokey: "P2"}]},
-
-          { key: 'P2', content: ['没交钱的李森炎被情报阁老板赶了出去','“没钱还想来买情报？异想天开！”','如此这般，他只要自己去碰碰运气了',],
-          btn: [{title: '自己探索，先去森林',toScene: 'C000A_V_MAP_-1_5',},]
-          }, 
-
-          { key: 'P3', content: ['李森炎直接交了钱','将自己刚才找的情报告诉老板','情报阁老板摸摸胡须，很痛快的告诉了他','“你方才找到的这些消息中，有真有假”','随后将真的线索告诉了李森炎','【郊外山谷有丹参，郊区有野生白芍，森林中有何首乌，天水阁有白术】',],
-          btn: [{title: '先去森林找', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_101'] ,toScene: 'C000A_V_MAP_-1_5', },]
-          },
-
-    ],},
-    ],
+    
   },
 
-   #===========事件场景==============
-       {
+#===========================事件场景======================
+  {
   # NPC2
     id: 'C000A_V2_MAP_3_-1', name: '商铺',
     # 指定场景为NPC或MAP场景
@@ -2944,7 +2903,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/v_icon_106'], nextChat: 'C3' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/v_icon_106'], nextChat: 'C3' },
        
     ],
     # 对话选项
@@ -2959,32 +2918,32 @@ scenes: [
       { 
         id: 'C2', desc: '商铺倒是琳琅满目，但是自己没有什么需要买的，而且也没有钱……', 
         options: [ 
-        { title: '【现在不是买东西的时候，去鉴宝阁】', toScene: 'C000A_V2_MAP_3_1', },
+        { title: '【现在不是买东西的时候，离开】', toScene: 'C000A_V2_MAP_3_1', },
         ],
       },
 
-      { 
-        id: 'C3', desc: "李森炎问了问路边的孩子\n那孩子吵着要吃糖才告诉李森炎\n李森炎转头买了一个糖葫芦递给他\n他笑着说了好些个地方\n情报收集的差不多了，是时候验证情报真假\n听说鉴宝阁里有专门鉴定情报真假的情报阁\n是否前往验证？", 
-        options: [ 
-         { title: '去验证情报的真假', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_106'], varsOn: ['WZXX_M1_N1_C000A_V/v_icon_101'],  
-         toMsg: {
-              action: 'CluesModel/useClues',
-              params: {
-                addCluesId: ["liuyan3"],
+      # { 
+      #   id: 'C3', desc: "李森炎问了问路边的孩子\n那孩子吵着要吃糖才告诉李森炎\n李森炎转头买了一个糖葫芦递给他\n他笑着说了好些个地方\n情报收集的差不多了，是时候验证情报真假\n听说鉴宝阁里有专门鉴定情报真假的情报阁\n是否前往验证？", 
+      #   options: [ 
+      #    { title: '去验证情报的真假', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_106'], varsOn: ['WZXX_M1_N1_C000A_V/v_icon_101'],  
+      #    toMsg: {
+      #         action: 'CluesModel/useClues',
+      #         params: {
+      #           addCluesId: ["liuyan3"],
               
-              },
-            },  toScene: 'C000A_V2_MAP_3_1',
-            }, 
-         {title: '不去就在原地再想想', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_106'], varsOn: ['WZXX_M1_N1_C000A_V/v_icon_101'], 
-          toMsg: {
-              action: 'CluesModel/useClues',
-              params: {
-              addCluesId: ["liuyan3"], 
-              },
-            },
-             nextChat: 'C1' ,},
-        ],
-      },
+      #         },
+      #       },  toScene: 'C000A_V2_MAP_3_1',
+      #       }, 
+      #    {title: '不去就在原地再想想', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_106'], varsOn: ['WZXX_M1_N1_C000A_V/v_icon_101'], 
+      #     toMsg: {
+      #         action: 'CluesModel/useClues',
+      #         params: {
+      #         addCluesId: ["liuyan3"], 
+      #         },
+      #       },
+      #        nextChat: 'C1' ,},
+      #   ],
+      # },
       ],
     },
 #=================================场景地图的设置==================================
@@ -3017,13 +2976,13 @@ scenes: [
 
           {
           point: [2, -1], title: '东市一街',
-          toScene: 'C000A_V2_MAP_2_-1' , icon: { id: 100, bindVar: 'WZXX_M1_N1_C000A_V/v_icon_105' },
+          toScene: 'C000A_V2_MAP_2_-1' ,
           links: [[3, -1],] 
           },
 
           {
           point: [3, -1], title: '商铺',
-          toScene: 'C000A_V2_MAP_3_-1' , icon: { id: 100, bindVar: 'WZXX_M1_N1_C000A_V/v_icon_106' },
+          toScene: 'C000A_V2_MAP_3_-1' ,
           links: [] 
           },
 
@@ -3052,7 +3011,7 @@ scenes: [
     
     ],
 #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-1_-3', name: '布庄',
     # 指定场景为NPC或MAP场景
@@ -3162,7 +3121,7 @@ scenes: [
   },
 
 #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-1_-2', name: '春花阁',
     # 指定场景为NPC或MAP场景
@@ -3221,7 +3180,7 @@ scenes: [
   },
 
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-1_-1', name: '西市一街',
     # 指定场景为NPC或MAP场景
@@ -3257,7 +3216,7 @@ scenes: [
     ],
   },
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-1_0', name: '西市',
     # 指定场景为NPC或MAP场景
@@ -3294,7 +3253,7 @@ scenes: [
           { title: '【仔细查看！】', nextChat: 'C2'}, 
       ],
       },
-        { 
+      { 
         id: 'C2', desc: "李森炎终于看清，那是一把飞刀\n飞刀疾如电，快速抹过他的脖子\n眼角的余光，瞥见黑衣人从隔壁民舍的屋檐跳下\n嘴角勾勒出得意的笑", 
         options: [ 
          { title: '原来如此', nextChat: 'C3',
@@ -3306,12 +3265,14 @@ scenes: [
             }, }, 
         ],
       },
+
       { 
         id: 'C3', desc: "果然有杀手埋伏……\n再次回到西市路口，李森炎心里有底\n初步总结，死亡后回溯的时间节点可以由个人意志控制\n如果在死亡的那一瞬间没有意识去刻意控制，回溯的时间节点就会是完全随机的",
         options: [ 
           { title: '【>>>继续】', varsOff: ['WZXX_M1_N1_C000A_V/xishilukou_A'], nextChat: 'C4'}, 
       ],
       },
+
       { 
         id: 'C4', desc: "但无论是意志控制还是完全随机，最多不会超过三个时辰~\n也就是说，他死后，最多回到死亡前三个时辰内的时间节点\n其二，是否需要死亡才能触发回档，这个结果他还没有试验出来\n反正他暂时还没有遇到过这种情况，姑且不论",
         options: [ 
@@ -3319,12 +3280,14 @@ scenes: [
           { title: '【先想想别的办法】',nextChat: 'C7'},
       ],
       },
+
       { 
         id: 'C5', desc: "又一次回到西市路口，李森炎心里开始冒火\n同时他也注意到\n自己手表里的玉石比之前暗淡了些许\n难道自己的死亡轮回，与手表里的这枚玉石有关？",
         options: [ 
           { title: '【该不会……】',  nextChat: 'C6'}, 
       ],
       },
+
       { 
         id: 'C6', desc: "“当玉石的光泽彻底消失后，我就再也不能轮回了吧？”\n这问题当然不会有答案\n李森炎只能自己心中暗自警惕，时刻关注着手表玉石的光芒\n只要多注意，应该不会有大碍",
         options: [ 
@@ -3332,13 +3295,15 @@ scenes: [
           { title: '【冷静一点，想想别的办法！】',  nextChat: 'C6A'}, 
       ],
       },
-       { 
+
+      { 
         id: 'C6A', desc: "仔细想想，到底该怎么办！\n或许可以……",
         options: [ 
           { title: '【街上买把兵器防身】',  toScene: 'C000A_V3_MAP_-1_1'}, 
           { title: '【进行一次彻底的乔装】', varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A'], toScene: 'C000A_V3_MAP_-1_-3'}, 
       ],
       },
+
       { 
         id: 'C7', desc: "李家的西边有个米铺，原身小时经常去买米\n米铺有个后门，从后门出来，可以翻墙进入李家",
         options: [ 
@@ -3346,6 +3311,7 @@ scenes: [
          
       ],
       },
+
       { 
         id: 'C8', desc: "靠\n有完没完了\n躲过了杀手，又碰上毛贼\n贼老天是不是故意在跟我作对\n过这么几次折腾下来\n李森炎基本可以确定\n直接回家这条路，肯定行不通了",
         options: [ 
@@ -3353,6 +3319,7 @@ scenes: [
          
       ],
       },
+
       { 
         id: 'C9', desc: "如今兵器在手，李森炎也有了一些对敌的底气\n然而没走多久，突然迎面一队士兵朝他走来\n“西市现在实行兵械管制，你这兵器从哪里来的？”",
         options: [ 
@@ -3360,6 +3327,7 @@ scenes: [
          
       ],
       },
+
       { 
         id: 'C10', desc: "李森炎心道不妙\n果然，因为被士兵拖住盘问\n耽搁时间太长，终于还是被那些杀手撞见\n杀手迅速将李森炎包围\n士兵一走，杀手图穷匕见！\n李森炎终寡不敌众，死于黑衣杀手刀下！",
         options: [ 
@@ -3373,7 +3341,7 @@ scenes: [
       ],
       },
 
-      { 
+      {
         id: 'C11', desc: "重新站在西市街头，李森炎深吸口气\n看来，想要安然无恙回到家\n只剩下乔装这一条路了",
         options: [ 
           { title: '【还是换装吧】',varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A'], toScene: 'C000A_V3_MAP_-1_-3' },
@@ -3383,7 +3351,7 @@ scenes: [
     ],
   },
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-2_0', name: '李家',
     # 指定场景为NPC或MAP场景
@@ -3425,7 +3393,7 @@ scenes: [
 
   },
  #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-1_1', name: '西市二街',
     # 指定场景为NPC或MAP场景
@@ -3481,13 +3449,13 @@ scenes: [
       { 
         id: 'C5', desc: "这叫小小砍一刀？\n你这一刀都快砍我大动脉上了\n“你他娘的还真是个人才。”\n“不过，成交！”\n卧槽！这都能成交？\n这下轮到李森炎愣住了\n还是太年轻，说少了！",   
         options: [ 
-          { title: '兵器在手，天下我有，回家！',  toScene: 'C000A_V3_MAP_-1_0'  }, 
+          { title: '兵器在手，天下我有，回家！', toScene: 'C000A_V3_MAP_-1_0'  }, 
         ],
       },
     ],
   },
  #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-3_0', name: '米铺',
     # 指定场景为NPC或MAP场景
@@ -3514,26 +3482,23 @@ scenes: [
     ],
     # 对话选项
     chats: [
-      
       { 
         id: 'C1', desc: "李森炎费尽心思，终于看到李家的围墙\n李森炎翻身上墙，忍不住吐槽\n同一时间，有个蒙面人从墙内翻出来。\n李森炎和他对上眼，两人同时都愣住了一下\n李森炎：“你丫是谁？”\n蒙面人：“这还不明显吗？我呀，是个贼！”\n蒙面人以迅雷不及掩耳之势掏出匕首，白刀子进，红刀子出",   
         options: [ 
          { title: '又死了？？？', varsOn: ['WZXX_M1_N1_C000A_V/mipu_A'] ,toScene: 'C000A_V3_MAP_-1_0' }, 
         ],
       },
-      
       ],
-
   },
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-3_-1', name: '小院',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+    #横图显示
     sceneImage: 'BGT_30',
     # 当前场景地图
     mapId: 'C000A_V3_MAP_0_0',
@@ -3583,10 +3548,9 @@ scenes: [
         ],
       },
       ],
-
   },
 #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-2_-1', name: '西市三街',
     # 指定场景为NPC或MAP场景
@@ -3613,7 +3577,7 @@ scenes: [
     ],
     # 对话选项
     chats: [
-         { 
+    { 
         id: 'C1', desc: "“这下你可逮不到我了吧？老银币！”\n李森炎正沾沾自喜！\n突然一个壮汉从天而降\n李森炎只感觉眼前一黑\n被使用千斤坠的壮汉狠狠砸入地底！\n“我草拟大爷……”",   
         options: [ 
          { title: '……', toScene: 'C000A_V3_MAP_-1_0',
@@ -3626,12 +3590,12 @@ scenes: [
             varsOn: ['WZXX_M1_N1_C000A_V/xishilukou_A'],
             }, 
         ],
-      },
+    },
 
     ],
   },
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-3_-2', name: '白府',
     # 指定场景为NPC或MAP场景
@@ -3708,7 +3672,7 @@ scenes: [
 
   },
     #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-2_-3', name: '路口',
     # 指定场景为NPC或MAP场景
@@ -3770,12 +3734,10 @@ scenes: [
          { title: '重来！', toScene: 'C000A_V3_MAP_-1_-3'}, 
         ],
       },
-
-      
       { 
         id: 'C4', desc: "李森炎随手捡起地上一块砖头\n地痞笑得更猥琐了：“小娘子想反抗吗？”\n李森炎默不作声，开始徒手劈砖",   
         options: [ 
-         { title: '劈砖',games: { id: 1 }, nextChat: 'C5' }, 
+         { title: '劈砖', games: { id: 1 }, nextChat: 'C5' }, 
         ],
       },
       { 
@@ -3791,10 +3753,9 @@ scenes: [
         ],
       },
       ],
-
   },
-  #===========事件场景==============
-       {
+  #=======================事件场景==========================
+  {
   # NPC2
     id: 'C000A_V3_MAP_-3_-3', name: '街角',
     # 指定场景为NPC或MAP场景
@@ -3826,7 +3787,7 @@ scenes: [
         options: [ 
         { title: '【和他搭话】', nextChat: 'C2' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
         # { title: '【路口】',toScene: 'C000A_V3_MAP_-2_-3'},
-        { title: '【白府】',toScene: 'C000A_V3_MAP_-3_-2'},
+        { title: '【白府】', toScene: 'C000A_V3_MAP_-3_-2'},
         # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
         # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
@@ -3942,13 +3903,9 @@ scenes: [
           # toScene: 'C000A_V3_MAP_-3_-3', 
           links: [[-3, -2]]
           }, 
-          
-            
         ]
       },
-    
     ],
-    
 ]
 
 
