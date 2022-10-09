@@ -1578,7 +1578,7 @@ scenes: [
        { type: 'enter',  nextChat: 'C1' },
       #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/LRGJ_A'], nextChat: 'C3' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/LRGJ_B'], nextChat: 'C4' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], nextChat: 'C4' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], nextChat: 'C4' },
        
     ],
     # 对话选项
@@ -1602,19 +1602,19 @@ scenes: [
         ],
       },
 
-       { 
-        id: 'C3', desc: "李森炎匆忙赶来老人故居\n果然看见一个老人在里面神神叨叨的说些什么\n李森炎礼貌走近，开口询问炼丹的事情\n那老人深深打量他一眼，摆摆手说很没空，让他快些离开",   
-        options: [ 
-         { title: '得想个办法让老人愿意帮他', nextChat: 'C3A' }, 
-        ],
-      },
+      #  { 
+      #   id: 'C3', desc: "李森炎匆忙赶来老人故居\n果然看见一个老人在里面神神叨叨的说些什么\n李森炎礼貌走近，开口询问炼丹的事情\n那老人深深打量他一眼，摆摆手说很没空，让他快些离开",   
+      #   options: [ 
+      #    { title: '得想个办法让老人愿意帮他', nextChat: 'C3A' }, 
+      #   ],
+      # },
 
-      { 
-        id: 'C3A', desc: "李森炎灵光一闪，觉得自己刚才匆匆上门，着实有点莽撞了\n起码得带点东西上门\n得找人打探一下老人的喜好\n正这么想着\n忽然听见还未阖上门的房中幽幽传来一声\n“酒后高歌且放狂，门前闲事莫思量”",   
-        options: [ 
-         { title: '暗示我去买酒吗？买酒去！', nextChat: 'C3B' }, 
-        ],
-      },
+      # { 
+      #   id: 'C3A', desc: "李森炎灵光一闪，觉得自己刚才匆匆上门，着实有点莽撞了\n起码得带点东西上门\n得找人打探一下老人的喜好\n正这么想着\n忽然听见还未阖上门的房中幽幽传来一声\n“酒后高歌且放狂，门前闲事莫思量”",   
+      #   options: [ 
+      #    { title: '暗示我去买酒吗？买酒去！', nextChat: 'C3B' }, 
+      #   ],
+      # },
 
       # { 
       #   id: 'C3B', desc: "李森炎准备去买酒\n但反应过来，原身是个穷小子，身上怎么可能会有钱\n眼下只能把刚采集的野草卖了换钱再去买酒",   
@@ -1639,8 +1639,8 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+    #横图显示
     sceneImage: 'BGT_33',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
@@ -1680,15 +1680,6 @@ scenes: [
         ],
       },
       ],
-       # 对话框
-    # dialogs: [
-    #       { id: 'Screen15',style: 6, title: '进去看看', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
-    #       sections: [
-    #       { key: 'P1', content: ['原来这个花满楼就是茶楼啊','里面许多文人雅士在喝茶吟赋','这时和李森炎格格不入','其实主要还是没钱……',],
-    #       btn: [{title: '离开',tokey: "C1",},]},
-
-    # ],},
-    # ],
   },
 
   #===========事件场景==============
@@ -1907,27 +1898,26 @@ scenes: [
         ],
       },],
        # 对话框
-    dialogs: [
-          { id: 'Screen15',style: 6, title: '询问', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'P1', content: ['前面有个佝偻老人','李森炎上前和他谈话','老人跟李森炎唠起了家常','很显然，他把李森炎当成了儿子','李森炎耐心与他说话','最后找到机会问出了情报',],
-          btn: [{title: '继续找询问年轻男子询问',tokey: "P2", addCluesId: ["liuyan1"] },]},
+    # dialogs: [
+    #       { id: 'Screen15',style: 6, title: '询问', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+    #       sections: [
+    #       { key: 'P1', content: ['前面有个佝偻老人','李森炎上前和他谈话','老人跟李森炎唠起了家常','很显然，他把李森炎当成了儿子','李森炎耐心与他说话','最后找到机会问出了情报',],
+    #       btn: [{title: '继续找询问年轻男子询问',tokey: "P2", addCluesId: ["liuyan1"] },]},
 
-          { key: 'P2', content: ['远处有个年轻男子一身儒衫','看上去是个不得志的读书人','他说自己什么都知道','一口气给李森炎说了好多',],
-          btn: [{title: '再询问衣着光鲜的姑娘',tokey: "P3", addCluesId: ["liuyan2"]},]},
+    #       { key: 'P2', content: ['远处有个年轻男子一身儒衫','看上去是个不得志的读书人','他说自己什么都知道','一口气给李森炎说了好多',],
+    #       btn: [{title: '再询问衣着光鲜的姑娘',tokey: "P3", addCluesId: ["liuyan2"]},]},
 
-          { key: 'P3', content: ['“你说的都是些治疗内伤的东西，我可以帮你”','“你不用去找药了”','说着姑娘对李森炎抛了个媚眼','李森炎觉得不靠谱','拔腿就跑',],
-          btn: [{title: '去问孩童',tokey: "P4"},]},
+    #       { key: 'P3', content: ['“你说的都是些治疗内伤的东西，我可以帮你”','“你不用去找药了”','说着姑娘对李森炎抛了个媚眼','李森炎觉得不靠谱','拔腿就跑',],
+    #       btn: [{title: '去问孩童',tokey: "P4"},]},
 
-          { key: 'P4', content: ['李森炎问了问路边的孩子','那孩子吵着要吃糖才告诉李森炎','李森炎转头买了一个糖葫芦递给他','他笑着说了好些个地方','情报收集的差不多了，是时候验证情报真假','听说鉴宝阁里有专门鉴定情报真假的情报阁','是否前往验证？'],
-          btn: [{title: '去验证情报的真假',toScene: 'C000A_V_MAP_3_1',addCluesId: ["liuyan3"],
-          #  varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',] 
-           },
-          {title: '不去就在原地再想想',tokey: "C1",addCluesId: ["liuyan3"],
-          #  varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',]
-          },]},
-    ],},
-    ],
+    #       { key: 'P4', content: ['李森炎问了问路边的孩子','那孩子吵着要吃糖才告诉李森炎','李森炎转头买了一个糖葫芦递给他','他笑着说了好些个地方','情报收集的差不多了，是时候验证情报真假','听说鉴宝阁里有专门鉴定情报真假的情报阁','是否前往验证？'],
+    #       btn: [{title: '去验证情报的真假',toScene: 'C000A_V_MAP_3_1',addCluesId: ["liuyan3"],
+    #        },
+    #       {title: '不去就在原地再想想',tokey: "C1",addCluesId: ["liuyan3"],
+    #       #  varsOn: ['WZXX_M1_N1_C000C_V/v_icon_101',]
+    #       },]},
+    # ],},
+    # ],
   },
 
  #===========事件场景==============
@@ -1955,7 +1945,6 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C1' },
        { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C3' },
-       
     ],
     # 对话选项
     chats: [
@@ -2039,7 +2028,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_A'], nextChat: 'C3' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_A'], nextChat: 'C3' },
     ],
     # 对话选项
     chats: [
@@ -2062,32 +2051,32 @@ scenes: [
         ],
       },
 
-      { 
-        id: 'C3', desc: "李森炎到商铺后，一眼就在柜台上看中了一壶酒\n上次在这个商铺买过簪子，和掌柜也算是面熟\n于是就直接开门见山的说了自己想要用草药换酒的想法", 
-        options: [ 
-        { title: '【用白芍换酒】', nextChat: 'C3A', },
-        ],
-      },
+      # { 
+      #   id: 'C3', desc: "李森炎到商铺后，一眼就在柜台上看中了一壶酒\n上次在这个商铺买过簪子，和掌柜也算是面熟\n于是就直接开门见山的说了自己想要用草药换酒的想法", 
+      #   options: [ 
+      #   { title: '【用白芍换酒】', nextChat: 'C3A', },
+      #   ],
+      # },
 
-      { 
-        id: 'C3A', desc: "掌柜看着这小伙老实想了想，说要看看李森炎采的草药\n李森炎将草药拿出来，掌柜的一看到白芍眼睛都亮了\n追问李森炎到哪里才才到的，并且同意一个白芍能换十个铜币\n这样的话只需要两个白芍就能换酒", 
-        options: [ 
-        { title: '【卖出白芍】', toShop: 'shop_sell_test_1', nextChat: 'C3B', },
-        ],
-      },
-      { 
-        id: 'C3B', desc: "拿到白芍之后，掌柜心满意足的给了李森炎钱，并让他挑选一壶酒", 
-        options: [ 
-        { title: '【买一壶好酒】', toShop: 'shop2', nextChat: 'C4', },
-        ],
-      },
+      # { 
+      #   id: 'C3A', desc: "掌柜看着这小伙老实想了想，说要看看李森炎采的草药\n李森炎将草药拿出来，掌柜的一看到白芍眼睛都亮了\n追问李森炎到哪里才才到的，并且同意一个白芍能换十个铜币\n这样的话只需要两个白芍就能换酒", 
+      #   options: [ 
+      #   { title: '【卖出白芍】', toShop: 'shop_sell_test_1', nextChat: 'C3B', },
+      #   ],
+      # },
+      # { 
+      #   id: 'C3B', desc: "拿到白芍之后，掌柜心满意足的给了李森炎钱，并让他挑选一壶酒", 
+      #   options: [ 
+      #   { title: '【买一壶好酒】', toShop: 'shop2', nextChat: 'C4', },
+      #   ],
+      # },
 
-      { 
-        id: 'C4', desc: '换到酒之后，李森炎将白芍的情报告诉了掌柜的，随后便匆忙离开了', 
-        options: [ 
-        { title: '【去老人故居】', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_A'],  varsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_B'] ,toScene: 'C000A_V_MAP_1_-2' },
-        ],
-      },
+      # { 
+      #   id: 'C4', desc: '换到酒之后，李森炎将白芍的情报告诉了掌柜的，随后便匆忙离开了', 
+      #   options: [ 
+      #   { title: '【去老人故居】', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_A'],  varsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_B'] ,toScene: 'C000A_V_MAP_1_-2' },
+      #   ],
+      # },
       ],
        # 对话框
     dialogs: [
@@ -2462,14 +2451,14 @@ scenes: [
   },
 
 #===========事件场景==============
-       {
+    {
   # NPC2
     id: 'C000A_V2_MAP_1_-1', name: '花满楼',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+     #横图显示
     sceneImage: 'BGT_33',
     # 当前场景地图
     mapId: 'C000A_V2_MAP_0_0',
@@ -2518,7 +2507,7 @@ scenes: [
   },
 
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V2_MAP_1_0', name: '东市',
     # 指定场景为NPC或MAP场景
@@ -2562,7 +2551,7 @@ scenes: [
     ],
   },
  #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V2_MAP_2_-1', name: '东市一街',
     # 指定场景为NPC或MAP场景
@@ -2662,16 +2651,17 @@ scenes: [
         options: [ 
         { title: '【逛一会儿】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
         { title: '【东市】',toScene: 'C000A_V2_MAP_1_0'},
-
         ],
       }, 
+
       { 
         id: 'C2', desc: '这条街似乎很乱', 
         options: [ 
          { title: '醉汉倒在自己脚下，疑似碰瓷……晦气，离开', nextChat: 'C1' }, 
         ],
       },
-        {id: 'C3', desc: "远处有个年轻男子一身儒衫\n看上去是个不得志的读书人\n他说自己什么都知道\n一口气给李森炎说了好多",
+
+      { id: 'C3', desc: "远处有个年轻男子一身儒衫\n看上去是个不得志的读书人\n他说自己什么都知道\n一口气给李森炎说了好多",
         options: [ 
         { title: '去验证情报的真假', varsOff: ['WZXX_M1_N1_C000A_V/v_icon_104'], varsOn: ['WZXX_M1_N1_C000A_V/v_icon_101'] ,
         toMsg: {
@@ -2690,9 +2680,9 @@ scenes: [
         },
         nextChat: 'C1' ,},
         ],
-        },
+      },
     
-       { 
+      { 
         id: 'C4', desc: '请选择要去的地方：', 
         options: [ 
         { title: '【东市】', toScene: 'C000A_V2_MAP_1_0', }, 
@@ -2889,7 +2879,7 @@ scenes: [
   },
 
 #===========================事件场景======================
-       {
+  {
   # NPC2
     id: 'C000A_V2_MAP_3_-1', name: '商铺',
     # 指定场景为NPC或MAP场景
@@ -3021,7 +3011,7 @@ scenes: [
     
     ],
 #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-1_-3', name: '布庄',
     # 指定场景为NPC或MAP场景
@@ -3131,7 +3121,7 @@ scenes: [
   },
 
 #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-1_-2', name: '春花阁',
     # 指定场景为NPC或MAP场景
@@ -3190,7 +3180,7 @@ scenes: [
   },
 
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-1_-1', name: '西市一街',
     # 指定场景为NPC或MAP场景
@@ -3226,7 +3216,7 @@ scenes: [
     ],
   },
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-1_0', name: '西市',
     # 指定场景为NPC或MAP场景
@@ -3263,7 +3253,7 @@ scenes: [
           { title: '【仔细查看！】', nextChat: 'C2'}, 
       ],
       },
-        { 
+      { 
         id: 'C2', desc: "李森炎终于看清，那是一把飞刀\n飞刀疾如电，快速抹过他的脖子\n眼角的余光，瞥见黑衣人从隔壁民舍的屋檐跳下\n嘴角勾勒出得意的笑", 
         options: [ 
          { title: '原来如此', nextChat: 'C3',
@@ -3275,12 +3265,14 @@ scenes: [
             }, }, 
         ],
       },
+
       { 
         id: 'C3', desc: "果然有杀手埋伏……\n再次回到西市路口，李森炎心里有底\n初步总结，死亡后回溯的时间节点可以由个人意志控制\n如果在死亡的那一瞬间没有意识去刻意控制，回溯的时间节点就会是完全随机的",
         options: [ 
           { title: '【>>>继续】', varsOff: ['WZXX_M1_N1_C000A_V/xishilukou_A'], nextChat: 'C4'}, 
       ],
       },
+
       { 
         id: 'C4', desc: "但无论是意志控制还是完全随机，最多不会超过三个时辰~\n也就是说，他死后，最多回到死亡前三个时辰内的时间节点\n其二，是否需要死亡才能触发回档，这个结果他还没有试验出来\n反正他暂时还没有遇到过这种情况，姑且不论",
         options: [ 
@@ -3288,12 +3280,14 @@ scenes: [
           { title: '【先想想别的办法】',nextChat: 'C7'},
       ],
       },
+
       { 
         id: 'C5', desc: "又一次回到西市路口，李森炎心里开始冒火\n同时他也注意到\n自己手表里的玉石比之前暗淡了些许\n难道自己的死亡轮回，与手表里的这枚玉石有关？",
         options: [ 
           { title: '【该不会……】',  nextChat: 'C6'}, 
       ],
       },
+
       { 
         id: 'C6', desc: "“当玉石的光泽彻底消失后，我就再也不能轮回了吧？”\n这问题当然不会有答案\n李森炎只能自己心中暗自警惕，时刻关注着手表玉石的光芒\n只要多注意，应该不会有大碍",
         options: [ 
@@ -3301,13 +3295,15 @@ scenes: [
           { title: '【冷静一点，想想别的办法！】',  nextChat: 'C6A'}, 
       ],
       },
-       { 
+
+      { 
         id: 'C6A', desc: "仔细想想，到底该怎么办！\n或许可以……",
         options: [ 
           { title: '【街上买把兵器防身】',  toScene: 'C000A_V3_MAP_-1_1'}, 
           { title: '【进行一次彻底的乔装】', varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A'], toScene: 'C000A_V3_MAP_-1_-3'}, 
       ],
       },
+
       { 
         id: 'C7', desc: "李家的西边有个米铺，原身小时经常去买米\n米铺有个后门，从后门出来，可以翻墙进入李家",
         options: [ 
@@ -3315,6 +3311,7 @@ scenes: [
          
       ],
       },
+
       { 
         id: 'C8', desc: "靠\n有完没完了\n躲过了杀手，又碰上毛贼\n贼老天是不是故意在跟我作对\n过这么几次折腾下来\n李森炎基本可以确定\n直接回家这条路，肯定行不通了",
         options: [ 
@@ -3322,6 +3319,7 @@ scenes: [
          
       ],
       },
+
       { 
         id: 'C9', desc: "如今兵器在手，李森炎也有了一些对敌的底气\n然而没走多久，突然迎面一队士兵朝他走来\n“西市现在实行兵械管制，你这兵器从哪里来的？”",
         options: [ 
@@ -3329,6 +3327,7 @@ scenes: [
          
       ],
       },
+
       { 
         id: 'C10', desc: "李森炎心道不妙\n果然，因为被士兵拖住盘问\n耽搁时间太长，终于还是被那些杀手撞见\n杀手迅速将李森炎包围\n士兵一走，杀手图穷匕见！\n李森炎终寡不敌众，死于黑衣杀手刀下！",
         options: [ 
@@ -3342,7 +3341,7 @@ scenes: [
       ],
       },
 
-      { 
+      {
         id: 'C11', desc: "重新站在西市街头，李森炎深吸口气\n看来，想要安然无恙回到家\n只剩下乔装这一条路了",
         options: [ 
           { title: '【还是换装吧】',varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A'], toScene: 'C000A_V3_MAP_-1_-3' },
@@ -3352,7 +3351,7 @@ scenes: [
     ],
   },
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-2_0', name: '李家',
     # 指定场景为NPC或MAP场景
@@ -3394,7 +3393,7 @@ scenes: [
 
   },
  #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-1_1', name: '西市二街',
     # 指定场景为NPC或MAP场景
@@ -3450,13 +3449,13 @@ scenes: [
       { 
         id: 'C5', desc: "这叫小小砍一刀？\n你这一刀都快砍我大动脉上了\n“你他娘的还真是个人才。”\n“不过，成交！”\n卧槽！这都能成交？\n这下轮到李森炎愣住了\n还是太年轻，说少了！",   
         options: [ 
-          { title: '兵器在手，天下我有，回家！',  toScene: 'C000A_V3_MAP_-1_0'  }, 
+          { title: '兵器在手，天下我有，回家！', toScene: 'C000A_V3_MAP_-1_0'  }, 
         ],
       },
     ],
   },
  #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-3_0', name: '米铺',
     # 指定场景为NPC或MAP场景
@@ -3483,26 +3482,23 @@ scenes: [
     ],
     # 对话选项
     chats: [
-      
       { 
         id: 'C1', desc: "李森炎费尽心思，终于看到李家的围墙\n李森炎翻身上墙，忍不住吐槽\n同一时间，有个蒙面人从墙内翻出来。\n李森炎和他对上眼，两人同时都愣住了一下\n李森炎：“你丫是谁？”\n蒙面人：“这还不明显吗？我呀，是个贼！”\n蒙面人以迅雷不及掩耳之势掏出匕首，白刀子进，红刀子出",   
         options: [ 
          { title: '又死了？？？', varsOn: ['WZXX_M1_N1_C000A_V/mipu_A'] ,toScene: 'C000A_V3_MAP_-1_0' }, 
         ],
       },
-      
       ],
-
   },
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-3_-1', name: '小院',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+    #横图显示
     sceneImage: 'BGT_30',
     # 当前场景地图
     mapId: 'C000A_V3_MAP_0_0',
@@ -3552,10 +3548,9 @@ scenes: [
         ],
       },
       ],
-
   },
 #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-2_-1', name: '西市三街',
     # 指定场景为NPC或MAP场景
@@ -3582,7 +3577,7 @@ scenes: [
     ],
     # 对话选项
     chats: [
-         { 
+    { 
         id: 'C1', desc: "“这下你可逮不到我了吧？老银币！”\n李森炎正沾沾自喜！\n突然一个壮汉从天而降\n李森炎只感觉眼前一黑\n被使用千斤坠的壮汉狠狠砸入地底！\n“我草拟大爷……”",   
         options: [ 
          { title: '……', toScene: 'C000A_V3_MAP_-1_0',
@@ -3595,12 +3590,12 @@ scenes: [
             varsOn: ['WZXX_M1_N1_C000A_V/xishilukou_A'],
             }, 
         ],
-      },
+    },
 
     ],
   },
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-3_-2', name: '白府',
     # 指定场景为NPC或MAP场景
@@ -3677,7 +3672,7 @@ scenes: [
 
   },
     #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V3_MAP_-2_-3', name: '路口',
     # 指定场景为NPC或MAP场景
@@ -3742,7 +3737,7 @@ scenes: [
       { 
         id: 'C4', desc: "李森炎随手捡起地上一块砖头\n地痞笑得更猥琐了：“小娘子想反抗吗？”\n李森炎默不作声，开始徒手劈砖",   
         options: [ 
-         { title: '劈砖',games: { id: 1 }, nextChat: 'C5' }, 
+         { title: '劈砖', games: { id: 1 }, nextChat: 'C5' }, 
         ],
       },
       { 
@@ -3759,8 +3754,8 @@ scenes: [
       },
       ],
   },
-  #===========事件场景==============
-       {
+  #=======================事件场景==========================
+  {
   # NPC2
     id: 'C000A_V3_MAP_-3_-3', name: '街角',
     # 指定场景为NPC或MAP场景
@@ -3908,13 +3903,9 @@ scenes: [
           # toScene: 'C000A_V3_MAP_-3_-3', 
           links: [[-3, -2]]
           }, 
-          
-            
         ]
       },
-    
     ],
-    
 ]
 
 

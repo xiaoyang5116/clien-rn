@@ -1466,40 +1466,40 @@ scenes: [
       { 
         id: 'C0', desc: '电脑桌上有很多随笔和便签，看上去杂乱但有序', 
         options: [ 
-         { title: '【打开电脑】', nextChat: 'C2'}, 
+        { title: '【打开电脑】', nextChat: 'C2'}, 
         ],
       },
 
        { 
         id: 'C2', desc: '打开电脑，李森炎下意识的对着电脑发呆，该做点什么呢？', 
         options: [ 
-         { title: '【玩游戏】', nextChat: 'C3'}, 
-         { title: '【写点东西】', nextChat: 'C4'}, 
+        { title: '【玩游戏】', nextChat: 'C3'}, 
+        { title: '【写点东西】', nextChat: 'C4'}, 
         ],
       },
 
       { 
         id: 'C3', desc: "李森炎打开游戏，熟练的玩了一会儿游戏\n觉得没什么意思，索性关掉电脑",
         options: [ 
-         { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv4']},
-          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv8']},
-          { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv7' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv7']},
+        { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv4']},
+        { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv8']},
+        { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv7' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv7']},
         ],
       },
 
        { 
         id: 'C4', desc: "打开电脑，李森炎点开文档\n心中一大堆志向和抱负想要去写出来，但是却又无从下手",
         options: [ 
-         { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv4']},
-          { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv8']},
-          { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv7' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv7']},
+        { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv4']},
+        { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv8']},
+        { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv7' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv7']},
         ],
       },
 
       { 
         id: 'C1', desc: '电脑桌上有很多随笔和便签，看上去杂乱但有序', 
         options: [ 
-         { title: '【李森炎坐下，冷静思考】', dialogs: ['Screen1'],varsOn: ['v_icon_103'] }, 
+        { title: '【李森炎坐下，冷静思考】', dialogs: ['Screen1'],varsOn: ['v_icon_103'] }, 
         ],
       },
 
@@ -1528,40 +1528,39 @@ scenes: [
     dialogs: [
           { id: 'Screen1',style: 6, title: '电脑桌', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'P1', content: ['当个司机，就算最后给董事长开车，接触到舒瑶了，又能怎样','两人之间只是距离上更近了，但事实上，还是有着天渊之别','不可能走到一起','想要真正意义上的接近舒瑶，必须壮大自己！','况且，再不努力，可就要中年危机了！','趁着现在还有精力，不如拼一把，尝试创业！','创业，选对方向很重要！','先打开电脑，看看论坛，了解目前经济趋势',],
-          btn: [{title: '【最近生物科技很火】',tokey: "P2"},
+        { key: 'P1', content: ['当个司机，就算最后给董事长开车，接触到舒瑶了，又能怎样','两人之间只是距离上更近了，但事实上，还是有着天渊之别','不可能走到一起','想要真正意义上的接近舒瑶，必须壮大自己！','况且，再不努力，可就要中年危机了！','趁着现在还有精力，不如拼一把，尝试创业！','创业，选对方向很重要！','先打开电脑，看看论坛，了解目前经济趋势',],
+          btn: [
+          {title: '【最近生物科技很火】',tokey: "P2"},
           {title: '【短视频领域好像也不错】',tokey: "P3"},
           {title: '【元宇宙概念开始进入大众视野】',tokey: "P4" },
-          ]},
+            ]
+        },
 
           { key: 'P2', content: ['生物科学涉及的学科太多','门槛太高','自己以前没有打好基础','现在才开始钻研，落后太多','还是不凑这个热闹了',],
-          btn: [{title: '【短视频领域好像也不错】',tokey: "P3" },
+          btn: [
+          {title: '【短视频领域好像也不错】',tokey: "P3" },
           {title: '【元宇宙概念开始进入大众视野】'},]},
 
           { key: 'P3', content: ['李森炎想到了做短视频涨粉变现这条路','本来这方面他是有点基础的','因为拍了老女人的日常，他涨了一波粉','可因为导致老女人在公司待不下去','老女人被辞后，他也没办法继续更新了','粉丝一看没有新的东西可看，也陆续离开','再加上老女人找人疯狂举报他','导致他很多以前的视频都被封','后面还找水军来黑他，导致他疯狂掉粉','短视频这条路，也让他没有心思再碰',],
-          btn: [{title: '【元宇宙概念开始进入大众视野】' },
+          btn: [
+          {title: '【元宇宙概念开始进入大众视野】' },
           {title: '【最近生物科技很火】',tokey: "P3"},]},
 
           { key: 'P4', content: ['元宇宙，一个虚拟现实的概念。一个平行于现实世界的概念','现在的科学制作这么一个科幻世界，虽然理想挺好，不过目要实现还需要个很多年。','可惜这种东西需要很大的投入，自己个小虾米存的几年工资是搞不定的','可以让他短暂逃离现实','在其中遨游，探索！','很多大公司接触到这个概念后，都开始入资','这个项目，未来的前景可观！',
           '不过这个概念很好，一个自由的虚拟世界','自己之前很多次想过类似的设定，都因为各种缘由无法实现。','这次元宇宙给了一个灵感。','虽然做不了大的世界，但可以做一个小的世界出来。','凭他自己一个人的力量想做出来，那是天方夜谭','虽然办不到，但可以借助元宇宙这个概念',
-        '如果没有资金，就先做最基础的文字版来实现。','先做个小型的互动游戏，再继续慢慢朝着大目标发展','决定了，现在就做出计划。','这个计划的代号就叫小宇宙项目',],
-          btn: [{title: '开始小宇宙项目！',
-           dialogs: ['Screen2'] 
-          ,varsOff: ['WZXX_M1_N1_C000C_V/v_icon_103',],
-          },]},
-
-         ],},
+          '如果没有资金，就先做最基础的文字版来实现。','先做个小型的互动游戏，再继续慢慢朝着大目标发展','决定了，现在就做出计划。','这个计划的代号就叫小宇宙项目',],
+          btn: [
+          {title: '开始小宇宙项目！',dialogs: ['Screen2'] ,varsOff: ['WZXX_M1_N1_C000C_V/v_icon_103',],},
+            ]
+          },],},
 
          {id: 'Screen2',style: "9B", textAnimationType: 'TextSingle',
         sections: [
-         {
-          key: 'p1',
-          content: ['李森炎心中有了决定之后', '志气满满','能将自己喜欢的东西变成工作，也不失为一件好事','只不过这些都成为了回忆……',[{toChapter: "WZXX_M1_N1_C001B_[N1]" }]],
+         {key: 'p1',content: ['李森炎心中有了决定之后', '志气满满','能将自己喜欢的东西变成工作，也不失为一件好事','只不过这些都成为了回忆……',[{toChapter: "WZXX_M1_N1_C001B_[N1]" }]],
     },]}
-        
     ],
   },
-      #===========事件场景==============
+#=============================事件场景================================
        {
   # NPC2
     id: 'C000C_V2_MAP_-2_5', name: '床',
@@ -1581,7 +1580,6 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-    
     ],
 
     # 动作定义
@@ -1613,17 +1611,15 @@ scenes: [
           # { title: '【去厨房做饭】', toScene: 'C000C_V2_MAP_0_5'},
           # { title: '【洗漱睡觉】', toScene: 'C000C_V2_MAP_0_4'},
           { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv1']},
-      
         ],
       },
     ],
    
   },
-      #===========事件场景==============
+#=========================事件场景============================
        {
-  # NPC2
+    # NPC2
     id: 'C000C_V2_MAP_-1_5', name: '衣柜',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #横图显示
@@ -1634,12 +1630,10 @@ scenes: [
     mapId: 'C000C_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 5],
-
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
     ],
 
     # 动作定义
@@ -1677,7 +1671,7 @@ scenes: [
     ],
    
   },
-      #===========事件场景==============
+#===========================事件场景==============================
        {
   # NPC2
     id: 'C000C_V2_MAP_0_6', name: '冰箱',
@@ -1687,26 +1681,22 @@ scenes: [
     #横图显示
     sceneImage: 'BGT_24',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000C_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [0, 6],
-
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
     ],
-
     # 动作定义
     actions: [
     ],
     # 事件定义
     events: [
      { type: 'enter',  nextChat: 'C1' }, 
-
     ],
 
     # 对话选项
@@ -1716,7 +1706,6 @@ scenes: [
         id: 'C1', desc: '只有几个鸡蛋和几瓶啤酒，里里外外都透露着穷酸二字……', 
         options: [ 
          { title: '【随便喝点】',  nextChat: 'C2' },
-      
         ],
       },
 
@@ -1729,7 +1718,6 @@ scenes: [
           # { title: '【洗漱睡觉】', toScene: 'C000C_V2_MAP_0_4'},
           { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv1']},
           { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5'},
-      
         ],
       },
     ],
@@ -1739,7 +1727,6 @@ scenes: [
        {
   # NPC2
     id: 'C000C_V2_MAP_-1_6', name: '洗衣机',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #横图显示
@@ -1750,13 +1737,10 @@ scenes: [
     mapId: 'C000C_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 6],
-
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
-
     ],
 
     # 动作定义
@@ -1765,7 +1749,6 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-
     ],
 
     # 对话选项
@@ -1781,23 +1764,21 @@ scenes: [
           { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv1']},
           # { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5'},
           # { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6'},
-      
         ],
       },
     ],
    
   },
-      #===========事件场景==============
-       {
+#===========================事件场景===========================
+  {
   # NPC2
     id: 'C000C_V2_MAP_-1_7', name: '阳台',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #横图显示
     sceneImage: 'BGT_25',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000C_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1807,8 +1788,6 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
- 
-
     ],
 
     # 动作定义
@@ -1817,7 +1796,6 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-
     ],
 
     # 对话选项
@@ -1827,7 +1805,6 @@ scenes: [
         id: 'C1', desc: '微风拂过，拿瓶啤酒，抽根烟，也还算惬意', 
         options: [ 
          { title: '【休息一会儿，思考人生】', varsOn: ['WZXX_M1_N1_C000C_V/yangtai_1','WZXX_M1_N1_C000C_V/v_icon_103'] , nextChat: 'C2' },
-      
         ],
       },
 
@@ -1840,17 +1817,15 @@ scenes: [
           { title: '【去电脑桌把想法记下来】', toScene: 'C000C_V2_MAP_-2_4'},
           # { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5'},
           { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv4']},
-      
         ],
       },
     ],
    
   },
-      #===========事件场景==============
+#=========================事件场景=====================
        {
   # NPC2
     id: 'C000C_V2_MAP_0_5', name: '厨房',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #横图显示
@@ -1861,15 +1836,10 @@ scenes: [
     mapId: 'C000C_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [0, 5],
-
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-    { id: "biaoqianv1", min: 0, max: 1 } ,
-    { id: "biaoqianv2", min: 0, max: 1 } ,
-    { id: "biaoqianv3", min: 0, max: 1 } ,
-
     ],
 
     # 动作定义
@@ -1878,7 +1848,6 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-
     ],
 
     # 对话选项
@@ -1899,8 +1868,8 @@ scenes: [
     ],
   },
 
- #===========事件场景==============
-       {
+ #=========================事件场景============================
+  {
   # NPC2
     id: 'C000C_V2_MAP_0_4', name: '厕所',
 
@@ -1930,10 +1899,8 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C1' },
-
+      { type: 'enter',  nextChat: 'C1' },
     ],
-
     # 对话选项
     chats: [
       #
@@ -1941,17 +1908,15 @@ scenes: [
         id: 'C1', desc: '洗去一天的疲惫，冲个凉', 
         options: [ 
          { title: '【洗澡】', nextChat: 'C2' }, 
-      
         ],
       },
-       { 
+
+      { 
         id: 'C2', desc: '洗完澡精神满满，做点什么呢？', 
         options: [ 
           { title: '【去阳台抽根烟】', toScene: 'C000C_V2_MAP_-1_7',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv8']},
           { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv1']},
           { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv2']},
-          # { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6'},
-      
         ],
       },
     ],
@@ -1973,7 +1938,7 @@ scenes: [
           point: [-2, 4], title: '电脑桌',
           toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 100, bindVar: 'WZXX_M1_N1_C000C_V/v_icon_103', }, 
           links: [[-2, 5],] ,
-           },
+          },
 
           { 
           point: [-2, 5], title: '床', 
