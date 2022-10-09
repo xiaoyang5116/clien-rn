@@ -388,6 +388,7 @@ export default {
           // 显示插图
           if (image != undefined) {
             DeviceEventEmitter.emit(EventKeys.IMAGE_VIEW_ENTER_EVENT_AREA, item);
+            item.object.completed = true;
           }
           // 显示背景图
           if (background != undefined) {
