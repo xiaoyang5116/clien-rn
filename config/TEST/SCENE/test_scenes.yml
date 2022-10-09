@@ -43,6 +43,7 @@ scenes: [
               { title: '抽签选项', dialogs: ['p2'] },
               { title: '透明黑旁白', dialogs: ['p3'] },
               { title: '字帖小游戏', games: {id: 5, word: ["木"], fail: {toScene: "wzkj"}, success: {toScene: "pomiao"} } },
+              { title: '华丽模版', dialogs: ['p4']}
             ],
           },
         ],
@@ -75,6 +76,17 @@ scenes: [
             ]
           },
           { id: 'p3', style: 3, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '……',],  },
+          { 
+            id: 'p4', style: 12, title: '神秘阵盘',
+            sections: {
+              content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
+              btn: [
+                { title: '穿越', toScene: "wzkj" },
+                { title: '破庙', toScene: "pomiao" },
+                { title: '退出', dialogs: ['p1'] },
+              ]
+            },  
+          },
         ],
     },
   ]

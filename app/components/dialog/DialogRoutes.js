@@ -15,6 +15,8 @@ import BlackAndWhiteClickDialog from './blackAndWhiteClickDialog';
 import BustDialog from './bustDialog';
 import BgDialog from './bgDialog';
 import DrawLotsOption from './drawLotsOption'
+import GorgeousTemplate from './gorgeousTemplate'
+import Transitions from '../transition';
 
 
 const DialogRoutes = (props) => {
@@ -115,6 +117,17 @@ const DialogRoutes = (props) => {
                 actionMethod={actionMethod}
                 specialEffects={specialEffects}
             />
+        )
+    }
+    else if (style === 12) {
+        return (
+            <Transitions id={"OPEN_GorgeousTemplate"}>
+                <GorgeousTemplate
+                    {...props}
+                    actionMethod={actionMethod}
+                    specialEffects={specialEffects}
+                />
+            </Transitions>
         )
     }
 
