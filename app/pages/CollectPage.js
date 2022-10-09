@@ -32,6 +32,7 @@ import RootView from '../components/RootView';
 import Toast from '../components/toast';
 import PropGrid from '../components/prop/PropGrid';
 import { confirm } from '../components/dialog/ConfirmDialog';
+import NotificationIcon from '../components/extends/NotificationIcon';
 
 const pxWidth = 1000; // 像素宽度
 const pxHeight = 1300; // 像素高度
@@ -175,9 +176,7 @@ const CollectProgress = (props) => {
         type: 'UserModel/setPersistedState', 
         payload: { key: UserPersistedKeys.COLLECT_CONFIRM } 
       });
-      setTimeout(() => {
-        confirm('你可以歇一歇暂时离开游戏', { title: '确认', cb: () => {}});
-      }, 1000);
+      DeviceEventEmitter.emit('___@CollectPage.noticationIcon');
     }
     const timer = setInterval(() => {
       setSeconds((sec) => {
@@ -432,6 +431,7 @@ const BagButton = (props) => {
 
 const CollectPage = (props) => {
   
+  const refNotication = React.useRef(null);
   const [grids, setGrids] = React.useState([]);
 
   React.useEffect(() => {
@@ -444,10 +444,26 @@ const CollectPage = (props) => {
       });
       setGrids(array);
     });
-    props.dispatch(action('UserModel/hasPersistedState')({ key: UserPersistedKeys.COLLECT_CONFIRM }))
+    props.dispatch(action('UserModel/havePersistedStates')({ keys: [UserPersistedKeys.COLLECT_CONFIRM, UserPersistedKeys.COLLECT_CONFIRM_NOTICATION] }))
     .then(r => {
-      hasConfirmed = r;
+      if (lo.isArray(r)) {
+        if (lo.indexOf(r, UserPersistedKeys.COLLECT_CONFIRM) != -1) {
+          hasConfirmed = true;
+          if (lo.indexOf(r, UserPersistedKeys.COLLECT_CONFIRM_NOTICATION) == -1) {
+            refNotication.current.active();
+          }
+        }
+      }
     });
+  }, []);
+
+  React.useEffect(() => {
+    const listener = DeviceEventEmitter.addListener('___@CollectPage.noticationIcon', () => {
+      refNotication.current.active();
+    });
+    return () => {
+      listener.remove();
+    }
   }, []);
 
   const collectAll = () => {
@@ -468,6 +484,16 @@ const CollectPage = (props) => {
             }}>
             <AntDesign name={'left'} size={30} />
           </TouchableWithoutFeedback>
+        </View>
+        <View style={{ position: 'absolute', right: px2pd(30), top: px2pd(12), zIndex: 1 }}>
+          <NotificationIcon ref={refNotication} onPress={() => {
+            confirm('你可以歇一歇暂时离开游戏', { title: '确认', cb: () => {
+              AppDispath({ 
+                type: 'UserModel/setPersistedState', 
+                payload: { key: UserPersistedKeys.COLLECT_CONFIRM_NOTICATION } 
+              });
+            }});
+          }} />
         </View>
         <FastImage style={{ width: px2pd(1080), height: px2pd(1531), overflow: 'visible', justifyContent: 'center', alignItems: 'center' }} source={getCollectBackgroundImage(config.background).source}>
           <View style={styles.mapContainer}>

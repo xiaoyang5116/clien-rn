@@ -2,24 +2,28 @@ import {
     View,
     Text,
     SafeAreaView,
-    ScrollView,
     FlatList,
     StyleSheet,
     ImageBackground,
     Image,
     Dimensions,
     TouchableOpacity,
-    Platform
+    Platform,
+    DeviceEventEmitter
 } from 'react-native'
 import React, { useRef, useState } from 'react'
 
 import RootView from '../RootView'
 import { px2pd } from '../../constants/resolution'
 
+import lo from 'lodash';
 import Carousel from 'react-native-snap-carousel'
 import Farm from './Farm'
 import { TextButton } from '../../constants/custom-ui'
 import Transitions from '../transition'
+import NotificationIcon from '../extends/NotificationIcon'
+import { confirm } from '../dialog/ConfirmDialog'
+import { AppDispath, UserPersistedKeys } from '../../constants'
 
 const img = [
     { source: require('../../../assets/plant/header/title_bg.png') },
@@ -62,6 +66,7 @@ const HeaderTitle = (props) => {
 const Plant = (props) => {
     const [tabIndex, setTabIndex] = useState(0)
     const _carouselRef = useRef()
+    const refNotication = React.useRef(null)
 
     const changeTabIndex = (index) => {
         _carouselRef.current.snapToItem(index)
@@ -76,12 +81,42 @@ const Plant = (props) => {
         )
     }
 
+    React.useEffect(() => {
+        AppDispath({
+            type: 'UserModel/havePersistedStates',
+            payload: { keys: [UserPersistedKeys.PLANT_CONFIRM, UserPersistedKeys.PLANT_CONFIRM_NOTICATION] },
+            cb: (v) => {
+                if (lo.isArray(v)
+                    && lo.indexOf(v, UserPersistedKeys.PLANT_CONFIRM) != -1 
+                    && lo.indexOf(v, UserPersistedKeys.PLANT_CONFIRM_NOTICATION) == -1) {
+                    refNotication.current.active();
+                }
+            }
+        })
+        const listener = DeviceEventEmitter.addListener('__@PlantModel.noticationIcon', () => {
+            refNotication.current.active();
+        });
+        return () => {
+            listener.remove();
+        }
+    }, []);
+
     return (
         <View style={{ flex: 1, backgroundColor: "#fff" }} >
             <Image style={{ position: "absolute", width: px2pd(1080), height: px2pd(2400) }} source={require('../../../assets/plant/plantBg.jpg')} />
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <HeaderTitle tabIndex={tabIndex} changeTabIndex={changeTabIndex} />
+                    <View style={{ position: 'absolute', zIndex: 10, right: px2pd(20), top: px2pd(130) }}>
+                        <NotificationIcon ref={refNotication} onPress={() => {
+                            confirm('你可以歇一歇暂时离开游戏', { title: '确认', cb: () => {
+                                AppDispath({ 
+                                    type: 'UserModel/setPersistedState', 
+                                    payload: { key: UserPersistedKeys.PLANT_CONFIRM_NOTICATION } 
+                                  });
+                            }});
+                        }} />
+                    </View>
                     <Carousel
                         data={DATA}
                         ref={_carouselRef}

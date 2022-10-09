@@ -14,6 +14,7 @@ import LocalStorage from '../utils/LocalStorage';
 import Toast from '../components/toast';
 import { now } from '../utils/DateTimeUtils';
 import { confirm } from '../components/dialog/ConfirmDialog';
+import { DeviceEventEmitter } from 'react-native';
 
 export default {
     namespace: 'PlantModel',
@@ -213,11 +214,7 @@ export default {
             // 种植时间
             if (payload.time >= 100) {
                 const v = yield put.resolve(action('UserModel/checkAndSetPersistedState')({ key: UserPersistedKeys.PLANT_CONFIRM }));
-                if (v) {
-                    setTimeout(() => {
-                        confirm('你可以歇一歇暂时离开游戏', { title: '确认', cb: () => {}});
-                    }, 1000);
-                }
+                if (v) DeviceEventEmitter.emit('__@PlantModel.noticationIcon');
             }
 
             yield put.resolve(action("updateLingTianData")(composeState.lingTianData))
