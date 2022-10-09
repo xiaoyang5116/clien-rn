@@ -14,6 +14,8 @@ scenes: [
       #酒肆
       { id: "v_jiusi", min: 0, max: 1 },
       { id: "v_jiusi2", min: 0, max: 1 },
+      #坊市出入口
+      { id: "v_fangshi2", min: 0, max: 1 },
       #东街
       { id: "v_dongjie", min: 0, max: 1 },
       #天机阁摊位
@@ -78,11 +80,11 @@ scenes: [
       { 
         id: 'B1', desc: '不大的坊市出入口，人来人往', 
         options: [ 
-         { title: '【去里面看看】', nextChat: 'B4'}, 
-         { title: '【原地看看风景】', nextChat: 'B3'}, 
+         { title: '【去里面看看】', nextChat: 'B4', varsOn: ['WZXX_M1_N1_C000B_VA/v_fangshi2']}, 
+         { title: '【原地看看风景】', nextChat: 'B3', varsOn: ['WZXX_M1_N1_C000B_VA/v_fangshi2']}, 
         ],
       },
-      #
+      
       { 
         id: 'B3', desc: '外边没什么好看的，还是去坊市里边看看吧', 
         options: [ 
@@ -93,12 +95,12 @@ scenes: [
       { 
         id: 'B4', desc: '请选择目的地————',  
         options: [ 
-        { title: '酒肆', toScene: 'C000B_VA_MAP_2_2', icon: { id: 1, bindVar: 'biaoqianv_JS' }, varsOn: ['biaoqianv_JS']}, 
-        { title: '珍宝阁', toScene: 'C000B_VA_MAP_0_3', icon: { id: 1, bindVar: 'biaoqianv_ZBG' }, varsOn: ['biaoqianv_ZBG']}, 
-        { title: '客栈', toScene: 'C000B_VA_MAP_1_3', icon: { id: 1, bindVar: 'biaoqianv_KZ' }, varsOn: ['biaoqianv_KZ']}, 
-        { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'biaoqianv_DJ' }, varsOn: ['biaoqianv_DJ']},
-        { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'biaoqianv_TJGTW' }, varsOn: ['biaoqianv_TJGTW']}, 
-        { title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', icon: { id: 1, bindVar: 'biaoqianv_FSZD' }, varsOn: ['biaoqianv_FSZD']}, 
+        { title: '酒肆', toScene: 'C000B_VA_MAP_2_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_JS' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_JS']}, 
+        { title: '珍宝阁', toScene: 'C000B_VA_MAP_0_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_ZBG' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_ZBG']}, 
+        { title: '客栈', toScene: 'C000B_VA_MAP_1_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_KZ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_KZ']}, 
+        # { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'biaoqianv_DJ' }, varsOn: ['biaoqianv_DJ']},
+        # { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'biaoqianv_TJGTW' }, varsOn: ['biaoqianv_TJGTW']}, 
+        # { title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', icon: { id: 1, bindVar: 'biaoqianv_FSZD' }, varsOn: ['biaoqianv_FSZD']}, 
         ]
       },
 
@@ -162,7 +164,7 @@ scenes: [
         { title: '酒肆', toScene: 'C000B_VA_MAP_2_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_JS' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_JS']}, 
         { title: '珍宝阁', toScene: 'C000B_VA_MAP_0_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_ZBG' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_ZBG']}, 
         { title: '客栈', toScene: 'C000B_VA_MAP_1_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_KZ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_KZ']}, 
-        { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
+        # { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
         ]
       },
 
@@ -262,8 +264,8 @@ scenes: [
           { title: '酒肆', toScene: 'C000B_VA_MAP_2_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_JS' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_JS']}, 
           { title: '珍宝阁', toScene: 'C000B_VA_MAP_0_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_ZBG' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_ZBG']}, 
           { title: '客栈', toScene: 'C000B_VA_MAP_1_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_KZ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_KZ']}, 
-          { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
-          { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW']}, 
+          # { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
+          # { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW']}, 
           ]
         },
 
@@ -319,8 +321,8 @@ scenes: [
       { 
        id: 'B6', desc: '离开，请选择目的地————',  
        options: [ 
-        { title: '酒肆', toScene: 'C000B_VA_MAP_2_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_JS' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_JS']}, 
-        { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW']},  
+        # { title: '酒肆', toScene: 'C000B_VA_MAP_2_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_JS' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_JS']}, 
+        # { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW']},  
         { title: '客栈', toScene: 'C000B_VA_MAP_1_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_KZ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_KZ']}, 
         { title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_FSZD' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_FSZD']},
         { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
@@ -430,9 +432,9 @@ scenes: [
         { title: '酒肆', toScene: 'C000B_VA_MAP_2_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_JS' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_JS']}, 
         { title: '珍宝阁', toScene: 'C000B_VA_MAP_0_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_ZBG' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_ZBG']}, 
         { title: '客栈', toScene: 'C000B_VA_MAP_1_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_KZ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_KZ']}, 
-        { title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_FSZD' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_FSZD']},
-        { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW']}, 
-        { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
+        # { title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_FSZD' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_FSZD']},
+        # { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW']}, 
+        # { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
         ]
       },
     ],
@@ -569,8 +571,8 @@ scenes: [
         { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW']}, 
         { title: '珍宝阁', toScene: 'C000B_VA_MAP_0_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_ZBG' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_ZBG']}, 
         { title: '客栈', toScene: 'C000B_VA_MAP_1_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_KZ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_KZ']}, 
-        { title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_FSZD' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_FSZD']},
-        { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
+        # { title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_FSZD' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_FSZD']},
+        # { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
       ]
     },
       ],
@@ -627,8 +629,8 @@ scenes: [
         { title: '酒肆', toScene: 'C000B_VA_MAP_2_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_JS' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_JS']}, 
         { title: '珍宝阁', toScene: 'C000B_VA_MAP_0_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_ZBG' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_ZBG']}, 
         { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW']}, 
-        { title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_FSZD' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_FSZD']},
-        { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
+        # { title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_FSZD' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_FSZD']},
+        # { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
         ]
       },
     ],
