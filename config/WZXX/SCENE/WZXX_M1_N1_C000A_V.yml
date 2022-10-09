@@ -2035,19 +2035,28 @@ scenes: [
        { 
         id: 'C1', desc: '这里很多店，但是很偏没什么人来', 
         options: [ 
-        { title: '【进入商铺买簪子】',  dialogs: ['Screen16'] ,  },
-        # { title: '【东市一街】',toScene: 'C000A_V_MAP_2_-1'}, 
-        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        { title: '【进入商铺买簪子】',  nextChat: 'P1',  },
         ],
       },
+
+      { 
+        id: 'P1', desc: "“客官，可要买点什么？”掌柜的笑吟吟\n李森炎看了一眼琳琅满目的商柜\n脱口而出",  
+        options: [ 
+        { title: '【我要买簪子】',  nextChat: 'P2',   },
+        ],
+      },
+
+      { 
+        id: 'P2', desc: "掌柜乐呵呵的说，“当然有啊，不如您挑一件如何”\n掌柜摆出一些簪子让李森炎查看\n其中一个看着还不错\n“就这个了。”\n掌柜：“客官真是好眼力”",  
+        options: [ 
+        { title: '【掏钱购买】', toShop: 'default', nextChat: 'C2',varsOff: ['WZXX_M1_N1_C000A_V/v_icon_100'],   },
+        ],
+      },
+
       { 
         id: 'C2', desc: '已经买到了簪子了，接下来准备做什么', 
         options: [ 
         { title: '【买到簪子离开集市，早点回家】',  dialogs: ['Screen1'] , },
-        # { title: '【再逛逛】',toScene: 'C000A_V_MAP_2_-1'}, 
-        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
 
@@ -2080,20 +2089,20 @@ scenes: [
       ],
        # 对话框
     dialogs: [
-          { id: 'Screen16',style: 6, title: '店铺', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'P1', content: ['“客官，可要买点什么？”掌柜的笑吟吟','李森炎看了一眼琳琅满目的商柜','脱口而出',],
-          btn: [{title: '我要买簪子' , tokey: "P1A",}, ]},
+    #       { id: 'Screen16',style: 6, title: '店铺', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+    #       sections: [
+    #       { key: 'P1', content: ['“客官，可要买点什么？”掌柜的笑吟吟','李森炎看了一眼琳琅满目的商柜','脱口而出',],
+    #       btn: [{title: '我要买簪子' , tokey: "P1A",}, ]},
 
-          { key: 'P1A', content: ['掌柜乐呵呵的说，“当然有啊，不如您挑一件如何”','掌柜摆出一些簪子让李森炎查看','其中一个看着还不错','“就这个了。”','掌柜：“客官真是好眼力”',],
-          btn: [{title: '掏钱购买' ,toShop: 'default', tokey: "P2",}, ]},
+    #       { key: 'P1A', content: ['掌柜乐呵呵的说，“当然有啊，不如您挑一件如何”','掌柜摆出一些簪子让李森炎查看','其中一个看着还不错','“就这个了。”','掌柜：“客官真是好眼力”',],
+    #       btn: [{title: '掏钱购买' ,toShop: 'default', tokey: "P2",}, ]},
 
-          { key: 'P2', content: ['“客官，慢走，下次再来啊。”','……',],
-           btn: [{title: '离开',nextChat: 'C2',
-          #  toChapter: "WZXX_M1_N1_C002_[N3]" , 
-           varsOff: ['WZXX_M1_N1_C000A_V/v_icon_100'],
-           }, ] },
-    ],},
+    #       { key: 'P2', content: ['“客官，慢走，下次再来啊。”','……',],
+    #        btn: [{title: '离开',nextChat: 'C2',
+    #       #  toChapter: "WZXX_M1_N1_C002_[N3]" , 
+    #        varsOff: ['WZXX_M1_N1_C000A_V/v_icon_100'],
+    #        }, ] },
+    # ],},
         
         { id: 'Screen1',style: 6, title: '买完簪子回家', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
