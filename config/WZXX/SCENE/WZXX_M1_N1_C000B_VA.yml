@@ -34,6 +34,9 @@ scenes: [
       { id: "biaoqianv_ZBG", min: 0, max: 1 },
       #客栈
       { id: "biaoqianv_KZ", min: 0, max: 1 },
+
+
+
       ],
       # 动作定义
       actions: [],
@@ -43,7 +46,7 @@ scenes: [
       { 
       id: 'WZXX_M1_N1_C000B_V1', desc: '打工还是守夜', 
         options: [ 
-          { title: "【进入坊市】",toScene: 'C000B_VA_MAP_0_0', varsOn: ['WZXX_M1_N1_C000B_VA/v_icon_2','WZXX_M1_N1_C000B_VA/v_jiusi1']},
+          { title: "【进入坊市】",toScene: 'C000B_VA_MAP_0_0', varsOn: ['WZXX_M1_N1_C000B_VA/v_icon_2','WZXX_M1_N1_C000B_VA/v_jiusi1','WZXX_M1_N1_C000B_VA/v_fangshi2']},
         ],
       },
         ],
@@ -66,27 +69,31 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    
     ],
     # 动作定义
     actions: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  dialogs: ['d3'], nextChat: 'B1' },
+       { type: 'enter',   nextChat: 'B1' },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000B_VA/v_fangshi2'] ,dialogs: ['d3'], nextChat: 'B1' },
     ],
 
     # 对话选项
     chats: [
       { 
-        id: 'B1', desc: '不大的坊市出入口，人来人往', 
+        id: 'B1', desc: "坊市不大，但是异常热闹\n一进坊市云云就立刻撒了欢\n看什么都觉得新鲜\n要不是李森炎跟得紧，都不知道飘哪儿去了\n云云问道：“话说，你现在到底想去哪儿？”\n选择行动————",  
         options: [ 
-         { title: '【去里面看看】', nextChat: 'B4', varsOn: ['WZXX_M1_N1_C000B_VA/v_fangshi2']}, 
-         { title: '【原地看看风景】', nextChat: 'B3', varsOn: ['WZXX_M1_N1_C000B_VA/v_fangshi2']}, 
+         { title: '【去里面看看】', nextChat: 'B4', varsOff: ['WZXX_M1_N1_C000B_VA/v_fangshi2'], icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
+         { title: '【原地看看风景】', nextChat: 'B3', varsOff: ['WZXX_M1_N1_C000B_VA/v_fangshi2'], icon: { id: 6, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']}, 
         ],
       },
       
       { 
-        id: 'B3', desc: '外边没什么好看的，还是去坊市里边看看吧', 
+        id: 'B3', desc: '李森炎嘀咕外边没什么好看的，还是去坊市里边看看吧', 
         options: [ 
          { title: '<<<出发', nextChat: 'B4' }, 
         ]
@@ -130,6 +137,8 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [
@@ -146,24 +155,24 @@ scenes: [
       { 
         id: 'B1', desc: '一个颇为神秘的摊位，摊主有股桀骜不驯的味道', 
         options: [ 
-         { title: '【看看摊位】', nextChat: 'B2'}, 
+         { title: '【看看摊位】', nextChat: 'B2', icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
         ],
       },
       #
       { 
-        id: 'B2', desc: '走近一看，摊位上空空如也，摊主好像在卖空气', 
+        id: 'B2', desc: "李森炎带着云云走进一看\n“这是在，卖空气吗？”云云吐槽\n李森炎还想仔细看看来着\n但耐不住云云疯狂想离开去看别的地方", 
         options: [ 
-         { title: '搞不懂，走吧', nextChat: 'B3' }, 
+         { title: '询问云云去哪儿', nextChat: 'B3' , icon: { id: 6, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']}, 
         ]
       },
       #
 
       { 
-        id: 'B3', desc: '离开，请选择目的地————',  
+        id: 'B3', desc: '“我也不知道去哪儿，要不你看看？”云云迅速把问题又甩了给李森炎',  
         options: [ 
-        { title: '酒肆', toScene: 'C000B_VA_MAP_2_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_JS' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_JS']}, 
-        { title: '珍宝阁', toScene: 'C000B_VA_MAP_0_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_ZBG' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_ZBG']}, 
-        { title: '客栈', toScene: 'C000B_VA_MAP_1_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_KZ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_KZ']}, 
+        { title: '去酒肆', toScene: 'C000B_VA_MAP_2_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_JS' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_JS']}, 
+        { title: '珍宝阁似乎不错', toScene: 'C000B_VA_MAP_0_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_ZBG' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_ZBG']}, 
+        { title: '到客栈看看', toScene: 'C000B_VA_MAP_1_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_KZ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_KZ']}, 
         # { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
         ]
       },
@@ -171,7 +180,7 @@ scenes: [
       { 
         id: 'C1', desc: "一个颇为神秘的摊位\n摊主有股桀骜不驯的味道\n立即吸引了李森炎的注意\n因为那摊位空无一物", 
         options: [ 
-        { title: '【奇怪】', nextChat: 'C2'}, 
+        { title: '【奇怪，这个摊子居然还在】', nextChat: 'C2'}, 
         ],
       },
         #
@@ -210,8 +219,8 @@ scenes: [
           sections: [
           { key: 'P1', content: ['好在李森炎现在赚了点家底，也没有多犹豫，当即掏钱。','收钱之后，摊主从怀里掏出一只毛笔和一张宣纸，开始龙飞凤舞。',
           '李森炎接过他递过来的纸张后，勉强分辨出内容：“绛云镇，柳家，抑灵丹可解。”','李森炎将纸条收了起来，心里想着，无论真假，先将这所谓的抑灵丹拿到，帮医灵解决了阴灵根的祸患',
-          '如此一来，或许能撬开她的嘴，让她心甘情愿地透露一点消息给他','李森炎和云云走出坊市，旁边一个胖子刚走过，却又回头喊住李森炎。',],
-          btn: [{title: '谁啊？！' , toChapter: "WZXX_M1_N1_C016_[N1]" },]},
+          '如此一来，或许能撬开她的嘴，让她心甘情愿地透露一点消息给他',],
+          btn: [{title: '离开坊市！' , toChapter: "WZXX_M1_N1_C016_[N1]" ,transitionAnimation: '上下开门转场',},]},
     ],},
     ],
     },
@@ -233,6 +242,13 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
+    { id: "biaoqianv4", min: 0, max: 1 },
+    { id: "biaoqianv5", min: 0, max: 1 },
+    { id: "biaoqianv6", min: 0, max: 1 },
+    { id: "biaoqianv7", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [
@@ -244,17 +260,40 @@ scenes: [
     # 对话选项
     chats: [
       #
-        { 
+        {
           id: 'B1', desc: '这条街大多都是些娱乐性的铺子，有投壶，有斗鸡，还有些下棋的，各种好玩的游戏层出不穷，挑战成功还能赚钱。', 
           options: [ 
-          { title: '【去里面看看】',  nextChat: 'B3'}, 
+          { title: '【去里面看看】',  nextChat: 'B2', icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
           ],
         },
-          #
-        { 
+
+        {
+          id: 'B2', desc: "这边有很多有趣的游戏\n看似有趣其实也暗藏玄机\n请选择行动————",  
+          options: [ 
+          { title: '【玩】',  nextChat: 'B4', icon: { id: 6, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']}, 
+          { title: '【不玩】',  nextChat: 'B3', icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']}, 
+          { title: '【询问云云的意见】',  nextChat: 'B5', icon: { id: 6, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']}, 
+          ],
+        },
+       #
+        {
           id: 'B3', desc: "这种游戏，立刻让李森炎回想起现代的套环游戏，这种游戏多半是坑钱，要么乱收费，要么游戏难上加难\n他觉得没什么意思，就转身转身离开了", 
           options: [ 
-          { title: '<<<离开',  nextChat: 'B6'}, 
+          { title: '<<<离开', nextChat: 'B6', icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']}, 
+          ]
+        },
+
+        {
+          id: 'B4', desc: "“你干嘛？”\n云云看见李森炎作势要上前的样子，立刻拦住他\n“你不会是想试试吧？”\n李森炎点点头\n“认清现实吧，你的智商不适合玩这种游戏。”云云无情插刀", 
+          options: [ 
+          { title: '<<<离开', nextChat: 'B6', icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']}, 
+          ]
+        },
+
+        {
+          id: 'B5', desc: "李森炎觉得挺有意思，于是问了下云云的意见\n“认清现实吧，你的智商不适合玩这种游戏。”云云无情插刀。\n李森炎想想也是，人群中卧虎藏龙，恐怕想要赢也不是容易事儿！", 
+          options: [ 
+          { title: '<<<离开', nextChat: 'B6', icon: { id: 6, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']}, 
           ]
         },
 
@@ -268,13 +307,11 @@ scenes: [
           # { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW']}, 
           ]
         },
-
           ],
-
-  },
+    },
 
   #===========================事件场景==============================
-       {
+  {
     # NPC2
     id: 'C000B_VA_MAP_0_3', name: '珍宝阁',
     # 指定场景为NPC或MAP场景
@@ -291,6 +328,9 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [
@@ -306,15 +346,15 @@ scenes: [
       { 
         id: 'C1', desc: '装潢华丽，富丽堂皇，一看就是奢侈场所', 
         options: [ 
-         { title: '【珍宝阁告示】', nextChat: 'C2'}, 
-         { title: '【<<<离开】', nextChat: 'B6'}, 
+         { title: '【珍宝阁告示】', nextChat: 'C2', icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
+         { title: '【<<<离开】', nextChat: 'B6', icon: { id: 6, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']}, 
         ],
       },
       #
       { 
         id: 'C2', desc: '招募有经验的鉴定者，最低需要筑基期修为', 
         options: [ 
-         { title: '<<<离开', nextChat: 'B6' }, 
+         { title: '<<<离开', nextChat: 'B6', icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] }, 
         ],
       },
       #
@@ -323,9 +363,9 @@ scenes: [
        options: [ 
         # { title: '酒肆', toScene: 'C000B_VA_MAP_2_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_JS' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_JS']}, 
         # { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW']},  
-        { title: '客栈', toScene: 'C000B_VA_MAP_1_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_KZ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_KZ']}, 
-        { title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_FSZD' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_FSZD']},
-        { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
+        { title: '去客栈', toScene: 'C000B_VA_MAP_1_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_KZ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_KZ']}, 
+        { title: '走去坊市主道', toScene: 'C000B_VA_MAP_0_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_FSZD' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_FSZD']},
+        { title: '离得近的东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
         ]
       },
     ],
@@ -350,6 +390,16 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
+    { id: "biaoqianv4", min: 0, max: 1 },
+    { id: "biaoqianv5", min: 0, max: 1 },
+    { id: "biaoqianv6", min: 0, max: 1 },
+    { id: "biaoqianv7", min: 0, max: 1 },
+    { id: "biaoqianv8", min: 0, max: 1 },
+    { id: "biaoqianv9", min: 0, max: 1 },
+    { id: "biaoqianv10", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [
@@ -358,71 +408,70 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'B1' },
     ],
-
     # 对话选项
     chats: [
         #
       { 
         id: 'B1', desc: "李森炎来到坊市东街，一名热情洋溢的中年男子当即叫住了他\n“这位小兄弟，来一瓶天仙酿吗？”\n“这可是滋阴补肾，强身健体的好东西，居家旅行必备之良品，喝了保证你夜夜快活似神仙哦！”\n“快活似神仙？那我要一瓶！”\n云云如饿虎扑食般凑了过去", 
         options: [ 
-        { title: '【拦住云云】', nextChat: 'B2'}, 
+        { title: '【拦住云云】', nextChat: 'B2', icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
         ],
       },
         #
       { 
         id: 'B2', desc: "“你要个屁”，李森炎一把将她扯了回来，对那摊主笑了笑，“她还小，童言无忌，别介意。\n云云不爽道：“谁说我小了，我可比你大多了。”\n中年男子保持着礼貌的笑容：“那小兄弟你要不要来一瓶？”", 
         options: [ 
-        { title: '考虑询问一番', nextChat: 'B3' }, 
+        { title: '考虑询问一番', nextChat: 'B3', icon: { id: 6, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] }, 
         ]
       },
 
       { 
         id: 'B3', desc: "李森炎表示自己还要再考虑考虑：“我有一个朋友想问问你，这个效果……是不是真有你说的这么好？”\n听到这话，中年男子的脸色立马就严肃起来了。”", 
         options: [ 
-          { title: '不信……', nextChat: 'B3A' ,}, 
+          { title: '不信……', nextChat: 'B3A' , icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']}, 
            ]
       },
 
       { 
         id: 'B3A', desc: "“我老王在这里卖了十年了，你可以四处去打听打听我的名声，绝对是童叟无欺，这效果绝对杠杠滴！”\n“怎么样小兄弟？来一瓶吧，不贵，一贯铜钱一瓶，我再送你九瓶，相当于买一得十，只限今天！”", 
         options: [ 
-          { title: '这么划算，买了！', nextChat: 'B4' , varsOn: ['WZXX_M1_N1_C000B_VA/v_dongjie'],}, 
-          { title: '你当我傻啊，不买！', nextChat: 'B5', varsOn: ['WZXX_M1_N1_C000B_VA/v_dongjie'],}, 
+          { title: '这么划算，买了！', nextChat: 'B4' , varsOn: ['WZXX_M1_N1_C000B_VA/v_dongjie','biaoqianv4'], icon: { id: 6, bindVar: 'biaoqianv4' }, }, 
+          { title: '你当我傻啊，不买！', nextChat: 'B5', varsOn: ['WZXX_M1_N1_C000B_VA/v_dongjie','biaoqianv5'], icon: { id: 6, bindVar: 'biaoqianv5' }, }, 
            ]
       },
 
       { 
        id: 'B4', desc: "李森炎觉得这还真挺划算的，不过似乎还有讲价的余地\n这时候一个醉汉醉醺醺走过来\n李森炎闻到对方难闻的酒骚味，让开了一些\n醉汉冲着摊主痴痴说道：“老王，你这可真是好东西！”", 
        options: [ 
-         { title: '什么意思？', nextChat: 'B4A'}, 
+         { title: '什么意思？', nextChat: 'B4A', icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']}, 
         ]
       },
 
       { 
        id: 'B4A', desc: "“我整宿睡不着的毛病，喝了你这酒立马就好了！”\n“一觉睡到大天亮，还做了个美梦，嘿嘿。”\n李森炎闻言，嘴角抽动，幸好还没买", 
        options: [ 
-          { title: '差点就被骗了', nextChat: 'B5A'}, 
+          { title: '差点就被骗了', nextChat: 'B5A', icon: { id: 6, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']}, 
          ]
       },
 
       { 
        id: 'B4B', desc: "这酒原来是助眠的！\n所谓的夜夜快活似神仙，原来是在梦里快活似神仙啊！", 
        options: [
-          { title: '不买了，赶紧溜', nextChat: 'B6'}, 
+          { title: '不买了，赶紧溜', nextChat: 'B6', icon: { id: 6, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8']}, 
         ]
       },
 
-      { 
+      {
        id: 'B5', desc: "面对所谓买一得十的诱惑，李森炎不为所动\n这种销售套路他早就见多，产生免疫了\n摊主不搞这些套路还好\n这么一搞，李森炎对其印象分大减", 
        options: [ 
-         { title: '不能被老板缠住，找个借口开溜', nextChat: 'B5A'}, 
+         { title: '不能被老板缠住，找个借口开溜', nextChat: 'B5A', icon: { id: 6, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9']}, 
       ]
       },
 
       { 
        id: 'B5A', desc: "“你刚刚叫我什么？”\n老王笑脸依旧：“小兄弟啊。”\n“没叫我靓仔，差评！不买了！”\n李森炎转身就走,老王笑容瞬间消失，独自在风中凌乱", 
        options: [ 
-          { title: '不买了，赶紧溜', nextChat: 'B6'}, 
+          { title: '不买了，赶紧溜', nextChat: 'B6', icon: { id: 6, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10']}, 
          ]
       },
 
@@ -459,6 +508,20 @@ scenes: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
+    { id: "biaoqianv4", min: 0, max: 1 },
+    { id: "biaoqianv5", min: 0, max: 1 },
+    { id: "biaoqianv6", min: 0, max: 1 },
+    { id: "biaoqianv7", min: 0, max: 1 },
+    { id: "biaoqianv8", min: 0, max: 1 },
+    { id: "biaoqianv9", min: 0, max: 1 },
+    { id: "biaoqianv10", min: 0, max: 1 },
+    { id: "biaoqianv11", min: 0, max: 1 },
+    { id: "biaoqianv12", min: 0, max: 1 },
+    { id: "biaoqianv13", min: 0, max: 1 },
+    { id: "biaoqianv14", min: 0, max: 1 },
+    { id: "biaoqianv15", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [
@@ -475,21 +538,21 @@ scenes: [
       { 
       id: 'B1', desc: '酒味四溢，飘香十里，隔着老远就能闻到', 
       options: [ 
-        { title: '【去里面喝酒】', nextChat: 'B_2'}, 
+        { title: '【去里面喝酒】', nextChat: 'B_2', icon: { id: 6, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']}, 
       ],
       },
       #
       { 
       id: 'B_2', desc: '李森炎走进酒肆，坐下让小二上了一壶酒，喝了一口，发觉这酒索然无味！', 
       options: [ 
-        { title: '什么情况？？？', nextChat: 'B_2A' }, 
+        { title: '什么情况？？？', nextChat: 'B_2A' , icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']}, 
         ]
       },
 
       {
       id: 'B_2A', desc: "“我去，老板，你这是水里掺酒了吧？”\n摊主佯装出一幅愤怒的样子：“你怎能轻易污人清白？”\n“我做了八十年生意了，向来童叟无欺”\n你特喵的都不到五十岁吧，做八十年生意，扯犊子呢", 
       options: [
-        { title: '这里都是奸商，赶紧跑！', nextChat: 'B6'}, 
+        { title: '这里都是奸商，赶紧跑！', nextChat: 'B6', icon: { id: 6, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']}, 
       ]
       },
 
@@ -497,87 +560,86 @@ scenes: [
       id: 'B1A', desc: '酒味四溢，飘香十里，隔着老远就能闻到', 
       options: [ 
         { title: '【去里面喝酒】', nextChat: 'B2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
-        { title: '【外面似乎有什么活动】', nextChat: 'B3'}, 
+        { title: '【外面似乎有什么活动】', nextChat: 'B3', icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']}, 
       ],
       },
       #
       { 
       id: 'B2', desc: '李森炎走进酒肆，坐下让小二上了一壶酒，喝了一口，发觉这酒索然无味！', 
       options: [ 
-        { title: '什么情况？？？', nextChat: 'B2A' }, 
+        { title: '什么情况？？？', nextChat: 'B2A', icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] }, 
         ]
       },
 
       {
       id: 'B2A', desc: "“我去，老板，你这是水里掺酒了吧？”\n摊主佯装出一幅愤怒的样子：“你怎能轻易污人清白？”\n“我做了八十年生意了，向来童叟无欺”\n你特喵的都不到五十岁吧，做八十年生意，扯犊子呢", 
       options: [
-        { title: '这里都是奸商，赶紧跑！', nextChat: 'B1A'}, 
+        { title: '这里都是奸商，赶紧跑！', nextChat: 'B1A', icon: { id: 6, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']}, 
       ]
       },
 
       { 
       id: 'B3', desc: "那边似乎很热闹，人群熙熙攘攘\n走到人最多的一个摊位上，摊位上摆放着数枚丹药，李森炎刚开始还以为是卖丹药的，看了一会儿才明白过来。", 
       options: [ 
-        { title: '敢情这是个赌局啊', nextChat: 'B3A', varsOn: ['WZXX_M1_N1_C000B_VA/v_jiusi'], }, 
+        { title: '敢情这是个赌局啊', nextChat: 'B3A', varsOn: ['WZXX_M1_N1_C000B_VA/v_jiusi','biaoqianv8'], icon: { id: 6, bindVar: 'biaoqianv8' }, }, 
       ]
       },
 
       {
       id: 'B3A', desc: "花钱购买品质不明的丹药，这些丹药都做了表面处理，外表统一\n如果验明是真丹，则摊主会花最低两倍的价钱回购，如果是废丹，那你就只能自认倒霉了\n摊主见有李森炎一副饶有兴致的样子，立刻过来热情招呼，“小兄弟赌一把吗？”", 
       options: [
-        { title: '思考一下……', nextChat: 'B3B' }, 
+        { title: '思考一下……', nextChat: 'B3B', icon: { id: 6, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9'] }, 
       ]
       },
 
       {
-      id: 'B3B', desc: "摊主倒是直接，也不遮掩，这本质上就是一场赌局\n李森炎看别人赌还行，轮到自己的时候，就有些犹豫了，赌博靠运气，他本来就穷了，这要是赌输了，岂不是要当街要饭去？,这些丹药都是做了隔绝神识勘察的处理，神识无法辨得真假，因为多了一层涂料，肉眼更是看不出来。", 
+      id: 'B3B', desc: "摊主倒是直接，也不遮掩，这本质上就是一场赌局\n李森炎看别人赌还行，轮到自己的时候，就有些犹豫了\n赌博靠运气，他本来就穷了，这要是赌输了，岂不是要当街要饭去？\n这些丹药都是做了隔绝神识勘察的处理，神识无法辨得真假\n因为多了一层涂料，肉眼更是看不出来。", 
       options: [ 
-        { title: '毕竟……', nextChat: 'B3C' }, 
+        { title: '毕竟……', nextChat: 'B3C' , icon: { id: 6, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10']}, 
       ]
       },
 
       { 
       id: 'B3C', desc: "毕竟这里来往的都是修士，要是不做处理的话，摊主就是妥妥的送财童子了\n望着摊主那张不断凑近的大饼脸，李森炎沉吟犹豫\n云云在一旁开口道：“喂，你不会真的要赌吧？你清醒一点呐，你可是个穷鬼！”", 
       options: [ 
-        { title: '搏一搏单车变摩托，赌！', nextChat: 'B4' , games: { id: 6, treasureChestId: 2 }, varsOff: ['WZXX_M1_N1_C000B_VA/v_icon_2'], varsOn: ['WZXX_M1_N1_C000B_VA/v_icon_1','WZXX_M1_N1_C000B_VA/v_jiusi2',] }, 
-        { title: '我与赌毒不共戴天！离开', nextChat: 'B6A' }, 
+        { title: '搏一搏单车变摩托，赌！', nextChat: 'B4' , games: { id: 6, treasureChestId: 2 }, varsOff: ['WZXX_M1_N1_C000B_VA/v_icon_2'], varsOn: ['WZXX_M1_N1_C000B_VA/v_icon_1','WZXX_M1_N1_C000B_VA/v_jiusi2','biaoqianv11'] , icon: { id: 6, bindVar: 'biaoqianv11' }, }, 
+        { title: '我与赌毒不共戴天！离开', nextChat: 'B6A' , icon: { id: 6, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12']}, 
       ]
       },
 
       { 
       id: 'B4', desc: "“你懂什么，只有搏一搏，单车才能变摩托。”\n李森炎手指往其中一枚丹药点去", 
       options: [ 
-        { title: '就它了', nextChat: 'B5' , }, 
+        { title: '就它了', nextChat: 'B5' , icon: { id: 6, bindVar: 'biaoqianv13' }, varsOn: ['biaoqianv13'] }, 
       ]
       },
 
       { 
       id: 'B5', desc: "“恭喜你，这是一枚真丹！”\n“丹药品质，普通。”\n摊主直接以最低两倍的价格回购\n李森炎见好就收，转身离开", 
       options: [ 
-        { title: '离开', nextChat: 'B6' , }, 
+        { title: '离开', nextChat: 'B6' , icon: { id: 6, bindVar: 'biaoqianv14' }, varsOn: ['biaoqianv14'] }, 
       ]
       },
 
       { 
       id: 'B6A', desc: "李森炎和云云站在摊位旁边看了一会儿\n来来往往的人很多，短短几分钟\n他就看到了好几个人抱着一堆破丹药痛苦，也有几个沾沾自喜赚了点甜头的\n其实啊，最终落在一个赌字上面\n十赌九输，还是不要碰为好", 
       options: [ 
-        { title: '离开', nextChat: 'B6' , }, 
+        { title: '离开', nextChat: 'B6' , icon: { id: 6, bindVar: 'biaoqianv15'}, varsOn: ['biaoqianv15'] }, 
       ]
       },
 
-    { 
+      { 
        id: 'B6', desc: '离开，请选择目的地————',  
-       options: [ 
+       options: [
         { title: '天机阁摊位', toScene: 'C000B_VA_MAP_0_1', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_TJGTW']}, 
         { title: '珍宝阁', toScene: 'C000B_VA_MAP_0_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_ZBG' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_ZBG']}, 
         { title: '客栈', toScene: 'C000B_VA_MAP_1_3', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_KZ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_KZ']}, 
         # { title: '坊市主道', toScene: 'C000B_VA_MAP_0_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_FSZD' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_FSZD']},
         # { title: '东街', toScene: 'C000B_VA_MAP_1_2', icon: { id: 1, bindVar: 'WZXX_M1_N1_C000B_VA/biaoqianv_DJ' }, varsOn: ['WZXX_M1_N1_C000B_VA/biaoqianv_DJ']},
       ]
-    },
+      },
       ],
   },
-
 #===========================事件场景==============================
   {
     # NPC2
@@ -596,6 +658,9 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [
@@ -604,22 +669,21 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C1' },
     ],
-
     # 对话选项
     chats: [
       #
-      { 
-        id: 'C1', desc: '给旅行者一个温暖的家', 
+      {
+        id: 'C1', desc: '这家客栈地段最好，在繁华的东街附近，所以有不少客人来往', 
         options: [ 
-         { title: '【住店】',nextChat: 'C2'}, 
-         { title: '【<<<离开】',nextChat: 'B6'}, 
+         { title: '【住店】',nextChat: 'C2', icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
+         { title: '【<<<离开】',nextChat: 'B6', icon: { id: 6, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']}, 
         ]
       },
 
       { 
-        id: 'C2', desc: '睡了一觉精神抖擞！', 
+        id: 'C2', desc: "李森炎觉得精神有点不太好\n可能是逛了这么久有点累了于是决定进客栈\n“这个客栈住一夜可不便宜，听说很会宰……”云云忽然在旁边小声的说\n李森炎想都没想直接转身离开\n“我还能逛！去哪儿逛？”", 
         options: [ 
-         { title: '<<<离开', nextChat: 'B6' }, 
+         { title: '<<<离开', nextChat: 'B6', icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] }, 
         ],
       },
 
@@ -673,13 +737,13 @@ scenes: [
           { 
           point: [0, 3], title: '珍宝阁',
           toScene: 'C000B_VA_MAP_0_3', 
-          links: [[1, 3]] 
+          links: [[1, 3],[0, 2] ] 
           },
 
           {
           point: [1, 3], title: '客栈', 
           toScene: 'C000B_VA_MAP_1_3', 
-          links: [ ] 
+          links: [[1, 2],] 
           },
         ]
       },
