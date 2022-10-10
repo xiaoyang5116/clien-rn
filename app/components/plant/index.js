@@ -109,7 +109,7 @@ const Plant = (props) => {
                     <HeaderTitle tabIndex={tabIndex} changeTabIndex={changeTabIndex} />
                     <View style={{ position: 'absolute', zIndex: 10, right: px2pd(20), top: px2pd(130) }}>
                         <NotificationIcon ref={refNotication} onPress={() => {
-                            confirm('你可以歇一歇暂时离开游戏', { title: '确认', cb: () => {
+                            confirm('一些生产环节在后期可能会花费较多的时间，这个时候您可以暂时离开手机，进行少许的休息，进行适量的放松', { title: '确认', cb: () => {
                                 AppDispath({ 
                                     type: 'UserModel/setPersistedState', 
                                     payload: { key: UserPersistedKeys.PLANT_CONFIRM_NOTICATION } 

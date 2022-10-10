@@ -226,13 +226,13 @@ const StoryTabPage = (props) => {
 
     let iconComponent = <></>;
     if (lo.isObject(data.item.icon) && lo.isBoolean(data.item.icon.show) && data.item.icon.show) {
-      iconComponent = <BtnIcon id={data.item.icon.id} style={{ height: 5, marginTop: px2pd(16) }} />
+      iconComponent = <BtnIcon id={data.item.icon.id} style={{ marginTop: px2pd(14) }} />
     }
 
     return (
       <View style={theme.chatItem}>
         <TouchableWithoutFeedback onPress={() => onClickItem(data)}>
-          <View style={{ height: px2pd(117) * SCALE_FACTOR, justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ height: px2pd(110) * SCALE_FACTOR, justifyContent: 'center', alignItems: 'center' }}>
             <FastImage style={{ width: '100%', height: '100%', position: 'absolute' }} resizeMode={'stretch'} source={theme.optionButtonImage} />
             <Text style={{ fontSize: 18, color: theme.options.fontColor }}>{data.item.title}</Text>
             {iconComponent}

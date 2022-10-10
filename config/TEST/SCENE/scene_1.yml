@@ -96,20 +96,204 @@
 scenes: [
   # 新手村场景
   {
-    id: 'wzkj', name: '未知空间',
+    id: 'wzkj', name: 'DEBUG',
     worldTimeHidden: false,
     sceneImage: 'BGT_1',
 
     # 变量定义
     vars: [
-      { id: 'v第一次进', min: 0, max: 1 },
-      { id: 'v1', min: 0, max: 1 },
-      { id: 'v2', min: 0, max: 1 },
-      { id: 'v3', min: 0, max: 1 },
-      { id: 'v4', min: 0, max: 1 },
-      { id: 'v5', min: 0, max: 1 },
-      { id: 'v10', min: 0, max: 1 },
-      { id: 'v20', min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '调试功能主界面', 
+        options: [ 
+          { title: '【进入地图功能】', toScene: 'wzkj_map' }, 
+          { title: '【进入时间功能】', toScene: 'wzkj_datetime' }, 
+          { title: '【进入动画列表】', toScene: 'wzkj_animation' }, 
+          { title: '【进入商店列表】', toScene: 'wzkj_shop' }, 
+          { title: '【进入采集列表】', toScene: 'wzkj_caiji' }, 
+          { title: '【进入小游戏列表】', toScene: 'wzkj_game' }, 
+          { title: '【进入转场列表】', toScene: 'wzkj_trans' }, 
+          { title: '【进入图标列表】', toScene: 'wzkj_icon' }, 
+        ],
+      },
+    ],
+
+  },
+  {
+    id: 'wzkj_caiji', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '采集界面', 
+        options: [ 
+          { title: '【返回调试主界面】', toScene: 'wzkj' }, 
+          { title: '【打开采集页面(1)】', collect: '1' }, 
+          { title: '【打开采集页面(2)】', collect: '2' }, 
+          { title: '【打开采集页面(3)】', collect: '3' }, 
+          { title: '【打开采集页面(4)】', collect: '4' }, 
+          { title: '【打开采集页面(5)】', collect: '5' }, 
+          { title: '【打开采集页面(6)】', collect: '6' }, 
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  {
+    id: 'wzkj_animation', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '动画界面', 
+        options: [ 
+          { title: '【返回调试主界面】', toScene: 'wzkj' }, 
+          { title: '【字体动画】', animations: { id: 15 } }, 
+          { title: '【切换世界】', animations: { id: 11, data: { worldId: '灵修界', desc: 'xxx', toChapter: 'WZXX_M1_N1_C001' } } },
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  {
+    id: 'wzkj_shop', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '商店界面', 
+        options: [ 
+          { title: '【返回调试主界面】', toScene: 'wzkj' }, 
+          { title: '【商店一】', toShop: 'shop2' }, 
+          { title: '【商店二】', toShop: 'shop_sell_test' }, 
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  {
+    id: 'wzkj_game', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '小游戏界面', 
+        options: [ 
+          { title: '【返回调试主界面】', toScene: 'wzkj' }, 
+          { title: '【移动地图中心点_P2】', toMapPoint: [-1, 0] }, 
+          { title: '【小游戏：劈砖头】', games: { id: 1 } }, 
+          { title: '【小游戏：撸猫】', games: { id: 2 } }, 
+          { title: '【小游戏：记忆力训练】', games: { id: 3, words: ['不', '知', '道', ] } },
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  {
+    id: 'wzkj_map', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
       { id: 'v_shop', min: 0, max: 1 },
       { id: 'v_icon_100', min: 0, max: 1 },
       { id: 'v_icon_104', min: 0, max: 1, defaultValue: 1 },
@@ -117,18 +301,6 @@ scenes: [
 
     # 动作定义
     actions: [
-      { id: 't2', cmd: 'var', params: 'v2 = ON' },
-      { id: 't3', cmd: 'var', params: 'v3 = ON' },
-      { id: 't4', cmd: 'var', params: 'v4 = ON' },
-    ],
-
-    # 剧情道具
-    plotPropsId: [1000, 1001, 1002],
-
-    # 事件定义
-    events: [
-      { type: 'enter', nextChat: 'c0' },
-      # { type: 'enter', sounds: [{ soundId: 'SE000001' }, { soundId: 'BGM00008', seek: 30 }] },
     ],
 
     # 注册地图
@@ -156,117 +328,195 @@ scenes: [
 
     # 当前场景地图
     mapId: 'map1',
+
     # 地图中心点
     mapCenterPoint: [-1, 0],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
 
     # 对话选项
     chats: [
       # 新手对话主列表
       { 
-        id: 'c0', desc: '洁白的未知空间内', 
+        id: 'c0', desc: '地图界面', 
         options: [ 
-          { title: '【查看四周】', andVarsOff: ['v5'], nextChat: 'c6' }, 
-          { title: '【查看选项】', andVarsOn: ['v5'], nextChat: 'c1' }, 
-          { title: '【思考】', andVarsOn: ['v5'], nextChat: 'c7' }, 
+          { title: '【返回调试主界面】', toScene: 'wzkj' }, 
           { title: '【移动地图中心点_P1】', toMapPoint: [0, 0] }, 
-          { title: '【默认商店】', andVarsOn: ['v_shop'], toShop: 'default' }, 
-          { title: '【获得剧情道具】', sendProps: '1003,1' }, 
-          { title: '【获得碎片】', sendProps: '500,5' }, 
-          { title: '【获得修行值】', alterXiuXing: 10000, openUI: 'XiuXing' }, 
-          { title: '【修改选项按钮变量】', varsOn: ['v_icon_100'] }, 
-          { title: '【--测试选项进度条--】', toScene: 'S_00Test01' }, 
-          { title: '【--DEBUG跳过序章移动到破庙--】', toScene: 'M01_S01_luoyuezhen_pomiao' },
-
-          { title: '【修改世界时间(直接加毫秒)】', alterWorldTime: '86400000' }, 
-          { title: '【修改世界时间(跳到明天早上6点)】', alterWorldTime: '@day/1/6' }, 
-          { title: '【进入测试副本】', toScene: 'pomiaomk', transitionAnimation: '黑色圆形转场' }, 
-          
-          # { title: '【移动地图中心点_P2】', toMapPoint: [-1, 0] }, 
-          # { title: '【小游戏：劈砖头】', games: { id: 1 }, dropIds: [ 'WZXX_M1_N1_C001V_Vdrop1'], }, 
-          # { title: '【小游戏：撸猫】', games: { id: 2, toScene: 'M01_S01_luoyuezhen_pomiao' } }, 
-          # { title: '【小游戏：记忆力训练】', games: { id: 3, words: ['不', '知', '道', ] } },
-
-          { title: '【商店一】', toShop: 'shop2' }, 
-          { title: '【商店二】', toShop: 'shop_sell_test' }, 
-          { title: '【升级动效】', animations: { id: 13 } }, 
-          { title: '【切换世界】', animations: { id: 11, data: { worldId: '灵修界', desc: 'xxx', toChapter: 'WZXX_M1_N1_C001' } } },
-
-          { title: '【打开采集页面(1)】', collect: '1' }, 
-          { title: '【打开采集页面(2)】', collect: '2' }, 
-          { title: '【打开采集页面(3)】', collect: '3' }, 
-          { title: '【打开采集页面(4)】', collect: '4' }, 
-          { title: '【打开采集页面(5)】', collect: '5' }, 
-          { title: '【打开采集页面(6)】', collect: '6' }, 
         ],
       },
-      { 
-        id: 'c1', desc: '你穿越了, 请选择穿越开局', 
-        options: [ 
-          { title: '【乞丐】', andVarsOff: ['v10'], nextChat: 'c2' }, 
-          { title: '【乞丐】', andVarsOn: ['v10','v20'], nextChat: 'c3' }, 
-          { title: '【没有名额了】', nextChat: 'c4' }, 
-          { title: '【真没有名额了？】', nextChat: 'c5' }, 
-          { title: '<<< 返回',  nextChat: 'c0' }, 
-        ],
-      },
-      # 乞丐第一次点击出现
-      { 
-        id: 'c2', desc: '这……这选项要是选择的结果是……', 
-        options: [ 
-          { title: '<<< 再等等',  nextChat: 'c1' }, 
-        ]
-      },
-      # 其他2选项点击后出现
-      { 
-        id: 'c3', desc: '行吧', 
-        options: [ 
-          { title: '确认', toScene: 'M01_S01_luoyuezhen_pomiao' }, 
-           { title: '<<<返回', nextChat: 'c1' }, 
-        ]
-      },
-      # 
-      { 
-        id: 'c4', desc: '为什么只能选最差开局', 
-        options: [ 
-          { title: '<<<返回', varsOn: ['v10'], nextChat: 'c1' }, 
-        ]
-      },
-      # 
-      { 
-        id: 'c5', desc: '没有名额是什么鬼', 
-        options: [ 
-          { title: '<<<返回', varsOn: ['v20','M01_S01_luoyuezhen_Time/Event01Day0'], nextChat: 'c1' }, 
-        ]
-      },
-      # 
-      { 
-        id: 'c6', desc: '这是一个奇怪的空间，四周白茫茫的', 
-        options: [ 
-          { title: '<<<返回', varsOn: ['v5'], nextChat: 'c0' }, 
-        ]
-      },
-      # 
-      { 
-        id: 'c7', desc: '想什么好呢，没有头绪', 
-        options: [ 
-          { title: '考虑来这里的原因', andVarsOff: ['v6'],  varsOn: ['v6'], dialogs: ['p1'] }, 
-          { title: '考虑没有名额的选项', andVarsOn: ['v20'], dialogs: ['p2'] }, 
-          { title: '<<<返回', varsOn: ['v5'], nextChat: 'c0' }, 
-        ]
-      },
-
     ],
 
     # 对话框 1黑旁白2白旁白
     dialogs: [
+    ],
+  },
 
-      { id: 'p0', style: 1, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '……',],  dialogs: ['p02']  },
-      { id: 'p02', style: 2, sections: ['一个奇怪的雪白色空间内','听不出音调的声音响起', '你穿越了', '请选择穿越开局' ], nextChat: 'c0' },
-      { id: 'p1', style: 2, sections: ['我正在聊天，这就把我送到了这种奇怪空间里了', '不是有大神通的仙人，也办不到这种事吧', '不就是说乞丐也能翻盘而已，怎么那么小心眼', '……' ], nextChat: 'c7' },
-      { id: 'p2', style: 2, sections: ['按照理论，既然会有名额不够', '那么是不是就意味着，之前还有其他名额……', '……', '知道真相了!但貌似又没什么用', '……'], nextChat: 'c7' },
+  {
+    id: 'wzkj_datetime', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
 
+    # 变量定义
+    vars: [
+    ],
 
-      
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '时间界面', 
+        options: [ 
+          { title: '【返回调试主界面】', toScene: 'wzkj' }, 
+          { title: '【修改世界时间(直接加毫秒)】', alterWorldTime: '86400000' }, 
+          { title: '【修改世界时间(跳到明天早上6点)】', alterWorldTime: '@day/1/6' }, 
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  {
+    id: 'wzkj_trans', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '转场界面', 
+        options: [ 
+          { title: '【返回调试主界面】', toScene: 'wzkj' }, 
+          { title: '黑色圆形转场', toScene: 'wzkj_trans_ok', transitionAnimation: '黑色圆形转场' },
+          { title: '模糊转场', toScene: 'wzkj_trans_ok', transitionAnimation: '模糊转场' },
+          { title: '时空漩涡转场', toScene: 'wzkj_trans_ok', transitionAnimation: '时空漩涡转场' },
+          { title: '上下开门转场', toScene: 'wzkj_trans_ok', transitionAnimation: '上下开门转场' },
+          { title: '左右开门转场', toScene: 'wzkj_trans_ok', transitionAnimation: '左右开门转场' },
+          { title: '白色转场', toScene: 'wzkj_trans_ok', transitionAnimation: '白色转场' },
+          { title: '黑色转场', toScene: 'wzkj_trans_ok', transitionAnimation: '黑色转场' },
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  {
+    id: 'wzkj_trans_ok', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '转场界面', 
+        options: [ 
+          { title: '【返回调试主界面】', toScene: 'wzkj_trans' }, 
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  {
+    id: 'wzkj_icon', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '图标界面', 
+        options: [ 
+          { title: '【返回调试主界面】', toScene: 'wzkj' }, 
+          { title: '【图标1】', icon: { id: 1 } }, 
+          { title: '【图标2】', icon: { id: 2 } }, 
+          { title: '【图标3】', icon: { id: 3 } },
+          { title: '【图标4】', icon: { id: 4 } },  
+          { title: '【图标5】', icon: { id: 5 } }, 
+          { title: '【图标6】', icon: { id: 6 } }, 
+          { title: '【图标7】', icon: { id: 7 } }, 
+          { title: '【图标8】', icon: { id: 8 } },
+          { title: '【图标9】', icon: { id: 9 } },  
+          { title: '【图标10】', icon: { id: 10 } }, 
+          { title: '【图标11】', icon: { id: 11 } }, 
+          { title: '【图标12】', icon: { id: 12 } }, 
+          { title: '【图标100】', icon: { id: 100 } }, 
+          { title: '【图标101】', icon: { id: 101 } }, 
+          { title: '【图标102】', icon: { id: 102 } }, 
+          { title: '【图标103】', icon: { id: 103 } }, 
+          { title: '【图标104】', icon: { id: 104 } }, 
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
     ],
   },
 ]

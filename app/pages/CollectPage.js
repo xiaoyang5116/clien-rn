@@ -487,7 +487,7 @@ const CollectPage = (props) => {
         </View>
         <View style={{ position: 'absolute', right: px2pd(30), top: px2pd(12), zIndex: 1 }}>
           <NotificationIcon ref={refNotication} onPress={() => {
-            confirm('你可以歇一歇暂时离开游戏', { title: '确认', cb: () => {
+            confirm('一些生产环节在后期可能会花费较多的时间，这个时候您可以暂时离开手机，进行少许的休息，进行适量的放松', { title: '确认', cb: () => {
               AppDispath({ 
                 type: 'UserModel/setPersistedState', 
                 payload: { key: UserPersistedKeys.COLLECT_CONFIRM_NOTICATION } 
