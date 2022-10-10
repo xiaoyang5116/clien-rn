@@ -206,7 +206,7 @@ class ArticlePage extends Component {
             </TouchableWithoutFeedback>
           </View>
         </HeaderContainer>
-        <View style={[styles.bodyContainer, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
+        <View style={[styles.bodyContainer, {}]}>
           <ReaderBackgroundImageView />
           <ReaderXianGaoImageView />
           <Tab.Navigator initialRouteName='PrimaryWorld' 

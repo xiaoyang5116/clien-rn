@@ -1,8 +1,8 @@
 import React from 'react';
 import lo from 'lodash';
 
-import { View, Text, DeviceEventEmitter, Animated, StyleSheet } from 'react-native';
-import { EventKeys } from '../../constants';
+import { Text, DeviceEventEmitter, Animated, StyleSheet, Platform } from 'react-native';
+import { EventKeys, statusBarHeight } from '../../constants';
 
 const WorldTabBar = (props) => {
     const { state, descriptors } = props;
@@ -38,7 +38,7 @@ const WorldTabBar = (props) => {
     }, [props]);
   
     return (
-      <Animated.View style={[styles.viewContainer, { opacity: opacity }]} pointerEvents='none'>
+      <Animated.View style={[styles.viewContainer, { opacity: opacity }, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]} pointerEvents='none'>
         <Text style={{ fontSize: 20, color: '#333' }}>{barLabel}</Text>
       </Animated.View>
     );

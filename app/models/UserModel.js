@@ -414,6 +414,21 @@ export default {
       return lo.indexOf(userState.persistedStates, key) != -1;
     },
 
+    *havePersistedStates({ payload }, { select, call, put }) {
+      const userState = yield select(state => state.UserModel);
+      const { keys } = payload;
+      
+      const result = [];
+      if (lo.isArray(keys)) {
+        lo.forEach(keys, (k) => {
+          if (lo.indexOf(userState.persistedStates, k) != -1) {
+            result.push(k);
+          }
+        });
+      }
+      return result;
+    },
+
     *setPersistedState({ payload }, { select, call, put }) {
       const userState = yield select(state => state.UserModel);
       const { key } = payload;

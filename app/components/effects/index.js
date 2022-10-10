@@ -17,6 +17,7 @@ import LevelUpAnimation from './LevelUpAnimation';
 import XuanWoAnimation from './XuanWoAnimation';
 import WorldPreview from '../carousel/WorldPreview';
 import WorldUtils from '../../utils/WorldUtils';
+import NumberAnimation from '../animation/NumberAnimation';
 
 export default class EffectAnimations {
 
@@ -86,6 +87,10 @@ export default class EffectAnimations {
                 }} />);
             } else if (id == 13) { // 等级升级
                 const key = RootView.add(<LevelUpAnimation onClose={() => {
+                    RootView.remove(key);
+                }} />);
+            } else if (id == 15) {
+                const key = RootView.add(<NumberAnimation onClose={() => {
                     RootView.remove(key);
                 }} />);
             }

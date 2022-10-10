@@ -1,11 +1,11 @@
 import React from 'react';
 import lo from 'lodash';
 
-import { View, Text, Animated, StyleSheet, DeviceEventEmitter, FlatList } from 'react-native';
+import { View, Text, Animated, StyleSheet, DeviceEventEmitter, FlatList, Platform } from 'react-native';
 import { URL, URLSearchParams } from 'react-native-url-polyfill';
 import WorldUnlockView from './WorldUnlockView';
 import RootView from '../../components/RootView';
-import { action, DataContext, EventKeys, getWindowSize } from '../../constants';
+import { action, DataContext, EventKeys, getWindowSize, statusBarHeight } from '../../constants';
 import { ARTICLE_FLATLIST_MARGIN_TOP } from "../../constants/custom-ui";
 import PropTips from '../../components/tips/PropTips';
 import TipsView from '../../components/article/TipsView';
@@ -148,7 +148,7 @@ const PrimaryWorld = (props) => {
     }, []);
   
     return (
-      <View style={[{ flex: 1 }, {  }]}>
+      <View style={[{ flex: 1 }, { marginTop: (Platform.OS == 'ios' ? statusBarHeight : 0), marginBottom: (Platform.OS == 'ios' ? 20 : 0) }]}>
         <FlatList
           style={{ alignSelf: 'stretch', marginTop: ARTICLE_FLATLIST_MARGIN_TOP }}
           ref={(ref) => refList.current = ref}
