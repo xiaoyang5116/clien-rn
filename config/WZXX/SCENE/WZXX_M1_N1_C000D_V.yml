@@ -214,7 +214,7 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  dialogs: ['d3'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  dialogs: ['p0'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
        { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
     ],
 

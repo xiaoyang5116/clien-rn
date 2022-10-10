@@ -163,8 +163,8 @@ const styles = StyleSheet.create({
     /* 对话选项框条目 */
     chatItem: {
         // backgroundColor: btnBgColor1,
-        paddingTop: 2,
-        paddingBottom: 2,
+        paddingTop: 1,
+        paddingBottom: 1,
         marginVertical: 2
     },
     /* 导航栏样式 */
