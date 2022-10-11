@@ -867,7 +867,7 @@ scenes: [
         id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么，说不定能种出草药炼丹，帮助自己修炼！', 
         options: [ 
        
-         { title: '【去坊市买需要的装备】', toChapter: "WZXX_M1_N2_C018",}, 
+         { title: '【去坊市买需要的装备】', toChapter: "WZXX_M1_N2_C018",icon: { id: 11 }}, 
         ],
       },
 
@@ -892,10 +892,6 @@ scenes: [
          { title: '【赶紧修炼打坐】', openUI: 'XiuXing' , toChapter: "WZXX_M1_N2_C019",}, 
         ],
       },
-       #
-
-
-
     ],
 #  # 对话框
 #     dialogs: [    
@@ -916,7 +912,7 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000D_VA1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -946,13 +942,9 @@ scenes: [
          { title: '【快些离开】', toScene: 'C000D_VA1_MAP_-1_2'}, 
         ],
       },
-
-
-
     ],
 #  # 对话框
 #     dialogs: [    
-
 #      {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
 #         sections: [
 #          {
