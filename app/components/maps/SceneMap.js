@@ -19,6 +19,7 @@ import {
 
 import { 
   AppDispath,
+  CENTER_TOP,
   EventKeys,
   getWindowSize,
 } from '../../constants';
@@ -202,12 +203,13 @@ const drawGrids = ({ data, initialCenterPoint, onClose }) => {
     const left = e.point[0] * (GRID_PX_WIDTH + GRID_SPACE);
     const top = (-e.point[1]) * (GRID_PX_HEIGHT + GRID_SPACE);
     const isCenterPoint = (e.point[0] == initialCenterPoint[0] && e.point[1] == initialCenterPoint[1]);
+    const isMoveDenied = (e.toScene == undefined);
 
     let gridImg = isCenterPoint 
       ? require('../../../assets/button/scene_map_button.png') 
       : require('../../../assets/button/scene_map_button2.png');
 
-    if (e.toScene == undefined) {
+    if (isMoveDenied) {
       gridImg = require('../../../assets/button/scene_map_button3.png');
     }
 
@@ -225,9 +227,11 @@ const drawGrids = ({ data, initialCenterPoint, onClose }) => {
             return;
           if (lo.isString(e.toScene)) {
             AppDispath({ type: 'SceneModel/processActions', payload: { toScene: e.toScene } });
-          }
-          if (onClose != undefined) {
-            onClose();
+            if (onClose != undefined) {
+              onClose();
+            }
+          } else if (isMoveDenied) {
+            Toast.show('当前剧情中无法移动到这里', CENTER_TOP);
           }
         }}
       >
