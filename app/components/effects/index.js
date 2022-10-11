@@ -14,10 +14,9 @@ import XueHuaAnimation from './XueHuaAnimation';
 import FlyAnimation from './FlyAnimation';
 import ShiKongAnimation from './ShiKongAnimation';
 import LevelUpAnimation from './LevelUpAnimation';
-import XuanWoAnimation from './XuanWoAnimation';
 import WorldPreview from '../carousel/WorldPreview';
 import WorldUtils from '../../utils/WorldUtils';
-import NumberAnimation from '../animation/NumberAnimation';
+import WeiXiuAnimation from './WeiXiuAnimation';
 
 export default class EffectAnimations {
 
@@ -90,7 +89,7 @@ export default class EffectAnimations {
                     RootView.remove(key);
                 }} />);
             } else if (id == 15) {
-                const key = RootView.add(<NumberAnimation onClose={() => {
+                const key = RootView.add(<WeiXiuAnimation values={e.values} onClose={() => {
                     RootView.remove(key);
                 }} />);
             }

@@ -1,0 +1,103 @@
+#####################
+#  配置测试
+#####################
+
+scenes: [
+    {
+      id: 'test_scenes',
+      name: '配置测试',
+      worldTimeHidden: false,
+      sceneImage: 'BGT_1',
+
+      # 变量定义
+      vars: [
+        { id: 'v1', min: 0, max: 1 }
+      ],
+
+      # 动作定义
+      actions: [],
+
+      # 剧情道具
+      plotPropsId: [1000, 1001, 1002],
+
+      # 事件定义
+      events: [
+        { type: 'enter', nextChat: 'c0' }
+      ],
+
+      # 注册地图
+      # maps: [],
+
+      # 当前场景地图
+      # mapId: 'map1',
+      # 地图中心点
+      # mapCenterPoint: [-1, 0],
+
+      # 对话选项
+      chats: [
+          {  
+            id: 'c0', desc: '配置测试', 
+            options: [
+              { title: '【背景对话框(5 号)】', dialogs: ['p1'] },
+              { title: '航海探索', games: {id: 8} },
+              { title: '抽签选项', dialogs: ['p2'] },
+              { title: '透明黑旁白', dialogs: ['p3'] },
+              { title: '字帖小游戏', games: {id: 5, word: ["木"], fail: {toScene: "wzkj"}, success: {toScene: "pomiao"} } },
+              { title: '华丽模版', dialogs: ['p4']},
+              { title: '华丽模版2', dialogs: ['p5']},
+            ],
+          },
+        ],
+
+      dialogs:
+        [
+          {
+            id: 'p1', style: 5, textAnimationType: 'TextSingle',
+            sections: [
+              {
+                type: 'TopToBottom', bgImageId: 4, loop: true,
+                content: [
+                  '你迅速跑过去，地面有些东西。',
+                  '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
+                  '那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。',
+                ],
+              },
+            ],
+          },
+          {
+            id: 'p2', 
+            style: 11,
+            title: '随机抽签......',
+            sections: [
+              { id: 1, iconId: 1, rate: "<,25", content: '上上签', dialogs: ['p1'] },
+              { id: 2, iconId: 1, rate: "<,50", content: '上吉签', dialogs: ['p1'] },
+              { id: 3, iconId: 1, rate: "<,75", content: '中吉签', dialogs: ['p1'] },
+              { id: 4, iconId: 1, rate: "<,80", content: '中平签', dialogs: ['p1'] },
+              { id: 5, iconId: 1, rate: ">=,80", content: '下下签', dialogs: ['p1'] },
+            ]
+          },
+          { id: 'p3', style: 3, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '……',],  },
+          {
+            id: 'p4', style: 12, title: '神秘阵盘',
+            sections: {
+              content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
+              btn: [
+                { title: '穿越', toScene: "wzkj" },
+                { title: '破庙', toScene: "pomiao" },
+                { title: '退出', dialogs: ['p1'] },
+              ]
+            },  
+          },
+          {
+            id: 'p5', style: 13, title: '神秘阵盘', imgName: "BGT_1",
+            sections: {
+              content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
+              btn: [
+                { title: '破庙', toScene: "pomiao" },
+                { title: '退出', dialogs: ['p1'] },
+              ]
+            },  
+          },
+        ],
+    },
+  ]

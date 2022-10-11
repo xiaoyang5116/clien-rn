@@ -24,16 +24,17 @@ import Improve from './Improve';
 import Accelerate from './Accelerate';
 import SpriteSheet from '../SpriteSheet';
 import RewardsPage from '../alchemyRoom/components/RewardsPage';
+import { ImageButton } from '../../constants/custom-ui';
 
 
 // 状态 status: 0-未开启, 1-开启但未种植, 2-种植中, 3-已成熟
 function bgImg(status) {
     const img = [
-        { status: 1, source: require('../../../assets/plant/daizhongzhi.png') },
-        { status: 2, source: require('../../../assets/plant/yizhongzhi_bg.png') },
-        { status: 3, source: require('../../../assets/plant/shouhuo.png') },
+        { status: 1, styles: { width: px2pd(954), height: px2pd(244) }, source: require('../../../assets/plant/daizhongzhi.png') },
+        { status: 2, styles: { width: px2pd(958), height: px2pd(242) }, source: require('../../../assets/plant/yizhongzhi_bg.png') },
+        { status: 3, styles: { width: px2pd(968), height: px2pd(244) }, source: require('../../../assets/plant/shouhuo.png') },
     ]
-    return img.find(i => i.status === status).source
+    return img.find(i => i.status === status)
 }
 
 // 进度条容器
@@ -217,7 +218,7 @@ const Farm = (props) => {
 
         return (
             <TouchableWithoutFeedback onPress={onPress}>
-                <ImageBackground source={bgImg(item.status)} style={{ width: px2pd(954), height: px2pd(242), justifyContent: "center", alignItems: "center", transform: [{ scale: 0.9 }] }}>
+                <ImageBackground source={bgImg(item.status).source} style={{ ...bgImg(item.status).styles, justifyContent: "center", alignItems: "center", transform: [{ scale: 0.9 }] }}>
                     <Title />
                     <ProgressBar />
                 </ImageBackground>
@@ -306,11 +307,22 @@ const Farm = (props) => {
                 <View style={{ position: "absolute", left: 12 }}>
                     <Text style={{ fontSize: 12, color: "#fff" }}>灵气: {item.lingQiZhi}</Text>
                 </View>
-                <TouchableOpacity onPress={showAccelerate}>
-                    <ImageBackground source={require('../../../assets/plant/btn_bg.png')} style={{ width: px2pd(242), height: px2pd(68), justifyContent: "center", alignItems: 'center', }}>
+                <View style={{ width: px2pd(242), height: px2pd(68), justifyContent: "center", alignItems: 'center', }}>
+                    {item.status != 2 ? (
+                        <Image source={require('../../../assets/plant/btn_bg2.png')} style={{ width: px2pd(242), height: px2pd(68) }} />
+                    ) : (
+                        <ImageButton
+                            width={px2pd(242)}
+                            height={px2pd(68)}
+                            source={require('../../../assets/plant/btn_bg.png')}
+                            selectedSource={require('../../../assets/plant/btn_bg1.png')}
+                            onPress={showAccelerate}
+                        />
+                    )}
+                    <View pointerEvents={'none'} style={{ position: 'absolute' }}>
                         <Text style={{ fontSize: 14, color: "#000" }}>加速</Text>
-                    </ImageBackground>
-                </TouchableOpacity>
+                    </View>
+                </View>
             </View>
 
         )
