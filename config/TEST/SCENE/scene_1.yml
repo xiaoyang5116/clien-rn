@@ -130,8 +130,8 @@ scenes: [
         ],
       },
     ],
-
   },
+
   {
     id: 'wzkj_caiji', 
     name: '调试菜单',
@@ -313,7 +313,7 @@ scenes: [
           { point: [1, 0], title: '天仙', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
           { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
           { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
-          { point: [-2, 0], title: '老者', toScene: 'pomiao', links: [[-1, 0]] },
+          { point: [-2, 0], title: '老者', links: [[-1, 0]] },
           { point: [-1, -1], title: '地主', toScene: 'pomiao', icon: { id: 100, bindVar: 'v_icon_100' }, links: [[-1, 0], [0, -1]], path: [[-1, -2], [0, -2], [1, -2], [1, -1], [1, 0]] },
         ]
       },
