@@ -31,7 +31,6 @@ import SpriteSheet from '../components/SpriteSheet';
 import RootView from '../components/RootView';
 import Toast from '../components/toast';
 import PropGrid from '../components/prop/PropGrid';
-import { confirm } from '../components/dialog/ConfirmDialog';
 import NotificationIcon from '../components/extends/NotificationIcon';
 
 const pxWidth = 1000; // 像素宽度
@@ -485,14 +484,12 @@ const CollectPage = (props) => {
             <AntDesign name={'left'} size={30} />
           </TouchableWithoutFeedback>
         </View>
-        <View style={{ position: 'absolute', right: px2pd(30), top: px2pd(12), zIndex: 1 }}>
+        <View style={{ position: 'absolute', right: px2pd(30), top: px2pd(0), zIndex: 1 }}>
           <NotificationIcon ref={refNotication} onPress={() => {
-            confirm('一些生产环节在后期可能会花费较多的时间，这个时候您可以暂时离开手机，进行少许的休息，进行适量的放松', { title: '确认', cb: () => {
               AppDispath({ 
                 type: 'UserModel/setPersistedState', 
                 payload: { key: UserPersistedKeys.COLLECT_CONFIRM_NOTICATION } 
               });
-            }});
           }} />
         </View>
         <FastImage style={{ width: px2pd(1080), height: px2pd(1531), overflow: 'visible', justifyContent: 'center', alignItems: 'center' }} source={getCollectBackgroundImage(config.background).source}>
