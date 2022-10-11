@@ -118,16 +118,25 @@ const DialogRoutes = (props) => {
                 specialEffects={specialEffects}
             />
         )
-    }
-    else if (style === 12) {
+    } else if (style === 12) {
         return (
             <Transitions id={"OPEN_GorgeousTemplate"}>
                 <GorgeousTemplate
                     {...props}
+                    templateId={1}
                     actionMethod={actionMethod}
                     specialEffects={specialEffects}
                 />
             </Transitions>
+        )
+    } else if (style === 13) {
+        return (
+            <GorgeousTemplate
+                {...props}
+                templateId={2}
+                actionMethod={actionMethod}
+                specialEffects={specialEffects}
+            />
         )
     }
 
