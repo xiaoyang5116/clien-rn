@@ -201,7 +201,7 @@ export default {
     },
 
     // 突破修行值
-    *upgradeXiuXing({ payload }, { put, select }) {
+    *tupoXiuXing({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const { prop } = payload;
 
@@ -235,7 +235,7 @@ export default {
       }
 
       let success = true;
-      if (lo.random(100) <= (currentXiuXing.successRate + propSuccessRate)) {
+      if (lo.random(100) <= (currentXiuXing.tupo.successRate + propSuccessRate)) {
         userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
         userState.xiuxingStatus.limit = nextXiuXing.limit;
         currentXiuXing.attrs.forEach(e => {
@@ -245,7 +245,7 @@ export default {
           }
         });
       } else {
-        userState.xiuxingStatus.cdTime = DateTime.now() + (currentXiuXing.failCDTime * 1000);
+        userState.xiuxingStatus.cdTime = DateTime.now() + (currentXiuXing.tupo.failCDTime * 1000);
         success = false;
       }
 

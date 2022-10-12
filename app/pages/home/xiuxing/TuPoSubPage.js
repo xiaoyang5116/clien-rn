@@ -81,7 +81,7 @@ const TuPoSubPage = (props) => {
     }, []);
 
     const onTuPo = () => {
-        AppDispath({ type: 'UserModel/upgradeXiuXing', payload: { prop: refPropSelected.current }, retmsg: TUPO_CALLBACK });
+        AppDispath({ type: 'UserModel/tupoXiuXing', payload: { prop: refPropSelected.current }, retmsg: TUPO_CALLBACK });
     }
 
     const onSelectedProp = (prop) => {
