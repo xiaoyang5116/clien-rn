@@ -8,7 +8,7 @@ import { px2pd } from '../../constants/resolution';
 import { TextButton } from '../../constants/custom-ui'
 import Toast from '../toast'
 import ImageCapInset from 'react-native-image-capinsets-next';
-
+import { TitleComponent } from '../alchemyRoom/DanFangDetailPage';
 
 
 
@@ -124,7 +124,7 @@ const Detail = (props) => {
                         材料选择
                     </Text>
                     <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12, }}>
-                        <Text style={[styles.title_box, { width: 120, marginTop: 12 }]}>原材料数</Text>
+                        <TitleComponent title={"原材料数"} style={{ marginTop: 12 }} />
 
                         <View>
                             <FlatList
@@ -135,8 +135,12 @@ const Detail = (props) => {
                         </View>
 
                         <View style={styles.expected_container}>
-                            <Text style={styles.title_box}>预计获得</Text>
-                            <Text style={[styles.title_box, { marginLeft: 24 }]}>预计耗时: {h_m_s_Format(item.time)}</Text>
+                            <TitleComponent title={"预计获得"} />
+                            <TitleComponent
+                                title={`预计耗时:${h_m_s_Format(item.time)}`}
+                                source={require('../../../assets/button/lianDan2.png')}
+                                style={{ width: px2pd(500), height: px2pd(108), marginLeft: 24 }}
+                            />
                         </View>
                         <View>
                             <FlatList
@@ -146,7 +150,7 @@ const Detail = (props) => {
                             />
                         </View>
 
-                        <Text style={[styles.title_box, { width: 120, marginTop: 12 }]}>辅助材料</Text>
+                        <TitleComponent title={"辅助材料"} style={{ marginTop: 12 }} />
                         <View>
                             <FlatList
                                 data={plantRecipeDetail.propsDetail}
