@@ -14,6 +14,9 @@ import MultiplayerDialog from './MultiplayerDialog';
 import BlackAndWhiteClickDialog from './blackAndWhiteClickDialog';
 import BustDialog from './bustDialog';
 import BgDialog from './bgDialog';
+import DrawLotsOption from './drawLotsOption'
+import GorgeousTemplate from './gorgeousTemplate'
+import Transitions from '../transition';
 
 
 const DialogRoutes = (props) => {
@@ -103,6 +106,34 @@ const DialogRoutes = (props) => {
         return (
             <BustDialog
                 {...props}
+                actionMethod={actionMethod}
+                specialEffects={specialEffects}
+            />
+        )
+    } else if (style === 11) {
+        return (
+            <DrawLotsOption
+                {...props}
+                actionMethod={actionMethod}
+                specialEffects={specialEffects}
+            />
+        )
+    } else if (style === 12) {
+        return (
+            <Transitions id={"OPEN_GorgeousTemplate"}>
+                <GorgeousTemplate
+                    {...props}
+                    templateId={1}
+                    actionMethod={actionMethod}
+                    specialEffects={specialEffects}
+                />
+            </Transitions>
+        )
+    } else if (style === 13) {
+        return (
+            <GorgeousTemplate
+                {...props}
+                templateId={2}
                 actionMethod={actionMethod}
                 specialEffects={specialEffects}
             />

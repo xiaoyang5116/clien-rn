@@ -97,13 +97,23 @@ class MaskModal extends PureComponent {
         const style = this.props.style
 
         // 6  代表 popUp dialog 弹出对话框
-        if ((style >= 6 && style <= 10) || (style === "9A" || style === "9B")) {
+        // if ((style >= 6 && style <= 10) || (style === "9A" || style === "9B")) {
+        //     return (
+        //         <Modal isVisible={this.props.visible} coverScreen={false} style={{ padding: 0, margin: 0, flex: 1, zIndex: 1, backgroundColor: "rgba(102, 102, 102, 0.6)" }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropOpacity={0}>
+        //             <DialogRoutes
+        //                 viewData={this.props.viewData}
+        //                 onDialogCancel={this._onDialogCancel}
+        //             />
+        //         </Modal>
+        //     )
+        // }
+
+        if (style === 3) {
             return (
-                <Modal isVisible={this.props.visible} coverScreen={false} style={{ padding: 0, margin: 0, flex: 1, zIndex: 1, backgroundColor: "rgba(102, 102, 102, 0.6)" }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropOpacity={0}>
-                    <DialogRoutes
-                        viewData={this.props.viewData}
-                        onDialogCancel={this._onDialogCancel}
-                    />
+                <Modal isVisible={this.props.visible} coverScreen={false} style={{ margin: 0, backgroundColor: "rgba(255,255,255,0.6)" }} useNativeDriver={false} onModalHide={this._onModalHide} animationIn="fadeIn" animationOut="fadeOut" backdropOpacity={0}>
+                    <View style={[currentStyles.asideCenter]}>
+                        <BlackNarration {...this.props} onAsideNext={this._onAsideNext} />
+                    </View>
                 </Modal>
             )
         }
