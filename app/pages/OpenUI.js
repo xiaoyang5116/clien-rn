@@ -5,6 +5,7 @@ import AlchemyRoomModal from '../components/alchemyRoom';
 import { PlantPage } from '../components/plant';
 import Transitions from '../components/transition';
 import WorshipModal from '../components/worship';
+import LianQiPage from '../components/lianQi'
 
 export default class OpenUI {
 
@@ -24,6 +25,9 @@ export default class OpenUI {
                 break;
             case 'ZhongZhi':
                 PlantPage.show();
+                break;
+            case 'LianQi':
+                LianQiPage.show();
                 break;
             case 'GongFeng':
                 WorshipModal.show();
