@@ -51,6 +51,9 @@ xiuxing: [
 
       # 突破失败后的CD时间(单位秒)
       failCDTime: 600,
+
+      # 关键道具
+      props: [{ propId: 28, num: 1 }, { propId: 29, num: 1 }],
     },
 
     # 在线修行(每分钟增加多少点修为)

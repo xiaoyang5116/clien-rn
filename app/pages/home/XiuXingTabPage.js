@@ -279,8 +279,8 @@ const XiuXingTabPage = (props) => {
         }
     }, []);
 
-    const onTuPo = () => {
-        const key = RootView.add(<TuPoSubPage onClose={() => {
+    const onTuPo = (config) => {
+        const key = RootView.add(<TuPoSubPage config={config} onClose={() => {
             RootView.remove(key);
         }} />);
     }
@@ -300,7 +300,7 @@ const XiuXingTabPage = (props) => {
     let tupoPingjingBtn = (<></>);
     if ((props.user.xiuxingStatus.value >= props.user.xiuxingStatus.limit) && !cdForbiden) {
         if (currentXiuXingConfig.tupo != undefined) {
-            tupoPingjingBtn = (<TupoButton onPress={onTuPo} />);
+            tupoPingjingBtn = (<TupoButton onPress={() => onTuPo(currentXiuXingConfig)} />);
         } else if (currentXiuXingConfig.pingjing != undefined) {
             tupoPingjingBtn = (<PingJingButton onPress={onPingJing} />);
         }

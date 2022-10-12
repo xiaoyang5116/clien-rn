@@ -226,12 +226,45 @@ export default {
         return false;
       }
 
+      // 检测关键道具
+      if (currentXiuXing.tupo.props != undefined && lo.isArray(currentXiuXing.tupo.props)) {
+        const propsId = [];
+        lo.forEach(currentXiuXing.tupo.props, (v, k) => {
+            propsId.push(v.propId);
+        });
+        if (propsId.length > 0) {
+          let failure = false;
+          let found = null;
+          let needNum = 0;
+          const result = yield put.resolve(action('PropsModel/getBagProps')({ propsId: propsId, always: true }));
+          for (let key in currentXiuXing.tupo.props) {
+            const { propId, num } = currentXiuXing.tupo.props[key];
+            found = lo.find(result, (v) => (v.id == propId));
+            if (found == undefined || found.num < num) {
+              failure = true;
+              needNum = num;
+              break;
+            }
+          }
+          if (failure) {
+            Toast.show(`关键道具数量不足, ${found.name}x${needNum}`);
+            return false;
+          }
+        }
+      }
+
+      // 选择了突破丹
       let propSuccessRate = 0;
       if (prop != undefined && prop != null) {
         const result = yield put.resolve(action('PropsModel/reduce')({ propsId: [ prop.id ], num: 1 }));
         if (result) {
           propSuccessRate = prop.incSuccessRate;
         }
+      }
+
+      // 扣除关键道具
+      if (currentXiuXing.tupo.props != undefined && lo.isArray(currentXiuXing.tupo.props)) {
+        yield put.resolve(action('PropsModel/reduce')(currentXiuXing.tupo.props));
       }
 
       let success = true;
