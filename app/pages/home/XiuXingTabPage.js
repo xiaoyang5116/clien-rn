@@ -32,6 +32,7 @@ import RootView from '../../components/RootView';
 import * as DateTime from '../../utils/DateTimeUtils';
 import TuPoSubPage from './xiuxing/TuPoSubPage';
 import FastImage from 'react-native-fast-image';
+import WeiXiuAnimation from '../../components/effects/WeiXiuAnimation';
 
 const PROGRESS_BAR_WIDTH = px2pd(800);
 
@@ -190,8 +191,23 @@ const XiuXingTabPage = (props) => {
 
     const refBgVideo = React.useRef(null);
 
+    const showXiuWeiAnimation = (value) => {
+        if (value <= 0)
+            return;
+            
+        const key = RootView.add(<WeiXiuAnimation values={[`${value}`]} onClose={() => {
+            RootView.remove(key);
+        }} />);
+    }
+
     React.useEffect(() => {
-        AppDispath({ type: 'UserModel/checkXiuXing', payload: {} });
+        AppDispath({ type: 'UserModel/checkXiuXing', payload: {}, cb: (v) => showXiuWeiAnimation(v) });
+        const timer = setInterval(() => {
+            AppDispath({ type: 'UserModel/checkXiuXing', payload: {}, cb: (v) => showXiuWeiAnimation(v) });
+        }, 1000 * 10);
+        return () => {
+            clearInterval(timer);
+        }
     }, []);
 
     const onTuPo = () => {

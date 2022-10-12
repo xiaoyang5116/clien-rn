@@ -269,12 +269,12 @@ export default {
       const userState = yield select(state => state.UserModel);
       const currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
       if (currentXiuXing == undefined)
-        return;
+        return 0;
 
       const diffMillis = DateTime.now() - userState.xiuxingStatus.lastOnlineTime;
-      const minutes = Math.floor(diffMillis / 1000 / 60);
-      if (minutes > 0) {
-        const addXiuXing = minutes * currentXiuXing.increaseXiuXingPerMinute;
+      const seconds = Math.floor(diffMillis / 1000);
+      if (seconds >= 10) { // 每10S刷新一次
+        const addXiuXing = Math.ceil(currentXiuXing.increaseXiuXingPerMinute * seconds / 60);
         userState.xiuxingStatus.value += addXiuXing;
         userState.xiuxingStatus.lastOnlineTime = DateTime.now();
 
@@ -283,8 +283,10 @@ export default {
         
         // 通知角色属性刷新
         DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
-        Toast.show(`获得在线修为${addXiuXing}`);
+        return addXiuXing;
       }
+
+      return 0;
     },
 
     // 获取合并属性值(装备、修行等)

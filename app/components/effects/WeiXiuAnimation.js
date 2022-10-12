@@ -55,7 +55,7 @@ const NumberLayer = (props) => {
                 useNativeDriver: false,
             }),
             Animated.timing(translateXY, {
-                toValue: { x: (props.pos.x + lo.random(-10, 10)), y: props.pos.y - 20 },
+                toValue: { x: (props.pos.x + (props.randX ? lo.random(-10, 10) : 0)), y: props.pos.y - 20 },
                 duration: 1000,
                 easing: Easing.out(Easing.cubic),
                 useNativeDriver: false,
@@ -93,11 +93,13 @@ const NumberLayer = (props) => {
 NumberLayer.propTypes = {
     value: PropTypes.string,
     pos: PropTypes.object,
+    randX: PropTypes.bool,
     onEnd: PropTypes.func,
 }
 
 NumberLayer.defaultProps = {
     value: '666',
+    randX: true,
 }
 
 const WeiXiuAnimation = (props) => {
@@ -131,13 +133,15 @@ const WeiXiuAnimation = (props) => {
             const validList = lo.filter(predefinePos.current, (v) => { return (v.__used == undefined || !v.__used); });
             if (validList.length <= 0) return;
 
-            const randIndex = lo.random(validList.length - 1);
+            // 一个元素时固定为中间往上
+            const onlyOne = (props.values.length == 1);
+            const randIndex = onlyOne ? 3 : lo.random(validList.length - 1);
             const pos = validList[randIndex];
             const posIndex = lo.findIndex(predefinePos.current, (v) => (v.x == pos.x && v.y == pos.y));
 
             setLayers((layers) => {
                 const key = uniqueKey.current;
-                const layer = (<NumberLayer key={key} value={value} pos={pos} onEnd={() => animationOnEnd(key, posIndex)} />);
+                const layer = (<NumberLayer key={key} value={value} pos={pos} randX={!onlyOne} onEnd={() => animationOnEnd(key, posIndex)} />);
                 animationQueue.current.push(key);
                 pos.__used = true;
 
