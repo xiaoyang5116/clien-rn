@@ -135,8 +135,8 @@ const Detail = (props) => {
                         </View>
 
                         <View style={styles.expected_container}>
-                            <Text style={styles.title_box}>预计耗时: {h_m_s_Format(item.time)}</Text>
-                            <Text style={[styles.title_box, { marginLeft: 24 }]}>预计获得</Text>
+                            <Text style={styles.title_box}>预计获得</Text>
+                            <Text style={[styles.title_box, { marginLeft: 24 }]}>预计耗时: {h_m_s_Format(item.time)}</Text>
                         </View>
                         <View>
                             <FlatList

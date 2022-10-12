@@ -19,12 +19,41 @@ import DanFangPage from './DanFangPage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ProgressBar from './components/ProgressBar';
 import PropGrid from '../../components/prop/PropGrid';
-import { TextButton, Header3 } from '../../constants/custom-ui';
+import { TextButton, Header3, ImageButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import RewardsPage from './components/RewardsPage';
+import Carousel from 'react-native-snap-carousel'
+
+const GuidePage = () => {
+  const DATA = [1, 2]
+  const sliderWidth = Dimensions.get('window').width
+  const itemWidth = Dimensions.get('window').width
+  const _carouselRef = useRef()
+  return (
+    <View style={{ flex: 1, zIndex: 99, }}>
+      <Carousel
+        data={DATA}
+        ref={_carouselRef}
+        renderItem={_renderItem}
+        sliderWidth={sliderWidth}
+        itemWidth={itemWidth}
+        firstItem={0}
+        inactiveSlideShift={1}
+        inactiveSlideScale={1}
+      // onSnapToItem={index => setTabIndex(index)}
+      />
+    </View>
+  )
+}
 
 const AlchemyRoom = props => {
-  const { alchemyData } = props;
+  const { alchemyData, isOpenBoot } = props;
+
+  // useEffect(() => {
+  //   const key = RootView.add(
+  //     <GuidePage onClose={() => { RootView.remove(key); }} />
+  //   )
+  // }, [])
 
   const openDanFangPage = () => {
     const key = RootView.add(
@@ -38,20 +67,20 @@ const AlchemyRoom = props => {
 
   const ChooseRecipe = () => {
     return (
-      <View style={{ position: 'absolute', bottom: '30%' }}>
-        <TouchableOpacity onPress={openDanFangPage}>
-          <Text
-            style={{
-              fontSize: 20,
-              backgroundColor: '#319331',
-              paddingLeft: 12,
-              paddingRight: 12,
-              paddingTop: 8,
-              paddingBottom: 8,
-            }}>
-            选择配方
-          </Text>
-        </TouchableOpacity>
+      <View style={{ position: 'absolute', bottom: '12%', justifyContent: 'center', alignItems: 'center' }}>
+        <ImageButton
+          width={px2pd(628)}
+          height={px2pd(111)}
+          source={require('../../../assets/button/liandan_bg1.png')}
+          selectedSource={require('../../../assets/button/liandan_bg2.png')}
+          onPress={openDanFangPage}
+        />
+        <View pointerEvents='none' style={{ width: px2pd(285), height: px2pd(66), position: 'absolute' }}>
+          <FastImage
+            style={{ width: px2pd(285), height: px2pd(66) }}
+            source={require('../../../assets/button/xuanzepeifang.png')}
+          />
+        </View>
       </View>
     );
   };

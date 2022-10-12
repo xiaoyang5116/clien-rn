@@ -109,12 +109,13 @@ const TargetsComponent = (props) => {
   return (
     <View>
       <View style={styles.expected_container}>
+        <TitleComponent title={"有概率获得"} />
         <TitleComponent
           title={`预计耗时:${h_m_s_Format(time)}`}
           source={require('../../../assets/button/lianDan2.png')}
-          style={{ width: px2pd(500), height: px2pd(108) }}
+          style={{ width: px2pd(500), height: px2pd(108),marginLeft: 24 }}
         />
-        <TitleComponent title={"有概率获得"} style={{ marginLeft: 24 }} />
+
       </View>
       <View>
         <FlatList

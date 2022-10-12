@@ -9,7 +9,10 @@ import WorshipModal from '../components/worship';
 export default class OpenUI {
 
     static open(name) {
-        switch (name) {
+        console.log("name", name);
+        const pageName = name.split('-')
+        const isOpenBoot = pageName.length > 1 ? true : false
+        switch (pageName[0]) {
             case 'XiuXing':
                 const key = RootView.add(
                     <Transitions id={'OPEN_XIUXING_UI'}>
@@ -17,7 +20,7 @@ export default class OpenUI {
                     </Transitions>);
                 break;
             case 'LianDanFang':
-                AlchemyRoomModal.show()
+                AlchemyRoomModal.show(isOpenBoot)
                 break;
             case 'ZhongZhi':
                 PlantPage.show();
@@ -25,6 +28,8 @@ export default class OpenUI {
             case 'GongFeng':
                 WorshipModal.show();
                 break;
+
+            default: return <></>
         }
     }
 
