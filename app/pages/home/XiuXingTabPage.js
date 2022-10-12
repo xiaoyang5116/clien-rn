@@ -285,6 +285,10 @@ const XiuXingTabPage = (props) => {
         }} />);
     }
 
+    const onPingJing = () => {
+        AppDispath({ type: 'UserModel/pingJingXiuXing', payload: {} });
+    }
+
     const getXiuXingAttrValue = (key) => {
         const found = props.user.xiuxingAttrs.find(e => lo.isEqual(e.key, key));
         return (found != undefined) ? found.value : 0;
@@ -292,6 +296,15 @@ const XiuXingTabPage = (props) => {
 
     const currentXiuXingConfig = props.user.__data.xiuxingConfig.find(e => e.limit == props.user.xiuxingStatus.limit);
     const cdForbiden = (props.user.xiuxingStatus.cdTime > 0 && DateTime.now() < props.user.xiuxingStatus.cdTime);
+
+    let tupoPingjingBtn = (<></>);
+    if ((props.user.xiuxingStatus.value >= props.user.xiuxingStatus.limit) && !cdForbiden) {
+        if (currentXiuXingConfig.tupo != undefined) {
+            tupoPingjingBtn = (<TupoButton onPress={onTuPo} />);
+        } else if (currentXiuXingConfig.pingjing != undefined) {
+            tupoPingjingBtn = (<PingJingButton onPress={onPingJing} />);
+        }
+    }
 
     return (
         <Panel patternId={0}>
@@ -325,18 +338,16 @@ const XiuXingTabPage = (props) => {
                     </View>
                     <View style={{ marginTop: px2pd(400), marginBottom: px2pd(150), justifyContent: 'center', alignItems: 'center' }}>
                         <View style={{ position: 'absolute', paddingLeft: px2pd(20) }}>
-                            {((props.user.xiuxingStatus.value < props.user.xiuxingStatus.limit) || cdForbiden)
-                            ? <></>
-                            : <TupoButton onPress={onTuPo} />
-                            }
+                            {tupoPingjingBtn}
                         </View>
-                        {(cdForbiden)
-                        ? (
-                        <View style={{ position: 'absolute', top: px2pd(180) }}>
-                            <Text style={styles.cdFontStyle}>等待时间: {DateTime.format(props.user.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
-                        </View>
-                        )
-                        : <></>
+                        {
+                        (cdForbiden)
+                            ? (
+                                <View style={{ position: 'absolute', top: px2pd(180) }}>
+                                    <Text style={styles.cdFontStyle}>等待时间: {DateTime.format(props.user.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
+                                </View>
+                            )
+                            : <></>
                         }
                     </View>
                     <View style={{ marginTop: px2pd(100) }}>

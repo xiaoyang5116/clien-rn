@@ -41,7 +41,7 @@ export default {
     equips: [], // 身上的装备
 
     xiuxingStatus: { // 修行状态
-      value: 0, // 当前修行值
+      value: 0, // 当前修为值
       limit: 0, // 修行上限
       lastOnlineTime: 0, // 在线修为时间
       cdTime: 0,  // 突破失败后等待时间
@@ -200,7 +200,7 @@ export default {
       DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
     },
 
-    // 突破修行值
+    // 突破修行
     *tupoXiuXing({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const { prop } = payload;
@@ -235,7 +235,8 @@ export default {
       }
 
       let success = true;
-      if (lo.random(100) <= (currentXiuXing.tupo.successRate + propSuccessRate)) {
+      const randomValue = lo.random(100);
+      if (randomValue <= (currentXiuXing.tupo.successRate + propSuccessRate)) {
         userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
         userState.xiuxingStatus.limit = nextXiuXing.limit;
         currentXiuXing.attrs.forEach(e => {
@@ -245,6 +246,7 @@ export default {
           }
         });
       } else {
+        console.debug(`突破失败，随机概率=${randomValue}, 当前概率=${currentXiuXing.tupo.successRate + propSuccessRate}`);
         userState.xiuxingStatus.cdTime = DateTime.now() + (currentXiuXing.tupo.failCDTime * 1000);
         success = false;
       }
@@ -262,6 +264,49 @@ export default {
       // 通知角色属性刷新
       DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
       return { success };
+    },
+
+    // 修行瓶颈
+    *pingJingXiuXing({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+
+      if (userState.xiuxingStatus.value < userState.xiuxingStatus.limit)
+        return false;
+
+      const currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
+      if (currentXiuXing == undefined)
+        return false;
+
+      let nextXiuXing = null;
+      for (let key in userState.__data.xiuxingConfig) {
+        const item = userState.__data.xiuxingConfig[key];
+        if (item.limit > userState.xiuxingStatus.limit) {
+          nextXiuXing = item;
+          break
+        }
+      }
+
+      if (nextXiuXing == null) {
+        Toast.show('修行已满级!');
+        return false;
+      }
+
+      // 扣除修为值
+      userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
+      userState.xiuxingStatus.limit = nextXiuXing.limit;
+      currentXiuXing.attrs.forEach(e => {
+        const found = userState.xiuxingAttrs.find(x => lo.isEqual(x.key, e.key));
+        if (found != undefined) {
+          found.value = e.value;
+        }
+      });
+
+      //
+      yield put(action('updateState')({}));
+      yield put.resolve(action('syncData')({}));
+      
+      Toast.show('成功跨越瓶颈!');
+      return true;
     },
 
     // 检测在线修行
