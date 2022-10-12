@@ -231,7 +231,7 @@ const drawGrids = ({ data, initialCenterPoint, onClose }) => {
               onClose();
             }
           } else if (isMoveDenied) {
-            Toast.show('当前剧情中无法移动到这里', CENTER_TOP);
+            Toast.show('当前剧情中无法随意移动', CENTER_TOP);
           }
         }}
       >
