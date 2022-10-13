@@ -137,10 +137,10 @@ scenes: [
         [
         { id: 'C006A_xuanze', style: 12,title: '抉择',
          sections: {
-            content: '究竟是选择留下来待在医灵身边，还是去寻找陶老？',
+            content: '究竟是选择留下来待在医灵身边增加更多好感度，还是去寻找陶老专心修炼呢？',
             btn: [
-          { title: "【我走！】", toChapter: "WZXX_M1_N1_C014_[N1]" },
-          { title: "【我不想走了】", toChapter: "WZXX_M1_N2_C014" },
+          { title: "【离开寻找陶老（分支A）】", toChapter: "WZXX_M1_N1_C014_[N1]" },
+          { title: "【留在医灵身边（分支B）】", toChapter: "WZXX_M1_N2_C014" },
             ]
         },  
     },
