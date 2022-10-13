@@ -88,6 +88,12 @@ const topBgImages = [
     { name: 'BGT_84', img: require('../../assets/scene/BGT_84.webp') },
     { name: 'BGT_85', img: require('../../assets/scene/BGT_85.webp') },
     { name: 'BGT_86', img: require('../../assets/scene/BGT_86.webp') },
+    { name: 'BGT_87', img: require('../../assets/scene/BGT_87.webp') },
+    { name: 'BGT_88', img: require('../../assets/scene/BGT_88.webp') },
+    { name: 'BGT_89', img: require('../../assets/scene/BGT_89.webp') },
+    { name: 'BGT_90', img: require('../../assets/scene/BGT_90.webp') },
+    { name: 'BGT_91', img: require('../../assets/scene/BGT_91.webp') },
+    { name: 'BGT_92', img: require('../../assets/scene/BGT_92.webp') },
 
 
     

@@ -18,7 +18,7 @@ import { px2pd } from '../../constants/resolution';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ProgressBar from '../alchemyRoom/components/ProgressBar';
 import PropGrid from '../../components/prop/PropGrid';
-import { TextButton, Header3 } from '../../constants/custom-ui';
+import { TextButton, Header3, ImageButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import LianQiRecipe from './LianQiRecipe';
 import RewardsPage from '../alchemyRoom/components/RewardsPage';
@@ -40,20 +40,20 @@ const LianQi = props => {
 
   const ChooseRecipe = () => {
     return (
-      <View style={{ position: 'absolute', bottom: '30%' }}>
-        <TouchableOpacity onPress={openRecipe}>
-          <Text
-            style={{
-              fontSize: 20,
-              backgroundColor: '#319331',
-              paddingLeft: 12,
-              paddingRight: 12,
-              paddingTop: 8,
-              paddingBottom: 8,
-            }}>
-            选择图纸
-          </Text>
-        </TouchableOpacity>
+      <View style={{ position: 'absolute', bottom: '30%', justifyContent: 'center', alignItems: 'center' }}>
+        <ImageButton
+          width={px2pd(628)}
+          height={px2pd(111)}
+          source={require('../../../assets/button/liandan_bg1.png')}
+          selectedSource={require('../../../assets/button/liandan_bg2.png')}
+          onPress={openRecipe}
+        />
+        <View pointerEvents='none' style={{ width: px2pd(285), height: px2pd(66), position: 'absolute' }}>
+          <FastImage
+            style={{ width: px2pd(285), height: px2pd(66) }}
+            source={require('../../../assets/button/xuanzetuzhi.png')}
+          />
+        </View>
       </View>
     );
   };

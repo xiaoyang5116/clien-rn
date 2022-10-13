@@ -152,13 +152,31 @@ scenes: [
           { title: "【娘，是我】",dialogs: ['C002C_duihuaA'],},
         ],
       },
+
+      { 
+        id: 'WZXX_M1_N1_C002C_V12', desc: '说话', 
+        options: [ 
+          { title: "【听到了！】",dialogs: ['C002C_diqizhangA'],},
         ],
-
-
+      },
+        ],
 
       # 对话框
       dialogs:
         [
+
+        { id: 'C002C_diqizhangA',style: 6, title: '决心！', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“听到了。”','“你好像有一肚子怨气。”',
+          '可不是吗？李森炎怨念满满，却也只能说，“没有。”',
+          '“那好，我问你，如果有一天你发现自己根本敌不过那些魔头，你会怎么办？”',
+          '李森炎变得谨慎起来，可不敢跟之前那样回答了。',
+          '他轻咳一声：“人生自古谁无死，留取丹心照汗青！”','“我李森炎，就是死上百次千次，也要跟那些魔头斗争到底！”',
+          ['震屏1'],],
+          btn: [{title: '!!!', } 
+          ,]},
+           ]  
+        },
 
            #选项对话1
           { id: 'C002C_huijiaA',style: 6, title: '回李家，越快越好', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',

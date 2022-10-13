@@ -38,6 +38,9 @@ scenes: [
           {  
             id: 'c0', desc: '配置测试', 
             options: [
+              { title: '带引导的炼丹页面', openUI: "LianDanFang-1" },
+              { title: '种植', openUI: "ZhongZhi" },
+              { title: '炼器', openUI: "LianQi" },
               { title: '【背景对话框(5 号)】', dialogs: ['p1'] },
               { title: '航海探索', games: {id: 8} },
               { title: '抽签选项', dialogs: ['p2'] },
@@ -82,9 +85,9 @@ scenes: [
             sections: {
               content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
               btn: [
-                { title: '穿越', toScene: "wzkj" },
-                { title: '破庙', toScene: "pomiao" },
-                { title: '退出', dialogs: ['p1'] },
+              { title: '穿越', toScene: "wzkj" },
+              { title: '破庙', toScene: "pomiao" },
+              { title: '退出', dialogs: ['p1'] },
               ]
             },  
           },
@@ -93,10 +96,10 @@ scenes: [
             sections: {
               content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
               btn: [
-                { title: '破庙', toScene: "pomiao" },
-                { title: '退出', dialogs: ['p1'] },
+              { title: '破庙', toScene: "pomiao" },
+              { title: '退出', dialogs: ['p1'] },
               ]
-            },  
+            },
           },
         ],
     },

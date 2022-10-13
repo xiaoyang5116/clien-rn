@@ -1626,7 +1626,7 @@ scenes: [
       { 
         id: 'C4', desc: "李森炎拿着换来的好酒敲门进去\n果然老人一看见美酒，眼睛都直了\n很慷慨大方的帮他炼制好了丹药",   
         options: [ 
-         { title: '吃下丹药', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], toChapter: "WZXX_M1_N1_C002_[N6]" }, 
+         { title: '吃下丹药', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], toChapter: "WZXX_M1_N1_C002_[N6]" ,icon: { id: 11 }}, 
         ],
       },
       ],
@@ -1646,7 +1646,7 @@ scenes: [
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [1, -1],
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
@@ -1683,20 +1683,20 @@ scenes: [
   },
 
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V_MAP_1_0', name: '东市',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+    #横图显示
     sceneImage: 'BGT_43',
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [1, 0],
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
@@ -1785,15 +1785,15 @@ scenes: [
     ],
   },
 #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V_MAP_2_1', name: '东市二街',
     # 指定场景为NPC或MAP场景
     isNpc: true,
-     #横图显示
+    #横图显示
     sceneImage: 'BGT_34',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1832,8 +1832,7 @@ scenes: [
       },
     ],
   },
-
-  #===========事件场景==============
+  #===========================事件场景==============================
        {
   # NPC2
     id: 'C000A_V_MAP_2_2', name: '巷子',
@@ -1842,7 +1841,7 @@ scenes: [
      #横图显示
     sceneImage: 'BGT_30',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1859,7 +1858,6 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C1A' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/v_icon_101'], nextChat: 'C2' },
-     
     ],
     # 对话选项
     chats: [
@@ -1879,16 +1877,7 @@ scenes: [
         ],
       },
 
-    { 
-        id: 'C1', desc: '此处人来人往，一片和谐', 
-        options: [ 
-        # { title: '【找人询问】', dialogs: ['Screen15'] }, 
-        { title: '【东市二街】',toScene: 'C000A_V_MAP_2_1'},
-        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
-        ],
-      },
-       { 
+      { 
         id: 'C2', desc: '此处人来人往，一片和谐', 
         options: [ 
         { title: '【找人询问】', dialogs: ['Screen15'] }, 
@@ -2042,21 +2031,21 @@ scenes: [
       { 
         id: 'P1', desc: "“客官，可要买点什么？”掌柜的笑吟吟\n李森炎看了一眼琳琅满目的商柜\n脱口而出",  
         options: [ 
-        { title: '【我要买簪子】',  nextChat: 'P2',   },
+        { title: '【我要买簪子】',  nextChat: 'P2', },
         ],
       },
 
       { 
         id: 'P2', desc: "掌柜乐呵呵的说，“当然有啊，不如您挑一件如何”\n掌柜摆出一些簪子让李森炎查看\n其中一个看着还不错\n“就这个了。”\n掌柜：“客官真是好眼力”",  
         options: [ 
-        { title: '【掏钱购买】', toShop: 'default', nextChat: 'C2',varsOff: ['WZXX_M1_N1_C000A_V/v_icon_100'],   },
+        { title: '【掏钱购买】', toShop: 'default', nextChat: 'C2',varsOff: ['WZXX_M1_N1_C000A_V/v_icon_100'],},
         ],
       },
 
       { 
         id: 'C2', desc: '已经买到了簪子了，接下来准备做什么', 
         options: [ 
-        { title: '【买到簪子离开集市，早点回家】',  dialogs: ['Screen1'] , },
+        { title: '【买到簪子离开集市，早点回家】',  dialogs: ['Screen1'] ,icon: { id: 11 } },
         ],
       },
 
@@ -2088,22 +2077,7 @@ scenes: [
       # },
       ],
        # 对话框
-    dialogs: [
-    #       { id: 'Screen16',style: 6, title: '店铺', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
-    #       sections: [
-    #       { key: 'P1', content: ['“客官，可要买点什么？”掌柜的笑吟吟','李森炎看了一眼琳琅满目的商柜','脱口而出',],
-    #       btn: [{title: '我要买簪子' , tokey: "P1A",}, ]},
-
-    #       { key: 'P1A', content: ['掌柜乐呵呵的说，“当然有啊，不如您挑一件如何”','掌柜摆出一些簪子让李森炎查看','其中一个看着还不错','“就这个了。”','掌柜：“客官真是好眼力”',],
-    #       btn: [{title: '掏钱购买' ,toShop: 'default', tokey: "P2",}, ]},
-
-    #       { key: 'P2', content: ['“客官，慢走，下次再来啊。”','……',],
-    #        btn: [{title: '离开',nextChat: 'C2',
-    #       #  toChapter: "WZXX_M1_N1_C002_[N3]" , 
-    #        varsOff: ['WZXX_M1_N1_C000A_V/v_icon_100'],
-    #        }, ] },
-    # ],},
-        
+    dialogs: [        
         { id: 'Screen1',style: 6, title: '买完簪子回家', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['原身去商铺买完簪子回来，路过市集时，感觉身边出现了许多陌生面孔。','按理来说，市集里出现陌生的面孔很正常，但原身就是能判断出，哪些人是附近赶集的乡民，哪些人可能是兵痞子，而且能感应到各自的威胁性。',
@@ -2453,7 +2427,7 @@ scenes: [
       { 
         id: 'C4', desc: "李森炎拿着换来的好酒敲门进去\n果然老人一看见美酒，眼睛都直了\n很慷慨大方的帮他炼制好了丹药",   
         options: [ 
-         { title: '吃下丹药', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], toChapter: "WZXX_M1_N1_C002_[N6]" }, 
+         { title: '吃下丹药', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], toChapter: "WZXX_M1_N1_C002_[N6]", icon: { id: 11 } }, 
         ],
       },
       ],
@@ -2522,8 +2496,8 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+    #横图显示
     sceneImage: 'BGT_43',
     # 当前场景地图
     mapId: 'C000A_V2_MAP_0_0',
@@ -3060,7 +3034,7 @@ scenes: [
       },
 
        { 
-        id: 'C1A', desc: "邪\n要想骗过那些杀手的眼睛，这次乔装一定要颠覆，要大胆",   
+        id: 'C1A', desc: "要想骗过那些杀手的眼睛，这次乔装一定要颠覆，要大胆",   
         options: [ 
          { title: '版本答案——女装', nextChat: 'C2' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
          { title: '黑衣，杀手装', nextChat: 'C3', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] }, 
@@ -3391,7 +3365,7 @@ scenes: [
       { 
         id: 'C1', desc: "李森炎庆幸自己找到了最合适的乔装\n一路畅行无阻，也没有再遇到暗杀\n终于，他成功看到李家的大门\n但是，那一刹那，他却浑身一震！",
         options: [ 
-         { title: '怎么会这样！', toChapter: "WZXX_M1_N1_C002_[N8]" }, 
+         { title: '怎么会这样！', toChapter: "WZXX_M1_N1_C002_[N8]" ,icon: { id: 11 }}, 
         
          
         ],
@@ -3470,14 +3444,14 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+    #横图显示
     sceneImage: 'BGT_31',
     # 当前场景地图
     mapId: 'C000A_V3_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-3, 0],
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
@@ -3565,14 +3539,14 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
-       #横图显示
+    worldTimeHidden: true,
+    #横图显示
     sceneImage: 'BGT_41',
     # 当前场景地图
     mapId: 'C000A_V3_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-2, -1],
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
@@ -3612,7 +3586,7 @@ scenes: [
      #横图显示
     sceneImage: 'BGT_64',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000A_V3_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -3713,28 +3687,28 @@ scenes: [
       { 
         id: 'C1', desc: "谁能想到，一个‘铁血硬汉’竟然能变成如此娇嫩的姑娘呢\n他正得意，刚走出百步，便迎头撞上个地痞\n“这么漂亮的妹子，怎么一个人回家，要不要哥哥陪你啊……”",   
         options: [ 
-         { title: '……！', nextChat: 'C1A' }, 
+        { title: '……！', nextChat: 'C1A' }, 
         ],
       },
 
-       { 
+      { 
         id: 'C1A', desc: "说着，那地痞凑过来就要对他上下其手\n地痞靠近，此时你决定",   
         options: [ 
-         { title: '装柔弱女人，喊救命', nextChat: 'C2' }, 
-         { title: '装彪悍女人，让他知难而退', nextChat: 'C4' }, 
+        { title: '装柔弱女人，喊救命', nextChat: 'C2' }, 
+        { title: '装彪悍女人，让他知难而退', nextChat: 'C4' }, 
         ],
       },
       
       { 
         id: 'C2', desc: "李森炎一边后退，一边夹着嗓子喊\n“救命啊！有人耍流氓啊！”\n刹那间，有不少正义之士冲过来。\n痞眼见人多，当即落荒而逃。\n李森炎一一道谢，正准备走\n突然有个青年挡在他面前，笃定道：“你是男的。”",   
         options: [ 
-         { title: '不是吧？这你都能看出来？', nextChat: 'C1' }, 
+        { title: '不是吧？这你都能看出来？', nextChat: 'C1' }, 
         ],
       },
       { 
         id: 'C3', desc: "青年邪魅一笑：“毕竟我们是同道中人，我也喜欢穿女装。”\n谁特么跟你同道中人，谁特么喜欢穿女装了啊！\n我这是迫不得已的好吗？\n痞眼见人多，当即落荒而逃。",   
         options: [ 
-         { title: 逃过一劫', nextChat: 'C3A' }, 
+        { title: 逃过一劫', nextChat: 'C3A' }, 
         ],
       },
       { 
@@ -3812,7 +3786,7 @@ scenes: [
       },
 
       { 
-        id: 'C3', desc: "“五两银子一时辰，十两银子三个时辰，小兄弟想聊个多少钱的天？”乞丐抬起那市侩的脸，笑吟吟的开口\n“……”\n李森炎汗颜，聊不起了先溜了",   
+        id: 'C3', desc: "“五两银子一时辰，十两银子三个时辰，小兄弟想聊个多少钱的天？”\n乞丐抬起那市侩的脸，笑吟吟的开口\n“……”\n李森炎汗颜，聊不起了先溜了",   
         options: [ 
          { title: '还是走吧', nextChat: 'C1' }, 
         ],
@@ -3820,18 +3794,17 @@ scenes: [
 
        { 
         id: 'C4', desc: "“打听事情五两银子一次。十辆银子三次，小兄弟要打听什么？”\n'“我去，你抢钱啊！”李森炎深感晦气，后退了一步',\n乞丐脸一下就垮了下来：“没钱你瞎打听什么，情报不用钱吗？”",   
-        options: [ 
+        options: [
          { title: '……', nextChat: 'C5' }, 
         ],
       },
 
       { 
-        id: 'C5', desc: "乞丐上下打量一身风尘尤为狼狈的李森炎，乞丐露出一副人上人的嘴脸：“看你这倒霉的样子，我给你指条明路吧，跟我一起干，只需要三天，你就能赚到买情报的钱。”",   
+        id: 'C5', desc: "乞丐上下打量一身风尘尤为狼狈的李森炎\n乞丐露出一副人上人的嘴脸\n“看你这倒霉的样子，我给你指条明路吧，跟我一起干，只需要三天，你就能赚到买情报的钱。”",   
         options: [ 
          { title: '还是算了吧', nextChat: 'C1' }, 
         ],
       },
-
       ],
 
   },
