@@ -10,7 +10,6 @@ import LianQiPage from '../components/lianQi'
 export default class OpenUI {
 
     static open(name) {
-        console.log("name", name);
         const pageName = name.split('-')
         const isOpenBoot = pageName.length > 1 ? true : false
         switch (pageName[0]) {
