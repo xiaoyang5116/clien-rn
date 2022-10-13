@@ -121,6 +121,7 @@ scenes: [
         options: [ 
           { title: '【进入地图功能】', toScene: 'wzkj_map' }, 
           { title: '【进入时间功能】', toScene: 'wzkj_datetime' }, 
+          { title: '【进入修行功能】', toScene: 'wzkj_xiuxing' }, 
           { title: '【进入动画列表】', toScene: 'wzkj_animation' }, 
           { title: '【进入商店列表】', toScene: 'wzkj_shop' }, 
           { title: '【进入采集列表】', toScene: 'wzkj_caiji' }, 
@@ -132,6 +133,7 @@ scenes: [
     ],
   },
 
+  # 采集
   {
     id: 'wzkj_caiji', 
     name: '调试菜单',
@@ -173,6 +175,7 @@ scenes: [
     ],
   },
 
+  # 动画
   {
     id: 'wzkj_animation', 
     name: '调试菜单',
@@ -211,6 +214,7 @@ scenes: [
     ],
   },
 
+  # 商店
   {
     id: 'wzkj_shop', 
     name: '调试菜单',
@@ -248,6 +252,7 @@ scenes: [
     ],
   },
 
+  # 小游戏
   {
     id: 'wzkj_game', 
     name: '调试菜单',
@@ -287,6 +292,7 @@ scenes: [
     ],
   },
 
+  # 地图
   {
     id: 'wzkj_map', 
     name: '调试菜单',
@@ -355,6 +361,7 @@ scenes: [
     ],
   },
 
+  # 时间
   {
     id: 'wzkj_datetime', 
     name: '调试菜单',
@@ -392,6 +399,47 @@ scenes: [
     ],
   },
 
+  # 修行
+  {
+    id: 'wzkj_xiuxing', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '修行界面', 
+        options: [ 
+          { title: '【返回调试主界面】', toScene: 'wzkj' }, 
+          { title: '【增加2000修为值】', alterXiuWei: 2000 }, 
+          { title: '【增加10,000修为值】', alterXiuWei: 10000 }, 
+          { title: '【增加30,000修为值】', alterXiuWei: 30000 }, 
+          { title: '【增加50,000修为值】', alterXiuWei: 50000 }, 
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  # 转场
   {
     id: 'wzkj_trans', 
     name: '调试菜单',
@@ -434,6 +482,7 @@ scenes: [
     ],
   },
 
+  # 转场展现
   {
     id: 'wzkj_trans_ok', 
     name: '调试菜单',
@@ -469,6 +518,7 @@ scenes: [
     ],
   },
 
+  # 图标
   {
     id: 'wzkj_icon', 
     name: '调试菜单',

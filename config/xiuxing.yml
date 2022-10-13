@@ -25,12 +25,6 @@ xiuxing: [
       { key: '攻击', value: 100 },
     ],
 
-    # 瓶颈配置
-    pingjing: {
-      # 瓶颈成功率(目前统一为100%)
-      successRate: 100,
-    },
-
     # 是否提示美术字
     toastText: true,
 
@@ -59,18 +53,6 @@ xiuxing: [
       { key: '攻击', value: 200 },
     ],
 
-    # 突破配置
-    tupo: {
-      # 突破基础成功率
-      successRate: 70,
-
-      # 突破失败后的CD时间(单位秒)
-      failCDTime: 600,
-
-      # 关键道具
-      props: [{ propId: 28, num: 1 }, { propId: 29, num: 1 }],
-    },
-
     # 是否提示美术字
     toastText: true,
 
@@ -89,7 +71,7 @@ xiuxing: [
     level: 3,
 
     # 修为上限
-    limit: 50000,
+    limit: 30000,
 
     # 属性加成
     attrs: [
@@ -97,6 +79,40 @@ xiuxing: [
       { key: '防御', value: 300 },
       { key: '法力', value: 300 },
       { key: '攻击', value: 300 },
+    ],
+
+    # 瓶颈配置
+    pingjing: {
+      # 瓶颈成功率(目前统一为100%)
+      successRate: 100,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 300,
+  },
+
+  {
+    # 名称
+    title: '锻体.四重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 4,
+
+    # 修为上限
+    limit: 50000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 400 },
+      { key: '防御', value: 400 },
+      { key: '法力', value: 400 },
+      { key: '攻击', value: 400 },
     ],
 
     # 突破配置

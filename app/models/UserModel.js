@@ -185,7 +185,7 @@ export default {
     },
 
     // 添加修行值
-    *addXiuXing({ payload }, { put, select }) {
+    *addXiuWei({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const { value } = payload;
 
@@ -193,6 +193,42 @@ export default {
         return
 
       userState.xiuxingStatus.value += value;
+      EffectAnimations.show({ id: 15, values:[`${value}`] })
+
+      // 没有指定瓶颈和突破时 自动突破.
+      let i = 0;
+      while (userState.xiuxingStatus.value > userState.xiuxingStatus.limit) {
+        let currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
+
+        let nextXiuXing = null;
+        for (let key in userState.__data.xiuxingConfig) {
+          const item = userState.__data.xiuxingConfig[key];
+          if (item.limit > userState.xiuxingStatus.limit) {
+            nextXiuXing = item;
+            break
+          }
+        }
+
+        if (!lo.isObject(currentXiuXing.tupo) && !lo.isObject(currentXiuXing.pingjing) && (nextXiuXing != null)) {
+          userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
+          userState.xiuxingStatus.limit = nextXiuXing.limit;
+          currentXiuXing.attrs.forEach(e => {
+            const found = userState.xiuxingAttrs.find(x => lo.isEqual(x.key, e.key));
+            if (found != undefined) {
+              found.value = e.value;
+            }
+          });
+          if (lo.isBoolean(currentXiuXing.toastText) && currentXiuXing.toastText) {
+            setTimeout(() => {
+              EffectAnimations.show({ id: 16, period: nextXiuXing.period, level: nextXiuXing.level });
+            }, i * 1000);
+          }
+        }
+
+        // 防止错误无限循环
+        if (i > 10) break;
+        i++;
+      }
 
       yield put(action('updateState')({}));
       yield put.resolve(action('syncData')({}));
@@ -359,8 +395,8 @@ export default {
       const diffMillis = DateTime.now() - userState.xiuxingStatus.lastOnlineTime;
       const seconds = Math.floor(diffMillis / 1000);
       if (seconds >= 10) { // 每10S刷新一次
-        const addXiuXing = Math.ceil(currentXiuXing.increaseXiuXingPerMinute * seconds / 60);
-        userState.xiuxingStatus.value += addXiuXing;
+        const addXiuWei = Math.ceil(currentXiuXing.increaseXiuXingPerMinute * seconds / 60);
+        userState.xiuxingStatus.value += addXiuWei;
         userState.xiuxingStatus.lastOnlineTime = DateTime.now();
 
         yield put(action('updateState')({}));
@@ -368,7 +404,7 @@ export default {
         
         // 通知角色属性刷新
         DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
-        return addXiuXing;
+        return addXiuWei;
       }
 
       return 0;

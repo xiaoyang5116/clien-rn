@@ -438,12 +438,12 @@ export default {
       yield put.resolve(action('UserModel/alterAttrs')(affects));
     },
 
-    *__onXiuXingCommand({ payload }, { put, select }) {
+    *__onXiuWeiCommand({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const alterValue = parseInt(payload.params);
 
       if (alterValue != 0) {
-        yield put.resolve(action('UserModel/addXiuXing')({ value: alterValue }));
+        yield put.resolve(action('UserModel/addXiuWei')({ value: alterValue }));
       }
     },
 

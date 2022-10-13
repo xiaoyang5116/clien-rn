@@ -123,8 +123,8 @@ export default {
           const effect = config.useEffects[key];
           if (effect.copper != undefined && effect.copper > 0) {
             yield put.resolve(action('UserModel/alterCopper')({ value: effect.copper }));
-          } else if (effect.xiuxing != undefined && effect.xiuxing > 0) {
-            yield put.resolve(action('UserModel/addXiuXing')({ value: effect.xiuxing }));
+          } else if (effect.xiuwei != undefined && effect.xiuwei > 0) {
+            yield put.resolve(action('UserModel/addXiuWei')({ value: effect.xiuwei }));
           }
         }
       }
