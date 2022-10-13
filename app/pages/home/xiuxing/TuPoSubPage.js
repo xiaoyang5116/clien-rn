@@ -57,6 +57,8 @@ const TuPoSubPage = (props) => {
     const refPropSelected = React.useRef(null);
     const refViewOpacity = React.useRef(new Animated.Value(1)).current;
 
+    const [keyProps, setKeyProps] = React.useState([]);
+
     const [propRate, setPropRate] = React.useState(0);
     const [displaySucceedVideo, setDisplaySucceedVideo] = React.useState('none');
     const [displayFailureVideo, setDisplayFailureVideo] = React.useState('none');
@@ -80,8 +82,30 @@ const TuPoSubPage = (props) => {
         }
     }, []);
 
+    React.useEffect(() => {
+        // 关键道具显示
+        if (props.config.tupo.props != undefined && lo.isArray(props.config.tupo.props)) {
+            const propsId = [];
+            lo.forEach(props.config.tupo.props, (v, k) => {
+                propsId.push(v.propId);
+            });
+
+            if (propsId.length > 0) {
+                AppDispath({ type: 'PropsModel/getBagProps', payload: { propsId: propsId, always: true }, cb: (data) => {
+                    if (lo.isArray(data) && data.length > 0) {
+                        const list = [];
+                        lo.forEach(data, (v, k) => {
+                            list.push(<PropGrid prop={v} key={k} showNum={false} showLabel={true} labelStyle={{ color: '#000' }} imageStyle={{ width: px2pd(110), height: px2pd(110) }} />)
+                        });
+                        setKeyProps(list);
+                    }
+                }});
+            }
+        }
+    }, []);
+
     const onTuPo = () => {
-        AppDispath({ type: 'UserModel/upgradeXiuXing', payload: { prop: refPropSelected.current }, retmsg: TUPO_CALLBACK });
+        AppDispath({ type: 'UserModel/tupoXiuXing', payload: { prop: refPropSelected.current }, retmsg: TUPO_CALLBACK });
     }
 
     const onSelectedProp = (prop) => {
@@ -119,7 +143,7 @@ const TuPoSubPage = (props) => {
                     }
                 }}
             />
-            <Animated.View style={{ width: 320, height: 320, backgroundColor: '#eee', borderRadius: 5, opacity: refViewOpacity }}>
+            <Animated.View style={{ width: px2pd(860), height: px2pd(1100), backgroundColor: '#eee', borderRadius: 5, opacity: refViewOpacity }}>
                 <View style={{ alignItems: 'flex-end', marginRight: 5, marginTop: 5 }}>
                     <AntDesign name='close' size={24} onPress={() => {
                         if (props.onClose != undefined) {
@@ -145,8 +169,22 @@ const TuPoSubPage = (props) => {
                     )
                     : <View style={{ marginTop: 5 }}><Text>请选择突破丹</Text></View>
                     }
-
                 </View>
+                {
+                (keyProps.length > 0)
+                ? (
+                <View style={{ width: '100%', marginTop: px2pd(60), justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ position: 'absolute', left: 16, top: 0 }}>
+                        <Text style={{ color: '#000', fontWeight: 'bold' }}>关键道具:</Text>
+                    </View>
+                    <View style={{ width: '90%', borderWidth: 1, borderColor: '#565452', backgroundColor: '#beb9b3', borderRadius: 5, marginTop: px2pd(55), paddingTop: px2pd(25), paddingBottom: px2pd(70), flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
+                        {keyProps}
+                    </View>
+                </View>
+                )
+                : <></>
+                }
+
                 <View style={{ position: 'absolute', bottom: 20, width: '100%', flexDirection: 'row', justifyContent: 'space-evenly' }}>
                     <TextButton title={'再等等'} onPress={() => {
                         if (props.onClose != undefined) {

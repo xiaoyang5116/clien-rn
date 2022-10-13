@@ -1,5 +1,7 @@
 # ===========================================
 # 修行配置
+# 说明： 
+#   tupo: {...}, pingjing: {...} 突破和瓶颈配置项只能二选一。
 # ===========================================
 xiuxing: [
   {
@@ -17,11 +19,11 @@ xiuxing: [
       { key: '攻击', value: 100 },
     ],
 
-    # 突破基础成功率
-    successRate: 80,
-
-    # 突破失败后的CD时间(单位秒)
-    failCDTime: 300,
+    # 瓶颈配置
+    pingjing: {
+      # 瓶颈成功率(目前统一为100%)
+      successRate: 100,
+    },
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 100,
@@ -42,11 +44,17 @@ xiuxing: [
       { key: '攻击', value: 200 },
     ],
 
-    # 突破基础成功率
-    successRate: 70,
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 70,
 
-    # 突破失败后的CD时间(单位秒)
-    failCDTime: 600,
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 600,
+
+      # 关键道具
+      props: [{ propId: 28, num: 1 }, { propId: 29, num: 1 }],
+    },
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 200,
@@ -67,11 +75,14 @@ xiuxing: [
       { key: '攻击', value: 300 },
     ],
 
-    # 突破基础成功率
-    successRate: 60,
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 60,
 
-    # 突破失败后的CD时间(单位秒)
-    failCDTime: 1200,
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 1200,
+    },
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 300,
@@ -92,11 +103,14 @@ xiuxing: [
       { key: '攻击', value: 500 },
     ],
 
-    # 突破基础成功率
-    successRate: 50,
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 50,
 
-    # 突破失败后的CD时间(单位秒)
-    failCDTime: 2400,
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 2400,
+    },
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 500,
@@ -117,11 +131,14 @@ xiuxing: [
       { key: '攻击', value: 1000 },
     ],
 
-    # 突破基础成功率
-    successRate: 5,
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 5,
 
-    # 突破失败后的CD时间(单位秒)
-    failCDTime: 4800,
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 4800,
+    },
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 1000,
@@ -142,11 +159,14 @@ xiuxing: [
       { key: '攻击', value: 2000 },
     ],
 
-    # 突破基础成功率
-    successRate: 5,
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 5,
 
-    # 突破失败后的CD时间(单位秒)
-    failCDTime: 9600,
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 9600,
+    },
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 2000,
