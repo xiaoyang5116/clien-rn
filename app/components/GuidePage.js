@@ -12,7 +12,6 @@ import { statusBarHeight } from '../constants'
 
 
 const GuidePage = (props) => {
-  console.log(statusBarHeight);
   return (
     <View style={styles.container}>
       <View style={{ position: 'absolute', top: Platform.OS === "ios" ? statusBarHeight + 8 : 12, right: 12, zIndex: 2 }}>
