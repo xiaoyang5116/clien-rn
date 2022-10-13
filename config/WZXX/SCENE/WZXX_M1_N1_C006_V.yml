@@ -107,11 +107,25 @@ scenes: [
         { 
         id: 'WZXX_M1_N1_C006_V6', desc: '重大选择', 
         options: [ 
-          { title: "【我走！】", toChapter: "WZXX_M1_N1_C014_[N1]" },
-          { title: "【我不想走了】", toChapter: "WZXX_M1_N2_C014" },
+          { title: "【大支线选择】",dialogs: ['C006A_xuanze'], },
          
         ],
       },
+
+  #   { 
+  #  id: 'WZXX_M1_N1_C006_V6', desc: '重大选择',
+  #   pop: {
+  #       style: 12,title: '抉择',
+  #       sections: {
+  #           content: '此次行动有关于游戏主线，请玩家谨慎选择',
+  #           btn: [
+  #         { title: "【我走！】", toChapter: "WZXX_M1_N1_C014_[N1]" },
+  #         { title: "【我不想走了】", toChapter: "WZXX_M1_N2_C014" },
+  #           ]
+  #       },  
+  #   }
+  #   }
+
 
 
 
@@ -121,8 +135,17 @@ scenes: [
       # 对话框
       dialogs:
         [
+        { id: 'C006A_xuanze', style: 12,title: '抉择',
+         sections: {
+            content: '究竟是选择留下来待在医灵身边，还是去寻找陶老？',
+            btn: [
+          { title: "【我走！】", toChapter: "WZXX_M1_N1_C014_[N1]" },
+          { title: "【我不想走了】", toChapter: "WZXX_M1_N2_C014" },
+            ]
+        },  
+    },
 
-
+        
 
 
            #选项对话

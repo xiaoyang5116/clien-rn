@@ -17,13 +17,14 @@ scenes: [
 
       # 事件定义
       # 故事中的场景事件暂时没什么意义
-      events: [],
+      events: [
+      { type: 'enter', dialogs: ['C0029A_youxishibai'], },
+      ],
 
 
     
       chats: [
       #
-
       { 
         id: 'WZXX_M1_N1_C0029_V1', desc: '玉珏', 
         options: [ 
@@ -32,7 +33,6 @@ scenes: [
         ],
       },
 
-      
       { 
         id: 'WZXX_M1_N1_C0029_V2', desc: '遇害', 
         options: [ 
@@ -40,7 +40,6 @@ scenes: [
           { title: "【救人要紧】",toChapter: "WZXX_M1_N1_C033",}
         ],
       },
-
 
       { 
         id: 'WZXX_M1_N1_C0029_V3', desc: '遇害', 
@@ -64,12 +63,21 @@ scenes: [
         ],
       },
 
-
         ],
 
       # 对话框
       dialogs:
         [
+
+         {id: 'C0029A_youxishibai', style: "9B", textAnimationType: 'TextSingle',
+                 sections: [
+                  {
+                     key: 'p1',
+                      content: ['不是，怎么没有用啊！','不会是要在最关键的时候，装X失败！？','看着杨真冷笑一声，颇为不屑的表情','李森炎后背冒汗，捏紧拳头再试了最后一次，这次一定可以！','……','竟然！成功了！'
+                       ],
+                   },  
+                   ],
+                   },
           #选项对话
           { 
             id: 'C0029A_rendiaoA',style: 6, title: '扔掉玉珏', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
