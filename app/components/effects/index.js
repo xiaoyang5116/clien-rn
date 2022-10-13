@@ -17,6 +17,7 @@ import LevelUpAnimation from './LevelUpAnimation';
 import WorldPreview from '../carousel/WorldPreview';
 import WorldUtils from '../../utils/WorldUtils';
 import WeiXiuAnimation from './WeiXiuAnimation';
+import WiuXingLevelAnimation from './WiuXingLevelAnimation';
 
 export default class EffectAnimations {
 
@@ -84,12 +85,16 @@ export default class EffectAnimations {
                 const key = RootView.add(<ShiKongAnimation onClose={() => {
                     RootView.remove(key);
                 }} />);
-            } else if (id == 13) { // 等级升级
+            } else if (id == 13) { // 等级升级(已废弃)
                 const key = RootView.add(<LevelUpAnimation onClose={() => {
                     RootView.remove(key);
                 }} />);
-            } else if (id == 15) {
+            } else if (id == 15) { // 修为值增加
                 const key = RootView.add(<WeiXiuAnimation values={e.values} onClose={() => {
+                    RootView.remove(key);
+                }} />);
+            } else if (id == 16) { // 修行等级提升
+                const key = RootView.add(<WiuXingLevelAnimation period={e.period} level={e.level} onClose={() => {
                     RootView.remove(key);
                 }} />);
             }

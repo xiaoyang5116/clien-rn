@@ -22,6 +22,7 @@ import EventListeners from '../utils/EventListeners';
 import Toast from '../components/toast';
 import * as DateTime from '../utils/DateTimeUtils';
 import WorldUtils from "../utils/WorldUtils";
+import EffectAnimations from "../components/effects";
 
 export default {
   namespace: 'UserModel',
@@ -41,7 +42,7 @@ export default {
     equips: [], // 身上的装备
 
     xiuxingStatus: { // 修行状态
-      value: 0, // 当前修行值
+      value: 0, // 当前修为值
       limit: 0, // 修行上限
       lastOnlineTime: 0, // 在线修为时间
       cdTime: 0,  // 突破失败后等待时间
@@ -184,7 +185,7 @@ export default {
     },
 
     // 添加修行值
-    *addXiuXing({ payload }, { put, select }) {
+    *addXiuWei({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const { value } = payload;
 
@@ -192,6 +193,42 @@ export default {
         return
 
       userState.xiuxingStatus.value += value;
+      EffectAnimations.show({ id: 15, values:[`${value}`] })
+
+      // 没有指定瓶颈和突破时 自动突破.
+      let i = 0;
+      while (userState.xiuxingStatus.value > userState.xiuxingStatus.limit) {
+        let currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
+
+        let nextXiuXing = null;
+        for (let key in userState.__data.xiuxingConfig) {
+          const item = userState.__data.xiuxingConfig[key];
+          if (item.limit > userState.xiuxingStatus.limit) {
+            nextXiuXing = item;
+            break
+          }
+        }
+
+        if (!lo.isObject(currentXiuXing.tupo) && !lo.isObject(currentXiuXing.pingjing) && (nextXiuXing != null)) {
+          userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
+          userState.xiuxingStatus.limit = nextXiuXing.limit;
+          currentXiuXing.attrs.forEach(e => {
+            const found = userState.xiuxingAttrs.find(x => lo.isEqual(x.key, e.key));
+            if (found != undefined) {
+              found.value = e.value;
+            }
+          });
+          if (lo.isBoolean(currentXiuXing.toastText) && currentXiuXing.toastText) {
+            setTimeout(() => {
+              EffectAnimations.show({ id: 16, period: nextXiuXing.period, level: nextXiuXing.level });
+            }, i * 1000);
+          }
+        }
+
+        // 防止错误无限循环
+        if (i > 10) break;
+        i++;
+      }
 
       yield put(action('updateState')({}));
       yield put.resolve(action('syncData')({}));
@@ -200,8 +237,8 @@ export default {
       DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
     },
 
-    // 突破修行值
-    *upgradeXiuXing({ payload }, { put, select }) {
+    // 突破修行
+    *tupoXiuXing({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const { prop } = payload;
 
@@ -209,7 +246,7 @@ export default {
         return false;
 
       const currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
-      if (currentXiuXing == undefined)
+      if (currentXiuXing == undefined || !lo.isObject(currentXiuXing.tupo))
         return false;
 
       let nextXiuXing = null;
@@ -226,6 +263,34 @@ export default {
         return false;
       }
 
+      // 检测关键道具
+      if (currentXiuXing.tupo.props != undefined && lo.isArray(currentXiuXing.tupo.props)) {
+        const propsId = [];
+        lo.forEach(currentXiuXing.tupo.props, (v, k) => {
+            propsId.push(v.propId);
+        });
+        if (propsId.length > 0) {
+          let failure = false;
+          let found = null;
+          let needNum = 0;
+          const result = yield put.resolve(action('PropsModel/getBagProps')({ propsId: propsId, always: true }));
+          for (let key in currentXiuXing.tupo.props) {
+            const { propId, num } = currentXiuXing.tupo.props[key];
+            found = lo.find(result, (v) => (v.id == propId));
+            if (found == undefined || found.num < num) {
+              failure = true;
+              needNum = num;
+              break;
+            }
+          }
+          if (failure) {
+            Toast.show(`关键道具数量不足, ${found.name}x${needNum}`);
+            return false;
+          }
+        }
+      }
+
+      // 选择了突破丹
       let propSuccessRate = 0;
       if (prop != undefined && prop != null) {
         const result = yield put.resolve(action('PropsModel/reduce')({ propsId: [ prop.id ], num: 1 }));
@@ -234,8 +299,14 @@ export default {
         }
       }
 
+      // 扣除关键道具
+      if (currentXiuXing.tupo.props != undefined && lo.isArray(currentXiuXing.tupo.props)) {
+        yield put.resolve(action('PropsModel/reduce')(currentXiuXing.tupo.props));
+      }
+
       let success = true;
-      if (lo.random(100) <= (currentXiuXing.successRate + propSuccessRate)) {
+      const randomValue = lo.random(100);
+      if (randomValue <= (currentXiuXing.tupo.successRate + propSuccessRate)) {
         userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
         userState.xiuxingStatus.limit = nextXiuXing.limit;
         currentXiuXing.attrs.forEach(e => {
@@ -245,12 +316,15 @@ export default {
           }
         });
       } else {
-        userState.xiuxingStatus.cdTime = DateTime.now() + (currentXiuXing.failCDTime * 1000);
+        console.debug(`突破失败，随机概率=${randomValue}, 当前概率=${currentXiuXing.tupo.successRate + propSuccessRate}`);
+        userState.xiuxingStatus.cdTime = DateTime.now() + (currentXiuXing.tupo.failCDTime * 1000);
         success = false;
       }
 
       if (success) {
-        Toast.show('突破成功!');
+        if (lo.isBoolean(currentXiuXing.toastText) && currentXiuXing.toastText) {
+          EffectAnimations.show({ id: 16, period: nextXiuXing.period, level: nextXiuXing.level });
+        }
       } else {
         Toast.show('突破失败');
       }
@@ -264,18 +338,65 @@ export default {
       return { success };
     },
 
+    // 修行瓶颈
+    *pingJingXiuXing({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+
+      if (userState.xiuxingStatus.value < userState.xiuxingStatus.limit)
+        return false;
+
+      const currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
+      if (currentXiuXing == undefined || !lo.isObject(currentXiuXing.pingjing))
+        return false;
+
+      let nextXiuXing = null;
+      for (let key in userState.__data.xiuxingConfig) {
+        const item = userState.__data.xiuxingConfig[key];
+        if (item.limit > userState.xiuxingStatus.limit) {
+          nextXiuXing = item;
+          break
+        }
+      }
+
+      if (nextXiuXing == null) {
+        Toast.show('修行已满级!');
+        return false;
+      }
+
+      // 扣除修为值
+      userState.xiuxingStatus.value -= userState.xiuxingStatus.limit;
+      userState.xiuxingStatus.limit = nextXiuXing.limit;
+      currentXiuXing.attrs.forEach(e => {
+        const found = userState.xiuxingAttrs.find(x => lo.isEqual(x.key, e.key));
+        if (found != undefined) {
+          found.value = e.value;
+        }
+      });
+
+      //
+      yield put(action('updateState')({}));
+      yield put.resolve(action('syncData')({}));
+      
+      if (lo.isBoolean(currentXiuXing.toastText) && currentXiuXing.toastText) {
+        EffectAnimations.show({ id: 16, period: nextXiuXing.period, level: nextXiuXing.level });
+      } else {
+        Toast.show('成功跨越瓶颈!');
+      }
+      return true;
+    },
+
     // 检测在线修行
     *checkXiuXing({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       const currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
       if (currentXiuXing == undefined)
-        return;
+        return 0;
 
       const diffMillis = DateTime.now() - userState.xiuxingStatus.lastOnlineTime;
-      const minutes = Math.floor(diffMillis / 1000 / 60);
-      if (minutes > 0) {
-        const addXiuXing = minutes * currentXiuXing.increaseXiuXingPerMinute;
-        userState.xiuxingStatus.value += addXiuXing;
+      const seconds = Math.floor(diffMillis / 1000);
+      if (seconds >= 10) { // 每10S刷新一次
+        const addXiuWei = Math.ceil(currentXiuXing.increaseXiuXingPerMinute * seconds / 60);
+        userState.xiuxingStatus.value += addXiuWei;
         userState.xiuxingStatus.lastOnlineTime = DateTime.now();
 
         yield put(action('updateState')({}));
@@ -283,8 +404,10 @@ export default {
         
         // 通知角色属性刷新
         DeviceEventEmitter.emit(EventKeys.USER_ATTR_UPDATE);
-        Toast.show(`获得在线修为${addXiuXing}`);
+        return addXiuWei;
       }
+
+      return 0;
     },
 
     // 获取合并属性值(装备、修行等)

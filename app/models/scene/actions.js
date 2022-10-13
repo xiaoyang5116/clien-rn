@@ -9,7 +9,7 @@ export const ACTIONS_MAP = [
     { cmd: 'delay',         handler: '__onDelayCommand' },
     { cmd: 'copper',        handler: '__onCopperCommand' },
     { cmd: 'attrs',         handler: '__onAttrsCommand' },
-    { cmd: 'xiuxing',       handler: '__onXiuXingCommand' },
+    { cmd: 'xiuwei',        handler: '__onXiuWeiCommand' },
     { cmd: 'wtime',         handler: '__onWorldTimeCommand' },
     { cmd: 'missionTime',   handler: '__onMissionTimeCommand' },
     { cmd: 'var',           handler: '__onVarCommand' },
@@ -62,9 +62,9 @@ export class PropertyActions {
         allActions.push({ id: "__attrs_{0}".format(payload.alterAttrs), cmd: 'attrs', params: payload.alterAttrs });
       }
   
-      // 生成角色修行值修改动作
-      if (payload.alterXiuXing != undefined && lo.isNumber(payload.alterXiuXing)) {
-        allActions.push({ id: "__xiuxing_{0}".format(payload.alterXiuXing), cmd: 'xiuxing', params: payload.alterXiuXing });
+      // 生成角色修为值修改动作
+      if (payload.alterXiuWei != undefined && lo.isNumber(payload.alterXiuWei)) {
+        allActions.push({ id: "__xiuwei_{0}".format(payload.alterXiuWei), cmd: 'xiuwei', params: payload.alterXiuWei });
       }
   
       // 生成世界时间修改动作

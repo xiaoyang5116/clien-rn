@@ -1,10 +1,18 @@
 # ===========================================
 # 修行配置
+# 说明： 
+#   tupo: {...}, pingjing: {...} 突破和瓶颈配置项只能二选一。
 # ===========================================
 xiuxing: [
   {
     # 名称
-    title: '炼体期.一重',
+    title: '锻体.一重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 1,
 
     # 修为上限
     limit: 10000,
@@ -17,11 +25,8 @@ xiuxing: [
       { key: '攻击', value: 100 },
     ],
 
-    # 突破基础成功率
-    successRate: 80,
-
-    # 突破失败后的CD时间(单位秒)
-    failCDTime: 300,
+    # 是否提示美术字
+    toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 100,
@@ -29,7 +34,13 @@ xiuxing: [
 
   {
     # 名称
-    title: '炼体期.二重',
+    title: '锻体.二重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 2,
 
     # 修为上限
     limit: 20000,
@@ -42,11 +53,8 @@ xiuxing: [
       { key: '攻击', value: 200 },
     ],
 
-    # 突破基础成功率
-    successRate: 70,
-
-    # 突破失败后的CD时间(单位秒)
-    failCDTime: 600,
+    # 是否提示美术字
+    toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 200,
@@ -54,10 +62,16 @@ xiuxing: [
 
   {
     # 名称
-    title: '返虚期.三重',
+    title: '锻体.三重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 3,
 
     # 修为上限
-    limit: 50000,
+    limit: 30000,
 
     # 属性加成
     attrs: [
@@ -67,11 +81,14 @@ xiuxing: [
       { key: '攻击', value: 300 },
     ],
 
-    # 突破基础成功率
-    successRate: 60,
+    # 瓶颈配置
+    pingjing: {
+      # 瓶颈成功率(目前统一为100%)
+      successRate: 100,
+    },
 
-    # 突破失败后的CD时间(单位秒)
-    failCDTime: 1200,
+    # 是否提示美术字
+    toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 300,
@@ -79,7 +96,50 @@ xiuxing: [
 
   {
     # 名称
-    title: '返虚期.四重',
+    title: '锻体.四重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 4,
+
+    # 修为上限
+    limit: 50000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 400 },
+      { key: '防御', value: 400 },
+      { key: '法力', value: 400 },
+      { key: '攻击', value: 400 },
+    ],
+
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 60,
+
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 1200,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 300,
+  },
+
+  {
+    # 名称
+    title: '先天.一重',
+
+    # 阶段名称
+    period: '先天',
+
+    # 阶段等级
+    level: 1,
 
     # 修为上限
     limit: 100000,
@@ -92,11 +152,17 @@ xiuxing: [
       { key: '攻击', value: 500 },
     ],
 
-    # 突破基础成功率
-    successRate: 50,
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 50,
 
-    # 突破失败后的CD时间(单位秒)
-    failCDTime: 2400,
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 2400,
+    },
+
+    # 是否提示美术字
+    toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 500,
@@ -104,7 +170,13 @@ xiuxing: [
 
   {
     # 名称
-    title: '返虚期.五重',
+    title: '先天.二重',
+
+    # 阶段名称
+    period: '先天',
+
+    # 阶段等级
+    level: 2,
 
     # 修为上限
     limit: 200000,
@@ -117,11 +189,17 @@ xiuxing: [
       { key: '攻击', value: 1000 },
     ],
 
-    # 突破基础成功率
-    successRate: 5,
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 5,
 
-    # 突破失败后的CD时间(单位秒)
-    failCDTime: 4800,
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 4800,
+    },
+
+    # 是否提示美术字
+    toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 1000,
@@ -129,7 +207,13 @@ xiuxing: [
 
   {
     # 名称
-    title: '返虚期.六重',
+    title: '先天.三重',
+
+    # 阶段名称
+    period: '先天',
+
+    # 阶段等级
+    level: 3,
 
     # 修为上限
     limit: 500000,
@@ -142,11 +226,17 @@ xiuxing: [
       { key: '攻击', value: 2000 },
     ],
 
-    # 突破基础成功率
-    successRate: 5,
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 5,
 
-    # 突破失败后的CD时间(单位秒)
-    failCDTime: 9600,
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 9600,
+    },
+
+    # 是否提示美术字
+    toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 2000,

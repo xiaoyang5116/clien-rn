@@ -15,7 +15,6 @@ import {
     StyleSheet,
 } from "../../constants";
 
-import Modal from 'react-native-modal';
 import ImageCapInset from 'react-native-image-capinsets-next';
 import Toast from '../../components/toast';
 import TransAnimation from './TransAnimation';

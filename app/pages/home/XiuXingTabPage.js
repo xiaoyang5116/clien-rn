@@ -32,6 +32,7 @@ import RootView from '../../components/RootView';
 import * as DateTime from '../../utils/DateTimeUtils';
 import TuPoSubPage from './xiuxing/TuPoSubPage';
 import FastImage from 'react-native-fast-image';
+import WeiXiuAnimation from '../../components/effects/WeiXiuAnimation';
 
 const PROGRESS_BAR_WIDTH = px2pd(800);
 
@@ -185,19 +186,107 @@ const TupoButton = (props) => {
     )
 }
 
+// 瓶颈按钮
+const PingJingButton = (props) => {
+    const spinBack = React.useRef(new Animated.Value(0)).current;
+    const spinBackAnimation = React.useRef(
+        Animated.loop(
+            Animated.timing(
+                spinBack,
+                {
+                    toValue: 1,
+                    duration: 3000,
+                    easing: Easing.linear,
+                    useNativeDriver: true
+                }
+            )
+        )
+    ).current;
+
+    const spinFront = React.useRef(new Animated.Value(0)).current;
+    const spinFrontAnimation = React.useRef(
+        Animated.loop(
+            Animated.timing(
+                spinFront,
+                {
+                    toValue: 1,
+                    duration: 8000,
+                    easing: Easing.linear,
+                    useNativeDriver: true
+                }
+            )
+        )
+    ).current;
+
+    React.useEffect(() => {
+        spinBackAnimation.start();
+        spinFrontAnimation.start();
+        return () => {
+            spinBackAnimation.stop();
+            spinFrontAnimation.stop();
+        }
+    }, []);
+
+    const spinBackValue = spinBack.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['0deg', '360deg']
+    });
+
+    const spinFrontValue = spinFront.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['360deg', '0deg']
+    });
+
+    const onPressHandler = () => {
+        if (props.onPress != undefined) {
+            props.onPress();
+        }
+    }
+
+    return (
+        <TouchableWithoutFeedback onPress={onPressHandler}>
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <FastImage style={{ width: px2pd(312), height: px2pd(312) }} source={require('../../../assets/button/pingjing_btn_bg.png')} />
+                <Animated.Image style={{ position: 'absolute', width: px2pd(250), height: px2pd(250), transform: [{ rotate: spinFrontValue }] }} source={require('../../../assets/button/tupo_btn_yy.png')} />
+                <Animated.Image style={{ position: 'absolute', opacity: 0.5, width: px2pd(180), height: px2pd(180), transform: [{ rotate: spinBackValue }] }} source={require('../../../assets/button/tupo_btn_mask.png')} />
+                <FastImage style={{ position: 'absolute', width: px2pd(183), height: px2pd(108) }} source={require('../../../assets/button/pingjing_btn_txt.png')} />
+            </View>
+        </TouchableWithoutFeedback>
+    )
+}
+
 // 主界面
 const XiuXingTabPage = (props) => {
 
     const refBgVideo = React.useRef(null);
 
-    React.useEffect(() => {
-        AppDispath({ type: 'UserModel/checkXiuXing', payload: {} });
-    }, []);
-
-    const onTuPo = () => {
-        const key = RootView.add(<TuPoSubPage onClose={() => {
+    const showXiuWeiAnimation = (value) => {
+        if (value <= 0)
+            return;
+            
+        const key = RootView.add(<WeiXiuAnimation values={[`${value}`]} onClose={() => {
             RootView.remove(key);
         }} />);
+    }
+
+    React.useEffect(() => {
+        AppDispath({ type: 'UserModel/checkXiuXing', payload: {}, cb: (v) => showXiuWeiAnimation(v) });
+        const timer = setInterval(() => {
+            AppDispath({ type: 'UserModel/checkXiuXing', payload: {}, cb: (v) => showXiuWeiAnimation(v) });
+        }, 1000 * 10);
+        return () => {
+            clearInterval(timer);
+        }
+    }, []);
+
+    const onTuPo = (config) => {
+        const key = RootView.add(<TuPoSubPage config={config} onClose={() => {
+            RootView.remove(key);
+        }} />);
+    }
+
+    const onPingJing = () => {
+        AppDispath({ type: 'UserModel/pingJingXiuXing', payload: {} });
     }
 
     const getXiuXingAttrValue = (key) => {
@@ -207,6 +296,15 @@ const XiuXingTabPage = (props) => {
 
     const currentXiuXingConfig = props.user.__data.xiuxingConfig.find(e => e.limit == props.user.xiuxingStatus.limit);
     const cdForbiden = (props.user.xiuxingStatus.cdTime > 0 && DateTime.now() < props.user.xiuxingStatus.cdTime);
+
+    let tupoPingjingBtn = (<></>);
+    if ((props.user.xiuxingStatus.value >= props.user.xiuxingStatus.limit) && !cdForbiden) {
+        if (currentXiuXingConfig.tupo != undefined) {
+            tupoPingjingBtn = (<TupoButton onPress={() => onTuPo(currentXiuXingConfig)} />);
+        } else if (currentXiuXingConfig.pingjing != undefined) {
+            tupoPingjingBtn = (<PingJingButton onPress={onPingJing} />);
+        }
+    }
 
     return (
         <Panel patternId={0}>
@@ -240,18 +338,16 @@ const XiuXingTabPage = (props) => {
                     </View>
                     <View style={{ marginTop: px2pd(400), marginBottom: px2pd(150), justifyContent: 'center', alignItems: 'center' }}>
                         <View style={{ position: 'absolute', paddingLeft: px2pd(20) }}>
-                            {((props.user.xiuxingStatus.value < props.user.xiuxingStatus.limit) || cdForbiden)
-                            ? <></>
-                            : <TupoButton onPress={onTuPo} />
-                            }
+                            {tupoPingjingBtn}
                         </View>
-                        {(cdForbiden)
-                        ? (
-                        <View style={{ position: 'absolute', top: px2pd(180) }}>
-                            <Text style={styles.cdFontStyle}>等待时间: {DateTime.format(props.user.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
-                        </View>
-                        )
-                        : <></>
+                        {
+                        (cdForbiden)
+                            ? (
+                                <View style={{ position: 'absolute', top: px2pd(180) }}>
+                                    <Text style={styles.cdFontStyle}>等待时间: {DateTime.format(props.user.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
+                                </View>
+                            )
+                            : <></>
                         }
                     </View>
                     <View style={{ marginTop: px2pd(100) }}>
