@@ -3,10 +3,7 @@ import {
   Text,
   View,
   SafeAreaView,
-  TouchableOpacity,
-  ImageBackground,
-  TouchableWithoutFeedback,
-  Image,
+  Dimensions
 } from 'react-native';
 import React, { useEffect } from 'react';
 
@@ -22,38 +19,10 @@ import PropGrid from '../../components/prop/PropGrid';
 import { TextButton, Header3, ImageButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import RewardsPage from './components/RewardsPage';
-import Carousel from 'react-native-snap-carousel'
 
-const GuidePage = () => {
-  const DATA = [1, 2]
-  const sliderWidth = Dimensions.get('window').width
-  const itemWidth = Dimensions.get('window').width
-  const _carouselRef = useRef()
-  return (
-    <View style={{ flex: 1, zIndex: 99, }}>
-      <Carousel
-        data={DATA}
-        ref={_carouselRef}
-        renderItem={_renderItem}
-        sliderWidth={sliderWidth}
-        itemWidth={itemWidth}
-        firstItem={0}
-        inactiveSlideShift={1}
-        inactiveSlideScale={1}
-      // onSnapToItem={index => setTabIndex(index)}
-      />
-    </View>
-  )
-}
 
 const AlchemyRoom = props => {
-  const { alchemyData, isOpenBoot } = props;
-
-  // useEffect(() => {
-  //   const key = RootView.add(
-  //     <GuidePage onClose={() => { RootView.remove(key); }} />
-  //   )
-  // }, [])
+  const { alchemyData } = props;
 
   const openDanFangPage = () => {
     const key = RootView.add(
