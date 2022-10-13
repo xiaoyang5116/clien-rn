@@ -85,9 +85,9 @@ scenes: [
             sections: {
               content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
               btn: [
-                { title: '穿越', toScene: "wzkj" },
-                { title: '破庙', toScene: "pomiao" },
-                { title: '退出', dialogs: ['p1'] },
+              { title: '穿越', toScene: "wzkj" },
+              { title: '破庙', toScene: "pomiao" },
+              { title: '退出', dialogs: ['p1'] },
               ]
             },  
           },
@@ -96,10 +96,10 @@ scenes: [
             sections: {
               content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
               btn: [
-                { title: '破庙', toScene: "pomiao" },
-                { title: '退出', dialogs: ['p1'] },
+              { title: '破庙', toScene: "pomiao" },
+              { title: '退出', dialogs: ['p1'] },
               ]
-            },  
+            },
           },
         ],
     },
