@@ -22,6 +22,7 @@ import EventListeners from '../utils/EventListeners';
 import Toast from '../components/toast';
 import * as DateTime from '../utils/DateTimeUtils';
 import WorldUtils from "../utils/WorldUtils";
+import EffectAnimations from "../components/effects";
 
 export default {
   namespace: 'UserModel',
@@ -209,7 +210,7 @@ export default {
         return false;
 
       const currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
-      if (currentXiuXing == undefined)
+      if (currentXiuXing == undefined || !lo.isObject(currentXiuXing.tupo))
         return false;
 
       let nextXiuXing = null;
@@ -285,7 +286,9 @@ export default {
       }
 
       if (success) {
-        Toast.show('突破成功!');
+        if (lo.isBoolean(currentXiuXing.toastText) && currentXiuXing.toastText) {
+          EffectAnimations.show({ id: 16, period: nextXiuXing.period, level: nextXiuXing.level });
+        }
       } else {
         Toast.show('突破失败');
       }
@@ -307,7 +310,7 @@ export default {
         return false;
 
       const currentXiuXing = userState.__data.xiuxingConfig.find(e => e.limit == userState.xiuxingStatus.limit);
-      if (currentXiuXing == undefined)
+      if (currentXiuXing == undefined || !lo.isObject(currentXiuXing.pingjing))
         return false;
 
       let nextXiuXing = null;
@@ -338,7 +341,11 @@ export default {
       yield put(action('updateState')({}));
       yield put.resolve(action('syncData')({}));
       
-      Toast.show('成功跨越瓶颈!');
+      if (lo.isBoolean(currentXiuXing.toastText) && currentXiuXing.toastText) {
+        EffectAnimations.show({ id: 16, period: nextXiuXing.period, level: nextXiuXing.level });
+      } else {
+        Toast.show('成功跨越瓶颈!');
+      }
       return true;
     },
 

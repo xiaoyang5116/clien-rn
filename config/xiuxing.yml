@@ -6,7 +6,13 @@
 xiuxing: [
   {
     # 名称
-    title: '炼体期.一重',
+    title: '锻体.一重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 1,
 
     # 修为上限
     limit: 10000,
@@ -25,13 +31,22 @@ xiuxing: [
       successRate: 100,
     },
 
+    # 是否提示美术字
+    toastText: true,
+
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 100,
   },
 
   {
     # 名称
-    title: '炼体期.二重',
+    title: '锻体.二重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 2,
 
     # 修为上限
     limit: 20000,
@@ -56,13 +71,22 @@ xiuxing: [
       props: [{ propId: 28, num: 1 }, { propId: 29, num: 1 }],
     },
 
+    # 是否提示美术字
+    toastText: true,
+
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 200,
   },
 
   {
     # 名称
-    title: '返虚期.三重',
+    title: '锻体.三重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 3,
 
     # 修为上限
     limit: 50000,
@@ -84,13 +108,22 @@ xiuxing: [
       failCDTime: 1200,
     },
 
+    # 是否提示美术字
+    toastText: true,
+
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 300,
   },
 
   {
     # 名称
-    title: '返虚期.四重',
+    title: '先天.一重',
+
+    # 阶段名称
+    period: '先天',
+
+    # 阶段等级
+    level: 1,
 
     # 修为上限
     limit: 100000,
@@ -112,13 +145,22 @@ xiuxing: [
       failCDTime: 2400,
     },
 
+    # 是否提示美术字
+    toastText: true,
+
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 500,
   },
 
   {
     # 名称
-    title: '返虚期.五重',
+    title: '先天.二重',
+
+    # 阶段名称
+    period: '先天',
+
+    # 阶段等级
+    level: 2,
 
     # 修为上限
     limit: 200000,
@@ -140,13 +182,22 @@ xiuxing: [
       failCDTime: 4800,
     },
 
+    # 是否提示美术字
+    toastText: true,
+
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 1000,
   },
 
   {
     # 名称
-    title: '返虚期.六重',
+    title: '先天.三重',
+
+    # 阶段名称
+    period: '先天',
+
+    # 阶段等级
+    level: 3,
 
     # 修为上限
     limit: 500000,
@@ -167,6 +218,9 @@ xiuxing: [
       # 突破失败后的CD时间(单位秒)
       failCDTime: 9600,
     },
+
+    # 是否提示美术字
+    toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 2000,
