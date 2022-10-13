@@ -34,7 +34,7 @@ const PropPlaceHolder = (props) => {
         }
     }
     const chooseProp = () => {
-        const key = RootView.add(<PropSelector attrFilter={'修行'} onSelected={onSelectedProp} onClose={() => {
+        const key = RootView.add(<PropSelector attrFilter={'突破丹'} onSelected={onSelectedProp} onClose={() => {
             RootView.remove(key);
         }} />);
     }
