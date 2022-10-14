@@ -205,13 +205,15 @@ const drawGrids = ({ data, initialCenterPoint, onClose }) => {
     const isCenterPoint = (e.point[0] == initialCenterPoint[0] && e.point[1] == initialCenterPoint[1]);
     const isMoveDenied = (e.toScene == undefined);
 
-    let gridImg = isCenterPoint 
-      ? require('../../../assets/button/scene_map_button.png') 
-      : require('../../../assets/button/scene_map_button2.png');
+    let gridImg = null;
 
     if (isMoveDenied) {
       gridImg = require('../../../assets/button/scene_map_button3.png');
     }
+
+    gridImg = isCenterPoint 
+      ? require('../../../assets/button/scene_map_button.png') 
+      : require('../../../assets/button/scene_map_button2.png');
 
     const borderEffect = isCenterPoint 
       ? { borderWidth: 1.5, borderColor: '#31aac8', borderRadius: 5 } 
