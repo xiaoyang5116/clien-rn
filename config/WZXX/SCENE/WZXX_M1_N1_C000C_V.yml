@@ -55,23 +55,23 @@ scenes: [
         id: 'WZXX_M1_N1_C000C_V', desc: '回忆', 
         options: [ 
           { title: "【辞职当天】",
-          # dialogs: ['d3'],
-          toScene: 'C000C_V_MAP_0_4', varsOn: ['v_icon_100',]},
+          dialogs: ['d3'],
+           varsOn: ['v_icon_100',]},
         ],
       },
    
     
         ],
           # 对话框
-    # dialogs: [    
+    dialogs: [    
 
-    #  {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
-    #     sections: [
-    #      {
-    #       key: 'p1',
-    #       content: ['李森炎回忆起自己离职当天', '那些人的音容还历历在目','如果我没有穿越的话','或许还能再见到他们……',],
-    # },]}
-    # ],
+     {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
+        sections: [
+         {
+          key: 'p1',
+          content: ['李森炎回忆起自己离职当天', '那些人的音容还历历在目','如果我没有穿越的话','或许还能再见到他们……',[{toScene: 'C000C_V_MAP_0_4',transitionAnimation: '白色转场带背景',}]],
+    },]}
+    ],
 
   },
 
@@ -102,10 +102,12 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  
-       dialogs: ['d3'], 
-      andVarsOff: ['ONE_OPEN_0',],   nextChat: 'C1'  },
-     { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_100',],  nextChat: 'C1'  },
+      #  { type: 'enter',  
+      #  dialogs: ['d3'], 
+      # andVarsOff: ['ONE_OPEN_0',],   nextChat: 'C1'  },
+     { type: 'enter',  
+    #  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_100',],
+       nextChat: 'C1'  },
       #  { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_101',],  nextChat: 'C3'  },
       #  { type: 'enter',  andVarsOn: ['ONE_OPEN_0','WZXX_M1_N1_C000C_V/v_icon_102',],  nextChat: 'C4'  },
     ],
