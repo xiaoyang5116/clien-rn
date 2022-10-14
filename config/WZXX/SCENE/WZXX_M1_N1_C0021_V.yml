@@ -47,14 +47,19 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0021_V3', desc: '抉择', 
         options: [ 
-          { title: "【修炼成功】",alterXiuWei: 5000, icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: "【修炼成功】",alterXiuWei: 5000, icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'],
+           animations: { id: 15, values: ['332','123','743','212','312','454','345','75','453','234','736','656','452','242','66','224','677','345','323','677','845','321','433','212','74','221','112','154','165','187','189','235','234',]} 
+           },
         ],
       },
 
-       { 
+      { 
         id: 'WZXX_M1_N1_C0021_V4', desc: '抉择', 
         options: [ 
-          { title: "【修炼成功！】",alterXiuWei: 6000, icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+          { 
+          title: "【修炼成功！】",alterXiuWei: 10000, icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'],
+          animations: { id: 15, values: ['462','123','1123','242','312','454','1767','756','453','2324','1736','656','452','242','166','224','1677','345','323','1677','845','321','433','2112','74','2231','112','1354','165','1837','1829','2355','2324','3423','2345','754','234',]}
+           },
         ],
       },
         ],
