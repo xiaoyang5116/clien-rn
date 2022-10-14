@@ -40,6 +40,12 @@ scenes: [
         ],
       },
 
+      { 
+        id: 'WZXX_M1_N1_C0017_V3', desc: '寻找医灵', 
+        options: [ 
+          { title: "【这叫什么事……】",toChapter: "WZXX_M1_N1_C015_[N1]",},
+        ],
+      },
 
 
         ],

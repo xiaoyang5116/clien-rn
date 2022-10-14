@@ -15,21 +15,21 @@ xiuxing: [
     level: 1,
 
     # 修为上限
-    limit: 10000,
+    limit: 1000,
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 100 },
-      { key: '防御', value: 100 },
-      { key: '法力', value: 100 },
-      { key: '攻击', value: 100 },
+      { key: '体力', value: 10 },
+      { key: '防御', value: 10 },
+      { key: '法力', value: 10 },
+      { key: '攻击', value: 10 },
     ],
 
     # 是否提示美术字
     toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
-    increaseXiuXingPerMinute: 100,
+    increaseXiuXingPerMinute: 60,
   },
 
   {
@@ -43,21 +43,21 @@ xiuxing: [
     level: 2,
 
     # 修为上限
-    limit: 20000,
+    limit: 2000,
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 200 },
-      { key: '防御', value: 200 },
-      { key: '法力', value: 200 },
-      { key: '攻击', value: 200 },
+      { key: '体力', value: 10 },
+      { key: '防御', value: 10 },
+      { key: '法力', value: 10 },
+      { key: '攻击', value: 10 },
     ],
 
     # 是否提示美术字
     toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
-    increaseXiuXingPerMinute: 200,
+    increaseXiuXingPerMinute: 60,
   },
 
   {
@@ -71,14 +71,14 @@ xiuxing: [
     level: 3,
 
     # 修为上限
-    limit: 30000,
+    limit: 3000,
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 300 },
-      { key: '防御', value: 300 },
-      { key: '法力', value: 300 },
-      { key: '攻击', value: 300 },
+      { key: '体力', value: 10 },
+      { key: '防御', value: 10 },
+      { key: '法力', value: 10 },
+      { key: '攻击', value: 10 },
     ],
 
     # 瓶颈配置
@@ -91,7 +91,7 @@ xiuxing: [
     toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
-    increaseXiuXingPerMinute: 300,
+    increaseXiuXingPerMinute: 60,
   },
 
   {
@@ -105,14 +105,14 @@ xiuxing: [
     level: 4,
 
     # 修为上限
-    limit: 50000,
+    limit: 4000,
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 400 },
-      { key: '防御', value: 400 },
-      { key: '法力', value: 400 },
-      { key: '攻击', value: 400 },
+      { key: '体力', value: 10 },
+      { key: '防御', value: 10 },
+      { key: '法力', value: 10 },
+      { key: '攻击', value: 10 },
     ],
 
     # 突破配置
@@ -128,8 +128,182 @@ xiuxing: [
     toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
-    increaseXiuXingPerMinute: 300,
+    increaseXiuXingPerMinute: 60,
   },
+
+    {
+    # 名称
+    title: '锻体.五重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 5,
+
+    # 修为上限
+    limit: 5000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10 },
+      { key: '防御', value: 10 },
+      { key: '法力', value: 10 },
+      { key: '攻击', value: 10 },
+    ],
+
+    # 瓶颈配置
+    pingjing: {
+      # 瓶颈成功率(目前统一为100%)
+      successRate: 100,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 60,
+  },
+
+  {
+    # 名称
+    title: '锻体.六重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 6,
+
+    # 修为上限
+    limit: 6000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10 },
+      { key: '防御', value: 10 },
+      { key: '法力', value: 10 },
+      { key: '攻击', value: 10 },
+    ],
+
+      # 瓶颈配置
+    pingjing: {
+      # 瓶颈成功率(目前统一为100%)
+      successRate: 100,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 60,
+  },
+
+   {
+    # 名称
+    title: '锻体.七重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 7,
+
+    # 修为上限
+    limit: 7000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10 },
+      { key: '防御', value: 10 },
+      { key: '法力', value: 10 },
+      { key: '攻击', value: 10 },
+    ],
+
+      # 瓶颈配置
+    pingjing: {
+      # 瓶颈成功率(目前统一为100%)
+      successRate: 100,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 60,
+  },
+
+  {
+    # 名称
+    title: '锻体.八重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 8,
+
+    # 修为上限
+    limit: 8000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10 },
+      { key: '防御', value: 10 },
+      { key: '法力', value: 10 },
+      { key: '攻击', value: 10 },
+    ],
+
+     # 瓶颈配置
+    pingjing: {
+      # 瓶颈成功率(目前统一为100%)
+      successRate: 100,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 60,
+  },
+
+   {
+    # 名称
+    title: '锻体.九重',
+
+    # 阶段名称
+    period: '锻体',
+
+    # 阶段等级
+    level: 9,
+
+    # 修为上限
+    limit: 9000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10 },
+      { key: '防御', value: 10 },
+      { key: '法力', value: 10 },
+      { key: '攻击', value: 10 },
+    ],
+
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 60,
+
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 1200,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 60,
+  },
+
 
   {
     # 名称
@@ -152,13 +326,10 @@ xiuxing: [
       { key: '攻击', value: 500 },
     ],
 
-    # 突破配置
-    tupo: {
-      # 突破基础成功率
-      successRate: 50,
-
-      # 突破失败后的CD时间(单位秒)
-      failCDTime: 2400,
+     # 瓶颈配置
+    pingjing: {
+      # 瓶颈成功率(目前统一为100%)
+      successRate: 100,
     },
 
     # 是否提示美术字
@@ -167,6 +338,8 @@ xiuxing: [
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 500,
   },
+
+  
 
   {
     # 名称
