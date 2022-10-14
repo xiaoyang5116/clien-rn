@@ -319,9 +319,9 @@ scenes: [
           { point: [0, 1], title: '原神', toScene: 'wzkj', links: [], icon: { id: 104, bindVar: 'v_icon_104' } },
           { point: [1, 0], title: '天仙', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
           { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
-          { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
+          { point: [-1, 0], title: '天使', toScene: 'wzkj_map_ok', links: [[0, 1], [0, -1]] },
           { point: [-2, 0], title: '老者', links: [[-1, 0]] },
-          { point: [-1, -1], title: '地主', toScene: 'pomiao', icon: { id: 100, bindVar: 'v_icon_100' }, links: [[-1, 0], [0, -1]], path: [[-1, -2], [0, -2], [1, -2], [1, -1], [1, 0]] },
+          { point: [-1, -1], title: '地主', toScene: 'wzkj_map_ok2', icon: { id: 100, bindVar: 'v_icon_100' }, links: [[-1, 0], [0, -1]], path: [[-1, -2], [0, -2], [1, -2], [1, -1], [1, 0]] },
         ]
       },
       {
@@ -352,6 +352,90 @@ scenes: [
         options: [ 
           { title: '【返回调试主界面】', toScene: 'wzkj' }, 
           { title: '【移动地图中心点_P1】', toMapPoint: [0, 0] }, 
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  # 地图(跳转)
+  {
+    id: 'wzkj_map_ok', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 当前场景地图
+    mapId: 'map1',
+
+    # 地图中心点
+    mapCenterPoint: [-1, 0],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '地图天使', 
+        options: [ 
+          { title: '【返回地图功能界面】', toScene: 'wzkj_map' }, 
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  # 地图(跳转2)
+  {
+    id: 'wzkj_map_ok2', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 当前场景地图
+    mapId: 'map1',
+
+    # 地图中心点
+    mapCenterPoint: [-1, -1],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '地图(地主)', 
+        options: [ 
+          { title: '【返回地图功能界面】', toScene: 'wzkj_map' }, 
         ],
       },
     ],
