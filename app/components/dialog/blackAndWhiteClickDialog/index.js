@@ -27,6 +27,7 @@ const BlackAndWhiteClickDialog = (props) => {
       }
     }
   }, [])
+
   // 下一段话
   const nextParagraph = () => {
     if (currentIndex < currentDialogueLength) {
@@ -34,6 +35,9 @@ const BlackAndWhiteClickDialog = (props) => {
       if (Array.isArray(currentTextList[currentIndex + 1])) {
         specialEffects(currentTextList[currentIndex + 1])
         setCurrentIndex(currentIndex + 2);
+        if (currentIndex + 1 === currentDialogueLength) {
+          props.onDialogCancel();
+        }
       }
       else {
         setCurrentIndex(currentIndex + 1);
@@ -46,39 +50,13 @@ const BlackAndWhiteClickDialog = (props) => {
     }
   };
 
-  // 显示下一个对话
-  const nextDialogue = item => {
-    if (item === undefined) {
-      props.onDialogCancel();
-      return null
-    }
-
-    const newDialogue = sections.filter(i => i.key === item.tokey);
-
-    if (newDialogue.length > 0) {
-      setCurrentTextList(newDialogue[0].content);
-      setShowBtnList(newDialogue[0].btn);
-      setCurrentIndex(0);
-    } else {
-      if (item.animation !== undefined) {
-        animationEndListener.current = DeviceEventEmitter.addListener(EventKeys.ANIMATION_END, props.onDialogCancel);
-      }
-      else {
-        props.onDialogCancel();
-      }
-    }
-    actionMethod(item)
-  };
-
 
 
   if (style === 9 || style === "9A") {
     return (
       <WhiteDialog
         nextParagraph={nextParagraph}
-        nextDialogue={nextDialogue}
         currentTextList={currentTextList}
-        showBtnList={showBtnList}
         currentIndex={currentIndex}
         currentDialogueLength={currentDialogueLength}
         {...props.viewData}
@@ -88,9 +66,7 @@ const BlackAndWhiteClickDialog = (props) => {
     return (
       <BlackDialog
         nextParagraph={nextParagraph}
-        nextDialogue={nextDialogue}
         currentTextList={currentTextList}
-        showBtnList={showBtnList}
         currentIndex={currentIndex}
         currentDialogueLength={currentDialogueLength}
         {...props.viewData}
