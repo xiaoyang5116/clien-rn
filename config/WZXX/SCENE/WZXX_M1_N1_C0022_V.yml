@@ -24,22 +24,22 @@ scenes: [
       #
 
       { 
-        id: 'WZXX_M1_N1_C0022_V1', desc: '尖叫的女人', 
+        id: 'WZXX_M1_N1_C0022_V1', desc: '……', 
         options: [ 
           { title: "【睁开眼睛动怒，瞪回去！】",dialogs: ['C0022A_zhengkaiyanA'],},
-          { title: "【干脆装睡，看看是什么情况】",toChapter: "WZXX_M1_N1_C023",},
+          { title: "【干脆装睡，看看是什么情况】",toChapter: "WZXX_M1_N1_C023_[N2]",},
         ],
       },
 
       { 
-        id: 'WZXX_M1_N1_C0022_V2', desc: '尖叫的女人', 
+        id: 'WZXX_M1_N1_C0022_V2', desc: '……', 
         options: [ 
           { title: "【终有一日别】",toChapter: "WZXX_M1_N1_C023_[N1]"},
         ],
       },
 
        { 
-        id: 'WZXX_M1_N1_C0022_V3', desc: '尖叫的女人', 
+        id: 'WZXX_M1_N1_C0022_V3', desc: '……', 
         options: [ 
           { title: "【好的不灵坏的灵！】",toChapter: "WZXX_M1_N1_C024_[N1]"},
         ],
