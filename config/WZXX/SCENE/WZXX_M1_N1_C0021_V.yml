@@ -36,6 +36,13 @@ scenes: [
         ],
       },
 
+      { 
+        id: 'WZXX_M1_N1_C0021_V2', desc: '抉择', 
+        options: [ 
+          { title: "【选择分支】",dialogs: ['C0020A_buyaoA'],},
+        ],
+      },
+
       
 
 
@@ -45,6 +52,15 @@ scenes: [
       # 对话框
       dialogs:
         [
+      { id: 'C0020A_buyaoA', style: 12,title: '抉择',
+         sections: {
+            content: '究竟是选择留下来待在医灵身边增加更多好感度，还是去寻找陶老专心修炼呢？',
+            btn: [
+          { title: "【跟着陶老修行】", toChapter: "WZXX_M1_N1_C022" },
+          { title: "【寻找医灵修行】", toChapter: "WZXX_M1_N2_C016" },
+            ]
+        },  
+       },
 
 
 

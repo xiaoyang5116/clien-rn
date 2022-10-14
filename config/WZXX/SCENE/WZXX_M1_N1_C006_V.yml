@@ -85,14 +85,14 @@ scenes: [
       #   ],
       # },
 
-       { 
-        id: 'WZXX_M1_N1_C006_V5', desc: '挑战成功', 
-        options: [ 
-          { title: "【向东走】",dialogs: ['C006A_xiangdonA'], icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},
-          { title: "【向西走】",dialogs: ['C006A_xiangxiA'], icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']},
+      #  { 
+      #   id: 'WZXX_M1_N1_C006_V5', desc: '挑战成功', 
+      #   options: [ 
+      #     { title: "【向东走】",dialogs: ['C006A_xiangdonA'], icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},
+      #     { title: "【向西走】",dialogs: ['C006A_xiangxiA'], icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']},
      
-        ],
-      },
+      #   ],
+      # },
       # 文字选项
       #  { 
       #   id: 'WZXX_M1_N1_C006_drop1', desc: '挑战成功', plain: true,
@@ -107,7 +107,7 @@ scenes: [
         { 
         id: 'WZXX_M1_N1_C006_V6', desc: '重大选择', 
         options: [ 
-          { title: "【大支线选择】",dialogs: ['C006A_xuanze'], },
+          { title: "【离开寻找陶老】",toChapter: "WZXX_M1_N1_C014_[N1]"  },
          
         ],
       },
@@ -135,15 +135,15 @@ scenes: [
       # 对话框
       dialogs:
         [
-        { id: 'C006A_xuanze', style: 12,title: '抉择',
-         sections: {
-            content: '究竟是选择留下来待在医灵身边增加更多好感度，还是去寻找陶老专心修炼呢？',
-            btn: [
-          { title: "【离开寻找陶老（分支A）】", toChapter: "WZXX_M1_N1_C014_[N1]" },
-          { title: "【留在医灵身边（分支B）】", toChapter: "WZXX_M1_N2_C014" },
-            ]
-        },  
-    },
+    #     { id: 'C006A_xuanze', style: 12,title: '抉择',
+    #      sections: {
+    #         content: '究竟是选择留下来待在医灵身边增加更多好感度，还是去寻找陶老专心修炼呢？',
+    #         btn: [
+    #       { title: "【离开寻找陶老（分支A）】", toChapter: "WZXX_M1_N1_C014_[N1]" },
+    #       { title: "【留在医灵身边（分支B）】", toChapter: "WZXX_M1_N2_C014" },
+    #         ]
+    #     },  
+    # },
 
         
 

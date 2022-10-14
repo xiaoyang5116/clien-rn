@@ -48,6 +48,7 @@ scenes: [
               { title: '字帖小游戏', games: {id: 5, word: ["木"], fail: {toScene: "wzkj"}, success: {toScene: "pomiao"} } },
               { title: '华丽模版', dialogs: ['p4']},
               { title: '华丽模版2', dialogs: ['p5']},
+              { title: '9号模版', dialogs: ['p6']},
             ],
           },
         ],
@@ -101,6 +102,12 @@ scenes: [
               ]
             },
           },
+          {
+            id: 'p6', style: "9A", textAnimationType: 'TextSingle',
+            sections: [
+              { key: 'p1', content: [ '李森炎回忆起自己离职当天', '那些人的音容还历历在目', '如果我没有穿越的话', '或许还能再见到他们……', [{toScene: 'C000C_V_MAP_0_4',transitionAnimation: '白色转场带背景',}] ], },
+            ]
+          }
         ],
     },
   ]

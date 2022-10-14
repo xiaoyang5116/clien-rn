@@ -34,7 +34,8 @@ const DialogRoutes = (props) => {
         }
 
         // 场景里的动作
-        props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
+        // props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
+        ArticleOptionActions.invoke({ __sceneId, ...item });
 
         // 发送道具
         if (item.props !== undefined) {
@@ -66,7 +67,6 @@ const DialogRoutes = (props) => {
                 Animation(item)
             }
             else {
-                // props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
                 ArticleOptionActions.invoke({ __sceneId, ...item });
             }
         });

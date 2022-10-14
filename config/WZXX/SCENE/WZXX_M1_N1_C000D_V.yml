@@ -53,6 +53,8 @@ scenes: [
       worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000D_V_MAP_-2_1',
+    #横图显示
+    sceneImage: 'BGT_92',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-2, 1],
 
@@ -130,6 +132,8 @@ scenes: [
     mapId: 'C000D_V_MAP_-3_2',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-3, 2],
+    #横图显示
+    sceneImage: 'BGT_91',
 
      # 变量定义
     vars: [
@@ -199,6 +203,8 @@ scenes: [
     mapId: 'C000D_V_MAP_-3_3',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-3, 3],
+    #横图显示
+    sceneImage: 'BGT_89',
 
      # 变量定义
     vars: [
@@ -260,6 +266,8 @@ scenes: [
     mapId: 'C000D_V_MAP_-2_4',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-2, 4],
+    #横图显示
+    sceneImage: 'BGT_90',
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -322,6 +330,8 @@ scenes: [
     mapId: 'C000D_V_MAP_-1_3',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 3],
+    #横图显示
+    sceneImage: 'BGT_87',
 
      # 变量定义
     vars: [
@@ -382,6 +392,8 @@ scenes: [
     mapId: 'C000D_V_MAP_-1_2',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 2],
+    #横图显示
+    sceneImage: 'BGT_88',
     # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -614,6 +626,8 @@ scenes: [
     mapId: 'C000D_V1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-2, 1],
+    #横图显示
+    sceneImage: 'BGT_92',
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -655,6 +669,8 @@ scenes: [
     mapId: 'C000D_V1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-3, 2],
+    #横图显示
+    sceneImage: 'BGT_91',
 
      # 变量定义
     vars: [
@@ -698,6 +714,8 @@ scenes: [
     mapId: 'C000D_V1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-3, 3],
+    #横图显示
+    sceneImage: 'BGT_89',
 
      # 变量定义
     vars: [
@@ -747,6 +765,8 @@ scenes: [
     mapId: 'C000D_V1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-2, 4],
+    #横图显示
+    sceneImage: 'BGT_90',
 
      # 变量定义
     vars: [
@@ -796,6 +816,8 @@ scenes: [
     mapId: 'C000D_V1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 3],
+    #横图显示
+    sceneImage: 'BGT_87',
 
      # 变量定义
     vars: [
@@ -839,6 +861,8 @@ scenes: [
     mapId: 'C000D_V1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 2],
+    #横图显示
+    sceneImage: 'BGT_88',
 
      # 变量定义
     vars: [
