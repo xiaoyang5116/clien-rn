@@ -81,11 +81,7 @@ xiuxing: [
       { key: '攻击', value: 10 },
     ],
 
-    # 瓶颈配置
-    pingjing: {
-      # 瓶颈成功率(目前统一为100%)
-      successRate: 100,
-    },
+ 
 
     # 是否提示美术字
     toastText: true,
@@ -115,15 +111,6 @@ xiuxing: [
       { key: '攻击', value: 10 },
     ],
 
-    # 突破配置
-    tupo: {
-      # 突破基础成功率
-      successRate: 60,
-
-      # 突破失败后的CD时间(单位秒)
-      failCDTime: 1200,
-    },
-
     # 是否提示美术字
     toastText: true,
 
@@ -152,12 +139,7 @@ xiuxing: [
       { key: '攻击', value: 10 },
     ],
 
-    # 瓶颈配置
-    pingjing: {
-      # 瓶颈成功率(目前统一为100%)
-      successRate: 100,
-    },
-
+ 
     # 是否提示美术字
     toastText: true,
 
@@ -186,12 +168,7 @@ xiuxing: [
       { key: '攻击', value: 10 },
     ],
 
-      # 瓶颈配置
-    pingjing: {
-      # 瓶颈成功率(目前统一为100%)
-      successRate: 100,
-    },
-
+  
     # 是否提示美术字
     toastText: true,
 
@@ -220,11 +197,7 @@ xiuxing: [
       { key: '攻击', value: 10 },
     ],
 
-      # 瓶颈配置
-    pingjing: {
-      # 瓶颈成功率(目前统一为100%)
-      successRate: 100,
-    },
+
 
     # 是否提示美术字
     toastText: true,
@@ -254,11 +227,6 @@ xiuxing: [
       { key: '攻击', value: 10 },
     ],
 
-     # 瓶颈配置
-    pingjing: {
-      # 瓶颈成功率(目前统一为100%)
-      successRate: 100,
-    },
 
     # 是否提示美术字
     toastText: true,
@@ -316,14 +284,14 @@ xiuxing: [
     level: 1,
 
     # 修为上限
-    limit: 100000,
+    limit: 10000,
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 500 },
-      { key: '防御', value: 500 },
-      { key: '法力', value: 500 },
-      { key: '攻击', value: 500 },
+      { key: '体力', value: 20 },
+      { key: '防御', value: 20 },
+      { key: '法力', value: 20 },
+      { key: '攻击', value: 20 },
     ],
 
      # 瓶颈配置
@@ -336,7 +304,7 @@ xiuxing: [
     toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
-    increaseXiuXingPerMinute: 500,
+    increaseXiuXingPerMinute: 60,
   },
 
   
@@ -352,30 +320,30 @@ xiuxing: [
     level: 2,
 
     # 修为上限
-    limit: 200000,
+    limit: 20000,
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 1000 },
-      { key: '防御', value: 1000 },
-      { key: '法力', value: 1000 },
-      { key: '攻击', value: 1000 },
+      { key: '体力', value: 20 },
+      { key: '防御', value: 20 },
+      { key: '法力', value: 20 },
+      { key: '攻击', value: 20 },
     ],
 
     # 突破配置
     tupo: {
       # 突破基础成功率
-      successRate: 5,
+      successRate: 60,
 
       # 突破失败后的CD时间(单位秒)
-      failCDTime: 4800,
+      failCDTime: 1200,
     },
 
     # 是否提示美术字
     toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
-    increaseXiuXingPerMinute: 1000,
+    increaseXiuXingPerMinute: 69,
   },
 
   {
@@ -389,29 +357,251 @@ xiuxing: [
     level: 3,
 
     # 修为上限
-    limit: 500000,
+    limit: 30000,
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 2000 },
-      { key: '防御', value: 2000 },
-      { key: '法力', value: 2000 },
-      { key: '攻击', value: 2000 },
+      { key: '体力', value: 20 },
+      { key: '防御', value: 20 },
+      { key: '法力', value: 20 },
+      { key: '攻击', value: 20 },
     ],
 
-    # 突破配置
+   # 突破配置
     tupo: {
       # 突破基础成功率
-      successRate: 5,
+      successRate: 60,
 
       # 突破失败后的CD时间(单位秒)
-      failCDTime: 9600,
+      failCDTime: 1200,
     },
 
     # 是否提示美术字
     toastText: true,
 
     # 在线修行(每分钟增加多少点修为)
-    increaseXiuXingPerMinute: 2000,
+    increaseXiuXingPerMinute: 104,
+  },
+
+   {
+    # 名称
+    title: '先天.四重',
+
+    # 阶段名称
+    period: '先天',
+
+    # 阶段等级
+    level: 4,
+
+    # 修为上限
+    limit: 40000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 20 },
+      { key: '防御', value: 20 },
+      { key: '法力', value: 20 },
+      { key: '攻击', value: 20 },
+    ],
+
+   # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 60,
+
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 1200,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 139,
+  },
+
+  {
+    # 名称
+    title: '先天.五重',
+
+    # 阶段名称
+    period: '先天',
+
+    # 阶段等级
+    level: 5,
+
+    # 修为上限
+    limit: 50000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 20 },
+      { key: '防御', value: 20 },
+      { key: '法力', value: 20 },
+      { key: '攻击', value: 20 },
+    ],
+
+   # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 60,
+
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 1200,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 174,
+  },
+
+  {
+    # 名称
+    title: '先天.六重',
+
+    # 阶段名称
+    period: '先天',
+
+    # 阶段等级
+    level: 6,
+
+    # 修为上限
+    limit: 60000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 20 },
+      { key: '防御', value: 20 },
+      { key: '法力', value: 20 },
+      { key: '攻击', value: 20 },
+    ],
+
+   # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 60,
+
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 1200,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 208,
+  },
+
+   {
+    # 名称
+    title: '先天.七重',
+
+    # 阶段名称
+    period: '先天',
+
+    # 阶段等级
+    level: 7,
+
+    # 修为上限
+    limit: 70000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 20 },
+      { key: '防御', value: 20 },
+      { key: '法力', value: 20 },
+      { key: '攻击', value: 20 },
+    ],
+
+   # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 60,
+
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 1200,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 243,
+  },
+
+     {
+    # 名称
+    title: '先天.八重',
+
+    # 阶段名称
+    period: '先天',
+
+    # 阶段等级
+    level: 8,
+
+    # 修为上限
+    limit: 80000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 20 },
+      { key: '防御', value: 20 },
+      { key: '法力', value: 20 },
+      { key: '攻击', value: 20 },
+    ],
+
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 100,
+
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 1200,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 278,
+  },
+
+   {
+    # 名称
+    title: '先天.九重',
+
+    # 阶段名称
+    period: '先天',
+
+    # 阶段等级
+    level: 9,
+
+    # 修为上限
+    limit: 90000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 20 },
+      { key: '防御', value: 20 },
+      { key: '法力', value: 20 },
+      { key: '攻击', value: 20 },
+    ],
+
+   # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 2,
+
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 120000,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 313,
   },
 ]

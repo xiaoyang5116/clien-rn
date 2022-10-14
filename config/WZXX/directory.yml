@@ -236,7 +236,7 @@ directory: [
           { 
           point: [0, -27], title: '第十四章 选择', 
           # bindVar: 'WZXX_M1_N1_C014A' ,
-          toChapter: 'WZXX_M1_N1_C014A', links: [], 
+          toChapter: 'WZXX_M1_N1_C014A', links: [[0, -28]], 
           },
 
         { 
@@ -337,8 +337,8 @@ directory: [
 
         { 
         point: [0, -43], title: '第二十三章 杀气', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C023' ,
-        toChapter: 'WZXX_M1_N1_C023', links: [[0, -44],] 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C023_[N2]' ,
+        toChapter: 'WZXX_M1_N1_C023_[N2]', links: [[0, -44],] 
         },
 
         { 
