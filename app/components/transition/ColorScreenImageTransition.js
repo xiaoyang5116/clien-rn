@@ -12,7 +12,7 @@ import {
 import { EventKeys } from '../../constants';
 
 import lo from 'lodash';
-import { px2pd } from '../../constants/resolution';
+import { getWindowHeight, getWindowWidth, px2pd } from '../../constants/resolution';
 
 const ColorScreenImageTransition = (props) => {
 
@@ -20,6 +20,9 @@ const ColorScreenImageTransition = (props) => {
     const colorOpacity = React.useRef(new Animated.Value(1)).current;
     const imageOpacity = React.useRef(new Animated.Value(1)).current;
     const translateX = React.useRef(new Animated.Value(0)).current;
+
+    const imageActualHeight = (px2pd(getWindowWidth()) / props.imageStyle.width) * props.imageStyle.height;
+    const imageScale = px2pd(getWindowHeight()) / imageActualHeight; // 背景图片缩放比率
 
     const trans = () => {
         Animated.sequence([
@@ -29,7 +32,7 @@ const ColorScreenImageTransition = (props) => {
                 useNativeDriver: false,
             }),
             Animated.timing(translateX, {
-                toValue: -70,
+                toValue: props.transWidth,
                 duration: 1600,
                 useNativeDriver: false,
             }),
@@ -74,11 +77,10 @@ const ColorScreenImageTransition = (props) => {
             <Animated.View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center', overflow: 'hidden' }} pointerEvents={pointerEvents}>
                 <Animated.Image 
                     source={require('../../../assets/bg/screen_trans_bg1.jpg')} 
-                    style={{ 
-                        width: px2pd(1160), height: px2pd(1536), 
-                        transform: [{ scale: 1.53 }, { translateX: translateX }],
+                    style={[{ 
+                        transform: [{ scale: imageScale }, { translateX: translateX }],
                         opacity: imageOpacity,
-                    }} 
+                    }, props.imageStyle]} 
                 />
             </Animated.View>
             <Animated.View style={{ position: 'absolute', zIndex: 99, width: '100%', height: '100%', backgroundColor: props.color, opacity: colorOpacity }} pointerEvents={pointerEvents} />
@@ -91,10 +93,14 @@ export default ColorScreenImageTransition;
 ColorScreenImageTransition.propTypes = {
     color: PropTypes.string,
     image: PropTypes.number,
+    imageStyle: PropTypes.object,
+    transWidth: PropTypes.number,
     onCompleted: PropTypes.func,
 };
 
 ColorScreenImageTransition.defaultProps = {
     color: '#000',
     image: require('../../../assets/bg/screen_trans_bg1.jpg'),
+    imageStyle: { width: px2pd(1160), height: px2pd(1536) },
+    transWidth: -px2pd(200),
 };
