@@ -2,20 +2,26 @@
 directory: [
   {
     id: 1, 
-    title: '《第一卷》第一至二十章',
+    title: '《第一卷》第一至二十五章',
    map: 
    [
 
           { 
-          point: [0, 3], title: '第一章上篇脱身',
+          point: [0, 4], title: '第一章上篇脱身',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001',
-          toChapter: 'WZXX_M1_N1_C001', links: [[0, 2], ] 
+          toChapter: 'WZXX_M1_N1_C001', links: [[0, 3], ] 
           },
 
           { 
-          point: [0, 2], title: '接续第一章 我有秘籍？',
+          point: [0, 3], title: '接续第一章 我有秘籍？',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001A',
-          toChapter: 'WZXX_M1_N1_C001A', links: [[0, 1], ] 
+          toChapter: 'WZXX_M1_N1_C001A', links: [[0, 2], ] 
+          },
+
+          { 
+          point: [0, 2], title: '第一章  回忆现代',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B',
+          toChapter: 'WZXX_M1_N1_C001B', links: [[0, 1], ] 
           },
 
           {
@@ -308,20 +314,46 @@ directory: [
         { 
         point: [0, -40], title: '第二十一章 金丹灵液',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C021' ,
-        toChapter: 'WZXX_M1_N1_C021', links: [[0, -41], ] 
+        toChapter: 'WZXX_M1_N1_C021', links: [[1, -41],[-1, -41] ] 
         },
 
         { 
-        point: [0, -41], title: '第二十二章 鞭笞', 
+        point: [1, -41], title: '第二十二章 陶老鞭挞', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C022' ,
         toChapter: 'WZXX_M1_N1_C022', links: [[0, -42], ] 
         },
 
         { 
-        point: [0, -42], title: '第二十三章 重逢之日', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C023' ,
-        toChapter: 'WZXX_M1_N1_C023', links: [[],] 
+        point: [-1, -41], title: '第二十二章 医灵鞭挞', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N2_C016' ,
+        toChapter: 'WZXX_M1_N2_C016', links: [[0, -42],] 
         },
+
+        { 
+        point: [0, -42], title: '第二十三章 分别', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C023_[N1]' ,
+        toChapter: 'WZXX_M1_N1_C023_[N1]', links: [[0, -43],] 
+        },
+
+        { 
+        point: [0, -43], title: '第二十三章 杀气', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C023' ,
+        toChapter: 'WZXX_M1_N1_C023', links: [[0, -44],] 
+        },
+
+        { 
+        point: [0, -44], title: '第二十四章 找抽', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C024_[N1]' ,
+        toChapter: 'WZXX_M1_N1_C024_[N1]', links: [[0, -45],] 
+        },
+
+        { 
+        point: [0, -45], title: '第二十五章 发誓', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C025' ,
+        toChapter: 'WZXX_M1_N1_C025', links: [[],] 
+        },
+
+        # WZXX_M1_N2_C016
 #==============================选择分支线================================
         # { point: [-1, -28], title: '第十四章 小世界', 
         #   # bindVar: 'WZXX_[Chapters]/WZXX_M1_N2_C014' ,
