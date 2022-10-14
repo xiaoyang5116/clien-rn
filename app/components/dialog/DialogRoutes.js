@@ -17,6 +17,7 @@ import BgDialog from './bgDialog';
 import DrawLotsOption from './drawLotsOption'
 import GorgeousTemplate from './gorgeousTemplate'
 import Transitions from '../transition';
+import { ArticleOptionActions } from '../article';
 
 
 const DialogRoutes = (props) => {
@@ -65,7 +66,8 @@ const DialogRoutes = (props) => {
                 Animation(item)
             }
             else {
-                props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
+                // props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
+                ArticleOptionActions.invoke({ __sceneId, ...item });
             }
         });
     }

@@ -38,6 +38,9 @@ scenes: [
           {  
             id: 'c0', desc: '配置测试', 
             options: [
+              { title: '带引导的炼丹页面', openUI: "LianDanFang-1" },
+              { title: '种植', openUI: "ZhongZhi" },
+              { title: '炼器', openUI: "LianQi" },
               { title: '【背景对话框(5 号)】', dialogs: ['p1'] },
               { title: '航海探索', games: {id: 8} },
               { title: '抽签选项', dialogs: ['p2'] },

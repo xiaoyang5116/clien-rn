@@ -15,6 +15,7 @@ import {
 import { BtnIcon } from '../button'
 import OptionComponents from './optionComponents'
 import { ArticleOptionActions } from '.';
+import { px2pd } from '../../constants/resolution';
 
 
 class OptionView extends PureComponent {
@@ -56,7 +57,11 @@ class OptionView extends PureComponent {
                 const option = this.state.options[k];
                 let iconComponent = <></>;
                 if (lo.isObject(option.icon) && lo.isBoolean(option.icon.show) && option.icon.show) {
-                    iconComponent = <BtnIcon id={option.icon.id} style={{ height: 5 }} />
+                    iconComponent = (
+                        <View style={{ position: 'absolute', width: px2pd(100), height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+                            <BtnIcon id={option.icon.id} style={{ position: 'relative' }} />
+                        </View>
+                    )
                 }
                 if (option.btnType !== undefined) {
                     buttonChilds.push(

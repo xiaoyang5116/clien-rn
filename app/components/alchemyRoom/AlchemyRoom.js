@@ -3,10 +3,7 @@ import {
   Text,
   View,
   SafeAreaView,
-  TouchableOpacity,
-  ImageBackground,
-  TouchableWithoutFeedback,
-  Image,
+  Dimensions
 } from 'react-native';
 import React, { useEffect } from 'react';
 
@@ -19,9 +16,10 @@ import DanFangPage from './DanFangPage';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import ProgressBar from './components/ProgressBar';
 import PropGrid from '../../components/prop/PropGrid';
-import { TextButton, Header3 } from '../../constants/custom-ui';
+import { TextButton, Header3, ImageButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import RewardsPage from './components/RewardsPage';
+
 
 const AlchemyRoom = props => {
   const { alchemyData } = props;
@@ -38,20 +36,20 @@ const AlchemyRoom = props => {
 
   const ChooseRecipe = () => {
     return (
-      <View style={{ position: 'absolute', bottom: '30%' }}>
-        <TouchableOpacity onPress={openDanFangPage}>
-          <Text
-            style={{
-              fontSize: 20,
-              backgroundColor: '#319331',
-              paddingLeft: 12,
-              paddingRight: 12,
-              paddingTop: 8,
-              paddingBottom: 8,
-            }}>
-            选择配方
-          </Text>
-        </TouchableOpacity>
+      <View style={{ position: 'absolute', bottom: '12%', justifyContent: 'center', alignItems: 'center' }}>
+        <ImageButton
+          width={px2pd(628)}
+          height={px2pd(111)}
+          source={require('../../../assets/button/liandan_bg1.png')}
+          selectedSource={require('../../../assets/button/liandan_bg2.png')}
+          onPress={openDanFangPage}
+        />
+        <View pointerEvents='none' style={{ width: px2pd(285), height: px2pd(66), position: 'absolute' }}>
+          <FastImage
+            style={{ width: px2pd(285), height: px2pd(66) }}
+            source={require('../../../assets/button/xuanzepeifang.png')}
+          />
+        </View>
       </View>
     );
   };

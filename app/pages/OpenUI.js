@@ -5,11 +5,14 @@ import AlchemyRoomModal from '../components/alchemyRoom';
 import { PlantPage } from '../components/plant';
 import Transitions from '../components/transition';
 import WorshipModal from '../components/worship';
+import LianQiPage from '../components/lianQi'
 
 export default class OpenUI {
 
     static open(name) {
-        switch (name) {
+        const pageName = name.split('-')
+        const isOpenBoot = pageName.length > 1 ? true : false
+        switch (pageName[0]) {
             case 'XiuXing':
                 const key = RootView.add(
                     <Transitions id={'OPEN_XIUXING_UI'}>
@@ -17,14 +20,19 @@ export default class OpenUI {
                     </Transitions>);
                 break;
             case 'LianDanFang':
-                AlchemyRoomModal.show()
+                AlchemyRoomModal.show(isOpenBoot)
                 break;
             case 'ZhongZhi':
                 PlantPage.show();
                 break;
+            case 'LianQi':
+                LianQiPage.show();
+                break;
             case 'GongFeng':
                 WorshipModal.show();
                 break;
+
+            default: return <></>
         }
     }
 
