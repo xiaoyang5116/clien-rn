@@ -39,7 +39,7 @@ const ColorScreenImageTransition = (props) => {
             Animated.delay(300),
             Animated.timing(imageOpacity, {
                 toValue: 0,
-                duration: 500,
+                duration: 1000,
                 useNativeDriver: false,
             })
         ]).start(({ finished }) => {
