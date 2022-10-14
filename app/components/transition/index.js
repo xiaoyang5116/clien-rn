@@ -12,6 +12,7 @@ import OpenYTransition from './OpenYTransition';
 import BlurTransition from './BlurTransition';
 import XuanWoTransition from './XuanWoTransition';
 import { View } from 'react-native';
+import ColorScreenImageTransition from './ColorScreenImageTransition';
 
 const Transitions = (props) => {
 
@@ -34,6 +35,10 @@ const Transitions = (props) => {
         case 'WhiteScreen':
         case '白色转场':
             return (<ColorScreenTransition config={{ duration: props.duration }} color={'#fff'} onCompleted={props.onCompleted}>{props.children}</ColorScreenTransition>);
+
+        case 'WhiteScreenImage':
+        case '白色转场带背景':
+            return (<ColorScreenImageTransition config={{ duration: props.duration }} color={'#fff'} onCompleted={props.onCompleted}>{props.children}</ColorScreenImageTransition>);
         
         case 'BlackVideoScreen':
         case '黑色视频转场':

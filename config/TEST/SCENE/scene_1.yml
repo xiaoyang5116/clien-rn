@@ -472,6 +472,7 @@ scenes: [
           { title: '上下开门转场', toScene: 'wzkj_trans_ok', transitionAnimation: '上下开门转场' },
           { title: '左右开门转场', toScene: 'wzkj_trans_ok', transitionAnimation: '左右开门转场' },
           { title: '白色转场', toScene: 'wzkj_trans_ok', transitionAnimation: '白色转场' },
+          { title: '白色转场带背景', toScene: 'wzkj_trans_ok', transitionAnimation: '白色转场带背景' },
           { title: '黑色转场', toScene: 'wzkj_trans_ok', transitionAnimation: '黑色转场' },
         ],
       },
