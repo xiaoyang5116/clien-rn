@@ -7,6 +7,7 @@ scenes: [
       # 变量定义
       vars: [{ id: "v1", min: 0, max: 1 } ,
       { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
       
       ],
 
@@ -43,9 +44,19 @@ scenes: [
         ],
       },
 
-      
+      { 
+        id: 'WZXX_M1_N1_C0021_V3', desc: '抉择', 
+        options: [ 
+          { title: "【修炼成功】",alterXiuWei: 5000, icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+        ],
+      },
 
-
+       { 
+        id: 'WZXX_M1_N1_C0021_V4', desc: '抉择', 
+        options: [ 
+          { title: "【修炼成功！】",alterXiuWei: 6000, icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+        ],
+      },
         ],
 
 

@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C024']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C024FZ'] }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C024_[N1]']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C024_[N1]FZ'] }, 
      { header: '第二十四章 找抽' },
       { world: { name: '灵修界' } },
 ]

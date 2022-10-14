@@ -26,7 +26,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0022_V1', desc: '尖叫的女人', 
         options: [ 
-          { title: "【睁开眼睛怒动怒，瞪回去！】",dialogs: ['C0022A_zhengkaiyanA'],},
+          { title: "【睁开眼睛动怒，瞪回去！】",dialogs: ['C0022A_zhengkaiyanA'],},
           { title: "【干脆装睡，看看是什么情况】",toChapter: "WZXX_M1_N1_C023",},
         ],
       },
