@@ -102,5 +102,5 @@ ColorScreenImageTransition.defaultProps = {
     color: '#000',
     image: require('../../../assets/bg/screen_trans_bg1.jpg'),
     imageStyle: { width: px2pd(1160), height: px2pd(1536) },
-    transWidth: -px2pd(200),
+    transWidth: -px2pd(150),
 };
