@@ -10,7 +10,7 @@ import CopyBook from './CopyBook'
 import { AppDispath } from '../../constants';
 import SmashEggs from './SmashEggs'
 import SmallUniverseProject from './SmallUniverseProject';
-import NauticalExploration from './nauticalExploration';
+import TurnLattice from './TurnLattice';
 
 
 const afterGameClosed = (params, status) => {
@@ -24,7 +24,7 @@ const afterGameClosed = (params, status) => {
         }
         if (status === false) {
             if (lo.isObject(params.fail) && lo.isString(params.fail.toScene)) {
-                AppDispath({ type: 'SceneModel/processActions', payload: { toScene:params.fail.toScene } });
+                AppDispath({ type: 'SceneModel/processActions', payload: { toScene: params.fail.toScene } });
             } else if (lo.isObject(params.fail) && lo.isString(params.fail.toChapter)) {
                 AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: params.fail.toChapter, __sceneId: params.__sceneId } });
             }
@@ -78,8 +78,8 @@ export default class Games {
                 RootView.remove(key);
                 afterGameClosed(params);
             }} />);
-        } else if (id == 8) {  // 航海探索
-            const key = RootView.add(<NauticalExploration {...params} onClose={() => {
+        } else if (id == 8) {  // 翻格子
+            const key = RootView.add(<TurnLattice {...params} onClose={() => {
                 RootView.remove(key);
                 afterGameClosed(params);
             }} />);

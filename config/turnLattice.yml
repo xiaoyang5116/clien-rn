@@ -1,0 +1,25 @@
+# ================== 
+# 翻格子配置
+# ==================
+#
+# x,y: 坐标
+# status: 0-不可翻开 || 1-可翻开 || 2-已翻开 
+# type: "入口" || "出口" || "道具" || "空" || "墙"
+
+
+
+data: [
+  {
+    id: 1,
+    row: 6,
+    column: 6,
+    level: [
+      { x: 0, y: 0, type: "墙", status: 0, }, { x: 1, y: 0, type: "空", status: 0, }, { x: 2, y: 0, type: "空", status: 0, }, { x: 3, y: 0, status: 0, }, { x: 4, y: 0, status: 0, }, { x: 5, y: 0, status: 0, },
+      { x: 0, y: 1, type: "墙", status: 0, }, { x: 1, y: 1, type: "空", status: 0, }, { x: 2, y: 1, type: "空", status: 0, }, { x: 3, y: 1, status: 0, }, { x: 4, y: 1, status: 0, }, { x: 5, y: 1, status: 0, },
+      { x: 0, y: 2, type: "墙", status: 0, }, { x: 1, y: 2, type: "空", status: 0, }, { x: 2, y: 2, type: "空", status: 0, }, { x: 3, y: 2, status: 0, }, { x: 4, y: 2, status: 0, }, { x: 5, y: 2, status: 0, },
+      { x: 0, y: 3, type: "墙", status: 0, }, { x: 1, y: 3, type: "道具", status: 0, prop: { id: 30, num: 1, iconId: 1, quality: 1, } }, { x: 2, y: 3, type: "空", status: 0, }, { x: 3, y: 3, status: 0, }, { x: 4, y: 3, status: 0, }, { x: 5, y: 3, status: 0, },
+      { x: 0, y: 4, type: "墙", status: 0, }, { x: 1, y: 4, type: "空", status: 1, }, { x: 2, y: 4, type: "空", status: 0, }, { x: 3, y: 4, status: 0, }, { x: 4, y: 4, status: 0, }, { x: 5, y: 4, status: 0, },
+      { x: 0, y: 5, type: "墙", status: 0, }, { x: 1, y: 5, type: "入口", status: 0, }, { x: 2, y: 5, type: "空", status: 1, }, { x: 3, y: 5, status: 0, }, { x: 4, y: 5, status: 0, }, { x: 5, y: 5, status: 0, },
+    ]
+  },
+]

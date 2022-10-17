@@ -58,4 +58,7 @@ export class LocalCacheKeys {
     // 小宇宙项目数据
     static SMALL_UNIVERSE_PROJECT_DATA = "SMALL_UNIVERSE_PROJECT_DATA"
 
+    // 翻格子小游戏数据
+    static TURN_LATTICE_DATA = "TURN_LATTICE_DATA"
+
 }
