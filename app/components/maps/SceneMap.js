@@ -104,7 +104,7 @@ const CentPointAnimation = (props) => {
   }, []);
 
   return (
-  <Animated.View style={{ position: 'absolute', transform: [{ scale: getFixedWidthScale() }], zIndex: -10, opacity: opacity }}>
+  <Animated.View style={{ position: 'absolute', transform: [{ scale: getFixedWidthScale() }], zIndex: -10, opacity: opacity }} pointerEvents={'none'}>
     <LeiDaAnimation />
     <Text style={{ position: 'absolute', left: -130, top: -75, fontSize: 24, color: '#333' }}>当前位置</Text>
   </Animated.View>
@@ -194,55 +194,60 @@ const drawLines = ({ data }) => {
   return lines;
 }
 
+const Grid = (props) => {
+  const left = props.data.point[0] * (GRID_PX_WIDTH + GRID_SPACE);
+  const top = (-props.data.point[1]) * (GRID_PX_HEIGHT + GRID_SPACE);
+  const isCenterPoint = (props.data.point[0] == props.initialCenterPoint[0] && props.data.point[1] == props.initialCenterPoint[1]);
+  const isMoveDenied = (props.data.toScene == undefined);
+
+  let gridImg = null;
+  if (isMoveDenied) {
+    gridImg = require('../../../assets/button/scene_map_button3.png');
+  }
+  gridImg = isCenterPoint 
+    ? require('../../../assets/button/scene_map_button.png') 
+    : require('../../../assets/button/scene_map_button2.png');
+
+  const borderEffect = isCenterPoint 
+    ? { borderWidth: 1.5, borderColor: '#31aac8', borderRadius: 5 } 
+    : {};
+
+  return (
+    <View style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT,  justifyContent: 'center', alignItems: 'center' }, { left, top }, borderEffect]}
+      onTouchStart={() => {
+        touchStart = true;
+      }}
+      onTouchEnd={() => {
+        if (!touchStart)
+          return;
+        if (lo.isString(props.data.toScene)) {
+          AppDispath({ type: 'SceneModel/processActions', payload: { toScene: props.data.toScene } });
+          if (props.onClose != undefined) {
+            props.onClose();
+          }
+        } else if (isMoveDenied) {
+          Toast.show('当前剧情中无法随意移动', CENTER_TOP);
+        }
+      }}
+    >
+      <FastImage style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} source={gridImg} />
+      <Text style={{ color: '#000', zIndex: 1 }}>{props.data.title}</Text>
+      {(isCenterPoint) ? <CentPointAnimation /> : <></>}
+      {(props.data.icon != undefined && props.data.icon.show) ? (<BtnIcon id={props.data.icon.id} style={{}} />) : <></>}
+    </View>
+  )
+}
+
 // 渲染格子
 const drawGrids = ({ data, initialCenterPoint, onClose }) => {
   const grids = [];
 
   let idx = 0;
   data.forEach(e => {
-    const left = e.point[0] * (GRID_PX_WIDTH + GRID_SPACE);
-    const top = (-e.point[1]) * (GRID_PX_HEIGHT + GRID_SPACE);
-    const isCenterPoint = (e.point[0] == initialCenterPoint[0] && e.point[1] == initialCenterPoint[1]);
-    const isMoveDenied = (e.toScene == undefined);
-
-    let gridImg = null;
-
-    if (isMoveDenied) {
-      gridImg = require('../../../assets/button/scene_map_button3.png');
-    }
-
-    gridImg = isCenterPoint 
-      ? require('../../../assets/button/scene_map_button.png') 
-      : require('../../../assets/button/scene_map_button2.png');
-
-    const borderEffect = isCenterPoint 
-      ? { borderWidth: 1.5, borderColor: '#31aac8', borderRadius: 5 } 
-      : {};
-
     grids.push((
-      <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT,  justifyContent: 'center', alignItems: 'center' }, { left, top }, borderEffect]}
-        onTouchStart={() => {
-          touchStart = true;
-        }}
-        onTouchEnd={() => {
-          if (!touchStart)
-            return;
-          if (lo.isString(e.toScene)) {
-            AppDispath({ type: 'SceneModel/processActions', payload: { toScene: e.toScene } });
-            if (onClose != undefined) {
-              onClose();
-            }
-          } else if (isMoveDenied) {
-            Toast.show('当前剧情中无法随意移动', CENTER_TOP);
-          }
-        }}
-      >
-        <FastImage style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} source={gridImg} />
-        <Text style={{ color: '#000', zIndex: 1 }}>{e.title}</Text>
-        {(isCenterPoint) ? <CentPointAnimation /> : <></>}
-        {(e.icon != undefined && e.icon.show) ? (<BtnIcon id={e.icon.id} style={{}} />) : <></>}
-      </View>
-      ));
+      <Grid key={idx} data={{...e}} initialCenterPoint={initialCenterPoint} onClose={onClose} />
+    ));
+    idx++;
   });
 
   return grids;
