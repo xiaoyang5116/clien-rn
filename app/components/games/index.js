@@ -11,6 +11,7 @@ import { AppDispath } from '../../constants';
 import SmashEggs from './SmashEggs'
 import SmallUniverseProject from './SmallUniverseProject';
 import TurnLattice from './TurnLattice';
+import Transitions from '../transition';
 
 
 const afterGameClosed = (params, status) => {
@@ -79,10 +80,14 @@ export default class Games {
                 afterGameClosed(params);
             }} />);
         } else if (id == 8) {  // 翻格子
-            const key = RootView.add(<TurnLattice {...params} onClose={() => {
-                RootView.remove(key);
-                afterGameClosed(params);
-            }} />);
+            const key = RootView.add(
+                <Transitions id={"FAN_GE_ZI"}>
+                    <TurnLattice {...params} onClose={() => {
+                        RootView.remove(key);
+                        afterGameClosed(params);
+                    }} />
+                </Transitions>
+            );
         }
     }
 

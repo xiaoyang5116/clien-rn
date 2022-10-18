@@ -28,5 +28,10 @@
     "id": "OPEN_GorgeousTemplate",
     "name": "黑色圆形转场",
     "comment": "打开华丽模版"
+  },
+  {
+    "id": "FAN_GE_ZI",
+    "name": "黑色圆形转场",
+    "comment": "翻格子"
   }
 ]
