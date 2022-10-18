@@ -436,7 +436,7 @@ const generateGridBound = (gridId) => {
     const columns = gridId % MAP_COLUMNS;
 
     const bound = [];
-    for (let y = 3; y > -3; y--) {
+    for (let y = 5; y > -5; y--) {
       const row = rows - y;
       for (let x = -3; x < 3; x++) {
         const column = columns + x;
@@ -520,6 +520,11 @@ const WorldMap = (props) => {
     {/* 瓦片集合 */}
     <View style={{ flex: 1 }}>
       {grids}
+    </View>
+
+    {/* 角色 */}
+    <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+      <FastImage source={require('../../../assets/bg/explore_person.png')} style={{ width: px2pd(185), height: px2pd(166) }} />
     </View>
 
     {/* 大地图关闭按钮 */}
