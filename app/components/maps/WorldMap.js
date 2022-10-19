@@ -30,8 +30,12 @@ const OFFSET_Y = (WIN_SIZE.height / 2) - (MAP_GRID_HEIGHT / 2);
 
 // 左边距限制
 const OFFSET_X_LEFT_LIMIT = ((MAP_COLUMNS * MAP_GRID_WIDTH) / 2) - (WIN_SIZE.width / 2) + (MAP_GRID_WIDTH / 2);
+// 右边距限制
+const OFFSET_X_RIGHT_LIMIT = -(OFFSET_X_LEFT_LIMIT - (((MAP_COLUMNS % 2) == 0) ? MAP_GRID_WIDTH : 0));
 // 底边距限制
-const OFFSET_Y_BOTTOM_LIMIT = ((MAP_ROWS * MAP_GRID_HEIGHT) / 2) - (WIN_SIZE.height / 2) + (MAP_GRID_HEIGHT / 2);
+const OFFSET_Y_BOTTOM_LIMIT = -(((MAP_ROWS * MAP_GRID_HEIGHT) / 2) - (WIN_SIZE.height / 2) + (MAP_GRID_HEIGHT / 2));
+// 顶边距限制
+const OFFSET_Y_TOP_LIMIT = Math.abs(OFFSET_Y_BOTTOM_LIMIT) - (((MAP_ROWS % 2) == 0) ? MAP_GRID_HEIGHT : 0);
 
 // 瓦片
 const Grid = (props) => {
@@ -82,6 +86,8 @@ const WorldMap = (props) => {
     gridId: 0,
     // 阻尼动画
     decayAnimation: null,
+    // 重置坐标(该坐标不处理位置响应，防止嵌套调用)
+    resetXY: null,
   }).current;
 
   // 记录触摸状态
@@ -91,6 +97,29 @@ const WorldMap = (props) => {
   const onMapPositionChanged = ({ x, y }) => {
     if (status.lastX == x && status.lastY == y)
       return;
+
+    // 越界检测
+    if ((y <= OFFSET_Y_BOTTOM_LIMIT) || (x >= OFFSET_X_LEFT_LIMIT) || (y >= OFFSET_Y_TOP_LIMIT) || (x <= OFFSET_X_RIGHT_LIMIT)) {
+      stopDecayAnimation();
+
+      if (status.resetXY == null) {
+        let resetX = x;
+        let resetY = y;
+        if (x >= OFFSET_X_LEFT_LIMIT) {
+          resetX = OFFSET_X_LEFT_LIMIT;
+        } else if (x <= OFFSET_X_RIGHT_LIMIT) {
+          resetX = OFFSET_X_RIGHT_LIMIT;
+        }
+        if (y <= OFFSET_Y_BOTTOM_LIMIT) {
+          resetY = OFFSET_Y_BOTTOM_LIMIT;
+        } else if (y >= OFFSET_Y_TOP_LIMIT) {
+          resetY = OFFSET_Y_TOP_LIMIT;
+        }
+        status.resetXY = { x: resetX, y: resetY };
+        mapPos.setValue(status.resetXY);
+      }
+      return;
+    }
 
     status.lastX = x;
     status.lastY = y;
@@ -145,6 +174,14 @@ const WorldMap = (props) => {
     const x = status.prevX + dx;
     const y = status.prevY + dy;
 
+    // 越界检测
+    if ((y <= OFFSET_Y_BOTTOM_LIMIT)
+      || (x >= OFFSET_X_LEFT_LIMIT)
+      || (y >= OFFSET_Y_TOP_LIMIT)
+      || (x <= OFFSET_X_RIGHT_LIMIT)
+      )
+      return
+
     if (duration > 0) {
       Animated.timing(mapPos, {
         toValue: { x, y },
@@ -185,6 +222,7 @@ const WorldMap = (props) => {
       }
       // 中断触摸点击
       isTouchStart.current = false;
+      status.resetXY = null;
     },
     onPanResponderRelease: (evt, gestureState) => {
       const animation = Animated.decay(mapPos, {
