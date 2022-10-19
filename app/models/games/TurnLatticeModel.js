@@ -98,9 +98,7 @@ export default {
 
     // 出口
     *exportGrid({ payload }, { call, put, select }) {
-      // console.log("sss");
       const { turnLatticeData, currentLayer } = yield select(state => state.TurnLatticeModel);
-      // const { config: gridConfig } = turnLatticeData[currentLayer];
       if (turnLatticeData.length - 1 > currentLayer) {
         yield put(action('updateState')({ currentLayer: currentLayer + 1 }));
         return turnLatticeData[currentLayer + 1].config

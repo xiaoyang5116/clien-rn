@@ -6,13 +6,15 @@ import {
   TouchableHighlight,
   Image,
   TouchableOpacity,
+  DeviceEventEmitter
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
 import qualityStyle from '../../../themes/qualityStyle';
-import { action, connect, getPropIcon } from '../../../constants';
+import { action, connect, getPropIcon, EventKeys } from '../../../constants';
 import { px2pd } from '../../../constants/resolution';
 import Toast from '../../toast';
+import { ArticleOptionActions } from '../../article';
 
 import FastImage from 'react-native-fast-image';
 import { TextButton } from '../../../constants/custom-ui';
@@ -71,7 +73,14 @@ const Grid_Export = ({ item, openGrid, exportHandler }) => {
   if (item.status === 2) {
     return (
       <TouchableOpacity onPress={exportHandler}>
-        <Grid_2 />
+        <View
+          style={[
+            styles.gridContainer,
+            { justifyContent: 'center', alignItems: 'center', backgroundColor: '#000' },
+          ]}>
+          <Grid_2 />
+        </View>
+
       </TouchableOpacity>
     );
   }
@@ -161,8 +170,33 @@ const Grid_Prop = ({ item, openGrid, getGridProps }) => {
   );
 };
 
+// 事件格子
+const Grid_Event = ({ item, openGrid, eventHandler }) => {
+  if (item.status === 0) {
+    return <Grid_0 isOpened={item.isOpened} />;
+  }
+  if (item.status === 1) {
+    return <Grid_1 openGrid={openGrid} />;
+  }
+  if (item.status === 2) {
+    return (
+      <TouchableOpacity onPress={eventHandler}>
+        <View
+          style={[
+            styles.gridContainer,
+            { justifyContent: 'center', alignItems: 'center', backgroundColor: '#E1C60E' },
+          ]}>
+        </View>
+      </TouchableOpacity>
+    )
+  }
+  return <Grid_0 />;
+}
+
+
+
 const TurnLattice = props => {
-  const { onClose, turnLatticeData, currentLayer } = props;
+  const { onClose, turnLatticeData, currentLayer, __sceneId } = props;
 
   const [gridConfig, setGridConfig] = useState([]);
   const row = turnLatticeData[currentLayer]?.row;
@@ -175,6 +209,13 @@ const TurnLattice = props => {
           setGridConfig([...result]);
         }
       });
+
+    const closeTurnLatticeEvent = DeviceEventEmitter.addListener(EventKeys.CLOSE_TURN_LATTICE_EVENT, () => {
+      onClose()
+    })
+    return () => {
+      closeTurnLatticeEvent.remove();
+    }
   }, []);
 
   // 翻开格子
@@ -204,11 +245,23 @@ const TurnLattice = props => {
       .then(result => {
         if (result !== undefined && result != null) {
           setGridConfig([...result]);
-        }else{
+        } else {
           onClose()
         }
       });
   };
+
+  // 事件
+  const eventHandler = (item) => {
+    if (item.action.toChapter !== undefined || item.action.toScene !== undefined) {
+      onClose()
+      ArticleOptionActions.invoke({ __sceneId, ...item.action });
+    }
+
+    if (item.action.dialogs !== undefined && item.action.sceneId !== undefined) {
+      ArticleOptionActions.invoke({ __sceneId: item.action.sceneId, ...item.action });
+    }
+  }
 
   const _renderItem = ({ item, index }) => {
     if (item.type === '入口') return <Grid_Entrance item={item} />;
@@ -237,6 +290,21 @@ const TurnLattice = props => {
         />
       );
     }
+
+    if (item.type === "事件") {
+      return (
+        <Grid_Event
+          item={item}
+          openGrid={() => {
+            openGrid(item);
+          }}
+          eventHandler={() => {
+            eventHandler(item)
+          }}
+        />
+      )
+    }
+
     if (item.type === '空') {
       return (
         <Grid_Empty
