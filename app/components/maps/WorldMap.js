@@ -15,7 +15,7 @@ import {
 import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
 
-import { getWindowSize } from '../../constants';
+import { DEBUG_MODE, getWindowSize } from '../../constants';
 import { px2pd } from '../../constants/resolution';
 import { MAP_DATA } from './data/WorldMapData_1';
 
@@ -35,9 +35,8 @@ const OFFSET_Y_BOTTOM_LIMIT = ((MAP_ROWS * MAP_GRID_HEIGHT) / 2) - (WIN_SIZE.hei
 
 // 瓦片
 const Grid = (props) => {
-  const debug = true;
-  const drawBound = debug ? { borderWidth: 1, borderColor: '#669900' } : {};
-  const drawGridId = debug ? (<Text style={{ position: 'absolute', color: '#669900', fontWeight: 'bold' }}>{props.gridId}</Text>) : <></>
+  const drawBound = DEBUG_MODE ? { borderWidth: 1, borderColor: '#669900' } : {};
+  const drawGridId = DEBUG_MODE ? (<Text style={{ position: 'absolute', color: '#669900', fontWeight: 'bold' }}>{props.gridId}</Text>) : <></>
   return (
     <Animated.View style={[{ position: 'absolute', width: px2pd(600), height: px2pd(600), justifyContent: 'center', alignItems: 'center' }, drawBound, props.style]}>
       <FastImage source={MAP_DATA[props.gridId]} style={{ width: '100%', height: '100%' }} />
