@@ -61,13 +61,19 @@ const WorldMap = (props) => {
   const [grids, setGrids] = React.useState([]);
 
   // 各种状态数
-  const status = React.useRef({ prevX: 0, prevY: 0, lastX: 0, lastY: 0 }).current;
+  const status = React.useRef({ 
+    // 记录上一次移动结束的坐标
+    prevX: 0, prevY: 0, 
+    // 记录最近位置发生变化的坐标
+    lastX: 0, lastY: 0,
+    // 记录最近一次中心点瓦片ID
+    gridId: 0,
+    // 阻尼动画
+    decayAnimation: null,
+  }).current;
 
   // 记录触摸状态
   const isTouchStart = React.useRef(false);
-
-  // 是否在移动
-  const isMoving = React.useRef(false);
 
   // 地图坐标发生改变
   const onMapPositionChanged = ({ x, y }) => {
@@ -83,6 +89,13 @@ const WorldMap = (props) => {
     const diffRows = Math.floor(diffY / MAP_GRID_HEIGHT); // 距离出生点偏离行数
     const gridId = (MAP_COLUMNS * ((MAP_ROWS / 2) + (diffRows - 1))) + ((MAP_COLUMNS / 2) + diffColumns); // 中心点瓦片ID
 
+    // 中心点瓦片不放生变化直接返回
+    if (status.gridId == gridId)
+      return;
+
+    status.gridId = gridId;
+
+    // 更新可视区域瓦片
     setGrids((list) => {
       const boundGridIds = generateGridBound(gridId);
       const newGrids = [];
@@ -109,7 +122,7 @@ const WorldMap = (props) => {
   }
 
   // moveTo 完毕后执行
-  const onMoved = () => {
+  const onMoveEnd = () => {
     status.prevX = mapPos.x._value;
     status.prevY = mapPos.y._value;
   }
@@ -127,7 +140,7 @@ const WorldMap = (props) => {
         useNativeDriver: true,
       }).start(({ finished }) => {
         if (finished) {
-          onMoved();
+          onMoveEnd();
         }
       });
     } else {
@@ -135,10 +148,22 @@ const WorldMap = (props) => {
     }
   }
 
+  // 停止阻尼动画
+  const stopDecayAnimation = () => {
+    if (status.decayAnimation != null) {
+      status.decayAnimation.stop();
+      onMoveEnd();
+      return true;
+    }
+    return false;
+  }
+
   // 拖拽处理器
   const panResponder = React.useRef(PanResponder.create({
     onMoveShouldSetPanResponder: () => true,
     onPanResponderGrant: (evt, gestureState) => {
+      // 阻尼动画如果未完成，强制终止
+      stopDecayAnimation();
     },
     onPanResponderMove: (evt, gestureState) => {
       // 单指操作
@@ -149,17 +174,34 @@ const WorldMap = (props) => {
       isTouchStart.current = false;
     },
     onPanResponderRelease: (evt, gestureState) => {
-      onMoved();
+      const animation = Animated.decay(mapPos, {
+        deceleration: 0.998,
+        velocity: { x: gestureState.vx, y: gestureState.vy },
+        useNativeDriver: true,
+      });
+      animation.start(({ finished }) => {
+        if (finished) {
+          status.decayAnimation = null;
+          onMoveEnd();
+        }
+      });
+      status.decayAnimation = animation;
     },
   })).current;
 
+  // 开始点击
   const touchStartHandler = () => {
     isTouchStart.current = true;
   }
 
+  // 结束点击
   const touchEndHandler = (e) => {
     // 如果触摸被手势中断，优先处理手势，忽略触摸点击。
     if (!isTouchStart.current)
+      return;
+
+    // 停止存在的阻尼动画
+    if (stopDecayAnimation())
       return;
 
     const { pageX, pageY } = e.nativeEvent;
