@@ -35,6 +35,8 @@ scenes: [
       { id: "v_icon_109", min: 0, max: 1 },
       #郊外采集
       { id: "v_icon_110", min: 0, max: 1 },
+      #进入商铺买簪子
+      { id: "maizanzi_A", min: 0, max: 1 },
       
 
       { id: "caiyao", min: 0, max: 1 },
@@ -2020,6 +2022,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maizanzi_A'], nextChat: 'C2' },
       #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/maicaoyao_A'], nextChat: 'C3' },
     ],
     # 对话选项
@@ -2027,7 +2031,7 @@ scenes: [
        { 
         id: 'C1', desc: '这里很多店，但是很偏没什么人来', 
         options: [ 
-        { title: '【进入商铺买簪子】',  nextChat: 'P1',  },
+        { title: '【进入商铺买簪子】',  varsOn: ['WZXX_M1_N1_C000A_V/maizanzi_A']  ,nextChat: 'P1',  },
         ],
       },
 
@@ -2048,7 +2052,7 @@ scenes: [
       { 
         id: 'C2', desc: '已经买到了簪子了，接下来准备做什么', 
         options: [ 
-        { title: '【买到簪子离开集市，早点回家】',  dialogs: ['Screen1'] ,icon: { id: 11 } },
+        { title: '【买到簪子离开集市，早点回家】', varsOff: ['WZXX_M1_N1_C000A_V/maizanzi_A'] , dialogs: ['Screen1'] ,icon: { id: 11 } },
         ],
       },
 
@@ -2800,7 +2804,6 @@ scenes: [
        { type: 'enter',  nextChat: 'C1' },
        { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C3' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/v_icon_101'], nextChat: 'C4' },
-       
     ],
     # 对话选项
     chats: [

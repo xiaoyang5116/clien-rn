@@ -44,7 +44,7 @@ scenes: [
       events: [],
       chats: [
       { 
-      id: 'WZXX_M1_N1_C000B_V1', desc: '打工还是守夜', 
+      id: 'WZXX_M1_N1_C000B_VA1', desc: '打工还是守夜', 
         options: [ 
           { title: "【进入坊市】",toScene: 'C000B_VA_MAP_0_0', varsOn: ['WZXX_M1_N1_C000B_VA/v_icon_2','WZXX_M1_N1_C000B_VA/v_jiusi1','WZXX_M1_N1_C000B_VA/v_fangshi2']},
         ],
@@ -220,7 +220,7 @@ scenes: [
           { key: 'P1', content: ['好在李森炎现在赚了点家底，也没有多犹豫，当即掏钱。','收钱之后，摊主从怀里掏出一只毛笔和一张宣纸，开始龙飞凤舞。',
           '李森炎接过他递过来的纸张后，勉强分辨出内容：“绛云镇，柳家，抑灵丹可解。”','李森炎将纸条收了起来，心里想着，无论真假，先将这所谓的抑灵丹拿到，帮医灵解决了阴灵根的祸患',
           '如此一来，或许能撬开她的嘴，让她心甘情愿地透露一点消息给他',],
-          btn: [{title: '离开坊市！' , toChapter: "WZXX_M1_N1_C016_[N1]" ,transitionAnimation: '上下开门转场', icon: { id: 11 }},]},
+          btn: [{title: '离开坊市！' , toChapter: "WZXX_M1_N1_C015_[N2]" ,transitionAnimation: '上下开门转场', icon: { id: 11 }},]},
     ],},
     ],
     },

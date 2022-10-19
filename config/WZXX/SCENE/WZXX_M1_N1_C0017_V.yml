@@ -26,11 +26,40 @@ scenes: [
       #
 
       { 
+        id: 'WZXX_M1_N1_C0017_V15_1', desc: '离开坊市', 
+        options: [ 
+          { title: "【和云云一起离开坊市】",toChapter: "WZXX_M1_N1_C016_[N1]",},
+        ],
+      },
+      
+      {
+        id: 'WZXX_M1_N1_C0017_V15_2', desc: '离开坊市', 
+        options: [ 
+          { title: "【去天机阁】",toChapter: "WZXX_M1_N1_C015_[N3]",},
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C0017_V15_3', desc: '离开坊市', 
+        options: [ 
+          { title: "【去法器店铺】",toChapter: "WZXX_M1_N1_C015_[N4]",},
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C0017_V15_4', desc: '离开坊市', 
+        options: [ 
+          { title: "【去找算命先生】",toChapter: "WZXX_M1_N1_C015_[N5]",},
+        ],
+      },
+
+      { 
         id: 'WZXX_M1_N1_C0017_V1', desc: '炸桶', 
         options: [ 
           { title: "【这叫什么事……】",toChapter: "WZXX_M1_N1_C017_[N1]",},
         ],
       },
+
       { 
         id: 'WZXX_M1_N1_C0017_V2', desc: '选择', 
         options: [ 
@@ -46,7 +75,6 @@ scenes: [
           { title: "【这叫什么事……】",toChapter: "WZXX_M1_N1_C015_[N1]",},
         ],
       },
-
 
         ],
 
