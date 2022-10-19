@@ -39,13 +39,12 @@ const OFFSET_Y_TOP_LIMIT = Math.abs(OFFSET_Y_BOTTOM_LIMIT) - (((MAP_ROWS % 2) ==
 
 // 瓦片
 const Grid = (props) => {
-  const drawBound = DEBUG_MODE ? { borderWidth: 1, borderColor: '#669900' } : {};
-  const drawGridId = DEBUG_MODE ? (<Text style={{ position: 'absolute', color: '#669900', fontWeight: 'bold' }}>{props.gridId}</Text>) : <></>
   return (
-    <Animated.View style={[{ position: 'absolute', width: px2pd(600), height: px2pd(600), justifyContent: 'center', alignItems: 'center' }, drawBound, props.style]}>
-      <FastImage source={MAP_DATA[props.gridId]} style={{ width: '100%', height: '100%' }} />
-      {drawGridId}
-    </Animated.View>
+    <Animated.Image source={MAP_DATA[props.gridId]} style={[
+      { position: 'absolute', width: px2pd(600), height: px2pd(600) }, 
+      { borderWidth: 1, borderColor: '#669900' }, 
+      props.style]}
+    />
   );
 }
 
