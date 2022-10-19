@@ -152,6 +152,7 @@ const WorldMap = (props) => {
   const stopDecayAnimation = () => {
     if (status.decayAnimation != null) {
       status.decayAnimation.stop();
+      status.decayAnimation = null;
       onMoveEnd();
       return true;
     }
