@@ -1,0 +1,117 @@
+(function(name,data){
+ if(typeof onTileMapLoaded === 'undefined') {
+  if(typeof TileMaps === 'undefined') TileMaps = {};
+  TileMaps[name] = data;
+ } else {
+  onTileMapLoaded(name,data);
+ }
+ if(typeof module === 'object' && module && module.exports) {
+  module.exports = data;
+ }})("world_map",
+{ "compressionlevel":-1,
+ "height":20,
+ "infinite":false,
+ "layers":[
+        {
+         "id":2,
+         "image":"world_map\/map.jpg",
+         "name":"\u56fe\u50cf\u56fe\u5c42 1",
+         "opacity":1,
+         "type":"imagelayer",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":5,
+         "name":"\u5bf9\u8c61\u5c42 1",
+         "objects":[
+                {
+                 "class":"",
+                 "gid":1,
+                 "height":296,
+                 "id":10,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"action",
+                         "type":"string",
+                         "value":"showUI"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":296,
+                 "x":6110.94,
+                 "y":5531.79
+                }, 
+                {
+                 "class":"",
+                 "gid":1,
+                 "height":147.69696969697,
+                 "id":11,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":147.69696969697,
+                 "x":6151.90909090909,
+                 "y":6132.93939393939
+                }, 
+                {
+                 "class":"",
+                 "gid":1,
+                 "height":114.363636363636,
+                 "id":12,
+                 "name":"",
+                 "rotation":0,
+                 "visible":true,
+                 "width":114.363636363636,
+                 "x":6882.21212121212,
+                 "y":5793.54545454545
+                }, 
+                {
+                 "class":"",
+                 "gid":1,
+                 "height":144.666666666667,
+                 "id":13,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"toChapter",
+                         "type":"string",
+                         "value":"WZXX_N1_X1"
+                        }],
+                 "rotation":0,
+                 "visible":true,
+                 "width":144.666666666667,
+                 "x":5233.72727272727,
+                 "y":6054.15151515152
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"cmd",
+                 "type":"string",
+                 "value":"openUI"
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":6,
+ "nextobjectid":14,
+ "orientation":"orthogonal",
+ "renderorder":"right-down",
+ "tiledversion":"1.9.2",
+ "tileheight":600,
+ "tilesets":[
+        {
+         "firstgid":1,
+         "source":"world_map\/1.tsx"
+        }],
+ "tilewidth":600,
+ "type":"map",
+ "version":"1.9",
+ "width":20
+});

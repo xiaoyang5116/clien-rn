@@ -9,15 +9,17 @@ import {
 import {
   Animated,
   PanResponder,
-  Text,
 } from 'react-native';
 
 import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
 
-import { DEBUG_MODE, getWindowSize } from '../../constants';
+import { getWindowSize } from '../../constants';
 import { px2pd } from '../../constants/resolution';
 import { MAP_DATA } from './data/WorldMapData_1';
+
+// 加载瓦片地图到 window.TileMaps
+require('./tiled/world_map');
 
 const MAP_ROWS = 20; 
 const MAP_COLUMNS = 20;
@@ -41,11 +43,28 @@ const OFFSET_Y_TOP_LIMIT = Math.abs(OFFSET_Y_BOTTOM_LIMIT) - (((MAP_ROWS % 2) ==
 const Grid = (props) => {
   return (
     <Animated.Image source={MAP_DATA[props.gridId]} style={[
-      { position: 'absolute', width: px2pd(600), height: px2pd(600) }, 
-      { borderWidth: 1, borderColor: '#669900' }, 
-      props.style]}
-    />
+      { position: 'absolute', width: MAP_GRID_WIDTH, height: MAP_GRID_HEIGHT }, 
+      { borderWidth: 1, borderColor: '#669900' }, // 必须要设置，否则Android很卡，什么原因？ 
+      props.style
+    ]} />
   );
+}
+
+// 地图对象
+const MapObject = (props) => {
+  // Tiled Map对象坐标为左下角，RN坐标左上角，需要减掉自身高度做转换
+  const tx = px2pd(props.x) - (MAP_COLUMNS * MAP_GRID_WIDTH) / 2;
+  const ty = px2pd(props.y) - ((MAP_ROWS * MAP_GRID_HEIGHT) / 2) - px2pd(props.height);
+
+  return (
+    <Animated.View style={[
+      { position: 'absolute', width: px2pd(props.width), height: px2pd(props.height) },
+      { left: OFFSET_X + tx, top: OFFSET_Y + ty + MAP_GRID_HEIGHT },
+      props.style
+    ]}>
+      <FastImage source={require('../../../assets/button_icon/1.png')} style={{ width: '100%', height: '100%' }} />
+    </Animated.View>
+  )
 }
 
 // 根据瓦片ID生成四周的边界集合
@@ -74,6 +93,9 @@ const WorldMap = (props) => {
 
   // 瓦片列表
   const [grids, setGrids] = React.useState([]);
+
+  // 地图对象
+  const [objects, setObjects] = React.useState([]);
 
   // 各种状态数
   const status = React.useRef({ 
@@ -212,30 +234,39 @@ const WorldMap = (props) => {
     onMoveShouldSetPanResponder: () => true,
     onPanResponderGrant: (evt, gestureState) => {
       // 阻尼动画如果未完成，强制终止
-      stopDecayAnimation();
-    },
-    onPanResponderMove: (evt, gestureState) => {
-      // 单指操作
-      if (gestureState.numberActiveTouches === 1) {
-        moveTo(gestureState.dx, gestureState.dy);
+      if (stopDecayAnimation()) {
+        isTouchStart.current = false;
       }
-      // 中断触摸点击
-      isTouchStart.current = false;
       status.resetXY = null;
     },
-    onPanResponderRelease: (evt, gestureState) => {
-      const animation = Animated.decay(mapPos, {
-        deceleration: 0.998,
-        velocity: { x: gestureState.vx, y: gestureState.vy },
-        useNativeDriver: true,
-      });
-      animation.start(({ finished }) => {
-        if (finished) {
-          status.decayAnimation = null;
-          onMoveEnd();
+    onPanResponderMove: (evt, gestureState) => {
+      if (gestureState.dx != 0 || gestureState.dy != 0) {
+        // 单指操作
+        if (gestureState.numberActiveTouches === 1) {
+          moveTo(gestureState.dx, gestureState.dy);
         }
-      });
-      status.decayAnimation = animation;
+
+        // 中断触摸点击
+        isTouchStart.current = false;
+      }
+    },
+    onPanResponderRelease: (evt, gestureState) => {
+      if (gestureState.vx != 0 || gestureState.vy != 0) {
+        const animation = Animated.decay(mapPos, {
+          deceleration: 0.998,
+          velocity: { x: gestureState.vx, y: gestureState.vy },
+          useNativeDriver: true,
+        });
+        animation.start(({ finished }) => {
+          if (finished) {
+            status.decayAnimation = null;
+            onMoveEnd();
+          }
+        });
+        status.decayAnimation = animation;
+      } else {
+        onMoveEnd();
+      }
     },
   })).current;
 
@@ -273,11 +304,34 @@ const WorldMap = (props) => {
     }
   }, []);
 
+  // 渲染地图对象层
+  React.useEffect(() => {
+    const map_data = window.TileMaps.world_map;
+    if (map_data != undefined) {
+      const newObjects = [];
+      lo.forEach(map_data.layers, (item) => {
+        if (!lo.isEqual(item.type, 'objectgroup') || !item.visible)
+          return;
+        
+        lo.forEach(item.objects, (e) => {
+          const { id } = e;
+          newObjects.push(<MapObject key={id} {...e} style={{ transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }} />);
+        });
+      });
+      setObjects(newObjects);
+    }
+  }, []);
+
   return (
     <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)' }} {...panResponder.panHandlers} onTouchStart={touchStartHandler} onTouchEnd={touchEndHandler}>
       {/* 瓦片集合 */}
       <View style={{ flex: 1 }}>
         {grids}
+      </View>
+
+      {/* 地图对象 */}
+      <View style={{ position: 'absolute', width: '100%', height: '100%' }}>
+        {objects}
       </View>
 
       {/* 角色 */}
@@ -286,7 +340,7 @@ const WorldMap = (props) => {
       </View>
 
       {/* 大地图关闭按钮 */}
-      <View style={{ position: 'absolute', right: px2pd(20), top: 50 }} onTouchStart={() => {
+      <View style={{ position: 'absolute', right: px2pd(50), top: px2pd(150) }} onTouchStart={() => {
         if (props.onClose != undefined) {
           props.onClose();
         }
