@@ -38,6 +38,7 @@ scenes: [
           {  
             id: 'c0', desc: '配置测试', 
             options: [
+              { title: '打开功法页面', openUI: "GongFa"},
               { title: '带引导的炼丹页面', openUI: "LianDanFang-1" },
               { title: '种植', openUI: "ZhongZhi" },
               { title: '炼器', openUI: "LianQi" },

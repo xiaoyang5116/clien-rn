@@ -6,6 +6,7 @@ import { PlantPage } from '../components/plant';
 import Transitions from '../components/transition';
 import WorshipModal from '../components/worship';
 import LianQiPage from '../components/lianQi'
+import Gongfa from '../components/gongfa';
 
 export default class OpenUI {
 
@@ -30,6 +31,9 @@ export default class OpenUI {
                 break;
             case 'GongFeng':
                 WorshipModal.show();
+                break;
+            case 'GongFa':
+                Gongfa.show();
                 break;
 
             default: return <></>

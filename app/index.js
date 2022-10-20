@@ -84,6 +84,7 @@ const models = [
   require('./models/WorshipModel').default,
   require('./models/games/SmallUniverseProjectModel').default,
   require('./models/games/TurnLatticeModel').default,
+  require('./models/GongFaModel').default,
 ];
 
 const defaultDataContext = {
