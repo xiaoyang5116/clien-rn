@@ -9,6 +9,7 @@ import {
 import {
   Animated,
   PanResponder,
+  Text,
 } from 'react-native';
 
 import lo from 'lodash';
@@ -42,11 +43,18 @@ const OFFSET_Y_TOP_LIMIT = Math.abs(OFFSET_Y_BOTTOM_LIMIT) - (((MAP_ROWS % 2) ==
 // 瓦片
 const Grid = (props) => {
   return (
-    <Animated.Image source={MAP_DATA[props.gridId]} style={[
-      { position: 'absolute', width: MAP_GRID_WIDTH, height: MAP_GRID_HEIGHT }, 
-      { borderWidth: 1, borderColor: '#669900' }, // 必须要设置，否则Android很卡，什么原因？ 
-      props.style
-    ]} />
+    <>
+      <Animated.Image source={MAP_DATA[props.gridId]} style={[
+        { position: 'absolute', width: MAP_GRID_WIDTH, height: MAP_GRID_HEIGHT }, 
+        { borderWidth: 1 }, // 必须要设置，否则Android很卡，什么原因？ 
+        props.style
+      ]} />
+      {/* <Animated.Text style={[
+        { position: 'absolute', color: '#fff', fontSize: 26, fontWeight: 'bold' }, 
+        { margin: 10 },
+        props.style
+      ]}>{props.gridId}</Animated.Text> */}
+    </>
   );
 }
 
