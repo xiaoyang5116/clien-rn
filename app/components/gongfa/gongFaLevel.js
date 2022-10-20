@@ -2,7 +2,10 @@ import { SafeAreaView, StyleSheet, Text, View, Platform, FlatList, TouchableOpac
 import React, { useEffect, useState } from 'react'
 
 import { connect, action } from '../../constants'
+import RootView from '../RootView'
+
 import { TextButton } from '../../constants/custom-ui'
+import PopComponent from './components/PopComponent'
 
 
 const GongFaLevel = (props) => {
@@ -19,7 +22,9 @@ const GongFaLevel = (props) => {
 
   const GongFa = ({ item }) => {
     return (
-      <TouchableOpacity onPress={() => {}}>
+      <TouchableOpacity onPress={() => {
+        const key = RootView.add(<PopComponent onClose={() => { RootView.remove(key) }} />)
+      }}>
         <View style={styles.gongFa}>
           <View style={styles.gongFaImag}></View>
           <Text style={styles.gongFaName}>{item.name}</Text>
@@ -89,9 +94,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: 'center'
   },
-  gongFaImag: {
+  gongFa: {
     width: 100,
     height: 100,
+    justifyContent: "center",
+    alignItems: 'center',
+  },
+  gongFaImag: {
+    width: 50,
+    height: 50,
     backgroundColor: 'red',
   },
   gongFaName: {
