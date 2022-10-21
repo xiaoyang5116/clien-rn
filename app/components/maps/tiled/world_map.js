@@ -84,20 +84,20 @@
                 {
                  "class":"",
                  "gid":3,
-                 "height":148.727272727273,
+                 "height":148.727,
                  "id":15,
                  "name":"",
                  "properties":[
                         {
                          "name":"toChapter",
                          "type":"string",
-                         "value":"WZXX_M1_N1_C003"
+                         "value":"WZXX_M1_N1_C001B"
                         }],
                  "rotation":0,
                  "visible":true,
-                 "width":148.727272727273,
-                 "x":6137.75757575758,
-                 "y":6134.9696969697
+                 "width":148.727,
+                 "x":6137.76,
+                 "y":6134.97
                 }],
          "opacity":1,
          "properties":[
@@ -111,7 +111,7 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":6,
+ "nextlayerid":7,
  "nextobjectid":16,
  "orientation":"orthogonal",
  "renderorder":"right-down",
