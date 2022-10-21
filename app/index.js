@@ -93,6 +93,7 @@ const models = [
 const defaultDataContext = {
   readerTextOpacity: new Animated.Value(1),
   readerBgImgOpacity: new Animated.Value(0.2),
+  pressIn: false,
 }
 
 const ActionHook = ({ dispatch, getState }) => next => action => {

@@ -16,7 +16,7 @@ import {
 import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
 
-import { getWindowSize } from '../../constants';
+import { DataContext, getWindowSize } from '../../constants';
 import { px2pd } from '../../constants/resolution';
 import { TextButton } from '../../constants/custom-ui';
 import { MAP_DATA } from './data/WorldMapData_1';
@@ -139,6 +139,9 @@ const WorldMap = (props) => {
 
   // 地图对象
   const [objects, setObjects] = React.useState([]);
+
+  // 全局数据
+  const dataContext = React.useContext(DataContext);
 
   // 各种状态数
   const status = React.useRef({ 
@@ -274,7 +277,10 @@ const WorldMap = (props) => {
 
   // 拖拽处理器
   const panResponder = React.useRef(PanResponder.create({
-    onMoveShouldSetPanResponder: () => true,
+    onMoveShouldSetPanResponder: () => {
+      // 按钮按下时不相应手势
+      return !dataContext.pressIn;
+    },
     onPanResponderGrant: (evt, gestureState) => {
       // 阻尼动画如果未完成，强制终止
       if (stopDecayAnimation()) {

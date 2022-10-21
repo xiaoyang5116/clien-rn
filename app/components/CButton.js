@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import lo from 'lodash';
 
 import {
-    Component,
+    DataContext,
     StyleSheet,
     ThemeContext,
 } from "../constants";
@@ -12,103 +11,100 @@ import ImageCapInset from 'react-native-image-capinsets-next';
 import { Text, Image, View, TouchableHighlight, TouchableOpacity } from '../constants/native-ui';
 import ButtonClickEffects from './animation/buttonClickEffects';
 
-// const TEXT_BUTTON_BG = [
-//     require('../../assets/button/40dpi.png'), // 正常状态
-//     require('../../assets/button/40dpi_gray.png'), // 无效状态
-// ];
-
 // 通用按钮实现
 // onPress 回调函数可返回 对象指定 disabled 属性控制按钮是否禁用。
-export class CButton extends Component {
-    static contextType = ThemeContext
+const CButton = (props) => {
 
-    constructor(props) {
-        super(props);
+    const isTextStyle = () => { return (props.title != undefined && props.title.length > 0); }
+    const isImageStyle = () => { return (props.source != undefined && props.selectedSource != undefined); }
 
-        // 预生成Image对象
-        if (this.isImageStyle()) {
+    const theme = React.useContext(ThemeContext);
+    const dataContext = React.useContext(DataContext);
+    const [images, setImages] = React.useState([]);
+    const [pressing, setPressing] = React.useState(false);
+    const btnAnimateRef = React.createRef();
+
+    React.useEffect(() => {
+        if (isImageStyle()) {
             const imgStyles = {};
-            if (this.props.height != undefined) imgStyles.height = this.props.height;
-            if (this.props.width != undefined) imgStyles.width = this.props.width;
-
-            this.state = {
-                normalImage: (<Image style={imgStyles} source={this.props.source} resizeMode='center' />),
-                selectedImage: (<Image style={imgStyles} source={this.props.selectedSource} resizeMode='center' />),
-                onPressing: false,
-            }
+            if (props.height != undefined) imgStyles.height = props.height;
+            if (props.width != undefined) imgStyles.width = props.width;
+            //
+            const list = [];
+            list.push(<Image style={imgStyles} source={props.source} resizeMode='center' />);
+            list.push(<Image style={imgStyles} source={props.selectedSource} resizeMode='center' />);
+            //
+            setImages(list);
+            setPressing(false);
         }
-        this.btnAnimateRef = React.createRef()
-    }
+    }, []);
 
-    isTextStyle() {
-        return (this.props.title != undefined && this.props.title.length > 0);
-    }
-
-    isImageStyle() {
-        return (this.props.source != undefined && this.props.selectedSource != undefined);
-    }
-
-    onPressIn = () => {
-        if (this.props.disabled)
+    const onPressIn = () => {
+        if (props.disabled)
             return;
-        if (this.isImageStyle()) {
-            this.setState({ onPressing: true });
+
+        // 更新全局状态（记录点击按下）
+        dataContext.pressIn = true;
+
+        if (isImageStyle()) {
+            setPressing(true);
         }
     }
 
-    onPressOut = () => {
-        if (this.props.disabled)
+    const onPressOut = () => {
+        if (props.disabled)
             return;
-        if (this.isImageStyle()) {
-            this.setState({ onPressing: false });
+
+        // 更新全局状态（记录点击按下）
+        dataContext.pressIn = false;
+
+        if (isImageStyle()) {
+            setPressing(false);
         }
     }
 
-    onPress = () => {
-        // if (this.props.onPress != undefined && !this.props.disabled) {
-        //     return this.props.onPress();
-        // }
-        if (this.props.onPress != undefined && !this.props.disabled && this.props.sourceType !== "reader") {
-            return this.props.onPress();
+    const onPress = () => {
+        if (props.onPress != undefined && !props.disabled && props.sourceType !== "reader") {
+            return props.onPress();
         }
-        if (this.props.onPress != undefined && !this.props.disabled && !this.isImageStyle() && this.props.sourceType === "reader") {
-            return this.btnAnimateRef.current.start();
+
+        if (props.onPress != undefined && !props.disabled && !isImageStyle() && props.sourceType === "reader") {
+            return btnAnimateRef.current.start();
         }
     }
 
-    render() {
-        if (this.isTextStyle()) {
-            const defaultStyle = {
-                backgroundColor: (this.props.disabled ? '#999' : this.props.color),
-                ...styles.border,
-                justifyContent:'center',
-                alignItems:'center',
-                overflow:"hidden"
-            };
-            const imgBg = this.props.disabled ? this.context.btnPattern_2_img : this.context.btnPattern_1_img;
-            return (
-                <TouchableHighlight underlayColor={this.props.underlayColor} activeOpacity={0.75} disabled={this.props.disabled} onPressIn={this.onPressIn} onPressOut={this.onPressOut} onPress={this.onPress} >
-                    <View style={[defaultStyle, { ...this.props.style }]}>
-                        <ImageCapInset
-                            style={{ width: '100%', height: '100%', position: 'absolute' }}
-                            source={imgBg}
-                            capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
-                        />
-                        <ButtonClickEffects ref={this.btnAnimateRef} onPress={this.props.onPress} btnAnimateId={this.props.btnAnimateId} />
-                        <Text key={0} style={[styles.text, { fontSize: this.props.fontSize, color: this.props.fontColor }]} >{this.props.title}</Text>
-                    </View>
-                </TouchableHighlight>
-            );
-        } else if (this.isImageStyle()) {
-            const defaultStyle = {};
-            return (
-                <TouchableOpacity disabled={this.props.disabled} activeOpacity={1} onPressIn={this.onPressIn} onPressOut={this.onPressOut} onPress={this.onPress} >
-                    <View style={[defaultStyle, { ...this.props.style }]}>
-                        {this.state.onPressing ? this.state.selectedImage : this.state.normalImage}
-                    </View>
-                </TouchableOpacity>
-            );
-        }
+    if (isTextStyle()) {
+        const defaultStyle = {
+            backgroundColor: (props.disabled ? '#999' : props.color),
+            ...styles.border,
+            justifyContent:'center',
+            alignItems:'center',
+            overflow:"hidden"
+        };
+        const imgBg = props.disabled ? theme.btnPattern_2_img : theme.btnPattern_1_img;
+        return (
+            <TouchableHighlight underlayColor={props.underlayColor} activeOpacity={0.75} disabled={props.disabled} onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress} >
+                <View style={[ defaultStyle, { ...props.style } ]}>
+                    <ImageCapInset
+                        style={{ width: '100%', height: '100%', position: 'absolute' }}
+                        source={imgBg}
+                        capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                    />
+                    <ButtonClickEffects ref={btnAnimateRef} onPress={props.onPress} btnAnimateId={props.btnAnimateId} />
+                    <Text key={0} style={[styles.text, { fontSize: props.fontSize, color: props.fontColor }]} >{props.title}</Text>
+                </View>
+            </TouchableHighlight>
+        );
+    } else if (isImageStyle()) {
+        const defaultStyle = {};
+        return (
+            <TouchableOpacity disabled={props.disabled} activeOpacity={1} onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress} >
+                <View style={[defaultStyle, { ...props.style }]}>
+                    {pressing ? images[1] : images[0]}
+                </View>
+            </TouchableOpacity>
+        );
+    } else {
         return (<></>);
     }
 }
@@ -144,3 +140,5 @@ CButton.defaultProps = {
     onPress: null,
     disabled: false,
 };
+
+export default CButton;
