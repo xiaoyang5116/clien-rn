@@ -9,6 +9,7 @@ import {
 import {
   Animated,
   PanResponder,
+  Platform,
   Text,
 } from 'react-native';
 
@@ -46,7 +47,7 @@ const Grid = (props) => {
     <>
       <Animated.Image source={MAP_DATA[props.gridId]} style={[
         { position: 'absolute', width: MAP_GRID_WIDTH, height: MAP_GRID_HEIGHT }, 
-        { borderWidth: 1 }, // 必须要设置，否则Android很卡，什么原因？ 
+        lo.isEqual(Platform.OS, 'android') ? { borderWidth: 1 } : {}, // 必须要设置，否则Android很卡，什么原因？ 
         props.style
       ]} />
       {/* <Animated.Text style={[
