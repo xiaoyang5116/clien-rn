@@ -35,6 +35,9 @@ scenes: [
       { id: "v_icon_109", min: 0, max: 1 },
       #郊外采集
       { id: "v_icon_110", min: 0, max: 1 },
+      
+
+      { id: "caiyao", min: 0, max: 1 },
 
       
       ],
@@ -426,7 +429,7 @@ scenes: [
         id: 'C1', desc: '白城的边缘地带，这里的房屋很少，人迹罕至', 
         options: [ 
          { title: '【四处观察】', nextChat: 'C2',icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'], },
-         { title: '【在这儿采集草药】',andVarsValue: ['@clues_xiansuo1 == 1'],collect: '1' , nextChat: 'C3' ,varsOff: ['WZXX_M1_N1_C000A_V/v_icon_107'],},
+         { title: '【在这儿采集草药】',andVarsValue: ['@clues_xiansuo1 == 1'],collect: '1' , nextChat: 'C3' ,varsOff: ['WZXX_M1_N1_C000A_V/v_icon_107'],varsOn: ['WZXX_M1_N1_C000A_V/caiyao']},
         #  { title: '【仁德街】', toScene: 'C000A_V_MAP_0_4'}, 
         #  { title: '【森林】', toScene: 'C000A_V_MAP_-1_5'},  
         #  { title: '【天水亭】', toScene: 'C000A_V_MAP_1_5'},  
@@ -548,8 +551,8 @@ scenes: [
         id: 'C1', desc: '这亭子建的很好看，路过的人经常在亭中纳凉', 
         options: [ 
         #  { title: '【就在这儿采集草药】', andVarsValue: ['@clues_xiansuo1 == 1'], collect: '4', nextChat: 'C2'   }, 
-         { title: '【去旁边看看】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'], },  
-        #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
+         { title: '【去旁边看看】', andVarsOn: ['WZXX_M1_N1_C000A_V/caiyao'], nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'], },  
+         { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
         #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
         #  { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
@@ -3052,7 +3055,7 @@ scenes: [
       { 
         id: 'C3', desc: "李森炎深思之下，选择了类似杀手黑衣的装扮\n打不过就加入，这是明智的选择\n只要能成功混入杀手行列，说不定还能打探到更多内幕消息",   
         options: [ 
-         { title: 就这样，准没错！', nextChat: 'C3_A'  }, 
+         { title: '就这样，准没错！', nextChat: 'C3_A'  }, 
         ],
       },
 
@@ -3708,7 +3711,7 @@ scenes: [
       { 
         id: 'C3', desc: "青年邪魅一笑：“毕竟我们是同道中人，我也喜欢穿女装。”\n谁特么跟你同道中人，谁特么喜欢穿女装了啊！\n我这是迫不得已的好吗？\n痞眼见人多，当即落荒而逃。",   
         options: [ 
-        { title: 逃过一劫', nextChat: 'C3A' }, 
+        { title: '逃过一劫', nextChat: 'C3A' }, 
         ],
       },
       { 
@@ -3726,7 +3729,7 @@ scenes: [
       { 
         id: 'C5', desc: "当看到砖头在李森炎手上瞬间碎裂的时候\n地痞的脚步也停住了\n李森炎问：“你还要陪我回家吗？”\n“不，打扰了！”\n就这还回个屁的家啊！\n你一个女的比我男的都彪，我还想多活几年呢\n地痞掉头就走！",   
         options: [ 
-          { title: 逃过一劫', nextChat: 'C5A' }, 
+          { title: '逃过一劫', nextChat: 'C5A' }, 
         ],
       },
       { 

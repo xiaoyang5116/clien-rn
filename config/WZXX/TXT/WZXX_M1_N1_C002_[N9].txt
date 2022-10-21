@@ -37,7 +37,6 @@
 #
 [
     { sceneId: 'WZXX_M1_N1_C002C_V', chatId: 'WZXX_M1_N1_C002C_V11' },
-    { stop: true }
 ]
 #END==========================================
 

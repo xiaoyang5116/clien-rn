@@ -1,0 +1,52 @@
+# ================== 
+# 翻格子配置
+# ==================
+#
+# x,y: 坐标
+# status: 0-不可翻开 || 1-可翻开 || 2-已翻开 , status 不配置时默认为 0
+# type: "入口" || "出口" || "道具" || "空" || "墙" || "事件", type 不配置时默认为 "空"
+
+# ===== 道具格子 配置
+# { type: "道具", prop: { id: 30, num: 1, iconId: 1, quality: 1, } }
+
+# ===== 事件 配置
+# toScene, 只需要在 action 中直接配置 toScene: "XXX"
+#  type: "事件", action: { toScene: 'C000A_V2_MAP_3_1' }
+#
+# toChapter, 只需要在 action 中直接配置 toChapter: "XXX"
+#  type: "事件", action: { toChapter: "WZXX_M1_N1_C001B" } 
+#
+# dialogs, 需要配置对应的 sceneId 和 dialog 的ID, 如果要离开  翻格子游戏,则要在对应的 按钮 中配置 closeTurnLattice: true
+# type: "事件", action: { sceneId: 'WZXX_M1_N1_C001V' ,dialogs: ['Screen1'] }
+
+
+data: [
+  {
+    id: 1,
+    row: 6,
+    column: 6,
+    img: 1,
+    config: [
+      { x: 0, y: 0, type: "墙", }, { x: 1, y: 0, }, { x: 2, y: 0, }, { x: 3, y: 0, }, { x: 4, y: 0, }, { x: 5, y: 0, },
+      { x: 0, y: 1, type: "墙", }, { x: 1, y: 1, }, { x: 2, y: 1, }, { x: 3, y: 1, }, { x: 4, y: 1, }, { x: 5, y: 1, },
+      { x: 0, y: 2, type: "墙", }, { x: 1, y: 2, }, { x: 2, y: 2, type: "事件", action: { toScene: 'C000A_V2_MAP_3_1' }}, { x: 3, y: 2, }, { x: 4, y: 2, }, { x: 5, y: 2, },
+      { x: 0, y: 3, type: "墙", }, { x: 1, y: 3, type: "道具", prop: { id: 30, num: 1, iconId: 1, quality: 1, } }, { x: 2, y: 3, }, { x: 3, y: 3, }, { x: 4, y: 3, }, { x: 5, y: 3, },
+      { x: 0, y: 4, type: "墙", }, { x: 1, y: 4, }, { x: 2, y: 4, type: "事件", action: { toChapter: "WZXX_M1_N1_C001B" } }, { x: 3, y: 4, }, { x: 4, y: 4, }, { x: 5, y: 4, },
+      { x: 0, y: 5, type: "墙", }, { x: 1, y: 5, type: "入口", }, { x: 2, y: 5, type: "事件", action: { sceneId: 'WZXX_M1_N1_C001V' ,dialogs: ['Screen1'] } }, { x: 3, y: 5, type: "出口", }, { x: 4, y: 5, }, { x: 5, y: 5, },
+    ]
+  },
+  {
+    id: 2,
+    row: 6,
+    column: 6,
+    img: 1,
+    config: [
+      { x: 0, y: 0, }, { x: 1, y: 0, }, { x: 2, y: 0, }, { x: 3, y: 0, }, { x: 4, y: 0, }, { x: 5, y: 0, type: "墙", },
+      { x: 0, y: 1, }, { x: 1, y: 1, }, { x: 2, y: 1, }, { x: 3, y: 1, }, { x: 4, y: 1, }, { x: 5, y: 1, type: "墙", },
+      { x: 0, y: 2, }, { x: 1, y: 2, }, { x: 2, y: 2, }, { x: 3, y: 2, }, { x: 4, y: 2, }, { x: 5, y: 2, type: "墙", },
+      { x: 0, y: 3, }, { x: 1, y: 3, type: "道具", prop: { id: 30, num: 1, iconId: 1, quality: 1, } }, { x: 2, y: 3, }, { x: 3, y: 3, }, { x: 4, y: 3, }, { x: 5, y: 3, type: "墙", },
+      { x: 0, y: 4, }, { x: 1, y: 4, }, { x: 2, y: 4,  }, { x: 3, y: 4, }, { x: 4, y: 4, }, { x: 5, y: 4, type: "墙", },
+      { x: 0, y: 5, }, { x: 1, y: 5, type: "入口", }, { x: 2, y: 5, }, { x: 3, y: 5, }, { x: 4, y: 5, type: "出口", }, { x: 5, y: 5, type: "墙", },
+    ]
+  },
+]

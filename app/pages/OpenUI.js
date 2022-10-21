@@ -8,14 +8,35 @@ import { PlantPage } from '../components/plant';
 import Transitions from '../components/transition';
 import WorshipModal from '../components/worship';
 import LianQiPage from '../components/lianQi'
-import WorldMap from '../components/maps/WorldMap';
+import Gongfa from '../components/gongfa';
 
 export default class OpenUI {
 
-    static open(input) {
-        const splits = input.split('-')
-        const isOpenBoot = (splits.length > 1);
-        const name = splits[0];
+    static open(name) {
+        const pageName = name.split('-')
+        const isOpenBoot = pageName.length > 1 ? true : false
+        switch (pageName[0]) {
+            case 'XiuXing':
+                const key = RootView.add(
+                    <Transitions id={'OPEN_XIUXING_UI'}>
+                        <XiuXingTabPage onClose={() => { RootView.remove(key); }} />
+                    </Transitions>);
+                break;
+            case 'LianDanFang':
+                AlchemyRoomModal.show(isOpenBoot)
+                break;
+            case 'ZhongZhi':
+                PlantPage.show();
+                break;
+            case 'LianQi':
+                LianQiPage.show();
+                break;
+            case 'GongFeng':
+                WorshipModal.show();
+                break;
+            case 'GongFa':
+                Gongfa.show();
+                break;
 
         if (lo.isEqual(name, 'XiuXing')) {
             const key = RootView.add(

@@ -17,7 +17,7 @@ const GuidePage = (props) => {
       <View style={{ position: 'absolute', top: Platform.OS === "ios" ? statusBarHeight + 8 : 12, right: 12, zIndex: 2 }}>
         <TextButton title={"退出"} onPress={props.onClose} />
       </View>
-      <SwiperFlatList index={0} showPagination>
+      <SwiperFlatList index={0} showPagination bounces={false}>
         {props.children}
       </SwiperFlatList>
     </View>
