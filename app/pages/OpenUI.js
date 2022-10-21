@@ -12,10 +12,12 @@ import Gongfa from '../components/gongfa';
 
 export default class OpenUI {
 
-    static open(name) {
-        const pageName = name.split('-')
-        const isOpenBoot = pageName.length > 1 ? true : false
-        switch (pageName[0]) {
+    static open(input) {
+        const splits = input.split('-')
+        const isOpenBoot = (splits.length > 1);
+        const name = splits[0];
+
+        switch (name) {
             case 'XiuXing':
                 const key = RootView.add(
                     <Transitions id={'OPEN_XIUXING_UI'}>
@@ -37,27 +39,9 @@ export default class OpenUI {
             case 'GongFa':
                 Gongfa.show();
                 break;
-
-        if (lo.isEqual(name, 'XiuXing')) {
-            const key = RootView.add(
-                <Transitions id={'OPEN_XIUXING_UI'}>
-                    <XiuXingTabPage onClose={() => { RootView.remove(key); }} />
-                </Transitions>
-            );
-        } else if (lo.isEqual(name, 'LianDanFang')) {
-            AlchemyRoomModal.show(isOpenBoot);
-        } else if (lo.isEqual(name, 'ZhongZhi')) {
-            PlantPage.show();
-        } else if (lo.isEqual(name, 'LianQi')) {
-            LianQiPage.show();
-        } else if (lo.isEqual(name, 'GongFeng')) {
-            WorshipModal.show();
-        } else if (lo.isEqual(name, 'WorldMap')) {
-            const key = RootView.add(<WorldMap onClose={() => {
-                RootView.remove(key);
-            }} />);
-        } else {
-            return (<></>);
+            case 'WorldMap':
+                // show();
+                break;
         }
     }
 
