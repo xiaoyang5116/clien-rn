@@ -64,30 +64,37 @@ const Grid = (props) => {
 
 // 地图对象
 const MapObject = (props) => {
+
   // Tiled Map对象坐标为左下角，RN坐标左上角，需要减掉自身高度做转换
   const tx = px2pd(props.data.x) - (MAP_COLUMNS * MAP_GRID_WIDTH) / 2;
   const ty = px2pd(props.data.y) - ((MAP_ROWS * MAP_GRID_HEIGHT) / 2) - px2pd(props.data.height);
+
+  const onClose = () => {
+    if (props.onClose != undefined) {
+      props.onClose();
+    }
+  }
 
   let component = (<></>);
   if (props.data.gid == 1) {
     const found = lo.find(props.data.properties, (e) => lo.isEqual(e.name, 'toScene') && lo.isEqual(e.type, 'string'));
     if (found != undefined) {
       component = (<TextButton title={'场景'} style={{ width: '100%', height: '100%' }} onPress={() => {
-        ArticleOptionActions.invoke({ toScene: found.value });
+        ArticleOptionActions.invoke({ toScene: found.value }, onClose);
       }} />);
     }
   } else if (props.data.gid == 2) {
     const found = lo.find(props.data.properties, (e) => lo.isEqual(e.name, 'openUI') && lo.isEqual(e.type, 'string'));
     if (found != undefined) {
       component = (<TextButton title={'功能'} style={{ width: '100%', height: '100%' }} onPress={() => {
-        ArticleOptionActions.invoke({ openUI: found.value });
+        ArticleOptionActions.invoke({ openUI: found.value }, onClose);
       }} />);
     }
   } else if (props.data.gid == 3) {
     const found = lo.find(props.data.properties, (e) => lo.isEqual(e.name, 'toChapter') && lo.isEqual(e.type, 'string'));
     if (found != undefined) {
       component = (<TextButton title={'文章'} style={{ width: '100%', height: '100%' }} onPress={() => {
-        ArticleOptionActions.invoke({ toChapter: found.value });
+        ArticleOptionActions.invoke({ toChapter: found.value }, onClose);
       }} />);
     }
   }
@@ -341,7 +348,7 @@ const WorldMap = (props) => {
   }, []);
 
   // 渲染地图对象层
-  React.useEffect(() => {
+  React.useEffect(()  => {
     const map_data = window.TileMaps.world_map;
     if (map_data != undefined) {
       const newObjects = [];
@@ -351,7 +358,7 @@ const WorldMap = (props) => {
         
         lo.forEach(item.objects, (e) => {
           const { id } = e;
-          newObjects.push(<MapObject key={id} data={e} style={{ transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }} />);
+          newObjects.push(<MapObject key={id} data={e} style={{ transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }} onClose={props.onClose} />);
         });
       });
       setObjects(newObjects);
