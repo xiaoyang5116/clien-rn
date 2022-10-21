@@ -21,6 +21,7 @@ import { px2pd } from '../../constants/resolution';
 import { TextButton } from '../../constants/custom-ui';
 import { MAP_DATA } from './data/WorldMapData_1';
 import { ArticleOptionActions } from '../article';
+import RootView from '../RootView';
 
 // 加载瓦片地图到 window.TileMaps
 require('./tiled/world_map');
@@ -397,5 +398,13 @@ WorldMap.defaultProps = {
   data: [],
   initialCenterPoint: [0, 0],
 };
+
+export class WorldMapUtils {
+  static show() {
+    const key = RootView.add(<WorldMap onClose={() => {
+      RootView.remove(key);
+    }} />);
+  }
+}
 
 export default WorldMap;

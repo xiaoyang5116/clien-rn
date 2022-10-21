@@ -1,14 +1,12 @@
 import React from 'react';
 
-import lo from 'lodash';
-import RootView from '../components/RootView';
-import XiuXingTabPage from './home/XiuXingTabPage';
 import AlchemyRoomModal from '../components/alchemyRoom';
 import { PlantPage } from '../components/plant';
-import Transitions from '../components/transition';
 import WorshipModal from '../components/worship';
 import LianQiPage from '../components/lianQi'
 import Gongfa from '../components/gongfa';
+import XiuXingUtils from '../utils/XiuXingUtils';
+import { WorldMapUtils } from '../components/maps/WorldMap';
 
 export default class OpenUI {
 
@@ -19,10 +17,7 @@ export default class OpenUI {
 
         switch (name) {
             case 'XiuXing':
-                const key = RootView.add(
-                    <Transitions id={'OPEN_XIUXING_UI'}>
-                        <XiuXingTabPage onClose={() => { RootView.remove(key); }} />
-                    </Transitions>);
+                XiuXingUtils.show();
                 break;
             case 'LianDanFang':
                 AlchemyRoomModal.show(isOpenBoot)
@@ -40,7 +35,7 @@ export default class OpenUI {
                 Gongfa.show();
                 break;
             case 'WorldMap':
-                // show();
+                WorldMapUtils.show();
                 break;
         }
     }
