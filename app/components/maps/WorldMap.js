@@ -18,7 +18,9 @@ import FastImage from 'react-native-fast-image';
 
 import { getWindowSize } from '../../constants';
 import { px2pd } from '../../constants/resolution';
+import { TextButton } from '../../constants/custom-ui';
 import { MAP_DATA } from './data/WorldMapData_1';
+import { ArticleOptionActions } from '../article';
 
 // 加载瓦片地图到 window.TileMaps
 require('./tiled/world_map');
@@ -62,16 +64,40 @@ const Grid = (props) => {
 // 地图对象
 const MapObject = (props) => {
   // Tiled Map对象坐标为左下角，RN坐标左上角，需要减掉自身高度做转换
-  const tx = px2pd(props.x) - (MAP_COLUMNS * MAP_GRID_WIDTH) / 2;
-  const ty = px2pd(props.y) - ((MAP_ROWS * MAP_GRID_HEIGHT) / 2) - px2pd(props.height);
+  const tx = px2pd(props.data.x) - (MAP_COLUMNS * MAP_GRID_WIDTH) / 2;
+  const ty = px2pd(props.data.y) - ((MAP_ROWS * MAP_GRID_HEIGHT) / 2) - px2pd(props.data.height);
+
+  let component = (<></>);
+  if (props.data.gid == 1) {
+    const found = lo.find(props.data.properties, (e) => lo.isEqual(e.name, 'toScene') && lo.isEqual(e.type, 'string'));
+    if (found != undefined) {
+      component = (<TextButton title={'场景'} style={{ width: '100%', height: '100%' }} onPress={() => {
+        ArticleOptionActions.invoke({ toScene: found.value });
+      }} />);
+    }
+  } else if (props.data.gid == 2) {
+    const found = lo.find(props.data.properties, (e) => lo.isEqual(e.name, 'openUI') && lo.isEqual(e.type, 'string'));
+    if (found != undefined) {
+      component = (<TextButton title={'功能'} style={{ width: '100%', height: '100%' }} onPress={() => {
+        ArticleOptionActions.invoke({ openUI: found.value });
+      }} />);
+    }
+  } else if (props.data.gid == 3) {
+    const found = lo.find(props.data.properties, (e) => lo.isEqual(e.name, 'toChapter') && lo.isEqual(e.type, 'string'));
+    if (found != undefined) {
+      component = (<TextButton title={'文章'} style={{ width: '100%', height: '100%' }} onPress={() => {
+        ArticleOptionActions.invoke({ toChapter: found.value });
+      }} />);
+    }
+  }
 
   return (
     <Animated.View style={[
-      { position: 'absolute', width: px2pd(props.width), height: px2pd(props.height) },
+      { position: 'absolute', width: px2pd(props.data.width), height: px2pd(props.data.height), justifyContent: 'center', alignItems: 'center' },
       { left: OFFSET_X + tx, top: OFFSET_Y + ty + MAP_GRID_HEIGHT },
       props.style
     ]}>
-      <FastImage source={require('../../../assets/button_icon/1.png')} style={{ width: '100%', height: '100%' }} />
+      {component}
     </Animated.View>
   )
 }
@@ -324,7 +350,7 @@ const WorldMap = (props) => {
         
         lo.forEach(item.objects, (e) => {
           const { id } = e;
-          newObjects.push(<MapObject key={id} {...e} style={{ transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }} />);
+          newObjects.push(<MapObject key={id} data={e} style={{ transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }} />);
         });
       });
       setObjects(newObjects);
@@ -332,19 +358,19 @@ const WorldMap = (props) => {
   }, []);
 
   return (
-    <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)' }} {...panResponder.panHandlers} onTouchStart={touchStartHandler} onTouchEnd={touchEndHandler}>
+    <View style={{ flex: 1, backgroundColor: '#333' }} {...panResponder.panHandlers} onTouchStart={touchStartHandler} onTouchEnd={touchEndHandler}>
       {/* 瓦片集合 */}
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 }} pointerEvents={'none'}>
         {grids}
       </View>
 
       {/* 地图对象 */}
-      <View style={{ position: 'absolute', width: '100%', height: '100%' }}>
+      <View style={{ position: 'absolute', width: '100%', height: '100%' }} pointerEvents={'box-none'}>
         {objects}
       </View>
 
       {/* 角色 */}
-      <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents={'none'}>
         <FastImage source={require('../../../assets/bg/explore_person.png')} style={{ width: px2pd(185), height: px2pd(166) }} />
       </View>
 
