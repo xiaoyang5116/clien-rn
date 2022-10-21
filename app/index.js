@@ -44,6 +44,9 @@ import FastImage from 'react-native-fast-image';
 import { images } from './constants/preload';
 import SoundProvider from './components/sound';
 
+// 瓦片地图集合
+window.TileMaps = {};
+
 function preloadImages(images) {
   const uris = images.map(image => ({
     uri: Image.resolveAssetSource(image).uri

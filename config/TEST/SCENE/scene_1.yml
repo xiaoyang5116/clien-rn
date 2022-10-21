@@ -352,6 +352,7 @@ scenes: [
         options: [ 
           { title: '【返回调试主界面】', toScene: 'wzkj' }, 
           { title: '【移动地图中心点_P1】', toMapPoint: [0, 0] }, 
+          { title: '【打开世界地图】', openUI: 'WorldMap' }, 
         ],
       },
     ],
