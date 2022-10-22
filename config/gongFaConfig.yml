@@ -25,11 +25,11 @@ data: {
       desc: "“天地所以能长且久者，以其生生不易也，可谓长生”。长生诀可吐纳天地间的灵气，进而固本培元，调身养息",
       layerConfig: [
         [
-          { grade: 1, title: '一', needProps: [ '1,10', ], award: {},desc: "会心 +20", },
-          { grade: 2, title: '二', needProps: [ '1,10', ], award: { skillId: 1, },desc: "会心 +20", },
-          { grade: 3, title: '三', needProps: [ '1,10', ], award: {},desc: "会心 +20", },
+          { grade: 1, title: '一', needProps: [ '1,10','2,5', ], award: { props: ["2,3"], skillId: 2, },desc: "会心 +10", },
+          { grade: 2, title: '二', needProps: [ '2,10', ], award: { skillId: 1, },desc: "会心 +20", },
+          { grade: 3, title: '三', needProps: [ '3,10', ], award: {},desc: "会心 +20", },
           { grade: 4, title: '四', needProps: [ '1,10', ], award: {},desc: "会心 +20", },
-          { grade: 5, title: '真元', needProps: [ '1,10', ], award: {},desc: "获得技能：穿云刺", },
+          { grade: 5, title: '真元', needProps: [ '1,10', ], award: {},desc: "获得技能-穿云刺", },
           { grade: 6, title: '六', needProps: [ '1,10', ], award: {},desc: "会心 +20", },
           { grade: 7, title: '七', needProps: [ '1,10', ], award: {},desc: "会心 +20", },
           { grade: 8, title: '八', needProps: [ '1,10', ], award: {},desc: "会心 +20", },

@@ -33,10 +33,6 @@ const GongFaLevel = props => {
       f => f.gongFaId === gongFaId,
     );
 
-    const enterGongFa = () =>{
-      props.dispatch(action('GongFaModel/enterGongFa')({ gongFaId }))
-    }
-
     const openGongFa = () => {
       if (currentGongFaProgress.gongFaStatus === 0) {
         props
@@ -46,9 +42,8 @@ const GongFaLevel = props => {
               const key = RootView.add(
                 <PopComponent
                   gongFa={item}
-                  gongFaProgress={currentGongFaProgress}
+                  currentGongFaProgress={currentGongFaProgress}
                   message={result}
-                  enterGongFa={enterGongFa}
                   onClose={() => {
                     RootView.remove(key);
                   }}

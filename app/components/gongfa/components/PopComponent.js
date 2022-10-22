@@ -8,16 +8,16 @@ import Toast from '../../toast';
 import XiuLianGongFa from '../xiuLianGongFa'
 
 const PopComponent = props => {
-  const { onClose, gongFa, gongFaProgress, message, enterGongFa } = props;
+  const { onClose, gongFa, currentGongFaProgress, message } = props;
   const { name, desc } = gongFa
-  const { gongFaStatus, gongFaLayer, gongFaGrade } = gongFaProgress;
+  const { gongFaStatus, gongFaLayer, gongFaGrade } = currentGongFaProgress;
 
   const xiuLiangGongFa = () => {
     onClose()
     const key = RootView.add(
       <XiuLianGongFa
         gongFa={gongFa}
-        gongFaProgress={gongFaProgress}
+        currentGongFaProgress={currentGongFaProgress}
         onClose={() => { RootView.remove(key) }}
       />
     )
@@ -52,9 +52,7 @@ const PopComponent = props => {
           <View style={{ marginTop: 12, alignItems: 'center' }}>
             <TextButton title={"领悟"} onPress={() => {
               if (isLingWu) {
-                // enterGongFa()
                 xiuLiangGongFa()
-
               } else {
                 Toast.show("条件不满足")
               }
