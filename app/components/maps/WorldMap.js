@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -16,6 +16,7 @@ import {
 
 import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 import { DataContext, getWindowSize } from '../../constants';
 import { px2pd } from '../../constants/resolution';
@@ -23,6 +24,7 @@ import { TextButton } from '../../constants/custom-ui';
 import { MAP_DATA } from './data/WorldMapData_1';
 import { ArticleOptionActions } from '../article';
 import RootView from '../RootView';
+import { TouchableWithoutFeedback } from 'react-native';
 
 // 加载瓦片地图到 window.TileMaps
 require('./tiled/world_map');
@@ -44,6 +46,43 @@ const OFFSET_X_RIGHT_LIMIT = -(OFFSET_X_LEFT_LIMIT - (((MAP_COLUMNS % 2) == 0) ?
 const OFFSET_Y_BOTTOM_LIMIT = -(((MAP_ROWS * MAP_GRID_HEIGHT) / 2) - (WIN_SIZE.height / 2) + (MAP_GRID_HEIGHT / 2));
 // 顶边距限制
 const OFFSET_Y_TOP_LIMIT = Math.abs(OFFSET_Y_BOTTOM_LIMIT) - (((MAP_ROWS % 2) == 0) ? MAP_GRID_HEIGHT : 0);
+
+// 方向箭头
+const LocationPin = (props, ref) => {
+  const dataContext = React.useContext(DataContext);
+  const spinValue = React.useRef(new Animated.Value(0)).current;
+
+  const spin = spinValue.interpolate({
+    inputRange: [-180, 180],
+    outputRange: ['360deg', '0deg']
+  });
+
+  useImperativeHandle(ref, () => ({
+    setSpinValue: (v) => {
+      spinValue.setValue(v);
+    },
+  }));
+
+  return (
+    <TouchableWithoutFeedback 
+      onPressIn={() => { dataContext.pressIn = true; }} 
+      onPressOut={() => { dataContext.pressIn = false; }}
+      onPress={() => {
+        if (props.onPress != undefined) {
+          props.onPress();
+        }
+      }}
+    >
+      <Animated.View style={{ transform: [{ rotate: spin }] }}>
+        <View style={{ transform: [{ rotate: '180deg' }] }}>
+          <Entypo name='location-pin' color={"#669900"} size={60} />
+        </View>
+      </Animated.View>
+    </TouchableWithoutFeedback>
+  )
+}
+
+const LocationPinWrapper = forwardRef(LocationPin);
 
 // 瓦片
 const Grid = (props) => {
@@ -144,6 +183,9 @@ const WorldMap = (props) => {
   // 全局数据
   const dataContext = React.useContext(DataContext);
 
+  // 方向箭头引用
+  const refLocationPin = React.useRef(null);
+
   // 各种状态数
   const status = React.useRef({ 
     // 记录上一次移动结束的坐标
@@ -165,6 +207,9 @@ const WorldMap = (props) => {
   const onMapPositionChanged = ({ x, y }) => {
     if (status.lastX == x && status.lastY == y)
       return;
+
+    const angle = Math.atan2(x, y) * (180 / Math.PI);
+    refLocationPin.current.setSpinValue(angle);
 
     // 越界检测
     if ((y <= OFFSET_Y_BOTTOM_LIMIT) || (x >= OFFSET_X_LEFT_LIMIT) || (y >= OFFSET_Y_TOP_LIMIT) || (x <= OFFSET_X_RIGHT_LIMIT)) {
@@ -229,7 +274,7 @@ const WorldMap = (props) => {
     });
   }
 
-  // moveTo 完毕后执行
+  // move 完毕后执行
   const onMoveEnd = () => {
     status.prevX = mapPos.x._value;
     status.prevY = mapPos.y._value;
@@ -237,7 +282,7 @@ const WorldMap = (props) => {
 
   // dx,dy: 从按下后移动距离
   // duration: 大于0则动画移动
-  const moveTo = (dx, dy, duration = 0) => {
+  const move = (dx, dy, duration = 0) => {
     const x = status.prevX + dx;
     const y = status.prevY + dy;
 
@@ -292,7 +337,7 @@ const WorldMap = (props) => {
       if (gestureState.dx != 0 || gestureState.dy != 0) {
         // 单指操作
         if (gestureState.numberActiveTouches === 1) {
-          moveTo(gestureState.dx, gestureState.dy);
+          move(gestureState.dx, gestureState.dy);
         }
 
         // 中断触摸点击
@@ -339,15 +384,13 @@ const WorldMap = (props) => {
     const dx = (winSize.width / 2) - pageX;
     const dy = (winSize.height / 2) - pageY;
 
-    moveTo(dx, dy, 300);
+    move(dx, dy, 300);
     isTouchStart.current = false;
   }
 
   React.useEffect(() => {
     const key = mapPos.addListener(onMapPositionChanged);
-
-    moveTo(0, 0);
-
+    move(0, 0);
     return () => {
       mapPos.removeListener(key);
     }
@@ -386,6 +429,12 @@ const WorldMap = (props) => {
       {/* 角色 */}
       <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents={'none'}>
         <FastImage source={require('../../../assets/bg/explore_person.png')} style={{ width: px2pd(185), height: px2pd(166) }} />
+      </View>
+
+      {/* 位置指针 */}
+      <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+          <LocationPinWrapper ref={refLocationPin} onPress={() => {
+          }} />
       </View>
 
       {/* 大地图关闭按钮 */}
