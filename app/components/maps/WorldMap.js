@@ -8,6 +8,7 @@ import {
 
 import {
   Animated,
+  Image,
   PanResponder,
   Platform,
   Text,
@@ -48,16 +49,16 @@ const OFFSET_Y_TOP_LIMIT = Math.abs(OFFSET_Y_BOTTOM_LIMIT) - (((MAP_ROWS % 2) ==
 const Grid = (props) => {
   return (
     <>
-      <Animated.Image source={MAP_DATA[props.gridId]} style={[
+      <Image source={MAP_DATA[props.gridId]} style={[
         { position: 'absolute', width: MAP_GRID_WIDTH, height: MAP_GRID_HEIGHT }, 
         lo.isEqual(Platform.OS, 'android') ? { borderWidth: 1 } : {}, // 必须要设置，否则Android很卡，什么原因？ 
         props.style
       ]} />
-      {/* <Animated.Text style={[
+      {/* <Text style={[
         { position: 'absolute', color: '#fff', fontSize: 26, fontWeight: 'bold' }, 
         { margin: 10 },
         props.style
-      ]}>{props.gridId}</Animated.Text> */}
+      ]}>{props.gridId}</Text> */}
     </>
   );
 }
@@ -100,13 +101,13 @@ const MapObject = (props) => {
   }
 
   return (
-    <Animated.View style={[
+    <View style={[
       { position: 'absolute', width: px2pd(props.data.width), height: px2pd(props.data.height), justifyContent: 'center', alignItems: 'center' },
       { left: OFFSET_X + tx, top: OFFSET_Y + ty + MAP_GRID_HEIGHT },
       props.style
     ]}>
       {component}
-    </Animated.View>
+    </View>
   )
 }
 
@@ -212,7 +213,6 @@ const WorldMap = (props) => {
         const found = lo.find(list, (v) => (parseInt(v.key) == item.gridId));
         if (found == undefined) {
           const grid = (<Grid key={item.gridId} gridId={item.gridId} style={[
-            { transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] },
             { left: OFFSET_X + ((diffColumns - item.x) * MAP_GRID_WIDTH), top: OFFSET_Y + ((diffRows - item.y) * MAP_GRID_HEIGHT) }
           ]} />);
           newGrids.push(grid);
@@ -364,7 +364,7 @@ const WorldMap = (props) => {
         
         lo.forEach(item.objects, (e) => {
           const { id } = e;
-          newObjects.push(<MapObject key={id} data={e} style={{ transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }} onClose={props.onClose} />);
+          newObjects.push(<MapObject key={id} data={e} onClose={props.onClose} />);
         });
       });
       setObjects(newObjects);
@@ -374,14 +374,14 @@ const WorldMap = (props) => {
   return (
     <View style={{ flex: 1, backgroundColor: '#333' }} {...panResponder.panHandlers} onTouchStart={touchStartHandler} onTouchEnd={touchEndHandler}>
       {/* 瓦片集合 */}
-      <View style={{ flex: 1 }} pointerEvents={'none'}>
+      <Animated.View style={{ flex: 1, transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }} pointerEvents={'none'}>
         {grids}
-      </View>
+      </Animated.View>
 
       {/* 地图对象 */}
-      <View style={{ position: 'absolute', width: '100%', height: '100%' }} pointerEvents={'box-none'}>
+      <Animated.View style={{ position: 'absolute', transform: [{ translateX: mapPos.x }, { translateY: mapPos.y }] }} pointerEvents={'box-none'}>
         {objects}
-      </View>
+      </Animated.View>
 
       {/* 角色 */}
       <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents={'none'}>
