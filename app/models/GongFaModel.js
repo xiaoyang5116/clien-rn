@@ -13,19 +13,20 @@ export default {
   namespace: 'GongFaModel',
 
   state: {
-    gongFaConfig: [],
-    gongFaProgressData: [],
+    gongFaConfig: [],  // 功法配置数据
+    gongFaProgressData: [],  // 功法进度数据
+    allSkills: [],  // 获得的 所有的技能
   },
 
   effects: {
     *reload({ }, { select, call, put }) {
       const { data } = yield call(GetGongFaDataApi);
-      const gongFaProgressData = yield call(
+      const gongFaStorageData = yield call(
         LocalStorage.get,
         LocalCacheKeys.GONG_FA_DATA,
       );
 
-      if (gongFaProgressData === null) {
+      if (gongFaStorageData === null) {
         // 初始化 功法进度数据
         const { gonFaData } = data;
         const initGongFaProgressData = gonFaData.map(item => ({
@@ -33,17 +34,22 @@ export default {
           gongFaLayer: 0,
           gongFaGrade: 0,
           gongFaStatus: 0,
-          skillsId: [],
+          // skillsId: [],
         }));
+        const init = {
+          gongFaProgressData: initGongFaProgressData,
+          allSkills: [],
+        }
         yield call(
           LocalStorage.set,
           LocalCacheKeys.GONG_FA_DATA,
-          initGongFaProgressData,
+          init,
         );
         yield put(
           action('updateState')({
             gongFaConfig: data,
             gongFaProgressData: initGongFaProgressData,
+            allSkills: [],
           }),
         );
       } else {
@@ -51,7 +57,8 @@ export default {
         yield put(
           action('updateState')({
             gongFaConfig: data,
-            gongFaProgressData,
+            gongFaProgressData: gongFaStorageData.gongFaProgressData,
+            allSkills: gongFaStorageData.allSkills
           }),
         );
       }
@@ -67,96 +74,129 @@ export default {
         for (let i = 0; i < gongFaLevel.gongFaId.length; i++) {
           const gongFaId = gongFaLevel.gongFaId[i];
           const gongFaConfig = gonFaData.find(
-            item => (item.gongFaId === gongFaId),
+            item => item.gongFaId === gongFaId,
           );
           gongFaLevel.gongFaConfig.push({ ...gongFaConfig });
         }
       }
-      return gongFaLevelData
+      return gongFaLevelData;
     },
 
     // 打开功法
     *openGongFa({ payload }, { select, call, put }) {
-      const { gongFaId } = payload
-      const { gongFaConfig, gongFaProgressData } = yield select(state => state.GongFaModel);
-      const currentGongFa = gongFaConfig.gonFaData.find(item => item.gongFaId === gongFaId)
-      const currentGongFaProgress = gongFaProgressData.find(item => item.gongFaId === gongFaId)
+      const { gongFaId } = payload;
+      const { gongFaConfig, gongFaProgressData } = yield select(
+        state => state.GongFaModel,
+      );
+      const currentGongFa = gongFaConfig.gonFaData.find(
+        item => item.gongFaId === gongFaId,
+      );
+      const currentGongFaProgress = gongFaProgressData.find(
+        item => item.gongFaId === gongFaId,
+      );
       if (currentGongFaProgress.gongFaStatus === 0) {
-        const message = []
+        const message = [];
         if (currentGongFa.conditions.needProps !== undefined) {
-          const { needProps } = currentGongFa.conditions
+          const { needProps } = currentGongFa.conditions;
           for (let index = 0; index < needProps.length; index++) {
             const prop = needProps[index].split(',');
-            const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: Number(prop[0]) }));
-            const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: Number(prop[0]) }));
-            const isOK = propNum >= Number(prop[1])
-            message.push({ isOK: isOK, msg: `拥有${propConfig.name}数量: ${propNum}/${Number(prop[1])}` })
+            const propNum = yield put.resolve(
+              action('PropsModel/getPropNum')({ propId: Number(prop[0]) }),
+            );
+            const propConfig = yield put.resolve(
+              action('PropsModel/getPropConfig')({ propId: Number(prop[0]) }),
+            );
+            const isOK = propNum >= Number(prop[1]);
+            message.push({
+              isOK: isOK,
+              msg: `拥有${propConfig.name}数量: ${propNum}/${Number(prop[1])}`,
+            });
           }
         }
-        return message
+        return message;
       }
     },
 
     // 修炼功法
     *xiuLianGongFa({ payload }, { select, call, put }) {
-      const { gongFaId } = payload
-      const { gongFaConfig, gongFaProgressData } = yield select(state => state.GongFaModel);
-      const currentGongFa = gongFaConfig.gonFaData.find(item => item.gongFaId === gongFaId)
-      let currentGongFaProgress = gongFaProgressData.find(item => item.gongFaId === gongFaId)
-      const { gongFaLayer, gongFaGrade, gongFaStatus } = currentGongFaProgress
+      const { gongFaId } = payload;
+      const { gongFaConfig, gongFaProgressData, allSkills } = yield select(
+        state => state.GongFaModel,
+      );
+      const currentGongFa = gongFaConfig.gonFaData.find(
+        item => item.gongFaId === gongFaId,
+      );
+      let currentGongFaProgress = gongFaProgressData.find(
+        item => item.gongFaId === gongFaId,
+      );
+      const { gongFaLayer, gongFaGrade, gongFaStatus } = currentGongFaProgress;
 
       // 如果没修炼过
       if (gongFaStatus === 0 && gongFaGrade == 0) {
-        currentGongFaProgress.gongFaStatus = 1
+        currentGongFaProgress.gongFaStatus = 1;
       }
       // 升级
       if (gongFaGrade + 1 <= currentGongFa.layerConfig[gongFaLayer].length) {
-        currentGongFaProgress.gongFaGrade = gongFaGrade + 1
+        currentGongFaProgress.gongFaGrade = gongFaGrade + 1;
       } else {
         if (gongFaLayer + 1 <= currentGongFa.layerConfig.length - 1) {
-          currentGongFaProgress.gongFaLayer = gongFaLayer + 1
-          currentGongFaProgress.gongFaGrade = 0
+          currentGongFaProgress.gongFaLayer = gongFaLayer + 1;
+          currentGongFaProgress.gongFaGrade = 0;
         } else {
-          currentGongFaProgress.gongFaStatus = 2
+          currentGongFaProgress.gongFaStatus = 2;
         }
       }
 
       // 下一级的配置数据
-      const { needProps, award } = currentGongFa.layerConfig[gongFaLayer].find(item => item.grade === currentGongFaProgress.gongFaGrade)
+      const { needProps, award } = currentGongFa.layerConfig[gongFaLayer].find(
+        item => item.grade === currentGongFaProgress.gongFaGrade,
+      );
       // 扣除道具
       for (let k in needProps) {
         const prop = needProps[k].split(',');
-        yield put.resolve(action('PropsModel/use')({ propId: prop[0], num: prop[1], quiet: true }));
+        yield put.resolve(
+          action('PropsModel/use')({
+            propId: prop[0],
+            num: prop[1],
+            quiet: true,
+          }),
+        );
       }
 
       // 获得奖励
       if (award.props !== undefined) {
-
       }
       if (award.skillId !== undefined) {
-        currentGongFaProgress.skillsId.push(award.skillId)
+        const skill = gongFaConfig.skillConfig.find(item => item.id === award.skillId)
+        allSkills.push({ ...skill, isChecked: false })
       }
 
       // 保存记录
-      const newGongFaProgressData = gongFaProgressData.map(item => item.gongFaId === gongFaId ? currentGongFaProgress : item)
+      const newGongFaProgressData = gongFaProgressData.map(item =>
+        item.gongFaId === gongFaId ? currentGongFaProgress : item,
+      );
       yield call(
         LocalStorage.set,
         LocalCacheKeys.GONG_FA_DATA,
-        newGongFaProgressData,
+        {
+          gongFaProgressData: newGongFaProgressData,
+          allSkills
+        },
       );
       yield put(
         action('updateState')({
           gongFaProgressData: newGongFaProgressData,
+          allSkills,
         }),
       );
 
-      return currentGongFaProgress
+      return currentGongFaProgress;
     },
 
     // 获取修炼需要的道具
     *getXiuLianNeedProps({ payload }, { select, call, put }) {
-      const { needProps } = payload
-      let upgradeProps = []
+      const { needProps } = payload;
+      let upgradeProps = [];
       for (let index = 0; index < needProps.length; index++) {
         const prop = needProps[index].split(',');
         // 道具信息
@@ -169,11 +209,55 @@ export default {
           quality: propData.quality,
           num: propData.num,
           needNum: prop[1],
-          isOk: Number(propData.num) >= Number(prop[1]) ? true : false
-        })
+          isOk: Number(propData.num) >= Number(prop[1]) ? true : false,
+        });
       }
 
-      return upgradeProps
+      return upgradeProps;
+    },
+
+    // 获得的所有技能
+    *getGongFaSkills({ payload }, { select, call, put }) {
+      const { gongFaConfig, gongFaProgressData } = yield select(
+        state => state.GongFaModel,
+      );
+      let allSkillsId = [];
+      for (let index = 0; index < gongFaProgressData.length; index++) {
+        const { skillsId } = gongFaProgressData[index];
+        allSkillsId.push(...skillsId);
+      }
+
+      let allSkills = [];
+      for (let index = 0; index < allSkillsId.length; index++) {
+        const skillsId = allSkillsId[index];
+        const skillConfig = gongFaConfig.skillConfig.find(
+          item => item.id === skillsId,
+        );
+        allSkills.push(skillConfig);
+      }
+
+      yield put(action('updateState')({ allSkills }));
+    },
+
+    // 选择携带的技能
+    *checkedGongFaSkill({ payload }, { select, call, put }) {
+      const { id, checked } = payload
+      const { gongFaProgressData, allSkills } = yield select(state => state.GongFaModel);
+
+      const newAllSkills = allSkills.map(item => item.id == id ? { ...item, isChecked: checked } : item)
+      yield call(
+        LocalStorage.set,
+        LocalCacheKeys.GONG_FA_DATA,
+        {
+          gongFaProgressData,
+          allSkills: newAllSkills
+        },
+      );
+      yield put(
+        action('updateState')({
+          allSkills: newAllSkills,
+        }),
+      );
     }
   },
 

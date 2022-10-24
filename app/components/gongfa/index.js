@@ -6,7 +6,7 @@ import RootView from '../RootView';
 import Transitions from '../transition';
 import GongFaPage from './gongFaPage';
 
-class Gongfa {
+class GongFa {
   static show() {
     const key = RootView.add(
       <Transitions id={"OPEN_GONG_FA"}>
@@ -16,4 +16,4 @@ class Gongfa {
   }
 }
 
-export default Gongfa
+export default GongFa

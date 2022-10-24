@@ -22,6 +22,9 @@ import { TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import Toast from '../toast';
 
+
+export const gongFaLayerNumber = ['一', '二', '三', '四', '五', '六'];
+
 const location = [
   { top: '60%', left: '10%' },
   { top: '70%', left: '30%' },
@@ -77,9 +80,34 @@ const XiuLianGongFa = props => {
     }
   };
 
-  console.log(gongFaProgress);
-
   const Grade = ({ item }) => {
+    if (item.grade === gongFaGrade + 1) {
+      return (
+        <View style={{ position: 'absolute', ...location[item.grade - 1] }}>
+          <TouchableOpacity
+            style={{ alignItems: 'center' }}
+            onPress={() => {
+              setCheckedIndex(item.grade);
+            }}>
+            <View style={{ alignItems: 'center' }}>
+              <Text style={{ opacity: item.grade === checkedIndex ? 1 : 0 }}>{item.desc}</Text>
+              <Text style={{ position: "absolute", opacity: item.grade === checkedIndex ? 0 : 1 }}>当前</Text>
+            </View>
+            <View
+              style={[
+                styles.round,
+                {
+                  backgroundColor: item.grade <= gongFaGrade ? '#F5BA1C' : null,
+                  borderColor: item.grade === checkedIndex ? "#F5BA1C" : "#000"
+                },
+              ]}>
+              <Text>{item.title}</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      )
+    }
+
     return (
       <View style={{ position: 'absolute', ...location[item.grade - 1] }}>
         <TouchableOpacity
@@ -93,7 +121,10 @@ const XiuLianGongFa = props => {
           <View
             style={[
               styles.round,
-              { backgroundColor: item.grade === checkedIndex ? '#F5BA1C' : null },
+              {
+                backgroundColor: item.grade <= gongFaGrade ? '#F5BA1C' : null,
+                borderColor: item.grade === checkedIndex ? "#F5BA1C" : "#000"
+              },
             ]}>
             <Text>{item.title}</Text>
           </View>
@@ -103,12 +134,11 @@ const XiuLianGongFa = props => {
   };
 
   const GongFaGradeDesc = () => {
-    const ceng = ['一', '二', '三', '四', '五', '六'];
     return (
       <View style={{ alignItems: 'center' }}>
         <View style={styles.gongFaGradeDesc}>
           <Text style={{ fontSize: 16, color: '#000' }}>
-            当前: {ceng[gongFaLayer]}层 {checkedIndex}/{layerConfig.length}
+            <Text>{checkedIndex === gongFaGrade + 1 ? "当前" : "查看"}</Text>: {gongFaLayerNumber[gongFaLayer]}层 {checkedIndex}/{layerConfig.length}
           </Text>
           <Text style={{ fontSize: 16, color: '#000', marginTop: 8 }}>
             激活: {layerConfig[checkedIndex - 1].desc}
@@ -282,7 +312,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderRadius: 60,
-    borderColor: '#000',
+    // borderColor: '#000',
   },
   gongFaGradeDesc: {
     width: 350,

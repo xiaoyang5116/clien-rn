@@ -52,6 +52,18 @@ const GongFaLevel = props => {
             }
           });
       }
+
+      if (currentGongFaProgress.gongFaStatus === 1) {
+        const key = RootView.add(
+          <PopComponent
+            gongFa={item}
+            currentGongFaProgress={currentGongFaProgress}
+            onClose={() => {
+              RootView.remove(key);
+            }}
+          />,
+        )
+      }
     };
 
     return (

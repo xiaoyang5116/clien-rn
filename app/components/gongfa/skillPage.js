@@ -1,14 +1,68 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  Platform,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
+import React, { useEffect, useState } from 'react';
 
-const SkillPage = (props) => {
-  return (
-    <View>
-      <Text>skillPage</Text>
-    </View>
-  )
+import { connect, action } from '../../constants';
+import RootView from '../RootView';
+
+import { TextButton } from '../../constants/custom-ui';
+import { CheckBox, Icon } from '@rneui/themed';
+
+const CheckBoxComponent = (props) => {
+  const { isChecked, item, onPress } = props
+  const [check, setCheck] = useState(isChecked);
+  return <CheckBox
+    title={item.name}
+    textStyle={{ fontSize: 18, color: "#000" }}
+    checked={check}
+    onPress={() => {
+      onPress()
+    }}
+  />
 }
 
-export default SkillPage
+const SkillPage = props => {
+  const { allSkills } = props;
 
-const styles = StyleSheet.create({})
+  const checkedSkill = (id, checked) => {
+    props.dispatch(action('GongFaModel/checkedGongFaSkill')({ id, checked }));
+  }
+
+  const _renderSkills = ({ item }) => {
+    return (
+      <View style={{ justifyContent: 'center', borderBottomWidth: 1, borderColor: "#ccc" }}>
+        <CheckBox
+          title={item.name}
+          textStyle={{ fontSize: 18, color: "#000" }}
+          checked={item.isChecked}
+          onPress={() => {
+            checkedSkill(item.id, !item.isChecked)
+          }}
+        />
+      </View>
+    );
+  };
+
+  return (
+    <View style={{ flex: 1 }}>
+      {allSkills.length === 0 ? (
+        <View>
+          <Text>还没有获得技能</Text>
+        </View>
+      ) : (
+        <FlatList data={allSkills} renderItem={_renderSkills} />
+      )}
+    </View>
+  );
+};
+
+export default connect(state => ({ ...state.GongFaModel }))(SkillPage);
+
+const styles = StyleSheet.create({});
