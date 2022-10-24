@@ -280,12 +280,8 @@ const WorldMap = (props) => {
     status.prevY = mapPos.y._value;
   }
 
-  // dx,dy: 从按下后移动距离
-  // duration: 大于0则动画移动
-  const move = (dx, dy, duration = 0) => {
-    const x = status.prevX + dx;
-    const y = status.prevY + dy;
-
+  // 直接移动到指定坐标
+  const moveTo = (x, y, duration = 0) => {
     // 越界检测
     if ((y <= OFFSET_Y_BOTTOM_LIMIT)
       || (x >= OFFSET_X_LEFT_LIMIT)
@@ -293,6 +289,8 @@ const WorldMap = (props) => {
       || (x <= OFFSET_X_RIGHT_LIMIT)
       )
       return
+
+    console.debug('moveTo => ', x, y);
 
     if (duration > 0) {
       Animated.timing(mapPos, {
@@ -307,6 +305,14 @@ const WorldMap = (props) => {
     } else {
       mapPos.setValue({ x, y });
     }
+  }
+
+  // dx,dy: 从按下后移动距离
+  // duration: 大于0则动画移动
+  const move = (dx, dy, duration = 0) => {
+    const x = status.prevX + dx;
+    const y = status.prevY + dy;
+    moveTo(x, y, duration);
   }
 
   // 停止阻尼动画
@@ -365,8 +371,9 @@ const WorldMap = (props) => {
   })).current;
 
   // 开始点击
-  const touchStartHandler = () => {
-    isTouchStart.current = true;
+  const touchStartHandler = (e) => {
+    // 如果按钮被按下，优先处理按钮，忽略触摸点击。
+    isTouchStart.current = (!dataContext.pressIn);
   }
 
   // 结束点击
@@ -432,8 +439,9 @@ const WorldMap = (props) => {
       </View>
 
       {/* 位置指针 */}
-      <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }}>
+      <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents={'box-none'}>
           <LocationPinWrapper ref={refLocationPin} onPress={() => {
+            moveTo(0, 0, 600);
           }} />
       </View>
 
