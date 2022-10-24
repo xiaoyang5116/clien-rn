@@ -40,7 +40,7 @@ Word.defaultProps = {
     level: 1,
 }
 
-const WiuXingLevelAnimation = (props) => {
+const XiuXingLevelAnimation = (props) => {
 
     const translateY = React.useRef(new Animated.Value(0)).current;
     const opacity = React.useRef(new Animated.Value(1)).current;
@@ -78,18 +78,18 @@ const WiuXingLevelAnimation = (props) => {
     );
 }
 
-WiuXingLevelAnimation.propTypes = {
+XiuXingLevelAnimation.propTypes = {
     period: PropTypes.string, // 阶段
     level: PropTypes.number, // 等级
     onClose: PropTypes.func,
 }
 
-WiuXingLevelAnimation.defaultProps = {
+XiuXingLevelAnimation.defaultProps = {
     period: '锻体',
     level: 1,
 }
 
-export default WiuXingLevelAnimation;
+export default XiuXingLevelAnimation;
 
 const styles = StyleSheet.create({
     viewContainer: {

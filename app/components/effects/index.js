@@ -17,7 +17,8 @@ import LevelUpAnimation from './LevelUpAnimation';
 import WorldPreview from '../carousel/WorldPreview';
 import WorldUtils from '../../utils/WorldUtils';
 import WeiXiuAnimation from './WeiXiuAnimation';
-import WiuXingLevelAnimation from './WiuXingLevelAnimation';
+import XiuXingLevelAnimation from './XiuXingLevelAnimation';
+import WorldSwitchAnimation from './WorldSwitchAnimation';
 
 export default class EffectAnimations {
 
@@ -94,7 +95,14 @@ export default class EffectAnimations {
                     RootView.remove(key);
                 }} />);
             } else if (id == 16) { // 修行等级提升
-                const key = RootView.add(<WiuXingLevelAnimation period={e.period} level={e.level} onClose={() => {
+                const key = RootView.add(<XiuXingLevelAnimation period={e.period} level={e.level} onClose={() => {
+                    RootView.remove(key);
+                }} />);
+            } else if (id == 17) { // 切换世界动画
+                const attrs = {};
+                if (e.worldName != undefined) attrs.worldName = e.worldName;
+                if (e.year != undefined) attrs.year = e.year;
+                const key = RootView.add(<WorldSwitchAnimation {...attrs} onClose={() => {
                     RootView.remove(key);
                 }} />);
             }
