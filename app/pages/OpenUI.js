@@ -4,7 +4,7 @@ import AlchemyRoomModal from '../components/alchemyRoom';
 import { PlantPage } from '../components/plant';
 import WorshipModal from '../components/worship';
 import LianQiPage from '../components/lianQi'
-import Gongfa from '../components/gongfa';
+import GongFa from '../components/gongFa';
 import XiuXingUtils from '../utils/XiuXingUtils';
 import { WorldMapUtils } from '../components/maps/WorldMap';
 
@@ -32,7 +32,7 @@ export default class OpenUI {
                 WorshipModal.show();
                 break;
             case 'GongFa':
-                Gongfa.show();
+                GongFa.show();
                 break;
             case 'WorldMap':
                 WorldMapUtils.show();

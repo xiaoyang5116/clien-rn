@@ -26,7 +26,7 @@ import PropTips from '../../tips/PropTips';
 const windowWidth = Dimensions.get('window').width;
 
 // icon 数据
-const IconData = item => {
+export const IconData = item => {
   const quality_style = qualityStyle.styles.find(
     e => e.id == parseInt(item.quality),
   );
@@ -34,7 +34,7 @@ const IconData = item => {
   return { quality_style, image };
 };
 
-const openPropDetail = prop => {
+export const openPropDetail = prop => {
   const key = RootView.add(
     <PropTips
       zIndex={99}

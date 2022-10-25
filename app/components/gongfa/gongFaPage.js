@@ -18,7 +18,13 @@ const GongFaPage = (props) => {
           {tab === "gongFa" ? <GongFaLevel /> : <SkillPage />}
         </View>
         <View style={styles.footerContainer}>
-          <TextButton title={"返回"} onPress={onClose} />
+          <View style={{}}>
+            <TextButton title={"返回"} onPress={onClose} />
+          </View>
+          <View style={{ flexDirection: 'row', justifyContent: "flex-end" }}>
+            <TextButton title={"功法"} onPress={() => { setTab("gongFa") }} />
+            <TextButton title={"技能"} onPress={() => { setTab("skill") }} />
+          </View>
         </View>
       </SafeAreaView>
     </View>
@@ -35,6 +41,9 @@ const styles = StyleSheet.create({
   },
   footerContainer: {
     marginBottom: Platform.OS == 'android' ? 12 : 0,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: 'center'
   }
 })
 
