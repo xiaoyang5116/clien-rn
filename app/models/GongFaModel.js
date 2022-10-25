@@ -34,7 +34,6 @@ export default {
           gongFaLayer: 0,
           gongFaGrade: 0,
           gongFaStatus: 0,
-          // skillsId: [],
         }));
         const init = {
           gongFaProgressData: initGongFaProgressData,
@@ -136,7 +135,7 @@ export default {
         currentGongFaProgress.gongFaStatus = 1;
       }
       // 升级
-      if (gongFaGrade + 1 <= currentGongFa.layerConfig[gongFaLayer].length) {
+      if (gongFaGrade + 1 < currentGongFa.layerConfig[gongFaLayer].length) {
         currentGongFaProgress.gongFaGrade = gongFaGrade + 1;
       } else {
         if (gongFaLayer + 1 <= currentGongFa.layerConfig.length - 1) {
@@ -149,7 +148,7 @@ export default {
 
       // 下一级的配置数据
       const { needProps, award } = currentGongFa.layerConfig[gongFaLayer].find(
-        item => item.grade === currentGongFaProgress.gongFaGrade,
+        item => item.grade === gongFaGrade + 1,
       );
       // 扣除道具
       for (let k in needProps) {
@@ -168,7 +167,9 @@ export default {
       }
       if (award.skillId !== undefined) {
         const skill = gongFaConfig.skillConfig.find(item => item.id === award.skillId)
-        allSkills.push({ ...skill, isChecked: false })
+        if (allSkills.find(item => item.id === skill.id) === undefined) {
+          allSkills.push({ ...skill, isChecked: false })
+        }
       }
 
       // 保存记录
@@ -216,30 +217,7 @@ export default {
       return upgradeProps;
     },
 
-    // 获得的所有技能
-    *getGongFaSkills({ payload }, { select, call, put }) {
-      const { gongFaConfig, gongFaProgressData } = yield select(
-        state => state.GongFaModel,
-      );
-      let allSkillsId = [];
-      for (let index = 0; index < gongFaProgressData.length; index++) {
-        const { skillsId } = gongFaProgressData[index];
-        allSkillsId.push(...skillsId);
-      }
-
-      let allSkills = [];
-      for (let index = 0; index < allSkillsId.length; index++) {
-        const skillsId = allSkillsId[index];
-        const skillConfig = gongFaConfig.skillConfig.find(
-          item => item.id === skillsId,
-        );
-        allSkills.push(skillConfig);
-      }
-
-      yield put(action('updateState')({ allSkills }));
-    },
-
-    // 选择携带的技能
+    // 选择技能
     *checkedGongFaSkill({ payload }, { select, call, put }) {
       const { id, checked } = payload
       const { gongFaProgressData, allSkills } = yield select(state => state.GongFaModel);
@@ -258,7 +236,14 @@ export default {
           allSkills: newAllSkills,
         }),
       );
-    }
+    },
+
+    // 携带的技能
+    *getSkillsToCarry({ payload }, { select, call, put }) {
+      const { allSkills } = yield call(LocalStorage.get, LocalCacheKeys.GONG_FA_DATA);
+      const selectedSkills = allSkills.filter(item => item.isChecked == true)
+      return selectedSkills
+    },
   },
 
   reducers: {

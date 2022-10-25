@@ -15,18 +15,6 @@ import RootView from '../RootView';
 import { TextButton } from '../../constants/custom-ui';
 import { CheckBox, Icon } from '@rneui/themed';
 
-const CheckBoxComponent = (props) => {
-  const { isChecked, item, onPress } = props
-  const [check, setCheck] = useState(isChecked);
-  return <CheckBox
-    title={item.name}
-    textStyle={{ fontSize: 18, color: "#000" }}
-    checked={check}
-    onPress={() => {
-      onPress()
-    }}
-  />
-}
 
 const SkillPage = props => {
   const { allSkills } = props;

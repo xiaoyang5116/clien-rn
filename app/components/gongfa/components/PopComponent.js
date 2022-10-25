@@ -100,12 +100,26 @@ const PopComponent = props => {
           <View style={{}}>
             <Text style={{ fontSize: 18, color: '#000' }}>
               当前: {gongFaLayerNumber[gongFaLayer]}层
-              <Text style={{ fontSize: 18, color: '#179204' }}> {gongFaGrade}</Text> / 
+              <Text style={{ fontSize: 18, color: '#179204' }}> {gongFaGrade + 1}</Text> /
               {gongFa.layerConfig[gongFaLayer].length}
             </Text>
           </View>
           <View style={{ marginTop: 12, alignItems: 'center' }}>
             <TextButton title={'修炼'} onPress={xiuLiangGongFa} />
+          </View>
+        </View>
+      );
+    }
+    if (gongFaStatus === 2) {
+      content = (
+        <View style={{ marginTop: 40 }}>
+          <View style={{ alignItems: "center" }}>
+            <Text style={{ fontSize: 18, color: '#000' }}>
+              圆满
+            </Text>
+          </View>
+          <View style={{ marginTop: 12, alignItems: 'center' }}>
+            <TextButton title={'查看'} onPress={xiuLiangGongFa} />
           </View>
         </View>
       );

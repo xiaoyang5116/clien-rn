@@ -51,9 +51,7 @@ const GongFaLevel = props => {
               );
             }
           });
-      }
-
-      if (currentGongFaProgress.gongFaStatus === 1) {
+      }else{
         const key = RootView.add(
           <PopComponent
             gongFa={item}
