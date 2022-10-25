@@ -227,10 +227,10 @@ const WorldMap = (props) => {
     // 计算箭头位置
     const distX = x - targetPos.x;
     const distY = y - targetPos.y;
-    const pinOffsetY = (y - targetPos.y) * ((x - targetPos.x) - WIN_SIZE.width / 2) / (x - targetPos.x); // 梯形中间高度
 
     if (Math.abs(distX) >= (WIN_SIZE.width / 2)) {
       const direction = (distX > 0) ? 1 : -1;
+      const pinOffsetY = (y - targetPos.y) * ((x - targetPos.x) - WIN_SIZE.width / 2) / (x - targetPos.x); // 梯形中间高度
       if (pinOffsetY > 0) {
         const limitOffsetY = (WIN_SIZE.height / 2) - (pinSize.height);
         pinPos.setValue({ x: (direction * (WIN_SIZE.width / 2)) - (direction * px2pd(pinSize.width)), y: (pinOffsetY > limitOffsetY) ? limitOffsetY : pinOffsetY });
