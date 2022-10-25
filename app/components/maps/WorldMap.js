@@ -18,7 +18,7 @@ import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-import { DataContext, getWindowSize } from '../../constants';
+import { DataContext, getWindowSize, statusBarHeight } from '../../constants';
 import { px2pd } from '../../constants/resolution';
 import { TextButton } from '../../constants/custom-ui';
 import { MAP_DATA } from './data/WorldMapData_1';
@@ -47,7 +47,7 @@ const OFFSET_Y_BOTTOM_LIMIT = -(((MAP_ROWS * MAP_GRID_HEIGHT) / 2) - (WIN_SIZE.h
 // 顶边距限制
 const OFFSET_Y_TOP_LIMIT = Math.abs(OFFSET_Y_BOTTOM_LIMIT) - (((MAP_ROWS % 2) == 0) ? MAP_GRID_HEIGHT : 0);
 
-// 方向箭头
+// 位置箭头
 const LocationPin = (props, ref) => {
   const dataContext = React.useContext(DataContext);
   const spinValue = React.useRef(new Animated.Value(0)).current;
@@ -186,6 +186,15 @@ const WorldMap = (props) => {
   // 方向箭头引用
   const refLocationPin = React.useRef(null);
 
+  // 目标位置
+  const targetPos = React.useRef({ x: -180, y: 340 }).current;
+
+  // 箭头位置(相对于中心点)
+  const pinPos = React.useRef(new Animated.ValueXY({ x: 0, y: 0 })).current;
+
+  // 箭头大小
+  const pinSize = React.useRef({ width: 0, height: 0 }).current;
+
   // 各种状态数
   const status = React.useRef({ 
     // 记录上一次移动结束的坐标
@@ -203,12 +212,38 @@ const WorldMap = (props) => {
   // 记录触摸状态
   const isTouchStart = React.useRef(false);
 
+  // 箭头布局处理器
+  const pinOnLayout = (e) => {
+    const { width, height } = e.nativeEvent.layout;
+    pinSize.width = width;
+    pinSize.height = height;
+  }
+
   // 地图坐标发生改变
   const onMapPositionChanged = ({ x, y }) => {
     if (status.lastX == x && status.lastY == y)
       return;
 
-    const angle = Math.atan2(x, y) * (180 / Math.PI);
+    // 计算箭头位置
+    const distX = x - targetPos.x;
+    const distY = y - targetPos.y;
+    const pinOffsetY = (y - targetPos.y) * ((x - targetPos.x) - WIN_SIZE.width / 2) / (x - targetPos.x); // 梯形中间高度
+
+    if (Math.abs(distX) >= (WIN_SIZE.width / 2)) {
+      const direction = (distX > 0) ? 1 : -1;
+      if (pinOffsetY > 0) {
+        const limitOffsetY = (WIN_SIZE.height / 2) - (pinSize.height);
+        pinPos.setValue({ x: (direction * (WIN_SIZE.width / 2)) - (direction * px2pd(pinSize.width)), y: (pinOffsetY > limitOffsetY) ? limitOffsetY : pinOffsetY });
+      } else if (pinOffsetY < 0) {
+        const limitOffsetY = (WIN_SIZE.height / 2) - (pinSize.height) - statusBarHeight; // 顶部区域不可点击
+        pinPos.setValue({ x: (direction * (WIN_SIZE.width / 2)) - (direction * px2pd(pinSize.width)), y: (Math.abs(pinOffsetY) > limitOffsetY) ? -limitOffsetY : pinOffsetY });
+      }
+    } else {
+      pinPos.setValue({ x: WIN_SIZE.width * 2, y: WIN_SIZE.height * 2 }); // 放在角落不可视
+    }
+
+    // 计算出与方向箭头的角度
+    const angle = Math.atan2((x - pinPos.x._value - targetPos.x), (y - pinPos.y._value - targetPos.y)) * (180 / Math.PI);
     refLocationPin.current.setSpinValue(angle);
 
     // 越界检测
@@ -290,7 +325,7 @@ const WorldMap = (props) => {
       )
       return
 
-    console.debug('moveTo => ', x, y);
+    // console.debug('moveTo => ', x, y);
 
     if (duration > 0) {
       Animated.timing(mapPos, {
@@ -434,15 +469,15 @@ const WorldMap = (props) => {
       </Animated.View>
 
       {/* 角色 */}
-      <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents={'none'}>
+      {/* <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents={'none'}>
         <FastImage source={require('../../../assets/bg/explore_person.png')} style={{ width: px2pd(185), height: px2pd(166) }} />
-      </View>
+      </View> */}
 
       {/* 位置指针 */}
       <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents={'box-none'}>
-          <LocationPinWrapper ref={refLocationPin} onPress={() => {
-            moveTo(0, 0, 600);
-          }} />
+        <Animated.View style={{ transform: [{ translateX: pinPos.x }, { translateY: pinPos.y }] }} onLayout={pinOnLayout}>
+          <LocationPinWrapper ref={refLocationPin} onPress={() => { moveTo(targetPos.x, targetPos.y, 600); }} />
+        </Animated.View>
       </View>
 
       {/* 大地图关闭按钮 */}
