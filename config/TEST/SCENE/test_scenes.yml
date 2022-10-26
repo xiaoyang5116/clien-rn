@@ -38,6 +38,12 @@ scenes: [
           {  
             id: 'c0', desc: '配置测试', 
             options: [
+              { title: "获得成就",         
+                toMsg: { 
+                  action: 'AchievementModel/addAchievement', params: { addAchievementId: [1,2] } 
+                },  
+              },
+              { title: '成就系统', openUI: "ChengJiu"},
               { title: '打开功法页面', openUI: "GongFa"},
               { title: '小宇宙项目', games: {id: 7}},
               { title: '带引导的炼丹页面', openUI: "LianDanFang-1" },

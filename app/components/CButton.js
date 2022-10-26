@@ -83,7 +83,7 @@ const CButton = (props) => {
         };
         const imgBg = props.disabled ? theme.btnPattern_2_img : theme.btnPattern_1_img;
         return (
-            <TouchableHighlight underlayColor={props.underlayColor} activeOpacity={0.75} disabled={props.disabled} onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress} >
+            <TouchableHighlight underlayColor={props.underlayColor} activeOpacity={0.75} disabled={props.disabled} onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress} style={props.containerStyle}>
                 <View style={[ defaultStyle, { ...props.style } ]}>
                     <ImageCapInset
                         style={{ width: '100%', height: '100%', position: 'absolute' }}
@@ -128,6 +128,7 @@ CButton.propTypes = {
     style: PropTypes.object,
     onPress: PropTypes.func,
     disabled: PropTypes.bool,
+    containerStyle:PropTypes.object
 };
 
 CButton.defaultProps = {
@@ -139,6 +140,7 @@ CButton.defaultProps = {
     style: {},
     onPress: null,
     disabled: false,
+    containerStyle: {},
 };
 
 export default CButton;

@@ -1,0 +1,35 @@
+# ===========================================
+# 成就 配置
+# ===========================================
+# id: 成就id
+# badgeId: 徽章id
+# type: 成就类型 ==> "通常" ｜"稀有"
+# rarity: 稀有程度
+# title: 成就标题
+# desc: 成就简述
+# detail: 成就详细
+
+data:
+  [
+    #  type: "通常"
+    { id: 1, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 2, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 3, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 4, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 5, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 6, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 7, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 8, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 9, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 10, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"] ,},
+
+    # type: "稀有"
+    { id: 101, badgeId: 1, type: "稀有", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 102, badgeId: 1, type: "稀有", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 103, badgeId: 1, type: "稀有", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 104, badgeId: 1, type: "稀有", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 105, badgeId: 1, type: "稀有", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 106, badgeId: 1, type: "稀有", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 107, badgeId: 1, type: "稀有", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+
+  ]

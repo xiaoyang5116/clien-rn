@@ -95,6 +95,12 @@ const _images = {
         { name: 'HuangTu_2', source: require('../../assets/collect/bg/HuangTu_2.png') },
         { name: 'HuangTu_3', source: require('../../assets/collect/bg/HuangTu_3.png') },
     ],
+    // 成就徽章
+    achievementBadgeImage: [
+        { id: 1, img: require('../../assets/button_icon/1.png'), },
+        { id: 2, img: require('../../assets/button_icon/2.png'), },
+        { id: 3, img: require('../../assets/button_icon/3.png'), },
+    ]
 }
 
 const _videos = {
@@ -154,4 +160,9 @@ export const getVideo = (videoId) => {
 // 获取采集背景图片
 export const getCollectBackgroundImage = (name) => {
     return _images.collectBackgroundImages.find(e => lo.isEqual(e.name, name));
+}
+
+// 获得 成就徽章 icon
+export const getAchievementBadgeImage = (id) => {
+    return (_images.achievementBadgeImage.find(item => item.id === id).img)
 }
