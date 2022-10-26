@@ -90,7 +90,7 @@ const Grid = (props) => {
     <>
       <Image source={MAP_DATA[props.gridId]} style={[
         { position: 'absolute', width: MAP_GRID_WIDTH, height: MAP_GRID_HEIGHT }, 
-        lo.isEqual(Platform.OS, 'android') ? { borderWidth: 1 } : {}, // 必须要设置，否则Android很卡，什么原因？ 
+        lo.isEqual(Platform.OS, 'android') ? { borderWidth: 1/100 } : {}, // 必须要设置，否则Android很卡，什么原因？ 
         props.style
       ]} />
       {/* <Text style={[
