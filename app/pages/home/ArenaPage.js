@@ -18,20 +18,29 @@ import { SafeAreaView } from 'react-native';
 import { px2pd } from '../../constants/resolution';
 import { useImperativeHandle } from 'react';
 
-const MsgItem = (props) => {
-    const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.item.msg);
-    const isMyself = (props.user.uid == props.data.item.attackerUid);
+const ActionMsgItem = (props) => {
+    const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.msg);
+    const isMyself = (props.user.uid == props.data.attackerUid);
 
     return (
         <View style={{ borderWidth: 2, borderColor: '#eee', borderRadius: 4, height: px2pd(260), justifyContent: 'flex-start', margin: 5 }}>
             <View style={{ width: '100%', height: px2pd(80), backgroundColor: '#ccc', alignItems: 'center', justifyContent: 'center' }}>
-                <View><RenderHTML contentWidth={100} source={{html: `${props.data.item.attackerName} 的攻击`}} /></View>
+                <View><RenderHTML contentWidth={100} source={{html: `${props.data.attackerName} 的攻击`}} /></View>
                 {
                 (isMyself) 
                 ? <AntDesign style={{ position: 'absolute', right: 5 }} name='arrowright' color={'#333'} size={25} />
                 : <AntDesign style={{ position: 'absolute', left: 5 }} name='arrowleft' color={'#333'} size={25} />
                 }
             </View>
+            <RenderHTML contentWidth={100} source={{html: htmlMsg}} />
+        </View>
+    )
+}
+
+const TextMsgItem = (props) => {
+    const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.msg);
+    return (
+        <View style={{ height: px2pd(60), justifyContent: 'center', alignItems: 'center', margin: 5 }}>
             <RenderHTML contentWidth={100} source={{html: htmlMsg}} />
         </View>
     )
@@ -89,12 +98,17 @@ const ArenaPage = (props) => {
     const refList = React.createRef();
     const listData = React.useRef([]);
     const reportIndex = React.useRef(0);
+    const status = React.useRef(0); //0: 正常, 1: 准备结束, 2: 已经结束
     const refCharacterEnemy = React.useRef(null);
     const refCharacterMysef = React.useRef(null);
     const [update, setUpdate] = React.useState({});
 
-    const renderMsgItem = (data) => {
-        return (<MsgItem data={data.item} user={props.myself} />)
+    const renderMsgItem = ({ item }) => {
+        if (item.data.attackerUid != undefined && item.data.defenderUid != undefined) {
+            return (<ActionMsgItem data={item.data} user={props.myself} />)
+        } else {
+            return (<TextMsgItem data={item.data} />);
+        }
     }
 
     React.useEffect(() => {
@@ -105,11 +119,13 @@ const ArenaPage = (props) => {
         let timer = null;
         if (props.report.length > 0) {
             if (reportIndex.current < props.report.length) {
+                status.current = 0;
                 timer = setTimeout(() => {
                     setUpdate({});
                 }, 600);
             } else {
                 // listData.current.length = 0;
+                status.current = 1;
                 reportIndex.current = 0;
                 props.dispatch(action('ArenaModel/over')());
             }
@@ -123,11 +139,15 @@ const ArenaPage = (props) => {
 
     if (props.report.length > 0 && reportIndex.current < props.report.length) {
         const item = props.report[reportIndex.current];
-        listData.current.push({ id: listData.current.length + 1, item: item });
+        listData.current.push({ id: listData.current.length + 1, data: item });
 
         setTimeout(() => {
-            refCharacterEnemy.current.update(item);
-            refCharacterMysef.current.update(item);
+            if (refCharacterEnemy.current != null) {
+                refCharacterEnemy.current.update(item);
+            }
+            if (refCharacterMysef.current != null) {
+                refCharacterMysef.current.update(item);
+            }
         }, 0);
 
         reportIndex.current += 1;
@@ -151,8 +171,12 @@ const ArenaPage = (props) => {
                         renderItem={renderMsgItem}
                         keyExtractor={item => item.id}
                         onContentSizeChange={() => {
-                            if (listData.current.length > 0) {
+                            if (listData.current.length > 0 && status.current != 2) {
                                 refList.current.scrollToEnd({ animated: true });
+                                // 停止滚动
+                                if (status.current == 1) {
+                                    status.current = 2;
+                                }
                             }
                         }}
                     />
