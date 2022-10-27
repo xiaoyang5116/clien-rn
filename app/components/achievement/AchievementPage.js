@@ -5,16 +5,28 @@ import {
   SafeAreaView,
   FlatList,
   TouchableOpacity,
+  Platform,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
 import { connect, action, getAchievementBadgeImage } from '../../constants';
 import { TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
+import RootView from '../RootView';
+import AchievementDetail from './AchievementDetail';
 
 
 const AchievementComponent = props => {
   const { data, title: titleText } = props;
+
+  const openAchievementDetail = (item) => {
+    const key = RootView.add(
+      <AchievementDetail
+        item={item}
+        onClose={() => { RootView.remove(key) }}
+      />
+    )
+  }
 
   const _renderItem = ({ item }) => {
     const { badgeId, title, desc } = item;
@@ -23,9 +35,7 @@ const AchievementComponent = props => {
     return (
       <TouchableOpacity
         style={{ width: '50%', marginBottom: 12 }}
-        onPress={() => {
-          console.log('sss');
-        }}>
+        onPress={() => { openAchievementDetail(item) }}>
         <View
           style={{
             flexDirection: 'row',
@@ -155,6 +165,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+    marginBottom: Platform.OS === "android" ? 12 : 0
   },
   titleContainer: {
     backgroundColor: '#ccc',

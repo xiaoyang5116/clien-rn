@@ -12,7 +12,7 @@
 data:
   [
     #  type: "通常"
-    { id: 1, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 1, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细，", "成就详细。", "成就详细。"],},
     { id: 2, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
     { id: 3, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
     { id: 4, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},

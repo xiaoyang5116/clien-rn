@@ -1,6 +1,5 @@
 import { action, LocalCacheKeys, BOTTOM_TOP_SMOOTH } from '../constants';
 
-import lo, { range } from 'lodash';
 import { GetAchievementDataApi } from '../services/GetAchievementDataApi';
 
 import EventListeners from '../utils/EventListeners';
@@ -24,9 +23,10 @@ export default {
         LocalCacheKeys.ACHIEVEMENT_DATA,
       );
       if (achievementData !== null) {
-        yield put(action('updateState')({ achievementData }));
+        yield put(action('updateState')({ achievementConfig: data, achievementData }));
+      } else {
+        yield put(action('updateState')({ achievementConfig: data, achievementData: [] }));
       }
-      yield put(action('updateState')({ achievementConfig: data }));
     },
 
     *getAchievementData({ }, { select, call, put }) {
@@ -47,16 +47,15 @@ export default {
 
         const achievement = achievementConfig.find(item => item.id === id)
         if (achievement === undefined) return console.log("未找到成就")
-        newAchievementData.push(achievement)
+        newAchievementData.push({ ...achievement, unlockTime: now() })
         messages.push({
           content: achievement.detail,
           title: achievement.title,
-          cluesType: "成就"
         })
       }
 
       // 提示获得成就
-      yield put(action('ToastModel/toastShow')({ messages, type: "clues" }));
+      yield put(action('ToastModel/toastShow')({ messages, type: "achievement" }));
       yield call(
         LocalStorage.set,
         LocalCacheKeys.ACHIEVEMENT_DATA,
