@@ -19,9 +19,20 @@ import { px2pd } from '../../constants/resolution';
 import { useImperativeHandle } from 'react';
 
 const MsgItem = (props) => {
+    const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.item.msg);
+    const isMyself = (props.user.uid == props.data.item.attackerUid);
+
     return (
-        <View style={{ height: 20, justifyContent: 'center', margin: 5, paddingLeft: 5 }}>
-            <RenderHTML contentWidth={100} source={{html: props.msg}} />
+        <View style={{ borderWidth: 2, borderColor: '#eee', borderRadius: 4, height: px2pd(260), justifyContent: 'flex-start', margin: 5 }}>
+            <View style={{ width: '100%', height: px2pd(80), backgroundColor: '#ccc', alignItems: 'center', justifyContent: 'center' }}>
+                <View><RenderHTML contentWidth={100} source={{html: `${props.data.item.attackerName} 的攻击`}} /></View>
+                {
+                (isMyself) 
+                ? <AntDesign style={{ position: 'absolute', right: 5 }} name='arrowright' color={'#333'} size={25} />
+                : <AntDesign style={{ position: 'absolute', left: 5 }} name='arrowleft' color={'#333'} size={25} />
+                }
+            </View>
+            <RenderHTML contentWidth={100} source={{html: htmlMsg}} />
         </View>
     )
 }
@@ -83,7 +94,7 @@ const ArenaPage = (props) => {
     const [update, setUpdate] = React.useState({});
 
     const renderMsgItem = (data) => {
-        return (<MsgItem msg={data.item.msg} />)
+        return (<MsgItem data={data.item} user={props.myself} />)
     }
 
     React.useEffect(() => {
@@ -112,7 +123,7 @@ const ArenaPage = (props) => {
 
     if (props.report.length > 0 && reportIndex.current < props.report.length) {
         const item = props.report[reportIndex.current];
-        listData.current.push({ id: listData.current.length + 1, msg: '<li style="color: #ffffff">{0}</li>'.format(item.msg) });
+        listData.current.push({ id: listData.current.length + 1, item: item });
 
         setTimeout(() => {
             refCharacterEnemy.current.update(item);

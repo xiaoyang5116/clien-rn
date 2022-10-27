@@ -13,7 +13,7 @@ export default {
   state: {
     myself: {
       uid: 1,
-      userName: '光头强',
+      userName: '李森焱',
       life: 8000,// 生命
       speed: 100, // 速度
       power: 600, // 攻击力
@@ -26,7 +26,7 @@ export default {
 
     enemy: {
       uid: 100000,
-      userName: '熊大',
+      userName: '杂鱼',
       life: 8000,//生命
       speed: 80,  // 速度
       power: 450, // 攻击力

@@ -14,15 +14,15 @@ sequences: [
       {
         group: 'A',
         items: [
-          { uid: 100000, userName: '熊大', life: 8000, speed: 80, power: 450, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
-          { uid: 100001, userName: '熊二', life: 8000, speed: 80, power: 450, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
+          { uid: 100000, userName: '杂鱼1', life: 8000, speed: 80, power: 450, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
+          { uid: 100001, userName: '杂鱼2', life: 8000, speed: 80, power: 450, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
         ]
       },
       {
         group: 'B',
         items: [
-          { uid: 100000, userName: '熊大', life: 8000, speed: 80, power: 450, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
-          { uid: 100001, userName: '熊二', life: 8000, speed: 80, power: 450, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
+          { uid: 100000, userName: '杂鱼3', life: 8000, speed: 80, power: 450, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
+          { uid: 100001, userName: '杂鱼4', life: 8000, speed: 80, power: 450, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
         ]
       },
     ],

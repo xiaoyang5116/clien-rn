@@ -228,7 +228,9 @@ export default {
 
               report.push({
                 attackerUid: attacker.uid,
+                attackerName: attacker.userName,
                 defenderUid: defender.uid,
+                defenderName: defender.userName,
                 attackerLife: attacker.life,
                 defenderLife: defender.life,
                 attackerOrgLife: attacker.orgLife,
