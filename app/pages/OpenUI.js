@@ -7,6 +7,7 @@ import LianQiPage from '../components/lianQi'
 import Gongfa from '../components/gongfa';
 import XiuXingUtils from '../utils/XiuXingUtils';
 import { WorldMapUtils } from '../components/maps/WorldMap';
+import ArenaUtils from '../utils/ArenaUtils';
 
 export default class OpenUI {
 
@@ -36,6 +37,9 @@ export default class OpenUI {
                 break;
             case 'WorldMap':
                 WorldMapUtils.show();
+                break;
+            case 'Arena':
+                ArenaUtils.show();
                 break;
         }
     }

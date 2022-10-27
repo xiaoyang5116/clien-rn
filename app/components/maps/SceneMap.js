@@ -204,9 +204,13 @@ const Grid = (props) => {
   if (isMoveDenied) {
     gridImg = require('../../../assets/button/scene_map_button3.png');
   }
-  gridImg = isCenterPoint 
-    ? require('../../../assets/button/scene_map_button.png') 
-    : require('../../../assets/button/scene_map_button2.png');
+  if (isCenterPoint) {
+    gridImg = require('../../../assets/button/scene_map_button.png');
+  } else if (isMoveDenied) {
+    gridImg = require('../../../assets/button/scene_map_button3.png');
+  } else {
+    gridImg = require('../../../assets/button/scene_map_button2.png');
+  }
 
   const borderEffect = isCenterPoint 
     ? { borderWidth: 1.5, borderColor: '#31aac8', borderRadius: 5 } 

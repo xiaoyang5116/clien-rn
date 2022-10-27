@@ -122,6 +122,7 @@ scenes: [
           { title: '【进入地图功能】', toScene: 'wzkj_map' }, 
           { title: '【进入时间功能】', toScene: 'wzkj_datetime' }, 
           { title: '【进入修行功能】', toScene: 'wzkj_xiuxing' }, 
+          { title: '【进入战斗功能】', toScene: 'wzkj_challenge' }, 
           { title: '【进入动画列表】', toScene: 'wzkj_animation' }, 
           { title: '【进入商店列表】', toScene: 'wzkj_shop' }, 
           { title: '【进入采集列表】', toScene: 'wzkj_caiji' }, 
@@ -516,6 +517,43 @@ scenes: [
           { title: '【增加10,000修为值】', alterXiuWei: 10000 }, 
           { title: '【增加30,000修为值】', alterXiuWei: 30000 }, 
           { title: '【增加50,000修为值】', alterXiuWei: 50000 }, 
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  # 战斗
+  {
+    id: 'wzkj_challenge', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '战斗界面', 
+        options: [ 
+          { title: '【返回调试主界面】', toScene: 'wzkj' }, 
+          { title: '【打开战斗主界面】', openUI: 'Arena' }, 
         ],
       },
     ],
