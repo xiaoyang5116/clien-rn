@@ -96,7 +96,7 @@ class Skill {
 
 class PuTongGongJiSkill extends Skill {
   constructor() {
-    super(1, '普通攻击', 200, 500);
+    super(1, '物理攻击', 200, 500);
   }
 }
 
@@ -228,7 +228,9 @@ export default {
 
               report.push({
                 attackerUid: attacker.uid,
+                attackerName: attacker.userName,
                 defenderUid: defender.uid,
+                defenderName: defender.userName,
                 attackerLife: attacker.life,
                 defenderLife: defender.life,
                 attackerOrgLife: attacker.orgLife,

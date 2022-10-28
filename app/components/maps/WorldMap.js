@@ -90,7 +90,7 @@ const Grid = (props) => {
     <>
       <Image source={MAP_DATA[props.gridId]} style={[
         { position: 'absolute', width: MAP_GRID_WIDTH, height: MAP_GRID_HEIGHT }, 
-        lo.isEqual(Platform.OS, 'android') ? { borderWidth: 1 } : {}, // 必须要设置，否则Android很卡，什么原因？ 
+        lo.isEqual(Platform.OS, 'android') ? { borderWidth: 1/100 } : {}, // 必须要设置，否则Android很卡，什么原因？ 
         props.style
       ]} />
       {/* <Text style={[
@@ -219,18 +219,13 @@ const WorldMap = (props) => {
     pinSize.height = height;
   }
 
-  // 地图坐标发生改变
-  const onMapPositionChanged = ({ x, y }) => {
-    if (status.lastX == x && status.lastY == y)
-      return;
-
-    // 计算箭头位置
+  const onLocationPinChanged = (x, y) => {
     const distX = x - targetPos.x;
     const distY = y - targetPos.y;
-    const pinOffsetY = (y - targetPos.y) * ((x - targetPos.x) - WIN_SIZE.width / 2) / (x - targetPos.x); // 梯形中间高度
 
-    if (Math.abs(distX) >= (WIN_SIZE.width / 2)) {
+    if (Math.abs(distX) > (WIN_SIZE.width / 2) || Math.abs(distY) > (WIN_SIZE.height / 2)) {
       const direction = (distX > 0) ? 1 : -1;
+      const pinOffsetY = (y - targetPos.y) * ((x - targetPos.x) - WIN_SIZE.width / 2) / (x - targetPos.x); // 梯形中间高度
       if (pinOffsetY > 0) {
         const limitOffsetY = (WIN_SIZE.height / 2) - (pinSize.height);
         pinPos.setValue({ x: (direction * (WIN_SIZE.width / 2)) - (direction * px2pd(pinSize.width)), y: (pinOffsetY > limitOffsetY) ? limitOffsetY : pinOffsetY });
@@ -241,6 +236,15 @@ const WorldMap = (props) => {
     } else {
       pinPos.setValue({ x: WIN_SIZE.width * 2, y: WIN_SIZE.height * 2 }); // 放在角落不可视
     }
+  }
+
+  // 地图坐标发生改变
+  const onMapPositionChanged = ({ x, y }) => {
+    if (status.lastX == x && status.lastY == y)
+      return;
+
+    // 位置箭头改变
+    onLocationPinChanged(x, y);
 
     // 计算出与方向箭头的角度
     const angle = Math.atan2((x - pinPos.x._value - targetPos.x), (y - pinPos.y._value - targetPos.y)) * (180 / Math.PI);
@@ -469,9 +473,9 @@ const WorldMap = (props) => {
       </Animated.View>
 
       {/* 角色 */}
-      {/* <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents={'none'}>
+      <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents={'none'}>
         <FastImage source={require('../../../assets/bg/explore_person.png')} style={{ width: px2pd(185), height: px2pd(166) }} />
-      </View> */}
+      </View>
 
       {/* 位置指针 */}
       <View style={{ position: 'absolute', width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center' }} pointerEvents={'box-none'}>

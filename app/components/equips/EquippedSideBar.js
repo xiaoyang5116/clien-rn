@@ -23,7 +23,7 @@ const EquippedSideBar = (props) => {
     const [placeHolders, setPlaceHolders] = React.useState([]);
 
     React.useEffect(() => {
-        AppDispath({ type: 'UserModel/getEquipsEntity', payload: { }, cb: (v) => {
+        AppDispath({ type: 'EquipModel/getEquipsEntity', payload: { }, cb: (v) => {
             if (!lo.isArray(v))
                 return
 

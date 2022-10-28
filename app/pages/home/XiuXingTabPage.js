@@ -270,9 +270,9 @@ const XiuXingTabPage = (props) => {
     }
 
     React.useEffect(() => {
-        AppDispath({ type: 'UserModel/checkXiuXing', payload: {}, cb: (v) => showXiuWeiAnimation(v) });
+        AppDispath({ type: 'XiuXingModel/checkXiuXing', payload: {}, cb: (v) => showXiuWeiAnimation(v) });
         const timer = setInterval(() => {
-            AppDispath({ type: 'UserModel/checkXiuXing', payload: {}, cb: (v) => showXiuWeiAnimation(v) });
+            AppDispath({ type: 'XiuXingModel/checkXiuXing', payload: {}, cb: (v) => showXiuWeiAnimation(v) });
         }, 1000 * 10);
         return () => {
             clearInterval(timer);
@@ -286,19 +286,19 @@ const XiuXingTabPage = (props) => {
     }
 
     const onPingJing = () => {
-        AppDispath({ type: 'UserModel/pingJingXiuXing', payload: {} });
+        AppDispath({ type: 'XiuXingModel/pingJingXiuXing', payload: {} });
     }
 
     const getXiuXingAttrValue = (key) => {
-        const found = props.user.xiuxingAttrs.find(e => lo.isEqual(e.key, key));
+        const found = props.xiuxing.xiuxingAttrs.find(e => lo.isEqual(e.key, key));
         return (found != undefined) ? found.value : 0;
     }
 
-    const currentXiuXingConfig = props.user.__data.xiuxingConfig.find(e => e.limit == props.user.xiuxingStatus.limit);
-    const cdForbiden = (props.user.xiuxingStatus.cdTime > 0 && DateTime.now() < props.user.xiuxingStatus.cdTime);
+    const currentXiuXingConfig = props.xiuxing.__data.xiuxingConfig.find(e => e.limit == props.xiuxing.xiuxingStatus.limit);
+    const cdForbiden = (props.xiuxing.xiuxingStatus.cdTime > 0 && DateTime.now() < props.xiuxing.xiuxingStatus.cdTime);
 
     let tupoPingjingBtn = (<></>);
-    if ((props.user.xiuxingStatus.value >= props.user.xiuxingStatus.limit) && !cdForbiden) {
+    if ((props.xiuxing.xiuxingStatus.value >= props.xiuxing.xiuxingStatus.limit) && !cdForbiden) {
         if (currentXiuXingConfig.tupo != undefined) {
             tupoPingjingBtn = (<TupoButton onPress={() => onTuPo(currentXiuXingConfig)} />);
         } else if (currentXiuXingConfig.pingjing != undefined) {
@@ -344,7 +344,7 @@ const XiuXingTabPage = (props) => {
                         (cdForbiden)
                             ? (
                                 <View style={{ position: 'absolute', top: px2pd(180) }}>
-                                    <Text style={styles.cdFontStyle}>等待时间: {DateTime.format(props.user.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
+                                    <Text style={styles.cdFontStyle}>等待时间: {DateTime.format(props.xiuxing.xiuxingStatus.cdTime, 'yyyyMMdd hh:mm:ss')}</Text>
                                 </View>
                             )
                             : <></>
@@ -355,7 +355,7 @@ const XiuXingTabPage = (props) => {
                     </View>
                     <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: px2pd(100) }}>
                         <View style={{ width: PROGRESS_BAR_WIDTH, height: 40 }}>
-                            <ProgressBar value={props.user.xiuxingStatus.value} limit={props.user.xiuxingStatus.limit} />
+                            <ProgressBar value={props.xiuxing.xiuxingStatus.value} limit={props.xiuxing.xiuxingStatus.limit} />
                         </View>
                     </View>
                     <View style={{ flexDirection: 'row' , marginTop: px2pd(25) }}>
@@ -390,4 +390,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default connect((state) => ({ ...state.AppModel, user: { ...state.UserModel } }))(XiuXingTabPage);
+export default connect((state) => ({ ...state.AppModel, user: { ...state.UserModel }, xiuxing: { ...state.XiuXingModel } }))(XiuXingTabPage);
