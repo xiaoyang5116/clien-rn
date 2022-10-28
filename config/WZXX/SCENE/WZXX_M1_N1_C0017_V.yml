@@ -84,8 +84,6 @@ scenes: [
         [
 
 
-
-
         #    #选项对话
         #   { id: 'C0017A_zhatongA',style: 6, title: '炸桶', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
         #   sections: [

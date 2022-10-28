@@ -196,16 +196,15 @@ scenes: [
     #横图显示
     sceneImage: 'BGT_7',
     #不显示时间
-      worldTimeHidden: False,
+    worldTimeHidden: False,
     # 当前场景地图
     mapId: 'C000F_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-2, 4],
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
     ],
     # 动作定义
     actions: [
@@ -216,10 +215,7 @@ scenes: [
       # { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3B'] ,nextChat: 'C4' },
       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/gonyuan_A'] ,nextChat: 'C2' },
       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_2A'] ,nextChat: 'C3' },
-
-      { 
-      type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/diyitianzaijia_A'],
-      andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24'], nextChat: 'C1A' 
+      {type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/diyitianzaijia_A'],andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24'], nextChat: 'C1A' 
       },
     ],
 
@@ -230,10 +226,8 @@ scenes: [
       #   id: 'C4', desc: "有了灵感后，李森炎对于小宇宙的开发更加顺利\n刚开始开发小宇宙项目的时候，是他最迷茫，却也是最开心的时候", 
       #   options: [ 
       #   { title: '【回忆结束】', varsOff: ['WZXX_M1_N1_C000F_V/linggan_3B'] ,toChapter: "WZXX_M1_N1_C001B_[N1]"},
-      
       #   ],
       # },
-
       { 
         id: 'C0', desc: '电脑桌上有很多随笔和便签，看上去杂乱但有序', 
         options: [ 
@@ -244,7 +238,6 @@ scenes: [
          varsOff: ['WZXX_M1_N1_C000F_V/v_icon_108',],
          transitionAnimation: '白色转场' 
          },
-
         #{ title: '【太晚了去休息下吧】', andVarsValue: ['@missionTime_C000Fshijian >= 21', '@missionTime_C000Fshijian <= 24'], toScene: 'C000F_V2_MAP_-2_5',}, 
         ],
       },
@@ -302,7 +295,7 @@ scenes: [
     ],
   },
 #=========================事件场景============================
-       {
+  {
   # NPC2
     id: 'C000F_V2_MAP_-2_5', name: '床',
     missionId: 'C000Fshijian',
@@ -328,7 +321,7 @@ scenes: [
     events: [
       { type: 'enter',
        andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_2B'] ,
-      andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24'],nextChat: 'C2A' },
+      andVarsValue: ['@missionTime_C000Fshijian >= 18', '@missionTime_C000Fshijian <= 24'],nextChat: 'C2A' },
       { type: 'enter',   andVarsOn: ['WZXX_M1_N1_C000F_V/chuang_B'] ,nextChat: 'C0' },
       # { type: 'enter' ,nextChat: 'C0' },
       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/chuang_A'] , nextChat: 'C0', },
@@ -348,20 +341,21 @@ scenes: [
         varsOn: ['WZXX_M1_N1_C000F_V/gonyuan_A',] ,
         varsOff: ['WZXX_M1_N1_C000F_V/diyitianzaijia_A','WZXX_M1_N1_C000F_V/chuang_B',
         'WZXX_M1_N1_C000F_V/biaoqianv1','WZXX_M1_N1_C000F_V/biaoqianv2','WZXX_M1_N1_C000F_V/biaoqianv3','WZXX_M1_N1_C000F_V/biaoqianv4','WZXX_M1_N1_C000F_V/biaoqianv5','WZXX_M1_N1_C000F_V/biaoqianv6','WZXX_M1_N1_C000F_V/biaoqianv7','WZXX_M1_N1_C000F_V/biaoqianv8'],
-        missionTime: { missionId: 'C000Fshijian', alterSeconds: 28800 },
-         transitionAnimation: '白色转场' 
+        missionTime: { missionId: 'C000Fshijian', alterSeconds: 36000 },
+        transitionAnimation: '白色转场' 
         },
         ],
       },
       #
       #第二天
-      { 
-        id: 'C2A', desc: '好好睡一觉，等明天去公园找找灵感', 
+      {
+        id: 'C2A', desc: '好好睡一觉，等明天再去公园找找灵感', 
         options: [ 
         { 
          title: '【睡觉】', nextChat: 'C4', 
-         varsOn: ['WZXX_M1_N1_C000F_V/linggan_3A'] ,varsOff: ['WZXX_M1_N1_C000F_V/linggan_2A'],
-         missionTime: { missionId: 'C000Fshijian', alterSeconds: 28800 },
+         varsOn: ['WZXX_M1_N1_C000F_V/linggan_3A'] ,
+        #  varsOff: ['WZXX_M1_N1_C000F_V/linggan_2A'],
+         missionTime: { missionId: 'C000Fshijian', alterSeconds: 36000 },
          transitionAnimation: '白色转场' 
         },
         ],
@@ -394,13 +388,13 @@ scenes: [
         options: [ 
         { 
         title: '【眯一会儿】', andVarsOn: ['WZXX_M1_N1_C000F_V/chuang_A'] , nextChat: 'C1',
-        missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } ,
+        missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 },
         transitionAnimation: '白色转场' 
         },
 
         { 
         title: '【眯一会儿】', andVarsOff: ['WZXX_M1_N1_C000F_V/chuang_A'], nextChat: 'C3',
-        missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } ,
+        missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 },
         transitionAnimation: '白色转场' 
         },
       #  { title: '【太晚了直接睡一觉】',toScene: 'C000F_V2_MAP_-2_5',andVarsValue: ['@missionTime_C000Fshijian >= 21', '@missionTime_C000Fshijian <= 24'], missionTime: { missionId: 'C000Fshijian', alterSeconds: 28800 }}, 
@@ -472,7 +466,7 @@ scenes: [
     ],
   },
       #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000F_V2_MAP_-1_5', name: '衣柜',
     missionId: 'C000Fshijian',
@@ -481,7 +475,7 @@ scenes: [
     #横图显示
     sceneImage: 'BGT_4',
     #不显示时间
-      worldTimeHidden: False,
+    worldTimeHidden: False,
     # 当前场景地图
     mapId: 'C000F_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -506,8 +500,6 @@ scenes: [
 
     # 对话选项
     chats: [
-      #
-
       { 
         id: 'C1A', desc: '时间不早了，换个睡衣就睡觉吧', 
         options: [ 
@@ -1121,7 +1113,7 @@ scenes: [
          }, 
 
          { 
-         title: '【中心广场】',toScene: 'C000F_V_MAP_-1_4', 
+         title: '【中心广场】',toScene: 'C000F_V_MAP_0_4', 
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv14']
          }, 
         ],
@@ -1137,7 +1129,7 @@ scenes: [
 
       {
         id: 'C1B', desc: '时间太晚了，公园关门的时间到了，早点回家吧',
-        options: [ 
+        options: [
          { 
          title: '【早点回家回家】', toScene: 'C000F_V2_MAP_-1_2', 
          varsOff: ['WZXX_M1_N1_C000F_V/linggan_3C',] , varsOn: ['WZXX_M1_N1_C000F_V/linggan_3B'] ,
@@ -1368,7 +1360,7 @@ scenes: [
         },
 
         { 
-         title: '【中心广场】',toScene: 'C000F_V_MAP_-1_4',
+         title: '【中心广场】',toScene: 'C000F_V_MAP_0_4',
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv14']
         }, 
         ],
@@ -1388,7 +1380,7 @@ scenes: [
         }, 
 
         { 
-         title: '【中心广场】',toScene: 'C000F_V_MAP_-1_4', 
+         title: '【中心广场】',toScene: 'C000F_V_MAP_0_4', 
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv14']
         }, 
         ],
@@ -1575,8 +1567,8 @@ scenes: [
         id: 'C3', desc: "选择行动地址————",
         options: [ 
          { 
-         title: '【便利店】',toScene: 'C000F_V_MAP_1_4',
-         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv15' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv15']
+         title: '【展览馆】',toScene: 'C000F_V_MAP_-1_5',
+         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv16' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv16']
          }, 
 
          { 
@@ -1590,7 +1582,7 @@ scenes: [
          }, 
 
          { 
-         title: '【中心广场】',toScene: 'C000F_V_MAP_-1_4', 
+         title: '【中心广场】',toScene: 'C000F_V_MAP_0_4', 
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv14']
          }, 
         #  { title: '【回家】',andVarsValue: ['@props_372 >= 0'] ,toScene: 'C000F_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] , }, 
@@ -1625,7 +1617,7 @@ scenes: [
          }, 
 
          { 
-         title: '【中心广场】',toScene: 'C000F_V_MAP_-1_4', varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'] ,
+         title: '【中心广场】',toScene: 'C000F_V_MAP_0_4', varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'] ,
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv14']
          }, 
         #  { title: '【回家】',andVarsValue: ['@props_372 >= 0'] ,toScene: 'C000F_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] , }, 
@@ -1719,10 +1711,10 @@ scenes: [
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv13' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv13']
          }, 
 
-         { 
-         title: '【中心广场】',toScene: 'C000F_V_MAP_-1_4', 
-         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv14']
-         }, 
+        #  { 
+        #  title: '【中心广场】',toScene: 'C000F_V_MAP_0_4', 
+        #  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv14']
+        #  }, 
         #  { title: '【离开回家】',andVarsValue: ['@props_372 >= 0'] ,toScene: 'C000F_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] , }, 
         ],
       },
@@ -1951,7 +1943,7 @@ scenes: [
          }, 
 
          { 
-         title: '【中心广场】',toScene: 'C000F_V_MAP_-1_4',
+         title: '【中心广场】',toScene: 'C000F_V_MAP_0_4',
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv14']
          }, 
           # { title: '【离开回家】',andVarsValue: ['@props_372 >= 0'] ,toScene: 'C000F_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] , }, 
