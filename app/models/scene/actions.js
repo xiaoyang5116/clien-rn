@@ -10,7 +10,8 @@ export const ACTIONS_MAP = [
     { cmd: 'copper',        handler: '__onCopperCommand' },
     { cmd: 'attrs',         handler: '__onAttrsCommand' },
     { cmd: 'xiuwei',        handler: '__onXiuWeiCommand' },
-    { cmd: 'wtime',         handler: '__onWorldTimeCommand' },
+    { cmd: 'setWTime',      handler: '__onSetWorldTimeCommand' },
+    { cmd: 'alterWTime',    handler: '__onAlterWorldTimeCommand' },
     { cmd: 'missionTime',   handler: '__onMissionTimeCommand' },
     { cmd: 'var',           handler: '__onVarCommand' },
     { cmd: 'useProps',      handler: '__onUsePropsCommand' },
@@ -66,10 +67,15 @@ export class PropertyActions {
       if (payload.alterXiuWei != undefined && lo.isNumber(payload.alterXiuWei)) {
         allActions.push({ id: "__xiuwei_{0}".format(payload.alterXiuWei), cmd: 'xiuwei', params: payload.alterXiuWei });
       }
+
+      // 生成世界时间修改动作
+      if (payload.setWorldTime != undefined && typeof(payload.setWorldTime) == 'string') {
+        allActions.push({ id: "__setWTime_{0}".format(payload.setWorldTime), cmd: 'setWTime', params: payload.setWorldTime });
+      }
   
       // 生成世界时间修改动作
       if (payload.alterWorldTime != undefined && typeof(payload.alterWorldTime) == 'string') {
-        allActions.push({ id: "__wtime_{0}".format(payload.alterWorldTime), cmd: 'wtime', params: payload.alterWorldTime });
+        allActions.push({ id: "__alterWTime_{0}".format(payload.alterWorldTime), cmd: 'alterWTime', params: payload.alterWorldTime });
       }
 
       // 生成副本时间修改动作

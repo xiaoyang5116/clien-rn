@@ -475,6 +475,7 @@ scenes: [
         id: 'c0', desc: '时间界面', 
         options: [ 
           { title: '【返回调试主界面】', toScene: 'wzkj' }, 
+          { title: '【修改世界时间 2048/06/30 12:00:00】', setWorldTime: '2048/06/30 12:00:00' }, 
           { title: '【修改世界时间(直接加毫秒)】', alterWorldTime: '86400000' }, 
           { title: '【修改世界时间(跳到明天早上6点)】', alterWorldTime: '@day/1/6' }, 
         ],

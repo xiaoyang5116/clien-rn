@@ -448,7 +448,12 @@ export default {
       }
     },
 
-    *__onWorldTimeCommand({ payload }, { put, select }) {
+    *__onSetWorldTimeCommand({ payload }, { put, select }) {
+      const userState = yield select(state => state.UserModel);
+      yield put.resolve(action('setWorldTime')({ worldId: userState.worldId, time: Date.parse(payload.params) }));
+    },
+
+    *__onAlterWorldTimeCommand({ payload }, { put, select }) {
       const userState = yield select(state => state.UserModel);
       let alterWorldTime = 0;
 
