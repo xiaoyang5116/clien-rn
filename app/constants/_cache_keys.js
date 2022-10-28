@@ -68,4 +68,7 @@ export class LocalCacheKeys {
     // 功法数据
     static GONG_FA_DATA = "GONG_FA_DATA"
 
+    // 成就数据
+    static  ACHIEVEMENT_DATA = "ACHIEVEMENT_DATA"
+
 }

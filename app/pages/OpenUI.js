@@ -4,10 +4,10 @@ import AlchemyRoomModal from '../components/alchemyRoom';
 import { PlantPage } from '../components/plant';
 import WorshipModal from '../components/worship';
 import LianQiPage from '../components/lianQi'
-import Gongfa from '../components/gongfa';
+import GongFa from '../components/gongFa';
 import XiuXingUtils from '../utils/XiuXingUtils';
 import { WorldMapUtils } from '../components/maps/WorldMap';
-import ArenaUtils from '../utils/ArenaUtils';
+import Achievement from '../components/achievement';
 
 export default class OpenUI {
 
@@ -33,13 +33,13 @@ export default class OpenUI {
                 WorshipModal.show();
                 break;
             case 'GongFa':
-                Gongfa.show();
+                GongFa.show();
                 break;
             case 'WorldMap':
                 WorldMapUtils.show();
                 break;
-            case 'Arena':
-                ArenaUtils.show();
+            case 'ChengJiu':
+                Achievement.show();
                 break;
         }
     }
