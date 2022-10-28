@@ -195,6 +195,7 @@ export default {
       } else {
         sceneState.__data.time.worlds.push({ worldId: worldId, time: time });
       }
+      yield put.resolve(action('syncData')({}));
     },
 
     // 修改世界时间
@@ -443,7 +444,7 @@ export default {
       const alterValue = parseInt(payload.params);
 
       if (alterValue != 0) {
-        yield put.resolve(action('UserModel/addXiuWei')({ value: alterValue }));
+        yield put.resolve(action('XiuXingModel/addXiuWei')({ value: alterValue }));
       }
     },
 

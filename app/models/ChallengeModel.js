@@ -96,7 +96,7 @@ class Skill {
 
 class PuTongGongJiSkill extends Skill {
   constructor() {
-    super(1, '普通攻击', 200, 500);
+    super(1, '物理攻击', 200, 500);
   }
 }
 

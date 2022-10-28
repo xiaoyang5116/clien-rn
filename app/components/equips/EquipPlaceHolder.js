@@ -30,14 +30,14 @@ const EquipPlaceHolder = (props) => {
                 return
             
             if (lo.isEmpty(e)) {
-                AppDispath({ type: 'UserModel/removeEquip', payload: { equipId: refEquip.current.id }, cb: (v) => {
+                AppDispath({ type: 'EquipModel/removeEquip', payload: { equipId: refEquip.current.id }, cb: (v) => {
                     if (v) {
                         setEquip(null);
                         refEquip.current = null;
                     }
                 }});
             } else {
-                AppDispath({ type: 'UserModel/addEquip', payload: { equipId: e.id }, cb: (v) => {
+                AppDispath({ type: 'EquipModel/addEquip', payload: { equipId: e.id }, cb: (v) => {
                     if (v) {
                         setEquip(e);
                         refEquip.current = e;

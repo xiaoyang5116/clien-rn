@@ -9,6 +9,10 @@ export class LocalCacheKeys {
 
     static USER_DATA = 'USER_DATA';
 
+    static XIUXING_DATA = 'XIUXING_DATA';
+
+    static EQUIP_DATA = 'EQUIP_DATA';
+
     static PROPS_DATA = 'PROPS_DATA';
 
     static MAIL_DATA = 'MAIL_DATA';

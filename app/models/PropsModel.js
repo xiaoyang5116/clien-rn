@@ -124,7 +124,7 @@ export default {
           if (effect.copper != undefined && effect.copper > 0) {
             yield put.resolve(action('UserModel/alterCopper')({ value: effect.copper }));
           } else if (effect.xiuwei != undefined && effect.xiuwei > 0) {
-            yield put.resolve(action('UserModel/addXiuWei')({ value: effect.xiuwei }));
+            yield put.resolve(action('XiuXingModel/addXiuWei')({ value: effect.xiuwei }));
           }
         }
       }

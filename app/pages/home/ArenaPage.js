@@ -40,7 +40,7 @@ const ActionMsgItem = (props) => {
 const TextMsgItem = (props) => {
     const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.msg);
     return (
-        <View style={{ height: px2pd(60), justifyContent: 'center', alignItems: 'center', margin: 5 }}>
+        <View style={{ height: px2pd(80), justifyContent: 'center', alignItems: 'center', margin: 5 }}>
             <RenderHTML contentWidth={100} source={{html: htmlMsg}} />
         </View>
     )
