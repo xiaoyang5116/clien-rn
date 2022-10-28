@@ -5,6 +5,7 @@ import { action, connect } from "../../constants"
 
 import AttrToast from './longTimeComponent/AttrToast'
 import CluesToast from './longTimeComponent/CluesToast'
+import AchievementToast from './longTimeComponent/AchievementToast'
 
 const LongTimeToast = (props) => {
   const { onClose, toastMessages } = props
@@ -51,6 +52,9 @@ const LongTimeToast = (props) => {
       }
       if (item.type === "clues") {
         return <CluesToast msg={item} closeToast={closeToast} index={index} />
+      }
+      if (item.type === "achievement") {
+        return <AchievementToast msg={item} closeToast={closeToast} index={index} />
       }
     }
   }

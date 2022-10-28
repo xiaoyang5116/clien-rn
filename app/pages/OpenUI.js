@@ -1,23 +1,25 @@
 import React from 'react';
-import RootView from '../components/RootView';
-import XiuXingTabPage from './home/XiuXingTabPage';
+
 import AlchemyRoomModal from '../components/alchemyRoom';
 import { PlantPage } from '../components/plant';
-import Transitions from '../components/transition';
 import WorshipModal from '../components/worship';
 import LianQiPage from '../components/lianQi'
+import GongFa from '../components/gongFa';
+import XiuXingUtils from '../utils/XiuXingUtils';
+import { WorldMapUtils } from '../components/maps/WorldMap';
+import Achievement from '../components/achievement';
+import ArenaUtils from '../utils/ArenaUtils';
 
 export default class OpenUI {
 
-    static open(name) {
-        const pageName = name.split('-')
-        const isOpenBoot = pageName.length > 1 ? true : false
-        switch (pageName[0]) {
+    static open(input) {
+        const splits = input.split('-')
+        const isOpenBoot = (splits.length > 1);
+        const name = splits[0];
+
+        switch (name) {
             case 'XiuXing':
-                const key = RootView.add(
-                    <Transitions id={'OPEN_XIUXING_UI'}>
-                        <XiuXingTabPage onClose={() => { RootView.remove(key); }} />
-                    </Transitions>);
+                XiuXingUtils.show();
                 break;
             case 'LianDanFang':
                 AlchemyRoomModal.show(isOpenBoot)
@@ -31,8 +33,18 @@ export default class OpenUI {
             case 'GongFeng':
                 WorshipModal.show();
                 break;
-
-            default: return <></>
+            case 'GongFa':
+                GongFa.show();
+                break;
+            case 'WorldMap':
+                WorldMapUtils.show();
+                break;
+            case 'ChengJiu':
+                Achievement.show();
+                break;
+            case 'Arena':
+                ArenaUtils.show();
+                break;
         }
     }
 

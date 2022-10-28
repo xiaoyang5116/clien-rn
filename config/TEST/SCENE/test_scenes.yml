@@ -38,6 +38,14 @@ scenes: [
           {  
             id: 'c0', desc: '配置测试', 
             options: [
+              { title: "获得成就",         
+                toMsg: { 
+                  action: 'AchievementModel/addAchievement', params: { addAchievementId: [1,2] } 
+                },  
+              },
+              { title: '成就系统', openUI: "ChengJiu"},
+              { title: '打开功法页面', openUI: "GongFa"},
+              { title: '小宇宙项目', games: {id: 7}},
               { title: '带引导的炼丹页面', openUI: "LianDanFang-1" },
               { title: '种植', openUI: "ZhongZhi" },
               { title: '炼器', openUI: "LianQi" },
@@ -48,6 +56,7 @@ scenes: [
               { title: '字帖小游戏', games: {id: 5, word: ["木"], fail: {toScene: "wzkj"}, success: {toScene: "pomiao"} } },
               { title: '华丽模版', dialogs: ['p4']},
               { title: '华丽模版2', dialogs: ['p5']},
+              { title: '9号模版', dialogs: ['p6']},
             ],
           },
         ],
@@ -101,6 +110,12 @@ scenes: [
               ]
             },
           },
+          {
+            id: 'p6', style: "9A", textAnimationType: 'TextSingle',
+            sections: [
+              { key: 'p1', content: [ '李森炎回忆起自己离职当天', '那些人的音容还历历在目', '如果我没有穿越的话', '或许还能再见到他们……', [{toScene: 'C000C_V_MAP_0_4',transitionAnimation: '白色转场带背景',}] ], },
+            ]
+          }
         ],
     },
   ]

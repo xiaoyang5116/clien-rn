@@ -34,7 +34,8 @@ const DialogRoutes = (props) => {
         }
 
         // 场景里的动作
-        props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
+        // props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
+        ArticleOptionActions.invoke({ __sceneId, ...item });
 
         // 发送道具
         if (item.props !== undefined) {
@@ -57,6 +58,11 @@ const DialogRoutes = (props) => {
 
         // 记录点击动作数据
         props.dispatch(action('StateModel/saveDialogBtnClickState')(item));
+
+        // 关闭 翻格子小游戏
+        if (item.closeTurnLattice !== undefined && item.closeTurnLattice === true) {
+            DeviceEventEmitter.emit(EventKeys.CLOSE_TURN_LATTICE_EVENT)
+        }
     }
 
     // 特效方法
@@ -66,7 +72,6 @@ const DialogRoutes = (props) => {
                 Animation(item)
             }
             else {
-                // props.dispatch(action('SceneModel/processActions')({ __sceneId, ...item }));
                 ArticleOptionActions.invoke({ __sceneId, ...item });
             }
         });

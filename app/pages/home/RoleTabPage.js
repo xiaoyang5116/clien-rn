@@ -112,7 +112,7 @@ const SimpleInfo = (props) => {
     const [affects, setAffects] = React.useState([]);
 
     const updateHandler = () => {
-        AppDispath({ type: 'UserModel/getMergeAttrs', payload: { }, cb: (v) => {
+        AppDispath({ type: 'UserModel/getFinalAttrs', payload: { }, cb: (v) => {
             if (!lo.isArray(v))
                 return
             setAffects(v);
@@ -150,9 +150,9 @@ const SimpleInfo = (props) => {
 
     const tiLi = getAffectValue(affects, '体力');
     const faLi = getAffectValue(affects, '法力');
-    const puTongGongJi = getAffectValue(affects, '普通攻击');
+    const puTongGongJi = getAffectValue(affects, '物理攻击');
     const faShuGongJi = getAffectValue(affects, '法术攻击');
-    const puTongFangYu = getAffectValue(affects, '普通防御');
+    const puTongFangYu = getAffectValue(affects, '物理防御');
     const faShuFangYu = getAffectValue(affects, '法术防御');
 
     return (
@@ -178,7 +178,7 @@ const SimpleInfo = (props) => {
             </View>
             <View style={styles.attrsContainer}>
                 <View style={styles.attrsItemView}>
-                    <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>普通攻击:</Text></View>
+                    <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>物理攻击:</Text></View>
                     <View style={styles.attrsItemRight}><Text style={styles.attrsItemText}>{puTongGongJi}</Text></View>
                 </View>
                 <View style={styles.attrsItemView}>
@@ -186,7 +186,7 @@ const SimpleInfo = (props) => {
                     <View style={styles.attrsItemRight}><Text style={styles.attrsItemText}>{faShuGongJi}</Text></View>
                 </View>
                 <View style={styles.attrsItemView}>
-                    <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>普通防御:</Text></View>
+                    <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>物理防御:</Text></View>
                     <View style={styles.attrsItemRight}><Text style={styles.attrsItemText}>{puTongFangYu}</Text></View>
                 </View>
                 <View style={styles.attrsItemView}>

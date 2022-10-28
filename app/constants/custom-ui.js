@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeContext } from '.';
 
-import { CButton } from '../components/CButton';
+import CButton from '../components/CButton';
 
 // 按钮组件
 export * from '../components/button';

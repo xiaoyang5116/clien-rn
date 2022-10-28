@@ -122,6 +122,7 @@ scenes: [
           { title: '【进入地图功能】', toScene: 'wzkj_map' }, 
           { title: '【进入时间功能】', toScene: 'wzkj_datetime' }, 
           { title: '【进入修行功能】', toScene: 'wzkj_xiuxing' }, 
+          { title: '【进入战斗功能】', toScene: 'wzkj_challenge' }, 
           { title: '【进入动画列表】', toScene: 'wzkj_animation' }, 
           { title: '【进入商店列表】', toScene: 'wzkj_shop' }, 
           { title: '【进入采集列表】', toScene: 'wzkj_caiji' }, 
@@ -205,6 +206,7 @@ scenes: [
           { title: '【字体动画】', animations: { id: 15, values: ['123', '456', '789', '12345', '7890', '11220', '123', '456', '789', '12345', '7890', '11220', '123', '456', '789', '12345', '7890', '11220', '123', '456', '789', '12345', '7890', '11220', '123', '456', '789', '12345', '7890', '11220', '123', '456', '789', '12345', '7890', '11220', '123', '456', '789', '12345', '7890', '11220', '123', '456', '789', '12345', '7890', '11220'] } }, 
           { title: '【切换世界】', animations: { id: 11, data: { worldId: '灵修界', desc: 'xxx', toChapter: 'WZXX_M1_N1_C001' } } },
           { title: '【修行等级提升】', animations: { id: 16 } },
+          { title: '【世界切换动画】', animations: { id: 17, worldName: '现实世界', year: 'AD2030年' } },
         ],
       },
     ],
@@ -319,9 +321,9 @@ scenes: [
           { point: [0, 1], title: '原神', toScene: 'wzkj', links: [], icon: { id: 104, bindVar: 'v_icon_104' } },
           { point: [1, 0], title: '天仙', toScene: 'pomiaomk', links: [[0, -1], [0, 1]] },
           { point: [0, -1], title: '五行', toScene: 'pomiao', links: [] },
-          { point: [-1, 0], title: '天使', toScene: 'pomiao', links: [[0, 1], [0, -1]] },
+          { point: [-1, 0], title: '天使', toScene: 'wzkj_map_ok', links: [[0, 1], [0, -1]] },
           { point: [-2, 0], title: '老者', links: [[-1, 0]] },
-          { point: [-1, -1], title: '地主', toScene: 'pomiao', icon: { id: 100, bindVar: 'v_icon_100' }, links: [[-1, 0], [0, -1]], path: [[-1, -2], [0, -2], [1, -2], [1, -1], [1, 0]] },
+          { point: [-1, -1], title: '地主', toScene: 'wzkj_map_ok2', icon: { id: 100, bindVar: 'v_icon_100' }, links: [[-1, 0], [0, -1]], path: [[-1, -2], [0, -2], [1, -2], [1, -1], [1, 0]] },
         ]
       },
       {
@@ -352,6 +354,91 @@ scenes: [
         options: [ 
           { title: '【返回调试主界面】', toScene: 'wzkj' }, 
           { title: '【移动地图中心点_P1】', toMapPoint: [0, 0] }, 
+          { title: '【打开世界地图】', openUI: 'WorldMap' }, 
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  # 地图(跳转)
+  {
+    id: 'wzkj_map_ok', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 当前场景地图
+    mapId: 'map1',
+
+    # 地图中心点
+    mapCenterPoint: [-1, 0],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '地图天使', 
+        options: [ 
+          { title: '【返回地图功能界面】', toScene: 'wzkj_map' }, 
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  # 地图(跳转2)
+  {
+    id: 'wzkj_map_ok2', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 当前场景地图
+    mapId: 'map1',
+
+    # 地图中心点
+    mapCenterPoint: [-1, -1],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '地图(地主)', 
+        options: [ 
+          { title: '【返回地图功能界面】', toScene: 'wzkj_map' }, 
         ],
       },
     ],
@@ -388,6 +475,7 @@ scenes: [
         id: 'c0', desc: '时间界面', 
         options: [ 
           { title: '【返回调试主界面】', toScene: 'wzkj' }, 
+          { title: '【修改世界时间 2048/06/30 12:00:00】', setWorldTime: '2048/06/30 12:00:00' }, 
           { title: '【修改世界时间(直接加毫秒)】', alterWorldTime: '86400000' }, 
           { title: '【修改世界时间(跳到明天早上6点)】', alterWorldTime: '@day/1/6' }, 
         ],
@@ -430,6 +518,43 @@ scenes: [
           { title: '【增加10,000修为值】', alterXiuWei: 10000 }, 
           { title: '【增加30,000修为值】', alterXiuWei: 30000 }, 
           { title: '【增加50,000修为值】', alterXiuWei: 50000 }, 
+        ],
+      },
+    ],
+
+    # 对话框 1黑旁白2白旁白
+    dialogs: [
+    ],
+  },
+
+  # 战斗
+  {
+    id: 'wzkj_challenge', 
+    name: '调试菜单',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
+
+    # 变量定义
+    vars: [
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' },
+    ],
+
+    # 对话选项
+    chats: [
+      # 新手对话主列表
+      { 
+        id: 'c0', desc: '战斗界面', 
+        options: [ 
+          { title: '【返回调试主界面】', toScene: 'wzkj' }, 
+          { title: '【打开战斗主界面】', openUI: 'Arena' }, 
         ],
       },
     ],

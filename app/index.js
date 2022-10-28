@@ -44,6 +44,9 @@ import FastImage from 'react-native-fast-image';
 import { images } from './constants/preload';
 import SoundProvider from './components/sound';
 
+// 瓦片地图集合
+window.TileMaps = {};
+
 function preloadImages(images) {
   const uris = images.map(image => ({
     uri: Image.resolveAssetSource(image).uri
@@ -57,6 +60,8 @@ preloadImages(images);
 const models = [
   require('./models/AppModel').default,
   require('./models/UserModel').default,
+  require('./models/XiuXingModel').default,
+  require('./models/EquipModel').default,
   require('./models/StateModel').default,
   require('./models/SceneModel').default,
   require('./models/StoryModel').default,
@@ -83,11 +88,15 @@ const models = [
   require('./models/ToastModel').default,
   require('./models/WorshipModel').default,
   require('./models/games/SmallUniverseProjectModel').default,
+  require('./models/games/TurnLatticeModel').default,
+  require('./models/GongFaModel').default,
+  require('./models/AchievementModel').default,
 ];
 
 const defaultDataContext = {
   readerTextOpacity: new Animated.Value(1),
   readerBgImgOpacity: new Animated.Value(0.2),
+  pressIn: false,
 }
 
 const ActionHook = ({ dispatch, getState }) => next => action => {

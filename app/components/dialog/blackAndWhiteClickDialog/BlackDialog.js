@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 
-import { LongTextButton } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 
 
@@ -18,13 +17,9 @@ const BlackDialog = (props) => {
     textAnimationType,
     nextParagraph,
     currentTextList,
-    showBtnList,
     currentIndex,
     currentDialogueLength,
-    nextDialogue
   } = props;
-
-  const btnListLength = showBtnList ? showBtnList.length : 0
 
   const refFlatList = React.createRef();
 
@@ -55,22 +50,6 @@ const BlackDialog = (props) => {
     return null;
   };
 
-  const renderBtn = ({ item }) => {
-    if (currentIndex >= currentDialogueLength) {
-      return (
-        <View style={{ marginTop: 8, justifyContent: 'center' }}>
-          <LongTextButton
-            title={item.title}
-            onPress={() => {
-              nextDialogue(item);
-            }}
-          />
-        </View>
-      );
-    }
-    return null;
-  };
-
   return (
     <View style={styles.viewContainer}>
       <SafeAreaView style={{ flex: 1 }}>
@@ -79,15 +58,7 @@ const BlackDialog = (props) => {
             <View style={{ flex: 1 }}>
               {/* 内容显示区域 */}
               <View
-                style={{
-                  marginTop: currentIndex >= currentDialogueLength ? 0 : "25%",
-                  height:
-                    currentIndex >= currentDialogueLength
-                      ? showBtnList
-                        ? (btnListLength > 4) ? '50%' : '60%'
-                        : "100%"
-                      : '100%',
-                }}
+                style={{ marginTop: "25%", height: '80%', }}
               >
                 <FlatList
                   ref={refFlatList}
@@ -102,27 +73,6 @@ const BlackDialog = (props) => {
                   }}
                 />
               </View>
-
-              {/* 按钮区域 */}
-              {
-                showBtnList
-                  ? (
-                    <View style={{ marginTop: 12, }}>
-                      <FlatList
-                        data={showBtnList}
-                        renderItem={renderBtn}
-                        keyExtractor={(item, index) => item.title + index}
-                        ListFooterComponent={() => <View style={{ height: 24 }} />}
-                        getItemLayout={(data, index) => ({
-                          length: 48,
-                          offset: 48 * index,
-                          index,
-                        })}
-                      />
-                    </View>
-                  )
-                  : <></>
-              }
             </View>
           </TouchableWithoutFeedback>
         </View>
