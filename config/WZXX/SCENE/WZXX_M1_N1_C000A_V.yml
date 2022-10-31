@@ -56,21 +56,21 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000A_V', desc: '购买簪子', 
         options: [ 
-          { title: "【去买簪子】",toScene: 'C000A_V_MAP_2_-1',  varsOn: ['v_icon_100'] },
+          { title: "【去买簪子】",toScene: 'C000A_V_MAP_2_-1',  varsOn: ['v_icon_100'] ,sounds: [{ soundId: 'BGM_C_0001',}],},
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C000A_V1', desc: '去打听情报', 
         options: [ 
-          { title: "【寻找药材】",toScene: 'C000A_V2_MAP_2_2', varsOn: ['v_icon_103'] },
+          { title: "【寻找药材】",toScene: 'C000A_V2_MAP_2_2', varsOn: ['v_icon_103'] ,sounds: [{ soundId: 'BGM_C_0001',}],},
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C000A_V2', desc: '原路回家', 
         options: [ 
-          { title: "【继续原路回家】",toScene: 'C000A_V3_MAP_-1_0',  },
+          { title: "【继续原路回家】",toScene: 'C000A_V3_MAP_-1_0',sounds: [{ soundId: 'BGM_C_0001',}],  },
         ],
       },
 

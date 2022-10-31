@@ -23,7 +23,7 @@ scenes: [
    { 
         id: 'WZXX_M1_N1_C000B_V1', desc: '打工还是守夜', 
         options: [ 
-          { title: "【去打工】",toScene: 'C000B_V_MAP_-1_2', varsOn: ['v_icon_1','v_icon_2','v_icon_3',], },
+          { title: "【去打工】",toScene: 'C000B_V_MAP_-1_2', varsOn: ['v_icon_1','v_icon_2','v_icon_3',], sounds: [{ soundId: 'BGM_C_0002',}],},
           # { title: "【去守夜】",toChapter: "WZXX_M1_N1_C011_[N2]",},
         ],
       },
@@ -602,11 +602,11 @@ scenes: [
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 } },]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 } ,sounds: [{ stopBGM: true }]},]},
 
           { key: 'P4', content: ['你愤怒至极，这一天五十个铜币，这得多少天才能凑齐','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 }},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 },sounds: [{ stopBGM: true }]},]},
 
 
 
@@ -627,11 +627,11 @@ scenes: [
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 }},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 },sounds: [{ stopBGM: true }]},]},
 
           { key: 'P4', content: ['你愤怒至极，这一天五十个铜币，这得多少天才能凑齐','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 }},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 },sounds: [{ stopBGM: true }]},]},
 
 
            ], },
@@ -722,11 +722,11 @@ scenes: [
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 }},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 },sounds: [{ stopBGM: true }]},]},
 
           { key: 'P4', content: ['你愤怒至极，这一天五十个铜币，这得多少天才能凑齐','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 }},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 },sounds: [{ stopBGM: true }]},]},
 
 
 
@@ -747,11 +747,11 @@ scenes: [
 
           { key: 'P3', content: ['士可忍孰不可忍！这黑心吸血鬼，你攥起拳头准备上前','但老板一摇扇，周围几个健硕的保镖，瞬间站到了你面前','“……”','算了，大人不记小人过……','不和他们计较，还是回去给医灵守夜吧',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 }},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 },sounds: [{ stopBGM: true }]}]},
 
           { key: 'P4', content: ['你愤怒至极，这一天五十个铜币，这得多少天才能凑齐','一百天，自己怕是早就毒发身亡，坟头草都得有两米高了！','给这群人干活，还不如给美女大夫做事，至少还能救命，这些人都是吃肉不吐骨头的恶臭资本家！！！',
           ],
-          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 }},]},
+          btn: [{title: '回医馆',toChapter: "WZXX_M1_N1_C011_[N2]",icon: { id: 11 },sounds: [{ stopBGM: true }]},]},
 
 
            ], },

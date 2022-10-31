@@ -122,7 +122,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000F_V', desc: '去公园', 
         options: [ 
-          { title: "【去公园】",toScene: 'C000F_V_MAP_0_2', },
+          { title: "【去公园】",toScene: 'C000F_V_MAP_0_2', sounds: [{ stopBGM: true }]},
         ],
       }, 
       ],  
