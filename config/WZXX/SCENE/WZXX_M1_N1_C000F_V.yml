@@ -112,6 +112,7 @@ scenes: [
           { 
           title: "【思考完毕】",toScene: 'C000F_V2_MAP_-2_5', 
           missionTime: { missionId: 'C000Fshijian', setTime: '2020/10/01 09:00:00' } ,
+          sounds: [{ soundId: 'BGM_Q_0002',}],
           varsOn: ['WZXX_M1_N1_C000F_V/chuang_A','WZXX_M1_N1_C000F_V/diyitianzaijia_A','WZXX_M1_N1_C000F_V/v_icon_107','WZXX_M1_N1_C000F_V/v_icon_108','WZXX_M1_N1_C000F_V/v_icon_109',],  
           transitionAnimation: '左右开门转场',
           },
@@ -330,9 +331,7 @@ scenes: [
 
     # 对话选项
     chats: [
-      #
       #第一天
-
       { 
         id: 'C1A', desc: '好好睡一觉，明天去公园找找灵感', 
         options: [ 
@@ -341,12 +340,13 @@ scenes: [
         varsOn: ['WZXX_M1_N1_C000F_V/gonyuan_A',] ,
         varsOff: ['WZXX_M1_N1_C000F_V/diyitianzaijia_A','WZXX_M1_N1_C000F_V/chuang_B',
         'WZXX_M1_N1_C000F_V/biaoqianv1','WZXX_M1_N1_C000F_V/biaoqianv2','WZXX_M1_N1_C000F_V/biaoqianv3','WZXX_M1_N1_C000F_V/biaoqianv4','WZXX_M1_N1_C000F_V/biaoqianv5','WZXX_M1_N1_C000F_V/biaoqianv6','WZXX_M1_N1_C000F_V/biaoqianv7','WZXX_M1_N1_C000F_V/biaoqianv8'],
-        missionTime: { missionId: 'C000Fshijian', alterSeconds: 36000 },
+        # 可直接跳转到规定时间内
+        missionTime: { missionId: 'C000Fshijian', setTime: '2020/10/02 09:00:00' },
         transitionAnimation: '白色转场' 
         },
         ],
       },
-      #
+
       #第二天
       {
         id: 'C2A', desc: '好好睡一觉，等明天再去公园找找灵感', 
@@ -354,8 +354,8 @@ scenes: [
         { 
          title: '【睡觉】', nextChat: 'C4', 
          varsOn: ['WZXX_M1_N1_C000F_V/linggan_3A'] ,
-        #  varsOff: ['WZXX_M1_N1_C000F_V/linggan_2A'],
-         missionTime: { missionId: 'C000Fshijian', alterSeconds: 36000 },
+        #varsOff: ['WZXX_M1_N1_C000F_V/linggan_2A'],
+        missionTime: { missionId: 'C000Fshijian', setTime: '2020/10/03 09:00:00' },
          transitionAnimation: '白色转场' 
         },
         ],
@@ -512,7 +512,6 @@ scenes: [
         options: [ 
         { title: '【换衣服】',nextChat: 'C2' },
         # { title: '【太晚了去休息下吧】',toScene: 'C000F_V2_MAP_-2_5',andVarsValue: ['@missionTime_C000Fshijian >= 20', '@missionTime_C000Fshijian <= 24'],}, 
-      
         ],
       },
 
@@ -1592,7 +1591,7 @@ scenes: [
       {
         id: 'C4', desc: "李森炎看见不少学生在这边集合，带着各式各样的乐器\n有个搬古筝的女生，看上去十分吃力\n李森炎下意识帮她搭了把手，本来也没觉得什么\n女生非是说要感谢他，顺便问他愿不愿意当听众给她些意见",
         options: [ 
-         { title: '【何乐而不为，留下听音乐顺便找点灵感】',  nextChat: 'C5' , missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 },}, 
+         { title: '【何乐而不为，留下听音乐顺便找点灵感】', varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'] , nextChat: 'C5' , missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 },}, 
          { title: '【离开>>>】',nextChat: 'C3' }, 
         ],
       },
@@ -1601,23 +1600,23 @@ scenes: [
         id: 'C5', desc: "不知不觉听了三个小时\n李森炎和音乐学院的学生们聊得很开心\n意外的打成一片\n约定之后要是还有活动继续参加\n时间不早了学生们回学校了",
         options: [ 
          { 
-         title: '【便利店】',toScene: 'C000F_V_MAP_1_4',varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'] ,
+         title: '【便利店】',toScene: 'C000F_V_MAP_1_4',
          
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv15' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv15']
          }, 
 
          { 
-         title: '【动物园】',toScene: 'C000F_V_MAP_1_3', varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'] ,
+         title: '【动物园】',toScene: 'C000F_V_MAP_1_3', 
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv12' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv12']
          }, 
 
          { 
-         title: '【植物园】',toScene: 'C000F_V_MAP_-1_3',varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'] , 
+         title: '【植物园】',toScene: 'C000F_V_MAP_-1_3',
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv11' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv11']
          }, 
 
          { 
-         title: '【中心广场】',toScene: 'C000F_V_MAP_0_4', varsOff: ['WZXX_M1_N1_C000F_V/v_icon_102'] ,
+         title: '【中心广场】',toScene: 'C000F_V_MAP_0_4', 
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F_V/biaoqianv14']
          }, 
         #  { title: '【回家】',andVarsValue: ['@props_372 >= 0'] ,toScene: 'C000F_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F_V/zhuxiankaishi_A'] , }, 
@@ -1658,7 +1657,7 @@ scenes: [
       #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] , andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'], nextChat: 'C1B' },
       #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 14', '@missionTime_C000Fshijian <= 19'], nextChat: 'C1C' },
         #可全局操控能，当达到某个时间后，设定的叹号任务变量自动开启，不需要全局配置
-       { type: 'timeChanged', varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'] ,andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 11'],  },
+       { type: 'timeChanged', varsOn: ['WZXX_M1_N1_C000F_V/v_icon_103'] ,andVarsOn: ['WZXX_M1_N1_C000F_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000Fshijian >= 8', '@missionTime_C000Fshijian <= 14'],  },
 
 
     ],
