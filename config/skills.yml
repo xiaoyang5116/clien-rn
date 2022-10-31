@@ -13,14 +13,13 @@ skills: [
       name: '冷月剑',
 
       # 描述
-      desc: '(物理攻击X120) + 120伤害',
+      desc: '',
 
-      # 计算公式
-      formula: '(A_物理攻击 - D_物理防御) * 1.2 + 120',
+      # 影响公式
+      formula: '伤害 = (A_物理攻击 - D_物理防御) * 1.2 + 120',
 
       # 效果列表
       effects: [],
-
    },
    {
       # 技能唯一ID 
@@ -33,14 +32,18 @@ skills: [
       name: '锻体决',
 
       # 描述
-      desc: '(物理防御X110)+200防御   BUFF 3回合',
+      desc: '',
 
-      # 计算公式
-      formula: 'A_物理防御 * 1.1 + 200',
+      # 被动
+      passive: true,
+   
+      # 影响公式
+      formula: '',
 
       # 效果列表
-      effects: [],
-
+      effects: [
+         { buffId: 1, groupId: 1 },
+      ],
    },
    {
       # 技能唯一ID 
@@ -53,14 +56,18 @@ skills: [
       name: '护身罡气',
 
       # 描述
-      desc: '+400物理防御',
+      desc: '',
 
-      # 伤害计算公式
-      formula: '物理防御(+400)',
+      # 被动
+      passive: true,
+
+      # 影响公式
+      formula: '',
 
       # 效果列表
-      effects: [],
-
+      effects: [
+         { buffId: 2, groupId: 1 },
+      ],
    },
    {
       # 技能唯一ID 
@@ -73,14 +80,16 @@ skills: [
       name: '风意剑',
 
       # 描述
-      desc: '(法术攻击X120)+300伤害  消耗法力-30',
+      desc: '',
 
-      # 伤害计算公式
-      formula: 'a.atk * 4 - b.def * 2',
+      # 影响公式
+      formula: '伤害 = (A_法术攻击 - D_法术防御) * 1.2 + 300',
+
+      # 消耗法力
+      useMP: 30,
 
       # 效果列表
       effects: [],
-
    },
    {
       # 技能唯一ID 
@@ -93,13 +102,20 @@ skills: [
       name: '微光盾',
 
       # 描述
-      desc: '(法术防御X200)效果不叠加 法力-50',
+      desc: '',
 
-      # 伤害计算公式
-      formula: 'a.atk * 4 - b.def * 2',
+      # 被动
+      passive: true,
+
+      # 影响公式
+      formula: '',
+
+      # 消耗法力
+      useMP: 50,
 
       # 效果列表
-      effects: [],
-
+      effects: [
+         { buffId: 3, groupId: 2 },
+      ],
    },
 ]
