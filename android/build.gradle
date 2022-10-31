@@ -45,6 +45,6 @@ allprojects {
         // 添加存储库“jcenter()”
         mavenCentral()
         mavenLocal()
-        jcenter()
+        gradlePluginPortal()
     }
 }
