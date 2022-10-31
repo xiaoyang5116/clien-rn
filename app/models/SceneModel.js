@@ -33,7 +33,7 @@ import SceneConfigReader from "../utils/SceneConfigReader";
 import Modal from "../components/modal";
 import Shock from '../components/shock';
 import { CarouselUtils } from "../components/carousel";
-import { playSound } from "../components/sound/utils";
+import { playSound, stopBGM } from "../components/sound/utils";
 import Games from "../components/games";
 import EffectAnimations from "../components/effects";
 import ShopsUtils from '../utils/ShopsUtils';
@@ -165,6 +165,9 @@ export default {
 
       let needSync = false;
       if (sceneId !== userState.sceneId) {
+        // 前一个场景响应退出事件
+        yield put.resolve(action('raiseSceneEvents')({ sceneId: userState.sceneId, eventType: 'leave' }));
+
         // 只有场景发生变化才更新记录的上一个场景。
         userState.prevSceneId = userState.sceneId;
         needSync = true;
@@ -592,6 +595,10 @@ export default {
     *__onSoundsCommand({ payload }, { put }) {
       const type = inReaderMode() ? 'readerVolume' : 'masterVolume';
       payload.params.forEach(e => {
+        if (e.stopBGM != undefined && e.stopBGM) {
+          stopBGM();
+          return
+        }
         playSound({ ...e, type });
       });
     },

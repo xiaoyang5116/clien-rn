@@ -139,7 +139,7 @@ export default {
       yield put.resolve(action('syncData')({}));
     },
 
-    // 获取叠加后最终的属性值(装备、修行等)
+    // 获取叠加后所有的最终属性值(装备、修行等)
     *getFinalAttrs({}, { select, put }) {
       // 所有加成
       const all = [];
@@ -160,8 +160,15 @@ export default {
           result.push({ ...e });
         }
       });
-
       return result;
+    },
+
+    // 获取指定的叠加后最终属性值
+    *getFinalAttr({ payload }, {}) {
+      const { key } = payload;
+      const all = yield put.resolve(action('getFinalAttrs')({}));
+      const found = lo.find(all, (e) => lo.isEqual(e.key, key));
+      return (found != undefined) ? found.value : undefined;
     },
 
     // 判断是否存在指定持久化状态
