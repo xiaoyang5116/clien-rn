@@ -6,9 +6,12 @@ import {
   TouchableHighlight,
   Image,
   TouchableOpacity,
-  DeviceEventEmitter
+  DeviceEventEmitter,
+  SafeAreaView,
+  Animated,
+  PanResponder
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import qualityStyle from '../../../themes/qualityStyle';
 import { action, connect, getPropIcon, EventKeys } from '../../../constants';
@@ -35,9 +38,10 @@ const Grid_0 = ({ isOpened }) => {
 };
 
 // 可翻开状态
-const Grid_1 = ({ item, openGrid }) => {
+const Grid_1 = ({ item, openGrid, isTouchStart }) => {
   return (
-    <TouchableHighlight onPress={openGrid}>
+    <TouchableHighlight
+      onPress={openGrid}>
       <View
         style={[
           styles.gridContainer,
@@ -72,7 +76,8 @@ const Grid_Export = ({ item, openGrid, exportHandler }) => {
   }
   if (item.status === 2) {
     return (
-      <TouchableOpacity onPress={exportHandler}>
+      <TouchableOpacity
+        onPress={exportHandler}>
         <View
           style={[
             styles.gridContainer,
@@ -93,12 +98,12 @@ const Grid_Wall = props => {
 };
 
 // 空格子
-const Grid_Empty = ({ item, openGrid }) => {
+const Grid_Empty = ({ item, openGrid, isTouchStart }) => {
   if (item.status === 0) {
     return <Grid_0 isOpened={item.isOpened} />;
   }
   if (item.status === 1) {
-    return <Grid_1 openGrid={openGrid} />;
+    return <Grid_1 openGrid={openGrid} isTouchStart={isTouchStart} />;
   }
   if (item.status === 2) {
     return <Grid_2 />;
@@ -199,7 +204,18 @@ const TurnLattice = props => {
   const { onClose, turnLatticeData, currentLayer, __sceneId } = props;
 
   const [gridConfig, setGridConfig] = useState([]);
-  const row = turnLatticeData[currentLayer]?.row;
+  const row = turnLatticeData[currentLayer]?.row || 0;
+  const column = turnLatticeData[currentLayer]?.row || 0;
+
+  const pan = useRef(new Animated.ValueXY()).current;
+  const scaleAnim = useRef(new Animated.Value(1)).current
+  const isTouchStart = useRef(true).current
+
+  const status = useRef({
+    // 记录双指触发的起始坐标
+    twoFingersStart: []
+  })
+
 
   useEffect(() => {
     props
@@ -263,7 +279,8 @@ const TurnLattice = props => {
     }
   }
 
-  const _renderItem = ({ item, index }) => {
+  // 渲染格子
+  const RenderItem = ({ item, index }) => {
     if (item.type === '入口') return <Grid_Entrance item={item} />;
     if (item.type === '出口') {
       return (
@@ -312,6 +329,7 @@ const TurnLattice = props => {
           openGrid={() => {
             openGrid(item);
           }}
+          isTouchStart={isTouchStart}
         />
       );
     }
@@ -328,36 +346,102 @@ const TurnLattice = props => {
     );
   };
 
+  const panResponder = React.useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: () => {
+
+      },
+      onPanResponderGrant: (evt, gestureState) => {
+        if (gestureState.numberActiveTouches === 1) {
+          pan.setOffset({
+            x: pan.x._value,
+            y: pan.y._value
+          });
+        }
+        if (gestureState.numberActiveTouches === 2) {
+          status.current.twoFingersStart = evt.nativeEvent.touches
+        }
+      },
+      onPanResponderMove: (evt, gestureState) => {
+        if (gestureState.dx != 0 || gestureState.dy != 0) {
+          // 单指操作
+          if (gestureState.numberActiveTouches === 1) {
+            Animated.timing(pan, {
+              toValue: { x: gestureState.dx, y: gestureState.dy },
+              duration: 0,
+              useNativeDriver: false,
+            }).start()
+          }
+          // 双指操作
+          if (gestureState.numberActiveTouches === 2) {
+            const scale = getScale(status.current.twoFingersStart, evt.nativeEvent.touches)
+            if (scale < 1.5 && scale > 0.5) {
+              Animated.timing(scaleAnim, {
+                toValue: scale,
+                duration: 0,
+                useNativeDriver: false,
+              }).start()
+            }
+          }
+        }
+      },
+      onPanResponderRelease: () => {
+        pan.flattenOffset();
+      }
+    })
+  ).current;
+
   return (
     <View style={styles.viewContainer}>
-      <View style={{ width: 300, height: 300 }}>
-        <Image
-          style={{
-            width: '100%',
-            height: '100%',
-            position: 'absolute',
-            opacity: gridConfig.length === 0 ? 0 : 1,
-          }}
-          source={require('../../../../assets/bg/baojian.png')}
-        />
-        {gridConfig.length !== 0 ? (
-          <FlatList
-            overScrollMode={'never'}
-            bounces={false}
-            data={gridConfig}
-            renderItem={_renderItem}
-            numColumns={row}
-          />
-        ) : (
-          <></>
-        )}
-      </View>
-      <TextButton title="退出" onPress={onClose} style={{ marginTop: 20 }} />
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flex: 1, justifyContent: "center" }}>
+          <Animated.View
+            {...panResponder.panHandlers}
+            style={{
+              height: 50 * column,
+              width: 50 * row,
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              flexWrap: "wrap",
+              transform: [
+                { scale: scaleAnim },
+                { translateX: pan.x },
+                { translateY: pan.y }
+              ],
+            }}>
+            <Image
+              style={{
+                width: '100%',
+                height: '100%',
+                position: 'absolute',
+                opacity: gridConfig.length === 0 ? 0 : 1,
+              }}
+              source={require('../../../../assets/bg/baojian.png')}
+            />
+            {gridConfig.length !== 0 ? (
+              gridConfig.map((item, index) => <RenderItem key={index} item={item} />)
+            ) : (
+              <></>
+            )}
+
+          </Animated.View>
+        </View>
+        <TextButton title="退出" onPress={onClose} style={{ marginTop: 20 }} />
+      </SafeAreaView>
     </View>
   );
 };
 
 export default connect(state => ({ ...state.TurnLatticeModel }))(TurnLattice);
+
+
+function getDistance(start, stop) {
+  return Math.sqrt(Math.pow((stop.pageX - start.pageX), 2) + Math.pow((stop.pageY - start.pageY), 2));
+}
+
+function getScale(start, stop) {
+  return getDistance(stop[0], stop[1]) / getDistance(start[0], start[1]);
+}
 
 const styles = StyleSheet.create({
   viewContainer: {
@@ -366,8 +450,8 @@ const styles = StyleSheet.create({
     height: '100%',
     zIndex: 99,
     backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
   gridContainer: {
     width: 50,
