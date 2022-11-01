@@ -75,7 +75,10 @@ const UserAttributesHolder = (props) => {
             }}
             renderGroupHeader={(section) => {
               return (
-                <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                  <FastImage style={{ width: px2pd(1074), height: px2pd(102), position: 'absolute' }} source={require('../../../assets/bg/roleAttribute_bg3.png')} />
+                  <Text style={{ color: '#fff', fontWeight: 'bold' }}>{section.title}</Text>
+                </View>
               );
             }}
           />
