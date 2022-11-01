@@ -6,6 +6,9 @@ skills: [
       # 技能唯一ID 
       id: 1,
 
+      # 技能等级
+      level: 1,
+
       # 图标ID
       iconId: 1,
 
@@ -16,7 +19,11 @@ skills: [
       desc: '',
 
       # 影响公式
-      formula: '伤害 = (A_物理攻击 - D_物理防御) * 1.2 + 120',
+      actions: [
+         { target: 'ALL', hit_rate: 80, crit_rate: 10, crit_add: 1.1, formula: '伤害 = (A_物理攻击 - D_物理防御) * 1.2 + 120' },
+         { target: 'ME', hit_rate: 100, formula: '补血 = +120' },
+         { target: 'ME', hit_rate: 100, formula: '补法力 = A_法力 * 0.2' },
+      ],
 
       # 效果列表
       effects: [],
@@ -24,6 +31,9 @@ skills: [
    {
       # 技能唯一ID 
       id: 2,
+
+      # 技能等级
+      level: 1,
 
       # 图标ID
       iconId: 1,
@@ -38,16 +48,20 @@ skills: [
       passive: true,
    
       # 影响公式
-      formula: '',
+      actions: [
+      ],
 
       # 效果列表
       effects: [
-         { buffId: 1, groupId: 1 },
+         { target: 'ME', buffId: 1, rate: 100, groupId: 'A' },
       ],
    },
    {
       # 技能唯一ID 
       id: 3,
+
+      # 技能等级
+      level: 1,
 
       # 图标ID
       iconId: 1,
@@ -66,12 +80,15 @@ skills: [
 
       # 效果列表
       effects: [
-         { buffId: 2, groupId: 1 },
+         { target: 'ME', buffId: 2, groupId: 'A' },
       ],
    },
    {
       # 技能唯一ID 
       id: 4,
+
+      # 技能等级
+      level: 1,
 
       # 图标ID
       iconId: 1,
@@ -83,10 +100,14 @@ skills: [
       desc: '',
 
       # 影响公式
-      formula: '伤害 = (A_法术攻击 - D_法术防御) * 1.2 + 300',
+      actions: [
+         { target: 'ALL', hit_rate: 80, crit_rate: 10, crit_add: 1.1, formula: '伤害 = (A_法术攻击 - D_法术防御) * 1.2 + 300' },
+      ],
 
       # 消耗法力
-      useMP: 30,
+      consume: [
+         { mp: 30 },
+      ],
 
       # 效果列表
       effects: [],
@@ -94,6 +115,9 @@ skills: [
    {
       # 技能唯一ID 
       id: 5,
+
+      # 技能等级
+      level: 1,
 
       # 图标ID
       iconId: 1,
@@ -111,11 +135,13 @@ skills: [
       formula: '',
 
       # 消耗法力
-      useMP: 50,
+      consume: [
+         { mp: 30 },
+      ],
 
       # 效果列表
       effects: [
-         { buffId: 3, groupId: 2 },
+         { target: 'ME', buffId: 3, groupId: 'B' },
       ],
    },
 ]
