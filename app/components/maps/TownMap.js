@@ -23,6 +23,7 @@ import ShopsUtils from '../../utils/ShopsUtils';
 import LotteryUtils from '../../utils/LotteryUtils';
 import AlchemyRoomModal from '../alchemyRoom';
 import lianQiPage from '../lianQi';
+import WorshipModal from '../worship';
 
 const MAP_DATA = [
     {
@@ -46,6 +47,7 @@ const MAP_DATA = [
         farPoints: [
             { style: { left: px2pd(20) * SCALE_FACTOR, top: px2pd(1050) * (isPad() ? 0.94 : 1) }, name: 'LingYaoTian', title: '灵药田' },
             { style: { left: px2pd(300) * SCALE_FACTOR, top: px2pd(550) * (isPad() ? 1.12 : 1) }, name: 'XunBao', title: '寻宝' },
+            { style: { left: px2pd(40) * SCALE_FACTOR, top: px2pd(650) * (isPad() ? 1.12 : 1) }, name: 'GongFeng', title: '供奉' },
         ],
         nearPoints: [
         ],
@@ -115,6 +117,8 @@ const EntryButton = (props) => {
                             break;
                         case 'HeChengFeng':
                             ComposeUtils.show();
+                        case 'GongFeng':
+                            WorshipModal.show();
                             break;
                     }
                     DeviceEventEmitter.emit(EventKeys.TOWN_ENTER, { title: props.title, name: props.name });
