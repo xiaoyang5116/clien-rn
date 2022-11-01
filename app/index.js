@@ -68,6 +68,7 @@ const models = [
   require('./models/MaskModel').default,
   require('./models/PropsModel').default,
   require('./models/ComposeModel').default,
+  require('./models/SkillModel').default,
   require('./models/ChallengeModel').default,
   require('./models/ArenaModel').default,
   require('./models/ArticleModel').default,
