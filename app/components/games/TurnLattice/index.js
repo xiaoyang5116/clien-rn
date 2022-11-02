@@ -41,6 +41,8 @@ const Grid_0 = ({ isOpened }) => {
 const Grid_1 = ({ item, openGrid, isTouchStart }) => {
   return (
     <TouchableHighlight
+      onPressIn={() => { isTouchStart.current = false }}
+      onPressOut={() => { isTouchStart.current = true }}
       onPress={openGrid}>
       <View
         style={[
@@ -67,16 +69,18 @@ const Grid_Entrance = props => {
 };
 
 // 出口格子
-const Grid_Export = ({ item, openGrid, exportHandler }) => {
+const Grid_Export = ({ item, openGrid, exportHandler, isTouchStart }) => {
   if (item.status === 0) {
     return <Grid_0 isOpened={item.isOpened} />;
   }
   if (item.status === 1) {
-    return <Grid_1 openGrid={openGrid} />;
+    return <Grid_1 openGrid={openGrid} isTouchStart={isTouchStart} />;
   }
   if (item.status === 2) {
     return (
       <TouchableOpacity
+        onPressIn={() => { isTouchStart.current = false }}
+        onPressOut={() => { isTouchStart.current = true }}
         onPress={exportHandler}>
         <View
           style={[
@@ -112,7 +116,7 @@ const Grid_Empty = ({ item, openGrid, isTouchStart }) => {
 };
 
 // 道具格子
-const Grid_Prop = ({ item, openGrid, getGridProps }) => {
+const Grid_Prop = ({ item, openGrid, getGridProps, isTouchStart }) => {
   const { prop } = item;
   const quality_style = qualityStyle.styles.find(
     e => e.id == parseInt(prop.quality),
@@ -124,12 +128,15 @@ const Grid_Prop = ({ item, openGrid, getGridProps }) => {
     status = <Grid_0 isOpened={item.isOpened} />;
   }
   if (item.status === 1) {
-    status = <Grid_1 openGrid={openGrid} />;
+    status = <Grid_1 openGrid={openGrid} isTouchStart={isTouchStart} />;
   }
 
   if (item.status === 2) {
     return (
-      <TouchableOpacity onPress={getGridProps}>
+      <TouchableOpacity
+        onPressIn={() => { isTouchStart.current = false }}
+        onPressOut={() => { isTouchStart.current = true }}
+        onPress={getGridProps}>
         <View
           style={[
             styles.gridContainer,
@@ -176,16 +183,19 @@ const Grid_Prop = ({ item, openGrid, getGridProps }) => {
 };
 
 // 事件格子
-const Grid_Event = ({ item, openGrid, eventHandler }) => {
+const Grid_Event = ({ item, openGrid, eventHandler, isTouchStart }) => {
   if (item.status === 0) {
     return <Grid_0 isOpened={item.isOpened} />;
   }
   if (item.status === 1) {
-    return <Grid_1 openGrid={openGrid} />;
+    return <Grid_1 openGrid={openGrid} isTouchStart={isTouchStart} />;
   }
   if (item.status === 2) {
     return (
-      <TouchableOpacity onPress={eventHandler}>
+      <TouchableOpacity
+        onPressIn={() => { isTouchStart.current = false }}
+        onPressOut={() => { isTouchStart.current = true }}
+        onPress={eventHandler}>
         <View
           style={[
             styles.gridContainer,
@@ -209,13 +219,12 @@ const TurnLattice = props => {
 
   const pan = useRef(new Animated.ValueXY()).current;
   const scaleAnim = useRef(new Animated.Value(1)).current
-  const isTouchStart = useRef(true).current
+  const isTouchStart = useRef(true)
 
   const status = useRef({
     // 记录双指触发的起始坐标
-    twoFingersStart: []
-  })
-
+    twoFingersStart: [],
+  }).current
 
   useEffect(() => {
     props
@@ -289,11 +298,11 @@ const TurnLattice = props => {
           openGrid={() => {
             openGrid(item);
           }}
+          isTouchStart={isTouchStart}
           exportHandler={exportHandler}
         />
       );
     }
-
     if (item.type === '道具') {
       return (
         <Grid_Prop
@@ -301,13 +310,13 @@ const TurnLattice = props => {
           openGrid={() => {
             openGrid(item);
           }}
+          isTouchStart={isTouchStart}
           getGridProps={() => {
             getGridProps(item);
           }}
         />
       );
     }
-
     if (item.type === "事件") {
       return (
         <Grid_Event
@@ -315,6 +324,7 @@ const TurnLattice = props => {
           openGrid={() => {
             openGrid(item);
           }}
+          isTouchStart={isTouchStart}
           eventHandler={() => {
             eventHandler(item)
           }}
@@ -342,6 +352,7 @@ const TurnLattice = props => {
         openGrid={() => {
           openGrid(item);
         }}
+        isTouchStart={isTouchStart}
       />
     );
   };
@@ -349,7 +360,7 @@ const TurnLattice = props => {
   const panResponder = React.useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: () => {
-
+        return isTouchStart.current
       },
       onPanResponderGrant: (evt, gestureState) => {
         if (gestureState.numberActiveTouches === 1) {
@@ -359,7 +370,7 @@ const TurnLattice = props => {
           });
         }
         if (gestureState.numberActiveTouches === 2) {
-          status.current.twoFingersStart = evt.nativeEvent.touches
+          status.twoFingersStart = evt.nativeEvent.touches
         }
       },
       onPanResponderMove: (evt, gestureState) => {
@@ -374,7 +385,7 @@ const TurnLattice = props => {
           }
           // 双指操作
           if (gestureState.numberActiveTouches === 2) {
-            const scale = getScale(status.current.twoFingersStart, evt.nativeEvent.touches)
+            const scale = getScale(status.twoFingersStart, evt.nativeEvent.touches)
             if (scale < 1.5 && scale > 0.5) {
               Animated.timing(scaleAnim, {
                 toValue: scale,
@@ -394,7 +405,7 @@ const TurnLattice = props => {
   return (
     <View style={styles.viewContainer}>
       <SafeAreaView style={{ flex: 1 }}>
-        <View style={{ flex: 1, justifyContent: "center" }}>
+        <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
           <Animated.View
             {...panResponder.panHandlers}
             style={{
