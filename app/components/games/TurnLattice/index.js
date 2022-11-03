@@ -18,6 +18,7 @@ import { action, connect, getPropIcon, EventKeys } from '../../../constants';
 import { px2pd } from '../../../constants/resolution';
 import Toast from '../../toast';
 import { ArticleOptionActions } from '../../article';
+import { confirm } from '../../dialog';
 
 import FastImage from 'react-native-fast-image';
 import { TextButton } from '../../../constants/custom-ui';
@@ -265,15 +266,24 @@ const TurnLattice = props => {
 
   // 出口
   const exportHandler = () => {
-    props
-      .dispatch(action('TurnLatticeModel/exportGrid')())
-      .then(result => {
-        if (result !== undefined && result != null) {
-          setGridConfig([...result]);
-        } else {
+    if (turnLatticeData.length - 1 > currentLayer) {
+      confirm('确认进入下一层？',
+        () => {
+          props
+            .dispatch(action('TurnLatticeModel/exportGrid')())
+            .then(result => {
+              if (result !== undefined && result != null) {
+                setGridConfig([...result]);
+              }
+            });
+        });
+    } else {
+      confirm('确认退出？',
+        () => {
           onClose()
-        }
-      });
+        });
+    }
+
   };
 
   // 事件
