@@ -1,4 +1,6 @@
 import React, { forwardRef } from 'react';
+import { useImperativeHandle } from 'react';
+import lo from 'lodash';
 
 import {
     action,
@@ -16,7 +18,7 @@ import FastImage from 'react-native-fast-image';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { SafeAreaView } from 'react-native';
 import { px2pd } from '../../constants/resolution';
-import { useImperativeHandle } from 'react';
+import { newTarget } from '../../models/challenge/Target';
 
 const ActionMsgItem = (props) => {
     const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.msg);
@@ -47,49 +49,56 @@ const TextMsgItem = (props) => {
 }
 
 const Character = (props, ref) => {
-    const [lifePercent, setLifePercent] = React.useState(0);
+    const [hpPercent, setHpPercent] = React.useState(0);
 
     useImperativeHandle(ref, () => ({
         update: (data) => {
             // 更新角色血条
             if (data.attackerUid != undefined && data.defenderUid != undefined) {
                 if (props.user.uid == data.attackerUid) {
-                    setLifePercent((data.attackerLife / data.attackerOrgLife) * 100);
+                    setHpPercent((data.attackerHP / data.attackerOrgHP) * 100);
                 } else {
-                    setLifePercent((data.defenderLife / data.defenderOrgLife) * 100);
+                    setHpPercent((data.defenderHP / data.defenderOrgHP) * 100);
                 }
             }
         },
     }));
 
+    if (props.user == undefined) {
+        return (<></>);
+    }
+
+    const userProxy = newTarget(props.user);
     return (
-    <View style={[{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }, (props.contentStyle != undefined) ? props.contentStyle : {}]}>
-        <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  }}>
-            <FastImage style={{ width: px2pd(218), height: px2pd(211) }} source={require('../../../assets/bg/arena_character_bg.png')} />
-            <Text style={{ position: 'absolute', color: '#000' }}>{(props.user != undefined) ? props.user.userName : ''}</Text>
+        <View style={[{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }, (props.contentStyle != undefined) ? props.contentStyle : {}]}>
+            <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  }}>
+                <FastImage style={{ width: px2pd(218), height: px2pd(211) }} source={require('../../../assets/bg/arena_character_bg.png')} />
+                <Text style={{ position: 'absolute', color: '#000' }}>{userProxy.userName}</Text>
+            </View>
+            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
+                <View style={{ height: 3, marginTop: 6, marginRight: 6, marginBottom: 0 }}>
+                    <ProgressBar percent={50} sections={[{x: 0, y: 100, color: '#3390ff'}]} />
+                </View>
+                <View style={{ height: 12, marginTop: 0, marginRight: 6, marginBottom: 3 }}>
+                    <ProgressBar percent={hpPercent} />
+                </View>
+                <View style={{ height: 15, marginTop: 6, marginRight: 6, marginBottom: 6 }}>
+                    <ProgressBar percent={userProxy.attrs.mp / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                    <Text style={{ flex: 1, color: '#fff' }}>物攻: {userProxy.attrs.physicalAttack||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>法攻: {userProxy.attrs.magicAttack||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>物防: {userProxy.attrs.physicalDefense||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>法防: {userProxy.attrs.magicDefense||0}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                    <Text style={{ flex: 1, color: '#fff' }}>速度: {userProxy.attrs.speed||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>暴击: {userProxy.attrs.crit||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>闪避: {userProxy.attrs.dodge||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>敏捷: {userProxy.attrs.dodge||0}</Text>
+                </View>
+            </View>
         </View>
-        <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
-            <View style={{ height: 3, marginTop: 6, marginRight: 6, marginBottom: 0 }}>
-                <ProgressBar percent={50} sections={[{x: 0, y: 100, color: '#3390ff'}]} />
-            </View>
-            <View style={{ height: 12, marginTop: 0, marginRight: 6, marginBottom: 3 }}>
-                <ProgressBar percent={lifePercent} />
-            </View>
-            {/* <View style={{ height: 15, marginTop: 6, marginRight: 6, marginBottom: 6 }}>
-                <ProgressBar percent={((props.user != undefined) ? props.user.power : 0) / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
-            </View> */}
-            {/* <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                <Text style={{ color: '#fff' }}>攻击: {props.user != undefined ? props.user.power : 0}</Text>
-                <Text style={{ color: '#fff' }}>速度: {props.user != undefined ? props.user.speed : 0}</Text>
-                <Text style={{ color: '#fff' }}>暴击: {props.user != undefined ? props.user.crit : 0}</Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                <Text style={{ color: '#fff' }}>敏捷: {props.user != undefined ? props.user.agile : 0}</Text>
-                <Text style={{ color: '#fff' }}>防御: {props.user != undefined ? props.user.defense : 0}</Text>
-                <Text style={{ color: '#fff' }}>闪避: {props.user != undefined ? props.user.dodge : 0}</Text>
-            </View> */}
-        </View>
-    </View>
     );
 }
 const CharacterWrapper = forwardRef(Character);

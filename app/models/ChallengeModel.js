@@ -5,6 +5,7 @@ import {
 
 import lo from 'lodash';
 import * as DateTime from '../utils/DateTimeUtils';
+import { newTarget } from './challenge/Target';
 
 export default {
   namespace: 'ChallengeModel',
@@ -15,8 +16,9 @@ export default {
   effects: {
 
     *challenge({ payload }, { put }) {
-      const myself = { ...payload.myself };
-      const enemy = { ...payload.enemy };
+      // 初始化战斗对象
+      const myself = newTarget(lo.cloneDeep(payload.myself));
+      const enemy = newTarget(lo.cloneDeep(payload.enemy));
 
       // 初始化技能
       myself.skills = [];
@@ -24,7 +26,7 @@ export default {
         const skillId = myself.skillIds[i];
         const skill = yield put.resolve(action('SkillModel/getSkill')({ skillId }));
         if (skill != undefined) {
-          myself.skills.push(skill);
+          myself.skills.push(lo.cloneDeep(skill));
         }
       }
 
@@ -33,16 +35,16 @@ export default {
         const skillId = enemy.skillIds[i];
         const skill = yield put.resolve(action('SkillModel/getSkill')({ skillId }));
         if (skill != undefined) {
-          enemy.skills.push(skill);
+          enemy.skills.push(lo.cloneDeep(skill));
         }
       }
 
       // 初始化属性
-      myself.orgLife = myself.life;
+      myself.attrs._hp = myself.attrs.hp;
       myself.userName = '<span style="color:#36b7b5">{0}</span>'.format(myself.userName);
       myself.prepare = false;
 
-      enemy.orgLife = enemy.life;
+      enemy.attrs._hp = enemy.attrs.hp;
       enemy.userName = '<span style="color:#7a81ff">{0}</span>'.format(enemy.userName);
       enemy.prepare = false;
 
@@ -51,7 +53,7 @@ export default {
       const startMillis = now;      
 
       let firstAttack = true; // 招一
-      let attacker = (myself.速度 > enemy.速度) ? myself : enemy;
+      let attacker = (myself.attrs.speed > enemy.attrs.speed) ? myself : enemy;
 
       // 先手先准备
       if (!attacker.prepare) {
@@ -70,9 +72,9 @@ export default {
         if (now > (startMillis + 60000 * 5))
           break;
 
-        if (myself.life <= 0 || enemy.life <= 0) {
-          if (myself.life <= 0) report.push({ msg: '战斗结束, {0}被{1}击败!'.format(myself.userName, enemy.userName) });
-          if (enemy.life <= 0) report.push({ msg: '战斗结束, {0}击败了{1}!'.format(myself.userName, enemy.userName) });
+        if (myself.attrs.hp <= 0 || enemy.attrs.hp <= 0) {
+          if (myself.attrs.hp <= 0) report.push({ msg: '战斗结束, {0}被{1}击败!'.format(myself.userName, enemy.userName) });
+          if (enemy.attrs.hp <= 0) report.push({ msg: '战斗结束, {0}击败了{1}!'.format(myself.userName, enemy.userName) });
           break;
         }
 
@@ -102,8 +104,8 @@ export default {
               let msg = '';
               let validDamage = 0;
               if (damage > 0) {
-                validDamage = damage > defender.life ? defender.life : damage;
-                defender.life -= validDamage;
+                validDamage = damage > defender.attrs.hp ? defender.attrs.hp : damage;
+                defender.attrs.hp -= validDamage;
 
                 if (isCrit) {
                   msg = "{0}使用了{1}攻击了{2}并触发<span style='color:#ff40ff'>暴击</span>, 造成<span style='color:#ff2f92'>{3}</span>点伤害".format(attacker.userName, colorSkillName, defender.userName, validDamage);
@@ -119,15 +121,15 @@ export default {
                 attackerName: attacker.userName,
                 defenderUid: defender.uid,
                 defenderName: defender.userName,
-                attackerLife: attacker.life,
-                defenderLife: defender.life,
-                attackerOrgLife: attacker.orgLife,
-                defenderOrgLife: defender.orgLife,
+                attackerHP: attacker.attrs.hp,
+                defenderHP: defender.attrs.hp,
+                attackerOrgHP: attacker.attrs._hp,
+                defenderOrgHP: defender.attrs._hp,
                 damage: validDamage,
                 msg: msg 
               });
 
-              if (defender.life <= 0)
+              if (defender.attrs.hp <= 0)
                 break;
             }
             if (!skill.isCDLimit(now)) {

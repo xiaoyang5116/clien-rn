@@ -49,13 +49,13 @@ export default {
     *getSkill({ payload }, { call, put, select }) {
       const skillState = yield select(state => state.SkillModel);
       const { skillId } = payload;
-      return lo.find(skillState.skills, (e) => e.id == skillId);
+      return lo.find(skillState.skills, (e) => e.getId() == skillId);
     },
 
     *getBuff({ payload }, { call, put, select }) {
       const skillState = yield select(state => state.SkillModel);
       const { buffId } = payload;
-      return lo.find(skillState.buffs, (e) => e.id == buffId);
+      return lo.find(skillState.buffs, (e) => e.getId() == buffId);
     },
 
   },

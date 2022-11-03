@@ -40,7 +40,7 @@ export default {
       const attrs = yield put.resolve(action('UserModel/getFinalAttrs')({}));
       if (lo.isArray(attrs)) {
         const ext = [
-          { key: '速度', value: 100 },
+          { key: 'speed', value: 100 },
         ];
         arenaState.myself.attrs = [...attrs, ...ext];
       }
@@ -70,7 +70,6 @@ export default {
         && arenaState.__data.enemyIndex < arenaState.__data.enemyQueue.length) {
         const enemy = arenaState.__data.enemyQueue[arenaState.__data.enemyIndex];
         const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: arenaState.myself, enemy: enemy }));
-        console.debug('report--->', report, arenaState.myself, enemy);
 
         yield put(action('updateState')({ enemy, report }));
         arenaState.__data.enemyIndex += 1;

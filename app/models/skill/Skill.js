@@ -96,14 +96,20 @@ import { formula_expr } from './formula';
     // 计算伤害值
     calcDamage(attacker, defender) {
       let damage = 0; // 伤害
+      let isCrit = false; // 是否暴击
+      let isDodge = false; // 是否闪避
 
-      lo.forEach(htis._actions, (e) => {
+      lo.forEach(this._actions, (e) => {
         if (e.formula == undefined)
           return
+
         const expr = formula_expr(e.formula);
+        if (expr.indexOf('damage=') == -1)
+          return
+
         eval(expr);
       });
 
-      return damage;
+      return { damage, isCrit, isDodge };
     }
   }
