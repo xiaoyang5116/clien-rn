@@ -25,9 +25,7 @@ export function newTarget(obj) {
         return obj;
 
     const clone = lo.cloneDeep(obj);
-    if (lo.isArray(clone.attrs)) {
-        clone.attrs = arrayObjectProxy({ items: clone.attrs });
-    }
+    clone.attrs = arrayObjectProxy({ items: lo.isArray(clone.attrs) ? clone.attrs : [] });
 
     return new Proxy(clone, {
         get: function(target, propKey) {

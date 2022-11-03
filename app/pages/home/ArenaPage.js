@@ -69,6 +69,7 @@ const Character = (props, ref) => {
     }
 
     const userProxy = newTarget(props.user);
+
     return (
         <View style={[{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }, (props.contentStyle != undefined) ? props.contentStyle : {}]}>
             <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  }}>
@@ -83,7 +84,7 @@ const Character = (props, ref) => {
                     <ProgressBar percent={hpPercent} />
                 </View>
                 <View style={{ height: 15, marginTop: 6, marginRight: 6, marginBottom: 6 }}>
-                    <ProgressBar percent={userProxy.attrs.mp / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+                    <ProgressBar percent={(userProxy.attrs.mp||0) / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                     <Text style={{ flex: 1, color: '#fff' }}>物攻: {userProxy.attrs.physicalAttack||0}</Text>
