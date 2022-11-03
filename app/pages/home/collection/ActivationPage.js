@@ -12,14 +12,16 @@ import {
 
 import lo from 'lodash';
 import FastImage from 'react-native-fast-image';
+import * as Animatable from 'react-native-animatable';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+
 import { px2pd } from '../../../constants/resolution';
 import { TextButton } from '../../../constants/custom-ui';
 import RootView from '../../../components/RootView';
 import DarkBlurView from '../../../components/extends/DarkBlurView';
 import StarsBanner from './StarsBanner';
 import ActivationConfirm from './ActivationConfirm';
-import * as Animatable from 'react-native-animatable';
+import { getAttributeChineseName } from '../../../utils/AttributeUtils';
 
 const ActivationPage = (props) => {
 
@@ -28,7 +30,8 @@ const ActivationPage = (props) => {
 
     const attrs = [];
     lo.forEach(props.data.attrs, (v, k) => {
-        attrs.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{v.key}: +{v.value}</Text>);
+        const attrName = getAttributeChineseName(v.key);
+        attrs.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{attrName}: +{v.value}</Text>);
     });
 
     React.useEffect(() => {

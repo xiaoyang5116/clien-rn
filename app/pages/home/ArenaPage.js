@@ -66,7 +66,7 @@ const Character = (props, ref) => {
     <View style={[{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }, (props.contentStyle != undefined) ? props.contentStyle : {}]}>
         <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  }}>
             <FastImage style={{ width: px2pd(218), height: px2pd(211) }} source={require('../../../assets/bg/arena_character_bg.png')} />
-            <Text style={{ position: 'absolute', color: '#000' }}>{props.user.userName}</Text>
+            <Text style={{ position: 'absolute', color: '#000' }}>{(props.user != undefined) ? props.user.userName : ''}</Text>
         </View>
         <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
             <View style={{ height: 3, marginTop: 6, marginRight: 6, marginBottom: 0 }}>
@@ -75,19 +75,19 @@ const Character = (props, ref) => {
             <View style={{ height: 12, marginTop: 0, marginRight: 6, marginBottom: 3 }}>
                 <ProgressBar percent={lifePercent} />
             </View>
-            <View style={{ height: 15, marginTop: 6, marginRight: 6, marginBottom: 6 }}>
-                <ProgressBar percent={props.user.power / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+            {/* <View style={{ height: 15, marginTop: 6, marginRight: 6, marginBottom: 6 }}>
+                <ProgressBar percent={((props.user != undefined) ? props.user.power : 0) / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+            </View> */}
+            {/* <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                <Text style={{ color: '#fff' }}>攻击: {props.user != undefined ? props.user.power : 0}</Text>
+                <Text style={{ color: '#fff' }}>速度: {props.user != undefined ? props.user.speed : 0}</Text>
+                <Text style={{ color: '#fff' }}>暴击: {props.user != undefined ? props.user.crit : 0}</Text>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                <Text style={{ color: '#fff' }}>攻击: {props.user.power}</Text>
-                <Text style={{ color: '#fff' }}>速度: {props.user.speed}</Text>
-                <Text style={{ color: '#fff' }}>暴击: {props.user.crit}</Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                <Text style={{ color: '#fff' }}>敏捷: {props.user.agile}</Text>
-                <Text style={{ color: '#fff' }}>防御: {props.user.defense}</Text>
-                <Text style={{ color: '#fff' }}>闪避: {props.user.dodge}</Text>
-            </View>
+                <Text style={{ color: '#fff' }}>敏捷: {props.user != undefined ? props.user.agile : 0}</Text>
+                <Text style={{ color: '#fff' }}>防御: {props.user != undefined ? props.user.defense : 0}</Text>
+                <Text style={{ color: '#fff' }}>闪避: {props.user != undefined ? props.user.dodge : 0}</Text>
+            </View> */}
         </View>
     </View>
     );

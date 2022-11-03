@@ -36,10 +36,10 @@ export default {
     },
     
     xiuxingAttrs: [ // 修行属性(参与战斗计算)
-      { key: '体力', value: 0 },
-      { key: '防御', value: 0 },
-      { key: '法力', value: 0 },
-      { key: '攻击', value: 0 },
+      { key: 'hp', value: 0 },
+      { key: 'defense', value: 0 },
+      { key: 'mp', value: 0 },
+      { key: 'attack', value: 0 },
     ],
 
   },
@@ -83,10 +83,10 @@ export default {
       if (lo.isArray(xiuxingState.xiuxingAttrs) && xiuxingState.xiuxingAttrs.length > 0) {
         lo.forEach(xiuxingState.xiuxingAttrs, (v) => {
           let key = v.key;
-          if (lo.isEqual(key, '防御')) {
-            key = '物理防御';
-          } else if (lo.isEqual(key, '攻击')) {
-            key = '物理攻击';
+          if (lo.isEqual(key, 'defense')) {
+            key = 'physicalDefense';
+          } else if (lo.isEqual(key, 'attack')) {
+            key = 'physicalAttack';
           }
           all.push({ key: key, value: v.value });
         });
