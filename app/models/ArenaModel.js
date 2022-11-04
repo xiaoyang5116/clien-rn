@@ -42,9 +42,6 @@ export default {
       }
       
       arenaState.myself = newTarget(myself);
-      arenaState.myself.attrs._hp = arenaState.myself.attrs.hp;
-      arenaState.myself.attrs._mp = arenaState.myself.attrs.mp;
-      
       arenaState.__data.seqConfig = null;
       arenaState.__data.enemyQueue.length = 0;
       arenaState.__data.enemyIndex = 0;
@@ -58,10 +55,7 @@ export default {
 
         config.enemies.forEach(e => {
           lo.forEach(e.items, (item) => {
-            const obj = newTarget(item);
-            obj.attrs._hp = obj.attrs.hp;
-            obj.attrs._mp = obj.attrs.mp;
-            arenaState.__data.enemyQueue.push(obj);
+            arenaState.__data.enemyQueue.push(newTarget(item));
           });
         });
       }

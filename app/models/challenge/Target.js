@@ -27,7 +27,7 @@ export function newTarget(obj) {
     const clone = lo.cloneDeep(obj);
     clone.attrs = arrayObjectProxy({ items: lo.isArray(clone.attrs) ? clone.attrs : [] });
 
-    return new Proxy(clone, {
+    const proxy = new Proxy(clone, {
         get: function(target, propKey) {
             return Reflect.get(target, propKey);
         },
@@ -41,4 +41,10 @@ export function newTarget(obj) {
             return Reflect.set(target, propKey, value);
         },
     });
+
+    // 初始化预设定值
+    proxy.attrs._hp = proxy.attrs.hp;
+    proxy.attrs._mp = proxy.attrs.mp;
+    
+    return proxy;
 }

@@ -13,7 +13,7 @@ import { GetSeqDataApi } from '../services/GetSeqDataApi';
 import { GetXunBaoDataApi } from '../services/GetXunBaoDataApi';
 import { GetQiYuApi } from '../services/GetQiYuApi';
 import lo from 'lodash';
-import Modal from "../components/modal";
+import { newTarget } from "./challenge/Target";
 
 const EVENTS_CONFIG = [
   { eventName: 'slot', handlerName: 'onSlotEvent', desc: '获得一次自动抽奖机会' },
@@ -314,9 +314,16 @@ export default {
       const seqConfig = seqData.sequences.find(e => e.id == event.seqId);
       const enemiesGroup = seqConfig.enemies.find(e => e.group == event.group);
 
+      // 生成新的战斗玩家对象
+      const myself = { uid: 1, userName: '李森焱', skillIds: [1, 4], attrs: [{ key: 'speed', value: 100 }] };
+      const attrs = yield put.resolve(action('UserModel/getFinalAttrs')({}));
+      if (lo.isArray(attrs)) {
+        myself.attrs.push(...attrs);
+      }
+
       // 单打一个杂鱼
       const enemy = enemiesGroup.items[0];
-      const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: MYSELF_ATTRS, enemy }));
+      const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: newTarget(myself), enemy: newTarget(enemy) }));
 
       if (lo.isArray(report)) {
         // 战斗中

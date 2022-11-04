@@ -77,8 +77,8 @@ export default {
           break;
 
         if (myself.attrs.hp <= 0 || enemy.attrs.hp <= 0) {
-          if (myself.attrs.hp <= 0) report.push({ msg: '战斗结束, {0}被{1}击败!'.format(myself.colorUserName, enemy.colorUserName) });
-          if (enemy.attrs.hp <= 0) report.push({ msg: '战斗结束, {0}击败了{1}!'.format(myself.colorUserName, enemy.colorUserName) });
+          if (myself.attrs.hp <= 0) report.push({ msg: '战斗结束, {0} 被 {1} 击败!'.format(myself.colorUserName, enemy.colorUserName) });
+          if (enemy.attrs.hp <= 0) report.push({ msg: '战斗结束, {0} 击败了 {1}!'.format(myself.colorUserName, enemy.colorUserName) });
           break;
         }
 
@@ -90,7 +90,7 @@ export default {
           if (skill.isXunLiCompleted(now)) {
             // 释放技能
             if (!skill.isRelease()) {
-              const { damage, isPhysical, isCrit, isDodge } = skill.calcDamage(attacker, defender);
+              const { damage, isPhysical, hp, mp, isCrit, isDodge } = skill.apply(attacker, defender);
               skill.startCD(now);
               skill.setRelease(true);
 
@@ -147,6 +147,8 @@ export default {
                 damage: validDamage,
                 physicalDamage: (isPhysical ? validDamage : 0),
                 magicDamage: (!isPhysical ? validDamage : 0),
+                rechargeHP: hp, // 回血
+                rechargeMP: mp, // 回蓝
                 msg: msg 
               });
 

@@ -14,25 +14,37 @@ sequences: [
       {
         group: 'A',
         items: [
-          { uid: 100001, userName: '娜扎', life: 8000, speed: 80, power: 510, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
+          { 
+            uid: 100000, 
+            userName: '娜扎', 
+            skillIds: [1],
+            attrs: [
+              { key: 'hp', value: 500 },
+              { key: 'mp', value: 500 },
+              { key: 'speed', value: 80 },
+              { key: 'physicalAttack', value: 5 },
+              { key: 'physicalDefense', value: 5 },
+              { key: 'magicDefense', value: 5 },
+            ],
+          },
         ]
       },
       {
         group: 'B',
         items: [
-          { uid: 100002, userName: '灰太狼', life: 8000, speed: 80, power: 630, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
-        ]
-      },
-      {
-        group: 'C',
-        items: [
-          { uid: 100003, userName: '熊二', life: 8000, speed: 80, power: 630, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
-        ]
-      },
-      {
-        group: 'D',
-        items: [
-          { uid: 100004, userName: '李老板', life: 8000, speed: 80, power: 630, agile: 350, defense: 80, crit: 10, dodge: 15, skillIds: [1, 3] },
+          { 
+            uid: 100001, 
+            userName: '灰太狼', 
+            skillIds: [1],
+            attrs: [
+              { key: 'hp', value: 500 },
+              { key: 'mp', value: 500 },
+              { key: 'speed', value: 80 },
+              { key: 'physicalAttack', value: 5 },
+              { key: 'physicalDefense', value: 5 },
+              { key: 'magicDefense', value: 5 },
+            ],
+          },
         ]
       },
     ],

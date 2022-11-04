@@ -98,27 +98,45 @@ import { formula_expr } from './formula';
       return this._cdMillis;
     }
   
-    // 计算伤害值
-    calcDamage(attacker, defender) {
+    // 应用技能
+    apply(attacker, defender) {
       let damage = 0; // 伤害
       let isCrit = false; // 是否暴击
       let isDodge = false; // 是否闪避
       let isPhysical = false; // 是否物理伤害
+      let hp = 0; // 回血
+      let mp = 0; // 回蓝
 
       lo.forEach(this._actions, (e) => {
         if (e.formula == undefined)
           return
 
         const expr = formula_expr(e.formula);
-        if (expr.indexOf('damage=') == -1)
+
+        if (expr.indexOf('damage=') == -1
+          && expr.indexOf('hp=') == -1
+          && expr.indexOf('mp=') == - 1)
           return
 
         if (!isPhysical && expr.indexOf('physicalAttack') != -1) {
           isPhysical = true;
         }
+
         eval(expr);
       });
 
-      return { damage, isPhysical, isCrit, isDodge };
+      // 回血
+      if (hp > 0) {
+        attacker.attrs.hp += hp;
+        attacker.attrs.hp = (attacker.attrs.hp > attacker.attrs._hp) ? attacker.attrs._hp : attacker.attrs.hp;
+      }
+
+      // 回蓝
+      if (mp > 0) {
+        attacker.attrs.mp += mp;
+        attacker.attrs.mp = (attacker.attrs.mp > attacker.attrs._mp) ? attacker.attrs._mp : attacker.attrs.mp;
+      }
+
+      return { damage, isPhysical, hp, mp, isCrit, isDodge };
     }
   }
