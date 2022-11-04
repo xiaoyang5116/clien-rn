@@ -1,5 +1,5 @@
 
-import lo from 'lodash';
+import lo, { round } from 'lodash';
 import { assert } from "../../constants/functions";
 import { formula_expr } from './formula';
 
@@ -112,10 +112,11 @@ import { formula_expr } from './formula';
           return
 
         const expr = formula_expr(e.formula);
+        const hasDamage = expr.indexOf('damage=') != -1;
+        const hasHP = expr.indexOf('hp=') != -1;
+        const hasMP = expr.indexOf('mp=') != -1;
 
-        if (expr.indexOf('damage=') == -1
-          && expr.indexOf('hp=') == -1
-          && expr.indexOf('mp=') == - 1)
+        if (!(hasDamage || hasHP || hasMP))
           return
 
         if (!isPhysical && expr.indexOf('physicalAttack') != -1) {
@@ -123,6 +124,14 @@ import { formula_expr } from './formula';
         }
 
         eval(expr);
+
+        // 暴击
+        if (hasDamage && (e.crit_rate != undefined) && (e.crit_add != undefined)) {
+          if (lo.random(0, 100) <= e.crit_rate) {
+            damage = Math.ceil(damage * e.crit_add);
+            isCrit = true;
+          }
+        }
       });
 
       // 回血

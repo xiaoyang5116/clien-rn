@@ -31,7 +31,7 @@ skills: [
 
       # 影响公式
       actions: [
-         { target: 'ALL', hit_rate: 80, crit_rate: 10, crit_add: 1.1, formula: '伤害 = (A_物理攻击 - D_物理防御) * 1.2 + 120' },
+         { target: 'ALL', hit_rate: 80, crit_rate: 40, crit_add: 1.5, formula: '伤害 = (A_物理攻击 - D_物理防御) * 1.2 + 120' },
          { target: 'ME', hit_rate: 100, formula: '回血 = 5' },
          { target: 'ME', hit_rate: 100, formula: '回蓝 = 5' },
       ],
@@ -146,7 +146,7 @@ skills: [
 
       # 影响公式
       actions: [
-         { target: 'ALL', hit_rate: 80, crit_rate: 10, crit_add: 1.1, formula: '伤害 = (A_法术攻击 - D_法术防御) * 1.2 + 300' },
+         { target: 'ALL', hit_rate: 80, crit_rate: 10, crit_add: 1.5, formula: '伤害 = (A_法术攻击 - D_法术防御) * 1.2 + 300' },
       ],
 
       # 效果列表

@@ -149,6 +149,7 @@ export default {
                 magicDamage: (!isPhysical ? validDamage : 0),
                 rechargeHP: hp, // 回血
                 rechargeMP: mp, // 回蓝
+                crit: isCrit, // 是否暴击
                 msg: msg 
               });
 

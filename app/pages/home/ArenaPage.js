@@ -25,9 +25,14 @@ const ActionMsgItem = (props) => {
     const isMyself = (props.user.uid == props.data.attackerUid);
 
     return (
-        <View style={{ borderWidth: 2, borderColor: '#eee', borderRadius: 4, justifyContent: 'flex-start', alignItems: 'center', margin: 5 }}>
+        <View style={{ borderWidth: 2, borderColor: '#ccc', borderRadius: 4, justifyContent: 'flex-start', alignItems: 'center', margin: 5 }}>
             <View style={{ width: '100%', height: px2pd(80), backgroundColor: '#ccc', alignItems: 'center', justifyContent: 'center' }}>
-                <View><RenderHTML contentWidth={100} source={{html: `${props.data.attackerName} 的攻击`}} /></View>
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <RenderHTML contentWidth={100} source={{html: `${props.data.attackerName} 的攻击`}} />
+                </View>
+                <View style={{ position: 'absolute', right: px2pd(200) }}>
+                        {(props.data.crit) ? <Text style={{ color: '#ff0817' }}>[暴击]</Text> : <></>}
+                </View>
                 {
                 (isMyself) 
                 ? <AntDesign style={{ position: 'absolute', right: 5 }} name='arrowright' color={'#333'} size={25} />
@@ -85,13 +90,11 @@ const Character = (props, ref) => {
         return (<></>);
     }
 
-    const userProxy = newTarget(props.user);
-
     return (
         <View style={[{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }, (props.contentStyle != undefined) ? props.contentStyle : {}]}>
             <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  }}>
                 <FastImage style={{ width: px2pd(218), height: px2pd(211) }} source={require('../../../assets/bg/arena_character_bg.png')} />
-                <Text style={{ position: 'absolute', color: '#000' }}>{userProxy.userName}</Text>
+                <Text style={{ position: 'absolute', color: '#000' }}>{props.user.userName}</Text>
             </View>
             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
                 <View style={{ height: 3, marginTop: 6, marginRight: 6, marginBottom: 0 }}>
@@ -104,16 +107,16 @@ const Character = (props, ref) => {
                     <ProgressBar percent={mpPercent} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                    <Text style={{ flex: 1, color: '#fff' }}>物攻: {userProxy.attrs.physicalAttack||0}</Text>
-                    <Text style={{ flex: 1, color: '#fff' }}>法攻: {userProxy.attrs.magicAttack||0}</Text>
-                    <Text style={{ flex: 1, color: '#fff' }}>物防: {userProxy.attrs.physicalDefense||0}</Text>
-                    <Text style={{ flex: 1, color: '#fff' }}>法防: {userProxy.attrs.magicDefense||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>物攻: {props.user.attrs.physicalAttack||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>法攻: {props.user.attrs.magicAttack||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>物防: {props.user.attrs.physicalDefense||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>法防: {props.user.attrs.magicDefense||0}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                    <Text style={{ flex: 1, color: '#fff' }}>速度: {userProxy.attrs.speed||0}</Text>
-                    <Text style={{ flex: 1, color: '#fff' }}>暴击: {userProxy.attrs.crit||0}</Text>
-                    <Text style={{ flex: 1, color: '#fff' }}>闪避: {userProxy.attrs.dodge||0}</Text>
-                    <Text style={{ flex: 1, color: '#fff' }}>敏捷: {userProxy.attrs.dodge||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>速度: {props.user.attrs.speed||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>暴击: {props.user.attrs.crit||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>闪避: {props.user.attrs.dodge||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>敏捷: {props.user.attrs.dodge||0}</Text>
                 </View>
             </View>
         </View>
