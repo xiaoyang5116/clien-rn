@@ -28,6 +28,7 @@ import { formula_expr } from './formula';
       this._desc = properties.desc;
       this._actions = lo.cloneDeep(properties.actions);
       this._effects = lo.cloneDeep(properties.effects);
+      this._consume = lo.cloneDeep(properties.consume);
 
       this._startCDMillis = 0;
       this._startXuLiMillis = 0;
@@ -52,6 +53,10 @@ import { formula_expr } from './formula';
 
     getEffects() {
       return this._effects;
+    }
+
+    getConsume() {
+      return this._consume;
     }
   
     isRelease() {

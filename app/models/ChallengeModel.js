@@ -17,8 +17,7 @@ export default {
 
     *challenge({ payload }, { put }) {
       // 初始化战斗对象
-      const myself = newTarget(lo.cloneDeep(payload.myself));
-      const enemy = newTarget(lo.cloneDeep(payload.enemy));
+      const { myself, enemy } = payload;
 
       // 初始化技能
       myself.skills = [];
@@ -40,17 +39,15 @@ export default {
       }
 
       // 初始化属性
-      myself.attrs._hp = myself.attrs.hp;
-      myself.userName = '<span style="color:#36b7b5">{0}</span>'.format(myself.userName);
+      myself.colorUserName = '<span style="color:#36b7b5">{0}</span>'.format(myself.userName);
       myself.prepare = false;
 
-      enemy.attrs._hp = enemy.attrs.hp;
-      enemy.userName = '<span style="color:#7a81ff">{0}</span>'.format(enemy.userName);
+      enemy.colorUserName = '<span style="color:#7a81ff">{0}</span>'.format(enemy.userName);
       enemy.prepare = false;
 
       const report = [];
       let now = DateTime.now();
-      const startMillis = now;      
+      const startMillis = now;
 
       let firstAttack = true; // 招一
       let attacker = (myself.attrs.speed > enemy.attrs.speed) ? myself : enemy;
@@ -68,13 +65,20 @@ export default {
       myself.skills.forEach(e => allSkills.push({ owner: myself, skill: e }));
       enemy.skills.forEach(e => allSkills.push({ owner: enemy, skill: e }));
 
-      while (true) {
+      // 初始化
+      let running = false;
+      if (attacker.attrs.hp > 0) {
+        report.push({ msg: `遇到了 ${enemy.colorUserName} 进入战斗` });
+        running = true;
+      }
+
+      while (running) {
         if (now > (startMillis + 60000 * 5))
           break;
 
         if (myself.attrs.hp <= 0 || enemy.attrs.hp <= 0) {
-          if (myself.attrs.hp <= 0) report.push({ msg: '战斗结束, {0}被{1}击败!'.format(myself.userName, enemy.userName) });
-          if (enemy.attrs.hp <= 0) report.push({ msg: '战斗结束, {0}击败了{1}!'.format(myself.userName, enemy.userName) });
+          if (myself.attrs.hp <= 0) report.push({ msg: '战斗结束, {0}被{1}击败!'.format(myself.colorUserName, enemy.colorUserName) });
+          if (enemy.attrs.hp <= 0) report.push({ msg: '战斗结束, {0}击败了{1}!'.format(myself.colorUserName, enemy.colorUserName) });
           break;
         }
 
@@ -100,6 +104,16 @@ export default {
               }
 
               const colorSkillName = (skill.getId() > 1) ? "<span style='color:#ff2600'>{0}</span>".format(skill.getName()) : skill.getName();
+              const consumeList = skill.getConsume();
+              if (lo.isArray(consumeList)) {
+                for (let i = 0; i < consumeList.length; i++) {
+                  const item = consumeList[i];
+                  if (item.mp != undefined && item.mp > 0) { // 扣除魔法
+                    attacker.attrs.mp -= item.mp;
+                    attacker.attrs.mp = (attacker.attrs.mp >= 0) ? attacker.attrs.mp : 0;
+                  }
+                }
+              }
 
               let msg = '';
               let validDamage = 0;
@@ -108,23 +122,27 @@ export default {
                 defender.attrs.hp -= validDamage;
 
                 if (isCrit) {
-                  msg = "{0}使用了{1}攻击了{2}并触发<span style='color:#ff40ff'>暴击</span>, 造成<span style='color:#ff2f92'>{3}</span>点伤害".format(attacker.userName, colorSkillName, defender.userName, validDamage);
+                  msg = "{0}使用了{1}攻击了{2}并触发<span style='color:#ff40ff'>暴击</span>, 造成<span style='color:#ff2f92'>{3}</span>点伤害".format(attacker.colorUserName, colorSkillName, defender.colorUserName, validDamage);
                 } else {
-                  msg = "{0}使用了{1}攻击了{2}, 造成<span style='color:#ff2f92'>{3}</span>点伤害".format(attacker.userName, colorSkillName, defender.userName, validDamage);
+                  msg = "{0}使用了{1}攻击了{2}, 造成<span style='color:#ff2f92'>{3}</span>点伤害".format(attacker.colorUserName, colorSkillName, defender.colorUserName, validDamage);
                 }
               } else if (isDodge) {
-                msg = "{0}使用了{1}攻击{2}，但{2}成功<span style='color:#38d142'>闪避</span>".format(attacker.userName, colorSkillName, defender.userName);
+                msg = "{0}使用了{1}攻击{2}，但{2}成功<span style='color:#38d142'>闪避</span>".format(attacker.colorUserName, colorSkillName, defender.colorUserName);
               }
 
               report.push({
                 attackerUid: attacker.uid,
-                attackerName: attacker.userName,
+                attackerName: attacker.colorUserName,
                 defenderUid: defender.uid,
-                defenderName: defender.userName,
+                defenderName: defender.colorUserName,
                 attackerHP: attacker.attrs.hp,
                 defenderHP: defender.attrs.hp,
+                attackerMP: attacker.attrs.mp,
+                defenderMP: defender.attrs.mp,
                 attackerOrgHP: attacker.attrs._hp,
                 defenderOrgHP: defender.attrs._hp,
+                attackerOrgMP: attacker.attrs._mp,
+                defenderOrgMP: defender.attrs._mp,
                 skills: [{ name: skill.getName() }],
                 damage: validDamage,
                 physicalDamage: (isPhysical ? validDamage : 0),
@@ -156,6 +174,11 @@ export default {
       const mergeReport = [];
 
       lo.forEach(report, (e) => {
+        if (e.attackerUid == undefined || e.defenderUid == undefined) {
+          mergeReport.push(e);
+          return
+        }
+
         if (attackerUid != e.attackerUid) {
           attackerUid = e.attackerUid;
           mergeReport.push(e);

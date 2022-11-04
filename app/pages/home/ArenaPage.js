@@ -54,7 +54,7 @@ const ActionMsgItem = (props) => {
 const TextMsgItem = (props) => {
     const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.msg);
     return (
-        <View style={{ height: px2pd(80), justifyContent: 'center', alignItems: 'center', margin: 5 }}>
+        <View style={{ height: px2pd(60), justifyContent: 'center', alignItems: 'center', margin: 5 }}>
             <RenderHTML contentWidth={100} source={{html: htmlMsg}} />
         </View>
     )
@@ -62,15 +62,18 @@ const TextMsgItem = (props) => {
 
 const Character = (props, ref) => {
     const [hpPercent, setHpPercent] = React.useState(0);
+    const [mpPercent, setMpPercent] = React.useState(0);
 
     useImperativeHandle(ref, () => ({
         update: (data) => {
-            // 更新角色血条
+            // 更新角色血条/蓝条
             if (data.attackerUid != undefined && data.defenderUid != undefined) {
                 if (props.user.uid == data.attackerUid) {
                     setHpPercent((data.attackerHP / data.attackerOrgHP) * 100);
+                    setMpPercent((data.attackerMP / data.attackerOrgMP) * 100);
                 } else {
                     setHpPercent((data.defenderHP / data.defenderOrgHP) * 100);
+                    setMpPercent((data.defenderMP / data.defenderOrgMP) * 100);
                 }
             }
         },
@@ -96,7 +99,7 @@ const Character = (props, ref) => {
                     <ProgressBar percent={hpPercent} />
                 </View>
                 <View style={{ height: 15, marginTop: 6, marginRight: 6, marginBottom: 6 }}>
-                    <ProgressBar percent={(userProxy.attrs.mp||0) / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+                    <ProgressBar percent={mpPercent} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                     <Text style={{ flex: 1, color: '#fff' }}>物攻: {userProxy.attrs.physicalAttack||0}</Text>

@@ -8,17 +8,15 @@ import {
 import {
   GetSeqDataApi
 } from '../services/GetSeqDataApi';
+import { newTarget } from './challenge/Target';
 
 export default {
   namespace: 'ArenaModel',
 
   state: {
 
-    myself: {
-      uid: 1,
-      userName: '李森焱',
-      skillIds: [1,4],
-    },
+    // 角色战斗对象
+    myself: null,
 
     // 战报数据
     report: [],
@@ -36,19 +34,22 @@ export default {
       const arenaState = yield select(state => state.ArenaModel);
       const { seqId } = payload;
 
-      // 同步玩家属性
+      // 生成新的战斗玩家对象
+      const myself = { uid: 1, userName: '李森焱', skillIds: [1, 4], attrs: [{ key: 'speed', value: 100 }] };
       const attrs = yield put.resolve(action('UserModel/getFinalAttrs')({}));
       if (lo.isArray(attrs)) {
-        const ext = [
-          { key: 'speed', value: 100 },
-        ];
-        arenaState.myself.attrs = [...attrs, ...ext];
+        myself.attrs.push(...attrs);
       }
-
+      
+      arenaState.myself = newTarget(myself);
+      arenaState.myself.attrs._hp = arenaState.myself.attrs.hp;
+      arenaState.myself.attrs._mp = arenaState.myself.attrs.mp;
+      
       arenaState.__data.seqConfig = null;
       arenaState.__data.enemyQueue.length = 0;
       arenaState.__data.enemyIndex = 0;
 
+      // 生成敌方战斗对象
       const data = yield call(GetSeqDataApi, seqId);
       const config = data.sequences.find(e => e.id == seqId);
       if (config != undefined) {
@@ -56,7 +57,12 @@ export default {
         arenaState.__data.enemyQueue.length = 0;
 
         config.enemies.forEach(e => {
-          arenaState.__data.enemyQueue.push(...e.items);
+          lo.forEach(e.items, (item) => {
+            const obj = newTarget(item);
+            obj.attrs._hp = obj.attrs.hp;
+            obj.attrs._mp = obj.attrs.mp;
+            arenaState.__data.enemyQueue.push(obj);
+          });
         });
       }
 
@@ -69,7 +75,7 @@ export default {
       if (arenaState.__data.enemyQueue.length > 0
         && arenaState.__data.enemyIndex < arenaState.__data.enemyQueue.length) {
         const enemy = arenaState.__data.enemyQueue[arenaState.__data.enemyIndex];
-        const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: arenaState.myself, enemy: enemy }));
+        const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: arenaState.myself, enemy }));
 
         yield put(action('updateState')({ enemy, report }));
         arenaState.__data.enemyIndex += 1;
