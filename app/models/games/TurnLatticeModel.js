@@ -10,15 +10,22 @@ export default {
   state: {
     turnLatticeData: [],
     currentLayer: 0,
+    curLatticeMazeId: "",
   },
+
   effects: {
     *getTurnLatticeData({ payload }, { call, put, select }) {
+      const { latticeMazeId } = payload
       const historyData = yield call(
         LocalStorage.get,
         LocalCacheKeys.TURN_LATTICE_DATA,
       );
-      if (historyData === null) {
-        const { data } = yield call(GetTurnLattice);
+      console.log("historyData", historyData);
+      // 没有打开过
+      if (historyData === null || (historyData.find(item => item.latticeMazeId === latticeMazeId) === undefined)) {
+        const { latticeMaze } = yield call(GetTurnLattice);
+        const currentLatticeMazeData = latticeMaze.find(item => item.latticeMazeId === latticeMazeId)
+        const { desc, unlockProps, consumableProps, data } = currentLatticeMazeData
         // 初始化
         for (let index = 0; index < data.length; index++) {
           const item = data[index];
@@ -33,13 +40,52 @@ export default {
           setNearbyGridStates(entranceGrid, item)
         }
 
-        yield put(action('updateState')({ turnLatticeData: data, currentLayer: 0, }));
-        return data[0].config
+        // 解锁和消耗道具
+        const message = [];
+        if (unlockProps !== undefined) {
+          for (let index = 0; index < unlockProps.length; index++) {
+            const prop = unlockProps[index].split(',');
+            const propNum = yield put.resolve(
+              action('PropsModel/getPropNum')({ propId: Number(prop[0]) }),
+            );
+            const propConfig = yield put.resolve(
+              action('PropsModel/getPropConfig')({ propId: Number(prop[0]) }),
+            );
+            const isOK = propNum >= Number(prop[1]);
+            message.push({
+              isOK: isOK,
+              msg: `拥有${propConfig.name}数量: ${propNum}/${Number(prop[1])}`,
+            });
+          }
+        }
+        if (consumableProps !== undefined) {
+          for (let index = 0; index < consumableProps.length; index++) {
+            const prop = consumableProps[index].split(',');
+            const propNum = yield put.resolve(
+              action('PropsModel/getPropNum')({ propId: Number(prop[0]) }),
+            );
+            const propConfig = yield put.resolve(
+              action('PropsModel/getPropConfig')({ propId: Number(prop[0]) }),
+            );
+            const isOK = propNum >= Number(prop[1]);
+            message.push({
+              isOK: isOK,
+              msg: `拥有${propConfig.name}数量: ${propNum}/${Number(prop[1])}`,
+            });
+          }
+        }
+        yield put(action('updateState')({ turnLatticeData: data, currentLayer: 0, curLatticeMazeId: latticeMazeId }));
+        return {
+          desc,
+          message,
+          latticeConfig: data[0].config
+        }
 
       } else {
-        // 初始化
-        for (let index = 0; index < historyData.length; index++) {
-          const item = historyData[index];
+        const currentData = historyData.find(item => item.latticeMazeId === latticeMazeId)
+        const { desc, data, consumableProps } = currentData
+        for (let index = 0; index < data.length; index++) {
+          const item = data[index];
           for (let i = 0; i < item.config.length; i++) {
             const gridConfig = item.config[i]
             gridConfig.status = 0
@@ -48,16 +94,111 @@ export default {
           const entranceGrid = item.config.find(i => i.type === "入口")
           setNearbyGridStates(entranceGrid, item)
         }
-        yield put(action('updateState')({ turnLatticeData: historyData, currentLayer: 0, }));
-        return historyData[0].config
+        // 消耗道具
+        const message = [];
+        if (consumableProps !== undefined) {
+          for (let index = 0; index < consumableProps.length; index++) {
+            const prop = consumableProps[index].split(',');
+            const propNum = yield put.resolve(
+              action('PropsModel/getPropNum')({ propId: Number(prop[0]) }),
+            );
+            const propConfig = yield put.resolve(
+              action('PropsModel/getPropConfig')({ propId: Number(prop[0]) }),
+            );
+            const isOK = propNum >= Number(prop[1]);
+            message.push({
+              isOK: isOK,
+              msg: `拥有${propConfig.name}数量: ${propNum}/${Number(prop[1])}`,
+            });
+          }
+        }
+        yield put(action('updateState')({ turnLatticeData: data, currentLayer: 0, curLatticeMazeId: latticeMazeId }));
+        return {
+          desc,
+          message,
+          latticeConfig: data[0].config
+        }
+      }
+    },
+
+    // 解锁 和 消耗 道具
+    *consumableProps({ payload }, { call, put, select }) {
+      const { curLatticeMazeId } = yield select(state => state.TurnLatticeModel);
+      const { latticeMaze } = yield call(GetTurnLattice);
+      const currentLatticeMazeData = latticeMaze.find(item => item.latticeMazeId === curLatticeMazeId)
+
+      const historyData = yield call(
+        LocalStorage.get,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+      );
+
+      if (historyData === null || (historyData.find(item => item.latticeMazeId === curLatticeMazeId) === undefined)) {
+        const { unlockProps, consumableProps } = currentLatticeMazeData
+        // 扣除 解锁 道具
+        for (let k in unlockProps) {
+          const prop = unlockProps[k].split(',');
+          yield put.resolve(
+            action('PropsModel/use')({
+              propId: prop[0],
+              num: prop[1],
+              quiet: true,
+            }),
+          );
+        }
+
+        // 扣除 消耗 道具
+        for (let k in consumableProps) {
+          const prop = consumableProps[k].split(',');
+          yield put.resolve(
+            action('PropsModel/use')({
+              propId: prop[0],
+              num: prop[1],
+              quiet: true,
+            }),
+          );
+        }
+
+        // 保存副本
+        if (historyData === null) {
+          yield call(
+            LocalStorage.set,
+            LocalCacheKeys.TURN_LATTICE_DATA,
+            [currentLatticeMazeData]
+          );
+        }
+        else {
+          yield call(
+            LocalStorage.set,
+            LocalCacheKeys.TURN_LATTICE_DATA,
+            [...historyData, currentLatticeMazeData]
+          );
+        }
+      } else {
+        const { consumableProps } = currentLatticeMazeData
+        // 扣除 消耗 道具
+        for (let k in consumableProps) {
+          const prop = consumableProps[k].split(',');
+          yield put.resolve(
+            action('PropsModel/use')({
+              propId: prop[0],
+              num: prop[1],
+              quiet: true,
+            }),
+          );
+        }
       }
     },
 
     // 翻开格子
     *openGrid({ payload }, { call, put, select }) {
       const { item } = payload;
-      const { turnLatticeData, currentLayer } = yield select(state => state.TurnLatticeModel);
+      const { turnLatticeData, currentLayer, curLatticeMazeId } = yield select(state => state.TurnLatticeModel);
       const { config: gridConfig } = turnLatticeData[currentLayer];
+
+      const historyData = yield call(
+        LocalStorage.get,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+      );
 
       const curIndex = gridConfig.findIndex(i => i.x === item.x && i.y === item.y);
       gridConfig[curIndex].status = 2;
@@ -69,7 +210,7 @@ export default {
       yield call(
         LocalStorage.set,
         LocalCacheKeys.TURN_LATTICE_DATA,
-        turnLatticeData
+        historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, data: turnLatticeData } : item)
       );
       return gridConfig
     },
@@ -79,11 +220,17 @@ export default {
       // {"isOpened": true, "prop": { id: 30, num: 1, iconId: 1, quality: 1, }, "status": 2, "type": "道具", "x": 1, "y": 3}
       const { item } = payload
       const { prop } = item
+
+      const historyData = yield call(
+        LocalStorage.get,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+      );
+
       yield put.resolve(action('PropsModel/sendProps')({ propId: prop.id, num: prop.num, quiet: true }));
       const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: prop.id }));
       Toast.show(`获得${propConfig.name} * ${prop.num}`, BOTTOM_TOP_SMOOTH, 500)
 
-      const { turnLatticeData, currentLayer } = yield select(state => state.TurnLatticeModel);
+      const { turnLatticeData, currentLayer, curLatticeMazeId } = yield select(state => state.TurnLatticeModel);
       const { config: gridConfig } = turnLatticeData[currentLayer];
       const curIndex = gridConfig.findIndex(i => i.x === item.x && i.y === item.y);
       gridConfig[curIndex].type = "空";
@@ -91,7 +238,7 @@ export default {
       yield call(
         LocalStorage.set,
         LocalCacheKeys.TURN_LATTICE_DATA,
-        turnLatticeData
+        historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, data: turnLatticeData } : item)
       );
       return gridConfig
     },

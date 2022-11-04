@@ -22,6 +22,8 @@ import { confirm } from '../../dialog';
 
 import FastImage from 'react-native-fast-image';
 import { TextButton } from '../../../constants/custom-ui';
+import RootView from '../../RootView';
+import PopComponent from './PopComponent';
 
 // status: 0-不可翻开 || 1-可翻开 || 2-已翻开
 // type: "入口" || "出口" || "道具" || "空" || "墙"
@@ -212,7 +214,9 @@ const Grid_Event = ({ item, openGrid, eventHandler, isTouchStart }) => {
 
 
 const TurnLattice = props => {
-  const { onClose, turnLatticeData, currentLayer, __sceneId } = props;
+  const { onClose, turnLatticeData, currentLayer, __sceneId, latticeMazeId = "航海探索" } = props;
+
+  const [pop, setPop] = useState(<></>)
 
   const [gridConfig, setGridConfig] = useState([]);
   const row = turnLatticeData[currentLayer]?.row || 0;
@@ -229,10 +233,24 @@ const TurnLattice = props => {
 
   useEffect(() => {
     props
-      .dispatch(action('TurnLatticeModel/getTurnLatticeData')())
+      .dispatch(action('TurnLatticeModel/getTurnLatticeData')({ latticeMazeId }))
       .then(result => {
         if (result !== undefined) {
-          setGridConfig([...result]);
+          setPop(
+            <View style={styles.popContainer}>
+              <PopComponent
+                title={latticeMazeId}
+                desc={result.desc}
+                message={result.message}
+                confirm={() => {
+                  props.dispatch(action('TurnLatticeModel/consumableProps')())
+                  setPop(<></>)
+                }}
+                onClose={onClose}
+              />
+            </View>
+          )
+          setGridConfig([...result.latticeConfig]);
         }
       });
 
@@ -243,6 +261,8 @@ const TurnLattice = props => {
       closeTurnLatticeEvent.remove();
     }
   }, []);
+
+
 
   // 翻开格子
   const openGrid = item => {
@@ -449,6 +469,7 @@ const TurnLattice = props => {
         </View>
         <TextButton title="退出" onPress={onClose} style={{ marginTop: 20 }} />
       </SafeAreaView>
+      {pop}
     </View>
   );
 };
@@ -481,4 +502,13 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderRightWidth: 1,
   },
+  popContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 2,
+    // backgroundColor: "red"
+  }
 });
