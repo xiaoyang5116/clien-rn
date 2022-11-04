@@ -86,7 +86,7 @@ export default {
           if (skill.isXunLiCompleted(now)) {
             // 释放技能
             if (!skill.isRelease()) {
-              const { damage, isCrit, isDodge } = skill.calcDamage(attacker, defender);
+              const { damage, isPhysical, isCrit, isDodge } = skill.calcDamage(attacker, defender);
               skill.startCD(now);
               skill.setRelease(true);
 
@@ -125,7 +125,10 @@ export default {
                 defenderHP: defender.attrs.hp,
                 attackerOrgHP: attacker.attrs._hp,
                 defenderOrgHP: defender.attrs._hp,
+                skills: [{ name: skill.getName() }],
                 damage: validDamage,
+                physicalDamage: (isPhysical ? validDamage : 0),
+                magicDamage: (!isPhysical ? validDamage : 0),
                 msg: msg 
               });
 
@@ -141,7 +144,31 @@ export default {
         
         now++;
       }
-      return report;
+      
+      return yield put.resolve(action('mergeRoundData')({ report }));
+    },
+
+    // 合并同一个回合的多个技能及伤害
+    *mergeRoundData({ payload }, { put }) {
+      const { report } = payload;
+      
+      let attackerUid = 0;
+      const mergeReport = [];
+
+      lo.forEach(report, (e) => {
+        if (attackerUid != e.attackerUid) {
+          attackerUid = e.attackerUid;
+          mergeReport.push(e);
+        } else {
+          const prev = lo.last(mergeReport);
+          prev.damage += e.damage;
+          prev.physicalDamage += e.physicalDamage;
+          prev.magicDamage += e.magicDamage;
+          prev.skills.push(...e.skills);
+        }
+      });
+
+      return mergeReport;
     },
 
   },

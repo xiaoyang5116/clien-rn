@@ -98,6 +98,7 @@ import { formula_expr } from './formula';
       let damage = 0; // 伤害
       let isCrit = false; // 是否暴击
       let isDodge = false; // 是否闪避
+      let isPhysical = false; // 是否物理伤害
 
       lo.forEach(this._actions, (e) => {
         if (e.formula == undefined)
@@ -107,9 +108,12 @@ import { formula_expr } from './formula';
         if (expr.indexOf('damage=') == -1)
           return
 
+        if (!isPhysical && expr.indexOf('physicalAttack') != -1) {
+          isPhysical = true;
+        }
         eval(expr);
       });
 
-      return { damage, isCrit, isDodge };
+      return { damage, isPhysical, isCrit, isDodge };
     }
   }

@@ -5,7 +5,7 @@ function arrayObjectProxy(obj) {
     return new Proxy(obj, {
         get: function(target, propKey) {
             const found = lo.find(target.items, (e) => lo.isEqual(e.key, propKey));
-            return (found != undefined) ? found.value : undefined;
+            return (found != undefined) ? found.value : 0;
         },
         set: function(target, propKey, value) {
             const found = lo.find(target.items, (e) => lo.isEqual(e.key, propKey));

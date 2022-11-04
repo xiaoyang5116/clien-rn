@@ -30,7 +30,7 @@ sequences: [
           { 
             uid: 100001, 
             userName: '杂鱼2', 
-            skillIds: [1],
+            skillIds: [1,4],
             attrs: [
               { key: 'hp', value: 500 },
               { key: 'mp', value: 500 },

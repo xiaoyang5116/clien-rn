@@ -25,7 +25,7 @@ const ActionMsgItem = (props) => {
     const isMyself = (props.user.uid == props.data.attackerUid);
 
     return (
-        <View style={{ borderWidth: 2, borderColor: '#eee', borderRadius: 4, height: px2pd(260), justifyContent: 'flex-start', margin: 5 }}>
+        <View style={{ borderWidth: 2, borderColor: '#eee', borderRadius: 4, justifyContent: 'flex-start', alignItems: 'center', margin: 5 }}>
             <View style={{ width: '100%', height: px2pd(80), backgroundColor: '#ccc', alignItems: 'center', justifyContent: 'center' }}>
                 <View><RenderHTML contentWidth={100} source={{html: `${props.data.attackerName} 的攻击`}} /></View>
                 {
@@ -34,7 +34,19 @@ const ActionMsgItem = (props) => {
                 : <AntDesign style={{ position: 'absolute', left: 5 }} name='arrowleft' color={'#333'} size={25} />
                 }
             </View>
-            <RenderHTML contentWidth={100} source={{html: htmlMsg}} />
+            <View style={{ marginTop: 5, marginBottom: 5, backgroundColor: 'rgba(148,148,186,0.5)', width: '98%', height: px2pd(80), flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                {(props.data.physicalDamage != 0) ? <Text style={{ color: '#fff', marginLeft: 5, marginRight: 5 }}>物伤：{props.data.physicalDamage}</Text> : <></>}
+                {(props.data.magicDamage != 0) ? <Text style={{ color: '#fff', marginLeft: 5, marginRight: 5 }}>法伤：{props.data.magicDamage}</Text> : <></>}
+            </View>
+            {
+            lo.map(props.data.skills, (e, k) => {
+                return (
+                <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(238,213,185,0.3)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ color: '#333' }}>{e.name}</Text>
+                </View>
+                );
+            })
+            }
         </View>
     )
 }
@@ -132,7 +144,7 @@ const ArenaPage = (props) => {
                 status.current = 0;
                 timer = setTimeout(() => {
                     setUpdate({});
-                }, 600);
+                }, 2000);
             } else {
                 // listData.current.length = 0;
                 status.current = 1;

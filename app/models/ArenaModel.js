@@ -17,7 +17,7 @@ export default {
     myself: {
       uid: 1,
       userName: '李森焱',
-      skillIds: [1],
+      skillIds: [1,4],
     },
 
     // 战报数据
