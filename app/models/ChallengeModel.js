@@ -118,8 +118,17 @@ export default {
               let msg = '';
               let validDamage = 0;
               if (damage > 0) {
-                validDamage = damage > defender.attrs.hp ? defender.attrs.hp : damage;
-                defender.attrs.hp -= validDamage;
+                validDamage = (damage > (defender.attrs.hp + defender.attrs.shield)) ? (defender.attrs.hp + defender.attrs.shield) : damage;
+
+                // 优先扣除护盾
+                if (validDamage <= defender.attrs.shield) {
+                  defender.attrs.shield -= validDamage;
+                } else {
+                  let remainNum = validDamage;
+                  remainNum -= defender.attrs.shield;
+                  defender.attrs.shield = 0;
+                  defender.attrs.hp -= remainNum;
+                }
 
                 if (isCrit) {
                   msg = "{0}使用了{1}攻击了{2}并触发<span style='color:#ff40ff'>暴击</span>, 造成<span style='color:#ff2f92'>{3}</span>点伤害".format(attacker.colorUserName, colorSkillName, defender.colorUserName, validDamage);
@@ -139,10 +148,14 @@ export default {
                 defenderHP: defender.attrs.hp,
                 attackerMP: attacker.attrs.mp,
                 defenderMP: defender.attrs.mp,
+                attackerShield: attacker.attrs.shield,
+                defenderShield: defender.attrs.shield,
                 attackerOrgHP: attacker.attrs._hp,
                 defenderOrgHP: defender.attrs._hp,
                 attackerOrgMP: attacker.attrs._mp,
                 defenderOrgMP: defender.attrs._mp,
+                attackerOrgShield: attacker.attrs._shield,
+                defenderOrgShield: defender.attrs._shield,
                 skills: [{ name: skill.getName() }],
                 damage: validDamage,
                 physicalDamage: (isPhysical ? validDamage : 0),

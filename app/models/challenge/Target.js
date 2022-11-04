@@ -45,6 +45,6 @@ export function newTarget(obj) {
     // 初始化预设定值
     proxy.attrs._hp = proxy.attrs.hp;
     proxy.attrs._mp = proxy.attrs.mp;
-    
+    proxy.attrs._shield = proxy.attrs.shield;
     return proxy;
 }

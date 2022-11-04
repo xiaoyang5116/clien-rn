@@ -315,7 +315,9 @@ export default {
       const enemiesGroup = seqConfig.enemies.find(e => e.group == event.group);
 
       // 生成新的战斗玩家对象
-      const myself = { uid: 1, userName: '李森焱', skillIds: [1, 4], attrs: [{ key: 'speed', value: 100 }] };
+      const myself = { uid: 1, userName: '李森炎', skillIds: [1, 4], attrs: [
+        { key: 'speed', value: 100 }, { key: 'shield', value: 300 }
+      ] };
       const attrs = yield put.resolve(action('UserModel/getFinalAttrs')({}));
       if (lo.isArray(attrs)) {
         myself.attrs.push(...attrs);

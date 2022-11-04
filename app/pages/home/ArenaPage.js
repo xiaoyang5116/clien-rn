@@ -70,6 +70,7 @@ const TextMsgItem = (props) => {
 const Character = (props, ref) => {
     const [hpPercent, setHpPercent] = React.useState(0);
     const [mpPercent, setMpPercent] = React.useState(0);
+    const [shieldPercent, setShieldPercent] = React.useState(0);
 
     useImperativeHandle(ref, () => ({
         update: (data) => {
@@ -78,9 +79,11 @@ const Character = (props, ref) => {
                 if (props.user.uid == data.attackerUid) {
                     setHpPercent((data.attackerHP / data.attackerOrgHP) * 100);
                     setMpPercent((data.attackerMP / data.attackerOrgMP) * 100);
+                    setShieldPercent((data.attackerShield / data.attackerOrgShield) * 100);
                 } else {
                     setHpPercent((data.defenderHP / data.defenderOrgHP) * 100);
                     setMpPercent((data.defenderMP / data.defenderOrgMP) * 100);
+                    setShieldPercent((data.defenderShield / data.defenderOrgShield) * 100);
                 }
             }
         },
@@ -98,7 +101,7 @@ const Character = (props, ref) => {
             </View>
             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
                 <View style={{ height: 3, marginTop: 6, marginRight: 6, marginBottom: 0 }}>
-                    <ProgressBar percent={50} sections={[{x: 0, y: 100, color: '#3390ff'}]} />
+                    <ProgressBar percent={shieldPercent} sections={[{x: 0, y: 100, color: '#3390ff'}]} />
                 </View>
                 <View style={{ height: 12, marginTop: 0, marginRight: 6, marginBottom: 3 }}>
                     <ProgressBar percent={hpPercent} />
