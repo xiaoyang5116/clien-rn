@@ -19,10 +19,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 10 },
-      { key: '防御', value: 10 },
-      { key: '法力', value: 10 },
-      { key: '攻击', value: 10 },
+      { key: 'hp', value: 10 },
+      { key: 'defense', value: 10 },
+      { key: 'mp', value: 10 },
+      { key: 'attack', value: 10 },
     ],
 
     # 是否提示美术字
@@ -47,10 +47,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 10 },
-      { key: '防御', value: 10 },
-      { key: '法力', value: 10 },
-      { key: '攻击', value: 10 },
+      { key: 'hp', value: 10 },
+      { key: 'defense', value: 10 },
+      { key: 'mp', value: 10 },
+      { key: 'attack', value: 10 },
     ],
 
     # 是否提示美术字
@@ -75,10 +75,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 10 },
-      { key: '防御', value: 10 },
-      { key: '法力', value: 10 },
-      { key: '攻击', value: 10 },
+      { key: 'hp', value: 10 },
+      { key: 'defense', value: 10 },
+      { key: 'mp', value: 10 },
+      { key: 'attack', value: 10 },
     ],
 
  
@@ -105,10 +105,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 10 },
-      { key: '防御', value: 10 },
-      { key: '法力', value: 10 },
-      { key: '攻击', value: 10 },
+      { key: 'hp', value: 10 },
+      { key: 'defense', value: 10 },
+      { key: 'mp', value: 10 },
+      { key: 'attack', value: 10 },
     ],
 
     # 是否提示美术字
@@ -133,10 +133,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 10 },
-      { key: '防御', value: 10 },
-      { key: '法力', value: 10 },
-      { key: '攻击', value: 10 },
+      { key: 'hp', value: 10 },
+      { key: 'defense', value: 10 },
+      { key: 'mp', value: 10 },
+      { key: 'attack', value: 10 },
     ],
 
  
@@ -162,10 +162,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 10 },
-      { key: '防御', value: 10 },
-      { key: '法力', value: 10 },
-      { key: '攻击', value: 10 },
+      { key: 'hp', value: 10 },
+      { key: 'defense', value: 10 },
+      { key: 'mp', value: 10 },
+      { key: 'attack', value: 10 },
     ],
 
   
@@ -191,10 +191,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 10 },
-      { key: '防御', value: 10 },
-      { key: '法力', value: 10 },
-      { key: '攻击', value: 10 },
+      { key: 'hp', value: 10 },
+      { key: 'defense', value: 10 },
+      { key: 'mp', value: 10 },
+      { key: 'attack', value: 10 },
     ],
 
 
@@ -221,10 +221,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 10 },
-      { key: '防御', value: 10 },
-      { key: '法力', value: 10 },
-      { key: '攻击', value: 10 },
+      { key: 'hp', value: 10 },
+      { key: 'defense', value: 10 },
+      { key: 'mp', value: 10 },
+      { key: 'attack', value: 10 },
     ],
 
 
@@ -250,10 +250,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 10 },
-      { key: '防御', value: 10 },
-      { key: '法力', value: 10 },
-      { key: '攻击', value: 10 },
+      { key: 'hp', value: 10 },
+      { key: 'defense', value: 10 },
+      { key: 'mp', value: 10 },
+      { key: 'attack', value: 10 },
     ],
 
     # 突破配置
@@ -288,10 +288,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 20 },
-      { key: '防御', value: 20 },
-      { key: '法力', value: 20 },
-      { key: '攻击', value: 20 },
+      { key: 'hp', value: 20 },
+      { key: 'defense', value: 20 },
+      { key: 'mp', value: 20 },
+      { key: 'attack', value: 20 },
     ],
 
      # 瓶颈配置
@@ -324,10 +324,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 20 },
-      { key: '防御', value: 20 },
-      { key: '法力', value: 20 },
-      { key: '攻击', value: 20 },
+      { key: 'hp', value: 20 },
+      { key: 'defense', value: 20 },
+      { key: 'mp', value: 20 },
+      { key: 'attack', value: 20 },
     ],
 
     # 突破配置
@@ -361,10 +361,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 20 },
-      { key: '防御', value: 20 },
-      { key: '法力', value: 20 },
-      { key: '攻击', value: 20 },
+      { key: 'hp', value: 20 },
+      { key: 'defense', value: 20 },
+      { key: 'mp', value: 20 },
+      { key: 'attack', value: 20 },
     ],
 
    # 突破配置
@@ -398,10 +398,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 20 },
-      { key: '防御', value: 20 },
-      { key: '法力', value: 20 },
-      { key: '攻击', value: 20 },
+      { key: 'hp', value: 20 },
+      { key: 'defense', value: 20 },
+      { key: 'mp', value: 20 },
+      { key: 'attack', value: 20 },
     ],
 
    # 突破配置
@@ -435,10 +435,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 20 },
-      { key: '防御', value: 20 },
-      { key: '法力', value: 20 },
-      { key: '攻击', value: 20 },
+      { key: 'hp', value: 20 },
+      { key: 'defense', value: 20 },
+      { key: 'mp', value: 20 },
+      { key: 'attack', value: 20 },
     ],
 
    # 突破配置
@@ -472,10 +472,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 20 },
-      { key: '防御', value: 20 },
-      { key: '法力', value: 20 },
-      { key: '攻击', value: 20 },
+      { key: 'hp', value: 20 },
+      { key: 'defense', value: 20 },
+      { key: 'mp', value: 20 },
+      { key: 'attack', value: 20 },
     ],
 
    # 突破配置
@@ -509,10 +509,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 20 },
-      { key: '防御', value: 20 },
-      { key: '法力', value: 20 },
-      { key: '攻击', value: 20 },
+      { key: 'hp', value: 20 },
+      { key: 'defense', value: 20 },
+      { key: 'mp', value: 20 },
+      { key: 'attack', value: 20 },
     ],
 
    # 突破配置
@@ -546,10 +546,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 20 },
-      { key: '防御', value: 20 },
-      { key: '法力', value: 20 },
-      { key: '攻击', value: 20 },
+      { key: 'hp', value: 20 },
+      { key: 'defense', value: 20 },
+      { key: 'mp', value: 20 },
+      { key: 'attack', value: 20 },
     ],
 
     # 突破配置
@@ -583,10 +583,10 @@ xiuxing: [
 
     # 属性加成
     attrs: [
-      { key: '体力', value: 20 },
-      { key: '防御', value: 20 },
-      { key: '法力', value: 20 },
-      { key: '攻击', value: 20 },
+      { key: 'hp', value: 20 },
+      { key: 'defense', value: 20 },
+      { key: 'mp', value: 20 },
+      { key: 'attack', value: 20 },
     ],
 
    # 突破配置
