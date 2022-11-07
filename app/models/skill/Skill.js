@@ -139,6 +139,8 @@ import { formula_expr } from './formula';
       let isPhysical = false; // 是否物理伤害
       let hp = 0; // 回血
       let mp = 0; // 回蓝
+      let validBuffs = []; // 有效BUFF
+
 
       // BUFF生效
       if (attacker.buffs.length > 0) {
@@ -151,6 +153,8 @@ import { formula_expr } from './formula';
             const expr = formula_expr(effect.formula);
             eval(expr);
           });
+
+          validBuffs.push({ name: buff.getName() });
         });
       }
 
@@ -187,7 +191,7 @@ import { formula_expr } from './formula';
         }
       });
 
-      return { damage, isPhysical, hp, mp, isCrit, isDodge };
+      return { damage, isPhysical, hp, mp, isCrit, isDodge, validBuffs };
     }
   
     // 应用技能

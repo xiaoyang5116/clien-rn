@@ -54,6 +54,15 @@ const ActionMsgItem = (props) => {
                 );
             })
             }
+            {
+            lo.map(props.data.buffs, (e, k) => {
+                return (
+                <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(181,169,180,1.0)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                    <Text style={{ color: '#333' }}>{e.name}</Text>
+                </View>
+                );
+            })
+            }
         </View>
     )
 }

@@ -36,7 +36,7 @@ export default {
 
       // 生成新的战斗玩家对象
       const myself = { uid: 1, userName: '李森炎', skillIds: [1, 2, 4], attrs: [
-        { key: 'speed', value: 100 }, { key: 'shield', value: 300 }
+        { key: 'speed', value: 100 }, { key: 'shield', value: 1000 }
       ] };
       const attrs = yield put.resolve(action('UserModel/getFinalAttrs')({}));
       if (lo.isArray(attrs)) {

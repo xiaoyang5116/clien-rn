@@ -95,7 +95,9 @@ export default {
           if (skill.isXunLiCompleted(now)) {
             // 释放技能
             if (!skill.isRelease()) {
-              const { damage, isPhysical, hp, mp, isCrit, isDodge } = skill.apply(attacker, defender);
+              const result = skill.apply(attacker, defender);
+              const { damage, hp, mp } = result;
+
               skill.startCD(now);
               skill.setRelease(true);
 
@@ -147,12 +149,12 @@ export default {
                   defender.attrs.hp -= remainNum;
                 }
 
-                if (isCrit) {
+                if (result.isCrit) {
                   msg = "{0}使用了{1}攻击了{2}并触发<span style='color:#ff40ff'>暴击</span>, 造成<span style='color:#ff2f92'>{3}</span>点伤害".format(attacker.colorUserName, colorSkillName, defender.colorUserName, validDamage);
                 } else {
                   msg = "{0}使用了{1}攻击了{2}, 造成<span style='color:#ff2f92'>{3}</span>点伤害".format(attacker.colorUserName, colorSkillName, defender.colorUserName, validDamage);
                 }
-              } else if (isDodge) {
+              } else if (result.isDodge) {
                 msg = "{0}使用了{1}攻击{2}，但{2}成功<span style='color:#38d142'>闪避</span>".format(attacker.colorUserName, colorSkillName, defender.colorUserName);
               }
 
@@ -177,12 +179,13 @@ export default {
                   name: skill.getName(), 
                   passive: skill.isPassive(),
                 }],
+                buffs: (lo.isArray(result.validBuffs) ? result.validBuffs : []),
                 damage: validDamage,
-                physicalDamage: (isPhysical ? validDamage : 0),
-                magicDamage: (!isPhysical ? validDamage : 0),
+                physicalDamage: (result.isPhysical ? validDamage : 0),
+                magicDamage: (!result.isPhysical ? validDamage : 0),
                 rechargeHP: hp, // 回血
                 rechargeMP: mp, // 回蓝
-                crit: isCrit, // 是否暴击
+                crit: result.isCrit, // 是否暴击
                 msg: msg 
               });
 
@@ -230,7 +233,25 @@ export default {
           e.damage += prev.damage;
           e.physicalDamage += prev.physicalDamage;
           e.magicDamage += prev.magicDamage;
-          e.skills.push(...prev.skills);
+
+          lo.forEach(prev.skills, (item) => {
+            const found = lo.find(e.skills, (e) => lo.isEqual(e.name, item.name));
+            if (found == undefined) {
+              e.skills.push(item);
+            }
+          });
+
+          lo.forEach(prev.buffs, (item) => {
+            const found = lo.find(e.buffs, (e) => lo.isEqual(e.name, item.name));
+            if (found == undefined) {
+              e.buffs.push(item);
+            }
+          });
+
+          if (e.skills.length > 0) { // 排序
+            e.skills.sort((a, b) => (a.passive && !b.passive) ? 0 : -1);
+          }
+
           mergeReport.pop();
           mergeReport.push(e);
         }

@@ -10,7 +10,7 @@ buffs: [
       iconId: 1,
 
       # 技能名称
-      name: '锻体决 BUFF',
+      name: '锻体决_BUFF',
 
       # 描述
       desc: '',
@@ -22,7 +22,7 @@ buffs: [
       ],
 
       # 影响回合
-      round: 3,
+      round: 2,
    },
    {
       # Buff ID
@@ -32,7 +32,7 @@ buffs: [
       iconId: 1,
 
       # 技能名称
-      name: '护身罡气 BUFF',
+      name: '护身罡气_BUFF',
 
       # 描述
       desc: '',
@@ -54,7 +54,7 @@ buffs: [
       iconId: 1,
 
       # 技能名称
-      name: '微光盾 BUFF',
+      name: '微光盾_BUFF',
 
       # 描述
       desc: '',
