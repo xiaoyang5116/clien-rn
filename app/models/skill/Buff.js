@@ -28,5 +28,15 @@ import { assert } from "../../constants/functions";
     getRound() {
       return this._round;
     }
+
+    reduceRound(value) {
+      this._round -= Math.abs(value);
+      this._round = (this._round < 0) ? 0 : this._round;
+      return this._round;
+    }
+
+    getEffects() {
+      return this._effects;
+    }
   
   }

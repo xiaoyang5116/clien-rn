@@ -18,7 +18,6 @@ import FastImage from 'react-native-fast-image';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { SafeAreaView } from 'react-native';
 import { px2pd } from '../../constants/resolution';
-import { newTarget } from '../../models/challenge/Target';
 
 const ActionMsgItem = (props) => {
     const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.msg);
@@ -48,8 +47,9 @@ const ActionMsgItem = (props) => {
             {
             lo.map(props.data.skills, (e, k) => {
                 return (
-                <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(238,213,185,0.3)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center' }}>
+                <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(238,213,185,0.3)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                     <Text style={{ color: '#333' }}>{e.name}</Text>
+                    {(e.passive) ? <Text style={{ marginLeft: 5, color: '#fff' }}>(被动)</Text> : <></>}
                 </View>
                 );
             })

@@ -35,7 +35,7 @@ export default {
       const { seqId } = payload;
 
       // 生成新的战斗玩家对象
-      const myself = { uid: 1, userName: '李森炎', skillIds: [1, 4], attrs: [
+      const myself = { uid: 1, userName: '李森炎', skillIds: [1, 2, 4], attrs: [
         { key: 'speed', value: 100 }, { key: 'shield', value: 300 }
       ] };
       const attrs = yield put.resolve(action('UserModel/getFinalAttrs')({}));

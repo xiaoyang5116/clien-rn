@@ -15,33 +15,42 @@ export default {
 
   effects: {
 
+    *initTargetSkill({ payload }, { put }) {
+      const { target } = payload;
+
+      target.skills = [];
+      target.effects = []; // 保存所有涉及到的BUFF(未生效)
+      target.buffs = []; // 保存生效的BUFF实例
+
+      for (let i = 0; i < target.skillIds.length; i++) {
+        const skillId = target.skillIds[i];
+        const skill = yield put.resolve(action('SkillModel/getSkill')({ skillId }));
+        if (skill != undefined) {
+          target.skills.push(lo.cloneDeep(skill));
+
+          if (skill.isBuff()) {
+            const effects = skill.getEffects();
+            for (let j = 0; j < effects.length; j++) {
+              const effect = effects[j];
+              const buff = yield put.resolve(action('SkillModel/getBuff')({ buffId: effect.buffId }));
+              target.effects.push(lo.cloneDeep(buff));
+            }
+          }
+        }
+      }
+    },
+
     *challenge({ payload }, { put }) {
       // 初始化战斗对象
       const { myself, enemy } = payload;
 
       // 初始化技能
-      myself.skills = [];
-      for (let i = 0; i < myself.skillIds.length; i++) {
-        const skillId = myself.skillIds[i];
-        const skill = yield put.resolve(action('SkillModel/getSkill')({ skillId }));
-        if (skill != undefined) {
-          myself.skills.push(lo.cloneDeep(skill));
-        }
-      }
-
-      enemy.skills = [];
-      for (let i = 0; i < enemy.skillIds.length; i++) {
-        const skillId = enemy.skillIds[i];
-        const skill = yield put.resolve(action('SkillModel/getSkill')({ skillId }));
-        if (skill != undefined) {
-          enemy.skills.push(lo.cloneDeep(skill));
-        }
-      }
+      yield put.resolve(action('initTargetSkill')({ target: myself }));
+      yield put.resolve(action('initTargetSkill')({ target: enemy }));
 
       // 初始化属性
       myself.colorUserName = '<span style="color:#36b7b5">{0}</span>'.format(myself.userName);
       myself.prepare = false;
-
       enemy.colorUserName = '<span style="color:#7a81ff">{0}</span>'.format(enemy.userName);
       enemy.prepare = false;
 
@@ -73,12 +82,8 @@ export default {
       }
 
       while (running) {
-        if (now > (startMillis + 60000 * 5))
-          break;
-
-        if (myself.attrs.hp <= 0 || enemy.attrs.hp <= 0) {
-          if (myself.attrs.hp <= 0) report.push({ msg: '战斗结束, {0} 被 {1} 击败!'.format(myself.colorUserName, enemy.colorUserName) });
-          if (enemy.attrs.hp <= 0) report.push({ msg: '战斗结束, {0} 击败了 {1}!'.format(myself.colorUserName, enemy.colorUserName) });
+        if (now > (startMillis + 60000 * 5)) {
+          console.error('战斗异常!!!');
           break;
         }
 
@@ -101,6 +106,18 @@ export default {
                 });
                 defender.prepare = true;
                 firstAttack = false;
+              }
+
+              // 回血
+              if (hp > 0) {
+                attacker.attrs.hp += hp;
+                attacker.attrs.hp = (attacker.attrs.hp > attacker.attrs._hp) ? attacker.attrs._hp : attacker.attrs.hp;
+              }
+
+              // 回蓝
+              if (mp > 0) {
+                attacker.attrs.mp += mp;
+                attacker.attrs.mp = (attacker.attrs.mp > attacker.attrs._mp) ? attacker.attrs._mp : attacker.attrs.mp;
               }
 
               const colorSkillName = (skill.getId() > 1) ? "<span style='color:#ff2600'>{0}</span>".format(skill.getName()) : skill.getName();
@@ -156,7 +173,10 @@ export default {
                 defenderOrgMP: defender.attrs._mp,
                 attackerOrgShield: attacker.attrs._shield,
                 defenderOrgShield: defender.attrs._shield,
-                skills: [{ name: skill.getName() }],
+                skills: [{ 
+                  name: skill.getName(), 
+                  passive: skill.isPassive(),
+                }],
                 damage: validDamage,
                 physicalDamage: (isPhysical ? validDamage : 0),
                 magicDamage: (!isPhysical ? validDamage : 0),
@@ -166,7 +186,8 @@ export default {
                 msg: msg 
               });
 
-              if (defender.attrs.hp <= 0)
+              if (attacker.attrs.hp <= 0 
+                || defender.attrs.hp <= 0)
                 break;
             }
             if (!skill.isCDLimit(now)) {
@@ -174,6 +195,12 @@ export default {
               skill.startXuLi(now);
             }
           }
+        }
+
+        if (myself.attrs.hp <= 0 || enemy.attrs.hp <= 0) {
+          if (myself.attrs.hp <= 0) report.push({ msg: '战斗结束, {0} 被 {1} 击败!'.format(myself.colorUserName, enemy.colorUserName) });
+          if (enemy.attrs.hp <= 0) report.push({ msg: '战斗结束, {0} 击败了 {1}!'.format(myself.colorUserName, enemy.colorUserName) });
+          break;
         }
         
         now++;
@@ -200,10 +227,12 @@ export default {
           mergeReport.push(e);
         } else {
           const prev = lo.last(mergeReport);
-          prev.damage += e.damage;
-          prev.physicalDamage += e.physicalDamage;
-          prev.magicDamage += e.magicDamage;
-          prev.skills.push(...e.skills);
+          e.damage += prev.damage;
+          e.physicalDamage += prev.physicalDamage;
+          e.magicDamage += prev.magicDamage;
+          e.skills.push(...prev.skills);
+          mergeReport.pop();
+          mergeReport.push(e);
         }
       });
 

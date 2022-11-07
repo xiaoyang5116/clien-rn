@@ -1,6 +1,7 @@
 
 import lo, { round } from 'lodash';
 import { assert } from "../../constants/functions";
+import { newTarget } from '../challenge/Target';
 import { formula_expr } from './formula';
 
 /**
@@ -29,6 +30,7 @@ import { formula_expr } from './formula';
       this._actions = lo.cloneDeep(properties.actions);
       this._effects = lo.cloneDeep(properties.effects);
       this._consume = lo.cloneDeep(properties.consume);
+      this._passive = properties.passive||false;
 
       this._startCDMillis = 0;
       this._startXuLiMillis = 0;
@@ -97,9 +99,16 @@ import { formula_expr } from './formula';
     getCDMillis() {
       return this._cdMillis;
     }
-  
-    // 应用技能
-    apply(attacker, defender) {
+
+    isPassive() {
+      return this._passive;
+    }
+
+    isBuff() {
+       return (this.isPassive() && lo.isArray(this._effects) && this._effects.length > 0);
+    }
+
+    onBuff(attacker) {
       let damage = 0; // 伤害
       let isCrit = false; // 是否暴击
       let isDodge = false; // 是否闪避
@@ -107,9 +116,53 @@ import { formula_expr } from './formula';
       let hp = 0; // 回血
       let mp = 0; // 回蓝
 
+      const buffs = [];
+      lo.forEach(this._effects, (e) => {
+        const { buffId } = e;
+        const found = lo.find(attacker.effects, (b) => (b.getId() == buffId));
+        if (found != undefined) {
+          buffs.push(lo.cloneDeep(found));
+        }
+      });
+
+      if (buffs.length > 0) {
+        attacker.buffs.push(...buffs);
+      }
+
+      return { damage, isPhysical, hp, mp, isCrit, isDodge };
+    }
+
+    onDamage(attacker, defender) {
+      let damage = 0; // 伤害
+      let isCrit = false; // 是否暴击
+      let isDodge = false; // 是否闪避
+      let isPhysical = false; // 是否物理伤害
+      let hp = 0; // 回血
+      let mp = 0; // 回蓝
+
+      // BUFF生效
+      if (attacker.buffs.length > 0) {
+        lo.forEach(attacker.buffs, (buff) => {
+          if (buff.getRound() <= 0)
+            return
+
+          const effects = buff.getEffects();
+          lo.forEach(effects, (effect) => {
+            const expr = formula_expr(effect.formula);
+            eval(expr);
+          });
+        });
+      }
+
+      // 伤害计算
       lo.forEach(this._actions, (e) => {
         if (e.formula == undefined)
           return
+
+        if (e.hit_rate != undefined && e.hit_rate > 0) {
+          if (lo.random(0, 100) > e.hit_rate)
+            return
+        }
 
         const expr = formula_expr(e.formula);
         const hasDamage = expr.indexOf('damage=') != -1;
@@ -134,18 +187,29 @@ import { formula_expr } from './formula';
         }
       });
 
-      // 回血
-      if (hp > 0) {
-        attacker.attrs.hp += hp;
-        attacker.attrs.hp = (attacker.attrs.hp > attacker.attrs._hp) ? attacker.attrs._hp : attacker.attrs.hp;
-      }
-
-      // 回蓝
-      if (mp > 0) {
-        attacker.attrs.mp += mp;
-        attacker.attrs.mp = (attacker.attrs.mp > attacker.attrs._mp) ? attacker.attrs._mp : attacker.attrs.mp;
-      }
-
       return { damage, isPhysical, hp, mp, isCrit, isDodge };
+    }
+  
+    // 应用技能
+    apply(attacker, defender) {
+      if (this.isBuff()) {
+        return this.onBuff(attacker);
+      } else {
+        // 计算伤害时仅用对象副本
+        const newAttacker = lo.cloneDeep(attacker);
+        const newDefender = lo.cloneDeep(defender);
+        const result = this.onDamage(newTarget(newAttacker), newTarget(newDefender));
+        
+        // BUFF回合数减少
+        if (attacker.buffs != undefined && attacker.buffs.length > 0) {
+          lo.forEach(attacker.buffs, (buff) => {
+            if (buff.getRound() > 0) {
+              buff.reduceRound(1);
+            }
+          });
+          attacker.buffs = lo.filter(attacker.buffs, (e) => (e.getRound() > 0));
+        }
+        return result;
+      }
     }
   }
