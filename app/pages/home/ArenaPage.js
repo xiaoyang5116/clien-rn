@@ -16,11 +16,52 @@ import ProgressBar from '../../components/ProgressBar';
 import { View, Text, FlatList } from '../../constants/native-ui';
 import FastImage from 'react-native-fast-image';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { SafeAreaView } from 'react-native';
+import Collapsible from 'react-native-collapsible';
+import { SafeAreaView, TouchableWithoutFeedback } from 'react-native';
 import { px2pd } from '../../constants/resolution';
 
+const BuffCollapsible = (props) => {
+
+    const [collapsed, setCollapsed] = React.useState(props.defaultCollapsed);
+    const [width, setWidth] = React.useState(0);
+
+    const onLayout = ({ nativeEvent }) => {
+        const { width } = nativeEvent.layout;
+        setWidth(width);
+    }
+
+    return (
+    <TouchableWithoutFeedback onPress={() => {
+        setCollapsed((v) => {
+            return !v;
+        });
+    }}>
+        <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }} onLayout={onLayout}>
+            <View style={{ marginBottom: 5, backgroundColor: 'rgba(181,169,180,1.0)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                <Text style={{ color: '#000', fontWeight: 'bold' }}>Buff</Text>
+                {
+                (collapsed)
+                ? <AntDesign name='doubleright' size={16} style={{ position: 'absolute', right: 10, transform: [{ rotate: '90deg' }] }} />
+                : <AntDesign name='doubleright' size={16} style={{ position: 'absolute', right: 10, transform: [{ rotate: '-90deg' }] }} />
+                }
+            </View>
+            <Collapsible collapsed={collapsed} style={{ width: width, justifyContent: 'center', alignItems: 'center' }}>
+                {
+                lo.map(props.data.buffs, (e, k) => {
+                    return (
+                    <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(181,169,180,1.0)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                        <Text style={{ color: '#333' }}>{e.name}</Text>
+                    </View>
+                    );
+                })
+                }
+            </Collapsible>
+        </View>
+    </TouchableWithoutFeedback>
+    );
+}
+
 const ActionMsgItem = (props) => {
-    const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.msg);
     const isMyself = (props.user.uid == props.data.attackerUid);
 
     return (
@@ -54,15 +95,7 @@ const ActionMsgItem = (props) => {
                 );
             })
             }
-            {
-            lo.map(props.data.buffs, (e, k) => {
-                return (
-                <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(181,169,180,1.0)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                    <Text style={{ color: '#333' }}>{e.name}</Text>
-                </View>
-                );
-            })
-            }
+            {(props.data.buffs.length > 0) ? <BuffCollapsible data={props.data} defaultCollapsed={(props.data.skills.length + props.data.buffs.length) > 2} /> : <></> }
         </View>
     )
 }
