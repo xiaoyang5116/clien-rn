@@ -558,7 +558,7 @@ scenes: [
         id: 'c0', desc: '战斗界面', 
         options: [ 
           { title: '【返回调试主界面】', toScene: 'wzkj' }, 
-          { title: '【打开战斗主界面】', seqId: 'x1' }, 
+          { title: '【打开战斗主界面】', challenge: 'x1' }, 
         ],
       },
     ],

@@ -146,7 +146,7 @@ const Character = (props, ref) => {
                     <ProgressBar percent={shieldPercent} sections={[{x: 0, y: 100, color: '#3390ff'}]} />
                 </View>
                 <View style={{ height: 12, marginTop: 0, marginRight: 6, marginBottom: 3 }}>
-                    <ProgressBar percent={hpPercent} />
+                    <ProgressBar percent={hpPercent} sections={[{ x: 0,  y: 30,  color: '#ff2600' }, { x: 30, y: 60,  color: '#fbbb39' }, { x: 60, y: 100, color: '#ffd479' }]} />
                 </View>
                 <View style={{ height: 15, marginTop: 6, marginRight: 6, marginBottom: 6 }}>
                     <ProgressBar percent={mpPercent} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
@@ -187,7 +187,7 @@ const ArenaPage = (props) => {
     }
 
     React.useEffect(() => {
-        props.dispatch(action('ArenaModel/start')({ seqId: props.seqId }));
+        props.dispatch(action('ArenaModel/start')({ challengeId: props.challengeId }));
     }, []);
 
     React.useEffect(() => {
@@ -197,7 +197,7 @@ const ArenaPage = (props) => {
                 status.current = 0;
                 timer = setTimeout(() => {
                     setUpdate({});
-                }, 2000);
+                }, 1000);
             } else {
                 // listData.current.length = 0;
                 status.current = 1;

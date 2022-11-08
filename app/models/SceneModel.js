@@ -560,10 +560,8 @@ export default {
       }
     },
 
-    *__onSeqIdCommand({ payload }, { put }) {
-      // yield put.resolve(action('ArenaModel/start')({ seqId: payload.params }));
-      // RootNavigation.navigate('Arena');
-      ArenaUtils.show({ seqId: payload.params });
+    *__onChallengeCommand({ payload }, { put }) {
+      ArenaUtils.show({ challengeId: payload.params });
     },
 
     *__onChapterCommand({ payload }, { put }) {
