@@ -187,7 +187,7 @@ const ArenaPage = (props) => {
     }
 
     React.useEffect(() => {
-        props.dispatch(action('ArenaModel/start')({ seqId: 'x1' }));
+        props.dispatch(action('ArenaModel/start')({ seqId: props.seqId }));
     }, []);
 
     React.useEffect(() => {

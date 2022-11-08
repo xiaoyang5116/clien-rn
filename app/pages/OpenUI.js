@@ -8,7 +8,6 @@ import GongFa from '../components/gongFa';
 import XiuXingUtils from '../utils/XiuXingUtils';
 import { WorldMapUtils } from '../components/maps/WorldMap';
 import Achievement from '../components/achievement';
-import ArenaUtils from '../utils/ArenaUtils';
 
 export default class OpenUI {
 
@@ -41,9 +40,6 @@ export default class OpenUI {
                 break;
             case 'ChengJiu':
                 Achievement.show();
-                break;
-            case 'Arena':
-                ArenaUtils.show();
                 break;
         }
     }

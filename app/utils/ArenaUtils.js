@@ -3,9 +3,9 @@ import RootView from '../components/RootView';
 import ArenaPage from '../pages/home/ArenaPage';
 
 export default class ArenaUtils {
-    static show() {
+    static show({ seqId }) {
         const key = RootView.add(
-            <ArenaPage onClose={() => { RootView.remove(key); }} />
+            <ArenaPage seqId={seqId} onClose={() => { RootView.remove(key); }} />
         );
     }
 }

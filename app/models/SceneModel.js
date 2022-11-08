@@ -41,6 +41,7 @@ import { VarUtils } from "./scene/utils";
 import { ScenePropertyInjectBuilder } from "./scene/builders";
 import { ACTIONS_MAP, PropertyActions } from "./scene/actions";
 import OpenUI from "../pages/OpenUI";
+import ArenaUtils from "../utils/ArenaUtils";
 
 export default {
   namespace: 'SceneModel',
@@ -560,8 +561,9 @@ export default {
     },
 
     *__onSeqIdCommand({ payload }, { put }) {
-      yield put.resolve(action('ArenaModel/start')({ seqId: payload.params }));
-      RootNavigation.navigate('Arena');
+      // yield put.resolve(action('ArenaModel/start')({ seqId: payload.params }));
+      // RootNavigation.navigate('Arena');
+      ArenaUtils.show({ seqId: payload.params });
     },
 
     *__onChapterCommand({ payload }, { put }) {
