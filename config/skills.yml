@@ -6,6 +6,9 @@ skills: [
       # 技能唯一ID 
       id: 1,
 
+      # 技能等级
+      level: 1,
+
       # 图标ID
       iconId: 1,
 
@@ -13,18 +16,35 @@ skills: [
       name: '冷月剑',
 
       # 描述
-      desc: '(物理攻击X120) + 120伤害',
+      desc: '',
 
-      # 计算公式
-      formula: '(A_物理攻击 - D_物理防御) * 1.2 + 120',
+      # 蓄力时间
+      xuLiMillis: 500,
+
+      # 冷却时间
+      cdMillis: 1000,
+
+      # 技能消耗
+      consume: [
+         { mp: 20 },
+      ],
+
+      # 影响公式
+      actions: [
+         { target: 'ALL', hit_rate: 100, crit_rate: 40, crit_add: 1.5, formula: '伤害 = (A_物理攻击 - D_物理防御) * 1.2 + 120' },
+         { target: 'ME', hit_rate: 100, formula: '回血 = 5' },
+         { target: 'ME', hit_rate: 100, formula: '回蓝 = 5' },
+      ],
 
       # 效果列表
       effects: [],
-
    },
    {
       # 技能唯一ID 
       id: 2,
+
+      # 技能等级
+      level: 1,
 
       # 图标ID
       iconId: 1,
@@ -33,18 +53,37 @@ skills: [
       name: '锻体决',
 
       # 描述
-      desc: '(物理防御X110)+200防御   BUFF 3回合',
+      desc: '',
 
-      # 计算公式
-      formula: 'A_物理防御 * 1.1 + 200',
+      # 蓄力时间
+      xuLiMillis: 600,
+
+      # 冷却时间
+      cdMillis: 3000,
+
+      # 技能消耗
+      consume: [
+         { mp: 20 },
+      ],
+
+      # 被动
+      passive: true,
+   
+      # 影响公式
+      actions: [
+      ],
 
       # 效果列表
-      effects: [],
-
+      effects: [
+         { target: 'ME', buffId: 1, rate: 100, groupId: 'A' },
+      ],
    },
    {
       # 技能唯一ID 
       id: 3,
+
+      # 技能等级
+      level: 1,
 
       # 图标ID
       iconId: 1,
@@ -53,18 +92,37 @@ skills: [
       name: '护身罡气',
 
       # 描述
-      desc: '+400物理防御',
+      desc: '',
 
-      # 伤害计算公式
-      formula: '物理防御(+400)',
+      # 蓄力时间
+      xuLiMillis: 600,
+
+      # 冷却时间
+      cdMillis: 3000,
+
+      # 技能消耗
+      consume: [
+         { mp: 20 },
+      ],
+
+      # 被动
+      passive: true,
+
+      # 影响公式
+      actions: [
+      ],
 
       # 效果列表
-      effects: [],
-
+      effects: [
+         { target: 'ME', buffId: 2, groupId: 'A' },
+      ],
    },
    {
       # 技能唯一ID 
       id: 4,
+
+      # 技能等级
+      level: 1,
 
       # 图标ID
       iconId: 1,
@@ -73,18 +131,33 @@ skills: [
       name: '风意剑',
 
       # 描述
-      desc: '(法术攻击X120)+300伤害  消耗法力-30',
+      desc: '',
 
-      # 伤害计算公式
-      formula: 'a.atk * 4 - b.def * 2',
+      # 蓄力时间
+      xuLiMillis: 600,
+
+      # 冷却时间
+      cdMillis: 3000,
+
+      # 技能消耗
+      consume: [
+         { mp: 20 },
+      ],
+
+      # 影响公式
+      actions: [
+         { target: 'ALL', hit_rate: 80, crit_rate: 10, crit_add: 1.5, formula: '伤害 = (A_法术攻击 - D_法术防御) * 1.2 + 300' },
+      ],
 
       # 效果列表
       effects: [],
-
    },
    {
       # 技能唯一ID 
       id: 5,
+
+      # 技能等级
+      level: 1,
 
       # 图标ID
       iconId: 1,
@@ -93,13 +166,29 @@ skills: [
       name: '微光盾',
 
       # 描述
-      desc: '(法术防御X200)效果不叠加 法力-50',
+      desc: '',
 
-      # 伤害计算公式
-      formula: 'a.atk * 4 - b.def * 2',
+      # 蓄力时间
+      xuLiMillis: 600,
+
+      # 冷却时间
+      cdMillis: 3000,
+
+      # 技能消耗
+      consume: [
+         { mp: 20 },
+      ],
+
+      # 被动
+      passive: true,
+
+      # 影响公式
+      actions: [
+      ],
 
       # 效果列表
-      effects: [],
-
+      effects: [
+         { target: 'ME', buffId: 3, groupId: 'B' },
+      ],
    },
 ]

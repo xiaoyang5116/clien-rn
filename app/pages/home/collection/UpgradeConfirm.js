@@ -17,6 +17,7 @@ import PropGrid from '../../../components/prop/PropGrid';
 import { AppDispath } from '../../../constants';
 import { connect } from 'react-redux';
 import { px2pd } from '../../../constants/resolution';
+import { getAttributeChineseName } from '../../../utils/AttributeUtils';
 
 const UpgradeConfirm = (props) => {
 
@@ -76,8 +77,9 @@ const UpgradeConfirm = (props) => {
     const attrs = [];
     lo.forEach(props.data.attrs, (v, k) => {
         const found = lo.find(currentItem.attrs, (e) => lo.isEqual(e.key, v.key));
+        const attrName = getAttributeChineseName(v.key);
         attrs.push(<View key={k} style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={{ color: (found != undefined) ? '#669900' : '#333', lineHeight: 26 }}>{v.key}: {v.value}</Text>
+            <Text style={{ color: (found != undefined) ? '#669900' : '#333', lineHeight: 26 }}>{attrName}: {v.value}</Text>
             {(found != undefined) ? <Text style={{ color: '#669900' }}> +{found.value}</Text> : <></>}
         </View>);
     });

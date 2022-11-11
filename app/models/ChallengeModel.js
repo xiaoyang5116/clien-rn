@@ -5,118 +5,7 @@ import {
 
 import lo from 'lodash';
 import * as DateTime from '../utils/DateTimeUtils';
-
-/**
- * power: 体力
- * agile: 敏捷
- * speed: 速度
- * crit:  暴击%
- * defense: 防御
- * dodge: 闪避%
- */
-class Skill {
-  constructor(id, name, xuLiMillis, cdMillis) {
-    this._id = id;
-    this._name = name;
-    this._xuLiMillis = xuLiMillis;
-    this._cdMillis = cdMillis
-
-    this._startXuLiMillis = 0;
-    this._startCDMillis = 0;
-    this._release = false; // 是否已经释放产生效果
-  }
-
-  getId() {
-    return this._id;
-  }
-
-  getName() {
-    return this._name;
-  }
-
-  isRelease() {
-    return this._release;
-  }
-
-  setRelease(v) {
-    this._release = v;
-  }
-
-  // 蓄力时间
-  getXuLiMillis() {
-    return this._xuLiMillis
-  }
-
-  startXuLi(now) {
-    this._startXuLiMillis = now;
-    this._startCDMillis = 0;
-  }
-
-  isXunLiCompleted(now) {
-    if (this._startXuLiMillis <= 0)
-      return false;
-    return now >= (this._startXuLiMillis + this._xuLiMillis);
-  }
-
-  startCD(now) {
-    this._startCDMillis = now;
-  }
-
-  isCDLimit(now) {
-    if (this._startCDMillis <= 0)
-      return false;
-    return now <= (this._startCDMillis + this._cdMillis);
-  }
-
-  // CD时间
-  getCDMillis() {
-    return this._cdMillis;
-  }
-
-  // 计算伤害值
-  calcDamage(attacker, defender) {
-    let damage = ((attacker.power / 1000 + attacker.agile / 1000) - (defender.defense / 1000)) * 1000;
-
-    let isCrit = false;
-    if (lo.random(0, 100, false) <= attacker.crit) {
-      damage *= 2;
-      isCrit = true;
-    }
-
-    let isDodge = false;
-    if (lo.random(0, 100, false) <= defender.dodge) {
-      damage = 0;
-      isDodge = true;
-    }
-
-    damage = Math.ceil(damage);
-    return { damage, isCrit, isDodge };
-  }
-}
-
-class PuTongGongJiSkill extends Skill {
-  constructor() {
-    super(1, '物理攻击', 200, 500);
-  }
-}
-
-class FoShanWuYingJiaoSkill extends Skill {
-  constructor() {
-    super(2, '佛山无影脚', 500, 1000);
-  }
-}
-
-class XiangLongShiBaZhangSkill extends Skill {
-  constructor() {
-    super(3, '降龙十八掌', 1000, 2000);
-  }
-}
-
-const SKILLS_MAP = [
-  { id: 1, func: PuTongGongJiSkill },
-  { id: 2, func: FoShanWuYingJiaoSkill },
-  { id: 3, func: XiangLongShiBaZhangSkill },
-];
+import { newTarget } from './challenge/Target';
 
 export default {
   namespace: 'ChallengeModel',
@@ -126,44 +15,51 @@ export default {
 
   effects: {
 
-    *challenge({ payload }, { }) {
-      const myself = { ...payload.myself };
-      const enemy = { ...payload.enemy };
+    *initTargetSkill({ payload }, { put }) {
+      const { target } = payload;
+
+      target.skills = [];
+      target.effects = []; // 保存所有涉及到的BUFF(未生效)
+      target.buffs = []; // 保存生效的BUFF实例
+
+      for (let i = 0; i < target.skillIds.length; i++) {
+        const skillId = target.skillIds[i];
+        const skill = yield put.resolve(action('SkillModel/getSkill')({ skillId }));
+        if (skill != undefined) {
+          target.skills.push(lo.cloneDeep(skill));
+
+          if (skill.isBuff()) {
+            const effects = skill.getEffects();
+            for (let j = 0; j < effects.length; j++) {
+              const effect = effects[j];
+              const buff = yield put.resolve(action('SkillModel/getBuff')({ buffId: effect.buffId }));
+              target.effects.push(lo.cloneDeep(buff));
+            }
+          }
+        }
+      }
+    },
+
+    *challenge({ payload }, { put }) {
+      // 初始化战斗对象
+      const { myself, enemy } = payload;
 
       // 初始化技能
-      myself.skills = [];
-      myself.skillIds.forEach(e => {
-        const sk = SKILLS_MAP.find(x => x.id == e);
-        if (sk != undefined) {
-          const skill = new sk.func();
-          myself.skills.push(skill);
-        }
-      });
-
-      enemy.skills = [];
-      enemy.skillIds.forEach(e => {
-        const sk = SKILLS_MAP.find(x => x.id == e);
-        if (sk != undefined) {
-          const skill = new sk.func();
-          enemy.skills.push(skill);
-        }
-      });
+      yield put.resolve(action('initTargetSkill')({ target: myself }));
+      yield put.resolve(action('initTargetSkill')({ target: enemy }));
 
       // 初始化属性
-      myself.orgLife = myself.life;
-      myself.userName = '<span style="color:#36b7b5">{0}</span>'.format(myself.userName);
+      myself.colorUserName = '<span style="color:#36b7b5">{0}</span>'.format(myself.userName);
       myself.prepare = false;
-
-      enemy.orgLife = enemy.life;
-      enemy.userName = '<span style="color:#7a81ff">{0}</span>'.format(enemy.userName);
+      enemy.colorUserName = '<span style="color:#7a81ff">{0}</span>'.format(enemy.userName);
       enemy.prepare = false;
 
       const report = [];
       let now = DateTime.now();
-      const startMillis = now;      
+      const startMillis = now;
 
       let firstAttack = true; // 招一
-      let attacker = (myself.speed > enemy.speed) ? myself : enemy;
+      let attacker = (myself.attrs.speed > enemy.attrs.speed) ? myself : enemy;
 
       // 先手先准备
       if (!attacker.prepare) {
@@ -178,13 +74,16 @@ export default {
       myself.skills.forEach(e => allSkills.push({ owner: myself, skill: e }));
       enemy.skills.forEach(e => allSkills.push({ owner: enemy, skill: e }));
 
-      while (true) {
-        if (now > (startMillis + 60000 * 5))
-          break;
+      // 初始化
+      let running = false;
+      if (attacker.attrs.hp > 0) {
+        report.push({ msg: `遇到了 ${enemy.colorUserName} 进入战斗` });
+        running = true;
+      }
 
-        if (myself.life <= 0 || enemy.life <= 0) {
-          if (myself.life <= 0) report.push({ msg: '战斗结束, {0}被{1}击败!'.format(myself.userName, enemy.userName) });
-          if (enemy.life <= 0) report.push({ msg: '战斗结束, {0}击败了{1}!'.format(myself.userName, enemy.userName) });
+      while (running) {
+        if (now > (startMillis + 60000 * 5)) {
+          console.error('战斗异常!!!');
           break;
         }
 
@@ -196,7 +95,9 @@ export default {
           if (skill.isXunLiCompleted(now)) {
             // 释放技能
             if (!skill.isRelease()) {
-              const { damage, isCrit, isDodge } = skill.calcDamage(attacker, defender);
+              const result = skill.apply(attacker, defender);
+              const { damage, hp, mp } = result;
+
               skill.startCD(now);
               skill.setRelease(true);
 
@@ -209,37 +110,87 @@ export default {
                 firstAttack = false;
               }
 
+              // 回血
+              if (hp > 0) {
+                attacker.attrs.hp += hp;
+                attacker.attrs.hp = (attacker.attrs.hp > attacker.attrs._hp) ? attacker.attrs._hp : attacker.attrs.hp;
+              }
+
+              // 回蓝
+              if (mp > 0) {
+                attacker.attrs.mp += mp;
+                attacker.attrs.mp = (attacker.attrs.mp > attacker.attrs._mp) ? attacker.attrs._mp : attacker.attrs.mp;
+              }
+
               const colorSkillName = (skill.getId() > 1) ? "<span style='color:#ff2600'>{0}</span>".format(skill.getName()) : skill.getName();
+              const consumeList = skill.getConsume();
+              if (lo.isArray(consumeList)) {
+                for (let i = 0; i < consumeList.length; i++) {
+                  const item = consumeList[i];
+                  if (item.mp != undefined && item.mp > 0) { // 扣除魔法
+                    attacker.attrs.mp -= item.mp;
+                    attacker.attrs.mp = (attacker.attrs.mp >= 0) ? attacker.attrs.mp : 0;
+                  }
+                }
+              }
 
               let msg = '';
               let validDamage = 0;
               if (damage > 0) {
-                validDamage = damage > defender.life ? defender.life : damage;
-                defender.life -= validDamage;
+                validDamage = (damage > (defender.attrs.hp + defender.attrs.shield)) ? (defender.attrs.hp + defender.attrs.shield) : damage;
 
-                if (isCrit) {
-                  msg = "{0}使用了{1}攻击了{2}并触发<span style='color:#ff40ff'>暴击</span>, 造成<span style='color:#ff2f92'>{3}</span>点伤害".format(attacker.userName, colorSkillName, defender.userName, validDamage);
+                // 优先扣除护盾
+                if (validDamage <= defender.attrs.shield) {
+                  defender.attrs.shield -= validDamage;
                 } else {
-                  msg = "{0}使用了{1}攻击了{2}, 造成<span style='color:#ff2f92'>{3}</span>点伤害".format(attacker.userName, colorSkillName, defender.userName, validDamage);
+                  let remainNum = validDamage;
+                  remainNum -= defender.attrs.shield;
+                  defender.attrs.shield = 0;
+                  defender.attrs.hp -= remainNum;
                 }
-              } else if (isDodge) {
-                msg = "{0}使用了{1}攻击{2}，但{2}成功<span style='color:#38d142'>闪避</span>".format(attacker.userName, colorSkillName, defender.userName);
+
+                if (result.isCrit) {
+                  msg = "{0}使用了{1}攻击了{2}并触发<span style='color:#ff40ff'>暴击</span>, 造成<span style='color:#ff2f92'>{3}</span>点伤害".format(attacker.colorUserName, colorSkillName, defender.colorUserName, validDamage);
+                } else {
+                  msg = "{0}使用了{1}攻击了{2}, 造成<span style='color:#ff2f92'>{3}</span>点伤害".format(attacker.colorUserName, colorSkillName, defender.colorUserName, validDamage);
+                }
+              } else if (result.isDodge) {
+                msg = "{0}使用了{1}攻击{2}，但{2}成功<span style='color:#38d142'>闪避</span>".format(attacker.colorUserName, colorSkillName, defender.colorUserName);
               }
 
               report.push({
                 attackerUid: attacker.uid,
-                attackerName: attacker.userName,
+                attackerName: attacker.colorUserName,
                 defenderUid: defender.uid,
-                defenderName: defender.userName,
-                attackerLife: attacker.life,
-                defenderLife: defender.life,
-                attackerOrgLife: attacker.orgLife,
-                defenderOrgLife: defender.orgLife,
+                defenderName: defender.colorUserName,
+                attackerHP: attacker.attrs.hp,
+                defenderHP: defender.attrs.hp,
+                attackerMP: attacker.attrs.mp,
+                defenderMP: defender.attrs.mp,
+                attackerShield: attacker.attrs.shield,
+                defenderShield: defender.attrs.shield,
+                attackerOrgHP: attacker.attrs._hp,
+                defenderOrgHP: defender.attrs._hp,
+                attackerOrgMP: attacker.attrs._mp,
+                defenderOrgMP: defender.attrs._mp,
+                attackerOrgShield: attacker.attrs._shield,
+                defenderOrgShield: defender.attrs._shield,
+                skills: [{ 
+                  name: skill.getName(), 
+                  passive: skill.isPassive(),
+                }],
+                buffs: (lo.isArray(result.validBuffs) ? result.validBuffs : []),
                 damage: validDamage,
+                physicalDamage: (result.isPhysical ? validDamage : 0),
+                magicDamage: (!result.isPhysical ? validDamage : 0),
+                rechargeHP: hp, // 回血
+                rechargeMP: mp, // 回蓝
+                crit: result.isCrit, // 是否暴击
                 msg: msg 
               });
 
-              if (defender.life <= 0)
+              if (attacker.attrs.hp <= 0 
+                || defender.attrs.hp <= 0)
                 break;
             }
             if (!skill.isCDLimit(now)) {
@@ -248,10 +199,65 @@ export default {
             }
           }
         }
+
+        if (myself.attrs.hp <= 0 || enemy.attrs.hp <= 0) {
+          if (myself.attrs.hp <= 0) report.push({ msg: '战斗结束, {0} 被 {1} 击败!'.format(myself.colorUserName, enemy.colorUserName) });
+          if (enemy.attrs.hp <= 0) report.push({ msg: '战斗结束, {0} 击败了 {1}!'.format(myself.colorUserName, enemy.colorUserName) });
+          break;
+        }
         
         now++;
       }
-      return report;
+      
+      return yield put.resolve(action('mergeRoundData')({ report }));
+    },
+
+    // 合并同一个回合的多个技能及伤害
+    *mergeRoundData({ payload }, { put }) {
+      const { report } = payload;
+      
+      let attackerUid = 0;
+      const mergeReport = [];
+
+      lo.forEach(report, (e) => {
+        if (e.attackerUid == undefined || e.defenderUid == undefined) {
+          mergeReport.push(e);
+          return
+        }
+
+        if (attackerUid != e.attackerUid) {
+          attackerUid = e.attackerUid;
+          mergeReport.push(e);
+        } else {
+          const prev = lo.last(mergeReport);
+          e.damage += prev.damage;
+          e.physicalDamage += prev.physicalDamage;
+          e.magicDamage += prev.magicDamage;
+
+          lo.forEach(prev.skills, (item) => {
+            const found = lo.find(e.skills, (e) => lo.isEqual(e.name, item.name));
+            if (found == undefined) {
+              e.skills.push(item);
+            }
+          });
+
+          lo.forEach(prev.buffs, (item) => {
+            const found = lo.find(e.buffs, (e) => lo.isEqual(e.name, item.name));
+            if (found == undefined) {
+              e.buffs.push(item);
+            }
+          });
+
+          if (e.skills.length > 0) { // 排序
+            e.skills.sort((a, b) => (a.passive && !b.passive) ? 0 : -1);
+          }
+
+          mergeReport.pop();
+          mergeReport.push(e);
+        }
+      });
+
+      return mergeReport;
     },
 
   },

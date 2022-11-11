@@ -3,9 +3,9 @@ import RootView from '../components/RootView';
 import ArenaPage from '../pages/home/ArenaPage';
 
 export default class ArenaUtils {
-    static show() {
+    static show({ challengeId }) {
         const key = RootView.add(
-            <ArenaPage onClose={() => { RootView.remove(key); }} />
+            <ArenaPage challengeId={challengeId} onClose={() => { RootView.remove(key); }} />
         );
     }
 }
