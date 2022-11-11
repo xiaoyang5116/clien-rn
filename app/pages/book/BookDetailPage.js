@@ -50,7 +50,7 @@ const BookDetailPage = props => {
 
         </ScrollView>
         <View style={styles.footerContainer}>
-          <Text style={styles.footerText}>听书</Text>
+          <Text style={styles.footerText}>分享</Text>
           <Text style={styles.footerText}>加入书架</Text>
           <Text style={styles.startReading} onPress={() => {
             props.navigation.navigate('First')

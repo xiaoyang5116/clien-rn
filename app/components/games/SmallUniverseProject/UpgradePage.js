@@ -8,6 +8,8 @@ import {
   Dimensions,
   Easing,
   DeviceEventEmitter,
+  TouchableOpacity,
+  TouchableHighlight
 } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -18,7 +20,7 @@ import { Platform } from 'react-native';
 import RootView from '../../RootView';
 import Toast from '../../toast';
 
-import { TextButton } from '../../../constants/custom-ui';
+import { TextButton, ImageButton } from '../../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import PropTips from '../../tips/PropTips';
@@ -520,8 +522,26 @@ const UpgradePage = props => {
           <UpgradePropsComponent />
           <AttrContainer />
           <View style={styles.goBackContainer}>
-            <TextButton title={'升级'} onPress={upgrade} />
-            <TextButton title={'返回'} onPress={onClose} />
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <View pointerEvents="none" style={{ position: "absolute", zIndex: 2 }}>
+                <Text style={{ fontSize: 16, color: "#000", }}>升级</Text>
+              </View>
+              <ImageButton width={px2pd(357)} height={px2pd(127)}
+                source={require('../../../../assets/games/SmallUniverseProject/upgrade_btn_bg.png')}
+                selectedSource={require('../../../../assets/games/SmallUniverseProject/upgrade_btn_bg2.png')}
+                onPress={upgrade}
+              />
+            </View>
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <View pointerEvents="none" style={{ position: "absolute", zIndex: 2 }}>
+                <Text style={{ fontSize: 16, color: "#000", }}>返回</Text>
+              </View>
+              <ImageButton width={px2pd(358)} height={px2pd(127)}
+                source={require('../../../../assets/games/SmallUniverseProject/back_btn.png')}
+                selectedSource={require('../../../../assets/games/SmallUniverseProject/back_btn2.png')}
+                onPress={onClose}
+              />
+            </View>
           </View>
         </View>
       </SafeAreaView>
