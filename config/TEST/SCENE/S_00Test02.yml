@@ -126,7 +126,7 @@ scenes: [
       { 
         id: 'c0', desc: '找茬', 
         options: [ 
-          { title: '废物？不可能！', toScene: 'S_00Test02',}, 
+          { title: '废物？不可能！',sounds: [{ soundId: 'BGM_Q_0003',}], toScene: 'S_00Test02',}, 
         ],
       },
       { 
@@ -185,7 +185,7 @@ scenes: [
       {
         id: 'c9', desc: '千钧一发，小师弟的剑就要砍来，李森炎举起剑……', 
         options: [ 
-          { title: '奋力相击', toChapter: "WZXX_M1_N1_C004_[N2]"  }, 
+          { title: '奋力相击', toChapter: "WZXX_M1_N1_C004_[N2]" ,sounds: [{ stopBGM: true }], }, 
         ]
       },
     ],

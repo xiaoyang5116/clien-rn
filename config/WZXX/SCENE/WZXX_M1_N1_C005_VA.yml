@@ -9,6 +9,10 @@ scenes: [
       { id: "v1", min: 0, max: 1 },
       { id: "biaoqianv1", min: 0, max: 1 } ,
       { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+      { id: "biaoqianv5", min: 0, max: 1 } ,
+      { id: "biaoqianv6", min: 0, max: 1 } ,
       ],
 
       # 动作定义
@@ -26,6 +30,33 @@ scenes: [
         id: 'WZXX_M1_N1_C005_VA1', desc: '守夜', 
         options: [ 
           { title: "【守夜】",dialogs: ['C005A_shouyeA'],},
+        ],
+      },
+      
+      { 
+        id: 'WZXX_M1_N1_C005_VA2', desc: '小师弟', 
+        options: [ 
+          { title: "【三十六计走为上】",dialogs: ['C005A_1.1A'],
+          icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: "【先等等再做决定】",dialogs: ['C005A_1.1B'],
+          icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+          { title: "【赶紧想个办法】",dialogs: ['C005A_1.1C'],
+          icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
+          
+        ],
+      },
+
+       { 
+        id: 'WZXX_M1_N1_C005_VA3', desc: '陶老', 
+        options: [ 
+          { title: "【是谁？】",toChapter: "WZXX_M1_N1_C005D",},
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C005_VA4', desc: '是谁', 
+        options: [ 
+          { title: "【这位前辈，该怎么称呼……】",toChapter: "WZXX_M1_N1_C006",},
         ],
       },
 
@@ -50,6 +81,123 @@ scenes: [
 
           { key: 'P5', content: ['李森炎：“富强民主文明和谐自由平等公正法治爱国敬业友善！”','女灵脸色已经开始变了：“我叫你别念了！”',['边缘闪烁白'],],
           btn: [{title: '根本停不下来',toChapter: "WZXX_M1_N1_C012_[N2]",},]},
+           ]  
+        },
+        # 选项对话1
+         { id: 'C005A_1.1A',style: 6, title: '三十六计走为上', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎赶紧小心翼翼的从草堆上爬了起来。',
+          '他猫着身子，小心翼翼的贴着墙，往外走。','他的凌云步是越来越精进了，现在他的脚步几乎不会发出任何声音引人注意。','李森炎：……',
+          '不过还是得尽快了，那两个修士的武功都不低，要不了多久就会发现他的。','想到这儿，李森炎又在地上抓了一把什么，继续往前走。','果然，就在他猫着腰，就快要走出破庙的时候，那两个修士发现了！',
+          '“师兄，在这儿，快追！”小师弟率先看见了他，怒吼了一声。'],
+          btn: [{title: '怎么就被发现了，再来', nextChat: 'WZXX_M1_N1_C005_VA2'  }
+          ,]},
+           ]  
+        },
+        # 选项对话2
+         { id: 'C005A_1.1B',style: 6, title: '先等等再做决定', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['这时……破庙外又传来了话语声。','“小师弟，我看我们还是回去吧，长老说了不许你再生事。”',
+          '小师弟执拗，“我不！凭什么，师傅这么看重这个废物，明明我才是他的弟子，他不帮我就算了，竟然还想当众收一个废物为徒，还赠了他灵丹！论武力、修行，我哪一点不比那废物强，师傅凭什么偏向他啊！”',
+          '李森炎隔着一堵墙，都能想像到那小矮子咬牙切齿、憎恨他的样子。','看来这一次，这小矮子是想下狠手了。',
+          '对了，好像还在他身上装了个子母罗仪？',],
+          btn: [{title: '找一找身上', tokey: "P2", },]},
+
+           { key: 'P2', content: ['于是李森炎仔细上下翻找了一阵，果然发现自己的后背腰处不知什么时候多出了一个圆咕噜的小东西。',
+          '扯下来一看，还在发着微弱的绿光。','这大概就是他们说的子罗仪。',
+          '也就是根据这个，才找到他的。'],
+          btn: [{title: '将子罗仪弄坏', dialogs: ['C005A_1.2A'], 
+          icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] },
+          {title: '将子罗仪丢弃在原地', dialogs: ['C005A_1.2B'], 
+          icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] },
+          {title: '灵光一现，利用子罗仪', dialogs: ['C005A_1.2C'], 
+          icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] },]},
+           ]  
+        },
+
+         # 选项对话3
+         { id: 'C005A_1.1C',style: 6, title: '赶紧先想个办法', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['这个小矮子刚才说什么来着？','在他身上装了一个子母罗仪才能找到这里来的？',
+          '于是李森炎仔细上下翻找了一阵，果然发现自己的后背腰处不知什么时候多出了一个圆咕噜的小东西。',
+          '扯下来一看，还在发着微弱的绿光。','这大概就是他们说的子罗仪。',
+          '也就是根据这个，才找到他的。',],
+          btn: [{title: '将子罗仪弄坏', dialogs: ['C005A_1.2A'], 
+          icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] },
+          {title: '将子罗仪丢弃在原地', dialogs: ['C005A_1.2B'], 
+          icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] },
+          {title: '灵光一现，利用子罗仪', dialogs: ['C005A_1.2C'], 
+          icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] },
+          ]},
+          ]  
+        },
+
+        # 选项对话4
+         { id: 'C005A_1.2A',style: 6, title: '弄坏子罗仪', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['一想到那小矮子白日里嚣张气焰的模样，还下黑手给他装什么跟踪器。',
+          '李森炎气从中来，看了一眼那发绿光的小玩意。','这东西看上去精致小巧估计也很贵吧，子母罗仪一般都是配套的，要是子罗仪坏了，母罗仪说不定也就坏了。','李森炎：……',
+          '于是李森炎二话不说，低着头一整捣鼓，把子罗仪拆了。','果然听见外面传来一声小师弟的疑惑，“师兄，等等这母罗仪怎么不亮了？”','果然，就在他猫着腰，就快要走出破庙的时候，那两个修士发现了！',
+          '眼下情况危急，绊住了小师弟，还是得赶紧想办法才是。'],
+          btn: [{title: '稳妥起见，趁机先撤', toChapter: "WZXX_M1_N1_C005A",  },
+          {title: '试探出击，主动硬刚', toChapter: "WZXX_M1_N1_C005B",  }
+          ,]},
+           ]  
+        },
+
+        # 选项对话5
+         { id: 'C005A_1.2B',style: 6, title: '将子罗仪仍在原地', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎嫌弃的看着这个冒绿光的小东西。',
+          '这破玩意可没给他什么好感。','于是他毫不犹豫的扔在草堆里了。','没想到那小矮子居然这么记仇，还用这种卑鄙下流的手段。',
+          '现在他们快要找过来了。','只能……',],
+          btn: [{title: '稳妥起见，趁机先撤', toChapter: "WZXX_M1_N1_C005C", },
+          {title: '试探出击，主动硬刚', toChapter: "WZXX_M1_N1_C005C",  }
+          ,]},
+           ]  
+        },
+
+        # 选项对话5
+         { id: 'C005A_1.2C',style: 6, title: '灵光一现', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['那个小矮子居然用这么卑鄙的手段？',
+          '不过，小爷我也最擅长以其人之道还治其人之身了。','既然对他这么有执念，从白天追到晚上还穷追不舍，那就再追一晚上吧。','李森炎使了个凌云步，小心翼翼走出破庙，利用凌云步和眼力，抓了个鸟禽，将这子罗仪安在了鸟禽的身上。',
+          '随后将鸟赶飞之后，自己悠闲的靠在树干上。','果然，前脚他刚放走鸟，后脚那小矮子和他师兄就追了上来。',],
+          btn: [{title: '屏气等待',  tokey: "P2",    }
+          ,]},
+
+           { key: 'P2', content: ['“小师弟等等！”','那大师兄阻止小师弟，“凭那个人的功夫，怎么可能行动如此之快？”',
+           '小师弟摆手，“师兄你可不知，此人最是狡猾，一双腿脚就数逃跑最快！”','说完二人一并朝着鸟禽远去的地方追了过去','成功逃脱，接下来准备……',],
+          btn: [{title: '待在原地',  tokey: "P3",    },
+          {title: '跳下树溜',  tokey: "P4",    }
+          ,]},
+          
+          { key: 'P3', content: ['最危险的地方就是最安全的','李森炎决定在原地等待，便靠在树上休息',
+           '反正今天晚上就准备在这儿待的','靠在树上，他想起那俩人追鸟的傻样','忽然脑子不知道被什么小东西撞了下','李森炎挠头，转过脸',],
+          btn: [{title: '……',  tokey: "P3A",    }
+          ,]},
+
+          { key: 'P3A', content: ['那只鸟怎么飞回来了啊！！！！','……','失算了这是那鸟的窝，他可不得飞回来！','赶紧溜……',
+           '李森炎来不及多想跳下树','现在该怎么办……',],
+          btn: [{title: '管他的，先跑了再说',  tokey: "P5",    },
+          {title: '跑回寺庙',  tokey: "P4", }
+          ,]},
+
+          { key: 'P4', content: ['那只鸟禽可是个不确定因素','万一又飞回来了，那自己不是白折腾了？',
+           '李森炎想来想去还是决定先跑','但往哪儿跑？',],
+          btn: [{title: '管他的，先跑了再说',  tokey: "P5",    },
+          {title: '跑回回寺庙',  tokey: "P6", }
+          ,]},
+
+          { key: 'P5', content: ['李森炎撒腿就跑','人生地不熟，蒙头跑便是了',
+           '自己得亏有这一双好腿','练就凌云步','只是，这次他似乎没那么幸运了','“大师兄，原来他在这！总算被我逮到了！”','竟然被追上了','那大师兄二话不说，赶紧给李森炎下了个定身术',],
+          btn: [{title: '糟了……',  toChapter: "WZXX_M1_N1_C009_[N1]",  }
+          ,]},
+
+          { key: 'P6', content: ['最危险就是最安全的','人不能总是这么倒霉的吧！','李森炎咬牙想想，还是决定跑回了寺庙',
+           '趴在墙根听了一会儿，确实是没什么动静了','稍微松了一口气','然而下一秒……','“师兄原来这废物竟然还躲在这！”','那大师兄二话不说，赶紧给李森炎下了个定身术',],
+          btn: [{title: '糟了……', toChapter: "WZXX_M1_N1_C009_[N1]",    }
+          ,]},
            ]  
         },
   ]

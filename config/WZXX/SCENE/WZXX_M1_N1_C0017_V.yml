@@ -10,11 +10,13 @@ scenes: [
       { id: "biaoqianv1", min: 0, max: 1 } ,
       { id: "biaoqianv2", min: 0, max: 1 } ,
       { id: "biaoqianv3", min: 0, max: 1 } ,
+
       
       ],
 
       # 动作定义
-      actions: [],
+      actions: [
+      ],
 
       # 事件定义
       # 故事中的场景事件暂时没什么意义

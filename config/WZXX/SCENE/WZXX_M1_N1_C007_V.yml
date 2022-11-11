@@ -1,0 +1,162 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_C007_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+      { id: "biaoqianv5", min: 0, max: 1 } ,
+      { id: "biaoqianv6", min: 0, max: 1 } ,
+      { id: "biaoqianv7", min: 0, max: 1 } ,
+      
+      ],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [],
+
+
+    
+      chats: [
+      #
+
+        { 
+        id: 'WZXX_M1_N1_C007_V1', desc: '……', 
+        options: [ 
+          { 
+          title: "【回溯五秒】",dialogs: ['C007A_1.1A'],
+          icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
+          },
+          { 
+          title: "【回溯十秒】",dialogs: ['C007A_1.1B'],
+          icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
+          },
+          {
+           title: "【回溯十五秒】",dialogs: ['C007A_1.1C'],
+          icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] 
+          },
+        ],
+      },
+        ],
+
+
+    
+      dialogs:
+        [
+           #选项对话1
+          { id: 'C007A_1.1A',style: 6, title: '回溯五秒', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“你自便吧……”','这时候，云云开口。','“别！”',
+          '李森炎想要劝阻，为时已晚，再一次自由落体。',['边缘闪烁红'],'“混蛋啊！”','再一次身在云端。','……',
+          ],
+          btn: [{title: '重新再来', nextChat: 'WZXX_M1_N1_C005_VA2'},]},
+           ]  
+        },
+
+         #选项对话2
+          { id: 'C007A_1.1B',style: 6, title: '回溯十秒', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“大致说来，需要你不断修炼，得道成仙……”','李森炎听着她说话，只想狠狠掐她一把，冷不丁就把自己给甩下去，究竟什么毛病？自己貌似没有得罪她吧？','“喂，你有没有在听我说话？”',
+          '“听到了。”','“你好像有一肚子怨气。”','可不是吗？李森炎怨念满满，却也只能说，“没有。”','“那好，我问你，如果有一天你发现自己根本敌不过那些魔头，你会怎么办？”',
+          ],
+          btn: [{title: '和魔头斗争到底', dialogs: ['C007A_1.2A'],
+          icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
+          {title: '先韬光养晦，之后再战！', dialogs: ['C007A_1.2B'],
+          icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},
+          {title: '得要群策群力，兵多将广', dialogs: ['C007A_1.2C'],
+          icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},]},
+           ]  
+        },
+
+         #选项对话3
+          { id: 'C007A_1.1C',style: 6, title: '回溯十五秒', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['视线重现恢复正常时，他已重新身在云端，踩在云上。','“居然不用死也能回溯时间……”','他之前在尘界时也有想过这一点，但都不得其法。',
+          '或许是因为身在灵修界，比较特殊吧？','李森炎看了看表上的玉石，比之前亮了不少，想来这玉石里面有着类似能量的东西，现在是一个基本充满的状态。','是因为已经过了一天的缘故？','不过现在的重点可不是想这个啊！',
+          '事情按照正常顺序发展，云云说的话和刚才大差不差，李森炎一面搭着话，一边思考。','刚才，应该就是在云云问自己那个问题的时候，自己回答的太草率了！',
+          '再来一次，一定想清楚再回答。','“我问你一个问题，如果有一天你发现自己根本敌不过那些魔头，你会怎么办？”',
+          ],
+          btn: [{title: '和魔头斗争到底', dialogs: ['C007A_1.2A'],
+          icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
+          {title: '先韬光养晦，之后再战！', dialogs: ['C007A_1.2B'],
+          icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},
+          {title: '得要群策群力，兵多将广', dialogs: ['C007A_1.2C'],
+          icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},]},
+           ]  
+        },
+
+         #选项对话4
+          { id: 'C007A_1.2A',style: 6, title: '抗争到底', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎变得谨慎起来，可不敢跟之前那样回答了。','他轻咳一声：“人生自古谁无死，留取丹心照汗青！”','“我李森炎，就是死上百次千次，也要跟那些魔头斗争到底！”',
+          '“真滴吗？”','云云听到这话，言语中充满期待。','李森炎松了口气，这只不知不是什么物种的云，至少有个优点，好骗。就像野外没经过社会毒打的潭子里，钓鱼随便打个窝，一趟回来能煮十顿火锅。',
+          ],
+          btn: [{title: '当然是真的了',tokey: "P2"},
+          ]},
+
+           { key: 'P2', content: ['“太好了！”','云云兴奋得在空中打了个转。','“我靠……”',
+          '大事不妙……','迅速坠落痛苦而又熟悉的感觉再次袭来。',
+          ],
+          btn: [{title: '当然是真的了' ,tokey: "P3"},
+          ]},
+
+          { key: 'P3', content: ['这次死的也太冤了','含泪重选','……'
+          ],
+          btn: [{title: '和魔头斗争到底', dialogs: ['C007A_1.2A'],
+          icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
+          {title: '先韬光养晦，之后再战！', dialogs: ['C007A_1.2B'],
+          icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},
+          {title: '得要群策群力，兵多将广', dialogs: ['C007A_1.2C'],
+          icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']}
+          ]},
+           ]  
+        },
+
+         #选项对话5
+          { id: 'C007A_1.2B',style: 6, title: '韬光养晦，之后再战', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['他仔细的想。','首先，查看题干，这看似是云云随口的一个问题，实际考察的是他的责任感和能力。','然而，责任感他有吗？他当然有。',
+          '但却不是对这个刚到没两天的异界。他一心只想赶紧搞清楚状况，赶紧回去。','回到现实中去！','而能力呢？他有吗？','严格来说是没有的，和这些大佬一比，他菜的一批。',
+          '而他现在所真正拥有的，就是为了苟命的一张画饼技术超高的巧嘴。',
+          ],
+          btn: [{title: '深思熟虑开口',tokey: "P2"},
+          ]},
+
+           { key: 'P2', content: ['“打不过，当然也不能硬刚，那不纯纯送人头嘛，也不能不上，为了天下苍生，我也得和魔头抗争到底，若是敌不过只能是增进我的修为，精进自己了……”',
+           '李森炎说完，回答完后立马紧紧抓住云云。','“你抓那么紧干嘛，都弄疼我了。”',
+          '“忍忍吧，我害怕。”','云云：“……”','李森炎就这般死抓住云云不放',
+          ],
+          btn: [{title: '总算躲过被甩下去的命运',toChapter: "WZXX_M1_N1_C007A"},
+          ]},
+           ]  
+        },
+          # 选项对话6
+          { id: 'C007A_1.2C',style: 6, title: '群策群力，兵多将广', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['这次，李森炎是真的认真思考了下这个问题。','他是无比清醒的，什么大英雄，拯救苍生为己任的戏码，他早已不幻想了。','尤其是凭自己如今的能力，他连那个小矮子师弟都打不过，谈何大魔头？',
+          '或者就算他修炼得道，能力超群，凭借一人之力，孤军奋战想要百分百的胜利。','这个可能性，是十分渺茫的。',
+          ],
+          btn: [{title: '所以……',tokey: "P2"},
+          ]},
+
+           { key: 'P2', content: ['他想了想只说，“一箭易断，十箭难折，一己之力无法抵挡，但若有强友们团结、鼎力相助，事情或许还能容易些。”',
+           '云云忽然猛地晃身，吓得李森炎赶紧抓紧。','“你做什么？”',
+          '李森炎后背一凉，该不会是自己说错了又要被摔下去了吧？','云云深深看了他一眼，缓缓飘出一句话，“没想到你还有点东西。”','“……”李森炎嘴角一抽，“谢谢啊，你可千万别把我又摔下去就行了。”',
+          '“啊？你为什么要说又？”','“没什么……”','李森炎就这般死抓住云云不放',
+          ],
+          btn: [{title: '总算躲过被甩下去的命运',toChapter: "WZXX_M1_N1_C007A"},
+          ]},
+           ]  
+        },
+  ]
+    }
+]

@@ -24,12 +24,13 @@ drops: [
   #固灵草
   { id: 'WZXX_M1_N1_C000D_VA_V_drop3', sendProps: '1024,3,showBag', },
 
-#灵感钥匙
-   #动物园
+  #灵感钥匙
+  
+  #动物园
   { id: 'WZXX_M1_N1_C000F_V_drop1', sendProps: '369,1,showBag', },
-   #电脑桌
+  #电脑桌
   { id: 'WZXX_M1_N1_C000F_V_drop2', sendProps: '369,1,showBag', },
-   #阳台-思考人生
+  #阳台-思考人生
   { id: 'WZXX_M1_N1_C000F_V_drop3', sendProps: '370,1,showBag', },
   #冰箱-随便喝点
   { id: 'WZXX_M1_N1_C000F_V_drop4', sendProps: '371,1,showBag', },
@@ -39,14 +40,23 @@ drops: [
   { id: 'WZXX_M1_N1_C000F_V_drop6', sendProps: '372,1,showBag', },
   #观景地和美术生聊天
   { id: 'WZXX_M1_N1_C000F_V_drop7', sendProps: '369,1,showBag', },
-   #和便利店老板聊天
+  #和便利店老板聊天
   { id: 'WZXX_M1_N1_C000F_V_drop8', sendProps: '371,1,showBag', },
-   #帮助中心广场的小孩
+  #帮助中心广场的小孩
   { id: 'WZXX_M1_N1_C000F_V_drop9', sendProps: '372,1,showBag', },
   #音乐学院的学生聊天
   { id: 'WZXX_M1_N1_C000F_V_drop10', sendProps: '370,1,showBag', },
+  #第四天 电脑桌掉落道具
+  { id: 'WZXX_M1_N1_C000F2_V_drop1', sendProps: '369,1,showBag', },
+  #第五天 和老妈打电话掉落道具
+  { id: 'WZXX_M1_N1_C000F2_V_drop2', sendProps: '370,1,showBag', },
+  #第五天 电脑桌掉落道具
+  { id: 'WZXX_M1_N1_C000F2_V_drop3', sendProps: '372,1,showBag', },
+  #第五天 展览馆掉落道具
+  { id: 'WZXX_M1_N1_C000F2_V_drop4', sendProps: '371,1,showBag', },
+  #第五天 展览馆掉落道具
+  { id: 'WZXX_M1_N1_C000F2_V_drop5', sendProps: '369,1,showBag', },
 
-  
 
   #887铜币
   { id: 'WZXX_M1_N1_C001V_drop1', sendProps: '887,10,showBag', },

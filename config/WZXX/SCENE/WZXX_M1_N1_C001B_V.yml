@@ -26,142 +26,142 @@ scenes: [
       chats: [
       #选择道路事件=================================================
       { 
-        id: 'WZXX_M1_N1_C001B_VD', desc: '选项', 
-        options: [ 
-          { 
-          title: "选择道路",
-          toScene: 'WZXX_M1_N1_C001B_V', 
-          },
-        ],
+      id: 'WZXX_M1_N1_C001B_VD', desc: '选项', 
+      options: [ 
+      { 
+      title: "选择道路",
+      toScene: 'WZXX_M1_N1_C001B_V', 
+      },
+      ],
       }, 
       #
       { 
-        id: 'C001B_EventSTART1', desc: '初始位置，一个分叉路在你眼前', 
-        options: [ 
-          #第一次进入 
-          { title: '【向左走】',nextChat: 'A3', varsOff: ["v1A","v2A",] },
-          { title: '【向右走】',nextChat: 'B1', varsOff: ["v1A","v2A",] }, 
-        #   { title: '【DEBUG 到场景外】',toChapter: "WZXX_M1_N1_C001B" },
-        #    { title: '【DEBUG 去结局】',dialogs: ['C001B_EventEND1']},
-        ],
+      id: 'C001B_EventSTART1', desc: '初始位置，一个分叉路在你眼前', 
+      options: [ 
+      #第一次进入 
+      { title: '【向左走】',nextChat: 'A3', varsOff: ["v1A","v2A",] },
+      { title: '【向右走】',nextChat: 'B1', varsOff: ["v1A","v2A",] }, 
+      #   { title: '【DEBUG 到场景外】',toChapter: "WZXX_M1_N1_C001B" },
+      #    { title: '【DEBUG 去结局】',dialogs: ['C001B_EventEND1']},
+      ],
       },
       #
       { 
-        id: 'C001B_EventSTART2', desc: '一个分叉路在你眼前，你感觉和之前有所不同', 
-        options: [ 
-          #第一次进入 
-          { title: '【向左走】',nextChat: 'B3'  }, 
-          { title: '【向右走】',nextChat: 'A3'  }, 
-        ],
+      id: 'C001B_EventSTART2', desc: '一个分叉路在你眼前，你感觉和之前有所不同', 
+      options: [ 
+      #第一次进入 
+      { title: '【向左走】',nextChat: 'B3'  }, 
+      { title: '【向右走】',nextChat: 'A3'  }, 
+      ],
       },
       { 
-        id: 'A3', desc: '崩塌的乱石挡住了去路，前面无法通行', 
-        options: [ 
-          { title: '【绕路】',nextChat: 'C001B_EventSTART2' }, 
-          { title: '【原路返回】',nextChat: 'C001B_EventSTART1' }, 
-        ],
+      id: 'A3', desc: '崩塌的乱石挡住了去路，前面无法通行', 
+      options: [ 
+      { title: '【绕路】',nextChat: 'C001B_EventSTART2' }, 
+      { title: '【原路返回】',nextChat: 'C001B_EventSTART1' }, 
+      ],
       },
       { 
-        id: 'B1', desc: '前面是一条比较平坦的路', 
-        options: [ 
-          { title: '【向前走】',nextChat: 'C0' }, 
-        ],
+      id: 'B1', desc: '前面是一条比较平坦的路', 
+      options: [ 
+      { title: '【向前走】',nextChat: 'C0' }, 
+      ],
       },
-      
+
       { 
-        id: 'B2', desc: '有条小的三岔口，你感觉空气十分的清新', 
-        options: [ 
-          { title: '【向前走比较平坦的路】',nextChat: 'C1'  }, 
-          { title: '【向左走是崖壁】',nextChat: 'B2A'  }, 
-          { title: '【向右走是大道】',nextChat: 'B6'  }, 
-        ],
-      },
-      { 
-        id: 'B2', desc: '你在悬崖陡坡的下侧，虽然陡坡不高，但依旧攀爬不上去', 
-        options: [ 
-          { title: '【原路返回】',nextChat: 'B2'  }, 
-          { title: '【沿着陡坡向右走】',nextChat: 'B2A'  }, 
-          { title: '【沿着陡坡向左走】',nextChat: 'B6'  }, 
-        ],
+      id: 'B2', desc: '有条小的三岔口，你感觉空气十分的清新', 
+      options: [ 
+      { title: '【向前走比较平坦的路】',nextChat: 'C1'  }, 
+      { title: '【向左走是崖壁】',nextChat: 'B2A'  }, 
+      { title: '【向右走是大道】',nextChat: 'B6'  }, 
+      ],
       },
       { 
-        id: 'B3', desc: '这条小道四周怪石林立，你直觉觉得这条路并未走过', 
-        options: [ 
-          { title: '【向前走】',nextChat: 'C3'  }, 
-          { title: '【向左走】',nextChat: 'B4'  }, 
-          { title: '【向右走】',nextChat: 'B2'  }, 
-        ],
+      id: 'B2', desc: '你在悬崖陡坡的下侧，虽然陡坡不高，但依旧攀爬不上去', 
+      options: [ 
+      { title: '【原路返回】',nextChat: 'B2'  }, 
+      { title: '【沿着陡坡向右走】',nextChat: 'B2A'  }, 
+      { title: '【沿着陡坡向左走】',nextChat: 'B6'  }, 
+      ],
       },
       { 
-        id: 'B4', desc: '你来到了密林旁的一处小山坡之上', 
-        options: [ 
-          { title: '【向前走】',nextChat: 'D2'  }, 
-          { title: '【向左走，下山坡】',nextChat: 'C4'  }, 
-          { title: '【向右走，下山坡】',nextChat: 'C2'  }, 
-        ],
+      id: 'B3', desc: '这条小道四周怪石林立，你直觉觉得这条路并未走过', 
+      options: [ 
+      { title: '【向前走】',nextChat: 'C3'  }, 
+      { title: '【向左走】',nextChat: 'B4'  }, 
+      { title: '【向右走】',nextChat: 'B2'  }, 
+      ],
       },
       { 
-        id: 'B5', desc: '在陡坡上，你一个没注意，从坡上摔了下来！', 
-        options: [ 
-          { title: '【还好没事，看看四周】',nextChat: 'B1'  }, 
-        ],
+      id: 'B4', desc: '你来到了密林旁的一处小山坡之上', 
+      options: [ 
+      { title: '【向前走】',nextChat: 'D2'  }, 
+      { title: '【向左走，下山坡】',nextChat: 'C4'  }, 
+      { title: '【向右走，下山坡】',nextChat: 'C2'  }, 
+      ],
       },
       { 
-        id: 'B6', desc: '你发现这条道路是城市附近的官道', 
-        options: [ 
-          { title: '【沿路向前走】',nextChat: 'D1'  }, 
-          { title: '【向左走离开大道】',nextChat: 'B2'  }, 
-          { title: '【向右走离开大道】',nextChat: 'C2'  },  
-          { title: '【沿路向后走】',nextChat: 'B6A'  }, 
-        ],
+      id: 'B5', desc: '在陡坡上，你一个没注意，从坡上摔了下来！', 
+      options: [ 
+      { title: '【还好没事，看看四周】',nextChat: 'B1'  }, 
+      ],
       },
       { 
-        id: 'B6A', desc: '你感觉似乎距离城市更远了', 
-        options: [ 
-          { title: '【沿路向前走】',nextChat: 'D1'  }, 
-          { title: '【沿路向后走】',nextChat: 'B6'  }, 
-        ],
+      id: 'B6', desc: '你发现这条道路是城市附近的官道', 
+      options: [ 
+      { title: '【沿路向前走】',nextChat: 'D1'  }, 
+      { title: '【向左走离开大道】',nextChat: 'B2'  }, 
+      { title: '【向右走离开大道】',nextChat: 'C2'  },  
+      { title: '【沿路向后走】',nextChat: 'B6A'  }, 
+      ],
       },
       { 
-        id: 'B6B', desc: '你发现一位旅人大叔正在道路上走着，可算遇到了人了', 
-        options: [ 
-          { title: '【沿路向前走】',nextChat: 'D1'  }, 
-          { title: '【沿路向后走】',nextChat: 'B6'  }, 
-        ],
+      id: 'B6A', desc: '你感觉似乎距离城市更远了', 
+      options: [ 
+      { title: '【沿路向前走】',nextChat: 'D1'  }, 
+      { title: '【沿路向后走】',nextChat: 'B6'  }, 
+      ],
       },
       { 
-        id: 'B6B1', desc: '你发现一位旅人大叔正在道路上走着，可算遇到了人了', 
-        options: [ 
-          { title: '【沿路向前走】',nextChat: 'D1'  }, 
-          { title: '【沿路向后走】',nextChat: 'B6'  }, 
-        ],
+      id: 'B6B', desc: '你发现一位旅人大叔正在道路上走着，可算遇到了人了', 
+      options: [ 
+      { title: '【沿路向前走】',nextChat: 'D1'  }, 
+      { title: '【沿路向后走】',nextChat: 'B6'  }, 
+      ],
       },
       { 
-        id: 'B6B2', desc: '你发现一位旅人正在道路上走着，可算遇到了人了', 
-        options: [ 
-          { title: '【问路】',nextChat: 'B6B2A'  }, 
-          { title: '【聊些别的】',nextChat: 'B6B2A'  }, 
-          { title: '【其他】',nextChat: 'B6B2C'  }, 
-          { title: '【谢过离开】',nextChat: 'B6'  }, 
-        ],
+      id: 'B6B1', desc: '你发现一位旅人大叔正在道路上走着，可算遇到了人了', 
+      options: [ 
+      { title: '【沿路向前走】',nextChat: 'D1'  }, 
+      { title: '【沿路向后走】',nextChat: 'B6'  }, 
+      ],
       },
-     { 
-        id: 'B6B2A', desc: '你现在走的方向是去城外的路，要进城的话就是走反了', 
-        options: [ 
-          { title: '【返回】',nextChat: 'B6B2'  }, 
-        ],
+      { 
+      id: 'B6B2', desc: '你发现一位旅人正在道路上走着，可算遇到了人了', 
+      options: [ 
+      { title: '【问路】',nextChat: 'B6B2A'  }, 
+      { title: '【聊些别的】',nextChat: 'B6B2A'  }, 
+      { title: '【其他】',nextChat: 'B6B2C'  }, 
+      { title: '【谢过离开】',nextChat: 'B6'  }, 
+      ],
       },
-     { 
-        id: 'B6B2B', desc: '这条路最近没几个人敢走，因为传言附近有老虎出没', 
-        options: [ 
-          { title: '【若有所思】',nextChat: 'B6B2'  }, 
-        ],
+      { 
+      id: 'B6B2A', desc: '你现在走的方向是去城外的路，要进城的话就是走反了', 
+      options: [ 
+      { title: '【返回】',nextChat: 'B6B2'  }, 
+      ],
       },
-     { 
-        id: 'B6B2C', desc: '这官道东侧的森林很容易迷路，所以才有修这条道路，你可千万别进东侧森林，就是右手这边。', 
-        options: [ 
-          { title: '【返回】',nextChat: 'B6B2'  }, 
-        ],
+      { 
+      id: 'B6B2B', desc: '这条路最近没几个人敢走，因为传言附近有老虎出没', 
+      options: [ 
+      { title: '【若有所思】',nextChat: 'B6B2'  }, 
+      ],
+      },
+      { 
+      id: 'B6B2C', desc: '这官道东侧的森林很容易迷路，所以才有修这条道路，你可千万别进东侧森林，就是右手这边。', 
+      options: [ 
+      { title: '【返回】',nextChat: 'B6B2'  }, 
+      ],
       },
 
 

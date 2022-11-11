@@ -8,8 +8,6 @@ scenes: [
 
       # 变量定义
       vars: [
-      #标签变量
-
       #电脑
       { id: "biaoqianv1", min: 0, max: 1 },
       #床
@@ -43,43 +41,91 @@ scenes: [
       #展览馆
       { id: "biaoqianv16", min: 0, max: 1 },
       #观景台
-      { id: "biaoqianv17", min: 0, max: 1 },      
-     
-     
+      { id: "biaoqianv17", min: 0, max: 1 }, 
+      #家
+      { id: "biaoqianv18", min: 0, max: 1 }, 
+      #过道
+      { id: "biaoqianv19", min: 0, max: 1 }, 
+      #花园
+      { id: "biaoqianv20", min: 0, max: 1 }, 
+      #小区门口
+      { id: "biaoqianv21", min: 0, max: 1 },
+      #去小区看看
+      { id: "biaoqianv22", min: 0, max: 1 },
+      #去公园
+      { id: "biaoqianv23", min: 0, max: 1 },
+      #去市场
+      { id: "biaoqianv24", min: 0, max: 1 },
+      #十月四日 （第一天变量）
+      { id: "shiyuesiri", min: 0, max: 1 },
+      #第四天打开电脑工作任务
+      { id: "v_icon_100", min: 0, max: 1 },
+      #第四天，去小区逛
+      { id: "quxiaoquguang4", min: 0, max: 1 },
+      #第四天 花园下棋的老人
+      { id: "v_icon_101", min: 0, max: 1 },
+      #第四天 去公园救老人
+      { id: "zuohaoshi_4", min: 0, max: 1 },
+      #第四天 查看公告栏
+      { id: "v_icon_102", min: 0, max: 1 },
+      #第四天 从家里出门
+      { id: "chumen_4", min: 0, max: 1 },
+      #第四天 回家
+      { id: "huijia_4", min: 0, max: 1 },
+      #去市场买东西，不限时间活动
+      { id: "v_icon_103", min: 0, max: 1 },
+      #买菜变量判断
+      { id: "maicai", min: 0, max: 1 },
+      #第四天结束 回家变量
+      { id: "jieshu_4", min: 0, max: 1 },
+      #十月五日 （第二天变量）
+      { id: "shiyuewuri", min: 0, max: 1 },
+      #第五天 展览馆
+      { id: "v_icon_104", min: 0, max: 1 },
+      #第五天展览馆任务变量
+      { id: "zhanlanguan_5", min: 0, max: 1 },
+      #第五天便利店任务变量
+      { id: "bianlidian_5", min: 0, max: 1 },
+      #第五天 便利店
+      { id: "v_icon_105", min: 0, max: 1 },
+      #第五天 结束回家的变量
+      { id: "jieshu_5", min: 0, max: 1 },
+      
+
+
+
+
+
+
+
+
       ],
 
       # 动作定义
-      actions: [],
+      actions: [
+      ],
       #不显示时间
       worldTimeHidden: False,
       # 事件定义# 故事中的场景事件暂时没什么意义
       events: [
-      
+
+       { type: 'enter', missionTime: { missionId: 'C000F2shijian', setTime: '2020/10/03 18:00:00' } , nextChat: 'WZXX_M1_N1_C000F2_V' },
+
        ],
 
       chats: [
-      { 
-        id: 'WZXX_M1_N1_C000F2_VA', desc: '小宇宙项目', 
-        options: [ 
-          { 
-          title: "【思考完毕】",toScene: 'C000F2_V2_MAP_-2_5', 
-          missionTime: { missionId: 'C000F2shijian', setTime: '2020/10/01 09:00:00' } ,
-          varsOn: ['WZXX_M1_N1_C000F2_V/chuang_A','WZXX_M1_N1_C000F2_V/diyitianzaijia_A','WZXX_M1_N1_C000F2_V/v_icon_107','WZXX_M1_N1_C000F2_V/v_icon_108','WZXX_M1_N1_C000F2_V/v_icon_109',],  
-          transitionAnimation: '左右开门转场',
-          },
-        ],
-      }, 
 
-      { 
-        id: 'WZXX_M1_N1_C000F2_V', desc: '去公园', 
+      {
+        id: 'WZXX_M1_N1_C000F2_V', desc: '时间太晚了，先睡一觉吧', 
         options: [ 
-          { title: "【去公园】",toScene: 'C000F2_V_MAP_0_2', },
+          { title: "【洗漱睡觉】",toScene: 'C000F2_V2_MAP_-2_5', varsOn: ['WZXX_M1_N1_C000F2_V/shiyuesiri'] ,},
         ],
       }, 
       ],  
     },
-   #==========================事件场景===================
-       {
+
+#==========================事件场景==========================
+    {
   # NPC2
     id: 'C000F2_V2_MAP_-1_2', name: '家门口',
     missionId: 'C000F2shijian',
@@ -93,53 +139,87 @@ scenes: [
     mapId: 'C000F2_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 2],
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
     ],
-
     # 动作定义
     actions: [
     ],
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_3B'] ,nextChat: 'C2' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/jieshu_4'] ,nextChat: 'C4A' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuewuri','WZXX_M1_N1_C000F2_V/jieshu_5'] ,nextChat: 'C5A' },
+       { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C4A' },
 
     ],
-
     # 对话选项
     chats: [
-      #linggan_2A
+
       { 
-        id: 'C1', desc: '回到家，时间已经不早了，虽然身体很疲惫但是感觉大脑还是很兴奋，把今天得到的灵感记下来', 
-        options: [ 
-        { 
-        title: '【打开电脑】', 
-        varsOn: ['WZXX_M1_N1_C000F2_V/linggan_2A',], 
-        toScene: 'C000F2_V2_MAP_-2_4',   
-        transitionAnimation: '白色转场',
-        },
+        id: 'C1', desc: '出门————请选择去的地方', 
+        options: [
+         { title: '【出门】', varsOff: ['WZXX_M1_N1_C000F2_V/chumen_4'] , nextChat: 'C0'}, 
         ],
       },
 
       { 
-        id: 'C2', desc: "有了灵感后，李森炎对于小宇宙的开发更加顺利\n刚开始开发小宇宙项目的时候，是他最迷茫，却也是最开心的时候", 
+        id: 'C0', desc: '请选择行动的地址————', 
         options: [ 
-        { 
-        title: '【回忆结束】', 
-        varsOff: ['WZXX_M1_N1_C000F2_V/linggan_3B'] ,
-        toChapter: "WZXX_M1_N1_C001B_[N1]", 
-        transitionAnimation: '黑色转场',
+          
+          { 
+          title: '【去过道逛逛】',toScene: 'C000F2_V3_MAP_1_1', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv19' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv19']
+          },
+
+          {
+          title: '【去市场买点菜】',toScene: 'C000F2_V3_MAP_2_-1',andVarsOn: ['WZXX_M1_N1_C000F2_V/v_icon_103'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv24' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv24']
+          },
+
+          {
+          title: '【小区门口】',toScene: 'C000F2_V3_MAP_1_-1',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv21' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv21']
+          },
+
+          {
+          title: '【去花园】',toScene: 'C000F2_V3_MAP_0_1', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv20' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv20']
+          },
+
+          {
+          title: '【去公园】',toScene: 'C000F2_V_MAP_0_2',andVarsOn: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv23' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv23']
+          },
+        ],
+      },
+
+      {
+        id: 'C4A', desc: '今天已经疲惫至极，洗漱早点睡觉吧，明天再出门找灵感', 
+        options: [ 
+        {
+        title: '【洗漱睡觉】', 
+        toScene: 'C000F2_V2_MAP_-2_5',   
         },
         ],
       },
+
+      {
+        id: 'C5A', desc: '虽然身体很疲惫，但是还是得先把灵感记下来', 
+        options: [ 
+        {
+        title: '【开启小宇宙工作】', 
+        toScene: 'C000F2_V2_MAP_-2_4',   
+        },
+        ],
+      },
+
     ],
   },
-#===========================事件场景=====================
-       { 
+#==================================事件场景=====================
+ { 
   # NPC2
     id: 'C000F2_V2_MAP_-2_4', name: '电脑桌',
     missionId: 'C000F2shijian',
@@ -163,18 +243,14 @@ scenes: [
     ],
     # 事件定义
     events: [
-      { type: 'enter', nextChat: 'C0' },
-      # { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_3B'] ,nextChat: 'C4' },
-      { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/gonyuan_A'] ,nextChat: 'C2' },
-      { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_2A'] ,nextChat: 'C3' },
-      {type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/diyitianzaijia_A'],andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' 
-      },
+      { type: 'enter', nextChat: 'C1' },
+      { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/v_icon_100'], nextChat: 'C4A' },  
+      { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuewuri'], nextChat: 'C5A' },  
+      { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuewuri','WZXX_M1_N1_C000F2_V/jieshu_5'] , nextChat: 'C5B' },
     ],
 
     # 对话选项
     chats: [
-  
-
       { 
         id: 'C1A', desc: '时间太晚了，还是先休息一下吧', 
         options: [ 
@@ -182,51 +258,119 @@ scenes: [
         ],
       },
 
-      { 
-        id: 'C1', desc: '工作了三个小时，小宇宙项目也算是正式起步了，虽然也解决了不少问题，但是又遇到了新的瓶颈', 
-        options: [ 
-           {
-            title: '【从冰箱里拿点吃的】', toScene: 'C000F2_V2_MAP_0_6',  
-            icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv4'],
-            },
-
-           { 
-           title: '【去阳台抽根烟】', toScene: 'C000F2_V2_MAP_-1_7',  
-           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv8'], 
-           },
-
-           { 
-           title: '【去厨房做饭】', toScene: 'C000F2_V2_MAP_0_5', 
-           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv7' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv7']
-           },
-
-           { 
-           title: '【洗漱睡觉】', toScene: 'C000F2_V2_MAP_0_4', andVarsValue: ['@missionTime_C000F2shijian >= 17'],
-           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv4']
-           },
-
+      {
+        id: 'C1', desc: '还没吃东西呢，先吃点东西再工作吧', 
+        options: [
+        { title: '【去厨房弄点东西吃】',  toScene: 'C000F2_V2_MAP_0_5'},
         ],
       },
     
+    #第四天
+      { 
+        id: 'C4A', desc: '杂乱有序的电脑桌，上面放置着还未合上的笔记本', 
+        options: [ 
+        {
+        title: '【继续小宇宙项目】', nextChat: 'C0',
+        missionTime: { missionId: 'C000Fshijian', alterSeconds: 10800 } , 
+        dropIds: [ 'WZXX_M1_N1_C000F2_V_drop1',], games: {id: 7},
+        varsOff: ['WZXX_M1_N1_C000F2_V/v_icon_100',],
+        varsOn: ['WZXX_M1_N1_C000F2_V/quxiaoquguang4'],
+        },
+        ],
+      },
+
+      { 
+        id: 'C0', desc: '将之前搜集到的灵感记下来，还整理出一些新的点子，认真工作完毕抬头已经三个小时过去了，去干点别的吧', 
+        options: [ 
+          {
+          title: '【从冰箱里拿点喝的】', toScene: 'C000F2_V2_MAP_0_6',  
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv4'],
+          },
+
+          { 
+          title: '【去阳台抽根烟】', toScene: 'C000F2_V2_MAP_-1_7',  
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv8'], 
+          },
+
+          { 
+          title: '【去厨房做饭】', toScene: 'C000F2_V2_MAP_0_5', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv7' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv7']
+          },
+
+          { 
+          title: '【洗漱睡觉】', toScene: 'C000F2_V2_MAP_0_4', andVarsValue: ['@missionTime_C000F2shijian >= 17'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv6' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv6']
+          },
+
+          { 
+          title: '【去小区逛逛】', toScene: 'C000F2_V3_MAP_2_2', andVarsOn: ['WZXX_M1_N1_C000F2_V/quxiaoquguang4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv22' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv22','WZXX_M1_N1_C000F2_V/v_icon_101','WZXX_M1_N1_C000F2_V/chumen_4']
+          },
+        ],
+      },
+     
+     #第五天
+      { 
+        id: 'C5A', desc: '新的一天开始，动力满满，脑子里浮现了很多奇妙的灵感，准备下笔试试实现', 
+        options: [ 
+        {
+        title: '【开启小宇宙项目】', nextChat: 'C0A',
+        missionTime: { missionId: 'C000Fshijian', alterSeconds: 10800 } , 
+        dropIds: [ 'WZXX_M1_N1_C000F2_V_drop3',], games: {id: 7},
+        },
+        ],
+      },
+
+       { 
+        id: 'C0A', desc: '不知不觉埋头工作了三个小时，眼睛都干了，劳逸结合出门看看风景寻找些灵感', 
+        options: [ 
+          {
+          title: '【去公园】',toScene: 'C000F2_V_MAP_0_2',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv23' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv23']
+          },
+        ],
+      },
+
+      { 
+        id: 'C5B', desc: "今天收获了很多新的信息\n推翻了一些之前的设定，重新写了写新的灵感\n虽然推翻很痛苦\n但是看见创意越来越新颖也不失为一种满足", 
+        options: [ 
+        {
+        title: '【小宇宙项目进行中……】', nextChat: 'C0B',
+        missionTime: { missionId: 'C000Fshijian', alterSeconds: 10800 } , 
+        dropIds: [ 'WZXX_M1_N1_C000F2_V_drop3',], games: {id: 7},
+        },
+        ],
+      },
+
+      { 
+        id: 'C0B', desc: '工作了几个小时，抬头一看已是深夜，熬夜伤害身体，还是早点休息吧', 
+        options: [ 
+          {
+          title: '【去洗漱睡觉】',toScene: 'C000F2_V2_MAP_-2_5',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv2']
+          },
+        ],
+      },
+
       
     ],
   },
 #=========================事件场景============================
   {
-  # NPC2
+    # NPC2
     id: 'C000F2_V2_MAP_-2_5', name: '床',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
     isNpc: true,
-    #横图显示
+    # 横图显示
     sceneImage: 'BGT_23',
-    #不显示时间
-      worldTimeHidden: False,
+    # 不显示时间
+    worldTimeHidden: False,
     # 当前场景地图
     mapId: 'C000F2_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-2, 5],
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
@@ -236,32 +380,109 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter' ,nextChat: 'C0' },
-
+    { type: 'enter', nextChat: 'C1' },
+    { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuesiri'], nextChat: 'C4A' },
+    { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/jieshu_4'] ,nextChat: 'C5A' },
+    { type: 'enter', andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C5A' },
+    { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuewuri','WZXX_M1_N1_C000F2_V/jieshu_5'] , nextChat: 'C6A' },
     ],
 
     # 对话选项
     chats: [
-      #第一天
-      { 
-        id: 'C1A', desc: '好好睡一觉，明天去公园找找灵感', 
+
+     {
+        id: 'C1', desc: '小小的床，看起来也十分温馨', 
         options: [ 
         { 
-        title: '【睡觉】', nextChat: 'C2', 
-        varsOn: ['WZXX_M1_N1_C000F2_V/gonyuan_A',] ,
-        varsOff: ['WZXX_M1_N1_C000F2_V/diyitianzaijia_A','WZXX_M1_N1_C000F2_V/chuang_B',
-        'WZXX_M1_N1_C000F2_V/biaoqianv1','WZXX_M1_N1_C000F2_V/biaoqianv2','WZXX_M1_N1_C000F2_V/biaoqianv3','WZXX_M1_N1_C000F2_V/biaoqianv4','WZXX_M1_N1_C000F2_V/biaoqianv5','WZXX_M1_N1_C000F2_V/biaoqianv6','WZXX_M1_N1_C000F2_V/biaoqianv7','WZXX_M1_N1_C000F2_V/biaoqianv8'],
+        title: '【眯一会儿】', nextChat: 'C3',
+        missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 },
+        },
+        ],
+     },
+
+      #第四天
+      {
+        id: 'C4A', desc: '先睡一觉，明天早上醒来再把灵感记下来吧', 
+        options: [ 
+        { 
+        title: '【睡觉】', nextChat: 'C4B',
         # 可直接跳转到规定时间内
-        missionTime: { missionId: 'C000F2shijian', setTime: '2020/10/02 09:00:00' },
+        missionTime: { missionId: 'C000F2shijian', setTime: '2020/10/04 09:00:00' },
         transitionAnimation: '白色转场' 
         },
         ],
       },
 
-   
+      {
+        id: 'C4B', desc: '一夜无梦，舒舒服服的睡到了第二天的清晨', 
+        options: [ 
+        { 
+        title: '【起床洗漱一下】', toScene: 'C000F2_V2_MAP_0_4',
+        },
+        ],
+      },
+
+       #第五天
+      {
+        id: 'C5A', desc: '洗漱完舒舒服服睡觉，睡眠充足才有精力去找灵感！', 
+        options: [ 
+        { 
+        title: '【睡觉】', nextChat: 'C5B',
+        #关闭第四天的变量
+        varsOff: ['WZXX_M1_N1_C000F2_V/shiyuesiri','WZXX_M1_N1_C000F2_V/jieshu_4',
+        'WZXX_M1_N1_C000F_V/biaoqianv1','WZXX_M1_N1_C000F_V/biaoqianv2','WZXX_M1_N1_C000F_V/biaoqianv3','WZXX_M1_N1_C000F_V/biaoqianv4',
+        'WZXX_M1_N1_C000F_V/biaoqianv5','WZXX_M1_N1_C000F_V/biaoqianv6','WZXX_M1_N1_C000F_V/biaoqianv7','WZXX_M1_N1_C000F_V/biaoqianv8',
+        'WZXX_M1_N1_C000F_V/biaoqianv9','WZXX_M1_N1_C000F_V/biaoqianv10','WZXX_M1_N1_C000F_V/biaoqianv11','WZXX_M1_N1_C000F_V/biaoqianv12',
+        'WZXX_M1_N1_C000F_V/biaoqianv13','WZXX_M1_N1_C000F_V/biaoqianv14','WZXX_M1_N1_C000F_V/biaoqianv15','WZXX_M1_N1_C000F_V/biaoqianv16',
+        'WZXX_M1_N1_C000F_V/biaoqianv17','WZXX_M1_N1_C000F_V/biaoqianv18','WZXX_M1_N1_C000F_V/biaoqianv19','WZXX_M1_N1_C000F_V/biaoqianv20',
+        'WZXX_M1_N1_C000F_V/biaoqianv21','WZXX_M1_N1_C000F_V/biaoqianv22','WZXX_M1_N1_C000F_V/biaoqianv23','WZXX_M1_N1_C000F_V/biaoqianv24'
+        ],
+        #打开第五天的变量
+        varsOn: ['WZXX_M1_N1_C000F2_V/shiyuewuri'],
+        # 可直接跳转到规定时间内
+        missionTime: { missionId: 'C000F2shijian', setTime: '2020/10/05 09:00:00' },
+        transitionAnimation: '白色转场' 
+        },
+        ],
+      },
+
+      {
+        id: 'C5B', desc: '充足的睡眠让人一天都充满活力，新的一天又开始了，思考一下今天要做什么吧！', 
+        options: [ 
+        { 
+        title: '【先洗漱吃早餐】', toScene: 'C000F2_V2_MAP_0_4',
+        },
+        ],
+      },
+
+       #第六天
+      {
+        id: 'C6A', desc: '洗漱完舒舒服服睡觉，睡眠充足才有精力去找灵感！', 
+        options: [ 
+        { 
+        title: '【睡觉】', 
+        #关闭第五天的变量
+        varsOff: ['WZXX_M1_N1_C000F2_V/shiyuesiri','WZXX_M1_N1_C000F2_V/jieshu_4','WZXX_M1_N1_C000F2_V/jieshu_5',
+        'WZXX_M1_N1_C000F_V/biaoqianv1','WZXX_M1_N1_C000F_V/biaoqianv2','WZXX_M1_N1_C000F_V/biaoqianv3','WZXX_M1_N1_C000F_V/biaoqianv4',
+        'WZXX_M1_N1_C000F_V/biaoqianv5','WZXX_M1_N1_C000F_V/biaoqianv6','WZXX_M1_N1_C000F_V/biaoqianv7','WZXX_M1_N1_C000F_V/biaoqianv8',
+        'WZXX_M1_N1_C000F_V/biaoqianv9','WZXX_M1_N1_C000F_V/biaoqianv10','WZXX_M1_N1_C000F_V/biaoqianv11','WZXX_M1_N1_C000F_V/biaoqianv12',
+        'WZXX_M1_N1_C000F_V/biaoqianv13','WZXX_M1_N1_C000F_V/biaoqianv14','WZXX_M1_N1_C000F_V/biaoqianv15','WZXX_M1_N1_C000F_V/biaoqianv16',
+        'WZXX_M1_N1_C000F_V/biaoqianv17','WZXX_M1_N1_C000F_V/biaoqianv18','WZXX_M1_N1_C000F_V/biaoqianv19','WZXX_M1_N1_C000F_V/biaoqianv20',
+        'WZXX_M1_N1_C000F_V/biaoqianv21','WZXX_M1_N1_C000F_V/biaoqianv22','WZXX_M1_N1_C000F_V/biaoqianv23','WZXX_M1_N1_C000F_V/biaoqianv24'
+        ],
+        #打开第六天的变量
+        
+        # 可直接跳转到规定时间内
+        # missionTime: { missionId: 'C000F2shijian', setTime: '2020/10/06 09:00:00' },
+        transitionAnimation: '白色转场' 
+        },
+        ],
+      },
+
       { 
         id: 'C3', desc: '浅睡了两个小时，已经休息够了，去做点别的', 
         options: [ 
+
           { 
           title: '【换件衣服】', toScene: 'C000F2_V2_MAP_-1_5' ,
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv3' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv3']
@@ -273,7 +494,7 @@ scenes: [
           },
 
           { 
-          title: '【从冰箱里拿点吃的】', toScene: 'C000F2_V2_MAP_0_6',
+          title: '【从冰箱里拿点喝的】', toScene: 'C000F2_V2_MAP_0_6',
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv3' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv3']
           },
 
@@ -287,15 +508,16 @@ scenes: [
           andVarsValue: ['@missionTime_C000F2shijian >= 17'],
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv6' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv6']
           },
+
+          { 
+          title: '【去小区逛逛】', toScene: 'C000F2_V3_MAP_2_2', andVarsOn: ['WZXX_M1_N1_C000F2_V/quxiaoquguang4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv22' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv22','WZXX_M1_N1_C000F2_V/v_icon_101','WZXX_M1_N1_C000F2_V/chumen_4']
+          },
         ],
       },
     ],
-    # 对话框
-   dialogs: [    
-     {id: 'd3',style: "1B",title: '提示：',content: '在家中行动时，某些地点会掉落惊喜道具，可用于升级特殊属性！',}
-    ],
   },
-      #===========事件场景==============
+      #=========================事件场景============================
   {
   # NPC2
     id: 'C000F2_V2_MAP_-1_5', name: '衣柜',
@@ -310,12 +532,10 @@ scenes: [
     mapId: 'C000F2_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 5],
-
-     # 变量定义
+    # 变量定义
     vars: [
-    { id: "ONE_OPEN_0", min: 0, max: 1 },
-    { id: "ONE_OPEN_1", min: 0, max: 1 },
-
+      { id: "ONE_OPEN_0", min: 0, max: 1 },
+      { id: "ONE_OPEN_1", min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -324,6 +544,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
+
     ],
 
     # 对话选项
@@ -335,11 +557,27 @@ scenes: [
         ],
       },
 
+       { 
+        id: 'C1', desc: '来到衣柜面前，请选择行动————', 
+        options: [ 
+        { title: '【换件衣服】', nextChat: 'C2'},
+        { title: '【收拾衣柜】', nextChat: 'C3'},
+        ],
+      },
+
       { 
-         id: 'C2', desc: '卸下一天的疲惫，换一身睡衣', 
+        id: 'C2', desc: '换衣服', 
+        options: [ 
+        { title: '【换睡衣】', nextChat: 'C2'},
+        { title: '【换常服】', nextChat: 'C3'},
+        ],
+      },
+
+      { 
+         id: 'C2', desc: '卸下疲惫，换一身舒适的睡衣', 
          options: [ 
           { 
-          title: '【从冰箱里拿点吃的】', toScene: 'C000F2_V2_MAP_0_6',
+          title: '【从冰箱里拿点喝的】', toScene: 'C000F2_V2_MAP_0_6',
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv4']
           },
 
@@ -352,7 +590,7 @@ scenes: [
           title: '【去厨房做饭】', toScene: 'C000F2_V2_MAP_0_5',
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv7' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv7']
           },
-          # { title: '【洗漱睡觉】', toScene: 'C000F2_V2_MAP_0_4'},
+
           { 
           title: '【打开电脑工作】', toScene: 'C000F2_V2_MAP_-2_4',  
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv1']
@@ -362,13 +600,48 @@ scenes: [
           title: '【上床躺一会儿】', toScene: 'C000F2_V2_MAP_-2_5',
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv2']
           },
-      
+
+        ],
+      },
+
+      { 
+         id: 'C3', desc: '换了一身宽松的衣服，出门的时候方便些', 
+         options: [ 
+          { 
+          title: '【从冰箱里拿点喝的】', toScene: 'C000F2_V2_MAP_0_6',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv4']
+          },
+
+          { 
+          title: '【去阳台抽根烟】', toScene: 'C000F2_V2_MAP_-1_7',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv8']
+          },
+
+          { 
+          title: '【去厨房做饭】', toScene: 'C000F2_V2_MAP_0_5',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv7' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv7']
+          },
+
+          { 
+          title: '【打开电脑工作】', toScene: 'C000F2_V2_MAP_-2_4',  
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv1']
+          },
+
+          {
+          title: '【上床躺一会儿】', toScene: 'C000F2_V2_MAP_-2_5',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv2']
+          },
+
+          { 
+          title: '【去小区逛逛】', toScene: 'C000F2_V3_MAP_2_2', andVarsOn: ['WZXX_M1_N1_C000F2_V/quxiaoquguang4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv22' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv22','WZXX_M1_N1_C000F2_V/v_icon_101','WZXX_M1_N1_C000F2_V/chumen_4']
+          },
         ],
       },
     ],
   },
  #=============================事件场景================================
-       {
+  {
   # NPC2
     id: 'C000F2_V2_MAP_0_6', name: '冰箱',
     missionId: 'C000F2shijian',
@@ -386,7 +659,6 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
     ],
 
     # 动作定义
@@ -394,15 +666,15 @@ scenes: [
     ],
     # 事件定义
     events: [
-     { type: 'enter',  nextChat: 'C1' }, 
+     { type: 'enter',  nextChat: 'C1' },
+     { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000F2_V/maicai'], nextChat: 'C1B' },
      { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
-
     ],
 
     # 对话选项
     chats: [
       
-       { 
+      { 
         id: 'C1A', desc: '时间太晚了，喝点东西就睡觉', 
         options: [ 
         { title: '【上床睡觉】', toScene: 'C000F2_V2_MAP_-2_5'},
@@ -410,23 +682,28 @@ scenes: [
       },
 
       { 
-        id: 'C1', desc: '只有几个鸡蛋和几瓶啤酒，里里外外都透露着穷酸二字……', 
+        id: 'C1', desc: '只有几个鸡蛋和几瓶啤酒，里里外外都透露着穷酸二字……是时候该去市场买点东西了', 
         options: [ 
-         { title: '【随便喝点】',  nextChat: 'C2',dropIds: [ 'WZXX_M1_N1_C000F2_V_drop4',], varsOff: ['WZXX_M1_N1_C000F2_V/v_icon_107'] },
-        #  { title: '【太晚了去休息下吧】',toScene: 'C000F2_V2_MAP_-2_5',andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'],}, 
-      
+         { title: '【随便喝点】', varsOn: ['WZXX_M1_N1_C000F2_V/v_icon_103',], nextChat: 'C0',},
         ],
       },
 
-       { 
-        id: 'C2', desc: '先喝瓶啤酒醒醒脑吧，再想想做啥', 
+      { 
+        id: 'C1B', desc: '将从市场买回来的新鲜蔬菜放置在冰箱中，有了这些菜这几天都不用出门买菜了', 
         options: [ 
-          { 
+         { title: '【去做点啥】', varsOff: ['WZXX_M1_N1_C000F2_V/maicai'] ,nextChat: 'C0',},
+        ],
+      },
+
+      { 
+        id: 'C0', desc: '先喝瓶啤酒醒醒脑吧，再想想做啥', 
+        options: [ 
+          {
           title: '【去阳台抽根烟】', toScene: 'C000F2_V2_MAP_-1_7',  
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv8']
           },
 
-          { 
+          {
           title: '【去厨房做饭】', toScene: 'C000F2_V2_MAP_0_5', 
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv7' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv7']
           },
@@ -445,12 +722,17 @@ scenes: [
           title: '【上床躺一会儿】', toScene: 'C000F2_V2_MAP_-2_5', 
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv2']
           },
+
+          { 
+          title: '【去小区逛逛】', toScene: 'C000F2_V3_MAP_2_2', andVarsOn: ['WZXX_M1_N1_C000F2_V/quxiaoquguang4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv22' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv22','WZXX_M1_N1_C000F2_V/v_icon_101','WZXX_M1_N1_C000F2_V/chumen_4']
+          },
         ],
       },
     ],
   },
 #=============================事件场景==========================
-       {
+  {
   # NPC2
     id: 'C000F2_V2_MAP_-1_6', name: '洗衣机',
     missionId: 'C000F2shijian',
@@ -459,20 +741,16 @@ scenes: [
     #横图显示
     sceneImage: 'BGT_5',
     #不显示时间
-      worldTimeHidden: False,
+    worldTimeHidden: False,
     # 当前场景地图
     mapId: 'C000F2_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 6],
-
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
-
     ],
-
     # 动作定义
     actions: [
     ],
@@ -480,12 +758,10 @@ scenes: [
     events: [
        { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
        { type: 'enter',  nextChat: 'C1' },
-
     ],
-
     # 对话选项
     chats: [
-      
+
       { 
         id: 'C1A', desc: '没什么衣服要洗的，先睡觉吧', 
         options: [ 
@@ -503,7 +779,6 @@ scenes: [
         # { title: '【太晚了去休息下吧】',toScene: 'C000F2_V2_MAP_-2_5',andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24']}, 
         ],
       },
-
 
       { 
         id: 'C2', desc: '把脏衣服都洗了，还顺手刷了几双鞋，甚至还难得的把家里的卫生弄了下，再考虑做点别的吧', 
@@ -536,17 +811,20 @@ scenes: [
 
           # { title: '【上床躺一会儿】', toScene: 'C000F2_V2_MAP_-2_5'},
            { 
-           title: '【从冰箱里拿点吃的】', toScene: 'C000F2_V2_MAP_0_6',
+           title: '【从冰箱里拿点喝的】', toScene: 'C000F2_V2_MAP_0_6',
            icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv4']
            },
-      
+
+          { 
+          title: '【去小区逛逛】', toScene: 'C000F2_V3_MAP_2_2', andVarsOn: ['WZXX_M1_N1_C000F2_V/quxiaoquguang4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv22' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv22','WZXX_M1_N1_C000F2_V/v_icon_101','WZXX_M1_N1_C000F2_V/chumen_4']
+          },
         ],
       },
     ],
-   
   },
-      #===========事件场景==============
-       {
+      #=========================事件场景============================
+  {
   # NPC2
     id: 'C000F2_V2_MAP_-1_7', name: '阳台',
     missionId: 'C000F2shijian',
@@ -555,7 +833,7 @@ scenes: [
     #横图显示
     sceneImage: 'BGT_25',
     #不显示时间
-      worldTimeHidden: False,
+    worldTimeHidden: False,
     # 当前场景地图
     mapId: 'C000F2_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -565,8 +843,6 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
- 
-
     ],
 
     # 动作定义
@@ -576,7 +852,6 @@ scenes: [
     events: [
        { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
        { type: 'enter',  nextChat: 'C1' },
-
     ],
 
     # 对话选项
@@ -594,7 +869,7 @@ scenes: [
         options: [ 
          { 
          title: '【休息一会儿，思考人生】',  nextChat: 'C2' ,
-         missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 }, dropIds: [ 'WZXX_M1_N1_C000F2_V_drop3',],varsOff: ['WZXX_M1_N1_C000F2_V/v_icon_109',], 
+         missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 } 
          },
          # { title: '【太晚了去休息下吧】',toScene: 'C000F2_V2_MAP_-2_5',andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24']}, 
         ],
@@ -620,14 +895,19 @@ scenes: [
            },
 
            { 
-           title: '【从冰箱里拿点吃的】', toScene: 'C000F2_V2_MAP_0_6',  
+           title: '【从冰箱里拿点喝的】', toScene: 'C000F2_V2_MAP_0_6',  
            icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv4']
+           },
+
+           { 
+           title: '【去小区逛逛】', toScene: 'C000F2_V3_MAP_2_2', andVarsOn: ['WZXX_M1_N1_C000F2_V/quxiaoquguang4'],
+           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv22' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv22','WZXX_M1_N1_C000F2_V/v_icon_101','WZXX_M1_N1_C000F2_V/chumen_4']
            },
         ],
       },
     ],
   },
-  #=======================事件场景====================
+  #==============================事件场景===========================
        {
   # NPC2
     id: 'C000F2_V2_MAP_0_5', name: '厨房',
@@ -642,22 +922,20 @@ scenes: [
     mapId: 'C000F2_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [0, 5],
-
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     ],
-
     # 动作定义
     actions: [
     ],
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuesiri'] , nextChat: 'C4A' },
        { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 22', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
     ],
-
     # 对话选项
     chats: [
       
@@ -665,6 +943,13 @@ scenes: [
         id: 'C1A', desc: '时间太晚了，这么晚吃东西明早估计该难受了', 
         options: [ 
         { title: '【洗漱睡觉】', toScene: 'C000F2_V2_MAP_-2_5'},
+        ],
+      },
+
+      { 
+        id: 'C4A', desc: "家里还有些面条和蔬菜，李森炎给自己下了碗面对付吃了点\n不过，倒是要记得去市场买点菜回来了", 
+        options: [ 
+        { title: '【吃完饭，去干点什么吧】',  nextChat: 'C2', varsOn: ['WZXX_M1_N1_C000F2_V/v_icon_100'] , missionTime: { missionId: 'C000F2shijian', alterSeconds: 3600 } },
         ],
       },
 
@@ -678,10 +963,9 @@ scenes: [
 
 
       { 
-        id: 'C2', desc: '做饭的过程虽然不尽人意……但是最后的成果还算不错，吃完做点别的', 
+        id: 'C2', desc: '肚子好饱，去做点什么消化一下吧', 
         options: [ 
-          # { title: '【换件衣服】', toScene: 'C000F2_V2_MAP_-1_5'},  
-          # { title: '【去阳台抽根烟】', toScene: 'C000F2_V2_MAP_-1_7'},
+
           { 
           title: '【洗漱睡觉】', toScene: 'C000F2_V2_MAP_0_4',
           andVarsValue: ['@missionTime_C000F2shijian >= 17'], icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv6' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv6']
@@ -693,20 +977,25 @@ scenes: [
           },
 
           { 
-          title: '【上床躺一会儿】', toScene: 'C000F2_V2_MAP_-2_5', 
-          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv2']
+          title: '【去阳台透透空气】', toScene: 'C000F2_V2_MAP_-1_7',  
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv8']
           },
 
           { 
-          title: '【从冰箱里拿点吃的】', toScene: 'C000F2_V2_MAP_0_6',
+          title: '【从冰箱里拿点喝的】', toScene: 'C000F2_V2_MAP_0_6',
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv4']
+          },
+
+          { 
+          title: '【去小区逛逛】', toScene: 'C000F2_V3_MAP_2_2', andVarsOn: ['WZXX_M1_N1_C000F2_V/quxiaoquguang4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv22' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv22','WZXX_M1_N1_C000F2_V/v_icon_101','WZXX_M1_N1_C000F2_V/chumen_4']
           },
         ],
       },
     ],
   },
 
- #===========事件场景==============
+ #=========================事件场景============================
        {
   # NPC2
     id: 'C000F2_V2_MAP_0_4', name: '厕所',
@@ -721,8 +1010,7 @@ scenes: [
     mapId: 'C000F2_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [0, 4],
-
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
@@ -734,6 +1022,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuesiri'] , nextChat: 'C4A' },
+       { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuewuri'] , nextChat: 'C5A' },
        { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 22', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
     ],
 
@@ -746,8 +1036,39 @@ scenes: [
         { title: '【去睡觉】', toScene: 'C000F2_V2_MAP_-2_5'},
         ],
       },
+    #第四天
+      { 
+        id: 'C4A', desc: '早起简单洗漱一下', 
+        options: [ 
+         { 
+         title: '【早起洗漱】', nextChat: 'C2',
+         missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 }  
+         }, 
+        ],
+      },
+
+       #第五天
+      { 
+        id: 'C5A', desc: '早起还有点迷糊的正刷着牙，忽然手机响了……', 
+        options: [ 
+         { 
+         title: '【接电话】', nextChat: 'C5B',
+         }, 
+        ],
+      },
 
       { 
+        id: 'C5B', desc: '拿起手机，发现原来是老妈的电话，和老妈寒暄了许久，心头暖暖的，浑身精力充沛', 
+        options: [ 
+         { 
+         title: '【开启小宇宙项目】', toScene: 'C000F2_V2_MAP_-2_4',
+         dropIds: [ 'WZXX_M1_N1_C000F2_V_drop2',],
+         missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 }  
+         }, 
+        ],
+      },
+
+      {
         id: 'C1', desc: '冲个凉，洗去一天的疲惫', 
         options: [ 
          { 
@@ -765,9 +1086,15 @@ scenes: [
         ],
       },
 
-       { 
-        id: 'C2', desc: '洗完澡精神满满，做点什么呢？', 
+      { 
+        id: 'C2', desc: '洗漱完毕，准备先去做什么呢', 
         options: [ 
+
+          { 
+          title: '【给自己做点早餐吃】', toScene: 'C000F2_V2_MAP_0_5',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv7' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv7']
+          },
+
           { 
           title: '【去阳台抽根烟】', toScene: 'C000F2_V2_MAP_-1_7', 
           icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv8']
@@ -784,8 +1111,8 @@ scenes: [
           },
 
           { 
-          title: '【从冰箱里拿点吃的】', toScene: 'C000F2_V2_MAP_0_6',
-          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv4']
+          title: '【去小区逛逛】', toScene: 'C000F2_V3_MAP_2_2', andVarsOn: ['WZXX_M1_N1_C000F2_V/quxiaoquguang4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv22' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv22','WZXX_M1_N1_C000F2_V/v_icon_101','WZXX_M1_N1_C000F2_V/chumen_4']
           },
       
         ],
@@ -807,8 +1134,7 @@ scenes: [
 
           {
           point: [-2, 4], title: '电脑桌',
-          icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_108', },
-          toScene: 'C000F2_V2_MAP_-2_4',
+          toScene: 'C000F2_V2_MAP_-2_4', icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_100', },
           links: [[-2, 5],] ,
           },
 
@@ -826,7 +1152,6 @@ scenes: [
 
           { 
           point: [0, 6], title: '冰箱',
-          icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_107', },
           toScene: 'C000F2_V2_MAP_0_6',
           links: [ ], 
           },
@@ -851,7 +1176,6 @@ scenes: [
 
           {
           point: [-1, 7], title: '阳台',
-          icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_109', },
           toScene: 'C000F2_V2_MAP_-1_7', 
           links: [],
           },
@@ -861,9 +1185,480 @@ scenes: [
     
     ],
 
-
- #===========事件场景==============
+#=====================事件场景========================
        {
+    # NPC2
+    id: 'C000F2_V3_MAP_1_-1', name: '小区门口',
+    missionId: 'C000F2shijian',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_19',
+    #不显示时间
+    worldTimeHidden: False,
+    # 当前场景地图
+    mapId: 'C000F2_V3_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, -1],
+
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' , },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '散步了一会儿步，感觉身心都舒畅了，刚才还冒出了不少灵感', 
+        options: [ 
+         { title: '【接下来准备……】',nextChat: 'C0' ,}, 
+        ],
+      },
+
+      { 
+        id: 'C0', desc: '请选择行动的地址————', 
+        options: [ 
+
+          {
+          title: '【回家】',  toScene: 'C000F2_V3_MAP_2_2',  andVarsOff: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv18' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv18','WZXX_M1_N1_C000F2_V/huijia_4']
+          },
+
+          {
+          title: '【赶紧回家把灵感记下来】',  toScene: 'C000F2_V3_MAP_2_2',  andVarsOn: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv18' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv18','WZXX_M1_N1_C000F2_V/huijia_4']
+          },
+
+          {
+          title: '【去过道逛逛】',toScene: 'C000F2_V3_MAP_1_1', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv19' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv19']
+          },
+
+          {
+          title: '【去花园】',toScene: 'C000F2_V3_MAP_0_1', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv20' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv20']
+          },
+
+          {
+          title: '【去公园看看，或许有活动】',toScene: 'C000F2_V_MAP_0_2', andVarsOn: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv23' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv23']
+          },
+          
+          {
+          title: '【去市场买点菜】',toScene: 'C000F2_V3_MAP_2_-1', andVarsOn: ['WZXX_M1_N1_C000F2_V/v_icon_103'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv24' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv24']
+          },
+        ],
+      },
+    ],
+  },
+#===========事件场景==============
+  {
+    # NPC2
+    id: 'C000F2_V3_MAP_0_1', name: '花园',
+    missionId: 'C000F2shijian',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    # 横图显示
+    sceneImage: 'BGT_12',
+    # 不显示时间
+    worldTimeHidden: False,
+    # 当前场景地图
+    mapId: 'C000F2_V3_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 1],
+    # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1A' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/v_icon_101'] , nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+
+        { 
+        id: 'C1', desc: '花园中有些人在围观老大爷下棋，李森炎也凑近看了看', 
+        options: [ 
+          { 
+          title: '【看老大爷下棋】',  nextChat: 'C2' , varsOn: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'],
+          missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 },
+          },
+
+          { title: '【去别的地方逛一逛】',  nextChat: 'C0' },
+
+          ],
+        },
+
+        { 
+        id: 'C2', desc: '李森炎抱着手，在两位老人身边看了许久，这两位都是下象棋的高手，有来有往，只有他耐心的看了下来，而就在这几个小时中，他也思考和学到了不少东西', 
+        options: [ 
+          { title: '【离开>>>】', varsOff: ['WZXX_M1_N1_C000F2_V/v_icon_101'], nextChat: 'C0' }, 
+          ],
+        },
+        
+        { 
+        id: 'C1A', desc: '花园中景色宜人，很适合散步慢走，让自己的身心放松一会儿', 
+        options: [ 
+          { title: '【散步】', nextChat: 'C0' }, 
+          ],
+        },
+
+        { 
+        id: 'C0', desc: '请选择离开的地址————', 
+        options: [ 
+          { 
+          title: '【回家】',  toScene: 'C000F2_V3_MAP_2_2', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv18' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv18','WZXX_M1_N1_C000F2_V/huijia_4']
+          },
+
+          { 
+          title: '【过道】',toScene: 'C000F2_V3_MAP_1_1', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv19' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv19']
+          },
+
+          {
+          title: '【去公园看看，或许有活动】',toScene: 'C000F2_V_MAP_0_2', andVarsOn: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv23' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv23']
+          },
+          
+          {
+          title: '【去市场买点菜】',toScene: 'C000F2_V3_MAP_2_-1', andVarsOn: ['WZXX_M1_N1_C000F2_V/v_icon_103'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv24' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv24']
+          },
+
+          {
+          title: '【小区门口】',toScene: 'C000F2_V3_MAP_1_-1',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv21' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv21']
+          },
+        ],
+        },
+    ],
+    },
+
+#=============================事件场景==========================
+  {
+  # NPC2
+    id: 'C000F2_V3_MAP_1_1', name: '过道',
+    missionId: 'C000F2shijian',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: False,
+    #横图显示
+    sceneImage: 'BGT_13',
+    # 当前场景地图
+    mapId: 'C000F2_V3_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, 1],
+    # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+
+    # 对话选项
+    chats: [
+
+      { 
+        id: 'C1', desc: '能看见一家三口在散步，还有人在跑步健身', 
+        options: [ 
+         { title: '【散一会儿步】', missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }, nextChat: 'C1'}, 
+        ],
+      },
+
+      { 
+        id: 'C0', desc: '准备散去哪儿————', 
+        options: [ 
+          { 
+          title: '【回家】',  toScene: 'C000F2_V3_MAP_2_2', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv18' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv18','WZXX_M1_N1_C000F2_V/huijia_4']
+          },
+
+          {
+          title: '【花园】',toScene: 'C000F2_V3_MAP_0_1', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv20' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv20']
+          },
+
+          {
+          title: '【去公园看看，或许有活动】',toScene: 'C000F2_V_MAP_0_2',andVarsOn: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv23' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv23']
+          },
+          
+          {
+          title: '【去市场买点菜】',toScene: 'C000F2_V3_MAP_2_-1',andVarsOn: ['WZXX_M1_N1_C000F2_V/v_icon_103'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv24' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv24']
+          },
+
+          {
+          title: '【小区门口】',toScene: 'C000F2_V3_MAP_1_-1',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv21' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv21']
+          },
+        ],
+      },
+    ],
+  },
+
+#=============================事件场景==========================
+  {
+  # NPC2
+    id: 'C000F2_V3_MAP_2_2', name: '家门',
+    missionId: 'C000F2shijian',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_22',
+    #不显示时间
+    worldTimeHidden: False,
+    # 当前场景地图
+    mapId: 'C000F2_V3_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, 2],
+    # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter', 
+      #  varsOn: ['WZXX_M1_N1_C000F2_V/chumen_4'] ,
+       nextChat: 'C4A' },
+      #  { type: 'enter', varsOn: ['WZXX_M1_N1_C000F2_V/huijia_4'] ,nextChat: 'C4B' },
+       
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C4A', desc: '出门————请选择去的地方', 
+        options: [
+         { title: '【出门】', varsOff: ['WZXX_M1_N1_C000F2_V/chumen_4'] , nextChat: 'C0'}, 
+        ],
+      },
+
+       { 
+        id: 'C0', desc: '请选择行动的地址————', 
+        options: [ 
+          
+          { 
+          title: '【去过道逛逛】',toScene: 'C000F2_V3_MAP_1_1', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv19' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv19']
+          },
+
+          {
+          title: '【去市场买点菜】',toScene: 'C000F2_V3_MAP_2_-1',andVarsOn: ['WZXX_M1_N1_C000F2_V/v_icon_103'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv24' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv24']
+          },
+
+          {
+          title: '【小区门口】',toScene: 'C000F2_V3_MAP_1_-1',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv21' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv21']
+          },
+
+          {
+          title: '【去花园】',toScene: 'C000F2_V3_MAP_0_1', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv20' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv20']
+          },
+
+          {
+          title: '【去公园】',toScene: 'C000F2_V_MAP_0_2',andVarsOn: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv23' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv23']
+          },
+
+          {
+          title: '【算了还是不出门了】',toScene: 'C000F2_V2_MAP_-1_2',
+          },
+        ],
+      },
+
+      # { 
+      #   id: 'C4B', desc: '拿钥匙开门', 
+      #   options: [
+      #    { title: '【进门】', toScene: 'C000F2_V2_MAP_-1_2', varsOff: ['WZXX_M1_N1_C000F2_V/huijia_4'],}, 
+      #   ],
+      # },
+    ],
+
+  },
+
+#=============================事件场景==========================
+  {
+  # NPC2
+    id: 'C000F2_V3_MAP_2_-1', name: '市场',
+    missionId: 'C000F2shijian',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #横图显示
+    sceneImage: 'BGT_93',
+    #不显示时间
+    worldTimeHidden: False,
+    # 当前场景地图
+    mapId: 'C000F2_V3_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, -1],
+    # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/v_icon_103'],  nextChat: 'C1' },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '看着热闹的市场，你决定买些时蔬和水果回去', 
+        options: [ 
+         { title: '【买菜】', varsOff: ['WZXX_M1_N1_C000F2_V/v_icon_103'], varsOn: ['WZXX_M1_N1_C000F2_V/maicai'], 
+         missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 },
+         nextChat: 'C0' 
+         }, 
+        ],
+      },
+
+      { 
+        id: 'C1A', desc: '这是离家最近的菜市，蔬菜水果都有，不过现在还不需要买菜', 
+        options: [ 
+         { title: '【离开】', 
+         missionTime: { missionId: 'C000F2shijian', alterSeconds: 3600 },
+         nextChat: 'C0A' 
+         }, 
+        ],
+      },
+
+
+       { 
+        id: 'C0', desc: '请选择行动的地址————', 
+        options: [ 
+          { 
+          title: '【回家放菜】',  toScene: 'C000F2_V2_MAP_0_6', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv18' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv18','WZXX_M1_N1_C000F2_V/huijia_4']
+          },
+
+          # { 
+          # title: '【去过道逛逛】',toScene: 'C000F2_V3_MAP_1_1', 
+          # icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv19' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv19']
+          # },
+
+          # {
+          # title: '【去花园】',toScene: 'C000F2_V3_MAP_0_1', 
+          # icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv20' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv20']
+          # },
+
+          # {
+          # title: '【去公园】',toScene: 'C000F2_V_MAP_0_2',andVarsOn: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'],
+          # icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv23' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv23']
+          # },
+        ],
+      },
+
+       { 
+        id: 'C0A', desc: '请选择行动的地址————', 
+        options: [ 
+          # { 
+          # title: '【回家放菜】',  toScene: 'C000F2_V2_MAP_0_6', 
+          # icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv18' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv18','WZXX_M1_N1_C000F2_V/huijia_4']
+          # },
+
+          { 
+          title: '【去过道逛逛】',toScene: 'C000F2_V3_MAP_1_1', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv19' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv19']
+          },
+
+          {
+          title: '【去花园】',toScene: 'C000F2_V3_MAP_0_1', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv20' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv20']
+          },
+
+          {
+          title: '【去公园】',toScene: 'C000F2_V_MAP_0_2',andVarsOn: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'],
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv23' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv23']
+          },
+        ],
+      },
+    ],
+
+ },
+  
+  #=================================场景地图的设置==================================
+    maps: [
+      {
+        id: 'C000F2_V3_MAP_0_0',
+        data: [
+          { 
+          point: [2, 2], title: '家', 
+          toScene: 'C000F2_V3_MAP_2_2',
+          links: [[0, 1]], path: [[1, 2],[0, 2],[0, 1], ]
+          },
+
+          { 
+          point: [1, 1], title: '过道',
+          toScene: 'C000F2_V3_MAP_1_1', 
+          links: [[0, 1],] ,
+          },
+
+          { 
+          point: [0, 1], title: '花园', 
+          toScene: 'C000F2_V3_MAP_0_1', icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_101', },
+          links: [ ] , path: [[0, 0],[0, -1],[1, -1], ]
+          },
+
+          { 
+          point: [1, -1], title: '小区门口', 
+          toScene: 'C000F2_V3_MAP_1_-1', 
+          links: [ ] , path: [[2, -1], [2, 0], [2, 1] , [2, 2],[2, -1]]
+          },
+
+          { 
+          point: [2, -1], title: '市场', 
+          toScene: 'C000F2_V3_MAP_2_-1', icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_103', },
+          links: [ ] , path: [ ]
+          },
+        ]
+      },
+    ],
+ #=========================事件场景=====================
+  {
   # NPC2
     id: 'C000F2_V_MAP_0_2', name: '公园入口',
     missionId: 'C000F2shijian',
@@ -879,8 +1674,13 @@ scenes: [
     mapCenterPoint: [0, 2],
     # 变量定义
     vars: [
-    { id: "ONE_OPEN_0", min: 0, max: 1 },
-    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "v1", min: 0, max: 1 },
+    { id: "v2", min: 0, max: 1 },
+    { id: "v3", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
+    
     ],
     # 动作定义
     actions: [
@@ -888,26 +1688,83 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter', nextChat: 'C1'  },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1B' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_3A'] ,nextChat: 'C2' },
-       { type: 'enter', andVarsOff: ['WZXX_M1_N1_C000F2_V/linggan_2B'] ,andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'] ,nextChat: 'C4A'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuewuri',] , andVarsOff: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'], nextChat: 'C5G'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuewuri','WZXX_M1_N1_C000F2_V/zuohaoshi_4'], nextChat: 'C5A' },  
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuewuri','WZXX_M1_N1_C000F2_V/jieshu_5'],   nextChat: 'C1A' }, 
+       { type: 'enter', andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' }, 
+
     ],
     # 对话选项
     chats: [
+
       {
-        id: 'C1', desc: "李森炎独自一人走进公园\n这边热闹多了\n早晨有老人家打太极，时不时各种名校大学生过来交流学习\n所以各种展览也办的很多",
+        id: 'C1A', desc: '来往的人越来越少，公园关门的时间到了，早点回家吧',
         options: [ 
-         { title: '【公告栏】',toScene: 'C000F2_V_MAP_0_3', }, 
+         { title: '【离开>>>】',toScene: 'C000F2_V2_MAP_-1_2', }, 
         ],
       },
 
       {
-        id: 'C3', desc: "选择行动地址————",
+        id: 'C1', desc: "李森炎独自一人走进公园\n这边热闹多了\n早晨有老人家打太极，时不时各种名校大学生过来交流学习\n所以各种展览也办的很多",
         options: [ 
+         { title: '【公告栏】', toScene: 'C000F2_V_MAP_0_3', }, 
+        ],
+      },
 
-         { 
-         title: '【植物园】',toScene: 'C000F2_V_MAP_-1_3', 
-         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv11' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv11']
+      {
+        id: 'C4A', desc: "反正闲着也是闲着，不如来公园逛逛\n寻找一下灵感\n刚走到公园，忽然看见前面似乎有人围成一团\n似乎听见有人窃窃私语在说些什么‘扶不扶’之类的话",
+        options: [ 
+         { title: '【上前查看】',  nextChat: 'C4B' }, 
+         { title: '【还是不要惹事上身】', nextChat: 'C4C' }, 
+        ],
+      },
+
+      {
+        id: 'C4B', desc: "李森炎一个箭步上前，将围在一块的人群扒开\n只见人群中央，倒着一个头发花白的老太太\n李森炎大脑迅速反应，现在第一步该怎么做————",
+        options: [ 
+         { title: '【让人群分散开，保持通风】', varsOn: ['v1','biaoqianv1'] ,icon: { id: 1, bindVar: 'biaoqianv1' }  }, 
+         { title: '【赶紧呼救，打120】', andVarsOn: ['v1'] , varsOn: ['v2','biaoqianv2'] ,icon: { id: 1, bindVar: 'biaoqianv2' } }, 
+         { title: '【试探老人是否还有鼻息】', andVarsOn: ['v2'] , varsOn: ['v3','biaoqianv3'] ,icon: { id: 1, bindVar: 'biaoqianv3' }}, 
+         { title: '【做心肺复苏】', andVarsOn: ['v3'] ,varsOn: ['WZXX_M1_N1_C000F2_V/v_icon_102'], nextChat: 'C4D' }, 
+        ],
+      },
+
+      {
+        id: 'C4C', desc: "李森炎本有点担心惹事上身\n但前面哪些躁动声越来越大\n听见有人尖叫道，前面有人不行了\n李森炎心头一紧，捏了捏拳头，还是决定去看看",
+        options: [ 
+         { title: '【上前查看】', nextChat: 'C4B' }, 
+        ],
+      },
+
+      {
+        id: 'C4D', desc: "等到你将这些做完，老太太的呼吸逐渐恢复，意识似乎也清醒了\n此时救护车也来了\n你看见医生护士们从车上下来\n心中终于稍松了一口气",
+        options: [
+         { title: '【跟上救护车，看看】', nextChat: 'C4E' }, 
+         { title: '【做好事不留名，离开】', nextChat: 'C4F' }, 
+        ],
+      },
+
+      {
+        id: 'C4E', desc: "他正准备跟着医护人员上救护车\n想着这老太太一个人，到了医院没人照顾多可怜\n刚准备上去，不知从哪儿跑过来一个小伙子\n急匆匆的上了救护车，看来是老太太的儿子",
+        options: [
+         { title: '【那就不去添麻烦了，离开】', varsOff: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'] ,nextChat: 'C0' }, 
+       ],
+      },
+
+      {
+        id: 'C4F', desc: "既然有医护人员了，那就不去添麻烦了\n再说他刚才仿佛看见这老太太的家人也赶过来了\n看来没有需要他的地方\n想着李森炎便放心离开了",
+        options: [
+         { title: '【离开】', varsOff: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'] ,missionTime: { missionId: 'C000F2shijian', alterSeconds: 14400 } , nextChat: 'C0' }, 
+       ],
+      },
+
+      {
+        id: 'C0', desc: "时间太晚了，选择行动地址————",
+        options: [ 
+         {
+         title: '【查看公告栏】',toScene: 'C000F2_V_MAP_0_3', 
+         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv10' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv10']
          }, 
 
          { 
@@ -926,19 +1783,105 @@ scenes: [
          }, 
         ],
       },
+
+      #第五天(没有做好事的第五天)
+      {
+        id: 'C5A', desc: "反正闲着也是闲着，不如来公园逛逛\n寻找一下灵感\n刚走到公园，忽然看见前面似乎有人围成一团\n似乎听见有人窃窃私语在说些什么‘扶不扶’之类的话",
+        options: [ 
+         { title: '【上前查看】', varsOn: ['WZXX_M1_N1_C000F2_V/v_icon_102'], nextChat: 'C5B' }, 
+         { title: '【还是不要惹事上身】', varsOn: ['WZXX_M1_N1_C000F2_V/v_icon_102'],  nextChat: 'C5C' }, 
+        ],
+      },
+
+      {
+        id: 'C5B', desc: "李森炎一个箭步上前，将围在一块的人群扒开\n只见人群中央，倒着一个头发花白的老太太\n李森炎大脑迅速反应，现在第一步该怎么做————",
+        options: [ 
+         { title: '【让人群分散开，保持通风】', varsOn: ['v1','biaoqianv1'] ,icon: { id: 1, bindVar: 'biaoqianv1' }  }, 
+         { title: '【赶紧呼救，打120】', andVarsOn: ['v1'] , varsOn: ['v2','biaoqianv2'] ,icon: { id: 1, bindVar: 'biaoqianv2' } }, 
+         { title: '【试探老人是否还有鼻息】', andVarsOn: ['v2'] , varsOn: ['v3','biaoqianv3'] ,icon: { id: 1, bindVar: 'biaoqianv3' }}, 
+         { title: '【做心肺复苏】', andVarsOn: ['v3'] , nextChat: 'C5D' }, 
+        ],
+      },
+
+      {
+        id: 'C5C', desc: "李森炎本有点担心惹事上身\n但前面哪些躁动声越来越大\n听见有人尖叫道，前面有人不行了\n李森炎心头一紧，捏了捏拳头，还是决定去看看",
+        options: [ 
+         { title: '【上前查看】', nextChat: 'C5B' }, 
+        ],
+      },
+
+      {
+        id: 'C5D', desc: "等到你将这些做完，老太太的呼吸逐渐恢复，意识似乎也清醒了\n此时救护车也来了\n你看见医生护士们从车上下来\n心中终于稍松了一口气",
+        options: [
+         { title: '【跟上救护车，看看】', nextChat: 'C5E' }, 
+         { title: '【做好事不留名，离开】', nextChat: 'C5F' }, 
+        ],
+      },
+
+      {
+        id: 'C5E', desc: "他正准备跟着医护人员上救护车\n想着这老太太一个人，到了医院没人照顾多可怜\n刚准备上去，不知从哪儿跑过来一个小伙子\n急匆匆的上了救护车，看来是老太太的儿子",
+        options: [
+         { title: '【那就不去添麻烦了，离开】', varsOff: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'] ,nextChat: 'C0A' }, 
+       ],
+      },
+
+      {
+        id: 'C5F', desc: "既然有医护人员了，那就不去添麻烦了\n再说他刚才仿佛看见这老太太的家人也赶过来了\n看来没有需要他的地方\n想着李森炎便放心离开了",
+        options: [
+         { title: '【离开】', varsOff: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'] , missionTime: { missionId: 'C000F2shijian', alterSeconds: 14400 } ,nextChat: 'C0A' }, 
+       ],
+      },
+
+       {
+        id: 'C0A', desc: "选择行动地址————",
+        options: [ 
+         {
+         title: '【查看公告栏】',toScene: 'C000F2_V_MAP_0_3', 
+         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv10' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv10']
+         }, 
+
+         { 
+         title: '【动物园】',toScene: 'C000F2_V_MAP_1_3', 
+         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv12' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv12']
+         }, 
+
+         { 
+         title: '【音乐走廊】',toScene: 'C000F2_V_MAP_-1_4', 
+         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv13' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv13']
+         }, 
+
+         { 
+         title: '【中心广场】',toScene: 'C000F2_V_MAP_0_4', 
+         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv14']
+         }, 
+        ],
+      },
+
+      #第五天（做了好事的第五天）
+
+       {
+        id: 'C5G', desc: "记得今天有科研会，不知道开始了没有\n前去看看吧",
+        options: [
+        { 
+         title: '【去展览馆】',toScene: 'C000F2_V_MAP_-1_5',
+         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv16' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv16']
+         }, 
+
+       ],
+      },
     ],
   },
 
-  #===========事件场景==============
+  #=========================事件场景=====================
        {
-  # NPC2
+    # NPC2
     id: 'C000F2_V_MAP_0_3', name: '公告栏',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
     isNpc: true,
-    #横图显示
+    # 横图显示
     sceneImage: 'BGT_80',
-    #不显示时间
+    # 不显示时间
     worldTimeHidden: False,
     # 当前场景地图
     mapId: 'C000F2_V_MAP_0_0',
@@ -955,14 +1898,16 @@ scenes: [
     # 事件定义
     events: [
       { type: 'enter', nextChat: 'C1'  },
-      { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/GGL_1'], nextChat: 'C1B'  },
+      { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/v_icon_102'] , nextChat: 'C4A'  },
       { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
-      { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_3C'] ,nextChat: 'C4' },
+      { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuewuri','WZXX_M1_N1_C000F2_V/zuohaoshi_4'], nextChat: 'C5A' },  
+      { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuewuri',] , andVarsOff: ['WZXX_M1_N1_C000F2_V/zuohaoshi_4'], nextChat: 'C5C'  },
+
 
     ],
     # 对话选项
     chats: [
-       #第二天来公园
+
        {
         id: 'C1A', desc: '来往的人越来越少，公园关门的时间到了，早点回家吧',
         options: [ 
@@ -970,42 +1915,106 @@ scenes: [
         ],
       },
 
-
+      
       {
         id: 'C1', desc: "公告栏上会每天更新公园情况和活动\n很多人都围着一块探头探脑的看着\n看来最近有什么大型活动要举行",
         options: [ 
-         { title: '【查看公告栏】',nextChat: 'C2' ,varsOff: ['WZXX_M1_N1_C000F2_V/v_icon_106'], varsOn: ['WZXX_M1_N1_C000F2_V/v_icon_100','WZXX_M1_N1_C000F2_V/v_icon_101','WZXX_M1_N1_C000F2_V/GGL_1']},
+         { title: '【查看公告栏】',nextChat: 'C4B' ,},
          { title: '【离开>>>】',nextChat: 'C3' },  
-        
-
-        ],
-      },
-
-       {
-        id: 'C2', desc: "公告：今日植物园新开业，免门票一日\n三号清晨9:00，广场舞大会\n下午14:00：音乐学院的学生将会在音乐长廊举行音乐交流会\n同时观景地有美术学院的学生写生",
-        options: [ 
-         { title: '【离开>>>】',nextChat: 'C3' }, 
         ],
       },
 
       {
-        id: 'C3', desc: "选择行动地址————",
+        id: 'C4A', desc: "天色不早了，现在逛公园过不了多久就要闭园了\n先来看看明天有什么活动，明天准备再来吧",
+        options: [
+         { title: '【查看公告栏】',nextChat: 'C4B' ,},
+        ],
+      },
+    #四号的公告栏
+      {
+        id: 'C4B', desc: "公告：五号十点到下午三点，科研展览会将会在本园召开\n下午美术学院的学生在观景台处写生，需要前往观景台的游客可错峰观赏",
+        options: [ 
+         { title: '【离开>>>】', varsOff: ['WZXX_M1_N1_C000F2_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000F2_V/v_icon_104'], nextChat: 'C0' }, 
+        ],
+      },
+
+      {
+        id: 'C0', desc: "选择行动地址————",
         options: [ 
          {
-         title: '【植物园】',toScene: 'C000F2_V_MAP_-1_3',
-         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv11' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv11']
+         title: '【时间不早了，早点回家吧】',toScene: 'C000F2_V2_MAP_-1_2', varsOn: ['WZXX_M1_N1_C000F2_V/huijia_4','WZXX_M1_N1_C000F2_V/jieshu_4'],
          },
+
+         
+
+        ],
+      },
+
+      #第五天（没有做好事）
+
+      {
+        id: 'C5A', desc: "公告栏上会记录这几日公园将会展开的重要活动",
+        options: [
+         { title: '【查看公告栏】',nextChat: 'C5B' ,},
+        ],
+      },
+
+      {
+        id: 'C5B', desc: "公告：五号十点到下午三点，科研展览会将会在本园召开\n下午美术学院的学生在观景台处写生，需要前往观景台的游客可错峰观赏",
+        options: [
+         { title: '【离开>>>】', varsOff: ['WZXX_M1_N1_C000F2_V/v_icon_102'], varsOn: ['WZXX_M1_N1_C000F2_V/v_icon_104'], nextChat: 'C0' }, 
+        ],
+      },
+
+      {
+        id: 'C0A', desc: "选择行动地址————",
+        options: [ 
+         { 
+         title: '【去展览馆】',toScene: 'C000F2_V_MAP_-1_5',
+         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv16' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv16']
+         }, 
+
+        ],
+      },
+
+       #第五天（做了好事）
+
+      {
+        id: 'C5C', desc: "公告：五号十点到下午三点，科研展览会将会在本园召开\n下午美术学院的学生在观景台处写生，需要前往观景台的游客可错峰观赏",
+        options: [ 
+         { title: '【好的我知道了】', nextChat: 'C0B' }, 
+        ],
+      },
+
+      {
+        id: 'C0B', desc: "选择行动地址————",
+        options: [ 
+         { 
+         title: '【去展览馆】',toScene: 'C000F2_V_MAP_-1_5',
+         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv16' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv16']
+         }, 
 
          { 
          title: '【动物园】',toScene: 'C000F2_V_MAP_1_3', 
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv12' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv12']
          }, 
+
+         { 
+         title: '【音乐走廊】',toScene: 'C000F2_V_MAP_-1_4', 
+         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv13' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv13']
+         }, 
+
+         { 
+         title: '【中心广场】',toScene: 'C000F2_V_MAP_0_4', 
+         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv14']
+         }, 
+
         ],
       },
     ],
   },
 
-  #===========事件场景==============
+  #=========================事件场景=====================
        {
   # NPC2
     id: 'C000F2_V_MAP_-1_3', name: '植物园',
@@ -1032,7 +2041,6 @@ scenes: [
     events: [
        { type: 'enter', nextChat: 'C1'  },
        { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_3C'] ,nextChat: 'C4' },
     ],
     # 对话选项
     chats: [
@@ -1044,8 +2052,15 @@ scenes: [
         ],
       },
 
+       {
+        id: 'C1', desc: "植物园已经来过了\n暂时也没有什么好逛的\n还是就在外面走走吧",
+        options: [ 
+        { title: '【散步离开】',nextChat: 'C0' ,missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 }}, 
+        ],
+      },
+
       {
-        id: 'C3', desc: "选择行动地址————",
+        id: 'C0', desc: "选择行动地址————",
         options: [ 
         { 
          title: '【音乐走廊】',toScene: 'C000F2_V_MAP_-1_4', 
@@ -1062,7 +2077,7 @@ scenes: [
     ],
   },
 
-  #===========事件场景==============
+  #=========================事件场景============================
        {
   # NPC2
     id: 'C000F2_V_MAP_1_3', name: '动物园',
@@ -1102,26 +2117,15 @@ scenes: [
       },
 
       {
-        id: 'C1', desc: "动物园绿树葱茏，花团锦簇，景色宜人\n有许多家长带着孩子来玩\n也有不少大学生",
+        id: 'C1', desc: "这边也逛过了\n依旧有很多学生和家长前来参观\n不过对你来说没什么新奇的",
         options: [ 
-         { title: '【进去看看】',nextChat: 'C2' ,missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 }}, 
+         { title: '【散散步就离开】',nextChat: 'C2' ,missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 }}, 
          { title: '【离开>>>】',nextChat: 'C3' }, 
         ],
       },
 
       {
-        id: 'C2', desc: "买票进入动物园\n逛了一下午，确实看到了许多新奇的动物\n平时工作加班连轴转，逛一逛确实觉得自己十分放松\n也收集到了很多灵感",
-        options: [ 
-        { 
-        title: '【离开>>>】',nextChat: 'C3',
-        varsOff: ['WZXX_M1_N1_C000F2_V/v_icon_100'] ,
-        dropIds: [ 'WZXX_M1_N1_C000F2_V_drop1',]
-        }, 
-        ],
-      },
-
-      {
-        id: 'C3', desc: "请选择行动地址————",
+        id: 'C0', desc: "请选择行动地址————",
         options: [ 
         #  { title: '【离开回家】',toScene: 'C000F2_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F2_V/zhuxiankaishi_A'] ,}, 
         { 
@@ -1167,10 +2171,6 @@ scenes: [
     events: [
        { type: 'enter', nextChat: 'C1'  },
        { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000F2shijian >= 14', '@missionTime_C000F2shijian <= 19'],nextChat: 'C4' },
-      #全局判断变量，当满足某一条件的时候自动开启某个变量
-       { type: 'timeChanged', varsOn: ['WZXX_M1_N1_C000F2_V/v_icon_102'] ,andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000F2shijian >= 14', '@missionTime_C000F2shijian <= 16'],  },
-
 
     ],
     # 对话选项
@@ -1184,7 +2184,7 @@ scenes: [
       },
 
       {
-        id: 'C5', desc: "不知不觉听了三个小时\n李森炎和音乐学院的学生们聊得很开心\n意外的打成一片\n约定之后要是还有活动继续参加\n时间不早了学生们回学校了",
+        id: 'C1', desc: "不知不觉听了三个小时\n李森炎和音乐学院的学生们聊得很开心\n意外的打成一片\n约定之后要是还有活动继续参加\n时间不早了学生们回学校了",
         options: [ 
          { 
          title: '【便利店】',toScene: 'C000F2_V_MAP_1_4',
@@ -1240,11 +2240,6 @@ scenes: [
     events: [
        { type: 'enter', nextChat: 'C1'  },
        { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000F2shijian >= 8', '@missionTime_C000F2shijian <= 11'],nextChat: 'C3' },
-        #可全局操控能，当达到某个时间后，设定的叹号任务变量自动开启，不需要全局配置
-       { type: 'timeChanged', varsOn: ['WZXX_M1_N1_C000F2_V/v_icon_103'] ,andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_3C'] ,andVarsValue: ['@missionTime_C000F2shijian >= 8', '@missionTime_C000F2shijian <= 14'],  },
-
-
     ],
     # 对话选项
     chats: [
@@ -1256,8 +2251,15 @@ scenes: [
         ],
       },
 
-       {
-        id: 'C2', desc: "选择行动地址————",
+      {
+        id: 'C1', desc: "中心广场这边有许多人围在一块下棋聊天的\n今天没有什么活动，所以李森炎没待多久就走了",
+        options: [ 
+          { title: '【离开>>>】',nextChat: 'C0', missionTime: { missionId: 'C000Fshijian', alterSeconds: 7200 } }, 
+        ],
+      },
+
+      {
+        id: 'C0', desc: "选择行动地址————",
         options: [ 
          { 
          title: '【便利店】',toScene: 'C000F2_V_MAP_1_4', 
@@ -1274,15 +2276,12 @@ scenes: [
          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv13' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv13']
          }, 
 
-        #  { 
-        #  title: '【中心广场】',toScene: 'C000F2_V_MAP_0_4', 
-        #  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv14']
-        #  }, 
-        #  { title: '【离开回家】',andVarsValue: ['@props_372 >= 0'] ,toScene: 'C000F2_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F2_V/zhuxiankaishi_A'] , }, 
+         { 
+         title: '【中心广场】',toScene: 'C000F2_V_MAP_0_4', 
+         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv14']
+         }, 
         ],
       },
-
-    
     ],
   },
   #======================事件场景=========================
@@ -1311,8 +2310,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter', nextChat: 'C1'  },
-       { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
-       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_3C'] ,nextChat: 'C4' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/bianlidian_5'], nextChat: 'C5A'  },
+       { type: 'enter', andVarsOff: ['WZXX_M1_N1_C000F2_V/bianlidian_5'], andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
     ],
     # 对话选项
     chats: [
@@ -1322,12 +2321,50 @@ scenes: [
         options: [ 
          { title: '【离开>>>】',toScene: 'C000F2_V_MAP_0_2', }, 
         ],
-      },      
-
-   
+      },   
 
       {
-        id: 'C3', desc: "选择行动地址————",
+        id: 'C1', desc: "这便利店来往的人很多\n老板是个很富态的大叔，总是乐呵呵的\n李森炎经常会和他坐下来聊两句能获得很多新资讯",
+        options: [ 
+         { title: '【和便利店老板交流】',nextChat: 'C2',missionTime: { missionId: 'C000Fshijian', alterSeconds: 3600 } }, 
+         { title: '【离开>>>】', nextChat: 'C0' }, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: "现在是人群的高峰期\n便利店的客人很多，可能老板暂时忙不过来\n算了还是先不打扰老板了",
+        options: [ 
+         { title: '【去别的地方转转】', nextChat: 'C0' }, 
+        ],
+      },
+
+      {
+        id: 'C5A', desc: "李森炎和张奇一并走进便利店\n就见张奇宛如进入自己家一般\n自己动手弄了一份关东煮，顺便还给他也弄了一份\n当他还在想着这人挺自来熟的，随后便听见张奇冲着里面喊了句‘爸’。",
+        options: [
+         { title: '【巧了不是！】', varsOff: ['WZXX_M1_N1_C000F2_V/v_icon_105'] ,nextChat: 'C5B' }, 
+        ],
+      }, 
+
+      {
+        id: 'C5B', desc: "原来他就是便利店老板口中的那个和他一样离职创业的儿子\n老板看见他们俩站一块也笑着说，缘分真够神奇的\n二人颇有缘分，思想观念和共同经历也想通\n所以聊得很合拍，在张奇这里李森炎也知道了不少有关创业的tips。",
+        options: [ 
+         { 
+         title: '【相谈甚欢】', dropIds: [ 'WZXX_M1_N1_C000F2_V_drop5',], 
+         nextChat: 'C5C' ,
+         missionTime: { missionId: 'C000F2shijian', alterSeconds: 3600 }
+         }, 
+        ],
+      },      
+
+      {
+        id: 'C5C', desc: "天色渐晚，聊的差不多了\n对方看上去也有点疲倦\n而李森炎也差不多该回家了\n今天吸收了很多新知识，得早点回家把冒出来的灵感记下",
+        options: [ 
+         {title: '【道别，回家】', varsOn: ['WZXX_M1_N1_C000F2_V/jieshu_5'] ,toScene: 'C000F2_V_MAP_0_2',}, 
+        ],
+      }, 
+
+      {
+        id: 'C0', desc: "选择行动地址————",
         options: [ 
          { 
          title: '【观景地】',toScene: 'C000F2_V_MAP_1_5',
@@ -1379,7 +2416,11 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter', nextChat: 'C1'  },
-       { type: 'enter',  andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
+       { type: 'enter', andVarsOff: ['WZXX_M1_N1_C000F2_V/zhanlanguan_5'] , andVarsOn: ['WZXX_M1_N1_C000F2_V/shiyuewuri'], nextChat: 'C1'  },
+       { type: 'enter', andVarsValue: ['@missionTime_C000F2shijian >= 20', '@missionTime_C000F2shijian <= 24'], nextChat: 'C1A' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000F2_V/v_icon_104'] , nextChat: 'C5A'  },
+
+       
     ],
     # 对话选项
     chats: [
@@ -1391,38 +2432,93 @@ scenes: [
         ],
       },
 
-       {
-        id: 'C1', desc: "这边时常有各式各样奇异的展览开房观看\n不过今天貌似没有\n看起来空空如也",
-        options: [ 
-         { title: '【等有展览再来看看】',nextChat: 'C2',missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 } }, 
+      {
+        id: 'C1', desc: "科研会已经结束了\n只剩下工作人员在打扫现场\n这边没什么好看的，去别的地方逛逛吧",
+        options: [
+         { title: '【离开】',nextChat: 'C0',missionTime: { missionId: 'C000F2shijian', alterSeconds: 3600 } }, 
         ],
       },
 
-       {
-        id: 'C2', desc: "选择行动地址————",
-        options: [ 
-         { 
-         title: '【观景地】',toScene: 'C000F2_V_MAP_1_5',
-         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv17' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv17']
-         }, 
-        #  { title: '【公园入口】',toScene: 'C000F2_V_MAP_0_2', }, 
-         { 
-         title: '【音乐走廊】',toScene: 'C000F2_V_MAP_-1_4', 
-         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv13' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv13']
-         }, 
+      #第五天
+      {
+        id: 'C5A', desc: "科技会上攘来熙往\n有各类科技人员聚集在不同的区块商讨聊天\n大家都十分热情包容，李森炎静静的听着，便学到了不少东西\n不知不觉几个小时过去，研讨大会结束",
+        options: [
 
          { 
-         title: '【中心广场】',toScene: 'C000F2_V_MAP_0_4',
-         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv14']
-         }, 
-          # { title: '【离开回家】',andVarsValue: ['@props_372 >= 0'] ,toScene: 'C000F2_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F2_V/zhuxiankaishi_A'] , }, 
+         title: '【主动上前和人打招呼】',nextChat: 'C5B', 
+         varsOn: ['WZXX_M1_N1_C000F2_V/zhanlanguan_5'],
+         dropIds: [ 'WZXX_M1_N1_C000F2_V_drop4',],
+         missionTime: { missionId: 'C000F2shijian', alterSeconds: 10800 } 
+         },
+
+         { 
+         title: '【顺着人群离开展览馆】',nextChat: 'C5C', 
+         varsOn: ['WZXX_M1_N1_C000F2_V/zhanlanguan_5'], 
+         dropIds: [ 'WZXX_M1_N1_C000F2_V_drop4',],
+         missionTime: { missionId: 'C000F2shijian', alterSeconds: 10800 } 
+         },
         ],
       },
 
+      {
+        id: 'C5B', desc: "在这里除了各类人工智能，云计算的数字科技学者外，还有很多高新人才\n多和大家聊聊天，肯定收获不小\n正这么想着，李森炎准备上前打招呼，便看见一位男士的口袋里掉出一个白色卡片\n而那人并未发现，则是自顾自的往前走",
+        options: [
+         { title: '【帮忙捡起东西，归还给他】', nextChat: 'C5D',}, 
+        ],
+      },
+
+      {
+        id: 'C5C', desc: "科研会结束了，李森炎也顺着人群往外走\n心中正想着今天收获颇多，晚上回去要把这些灵感都记下来\n忽然抬头便看见一位男士的口袋里掉出一个白色卡片\n而那人并未发现，则是自顾自的往前走",
+        options: [
+         { title: '【帮忙捡起东西，归还给他】', nextChat: 'C5D',}, 
+        ],
+      },
+
+      {
+        id: 'C5D', desc: "捡起地上的卡片，那竟然是一张身份证\n李森炎赶紧看了下身份证上的名字\n“张奇”开口叫住那人，然后把身份证递了上去\n张奇十分感激，于是两人便多聊了几句",
+        options: [
+         { title: '【了解张奇】',missionTime: { missionId: 'C000F2shijian', alterSeconds: 3600 } , nextChat: 'C5E',}, 
+        ],
+      },
+
+      {
+        id: 'C5E', desc: "详谈一番，李森炎才知道，原来张奇也是离职创业\n和他一样也是数字科技领域刚起步\n两人许多爱好相同经历相同，简直一见如故，不知不觉聊了许久",
+        options: [
+         { title: '【干站着聊也不是办法】', varsOn: ['WZXX_M1_N1_C000F2_V/v_icon_105'] ,nextChat: 'C5F',}, 
+        ],
+      },
+
+      {
+        id: 'C5F', desc: "聊了这么久肚子都有些饿了\n就这么干站着也不是个办法\n离这边最近的休息处只有一个便利店，于是便和张奇提出去便利店坐坐\n没想到一拍即合，张奇也正有此意",
+        options: [
+         { title: '【一通前往便利店】', toScene: 'C000F2_V_MAP_1_4', varsOn: ['WZXX_M1_N1_C000F2_V/bianlidian_5'] , varsOff: ['WZXX_M1_N1_C000F2_V/zhanlanguan_5'],}, 
+        ],
+      },
+
+      {
+        id: 'C0', desc: "选择行动地址————",
+        options: [
+
+          {
+          title: '【观景地】',toScene: 'C000F2_V_MAP_1_5',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv17' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv17']
+          }, 
+
+          { 
+          title: '【音乐走廊】',toScene: 'C000F2_V_MAP_-1_4', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv13' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv13']
+          }, 
+
+          { 
+          title: '【中心广场】',toScene: 'C000F2_V_MAP_0_4',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv14' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv14']
+          }, 
+        ],
+      },
     ],
   },
-  #======================事件场景=========================
-       {
+#==================================事件场景=========================
+  {
   # NPC2
     id: 'C000F2_V_MAP_1_5', name: '观景地',
     missionId: 'C000F2shijian',
@@ -1462,42 +2558,36 @@ scenes: [
       {
         id: 'C1', desc: "公园后山的风景着实不错\n有很多美术学院的学生在此写生",
         options: [ 
-         { title: '【静坐观赏风景】',nextChat: 'C2' ,missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 }}, 
-         { title: '【与美术生聊天】',nextChat: 'C2' ,dropIds: [ 'WZXX_M1_N1_C000F2_V_drop7',] , andVarsOn: ['WZXX_M1_N1_C000F2_V/linggan_3C'] , missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 } }, 
+         { title: '【静坐观赏风景】',nextChat: 'C0' ,missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 }}, 
+         { title: '【与美术生聊天】',nextChat: 'C0' , missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 } }, 
          { title: '【离开>>>】', nextChat: 'C3' }, 
         ],
       },
+
       {
         id: 'C2', desc: "李森炎坐了一会儿，忽然有美术学院的学生上前搭话\n随后就很快的聊了起来\n仅仅一下午李森炎凭借自己的聪慧和幽默和学生们打的火热",
         options: [ 
-         { title: '【离开>>>】', varsOff: ['WZXX_M1_N1_C000F2_V/v_icon_105'] ,nextChat: 'C3' }, 
+         { title: '【离开>>>】', varsOff: ['WZXX_M1_N1_C000F2_V/v_icon_105'] ,nextChat: 'C0' }, 
         ],
       },
 
       {
-        id: 'C3', desc: "选择行动地址————",
+        id: 'C0', desc: "选择行动地址————",
         options: [ 
+          { 
+          title: '【公告栏】',toScene: 'C000F2_V_MAP_0_3',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv10' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv10']
+          }, 
 
-         { 
-         title: '【公告栏】',toScene: 'C000F2_V_MAP_0_3',
-         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv10' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv10']
-         }, 
+          { 
+          title: '【植物园】',toScene: 'C000F2_V_MAP_-1_3',
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv11' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv11']
+          }, 
 
-        #  {
-        #  title: '【公园入口】',toScene: 'C000F2_V_MAP_0_2',
-        #  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv9' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv9']
-        #  },
-
-         { 
-         title: '【植物园】',toScene: 'C000F2_V_MAP_-1_3',
-         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv11' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv11']
-         }, 
-
-         { 
-         title: '【动物园】',toScene: 'C000F2_V_MAP_1_3', 
-         icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv12' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv12']
-         },  
-        #  { title: '【离开回家】',andVarsValue: ['@props_372 >= 0'] ,toScene: 'C000F2_V2_MAP_-2_4', varsOn: ['WZXX_M1_N1_C000F2_V/zhuxiankaishi_A'] , }, 
+          { 
+          title: '【动物园】',toScene: 'C000F2_V_MAP_1_3', 
+          icon: { id: 1, bindVar: 'WZXX_M1_N1_C000F2_V/biaoqianv12' }, varsOn: ['WZXX_M1_N1_C000F2_V/biaoqianv12']
+          },  
         ],
       },
     ],
@@ -1516,55 +2606,48 @@ scenes: [
 
               { 
               point: [0, 3], title: '公告栏',
-              icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_106', },
-              toScene: 'C000F2_V_MAP_0_3',
+              toScene: 'C000F2_V_MAP_0_3',icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_102', },
               links: [[-1, 3],[1, 3] ] 
               },
 
               { 
               point: [-1, 3], title: '植物园',
-              icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_101', },   
               toScene: 'C000F2_V_MAP_-1_3',
               links: [[-1, 4],] 
               },
 
               { 
-              point: [1, 3], title: '动物园',
-              icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_100', },  
+              point: [1, 3], title: '动物园', 
               toScene: 'C000F2_V_MAP_1_3',
               links: [[1, 4]] 
               },
 
               { 
-              point: [-1, 4], title: '音乐走廊',
-              icon: { id: 102, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_102',},   
+              point: [-1, 4], title: '音乐走廊',  
               toScene: 'C000F2_V_MAP_-1_4',
               links: [[-1, 5]] 
               },
 
               { 
               point: [0, 4], title: '中心广场', 
-              icon: { id: 102, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_103', },
               toScene: 'C000F2_V_MAP_0_4',
               links: [[-1, 4],[1, 4]] 
               },
 
               { 
               point: [1, 4], title: '便利店', 
-              icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_104', },
-              toScene: 'C000F2_V_MAP_1_4',
-              links: [[-2, 1]] 
+              toScene: 'C000F2_V_MAP_1_4',icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_105', },
+              links: [[1, 5]] 
               },
 
               { 
               point: [-1, 5], title: '展览馆', 
-              toScene: 'C000F2_V_MAP_-1_5',
+              toScene: 'C000F2_V_MAP_-1_5',icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_104', },
               links: [[1, 5]] 
               },
 
               { 
               point: [1, 5], title: '观景地', 
-              icon: { id: 101, bindVar: 'WZXX_M1_N1_C000F2_V/v_icon_105', },
               toScene: 'C000F2_V_MAP_1_5',
               links: [[-1, 5]] 
               },

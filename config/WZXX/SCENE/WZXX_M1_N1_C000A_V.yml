@@ -37,8 +37,6 @@ scenes: [
       { id: "v_icon_110", min: 0, max: 1 },
       #进入商铺买簪子
       { id: "maizanzi_A", min: 0, max: 1 },
-      
-
       { id: "caiyao", min: 0, max: 1 },
 
       
@@ -73,10 +71,7 @@ scenes: [
           { title: "【继续原路回家】",toScene: 'C000A_V3_MAP_-1_0',sounds: [{ soundId: 'BGM_C_0001',}],  },
         ],
       },
-
         ],
-
-  
     },
 
  #===========事件场景==============
@@ -520,7 +515,7 @@ scenes: [
     # ],},],
   },
 #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V_MAP_1_5', name: '天水亭',
     # 指定场景为NPC或MAP场景
@@ -1588,22 +1583,22 @@ scenes: [
     ],
     # 对话选项
     chats: [
-       { 
-        id: 'C1', desc: '里面有个德高望重的老人', 
-        options: [ 
-        { title: '【和他聊聊天】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] }, 
-        { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
-        # { title: '【来福客栈】',toScene: 'C000A_V_MAP_1_-3'},
-        # { title: '【玄德大街】',toScene: 'C000A_V_MAP_0_-2'},
-        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+      { 
+      id: 'C1', desc: '里面有个德高望重的老人', 
+         options: [ 
+          { title: '【和他聊聊天】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] }, 
+          { title: '【花满楼】',toScene: 'C000A_V_MAP_1_-1'},
+      # { title: '【来福客栈】',toScene: 'C000A_V_MAP_1_-3'},
+      # { title: '【玄德大街】',toScene: 'C000A_V_MAP_0_-2'},
+      # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+      # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
-      
-       { 
-        id: 'C2', desc: "“菩提本无树 ，明镜亦非台，本来无一物，何处惹尘埃”\n李森炎走进，听见那人嘴里奇奇怪怪的说着什么\n李森炎看了他一眼\n觉得他神经兮兮的，还是赶快走吧，别靠近",   
+
+      { 
+      id: 'C2', desc: "“菩提本无树 ，明镜亦非台，本来无一物，何处惹尘埃”\n李森炎走进，听见那人嘴里奇奇怪怪的说着什么\n李森炎看了他一眼\n觉得他神经兮兮的，还是赶快走吧，别靠近",   
         options: [ 
-         { title: '离开', nextChat: 'C1' }, 
+          { title: '离开', nextChat: 'C1' }, 
         ],
       },
 
@@ -1631,7 +1626,7 @@ scenes: [
       { 
         id: 'C4', desc: "李森炎拿着换来的好酒敲门进去\n果然老人一看见美酒，眼睛都直了\n很慷慨大方的帮他炼制好了丹药",   
         options: [ 
-         { title: '吃下丹药', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], toChapter: "WZXX_M1_N1_C002_[N6]" ,icon: { id: 11 }}, 
+         { title: '吃下丹药', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], toChapter: "WZXX_M1_N1_C002_[N6]" ,sounds: [{ stopBGM: true }],icon: { id: 11 }}, 
         ],
       },
       ],
@@ -1725,9 +1720,9 @@ scenes: [
         # { title: '【玄德中街】',toScene: 'C000A_V_MAP_0_0'},
         # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
         # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
-
         ],
-      }, 
+      },
+
       { 
         id: 'C2', desc: '逛了一圈，也没发现什么有趣的地方', 
         options: [ 
@@ -2090,7 +2085,7 @@ scenes: [
           { key: 'P1', content: ['原身去商铺买完簪子回来，路过市集时，感觉身边出现了许多陌生面孔。','按理来说，市集里出现陌生的面孔很正常，但原身就是能判断出，哪些人是附近赶集的乡民，哪些人可能是兵痞子，而且能感应到各自的威胁性。',
           '这种能力不是普通人所能具备，只不过原身自己不知道，他自幼还有过目不忘的本事，不过这种本事也并未得到父亲的赞许，只说是稀松平常。','当时他决定绕路回家，然而还是晚了，刚走没几步，就被一群彪形大汉堵住了去路。',
           '“李森炎是吧？”','“大……大哥，不好意思……”','扑面而来的杀气让原身的脚跟子发软，连忙讨饶，“不不不，我叫闫二狗，不是你说的那什么李森炎，各位壮士认错人了吧？”','大汉从怀中掏出一张画像，走上前来盯着原身的脸仔细比对片刻，冷笑一声：“这画上的不是你是谁？”',],
-          btn: [{title: '各位壮士，你们真的认错人了！' , toChapter: "WZXX_M1_N1_C002_[N3]" }, ]},
+          btn: [{title: '各位壮士，你们真的认错人了！' , toChapter: "WZXX_M1_N1_C002_[N3]",sounds: [{ stopBGM: true }],  }, ]},
     ],},
     ],
     },
@@ -2434,7 +2429,7 @@ scenes: [
       { 
         id: 'C4', desc: "李森炎拿着换来的好酒敲门进去\n果然老人一看见美酒，眼睛都直了\n很慷慨大方的帮他炼制好了丹药",   
         options: [ 
-         { title: '吃下丹药', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_B'], toChapter: "WZXX_M1_N1_C002_[N6]", icon: { id: 11 } }, 
+         { title: '吃下丹药', varsOff: ['WZXX_M1_N1_C000A_V/maicaoyao_B'],toChapter: "WZXX_M1_N1_C002_[N6]", sounds: [{ stopBGM: true }], }, 
         ],
       },
       ],

@@ -26,21 +26,21 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000D_VA', desc: '回忆', 
         options: [ 
-          { title: "【探索纳戒里的空间】",toScene: 'C000D_VA_MAP_-2_1', transitionAnimation: '左右开门转场'  },
+          { title: "【探索纳戒里的空间】",toScene: 'C000D_VA_MAP_-2_1', transitionAnimation: '左右开门转场' ,sounds: [{ soundId: 'BGM_R_0003',}], },
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C000D_VA1', desc: '种植', 
         options: [ 
-          { title: "【在荒废的院子里种植东西】",toScene: 'C000D_VA1_MAP_-2_4', transitionAnimation: '左右开门转场'  },
+          { title: "【在荒废的院子里种植东西】",toScene: 'C000D_VA1_MAP_-2_4', transitionAnimation: '左右开门转场' ,sounds: [{ soundId: 'BGM_R_0003',}], },
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C000D_VA2', desc: '种植', 
         options: [ 
-          { title: "【获得草药，去小世界里种些东西】", varsOn: ['zhongzhi_A'], transitionAnimation: '左右开门转场' , toScene: 'C000D_VA1_MAP_-2_4',dropIds: [ 'WZXX_M1_N1_C000D_VA_V_drop1','WZXX_M1_N1_C000D_VA_V_drop2','WZXX_M1_N1_C000D_VA_V_drop3',] },
+          { title: "【获得草药，去小世界里种些东西】", varsOn: ['zhongzhi_A'],sounds: [{ soundId: 'BGM_R_0003',}], transitionAnimation: '左右开门转场' , toScene: 'C000D_VA1_MAP_-2_4',dropIds: [ 'WZXX_M1_N1_C000D_VA_V_drop1','WZXX_M1_N1_C000D_VA_V_drop2','WZXX_M1_N1_C000D_VA_V_drop3',] },
         ],
       },
         ],
@@ -836,7 +836,7 @@ scenes: [
         id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么，说不定能种出草药炼丹，帮助自己修炼！', 
         options: [ 
        
-         { title: '【去坊市买需要的装备】', toChapter: "WZXX_M1_N2_C018",icon: { id: 11 }}, 
+         { title: '【去坊市买需要的装备】', toChapter: "WZXX_M1_N2_C018",icon: { id: 11 },sounds: [{ stopBGM: true }],}, 
         ],
       },
 
@@ -858,13 +858,12 @@ scenes: [
       { 
         id: 'C4', desc: '一切都进行的都顺利让李森炎诧异，在这个小世界当中似乎实力和效率都会大增', 
         options: [ 
-         { title: '【赶紧修炼打坐】', openUI: 'XiuXing' , toChapter: "WZXX_M1_N2_C019",}, 
+         { title: '【赶紧修炼打坐】', openUI: 'XiuXing' , toChapter: "WZXX_M1_N2_C019",sounds: [{ stopBGM: true }],}, 
         ],
       },
     ],
 #  # 对话框
 #     dialogs: [    
-
 #      {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
 #         sections: [
 #          {
@@ -874,7 +873,7 @@ scenes: [
 #     ],
   },
   #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000D_VA1_MAP_-1_3', name: '泥泞土坑',
 
@@ -893,7 +892,6 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
     ],
 
     # 动作定义
@@ -906,7 +904,6 @@ scenes: [
 
     # 对话选项
     chats: [
-      #
       { 
         id: 'C1', desc: '这里平平无奇，看不出有什么特色，只是看上去比较危险', 
         options: [ 
@@ -925,26 +922,23 @@ scenes: [
 #     ],
   },
    #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000D_VA1_MAP_-1_2', name: '光秃山坡',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000D_VA1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 2],
     #横图显示
     sceneImage: 'BGT_88',
-
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
     ],
 
     # 动作定义
@@ -962,17 +956,11 @@ scenes: [
         id: 'C1', desc: '光秃秃的山坡看上去毫无生机', 
         options: [ 
        { title: '【这儿没什么好看的】', toScene: 'C000D_VA1_MAP_-2_1'}, 
-        
-         
         ],
       },
-
-
-
     ],
 #  # 对话框
 #     dialogs: [    
-
 #      {id: 'd3',style: "9B", textAnimationType: 'TextSingle',
 #         sections: [
 #          {
@@ -986,40 +974,37 @@ scenes: [
 #=================================场景地图的设置==================================
     maps: [
     {
-            id: 'C000D_VA1_MAP_0_0',
-            data: [
-
-              { 
-              point: [-2, 1], title: '降临之地', 
-              toScene: 'C000D_VA1_MAP_-2_1', 
-              links: [[-3, 2], ] },
-              { 
-              point: [-3, 2], title: '矮木林',
-              toScene: 'C000D_VA1_MAP_-3_2',
-                links: [[-3, 3], ] },
-              { 
-              point: [-3, 3], title: '狭窄溪流', 
-              toScene: 'C000D_VA1_MAP_-3_3',
-              links: [[-2, 4],] 
-              },
-                { 
-              point: [-2, 4], title: '荒废的园子', 
-              toScene: 'C000D_VA1_MAP_-2_4',
-              links: [[-1, 3]] 
-              },
-                { 
-              point: [-1, 3], title: '泥泞土坑', 
-              toScene: 'C000D_VA1_MAP_-1_3',
-              links: [[-1, 2]] 
-              },
-              { 
-              point: [-1, 2], title: '光秃山坡', 
-              toScene: 'C000D_VA1_MAP_-1_2',
-              links: [[-2, 1]] 
-              },
-
-
-            ]
+        id: 'C000D_VA1_MAP_0_0',
+        data: [
+          { 
+          point: [-2, 1], title: '降临之地', 
+          toScene: 'C000D_VA1_MAP_-2_1', 
+          links: [[-3, 2], ] },
+          { 
+          point: [-3, 2], title: '矮木林',
+          toScene: 'C000D_VA1_MAP_-3_2',
+            links: [[-3, 3], ] },
+          { 
+          point: [-3, 3], title: '狭窄溪流', 
+          toScene: 'C000D_VA1_MAP_-3_3',
+          links: [[-2, 4],] 
           },
+            { 
+          point: [-2, 4], title: '荒废的园子', 
+          toScene: 'C000D_VA1_MAP_-2_4',
+          links: [[-1, 3]] 
+          },
+            { 
+          point: [-1, 3], title: '泥泞土坑', 
+          toScene: 'C000D_VA1_MAP_-1_3',
+          links: [[-1, 2]] 
+          },
+          { 
+          point: [-1, 2], title: '光秃山坡', 
+          toScene: 'C000D_VA1_MAP_-1_2',
+          links: [[-2, 1]] 
+          },
+        ]
+      },
    ],
   ]
