@@ -1,71 +1,66 @@
 
+import lo from 'lodash';
+
 import { 
   action,
 } from "../constants";
+import { assert } from '../constants/functions';
 
 import {
-  GetSeqDataApi
-} from '../services/GetSeqDataApi';
+  GetChallengeDataApi
+} from '../services/GetChallengeDataApi';
+
+import { newTarget } from './challenge/Target';
 
 export default {
   namespace: 'ArenaModel',
 
   state: {
-    myself: {
-      uid: 1,
-      userName: '李森焱',
-      life: 8000,// 生命
-      speed: 100, // 速度
-      power: 600, // 攻击力
-      agile: 300, // 敏捷
-      defense: 100, // 防御
-      crit: 10, // 暴击
-      dodge: 15, // 闪避
-      skillIds: [1, 2],
-    },
 
-    enemy: {
-      uid: 100000,
-      userName: '杂鱼',
-      life: 8000,//生命
-      speed: 80,  // 速度
-      power: 450, // 攻击力
-      agile: 350, // 敏捷
-      defense: 80, // 防御
-      crit: 10, // 暴击
-      dodge: 15, // 闪避
-      skillIds: [1, 3],
-    },
+    // 角色战斗对象
+    myself: null,
 
     // 战报数据
     report: [],
 
     __data: {
-      seqConfig: null,
       enemyQueue: [],
       enemyIndex: 0,
     },
   },
 
   effects: {
+
     *start({ payload }, { put, select, call }) {
       const arenaState = yield select(state => state.ArenaModel);
-      const { seqId } = payload;
+      const { challengeId } = payload;
 
-      arenaState.__data.seqConfig = null;
-      arenaState.__data.enemyQueue.length = 0;
-      arenaState.__data.enemyIndex = 0;
+      // 获取战斗配置数据
+      const data = yield call(GetChallengeDataApi, challengeId);
+      assert(data != null, `challenge id(${challengeId}) exception!!!`);
+      const { challenge } = data;
+      
+      // 生成己方数据
+      if (challenge.myself != undefined) {
+        arenaState.myself = newTarget(challenge.myself);
+      } else {
+        const myself = { uid: 1, userName: '李森炎', skillIds: [1, 2, 4], attrs: [
+          { key: 'speed', value: 100 }, { key: 'shield', value: 200 }
+        ] };
 
-      const data = yield call(GetSeqDataApi, seqId);
-      const config = data.sequences.find(e => e.id == seqId);
-      if (config != undefined) {
-        arenaState.__data.seqConfig = config;
-        arenaState.__data.enemyQueue.length = 0;
-
-        config.enemies.forEach(e => {
-          arenaState.__data.enemyQueue.push(...e.items);
-        });
+        const attrs = yield put.resolve(action('UserModel/getFinalAttrs')({}));
+        if (lo.isArray(attrs)) {
+          myself.attrs.push(...attrs);
+        }
+        arenaState.myself = newTarget(myself);
       }
+
+      // 生成敌方战斗对象
+      arenaState.__data.enemyIndex = 0;
+      arenaState.__data.enemyQueue.length = 0;
+      challenge.enemies.forEach(e => {
+        arenaState.__data.enemyQueue.push(newTarget(e));
+      });
 
       yield put.resolve(action('next')({}));
     },
@@ -76,7 +71,7 @@ export default {
       if (arenaState.__data.enemyQueue.length > 0
         && arenaState.__data.enemyIndex < arenaState.__data.enemyQueue.length) {
         const enemy = arenaState.__data.enemyQueue[arenaState.__data.enemyIndex];
-        const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: arenaState.myself, enemy: enemy }));
+        const report = yield put.resolve(action('ChallengeModel/challenge')({ myself: arenaState.myself, enemy }));
 
         yield put(action('updateState')({ enemy, report }));
         arenaState.__data.enemyIndex += 1;
@@ -88,7 +83,6 @@ export default {
       if (arenaState.__data.enemyQueue.length > 0
         && arenaState.__data.enemyIndex >= arenaState.__data.enemyQueue.length) {
         // 序列完毕，清理现场
-        arenaState.__data.seqConfig = null;
         arenaState.__data.enemyQueue.length = 0;
         arenaState.__data.enemyIndex = 0;
         arenaState.report.length = 0;

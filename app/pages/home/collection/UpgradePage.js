@@ -18,6 +18,7 @@ import { TextButton } from '../../../constants/custom-ui';
 import RootView from '../../../components/RootView';
 import StarsBanner from './StarsBanner';
 import UpgradeSubPage from './UpgradeSubPage';
+import { getAttributeChineseName } from '../../../utils/AttributeUtils';
 
 const UpgradePage = (props) => {
 
@@ -25,7 +26,8 @@ const UpgradePage = (props) => {
 
     const attrs = [];
     lo.forEach(props.data.attrs, (v, k) => {
-        attrs.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{v.key}: +{v.value}</Text>);
+        const attrName = getAttributeChineseName(v.key);
+        attrs.push(<Text key={k} style={{ color: '#000', lineHeight: 26 }}>{attrName}: +{v.value}</Text>);
     });
 
     React.useEffect(() => {

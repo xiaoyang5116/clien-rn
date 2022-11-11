@@ -331,10 +331,10 @@ const XiuXingTabPage = (props) => {
                         }} />
                     </View>
                     <View style={{ position: 'absolute', width: '90%', top: px2pd(200), borderRadius: 10, paddingTop: 5, paddingBottom: 5, backgroundColor: '#677d8e', flexDirection: 'row', flexWrap: 'wrap' }}>
-                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>体力： {getXiuXingAttrValue('体力')}</Text></View>
-                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>防御： {getXiuXingAttrValue('防御')}</Text></View>
-                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>法力： {getXiuXingAttrValue('法力')}</Text></View>
-                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>攻击： {getXiuXingAttrValue('攻击')}</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>体力： {getXiuXingAttrValue('hp')}</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>防御： {getXiuXingAttrValue('defense')}</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>法力： {getXiuXingAttrValue('mp')}</Text></View>
+                        <View style={{ width: '50%', alignItems: 'center' }}><Text style={{ lineHeight: 30, color: '#fff', fontWeight: 'bold' }}>攻击： {getXiuXingAttrValue('attack')}</Text></View>
                     </View>
                     <View style={{ marginTop: px2pd(400), marginBottom: px2pd(150), justifyContent: 'center', alignItems: 'center' }}>
                         <View style={{ position: 'absolute', paddingLeft: px2pd(20) }}>

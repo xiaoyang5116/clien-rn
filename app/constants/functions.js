@@ -50,3 +50,9 @@ Date.prototype.format = function(fmt) {
     }
    return fmt; 
 }
+
+export function assert(condition, message) {
+    if (!condition) {
+        throw message || 'Assertion failed';
+    }
+}

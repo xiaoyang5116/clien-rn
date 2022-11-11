@@ -148,12 +148,12 @@ const SimpleInfo = (props) => {
         return total;
     }
 
-    const tiLi = getAffectValue(affects, '体力');
-    const faLi = getAffectValue(affects, '法力');
-    const puTongGongJi = getAffectValue(affects, '物理攻击');
-    const faShuGongJi = getAffectValue(affects, '法术攻击');
-    const puTongFangYu = getAffectValue(affects, '物理防御');
-    const faShuFangYu = getAffectValue(affects, '法术防御');
+    const tiLi = getAffectValue(affects, 'hp');
+    const faLi = getAffectValue(affects, 'mp');
+    const wuLiGongJi = getAffectValue(affects, 'physicalAttack');
+    const faShuGongJi = getAffectValue(affects, 'magicAttack');
+    const puTongFangYu = getAffectValue(affects, 'physicalDefense');
+    const faShuFangYu = getAffectValue(affects, 'magicDefense');
 
     return (
         <>
@@ -179,7 +179,7 @@ const SimpleInfo = (props) => {
             <View style={styles.attrsContainer}>
                 <View style={styles.attrsItemView}>
                     <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>物理攻击:</Text></View>
-                    <View style={styles.attrsItemRight}><Text style={styles.attrsItemText}>{puTongGongJi}</Text></View>
+                    <View style={styles.attrsItemRight}><Text style={styles.attrsItemText}>{wuLiGongJi}</Text></View>
                 </View>
                 <View style={styles.attrsItemView}>
                     <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>法术攻击:</Text></View>

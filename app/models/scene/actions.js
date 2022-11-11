@@ -16,7 +16,7 @@ export const ACTIONS_MAP = [
     { cmd: 'var',           handler: '__onVarCommand' },
     { cmd: 'useProps',      handler: '__onUsePropsCommand' },
     { cmd: 'sendProps',     handler: '__onSendPropsCommand' },
-    { cmd: 'seqId',         handler: '__onSeqIdCommand' },
+    { cmd: 'challenge',     handler: '__onChallengeCommand' },
     { cmd: 'chapter',       handler: '__onChapterCommand' },
     { cmd: 'selector',      handler: '__onSelectorCommand' },
     { cmd: 'shock',         handler: '__onShockCommand' },
@@ -94,8 +94,8 @@ export class PropertyActions {
       }
   
       // 挂机序列
-      if (payload.seqId != undefined && typeof(payload.seqId) == 'string') {
-        allActions.push({ id: "__seqId_{0}".format(payload.seqId), cmd: 'seqId', params: payload.seqId });
+      if (payload.challenge != undefined && typeof(payload.challenge) == 'string') {
+        allActions.push({ id: "__challenge_{0}".format(payload.challenge), cmd: 'challenge', params: payload.challenge });
       }
   
       // 生成对话框动作

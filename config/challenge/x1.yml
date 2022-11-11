@@ -1,0 +1,83 @@
+# ===========================================
+# 战斗配置
+# ===========================================
+challenge: {
+    # 战斗ID
+    id: 'x1',
+
+    # 自己
+    myself: {
+        uid: 1, 
+        userName: '李森炎', 
+        skillIds: [1, 2, 4],
+        attrs: [
+          { key: 'hp', value: 2000 },
+          { key: 'mp', value: 500 },
+          { key: 'speed', value: 80 },
+          { key: 'shield', value: 200 },
+          { key: 'physicalAttack', value: 5 },
+          { key: 'physicalDefense', value: 5 },
+          { key: 'magicDefense', value: 5 },
+        ],
+    },
+
+    # 敌方
+    enemies: [
+      { 
+        uid: 100000, 
+        userName: '杂鱼1', 
+        skillIds: [1],
+        attrs: [
+          { key: 'hp', value: 500 },
+          { key: 'mp', value: 500 },
+          { key: 'speed', value: 80 },
+          { key: 'shield', value: 200 },
+          { key: 'physicalAttack', value: 5 },
+          { key: 'physicalDefense', value: 5 },
+          { key: 'magicDefense', value: 5 },
+        ],
+      },
+      { 
+        uid: 100001, 
+        userName: '杂鱼2', 
+        skillIds: [1,4],
+        attrs: [
+          { key: 'hp', value: 500 },
+          { key: 'mp', value: 500 },
+          { key: 'speed', value: 80 },
+          { key: 'shield', value: 200 },
+          { key: 'physicalAttack', value: 10 },
+          { key: 'physicalDefense', value: 10 },
+          { key: 'magicDefense', value: 10 },
+        ],
+      },
+      { 
+        uid: 100002, 
+        userName: '杂鱼3', 
+        skillIds: [1],
+        attrs: [
+          { key: 'hp', value: 500 },
+          { key: 'mp', value: 500 },
+          { key: 'speed', value: 80 },
+          { key: 'shield', value: 200 },
+          { key: 'physicalAttack', value: 20 },
+          { key: 'physicalDefense', value: 20 },
+          { key: 'magicDefense', value: 20 },
+        ],
+      },
+      { 
+        uid: 100003, 
+        userName: '杂鱼4', 
+        skillIds: [1],
+        attrs: [
+          { key: 'hp', value: 500 },
+          { key: 'mp', value: 500 },
+          { key: 'speed', value: 80 },
+          { key: 'shield', value: 200 },
+          { key: 'physicalAttack', value: 50 },
+          { key: 'physicalDefense', value: 50 },
+          { key: 'magicDefense', value: 50 },
+        ],
+      },
+    ]
+  }

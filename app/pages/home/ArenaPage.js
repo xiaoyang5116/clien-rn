@@ -1,4 +1,6 @@
 import React, { forwardRef } from 'react';
+import { useImperativeHandle } from 'react';
+import lo from 'lodash';
 
 import {
     action,
@@ -14,25 +16,86 @@ import ProgressBar from '../../components/ProgressBar';
 import { View, Text, FlatList } from '../../constants/native-ui';
 import FastImage from 'react-native-fast-image';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { SafeAreaView } from 'react-native';
+import Collapsible from 'react-native-collapsible';
+import { SafeAreaView, TouchableWithoutFeedback } from 'react-native';
 import { px2pd } from '../../constants/resolution';
-import { useImperativeHandle } from 'react';
+
+const BuffCollapsible = (props) => {
+
+    const [collapsed, setCollapsed] = React.useState(props.defaultCollapsed);
+    const [width, setWidth] = React.useState(0);
+
+    const onLayout = ({ nativeEvent }) => {
+        const { width } = nativeEvent.layout;
+        setWidth(width);
+    }
+
+    return (
+    <TouchableWithoutFeedback onPress={() => {
+        setCollapsed((v) => {
+            return !v;
+        });
+    }}>
+        <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }} onLayout={onLayout}>
+            <View style={{ marginBottom: 5, backgroundColor: 'rgba(181,169,180,1.0)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                <Text style={{ color: '#000', fontWeight: 'bold' }}>Buff</Text>
+                {
+                (collapsed)
+                ? <AntDesign name='doubleright' size={16} style={{ position: 'absolute', right: 10, transform: [{ rotate: '90deg' }] }} />
+                : <AntDesign name='doubleright' size={16} style={{ position: 'absolute', right: 10, transform: [{ rotate: '-90deg' }] }} />
+                }
+            </View>
+            <Collapsible collapsed={collapsed} style={{ width: width, justifyContent: 'center', alignItems: 'center' }}>
+                {
+                lo.map(props.data.buffs, (e, k) => {
+                    return (
+                    <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(181,169,180,1.0)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                        <Text style={{ color: '#333' }}>{e.name}</Text>
+                    </View>
+                    );
+                })
+                }
+            </Collapsible>
+        </View>
+    </TouchableWithoutFeedback>
+    );
+}
 
 const ActionMsgItem = (props) => {
-    const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.msg);
     const isMyself = (props.user.uid == props.data.attackerUid);
 
     return (
-        <View style={{ borderWidth: 2, borderColor: '#eee', borderRadius: 4, height: px2pd(260), justifyContent: 'flex-start', margin: 5 }}>
+        <View style={{ borderWidth: 2, borderColor: '#ccc', borderRadius: 4, justifyContent: 'flex-start', alignItems: 'center', margin: 5 }}>
             <View style={{ width: '100%', height: px2pd(80), backgroundColor: '#ccc', alignItems: 'center', justifyContent: 'center' }}>
-                <View><RenderHTML contentWidth={100} source={{html: `${props.data.attackerName} 的攻击`}} /></View>
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <RenderHTML contentWidth={100} source={{html: `${props.data.attackerName} 的攻击`}} />
+                </View>
+                <View style={{ position: 'absolute', right: px2pd(200) }}>
+                        {(props.data.crit) ? <Text style={{ color: '#ff0817' }}>[暴击]</Text> : <></>}
+                </View>
                 {
                 (isMyself) 
                 ? <AntDesign style={{ position: 'absolute', right: 5 }} name='arrowright' color={'#333'} size={25} />
                 : <AntDesign style={{ position: 'absolute', left: 5 }} name='arrowleft' color={'#333'} size={25} />
                 }
             </View>
-            <RenderHTML contentWidth={100} source={{html: htmlMsg}} />
+            <View style={{ marginTop: 5, marginBottom: 5, backgroundColor: 'rgba(148,148,186,0.5)', width: '98%', height: px2pd(80), flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                {(props.data.physicalDamage != 0) ? <Text style={{ color: '#fff', marginLeft: 5, marginRight: 5 }}>物伤：{props.data.physicalDamage}</Text> : <></>}
+                {(props.data.magicDamage != 0) ? <Text style={{ color: '#fff', marginLeft: 5, marginRight: 5 }}>法伤：{props.data.magicDamage}</Text> : <></>}
+                {(props.data.rechargeHP != 0) ? <Text style={{ color: '#fff', marginLeft: 5, marginRight: 5 }}>治疗：{props.data.rechargeHP}</Text> : <></>}
+                {(props.data.rechargeMP != 0) ? <Text style={{ color: '#fff', marginLeft: 5, marginRight: 5 }}>法力：{props.data.rechargeMP}</Text> : <></>}
+            </View>
+            {
+            lo.map(props.data.skills, (e, k) => {
+                return (
+                <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(238,213,185,0.3)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                    <Text style={{ color: '#333' }}>{e.name}</Text>
+                    {(e.passive) ? <Text style={{ marginLeft: 5, color: '#fff' }}>(被动)</Text> : <></>}
+                </View>
+                );
+            })
+            }
+            {(props.data.buffs.length > 0) ? <BuffCollapsible data={props.data} defaultCollapsed={(props.data.skills.length + props.data.buffs.length) > 2} /> : <></> }
         </View>
     )
 }
@@ -40,56 +103,68 @@ const ActionMsgItem = (props) => {
 const TextMsgItem = (props) => {
     const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.msg);
     return (
-        <View style={{ height: px2pd(80), justifyContent: 'center', alignItems: 'center', margin: 5 }}>
+        <View style={{ height: px2pd(60), justifyContent: 'center', alignItems: 'center', margin: 5 }}>
             <RenderHTML contentWidth={100} source={{html: htmlMsg}} />
         </View>
     )
 }
 
 const Character = (props, ref) => {
-    const [lifePercent, setLifePercent] = React.useState(0);
+    const [hpPercent, setHpPercent] = React.useState(0);
+    const [mpPercent, setMpPercent] = React.useState(0);
+    const [shieldPercent, setShieldPercent] = React.useState(0);
 
     useImperativeHandle(ref, () => ({
         update: (data) => {
-            // 更新角色血条
+            // 更新角色血条/蓝条
             if (data.attackerUid != undefined && data.defenderUid != undefined) {
                 if (props.user.uid == data.attackerUid) {
-                    setLifePercent((data.attackerLife / data.attackerOrgLife) * 100);
+                    setHpPercent((data.attackerHP / data.attackerOrgHP) * 100);
+                    setMpPercent((data.attackerMP / data.attackerOrgMP) * 100);
+                    setShieldPercent((data.attackerShield / data.attackerOrgShield) * 100);
                 } else {
-                    setLifePercent((data.defenderLife / data.defenderOrgLife) * 100);
+                    setHpPercent((data.defenderHP / data.defenderOrgHP) * 100);
+                    setMpPercent((data.defenderMP / data.defenderOrgMP) * 100);
+                    setShieldPercent((data.defenderShield / data.defenderOrgShield) * 100);
                 }
             }
         },
     }));
 
+    if (props.user == undefined) {
+        return (<></>);
+    }
+
     return (
-    <View style={[{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }, (props.contentStyle != undefined) ? props.contentStyle : {}]}>
-        <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  }}>
-            <FastImage style={{ width: px2pd(218), height: px2pd(211) }} source={require('../../../assets/bg/arena_character_bg.png')} />
-            <Text style={{ position: 'absolute', color: '#000' }}>{props.user.userName}</Text>
+        <View style={[{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }, (props.contentStyle != undefined) ? props.contentStyle : {}]}>
+            <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  }}>
+                <FastImage style={{ width: px2pd(218), height: px2pd(211) }} source={require('../../../assets/bg/arena_character_bg.png')} />
+                <Text style={{ position: 'absolute', color: '#000' }}>{props.user.userName}</Text>
+            </View>
+            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
+                <View style={{ height: 3, marginTop: 6, marginRight: 6, marginBottom: 0 }}>
+                    <ProgressBar percent={shieldPercent} sections={[{x: 0, y: 100, color: '#3390ff'}]} />
+                </View>
+                <View style={{ height: 12, marginTop: 0, marginRight: 6, marginBottom: 3 }}>
+                    <ProgressBar percent={hpPercent} sections={[{ x: 0,  y: 30,  color: '#ff2600' }, { x: 30, y: 60,  color: '#fbbb39' }, { x: 60, y: 100, color: '#ffd479' }]} />
+                </View>
+                <View style={{ height: 15, marginTop: 6, marginRight: 6, marginBottom: 6 }}>
+                    <ProgressBar percent={mpPercent} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                    <Text style={{ flex: 1, color: '#fff' }}>物攻: {props.user.attrs.physicalAttack||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>法攻: {props.user.attrs.magicAttack||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>物防: {props.user.attrs.physicalDefense||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>法防: {props.user.attrs.magicDefense||0}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                    <Text style={{ flex: 1, color: '#fff' }}>速度: {props.user.attrs.speed||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>暴击: {props.user.attrs.crit||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>闪避: {props.user.attrs.dodge||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>敏捷: {props.user.attrs.dodge||0}</Text>
+                </View>
+            </View>
         </View>
-        <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
-            <View style={{ height: 3, marginTop: 6, marginRight: 6, marginBottom: 0 }}>
-                <ProgressBar percent={50} sections={[{x: 0, y: 100, color: '#3390ff'}]} />
-            </View>
-            <View style={{ height: 12, marginTop: 0, marginRight: 6, marginBottom: 3 }}>
-                <ProgressBar percent={lifePercent} />
-            </View>
-            <View style={{ height: 15, marginTop: 6, marginRight: 6, marginBottom: 6 }}>
-                <ProgressBar percent={props.user.power / 1000 * 100} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                <Text style={{ color: '#fff' }}>攻击: {props.user.power}</Text>
-                <Text style={{ color: '#fff' }}>速度: {props.user.speed}</Text>
-                <Text style={{ color: '#fff' }}>暴击: {props.user.crit}</Text>
-            </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                <Text style={{ color: '#fff' }}>敏捷: {props.user.agile}</Text>
-                <Text style={{ color: '#fff' }}>防御: {props.user.defense}</Text>
-                <Text style={{ color: '#fff' }}>闪避: {props.user.dodge}</Text>
-            </View>
-        </View>
-    </View>
     );
 }
 const CharacterWrapper = forwardRef(Character);
@@ -112,7 +187,7 @@ const ArenaPage = (props) => {
     }
 
     React.useEffect(() => {
-        props.dispatch(action('ArenaModel/start')({ seqId: 'x1' }));
+        props.dispatch(action('ArenaModel/start')({ challengeId: props.challengeId }));
     }, []);
 
     React.useEffect(() => {
@@ -122,7 +197,7 @@ const ArenaPage = (props) => {
                 status.current = 0;
                 timer = setTimeout(() => {
                     setUpdate({});
-                }, 600);
+                }, 1000);
             } else {
                 // listData.current.length = 0;
                 status.current = 1;
