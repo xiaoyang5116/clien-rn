@@ -27,13 +27,13 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000D_V', desc: '回忆', 
         options: [ 
-          { title: "【探索纳戒里的空间】",toScene: 'C000D_V_MAP_-2_1', transitionAnimation: '左右开门转场'  },
+          { title: "【探索纳戒里的空间】",toScene: 'C000D_V_MAP_-2_1', transitionAnimation: '左右开门转场',sounds: [{ soundId: 'BGM_R_0003',}],  },
         ],
       },
       { 
         id: 'WZXX_M1_N1_C000D_V1', desc: '种植', 
         options: [ 
-          { title: "【在荒废的院子里种植东西】",toScene: 'C000D_V1_MAP_-2_4', transitionAnimation: '左右开门转场'  },
+          { title: "【在荒废的院子里种植东西】",toScene: 'C000D_V1_MAP_-2_4', transitionAnimation: '左右开门转场' , sounds: [{ soundId: 'BGM_R_0003',}], },
         ],
       },
 
@@ -790,7 +790,7 @@ scenes: [
       { 
         id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
         options: [ 
-        { title: '【似乎有些发现】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toChapter: "WZXX_M1_N1_C016_[N2]",icon: { id: 11 }}, 
+        { title: '【似乎有些发现】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toChapter: "WZXX_M1_N1_C016_[N2]",sounds: [{ stopBGM: true }],icon: { id: 11 }}, 
          
         ],
       },
@@ -799,7 +799,7 @@ scenes: [
         id: 'C2', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
         options: [ 
        
-         { title: '【去种植】', openUI: 'ZhongZhi',toChapter: "WZXX_M1_N1_C016_[N3]",}, 
+         { title: '【去种植】', openUI: 'ZhongZhi',toChapter: "WZXX_M1_N1_C016_[N3]",sounds: [{ stopBGM: true }],}, 
         ],
       },
     ],

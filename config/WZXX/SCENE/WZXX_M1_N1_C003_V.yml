@@ -1,0 +1,178 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_C003_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+        { id: "v1", min: 0, max: 1 },
+        { id: "biaoqianv1", min: 0, max: 1 } ,
+        { id: "biaoqianv2", min: 0, max: 1 } ,
+        { id: "biaoqianv3", min: 0, max: 1 } ,
+        { id: "biaoqianv4", min: 0, max: 1 } ,
+        { id: "biaoqianv5", min: 0, max: 1 } ,
+        { id: "biaoqianv6", min: 0, max: 1 } ,
+        { id: "biaoqianv7", min: 0, max: 1 } ,
+        { id: "biaoqianv8", min: 0, max: 1 } ,
+
+      ],
+
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [],
+
+
+    
+      chats: [
+      #
+
+      { 
+        id: 'WZXX_M1_N1_C003_V1', desc: '白月光对话', 
+        options: [ 
+          { 
+          title: "【我不记得了】",dialogs: ['C003_1.1A'], 
+          icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
+          },
+          { 
+          title: "【随便说一个】",dialogs: ['C003_1.1B'] , 
+          icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
+          },
+          { 
+          title: "【运用废话文学糊弄过去】",dialogs: ['C003_1.1C'] , 
+          icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
+          },
+          { 
+          title: "【岔开话题说别的】",dialogs: ['C003_1.1D'] , 
+          icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
+          }
+        ],
+      },
+
+     
+        ],
+
+
+
+      # 对话框
+      dialogs:
+        [
+
+           #选项对话1
+          { id: 'C003_1.1A',style: 6, title: '诚恳开口', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['与其花里胡哨，不如直接诚恳开口。','真诚才是唯一的必杀技。',
+          '“我不记得了。”李森炎理不直气也壮。','而后就受了白月光一记白眼，“你竟然不记得本小姐了？”','李森炎：……',
+          '怎么忽然感觉后颈有寒意。','看来真诚并没有打动她。','现在寄人篱下拜托她庇佑，千万要苟住了。',],
+          btn: [{title: '算了还是再仔细想想吧', nextChat: 'WZXX_M1_N1_C003_V1'  }
+          ,]},
+           ]  
+        },
+
+          #选项对话2
+          { id: 'C003_1.1B',style: 6, title: '随便说一个', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['既然想不起来了，干脆随便蒙一个吧。','……',
+          '根据白月光的表情，猜猜白月光到是在什么样的情况记住原身的？','李森炎心中有很多谜团，却无人可解惑。','你会选择以下哪个行动————',],
+          btn: [
+          {title: '原身是白月光的粉丝头子', dialogs: ['C003_1.2A'] ,
+          icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']  },
+          {title: '难道是原身曾英雄救美',  dialogs: ['C003_1.2B'] ,
+          icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']  },
+          {title: '大胆点，或许是有感情渊源？', dialogs: ['C003_1.2C'] ,
+          icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] },
+          {title: '是否与白家李家家族关系有关？',  dialogs: ['C003_1.2D'] ,
+          icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8'] },
+          ]},
+           ]  
+        },
+
+
+           #选项对话3
+          { id: 'C003_1.1C',style: 6, title: '废话文学', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['白月光冷凝的眼神落在他身上，不满道，“你不会是不记得了吧？”','李森炎挠着头，挤出尴尬而不失礼貌的微笑来，“怎么会呢！我怎么可能忘！”',
+          '“哦？是么。”白月光红唇微勾，月眉星眼看着李森炎，眸中满是冷艳。','“上次的事情那么重要我怎么会不记得，咱们上次见面，不就是上次嘛。”','“内什么嘛，我知道，我猜你上次之后，是不是对我记忆深刻，难以忘记啊？”',
+          '“啊，如果我没猜错的话，一定是猜对了……”','还未说完，便看见白月光递给自己一个冷眼，“你跟我搁这儿搁这儿呢？”'],
+          btn: [{title: '算了还是再仔细想想吧', nextChat: 'WZXX_M1_N1_C003_V1'  }
+          ,]},
+           ]  
+        },
+
+
+         #选项对话4
+          { id: 'C003_1.1D',style: 6, title: '岔开话题', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['白月光冷凝的眼神落在他身上，不满道，“你不会是不记得了吧？”','李森炎挠着头，挤出尴尬而不失礼貌的微笑来，“怎么会呢！我怎么可能忘！”',
+          '他站在原地踱步了一会儿，指了下身旁的熏炉，“你这熏炉真精致啊，上面雕的是神雀吧，焚的是什么香啊？好香啊。”','女生都喜欢聊这种话题吧，待会儿就能顺利的浑水摸鱼了。',
+          '然而待他热情的说完，对上的却是白月光冷艳的眉眼。','“……”','空气中一片死寂。',],
+          btn: [{title: '看来不说一个翻不了篇了',nextChat: 'WZXX_M1_N1_C003_V1' },
+          ]},
+           ]  
+        },
+
+         #选项对话5
+          { id: 'C003_1.2A',style: 6, title: '粉丝头子', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['白月光在白城可谓是家喻户晓的金枝玉叶千金小姐，每次出门都得极其热闹，基本都是人呼马叫，百姓前扑后继。','最为痴狂的是，白月光还有着一批狂热粉。',
+          '能理解，毕竟现在的明星还有私生饭呢，古代的有脑残粉也就不足为奇了。','据刚才观察，白月光对他那副淡漠的表情。',
+          '再结合原主的记忆，搞不好还真是。','于是李森炎试探的说出口——','“你知道我是你狂热粉的事了？”','白月光的眼神显然变得失落了些',],
+          btn: [{title: '看来不说一个翻不了篇了',dialogs: ['C003_1.1B'],  },
+          ]},
+           ]  
+        },
+
+        #选项对话6
+          { id: 'C003_1.2B',style: 6, title: '英雄救美', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['虽然原主三脚猫的功夫……','虽然原主还是只会跑的废物……',
+          '但是原主志气高啊，为人正直，说不定是哪次美女有难，正好原主出手救下。','看上去很不可能，但说不定是呢。',
+          ],
+          btn: [{title: '试试看', tokey: "P2",   },
+          ]},
+
+          { key: 'P2', content: ['“我记得我有次帮了你在街上……”','他只能说出些零碎的记忆，但所幸白月光没有深究，没耐心的开口了。',
+          '“在街上的时候，你帮我挡了两次袭击。”','这么一说，李森炎就全想起来了。','因白月光在白城人气太旺，所以每次出门的时候，总有一些个狂热份子发疯似的，不顾一切冲上来，想要近距离接触女神。','原身曾经帮忙挡过几次疯子，结果跟那人一起跌倒，每次都摔得不轻。',
+          '想到这，李森炎松了一口气。'
+          ],
+          btn: [{title: '还好不是什么坏事', toChapter: "WZXX_M1_N1_C003_[N3]",},
+          ]},
+           ]  
+        },
+
+        #选项对话7
+          { id: 'C003_1.2C',style: 6, title: '感情渊源', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['等等！仔细想想……','首先白月光是何许人也啊？',
+          '那可是京城最有名的千金小姐，她什么人没见过，居然能记住自己一个无名小卒？','而原主全身上下，也就这张脸还算拿得出手。',
+          '不白白净净，五官清秀好看。','那事情的真相只有一个……','“你该不会是……”','后面几个字还没说完，就对上白月光清冷的眸子，后颈一凉，话就被哽在喉咙里不好意思说出来了。',
+          ],
+          btn: [{title: '看样子，不大可能是这个了',dialogs: ['C003_1.1B'],  },
+          ]},
+           ]  
+        },
+
+          #选项对话8
+          { id: 'C003_1.2D',style: 6, title: '家族关系', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['想到这，李森炎不免又联想到了刚才母亲的举动。','母亲都认识白家家主，那白月光认识他，也就不足为奇了。',
+          '有可能是小时候见过，但是一个是千金大小姐，一个是卖包子的废柴，天壤之别。','李森炎试探的将自己的怀疑说给白月光听。',
+          '不过却没有得到肯定，反而是白月光那轻蔑的眸子，流转出几丝异样的情绪。','“看来你还不算那么没用。不过你说错了，不是因为这个。”',
+          ],
+          btn: [{title: '不是此事……',dialogs: ['C003_1.1B'], },
+          ]},
+           ]  
+        },
+
+
+
+  ]
+    }
+]
+
+
+

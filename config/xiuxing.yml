@@ -256,14 +256,6 @@ xiuxing: [
       { key: 'attack', value: 10 },
     ],
 
-    # 突破配置
-    tupo: {
-      # 突破基础成功率
-      successRate: 60,
-
-      # 突破失败后的CD时间(单位秒)
-      failCDTime: 1200,
-    },
 
     # 是否提示美术字
     toastText: true,
@@ -293,12 +285,6 @@ xiuxing: [
       { key: 'mp', value: 20 },
       { key: 'attack', value: 20 },
     ],
-
-     # 瓶颈配置
-    pingjing: {
-      # 瓶颈成功率(目前统一为100%)
-      successRate: 100,
-    },
 
     # 是否提示美术字
     toastText: true,
@@ -330,15 +316,6 @@ xiuxing: [
       { key: 'attack', value: 20 },
     ],
 
-    # 突破配置
-    tupo: {
-      # 突破基础成功率
-      successRate: 60,
-
-      # 突破失败后的CD时间(单位秒)
-      failCDTime: 1200,
-    },
-
     # 是否提示美术字
     toastText: true,
 
@@ -367,14 +344,6 @@ xiuxing: [
       { key: 'attack', value: 20 },
     ],
 
-   # 突破配置
-    tupo: {
-      # 突破基础成功率
-      successRate: 60,
-
-      # 突破失败后的CD时间(单位秒)
-      failCDTime: 1200,
-    },
 
     # 是否提示美术字
     toastText: true,
@@ -404,15 +373,6 @@ xiuxing: [
       { key: 'attack', value: 20 },
     ],
 
-   # 突破配置
-    tupo: {
-      # 突破基础成功率
-      successRate: 60,
-
-      # 突破失败后的CD时间(单位秒)
-      failCDTime: 1200,
-    },
-
     # 是否提示美术字
     toastText: true,
 
@@ -440,15 +400,6 @@ xiuxing: [
       { key: 'mp', value: 20 },
       { key: 'attack', value: 20 },
     ],
-
-   # 突破配置
-    tupo: {
-      # 突破基础成功率
-      successRate: 60,
-
-      # 突破失败后的CD时间(单位秒)
-      failCDTime: 1200,
-    },
 
     # 是否提示美术字
     toastText: true,
@@ -478,14 +429,7 @@ xiuxing: [
       { key: 'attack', value: 20 },
     ],
 
-   # 突破配置
-    tupo: {
-      # 突破基础成功率
-      successRate: 60,
 
-      # 突破失败后的CD时间(单位秒)
-      failCDTime: 1200,
-    },
 
     # 是否提示美术字
     toastText: true,
@@ -515,15 +459,6 @@ xiuxing: [
       { key: 'attack', value: 20 },
     ],
 
-   # 突破配置
-    tupo: {
-      # 突破基础成功率
-      successRate: 60,
-
-      # 突破失败后的CD时间(单位秒)
-      failCDTime: 1200,
-    },
-
     # 是否提示美术字
     toastText: true,
 
@@ -531,7 +466,7 @@ xiuxing: [
     increaseXiuXingPerMinute: 243,
   },
 
-     {
+  {
     # 名称
     title: '先天.八重',
 
@@ -552,15 +487,6 @@ xiuxing: [
       { key: 'attack', value: 20 },
     ],
 
-    # 突破配置
-    tupo: {
-      # 突破基础成功率
-      successRate: 100,
-
-      # 突破失败后的CD时间(单位秒)
-      failCDTime: 1200,
-    },
-
     # 是否提示美术字
     toastText: true,
 
@@ -568,7 +494,7 @@ xiuxing: [
     increaseXiuXingPerMinute: 278,
   },
 
-   {
+  {
     # 名称
     title: '先天.九重',
 
@@ -592,7 +518,7 @@ xiuxing: [
    # 突破配置
     tupo: {
       # 突破基础成功率
-      successRate: 2,
+      successRate: 80,
 
       # 突破失败后的CD时间(单位秒)
       failCDTime: 120000,
@@ -604,4 +530,1080 @@ xiuxing: [
     # 在线修行(每分钟增加多少点修为)
     increaseXiuXingPerMinute: 313,
   },
+  
+  {
+    # 名称
+    title: '炼气.一重',
+
+    # 阶段名称
+    period: '炼气',
+
+    # 阶段等级
+    level: 1,
+
+    # 修为上限
+    limit: 100000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 50 },
+      { key: '防御', value: 50 },
+      { key: '法力', value: 50 },
+      { key: '攻击', value: 50 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 347,
+  },
+
+  {
+    # 名称
+    title: '炼气.二重',
+
+    # 阶段名称
+    period: '炼气',
+
+    # 阶段等级
+    level: 2,
+
+    # 修为上限
+    limit: 200000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 50 },
+      { key: '防御', value: 50 },
+      { key: '法力', value: 50 },
+      { key: '攻击', value: 50 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 694,
+  },
+
+ {
+    # 名称
+    title: '炼气.三重',
+
+    # 阶段名称
+    period: '炼气',
+
+    # 阶段等级
+    level: 3,
+
+    # 修为上限
+    limit: 300000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 50 },
+      { key: '防御', value: 50 },
+      { key: '法力', value: 50 },
+      { key: '攻击', value: 50 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 1042,
+  },
+  
+  {
+    # 名称
+    title: '炼气.四重',
+
+    # 阶段名称
+    period: '炼气',
+
+    # 阶段等级
+    level: 4,
+
+    # 修为上限
+    limit: 400000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 50 },
+      { key: '防御', value: 50 },
+      { key: '法力', value: 50 },
+      { key: '攻击', value: 50 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 1389,
+  },
+
+  {
+    # 名称
+    title: '炼气.五重',
+
+    # 阶段名称
+    period: '炼气',
+
+    # 阶段等级
+    level: 5,
+
+    # 修为上限
+    limit: 500000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 50 },
+      { key: '防御', value: 50 },
+      { key: '法力', value: 50 },
+      { key: '攻击', value: 50 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 1736,
+  },
+
+  {
+    # 名称
+    title: '炼气.六重',
+
+    # 阶段名称
+    period: '炼气',
+
+    # 阶段等级
+    level: 6,
+
+    # 修为上限
+    limit: 600000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 50 },
+      { key: '防御', value: 50 },
+      { key: '法力', value: 50 },
+      { key: '攻击', value: 50 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 2083,
+  },
+
+  {
+    # 名称
+    title: '炼气.七重',
+
+    # 阶段名称
+    period: '炼气',
+
+    # 阶段等级
+    level: 7,
+
+    # 修为上限
+    limit: 700000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 50 },
+      { key: '防御', value: 50 },
+      { key: '法力', value: 50 },
+      { key: '攻击', value: 50 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 2431,
+  },
+
+  {
+    # 名称
+    title: '炼气.八重',
+
+    # 阶段名称
+    period: '炼气',
+
+    # 阶段等级
+    level: 8,
+
+    # 修为上限
+    limit: 800000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 50 },
+      { key: '防御', value: 50 },
+      { key: '法力', value: 50 },
+      { key: '攻击', value: 50 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 2431,
+  },
+
+  {
+    # 名称
+    title: '炼气.九重',
+
+    # 阶段名称
+    period: '炼气',
+
+    # 阶段等级
+    level: 9,
+
+    # 修为上限
+    limit: 900000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 50 },
+      { key: '防御', value: 50 },
+      { key: '法力', value: 50 },
+      { key: '攻击', value: 50 },
+    ],
+
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 50,
+
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 120000,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 2778,
+  },
+
+ {
+    # 名称
+    title: '筑基.一重',
+
+    # 阶段名称
+    period: '筑基',
+
+    # 阶段等级
+    level: 1,
+
+    # 修为上限
+    limit: 1000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 100 },
+      { key: '防御', value: 100 },
+      { key: '法力', value: 100 },
+      { key: '攻击', value: 100 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 3472,
+  },
+
+  {
+    # 名称
+    title: '筑基.二重',
+
+    # 阶段名称
+    period: '筑基',
+
+    # 阶段等级
+    level: 2,
+
+    # 修为上限
+    limit: 2000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 100 },
+      { key: '防御', value: 100 },
+      { key: '法力', value: 100 },
+      { key: '攻击', value: 100 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 6944,
+  },
+
+  {
+    # 名称
+    title: '筑基.三重',
+
+    # 阶段名称
+    period: '筑基',
+
+    # 阶段等级
+    level: 3,
+
+    # 修为上限
+    limit: 3000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 100 },
+      { key: '防御', value: 100 },
+      { key: '法力', value: 100 },
+      { key: '攻击', value: 100 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 10417,
+  },
+
+  {
+    # 名称
+    title: '筑基.四重',
+
+    # 阶段名称
+    period: '筑基',
+
+    # 阶段等级
+    level: 4,
+
+    # 修为上限
+    limit: 4000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 100 },
+      { key: '防御', value: 100 },
+      { key: '法力', value: 100 },
+      { key: '攻击', value: 100 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 13889,
+  },
+
+  {
+    # 名称
+    title: '筑基.五重',
+
+    # 阶段名称
+    period: '筑基',
+
+    # 阶段等级
+    level: 5,
+
+    # 修为上限
+    limit: 5000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 100 },
+      { key: '防御', value: 100 },
+      { key: '法力', value: 100 },
+      { key: '攻击', value: 100 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 17361,
+  },
+
+  {
+    # 名称
+    title: '筑基.六重',
+
+    # 阶段名称
+    period: '筑基',
+
+    # 阶段等级
+    level: 6,
+
+    # 修为上限
+    limit: 6000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 100 },
+      { key: '防御', value: 100 },
+      { key: '法力', value: 100 },
+      { key: '攻击', value: 100 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 20833,
+  },
+
+  {
+    # 名称
+    title: '筑基.七重',
+
+    # 阶段名称
+    period: '筑基',
+
+    # 阶段等级
+    level: 7,
+
+    # 修为上限
+    limit: 7000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 100 },
+      { key: '防御', value: 100 },
+      { key: '法力', value: 100 },
+      { key: '攻击', value: 100 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 24306,
+  },
+
+  {
+    # 名称
+    title: '筑基.七重',
+
+    # 阶段名称
+    period: '筑基',
+
+    # 阶段等级
+    level: 7,
+
+    # 修为上限
+    limit: 7000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 100 },
+      { key: '防御', value: 100 },
+      { key: '法力', value: 100 },
+      { key: '攻击', value: 100 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 24306,
+  },
+  
+  {
+    # 名称
+    title: '筑基.八重',
+
+    # 阶段名称
+    period: '筑基',
+
+    # 阶段等级
+    level: 8,
+
+    # 修为上限
+    limit: 8000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 100 },
+      { key: '防御', value: 100 },
+      { key: '法力', value: 100 },
+      { key: '攻击', value: 100 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 27778,
+  },
+
+  {
+    # 名称
+    title: '筑基.九重',
+
+    # 阶段名称
+    period: '筑基',
+
+    # 阶段等级
+    level: 9,
+
+    # 修为上限
+    limit: 9000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 100 },
+      { key: '防御', value: 100 },
+      { key: '法力', value: 100 },
+      { key: '攻击', value: 100 },
+    ],
+
+    # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 40,
+
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 12000000,
+    },
+
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 31250,
+  },
+
+    {
+    # 名称
+    title: '金丹.一重',
+
+    # 阶段名称
+    period: '金丹',
+
+    # 阶段等级
+    level: 1,
+
+    # 修为上限
+    limit: 10000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 1000 },
+      { key: '防御', value: 1000 },
+      { key: '法力', value: 1000 },
+      { key: '攻击', value: 1000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 34722,
+  },
+
+  {
+    # 名称
+    title: '金丹.二重',
+
+    # 阶段名称
+    period: '金丹',
+
+    # 阶段等级
+    level: 2,
+
+    # 修为上限
+    limit: 20000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 1000 },
+      { key: '防御', value: 1000 },
+      { key: '法力', value: 1000 },
+      { key: '攻击', value: 1000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 69444,
+  },
+
+  {
+    # 名称
+    title: '金丹.三重',
+
+    # 阶段名称
+    period: '金丹',
+
+    # 阶段等级
+    level: 3,
+
+    # 修为上限
+    limit: 30000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 1000 },
+      { key: '防御', value: 1000 },
+      { key: '法力', value: 1000 },
+      { key: '攻击', value: 1000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 104167,
+  },
+
+  {
+    # 名称
+    title: '金丹.四重',
+
+    # 阶段名称
+    period: '金丹',
+
+    # 阶段等级
+    level: 4,
+
+    # 修为上限
+    limit: 40000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 1000 },
+      { key: '防御', value: 1000 },
+      { key: '法力', value: 1000 },
+      { key: '攻击', value: 1000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 138889,
+  },
+
+  {
+    # 名称
+    title: '金丹.五重',
+
+    # 阶段名称
+    period: '金丹',
+
+    # 阶段等级
+    level: 5,
+
+    # 修为上限
+    limit: 50000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 1000 },
+      { key: '防御', value: 1000 },
+      { key: '法力', value: 1000 },
+      { key: '攻击', value: 1000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 173611,
+  },
+
+  {
+    # 名称
+    title: '金丹.六重',
+
+    # 阶段名称
+    period: '金丹',
+
+    # 阶段等级
+    level: 6,
+
+    # 修为上限
+    limit: 60000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 1000 },
+      { key: '防御', value: 1000 },
+      { key: '法力', value: 1000 },
+      { key: '攻击', value: 1000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 208333,
+  },
+
+  {
+    # 名称
+    title: '金丹.七重',
+
+    # 阶段名称
+    period: '金丹',
+
+    # 阶段等级
+    level: 7,
+
+    # 修为上限
+    limit: 70000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 1000 },
+      { key: '防御', value: 1000 },
+      { key: '法力', value: 1000 },
+      { key: '攻击', value: 1000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 243056,
+  },
+
+    {
+    # 名称
+    title: '金丹.八重',
+
+    # 阶段名称
+    period: '金丹',
+
+    # 阶段等级
+    level: 8,
+
+    # 修为上限
+    limit: 80000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 1000 },
+      { key: '防御', value: 1000 },
+      { key: '法力', value: 1000 },
+      { key: '攻击', value: 1000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 277778,
+  },
+
+  {
+    # 名称
+    title: '金丹.九重',
+
+    # 阶段名称
+    period: '金丹',
+
+    # 阶段等级
+    level: 9,
+
+    # 修为上限
+    limit: 90000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 1000 },
+      { key: '防御', value: 1000 },
+      { key: '法力', value: 1000 },
+      { key: '攻击', value: 1000 },
+    ],
+
+     # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 20,
+
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 12000000,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 312500,
+  },
+
+  {
+    # 名称
+    title: '元婴.一重',
+
+    # 阶段名称
+    period: '元婴',
+
+    # 阶段等级
+    level: 1,
+
+    # 修为上限
+    limit: 100000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10000 },
+      { key: '防御', value: 10000 },
+      { key: '法力', value: 10000 },
+      { key: '攻击', value: 10000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 347222,
+  },
+
+  {
+    # 名称
+    title: '元婴.二重',
+
+    # 阶段名称
+    period: '元婴',
+
+    # 阶段等级
+    level: 2,
+
+    # 修为上限
+    limit: 200000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10000 },
+      { key: '防御', value: 10000 },
+      { key: '法力', value: 10000 },
+      { key: '攻击', value: 10000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 694444,
+  },
+
+  {
+    # 名称
+    title: '元婴.三重',
+
+    # 阶段名称
+    period: '元婴',
+
+    # 阶段等级
+    level: 3,
+
+    # 修为上限
+    limit: 300000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10000 },
+      { key: '防御', value: 10000 },
+      { key: '法力', value: 10000 },
+      { key: '攻击', value: 10000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 1041667,
+  },
+
+  {
+    # 名称
+    title: '元婴.四重',
+
+    # 阶段名称
+    period: '元婴',
+
+    # 阶段等级
+    level: 4,
+
+    # 修为上限
+    limit: 400000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10000 },
+      { key: '防御', value: 10000 },
+      { key: '法力', value: 10000 },
+      { key: '攻击', value: 10000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 1388889,
+  },
+
+  {
+    # 名称
+    title: '元婴.五重',
+
+    # 阶段名称
+    period: '元婴',
+
+    # 阶段等级
+    level: 5,
+
+    # 修为上限
+    limit: 500000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10000 },
+      { key: '防御', value: 10000 },
+      { key: '法力', value: 10000 },
+      { key: '攻击', value: 10000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 1736111,
+  },
+
+  {
+    # 名称
+    title: '元婴.六重',
+
+    # 阶段名称
+    period: '元婴',
+
+    # 阶段等级
+    level: 6,
+
+    # 修为上限
+    limit: 600000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10000 },
+      { key: '防御', value: 10000 },
+      { key: '法力', value: 10000 },
+      { key: '攻击', value: 10000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 2083333,
+  },
+
+  {
+    # 名称
+    title: '元婴.七重',
+
+    # 阶段名称
+    period: '元婴',
+
+    # 阶段等级
+    level: 7,
+
+    # 修为上限
+    limit: 700000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10000 },
+      { key: '防御', value: 10000 },
+      { key: '法力', value: 10000 },
+      { key: '攻击', value: 10000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 2430556,
+  },
+
+  {
+    # 名称
+    title: '元婴.八重',
+
+    # 阶段名称
+    period: '元婴',
+
+    # 阶段等级
+    level: 8,
+
+    # 修为上限
+    limit: 800000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10000 },
+      { key: '防御', value: 10000 },
+      { key: '法力', value: 10000 },
+      { key: '攻击', value: 10000 },
+    ],
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 2777778,
+  },
+
+  {
+    # 名称
+    title: '元婴.九重',
+
+    # 阶段名称
+    period: '元婴',
+
+    # 阶段等级
+    level: 9,
+
+    # 修为上限
+    limit: 900000000,
+
+    # 属性加成
+    attrs: [
+      { key: '体力', value: 10000 },
+      { key: '防御', value: 10000 },
+      { key: '法力', value: 10000 },
+      { key: '攻击', value: 10000 },
+    ],
+
+     # 突破配置
+    tupo: {
+      # 突破基础成功率
+      successRate: 5,
+
+      # 突破失败后的CD时间(单位秒)
+      failCDTime: 12000000,
+    },
+
+    # 是否提示美术字
+    toastText: true,
+
+    # 在线修行(每分钟增加多少点修为)
+    increaseXiuXingPerMinute: 3125000,
+  },
+
+
+
 ]

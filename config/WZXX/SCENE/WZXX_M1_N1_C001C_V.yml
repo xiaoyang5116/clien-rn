@@ -13,6 +13,9 @@ scenes: [
       { id: "v3", min: 0, max: 1 } ,
       { id: "v1A", min: 0, max: 1 },
       { id: "v1A", min: 0, max: 1 },
+      #跟踪杀手完整跟踪完，获得线索
+      { id: "gengzonshashou", min: 0, max: 1 },
+
 
       ],
 
@@ -307,9 +310,11 @@ scenes: [
            ],
          },
           #合理退出
-          { key: 'END01', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
+          { 
+          key: 'END01', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
           btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },
-          {title: '取消', tokey: "N1A", }]},    
+          {title: '取消', tokey: "N1A", }]
+          },    
     ],
   },
   # NPC3
@@ -333,12 +338,11 @@ scenes: [
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "N1C1_V", min: 0, max: 1 },
     { id: "N1B2_V", min: 0, max: 1 },
-     { id: "biaoqianv4", min: 0, max: 1 } ,
+    { id: "biaoqianv4", min: 0, max: 1 } ,
     { id: "biaoqianv5", min: 0, max: 1 } ,
     { id: "biaoqianv6", min: 0, max: 1 } ,
     { id: "biaoqianv7", min: 0, max: 1 } ,
     { id: "biaoqianv8", min: 0, max: 1 } ,
-   
     ],
 
     # 动作定义
@@ -347,50 +351,51 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-     #   { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
-      #  { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1C1_V",], andVarsOn: ['N1B2_V'], dialogs: ['Screen2'] },
-      #  { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
-      #    { type: 'enter',  nextChat: 'C2' },
+    #  { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
+    #  { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1C1_V",], andVarsOn: ['N1B2_V'], dialogs: ['Screen2'] },
+    #  { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
+    #  { type: 'enter',  nextChat: 'C2' },
     ],
 
     # 对话选项
     chats: [
       #
       { 
-        id: 'C1', desc: '这里似乎危机重重，小心为好', 
-        options: [ 
-         { title: '【继续跟踪杀手】', nextChat: 'C5', }, 
-        ],
+      id: 'C1', desc: '这里似乎危机重重，小心为好', 
+      options: [ 
+      { title: '【继续跟踪杀手】', nextChat: 'C5', }, 
+      ],
       },
       #
       { 
-        id: 'C2', desc: '这里已经调查过了', 
-        options: [ 
-        ],
-      },
-
-       { 
-        id: 'C4', desc: "紧接着李森炎看见那杀手四处张望了下\n好似极为警惕的样子\n李森炎紧紧盯着他，只见他又拐进了一条小道\n周围杂草丛生看上去很不好跟踪\n李森炎决定",
-        options: [ 
-         { title: '【大步流星，赶紧跟上杀手】',dialogs: ['gameover01'] , icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']}, 
-         { title: '【小心翼翼的走，不着急】', nextChat: 'C3',   icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] }, 
-        ],
+      id: 'C2', desc: '这里已经调查过了', 
+      options: [ 
+       { title: '【继续跟踪杀手】', nextChat: 'C5', }, 
+       ],
       },
 
       { 
-        id: 'C5', desc: "李森炎小心翼翼地走着\n突然看见杀手挥剑向上砍去\n嘴里还喊道：“谁放的暗器？”\n结果那“暗器”粘在剑上了\n杀手定睛一看，是鸟屎\n李森炎：“噗……”",
-        options: [ 
-         { title: '【偷笑】', dialogs: ['gameover02'], icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']}, 
-         { title: '【憋笑】', nextChat: 'C6',   icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] }, 
-         { title: '【不笑】', nextChat: 'C6',   icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8'] }, 
-        ],
+      id: 'C4', desc: "紧接着李森炎看见那杀手四处张望了下\n好似极为警惕的样子\n李森炎紧紧盯着他，只见他又拐进了一条小道\n周围杂草丛生看上去很不好跟踪\n李森炎决定",
+      options: [ 
+      { title: '【大步流星，赶紧跟上杀手】',dialogs: ['gameover01'] , icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']}, 
+      { title: '【小心翼翼的走，不着急】', nextChat: 'C3',   icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] }, 
+      ],
       },
 
-       {
-        id: 'C6', desc: "杀手气急败坏，骂骂咧咧地从原地离开\n继续往前走\n周围杂草丛生看上去很不好跟踪\n李森炎决定",
-        options: [ 
-         { title: '【继续跟踪！】',toScene: 'C001C_V_MAP_0_3', }, 
-        ],
+      { 
+      id: 'C5', desc: "李森炎小心翼翼地走着\n突然看见杀手挥剑向上砍去\n嘴里还喊道：“谁放的暗器？”\n结果那“暗器”粘在剑上了\n杀手定睛一看，是鸟屎\n李森炎：“噗……”",
+      options: [ 
+      { title: '【偷笑】', dialogs: ['gameover02'], icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']}, 
+      { title: '【憋笑】', nextChat: 'C6',   icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] }, 
+      { title: '【不笑】', nextChat: 'C6',   icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8'] }, 
+      ],
+      },
+
+      {
+      id: 'C6', desc: "杀手气急败坏，骂骂咧咧地从原地离开\n继续往前走\n周围杂草丛生看上去很不好跟踪\n李森炎决定",
+      options: [ 
+      { title: '【继续跟踪！】',toScene: 'C001C_V_MAP_0_3', }, 
+      ],
       },
     ],
 
@@ -413,38 +418,39 @@ scenes: [
 
     # ],},
    #死亡2
-         { id: 'gameover01',
-           style: 7, artId: 4,
-           title: '你挂了',
-           dialogType: 'FullScreen', 
-           textAnimationType: 'TextFadeIn', 
-           sections: [
-           { key: 'p1', content: ['杀手大概是对这条路无比熟悉','走的很快','你也快步跟上','忽然被绊倒了','杀手听见‘啪唧’一声','回过头就看见李森炎四仰八叉倒在地上的样子','“我懂，这回我自己死……”',], btn: [{title: '不放弃，再来', dialogs: ['lierenxiaodao'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
-           ],      
-         },      
-  #死亡3
-            { id: 'gameover02',
-           style: 7, artId: 2,
-           title: '你挂了',
-           dialogType: 'FullScreen', 
-           textAnimationType: 'TextFadeIn', 
-           sections: [
-           { key: 'p2', content: ['李森炎偷笑','哈哈哈哈哈哈','哎不是，不小心笑出声了？','刚想捂上嘴，结果忽然感觉脚下一凉','……','你好，回见',], btn: [{title: '不放弃，再来', dialogs: ['lierenxiaodao'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
-           ],      
-         },      
-          #合理退出
-          { key: 'END01', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
-          btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },
-          {title: '取消', tokey: "N1A", }]},     
-    ],
-
-    
+        { 
+        id: 'gameover01',
+        style: 7, artId: 4,
+        title: '你挂了',
+        dialogType: 'FullScreen', 
+        textAnimationType: 'TextFadeIn', 
+        sections: [
+        { key: 'p1', content: ['杀手大概是对这条路无比熟悉','走的很快','你也快步跟上','忽然被绊倒了','杀手听见‘啪唧’一声','回过头就看见李森炎四仰八叉倒在地上的样子','“我懂，这回我自己死……”',], btn: [{title: '不放弃，再来', dialogs: ['lierenxiaodao'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
+        ],      
+        },      
+        #死亡3
+        { 
+        id: 'gameover02',
+        style: 7, artId: 2,
+        title: '你挂了',
+        dialogType: 'FullScreen', 
+        textAnimationType: 'TextFadeIn', 
+        sections: [
+        { key: 'p2', content: ['李森炎偷笑','哈哈哈哈哈哈','哎不是，不小心笑出声了？','刚想捂上嘴，结果忽然感觉脚下一凉','……','你好，回见',], btn: [{title: '不放弃，再来', dialogs: ['lierenxiaodao'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
+        ],      
+        },      
+        #合理退出
+        {
+        key: 'END01', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],
+        btn: [{title: '确认', toChapter: "WZXX_M1_N1_C001B_[C2]", },
+        {title: '取消', tokey: "N1A", }]
+        },     
+    ],    
   },
 
   {
   # NPC2
     id: 'C001C_V_MAP_0_3', name: '林荫休息处',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
      #横图显示
@@ -462,14 +468,14 @@ scenes: [
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "N1C1_V", min: 0, max: 1 },
     { id: "N1B2_V", min: 0, max: 1 },
-     { id: "biaoqianv8", min: 0, max: 1 } ,
+    { id: "biaoqianv8", min: 0, max: 1 } ,
     { id: "biaoqianv9", min: 0, max: 1 } ,
     { id: "biaoqianv10", min: 0, max: 1 } ,
     { id: "biaoqianv11", min: 0, max: 1 } ,
     { id: "biaoqianv12", min: 0, max: 1 } ,
     { id: "biaoqianv13", min: 0, max: 1 } ,
     { id: "biaoqianv14", min: 0, max: 1 } ,
-   
+
     ],
 
     # 动作定义
@@ -478,51 +484,49 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-     #   { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
-      #  { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1C1_V",], andVarsOn: ['N1B2_V'], dialogs: ['Screen2'] },
-      #  { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
-      #    { type: 'enter',  nextChat: 'C2' },
+    #  { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
+    #  { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1C1_V",], andVarsOn: ['N1B2_V'], dialogs: ['Screen2'] },
+    #  { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
+    #  { type: 'enter',  nextChat: 'C2' },
     ],
 
     # 对话选项
     chats: [
       #
-      { 
-        id: 'C1', desc: '在这儿小歇一会儿，应该会很舒服吧', 
-        options: [ 
-         { title: '【继续跟踪杀手】',nextChat: 'C3' }, 
-        ],
-      },
-      #
-      { 
-        id: 'C2', desc: '这里已经调查过了', 
-        options: [ 
-        ],
-      },
+    { 
+    id: 'C1', desc: '在这儿小歇一会儿，应该会很舒服吧', 
+    options: [ 
+    { title: '【继续跟踪杀手】',nextChat: 'C3' }, 
+    ],
+    },
+    #
+    { 
+    id: 'C2', desc: '这里已经调查过了', 
+    options: [ 
+    ],
+    },
 
-       {
-        id: 'C3', desc: "这里看上去很阴凉\n杀手似乎想在这里休息一下\n杀手坐下了，闭上眼假寐\n此时李森炎决定",
-        options: [ 
-         { title: '【静静等候】',nextChat: 'C4' }, 
-         { title: '【睡一觉】',nextChat: 'C5' }, 
-        ],
-      },
+    {
+    id: 'C3', desc: "这里看上去很阴凉\n杀手似乎想在这里休息一下\n杀手坐下了，闭上眼假寐\n此时李森炎决定",
+    options: [ 
+    { title: '【静静等候】',nextChat: 'C4' }, 
+    { title: '【睡一觉】',nextChat: 'C5' }, 
+    ],
+    },
 
-      {
-        id: 'C4', desc: "杀手靠在木桩前休息好了之后\n拍了拍身上的灰继续走",
-        options: [ 
-         { title: '【继续跟踪】',toScene: 'C001C_V_MAP_0_4' }, 
-        ],
-      },
+    {
+    id: 'C4', desc: "杀手靠在木桩前休息好了之后\n拍了拍身上的灰继续走",
+    options: [ 
+    { title: '【继续跟踪】',toScene: 'C001C_V_MAP_0_4' }, 
+    ],
+    },
 
-       {
-        id: 'C5', desc: "一阵冷风\n李森炎起身\n睡过头了，李森炎内心大呼\n眼见发现天已经黄昏\n杀手早就不知那里去了\n请选择",
-        options: [ 
-         { title: '【算了，直接进城】',toScene: 'C001C_V_MAP_0_5' }, 
-        ],
-      },
-      #
- 
+    {
+    id: 'C5', desc: "一阵冷风\n李森炎起身\n睡过头了，李森炎内心大呼\n眼见发现天已经黄昏\n杀手早就不知那里去了\n请选择",
+    options: [ 
+    { title: '【算了，直接进城】',toScene: 'C001C_V_MAP_0_5' }, 
+    ],
+    }, 
     ],
 
     # # 对话框
@@ -540,9 +544,6 @@ scenes: [
 
     #      { key: 'K8', content: ['一阵冷风','李森炎起身','睡过头了，李森炎内心大呼','眼见发现天已经黄昏','杀手早就不知那里去了','请选择',],
     #      btn: [{title: '算了，直接进城', toScene: 'C001C_V_MAP_0_5'},], },  
-
-  
-         
     #      ],
     #       },
     # ],
@@ -580,8 +581,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
-      #  { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
-         #        { type: 'enter',  nextChat: 'C2' },
+    #  { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
+    #  { type: 'enter',  nextChat: 'C2' },
     ],
 
 
@@ -612,7 +613,7 @@ scenes: [
       {
         id: 'C4', desc: "杀手又走了一会儿\n进了城后，杀手见四下无人，进了路边的一个小房子\n你本来想跟上，但看见房子里出来了更多黑衣人\n你知道，但凡进去就是必死，默默把地址记下\n算了，走吧",
         options: [ 
-         { title: '【进城】',toScene: 'C001C_V_MAP_0_5' }, 
+         { title: '【进城】', varsOn: ['WZXX_M1_N1_C001C_V/gengzonshashou'] ,toScene: 'C001C_V_MAP_0_5' }, 
         ],
       },
  
@@ -663,11 +664,12 @@ scenes: [
     ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C1' },
-     #   { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
-      #  { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1C1_V",], andVarsOn: ['N1B2_V'], dialogs: ['Screen2'] },
-      #  { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
-      #    { type: 'enter',  nextChat: 'C2' },
+       { type: 'enter',  nextChat: 'C3' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C001C_V/gengzonshashou'] ,nextChat: 'C1' },
+    #  { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1B2_V",], andVarsOn: ['N1C1_V'], dialogs: ['Screen1'] },
+    #  { type: 'enter', andVarsOff: ['ONE_OPEN_0',"N1C1_V",], andVarsOn: ['N1B2_V'], dialogs: ['Screen2'] },
+    #  { type: 'enter', andVarsOn: ['ONE_OPEN_1'], nextChat: 'C2' },
+    #  { type: 'enter',  nextChat: 'C2' },
     ],
 
     # 对话选项
@@ -676,12 +678,19 @@ scenes: [
       { 
         id: 'C1', desc: '城门口，来往的人越来越多不太好跟踪了', 
         options: [ 
-         { title: '【直接进城】',toChapter: "WZXX_M1_N1_C001B_[C2]" ,  
+         { title: '【直接进城】',toChapter: "WZXX_M1_N1_C001B_[C2]" ,  varsOff: ['WZXX_M1_N1_C001C_V/gengzonshashou'],
          toMsg: { 
           action: 'CluesModel/addClues', params: { addCluesId: ["qingbao4"] } 
         },
         }, 
+        ],
+      },
 
+       { 
+        id: 'C3', desc: '城门口，来往的人越来越多不太好跟踪了', 
+        options: [ 
+         { title: '【直接进城】',toChapter: "WZXX_M1_N1_C001B_[C2]" ,  
+        }, 
         ],
       },
       #
@@ -697,172 +706,193 @@ scenes: [
    
   },
     #=================================场景地图的设置==================================
-    maps: [
-      {
-        id: 'C001C_V_MAP_0_0',
-        data: [
+          maps: [
+          {
+          id: 'C001C_V_MAP_0_0',
+          data: [
+
           { 
           point: [0, 0], title: '林间小道入口', 
           #toScene: 'C001C_V_MAP_0_0', 
-          links: [[0, 1], ] },
-          { point: [0, 1], title: '？？？', links: [] },
-        ]
-      },
+          links: [[0, 1], ] 
+          },
       
-      {
-        id: 'C001C_V_MAP_0_1',
-        data: [
-          { point: [0, 2], title: '？？？', links: [] },
           { 
-          point: [0, 1], title: '寻常窄道',
-           #toScene: 'C001C_V_MAP_0_1',
-            links: [[0, 2], ] },
-          { 
-          point: [0, 0], title: '林间小道入口', 
-         # toScene: 'C001C_V_MAP_0_0',
-           links: [[0, 1], ] 
-           },
-
-        ]
-      },
-      {
-        id: 'C001C_V_MAP_0_2',
-        data: [
-          { point: [0, 3], title: '？？？', links: [[], ] },
-          { 
-          point: [0, 2], title: '猎人小道',
-           # toScene: 'C001C_V_MAP_0_2',
-             links: [[0, 3], ] 
-             },
+          point: [0, 1],
+          title: '？？？', 
+          links: [] 
+          },
+          ]
+          },
 
           {
-           point: [0, 1], title: '寻常窄道', 
-          # toScene: 'C001C_V_MAP_0_1',
-            links: [[0, 2], ] 
-            },
-
-          { point: [0, 0],
-           title: '林间小道，入口', 
-           #toScene: 'C001C_V_MAP_0_0', 
-           links: [[0, 1], ] 
-           },
-
-        ]
-      },
-
-       {
-        id: 'C001C_V_MAP_0_3',
-        data: [
-          { point: [1, 4], title: '？？？',
-           links: [[], ] },
-          { 
-          point: [0, 3], title: '林荫休息处', 
-           #toScene: 'C001C_V_MAP_0_3',
-            links: [[1, 4], ] 
-            },
+          id: 'C001C_V_MAP_0_1',
+          data: [
 
           { 
           point: [0, 2],
-           title: '猎人小道', 
+          title: '？？？',
+          links: [] 
+          },
+          { 
+          point: [0, 1], title: '寻常窄道',
+          #toScene: 'C001C_V_MAP_0_1',
+          links: [[0, 2], ] 
+          },
+          { 
+          point: [0, 0], title: '林间小道入口', 
+          # toScene: 'C001C_V_MAP_0_0',
+          links: [[0, 1], ] 
+          },
+
+          ]
+          },
+          {
+          id: 'C001C_V_MAP_0_2',
+          data: [
+          { point: [0, 3], 
+          title: '？？？',
+           links: [[], ]
+          },
+
+          { 
+          point: [0, 2], title: '猎人小道',
+          # toScene: 'C001C_V_MAP_0_2',
+          links: [[0, 3], ] 
+          },
+
+          {
+          point: [0, 1], title: '寻常窄道', 
+          # toScene: 'C001C_V_MAP_0_1',
+          links: [[0, 2], ] 
+          },
+
+          { point: [0, 0],
+          title: '林间小道，入口', 
+          #toScene: 'C001C_V_MAP_0_0', 
+          links: [[0, 1], ] 
+          },
+
+          ]
+          },
+
+          {
+          id: 'C001C_V_MAP_0_3',
+          data: [
+          { point: [1, 4], 
+          title: '？？？',
+          links: [[], ] 
+          },
+
+          { 
+          point: [0, 3], title: '林荫休息处', 
+          #toScene: 'C001C_V_MAP_0_3',
+          links: [[1, 4], ] 
+          },
+
+          { 
+          point: [0, 2],
+          title: '猎人小道', 
           #  toScene: 'C001C_V_MAP_0_2',
-             links: [[0, 3], ]
-              },
+          links: [[0, 3], ]
+          },
 
           {
 
-           point: [0, 1], 
-           title: '寻常窄道',
+          point: [0, 1], 
+          title: '寻常窄道',
           #  toScene: 'C001C_V_MAP_0_1',
-             links: [[0, 2], ] 
-             },
+          links: [[0, 2], ] 
+          },
 
           { 
           point: [0, 0],
-           title: '林间小道，入口', 
-         #  toScene: 'C001C_V_MAP_0_0',
-            links: [[0, 1], ] 
-            },
+          title: '林间小道，入口', 
+          #  toScene: 'C001C_V_MAP_0_0',
+          links: [[0, 1], ] 
+          },
 
-        ]
-      },
+          ]
+          },
 
-       {
-        id: 'C001C_V_MAP_0_4',
-        data: [
+          {
+          id: 'C001C_V_MAP_0_4',
+          data: [
 
           { point: [1, 5], title: '？？？',
-           links: [[], ] },
+          links: [[], ] },
 
           { point: [1, 4], title: '进城大道',
           #toScene: 'C001C_V_MAP_0_4',
-           links: [[1, 5], ] 
-           },
+          links: [[1, 5], ] 
+          },
 
           { 
           point: [0, 3], title: '林荫休息处', 
-           #toScene: 'C001C_V_MAP_0_3',
-            links: [[1, 4], ] 
-            },
+          #toScene: 'C001C_V_MAP_0_3',
+          links: [[1, 4], ] 
+          },
 
           { 
           point: [0, 2],
-           title: '猎人小道', 
+          title: '猎人小道', 
           #  toScene: 'C001C_V_MAP_0_2',
-             links: [[0, 3], ] 
-             },
+          links: [[0, 3], ] 
+          },
 
           {
 
-           point: [0, 1], 
-           title: '寻常窄道',
+          point: [0, 1], 
+          title: '寻常窄道',
           #  toScene: 'C001C_V_MAP_0_1',
-             links: [[0, 2], ] 
-             },
+          links: [[0, 2], ] 
+          },
 
           { 
           point: [0, 0],
-           title: '林间小道，入口', 
-         #  toScene: 'C001C_V_MAP_0_0',
-            links: [[0, 1], ] 
-            },
-            
+          title: '林间小道，入口', 
+          #  toScene: 'C001C_V_MAP_0_0',
+          links: [[0, 1], ] 
+          },
 
-        ]
-      },
 
-       {
-        id: 'C001C_V_MAP_0_5',
-        data: [
+          ]
+          },
+
+          {
+          id: 'C001C_V_MAP_0_5',
+          data: [
 
           { point: [1, 5], title: '白城',
           #toScene: 'C001C_V_MAP_0_5',
-           links: [[], ] },
+          links: [[], ] },
 
           { point: [1, 4], title: '进城大道',
           #toScene: 'C001C_V_MAP_0_4',
-           links: [[1, 5], ]
-            },
-            
+          links: [[1, 5], ]
+          },
+
           { 
           point: [0, 3], title: '林荫休息处', 
-           #toScene: 'C001C_V_MAP_0_3',
-            links: [[1, 4], ] },
+          #toScene: 'C001C_V_MAP_0_3',
+          links: [[1, 4], ] },
           { 
           point: [0, 2],
-           title: '猎人小道', 
+          title: '猎人小道', 
           #  toScene: 'C001C_V_MAP_0_2',
-             links: [[0, 3], ] },
+          links: [[0, 3], ] },
           {
-           point: [0, 1], 
-           title: '寻常窄道',
+          point: [0, 1], 
+          title: '寻常窄道',
           #  toScene: 'C001C_V_MAP_0_1',
-             links: [[0, 2], ] },
+          links: [[0, 2], ] },
           { 
           point: [0, 0],
-           title: '林间小道，入口', 
-         #  toScene: 'C001C_V_MAP_0_0',
-            links: [[0, 1], ] },
-        ]
+          title: '林间小道，入口', 
+          #  toScene: 'C001C_V_MAP_0_0',
+          links: [[0, 1], ] 
+          },
+          ]
       },
     ],
 
