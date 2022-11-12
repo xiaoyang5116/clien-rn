@@ -134,11 +134,11 @@ const FirstPage = (props) => {
               <Text style={{ fontSize: 28, color: '#666', marginBottom: 20 }}>测试菜单</Text>
               {/* 乞丐开局 */}
               <ImageButton {...BTN_STYLE} source={require('../../assets/button/home_button.png')} selectedSource={require('../../assets/button/home_button_selected.png')} onPress={() => {
-                this.props.dispatch(action('StoryModel/enter')({ sceneId: 'wzkj' }));
+                props.dispatch(action('StoryModel/enter')({ sceneId: 'wzkj' }));
               }} />
               {/* 继续阅读 */}
               <ImageButton {...BTN_STYLE} source={require('../../assets/button/continue_button.png')} selectedSource={require('../../assets/button/continue_button_selected.png')} onPress={() => {
-                this.props.dispatch(action('StoryModel/reEnter')({}));
+                props.dispatch(action('StoryModel/reEnter')({}));
               }} />
               {/* 线索 */}
               <ImageButton {...BTN_STYLE} source={require('../../assets/button/continue_button.png')} selectedSource={require('../../assets/button/continue_button_selected.png')} onPress={() => {
@@ -146,7 +146,7 @@ const FirstPage = (props) => {
               }} />
               {/* 测试按钮 */}
               <ImageButton {...BTN_STYLE} source={require('../../assets/button/test_button.png')} selectedSource={require('../../assets/button/test_button_selected.png')} onPress={() => {
-                this.props.dispatch(action('StoryModel/enter')({ sceneId: 'test_scenes' }));
+                props.dispatch(action('StoryModel/enter')({ sceneId: 'test_scenes' }));
               }} />
             </View>
           </SafeAreaView>
