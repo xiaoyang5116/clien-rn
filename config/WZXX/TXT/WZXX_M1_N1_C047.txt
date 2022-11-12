@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C047']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C047FZ'] }, 
-     { header: '第四十七章 一阶妖兽' },
+     { header: '第三十二章 一阶妖兽' },
       { world: { name: '灵修界' } },
 ]
 #END==========================================
