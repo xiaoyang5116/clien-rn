@@ -81,7 +81,7 @@ scenes: [
           btn: [
           {title: '原身是白月光的粉丝头子', dialogs: ['C003_1.2A'] ,
           icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']  },
-          {title: '难道是原身曾英雄救美',  dialogs: ['C003_1.2B'] ,dropIds: [ 'WZXX_M1_N1_C003_V_Vdrop1'],
+          {title: '难道是原身曾英雄救美',  dialogs: ['C003_1.2B'] ,dropIds: [ 'WZXX_M1_N1_C003_V_Vdrop1','WZXX_M1_N1_C003_V_Vdrop3',],
           icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']  },
           {title: '大胆点，或许是有感情渊源？', dialogs: ['C003_1.2C'] ,
           icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] },
