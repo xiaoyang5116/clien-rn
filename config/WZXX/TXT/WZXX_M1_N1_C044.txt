@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C044']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C044FZ'] }, 
-     { header: '第四十四章 抽签' },
+     { header: '第二十九章 抽签' },
       { world: { name: '灵修界' } },
 ]
 #END==========================================

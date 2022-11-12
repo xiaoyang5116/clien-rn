@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C042']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C042FZ'] }, 
-     { header: '第四十二章 飞舟出行' },
+     { header: '第二十七章 飞舟出行' },
       { world: { name: '灵修界' } },
 ]
 #END==========================================

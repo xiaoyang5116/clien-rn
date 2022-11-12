@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C052']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C052FZ'] }, 
-     { header: '第五十二章 诡异' },
+     { header: '第三十七章 诡异' },
       { world: { name: '灵修界' } },
 ]
 #END==========================================

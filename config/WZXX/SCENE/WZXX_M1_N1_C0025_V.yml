@@ -28,6 +28,14 @@ scenes: [
         ],
       },
 
+      { 
+        id: 'WZXX_M1_N1_C0025_V2', desc: '阅读下一卷', 
+        options: [ 
+          { title: "【阅读下一卷】",toChapter: "WZXX_M1_N1_C041",},
+        ],
+      },
+
+
       
 
 
