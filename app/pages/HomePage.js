@@ -93,7 +93,7 @@ const defaultScreenOptions = {
     marginLeft: 20,
     marginRight: 20,
   },
-  tabBarInactiveTintColor: '#fff',
+  tabBarInactiveTintColor: '#333',
   tabBarBackground: () => <TabBarBackground />,
 }
 
@@ -107,31 +107,31 @@ class HomePage extends Component {
         <Tab.Navigator initialRouteName='World' sceneContainerStyle={{ backgroundColor: 'none' }} screenOptions={defaultScreenOptions}>
           <Tab.Screen name="Role" component={RoleTabPage} options={{
             title: "人物",
-            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'人物'} />),
+            tabBarIcon: ({ focused, color }) => (<TabIcon color={focused ? color : this.context.tabBottomTextColor} title={'人物'} />),
           }} />
           <Tab.Screen name="World" component={StoryTabPage} options={{
             title: "世界",
-            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'世界'} />),
+            tabBarIcon: ({ focused, color }) => (<TabIcon color={focused ? color : this.context.tabBottomTextColor} title={'世界'} />),
           }} />
           <Tab.Screen name="Explore" component={EmptyPage} options={{
             title: "探索",
-            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'探索'} />),
+            tabBarIcon: ({ focused, color }) => (<TabIcon color={focused ? color : this.context.tabBottomTextColor} title={'探索'} />),
           }} />
           <Tab.Screen name="Town" component={TownTabPage} options={{
             title: "城镇",
-            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'城镇'} />),
+            tabBarIcon: ({ focused, color }) => (<TabIcon color={focused ? color : this.context.tabBottomTextColor} title={'城镇'} />),
           }} />
           <Tab.Screen name="Collection" component={CollectionTabPage} options={{
             title: "灵物收藏",
-            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'收藏'} />),
+            tabBarIcon: ({ focused, color }) => (<TabIcon color={focused ? color : this.context.tabBottomTextColor} title={'收藏'} />),
           }} />
           <Tab.Screen name="Profile" component={ProfileTabPage} options={{
             title: "设置",
-            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'设置'} />),
+            tabBarIcon: ({ focused, color }) => (<TabIcon color={focused ? color : this.context.tabBottomTextColor} title={'设置'} />),
           }} />
           <Tab.Screen name="Props" component={EmptyPage} options={{
             title: "道具",
-            tabBarIcon: ({ color }) => (<TabIcon color={color} title={'道具'} />),
+            tabBarIcon: ({ focused, color }) => (<TabIcon color={focused ? color : this.context.tabBottomTextColor} title={'道具'} />),
           }} />
         </Tab.Navigator>
       </ImagePanel>

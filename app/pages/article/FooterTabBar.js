@@ -30,7 +30,7 @@ const FooterTabBar = (props) => {
           <View style={[theme.tabBottomImgStyle, { justifyContent: 'center', alignItems: 'center', marginTop: 10, marginBottom: 10, transform: [{ scale: (isPad() ? 0.8 : 1) }] }]}>
             <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={theme.tabBottomImage} />
             <View style={[{ width: px2pd(60) }]}>
-              <Text style={{ fontSize: px2pd(60), color: '#fff' }}>{title}</Text>
+              <Text style={{ fontSize: px2pd(60), color: theme.tabBottomTextColor }}>{title}</Text>
             </View>
           </View>
         </TouchableWithoutFeedback>

@@ -145,6 +145,9 @@ const styles = StyleSheet.create({
         height: px2pd(200),
     },
 
+    /* 选项按钮文本颜色 */
+    tabBottomTextColor: '#fff',
+
     /* 城镇地图按钮标签样式 */
     townMapButtonLabel: {
         color: '#333',
