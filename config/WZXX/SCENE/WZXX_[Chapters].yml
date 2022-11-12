@@ -268,6 +268,42 @@ scenes: [
           { id: "WZXX_M1_N1_C040",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C040FZ",min: 0, max: 1 },
 
+          { id: "WZXX_M1_N1_C041",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C041FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C042",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C042FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C043",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C043FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C044",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C044FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C045",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C045FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C046",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C046FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C047",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C047FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C048",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C048FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C048A",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C048AFZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C049",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C049FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C051",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C051FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C052",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C052FZ",min: 0, max: 1 },
+
           { id: "WZXX_M1_N1_C988",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C988FZ",min: 0, max: 1 },
 

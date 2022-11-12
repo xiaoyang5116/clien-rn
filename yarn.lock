@@ -6334,22 +6334,15 @@ react-native-codegen@^0.0.8:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
-<<<<<<< HEAD
+react-native-collapsible@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.npmmirror.com/react-native-collapsible/-/react-native-collapsible-1.6.0.tgz"
+  integrity sha512-beZjdgbT9Y/Pg591Xy5XkKG20HffJiVad4n9bfcUF/f783A+tvOVXnqvbS58Lkaym93mi4jcDPMuW9Vc1t6rqg==
+
 react-native-fast-image@^8.5.11:
   version "8.5.11"
   resolved "https://registry.npmmirror.com/react-native-fast-image/-/react-native-fast-image-8.5.11.tgz"
   integrity sha512-cNW4bIJg3nvKaheG8vGMfqCt5LMWX9MS5+wMudgKIHbGO51spRr4sgnlhVgwHLcZ5aeNOVJ8CPRxDIWKRq/0QA==
-=======
-"react-native-collapsible@^1.6.0":
-  "integrity" "sha512-beZjdgbT9Y/Pg591Xy5XkKG20HffJiVad4n9bfcUF/f783A+tvOVXnqvbS58Lkaym93mi4jcDPMuW9Vc1t6rqg=="
-  "resolved" "https://registry.npmmirror.com/react-native-collapsible/-/react-native-collapsible-1.6.0.tgz"
-  "version" "1.6.0"
-
-"react-native-fast-image@^8.5.11":
-  "integrity" "sha512-cNW4bIJg3nvKaheG8vGMfqCt5LMWX9MS5+wMudgKIHbGO51spRr4sgnlhVgwHLcZ5aeNOVJ8CPRxDIWKRq/0QA=="
-  "resolved" "https://registry.npmmirror.com/react-native-fast-image/-/react-native-fast-image-8.5.11.tgz"
-  "version" "8.5.11"
->>>>>>> baf2be6e76298255e4703ee6638b60c5949bda0b
 
 react-native-fs@^2.19.0:
   version "2.19.0"
