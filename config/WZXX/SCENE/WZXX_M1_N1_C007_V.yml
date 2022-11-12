@@ -58,7 +58,7 @@ scenes: [
           { key: 'P1', content: ['“你自便吧……”','这时候，云云开口。','“别！”',
           '李森炎想要劝阻，为时已晚，再一次自由落体。',['边缘闪烁红'],'“混蛋啊！”','再一次身在云端。','……',
           ],
-          btn: [{title: '重新再来', nextChat: 'WZXX_M1_N1_C005_VA2'},]},
+          btn: [{title: '重新再来', nextChat: 'WZXX_M1_N1_C007_V1'},]},
            ]  
         },
 
@@ -68,11 +68,11 @@ scenes: [
           { key: 'P1', content: ['“大致说来，需要你不断修炼，得道成仙……”','李森炎听着她说话，只想狠狠掐她一把，冷不丁就把自己给甩下去，究竟什么毛病？自己貌似没有得罪她吧？','“喂，你有没有在听我说话？”',
           '“听到了。”','“你好像有一肚子怨气。”','可不是吗？李森炎怨念满满，却也只能说，“没有。”','“那好，我问你，如果有一天你发现自己根本敌不过那些魔头，你会怎么办？”',
           ],
-          btn: [{title: '和魔头斗争到底', dialogs: ['C007A_1.2A'],
+          btn: [{title: '和魔头斗争到底', dialogs: ['C007A_1.2A'],dropIds: [ 'WZXX_M1_N1_C007_V_drop1'],
           icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
-          {title: '先韬光养晦，之后再战！', dialogs: ['C007A_1.2B'],
+          {title: '先韬光养晦，之后再战！', dialogs: ['C007A_1.2B'],dropIds: [ 'WZXX_M1_N1_C007_V_drop2'],
           icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},
-          {title: '得要群策群力，兵多将广', dialogs: ['C007A_1.2C'],
+          {title: '得要群策群力，兵多将广', dialogs: ['C007A_1.2C'],dropIds: [ 'WZXX_M1_N1_C007_V_drop3'],
           icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},]},
            ]  
         },
@@ -106,7 +106,7 @@ scenes: [
            { key: 'P2', content: ['“太好了！”','云云兴奋得在空中打了个转。','“我靠……”',
           '大事不妙……','迅速坠落痛苦而又熟悉的感觉再次袭来。',
           ],
-          btn: [{title: '当然是真的了' ,tokey: "P3"},
+          btn: [{title: '……' ,tokey: "P3"},
           ]},
 
           { key: 'P3', content: ['这次死的也太冤了','含泪重选','……'
