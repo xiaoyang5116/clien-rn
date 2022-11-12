@@ -150,7 +150,7 @@ directory: [
 
 
           {
-          point: [0, -15], title: '第五章 陶老', 
+          point: [0, -15], title: '第五章 子母罗仪', 
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C005' ,
           toChapter: 'WZXX_M1_N1_C005', links: [[0, -16],], 
           },
