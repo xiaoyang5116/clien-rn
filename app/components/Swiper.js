@@ -113,7 +113,7 @@ export default class Swiper extends PureComponent {
 
         return (
             <View
-                style={[style, styles.allContarner]}
+                style={[style, styles.allContainer]}
                 onLayout={this.handleLayout}
             >
                 <ScrollView
@@ -125,6 +125,7 @@ export default class Swiper extends PureComponent {
                     onMomentumScrollEnd={(scrollView) => this.onAnimationEnd(scrollView)}
                     onScrollBeginDrag={this.onScrollBeginDrag.bind(this)}
                     onScrollEndDrag={this.onScrollEndDrag.bind(this)}
+                    bounces={false}
                 >
                     {items}
                 </ScrollView>
@@ -134,7 +135,7 @@ export default class Swiper extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-    allContarner: {
+    allContainer: {
         position: 'relative',
         overflow: "hidden"
     },
