@@ -109,7 +109,7 @@ const sharedStyles = StyleSheet.create({
         paddingTop: 10,
         paddingBottom: 10,
         textAlign: 'center',
-        // backgroundColor: "#fff"
+        backgroundColor: "#fff"
     },
 
     /** ================================ */
