@@ -242,6 +242,9 @@ const styles = StyleSheet.create({
 
     // icon
     check_1_img: require('../../assets/themes/modern/icon/hook.png'),
+
+    // 场景选项 页面背景
+    optionsPage_bg: require('../../assets/themes/modern/bg/optionPage_bg.png'),
 });
 
 export default styles;
