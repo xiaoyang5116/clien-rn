@@ -7,6 +7,7 @@ import {
     TouchableWithoutFeedback,
     FlatList,
     Image,
+    ImageBackground,
 } from 'react-native'
 
 import {
@@ -19,6 +20,9 @@ import {
 
 import TextAnimation from '../../textAnimation'
 import { TextButton } from '../../../constants/custom-ui';
+import { px2pd } from '../../../constants/resolution';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
 
 const HalfScreen = (props) => {
 
@@ -38,12 +42,22 @@ const HalfScreen = (props) => {
 
     return (
         <View style={styles.fullscreenContainer}>
-            <View style={[styles.halfContainer, theme.blockBgColor2]}>
-                <View style={styles.dialogHeader}>
-                    <Text onPress={onDialogCancel} style={[styles.titleFontSize, styles.back]}>返回</Text>
+            <ImageBackground
+                style={styles.halfContainer}
+                source={theme.dialog_Multiplayer_Bg}
+            >
+                <ImageBackground
+                    style={styles.dialogHeader}
+                    source={theme.dialog_Multiplayer_header_Bg}
+                >
+                    <View style={{ position: 'absolute', left: 12, zIndex: 2 }}>
+                        <TouchableOpacity onPress={onDialogCancel} style={{ flexDirection: 'row', alignItems: "center", }}>
+                            <AntDesign name={'left'} size={20} />
+                            <Text style={[styles.titleFontSize, styles.back]}>返回</Text>
+                        </TouchableOpacity>
+                    </View>
                     <Text style={[styles.titleFontSize, styles.title]}>{viewData.title}</Text>
-                    <Text style={[styles.titleFontSize, styles.multifunction]}></Text>
-                </View>
+                </ImageBackground>
                 <TouchableWithoutFeedback onPress={nextParagraph}>
                     <View style={{
                         flex: 1,
@@ -76,7 +90,7 @@ const HalfScreen = (props) => {
                         </View>
                     </View>
                 </TouchableWithoutFeedback>
-            </View>
+            </ImageBackground>
         </View>
     )
 }
@@ -95,14 +109,14 @@ const styles = StyleSheet.create({
         height: 600,
     },
     dialogHeader: {
-        height: 40,
+        height: px2pd(158),
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        borderBottomColor: '#6a655e',
-        borderBottomWidth: 1,
-        marginLeft: 12,
-        marginRight: 12,
+        // borderBottomColor: '#6a655e',
+        // borderBottomWidth: 1,
+        // marginLeft: 12,
+        // marginRight: 12,
     },
     back: {
         textAlign: 'left',

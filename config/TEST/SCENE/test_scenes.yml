@@ -3,119 +3,154 @@
 #####################
 
 scenes: [
-    {
-      id: 'test_scenes',
-      name: '配置测试',
-      worldTimeHidden: false,
-      sceneImage: 'BGT_1',
+  {
+    id: 'test_scenes',
+    name: '配置测试',
+    worldTimeHidden: false,
+    sceneImage: 'BGT_1',
 
-      # 变量定义
-      vars: [
-        { id: 'v1', min: 0, max: 1 }
-      ],
+    # 变量定义
+    vars: [
+      { id: 'v1', min: 0, max: 1 }
+    ],
 
-      # 动作定义
-      actions: [],
+    # 动作定义
+    actions: [],
 
-      # 剧情道具
-      plotPropsId: [1000, 1001, 1002],
+    # 剧情道具
+    plotPropsId: [1000, 1001, 1002],
 
-      # 事件定义
-      events: [
-        { type: 'enter', nextChat: 'c0' }
-      ],
+    # 事件定义
+    events: [
+      { type: 'enter', nextChat: 'c0' }
+    ],
 
-      # 注册地图
-      # maps: [],
+    # 注册地图
+    # maps: [],
 
-      # 当前场景地图
-      # mapId: 'map1',
-      # 地图中心点
-      # mapCenterPoint: [-1, 0],
+    # 当前场景地图
+    # mapId: 'map1',
+    # 地图中心点
+    # mapCenterPoint: [-1, 0],
 
-      # 对话选项
-      chats: [
-          {  
-            id: 'c0', desc: '配置测试', 
-            options: [
-              { title: "获得成就",         
-                toMsg: { 
-                  action: 'AchievementModel/addAchievement', params: { addAchievementId: [1,2] } 
-                },  
-              },
-              { title: '成就系统', openUI: "ChengJiu"},
-              { title: '打开功法页面', openUI: "GongFa"},
-              { title: '小宇宙项目', games: {id: 7}},
-              { title: '带引导的炼丹页面', openUI: "LianDanFang-1" },
-              { title: '种植', openUI: "ZhongZhi" },
-              { title: '炼器', openUI: "LianQi" },
-              { title: '【背景对话框(5 号)】', dialogs: ['p1'] },
-              { title: '航海探索', games: { id: 8, latticeMazeId: "航海探索" } },
-              { title: '抽签选项', dialogs: ['p2'] },
-              { title: '透明黑旁白', dialogs: ['p3'] },
-              { title: '字帖小游戏', games: {id: 5, word: ["木"], fail: {toScene: "wzkj"}, success: {toScene: "pomiao"} } },
-              { title: '华丽模版', dialogs: ['p4']},
-              { title: '华丽模版2', dialogs: ['p5']},
-              { title: '9号模版', dialogs: ['p6']},
+    # 对话选项
+    chats: [
+      {
+        id: 'c0', desc: '配置测试', 
+        options: [
+          { title: '多人对话', dialogs: ['p7']},
+          { title: '获得成就', toMsg: { action: 'AchievementModel/addAchievement', params: { addAchievementId: [1,2] } } },
+          { title: '成就系统', openUI: "ChengJiu"},
+          { title: '打开功法页面', openUI: "GongFa"},
+          { title: '小宇宙项目', games: {id: 7}},
+          { title: '带引导的炼丹页面', openUI: "LianDanFang-1" },
+          { title: '种植', openUI: "ZhongZhi" },
+          { title: '炼器', openUI: "LianQi" },
+          { title: '【背景对话框(5 号)】', dialogs: ['p1'] },
+          { title: '航海探索', games: { id: 8, latticeMazeId: "航海探索" } },
+          { title: '抽签选项', dialogs: ['p2'] },
+          { title: '透明黑旁白', dialogs: ['p3'] },
+          { title: '字帖小游戏', games: {id: 5, word: ["木"], fail: {toScene: "wzkj"}, success: {toScene: "pomiao"} } },
+          { title: '华丽模版', dialogs: ['p4']},
+          { title: '华丽模版2', dialogs: ['p5']},
+          { title: '9号模版', dialogs: ['p6']},
+        ],
+      },
+    ],
+
+    dialogs: [
+      {
+        id: 'p1', style: 5, textAnimationType: 'TextSingle',
+        sections: [
+          {
+            type: 'TopToBottom', bgImageId: 4, loop: true,
+            content: [
+              '你迅速跑过去，地面有些东西。',
+              '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
+              '那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。',
             ],
           },
         ],
-
-      dialogs:
-        [
+      },
+      {
+        id: 'p2', 
+        style: 11,
+        title: '随机抽签......',
+        sections: [
+          { id: 1, iconId: 1, rate: "<,25", content: '上上签', dialogs: ['p1'] },
+          { id: 2, iconId: 1, rate: "<,50", content: '上吉签', dialogs: ['p1'] },
+          { id: 3, iconId: 1, rate: "<,75", content: '中吉签', dialogs: ['p1'] },
+          { id: 4, iconId: 1, rate: "<,80", content: '中平签', dialogs: ['p1'] },
+          { id: 5, iconId: 1, rate: ">=,80", content: '下下签', dialogs: ['p1'] },
+        ]
+      },
+      { id: 'p3', style: 3, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '……',],  },
+      {
+        id: 'p4', style: 12, title: '神秘阵盘',
+        sections: {
+          content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
+          btn: [
+          { title: '穿越', toScene: "wzkj" },
+          { title: '破庙', toScene: "pomiao" },
+          { title: '退出', dialogs: ['p1'] },
+          ]
+        },  
+      },
+      {
+        id: 'p5', style: 13, title: '神秘阵盘', imgName: "BGT_1",
+        sections: {
+          content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
+          btn: [
+          { title: '破庙', toScene: "pomiao" },
+          { title: '退出', dialogs: ['p1'] },
+          ]
+        },
+      },
+      {
+        id: 'p6', style: "9A", textAnimationType: 'TextSingle',
+        sections: [
+          { key: 'p1', content: [ '李森炎回忆起自己离职当天', '那些人的音容还历历在目', '如果我没有穿越的话', '或许还能再见到他们……', [{toScene: 'C000C_V_MAP_0_4',transitionAnimation: '白色转场带背景',}] ], },
+        ]
+      },
+      {
+        id: 'p7', style: 8, title: '陶老对话', textAnimationType: 'TextSingle', dialogType: 'HalfScreen', isBubbleColor: true,
+        sections: [
           {
-            id: 'p1', style: 5, textAnimationType: 'TextSingle',
-            sections: [
-              {
-                type: 'TopToBottom', bgImageId: 4, loop: true,
-                content: [
-                  '你迅速跑过去，地面有些东西。',
-                  '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
-                  '那是一个没有磕碰的精美画轴，你直觉的感到那些是个很值钱的东西。',
-                ],
-              },
+            key: 'p1',
+            dialog: [
+              { id: '01', content: ['@吾才是本尊','我是李森炎，你是不是骗了我？没做标记的那些锻骨灵液才是你给的对吧？',], },
+              { id: '05', content: ['是又怎么样？',], },
+              { id: '01', content: ['我差点死了你知道吗？你这是赤果果的谋杀！',], },
+              { id: '02', content: ['@吾才是本尊，你都干了些什么？',], },
+              { id: 'center', content: ['第二天',], },
+              { id: '05', content: ['我设了个局，让他用了筑基期才能使用的锻骨灵液',], },
+              { id: '02', content: ['？？？你怎能如此丧心病狂？！',], },
+              { id: '03', content: ['@吾才是本尊，这就是你的不对了，虽然我不认同他，但也没必要这么搞他。',], },
+              { id: '05', content: ['我本来可以直接换了你的锻骨灵液，不过还是用了个小小伎俩，想看看你会不会相信我，果然，事实证明，你根本不相信我说的话。',], },
+              { id: '02', content: ['欲使人信，必先有信。',], },
+              { id: '03', content: ['+1',], },
+              { id: '04', content: ['+1',], },
+              { id: '05', content: ['你们不用这样，我并不觉得自己有什么错。李森炎，我就问你一个问题，你现在是不是没死？是不是比之前大有进步？',], },
             ],
+            btn: [{ title: '好像确实有……', tokey: "p2"},]
           },
           {
-            id: 'p2', 
-            style: 11,
-            title: '随机抽签......',
-            sections: [
-              { id: 1, iconId: 1, rate: "<,25", content: '上上签', dialogs: ['p1'] },
-              { id: 2, iconId: 1, rate: "<,50", content: '上吉签', dialogs: ['p1'] },
-              { id: 3, iconId: 1, rate: "<,75", content: '中吉签', dialogs: ['p1'] },
-              { id: 4, iconId: 1, rate: "<,80", content: '中平签', dialogs: ['p1'] },
-              { id: 5, iconId: 1, rate: ">=,80", content: '下下签', dialogs: ['p1'] },
-            ]
+            key: 'p2',
+            dialog: [
+              { id: '01', content: ['确实有……','但这过程未免也太痛苦了吧','我可是差点死掉了啊喂！',], },
+              { id: '05', content: ['@陶老本尊@为老不尊，我告诉你们，像他这样的，只要练了死不了，就往死了练，必须下猛药，毕竟留给我们的时间不多了！',], },
+              { id: '01', content: ['@吾才是本尊，你有没有想过，万一我这人被你练废了呢？',], },
+              { id: '05', content: ['那再练一个就是了。',], },
+              { id: '01', content: ['再练一个难道就不需时间吗？你不是说时间不多了吗？',], },
+              { id: '05', content: ['……',], },
+              { id: '03', content: ['……',], },
+              { id: '02', content: ['……',], },
+            ],
+            btn: [{ title: '解气！', toChapter: "WZXX_M1_N1_C018_[N2]"},]
           },
-          { id: 'p3', style: 3, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '……',],  },
-          {
-            id: 'p4', style: 12, title: '神秘阵盘',
-            sections: {
-              content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
-              btn: [
-              { title: '穿越', toScene: "wzkj" },
-              { title: '破庙', toScene: "pomiao" },
-              { title: '退出', dialogs: ['p1'] },
-              ]
-            },  
-          },
-          {
-            id: 'p5', style: 13, title: '神秘阵盘', imgName: "BGT_1",
-            sections: {
-              content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
-              btn: [
-              { title: '破庙', toScene: "pomiao" },
-              { title: '退出', dialogs: ['p1'] },
-              ]
-            },
-          },
-          {
-            id: 'p6', style: "9A", textAnimationType: 'TextSingle',
-            sections: [
-              { key: 'p1', content: [ '李森炎回忆起自己离职当天', '那些人的音容还历历在目', '如果我没有穿越的话', '或许还能再见到他们……', [{toScene: 'C000C_V_MAP_0_4',transitionAnimation: '白色转场带背景',}] ], },
-            ]
-          }
-        ],
-    },
-  ]
+          
+        ]
+      },
+    ],
+  },
+]

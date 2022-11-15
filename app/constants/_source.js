@@ -4,8 +4,8 @@ import { px2pd } from './resolution';
 
 const _images = {
     avatar: [
-        { id: 1, img: require('../../assets/avatar/1.jpg') },
-        { id: 2, img: require('../../assets/avatar/2.jpg') },
+        { id: 1, img: require('../../assets/avatar/1.png') },
+        { id: 2, img: require('../../assets/avatar/2.png') },
         { id: 3, img: require('../../assets/avatar/3.png') },
         { id: 4, img: require('../../assets/avatar/4.png') },
         { id: 5, img: require('../../assets/avatar/5.png') },
@@ -72,7 +72,7 @@ const _images = {
         { id: 6, width: px2pd(160), height: px2pd(160), img: require('../../assets/props/v_1.png') },
     ],
     bust: [
-        { id: 1, img: require('../../assets/avatar/1.jpg') },
+        { id: 1, img: require('../../assets/avatar/1.png') },
         { id: 2, img: require('../../assets/avatar/6.png') },
     ],
     world_bg: [

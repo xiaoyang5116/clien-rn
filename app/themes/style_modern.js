@@ -7,7 +7,8 @@ import sharedStyles from './sharedStyles';
 /** 主题色：黄色 */
 // 默认颜色
 const defaultFontColor = "#424242";
-const defaultBgColor = "#e8ddcc";
+// const defaultBgColor = "#e8ddcc";
+const defaultBgColor = "#e0e9ed";
 
 /**
 * 通用按钮
@@ -213,8 +214,10 @@ const styles = StyleSheet.create({
     headerBg: require("../../assets/themes/modern/header/settiing_bg.png"),
 
     // 按钮
-    btnPattern_1_img: require("../../assets/themes/modern/button/btn_pattern1.png"),
-    btnPattern_2_img: require("../../assets/themes/modern/button/btn_pattern2.png"),
+    // btnPattern_1_img: require("../../assets/themes/modern/button/btn_pattern1.png"),
+    // btnPattern_2_img: require("../../assets/themes/modern/button/btn_pattern2.png"),
+    btnPattern_1_img: require("../../assets/themes/blue/button/btn_pattern1.png"),
+    btnPattern_2_img: require("../../assets/themes/blue/button/btn_pattern2.png"),
 
     // 对话框
     dialogBorder_1_img: require('../../assets/themes/modern/bg/border1.png'),
@@ -222,6 +225,9 @@ const styles = StyleSheet.create({
     dialogBg_2_img: require('../../assets/themes/modern/bg/dialog_bg2.png'),
     dialogBg_2_header_img: require('../../assets/themes/modern/bg/dialog_bg2_header.png'),
     dialogBg_2_footer_img: require('../../assets/themes/modern/bg/dialog_bg2_footer.png'),
+    // -- 多人对话
+    dialog_Multiplayer_header_Bg: require('../../assets/themes/modern/bg/dialog/header-bg.png'),
+    dialog_Multiplayer_Bg: require('../../assets/themes/modern/bg/dialog/bg.png'),
 
     // 通用花纹
     pattern_1_img: require('../../assets/themes/modern/bg/border1.png'),

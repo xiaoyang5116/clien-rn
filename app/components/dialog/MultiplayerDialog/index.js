@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   FlatList,
   Image,
+  ImageBackground,
 } from 'react-native'
 
 import {
@@ -22,6 +23,7 @@ import TextAnimation from '../../textAnimation'
 import { TextButton, BtnIcon } from '../../../constants/custom-ui';
 import HalfScreen from './HalfScreen';
 import FullScreen from './FullScreen';
+import { px2pd } from '../../../constants/resolution';
 
 
 /**
@@ -192,18 +194,21 @@ const MultiplayerDialog = (props) => {
       // 当前说话人的信息
       const figure = figureInfo.find(f => f.id === item.id)
 
-      const bg = (item.id === '01' && viewData.isBubbleColor) ? "#95ec69" : "#fff"
+      const bg = (item.id === '01' && viewData.isBubbleColor) ? "#9ec1f3" : "#fff"
       return (
         <TouchableWithoutFeedback onPress={nextParagraph} >
           <View style={{ flexDirection: item.id === '01' ? 'row-reverse' : 'row', justifyContent: 'flex-start', flexWrap: 'nowrap', paddingTop: 18, }}>
             <View>
-              <Image source={changeAvatar(figure.avatar)} style={{ height: 50, width: 50, borderRadius: 5 }} />
+              <ImageBackground style={{ width: px2pd(144), height: px2pd(145), justifyContent: 'center', alignItems: 'center' }} source={require('../../../../assets/avatar/avatarFrame.png')} >
+                <Image source={changeAvatar(figure.avatar)} style={{ width: px2pd(130), height: px2pd(130), borderRadius: 65 }} />
+              </ImageBackground>
+
             </View>
             <View style={item.id === '01' ? styles.paddingRight : styles.paddingLeft}>
               <Text style={{ textAlign: item.id === '01' ? 'right' : 'left' }}>
                 {figure.name}
               </Text>
-              <View style={{ maxWidth: 270, padding: 5, backgroundColor: bg, borderRadius: 4, position: 'relative' }}>
+              <View style={{ maxWidth: 270, padding: 8, backgroundColor: bg, borderRadius: 4, position: 'relative' }}>
                 {/* 三角形 */}
                 <View style={
                   item.id === '01'
@@ -214,11 +219,11 @@ const MultiplayerDialog = (props) => {
 
                 {/* 隐藏的内容 */}
                 <Text style={{ fontSize: 18, opacity: 0 }}> {item.content}</Text>
-                <View style={{ position: 'absolute', top: 5, left: 5, }}>
+                <View style={{ position: 'absolute', top: 8, left: 8, }}>
                   <TextAnimation
                     fontSize={18}
                     duration={200}
-                    style={{ color: "#000" }}
+                    style={{ color: item.id === '01' ? "#fff" : "#000" }}
                     opacity={0.8}
                     type={textAnimationType}
                   >
@@ -362,7 +367,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 8,
     borderBottomColor: 'transparent',
     borderBottomWidth: 8,
-    borderLeftColor: '#95ec69',
+    borderLeftColor: '#9ec1f3',
     borderLeftWidth: 8,
   },
   titleFontSize: {
