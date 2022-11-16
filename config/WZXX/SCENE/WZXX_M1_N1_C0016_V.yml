@@ -1,0 +1,83 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_C0016_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+
+      
+      ],
+
+      # 动作定义
+      actions: [
+      ],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [],
+
+
+    
+      chats: [
+      #
+
+ 
+
+      { 
+        id: 'WZXX_M1_N1_C0016_V1', desc: '炸桶', 
+        options: [ 
+          { 
+          title: "【大声呼救，叫云云】",dialogs: ['C0016_1.1A'],
+          icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
+          },
+          { 
+          title: "【认命，坐在桶里】",dialogs: ['C0016_1.1B'],
+          icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
+          },
+          { 
+          title: "【使出浑身解数爬出桶】",dialogs: ['C0016_1.1C'],
+          icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
+          },
+        ],
+      },
+
+        ],
+
+
+      # 对话框
+      dialogs:
+        [
+
+          #选项对话2
+        { id: 'C0016_1.1A',style: 6, title: '大声呼救', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P3', content: ['这感觉实在太过诡异，浑身额疼痛不堪不说，体内的灵气也在疯狂运作。',['边缘闪烁红'],'眼下李森炎决定还是不要乱动为好。','眼下只有一个办法，就是……','“云云！”',
+          '“大佬！云大佬，出大事了……”','云云师承陶老说不定能有办法应对，专业的事还是交给专业的人来干。','但，呼叫半天，这个隔音不好的厢房也不知道什么时候变的隔音这么好了。','竟然叫了这么久，无人应答。',],
+          btn: [{title: '换一种方式', nextChat: 'WZXX_M1_N1_C0016_V1' ,}]},
+        ],
+        },
+
+         { id: 'C0016_1.1B',style: 6, title: '认命坐在桶里', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P3', content: ['浑身疼痛难忍，根本无法动弹','眼下，恐怕只能大胆搏一搏，看自己是否能和这灵气抗衡',['边缘闪烁红'],'他开始让自己的情绪平静下来，吸收灵气入体，以对抗体内这股热力。','额头不断冒汗，筋骨之间，也是疼痛不已，但当他吸收灵气入体后，灵气慢慢浸润血肉筋骨，如春风过境，焕发生机，那种痛感总算是有所减弱。',
+          '不知过了多久。','李森炎心神一振，一股气势从其周身爆发开来，整个水桶都被震碎！',],
+          btn: [{title: '突破了？！', toChapter: "WZXX_M1_N1_C017_[N1]",}]},
+        ],
+        },
+
+        { id: 'C0016_1.1C',style: 6, title: '使出浑身解数爬出桶', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P3', content: ['难道他就要成为第一个泡澡泡死的穿越者了？','这种死法，是绝对不能接受的！','虽然身体无比沉重，但是李森炎还是铆足了劲往外面爬。',['边缘闪烁红'],'只是虽用尽全力，却还是无法动弹，甚至感觉身上的疼痛感愈发严重了。',
+          '不行不行，只怕这样下去死相恐怕会更加难看',],
+          btn: [{title: '重选吧', nextChat: 'WZXX_M1_N1_C0016_V1' ,}]},
+        ],
+        },
+  ]
+    }
+]
