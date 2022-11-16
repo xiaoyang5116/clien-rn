@@ -284,7 +284,7 @@ const StoryTabPage = (props) => {
     }
 
     return (
-      <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 'auto', justifyContent: 'flex-end', alignItems: 'center', zIndex: 10 }} pointerEvents='box-none'>
+      <View style={{ position: 'absolute', bottom: 0, width: '100%', height: 'auto', justifyContent: 'flex-end', alignItems: 'center', zIndex: 0 }} pointerEvents='box-none'>
         <View style={{ marginBottom: 40 }} pointerEvents='box-none'>
           <SceneMapWrapper key={sceneMapRefreshKey.current} mapData={props.scene.mapData} mapCenterPoint={props.scene.mapCenterPoint} />
         </View>
