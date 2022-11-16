@@ -5,9 +5,11 @@ import {
     Text,
 } from '../../../constants/native-ui';
 
-import { 
+import {
     Animated,
     SafeAreaView,
+    TouchableWithoutFeedback,
+    ImageBackground
 } from 'react-native';
 
 import lo from 'lodash';
@@ -22,6 +24,7 @@ import DarkBlurView from '../../../components/extends/DarkBlurView';
 import StarsBanner from './StarsBanner';
 import ActivationConfirm from './ActivationConfirm';
 import { getAttributeChineseName } from '../../../utils/AttributeUtils';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const ActivationPage = (props) => {
 
@@ -41,32 +44,40 @@ const ActivationPage = (props) => {
     return (
         <DarkBlurView>
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Animatable.View ref={refView} duration={600} style={[{ width: px2pd(800), height: px2pd(1050), backgroundColor: '#eee', alignItems: 'center', borderRadius: 5 }, { transform: [{ scale: scale }] }]}>
+                <Animatable.View ref={refView} duration={600} style={[{ width: px2pd(800), height: px2pd(1050), alignItems: 'center', borderRadius: 5 }, { transform: [{ scale: scale }] }]}>
+                    <FastImage style={{ width: "100%", height: "100%", position: 'absolute' }} source={require('../../../../assets/collection/activationPage_bg.png')} />
                     <View style={{ width: '100%', alignItems: 'flex-end' }}>
-                        <AntDesign name='close' size={30} onPress={() => {
+                        <TouchableWithoutFeedback onPress={() => {
                             if (props.onClose != undefined) {
                                 props.onClose();
                             }
-                        }} />
+                        }}>
+                            <FastImage style={{ width: px2pd(60), height: px2pd(60), marginRight: 12, marginTop: 12 }} source={require('../../../../assets/collection/close.png')} />
+                        </TouchableWithoutFeedback>
                     </View>
-                    <View style={{ width: '94%' }}>
-                        <View style={{ marginBottom: 20, width: px2pd(260), height: px2pd(300), justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderColor: '#333', backgroundColor: '#aaa', borderRadius: 5, }}>
-                            <View style={{ width: px2pd(220), height: px2pd(260), borderWidth: 1, borderColor: '#333', backgroundColor: '#ccc', borderRadius: 5, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <View style={{ width: px2pd(720) }}>
+                        <ImageBackground
+                            source={require('../../../../assets/collection/cover_bg.png')}
+                            style={{ marginBottom: 20, width: px2pd(260), height: px2pd(300), justifyContent: 'center', alignItems: 'center', }}
+                        >
+                            <View style={{ width: px2pd(220), height: px2pd(260), flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                                 <FastImage style={{ marginLeft: 3, width: px2pd(200), height: px2pd(200) }} source={require('../../../../assets/collection/item_1.png')} />
                                 <StarsBanner max={props.data.stars} star={(props.data.level != undefined && props.data.level >= 0) ? props.data.level : 0} />
                             </View>
-                        </View>
-                        <View style={{ position: 'absolute', right: 60 }}>
-                            <Text style={{ fontSize: 24, color: '#000' }}>{props.data.name}</Text>
-                            
+                        </ImageBackground>
+                        <View style={{ position: 'absolute', right: 70, flexDirection: "row", alignItems: 'center' }}>
+                            <FastImage style={{ width: px2pd(30), height: px2pd(30) }} source={require('../../../../assets/collection/lingxing.png')} />
+                            <Text style={{ fontSize: 24, color: '#000', marginLeft: 4 }}>{props.data.name}</Text>
                         </View>
                     </View>
-                    <View style={{ width: '94%', height: 140, marginBottom: 20, borderWidth: 1, borderColor: '#333', borderRadius: 5, backgroundColor: '#ccc', padding: 5}}>
-                        <Text style={{ color: '#ce6a6f', lineHeight: 26 }}>激活后，获得以下属性效果</Text>
+                    <ImageBackground
+                        source={require('../../../../assets/collection/desc_bg.png')}
+                        style={{ width: px2pd(720), height: px2pd(440), marginBottom: 10, padding: 12 }}>
+                        <Text style={{ color: '#000', lineHeight: 26 }}>激活后，获得以下属性效果</Text>
                         {attrs}
-                    </View>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <TextButton style={{ width: px2pd(300) }} title={'激活'} onPress={() => {
+                    </ImageBackground>
+                    <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                        <TouchableOpacity onPress={() => {
                             if (props.onClose != undefined) {
                                 props.onClose();
                             }
@@ -75,7 +86,14 @@ const ActivationPage = (props) => {
                                     RootView.remove(key);
                                 }} />);
                             }, 200);
-                        }} />
+                        }}>
+                            <ImageBackground
+                                style={{ width: px2pd(300), height: px2pd(100), justifyContent: "center", alignItems: 'center' }}
+                                source={require('../../../../assets/collection/btn_bg.png')}>
+                                <Text style={{ fontSize: 16, color: "#000" }}>激活</Text>
+                            </ImageBackground>
+                        </TouchableOpacity>
+                        {/* <TextButton style={{ width: px2pd(300) }} title={'激活'}  /> */}
                     </View>
                 </Animatable.View>
             </SafeAreaView>
