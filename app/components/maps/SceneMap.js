@@ -12,6 +12,7 @@ import {
   BackHandler,
   DeviceEventEmitter,
   Easing,
+  ImageBackground,
   PanResponder,
   SafeAreaView,
   TouchableWithoutFeedback,
@@ -22,6 +23,7 @@ import {
   CENTER_TOP,
   EventKeys,
   getWindowSize,
+  ThemeData,
 } from '../../constants';
 
 import lo from 'lodash';
@@ -48,7 +50,7 @@ const GRID_PX_HEIGHT = px2pd(84);
 const MAP_MARGIN_VALUE = 4;
 
 // 小地图尺寸
-const MAP_SMALL_SIZE = { width: px2pd(1064), height: px2pd(464) };
+const MAP_SMALL_SIZE = { width: px2pd(1021), height: px2pd(462) };
 // 大地图尺寸
 const MAP_BIG_SIZE = { width: px2pd(1064), height: px2pd(1524) };
 // 地图线条尺寸
@@ -258,6 +260,7 @@ const drawGrids = ({ data, initialCenterPoint, onClose }) => {
 }
 
 const SceneBigMap = (props) => {
+  const theme = ThemeData()
   // 地图缩放限制
   const zoomMax = 1.2;
   const zoomMin = 0.9;
@@ -384,7 +387,7 @@ const SceneBigMap = (props) => {
   }, []);
 
   return (
-    <DarkBlurView>
+    <ImageBackground style={{flex:1}} source={theme.optionsPage_bg}>
       <View style={{ flex: 1 }} onTouchStart={closeMapHandler}>
         <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <View style={[{ width: MAP_BIG_SIZE.width, height: MAP_BIG_SIZE.height + 10 }]} onTouchStart={(e) => { 
@@ -419,7 +422,7 @@ const SceneBigMap = (props) => {
           </View>
         </SafeAreaView>
       </View>
-    </DarkBlurView>
+    </ImageBackground>
   );
 }
 

@@ -76,7 +76,7 @@ const TabBarBackground = (props) => {
   const theme = React.useContext(ThemeContext);
   return (
     <View style={{ alignItems: 'center' }}>
-      <FastImage style={{ width: '100%', height: px2pd(135) }} resizeMode='stretch' source={theme.tabBannerBg} />
+      {/* <FastImage style={{ width: '100%', height: px2pd(135) }} resizeMode='stretch' source={theme.tabBannerBg} /> */}
     </View>
   );
 }

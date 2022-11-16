@@ -11,7 +11,8 @@ import {
   DeviceEventEmitter,
   EventKeys,
   statusBarHeight,
-  connect
+  connect,
+  ThemeData
 } from '../constants';
 import Clues from '../components/cluesList';
 import * as RootNavigation from '../utils/RootNavigation';
@@ -29,6 +30,7 @@ import DirectoryPage from './article/DirectoryPage';
 import RightContainer from '../components/article/RightContainer';
 import DirMapPage from './article/DirMapPage';
 import UserAttributesHolder from './article/UserAttributesHolder';
+import FastImage from 'react-native-fast-image';
 
 
 const OptionsPage = (props) => {
@@ -40,6 +42,8 @@ const OptionsPage = (props) => {
   const refDirMap = useRef()
   const refreshKey = useRef(0)
   const refPropsContainer = useRef()
+
+  const theme = ThemeData()
 
   React.useEffect(() => {
     listeners.push(
@@ -135,7 +139,11 @@ const OptionsPage = (props) => {
           </TouchableWithoutFeedback>
         </View>
       </HeaderContainer>
-      <SafeAreaView style={{ flex: 1, backgroundColor: 'rgba(255,255,255,1)' }}>
+      <FastImage 
+        style={{ position: 'absolute', width: "100%", height: "100%", }}
+        source={theme.optionsPage_bg}
+      />
+      <SafeAreaView style={{ flex: 1, }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <StoryTabPage />
         </View>

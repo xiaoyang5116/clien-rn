@@ -10,6 +10,9 @@ const defaultFontColor = "#424242";
 // const defaultBgColor = "#e8ddcc";
 const defaultBgColor = "#e0e9ed";
 
+// 菜单背景颜色
+const menuBgColor = "#cfdbe4"
+
 /**
 * 通用按钮
 */
@@ -242,6 +245,9 @@ const styles = StyleSheet.create({
 
     // icon
     check_1_img: require('../../assets/themes/modern/icon/hook.png'),
+
+    // 场景选项 页面背景
+    optionsPage_bg: require('../../assets/themes/modern/bg/optionPage_bg.png'),
 });
 
 export default styles;

@@ -92,7 +92,7 @@ const FooterContainer = (props) => {
   }
 
   return (
-    <Animated.View style={{ position: 'absolute', left: 0, bottom: posBottom, zIndex: 100, width: '100%', backgroundColor: '#a49f99' }} onLayout={layoutHandler}>
+    <Animated.View style={{ position: 'absolute', left: 0, bottom: posBottom, zIndex: 100, width: '100%', backgroundColor: '#cfdbe4' }} onLayout={layoutHandler}>
       {props.children}
     </Animated.View>
   );
