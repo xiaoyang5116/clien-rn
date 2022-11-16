@@ -10,6 +10,9 @@ const defaultFontColor = "#424242";
 // const defaultBgColor = "#e8ddcc";
 const defaultBgColor = "#e0e9ed";
 
+// 菜单背景颜色
+const menuBgColor = "#cfdbe4"
+
 /**
 * 通用按钮
 */
