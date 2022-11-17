@@ -71,4 +71,7 @@ export class LocalCacheKeys {
     // 成就数据
     static  ACHIEVEMENT_DATA = "ACHIEVEMENT_DATA"
 
+    // 调查问卷数据
+    static QUESTIONNAIRE_DATA = 'QUESTIONNAIRE_DATA'
+
 }

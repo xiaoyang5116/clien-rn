@@ -25,3 +25,20 @@ export const BtnIcon = (props) => {
     </View>
   )
 }
+
+export const BtnRedDot = (props) => {
+  const style = props.style
+
+  return (
+    <View style={{
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      width: 10,
+      height: 10,
+      borderRadius: 5,
+      backgroundColor: "#FA5051",
+      ...style
+    }} />
+  )
+}

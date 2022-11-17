@@ -92,6 +92,7 @@ const models = [
   require('./models/games/TurnLatticeModel').default,
   require('./models/GongFaModel').default,
   require('./models/AchievementModel').default,
+  require('./models/QuestionnaireModel').default,
 ];
 
 const defaultDataContext = {

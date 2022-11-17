@@ -148,11 +148,13 @@ const DialogRoutes = (props) => {
         )
     } else if (style === 100) {
         return (
-            <Questionnaire
-                {...props}
-                actionMethod={actionMethod}
-                specialEffects={specialEffects}
-            />
+            <Transitions id={"OPEN_Questionnaire"}>
+                <Questionnaire
+                    {...props}
+                    actionMethod={actionMethod}
+                    specialEffects={specialEffects}
+                />
+            </Transitions>
         )
     }
 

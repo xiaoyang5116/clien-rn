@@ -48,6 +48,7 @@ import PrimaryWorld from './article/PrimaryWorld';
 import ObjectUtils from '../utils/ObjectUtils';
 import { ArticleOptionActions } from '../components/article';
 import { ARTICLE_EVENT_AREA_MARGIN } from '../constants/custom-ui';
+import { BtnRedDot } from '../components/button/BtnIcon';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -67,6 +68,9 @@ class ArticlePage extends Component {
     this.listeners = [];
     this.refreshKey = 0;
     this.hasBagAnimation = false;
+    this.state = {
+      isFinishQuestionnaire: true
+    }
   }
 
   componentDidMount() {
@@ -132,8 +136,19 @@ class ArticlePage extends Component {
             this.hasBagAnimation = false;
           }} />);
         }
+      }),
+      // 调查问卷红点
+      DeviceEventEmitter.addListener("QuestionnaireStatus", (isFinish) => {
+        this.setState({ isFinishQuestionnaire: isFinish })
       })
     );
+
+    // 调查问卷是否填写完成
+    this.props.dispatch(action("QuestionnaireModel/getQuestionnaireData")()).then(result => {
+      if (result?.isFinish === false || result === null) {
+        this.setState({ isFinishQuestionnaire: false })
+      }
+    })
   }
 
   componentWillUnmount() {
@@ -177,11 +192,15 @@ class ArticlePage extends Component {
             </TouchableWithoutFeedback>
 
             <TouchableWithoutFeedback onPress={() => {
+              if (this.state.isFinishQuestionnaire === false) {
+                ArticleOptionActions.invoke({ __sceneId: 'questionnaire', dialogs: ['Screen1'] },);
+              }
               this.refPropsContainer.current.open();
             }}>
               <View style={styles.bannerButton}>
                 <AntDesign name={'hearto'} color={"#111"} size={21} />
                 <Text style={styles.bannerButtonText}>角色属性</Text>
+                {this.state.isFinishQuestionnaire ? <></> : <BtnRedDot style={{ right: 15 }} />}
               </View>
             </TouchableWithoutFeedback>
 
