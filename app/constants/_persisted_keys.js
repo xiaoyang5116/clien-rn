@@ -11,4 +11,6 @@ export class UserPersistedKeys {
 
     static COLLECT_CONFIRM_NOTICATION = 'COLLECT_CONFIRM_NOTICATION';
 
+    //问卷调查
+    static QUESTIONNAIRE = 'COLLECT_CONFIRM'
 }

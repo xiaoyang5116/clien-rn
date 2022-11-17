@@ -25,7 +25,7 @@ export const HalfPanel = props => {
         )
     }
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', zIndex: 99, backgroundColor: props.backgroundColor ? props.backgroundColor : null, zIndex: props.zIndex ? props.zIndex : null }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: props.backgroundColor ? props.backgroundColor : null, zIndex: props.zIndex ? props.zIndex : 99 }}>
             <View
                 style={{
                     width: props.width ? props.width : '90%',

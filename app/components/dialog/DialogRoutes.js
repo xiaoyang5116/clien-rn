@@ -18,6 +18,7 @@ import DrawLotsOption from './drawLotsOption'
 import GorgeousTemplate from './gorgeousTemplate'
 import Transitions from '../transition';
 import { ArticleOptionActions } from '../article';
+import Questionnaire from './questionnaire';
 
 
 const DialogRoutes = (props) => {
@@ -141,6 +142,14 @@ const DialogRoutes = (props) => {
             <GorgeousTemplate
                 {...props}
                 templateId={2}
+                actionMethod={actionMethod}
+                specialEffects={specialEffects}
+            />
+        )
+    } else if (style === 100) {
+        return (
+            <Questionnaire
+                {...props}
                 actionMethod={actionMethod}
                 specialEffects={specialEffects}
             />
