@@ -35,6 +35,8 @@ import { playBGM } from '../components/sound/utils';
 import WorshipModal from '../components/worship';
 import { px2pd } from '../constants/resolution';
 import FastImage from 'react-native-fast-image';
+import { ArticleOptionActions } from '../components/article';
+
 
 const BTN_STYLE = {
   width: px2pd(680),
@@ -103,7 +105,8 @@ const FirstPage = (props) => {
           <View onLayout={onLayout}>
             {/* 开始剧情 */}
             <ImageButton {...BTN_STYLE} source={require('../../assets/button/story_button.png')} selectedSource={require('../../assets/button/story_button_selected.png')} onPress={() => {
-              RootNavigation.navigate('Article');
+              // RootNavigation.navigate('Article');
+              ArticleOptionActions.invoke({ __sceneId: 'questionnaire', dialogs: ['Screen1'] });
             }} />
             {/* 继续阅读 */}
             <ImageButton {...BTN_STYLE} source={require('../../assets/button/continue_button.png')} selectedSource={require('../../assets/button/continue_button_selected.png')} onPress={() => {
