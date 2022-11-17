@@ -26,14 +26,14 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0021_V1', desc: '这是要做什么', 
         options: [ 
-          { title: "【这……难道是……】",toChapter: "WZXX_M1_N1_C022",},
+          { title: "【这……难道是……】",toChapter: "WZXX_M1_N1_C022_[N1]",},
         ],
       },
 
        { 
         id: 'WZXX_M1_N1_C0021_V1', desc: '这是要做什么', 
         options: [ 
-          { title: "【……】",toChapter: "WZXX_M1_N1_C022",},
+          { title: "【……】",toChapter: "WZXX_M1_N1_C022_[N1]",},
         ],
       },
 
@@ -72,8 +72,8 @@ scenes: [
          sections: {
             content: '究竟是选择留下来待在医灵身边增加更多好感度，还是去寻找陶老专心修炼呢？',
             btn: [
-          { title: "【跟着陶老修行】", toChapter: "WZXX_M1_N1_C022" },
-          { title: "【寻找医灵修行】", toChapter: "WZXX_M1_N2_C016" },
+          { title: "【跟着陶老修行】", toChapter: "WZXX_M1_N1_C022_[N1]" },
+          { title: "【寻找医灵修行】", toChapter: "WZXX_M1_N1_C022_[N2]" },
             ]
         },  
        },
@@ -92,7 +92,7 @@ scenes: [
           '怎么没有隐身符……李森炎将所有灵符看了一遍，这是唯一一个他觉得有些遗憾的地方。',
           '“你可以先试用一下。”','陶老指导了下他灵符的使用方法。',
           '方法不难，无非是用灵力描摹灵符上的文字，成功激活灵符威能后，方可使用。',],
-          btn: [{title: '先用最初的火球符试试',games: { id: 5, word: ["火",] }, toChapter: "WZXX_M1_N1_C022",}]},
+          btn: [{title: '先用最初的火球符试试',games: { id: 5, word: ["火",] }, toChapter: "WZXX_M1_N1_C022_[N1]",}]},
 
        
            ]  

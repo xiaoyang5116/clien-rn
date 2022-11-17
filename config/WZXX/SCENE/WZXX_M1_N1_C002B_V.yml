@@ -130,7 +130,7 @@ scenes: [
           sections: [
           { key: 'P5', content: ['请选择行动吸引云云注意，并成功让她教你修仙————',],
           btn: [
-            {title: '打一套拳',tokey: "P6", icon: { id: 6, bindVar: 'biaoqianv1' }},
+            {title: '打一套拳',tokey: "P6", icon: { id: 6, bindVar: 'biaoqianv1' }, },
             {title: '给它唱一段',tokey: "P7", icon: { id: 6, bindVar: 'biaoqianv2' }},
             {title: '故弄玄虚说一段',tokey: "P8", icon: { id: 7, bindVar: 'biaoqianv3' }}
           ]},

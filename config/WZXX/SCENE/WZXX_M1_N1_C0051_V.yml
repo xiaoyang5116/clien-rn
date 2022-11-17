@@ -48,6 +48,7 @@ scenes: [
       dialogs:
         [
 
+
          #选项对话
           { 
             id: 'C0051A_1.1A',style: 6, title: '是谁？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
@@ -129,7 +130,7 @@ scenes: [
                 '“等下，虽然我没有味道，但是还有味！”','赵掌柜紧张的望向李森炎。',],
                 btn: [
                 {
-                title: '重选<<<',dialogs: ['C0048A_1.2A'],
+                title: '重选<<<',dialogs: ['C0051A_1.1B'],
                 },
                 
                 ]
@@ -149,7 +150,7 @@ scenes: [
                 '应该不是的样子！',],
                 btn: [
                 {
-                title: '重选<<<',dialogs: ['C0048A_1.2A'],
+                title: '重选<<<',dialogs: ['C0051A_1.1B'],
                 },
                 
                 ]
@@ -171,7 +172,7 @@ scenes: [
                 '李森炎：……？',],
                 btn: [
                 {
-                title: '就是你',toChapter: "WZXX_M1_N1_C052",
+                title: '就是你',toChapter: "WZXX_M1_N1_Z2C12",
                 },
                 
                 ]
@@ -189,7 +190,7 @@ scenes: [
                 '白书生：“看你眼神我就知道你想什么。”','李森炎欲言又止。',],
                 btn: [
                 {
-                title: '重选<<<',dialogs: ['C0048A_1.2A'],
+                title: '重选<<<',dialogs: ['C0051A_1.1B'],
                 },
                 
                 ]
@@ -207,7 +208,7 @@ scenes: [
                 '竟然没法躲！','这夏姑娘也是个强人。','这下亏大了。','哎呦！','“不再打你下，感觉不解恨！”',],
                 btn: [
                 {
-                title: '重选<<<',dialogs: ['C0048A_1.2A'],
+                title: '重选<<<',dialogs: ['C0051A_1.1B'],
                 },
                 
                 ]

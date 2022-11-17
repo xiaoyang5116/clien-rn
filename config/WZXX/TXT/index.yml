@@ -49,7 +49,6 @@ files:
     "WZXX_M1_N1_C008.txt",
     "WZXX_M1_N1_C009_[N1].txt",
     "WZXX_M1_N1_C009_[N2].txt",
-    # "WZXX_M1_N1_C009_[N3].txt",
     "WZXX_M1_N1_C010.txt",
     "WZXX_M1_N1_C011_[N1].txt",
     "WZXX_M1_N1_C011_[N2].txt",
@@ -78,45 +77,15 @@ files:
     "WZXX_M1_N1_C019_[N2].txt",
     "WZXX_M1_N1_C020.txt",
     "WZXX_M1_N1_C021.txt",
-    "WZXX_M1_N1_C022.txt",
+    "WZXX_M1_N1_C022_[N1].txt",
+    "WZXX_M1_N1_C022_[N2].txt",
 
     "WZXX_M1_N1_C023_[N1].txt",
     "WZXX_M1_N1_C023_[N2].txt",
     "WZXX_M1_N1_C024_[N1].txt",
     "WZXX_M1_N1_C025.txt",
-    "WZXX_M1_N1_C026.txt",
-    "WZXX_M1_N1_C027.txt",
-    "WZXX_M1_N1_C028.txt", 
-    "WZXX_M1_N1_C029.txt",
-    "WZXX_M1_N1_C030.txt",
-    "WZXX_M1_N1_C031_[N1].txt",
-    "WZXX_M1_N1_C032.txt",
-    "WZXX_M1_N1_C033.txt",
 
-    "WZXX_M1_N1_C034.txt",
-    "WZXX_M1_N1_C035.txt",
-    "WZXX_M1_N1_C036.txt",
-    "WZXX_M1_N1_C037.txt",
-    "WZXX_M1_N1_C038.txt",
-    "WZXX_M1_N1_C039.txt",
-    "WZXX_M1_N1_C040.txt",
-
-    "WZXX_M1_N1_C041.txt",
-    "WZXX_M1_N1_C042.txt",
-    "WZXX_M1_N1_C043.txt",
-    "WZXX_M1_N1_C044.txt",
-    "WZXX_M1_N1_C045.txt",
-    "WZXX_M1_N1_C046.txt",
-    "WZXX_M1_N1_C047.txt",
-    "WZXX_M1_N1_C048.txt",
-    "WZXX_M1_N1_C048A.txt",
-    "WZXX_M1_N1_C049.txt",
-    "WZXX_M1_N1_C050.txt",
-    "WZXX_M1_N1_C051.txt",
-    "WZXX_M1_N1_C052.txt",
-    
-
-    ##
+    ##副本现代剧情
     "WZXX_M1_N1_C988.txt",
     "WZXX_M1_N1_C989.txt",
     "WZXX_M1_N1_C990.txt",
@@ -128,22 +97,28 @@ files:
     "WZXX_M1_N1_C996.txt",
     "WZXX_M1_N1_C997.txt",
     "WZXX_M1_N1_C998.txt",
-#
-#
-#
-  #选择身份
+
+    #选择身份
     "WZXX_M1_N1_C999.txt",
     #地图测试
     "WZXX_M1_N1_C1000.txt",
-    #第二个分支内容
-    "WZXX_M1_N2_C014.txt",
-    "WZXX_M1_N2_C015.txt",
-    "WZXX_M1_N2_C016.txt",
-    "WZXX_M1_N2_C017.txt",
-    "WZXX_M1_N2_C018.txt",
-    "WZXX_M1_N2_C019.txt",
-    "WZXX_M1_N2_C020.txt",
-    "WZXX_M1_N2_C021.txt",
-    "WZXX_M1_N2_C022.txt",
-#
+    
+    #第二卷剧情
+    "WZXX_M1_N1_Z2C01.txt",
+    "WZXX_M1_N1_Z2C02.txt",
+    "WZXX_M1_N1_Z2C03.txt",
+    "WZXX_M1_N1_Z2C04.txt",
+    "WZXX_M1_N1_Z2C05.txt",
+    "WZXX_M1_N1_Z2C06.txt",
+    "WZXX_M1_N1_Z2C07.txt",
+    "WZXX_M1_N1_Z2C08_[N1].txt",
+    "WZXX_M1_N1_Z2C08_[N2].txt",
+    "WZXX_M1_N1_Z2C09.txt",
+    "WZXX_M1_N1_Z2C10.txt",
+    "WZXX_M1_N1_Z2C11.txt",
+    "WZXX_M1_N1_Z2C12.txt",
+    
+
+ 
+
   ]

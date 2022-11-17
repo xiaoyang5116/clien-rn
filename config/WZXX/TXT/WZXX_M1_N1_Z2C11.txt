@@ -1,8 +1,8 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C051']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C051FZ'] }, 
-     { header: '第三十六章 清洁术' },
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z2C11']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z2C11FZ'] }, 
+     { header: '第十一章 清洁术' },
       { world: { name: '灵修界' } },
 ]
 #END==========================================

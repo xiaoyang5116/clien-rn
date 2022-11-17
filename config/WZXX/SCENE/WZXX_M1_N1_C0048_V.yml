@@ -32,7 +32,7 @@ scenes: [
         id: 'WZXX_M1_N1_C0048_V1', desc: '飞舟', 
         options: [ 
           { title: "【做出行动】",dialogs: ['C0048A_1.1A'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
-          { title: "【跳过此段剧情】",toChapter: "WZXX_M1_N1_C049", icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+          { title: "【跳过此段剧情】",toChapter: "WZXX_M1_N1_Z2C09", icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
         ],
       },
 
@@ -150,7 +150,7 @@ scenes: [
                 content: ['“口说无凭，不如把灵石拿出来瞧瞧？”',
                 '“那自然是可以的。”','这时也顾不得什么财不露白的道理，李森炎感觉自己就应该在这时候显摆一下出出气，否则内心难安。',
                 ],
-                btn: [{title: '掏钱',toChapter: "WZXX_M1_N1_C048A",},]
+                btn: [{title: '掏钱',toChapter: "WZXX_M1_N1_Z2C08_[N2]",},]
               },
             ]  
           },
@@ -230,7 +230,7 @@ scenes: [
                 '“先试试吧，我不信只加速一点点的话需要花掉多少灵石。”','除此以外，倒没发现什么事故。','一段时间过去，见这些鸟也没有什么对众人做出特别的攻击行为，众人也就把这些鸟当作一些看客来处理。毕竟都是只是些鸟类而已。',
                 '就算是开了一些灵智也只算是较低那种。','大家人不犯我，我不犯人就这么聊开了，说着一些小无伤大雅的话题。',
                 ],
-                btn: [{title: '就这么办！',toChapter: "WZXX_M1_N1_C049",},
+                btn: [{title: '就这么办！',toChapter: "WZXX_M1_N1_Z2C09",},
                 ]
               },
             ]  

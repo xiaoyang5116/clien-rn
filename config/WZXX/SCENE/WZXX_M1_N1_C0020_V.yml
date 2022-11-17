@@ -80,11 +80,6 @@ scenes: [
           '云云：“……”','你做人，也是挺狗的。',[{ sounds: [{ soundId: 'SE_CQ_0008',}] }] ,],
           btn: [{title: '哈哈哈哈',toChapter: "WZXX_M1_N1_C021",dropIds: ['WZXX_M1_N1_C0020_V_Vdrop2','WZXX_M1_N1_C0020_V_Vdrop3'],}]},
 
-         
-
-
-
-
            ]  
         },
 

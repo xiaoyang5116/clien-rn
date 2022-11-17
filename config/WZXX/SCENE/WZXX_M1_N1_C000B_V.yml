@@ -72,7 +72,7 @@ scenes: [
       { 
         id: 'B1', desc: '坊市出入口', 
         options: [ 
-        #  { title: '【继续往前走】', nextChat: 'B2'}, 
+         { title: '【继续往前走】', nextChat: 'B3'  ,}, 
          { title: '【打量一下风景】', nextChat: 'B3'}, 
 
 

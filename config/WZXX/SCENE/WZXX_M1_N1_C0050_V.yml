@@ -32,22 +32,22 @@ scenes: [
         id: 'WZXX_M1_N1_C0050_V1', desc: '灵茶', 
         options: [ 
           { 
-          title: "【再喝一杯】",toChapter: "WZXX_M1_N1_C051",
+          title: "【再喝一杯】",toChapter: "WZXX_M1_N1_Z2C11",
            icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
           },
 
           {
-           title: "【再喝三杯】",toChapter: "WZXX_M1_N1_C051",
+           title: "【再喝三杯】",toChapter: "WZXX_M1_N1_Z2C11",
           icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
           },
 
           {
-           title: "【能喝多少喝多少】",toChapter: "WZXX_M1_N1_C051",
+           title: "【能喝多少喝多少】",toChapter: "WZXX_M1_N1_Z2C11",
           icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
           },
 
           { 
-          title: "【还是不要喝了】",toChapter: "WZXX_M1_N1_C051",
+          title: "【还是不要喝了】",toChapter: "WZXX_M1_N1_Z2C11",
            icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
           },
         ],

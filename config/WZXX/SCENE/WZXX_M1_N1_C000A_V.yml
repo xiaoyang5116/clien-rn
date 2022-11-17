@@ -39,6 +39,8 @@ scenes: [
       { id: "maizanzi_A", min: 0, max: 1 },
       { id: "caiyao", min: 0, max: 1 },
 
+      { id: "KCJ", min: 0, max: 1 } ,
+
       
       ],
 
@@ -138,15 +140,15 @@ scenes: [
     id: 'C000A_V_MAP_0_-2', name: '玄德大街',
     # 指定场景为NPC或MAP场景
     isNpc: true,
-     #横图显示
+    #横图显示
     sceneImage: 'BGT_35',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [0, -2],
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
@@ -301,7 +303,7 @@ scenes: [
         ],
       },
       
-       { 
+      { 
         id: 'C2', desc: '“你有何事。”一个衙役拦住了李森炎', 
         options: [ 
          { title: '无事，转身离开',nextChat: 'C1',icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'], }, 

@@ -160,23 +160,23 @@ drops: [
   { id: 'WZXX_M1_N1_C0020_V_Vdrop3',  sendProps: '890,3,showBag',},
   #608符纸
   { id: 'WZXX_M1_N1_C0021_V_Vdrop1',  sendProps: '608,10,showBag',},
-  #338草药
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop1',  sendProps: '338,10,showBag',},
-  #339不知名的蛋
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop2',  sendProps: '339,2,showBag',},
-  #886灵石
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop3',  sendProps: '886,16,showBag',},
-#349玄铁重剑
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop4',  sendProps: '349,1,showBag',},
-  #333小还丹
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop5',  sendProps: '333,3,showBag',},
-  #332大还丹
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop6',  sendProps: '332,1,showBag',},
-  #319回气散
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop7',  sendProps: '319,1,showBag',},
+#   #338草药
+#   { id: 'WZXX_M1_N1_C0026_V_Vdrop1',  sendProps: '338,10,showBag',},
+#   #339不知名的蛋
+#   { id: 'WZXX_M1_N1_C0026_V_Vdrop2',  sendProps: '339,2,showBag',},
+#   #886灵石
+#   { id: 'WZXX_M1_N1_C0026_V_Vdrop3',  sendProps: '886,16,showBag',},
+# #349玄铁重剑
+#   { id: 'WZXX_M1_N1_C0026_V_Vdrop4',  sendProps: '349,1,showBag',},
+#   #333小还丹
+#   { id: 'WZXX_M1_N1_C0026_V_Vdrop5',  sendProps: '333,3,showBag',},
+#   #332大还丹
+#   { id: 'WZXX_M1_N1_C0026_V_Vdrop6',  sendProps: '332,1,showBag',},
+#   #319回气散
+#   { id: 'WZXX_M1_N1_C0026_V_Vdrop7',  sendProps: '319,1,showBag',},
 
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop8',   alterAttrs: ['善良,1'] },
-  { id: 'WZXX_M1_N1_C0026_V_Vdrop9',   alterAttrs: ['冷漠,1'] },
+#   { id: 'WZXX_M1_N1_C0026_V_Vdrop8',   alterAttrs: ['善良,1'] },
+#   { id: 'WZXX_M1_N1_C0026_V_Vdrop9',   alterAttrs: ['冷漠,1'] },
 #1015黄心叶
   { id: 'WZXX_M1_N1_C009_V_Vdrop7',  sendProps: '1015,1,showBag',},
   #1016百络花

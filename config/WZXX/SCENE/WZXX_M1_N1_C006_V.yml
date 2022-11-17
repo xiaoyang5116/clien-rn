@@ -33,9 +33,9 @@ scenes: [
         id: 'WZXX_M1_N1_C006_V', desc: '……', 
         options: [ 
           { title: "【太爽了！】",toChapter: "WZXX_M1_N1_C013_[N1]"  },
-        
         ],
       },
+
       { 
         id: 'WZXX_M1_N1_C006_V1', desc: '吃还是不吃，这是一个问题', 
         options: [ 
@@ -127,8 +127,6 @@ scenes: [
   #   }
 
 
-
-
         ],
 
 
@@ -145,7 +143,6 @@ scenes: [
     #     },  
     # },
 
-        
 
 
            #选项对话
