@@ -36,6 +36,7 @@ export default {
   effects: {
     
     *reload({ }, { select, call, put }) {
+      const userState = yield select(state => state.UserModel);
       const cache = yield call(LocalStorage.get, LocalCacheKeys.USER_DATA);
       const attrsData = yield call(GetAttrsDataApi);
       const userAttrs = (cache != null) ? cache.attrs : [];
@@ -55,6 +56,9 @@ export default {
           userAttrs.push({ key: e.key, value: e.value });
         }
       });
+
+      // 清理缓存
+      userState.persistedStates.length = 0;
 
       if (cache != null) {
         yield put(action('updateState')({ ...cache }));
