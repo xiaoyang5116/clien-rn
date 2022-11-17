@@ -1,10 +1,11 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import * as RootNavigation from '../../../utils/RootNavigation';
 
 import { HalfPanel } from '../../panel';
 import { TextButton, BtnIcon } from '../../../constants/custom-ui';
+import { DataContext } from '../../../constants';
 
 const Cover = ({ desc, onPress }) => {
   return (
@@ -20,6 +21,7 @@ const Cover = ({ desc, onPress }) => {
 };
 
 const Problem = ({ viewData, onDialogCancel, actionMethod }) => {
+  const dataContext = useContext(DataContext)
   const { sections } = viewData;
   const [problemIndex, setProblemIndex] = useState(0)
   const [selectIndex, setSelectIndex] = useState(-1);
@@ -32,6 +34,7 @@ const Problem = ({ viewData, onDialogCancel, actionMethod }) => {
       setSelectIndex(-1)
     } else {
       actionMethod(currentProblem.btn[selectIndex])
+      dataContext.isCover = true
       RootNavigation.navigate('Article');
       onDialogCancel()
     }

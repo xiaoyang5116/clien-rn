@@ -5,11 +5,17 @@ import ImageCapInset from 'react-native-image-capinsets-next';
 import {
     connect,
     action,
+    statusBarHeight,
+    DataContext
 } from "../../constants";
 import { TextButton } from '../../constants/custom-ui';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../constants/resolution';
+import * as RootNavigation from '../../utils/RootNavigation';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const Width = Dimensions.get('window').width;
+const Height = (Dimensions.get('window').height) - statusBarHeight;
+
 
 // 封面View
 const OverView = (props) => {
@@ -26,6 +32,8 @@ const OverView = (props) => {
     const { itemKey, overview } = props
     const [option, setOption] = React.useState(overview.options)
 
+    const dataContext = React.useContext(DataContext);
+
     React.useEffect(() => {
         props.dispatch(action('ArticleModel/overViewOption')(overview.options))
             .then(r => {
@@ -36,11 +44,12 @@ const OverView = (props) => {
     const layoutHandler = () => {
         props.dispatch(action('ArticleModel/layout')({
             key: itemKey,
-            width: windowWidth,
-            height: windowHeight,
+            width: Width,
+            height: Height,
         }));
     }
     const optionPressHandler = (data) => {
+        dataContext.isCover = false
         props.dispatch(action('SceneModel/processActions')(data));
     }
 
@@ -59,8 +68,8 @@ const OverView = (props) => {
     return (
         <View
             style={{
-                width: windowWidth,
-                height: windowHeight,
+                width: Width,
+                height: Height,
                 position: "relative",
                 zIndex: 1,
             }}
@@ -68,10 +77,9 @@ const OverView = (props) => {
         >
             {/* 外边框 */}
             <View style={{ position: "absolute", width: "100%", height: "100%", zIndex: 2, }}>
-                <ImageCapInset
+                <FastImage
                     style={{ width: '100%', height: '100%', position: 'absolute' }}
-                    source={require('../../../assets/button/40dpi.png')}
-                    capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                    source={require('../../../assets/bg/overView_bg.png')}
                 />
             </View>
 
@@ -84,15 +92,12 @@ const OverView = (props) => {
             }}>
                 <View style={{ height: "70%", width: "100%", justifyContent: "flex-start", alignItems: 'center' }}>
                     <View style={{
-                        marginTop: "40%",
-                        width: "80%",
+                        marginTop: "20%",
+                        width: px2pd(720),
                         position: 'relative',
+                        alignItems: 'center'
                     }}>
-                        <ImageCapInset
-                            style={{ width: '100%', height: '100%', position: 'absolute' }}
-                            source={require('../../../assets/button/40dpi.png')}
-                            capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
-                        />
+                        <FastImage style={{ width: px2pd(720), height: px2pd(382) }} source={require('../../../assets/bg/overView_coverImage.png')} />
                         <View style={{ padding: 20, }}>
                             <Text style={[styles.bigTitle, { textAlign: 'center' }]}>{overview.novelTitle}</Text>
                             <View style={{ width: "100%", marginTop: 12, marginBottom: 12, }}>

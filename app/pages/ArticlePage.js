@@ -12,7 +12,7 @@ import {
   statusBarHeight,
 } from "../constants";
 
-import { 
+import {
   View,
   Text,
 } from '../constants/native-ui';
@@ -72,30 +72,32 @@ class ArticlePage extends Component {
   componentDidMount() {
     // 判断是否继续阅读
     if (this.context.continueReading != undefined && this.context.continueReading) {
-      AppDispath({ type: 'StateModel/getAllStates', payload: {}, cb: (states) => {
-        const { articleState, articleBtnClickState, articleSceneClickState } = states;
-        if (articleState != null) {
-          this.props.dispatch(action('ArticleModel/show')(articleState)).then(r => {
-            if (articleBtnClickState != null && ObjectUtils.hasProperty(articleBtnClickState, ['toScene', 'dialogs', 'openUI'])) {
-              setTimeout(() => { 
-                // 恢复场景或者对话框、openUI打开的功能
-                ArticleOptionActions.invoke(articleBtnClickState, (v) => {
-                  // 恢复场景选项、采集系统
-                  if (articleSceneClickState != null && ObjectUtils.hasProperty(articleSceneClickState, ['nextChat', 'collect'])) {
-                    ArticleOptionActions.invoke(articleSceneClickState);
-                  }
-                  // 清理数据
-                  // AppDispath({ type: 'StateModel/resetStates', payload: { 
-                  //   keys: ['articleBtnClickState', 'articleSceneClickState', 'dialogBtnClickState'] 
-                  // }});
-                });
-              }, 0);
-            }
-          });
-        } else {
-          this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
+      AppDispath({
+        type: 'StateModel/getAllStates', payload: {}, cb: (states) => {
+          const { articleState, articleBtnClickState, articleSceneClickState } = states;
+          if (articleState != null) {
+            this.props.dispatch(action('ArticleModel/show')(articleState)).then(r => {
+              if (articleBtnClickState != null && ObjectUtils.hasProperty(articleBtnClickState, ['toScene', 'dialogs', 'openUI'])) {
+                setTimeout(() => {
+                  // 恢复场景或者对话框、openUI打开的功能
+                  ArticleOptionActions.invoke(articleBtnClickState, (v) => {
+                    // 恢复场景选项、采集系统
+                    if (articleSceneClickState != null && ObjectUtils.hasProperty(articleSceneClickState, ['nextChat', 'collect'])) {
+                      ArticleOptionActions.invoke(articleSceneClickState);
+                    }
+                    // 清理数据
+                    // AppDispath({ type: 'StateModel/resetStates', payload: { 
+                    //   keys: ['articleBtnClickState', 'articleSceneClickState', 'dialogBtnClickState'] 
+                    // }});
+                  });
+                }, 0);
+              }
+            });
+          } else {
+            this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
+          }
         }
-      }});
+      });
       this.context.continueReading = false;
     } else {
       this.props.dispatch(action('ArticleModel/show')({ file: 'WZXX_[START]' }));
@@ -185,20 +187,20 @@ class ArticlePage extends Component {
 
             <DarkLightSelector {...this.props} />
 
-            <TouchableWithoutFeedback onPress={()=>{
-                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
-                const key =RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
-              }}>
+            <TouchableWithoutFeedback onPress={() => {
+              DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+              const key = RootView.add(<ReaderSettings onClose={() => { RootView.remove(key) }} />)
+            }}>
               <View style={styles.bannerButton}>
                 <Ionicons name={'ios-text'} color={"#111"} size={23} />
                 <Text style={styles.bannerButtonText}>阅读设置</Text>
               </View>
             </TouchableWithoutFeedback>
 
-            <TouchableWithoutFeedback onPress={()=>{
-                DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
-                Clues.show()
-              }}>
+            <TouchableWithoutFeedback onPress={() => {
+              DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER);
+              Clues.show()
+            }}>
               <View style={styles.bannerButton}>
                 <AntDesign name={'carryout'} color={"#111"} size={23} />
                 <Text style={styles.bannerButtonText}>线索</Text>
@@ -209,11 +211,11 @@ class ArticlePage extends Component {
         <View style={[styles.bodyContainer, {}]}>
           <ReaderBackgroundImageView />
           <ReaderXianGaoImageView />
-          <Tab.Navigator initialRouteName='PrimaryWorld' 
-            tabBar={(props) => <WorldTabBar {...props} />}
+          <Tab.Navigator initialRouteName='PrimaryWorld'
+            tabBar={(props) => this.context.isCover ? <></> : <WorldTabBar {...props} />}
             screenOptions={{ swipeEnabled: !this.props.isStartPage }}
             sceneContainerStyle={{ backgroundColor: 'transparent' }}
-            >
+          >
             <Tab.Screen name="LeftWorld" options={{ tabBarLabel: '现实' }} children={(props) => <OtherWorld {...this.props} {...props} />} />
             <Tab.Screen name="PrimaryWorld" options={{ tabBarLabel: '尘界' }} children={(props) => <PrimaryWorld {...this.props} {...props} />} />
             <Tab.Screen name="RightWorld" options={{ tabBarLabel: '灵修界' }} children={(props) => <OtherWorld {...this.props} {...props} />} />
@@ -224,7 +226,7 @@ class ArticlePage extends Component {
         </FooterContainer>
         {/* 菜单选项 */}
         <LeftContainer ref={this.refMenuOptions} openScale={0.7}>
-          <MenuOptions { ...this.props } />
+          <MenuOptions {...this.props} />
         </LeftContainer>
         {/* 章节目录 */}
         <LeftContainer ref={this.refDirectory}>
@@ -258,8 +260,8 @@ class ArticlePage extends Component {
 const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
-    alignItems: 'center', 
-    justifyContent: "flex-start", 
+    alignItems: 'center',
+    justifyContent: "flex-start",
   },
   bodyContainer: {
     flex: 1,
@@ -276,46 +278,46 @@ const styles = StyleSheet.create({
   },
   debugView1: {
     marginBottom: ARTICLE_EVENT_AREA_MARGIN,
-    borderWidth: 1, 
-    borderColor: '#999', 
-    width: '100%', 
-    height: 200, 
-    flexDirection: 'column', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
+    borderWidth: 1,
+    borderColor: '#999',
+    width: '100%',
+    height: 200,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.1)',
   },
   debugView2: {
-    borderWidth: 1, 
-    borderColor: '#999', 
-    width: '100%', 
-    height: 200, 
-    flexDirection: 'column', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
+    borderWidth: 1,
+    borderColor: '#999',
+    width: '100%',
+    height: 200,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.1)',
   },
   debugView3: {
     marginTop: ARTICLE_EVENT_AREA_MARGIN,
-    borderWidth: 1, 
-    borderColor: '#999', 
-    width: '100%', 
-    height: 200, 
-    flexDirection: 'column', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
+    borderWidth: 1,
+    borderColor: '#999',
+    width: '100%',
+    height: 200,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.1)',
   },
   bannerStyle: {
-    flex: 1, 
-    flexDirection: 'row', 
+    flex: 1,
+    flexDirection: 'row',
     // flexWrap: 'wrap', 
-    justifyContent: 'space-evenly', 
-    alignItems: 'center', 
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
   bannerButton: {
     width: 55,
-    marginLeft: 2, 
+    marginLeft: 2,
     marginRight: 2,
     marginTop: 10,
     marginBottom: 10,
@@ -326,7 +328,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: '#000',
     fontSize: 12,
-  }, 
+  },
 });
 
 export default connect((state) => ({ ...state.ArticleModel }))(ArticlePage);
