@@ -38,5 +38,10 @@
     "id": "OPEN_GONG_FA",
     "name": "黑色圆形转场",
     "comment": "打开功法页面"
+  },
+  {
+    "id": "OPEN_Questionnaire",
+    "name": "黑色圆形转场",
+    "comment": "打开调查问卷"
   }
 ]

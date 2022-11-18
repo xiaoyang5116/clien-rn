@@ -5,11 +5,17 @@ import ImageCapInset from 'react-native-image-capinsets-next';
 import {
     connect,
     action,
+    statusBarHeight,
+    DataContext
 } from "../../constants";
-import { TextButton } from '../../constants/custom-ui';
+import { TextButton, ImageButton } from '../../constants/custom-ui';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../constants/resolution';
+import * as RootNavigation from '../../utils/RootNavigation';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const Width = Dimensions.get('window').width;
+const Height = (Dimensions.get('window').height) - statusBarHeight;
+
 
 // 封面View
 const OverView = (props) => {
@@ -26,6 +32,8 @@ const OverView = (props) => {
     const { itemKey, overview } = props
     const [option, setOption] = React.useState(overview.options)
 
+    const dataContext = React.useContext(DataContext);
+
     React.useEffect(() => {
         props.dispatch(action('ArticleModel/overViewOption')(overview.options))
             .then(r => {
@@ -36,31 +44,20 @@ const OverView = (props) => {
     const layoutHandler = () => {
         props.dispatch(action('ArticleModel/layout')({
             key: itemKey,
-            width: windowWidth,
-            height: windowHeight,
+            width: Width,
+            height: Height,
         }));
     }
     const optionPressHandler = (data) => {
+        dataContext.isCover = false
         props.dispatch(action('SceneModel/processActions')(data));
-    }
-
-    const DividingLine = () => {
-        return (
-            <Text
-                numberOfLines={1}
-                ellipsizeMode="clip"
-                style={{ fontSize: 12, lineHeight: 12, marginTop: 4, marginBottom: 4, color: "#000" }}
-            >
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            </Text>
-        )
     }
 
     return (
         <View
             style={{
-                width: windowWidth,
-                height: windowHeight,
+                width: Width,
+                height: Height,
                 position: "relative",
                 zIndex: 1,
             }}
@@ -68,10 +65,9 @@ const OverView = (props) => {
         >
             {/* 外边框 */}
             <View style={{ position: "absolute", width: "100%", height: "100%", zIndex: 2, }}>
-                <ImageCapInset
+                <FastImage
                     style={{ width: '100%', height: '100%', position: 'absolute' }}
-                    source={require('../../../assets/button/40dpi.png')}
-                    capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
+                    source={require('../../../assets/bg/overView_bg.png')}
                 />
             </View>
 
@@ -84,28 +80,31 @@ const OverView = (props) => {
             }}>
                 <View style={{ height: "70%", width: "100%", justifyContent: "flex-start", alignItems: 'center' }}>
                     <View style={{
-                        marginTop: "40%",
-                        width: "80%",
+                        marginTop: "20%",
+                        width: px2pd(720),
                         position: 'relative',
+                        alignItems: 'center'
                     }}>
-                        <ImageCapInset
-                            style={{ width: '100%', height: '100%', position: 'absolute' }}
-                            source={require('../../../assets/button/40dpi.png')}
-                            capInsets={{ top: 12, right: 12, bottom: 12, left: 12 }}
-                        />
-                        <View style={{ padding: 20, }}>
+                        <FastImage style={{ width: px2pd(720), height: px2pd(382) }} source={require('../../../assets/bg/overView_coverImage.png')} />
+                        <View style={{ width: "90%", marginTop: 40, }}>
                             <Text style={[styles.bigTitle, { textAlign: 'center' }]}>{overview.novelTitle}</Text>
+                            <FastImage style={{ width: "100%", height: px2pd(8), marginTop: 12 }} source={require('../../../assets/bg/overView_line.png')} />
                             <View style={{ width: "100%", marginTop: 12, marginBottom: 12, }}>
-                                <DividingLine />
                                 <Text style={styles.smallTitle}>{overview.introduction}</Text>
-                                <Text style={[styles.smallTitle, { textAlign: 'right' }]}>—— {overview.author}</Text>
-                                <DividingLine />
+                                <Text style={[styles.smallTitle, { textAlign: 'right', marginTop: 12 }]}>—— {overview.author}</Text>
                             </View>
                             <Text style={styles.smallTitle}>类型：{overview.type}</Text>
                         </View>
                     </View>
-                    <View style={{ position: "absolute", bottom: 0, paddingLeft: 20, paddingRight: 20, width: "80%", }}>
-                        <TextButton title="开始阅读" onPress={() => { optionPressHandler(option); }} />
+                    <View style={{ position: "absolute", bottom: 0, }}>
+                        {/* <TextButton title="开始阅读" onPress={() => { optionPressHandler(option); }} /> */}
+                        <ImageButton
+                            width={px2pd(680)}
+                            height={px2pd(150)}
+                            source={require('../../../assets/button/overView_btn1.png')}
+                            selectedSource={require('../../../assets/button/overView_btn2.png')}
+                            onPress={() => { optionPressHandler(option); }}
+                        />
                     </View>
                 </View>
 

@@ -106,18 +106,13 @@ const FirstPage = (props) => {
           <View onLayout={onLayout}>
             {/* 开始剧情 */}
             <ImageButton {...BTN_STYLE} source={require('../../assets/button/story_button.png')} selectedSource={require('../../assets/button/story_button_selected.png')} onPress={() => {
-              // RootNavigation.navigate('Article');
-              props.dispatch(action('UserModel/checkAndSetPersistedState')({ key: UserPersistedKeys.QUESTIONNAIRE })).then(result => {
-                if (result) {
-                  ArticleOptionActions.invoke({ __sceneId: 'questionnaire', dialogs: ['Screen1'] });
-                } else {
-                  RootNavigation.navigate('Article');
-                }
-              })
+              dataContext.isCover = true
+              RootNavigation.navigate('Article');
             }} />
             {/* 继续阅读 */}
             <ImageButton {...BTN_STYLE} source={require('../../assets/button/continue_button.png')} selectedSource={require('../../assets/button/continue_button_selected.png')} onPress={() => {
               dataContext.continueReading = true;
+              dataContext.isCover = false
               RootNavigation.navigate('Article');
             }} />
             {/* 读取存档 */}

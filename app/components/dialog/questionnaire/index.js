@@ -1,8 +1,9 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View ,DeviceEventEmitter} from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
 
-import * as RootNavigation from '../../../utils/RootNavigation';
+import { action } from '../../../constants';
 
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import { HalfPanel } from '../../panel';
 import { TextButton, BtnIcon } from '../../../constants/custom-ui';
 
@@ -19,23 +20,9 @@ const Cover = ({ desc, onPress }) => {
   );
 };
 
-const Problem = ({ viewData, onDialogCancel, actionMethod }) => {
+const Problem = (props) => {
+  const { viewData, selectIndex, setSelectIndex, currentProblem, problemIndex, nextProblem, } = props
   const { sections } = viewData;
-  const [problemIndex, setProblemIndex] = useState(0)
-  const [selectIndex, setSelectIndex] = useState(-1);
-  const currentProblem = sections[problemIndex]
-
-  const nextProblem = () => {
-    if (problemIndex < sections.length - 1) {
-      actionMethod(currentProblem.btn[selectIndex])
-      setProblemIndex(problemIndex + 1)
-      setSelectIndex(-1)
-    } else {
-      actionMethod(currentProblem.btn[selectIndex])
-      RootNavigation.navigate('Article');
-      onDialogCancel()
-    }
-  }
 
   const renderBtn = ({ item, index }) => {
     return (
@@ -83,21 +70,54 @@ const Problem = ({ viewData, onDialogCancel, actionMethod }) => {
 
 const Questionnaire = props => {
   const { viewData, onDialogCancel, actionMethod } = props;
-  const { title, desc } = viewData;
+  const { title, desc, sections } = viewData;
+  const [isBegin, setIsBegin] = useState(false);  // 是否开始答题
+  const [problemIndex, setProblemIndex] = useState(0)  // 问题索引
+  const [selectIndex, setSelectIndex] = useState(-1);  // 选中的答案索引
+  const currentProblem = sections[problemIndex]  // 当前的问题
 
-  const [isBegin, setIsBegin] = useState(false);
+  useEffect(() => {
+    props.dispatch(action('QuestionnaireModel/getQuestionnaireData')()).then(result => {
+      if (result !== null) {
+        setIsBegin(true)
+        setProblemIndex(result.problemIndex + 1)
+      }
+    })
+  }, [])
+
+  const nextProblem = () => {
+    if (problemIndex < sections.length - 1) {
+      actionMethod(currentProblem.btn[selectIndex])
+      props.dispatch(action('QuestionnaireModel/saveQuestionnaireData')({ isFinish: false, problemIndex }))
+      setProblemIndex(problemIndex + 1)
+      setSelectIndex(-1)
+    } else {
+      DeviceEventEmitter.emit("QuestionnaireStatus",true)
+      actionMethod(currentProblem.btn[selectIndex])
+      props.dispatch(action('QuestionnaireModel/saveQuestionnaireData')({ isFinish: true, problemIndex }))
+      onDialogCancel()
+    }
+  }
 
   return (
     <HalfPanel>
       <View style={styles.contentContainer}>
+        <View style={{ position: "absolute", right: 12, top: 12 }}>
+          <TouchableOpacity onPress={onDialogCancel}>
+            <AntDesign name={'close'} color={"#000"} size={25} />
+          </TouchableOpacity>
+        </View>
         <View style={styles.titleContainer}>
           <Text style={{ fontSize: 20, color: '#000' }}>{title}</Text>
         </View>
         {isBegin ? (
           <Problem
-            viewData={viewData}
-            onDialogCancel={onDialogCancel}
-            actionMethod={actionMethod}
+            {...props}
+            selectIndex={selectIndex}
+            setSelectIndex={setSelectIndex}
+            nextProblem={nextProblem}
+            currentProblem={currentProblem}
+            problemIndex={problemIndex}
           />
         ) : (
           <Cover

@@ -38,6 +38,7 @@ scenes: [
       {
         id: 'c0', desc: '配置测试', 
         options: [
+          { title: '半身对话', dialogs: ['p8']},
           { title: '多人对话', dialogs: ['p7']},
           { title: '获得成就', toMsg: { action: 'AchievementModel/addAchievement', params: { addAchievementId: [1,2] } } },
           { title: '成就系统', openUI: "ChengJiu"},
@@ -151,6 +152,25 @@ scenes: [
           
         ]
       },
+      {
+        id: 'p8', style: 10, textAnimationType: 'TextSingle',
+        sections: [
+          { figureId: "01", location: "right", content: ['“大爷你好。”', ], },
+          { figureId: "02", location: "left", content: ['“你好。”',], },
+          { figureId: "01", location: "right", content: ['“大爷你知道黄心叶、百络花、子星草这些东西在哪吗？”',], },
+          { figureId: "02", location: "left", content: ['“第一个是黄什么？”', ], },
+          { figureId: "01", location: "right", content: ['“黄心叶。”',], },
+          { figureId: "02", location: "left", content: ['“第二个呢？”', ], },
+          { figureId: "01", location: "right", content: ['“百络花。”',], },
+          { figureId: "02", location: "left", content: ['“第三个呢？”', ], },
+          { figureId: "01", location: "right", content: ['“子星草。”',], },
+          { figureId: "02", location: "left", content: ['“哦哦，那第一个呢？”', ], },
+          { figureId: "01", location: "right", content: [ '“……”', '“第一个是黄心叶，第二个是百络花，第三个是子星草。”', ], },
+          { figureId: "02", location: "left", content: ['“哦哦，第一个是黄心叶，那第二个呢。”',], },
+          { figureId: "01", location: "right", content: ['“……”','“大爷你好好歇着吧。”',], },
+          { figureId: "02", location: "left", content: ['“好嘞。”', ], },
+        ],
+      }
     ],
   },
 ]
