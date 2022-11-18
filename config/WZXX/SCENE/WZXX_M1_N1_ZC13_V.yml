@@ -1,0 +1,79 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_ZC13_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [{ id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+ 
+      ],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [
+      ],
+
+
+    
+      chats: [
+      #
+      { 
+        id: 'WZXX_M1_N1_ZC13_V1', desc: '该怎么办', 
+        options: [ 
+          { 
+          title: "【我用法术来进攻】",dialogs: ['ZC13A_1.1A'],
+           icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
+          },
+
+           { 
+          title: "【帮助白书生来操作弓弩】",toChapter: "WZXX_M1_N1_Z2C14",
+           icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
+          },
+        ],
+      },
+
+     
+
+     
+
+        ],
+
+      # 对话框
+      dialogs:
+        [
+
+
+         #选项对话
+          { 
+            id: 'ZC13A_1.1A',style: 6, title: '法术', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['开玩笑，我哪来的法术？','记错了记错了。', 
+                ],
+                btn: [
+                {
+                title: '重选', nextChat: 'WZXX_M1_N1_ZC13_V1'
+                }
+                ]
+              },
+            ]  
+          },
+
+     
+         
+
+         
+        ],
+
+
+    }
+]

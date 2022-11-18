@@ -41,7 +41,8 @@ scenes: [
       # 动作定义
       actions: [],
       # 事件定义# 故事中的场景事件暂时没什么意义
-      events: [],
+      events: [
+      ],
       chats: [
       { 
       id: 'WZXX_M1_N1_C000B_VA1', desc: '打工还是守夜', 

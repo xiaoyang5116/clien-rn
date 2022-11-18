@@ -499,7 +499,50 @@ directory: [
         {
         point: [0, -11], title: '第十二章 诡异 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C12' ,
-        toChapter: 'WZXX_M1_N1_Z2C12', links: [[]] 
+        toChapter: 'WZXX_M1_N1_Z2C12', links: [[0, -12]] 
+        },
+
+
+        {
+        point: [0, -12], title: '第十三章 弩箭 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C13' ,
+        toChapter: 'WZXX_M1_N1_Z2C13', links: [[0, -13]] 
+        },
+
+        {
+        point: [0, -13], title: '第十四章 杀手锏 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C14' ,
+        toChapter: 'WZXX_M1_N1_Z2C14', links: [[0, -14]] 
+        },
+
+        {
+        point: [0, -14], title: '第十五章 各显神通 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C15' ,
+        toChapter: 'WZXX_M1_N1_Z2C15', links: [[0, -15]] 
+        },
+
+        {
+        point: [0, -15], title: '第十六章 停留 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C16' ,
+        toChapter: 'WZXX_M1_N1_Z2C16', links: [[0, -16]] 
+        },
+
+        {
+        point: [0, -16], title: '第十七章 路遇不平 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C17' ,
+        toChapter: 'WZXX_M1_N1_Z2C17', links: [[0, -17]] 
+        },
+
+        {
+        point: [0, -17], title: '第十八章 牧川镇 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C18' ,
+        toChapter: 'WZXX_M1_N1_Z2C18', links: [[0, -18]] 
+        },
+
+        {
+        point: [0, -18], title: '第十九章 戏台上的演讲人 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C19' ,
+        toChapter: 'WZXX_M1_N1_Z2C19', links: [[]] 
         },
 
 
