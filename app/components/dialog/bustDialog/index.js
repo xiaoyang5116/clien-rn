@@ -5,6 +5,7 @@ import {
   TouchableWithoutFeedback,
   FlatList,
   Image,
+  ImageBackground,
 } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -12,30 +13,34 @@ import { action, connect, getBustImg, ThemeData } from '../../../constants';
 import TextAnimation from '../../textAnimation';
 
 
-const BustImage = props => {
-  const { bustImg, location } = props;
+const BustImage = ({ figureList, figuresArr, currentSections }) => {
+  if (figureList.length === 0) return null
 
   return (
-    <View
-      style={[
-        styles.bustContainer,
-        {
-          alignItems: location === 'left' ? 'flex-start' : 'flex-end',
-        },
-      ]}>
-      <Image source={bustImg} />
+    <View style={styles.bustContainer}>
+      {figuresArr.map((item, index) => {
+        const { figureId, location, isShow } = item;
+        const bustImg = getBustImg(figureList.find(item => item.id === figureId).bust)
+
+        if (isShow == false) return null
+
+        return (
+          <View
+            key={index}
+            style={{
+              position: "absolute",
+              opacity: currentSections.figureId === figureId ? 1 : 0.6,
+              left: location === 'left' ? 0 : null,
+              right: location === 'right' ? 0 : null,
+            }}>
+            <Image source={bustImg} />
+          </View>
+        )
+      })}
     </View>
-  );
-};
 
-
-// {"confirm": false, "hidden": false, "primaryType": 2, "sectionId": 0,
-// "sections": [
-//   {"location": "left", "content": [Array], "figureId": 1},
-//   {"location": "left", "content": [Array], "figureId": 1},
-//   {"location": "left", "content": [Array], "figureId": 1}
-// ],
-// "style": 10, "textAnimationType": "TextSingle",}
+  )
+}
 
 const BustDialog = props => {
   const theme = ThemeData();
@@ -43,11 +48,20 @@ const BustDialog = props => {
   const { sections, textAnimationType } = viewData;
   const [sectionsIndex, setSectionsIndex] = useState(0)
   const [contentIndex, setContentIndex] = useState(0);
-  const hiddenFiguresId = useRef([])
+  const figuresArr = useRef([
+    {
+      figureId: sections[sectionsIndex].figureId,
+      isShow: true,
+      location: sections[sectionsIndex].location,
+    }
+  ])
+  const currentSections = sections[sectionsIndex]
+
+
 
   useEffect(() => {
     if (figureList.length === 0) {
-      props.dispatch(action('FigureModel/getFigureList')());
+      props.dispatch(action('FigureModel/getFigureList')())
     }
   }, []);
 
@@ -63,17 +77,32 @@ const BustDialog = props => {
       contentIndex === sections[sectionsIndex].content.length - 1 &&
       sectionsIndex <= sections.length - 1
     ) {
-      // 添加隐藏人物的id
+      // 设置人物隐藏
       if (
         sections[sectionsIndex + 1].hideId !== undefined &&
         Array.isArray(sections[sectionsIndex + 1].hideId)
       ) {
-        hiddenFiguresId.current.push(...sections[sectionsIndex + 1].hideId)
+        const hideId = sections[sectionsIndex + 1].hideId
+        figuresArr.current = figuresArr.current.map(item => hideId.find(h => h === item.figureId) !== undefined ? { ...item, isShow: false } : item)
       }
 
-      // 过滤下一个对话人物id
-      hiddenFiguresId.current = hiddenFiguresId.current.filter(item => item != sections[sectionsIndex + 1].figureId)
-
+      // 下一个人物如果保存了，就设置可以显示，如果没有就添加
+      const nextFigures = figuresArr.current.find(item => item.figureId === sections[sectionsIndex + 1].figureId)
+      if (
+        nextFigures !== undefined &&
+        nextFigures?.isShow === false
+      ) {
+        figuresArr.current = figuresArr.current.map(item => item.figureId === sections[sectionsIndex + 1].figureId ? { ...item, isShow: true } : item)
+      }
+      if (nextFigures === undefined) {
+        figuresArr.current.push(
+          {
+            figureId: sections[sectionsIndex + 1].figureId,
+            isShow: true,
+            location: sections[sectionsIndex + 1].location,
+          }
+        )
+      }
       setSectionsIndex(index => index + 1)
       setContentIndex(0);
       return;
@@ -82,55 +111,42 @@ const BustDialog = props => {
     setContentIndex(contentIndex => contentIndex + 1);
   };
 
-  const renderDialog = sections.map((item, index) => {
-    if (
-      hiddenFiguresId.current.length > 0 &&
-      hiddenFiguresId.current.find(i => i === item.figureId) !== undefined
-    ) return null
-
-    if (index <= sectionsIndex && figureList.length > 0) {
-      const currentFigureData = figureList.find(i => i.id === item.figureId);
-      const bustImg = getBustImg(currentFigureData.bust);
-
-      return (
-        <View
-          key={index}
-          style={{
-            height: 400,
-            width: '95%',
-            position: 'absolute',
-            zIndex: index,
-            opacity: index === sectionsIndex ? 1 : 0.6,
-          }}>
-          <BustImage bustImg={bustImg} location={item.location} />
-          <View style={styles.contentContainer}>
-            {
-              item.content.map((i, currentIndex) => {
-                if (currentIndex === contentIndex) {
-                  return (
-                    <TextAnimation
-                      icon={'▼'}
-                      key={currentIndex}
-                      fontSize={20}
-                      type={textAnimationType}
-                      style={theme.dialogFontColor}>
-                      {i}
-                    </TextAnimation>
-                  )
-                }
-              })
-            }
-          </View>
-        </View>
-      );
-    }
-  })
-
   return (
     <View style={styles.viewContainer}>
       <TouchableWithoutFeedback onPress={nextDialog}>
         <View style={styles.container}>
-          {renderDialog}
+          <View style={{ position: 'absolute', height: 400, width: '95%', }}>
+            <BustImage
+              figureList={figureList}
+              figuresArr={figuresArr.current}
+              currentSections={currentSections}
+            />
+            <ImageBackground
+              style={{
+                height: 150,
+                width: '100%',
+                borderRadius: 12,
+                overflow: "hidden",
+              }}
+              source={require('../../../../assets/bg/bustDialog_bg.png')}
+            >
+              <View style={{
+                paddingTop: 12,
+                paddingBottom: 12,
+                paddingLeft: 18,
+                paddingRight: 18,
+              }}>
+                <TextAnimation
+                  icon={'▼'}
+                  key={`${contentIndex}${sectionsIndex}`}
+                  fontSize={20}
+                  type={textAnimationType}
+                  style={theme.dialogFontColor}
+                  children={currentSections.content[contentIndex]}
+                />
+              </View>
+            </ImageBackground>
+          </View>
         </View>
       </TouchableWithoutFeedback>
     </View>
