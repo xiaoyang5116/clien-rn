@@ -78,7 +78,7 @@ const OverView = (props) => {
                 justifyContent: "center",
                 alignItems: 'center'
             }}>
-                <View style={{ height: "70%", width: "100%", justifyContent: "flex-start", alignItems: 'center' }}>
+                <View style={{ height: "100%", width: "100%", justifyContent: "flex-start", alignItems: 'center' }}>
                     <View style={{
                         marginTop: "20%",
                         width: px2pd(720),
@@ -96,7 +96,7 @@ const OverView = (props) => {
                             <Text style={styles.smallTitle}>类型：{overview.type}</Text>
                         </View>
                     </View>
-                    <View style={{ position: "absolute", bottom: 0, }}>
+                    <View style={{ marginTop: 30 }}>
                         {/* <TextButton title="开始阅读" onPress={() => { optionPressHandler(option); }} /> */}
                         <ImageButton
                             width={px2pd(680)}
@@ -107,9 +107,6 @@ const OverView = (props) => {
                         />
                     </View>
                 </View>
-
-                {/* footer */}
-                <View style={{ height: "30%", width: "100%", }}></View>
             </View>
         </View>
     )
