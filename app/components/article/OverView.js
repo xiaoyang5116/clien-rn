@@ -8,7 +8,7 @@ import {
     statusBarHeight,
     DataContext
 } from "../../constants";
-import { TextButton } from '../../constants/custom-ui';
+import { TextButton, ImageButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../constants/resolution';
 import * as RootNavigation from '../../utils/RootNavigation';
@@ -53,18 +53,6 @@ const OverView = (props) => {
         props.dispatch(action('SceneModel/processActions')(data));
     }
 
-    const DividingLine = () => {
-        return (
-            <Text
-                numberOfLines={1}
-                ellipsizeMode="clip"
-                style={{ fontSize: 12, lineHeight: 12, marginTop: 4, marginBottom: 4, color: "#000" }}
-            >
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            </Text>
-        )
-    }
-
     return (
         <View
             style={{
@@ -98,19 +86,25 @@ const OverView = (props) => {
                         alignItems: 'center'
                     }}>
                         <FastImage style={{ width: px2pd(720), height: px2pd(382) }} source={require('../../../assets/bg/overView_coverImage.png')} />
-                        <View style={{ padding: 20, }}>
+                        <View style={{ width: "90%", marginTop: 40, }}>
                             <Text style={[styles.bigTitle, { textAlign: 'center' }]}>{overview.novelTitle}</Text>
+                            <FastImage style={{ width: "100%", height: px2pd(8), marginTop: 12 }} source={require('../../../assets/bg/overView_line.png')} />
                             <View style={{ width: "100%", marginTop: 12, marginBottom: 12, }}>
-                                <DividingLine />
                                 <Text style={styles.smallTitle}>{overview.introduction}</Text>
-                                <Text style={[styles.smallTitle, { textAlign: 'right' }]}>—— {overview.author}</Text>
-                                <DividingLine />
+                                <Text style={[styles.smallTitle, { textAlign: 'right', marginTop: 12 }]}>—— {overview.author}</Text>
                             </View>
                             <Text style={styles.smallTitle}>类型：{overview.type}</Text>
                         </View>
                     </View>
-                    <View style={{ position: "absolute", bottom: 0, paddingLeft: 20, paddingRight: 20, width: "80%", }}>
-                        <TextButton title="开始阅读" onPress={() => { optionPressHandler(option); }} />
+                    <View style={{ position: "absolute", bottom: 0, }}>
+                        {/* <TextButton title="开始阅读" onPress={() => { optionPressHandler(option); }} /> */}
+                        <ImageButton
+                            width={px2pd(680)}
+                            height={px2pd(150)}
+                            source={require('../../../assets/button/overView_btn1.png')}
+                            selectedSource={require('../../../assets/button/overView_btn2.png')}
+                            onPress={() => { optionPressHandler(option); }}
+                        />
                     </View>
                 </View>
 
