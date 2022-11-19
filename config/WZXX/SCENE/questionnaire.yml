@@ -43,16 +43,16 @@ scenes: [
               key: 1,
               content: "1、您平时喜欢看什么类型的小说",
               btn: [
-                { title: 'A、男频小说', dropIds: ['WZXX_M1_N1_C001A_V_Vdrop1',], },
-                { title: 'B、女频小说', dropIds: ['WZXX_M1_N1_C001A_V_Vdrop1',], },
+                { title: 'A、男频小说', toKey: 2, dropIds: ['WZXX_M1_N1_C001A_V_Vdrop1',], },
+                { title: 'B、女频小说', toKey: 3, dropIds: ['WZXX_M1_N1_C001A_V_Vdrop1',], },
               ],
             },
             {
               key: 2,
               content: "2、您的性别是",
               btn: [
-                { title: 'A、男', },
-                { title: 'B、女', },
+                { title: 'A、男', toKey: 3, },
+                { title: 'B、女', toKey: 3, },
               ],
             },
             {

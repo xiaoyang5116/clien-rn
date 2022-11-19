@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, TouchableOpacity, View ,DeviceEventEmitter} from 'react-native';
+import { FlatList, StyleSheet, Text, TouchableOpacity, View, DeviceEventEmitter } from 'react-native';
 import React, { useContext, useEffect, useState } from 'react';
 
 import { action } from '../../../constants';
@@ -21,7 +21,7 @@ const Cover = ({ desc, onPress }) => {
 };
 
 const Problem = (props) => {
-  const { viewData, selectIndex, setSelectIndex, currentProblem, problemIndex, nextProblem, } = props
+  const { viewData, selectIndex, setSelectIndex, currentProblem, problemKey, nextProblem, } = props
   const { sections } = viewData;
 
   const renderBtn = ({ item, index }) => {
@@ -59,7 +59,7 @@ const Problem = (props) => {
       </View>
       <View style={{ position: "absolute", bottom: "20%" }}>
         <TextButton
-          title={problemIndex < sections.length - 1 ? "下一题" : "完成作答"}
+          title={problemKey < sections.length ? "下一题" : "完成作答"}
           onPress={nextProblem}
           disabled={selectIndex === -1 ? true : false}
         />
@@ -72,29 +72,29 @@ const Questionnaire = props => {
   const { viewData, onDialogCancel, actionMethod } = props;
   const { title, desc, sections } = viewData;
   const [isBegin, setIsBegin] = useState(false);  // 是否开始答题
-  const [problemIndex, setProblemIndex] = useState(0)  // 问题索引
+  const [problemKey, setProblemKey] = useState(1)  // 问题索引
   const [selectIndex, setSelectIndex] = useState(-1);  // 选中的答案索引
-  const currentProblem = sections[problemIndex]  // 当前的问题
+  const currentProblem = sections[problemKey - 1]  // 当前的问题
 
   useEffect(() => {
     props.dispatch(action('QuestionnaireModel/getQuestionnaireData')()).then(result => {
       if (result !== null) {
         setIsBegin(true)
-        setProblemIndex(result.problemIndex + 1)
+        setProblemKey(result.problemKey)
       }
     })
   }, [])
 
   const nextProblem = () => {
-    if (problemIndex < sections.length - 1) {
+    if (problemKey < sections.length) {
       actionMethod(currentProblem.btn[selectIndex])
-      props.dispatch(action('QuestionnaireModel/saveQuestionnaireData')({ isFinish: false, problemIndex }))
-      setProblemIndex(problemIndex + 1)
+      props.dispatch(action('QuestionnaireModel/saveQuestionnaireData')({ isFinish: false, problemKey: currentProblem.btn[selectIndex].toKey }))
+      setProblemKey(currentProblem.btn[selectIndex].toKey)
       setSelectIndex(-1)
     } else {
-      DeviceEventEmitter.emit("QuestionnaireStatus",true)
+      DeviceEventEmitter.emit("QuestionnaireStatus", true)
       actionMethod(currentProblem.btn[selectIndex])
-      props.dispatch(action('QuestionnaireModel/saveQuestionnaireData')({ isFinish: true, problemIndex }))
+      props.dispatch(action('QuestionnaireModel/saveQuestionnaireData')({ isFinish: true, problemKey: "end" }))
       onDialogCancel()
     }
   }
@@ -117,7 +117,7 @@ const Questionnaire = props => {
             setSelectIndex={setSelectIndex}
             nextProblem={nextProblem}
             currentProblem={currentProblem}
-            problemIndex={problemIndex}
+            problemKey={problemKey}
           />
         ) : (
           <Cover
