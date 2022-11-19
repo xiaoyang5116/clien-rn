@@ -81,13 +81,6 @@ scenes: [
         ],
       },
 
-      # { 
-      #   id: 'WZXX_M1_N1_C002A_V3', desc: '硬刚还是认怂？？', 
-      #   options: [ 
-      #     { title: "【和他们拼了】",dialogs: ['C002A_fenzhiDH1'] , icon: { id: 1, bindVar: 'biaoqianv37' }, varsOn: ['biaoqianv37']},
-      #     { title: "【好汉不吃眼前亏】",dialogs: ['C002A_fenzhiDH2'] , icon: { id: 1, bindVar: 'biaoqianv38' }, varsOn: ['biaoqianv38']},
-      #   ],
-      # },
 
        { 
         id: 'WZXX_M1_N1_C002A_V0', desc: '身体不适', 
@@ -95,7 +88,7 @@ scenes: [
           { title: "【身体似乎有些不适】",toChapter: "WZXX_M1_N1_C002_[N5]" },
 
         ],
-      },
+       },
 
       { 
         id: 'WZXX_M1_N1_C002A_V2', desc: '选择回家还是？', 
@@ -120,19 +113,16 @@ scenes: [
         id: 'WZXX_M1_N1_C002A_V5', desc: '进去看还是离开？', 
         options: [ 
           { title: "【开启新世界的大门】",dialogs: ['C002A_erchuanA'],  icon: { id: 1, bindVar: 'biaoqianv41' }, varsOn: ['biaoqianv41']},
-
-          #其实放上一个穿越的黑洞图片，或者简单的动作效果会更好
         ],
-      },
+        },
 
         { 
         id: 'WZXX_M1_N1_C002A_V6', desc: '不好！！！', 
         options: [ 
           { title: "【不好！！！】",dialogs: ['C002A_chenjieA'],  icon: { id: 1, bindVar: 'biaoqianv42' }, varsOn: ['biaoqianv42']},
-
-          #其实放上一个穿越的黑洞图片，或者简单的动作效果会更好
         ],
-      },
+        },
+
        { 
         id: 'WZXX_M1_N1_C002A_V7', desc: '不好！！！', 
         options: [ 
@@ -188,15 +178,12 @@ scenes: [
           '《白城？？大全》', [{games: {id: 4, imgName: "白城笑话大全"}}],'仔细看，原本看不到的字也能看到了','竟然是《白城笑话大全》！','怎么办？',],
           btn: [{title: '苦中作乐，当然是读来看看',tokey: "P3G1",  icon: { id: 6, bindVar: 'biaoqianv6' }},
           {title: '考虑其他的书，再来',tokey: "P2B", varsOn: ['biaoqianv3','biaoqianv2',]},
-          #{title: '说不定这也是机缘',tokey: "P3G2"   },
           ]},
 
           { key: 'P3G1', content: ['这书有很多独立的章节，每个章节都是小故事','随手打开一页',[{ sounds: [{ soundId: 'SE_UE_0013',}] }],'这说的是白城的穷书生想娶大小姐，然后求爱99次全失败的故事','笑话吗？这是悲剧吧','继续一看，这笑点有点低，完全没有想笑的感觉','你准备',],
           btn: [{title: '继续翻页',tokey: "P3G3",  icon: { id: 6, bindVar: 'biaoqianv7' }},
           {title: '考虑其他的书，再来',tokey: "P2B", varsOn: ['biaoqianv6','biaoqianv2','biaoqianv3']},   ]},
 
-          #{ key: 'P3G2', content: ['拿起书，李森炎一个翻滚，躲在书房的床椅下面','看清楚了那本书的全名','竟然是《白城笑话大全》！！！','……','最危险的地方就是最安全的','你觉得以父亲的才智，一定会想到这一层','把秘密古籍，藏在敌人最不可能发现的地方','如此一想，你心中大喜，迫不及待翻开了手中的《笑话大全》',[{ sounds: [{ soundId: 'SE_UE_0013',}] }],'然后……',],
-          #btn: [{title: '继续翻页',tokey: "P3G3"},{title: '考虑其他的书，再来',tokey: "P2B"},   ]},
 
           { key: 'P3G3', content: ['好像','这书也不是那么差劲','不行了','好想笑，憋不住了','……',],
           btn: [{title: '扑哧',tokey: "P3G4",  icon: { id: 6, bindVar: 'biaoqianv8' }},
@@ -487,7 +474,7 @@ scenes: [
           
         ],
     },
-#[{ games: {id: 4,imgName: ""}, }], 云母片配置
+
      #选项对话8
           { id: 'C002A_fenzhiBF_A',style: 6, title: '眼前就有一个房子，进去看看', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [

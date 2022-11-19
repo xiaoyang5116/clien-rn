@@ -15,21 +15,21 @@ data: {
       title: '修行',
       collapsed: true,
       data: [[
-        { title: '神识', key: 神识, value: 10 },
-        { title: '鉴定', key: 鉴定, value: 10 },
-        { title: '气运', key: 气运, value: 10 },
-        { title: '道行', key: 道行, value: 10 },
-        { title: '神通', key: 神通, value: 10 },
-        { title: '仙缘', key: 仙缘, value: 10 },
+        { title: '神识', key: 神识, value: 0 },
+        { title: '鉴定', key: 鉴定, value: 0 },
+        { title: '气运', key: 气运, value: 0 },
+        { title: '道行', key: 道行, value: 0 },
+        { title: '神通', key: 神通, value: 0 },
+        { title: '仙缘', key: 仙缘, value: 0 },
       ]],
     },
    
     {
       title: '武艺',
       data: [[
-        { title: '身法', key: 身法, value: 10 },
-        { title: '速度', key: 速度, value: 10 },
-        { title: '体魄', key: 体魄, value: 10 },
+        { title: '身法', key: 身法, value: 0 },
+        { title: '速度', key: 速度, value: 0 },
+        { title: '体魄', key: 体魄, value: 0 },
       ]],
     },
     
@@ -37,37 +37,37 @@ data: {
       title: '才华',
       collapsed: true,
       data: [[
-        { title: '学识', key: 学识, value: 10 },
-        { title: '悟性', key: 悟性, value: 10 },
-        { title: '颜值', key: 颜值, value: 10 },
-        { title: '智慧', key: 智慧, value: 10 },
+        { title: '学识', key: 学识, value: 0 },
+        { title: '悟性', key: 悟性, value: 0 },
+        { title: '颜值', key: 颜值, value: 0 },
+        { title: '智慧', key: 智慧, value: 0 },
       ]],
     },
     {
       title: '仙途',
       collapsed: true,
       data: [[
-        { title: '轮回', key: 轮回, value: 10 },
-        { title: '寿元', key: 寿元, value: 10 },
-        { title: '道友', key: 道友, value: 10 },
+        { title: '轮回', key: 轮回, value: 0 },
+        { title: '寿元', key: 寿元, value: 0 },
+        { title: '道友', key: 道友, value: 0 },
        
       ]],
     },
      {
       title: '善恶',
       data: [[
-        { title: '善良', key: 善良, value: 10 },
-        { title: '冷漠', key: 冷漠, value: 10 },
+        { title: '善良', key: 善良, value: 0 },
+        { title: '冷漠', key: 冷漠, value: 0 },
       ]],
     },
      {
       title: '力量倾向',
       collapsed: true,
       data: [[
-        { title: '成神', key: 成神, value: 10 },
-        { title: '入魔', key: 入魔, value: 10 },
-        { title: '变化', key: 变化, value: 10 },
-        { title: '自由', key: 自由, value: 10 },
+        { title: '成神', key: 成神, value: 0 },
+        { title: '入魔', key: 入魔, value: 0 },
+        { title: '变化', key: 变化, value: 0 },
+        { title: '自由', key: 自由, value: 0 },
       ]],
     },
   ]
