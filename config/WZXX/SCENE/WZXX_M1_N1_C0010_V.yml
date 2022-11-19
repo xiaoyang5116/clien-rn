@@ -1,0 +1,259 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_C0010_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      ],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [
+      #  { type: 'enter', andVarsOff: ['questionnaire/NXSJ'], nextChat: 'WZXX_M1_N1_C0010_V1'  },
+      #  { type: 'enter', andVarsOn: ['questionnaire/NXSJ'], nextChat: 'WZXX_M1_N1_C0010_V2'  },
+      ],    
+      chats: [
+      #
+
+      { 
+        id: 'WZXX_M1_N1_C0010_V1', desc: '要，还是不要', 
+        options: [ 
+          { title: "【进入坊市】",andVarsOff: ['questionnaire/NXSJ'],toChapter: "WZXX_M1_N1_C010_[N2]",},
+          { title: "【点击进入视角选择】",andVarsOn: ['questionnaire/NXSJ'],dialogs: ['C0010_1.1A'], },
+        
+        ],
+      },
+
+      # { 
+      #   id: 'WZXX_M1_N1_C0010_V2', desc: '视角选择', 
+      #   options: [ 
+      #   ],
+      # },
+
+      { 
+        id: 'WZXX_M1_N1_C0010_V3', desc: '', 
+        options: [ 
+          { title: "【主动去寻找传说中的李家后人】",toChapter: "WZXX_M1_N1_C010_[N4]",},
+          { title: "【使个法子把李家后人引过来】",dialogs: ['C0010_1.2A'], },
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C0010_V4', desc: '', 
+        options: [ 
+          { title: "【不啰嗦直接怼回去】",toChapter: "WZXX_M1_N1_C010_[N6]",},
+          { title: "【耐心解释】",toChapter: "WZXX_M1_N1_C010_[N7]", },
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C0010_V5', desc: '', 
+        options: [ 
+          { title: "【继续调侃打趣】",dialogs: ['C0010_1.3A'], },
+          { title: "【直接告诉他原因】",dialogs: ['C0010_1.3B'], },
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C0010_V6', desc: '', 
+        options: [ 
+          { title: "【激发他的潜能】",toChapter: "WZXX_M1_N1_C010_[N9]"},
+          { title: "【不走寻常路】",toChapter: "WZXX_M1_N1_C010_[N10]" },
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C0010_V7', desc: '', 
+        options: [ 
+          { title: "【让李森炎支付一百灵石】",dialogs: ['C0010_1.4A'],},
+          { title: "【让李森炎守夜】",dialogs: ['C0010_1.4B'], },
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C0010_V8', desc: '', 
+        options: [ 
+          { title: "【万一把人玩废了就不好了，给】",dialogs: ['C0010_1.5A'],},
+          { title: "【要的就是艺高人胆大，不给！】",dialogs: ['C0010_1.5B'], },
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C0010_V9', desc: '', 
+        options: [ 
+          { title: "【再等待一会儿，说不定有转机】",dialogs: ['C0010_1.6A'],},
+          { title: "【立刻出手救下李森炎】",dialogs: ['C0010_1.6B'], },
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C0010_V10', desc: '', 
+        options: [ 
+          { title: "【……】",dialogs: ['p10'],},
+        ],
+      },
+
+      
+
+
+        ],
+
+
+      # 对话框
+      dialogs:
+        [
+
+         { id: 'p10', style: 1, sections: ['医灵视角到此为止', '请您继续以主角的身份', '开启之后的征途吧',],  toChapter: "WZXX_M1_N1_C011_[N1]"  },
+
+         { id: 'C0010_1.1A', style: 12,title: '视角选择',
+         sections: {
+            content: "切换不同视角可体验不同角色的剧情，请选择接下来您要体验的角色视角\n注：视角切换仅对此剧情内有效，坊市剧情结束将会跳转为主角‘李森炎’视角。",
+            btn: [
+          { title: "【切换医灵视角】", toChapter: "WZXX_M1_N1_C010_[N3]" },
+          { title: "【继续李森炎视角】", toChapter: "WZXX_M1_N1_C010_[N2]" },
+            ]
+        },  
+       },
+ 
+
+
+           #选项对话
+          { id: 'C0010_1.2A',style: 6, title: '使个法子把李家后人引过来', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['那李家后人的气息就出现在落霞峰，是离坊市不远的一座孤峰之上。','这么近的距离，先暂且不要打草惊蛇。','我先派花灵前去打探，这才知道。',
+          '那所谓的李家后人，叫李森炎。','用花灵的话来说，就是个什么都不会的废物，想来是阴差阳错来到这灵修界的。',
+          '这次跟着那多云，就是想要修炼。','但我颦眉一想，废物？修炼？','这岂不是挺有意思的？','反正都是白纸了也不怕练废，说不定玩一玩还能练出个惊喜来！','不过，那自然是要自己亲力亲为帮他修炼了，万一李森炎触及歪门邪道，修了魔道，那便是罪孽了！',
+          '而后，花灵又说，似乎他们准备来坊市。',
+          
+          ],
+          btn: [{title: '有注意了',toChapter: "WZXX_M1_N1_C010_[N5]",},]},
+
+       
+           ]  
+        },
+
+         { id: 'C0010_1.3A',style: 6, title: '调侃打趣他', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“呵，男人，需要人家的时候，恨不得跪下来求，不需要的时候，提了裤子就想走。”',
+          '我挑眉，很不坏好意的看着他，淡淡说道。','李森炎被我说的一囧，尴尬挠头，“别说这种容易让人误会的话好不好？”',
+          '“我可什么也没干啊！”','“行啊，你要想让我不说也行，但是你现在还不能走。”',
+          '“为什么？”李森炎谨慎的眨眨眼。','我看见他那两个澄亮的眸子带着清澈带着一丝警惕的盯着自己。',
+          '“你难道就不好奇，为什么会中毒吗？你就不想知道为什么我会这么及时救了你吗？”','李森炎挠头，“我想知道啊，但，你能告诉我吗？”',
+          '“我能说不听吗……”李森炎扣着门板，声音越来越小。','“不行。”','勾着唇微微一笑，擦拭起药壶，水葱般嫩的手指，纤纤上下浮动，差点没把李森炎催眠，直到李森炎面露不耐之色'
+          
+          ],
+          btn: [{title: '说出自己的身世',toChapter: "WZXX_M1_N1_C010_[N8]",},]},
+
+       
+           ]  
+        },
+
+         { id: 'C0010_1.3B',style: 6, title: '直接告诉他原因', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“在你走之前，要不要先听听我的故事？”',
+          '我双眸直视的看着他，可能是由于目光楚楚，叫人怜惜，不忍拒绝。','李森炎着急出去，但是此时此刻他又不太好意思拒绝，“我能说不要吗？”',
+          '我那管他要不要，只微微一笑，擦拭起药壶，水葱般嫩的手指，纤纤上下浮动，差点没把李森炎催眠，直到李森炎面露不耐之色……',
+          
+          ],
+          btn: [{title: '说吧那就',toChapter: "WZXX_M1_N1_C010_[N8]",},]},
+
+       
+           ]  
+        },
+
+         { id: 'C0010_1.4A',style: 6, title: '付钱', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“什么？！你还真的要我给一百灵石啊！”',
+          '“你抢吧，今天你就是把我卖了我也不值一百个灵石啊。真的没有别的办法了吗？”','李森炎死皮赖脸，想来他也是清楚这一百多灵石有多么难挣的。',
+          '当然这只是一个简单的考验，我也并不可能真的要求李森炎这个炼体二重去赚到一百块灵石的。','这只是策略而已……',
+          '先提出一个对方根本不可能完成了任务，再说第二个，对方就基本不会拒绝了。','我想了想，故作出思考难办的样子。','瞥了眼李森炎额角急的都冒汗这才变脸说，“要想让我帮你完全治愈，除了一百块灵石，那就只有一个方法了，那就是帮我守夜。”',
+          '“守夜？”李森炎瞬间疑惑了。',
+          
+          ],
+          btn: [{title: '没错',toChapter: "WZXX_M1_N1_C010_[N11]",},]},
+
+       
+           ]  
+        },
+
+        { id: 'C0010_1.4B',style: 6, title: '守夜', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“公子切莫说笑，请跟我来。”',
+          '我带着李森炎出了密室。','外面是一个小药炉，两边黑木架子上摆满了各种瓶瓶罐罐，墙上老气横秋地挂着多个彩帛和幌子，上面写的不是“悬壶济世”，便是“妙手回春”。',
+          '我沉下气氛，没了刚才开玩笑的模样','变脸说道：“想要让我帮你完全治愈，也行，只要你帮我守夜我就帮你。”','“守夜？”',
+          
+          ],
+          btn: [{title: '没错',toChapter: "WZXX_M1_N1_C010_[N11]",},]},
+
+       
+           ]  
+        },
+
+        { 
+          id: 'C0010_1.5A',style: 6, title: '给醒神丹', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“不过我有一枚醒神丹，能够帮你短暂提升精神力，这种提升是有时效限制的，而且时效过了以后，精神会有些萎靡，如果恰逢药效消失的时候你正在跟阴灵战斗，那恭喜你，你也很快可以成为阴灵了。”',
+          '我想了想还是从口袋中摸索出一个醒神丹，抛到李森炎手里。','李森炎接过，细细查看起来。',
+          '“不过用不用，什么时候用，你自己决定，反正东西就只有一颗，你好好珍惜。”','说完，我便进了屋。',
+          
+          ],
+          btn: [{title: '希望他别辜负我的期待啊',toChapter: "WZXX_M1_N1_C010_[N12]",},]},
+
+       
+           ]  
+        },
+
+        { 
+          id: 'C0010_1.5B',style: 6, title: '不给醒神丹', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['算了，我压下内心的念头。',
+          '人只有到了绝境才能激发最大的潜能。','再说了，这只是一点‘小小的’考验罢了，若是李森炎连这种考验都无法撑过去，往后还如何……',
+          '想到这里，我便没有再说，直接进了房间。',
+          
+          ],
+          btn: [{title: '人各有命',toChapter: "WZXX_M1_N1_C010_[N12]",},]},
+
+       
+           ]  
+        },
+
+        { 
+          id: 'C0010_1.6B',style: 6, title: '先看看情况', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['我想了想，决定还是再等一会儿。',
+          '李森炎方才都能想到别的办法，说不定现在还能有别的办法','我继续用神识观察着李森炎',
+          '他见没有办法，也只能肉搏，一拳打在阴灵身上。','下的也都是死手，几乎把对方身影都打得虚幻了起来。',
+          '但是对面的阴灵也不是吃素的，不知什么时候冒出了更多的阴灵来。','李森炎根本顶不住，但是也咬着牙，硬着头皮冲了上去。',
+          '看到这里，我对李森炎的看法已是改变了大半。','此人虽弱，但绝不是哪种懦弱胆小之辈。','甚至有点小聪明，头脑清晰，这样的人就算现在还只是炼体，以后也必有大用。',
+          '眼看着有三只阴灵就要重击李森炎，我毫不犹豫的冲了出去。',
+          
+          ],
+          btn: [{title: '帮忙',toChapter: "WZXX_M1_N1_C010_[N13]",},]},
+
+       
+           ]  
+        },
+
+         { 
+          id: 'C0010_1.6B',style: 6, title: '出去帮忙', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎虽然聪明有点小机智，但是到底也才是个甚至有点小聪明，头脑清晰，这样的人就算现在还只是炼体，以后也必有大用。炼体二重。',
+          '要真的放任不管，恐怕待会儿‘李家后人’，就是一具尸体了！','我没再多想，踢开门，缓缓走了出去。',
+          
+          ],
+          btn: [{title: '帮忙',toChapter: "WZXX_M1_N1_C010_[N13]",},]},
+
+       
+           ]  
+        },
+  ]
+    }
+]

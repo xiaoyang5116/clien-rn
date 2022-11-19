@@ -178,8 +178,8 @@ directory: [
 
           { 
           point: [0, -21], title: '第十章 医灵',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C010' ,
-          toChapter: 'WZXX_M1_N1_C010', links: [[0, -22],],
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C010_[N1]' ,
+          toChapter: 'WZXX_M1_N1_C010_[N1]', links: [[0, -22],],
           },
 
           { 

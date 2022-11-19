@@ -7,6 +7,76 @@
 #{ id: 'D1000000', sendProps: '40,10', alterAttrs: ['气运,1', '道行,2'] },
 # ===========================================
 drops: [ 
+
+# 
+  { id: 'questionnaire_drop1', alterAttrs: ['颜值,1']  },
+  { id: 'questionnaire_drop2', alterAttrs: ['悟性,1']  },
+  { id: 'questionnaire_drop3', alterAttrs: ['智慧,1']  },
+  { id: 'questionnaire_drop4', alterAttrs: ['变化,1']  },
+  { id: 'questionnaire_drop5', alterAttrs: ['自由,1']  },
+
+  { id: 'questionnaire_drop6', alterAttrs: ['变化,1']  },
+  { id: 'questionnaire_drop7', alterAttrs: ['仙缘,1']  },
+  { id: 'questionnaire_drop8', alterAttrs: ['颜值,1']  },
+  { id: 'questionnaire_drop9', alterAttrs: ['神识,1']  },
+
+  { id: 'questionnaire_drop10', alterAttrs: ['变化,1']  },
+  { id: 'questionnaire_drop11', alterAttrs: ['仙缘,1']  },
+  { id: 'questionnaire_drop12', alterAttrs: ['颜值,1']  },
+  { id: 'questionnaire_drop13', alterAttrs: ['神识,1']  },
+
+  { id: 'questionnaire_drop14', alterAttrs: ['神识,1']  },
+  { id: 'questionnaire_drop15', alterAttrs: ['悟性,1']  },
+  { id: 'questionnaire_drop16', alterAttrs: ['体魄,1']  },
+  { id: 'questionnaire_drop17', alterAttrs: ['智慧,1']  },
+
+  { id: 'questionnaire_drop18', alterAttrs: ['悟性,1']  },
+  { id: 'questionnaire_drop19', alterAttrs: ['善良,1']  },
+  { id: 'questionnaire_drop20', alterAttrs: ['体魄,1']  },
+
+  { id: 'questionnaire_drop21', alterAttrs: ['自由,1']  },
+  { id: 'questionnaire_drop22', alterAttrs: ['神通,1']  },
+  { id: 'questionnaire_drop23', alterAttrs: ['变化,1']  },
+  { id: 'questionnaire_drop24', alterAttrs: ['仙缘,1']  },
+
+  { id: 'questionnaire_drop25', alterAttrs: ['悟性,1']  },
+  { id: 'questionnaire_drop26', alterAttrs: ['学识,1']  },
+  { id: 'questionnaire_drop27', alterAttrs: ['智慧,1']  },
+
+  { id: 'questionnaire_drop28', alterAttrs: ['成神,1']  },
+  { id: 'questionnaire_drop29', alterAttrs: ['气运,1']  },
+  { id: 'questionnaire_drop30', alterAttrs: ['入魔,1']  },
+
+  { id: 'questionnaire_drop31', alterAttrs: ['仙缘,1']  },
+  { id: 'questionnaire_drop32', alterAttrs: ['神识,1']  },
+  { id: 'questionnaire_drop33', alterAttrs: ['神通,1']  },
+
+  { id: 'questionnaire_drop34', alterAttrs: ['神通,1']  },
+  { id: 'questionnaire_drop35', alterAttrs: ['善良,1']  },
+  { id: 'questionnaire_drop36', alterAttrs: ['悟性,1']  },
+  { id: 'questionnaire_drop37', alterAttrs: ['体魄,1']  },
+
+  { id: 'questionnaire_drop38', alterAttrs: ['入魔,1']  },
+  { id: 'questionnaire_drop39', alterAttrs: ['冷漠,1']  },
+  { id: 'questionnaire_drop40', alterAttrs: ['善良,1']  },
+  { id: 'questionnaire_drop41', alterAttrs: ['成神,1']  },
+
+  { id: 'questionnaire_drop42', alterAttrs: ['善良,1']  },
+  { id: 'questionnaire_drop43', alterAttrs: ['神通,1']  },
+  { id: 'questionnaire_drop44', alterAttrs: ['气运,1']  },
+  
+  { id: 'questionnaire_drop45', alterAttrs: ['智慧,1']  },
+  { id: 'questionnaire_drop46', alterAttrs: ['灵石,1']  },
+  { id: 'questionnaire_drop47', alterAttrs: ['神通,1']  },
+  { id: 'questionnaire_drop48', alterAttrs: ['自由,1']  },
+  { id: 'questionnaire_drop49', alterAttrs: ['道行,1']  },
+
+  { id: 'questionnaire_drop50', alterAttrs: ['道行,1']  },
+  { id: 'questionnaire_drop51', alterAttrs: ['气运,1']  },
+  { id: 'questionnaire_drop52', alterAttrs: ['神通,1']  },
+  { id: 'questionnaire_drop53', alterAttrs: ['仙缘,1']  },
+
+
   { id: 'WZXX_M1_N1_C000A_V_drop1', sendProps: '363,1,showBag', },
   { id: 'WZXX_M1_N1_C000A_V_drop2', sendProps: '887,1,showBag', },
 

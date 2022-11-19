@@ -18,7 +18,9 @@ scenes: [
       # mapCenterPoint: [-1, 3],
 
       # 变量定义
-      vars: [],
+      vars: [
+      { id: "NXSJ", min: 0, max: 1 },
+      ],
 
       # 动作定义
       actions: [],
@@ -34,8 +36,8 @@ scenes: [
         {
           id: 'Screen1',
           style: 100,
-          title: '调查问卷',
-          desc: '进入调查问卷文本',
+          title: '问卷调查',
+          desc: '为了塑造每一位玩家独特的角色，提供更好的游戏体验，我们诚邀您参与一份问卷调查，问卷将占用您大约三分钟的时间',
           # dialogType: 'FullScreen',
           # textAnimationType: 'TextFadeIn',
           sections: [
@@ -43,15 +45,15 @@ scenes: [
               key: 1,
               content: "1、您平时喜欢看什么类型的小说",
               btn: [
-                { title: 'A、男频小说', toKey: 2, dropIds: ['WZXX_M1_N1_C001A_V_Vdrop1',], },
-                { title: 'B、女频小说', toKey: 3, dropIds: ['WZXX_M1_N1_C001A_V_Vdrop1',], },
+                { title: 'A、男频小说', toKey: 2,  },
+                { title: 'B、女频小说', toKey: 2, },
               ],
             },
             {
               key: 2,
               content: "2、您的性别是",
               btn: [
-                { title: 'A、男', toKey: 3, },
+                { title: 'A、男', toKey: 4, },
                 { title: 'B、女', toKey: 3, },
               ],
             },
@@ -59,8 +61,153 @@ scenes: [
               key: 3,
               content: "3、请问您在接下来的互动当中是否愿意，用女性视角开启阅读",
               btn: [
-                { title: 'A、是', },
-                { title: 'B、否', },
+                { title: 'A、是', toKey: 4, varsOn: ['questionnaire/NXSJ',], },
+                { title: 'B、否', toKey: 4, },
+              ],
+            },
+            {
+              key: 4,
+              content: "4、您认为在修仙游戏中什么才是最吸引您的",
+              btn: [
+                { title: 'A、游戏角色', toKey: 5, dropIds: ['questionnaire_drop1',],},
+                { title: 'B、游戏剧情', toKey: 5, dropIds: ['questionnaire_drop2',]},
+                { title: 'C、游戏玩法', toKey: 5, dropIds: ['questionnaire_drop3',]},
+                { title: 'D、游戏装备', toKey: 5, dropIds: ['questionnaire_drop4',]},
+                { title: 'E、游戏特效', toKey: 5, dropIds: ['questionnaire_drop5',]},
+              ],
+            },
+
+             {
+              key: 5,
+              content: "5、您觉得您会喜欢什么样的女性游戏角色",
+              btn: [
+                { title: 'A、可爱型', toKey: 6, dropIds: ['questionnaire_drop6',]},
+                { title: 'B、美艳型', toKey: 6, dropIds: ['questionnaire_drop7',]},
+                { title: 'C、腹黑型', toKey: 6, dropIds: ['questionnaire_drop8',]},
+                { title: 'D、御姐型', toKey: 6, dropIds: ['questionnaire_drop9',]},
+              ],
+            },
+            {
+              key: 6,
+              content: "6、您觉得您会喜欢什么样的男性游戏角色",
+              btn: [
+                { title: 'A、幽默型', toKey: 7, dropIds: ['questionnaire_drop10',]},
+                { title: 'B、温和型', toKey: 7, dropIds: ['questionnaire_drop11',] },
+                { title: 'C、帅气型', toKey: 7, dropIds: ['questionnaire_drop12',] },
+                { title: 'D、高冷型', toKey: 7, dropIds: ['questionnaire_drop13',]},
+              ],
+            },
+
+            {
+              key: 7,
+              content: "7、您更希望在文字修仙游戏中体验到什么？",
+              btn: [
+                { title: 'A、寻宝探险', toKey: 8, dropIds: ['questionnaire_drop14',]},
+                { title: 'B、养成系，看主角升级', toKey: 8, dropIds: ['questionnaire_drop15',]},
+                { title: 'C、打斗和策略', toKey: 8, dropIds: ['questionnaire_drop16',] },
+                { title: 'D、炼丹、升级、功法', toKey: 8, dropIds: ['questionnaire_drop17',]},
+              ],
+            },
+            {
+              key: 8,
+              content: "8、在受伤之际，遇到敌人的偷袭，您会如何应付？",
+              btn: [
+                { title: 'A、后退', toKey: 9, dropIds: ['questionnaire_drop18',]},
+                { title: 'B、防御', toKey: 9, dropIds: ['questionnaire_drop19',]},
+                { title: 'C、反击', toKey: 9, dropIds: ['questionnaire_drop20',]},
+              ],
+            },
+
+            {
+              key: 9,
+              content: "9、如果您穿越了，您希望成为哪种人物？",
+              btn: [
+                { title: 'A、穿越成乞丐，孑然一身，潇潇洒洒', toKey: 10, dropIds: ['questionnaire_drop21',]},
+                { title: 'B、穿越成修仙界大神，掌管宗门', toKey: 10, dropIds: ['questionnaire_drop22',]},
+                { title: 'C、修真界平凡的普通人，享受躺平的快乐', toKey: 10, dropIds: ['questionnaire_drop23',]},
+                { title: 'D、宗门小师弟/妹，和师兄姐们快乐修仙', toKey: 10, dropIds: ['questionnaire_drop24',] },
+              ],
+            },
+            {
+              key: 10,
+              content: "10、如果创建宗门，您觉得最重要的是什么？",
+              btn: [
+                { title: 'A、凝聚力', toKey: 11, dropIds: ['questionnaire_drop25',]},
+                { title: 'B、统率力', toKey: 11, dropIds: ['questionnaire_drop26',]},
+                { title: 'C、战斗力', toKey: 11, dropIds: ['questionnaire_drop27',]},
+              ],
+            },
+
+            {
+              key: 11,
+              content: "11、您最想看到的游戏场景是什么？",
+              btn: [
+                { title: 'A、刺激惊险的战斗画面', toKey: 12, dropIds: ['questionnaire_drop28',]},
+                { title: 'B、温暖美好的情感画面', toKey: 12, dropIds: ['questionnaire_drop29',]},
+                { title: 'C、波澜壮阔的对阵场面', toKey: 12, dropIds: ['questionnaire_drop30',]},
+              ],
+            },
+
+            {
+              key: 12,
+              content: "12、当您陷入绝对的危险中时，您觉得能够拯救您的是什么？",
+              btn: [
+                { title: 'A、等待强大的队友救援', toKey: 13, dropIds: ['questionnaire_drop31',]},
+                { title: 'B、希望天降勇士', toKey: 13, dropIds: ['questionnaire_drop32',]},
+                { title: 'C、靠自己的力量', toKey: 13, dropIds: ['questionnaire_drop33',] },
+              ],
+            },
+            {
+              key: 13,
+              content: "13、战斗的时候，您觉得您会是哪一个角色？",
+              btn: [
+                { title: 'A、前排勇士', toKey: 14, dropIds: ['questionnaire_drop34',]},
+                { title: 'B、辅助奶妈', toKey: 14, dropIds: ['questionnaire_drop35',]},
+                { title: 'C、冷静射手', toKey: 14, dropIds: ['questionnaire_drop36',]},
+                { title: 'D、果敢刺客', toKey: 14, dropIds: ['questionnaire_drop37',]},
+              ],
+            },
+            {
+              key: 14,
+              content: "14、您认为有怎样的能力的团队最理想的？",
+              btn: [
+                { title: 'A、自己的能力才是最重要的', toKey: 15, dropIds: ['questionnaire_drop38',] },
+                { title: 'B、各有特色，各自为王', toKey: 15, dropIds: ['questionnaire_drop39',] },
+                { title: 'C、互补互助，报团取暖', toKey: 15, dropIds: ['questionnaire_drop40',]},
+                { title: 'D、队友亲和，氛围轻松', toKey: 15, dropIds: ['questionnaire_drop41',]},
+              ],
+            },
+
+             {
+              key: 15,
+              content: "15、对您来说努力的意义是什么？",
+              btn: [
+                { title: 'A、为了所爱的人', toKey: 16, dropIds: ['questionnaire_drop42',]},
+                { title: 'B、为了自身的超越', toKey: 16, dropIds: ['questionnaire_drop43',]},
+                { title: 'C、为了完成理想', toKey: 16, dropIds: ['questionnaire_drop44',]},
+              ],
+            },
+
+            {
+              key: 16,
+              content: "16、您觉得修仙所追求的是什么？",
+              btn: [
+                { title: 'A、知识', toKey: 17, dropIds: ['questionnaire_drop45',]},
+                { title: 'B、财富', toKey: 17, dropIds: ['questionnaire_drop46',]},
+                { title: 'C、权力', toKey: 17, dropIds: ['questionnaire_drop47',]},
+                { title: 'D、自由', toKey: 17, dropIds: ['questionnaire_drop48',] },
+                { title: 'E、超脱', toKey: 17, dropIds: ['questionnaire_drop49',]},
+              ],
+            },
+
+            {
+              key: 17,
+              content: "17、当陷入游戏角色陷入贫穷时，您会如何选择？",
+              btn: [
+                { title: 'A、勤勤恳恳刷日常任务',  dropIds: ['questionnaire_drop50',]},
+                { title: 'B、学习新技能，开拓赚钱思路', dropIds: ['questionnaire_drop51',] },
+                { title: 'C、大胆创业，搏一搏单车变摩托', dropIds: ['questionnaire_drop52',]},
+                { title: 'D、我是氪金玩家，充钱!', dropIds: ['questionnaire_drop53',] },
               ],
             },
           ],
