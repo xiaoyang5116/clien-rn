@@ -1,134 +1,272 @@
-import { FlatList, StyleSheet, Text, TouchableOpacity, View, DeviceEventEmitter } from 'react-native';
-import React, { useContext, useEffect, useState } from 'react';
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  DeviceEventEmitter,
+  SafeAreaView,
+  ImageBackground,
+} from 'react-native';
+import React, {useContext, useEffect, useState} from 'react';
 
-import { action } from '../../../constants';
+import {action} from '../../../constants';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { HalfPanel } from '../../panel';
-import { TextButton, BtnIcon } from '../../../constants/custom-ui';
+import {HalfPanel} from '../../panel';
+import {TextButton, BtnIcon, ImageButton} from '../../../constants/custom-ui';
+import FastImage from 'react-native-fast-image';
+import {px2pd} from '../../../constants/resolution';
 
-const Cover = ({ desc, onPress }) => {
-  return (
-    <>
-      <View style={styles.descContainer}>
-        <Text style={{ fontSize: 18, color: '#000' }}>{desc}</Text>
-      </View>
-      <View style={{ position: 'absolute', bottom: '20%' }}>
-        <TextButton title={'进入调查问卷'} onPress={onPress} />
-      </View>
-    </>
-  );
-};
+const TextImageBtn = props => {
+  const {title, onPress, disabled = false} = props;
+  const [pressing, setPressing] = useState(false);
 
-const Problem = (props) => {
-  const { viewData, selectIndex, setSelectIndex, currentProblem, problemKey, nextProblem, } = props
-  const { sections } = viewData;
+  useEffect(() => {
+    setPressing(false);
+  }, []);
 
-  const renderBtn = ({ item, index }) => {
+  const onPressIn = () => {
+    setPressing(true);
+  };
+  const onPressOut = () => {
+    setPressing(false);
+  };
+
+  const Img = ({source, children}) => {
     return (
-      <View style={{ marginTop: 12 }}>
-        <TextButton title={item.title} onPress={() => { setSelectIndex(index) }} />
-        {index == selectIndex ? (
-          <BtnIcon
-            id={1}
-            style={{
-              height: '100%',
-              justifyContent: 'center',
-              marginLeft: 12,
-              transform: [{ scale: 0.8 }],
-            }}
-          />
-        ) : null}
+      <View
+        style={{
+          width: px2pd(701),
+          height: px2pd(259),
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <FastImage
+          style={{
+            width: px2pd(701),
+            height: px2pd(259),
+            position: 'absolute',
+          }}
+          source={source}
+        />
+        {children}
       </View>
     );
   };
 
   return (
-    <View style={{ flex: 1, width: "100%", alignItems: 'center', }}>
-      <View style={{ marginTop: 60 }}>
-        <Text style={{ fontSize: 18, color: '#000', paddingLeft: 12, paddingRight: 12 }}>
+    <TouchableOpacity
+      disabled={disabled}
+      activeOpacity={1}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+      onPress={onPress}>
+      {pressing ? (
+        <Img source={require('../../../../assets/questionnaire/btn_bg_2.png')}>
+          <Text style={{fontSize: 20, color: '#000'}}>{title}</Text>
+        </Img>
+      ) : (
+        <Img source={require('../../../../assets/questionnaire/btn_bg_1.png')}>
+          <Text style={{fontSize: 20, color: '#fff'}}>{title}</Text>
+        </Img>
+      )}
+    </TouchableOpacity>
+  );
+};
+
+const Cover = ({desc, onPress}) => {
+  return (
+    <View style={{flex: 1, marginTop: '20%', alignItems: 'center'}}>
+      <ImageBackground
+        style={styles.descContainer}
+        source={require('../../../../assets/questionnaire/block_bg_1.png')}>
+        <Text style={{fontSize: 20, color: '#000'}}>{desc}</Text>
+      </ImageBackground>
+      <View style={{position: 'absolute', bottom: '20%'}}>
+        <TextImageBtn onPress={onPress} title={'进入调查问卷'} />
+      </View>
+    </View>
+  );
+};
+
+const Problem = props => {
+  const {viewData, currentProblem, problemKey, nextProblem} = props;
+  const {sections} = viewData;
+  const [selectIndex, setSelectIndex] = useState(-1); // 选中的答案索引
+
+  const renderBtn = ({item, index}) => {
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setSelectIndex(index);
+        }}>
+        <ImageBackground
+          style={{
+            marginTop: 12,
+            width: px2pd(913),
+            height: px2pd(140),
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          source={require('../../../../assets/questionnaire/btn_bg_3.png')}>
+          <Text style={{fontSize: 20, color: '#000'}}>{item.title}</Text>
+          {index == selectIndex ? (
+            <BtnIcon
+              id={14}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                marginLeft: 12,
+              }}
+            />
+          ) : (
+            <BtnIcon
+              id={13}
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                marginLeft: 12,
+              }}
+            />
+          )}
+        </ImageBackground>
+      </TouchableOpacity>
+    );
+  };
+
+  return (
+    <View style={{flex: 1, width: '100%', alignItems: 'center'}}>
+      <View style={styles.titleContainer}>
+        <FastImage
+          style={{width: px2pd(415), height: px2pd(86)}}
+          source={require('../../../../assets/questionnaire/title.png')}
+        />
+      </View>
+      <ImageBackground
+        style={{
+          width: px2pd(945),
+          height: px2pd(532),
+          marginTop: 30,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        source={require('../../../../assets/questionnaire/block_bg_2.png')}>
+        <Text
+          style={{
+            fontSize: 20,
+            color: '#000',
+            paddingLeft: 30,
+            paddingRight: 30,
+          }}>
           {currentProblem.content}
         </Text>
-      </View>
-      <View style={{ marginTop: 20, width: '90%' }}>
+      </ImageBackground>
+      <View style={{marginTop: 20, width: '100%', alignItems: 'center'}}>
         <FlatList
           data={currentProblem.btn}
           renderItem={renderBtn}
           extraData={selectIndex}
         />
       </View>
-      <View style={{ position: "absolute", bottom: "20%" }}>
-        <TextButton
+      <View style={{position: 'absolute', bottom: '20%'}}>
+        <TextImageBtn
+          title={problemKey < sections.length ? '下一题' : '完成作答'}
+          onPress={() => {
+            nextProblem(selectIndex);
+            setSelectIndex(-1);
+          }}
+          disabled={selectIndex === -1 ? true : false}
+        />
+        {/* <TextButton
           title={problemKey < sections.length ? "下一题" : "完成作答"}
           onPress={nextProblem}
           disabled={selectIndex === -1 ? true : false}
-        />
+        /> */}
       </View>
     </View>
   );
 };
 
 const Questionnaire = props => {
-  const { viewData, onDialogCancel, actionMethod } = props;
-  const { title, desc, sections } = viewData;
-  const [isBegin, setIsBegin] = useState(false);  // 是否开始答题
-  const [problemKey, setProblemKey] = useState(1)  // 问题索引
-  const [selectIndex, setSelectIndex] = useState(-1);  // 选中的答案索引
-  const currentProblem = sections[problemKey - 1]  // 当前的问题
+  const {viewData, onDialogCancel, actionMethod} = props;
+  const {title, desc, sections} = viewData;
+  const [isBegin, setIsBegin] = useState(false); // 是否开始答题
+  const [problemKey, setProblemKey] = useState(1); // 问题索引
+  const currentProblem = sections[problemKey - 1]; // 当前的问题
 
   useEffect(() => {
-    props.dispatch(action('QuestionnaireModel/getQuestionnaireData')()).then(result => {
-      if (result !== null) {
-        setIsBegin(true)
-        setProblemKey(result.problemKey)
-      }
-    })
-  }, [])
+    props
+      .dispatch(action('QuestionnaireModel/getQuestionnaireData')())
+      .then(result => {
+        if (result !== null) {
+          setIsBegin(true);
+          setProblemKey(result.problemKey);
+        }
+      });
+  }, []);
 
-  const nextProblem = () => {
+  const nextProblem = selectIndex => {
     if (problemKey < sections.length) {
-      actionMethod(currentProblem.btn[selectIndex])
-      props.dispatch(action('QuestionnaireModel/saveQuestionnaireData')({ isFinish: false, problemKey: currentProblem.btn[selectIndex].toKey }))
-      setProblemKey(currentProblem.btn[selectIndex].toKey)
-      setSelectIndex(-1)
+      actionMethod(currentProblem.btn[selectIndex]);
+      props.dispatch(
+        action('QuestionnaireModel/saveQuestionnaireData')({
+          isFinish: false,
+          problemKey: currentProblem.btn[selectIndex].toKey,
+        }),
+      );
+      setProblemKey(currentProblem.btn[selectIndex].toKey);
     } else {
-      DeviceEventEmitter.emit("QuestionnaireStatus", true)
-      actionMethod(currentProblem.btn[selectIndex])
-      props.dispatch(action('QuestionnaireModel/saveQuestionnaireData')({ isFinish: true, problemKey: "end" }))
-      onDialogCancel()
+      DeviceEventEmitter.emit('QuestionnaireStatus', true);
+      actionMethod(currentProblem.btn[selectIndex]);
+      props.dispatch(
+        action('QuestionnaireModel/saveQuestionnaireData')({
+          isFinish: true,
+          problemKey: 'end',
+        }),
+      );
+      onDialogCancel();
     }
-  }
+  };
 
   return (
-    <HalfPanel>
-      <View style={styles.contentContainer}>
-        <View style={{ position: "absolute", right: 12, top: 12 }}>
-          <TouchableOpacity onPress={onDialogCancel}>
-            <AntDesign name={'close'} color={"#000"} size={25} />
-          </TouchableOpacity>
+    <View style={styles.viewContainer}>
+      <FastImage
+        style={{position: 'absolute', width: '100%', height: '100%'}}
+        source={require('../../../../assets/questionnaire/questionnaire_bg.png')}
+      />
+      <SafeAreaView style={{flex: 1}}>
+        <View style={styles.contentContainer}>
+          <View style={{position: 'absolute', right: 12, top: 12, zIndex: 2}}>
+            <ImageButton
+              width={px2pd(142)}
+              height={px2pd(142)}
+              // source={require('../../../../assets/questionnaire/close_notClicked.png')}
+              source={require('../../../../assets/questionnaire/close_clicked.png')}
+              selectedSource={require('../../../../assets/questionnaire/close_notClicked.png')}
+              onPress={onDialogCancel}
+            />
+          </View>
+          {isBegin ? (
+            <Problem
+              {...props}
+              // selectIndex={selectIndex}
+              // setSelectIndex={setSelectIndex}
+              nextProblem={nextProblem}
+              currentProblem={currentProblem}
+              problemKey={problemKey}
+            />
+          ) : (
+            <Cover
+              desc={desc}
+              onPress={() => {
+                setIsBegin(true);
+              }}
+            />
+          )}
         </View>
-        <View style={styles.titleContainer}>
-          <Text style={{ fontSize: 20, color: '#000' }}>{title}</Text>
-        </View>
-        {isBegin ? (
-          <Problem
-            {...props}
-            selectIndex={selectIndex}
-            setSelectIndex={setSelectIndex}
-            nextProblem={nextProblem}
-            currentProblem={currentProblem}
-            problemKey={problemKey}
-          />
-        ) : (
-          <Cover
-            desc={desc}
-            onPress={() => {
-              setIsBegin(true);
-            }}
-          />
-        )}
-      </View>
-    </HalfPanel>
+      </SafeAreaView>
+    </View>
   );
 };
 
@@ -137,26 +275,19 @@ export default Questionnaire;
 const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    zIndex: 99,
   },
   contentContainer: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
   },
   titleContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
+    marginTop: 50,
   },
   descContainer: {
-    width: '80%',
-    height: 200,
-    borderColor: '#000',
-    borderWidth: 1,
-    marginTop: 20,
+    width: px2pd(962),
+    height: px2pd(614),
     padding: 12,
     justifyContent: 'center',
     alignItems: 'center',
