@@ -85,9 +85,11 @@ export default {
     // 修改阅读器属性
     *alterAttrs({ payload }, { put, call, select }) {
       const userState = yield select(state => state.UserModel);
+
+      const { affects, source } = payload
       
       let messages = []
-      payload.forEach(e => {
+      affects.forEach(e => {
         const { key, value } = e;
         if (lo.isEmpty(key) || value == 0)
           return;
@@ -108,7 +110,7 @@ export default {
       });
 
       // 提示属性改变
-      yield put(action('ToastModel/toastShow')({ messages, type: "attr" }));
+      yield put(action('ToastModel/toastShow')({ messages, type: source === "scene" ? "attr": "questionnaire" }));
 
       yield put(action('updateState')({}));
       yield put.resolve(action('syncData')({}));

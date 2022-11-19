@@ -8,18 +8,18 @@ import {
   SafeAreaView,
   ImageBackground,
 } from 'react-native';
-import React, {useContext, useEffect, useState} from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
-import {action} from '../../../constants';
+import { action } from '../../../constants';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import {HalfPanel} from '../../panel';
-import {TextButton, BtnIcon, ImageButton} from '../../../constants/custom-ui';
+import { HalfPanel } from '../../panel';
+import { TextButton, BtnIcon, ImageButton } from '../../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
-import {px2pd} from '../../../constants/resolution';
+import { px2pd } from '../../../constants/resolution';
 
 const TextImageBtn = props => {
-  const {title, onPress, disabled = false} = props;
+  const { title, onPress, disabled = false } = props;
   const [pressing, setPressing] = useState(false);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const TextImageBtn = props => {
     setPressing(false);
   };
 
-  const Img = ({source, children}) => {
+  const Img = ({ source, children }) => {
     return (
       <View
         style={{
@@ -64,26 +64,26 @@ const TextImageBtn = props => {
       onPress={onPress}>
       {pressing ? (
         <Img source={require('../../../../assets/questionnaire/btn_bg_2.png')}>
-          <Text style={{fontSize: 20, color: '#000'}}>{title}</Text>
+          <Text style={{ fontSize: 20, color: '#000' }}>{title}</Text>
         </Img>
       ) : (
         <Img source={require('../../../../assets/questionnaire/btn_bg_1.png')}>
-          <Text style={{fontSize: 20, color: '#fff'}}>{title}</Text>
+          <Text style={{ fontSize: 20, color: '#fff' }}>{title}</Text>
         </Img>
       )}
     </TouchableOpacity>
   );
 };
 
-const Cover = ({desc, onPress}) => {
+const Cover = ({ desc, onPress }) => {
   return (
-    <View style={{flex: 1, marginTop: '20%', alignItems: 'center'}}>
+    <View style={{ flex: 1, marginTop: '20%', alignItems: 'center' }}>
       <ImageBackground
         style={styles.descContainer}
         source={require('../../../../assets/questionnaire/block_bg_1.png')}>
-        <Text style={{fontSize: 20, color: '#000'}}>{desc}</Text>
+        <Text style={{ fontSize: 20, color: '#000' }}>{desc}</Text>
       </ImageBackground>
-      <View style={{position: 'absolute', bottom: '20%'}}>
+      <View style={{ position: 'absolute', bottom: '20%' }}>
         <TextImageBtn onPress={onPress} title={'进入调查问卷'} />
       </View>
     </View>
@@ -91,11 +91,11 @@ const Cover = ({desc, onPress}) => {
 };
 
 const Problem = props => {
-  const {viewData, currentProblem, problemKey, nextProblem} = props;
-  const {sections} = viewData;
+  const { viewData, currentProblem, problemKey, nextProblem } = props;
+  const { sections } = viewData;
   const [selectIndex, setSelectIndex] = useState(-1); // 选中的答案索引
 
-  const renderBtn = ({item, index}) => {
+  const renderBtn = ({ item, index }) => {
     return (
       <TouchableOpacity
         onPress={() => {
@@ -103,14 +103,14 @@ const Problem = props => {
         }}>
         <ImageBackground
           style={{
-            marginTop: 12,
+            marginTop: 8,
             width: px2pd(913),
             height: px2pd(140),
             justifyContent: 'center',
             alignItems: 'center',
           }}
           source={require('../../../../assets/questionnaire/btn_bg_3.png')}>
-          <Text style={{fontSize: 20, color: '#000'}}>{item.title}</Text>
+          <Text style={{ fontSize: 14, color: '#000' }}>{item.title}</Text>
           {index == selectIndex ? (
             <BtnIcon
               id={14}
@@ -136,10 +136,10 @@ const Problem = props => {
   };
 
   return (
-    <View style={{flex: 1, width: '100%', alignItems: 'center'}}>
+    <View style={{ flex: 1, width: '100%', alignItems: 'center', }}>
       <View style={styles.titleContainer}>
         <FastImage
-          style={{width: px2pd(415), height: px2pd(86)}}
+          style={{ width: px2pd(415), height: px2pd(86) }}
           source={require('../../../../assets/questionnaire/title.png')}
         />
       </View>
@@ -162,35 +162,33 @@ const Problem = props => {
           {currentProblem.content}
         </Text>
       </ImageBackground>
-      <View style={{marginTop: 20, width: '100%', alignItems: 'center'}}>
+      <View style={{ flex: 1, marginTop: 10, width: '100%', alignItems: 'center', }}>
         <FlatList
           data={currentProblem.btn}
           renderItem={renderBtn}
           extraData={selectIndex}
+          ListFooterComponent={
+            <View style={{ alignItems: 'center' }}>
+              <TextImageBtn
+                title={problemKey < sections.length ? '下一题' : '完成作答'}
+                onPress={() => {
+                  nextProblem(selectIndex);
+                  setSelectIndex(-1);
+                }}
+                disabled={selectIndex === -1 ? true : false}
+              />
+            </View>
+          }
         />
       </View>
-      <View style={{position: 'absolute', bottom: '20%'}}>
-        <TextImageBtn
-          title={problemKey < sections.length ? '下一题' : '完成作答'}
-          onPress={() => {
-            nextProblem(selectIndex);
-            setSelectIndex(-1);
-          }}
-          disabled={selectIndex === -1 ? true : false}
-        />
-        {/* <TextButton
-          title={problemKey < sections.length ? "下一题" : "完成作答"}
-          onPress={nextProblem}
-          disabled={selectIndex === -1 ? true : false}
-        /> */}
-      </View>
+
     </View>
   );
 };
 
 const Questionnaire = props => {
-  const {viewData, onDialogCancel, actionMethod} = props;
-  const {title, desc, sections} = viewData;
+  const { viewData, onDialogCancel, actionMethod } = props;
+  const { title, desc, sections } = viewData;
   const [isBegin, setIsBegin] = useState(false); // 是否开始答题
   const [problemKey, setProblemKey] = useState(1); // 问题索引
   const currentProblem = sections[problemKey - 1]; // 当前的问题
@@ -208,21 +206,21 @@ const Questionnaire = props => {
 
   const nextProblem = selectIndex => {
     if (problemKey < sections.length) {
-      actionMethod(currentProblem.btn[selectIndex]);
+      // actionMethod(currentProblem.btn[selectIndex]);
       props.dispatch(
-        action('QuestionnaireModel/saveQuestionnaireData')({
+        action('QuestionnaireModel/getAward')({
           isFinish: false,
-          problemKey: currentProblem.btn[selectIndex].toKey,
+          ...currentProblem.btn[selectIndex]
         }),
       );
       setProblemKey(currentProblem.btn[selectIndex].toKey);
     } else {
       DeviceEventEmitter.emit('QuestionnaireStatus', true);
-      actionMethod(currentProblem.btn[selectIndex]);
+      // actionMethod(currentProblem.btn[selectIndex]);
       props.dispatch(
-        action('QuestionnaireModel/saveQuestionnaireData')({
+        action('QuestionnaireModel/getAward')({
           isFinish: true,
-          problemKey: 'end',
+          ...currentProblem.btn[selectIndex],
         }),
       );
       onDialogCancel();
@@ -232,16 +230,15 @@ const Questionnaire = props => {
   return (
     <View style={styles.viewContainer}>
       <FastImage
-        style={{position: 'absolute', width: '100%', height: '100%'}}
+        style={{ position: 'absolute', width: '100%', height: '100%' }}
         source={require('../../../../assets/questionnaire/questionnaire_bg.png')}
       />
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.contentContainer}>
-          <View style={{position: 'absolute', right: 12, top: 12, zIndex: 2}}>
+          <View style={{ position: 'absolute', right: 12, top: 12, zIndex: 2 }}>
             <ImageButton
               width={px2pd(142)}
               height={px2pd(142)}
-              // source={require('../../../../assets/questionnaire/close_notClicked.png')}
               source={require('../../../../assets/questionnaire/close_clicked.png')}
               selectedSource={require('../../../../assets/questionnaire/close_notClicked.png')}
               onPress={onDialogCancel}
@@ -250,8 +247,6 @@ const Questionnaire = props => {
           {isBegin ? (
             <Problem
               {...props}
-              // selectIndex={selectIndex}
-              // setSelectIndex={setSelectIndex}
               nextProblem={nextProblem}
               currentProblem={currentProblem}
               problemKey={problemKey}
@@ -288,7 +283,7 @@ const styles = StyleSheet.create({
   descContainer: {
     width: px2pd(962),
     height: px2pd(614),
-    padding: 12,
+    padding: 30,
     justifyContent: 'center',
     alignItems: 'center',
   },

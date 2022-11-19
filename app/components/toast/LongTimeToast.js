@@ -6,6 +6,7 @@ import { action, connect } from "../../constants"
 import AttrToast from './longTimeComponent/AttrToast'
 import CluesToast from './longTimeComponent/CluesToast'
 import AchievementToast from './longTimeComponent/AchievementToast'
+import QuestionnaireToast from './longTimeComponent/QuestionnaireToast'
 
 const LongTimeToast = (props) => {
   const { onClose, toastMessages } = props
@@ -56,19 +57,22 @@ const LongTimeToast = (props) => {
       if (item.type === "achievement") {
         return <AchievementToast msg={item} closeToast={closeToast} index={index} />
       }
+      if (item.type === "questionnaire") {
+        return <QuestionnaireToast msg={item} closeToast={closeToast} index={index} />
+      }
     }
   }
 
   return (
-    <View style={styles.viewContainer} pointerEvents="box-none">
-      <View style={styles.view_location}>
-        <FlatList
-          data={toastMessages}
-          renderItem={_renderMessages}
-          keyExtractor={(item, index) => index}
-          extraData={msgIndex}
-        />
-      </View>
+    <View style={styles.viewContainer} pointerEvents="none">
+      {/* <View style={styles.view_location} pointerEvents="box-none" onTouchStart={()=>{console.log("sssss====");}}> */}
+      <FlatList
+        data={toastMessages}
+        renderItem={_renderMessages}
+        keyExtractor={(item, index) => index}
+        extraData={msgIndex}
+      />
+      {/* </View> */}
     </View>
   )
 }
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: 999
+    zIndex: 99
   },
   view_location: {
     // position: "absolute",

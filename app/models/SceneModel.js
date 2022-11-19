@@ -440,7 +440,7 @@ export default {
         affects.push({ key, value });
       });
 
-      yield put.resolve(action('UserModel/alterAttrs')(affects));
+      yield put.resolve(action('UserModel/alterAttrs')({ affects, source: "scene" }));
     },
 
     *__onXiuWeiCommand({ payload }, { put, select }) {
