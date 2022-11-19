@@ -43,7 +43,7 @@ scenes: [
           sections: [
             {
               key: 1,
-              content: "1、您平时喜欢看什么类型的小说\n \n*请注意\n*本调查都为为单选项。",
+              content: "1、您平时喜欢看什么类型的小说\n*请注意\n*本调查都为为单选项",
               btn: [
                 { title: 'A、男频小说', toKey: 2, dropIds: ['questionnaire_drop46',]},
                 { title: 'B、女频小说', toKey: 2, dropIds: ['questionnaire_drop46',] },

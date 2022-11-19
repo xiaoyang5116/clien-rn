@@ -564,7 +564,7 @@ directory: [
         },
 
         {
-        point: [0, -22], title: '第二十三章 青叶帮 ', 
+        point: [0, -22], title: '第二十三章 青剑帮 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C23' ,
         toChapter: 'WZXX_M1_N1_Z2C23', links: [[0, -23]] 
         },

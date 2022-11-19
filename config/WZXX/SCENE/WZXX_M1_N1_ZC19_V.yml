@@ -60,7 +60,7 @@ scenes: [
                 '行吧，李森炎本来就是随便问一下。',],
                 btn: [
                 {
-                title: '询问附近牧场卫队的情况', toChapter: "WZXX_M1_N1_Z2C20",
+                title: '结束询问'
                 },
                
                 ]
