@@ -95,6 +95,16 @@ const topBgImages = [
     { name: 'BGT_91', img: require('../../assets/scene/BGT_91.webp') },
     { name: 'BGT_92', img: require('../../assets/scene/BGT_92.webp') },
     { name: 'BGT_93', img: require('../../assets/scene/BGT_93.webp') },
+    { name: 'BGT_94', img: require('../../assets/scene/BGT_94.webp') },
+    { name: 'BGT_95', img: require('../../assets/scene/BGT_95.webp') },
+    { name: 'BGT_96', img: require('../../assets/scene/BGT_96.webp') },
+    { name: 'BGT_97', img: require('../../assets/scene/BGT_97.webp') },
+    { name: 'BGT_98', img: require('../../assets/scene/BGT_98.webp') },
+    { name: 'BGT_99', img: require('../../assets/scene/BGT_99.webp') },
+    { name: 'BGT_100', img: require('../../assets/scene/BGT_100.webp') },
+    { name: 'BGT_101', img: require('../../assets/scene/BGT_101.webp') },
+    { name: 'BGT_102', img: require('../../assets/scene/BGT_102.webp') },
+    { name: 'BGT_103', img: require('../../assets/scene/BGT_103.webp') },
 
 
     

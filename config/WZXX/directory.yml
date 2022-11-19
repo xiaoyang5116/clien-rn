@@ -542,7 +542,37 @@ directory: [
         {
         point: [0, -18], title: '第十九章 戏台上的演讲人 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C19' ,
-        toChapter: 'WZXX_M1_N1_Z2C19', links: [[]] 
+        toChapter: 'WZXX_M1_N1_Z2C19', links: [[0, -19]] 
+        },
+
+        {
+        point: [0, -19], title: '第二十章 打听 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C20' ,
+        toChapter: 'WZXX_M1_N1_Z2C20', links: [[0, -20]] 
+        },
+
+        {
+        point: [0, -20], title: '第二十一章 肥料 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C21' ,
+        toChapter: 'WZXX_M1_N1_Z2C21', links: [[0, -21]] 
+        },
+
+        {
+        point: [0, -21], title: '第二十二章 垄断 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C22' ,
+        toChapter: 'WZXX_M1_N1_Z2C22', links: [[0, -22]] 
+        },
+
+        {
+        point: [0, -22], title: '第二十三章 青叶帮 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C23' ,
+        toChapter: 'WZXX_M1_N1_Z2C23', links: [[0, -23]] 
+        },
+
+        {
+        point: [0, -23], title: '第二十四章 小世界的鸡窝 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C24' ,
+        toChapter: 'WZXX_M1_N1_Z2C24', links: [[]] 
         },
 
 

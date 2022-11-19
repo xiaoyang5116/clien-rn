@@ -37,13 +37,13 @@ scenes: [
           id: 'Screen1',
           style: 100,
           title: '问卷调查',
-          desc: '为了塑造每一位玩家独特的角色，提供更好的游戏体验，我们诚邀您参与一份问卷调查，问卷将占用您大约三分钟的时间',
+          desc: "感谢您体验我们的故事\n 我们将提供一个问卷调查\n这个过程中\n选择不同的选项将提升故事中角色的属性\n还会额外增加隐藏剧情",
           # dialogType: 'FullScreen',
           # textAnimationType: 'TextFadeIn',
           sections: [
             {
               key: 1,
-              content: "1、您平时喜欢看什么类型的小说",
+              content: "1、您平时喜欢看什么类型的小说\n \n*请注意\n*本调查都为为单选项。",
               btn: [
                 { title: 'A、男频小说', toKey: 2,  },
                 { title: 'B、女频小说', toKey: 2, },
@@ -124,8 +124,8 @@ scenes: [
               btn: [
                 { title: 'A、穿越成乞丐，孑然一身，潇潇洒洒', toKey: 10, dropIds: ['questionnaire_drop21',]},
                 { title: 'B、穿越成修仙界大神，掌管宗门', toKey: 10, dropIds: ['questionnaire_drop22',]},
-                { title: 'C、修真界平凡的普通人，享受躺平的快乐', toKey: 10, dropIds: ['questionnaire_drop23',]},
-                { title: 'D、宗门小师弟/妹，和师兄姐们快乐修仙', toKey: 10, dropIds: ['questionnaire_drop24',] },
+                { title: 'C、修真界平凡的普通人，躺平的快乐', toKey: 10, dropIds: ['questionnaire_drop23',]},
+                { title: 'D、宗门小师弟/妹，快乐修仙', toKey: 10, dropIds: ['questionnaire_drop24',] },
               ],
             },
             {
