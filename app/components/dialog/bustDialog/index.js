@@ -70,6 +70,7 @@ const BustDialog = props => {
       sectionsIndex === sections.length - 1 &&
       contentIndex >= sections[sectionsIndex].content.length - 1
     ) {
+      actionMethod(currentSections)
       return onDialogCancel();
     }
 

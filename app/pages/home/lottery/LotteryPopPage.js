@@ -26,6 +26,7 @@ import RootView from '../../../components/RootView';
 import PropGrid from '../../../components/prop/PropGrid';
 import FastImage from 'react-native-fast-image';
 import lo from 'lodash';
+import { px2pd } from '../../../constants/resolution';
 
 // 点击宝箱二次确认框
 const BoxConfirmDialog = (props) => {
@@ -241,9 +242,15 @@ class Lottery10Times extends Component {
                     </View> */}
                     <Header1 style={{ marginBottom: 10 }} title={"寻宝"} />
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>白嫖券: {(this.state.propsInfo[0] != undefined) ? this.state.propsInfo[0].num : 0}</Text>
-                        <Text style={{ marginLeft: 10, marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>消费券: {(this.state.propsInfo[1] != undefined) ? this.state.propsInfo[1].num : 0}</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', marginTop: 12 }}>
+                        <View style={{ flexDirection: 'row' }}>
+                            <FastImage style={{ width: px2pd(139), height: px2pd(111) }} source={require('../../../../assets/bg/baiPiaoJuan.png')} />
+                            <Text style={{ marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>白嫖券: {(this.state.propsInfo[0] != undefined) ? this.state.propsInfo[0].num : 0}</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row' }}>
+                            <FastImage style={{ width: px2pd(139), height: px2pd(111) }} source={require('../../../../assets/bg/xiaoFeiJuan.png')} />
+                            <Text style={{ marginTop: 10, lineHeight: 20, fontWeight: 'bold' }}>消费券: {(this.state.propsInfo[1] != undefined) ? this.state.propsInfo[1].num : 0}</Text>
+                        </View>
                     </View>
                     <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <Text></Text>
@@ -302,21 +309,21 @@ class LotteryBaoZang extends Component {
         return (
             <FastImage style={{ flex: 1 }} source={this.context.profileBg}>
                 {/* <SafeAreaView style={{ flex: 1 }}> */}
-                    <View style={{ flex: 1, justifyContent: 'center' }}>
-                        {/* <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ flex: 1, justifyContent: 'center' }}>
+                    {/* <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ fontSize: 24, fontWeight: 'bold' }}>宝藏</Text>
                         </View> */}
-                        <Header1 title={"宝藏"} />
+                    <Header1 title={"宝藏"} />
 
-                        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                            <FlatList
-                                style={{ alignSelf: 'stretch', margin: 10 }}
-                                data={this.state.boxes}
-                                renderItem={this.renderItem}
-                            />
-                        </View>
-                        <BottomBar {...this.props} />
+                    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        <FlatList
+                            style={{ alignSelf: 'stretch', margin: 10 }}
+                            data={this.state.boxes}
+                            renderItem={this.renderItem}
+                        />
                     </View>
+                    <BottomBar {...this.props} />
+                </View>
                 {/* </SafeAreaView> */}
             </FastImage>
         );
