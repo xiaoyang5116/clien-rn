@@ -10,6 +10,12 @@ const _images = {
         { id: 4, img: require('../../assets/avatar/4.png') },
         { id: 5, img: require('../../assets/avatar/5.png') },
     ],
+
+    bust: [
+        { id: 1, img: require('../../assets/avatar/1.png') },
+        { id: 2, img: require('../../assets/avatar/6.png') },
+        { id: 3, img: require('../../assets/avatar/7.png') },
+    ],
     panel: [
         { id: 1, img: require('../../assets/bg/panel_b.png') },
         { id: 2, img: require('../../assets/bg/panel_b2.png') },
@@ -73,10 +79,7 @@ const _images = {
         { id: 5, width: px2pd(160), height: px2pd(160), img: require('../../assets/props/v_1.png') },
         { id: 6, width: px2pd(160), height: px2pd(160), img: require('../../assets/props/v_1.png') },
     ],
-    bust: [
-        { id: 1, img: require('../../assets/avatar/1.png') },
-        { id: 2, img: require('../../assets/avatar/6.png') },
-    ],
+
     world_bg: [
         { id: 'ShiJieBeiJing_V1', source: require('../../assets/bg/world_bg1.png') },
     ],

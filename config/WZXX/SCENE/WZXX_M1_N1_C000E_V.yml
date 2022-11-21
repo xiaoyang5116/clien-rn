@@ -323,8 +323,7 @@ scenes: [
             { figureId: "02", location: "left", content: ['“哦哦，第一个是黄心叶，那第二个呢。”',], },
             { figureId: "01", location: "right", content: ['“……”','“大爷你好好歇着吧。”',], },
             { figureId: "02", location: "left", content: ['“好嘞。”', ], },
-            ],
-            
+            ],  
             },
     ],
   },
