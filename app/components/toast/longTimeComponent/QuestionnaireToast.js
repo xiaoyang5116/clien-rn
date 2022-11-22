@@ -35,7 +35,7 @@ const LeftToRightSwiper = props => {
       Animated.timing(opacityAnim, {
         toValue: 0,
         duration: 2000,
-        delay: 3000,
+        delay: 2000,
         useNativeDriver: false,
       }),
     ]).start(onHide);
