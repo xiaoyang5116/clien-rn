@@ -188,7 +188,7 @@ const Problem = props => {
 
 const Questionnaire = props => {
   const { viewData, onDialogCancel, actionMethod } = props;
-  const { title, desc, sections } = viewData;
+  const { __sceneId, title, desc, sections } = viewData;
   const [isBegin, setIsBegin] = useState(false); // 是否开始答题
   const [problemKey, setProblemKey] = useState(1); // 问题索引
   const currentProblem = sections[problemKey - 1]; // 当前的问题
@@ -206,20 +206,20 @@ const Questionnaire = props => {
 
   const nextProblem = selectIndex => {
     if (problemKey < sections.length) {
-      // actionMethod(currentProblem.btn[selectIndex]);
       props.dispatch(
         action('QuestionnaireModel/getAward')({
           isFinish: false,
+          __sceneId,
           ...currentProblem.btn[selectIndex]
         }),
       );
       setProblemKey(currentProblem.btn[selectIndex].toKey);
     } else {
       DeviceEventEmitter.emit('QuestionnaireStatus', true);
-      // actionMethod(currentProblem.btn[selectIndex]);
       props.dispatch(
         action('QuestionnaireModel/getAward')({
           isFinish: true,
+          __sceneId,
           ...currentProblem.btn[selectIndex],
         }),
       );
