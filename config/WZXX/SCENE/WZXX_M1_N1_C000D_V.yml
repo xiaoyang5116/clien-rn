@@ -17,6 +17,11 @@ scenes: [
       { id: "shangou3", min: 0, max: 1 },  
       # 和木偶聊过
       { id: "MO1", min: 0, max: 1 },  
+      #第一次进石塔，之后
+      { id: "ST1", min: 0, max: 1 },  
+      { id: "ST2", min: 0, max: 1 },
+      
+
       ],
 
       # 动作定义
@@ -326,7 +331,7 @@ scenes: [
       { 
         id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
         options: [ 
-         { title: '【去前面探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_1_-1'}, 
+         { title: '【去前面探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0','1JR',], toScene: 'C000D_V_MAP_1_-1'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
@@ -334,7 +339,7 @@ scenes: [
       { 
         id: 'C2', desc: '园顶有霞光照耀而下，犹如祥瑞降世，平凡之中却见不凡，让人忍不住想去探索', 
         options: [ 
-         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toScene: 'C000D_V_MAP_1_-1'}, 
+         { title: '【往前探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0','1JR',], toScene: 'C000D_V_MAP_1_-1'}, 
         ],
       },
 
@@ -460,8 +465,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  dialogs: ['p0'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
-       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
-       { type: 'enter',  andVarsOn: ['1JR',],  nextChat: 'C3'  },
+      #  { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  andVarsOn: ['1JR',],  nextChat: 'C2'  },
 
     ],
     # 对话选项
@@ -490,7 +495,7 @@ scenes: [
       },
 
       { 
-        id: 'C1', desc: "这边似乎什么也做不了，平平无奇的土坡，也没找到别的什么东西", 
+        id: 'C2', desc: "这边似乎什么也做不了，平平无奇的土坡，也没找到别的什么东西", 
         options: [ 
          { title: '【去矮墙看看】', toScene: 'C000D_V_MAP_1_1'},
         ],
@@ -552,8 +557,8 @@ scenes: [
       { 
       id: 'C1', desc: "发现一道矮墙\n矮墙上面铺盖着青瓦\n这是明显有人修筑的痕迹", 
       options: [ 
-      { title: '【沿着矮墙寻找出路】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
-      { title: '【翻过墙壁】', toScene: 'C000D_V3_MAP_0_0', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']}, 
+      { title: '【沿着矮墙寻找出路】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1','ONE_OPEN_0',]}, 
+      { title: '【翻过墙壁】', toScene: 'C000D_V3_MAP_0_0', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2','ONE_OPEN_0',]}, 
       ],
       },
 
@@ -624,14 +629,14 @@ scenes: [
       { 
       id: 'C1', desc: "嘿，这有点做贼的感觉\n不过这矮墙对付一个有修为的人，形同虚设\n矮墙并不是什么难题", 
       options: [ 
-      { title: '【跳上去】', nextChat: 'C2'}, 
+      { title: '【跳上去】', varsOn: ['ONE_OPEN_0'] ,nextChat: 'C2'}, 
       ],
       },
 
       { 
       id: 'C2', desc: "李森炎纵身一跃。轻而易举的来到这墙壁的上面\n踩在这青瓦之上，放在眼前的那是一副已经破败的庭院和两座三四层的石塔\n而这脚下的墙壁就是专门围绕着内部的空地而建，这可够得上手笔，竟然能够把这田地围起来。", 
       options: [ 
-      { title: '【去看看】',toScene: 'C000D_V3_MAP_0_0',transitionAnimation: '白色转场'}, 
+      { title: '【去看看】', varsOn: ['ONE_OPEN_0'], toScene: 'C000D_V3_MAP_0_0',transitionAnimation: '白色转场'}, 
       ],
       },
 
@@ -759,7 +764,7 @@ scenes: [
       { 
         id: 'C1', desc: "到达了一处庭院门口\n这庭院的门口的木材，还依旧光纤上面的字体也依旧能够看出清楚，这大概是释放了一些除尘之类的法术，让这很长时间都能够清洁一新\n这算找对地方了", 
           options: [ 
-           { title: '【礼貌敲门】', varsOn: ['ONE_OPEN_0'] ,nextChat: 'C2'}, 
+           { title: '【礼貌敲门】', varsOn: ['ONE_OPEN_0','1JR'] ,nextChat: 'C2'}, 
         ],
       },
 
@@ -778,7 +783,7 @@ scenes: [
       },
 
       {
-        id: 'C4', desc: "这个庭院的主人曾经也无比辉煌吧", 
+        id: 'C4', desc: "这庭院的门口的木材，还依旧光纤上面的字体也依旧能够看出清楚，这大概是释放了一些除尘之类的法术，让这很长时间都能够清洁一新", 
         options: [ 
           { title: '【进入大门】',toScene: 'C000D_V2_MAP_0_1'}, 
         ],
@@ -1251,9 +1256,6 @@ scenes: [
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000D_V/shangou1'], nextChat: 'C2'  },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000D_V/shangou2'], nextChat: 'C3'  },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000D_V/shangou3'], nextChat: 'C4'  },
-       
-
-       
     ],
 
     # 对话选项
@@ -1262,7 +1264,7 @@ scenes: [
       { 
         id: 'C1', desc: '杂乱无章的木林，若是好好修整，说不定会变出别一番景色', 
         options: [ 
-         { title: '【继续往前走】', toScene: 'C000D_V1_MAP_-1_1'}, 
+         { title: '【继续往前走】', toScene: 'C000D_V1_MAP_-1_-1'}, 
         ],
       },
 
@@ -1293,7 +1295,7 @@ scenes: [
   #===========事件场景==============
        {
   # NPC2
-    id: 'C000D_V1_MAP_-1_1', name: '狭窄溪流',
+    id: 'C000D_V1_MAP_-1_-1', name: '狭窄溪流',
 
     # 指定场景为NPC或MAP场景
     isNpc: true,
@@ -1302,7 +1304,7 @@ scenes: [
     # 当前场景地图
     mapId: 'C000D_V1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [-1, 1],
+    mapCenterPoint: [-1, -1],
     #横图显示
     sceneImage: 'BGT_89',
     # 变量定义
@@ -1335,26 +1337,23 @@ scenes: [
   },
 
     #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000D_V1_MAP_0_-1', name: '荒废的园子',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000D_V1_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [0, -1],
     #横图显示
     sceneImage: 'BGT_90',
-
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
     ],
 
     # 动作定义
@@ -1372,21 +1371,20 @@ scenes: [
       { 
         id: 'C1', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
         options: [ 
-        { title: '【似乎有些发现】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0'], toChapter: "WZXX_M1_N1_C016_[N2]",sounds: [{ stopBGM: true }],icon: { id: 11 }}, 
-         
+        { title: '【似乎有些发现】',varsOn: ['ONE_OPEN_0'], toChapter: "WZXX_M1_N1_C016_[N2]",sounds: [{ stopBGM: true }],icon: { id: 11 }}, 
         ],
       },
 
       { 
         id: 'C2', desc: '在离开之前，李森炎准备在这块地先播撒一些种子', 
         options: [ 
-       
          { title: '【去种植】', openUI: 'ZhongZhi',toChapter: "WZXX_M1_N1_C016_[N3]",sounds: [{ stopBGM: true }],}, 
         ],
       },
+
     ],
   },
-  #===========事件场景==============
+  #=====================事件场景========================
   {
   # NPC2
     id: 'C000D_V1_MAP_1_-1', name: '泥泞土坑',
@@ -1400,12 +1398,10 @@ scenes: [
     mapCenterPoint: [1, -1],
     #横图显示
     sceneImage: 'BGT_87',
-
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
     ],
 
     # 动作定义
@@ -1490,10 +1486,8 @@ scenes: [
 
      # 变量定义
     vars: [
-
     { id: "biaoqianv1", min: 0, max: 1 },
     { id: "biaoqianv2", min: 0, max: 1 },
-
     ],
 
     # 动作定义
@@ -1502,8 +1496,6 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
-
-
     ],
 
     # 对话选项
@@ -1594,7 +1586,58 @@ scenes: [
 
     ],
   },
+  #=======================事件场景==========================
+  {
+  # NPC2
+    id: 'C000D_V1_MAP_-1_1', name: '矮墙',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V1_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 1],
+    #横图显示
+    sceneImage: 'BGT_94',
 
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  dialogs: ['p0'], andVarsOff: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+       { type: 'enter',  andVarsOn: ['ONE_OPEN_0',],  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+      id: 'C1', desc: "嘿，这有点做贼的感觉\n不过这矮墙对付一个有修为的人，形同虚设\n矮墙并不是什么难题", 
+      options: [ 
+      { title: '【跳上去】', nextChat: 'C2'}, 
+      ],
+      },
+
+      { 
+      id: 'C2', desc: "李森炎纵身一跃。轻而易举的来到这墙壁的上面\n踩在这青瓦之上，放在眼前的那是一副已经破败的庭院和两座三四层的石塔\n而这脚下的墙壁就是专门围绕着内部的空地而建，这可够得上手笔，竟然能够把这田地围起来。", 
+      options: [ 
+      { title: '【去看看】',toScene: 'C000D_V3_MAP_0_0',transitionAnimation: '白色转场'}, 
+      ],
+      },
+
+
+
+    ],
+  },
     #=======================事件场景==========================
   {
   # NPC2
@@ -1724,7 +1767,7 @@ scenes: [
 
               { 
               point: [-1, -1], title: '狭窄溪流', 
-              toScene: 'C000D_V1_MAP_-1_1',
+              toScene: 'C000D_V1_MAP_-1_-1',
               links: [[0, -1],] 
               },
 
@@ -1769,7 +1812,6 @@ scenes: [
               toScene: 'C000D_V1_MAP_2_1',
               links: [] 
               },
-
 
             ]
           },
@@ -1833,19 +1875,17 @@ scenes: [
   {
   # NPC2
     id: 'C000D_V2_MAP_0_2', name: '青石道路',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000D_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [0, 2],
     #横图显示
     sceneImage: 'BGT_96',
-
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
@@ -1877,23 +1917,20 @@ scenes: [
   {
   # NPC2
     id: 'C000D_V2_MAP_0_3', name: '院落',
-
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000D_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [0, 3],
     #横图显示
     sceneImage: 'BGT_98',
-
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-
     ],
 
     # 动作定义
@@ -2066,7 +2103,7 @@ scenes: [
             { figureId: "01", location: "right", content: ['“好吧，那你以前的主人是谁？”', ], },
             { figureId: "03", location: "left", content: ['“我的主人是一位字号游燕的仙人。”',], },
             { figureId: "01", location: "right", content: ['“你知道你的主人为何离开这里，最后到了哪里吗？”', ], },
-            { figureId: "03", location: "left", content: ['“主人当时并不是急急匆匆而走，而是和当时的宗门中的晚辈一起把这地界搬空，有序撤离的，至于到了哪里。我也是未知。似乎和当年的战争形势有关，可能是当年战争失利，而撤离此处。”',], },
+            { figureId: "03", location: "left", content: ['“主人当时并不是急急匆匆而走，而是和当时的宗门中的晚辈一起把这地界搬空，有序撤离的，至于到了哪里。','我也是未知。似乎和当年的战争形势有关，可能是当年战争失利，而撤离此处。”',], },
             { figureId: "01", location: "right", content: ['“这里之前是做什么的？”', ], },
             { figureId: "03", location: "left", content: ['“仙人把这里改造成为一处，种植灵植的场所”',], },
             { figureId: "01", location: "right", content: ['“那你知道这高空上的建筑是什么，做什么用的吗？”', ], },
@@ -2140,22 +2177,21 @@ scenes: [
   },
 
   
-      #=======================事件场景==========================
+   #=======================事件场景==========================
   {
   # NPC2
     id: 'C000D_V2_MAP_-1_4', name: '庭院石塔',
     # 指定场景为NPC或MAP场景
     isNpc: true,
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000D_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [-1, 4],
     #横图显示
     sceneImage: 'BGT_97',
-
-     # 变量定义
+    # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
@@ -2168,6 +2204,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000D_V/ST1'], nextChat: 'C4'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000D_V/ST2'], nextChat: 'C5'  },
     ],
 
     # 对话选项
@@ -2188,12 +2226,24 @@ scenes: [
     ],
     },
 
-
     { 
     id: 'C3', desc: "还是不要靠近吧，设有阻挠就是不想要有人靠近打扰的", 
     options: [ 
-     
-     { title: '【离开】',toScene: 'C000D_V2_MAP_-1_5'}, 
+     { title: '【离开】', varsOn: ['WZXX_M1_N1_C000D_V/ST1'], toScene: 'C000D_V2_MAP_-1_5'}, 
+    ],
+    },
+
+    { 
+    id: 'C4', desc: "宝塔进不去，只能在外面绕一圈，什么也没发现，待在这就感觉灵力消耗很大是怎么回事？", 
+    options: [ 
+     { title: '【赶快离开】', toScene: 'C000D_V2_MAP_-1_5'}, 
+    ],
+    },
+
+    { 
+    id: 'C5', desc: "这是另一处石塔？\n为何这里有两处石塔，难道是为了保护什么重要的东西？\n可惜进不去，不然就能探索一番了", 
+    options: [ 
+     { title: '【离开】', toScene: 'C000D_V2_MAP_-1_5'}, 
     ],
     },
     ],
@@ -2206,54 +2256,11 @@ scenes: [
         dialogType: 'FullScreen', 
         textAnimationType: 'TextFadeIn', 
         sections: [
-        { key: 'p1', content: ['一道白光闪过','身体中产生一道剧烈的疼痛，随后那熟悉的感觉再度传来',['边缘闪烁红'],'好像又死了……',], btn: [{title: '轻易还是不要尝试了', nextChat: 'C1'  }, ]},
+        { key: 'p1', content: ['一道白光闪过','身体中产生一道剧烈的疼痛，随后那熟悉的感觉再度传来',['边缘闪烁红'],'好像又死了……',], btn: [{title: '轻易还是不要尝试了', nextChat: 'C3'  }, ]},
         ],      
       }, 
 
      ],
-  },
-
-#=======================事件场景==========================
-  {
-  # NPC2
-    id: 'C000D_V2_MAP_-1_5', name: '荒废的客房',
-
-    # 指定场景为NPC或MAP场景
-    isNpc: true,
-    #不显示时间
-      worldTimeHidden: true,
-    # 当前场景地图
-    mapId: 'C000D_V2_MAP_0_0',
-    # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [-1, 5],
-    #横图显示
-    sceneImage: 'BGT_99',
-
-     # 变量定义
-    vars: [
-    { id: "ONE_OPEN_0", min: 0, max: 1 },
-    { id: "ONE_OPEN_1", min: 0, max: 1 },
-
-    ],
-
-    # 动作定义
-    actions: [
-    ],
-    # 事件定义
-    events: [
-       { type: 'enter',  nextChat: 'C1'  },
-    ],
-
-    # 对话选项
-    chats: [
-      #
-    # { 
-    # id: 'C1', desc: "和外面有些不同，在外面，李森炎还思索着，这是不是什么大富大贵的人家居所\n正常人谁在自家建个宝塔呢\n那两处三层宝塔十分显眼\n好像是一处道观，或祭拜之所\n在墙外李森炎并没有看到这内部的建筑", 
-    # options: [ 
-    #  { title: '【进去探索一番】', toScene: 'C000D_V2_MAP_1_4',}, 
-    # ],
-    # },
-    ],
   },
 
   #=======================事件场景==========================
@@ -2283,19 +2290,116 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000D_V/ST2'], nextChat: 'C4'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000D_V/ST1'], nextChat: 'C5'  },
+    ],
+
+     # 对话选项
+    chats: [
+      
+    { 
+    id: 'C1', desc: "古宝塔看上去静谧庄严\n好像是一处道观，或祭拜之所\n在墙外李森炎并没有看到这内部的建筑", 
+    options: [ 
+     { title: '【进去探索一番】', nextChat: 'C2' ,}, 
+    ],
+    },
+
+    { 
+    id: 'C2', desc: "作势上前\n可是还未走几步，便感受到一种无形的力量在阻拦着他\n这是怎么回事？", 
+    options: [ 
+     { title: '【硬闯】', dialogs: ['gameover01'],}, 
+     { title: '【离开】', nextChat: 'C3'}, 
+    ],
+    },
+
+
+    { 
+    id: 'C3', desc: "还是不要靠近吧，设有阻挠就是不想要有人靠近打扰的", 
+    options: [ 
+     
+     { title: '【离开】', varsOn: ['WZXX_M1_N1_C000D_V/ST2'], toScene: 'C000D_V2_MAP_-1_5'}, 
+    ],
+    },
+
+     { 
+    id: 'C4', desc: "宝塔进不去，只能在外面绕一圈，什么也没发现，待在这就感觉灵力消耗很大是怎么回事？", 
+    options: [ 
+     { title: '【赶快离开】', toScene: 'C000D_V2_MAP_-1_5'}, 
+    ],
+    },
+
+    { 
+    id: 'C5', desc: "这是另一处石塔？\n为何这里有两处一样的石塔，除了方位的不同，几乎一模一样\n难道是为了保护什么重要的东西？\n可惜进不去，不然就能探索一番了", 
+    options: [ 
+     { title: '【离开】', toScene: 'C000D_V2_MAP_-1_5'}, 
+    ],
+    },
+    ],
+     dialogs: [
+
+      { 
+        id: 'gameover01',
+        style: 7, artId: 4,
+        title: '你挂了',
+        dialogType: 'FullScreen', 
+        textAnimationType: 'TextFadeIn', 
+        sections: [
+        { key: 'p1', content: ['一道白光闪过','身体中产生一道剧烈的疼痛，随后那熟悉的感觉再度传来',['边缘闪烁红'],'好像又死了……',], btn: [{title: '轻易还是不要尝试了', nextChat: 'C3'  }, ]},
+        ],      
+      }, 
+
+     ],
+  },
+#=======================事件场景==========================
+  {
+  # NPC2
+    id: 'C000D_V2_MAP_-1_5', name: '荒废的客房',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000D_V2_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 5],
+    #横图显示
+    sceneImage: 'BGT_99',
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
     ],
 
     # 对话选项
     chats: [
       
-    # { 
-    # id: 'C1', desc: "和外面有些不同，在外面，李森炎还思索着，这是不是什么大富大贵的人家居所\n正常人谁在自家建个宝塔呢\n那两处三层宝塔十分显眼\n好像是一处道观，或祭拜之所\n在墙外李森炎并没有看到这内部的建筑", 
-    # options: [ 
-    #  { title: '【进去探索一番】', toScene: 'C000D_V2_MAP_1_4',}, 
-    # ],
-    # },
+    { 
+    id: 'C1', desc: "房屋制作雕刻精细，和正厅是一种风格，但这个偏小一点，想来是个客房\n虽然已经许久无人居住，稍显破旧，但隐约也是能看出从前的风韵", 
+    options: [ 
+     { title: '【离开】',  toScene: 'C000D_V2_MAP_1_3'}, 
+     { title: '【探索一番】',  nextChat: 'C2' ,}, 
+    ],
+    },
+
+    { 
+    id: 'C2', desc: "除了一些灰尘和蜘蛛网没什么特别的\n灰尘呛的很，赶紧离开", 
+    options: [ 
+     { title: '【离开】', toScene: 'C000D_V2_MAP_1_3',}, 
+    ],
+    },
     ],
   },
+
+
 #=======================事件场景==========================
   {
   # NPC2
@@ -2330,7 +2434,7 @@ scenes: [
     { 
     id: 'C1', desc: "一打开门，迎面扑来灰尘的气味，许久没有人居住了\n每一处都落满了灰尘，别的到也没有什么稀奇的，就是和普通柴房一样", 
     options: [ 
-     { title: '【离开>>>】', toScene: 'C000D_V2_MAP_-1_3',}, 
+     { title: '【离开>>>】', toScene: 'C000D_V2_MAP_1_4',}, 
     ],
     },
     ],
@@ -2362,7 +2466,7 @@ scenes: [
 
               { 
               point: [1, 4], title: '荒废的院墙', 
-              toScene: 'C000D_V2_MAP_-1_3',
+              toScene: 'C000D_V2_MAP_1_4',
               links: [[1, 3]] 
               },
 

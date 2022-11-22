@@ -348,7 +348,7 @@ scenes: [
                 ],
                 btn: [
                 {
-                title: '还好是二人同行。', tokey: "P2",
+                title: '还好是二人同行', tokey: "P2",
                 },
                
                 ]
