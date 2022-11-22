@@ -9,6 +9,7 @@ scenes: [
       { id: "v1", min: 0, max: 1 },
       { id: "biaoqianv1", min: 0, max: 1 } ,
       { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "NXSJ", min: 0, max: 1 },
       ],
 
       # 动作定义
@@ -28,7 +29,6 @@ scenes: [
         options: [ 
           { title: "【进入坊市】",andVarsOff: ['questionnaire/NXSJ'],toChapter: "WZXX_M1_N1_C010_[N2]",},
           { title: "【点击进入视角选择】",andVarsOn: ['questionnaire/NXSJ'],dialogs: ['C0010_1.1A'], },
-        
         ],
       },
 

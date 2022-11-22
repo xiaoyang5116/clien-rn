@@ -572,7 +572,7 @@ scenes: [
       },
 
        { 
-        id: 'C4', desc: "天水亭离市区太远\n迎来送往的人并不多\n而且各自看上去都神色匆匆\n希望能有人知道哪里可以炼制丹药",
+        id: 'C4', desc: "天水亭离白城中心街道太远\n迎来送往的人并不多\n而且各自看上去都神色匆匆\n希望能有人知道哪里可以炼制丹药",
         options: [
         { title: '【神色奇怪的农民】',  varsOn: ['v1','biaoqianv2',], nextChat: 'C4A' ,icon: { id: 1, bindVar: 'biaoqianv2' },}, 
         { title: '【坐在亭子中休歇的中年男人】', andVarsOn: ['v1'], nextChat: 'C4B'}, 
