@@ -105,6 +105,13 @@ const _images = {
         { id: 1, img: require('../../assets/button_icon/1.png'), },
         { id: 2, img: require('../../assets/button_icon/2.png'), },
         { id: 3, img: require('../../assets/button_icon/3.png'), },
+    ],
+    // 场景地图背景图片
+    sceneMapBg: [
+        // 小地图
+        { id: "1", img: require('../../assets/sceneMapBg/scene_map.png'), },
+        // 大地图
+        // { id: "100", img: require('../../assets/button_icon/2.png'), },
     ]
 }
 
@@ -170,4 +177,9 @@ export const getCollectBackgroundImage = (name) => {
 // 获得 成就徽章 icon
 export const getAchievementBadgeImage = (id) => {
     return (_images.achievementBadgeImage.find(item => item.id === id).img)
+}
+
+// 获取 场景地图背景
+export const getSceneMapBg = (id) => {
+    return _images.sceneMapBg.find(e => e.id === id).img;
 }
