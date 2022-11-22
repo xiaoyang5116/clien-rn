@@ -88,6 +88,7 @@ const defaultScreenOptions = {
     height: px2pd(200) + (Platform.OS == 'ios' ? 20 : 0),
     borderTopWidth: 0, // 去掉底部边框
     backgroundColor: 'rgba(0,0,0,0)',
+    elevation: 0,  // 去除 android 底部多余图片
   },
   tabBarItemStyle: { // 缩小底部响应区域防止误点边缘
     marginLeft: 20,

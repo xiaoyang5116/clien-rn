@@ -35,40 +35,47 @@ export default {
         isFinish: payload.isFinish,
         problemKey: payload.toKey,
       });
+      const clonePayload = lo.cloneDeep(payload)
 
       const { dropIds } = payload;
-      if (lo.isEmpty(dropIds) || !lo.isArray(dropIds)) return
+      if (lo.isEmpty(dropIds) || !lo.isArray(dropIds)) {
+        yield put.resolve(action('SceneModel/processActions')({ ...clonePayload }))
+      }
+      else {
+        delete clonePayload.dropIds
+        yield put.resolve(action('SceneModel/processActions')({ ...clonePayload }))
 
-      for (let key in dropIds) {
-        const dropId = dropIds[key];
+        for (let key in dropIds) {
+          const dropId = dropIds[key];
 
-        const found = dropsState.__data.config.find(e => lo.isEqual(e.id, dropId));
-        if (found == undefined)
-          continue
+          const found = dropsState.__data.config.find(e => lo.isEqual(e.id, dropId));
+          if (found == undefined)
+            continue
 
-        if (lo.indexOf(dropsState.ids, dropId) != -1)
-          return
+          if (lo.indexOf(dropsState.ids, dropId) != -1)
+            return
 
-        const actions = lo.pick(found, ['sendProps', 'alterAttrs']);
-        if (lo.keys(actions).length > 0) {
-          if (actions.sendProps != undefined) {
-            yield put.resolve(action('SceneModel/processActions')({ ...actions }));
+          const actions = lo.pick(found, ['sendProps', 'alterAttrs']);
+          if (lo.keys(actions).length > 0) {
+            if (actions.sendProps != undefined) {
+              yield put.resolve(action('SceneModel/processActions')({ ...actions }));
+            }
+            if (actions.alterAttrs != undefined) {
+              const affects = [];
+              actions.alterAttrs.forEach(e => {
+                let [key, value] = e.split(',');
+                key = lo.trim(key);
+                value = parseInt(lo.trim(value));
+                affects.push({ key, value });
+              });
+
+              yield put.resolve(action('UserModel/alterAttrs')({ affects, source: "questionnaire" }));
+            }
           }
-          if (actions.alterAttrs != undefined) {
-            const affects = [];
-            actions.alterAttrs.forEach(e => {
-              let [key, value] = e.split(',');
-              key = lo.trim(key);
-              value = parseInt(lo.trim(value));
-              affects.push({ key, value });
-            });
 
-            yield put.resolve(action('UserModel/alterAttrs')({ affects, source: "questionnaire" }));
-          }
+          // 记录完成
+          dropsState.ids.push(dropId);
         }
-
-        // 记录完成
-        dropsState.ids.push(dropId);
       }
     },
   },

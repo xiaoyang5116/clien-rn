@@ -103,7 +103,7 @@ const Problem = props => {
         }}>
         <ImageBackground
           style={{
-            marginTop: 8,
+            marginTop: 4,
             width: px2pd(913),
             height: px2pd(140),
             justifyContent: 'center',
@@ -147,7 +147,7 @@ const Problem = props => {
         style={{
           width: px2pd(945),
           height: px2pd(532),
-          marginTop: 30,
+          marginTop: 20,
           justifyContent: 'center',
           alignItems: 'center',
         }}
@@ -162,13 +162,13 @@ const Problem = props => {
           {currentProblem.content}
         </Text>
       </ImageBackground>
-      <View style={{ flex: 1, marginTop: 10, width: '100%', alignItems: 'center', }}>
+      <View style={{ flex: 1, width: '100%', alignItems: 'center', }}>
         <FlatList
           data={currentProblem.btn}
           renderItem={renderBtn}
           extraData={selectIndex}
           ListFooterComponent={
-            <View style={{ alignItems: 'center' }}>
+            <View style={{ marginTop: 18, alignItems: 'center' }}>
               <TextImageBtn
                 title={problemKey < sections.length ? '下一题' : '完成作答'}
                 onPress={() => {
@@ -188,7 +188,7 @@ const Problem = props => {
 
 const Questionnaire = props => {
   const { viewData, onDialogCancel, actionMethod } = props;
-  const { title, desc, sections } = viewData;
+  const { __sceneId, title, desc, sections } = viewData;
   const [isBegin, setIsBegin] = useState(false); // 是否开始答题
   const [problemKey, setProblemKey] = useState(1); // 问题索引
   const currentProblem = sections[problemKey - 1]; // 当前的问题
@@ -206,20 +206,20 @@ const Questionnaire = props => {
 
   const nextProblem = selectIndex => {
     if (problemKey < sections.length) {
-      // actionMethod(currentProblem.btn[selectIndex]);
       props.dispatch(
         action('QuestionnaireModel/getAward')({
           isFinish: false,
+          __sceneId,
           ...currentProblem.btn[selectIndex]
         }),
       );
       setProblemKey(currentProblem.btn[selectIndex].toKey);
     } else {
       DeviceEventEmitter.emit('QuestionnaireStatus', true);
-      // actionMethod(currentProblem.btn[selectIndex]);
       props.dispatch(
         action('QuestionnaireModel/getAward')({
           isFinish: true,
+          __sceneId,
           ...currentProblem.btn[selectIndex],
         }),
       );
@@ -235,7 +235,7 @@ const Questionnaire = props => {
       />
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.contentContainer}>
-          <View style={{ position: 'absolute', right: 12, top: 12, zIndex: 2 }}>
+          <View style={{ position: 'absolute', right: 6, top: 2, zIndex: 2 }}>
             <ImageButton
               width={px2pd(142)}
               height={px2pd(142)}
@@ -278,7 +278,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50,
+    marginTop: 35,
   },
   descContainer: {
     width: px2pd(962),
