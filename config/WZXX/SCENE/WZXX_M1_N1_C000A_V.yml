@@ -3816,6 +3816,10 @@ scenes: [
     maps: [
       {
         id: 'C000A_V3_MAP_0_0',
+        images: {
+          small: '1',
+          big: "100"
+        },
         data: [
           { 
           point: [-1, 0], title: '西市',

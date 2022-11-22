@@ -120,6 +120,7 @@ export default {
             const map = maps.find(m => m.id == e.mapId);
             if (map != undefined) {
               e.mapData = map.data;
+              e.mapImages = map.images;
             }
         }
       });

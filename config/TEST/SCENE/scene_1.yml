@@ -320,6 +320,9 @@ scenes: [
     maps: [
       {
         id: 'map1',
+        images: {
+          small: '1',
+        },
         data: [
           { point: [0, 0], title: '神兽', toScene: 'pomiao', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
           { point: [0, 1], title: '原神', toScene: 'wzkj', links: [], icon: { id: 104, bindVar: 'v_icon_104' } },

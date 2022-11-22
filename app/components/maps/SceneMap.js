@@ -18,12 +18,13 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
-import { 
+import {
   AppDispath,
   CENTER_TOP,
   EventKeys,
   getWindowSize,
   ThemeData,
+  getSceneMapBg
 } from '../../constants';
 
 import lo from 'lodash';
@@ -106,10 +107,10 @@ const CentPointAnimation = (props) => {
   }, []);
 
   return (
-  <Animated.View style={{ position: 'absolute', transform: [{ scale: getFixedWidthScale() }], zIndex: -10, opacity: opacity }} pointerEvents={'none'}>
-    <LeiDaAnimation />
-    <Text style={{ position: 'absolute', left: -130, top: -75, fontSize: 24, color: '#333' }}>当前位置</Text>
-  </Animated.View>
+    <Animated.View style={{ position: 'absolute', transform: [{ scale: getFixedWidthScale() }], zIndex: -10, opacity: opacity }} pointerEvents={'none'}>
+      <LeiDaAnimation />
+      <Text style={{ position: 'absolute', left: -130, top: -75, fontSize: 24, color: '#333' }}>当前位置</Text>
+    </Animated.View>
   );
 }
 
@@ -165,16 +166,16 @@ const drawLines = ({ data }) => {
         if (prev != null && current != undefined && next != undefined) {
           let angle = 0;
           if ((prev[0] == current[0] && prev[1] < current[1] && next[0] > current[0] && current[1] == next[1])
-              || (prev[0] > current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] > next[1])) {
+            || (prev[0] > current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] > next[1])) {
             angle = 1;
           } else if ((prev[0] < current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] > next[1])
-                      || (prev[0] == current[0] && prev[1] < current[1] && next[0] < current[0] && current[1] == next[1])) {
+            || (prev[0] == current[0] && prev[1] < current[1] && next[0] < current[0] && current[1] == next[1])) {
             angle = 2;
           } else if ((prev[0] == current[0] && prev[1] > current[1] && next[0] < current[0] && current[1] == next[1])
-                      || (prev[0] < current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] < next[1])) {
+            || (prev[0] < current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] < next[1])) {
             angle = 3;
           } else if ((prev[0] > current[0] && prev[1] == current[1] && next[0] == current[0] && current[1] < next[1])
-                      || (prev[0] == current[0] && prev[1] > current[1] && next[0] > current[0] && current[1] == next[1])) {
+            || (prev[0] == current[0] && prev[1] > current[1] && next[0] > current[0] && current[1] == next[1])) {
             angle = 4;
           }
 
@@ -182,7 +183,7 @@ const drawLines = ({ data }) => {
             const cornerLeft = current[0] * (GRID_PX_WIDTH + GRID_SPACE);
             const cornerTop = (-current[1]) * (GRID_PX_HEIGHT + GRID_SPACE);
             const corner = CORNERS.find(e => e.angle == angle);
-  
+
             lines.push((
               <View key={idx++} style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left: cornerLeft, top: cornerTop }]}>
                 <FastImage key={idx++} style={[{ position: 'absolute', zIndex: -1 }, { ...corner.style }]} source={corner.img} />
@@ -214,12 +215,12 @@ const Grid = (props) => {
     gridImg = require('../../../assets/button/scene_map_button2.png');
   }
 
-  const borderEffect = isCenterPoint 
-    ? { borderWidth: 1.5, borderColor: '#31aac8', borderRadius: 5 } 
+  const borderEffect = isCenterPoint
+    ? { borderWidth: 1.5, borderColor: '#31aac8', borderRadius: 5 }
     : {};
 
   return (
-    <View style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT,  justifyContent: 'center', alignItems: 'center' }, { left, top }, borderEffect]}
+    <View style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }, borderEffect]}
       onTouchStart={() => {
         touchStart = true;
       }}
@@ -251,7 +252,7 @@ const drawGrids = ({ data, initialCenterPoint, onClose }) => {
   let idx = 0;
   data.forEach(e => {
     grids.push((
-      <Grid key={idx} data={{...e}} initialCenterPoint={initialCenterPoint} onClose={onClose} />
+      <Grid key={idx} data={{ ...e }} initialCenterPoint={initialCenterPoint} onClose={onClose} />
     ));
     idx++;
   });
@@ -387,14 +388,14 @@ const SceneBigMap = (props) => {
   }, []);
 
   return (
-    <ImageBackground style={{flex:1}} source={theme.optionsPage_bg}>
+    <ImageBackground style={{ flex: 1 }} source={theme.optionsPage_bg}>
       <View style={{ flex: 1 }} onTouchStart={closeMapHandler}>
         <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <View style={[{ width: MAP_BIG_SIZE.width, height: MAP_BIG_SIZE.height + 10 }]} onTouchStart={(e) => { 
-            e.stopPropagation(); 
+          <View style={[{ width: MAP_BIG_SIZE.width, height: MAP_BIG_SIZE.height + 10 }]} onTouchStart={(e) => {
+            e.stopPropagation();
           }} {...panResponder.panHandlers}>
             <Animated.View style={[{ position: 'absolute', bottom: 0 }, { ...MAP_BIG_SIZE }, { transform: [{ translateY: translateY }] }]}>
-              <FastImage style={[{ position: 'absolute', width: '100%', height: '100%'}]} source={require('../../../assets/bg/scene_map_big_new.png')} />
+              <FastImage style={[{ position: 'absolute', width: '100%', height: '100%' }]} source={require('../../../assets/bg/scene_map_big_new.png')} />
               {/* 大地图网格 */}
               <View style={{ flex: 1, margin: 4, overflow: 'hidden' }}>
                 <Animated.View style={{ position: 'absolute', transform: [{ translateX: bigMapPos.x }, { translateY: bigMapPos.y }, { scale: bigMapScale }] }}>
@@ -427,6 +428,9 @@ const SceneBigMap = (props) => {
 }
 
 const SceneMap = (props) => {
+  // 地图背景
+  const { mapImages } = props
+
   // 小地图初始化起始坐标
   const smallMapInitXY = {
     x: ((MAP_SMALL_SIZE.width - MAP_MARGIN_VALUE * 2) / 2) - (GRID_PX_WIDTH / 2) - (props.initialCenterPoint[0] * (GRID_PX_WIDTH + GRID_SPACE)),
@@ -464,7 +468,7 @@ const SceneMap = (props) => {
 
   // 大地图最大化
   const maxBigMapHandler = (e) => {
-    const key = RootView.add(<SceneBigMap data={props.data} initialCenterPoint={props.initialCenterPoint} onClose={() => {
+    const key = RootView.add(<SceneBigMap data={props.data} bigImage={(mapImages?.big ? mapImages.big : "100")} initialCenterPoint={props.initialCenterPoint} onClose={() => {
       RootView.remove(key);
     }} />);
     DeviceEventEmitter.emit(EventKeys.ARTICLE_PAGE_HIDE_BANNER)
@@ -477,7 +481,7 @@ const SceneMap = (props) => {
 
   return (
     <Animated.View style={[{ transform: [{ translateY: smallMapTransY }] }, { ...MAP_SMALL_SIZE }]}>
-      <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={require('../../../assets/bg/scene_map.png')} />
+      <FastImage style={{ position: 'absolute', width: '100%', height: '100%' }} source={getSceneMapBg((mapImages?.small ? mapImages.small : "1"))} />
       {/* 小地图隐藏过后显示按钮 */}
       <Animated.View style={{ opacity: showButtonOpacity }} onTouchStart={showSmallMapHandler}>
         <FastImage style={{ position: 'absolute', right: 20, top: -126, width: px2pd(130), height: px2pd(56) }} source={require('../../../assets/button/map_maximize_button.png')} />
