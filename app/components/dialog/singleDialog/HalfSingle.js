@@ -45,7 +45,9 @@ const HalfSingle = (props) => {
                             }
                             fontSize={20}
                             type={textAnimationType}
-                            style={theme.dialogFontColor}>
+                            style={theme.dialogFontColor}
+                            isShowAllContent={currentIndex === index ? false : true}
+                        >
                             {item}
                         </TextAnimation>
                     </View>

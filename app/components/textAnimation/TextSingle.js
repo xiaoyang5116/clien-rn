@@ -1,10 +1,12 @@
-import { Text, } from 'react-native';
+import { Text, Animated } from 'react-native';
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 
 export default class TextSingle extends PureComponent {
     state = {
         currentText: '',
         iconShow: false,
+        fadeAnim: new Animated.Value(1)
     };
 
     timer = null;
@@ -30,14 +32,43 @@ export default class TextSingle extends PureComponent {
         }
     };
 
+    fadeIn = () => {
+        Animated.timing(this.state.fadeAnim, {
+            toValue: this.props.opacity,
+            duration: 460,
+            useNativeDriver: false,
+        }).start();
+    };
+
     componentDidMount() {
         this.single();
     }
     componentWillUnmount() {
         clearInterval(this.timer);
     }
+    componentDidUpdate() {
+        if (this.props.isShowAllContent === true) {
+            clearInterval(this.timer);
+        }
+    }
 
     render() {
+        if (this.props.isShowAllContent) {
+            if (this.props.isFadeIn) {
+                this.fadeIn()
+                return (
+                    <Animated.Text style={{ fontSize: this.props.fontSize || 18, ...this.props.style, opacity: this.state.fadeAnim }}>
+                        {this.props.children}
+                    </Animated.Text>
+                )
+            }
+            return (
+                <Animated.Text style={{ fontSize: this.props.fontSize || 18, ...this.props.style, opacity: this.props.opacity }}>
+                    {this.props.children}
+                </Animated.Text>
+            )
+
+        }
         if (this.props.icon) {
             return (
                 <Text style={{ fontSize: this.props.fontSize || 18, ...this.props.style }}>
@@ -52,3 +83,19 @@ export default class TextSingle extends PureComponent {
         );
     }
 }
+
+TextSingle.prototypes = {
+    isShowAllContent: PropTypes.bool,
+    fontSize: PropTypes.number,
+    style: PropTypes.object,
+    icon: PropTypes.string,
+    opacity: PropTypes.number,
+    isFadeIn: PropTypes.bool,
+    children: PropTypes.node
+};
+
+TextSingle.defaultProps = {
+    isShowAllContent: false,
+    opacity: 1,
+    isFadeIn: false
+};

@@ -53,11 +53,19 @@ const TopToBottomShow = props => {
               fontSize={20}
               type={viewData.textAnimationType}
               style={{
-                opacity: dialogIndex === index ? 1 : 0.5,
-                ...styles.text,
-              }}>
+                position: "absolute",
+                zIndex: 2,
+                ...styles.text
+              }}
+              opacity={dialogIndex === index ? 1 : 0.5}
+              isFadeIn={true}
+              isShowAllContent={dialogIndex === index ? false : true}
+            >
               {item}
             </TextAnimation>
+            <Text style={{ fontSize: 20, opacity: 0, }}>
+              {item}
+            </Text>
           </View>
         </TouchableWithoutFeedback>
       );

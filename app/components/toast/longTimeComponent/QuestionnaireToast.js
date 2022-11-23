@@ -55,8 +55,7 @@ const LeftToRightSwiper = props => {
         opacity: opacityAnim,
       }}
       pointerEvents="none"
-      onTouchStart={()=>{console.log("bbbbb====");}}
-      >
+    >
       {children}
     </Animated.View>
   );
