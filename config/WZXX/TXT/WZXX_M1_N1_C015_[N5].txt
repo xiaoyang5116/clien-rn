@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C015_[N5]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C015_[N5]'] }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C015_[N5]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C015_[N5]FZ'] }, 
     { header: '第十五章 占卜' },
      { world: { name: '灵修界' } },
 ]
