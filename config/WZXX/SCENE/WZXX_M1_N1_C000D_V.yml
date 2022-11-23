@@ -92,7 +92,7 @@ scenes: [
       { 
         id: 'C1', desc: '看上去极度荒凉，不见人烟，草木稀少', 
         options: [ 
-         { title: '【离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0','1JR',], toScene: 'C000D_V_MAP_-1_-2'}, 
+         { title: '【去别处探索】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0','1JR',], toScene: 'C000D_V_MAP_-1_-2'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
@@ -124,7 +124,7 @@ scenes: [
       sections: {
       content: '李森炎看见脚下是砂石铺就的路面，偶尔可见巨石分布左右,有稀稀疏疏的杂草在石缝中艰难生长,四下无人，也没有留下任何人行走过的痕迹',
       btn: [
-      { title: '确定',nextChat: 'C1'   },
+      { title: '观察结束',nextChat: 'C1'   },
         ],
       },
       }
@@ -173,7 +173,7 @@ scenes: [
       { 
         id: 'C1', desc: '杂乱无章的木林，若是好好修整，说不定会变出别一番景色', 
         options: [ 
-         { title: '【继续走】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0','1JR'], toScene: 'C000D_V_MAP_-1_-1'}, 
+         { title: '【继续向前】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0','1JR'], toScene: 'C000D_V_MAP_-1_-1'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
@@ -204,7 +204,7 @@ scenes: [
             sections: {
               content: '这边入目可见一片稀疏木林, 树的高度只比一个成年人高不了多少,错落无序，野蛮生长,林中路面被落叶铺满，底层的落叶已经腐败,与泥土混合在一起，散发出腐朽的气息',
               btn: [
-              { title: '退出', nextChat: 'C1' },
+              { title: '观察结束', nextChat: 'C1' },
               ]
             },
           },
@@ -251,7 +251,7 @@ scenes: [
       { 
         id: 'C1', desc: '这片溪流看起来倒是异常清澈，不知是从哪里流下来的水流', 
         options: [ 
-         { title: '【再往里看看】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0','1JR'], toScene: 'C000D_V_MAP_0_-1'}, 
+         { title: '【沿着溪流探查】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0','1JR'], toScene: 'C000D_V_MAP_0_-1'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
@@ -288,7 +288,7 @@ scenes: [
             sections: {
               content: '一条长而狭窄的溪流，不知何处是源头, 也不是何处是尽头,潺潺流水清澈，深可见底,鱼翔浅底，虾蟹遨游，颇具野趣',
               btn: [
-              { title: '退出', nextChat: 'C1' },
+              { title: '观察结束', nextChat: 'C1' },
               ]
             },
           },
@@ -333,7 +333,7 @@ scenes: [
      {
         id: 'C1', desc: '忽然走到一片野地，雾气弥漫在大地上，像是一层薄纱，景色不错，只可惜荒废了', 
         options: [
-         { title: '【去前面探索】',varsOn: ['ONE_OPEN_0','1JR',], toScene: 'C000D_V_MAP_1_-1'}, 
+         { title: '【继续前行】',varsOn: ['ONE_OPEN_0','1JR',], toScene: 'C000D_V_MAP_1_-1'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
@@ -361,7 +361,7 @@ scenes: [
             sections: {
               content: '一片野地，雾气弥漫在大地上，像是一层薄纱，景色宜人，光是看见这里面的美景就感觉到被治愈了',
               btn: [
-              { title: '退出', nextChat: 'C1' },
+              { title: '观察结束', nextChat: 'C1' },
               ]
             },
       },
@@ -408,7 +408,7 @@ scenes: [
       { 
         id: 'C1', desc: '这里平平无奇，看不出有什么特色，看上去比较危险', 
         options: [ 
-         { title: '【还是快些离开】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0','1JR'], toScene: 'C000D_V_MAP_1_0'}, 
+         { title: '【快步离开此处】',varsOn: ['ONE_OPEN_1','ONE_OPEN_0','1JR'], toScene: 'C000D_V_MAP_1_0'}, 
          { title: '【观察四周】', nextChat: 'C2'},
         ],
       },
@@ -434,7 +434,7 @@ scenes: [
             sections: {
               content: '一片灰色泥泞的土坑，与寻常路面没有大的差距, 但实际上如同沼泽地,一旦经过，极易深陷其中',
               btn: [
-              { title: '退出', nextChat: 'C1' },
+              { title: '观察完毕', nextChat: 'C1' },
               ]
             },
           },
@@ -514,7 +514,7 @@ scenes: [
             sections: {
               content: '一片光秃秃的山坡，什么也没有，呈现一片黢黑的泥土, 已经失去大部分水分,完全硬结，植物无法生长,只有一些长相奇怪的虫子，在黑泥中钻出一个个孔洞',
               btn: [
-              { title: '退出', nextChat: 'C1' },
+              { title: '观察结束', nextChat: 'C1' },
               ]
             },
           },
@@ -587,7 +587,7 @@ scenes: [
             sections: {
               content: '矮墙上面布满藤蔓和青苔看上去有点老旧，应该有些年头了',
               btn: [
-              { title: '退出', nextChat: 'C1' },
+              { title: '观察结束', nextChat: 'C1' },
               ]
             },
           },
@@ -652,7 +652,7 @@ scenes: [
             sections: {
               content: '这边看上去和刚才没太大区别，不知道翻墙翻到了哪儿……走一步看一步吧',
               btn: [
-              { title: '退出', nextChat: 'C1' },
+              { title: '观察结束', nextChat: 'C1' },
               ]
             },
           },
@@ -797,7 +797,7 @@ scenes: [
             sections: {
               content: '昔日金碧辉煌的建筑如今变得破败不堪，布满岁月的痕迹，不过依稀能看见一些斑驳字迹',
               btn: [
-              { title: '退出', nextChat: 'C1' },
+              { title: '观察结束', nextChat: 'C1' },
               ]
             },
           },
@@ -2017,6 +2017,11 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "v1", min: 0, max: 1 },
+    { id: "v2", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
 
     ],
 
@@ -2066,31 +2071,42 @@ scenes: [
   #   ],
   # },
 
-  { 
-    id: 'C7', desc: "李森炎听到的是一种无法言语的声音，他不知道这声音是为什么？\n仿佛有些特殊的法则阻止这些声音被还原为真正的文字。\n这声音可能被这名字可能被法则层面抹除了，一个直觉在李森炎心中想起\n名字而已，干脆就叫它小世界吧", 
-    options: [ 
-     { title: '【给木人装上灵石】', nextChat: 'C8'}, 
-    ],
-  },
+  # { 
+  #   id: 'C7', desc: "李森炎听到的是一种无法言语的声音，他不知道这声音是为什么？\n仿佛有些特殊的法则阻止这些声音被还原为真正的文字。\n这声音可能被这名字可能被法则层面抹除了，一个直觉在李森炎心中想起\n名字而已，干脆就叫它小世界吧", 
+  #   options: [ 
+  #    { title: '【给木人装上灵石】', nextChat: 'C8'}, 
+  #   ],
+  # },
 
    { 
     id: 'C8', desc: "木人所使用的灵石，需要中品灵石或以上才能驱动", 
     options: [ 
-     { title: '【放入1颗灵石】', nextChat: 'C9'}, 
+     { title: '【放入1颗灵石】',
+      useProps: '891', 
+       nextChat: 'C8',icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1','v1'],}, 
+
+    { title: '【思考】', dialogs: ['Screen3'] ,andVarsOn: ['v1'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2','v2'],}, 
+    { title: '【离开】', toScene: 'C000D_V2_MAP_-1_3', andVarsOn: ['v2'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3','WZXX_M1_N1_C000D_V/MO1'],}, 
+
     ],
   },
 
-  { 
-    id: 'C9', desc: "等等，这中品灵石以我现在的财力，可并不好搞，等以后再说吧，现在最重要的还是看看有没有可发掘的地方吧", 
-    options: [
-     { title: '【对了，那个园子！】', varsOn: ['WZXX_M1_N1_C000D_V/MO1'],toScene: 'C000D_V2_MAP_-1_3'}, 
-    ],
-  },
-    
+ 
     ],
 
     # 对话框
     dialogs: [
+
+    { id: 'Screen3',style: 6, title: '思考', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'C1', content: ['等等，这中品灵石以我现在的财力，可并不好搞，等以后再说吧，现在最重要的还是看看有没有可发掘的地方吧',],
+          btn: [{title: "【思考完毕】", nextChat: 'C8',},]},
+          
+     
+
+      
+        ],
+    },
     #  {
     #   id: 'Screen1',style: 10, textAnimationType: 'TextSingle',
     #         sections: [
@@ -2137,8 +2153,12 @@ scenes: [
           '李森炎：“那你知道这高空上的建筑是什么，做什么用的吗？”',
           '器灵：“我不知道，之前的高空并没有这些建筑。”',
           '李森炎：“你知道这处世界的名字叫什么吗？”',
-          '器灵：“这里的名字就叫做……”'],
-          btn: [{title: '什么？', nextChat: 'C7'},]},
+          '器灵：“这里的名字就叫做……”',
+          ],
+          btn: [{title: '继续听',tokey: "C5"},]},
+
+          { key: 'C5', content: ['李森炎听到的是一种无法言语的声音，他不知道这声音是为什么？','仿佛有些特殊的法则阻止这些声音被还原为真正的文字。','这声音可能被这名字可能被法则层面抹除了，一个直觉在李森炎心中想起','名字而已，干脆就叫它小世界吧','给木人装上灵石'],
+          btn: [{title: '结束对话',nextChat: 'C8'},]},
         ],
     },
     ],
@@ -2522,7 +2542,7 @@ scenes: [
       { 
         id: 'C3', desc: '这个园林看上去好似庄园，土地平整，看上去似乎可以种些什么', 
         options: [ 
-        { title: '【似乎有些发现】',varsOn: ['ONE_OPEN_0'], varsOff: ['WZXX_M1_N1_C000D_V/MO1'], toChapter: "WZXX_M1_N1_C016_[N2]",sounds: [{ stopBGM: true }],icon: { id: 11 }}, 
+        { title: '【似乎有些发现】',varsOn: ['ONE_OPEN_0'], varsOff: ['WZXX_M1_N1_C000D_V/MO1'], dialogs: ['Screen1'] ,}, 
         ],
       },
 
@@ -2536,18 +2556,43 @@ scenes: [
 
     ],
 
+
+
     # 对话框 1黑旁白2白旁白
-    # dialogs: [
-    # {
-    #         id: 'p0', style: 13, title: '荒废的园子', imgName: "BGT_90",
-    #         sections: {
-    #           content: '一座貌不惊人的园子，门口有巨型古朴石碑,上面原有的笔划已被岁月侵蚀磨灭,不过仔细辨认下,依然可以看出“灵药园”三个字',
-    #           btn: [
-    #           { title: '退出', nextChat: 'C1' },
-    #           ]
-    #         },
-    # },
-    # ],
+    dialogs: [
+      { id: 'Screen1',style: 6, title: '种植', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+
+          { key: 'C1', content: ['李森炎神识试着朝里面探去，竟没有受到任何阻碍，进入了园中。',
+          '正当喜悦之时，他放眼望去，入目一片空旷。',
+          '看着空无一物的灵药园，李森炎满心期待有些落空。',
+          '“灵药园里竟然没有灵药？”',
+          '只有一片干净的土壤。',
+          '是灵药都被拔光了还是怎么滴，不得而知。',
+          '李森炎想起自己身上有一些植物的种子，干脆拿出来，抱着试一试，玩一玩的态度，将其中三颗埋入土中。',
+          '“自己种田玩，貌似也是不错的。”',
+          '只不过，种植的时间一向会非常长，他可没有那么多时间在这干耗着。',
+          '正当他准备离开灵药园的时候。',
+          '神奇的一幕发生了。',
+          '在他埋入种子的地方，突然泥土向上拱起，接着一小撮嫩芽从地下钻出。',
+          '“这……这就发芽了？”',
+          '他刚刚才埋下去的三颗种子，此刻全都已经生根发芽，这种在外界完全不可能的生长速度，却在这里成为现实。',
+          '这里的时间流速，很可能比外面世界要快很多！',
+          '李森炎当即洒下不同类型的种子。',
+          '没过多久。','灵药园里，有一片区的药草已经生长成型，并且茎叶粗壮饱满，显出勃勃生机。',
+          '李森炎瞠目结舌，却又惊喜不已。',
+          '这简直是一块宝地！',
+          '极快的生长速度自不必说，这土壤本身，也是无比神奇。',
+          '要知道，很多灵药的生长环境，条件是极为苛刻的。',
+          '一点土壤的差别，便能使得一些灵药无法生长出来。',
+          '可李森炎洒下类型不同的种子，却都能生长出来。',
+          '这意味着。',
+          '这里的土壤，能让很多种类型的种子都生根发芽，并且茁壮生长！',
+          ],
+          btn: [{title: '离开', nextChat: 'C4'},]},
+        ],
+    },
+    ],
   },
   
   #=================================场景地图的设置==================================
