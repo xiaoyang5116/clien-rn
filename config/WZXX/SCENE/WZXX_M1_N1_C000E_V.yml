@@ -809,7 +809,7 @@ scenes: [
     # 当前场景地图
     mapId: 'C000E_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [-1, 2],
+    mapCenterPoint: [-1, 5],
 
      # 变量定义
     vars: [
@@ -851,7 +851,7 @@ scenes: [
     # 当前场景地图
     mapId: 'C000E_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [-1, 2],
+    mapCenterPoint: [0, 4],
 
      # 变量定义
     vars: [
@@ -900,7 +900,7 @@ scenes: [
     # 当前场景地图
     mapId: 'C000E_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [-1, 2],
+    mapCenterPoint: [0, 3],
 
      # 变量定义
     vars: [

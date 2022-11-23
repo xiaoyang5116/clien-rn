@@ -2,8 +2,8 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z2C01']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z2C01FZ'] }, 
-     { header: '第一章 再入小世界' },
-      { world: { name: '灵修界' } },
+    { header: '第一章 再入小世界' },
+    { world: { name: '灵修界' } },
 ]
 #END==========================================
 　　

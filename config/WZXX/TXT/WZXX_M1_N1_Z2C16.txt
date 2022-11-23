@@ -2,8 +2,8 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z2C16']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z2C16FZ'] }, 
-     { header: '第十六章 停留' },
-      { world: { name: '灵修界' } },
+    { header: '第十六章 停留' },
+    { world: { name: '灵修界' } },
 ]
 #END==========================================
 　　

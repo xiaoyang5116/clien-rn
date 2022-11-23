@@ -572,7 +572,31 @@ directory: [
         {
         point: [0, -23], title: '第二十四章 小世界的鸡窝 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C24' ,
-        toChapter: 'WZXX_M1_N1_Z2C24', links: [[]] 
+        toChapter: 'WZXX_M1_N1_Z2C24', links: [[0, -24]] 
+        },
+
+        {
+        point: [0, -24], title: '第二十五章 传送成功', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C25' ,
+        toChapter: 'WZXX_M1_N1_Z2C25', links: [[0, -25]] 
+        },
+
+        {
+        point: [0, -25], title: '第二十六章 重回坊市', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C26' ,
+        toChapter: 'WZXX_M1_N1_Z2C26', links: [[0, -26]] 
+        },
+
+        {
+        point: [0, -26], title: '第二十七章 血赚', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C27' ,
+        toChapter: 'WZXX_M1_N1_Z2C27', links: [[0, -27]] 
+        },
+
+        {
+        point: [0, -27], title: '第二十八章 与鸡斗，其乐无穷', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C28' ,
+        toChapter: 'WZXX_M1_N1_Z2C28', links: [[]] 
         },
 
 

@@ -2,8 +2,8 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C990']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C990FZ'] }, 
-     { header: '现实世界 第四篇' },
-      { world: { name: '现实世界' } },
+    { header: '现实世界 第四篇' },
+    { world: { name: '现实世界' } },
 ]
 #END==========================================
 　　

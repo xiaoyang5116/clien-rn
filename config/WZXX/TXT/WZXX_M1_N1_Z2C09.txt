@@ -2,8 +2,8 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z2C09']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z2C09FZ'] }, 
-     { header: '第九章 灵茶' },
-      { world: { name: '灵修界' } },
+    { header: '第九章 灵茶' },
+    { world: { name: '灵修界' } },
 ]
 #END==========================================
 　　

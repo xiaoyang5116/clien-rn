@@ -41,12 +41,9 @@ scenes: [
 
       # 对话框
       dialogs:
-        [
+    [
 
-     #选项对话2
-       
-
-     {   id: 'C0018A_duihuaA',
+     { id: 'C0018A_duihuaA',
           style: 8, title: '陶老对话', textAnimationType: 'TextSingle', dialogType: 'HalfScreen', isBubbleColor: true,
           sections: [
             {

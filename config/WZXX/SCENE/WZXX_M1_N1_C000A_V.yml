@@ -2095,6 +2095,10 @@ scenes: [
     maps: [
       {
         id: 'C000A_V_MAP_0_0',
+        # images: {
+        #   small: '1',
+        #   big: "100"
+        # },
         data: [
           { 
           point: [0, -4], title: '城门', 

@@ -50,10 +50,7 @@ scenes: [
            title: "【去坊市中寻找】",dialogs: ['C0019A_1.1C'],
            icon: { id: 1, bindVar: 'biaoqianv1C' }, varsOn: ['biaoqianv1C']
           },
-          {
-           title: "【不寻找云云】",dialogs: ['C0019A_1.1D'],
-           icon: { id: 1, bindVar: 'biaoqianv1D' }, varsOn: ['biaoqianv1D']
-          },
+          
         ],
       },
      
