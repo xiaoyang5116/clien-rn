@@ -48,7 +48,9 @@ const FullSingle = props => {
                             }
                             fontSize={20}
                             type={textAnimationType}
-                            style={theme.contentColor3}>
+                            style={theme.contentColor3}
+                            isShowAllContent={currentIndex === index ? false : true}
+                        >
                             {item}
                         </TextAnimation>
                     </View>
@@ -117,7 +119,7 @@ const FullSingle = props => {
                                                 : '60%'
                                             : '100%',
                                 }}
-                                onLayout={()=>{
+                                onLayout={() => {
                                     refFlatList.current.scrollToEnd({ animated: true });
                                 }}
                             >
