@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z2C10']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z2C10Z'] }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z2C10']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z2C10FZ'] }, 
     { header: '第十章 嫁接' },
     { world: { name: '灵修界' } },
 ]
