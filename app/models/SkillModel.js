@@ -5,7 +5,7 @@ import EventListeners from "../utils/EventListeners";
 import Skill from './skill/Skill';
 import Buff from './skill/Buff';
 
-import { GetSkillDataApi } from '../services/GetSkillDataApi';
+import { GetSkillDataApi,GetSkillConfigDataApi } from '../services/GetSkillDataApi';
 import { GetBuffDataApi } from '../services/GetBuffDataApi';
 
 export default {
@@ -29,7 +29,14 @@ export default {
     *reload({ }, { call, put, select }) {
       const skillState = yield select(state => state.SkillModel);
       const buffsConfig = yield call(GetBuffDataApi);
-      const skillsConfig = yield call(GetSkillDataApi);
+      const { skill_list } = yield call(GetSkillConfigDataApi)
+      let skillsConfig = {
+        skills: []
+      }
+      for (let key in skill_list) {
+        const { skills } = yield call(GetSkillDataApi, skill_list[key]);
+        skillsConfig.skills.push(...skills)
+      }
 
       if (skillsConfig != null) {
         skillState.__data.skillsConfig.length = 0;
