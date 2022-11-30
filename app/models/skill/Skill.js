@@ -181,6 +181,9 @@ import { formula_expr } from './formula';
         }
 
         eval(expr);
+        
+        // 添加尾数正负变动5（随机化5乘以位数再乘位数）
+        damage = lo.random(-5,5) + damage
 
         // 暴击
         if (hasDamage && (e.crit_rate != undefined) && (e.crit_add != undefined)) {
