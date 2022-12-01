@@ -216,6 +216,24 @@ import { formula_expr } from './formula';
           });
           attacker.buffs = lo.filter(attacker.buffs, (e) => (e.getRound() > 0));
         }
+
+        // 技能消耗道具加血
+        const consumeList = this.getConsume()
+        if(lo.isArray(consumeList)){
+          for (let i = 0; i < consumeList.length; i++) {
+            const item = consumeList[i];
+            if(item.props != undefined && item.usePropsId != undefined){
+              const propConfig =  item.props.find(f => f.propId === item.usePropsId)
+              if(propConfig.hp != undefined && propConfig.hp > 0){
+                result.hp += Number(propConfig.hp)
+              }
+              if(propConfig.mp != undefined && propConfig.mp > 0){
+                result.mp += Number(propConfig.mp)
+              }
+            }
+          }
+        }
+
         return result;
       }
     }

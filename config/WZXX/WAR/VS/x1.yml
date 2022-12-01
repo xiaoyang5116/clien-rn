@@ -9,7 +9,7 @@ challenge: {
     myself: {
         uid: 1, 
         userName: '李森炎', 
-        skillIds: [1, 2, 4],
+        skillIds: [1, 2, 4, 6],
         attrs: [
           { key: 'hp', value: 2000 },
           { key: 'mp', value: 500 },
