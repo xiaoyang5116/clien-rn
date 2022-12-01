@@ -205,7 +205,7 @@ import { formula_expr } from './formula';
         // 计算伤害时仅用对象副本
         const newAttacker = lo.cloneDeep(attacker);
         const newDefender = lo.cloneDeep(defender);
-        const result = this.onDamage(newTarget(newAttacker), newTarget(newDefender));
+        const result = this.onDamage(newAttacker, newDefender);
         
         // BUFF回合数减少
         if (attacker.buffs != undefined && attacker.buffs.length > 0) {

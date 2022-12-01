@@ -102,10 +102,17 @@ export default {
               if (lo.isArray(consumeList)) {
                 for (let i = 0; i < consumeList.length; i++) {
                   const item = consumeList[i];
-                  if (item.mp != undefined && item.mp > 0  && attacker.attrs.mp > 0) { // 扣除魔法
+                   // 扣除魔法
+                  if (item.mp != undefined && item.mp > 0  && attacker.attrs.mp > 0) {
                     attacker.attrs.mp -= item.mp;
                     isReleaseConsumeEnough = (attacker.attrs.mp >= 0) ? true : false;
                     attacker.attrs.mp = (attacker.attrs.mp >= 0) ? attacker.attrs.mp : 0;
+                  }
+                  // 扣血
+                  if (item.hp != undefined && item.hp > 0  && attacker.attrs.hp > 0) {
+                    attacker.attrs.hp -= item.hp;
+                    isReleaseConsumeEnough = (attacker.attrs.hp >= 0) ? true : false;
+                    attacker.attrs.hp = (attacker.attrs.mp >= 0) ? attacker.attrs.hp : 0;
                   }
                   // 消耗道具
                   if(item.props != undefined && lo.isArray(item.props) && attacker.attrs.hp < Number(attacker.attrs._hp *0.8)){

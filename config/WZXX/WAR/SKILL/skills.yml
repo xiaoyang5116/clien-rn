@@ -27,6 +27,7 @@ skills: [
       # 技能消耗
       consume: [
          { mp: 20 },
+         { hp: 20 },
       ],
 
       # 影响公式
@@ -226,6 +227,42 @@ skills: [
 
       # 影响公式
       actions: [
+      ],
+
+      # 效果列表
+      effects: [],
+   },
+   {
+      # 技能唯一ID 
+      id: 7,
+
+      # 技能等级
+      level: 1,
+
+      # 图标ID
+      iconId: 1,
+
+      # 技能名称
+      name: '斩杀',
+
+      # 描述
+      desc: '',
+
+      # 蓄力时间
+      xuLiMillis: 500,
+
+      # 冷却时间
+      cdMillis: 1000,
+
+      # 技能消耗
+      consume: [
+         { mp: 20 },
+         { hp: 20 },
+      ],
+
+      # 影响公式
+      actions: [
+         { target: 'ME', hit_rate: 100, formula: '伤害 = D_hp * 0.5' }
       ],
 
       # 效果列表

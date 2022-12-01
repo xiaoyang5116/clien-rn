@@ -21,6 +21,13 @@ function arrayObjectProxy(obj) {
     });
 }
 
+function arrToObject (arr) {
+    return arr.reduce((pre, current) => {
+        pre[current.key] = current.value
+        return pre
+    }, {});
+}
+
 // 生成战斗目标代理对象
 export function newTarget(obj) {
     if (!lo.isObject(obj))
@@ -31,7 +38,7 @@ export function newTarget(obj) {
     if(lo.isArray(clone.attrs)){
         // 属性key 中文 转换 英文
         const transformAttrs = clone.attrs.map(item=> getAttributeEnglishName(item.key) != undefined ? {...item,key: getAttributeEnglishName(item.key)} : item )
-        clone.attrs = arrayObjectProxy({ items: transformAttrs });
+        clone.attrs = arrToObject(transformAttrs)
     }else{
         clone.attrs = arrayObjectProxy({ items: [] });
     }
