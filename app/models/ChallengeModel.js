@@ -95,6 +95,57 @@ export default {
           if (skill.isXunLiCompleted(now)) {
             // 释放技能
             if (!skill.isRelease()) {
+              // 技能释放消耗充足
+              let isReleaseConsumeEnough = true
+              // 技能消耗
+              const consumeList = skill.getConsume();
+              if (lo.isArray(consumeList)) {
+                for (let i = 0; i < consumeList.length; i++) {
+                  const item = consumeList[i];
+                   // 扣除魔法
+                  if (item.mp != undefined && item.mp > 0  && attacker.attrs.mp > 0) {
+                    attacker.attrs.mp -= item.mp;
+                    isReleaseConsumeEnough = (attacker.attrs.mp >= 0) ? true : false;
+                    attacker.attrs.mp = (attacker.attrs.mp >= 0) ? attacker.attrs.mp : 0;
+                  }
+                  // 扣血
+                  if (item.hp != undefined && item.hp > 0  && attacker.attrs.hp > 0) {
+                    attacker.attrs.hp -= item.hp;
+                    isReleaseConsumeEnough = (attacker.attrs.hp >= 0) ? true : false;
+                    attacker.attrs.hp = (attacker.attrs.mp >= 0) ? attacker.attrs.hp : 0;
+                  }
+                  // 消耗道具
+                  if(item.props != undefined && lo.isArray(item.props) && attacker.attrs.hp < Number(attacker.attrs._hp *0.8)){
+                    let isHaveProp = false
+                    for (let p = 0; p < item.props.length; p++) {
+                      const prop = item.props[p]
+                      const propNum = yield put.resolve(action('PropsModel/getPropNum')({ propId: prop.propId }));
+                      if (propNum > 0) {
+                        item.usePropsId = prop.propId
+                        yield put.resolve(action('PropsModel/use')({ propId: prop.propId, num: 1, quiet: true }));
+                        isHaveProp = true
+                        break;
+                      }
+                    }
+                    isReleaseConsumeEnough = isHaveProp ? true : false;
+                    if(isHaveProp == false){
+                      item.usePropsId = undefined
+                    }
+                  }
+                  // 跳过道具
+                  if(item.props != undefined && lo.isArray(item.props) && attacker.attrs.hp > Number(attacker.attrs._hp *0.8)){
+                    isReleaseConsumeEnough = false
+                  }
+                }
+              }
+
+              // 技能不满足消耗时，技能进入cd 和 蓄力
+              if(!isReleaseConsumeEnough){
+                skill.startCD(now);
+                skill.startXuLi(now);
+                continue
+              }
+
               const result = skill.apply(attacker, defender);
               const { damage, hp, mp } = result;
 
@@ -123,16 +174,6 @@ export default {
               }
 
               const colorSkillName = (skill.getId() > 1) ? "<span style='color:#ff2600'>{0}</span>".format(skill.getName()) : skill.getName();
-              const consumeList = skill.getConsume();
-              if (lo.isArray(consumeList)) {
-                for (let i = 0; i < consumeList.length; i++) {
-                  const item = consumeList[i];
-                  if (item.mp != undefined && item.mp > 0) { // 扣除魔法
-                    attacker.attrs.mp -= item.mp;
-                    attacker.attrs.mp = (attacker.attrs.mp >= 0) ? attacker.attrs.mp : 0;
-                  }
-                }
-              }
 
               let msg = '';
               let validDamage = 0;

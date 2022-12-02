@@ -10,10 +10,13 @@ const EXPRESSIONS = [
     ['A_法术攻击',  "attacker.attrs.magicAttack"],
     ['A_物理防御',  "attacker.attrs.physicalDefense"],
     ['A_法术防御',  "attacker.attrs.magicDefense"],
+    ['A_hp',  "attacker.attrs.hp"],
+
     ['D_物理攻击',  "defender.attrs.physicalAttack"],
     ['D_法术攻击',  "defender.attrs.magicAttack"],
     ['D_物理防御',  "defender.attrs.physicalDefense"],
     ['D_法术防御',  "defender.attrs.magicDefense"],
+    ['D_hp',  "defender.attrs.hp"],
 ];
 
 export function formula_expr(expr) {

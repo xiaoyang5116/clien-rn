@@ -1,4 +1,6 @@
 import lo from 'lodash';
+import { getAttributeChineseName,getAttributeEnglishName } from '../../utils/AttributeUtils';
+
 
 // 将属性数组的访问变换为对象属性访问 obj['xxx'] => a.xxx
 function arrayObjectProxy(obj) {
@@ -19,13 +21,28 @@ function arrayObjectProxy(obj) {
     });
 }
 
+function arrToObject (arr) {
+    return arr.reduce((pre, current) => {
+        pre[current.key] = current.value
+        return pre
+    }, {});
+}
+
 // 生成战斗目标代理对象
 export function newTarget(obj) {
     if (!lo.isObject(obj))
         return obj;
 
     const clone = lo.cloneDeep(obj);
-    clone.attrs = arrayObjectProxy({ items: lo.isArray(clone.attrs) ? clone.attrs : [] });
+
+    if(lo.isArray(clone.attrs)){
+        // 属性key 中文 转换 英文
+        const transformAttrs = clone.attrs.map(item=> getAttributeEnglishName(item.key) != undefined ? {...item,key: getAttributeEnglishName(item.key)} : item )
+        clone.attrs = arrToObject(transformAttrs)
+    }else{
+        clone.attrs = arrayObjectProxy({ items: [] });
+    }
+    
 
     const proxy = new Proxy(clone, {
         get: function(target, propKey) {

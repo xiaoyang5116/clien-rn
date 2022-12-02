@@ -181,6 +181,9 @@ import { formula_expr } from './formula';
         }
 
         eval(expr);
+        
+        // 添加尾数正负变动5（随机化5乘以位数再乘位数）
+        damage = lo.random(-5,5) + damage
 
         // 暴击
         if (hasDamage && (e.crit_rate != undefined) && (e.crit_add != undefined)) {
@@ -202,7 +205,7 @@ import { formula_expr } from './formula';
         // 计算伤害时仅用对象副本
         const newAttacker = lo.cloneDeep(attacker);
         const newDefender = lo.cloneDeep(defender);
-        const result = this.onDamage(newTarget(newAttacker), newTarget(newDefender));
+        const result = this.onDamage(newAttacker, newDefender);
         
         // BUFF回合数减少
         if (attacker.buffs != undefined && attacker.buffs.length > 0) {
@@ -213,6 +216,24 @@ import { formula_expr } from './formula';
           });
           attacker.buffs = lo.filter(attacker.buffs, (e) => (e.getRound() > 0));
         }
+
+        // 技能消耗道具加血
+        const consumeList = this.getConsume()
+        if(lo.isArray(consumeList)){
+          for (let i = 0; i < consumeList.length; i++) {
+            const item = consumeList[i];
+            if(item.props != undefined && item.usePropsId != undefined){
+              const propConfig =  item.props.find(f => f.propId === item.usePropsId)
+              if(propConfig.hp != undefined && propConfig.hp > 0){
+                result.hp += Number(propConfig.hp)
+              }
+              if(propConfig.mp != undefined && propConfig.mp > 0){
+                result.mp += Number(propConfig.mp)
+              }
+            }
+          }
+        }
+
         return result;
       }
     }
