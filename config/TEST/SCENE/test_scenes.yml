@@ -38,6 +38,9 @@ scenes: [
       {
         id: 'c0', desc: '配置测试', 
         options: [
+          { title: "没有style的确认取消-dialog", dialogs: ['p12']},
+          { title: "1B-dialog", dialogs: ['p11']},
+          { title: "1A-dialog", dialogs: ['p10']},
           { title: '5号背景对话框', dialogs: ['p9']},
           { title: '半身对话', dialogs: ['p8']},
           { title: '多人对话', dialogs: ['p7']},
@@ -200,7 +203,21 @@ scenes: [
                 ],
             },
         ],
-      }
+      },
+      {
+        id: 'p10',
+        style: "1A",
+        title: '情报获得',
+        content: '获得线索之后才可开启后续剧情',
+      },
+      {
+        id: 'p11',
+        style: "1B",
+        title: '情报获得',
+        content: '获得线索之后才可开启后续剧情',
+      },
+      { id: 'p12', title: '乞丐李大哥：', content: '平时讨乞的位置是在附近的东街市，我们一起走',},
+
     ],
   },
 ]
