@@ -600,21 +600,69 @@ directory: [
         },
 
         {
-        point: [0, -28], title: '第二十八章 与鸡斗，其乐无穷', 
+        point: [0, -28], title: '第二十九章 本钱', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C29' ,
         toChapter: 'WZXX_M1_N1_Z2C29', links: [[0, -29]] 
         },
 
         {
-        point: [0, -29], title: '第二十八章 与鸡斗，其乐无穷', 
+        point: [0, -29], title: '第三十章 测灵盘', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C30' ,
-        toChapter: 'WZXX_M1_N1_Z2C30', links: [[]] 
+        toChapter: 'WZXX_M1_N1_Z2C30', links: [[0, -30]] 
         },
 
         {
-        point: [0, -30], title: '第二十八章 与鸡斗，其乐无穷', 
+        point: [0, -30], title: '第三十一章 测试结果', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C31' ,
-        toChapter: 'WZXX_M1_N1_Z2C31', links: [[]] 
+        toChapter: 'WZXX_M1_N1_Z2C31', links: [[0, -31]] 
+        },
+
+        {
+        point: [0, -31], title: '第三十二章 再遇白书生', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C32' ,
+        toChapter: 'WZXX_M1_N1_Z2C32', links: [[0, -32]] 
+        },
+
+        {
+        point: [0, -32], title: '第三十三章 离奇线索', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C33' ,
+        toChapter: 'WZXX_M1_N1_Z2C33', links: [[0, -33]] 
+        },
+
+        {
+        point: [0, -33], title: '第三十四章 拍卖会', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C34' ,
+        toChapter: 'WZXX_M1_N1_Z2C34', links: [[0, -34]] 
+        },
+
+        {
+        point: [0, -34], title: '第三十五章 御剑飞行', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C35' ,
+        toChapter: 'WZXX_M1_N1_Z2C35', links: [[0, -35]] 
+        },
+
+        {
+        point: [0, -35], title: '第三十六章 奇怪的小女孩', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C36' ,
+        toChapter: 'WZXX_M1_N1_Z2C36', links: [[0, -36]] 
+        },
+
+        {
+        point: [0, -36], title: '第三十七章 战斗', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C37' ,
+        toChapter: 'WZXX_M1_N1_Z2C37', links: [[0, -37]] 
+        },
+
+        {
+        point: [0, -37], title: '第三十八章 云舟', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C38' ,
+        toChapter: 'WZXX_M1_N1_Z2C38', links: [[0, -38]] 
+        },
+
+        {
+        point: [0, -38], title: '第三十九章 保命', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C39' ,
+        toChapter: 'WZXX_M1_N1_Z2C39', links: [[]] 
         },
 
 
