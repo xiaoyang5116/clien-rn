@@ -596,7 +596,25 @@ directory: [
         {
         point: [0, -27], title: '第二十八章 与鸡斗，其乐无穷', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C28' ,
-        toChapter: 'WZXX_M1_N1_Z2C28', links: [[]] 
+        toChapter: 'WZXX_M1_N1_Z2C28', links: [[0, -28]] 
+        },
+
+        {
+        point: [0, -28], title: '第二十八章 与鸡斗，其乐无穷', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C29' ,
+        toChapter: 'WZXX_M1_N1_Z2C29', links: [[0, -29]] 
+        },
+
+        {
+        point: [0, -29], title: '第二十八章 与鸡斗，其乐无穷', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C30' ,
+        toChapter: 'WZXX_M1_N1_Z2C30', links: [[]] 
+        },
+
+        {
+        point: [0, -30], title: '第二十八章 与鸡斗，其乐无穷', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C31' ,
+        toChapter: 'WZXX_M1_N1_Z2C31', links: [[]] 
         },
 
 

@@ -56,21 +56,21 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000A_V', desc: '购买簪子', 
         options: [ 
-          { title: "【去买簪子】",toScene: 'C000A_V_MAP_2_-1',  varsOn: ['v_icon_100'] ,sounds: [{ soundId: 'BGM_C_0001',}],},
+          { title: "【去买簪子】",toScene: 'C000A_V_MAP_2_-1',  varsOn: ['v_icon_100'] ,sounds: [{ soundId: 'BGM_C_0004',}],},
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C000A_V1', desc: '去打听情报', 
         options: [ 
-          { title: "【寻找药材】",toScene: 'C000A_V2_MAP_2_2', varsOn: ['v_icon_103'] ,sounds: [{ soundId: 'BGM_C_0001',}],},
+          { title: "【寻找药材】",toScene: 'C000A_V2_MAP_2_2', varsOn: ['v_icon_103'] ,sounds: [{ soundId: 'BGM_C_0004',}],},
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C000A_V2', desc: '原路回家', 
         options: [ 
-          { title: "【继续原路回家】",toScene: 'C000A_V3_MAP_-1_0',sounds: [{ soundId: 'BGM_C_0001',}],  },
+          { title: "【继续原路回家】",toScene: 'C000A_V3_MAP_-1_0',sounds: [{ soundId: 'BGM_C_0004',}],  },
         ],
       },
         ],
@@ -3372,7 +3372,7 @@ scenes: [
       { 
         id: 'C1', desc: "李森炎庆幸自己找到了最合适的乔装\n一路畅行无阻，也没有再遇到暗杀\n终于，他成功看到李家的大门\n但是，那一刹那，他却浑身一震！",
         options: [ 
-         { title: '怎么会这样！', toChapter: "WZXX_M1_N1_C002_[N8]" ,icon: { id: 11 }}, 
+         { title: '怎么会这样！', toChapter: "WZXX_M1_N1_C002_[N8]" ,icon: { id: 11 },sounds: [{ stopBGM: true }],}, 
         
          
         ],

@@ -6,6 +6,7 @@ export const SOUND_RESOURCES = [
     { id: 'BGM_C_0001', source: require('../../../assets/sound/BGM/BGM_C_0001.mp3') },
     { id: 'BGM_C_0002', source: require('../../../assets/sound/BGM/BGM_C_0002.mp3') },
     { id: 'BGM_C_0003', source: require('../../../assets/sound/BGM/BGM_C_0003.mp3') },
+    { id: 'BGM_C_0004', source: require('../../../assets/sound/BGM/BGM_C_0004.mp3') },
     { id: 'BGM_Q_0001', source: require('../../../assets/sound/BGM/BGM_Q_0001.mp3') },
     { id: 'BGM_Q_0002', source: require('../../../assets/sound/BGM/BGM_Q_0002.mp3') },
     { id: 'BGM_Q_0003', source: require('../../../assets/sound/BGM/BGM_Q_0003.mp3') },
