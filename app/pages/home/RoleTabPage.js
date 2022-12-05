@@ -26,6 +26,7 @@ import ImageCapInset from 'react-native-image-capinsets-next';
 import EquippedSideBar from '../../components/equips/EquippedSideBar';
 import XiuXingTabPage from './XiuXingTabPage';
 import Transitions from '../../components/transition';
+import GongFa from '../../components/gongFa';
 
 const AttrsPage = (props) => {
     return (
@@ -212,13 +213,17 @@ const FuncButtons = (props) => {
         </Transitions>);
     }
 
+    const openGongFa = () => {
+        GongFa.show();
+    }
+
     return (
     <View style={fbStyles.viewContainer}>
         <View style={fbStyles.box}>
             <TextButton style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'修行'} onPress={() => openXiuXing()} />
         </View>
         <View style={fbStyles.box}>
-            <TextButton disabled={true} style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'解锁'} />
+            <TextButton style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} onPress={openGongFa} title={'功法'} />
         </View>
         <View style={fbStyles.box}>
             <TextButton disabled={true} style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'解锁'} />
