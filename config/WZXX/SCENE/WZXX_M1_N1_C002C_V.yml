@@ -388,12 +388,12 @@ scenes: [
           { key: 'P3', content: ['拿起书，李森炎一个翻滚，躲在书房的床椅下面','说时迟，那时快，书房的门被打开',[{ sounds: [{ soundId: 'SE_UE_0008',}] }],'然后似乎是看到没有人，书房的门又被关上了','李森炎不敢走出房间，先翻了眼刚才拿到的书','这时候才能仔细看到书名',
           '《白城？？大全》', [{games: {id: 4, imgName: "白城笑话大全"}}],'仔细看，原本看不到的字也能看到了','竟然是《白城笑话大全》！','怎么办？',],
           btn: [{title: '苦中作乐，当然是读来看看',tokey: "P4", icon: { id: 6, bindVar: 'biaoqianv31' }, varsOn: ['biaoqianv31'] },
-          {title: '考虑其他的书，再来',tokey: "P1", icon: { id: 1, bindVar: 'biaoqianv32' }, varsOn: ['biaoqianv32']},
+          {title: '考虑其他的书，再来',tokey: "P1", icon: { id: 6, bindVar: 'biaoqianv32' }, varsOn: ['biaoqianv32']},
           ]},
 
           { key: 'P4', content: ['这书有很多独立的章节，每个章节都是小故事','随手打开一页',[{ sounds: [{ soundId: 'SE_UE_0013',}] }],'这说的是白城的穷书生想娶大小姐，然后求爱99次全失败的故事','笑话吗？这是悲剧吧','继续一看，这笑点有点低，完全没有想笑的感觉','你准备',],
           btn: [{title: '继续翻页',tokey: "P5", icon: { id: 6, bindVar: 'biaoqianv33' }, varsOn: ['biaoqianv33'] },
-          {title: '考虑其他的书，再来',tokey: "P1", icon: { id: 1, bindVar: 'biaoqianv34' }, varsOn: ['biaoqianv34']},   ]},
+          {title: '考虑其他的书，再来',tokey: "P1", icon: { id: 6, bindVar: 'biaoqianv34' }, varsOn: ['biaoqianv34']},   ]},
 
           { key: 'P5', content: ['好像','这书也不是那么差劲','不行了','好想笑，憋不住了','……',],
           btn: [{title: '扑哧',dialogs: ['gameover01'], icon: { id: 6, bindVar: 'biaoqianv35' }, varsOn: ['biaoqianv35'] },

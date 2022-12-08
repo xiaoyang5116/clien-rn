@@ -34,15 +34,15 @@ scenes: [
         options: [ 
           { 
           title: "【大声呼救，叫云云】",dialogs: ['C0016_1.1A'],
-          icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
+          icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
           },
           { 
           title: "【认命，坐在桶里】",dialogs: ['C0016_1.1B'],
-          icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
+          icon: { id: 7, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
           },
           { 
           title: "【使出浑身解数爬出桶】",dialogs: ['C0016_1.1C'],
-          icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
+          icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
           },
         ],
       },

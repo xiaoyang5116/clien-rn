@@ -90,14 +90,6 @@ scenes: [
       { id: "v_icon_105", min: 0, max: 1 },
       #第五天 结束回家的变量
       { id: "jieshu_5", min: 0, max: 1 },
-      
-
-
-
-
-
-
-
 
       ],
 
@@ -337,7 +329,7 @@ scenes: [
         {
         title: '【小宇宙项目进行中……】', nextChat: 'C0B',
         missionTime: { missionId: 'C000Fshijian', alterSeconds: 10800 } , 
-        dropIds: [ 'WZXX_M1_N1_C000F2_V_drop3',], games: {id: 7},
+        dropIds: ['WZXX_M1_N1_C000F2_V_drop3',], games: {id: 7},
         },
         ],
       },
@@ -2120,7 +2112,7 @@ scenes: [
         id: 'C1', desc: "这边也逛过了\n依旧有很多学生和家长前来参观\n不过对你来说没什么新奇的",
         options: [ 
          { title: '【散散步就离开】',nextChat: 'C2' ,missionTime: { missionId: 'C000F2shijian', alterSeconds: 7200 }}, 
-         { title: '【离开>>>】',nextChat: 'C3' }, 
+         { title: '【离开>>>】',nextChat: 'C0' }, 
         ],
       },
 

@@ -36,19 +36,19 @@ scenes: [
         options: [ 
           { 
           title: "【我不记得了】",dialogs: ['C003_1.1A'], 
-          icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
+          icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
           },
           { 
           title: "【随便说一个】",dialogs: ['C003_1.1B'] , 
-          icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
+          icon: { id: 7, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
           },
           { 
           title: "【运用废话文学糊弄过去】",dialogs: ['C003_1.1C'] , 
-          icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
+          icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
           },
           { 
           title: "【岔开话题说别的】",dialogs: ['C003_1.1D'] , 
-          icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
+          icon: { id: 6, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
           }
         ],
       },
@@ -80,13 +80,13 @@ scenes: [
           '根据白月光的表情，猜猜白月光到是在什么样的情况记住原身的？','你会选择以下哪个行动————',],
           btn: [
           {title: '原身是白月光的粉丝头子', dialogs: ['C003_1.2A'] ,
-          icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']  },
+          icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']  },
           {title: '难道是原身曾英雄救美',  dialogs: ['C003_1.2B'] ,dropIds: [ 'WZXX_M1_N1_C003_V_Vdrop1','WZXX_M1_N1_C003_V_Vdrop3',],
-          icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']  },
+          icon: { id: 7, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']  },
           {title: '大胆点，或许是有感情渊源？', dialogs: ['C003_1.2C'] ,
-          icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] },
+          icon: { id: 6, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] },
           {title: '是否与白家李家家族关系有关？',  dialogs: ['C003_1.2D'] ,dropIds: [ 'WZXX_M1_N1_C003_V_Vdrop2'],
-          icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8'] },
+          icon: { id: 6, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8'] },
           ]},
            ]  
         },

@@ -65,8 +65,8 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0017_V2', desc: '选择', 
         options: [ 
-          { title: "【忍气吞声，算了】",dialogs: ['C0017A_suanleA'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
-          { title: "【向陶老讨要个说法】",toChapter: "WZXX_M1_N1_C017_[N2]", icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
+          { title: "【忍气吞声，算了】",dialogs: ['C0017A_suanleA'], icon: { id: 7, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+          { title: "【向陶老讨要个说法】",toChapter: "WZXX_M1_N1_C017_[N2]", icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
       
         ],
       },

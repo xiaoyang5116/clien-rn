@@ -1865,7 +1865,7 @@ scenes: [
     #横图显示
     sceneImage: 'BGT_10',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000C_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -1896,7 +1896,6 @@ scenes: [
           { title: '【打开电脑工作】', toScene: 'C000C_V2_MAP_-2_4',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv1' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv1']},
           { title: '【上床躺一会儿】', toScene: 'C000C_V2_MAP_-2_5',  icon: { id: 1, bindVar: 'WZXX_M1_N1_C000C_V/biaoqianv2' }, varsOn: ['WZXX_M1_N1_C000C_V/biaoqianv2']},
           # { title: '【从冰箱里拿点吃的】', toScene: 'C000C_V2_MAP_0_6'},
-      
         ],
       },
     ],

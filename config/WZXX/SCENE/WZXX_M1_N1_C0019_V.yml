@@ -15,6 +15,9 @@ scenes: [
         { id: "biaoqianv1B", min: 0, max: 1 } ,
         { id: "biaoqianv1C", min: 0, max: 1 } ,
         { id: "biaoqianv1D", min: 0, max: 1 } ,
+        { id: "biaoqianv5", min: 0, max: 1 } ,
+        { id: "biaoqianv6", min: 0, max: 1 } ,
+        { id: "biaoqianv7", min: 0, max: 1 } ,
       ],
       # 动作定义
       actions: [],
@@ -40,15 +43,15 @@ scenes: [
         options: [ 
           {
            title: "【去云云房间找】",dialogs: ['C0019A_1.1A'],
-           icon: { id: 1, bindVar: 'biaoqianv1A' }, varsOn: ['biaoqianv1A']
+           icon: { id: 6, bindVar: 'biaoqianv1A' }, varsOn: ['biaoqianv1A']
           },
           {
            title: "【去后院找】",dialogs: ['C0019A_1.1B'],
-           icon: { id: 1, bindVar: 'biaoqianv1B' }, varsOn: ['biaoqianv1B']
+           icon: { id: 7, bindVar: 'biaoqianv1B' }, varsOn: ['biaoqianv1B']
           },
           {
            title: "【去坊市中寻找】",dialogs: ['C0019A_1.1C'],
-           icon: { id: 1, bindVar: 'biaoqianv1C' }, varsOn: ['biaoqianv1C']
+           icon: { id: 7, bindVar: 'biaoqianv1C' }, varsOn: ['biaoqianv1C']
           },
           
         ],
@@ -104,9 +107,9 @@ scenes: [
 
         { key: 'Y2', content: ['“她的狗有疯病，看见我就想过来咬一口，被我揍了一顿，然后它的主人追着我不放了。”','那女人听到云云的话，更是气极：“我的灵犬才没有什么疯病呢！”','李森炎一时语塞，他看着云云，脑海中想象出那种画面：“有没有一种可能，那狗可能真的没有什么疯病，只是把你当成棉花糖了。”','云云：“……”',
         '“你看，还真是。”','“不管怎样，它想咬我，那就是它的不对。”','李森炎一想也对，“你只不过是正当防卫。”','这时候女子稍微冷静下来一点，目光看向李森炎，冷声说道：“小子，你的坐骑弄伤了我的灵宠，现在我要你给我个说法！',],
-        btn: [{title: '正经讲道理', dialogs: ['C0019A_1.2A'],},
-        {title: '直接将事儿挑明',dialogs: ['C0019A_1.2B'],},        
-        {title: '气势不能输',dialogs: ['C0019A_1.2C'],},
+        btn: [{title: '正经讲道理', dialogs: ['C0019A_1.2A'],icon: { id: 7, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},
+        {title: '直接将事儿挑明',dialogs: ['C0019A_1.2B'],icon: { id: 7, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},        
+        {title: '气势不能输',dialogs: ['C0019A_1.2C'],icon: { id: 7, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']},
         ]},
            ],
         },

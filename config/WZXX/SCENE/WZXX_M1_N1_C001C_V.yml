@@ -385,7 +385,7 @@ scenes: [
       { 
       id: 'C5', desc: "李森炎小心翼翼地走着\n突然看见杀手挥剑向上砍去\n嘴里还喊道：“谁放的暗器？”\n结果那“暗器”粘在剑上了\n杀手定睛一看，是鸟屎\n李森炎：“噗……”",
       options: [ 
-      { title: '【偷笑】', dialogs: ['gameover02'], icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']}, 
+      { title: '【偷笑】', dialogs: ['gameover02'], icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']}, 
       { title: '【憋笑】', nextChat: 'C6',   icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] }, 
       { title: '【不笑】', nextChat: 'C6',   icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8'] }, 
       ],

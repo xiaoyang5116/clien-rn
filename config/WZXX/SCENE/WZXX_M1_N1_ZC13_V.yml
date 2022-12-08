@@ -30,12 +30,12 @@ scenes: [
         options: [ 
           { 
           title: "【我用法术来进攻】",dialogs: ['ZC13A_1.1A'],
-           icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
+           icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
           },
 
            { 
           title: "【帮助白书生来操作弓弩】",toChapter: "WZXX_M1_N1_Z2C14",
-           icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
+           icon: { id: 7, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
           },
         ],
       },

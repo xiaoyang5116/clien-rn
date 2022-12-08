@@ -34,15 +34,16 @@ scenes: [
         options: [ 
           { 
           title: "【回溯五秒】",dialogs: ['C007A_1.1A'],
-          icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
+          icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
           },
           { 
           title: "【回溯十秒】",dialogs: ['C007A_1.1B'],
-          icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
+          icon: { id: 7, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
           },
+          #需要设置使用灵石才可开启
           {
            title: "【回溯十五秒】",dialogs: ['C007A_1.1C'],
-          icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] 
+          icon: { id: 7, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] 
           },
         ],
       },
@@ -69,11 +70,11 @@ scenes: [
           '“听到了。”','“你好像有一肚子怨气。”','可不是吗？李森炎怨念满满，却也只能说，“没有。”','“那好，我问你，如果有一天你发现自己根本敌不过那些魔头，你会怎么办？”',
           ],
           btn: [{title: '和魔头斗争到底', dialogs: ['C007A_1.2A'],dropIds: [ 'WZXX_M1_N1_C007_V_drop1'],
-          icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
+          icon: { id: 6, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
           {title: '先韬光养晦，之后再战！', dialogs: ['C007A_1.2B'],dropIds: [ 'WZXX_M1_N1_C007_V_drop2'],
-          icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},
+          icon: { id: 7, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},
           {title: '得要群策群力，兵多将广', dialogs: ['C007A_1.2C'],dropIds: [ 'WZXX_M1_N1_C007_V_drop3'],
-          icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},]},
+          icon: { id: 7, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},]},
            ]  
         },
 
@@ -86,11 +87,11 @@ scenes: [
           '再来一次，一定想清楚再回答。','“我问你一个问题，如果有一天你发现自己根本敌不过那些魔头，你会怎么办？”',
           ],
           btn: [{title: '和魔头斗争到底', dialogs: ['C007A_1.2A'],
-          icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
+          icon: { id: 6, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
           {title: '先韬光养晦，之后再战！', dialogs: ['C007A_1.2B'],
-          icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},
+          icon: { id: 7, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},
           {title: '得要群策群力，兵多将广', dialogs: ['C007A_1.2C'],
-          icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},]},
+          icon: { id: 7, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']},]},
            ]  
         },
 
@@ -112,11 +113,11 @@ scenes: [
           { key: 'P3', content: ['这次死的也太冤了','含泪重选','……'
           ],
           btn: [{title: '和魔头斗争到底', dialogs: ['C007A_1.2A'],
-          icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
+          icon: { id: 6, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']},
           {title: '先韬光养晦，之后再战！', dialogs: ['C007A_1.2B'],
-          icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},
+          icon: { id: 7, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']},
           {title: '得要群策群力，兵多将广', dialogs: ['C007A_1.2C'],
-          icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']}
+          icon: { id: 7, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']}
           ]},
            ]  
         },

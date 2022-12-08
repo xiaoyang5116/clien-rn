@@ -62,23 +62,23 @@ scenes: [
                 btn: [
                 {
                 title: '赵掌柜，是你吗？',dialogs: ['C0051A_1.2A'],
-                icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
+                icon: { id: 6, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
                 },
                 {
                 title: '斗笠人，是你吗？',dialogs: ['C0051A_1.2B'],
-                icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
+                icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
                 },
                 {
                 title: '胖商人，是你吗？',dialogs: ['C0051A_1.2C'],
-                icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
+                icon: { id: 7, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
                 },
                 {
                 title: '白书生，是你吗？',dialogs: ['C0051A_1.2D'],
-                icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']
+                icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']
                 },
                 {
                 title: '夏姑娘，是你吗？',dialogs: ['C0051A_1.2E'],
-                icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']
+                icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']
                 },
                 ]
               },
@@ -95,23 +95,23 @@ scenes: [
                 btn: [
                 {
                 title: '赵掌柜，是你吗？',dialogs: ['C0051A_1.2A'],
-                icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
+                icon: { id: 7, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
                 },
                 {
                 title: '斗笠人，是你吗？',dialogs: ['C0051A_1.2B'],
-                icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
+                icon: { id: 7, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
                 },
                 {
                 title: '胖商人，是你吗？',dialogs: ['C0051A_1.2C'],
-                icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
+                icon: { id: 6, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
                 },
                 {
                 title: '白书生，是你吗？',dialogs: ['C0051A_1.2D'],
-                icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']
+                icon: { id: 7, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']
                 },
                 {
                 title: '夏姑娘，是你吗？',dialogs: ['C0051A_1.2E'],
-                icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']
+                icon: { id: 7, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']
                 },
                 ]
               },

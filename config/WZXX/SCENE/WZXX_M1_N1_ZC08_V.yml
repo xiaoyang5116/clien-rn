@@ -69,19 +69,19 @@ scenes: [
                 btn: [
                 {
                 title: '我们下降点高度',dialogs: ['C0048A_1.2A'],
-                icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
+                icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
                 },
                 {
                 title: '我们提升一点高度',dialogs: ['C0048A_1.2B'],
-                icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
+                icon: { id: 6, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
                 },
                 {
                 title: '要不降落地面看看',dialogs: ['C0048A_1.2C'],
-                icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']
+                icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']
                 },
                 {
                 title: '不管这些鸟，加速移动',dialogs: ['C0048A_1.2D'],
-                icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']
+                icon: { id: 7, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']
                 },]
               },
             ]  
