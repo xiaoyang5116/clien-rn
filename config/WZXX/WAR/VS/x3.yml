@@ -48,7 +48,7 @@ challenge: {
           { key: 'physicalAttack', value: 150 },
           { key: 'physicalDefense', value: 5 },
           { key: 'magicDefense', value: 5 },
-        ],
+        ], 
       },
       { 
         uid: 100002, 

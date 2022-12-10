@@ -36,6 +36,5 @@ challenge: {
           { key: 'magicDefense', value: 30 },
           ],
       },
-     
     ]
   }

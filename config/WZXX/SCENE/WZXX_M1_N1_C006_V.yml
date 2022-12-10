@@ -37,10 +37,25 @@ scenes: [
       },
 
       { 
+        id: 'WZXX_M1_N1_C006_V1A', desc: '进入战斗', 
+        options: [ 
+          { title: "【进入战斗】",challenge: 'x1',toChapter: "WZXX_M1_N1_C013_[N2]"},
+        ],
+      },
+
+      { 
         id: 'WZXX_M1_N1_C006_V1', desc: '吃还是不吃，这是一个问题', 
         options: [ 
           { title: "【吃下醒神丹】",dialogs: ['C006A_chiyaoA'],},
           { title: "【再忍一忍，晚点吃】",dialogs: ['C006A_buchiyaoB'], },
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C006_V2A', desc: '苏醒还是装睡', 
+        options: [ 
+          { title: "【再次进入战斗！】",challenge: 'x3' ,toChapter: "WZXX_M1_N1_C013_[N4]" },
+         
         ],
       },
 
@@ -51,6 +66,15 @@ scenes: [
          
         ],
       },
+
+      { 
+        id: 'WZXX_M1_N1_C006_V3', desc: '进入战斗', 
+        options: [ 
+          { title: "【进入战斗！】", challenge: 'x1'  },
+         
+        ],
+      },
+      
 
     
 
@@ -155,7 +179,7 @@ scenes: [
 
           { key: 'P2', content: ['李森炎迅速摸出醒神丹服下，瞬间感觉到一股清凉之意汇入脑海，精神力量瞬间暴涨！','当下自信心也爆棚，主动出击，反手抓住对方那乌泱泱的头发，用力一扯，直接将对方的头发从头皮上扯下来。','那阴灵发出一阵哀嚎，无脸再加上光头，就像脖子上顶着一个灯泡一样颇为滑稽','此时的阴灵跟见了鬼似的向后退缩，内心滋生恐惧',
           '这家伙，明明刚才没有那么厉害的，难道是在扮猪吃虎？','阴灵心生退却之意，但李森炎哪里会放过他？',],
-          btn: [{title: '追上去，干他！',toChapter: "WZXX_M1_N1_C013_[N2]",dropIds: [ 'WZXX_M1_N1_C006_V_Vdrop1'],}]},
+          btn: [{title: '追上去，干他！',challenge: 'x2' ,toChapter: "WZXX_M1_N1_C013_[N3]",dropIds: [ 'WZXX_M1_N1_C006_V_Vdrop1'],}]},
          
            ]  
         },
@@ -167,9 +191,9 @@ scenes: [
           sections: [
           { key: 'P3', content: ['李森炎迅速摸出醒神丹服下，瞬间感觉到一股清凉之意汇入脑海，精神力量瞬间暴涨！','当下自信心也爆棚，主动出击，反手抓住对方那乌泱泱的头发，用力一扯，直接将对方的头发从头皮上扯下来。','那阴灵发出一阵哀嚎，无脸再加上光头，就像脖子上顶着一个灯泡一样颇为滑稽','此时的阴灵跟见了鬼似的向后退缩，内心滋生恐惧',
           '这家伙，明明刚才没有那么厉害的，难道是在扮猪吃虎？','阴灵心生退却之意，但李森炎哪里会放过他？',],
-          btn: [{title: '追上去，干他！',toChapter: "WZXX_M1_N1_C013_[N2]",dropIds: ['WZXX_M1_N1_C006_V_Vdrop2'],}]},
-        ],
-    },
+          btn: [{title: '追上去，干他！',challenge: 'x2' ,toChapter: "WZXX_M1_N1_C013_[N3]",dropIds: ['WZXX_M1_N1_C006_V_Vdrop1'],}]},
+          ],
+          },
 
 
           #选项对话3

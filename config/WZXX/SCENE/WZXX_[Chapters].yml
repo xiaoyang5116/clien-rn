@@ -190,6 +190,12 @@ scenes: [
           { id: "WZXX_M1_N1_C013_[N2]",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C013_[N2]FZ",min: 0, max: 1 },
 
+          { id: "WZXX_M1_N1_C013_[N3]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C013_[N3]FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_C013_[N4]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_C013_[N4]FZ",min: 0, max: 1 },
+
           { id: "WZXX_M1_N1_C014_[N1]",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C014_[N1]FZ",min: 0, max: 1 },
 
