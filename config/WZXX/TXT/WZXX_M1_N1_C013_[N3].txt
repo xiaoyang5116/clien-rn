@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C013_[N3]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C013_[N3]FZ'] }, 
-    { header: '第十三章 三只阴灵' },
+    { header: '第十三章 杀意' },
      { world: { name: '灵修界' } },
 ]
 #END==========================================
