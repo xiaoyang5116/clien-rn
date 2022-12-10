@@ -675,12 +675,72 @@ directory: [
 
   {
     id: 3, 
-    title: '未开启',
-    map: [
-       { point: [0, 0], title: '现代地图测试',toChapter: 'WZXX_M1_N1_C1000', links: [[],[]] },
+    title: '《第三卷》',
+    map: 
+    [
+#       
+
+        {
+        point: [0, 0], title: '第一章 寻找药方 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C01' ,
+        toChapter: 'WZXX_M1_N1_Z3C01', links: [[0, -1]] 
+        },
+
+        {
+        point: [0, -1], title: '第二章 八苦地 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C02' ,
+        toChapter: 'WZXX_M1_N1_Z3C02', links: [[0, -2]] 
+        },
+
+        {
+        point: [0, -2], title: '第三章 采药 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C03' ,
+        toChapter: 'WZXX_M1_N1_Z3C03', links: [[0, -3]] 
+        },
+
+        {
+        point: [0, -3], title: '第四章 打斗 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C04' ,
+        toChapter: 'WZXX_M1_N1_Z3C04', links: [[0, -4]] 
+        },
+
+        {
+        point: [0, -4], title: '第五章 小偷 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C05' ,
+        toChapter: 'WZXX_M1_N1_Z3C05', links: [[0, -5]] 
+        },
+
+        {
+        point: [0, -5], title: '第六章 拍卖会 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C06' ,
+        toChapter: 'WZXX_M1_N1_Z3C06', links: [[0, -6]] 
+        },
+
+
+        {
+        point: [0, -6], title: '第七章 叫价 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C07' ,
+        toChapter: 'WZXX_M1_N1_Z3C07', links: [[0, -7]] 
+        },
+
+
+        {
+        point: [0, -7], title: '第八章 绛云镇 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C08' ,
+        toChapter: 'WZXX_M1_N1_Z3C08', links: [[0, -8]] 
+        },
+
+        {
+        point: [0, -8], title: '第九章 柳家 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C09' ,
+        toChapter: 'WZXX_M1_N1_Z3C09', links: [[]] 
+        },
+
     ]
+
   },
 
+  
   {
     id: 4, 
     title: '未开启',

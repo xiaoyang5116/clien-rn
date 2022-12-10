@@ -88,6 +88,8 @@ const _images = {
         { id: 2, img: require('../../assets/bg/lottery_bg.jpg') },
         { id: 3, img: require('../../assets/bg/BAIYUN_1080.webp') },
         { id: 4, img: require('../../assets/bg/bgDialog_clock.webp') },
+        { id: 5, img: require('../../assets/bg/bgfangshicanhai1.webp') },
+        { id: 6, img: require('../../assets/bg/bgfangshicanhai2.webp') },
     ],
     collectBackgroundImages: [
         { name: 'YanJiang', source: require('../../assets/collect/bg/YanJiang.png') },

@@ -1,0 +1,68 @@
+# ===========================================
+# 战斗配置
+# ===========================================
+challenge: {
+    # 战斗ID
+    id: 'x3',
+
+    myself: 
+      {
+        uid: 1, 
+        userName: '李森炎', 
+        skillIds: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+        attrs: [
+          { key: 'hp', value: 4000 },
+          { key: 'mp', value: 400 },
+          { key: 'speed', value: 0 },
+          { key: 'shield', value: 240 },
+          { key: 'physicalAttack', value: 400 },
+          { key: 'physicalDefense', value: 30 },
+          { key: 'magicDefense', value: 30 },
+        ],
+      },
+
+    enemies: [
+      { 
+        uid: 100000, 
+        userName: '阴灵一号', 
+        skillIds: [40031, 40032, 40031, 40032],
+        attrs: [
+          { key: 'hp', value: 4000 },
+          { key: 'mp', value: 100 },
+          { key: 'speed', value: 400 },
+          { key: 'shield', value: 60 },
+          { key: 'physicalAttack', value: 150 },
+          { key: 'physicalDefense', value: 5 },
+          { key: 'magicDefense', value: 5 },
+        ],
+      },
+      { 
+        uid: 100001, 
+        userName: '阴灵二号', 
+        skillIds: [40031, 40032, 40031, 40032, 40031, 40032],
+        attrs: [
+          { key: 'hp', value: 4000 },
+          { key: 'mp', value: 100 },
+          { key: 'speed', value: 400 },
+          { key: 'shield', value: 60 },
+          { key: 'physicalAttack', value: 150 },
+          { key: 'physicalDefense', value: 5 },
+          { key: 'magicDefense', value: 5 },
+        ],
+      },
+      { 
+        uid: 100002, 
+        userName: '阴灵三号', 
+        skillIds: [40031, 40032, 40031, 40032, 40031, 40032, 40031, 40032],
+        attrs: [
+          { key: 'hp', value: 6000 },
+          { key: 'mp', value: 100 },
+          { key: 'speed', value: 450 },
+          { key: 'shield', value: 100 },
+          { key: 'physicalAttack', value: 250 },
+          { key: 'physicalDefense', value: 10 },
+          { key: 'magicDefense', value: 10 },
+        ],
+      },
+    ]
+  }

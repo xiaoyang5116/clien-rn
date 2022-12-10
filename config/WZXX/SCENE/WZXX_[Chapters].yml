@@ -422,7 +422,33 @@ scenes: [
           
           { id: "WZXX_M1_N1_Z2C39",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z2C39FZ",min: 0, max: 1 },
-           
+
+          { id: "WZXX_M1_N1_Z3C01",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C01FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C02",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C02FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C03",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C03FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C04",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C04FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C05",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C05FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C06",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C06FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C07",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C07FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C08",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C08FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C09",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C09FZ",min: 0, max: 1 },
         
         ],
 

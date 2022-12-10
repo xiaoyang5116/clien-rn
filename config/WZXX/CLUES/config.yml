@@ -3,7 +3,7 @@
 cluesConfigData: {
 
     # 默认 线索
-    defaultClues: ['xiansuo2'],
+    defaultClues: ['xiansuo1'],
 
     # 线索类型 注册
     type: ['线索', '流言', '情报'],

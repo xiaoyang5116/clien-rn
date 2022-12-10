@@ -49,6 +49,8 @@ book: {
         "WZXX_M1_N1_ZC19_V",
         "WZXX_M1_N1_ZC27_V",
         "WZXX_M1_N1_ZC33_V",
+        "WZXX_M1_N1_ZC34_V",
+        "WZXX_M1_N1_ZC35_V",
         "WZXX_MasterEventVar_01",
         "WZXX_NormalEventVar_01",
         
@@ -60,9 +62,7 @@ book: {
       'collect_2',
       'collect_3',
       'collect_4',
-      'collect_5',
-      'collect_6',
-      'collect_7',
+ 
     ],
     
   }

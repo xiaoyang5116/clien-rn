@@ -3,9 +3,9 @@ clues:
   {
     id: 'xiansuo4',
     type: '线索',
-    groupId: '李家村',
-    filterCondition: {location: '李家村', chapter: '第四章'},
-    title: '线索4',
-    content: ['REDER线索1', '上飞机啊佛', '分开是佛阿含经分开久了', '我红薯干啥了', '我红薯干啥了', '我红薯干啥了', '我红薯干啥了',],
+    groupId: '坊市',
+    filterCondition: {location: '坊市', chapter: '第三卷'},
+    title: '无心花和熏灵草的线索',
+    content: ['【无心花和熏灵草，龙岩洞中可寻，也可在黑市或拍卖中，或能一见】',],
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
   }

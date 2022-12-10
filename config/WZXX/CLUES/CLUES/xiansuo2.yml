@@ -3,9 +3,9 @@ clues:
   {
     id: 'xiansuo2',
     type: '线索',
-    groupId: '李家村',
-    filterCondition: {location: '全部',},
-    title: "简述",
-    content: ['通过和人物对话',"可以获得一些线索"],
+    groupId: '坊市',
+    filterCondition: {location: '坊市', chapter: '第三卷'},
+    title: '诀溟草的线索',
+    content: ['【诀溟草，众生山脉，最北方】',],
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
   }

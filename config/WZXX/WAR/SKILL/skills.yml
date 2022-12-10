@@ -3,272 +3,450 @@
 # ===========================================
 skills: [
    {
-      # 技能唯一ID 
-      id: 1,
-
-      # 技能等级
-      level: 1,
-
-      # 图标ID
-      iconId: 1,
-
-      # 技能名称
-      name: '冷月剑',
-
-      # 描述
-      desc: '',
-
-      # 蓄力时间
-      xuLiMillis: 500,
-
-      # 冷却时间
-      cdMillis: 1000,
-
-      # 技能消耗
-      consume: [
-         { mp: 20 },
-         { hp: 20 },
+     # 技能唯一ID
+     id: 10,
+     # 技能名称
+     name: '轻拳',
+     # 描述
+     desc: '习武人惯用空手搏斗技巧' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 500 ,
+     # 冷却时间
+     cdMillis: 500,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
       ],
-
-      # 影响公式
-      actions: [
-         { target: 'ALL', hit_rate: 100, crit_rate: 40, crit_add: 1.5, formula: '伤害 = (A_物理攻击 - D_物理防御) * 1.2 + 120' },
-         { target: 'ME', hit_rate: 100, formula: '回血 = 5' },
-         { target: 'ME', hit_rate: 100, formula: '回蓝 = 5' },
-      ],
-
-      # 效果列表
-      effects: [],
+     # BUFF效果列表
+     effects: [],
    },
+
+  {
+     # 技能唯一ID
+     id: 11,
+     # 技能名称
+     name: '摆拳',
+     # 描述
+     desc: '习武人惯用空手搏斗技巧' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 500 ,
+     # 冷却时间
+     cdMillis: 500 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 3 ,
+     crit_add: 3 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 40',
+     },
+                ],
+     # BUFF效果列表
+     effects: [],
+   },
+
    {
-      # 技能唯一ID 
-      id: 2,
-
-      # 技能等级
-      level: 1,
-
-      # 图标ID
-      iconId: 1,
-
-      # 技能名称
-      name: '锻体决',
-
-      # 描述
-      desc: '',
-
-      # 蓄力时间
-      xuLiMillis: 600,
-
-      # 冷却时间
-      cdMillis: 3000,
-
-      # 技能消耗
-      consume: [
-         { mp: 20 },
+     # 技能唯一ID
+     id: 12,
+     # 技能名称
+     name: '长拳',
+     # 描述
+     desc: '习武人惯用空手搏斗技巧' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 1000 ,
+     # 冷却时间
+     cdMillis: 1000 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 4 ,
+     crit_add: 4 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 50',
+     },
       ],
+     # BUFF效果列表
+     effects: [],
+   },
 
-      # 被动
-      passive: true,
+  {
+     # 技能唯一ID
+     id: 13,
+     # 技能名称
+     name: '手刀',
+     # 描述
+     desc: '习武人惯用空手搏斗技巧' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 500 ,
+     # 冷却时间
+     cdMillis: 1050 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 4 ,
+     crit_add: 4 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 60',
+     },
+                ],
+     # BUFF效果列表
+     effects: [],
+   },
+
+    {
+     # 技能唯一ID
+     id: 14,
+     # 技能名称
+     name: '重拳',
+     # 描述
+     desc: '习武人惯用空手搏斗技巧' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 1000 ,
+     # 冷却时间
+     cdMillis: 2000 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 70',
+     },
+                ],
+     # BUFF效果列表
+     effects: [],
+     },
+
+    {
+     # 技能唯一ID
+     id: 15,
+     # 技能名称
+     name: '跨步冲拳',
+     # 描述
+     desc: '习武人惯用空手搏斗技巧' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 1500 ,
+     # 冷却时间
+     cdMillis: 1500 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 80',
+     },
+                ],
+     # BUFF效果列表
+     effects: [],
+     },
+
+    {
+     # 技能唯一ID
+     id: 16,
+     # 技能名称
+     name: '肘击',
+     # 描述
+     desc: '习武人惯用空手搏斗技巧' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 800 ,
+     # 冷却时间
+     cdMillis: 1800 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 90',
+     },
+                ],
+     # BUFF效果列表
+     effects: [],
+     },
+
+    {
+     # 技能唯一ID
+     id: 17,
+     # 技能名称
+     name: '连勾拳',
+     # 描述
+     desc: '习武人惯用空手搏斗技巧' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 1500 ,
+     # 冷却时间
+     cdMillis: 1500 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 6 ,
+     crit_add: 6 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 100',
+     },
+                ],
+     # BUFF效果列表
+     effects: [],
+     },
+
+    {
+     # 技能唯一ID
+     id: 18,
+     # 技能名称
+     name: '扫腿',
+     # 描述
+     desc: '习武人惯用空手搏斗技巧' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 1400 ,
+     # 冷却时间
+     cdMillis: 2000 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 10 ,
+     crit_add: 10 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 110',
+     },
+                ],
+     # BUFF效果列表
+     effects: [],
+     },
+
+    {
+     # 技能唯一ID
+     id: 19,
+     # 技能名称
+     name: '飞踢',
+     # 描述
+     desc: '习武人惯用空手搏斗技巧' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 3000 ,
+     # 冷却时间
+     cdMillis: 2500 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 7 ,
+     crit_add: 7 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 140',
+     },
+     ],
+     # BUFF效果列表
+     effects: [],
+     },
    
-      # 影响公式
-      actions: [
-      ],
+    {
+     # 技能唯一ID
+     id: 20,
+     # 技能名称
+     name: '冲撞',
+     # 描述
+     desc: '习武人惯用空手搏斗技巧' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 1500 ,
+     # 冷却时间
+     cdMillis: 6000 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 12 ,
+     crit_add: 12 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 160',
+     },
+     ],
+     # BUFF效果列表
+     effects: [],
+     },
 
-      # 效果列表
-      effects: [
-         { target: 'ME', buffId: 1, rate: 100, groupId: 'A' },
-      ],
-   },
+      {
+     # 技能唯一ID
+     id: 40031,
+     # 技能名称
+     name: '普通攻击',
+     # 描述
+     desc: '普通攻击' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 500 ,
+     # 冷却时间
+     cdMillis: 500 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 1}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 0 ,
+     crit_add: 0 ,
+     formula: '伤害 = (A_物理攻击 * 0.8 - D_物理防御) * 1.0 + 10',
+     },
+    ],
+     # BUFF效果列表
+     effects: [],
+     },
 
+    {
+     # 技能唯一ID
+     id: 40032,
+     # 技能名称
+     name: '重攻击',
+     # 描述
+     desc: '重攻击' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 1000 ,
+     # 冷却时间
+     cdMillis: 2000 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 5}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 80 ,
+     crit_rate: 3 ,
+     crit_add: 3 ,
+     formula: '伤害 = (A_物理攻击 * 0.9 - D_物理防御) * 1.0 + 100',
+     },
+     ],
+     # BUFF效果列表
+     effects: [],
+     },
 
-   
-   {
-      # 技能唯一ID 
-      id: 3,
-
-      # 技能等级
-      level: 1,
-
-      # 图标ID
-      iconId: 1,
-
-      # 技能名称
-      name: '护身罡气',
-
-      # 描述
-      desc: '',
-
-      # 蓄力时间
-      xuLiMillis: 600,
-
-      # 冷却时间
-      cdMillis: 3000,
-
-      # 技能消耗
-      consume: [
-         { mp: 20 },
-      ],
-
-      # 被动
-      passive: true,
-
-      # 影响公式
-      actions: [
-      ],
-
-      # 效果列表
-      effects: [
-         { target: 'ME', buffId: 2, groupId: 'A' },
-      ],
-   },
-   {
-      # 技能唯一ID 
-      id: 4,
-
-      # 技能等级
-      level: 1,
-
-      # 图标ID
-      iconId: 1,
-
-      # 技能名称
-      name: '风意剑',
-
-      # 描述
-      desc: '',
-
-      # 蓄力时间
-      xuLiMillis: 600,
-
-      # 冷却时间
-      cdMillis: 3000,
-
-      # 技能消耗
-      consume: [
-         { mp: 20 },
-      ],
-
-      # 影响公式
-      actions: [
-         { target: 'ALL', hit_rate: 80, crit_rate: 10, crit_add: 1.5, formula: '伤害 = (A_法术攻击 - D_法术防御) * 1.2 + 300' },
-      ],
-
-      # 效果列表
-      effects: [],
-   },
-   {
-      # 技能唯一ID 
-      id: 5,
-
-      # 技能等级
-      level: 1,
-
-      # 图标ID
-      iconId: 1,
-
-      # 技能名称
-      name: '微光盾',
-
-      # 描述
-      desc: '',
-
-      # 蓄力时间
-      xuLiMillis: 600,
-
-      # 冷却时间
-      cdMillis: 3000,
-
-      # 技能消耗
-      consume: [
-         { mp: 20 },
-      ],
-
-      # 被动
-      passive: true,
-
-      # 影响公式
-      actions: [
-      ],
-
-      # 效果列表
-      effects: [
-         { target: 'ME', buffId: 3, groupId: 'B' },
-      ],
-   },
-   {
-      # 技能唯一ID 
-      id: 6,
-
-      # 技能等级
-      level: 1,
-
-      # 图标ID
-      iconId: 1,
-
-      # 技能名称
-      name: '吃药',
-
-      # 描述
-      desc: '',
-
-      # 蓄力时间
-      xuLiMillis: 500,
-
-      # 冷却时间
-      cdMillis: 1000,
-
-      # 技能消耗
-      consume: [
-         { mp: 20 },
-         {
-            props: [
-               { propId: 1, hp: 20, mp: 20 },
-               { propId: 2, hp: 20, mp: 20 }
-            ]
-         }
-      ],
-
-      # 影响公式
-      actions: [
-      ],
-
-      # 效果列表
-      effects: [],
-   },
-   {
-      # 技能唯一ID 
-      id: 7,
-
-      # 技能等级
-      level: 1,
-
-      # 图标ID
-      iconId: 1,
-
-      # 技能名称
-      name: '斩杀',
-
-      # 描述
-      desc: '',
-
-      # 蓄力时间
-      xuLiMillis: 500,
-
-      # 冷却时间
-      cdMillis: 1000,
-
-      # 技能消耗
-      consume: [
-         { mp: 20 },
-         { hp: 20 },
-      ],
-
-      # 影响公式
-      actions: [
-         { target: 'ME', hit_rate: 100, formula: '伤害 = D_hp * 0.5' }
-      ],
-
-      # 效果列表
-      effects: [],
-   },
+      {
+     # 技能唯一ID
+     id: 40033,
+     # 技能名称
+     name: '头发攻击',
+     # 描述
+     desc: '黑发阴灵的特殊攻击' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconid: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 0 ,
+     # 冷却时间
+     cdMillis: 100 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 10}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 60 ,
+     crit_rate: 0 ,
+     crit_add: 0 ,
+     formula: '伤害 = (A_物理攻击 * 0.5 - D_物理防御) * 1.0 + 200',
+     },
+     ],
+     # BUFF效果列表
+     effects: [],
+     },
 ]
