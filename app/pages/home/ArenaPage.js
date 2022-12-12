@@ -238,7 +238,7 @@ const ArenaPage = (props) => {
                         }
                     }} />
                 </View>
-                <CharacterWrapper ref={refCharacterEnemy} user={props.enemy} contentStyle={{ marginTop: px2pd(80) }} />
+                <CharacterWrapper ref={refCharacterMysef} user={props.myself} contentStyle={{ marginTop: px2pd(80) }} />
                 <View style={{ flex: 1, flexDirection: 'row', backgroundColor: '#5a5a70' }}>
                     <FlatList
                         ref={refList}
@@ -256,7 +256,7 @@ const ArenaPage = (props) => {
                         }}
                     />
                 </View>
-                <CharacterWrapper ref={refCharacterMysef} user={props.myself} />
+                <CharacterWrapper ref={refCharacterEnemy} user={props.enemy} />
             </View>
         </SafeAreaView>
     );
