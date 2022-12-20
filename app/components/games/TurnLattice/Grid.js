@@ -27,6 +27,7 @@ import PopComponent from './PopComponent';
 
 import PropGrid from './eventGrid/PropGrid';
 import TreasureChestGrid from './eventGrid/TreasureChestGrid';
+import BossGrid from './eventGrid/BossGrid';
 
 // 事件类型:  "道具" || "战斗" || "剧情"
 
@@ -51,6 +52,8 @@ export const Grid_CanOpen = ({
   children = null,
   containerStyle
 }) => {
+  const { isProhibit } = item
+
   return (
     <TouchableHighlight
       onPressIn={() => {
@@ -59,7 +62,11 @@ export const Grid_CanOpen = ({
       onPressOut={() => {
         isTouchStart.current = true;
       }}
-      onPress={openGrid}>
+      onPress={() => {
+        if (!isProhibit) {
+          openGrid()
+        }
+      }}>
       <View style={[styles.gridContainer, containerStyle]}>
         <View
           style={{
@@ -70,6 +77,24 @@ export const Grid_CanOpen = ({
             opacity: 0.7,
           }}
         />
+        {
+          isProhibit
+            ? (
+              <View
+                style={{
+                  ...styles.gridContainer,
+                  position: 'absolute',
+                  zIndex: 4,
+                }}
+              >
+                <FastImage
+                  style={{ width: '100%', height: "100%" }}
+                  source={require('../../../../assets/games/turnLattice/prohibit.png')}
+                />
+              </View>
+            )
+            : <></>
+        }
         {children}
       </View>
     </TouchableHighlight>
@@ -94,6 +119,82 @@ const Grid_Entrance = props => {
 };
 
 // 出口格子
+const Grid_Export = (props) => {
+  const { item, openGrid, isTouchStart, turnLatticeData, currentLayer, setGridConfig, onClose } = props
+  const [isHaveKey, setIsHaveKey] = useState(false)
+  const exportHandler = () => {
+    if (turnLatticeData.length - 1 > currentLayer) {
+      confirm('确认进入下一层？',
+        () => {
+          props
+            .dispatch(action('TurnLatticeModel/exportGrid')())
+            .then(result => {
+              if (result !== undefined && result != null) {
+                setGridConfig([...result]);
+              }
+            });
+        });
+    } else {
+      confirm('确认退出？',
+        () => {
+          onClose()
+        });
+    }
+    props.dispatch(action('TurnLatticeModel/isHaveKey')({ item }))
+  }
+
+  const img = isHaveKey ? require('../../../../assets/games/turnLattice/door_2.png') : require('../../../../assets/games/turnLattice/door_1.png')
+
+  useEffect(() => {
+    props.dispatch(action('TurnLatticeModel/isHaveKey')({ item })).then((result) => {
+      if (result) {
+        setIsHaveKey(result)
+      }
+    })
+  }, [])
+
+
+  if (item.status === 0) {
+    return <Grid_NotOpen isOpened={item.isOpened} />;
+  }
+  if (item.status === 1) {
+    return (
+      <Grid_CanOpen
+        item={item}
+        openGrid={openGrid}
+        isTouchStart={isTouchStart}
+        containerStyle={{ justifyContent: 'center', alignItems: 'center' }}
+      >
+        <FastImage
+          style={{ width: "100%", height: "100%" }}
+          source={img}
+        />
+      </Grid_CanOpen>
+    );
+  }
+  if (item.status === 2) {
+    return (
+      <Grid_HaveOpened>
+        <TouchableOpacity
+          onPressIn={() => { isTouchStart.current = false }}
+          onPressOut={() => { isTouchStart.current = true }}
+          onPress={exportHandler}>
+          <View
+            style={[
+              styles.gridContainer,
+              { justifyContent: 'center', alignItems: 'center' },
+            ]}>
+            <FastImage
+              style={{ width: "100%", height: "100%" }}
+              source={img}
+            />
+          </View>
+        </TouchableOpacity>
+      </Grid_HaveOpened>
+    );
+  }
+  return <Grid_NotOpen isOpened={item.isOpened} />;
+};
 
 // 空格子
 const Grid_Empty = ({ item, openGrid, isTouchStart }) => {
@@ -101,7 +202,7 @@ const Grid_Empty = ({ item, openGrid, isTouchStart }) => {
     return <Grid_NotOpen isOpened={item.isOpened} />;
   }
   if (item.status === 1) {
-    return <Grid_CanOpen openGrid={openGrid} isTouchStart={isTouchStart} />;
+    return <Grid_CanOpen item={item} openGrid={openGrid} isTouchStart={isTouchStart} />;
   }
   if (item.status === 2) {
     return <Grid_HaveOpened />;
@@ -123,6 +224,10 @@ const Grid_Event = (props) => {
   if (event.type === '宝箱') {
     return <TreasureChestGrid {...props} />;
   }
+  if (event.type === '战斗') {
+    return <BossGrid {...props} />;
+  }
+
   return <Grid_NotOpen />;
 };
 
@@ -134,7 +239,7 @@ const Grid = props => {
       return <Grid_Entrance />;
 
     case '出口':
-      return <Grid_Empty {...props} />;
+      return <Grid_Export {...props} />;
 
     case '墙':
       return <Grid_Wall />;

@@ -114,6 +114,12 @@ const _images = {
         { id: "1", img: require('../../assets/sceneMapBg/scene_map.png'), },
         // 大地图
         // { id: "100", img: require('../../assets/button_icon/2.png'), },
+    ],
+
+    // boss icon
+    bossIcon: [
+        { id: 1, img: require('../../assets/games/turnLattice/boss_Icon/boss_1.png') },
+        { id: 2, img: require('../../assets/games/turnLattice/boss_Icon/boss_2.png') },
     ]
 }
 
@@ -184,4 +190,9 @@ export const getAchievementBadgeImage = (id) => {
 // 获取 场景地图背景
 export const getSceneMapBg = (id) => {
     return _images.sceneMapBg.find(e => e.id === id).img;
+}
+
+// 获取boss icon
+export const getBossIcon = (id) => {
+    return _images.bossIcon.find(e => e.id === id).img;
 }

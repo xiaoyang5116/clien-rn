@@ -113,6 +113,7 @@ const TurnLattice = props => {
         item={item}
         index={index}
         isTouchStart={isTouchStart}
+        onClose={onClose}
       />
     );
   };

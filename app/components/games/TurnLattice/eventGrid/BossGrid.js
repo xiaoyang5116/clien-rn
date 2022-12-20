@@ -1,20 +1,41 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, DeviceEventEmitter } from 'react-native'
+import React, { useEffect } from 'react'
 
 import qualityStyle from '../../../../themes/qualityStyle';
-import { action, connect, getPropIcon, EventKeys } from '../../../../constants';
+import { action, connect, getBossIcon, EventKeys } from '../../../../constants';
 
 import { Grid_CanOpen, Grid_HaveOpened, Grid_NotOpen } from '../Grid'
 import FastImage from 'react-native-fast-image';
 
-// 道具格子
-const PropGrid = (props) => {
+// Boss格子
+const BossGrid = (props) => {
   const { item, openGrid, isTouchStart, setGridConfig, handlerGridEvent } = props
-  const { prop } = item.event
-  const quality_style = qualityStyle.styles.find(
-    e => e.id == parseInt(prop.quality),
-  );
-  const image = getPropIcon(prop.iconId);
+  const { bossIconId, challenge } = item.event
+
+  const image = getBossIcon(bossIconId);
+
+  const meetBoss = () => {
+    props.dispatch(action('TurnLatticeModel/meetBossEvent')({ item })).then(result => {
+      if (result !== undefined) {
+        setGridConfig([...result]);
+      }
+    });
+  }
+
+  useEffect(() => {
+    const listener = DeviceEventEmitter.addListener(`${EventKeys.CHALLENGE_END_RESULT}_${challenge}`, (result) => {
+      if (result) {
+        props.dispatch(action('TurnLatticeModel/challengeWin')({ item })).then(result => {
+          if (result !== undefined) {
+            setGridConfig([...result]);
+          }
+        });
+      }
+    });
+    return () => {
+      listener.remove()
+    }
+  }, [])
 
   if (item.status === 0) {
     return <Grid_NotOpen isOpened={item.isOpened} />;
@@ -23,21 +44,16 @@ const PropGrid = (props) => {
     return (
       <Grid_CanOpen
         item={item}
-        openGrid={openGrid}
+        openGrid={meetBoss}
         isTouchStart={isTouchStart}
         containerStyle={{ justifyContent: 'center', alignItems: 'center' }}
       >
         <FastImage
           style={{
-            position: 'absolute',
-            width: 40,
-            height: 40,
-            borderRadius: 5,
-            borderWidth: 1,
-            borderColor: quality_style.borderColor,
-            backgroundColor: quality_style.backgroundColor,
+            width: "100%",
+            height: "100%",
           }}
-          source={image.img}
+          source={image}
         />
       </Grid_CanOpen>
     );
@@ -59,12 +75,8 @@ const PropGrid = (props) => {
                 position: 'absolute',
                 width: 40,
                 height: 40,
-                borderRadius: 5,
-                borderWidth: 1,
-                borderColor: quality_style.borderColor,
-                backgroundColor: quality_style.backgroundColor,
               }}
-              source={image.img}
+              source={image}
             />
           </View>
         </TouchableOpacity>
@@ -74,7 +86,7 @@ const PropGrid = (props) => {
   return <Grid_NotOpen />;
 }
 
-export default PropGrid
+export default BossGrid
 
 const styles = StyleSheet.create({
   gridContainer: {

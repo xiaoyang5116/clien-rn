@@ -84,5 +84,8 @@ export class EventKeys {
     static GET_FRAGMENT_PROP = 'GET_FRAGMENT_PROP';
 
     // 关闭 翻格子小游戏 事件
-    static CLOSE_TURN_LATTICE_EVENT = 'CLOSE_TURN_LATTICE_EVENT' 
+    static CLOSE_TURN_LATTICE_EVENT = 'CLOSE_TURN_LATTICE_EVENT';
+
+    // 挑战结束结果
+    static CHALLENGE_END_RESULT = 'CHALLENGE_END_RESULT';
 }

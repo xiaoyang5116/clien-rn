@@ -16,9 +16,9 @@ const TreasureChestGrid = (props) => {
 
   // 点击宝箱
   const handlerClick = () => {
-    if(treasureChestIsOpen){
+    if (treasureChestIsOpen) {
 
-    }else {
+    } else {
       handlerGridEvent(item)
     }
   }
@@ -29,6 +29,7 @@ const TreasureChestGrid = (props) => {
   if (item.status === 1) {
     return (
       <Grid_CanOpen
+        item={item}
         openGrid={openGrid}
         isTouchStart={isTouchStart}
         containerStyle={{ justifyContent: 'center', alignItems: 'center' }}

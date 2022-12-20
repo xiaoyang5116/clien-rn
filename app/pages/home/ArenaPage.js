@@ -6,6 +6,8 @@ import {
     action,
     connect,
     StyleSheet,
+    DeviceEventEmitter,
+    EventKeys
 } from "../../constants";
 
 import {
@@ -31,33 +33,33 @@ const BuffCollapsible = (props) => {
     }
 
     return (
-    <TouchableWithoutFeedback onPress={() => {
-        setCollapsed((v) => {
-            return !v;
-        });
-    }}>
-        <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }} onLayout={onLayout}>
-            <View style={{ marginBottom: 5, backgroundColor: 'rgba(181,169,180,1.0)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                <Text style={{ color: '#000', fontWeight: 'bold' }}>Buff</Text>
-                {
-                (collapsed)
-                ? <AntDesign name='doubleright' size={16} style={{ position: 'absolute', right: 10, transform: [{ rotate: '90deg' }] }} />
-                : <AntDesign name='doubleright' size={16} style={{ position: 'absolute', right: 10, transform: [{ rotate: '-90deg' }] }} />
-                }
+        <TouchableWithoutFeedback onPress={() => {
+            setCollapsed((v) => {
+                return !v;
+            });
+        }}>
+            <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center' }} onLayout={onLayout}>
+                <View style={{ marginBottom: 5, backgroundColor: 'rgba(181,169,180,1.0)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                    <Text style={{ color: '#000', fontWeight: 'bold' }}>Buff</Text>
+                    {
+                        (collapsed)
+                            ? <AntDesign name='doubleright' size={16} style={{ position: 'absolute', right: 10, transform: [{ rotate: '90deg' }] }} />
+                            : <AntDesign name='doubleright' size={16} style={{ position: 'absolute', right: 10, transform: [{ rotate: '-90deg' }] }} />
+                    }
+                </View>
+                <Collapsible collapsed={collapsed} style={{ width: width, justifyContent: 'center', alignItems: 'center' }}>
+                    {
+                        lo.map(props.data.buffs, (e, k) => {
+                            return (
+                                <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(181,169,180,1.0)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                                    <Text style={{ color: '#333' }}>{e.name}</Text>
+                                </View>
+                            );
+                        })
+                    }
+                </Collapsible>
             </View>
-            <Collapsible collapsed={collapsed} style={{ width: width, justifyContent: 'center', alignItems: 'center' }}>
-                {
-                lo.map(props.data.buffs, (e, k) => {
-                    return (
-                    <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(181,169,180,1.0)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                        <Text style={{ color: '#333' }}>{e.name}</Text>
-                    </View>
-                    );
-                })
-                }
-            </Collapsible>
-        </View>
-    </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
     );
 }
 
@@ -68,15 +70,15 @@ const ActionMsgItem = (props) => {
         <View style={{ borderWidth: 2, borderColor: '#ccc', borderRadius: 4, justifyContent: 'flex-start', alignItems: 'center', margin: 5 }}>
             <View style={{ width: '100%', height: px2pd(80), backgroundColor: '#ccc', alignItems: 'center', justifyContent: 'center' }}>
                 <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <RenderHTML contentWidth={100} source={{html: `${props.data.attackerName} 的攻击`}} />
+                    <RenderHTML contentWidth={100} source={{ html: `${props.data.attackerName} 的攻击` }} />
                 </View>
                 <View style={{ position: 'absolute', right: px2pd(200) }}>
-                        {(props.data.crit) ? <Text style={{ color: '#ff0817' }}>[暴击]</Text> : <></>}
+                    {(props.data.crit) ? <Text style={{ color: '#ff0817' }}>[暴击]</Text> : <></>}
                 </View>
                 {
-                (isMyself) 
-                ? <AntDesign style={{ position: 'absolute', right: 5 }} name='arrowright' color={'#333'} size={25} />
-                : <AntDesign style={{ position: 'absolute', left: 5 }} name='arrowleft' color={'#333'} size={25} />
+                    (isMyself)
+                        ? <AntDesign style={{ position: 'absolute', right: 5 }} name='arrowright' color={'#333'} size={25} />
+                        : <AntDesign style={{ position: 'absolute', left: 5 }} name='arrowleft' color={'#333'} size={25} />
                 }
             </View>
             <View style={{ marginTop: 5, marginBottom: 5, backgroundColor: 'rgba(148,148,186,0.5)', width: '98%', height: px2pd(80), flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
@@ -86,16 +88,16 @@ const ActionMsgItem = (props) => {
                 {(props.data.rechargeMP != 0) ? <Text style={{ color: '#fff', marginLeft: 5, marginRight: 5 }}>法力：{props.data.rechargeMP}</Text> : <></>}
             </View>
             {
-            lo.map(props.data.skills, (e, k) => {
-                return (
-                <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(238,213,185,0.3)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                    <Text style={{ color: '#333' }}>{e.name}</Text>
-                    {(e.passive) ? <Text style={{ marginLeft: 5, color: '#fff' }}>(被动)</Text> : <></>}
-                </View>
-                );
-            })
+                lo.map(props.data.skills, (e, k) => {
+                    return (
+                        <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(238,213,185,0.3)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                            <Text style={{ color: '#333' }}>{e.name}</Text>
+                            {(e.passive) ? <Text style={{ marginLeft: 5, color: '#fff' }}>(被动)</Text> : <></>}
+                        </View>
+                    );
+                })
             }
-            {(props.data.buffs.length > 0) ? <BuffCollapsible data={props.data} defaultCollapsed={(props.data.skills.length + props.data.buffs.length) > 2} /> : <></> }
+            {(props.data.buffs.length > 0) ? <BuffCollapsible data={props.data} defaultCollapsed={(props.data.skills.length + props.data.buffs.length) > 2} /> : <></>}
         </View>
     )
 }
@@ -104,7 +106,7 @@ const TextMsgItem = (props) => {
     const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.msg);
     return (
         <View style={{ height: px2pd(60), justifyContent: 'center', alignItems: 'center', margin: 5 }}>
-            <RenderHTML contentWidth={100} source={{html: htmlMsg}} />
+            <RenderHTML contentWidth={100} source={{ html: htmlMsg }} />
         </View>
     )
 }
@@ -137,31 +139,31 @@ const Character = (props, ref) => {
 
     return (
         <View style={[{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }, (props.contentStyle != undefined) ? props.contentStyle : {}]}>
-            <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center',  }}>
+            <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center', }}>
                 <FastImage style={{ width: px2pd(218), height: px2pd(211) }} source={require('../../../assets/bg/arena_character_bg.png')} />
                 <Text style={{ position: 'absolute', color: '#000' }}>{props.user.userName}</Text>
             </View>
             <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
                 <View style={{ height: 3, marginTop: 6, marginRight: 6, marginBottom: 0 }}>
-                    <ProgressBar percent={shieldPercent} sections={[{x: 0, y: 100, color: '#3390ff'}]} />
+                    <ProgressBar percent={shieldPercent} sections={[{ x: 0, y: 100, color: '#3390ff' }]} />
                 </View>
                 <View style={{ height: 12, marginTop: 0, marginRight: 6, marginBottom: 3 }}>
-                    <ProgressBar percent={hpPercent} sections={[{ x: 0,  y: 30,  color: '#ff2600' }, { x: 30, y: 60,  color: '#fbbb39' }, { x: 60, y: 100, color: '#ffd479' }]} />
+                    <ProgressBar percent={hpPercent} sections={[{ x: 0, y: 30, color: '#ff2600' }, { x: 30, y: 60, color: '#fbbb39' }, { x: 60, y: 100, color: '#ffd479' }]} />
                 </View>
                 <View style={{ height: 15, marginTop: 6, marginRight: 6, marginBottom: 6 }}>
-                    <ProgressBar percent={mpPercent} sections={[{x: 0, y: 100, color: '#12b7b5'}]} />
+                    <ProgressBar percent={mpPercent} sections={[{ x: 0, y: 100, color: '#12b7b5' }]} />
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                    <Text style={{ flex: 1, color: '#fff' }}>物攻: {props.user.attrs.physicalAttack||0}</Text>
-                    <Text style={{ flex: 1, color: '#fff' }}>法攻: {props.user.attrs.magicAttack||0}</Text>
-                    <Text style={{ flex: 1, color: '#fff' }}>物防: {props.user.attrs.physicalDefense||0}</Text>
-                    <Text style={{ flex: 1, color: '#fff' }}>法防: {props.user.attrs.magicDefense||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>物攻: {props.user.attrs.physicalAttack || 0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>法攻: {props.user.attrs.magicAttack || 0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>物防: {props.user.attrs.physicalDefense || 0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>法防: {props.user.attrs.magicDefense || 0}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-                    <Text style={{ flex: 1, color: '#fff' }}>速度: {props.user.attrs.speed||0}</Text>
-                    <Text style={{ flex: 1, color: '#fff' }}>暴击: {props.user.attrs.crit||0}</Text>
-                    <Text style={{ flex: 1, color: '#fff' }}>闪避: {props.user.attrs.dodge||0}</Text>
-                    <Text style={{ flex: 1, color: '#fff' }}>敏捷: {props.user.attrs.dodge||0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>速度: {props.user.attrs.speed || 0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>暴击: {props.user.attrs.crit || 0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>闪避: {props.user.attrs.dodge || 0}</Text>
+                    <Text style={{ flex: 1, color: '#fff' }}>敏捷: {props.user.attrs.dodge || 0}</Text>
                 </View>
             </View>
         </View>
@@ -184,6 +186,22 @@ const ArenaPage = (props) => {
         } else {
             return (<TextMsgItem data={item.data} />);
         }
+    }
+
+    const closeHandler = () => {
+        if (props.onClose != undefined) {
+            const { myself, __data } = props
+            if (__data.enemyQueue.length === 0
+                && __data.enemyIndex >= __data.enemyQueue.length) {
+                // 判断输赢
+                DeviceEventEmitter.emit(
+                    `${EventKeys.CHALLENGE_END_RESULT}_${__data.challengeId}`,
+                    myself.attrs.hp > 0 ? true : false
+                )
+            }
+            props.onClose();
+        }
+
     }
 
     React.useEffect(() => {
@@ -232,11 +250,7 @@ const ArenaPage = (props) => {
         <SafeAreaView style={{ flex: 1, backgroundColor: '#403340' }}>
             <View style={props.currentStyles.viewContainer}>
                 <View style={{ position: 'absolute', zIndex: 10, top: 0, left: px2pd(20) }}>
-                    <AntDesign name='left' style={{ color: '#fff' }} size={30} onPress={() => {
-                        if (props.onClose != undefined) {
-                            props.onClose();
-                        }
-                    }} />
+                    <AntDesign name='left' style={{ color: '#fff' }} size={30} onPress={closeHandler} />
                 </View>
                 <CharacterWrapper ref={refCharacterMysef} user={props.myself} contentStyle={{ marginTop: px2pd(80) }} />
                 <View style={{ flex: 1, flexDirection: 'row', backgroundColor: '#5a5a70' }}>
