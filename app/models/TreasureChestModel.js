@@ -20,8 +20,12 @@ export default {
       const { data } = yield call(GetTreasureChestDataApi)
       treasureChestData.push(...data)
     },
+
+    // 开宝箱
     *openTreasureChest({ payload }, { select, call, put }) {
-      const { treasureChestData } = yield select(state => state.TreasureChestModel)
+      const { data } = yield call(GetTreasureChestDataApi)
+      const treasureChestData = data
+
 
       const currentTreasureChest = treasureChestData.find(item => item.id === payload.id)
       if (currentTreasureChest === undefined) return console.debug("没有这个宝箱")

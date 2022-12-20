@@ -10,7 +10,7 @@ import CopyBook from './CopyBook'
 import { AppDispath } from '../../constants';
 import SmashEggs from './SmashEggs'
 import SmallUniverseProject from './SmallUniverseProject';
-import TurnLattice from './TurnLattice';
+import TurnLattice from './TurnLattice/newIndex';
 import Transitions from '../transition';
 
 

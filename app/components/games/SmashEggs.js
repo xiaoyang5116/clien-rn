@@ -85,10 +85,6 @@ const SmashEggs = (props) => {
   const [eggData, setEggData] = useState([])
 
   useEffect(() => {
-    if (props.treasureChestData.length === 0) {
-      props.dispatch(action('TreasureChestModel/getTreasureChestData')())
-    }
-
     const currentEggData = []
     for (let index = 0; index < eggNumber; index++) {
       currentEggData.push({

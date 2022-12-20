@@ -3,6 +3,8 @@ import { action, LocalCacheKeys, BOTTOM_TOP_SMOOTH } from '../../constants';
 import EventListeners from '../../utils/EventListeners';
 import { GetTurnLattice } from '../../services/GetTurnLattice';
 import Toast from '../../components/toast';
+import Modal from '../../components/modal';
+import RewardsPageModal from '../../components/rewardsPageModal';
 
 
 export default {
@@ -20,20 +22,33 @@ export default {
         LocalStorage.get,
         LocalCacheKeys.TURN_LATTICE_DATA,
       );
-      console.log("historyData", historyData);
+      // console.log("historyData", historyData);
       // 没有打开过
-      if (historyData === null || (historyData.find(item => item.latticeMazeId === latticeMazeId) === undefined)) {
+      if (historyData === null && (historyData?.find(item => item.latticeMazeId === latticeMazeId) === undefined)) {
         const { latticeMaze } = yield call(GetTurnLattice);
         const currentLatticeMazeData = latticeMaze.find(item => item.latticeMazeId === latticeMazeId)
         const { desc, unlockProps, consumableProps, data } = currentLatticeMazeData
         // 初始化
         for (let index = 0; index < data.length; index++) {
           const item = data[index];
+          const eventData = item.eventData
           for (let i = 0; i < item.config.length; i++) {
             const gridConfig = item.config[i]
             gridConfig.isOpened = false
             gridConfig.status = 0
-            if (gridConfig.type === undefined) gridConfig.type = "空"
+            if (gridConfig.type === undefined) {
+              gridConfig.type = "空"
+            }
+            if (gridConfig.type === "事件") {
+              const event = eventData.find(f => f.id === gridConfig.eventId)
+              if (event.type === "道具") {
+                const propConfig = yield put.resolve(
+                  action('PropsModel/getPropConfig')({ propId: Number(event.prop.id) }),
+                );
+                Object.assign(event.prop, propConfig)
+              }
+              gridConfig.event = event
+            }
           }
           // 设置 入口 附近的格子可以打开
           const entranceGrid = item.config.find(i => i.type === "入口")
@@ -217,14 +232,13 @@ export default {
 
     // 领取格子道具
     *getGridProps({ payload }, { call, put, select }) {
-      // {"isOpened": true, "prop": { id: 30, num: 1, iconId: 1, quality: 1, }, "status": 2, "type": "道具", "x": 1, "y": 3}
       const { item } = payload
-      const { prop } = item
+      const { prop } = item.event
 
-      const historyData = yield call(
-        LocalStorage.get,
-        LocalCacheKeys.TURN_LATTICE_DATA,
-      );
+      // const historyData = yield call(
+      //   LocalStorage.get,
+      //   LocalCacheKeys.TURN_LATTICE_DATA,
+      // );
 
       yield put.resolve(action('PropsModel/sendProps')({ propId: prop.id, num: prop.num, quiet: true }));
       const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: prop.id }));
@@ -234,13 +248,13 @@ export default {
       const { config: gridConfig } = turnLatticeData[currentLayer];
       const curIndex = gridConfig.findIndex(i => i.x === item.x && i.y === item.y);
       gridConfig[curIndex].type = "空";
-      yield put(action('updateState')({ turnLatticeData }));
-      yield call(
-        LocalStorage.set,
-        LocalCacheKeys.TURN_LATTICE_DATA,
-        historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, data: turnLatticeData } : item)
-      );
-      return gridConfig
+      // yield put(action('updateState')({ turnLatticeData }));
+      // yield call(
+      //   LocalStorage.set,
+      //   LocalCacheKeys.TURN_LATTICE_DATA,
+      //   historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, data: turnLatticeData } : item)
+      // );
+      // return gridConfig
     },
 
     // 出口
@@ -253,6 +267,86 @@ export default {
       else {
         return null
       }
+    },
+
+    // 开宝箱
+    *openGridTreasureChest({ payload }, { call, put, select }) {
+      const { item } = payload
+      const { treasureChestId } = item.event
+
+      const rewards = yield put.resolve(action('TreasureChestModel/openTreasureChest')({ id: treasureChestId }))
+      RewardsPageModal.gridRewards(rewards)
+
+      const { turnLatticeData, currentLayer } = yield select(state => state.TurnLatticeModel);
+      const { config: gridConfig } = turnLatticeData[currentLayer];
+      const curIndex = gridConfig.findIndex(i => i.x === item.x && i.y === item.y);
+      gridConfig[curIndex].event.treasureChestIsOpen = true;
+    },
+
+    // 触发事件
+    *triggerGridEvent({ payload }, { call, put, select }) {
+      // {"item": {
+      // "event": {"id": "1", "prop": [Object], "type": "道具"}, 
+      // "eventId": "1", "isOpened": true, "status": 2, "type": "事件", "x": 2, "y": 8
+      // }}
+
+      const { item } = payload
+      const { event } = item
+
+      const { turnLatticeData, currentLayer, curLatticeMazeId } = yield select(state => state.TurnLatticeModel);
+      const { eventData, config: gridConfig } = turnLatticeData[currentLayer]
+      const curIndex = gridConfig.findIndex(i => i.x === item.x && i.y === item.y);
+      const historyData = yield call(
+        LocalStorage.get,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+      );
+
+      // 前置事件
+      if (event && event.beforeEventId) {
+        const eventConfig = eventData.find(f => f.id === event.beforeEventId)
+        if (eventConfig.type === "剧情") {
+          Modal.show(eventConfig)
+          gridConfig[curIndex].event.beforeEventId = null;
+          yield put(action('updateState')({ turnLatticeData }));
+          yield call(
+            LocalStorage.set,
+            LocalCacheKeys.TURN_LATTICE_DATA,
+            historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, data: turnLatticeData } : item)
+          );
+          return gridConfig
+        }
+      }
+
+      if (event && event.type === "道具") {
+        yield put.resolve(action('getGridProps')({ item }));
+      }
+
+      if (event && event.type === "宝箱") {
+        yield put.resolve(action('openGridTreasureChest')({ item }));
+        // console.log("item", item);
+      }
+
+      // 后置事件
+      if (event && event.afterEventId) {
+        const eventConfig = eventData.find(f => f.id === event.afterEventId)
+        if (eventConfig.type === "剧情") {
+          Modal.show(eventConfig)
+          gridConfig[curIndex].event.beforeEventId = null;
+        }
+      }
+
+      yield put(action('updateState')({ turnLatticeData }));
+      yield call(
+        LocalStorage.set,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+        historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, data: turnLatticeData } : item)
+      );
+      return gridConfig
+    },
+
+    // 后续操作
+    *nextEvent({ payload }, { call, put, select }) {
+      console.log("ssss")
     },
 
   },
