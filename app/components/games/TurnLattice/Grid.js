@@ -123,35 +123,43 @@ const Grid_Export = (props) => {
   const { item, openGrid, isTouchStart, turnLatticeData, currentLayer, setGridConfig, onClose } = props
   const [isHaveKey, setIsHaveKey] = useState(false)
   const exportHandler = () => {
-    if (turnLatticeData.length - 1 > currentLayer) {
-      confirm('确认进入下一层？',
-        () => {
-          props
-            .dispatch(action('TurnLatticeModel/exportGrid')())
-            .then(result => {
-              if (result !== undefined && result != null) {
-                setGridConfig([...result]);
-              }
-            });
-        });
+    if (isHaveKey) {
+      if (turnLatticeData.length - 1 > currentLayer) {
+        confirm('确认进入下一层？',
+          () => {
+            props
+              .dispatch(action('TurnLatticeModel/exportGrid')())
+              .then(result => {
+                if (result !== undefined && result != null) {
+                  setGridConfig([...result]);
+                }
+              });
+          });
+      } else {
+        confirm('确认退出？',
+          () => {
+            onClose()
+          });
+      }
     } else {
-      confirm('确认退出？',
-        () => {
-          onClose()
-        });
+      confirm('没有钥匙', () => { });
     }
-    props.dispatch(action('TurnLatticeModel/isHaveKey')({ item }))
   }
 
   const img = isHaveKey ? require('../../../../assets/games/turnLattice/door_2.png') : require('../../../../assets/games/turnLattice/door_1.png')
 
   useEffect(() => {
-    props.dispatch(action('TurnLatticeModel/isHaveKey')({ item })).then((result) => {
-      if (result) {
+    let fun = props.dispatch(action('TurnLatticeModel/isHaveKey')({ item })).then((result) => {
+      if (result && result != isHaveKey) {
         setIsHaveKey(result)
       }
     })
-  }, [])
+
+    return () => {
+      fun = null
+    }
+  }, [setGridConfig])
+
 
 
   if (item.status === 0) {
