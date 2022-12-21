@@ -1,0 +1,1945 @@
+
+scenes: [
+    {
+    #纳戒空间地图
+      id: 'WZXX_M1_N1_C000H_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      ],
+
+      # 动作定义
+      actions: [],
+      #不显示时间
+      worldTimeHidden: true,
+      # 事件定义
+      events: [],
+
+      chats: [
+
+      { 
+        id: 'WZXX_M1_N1_C000H_V1', desc: '回忆', 
+        options: [ 
+          { title: "【进入地图】",toScene: 'C000H_V_MAP_0_0', transitionAnimation: '左右开门转场',
+          # sounds: [{ soundId: 'BGM_R_0003',}],
+          },
+        ],
+      },
+      
+          ], 
+    },
+
+   {
+
+    id: 'C000H_V_MAP_0_0', name: '绛云驿站',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_115',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 0],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '绛云镇最大的驿站，来往驿站的马车络绎不绝', 
+        options: [ 
+         { title: '【去别处探索】',nextChat: 'C2'}, 
+         { title: '【和马夫攀谈】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【演武场】', toScene: 'C000H_V_MAP_0_-1'}, 
+         { title: '【北大街】', toScene: 'C000H_V_MAP_1_-1'}, 
+         { title: '【绛云北门】', toScene: 'C000H_V_MAP_1_0'}, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: '给出足够的铜币马夫就可以载你通往你想去的地方', 
+        options: [ 
+         { title: '【演武场】', toScene: 'C000H_V_MAP_0_-1'}, 
+         { title: '【北大街】', toScene: 'C000H_V_MAP_1_-1'}, 
+         { title: '【绛云北门】', toScene: 'C000H_V_MAP_1_0'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_0_-1', name: '演武场',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_133',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, -1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '演武场内传来阵阵呐喊，看起来像是在操练的样子。', 
+        options: [ 
+         { title: '【进入查看】',nextChat: 'C2'}, 
+         { title: '【离开此地>>>】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '军事重地，闲杂人等不得进入', 
+        options: [ 
+         { title: '【只能离开>>>】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: '去别处看看……', 
+        options: [ 
+         { title: '【绛云北门】', toScene: 'C000H_V_MAP_1_0'}, 
+         { title: '【北大街】', toScene: 'C000H_V_MAP_1_-1'}, 
+         { title: '【福来客栈】', toScene: 'C000H_V_MAP_0_-2'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_1_-1', name: '北大街',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_107',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, -1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '街道内人来人往，一片热闹，这里就是绛云镇最繁华的街区', 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【演武场】', toScene: 'C000H_V_MAP_0_-1'}, 
+         { title: '【绛云衙门】', toScene: 'C000H_V_MAP_2_-1'}, 
+         { title: '【绛云北门】', toScene: 'C000H_V_MAP_1_0'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_1_0', name: '绛云北门',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_113',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, 0],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '绛云镇的北门，来往的路人众多。', 
+        options: [ 
+         { title: '【和门卫攀谈】',nextChat: 'C2'}, 
+         { title: '【离开此地>>>】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '门卫不苟言笑，叫你快些离开，不要多留', 
+        options: [ 
+         { title: '【只能离开>>>】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: '去别处看看……', 
+        options: [ 
+         { title: '【绛云驿站】', toScene: 'C000H_V_MAP_0_0"'}, 
+         { title: '【北大街】', toScene: 'C000H_V_MAP_1_-1'}, 
+         { title: '【迎客大树】', toScene: 'C000H_V_MAP_2_0'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_2_0', name: '迎客大树',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_127',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, 0],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: '一棵普通的大树，树下有小童在辩论。', 
+        options: [ 
+         { title: '【过去旁听】',dialogs: ['Screen1'],}, 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【演武场】', toScene: 'C000H_V_MAP_0_-1'}, 
+         { title: '【北大街】', toScene: 'C000H_V_MAP_1_-1'}, 
+         { title: '【绛云衙门】', toScene: 'C000H_V_MAP_2_-1'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     { id: 'Screen1',style: 6, title: '两小儿辩日', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['开裆裤小孩：“我认为太阳刚刚升起时离人近一些，中午的时候离人远一些。”','麻花辫小女孩：“我认为太阳刚刚升起时离人远些，而中午时离人近些。”',
+          '开裆裤小孩：“太阳刚出来时像车盖一样大，到了中午却像个盘子，这不是远时看起来小而近时看起来大吗？”','麻花辫小女孩：“太阳刚出来时有清凉的感觉，到了中午却像把手伸进热水里一样，这不是近时热而远时凉吗？”','',],
+          btn: [{title: '无聊离开',nextChat: 'C3',},]},
+         ],
+      }
+    ],
+  },
+
+   {
+
+    id: 'C000H_V_MAP_2_-1', name: '绛云衙门',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_114',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, -1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: '绛云镇的官府之地，衙门内并不堂皇，官员也不多。', 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【迎客大树】', toScene: 'C000H_V_MAP_2_0'}, 
+         { title: '【北大街】', toScene: 'C000H_V_MAP_1_-1'}, 
+         { title: '【绛云北门】', toScene: 'C000H_V_MAP_1_0'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_1_-2', name: '中大街',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_131',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, -2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: '绛云镇最中心的街道，聚集了各种南来北往的走货商人在此处', 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【福来客栈】', toScene: 'C000H_V_MAP_0_-2'}, 
+         { title: '【北大街】', toScene: 'C000H_V_MAP_1_-1'}, 
+         { title: '【茗香阁】', toScene: 'C000H_V_MAP_2_-2'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_1_-3', name: '大十字路口',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_109',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, -3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: '作为最繁华街道的中心路口，或许能打听到一些消息', 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【中大街】', toScene: 'C000H_V_MAP_1_-2'}, 
+         { title: '【天机路】', toScene: 'C000H_V_MAP_0_-3'}, 
+         { title: '【摇光路】', toScene: 'C000H_V_MAP_2_-3'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_1_-4', name: '南街市集',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_119',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, -4],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: '此处多的是卖丹药的店铺，估计是受柳家的影响，之后若是有需要的可以到这里来看看', 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【永寿炼丹行】', toScene: 'C000H_V_MAP_0_-4'}, 
+         { title: '【大十字路口】', toScene: 'C000H_V_MAP_1_-3'}, 
+         { title: '【典当行】', toScene: 'C000H_V_MAP_2_-4'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_1_-5', name: '镇口南门楼',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_130',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, -5],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: '镇口坐落着一座十分辉煌的楼宇，外观气派彰显气势', 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【大菩提树】', toScene: 'C000H_V_MAP_0_-5'}, 
+         { title: '【南街市集】', toScene: 'C000H_V_MAP_1_-4'}, 
+         { title: '【铁匠铺】', toScene: 'C000H_V_MAP_2_-5'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_0_-2', name: '福来客栈',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_112',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, -2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: '绛云镇知名客栈，据说是当地评价最好的客栈。', 
+        options: [ 
+         { title: '【与店小二交谈】',nextChat: 'C2'}, 
+         { title: '【离开此地>>>】',nextChat: 'C6'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '店小二：“请问客官需要留宿吗？”', 
+        options: [ 
+         { title: '【住宿】',nextChat: 'C3'}, 
+         { title: '【吃点东西】',nextChat: 'C4'}, 
+         { title: '【打听点事儿】',nextChat: 'C5'}, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: '在店里留宿休整了一夜，感觉神清气爽', 
+        options: [ 
+         { title: '【离开>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: '随便吃了点东西，填饱肚子再出发', 
+        options: [ 
+         { title: '【离开>>>】',nextChat: 'C2'}, 
+        ],
+      },
+       #根据后续的具体剧情规划
+      { 
+        id: 'C5', desc: "李森炎：我想打听点事\n店小二：客官你抬举我了，我就是一跑堂的，什么也不知道",
+        options: [ 
+         { title: '【离开>>>】',nextChat: 'C2'}, 
+        ],
+      },
+      
+
+      { 
+        id: 'C6', desc: '去别处看看……', 
+        options: [ 
+         { title: '【演武场】', toScene: 'C000H_V_MAP_0_-1'}, 
+         { title: '【算命摊子】', toScene: 'C000H_V_MAP_-1_-2'}, 
+         { title: '【中大街】', toScene: 'C000H_V_MAP_1_-2'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_2_-2', name: '茗香阁',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_132',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, -2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: '悠悠的茶香传来，能看见隐约阁内有文人和书生在品茶，看起来在举办诗会的模样。', 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【中大街】', toScene: 'C000H_V_MAP_1_-2'}, 
+         { title: '【绛云衙门】', toScene: 'C000H_V_MAP_2_-1'}, 
+         { title: '【黑市】', toScene: 'C000H_V_MAP_3_-2'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_0_-3', name: '天机路',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_123',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, -3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: '据说是以灵界大能天机老人来命名，不少人走在路上感觉到一股玄妙之感。', 
+        options: [ 
+         { title: '【走一走试试】',nextChat: 'C2'}, 
+         { title: '【离开此地>>>】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '毫无感觉……什么传说，骗人的吧', 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: '去别处看看……', 
+        options: [ 
+         { title: '【福来客栈】', toScene: 'C000H_V_MAP_0_-2'}, 
+         { title: '【普济药坊】', toScene: 'C000H_V_MAP_-1_-3'}, 
+         { title: '【大十字路口】', toScene: 'C000H_V_MAP_1_-3'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_2_-3', name: '摇光路',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_126',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, -3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: '一条普通的街道，看起来并无特别。', 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【东门】', toScene: 'C000H_V_MAP_3_-3'}, 
+         { title: '【茗香阁】', toScene: 'C000H_V_MAP_2_-2'}, 
+         { title: '【大十字路口】', toScene: 'C000H_V_MAP_1_-3'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+ {
+
+    id: 'C000H_V_MAP_0_-4', name: '永寿炼丹行',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_128',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, -4],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: '炼丹行宏伟壮丽，但是却没几个人能进得去，据说进去是需要炼丹资历', 
+        options: [ 
+         { title: '【进去试试】',nextChat: 'C2'}, 
+         { title: '【离开此地>>>】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '你被门口的侍卫拦了出去', 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: '去别处看看……', 
+        options: [ 
+         { title: '【普济胡同】', toScene: 'C000H_V_MAP_-1_-4'}, 
+         { title: '【天机路】', toScene: 'C000H_V_MAP_0_-3'}, 
+         { title: '【南街市集】', toScene: 'C000H_V_MAP_1_-4'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_0_-5', name: '大菩提树',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_108',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, -5],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "身是菩提树，心为明镜台\n时时勤拂拭，莫使有尘埃\n高耸入云的菩提树下泥土松动，似乎隐藏着什么东西", 
+        options: [ 
+         { title: '【选择搜索】',nextChat: 'C2'}, 
+         { title: '【选择不搜索】',nextChat: 'C3'}, 
+         { title: '【与佛论道】',nextChat: 'C4'}, 
+         { title: '【离开此地>>>】',nextChat: 'C5'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '恭喜：您获得低劣的二阶培元丹', 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C6'}, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: '你只是看了一眼，以为有什么蚯蚓在里面。', 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C6'}, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: "与佛论道，写下经典偈语。\n菩提本无树,明镜亦非台\n本来无一物,何处惹尘埃。", 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C6'}, 
+        ],
+        #名气+100
+      },
+
+      { 
+        id: 'C5', desc: '你看完后并无感觉，当场离开', 
+        options: [ 
+         { title: '【柳家】', toScene: 'C000H_V_MAP_-1_-5'}, 
+         { title: '【镇口南门楼】', toScene: 'C000H_V_MAP_1_-5'}, 
+         { title: '【永寿炼丹行】', toScene: 'C000H_V_MAP_0_-4'}, 
+        ],
+      },
+
+      { 
+        id: 'C6', desc: '去别的地方看看', 
+        options: [ 
+         { title: '【柳家】', toScene: 'C000H_V_MAP_-1_-5'}, 
+         { title: '【镇口南门楼】', toScene: 'C000H_V_MAP_1_-5'}, 
+         { title: '【永寿炼丹行】', toScene: 'C000H_V_MAP_0_-4'}, 
+        ],
+      },
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+  {
+
+    id: 'C000H_V_MAP_2_-4', name: '典当行',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_110',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, -4],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "当行外站着几个落魄的富商，看起来像是破产的样子", 
+        options: [ 
+         { title: '【与落魄富商攀谈】',nextChat: 'C2'}, 
+         { title: '【离开此地>>>】',nextChat: 'C5'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '富商：此物乃宝物和氏璧，我可以以一灵石的价格售于你', 
+        options: [ 
+         { title: '【爽快买下！】',nextChat: 'C3'}, 
+         { title: '【等等，或许有坑】',nextChat: 'C4'}, 
+        ],
+      },
+
+       { 
+        id: 'C3', desc: '看来这地方时常可以捡漏，下回再来试试！', 
+        options: [ 
+         { title: '【没人了，离开】',nextChat: 'C5'}, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: '怎么可能有这种好事，肯定是坑，李森炎婉拒了', 
+        options: [ 
+         { title: '【离开此地】',nextChat: 'C5'}, 
+        ],
+      },
+
+      { 
+        id: 'C5', desc: '去别处看看……', 
+        options: [ 
+         { title: '【南街市集】', toScene: 'C000H_V_MAP_1_-4'}, 
+         { title: '【铁匠铺】', toScene: 'C000H_V_MAP_2_-5'}, 
+         { title: '【杂物铺】', toScene: 'C000H_V_MAP_3_-4'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_2_-5', name: '铁匠铺',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_124',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, -5],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "绛云镇唯一的铁匠铺，价格似乎比其他地方要高一些", 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【镇口南门楼】', toScene: 'C000H_V_MAP_1_-5'}, 
+         { title: '【典当行】', toScene: 'C000H_V_MAP_2_-5'}, 
+         { title: '【杂物铺】', toScene: 'C000H_V_MAP_3_-4'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+
+
+   {
+    #可搜寻，随机掉落宝物，设置第一次第二次进出的变量，制造循环有东西掉落
+    id: 'C000H_V_MAP_3_-2', name: '黑市',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_134',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [3, -2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "隐匿在小巷中的黑市，不少小贩偷偷地摆摊贩卖着各种物品，似乎还有一些禁物", 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【茗香阁】', toScene: 'C000H_V_MAP_2_-2'}, 
+         { title: '【东门】', toScene: 'C000H_V_MAP_3_-3'}, 
+         { title: '【摇光路】', toScene: 'C000H_V_MAP_2_-3'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+   {
+    
+    id: 'C000H_V_MAP_3_-3', name: '东门',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_111',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [3, -3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "绛云镇东边的大门，人迹稀少，看起来并没有什么人来往", 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【摇光路】', toScene: 'C000H_V_MAP_2_-3'}, 
+         { title: '【黑市】', toScene: 'C000H_V_MAP_3_-2'}, 
+         { title: '【杂物铺】', toScene: 'C000H_V_MAP_3_-4'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_3_-4', name: '杂物铺',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_129',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [3, -4],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "铺内的商品琳琅满目，不少客人驻足浏览。", 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【典当行】', toScene: 'C000H_V_MAP_2_-4'}, 
+         { title: '【铁匠铺】', toScene: 'C000H_V_MAP_2_-5'}, 
+         { title: '【东门】', toScene: 'C000H_V_MAP_3_-3'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+   {
+
+    id: 'C000H_V_MAP_-1_-2', name: '算命摊子',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_122',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, -2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "绛云镇闻名的算命先生，瞎掉的双眼看起来有点恐怖", 
+        options: [ 
+         { title: '【与算命先生攀谈】',nextChat: 'C2'}, 
+         { title: '【离开此地>>>】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: "算命先生：天机不可泄露，除非钱财足够", 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: '去别处看看……', 
+        options: [ 
+         { title: '【民宅】', toScene: 'C000H_V_MAP_-2_-2'}, 
+         { title: '【福来客栈】', toScene: 'C000H_V_MAP_0_-2'}, 
+         { title: '【普济药坊】', toScene: 'C000H_V_MAP_-1_-3'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_-1_-3', name: '普济药坊',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_121',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, -3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "西门旁的大药坊，经常收购归来的采药人的药材", 
+        options: [ 
+         { title: '【与店小二攀谈】',nextChat: 'C2'}, 
+         { title: '【离开此地>>>】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: "店小二：请问客官需要什么药材？", 
+        options: [ 
+         { title: '【暂时还不需要什么】',nextChat: 'C3'}, 
+        ],
+      },      
+
+      { 
+        id: 'C3', desc: '去别处看看……', 
+        options: [ 
+         { title: '【普济胡同】', toScene: 'C000H_V_MAP_-1_-4'}, 
+         { title: '【西门】', toScene: 'C000H_V_MAP_-2_-3'}, 
+         { title: '【天机路】', toScene: 'C000H_V_MAP_0_-3'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_-1_-4', name: '普济胡同',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_120',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, -4],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "一条普通的胡同，并无特别。", 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【民宅】', toScene: 'C000H_V_MAP_-2_-2'}, 
+         { title: '【永寿炼丹行】', toScene: 'C000H_V_MAP_0_-4'}, 
+         { title: '【柳家】', toScene: 'C000H_V_MAP_-1_-5'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+ 
+
+  {
+
+    id: 'C000H_V_MAP_-1_-5', name: '柳家',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_116',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, -5],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "豪华的大门，看起来金碧辉煌\n门前站满了想要拜师的年轻炼丹师", 
+        options: [ 
+         { title: '【与年轻炼丹师攀谈】',nextChat: 'C2'}, 
+         { title: '【进入柳家】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: "年轻炼丹师：我定能通过考核拜师柳家炼丹高人。", 
+        options: [ 
+         { title: '【祝你成功，离开此地>>>】',nextChat: 'C4'}, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: "守卫：只有通过炼丹考核后才可进入柳家", 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C4'}, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: '去别处看看……', 
+        options: [ 
+         { title: '【普济胡同】', toScene: 'C000H_V_MAP_-1_-4'}, 
+         { title: '【永寿炼丹行】', toScene: 'C000H_V_MAP_0_-4'}, 
+         { title: '【大菩提树】', toScene: 'C000H_V_MAP_0_-5'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+
+    id: 'C000H_V_MAP_-2_-2', name: '民宅',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_117',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, -2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "民家内传来孩子的吵闹和妇人的嫌弃声音。\n这只是普通的百姓家", 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },      
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【普济胡同】', toScene: 'C000H_V_MAP_-1_-4'}, 
+         { title: '【柳家】', toScene: 'C000H_V_MAP_-1_-5'}, 
+         { title: '【西门】', toScene: 'C000H_V_MAP_-2_-3'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+    id: 'C000H_V_MAP_-2_-3', name: '西门',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_125',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, -3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "绛云镇西边大门，西边有灵山，门口有众多采药小队聚集", 
+        options: [ 
+         { title: '【和采药人攀谈】',nextChat: 'C2'}, 
+         { title: '【离开此地>>>】',nextChat: 'C3'}, 
+        ],
+      },
+      #后期可加上探索假山，获得药草
+      { 
+        id: 'C2', desc: "采药人：灵山妖兽众多，独自前往甚是危险。", 
+        options: [ 
+         { title: '【离开此地>>>】',nextChat: 'C3'}, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: '去别处看看……', 
+        options: [ 
+         { title: '【普济药坊】', toScene: 'C000H_V_MAP_-1_-3'}, 
+         { title: '【民宅】', toScene: 'C000H_V_MAP_-2_-2'}, 
+         { title: '【算命摊子】', toScene: 'C000H_V_MAP_-1_-2'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+
+  {
+    id: 'C000H_V_MAP_-2_-4', name: '民宅',
+    # 指定场景为NPC或MAP场景
+    isNpc: true,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000H_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_118',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, -4],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #     
+      { 
+        id: 'C1', desc: "屋顶的飘出整整浓烟，看起来像是在准备晚饭。", 
+        options: [
+         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '去别处看看……', 
+        options: [ 
+         { title: '【普济胡同】', toScene: 'C000H_V_MAP_-1_-4'}, 
+         { title: '【普济药坊】', toScene: 'C000H_V_MAP_-1_-3'}, 
+         { title: '【柳家】', toScene: 'C000H_V_MAP_-1_-5'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+    ],
+  },
+ 
+  #=================================场景地图的设置==================================
+    maps: [
+        {
+            id: 'C000H_V_MAP_0_0',
+            data: [
+            {
+              "title": "绛云驿站",
+              "point": [0, 0],
+              "toScene": "C000H_V_MAP_0_0",
+              "icon": {},
+              "links": [[0, -1]],
+            },
+            {
+              "title": "演武场",
+              "point": [0, -1],
+              "toScene": "C000H_V_MAP_0_-1",
+              "icon": {},
+              "links": [[1, -1]],
+            },
+            {
+              "title": "北大街",
+              "point": [1, -1],
+              "toScene": "C000H_V_MAP_1_-1",
+              "icon": {},
+              "links": [[1, 0], [2, -1], [1, -2]],
+            },
+            {
+              "title": "绛云北门",
+              "point": [1, 0],
+              "toScene": "C000H_V_MAP_1_0",
+              "icon": {},
+              "links": [[0, 0], [2, 0]],
+            },
+            {
+              "title": "迎客大树",
+              "point": [2, 0],
+              "toScene": "C000H_V_MAP_2_0",
+              "icon": {},
+            },
+            {
+              "title": "绛云衙门",
+              "point": [2, -1],
+              "toScene": "C000H_V_MAP_2_-1",
+              "icon": {},
+            },
+            {
+              "title": "中大街",
+              "point": [1, -2],
+              "toScene": "C000H_V_MAP_1_-2",
+              "icon": {},
+              "links": [[1, -3], [0, -2], [2, -2]],
+            },
+            {
+              "title": "大十字路口",
+              "point": [1, -3],
+              "toScene": "C000H_V_MAP_1_-3",
+              "icon": {},
+              "links": [[1, -4], [0, -3], [2, -3]],
+            },
+            {
+              "title": "南街市集",
+              "point": [1, -4],
+              "toScene": "C000H_V_MAP_1_-4",
+              "icon": {},
+              "links": [[1, -5], [0, -4], [2, -4]],
+            },
+            {
+              "title": "镇口南门楼",
+              "point": [1, -5],
+              "toScene": "C000H_V_MAP_1_-5",
+              "icon": {},
+              "links": [[0, -5]],
+            },
+            {
+              "title": "福来客栈",
+              "point": [0, -2],
+              "toScene": "C000H_V_MAP_0_-2",
+              "icon": {},
+              "links": [[-1, -2]],
+            },
+            {
+              "title": "茗香阁",
+              "point": [2, -2],
+              "toScene": "C000H_V_MAP_2_-2",
+              "icon": {},
+              "links": [[3, -2]],
+            },
+            {
+              "title": "天机路",
+              "point": [0, -3],
+              "links": [[0, -2], [-1, -3]],
+              "toScene": "C000H_V_MAP_0_-3",
+              "icon": {},
+            },
+            {
+              "title": "摇光路",
+              "point": [2, -3],
+              "toScene": "C000H_V_MAP_2_-3",
+              "icon": {},
+              "links": [[3, -3]],
+            },
+            {
+              "title": "永寿炼丹行",
+              "point": [0, -4],
+              "links": [[0, -3], [-1, -4]],
+              "toScene": "C000H_V_MAP_0_-4",
+              "icon": {},
+            },
+            {
+              "title": "大菩提树",
+              "point": [0, -5],
+              "toScene": "C000H_V_MAP_0_-5",
+              "icon": {},
+              "links": [[0, -4], [-1, -5]],
+            },
+            {
+              "title": "典当行",
+              "point": [2, -4],
+              "toScene": "C000H_V_MAP_2_-4",
+              "icon": {},
+              "links": [[2, -5], [3, -4]],
+            },
+            {
+              "title": "铁匠铺",
+              "point": [2, -5],
+              "toScene": "C000H_V_MAP_2_-5",
+              "icon": {},
+            },
+            {
+              "title": "黑市",
+              "point": [3, -2],
+              "toScene": "C000H_V_MAP_3_-2",
+              "icon": {},
+              "links": [[3, -3]],
+            },
+            {
+              "title": "东门",
+              "point": [3, -3],
+              "toScene": "C000H_V_MAP_3_-3",
+              "icon": {},
+            },
+            {
+              "title": "杂物铺",
+              "point": [3, -4],
+              "toScene": "C000H_V_MAP_3_-4",
+              "icon": {},
+            },
+            {
+              "title": "算命摊子",
+              "point": [-1, -2],
+              "toScene": "C000H_V_MAP_-1_-2",
+              "icon": {},
+              "links": [[-2, -2]],
+            },
+            {
+              "title": "普济药坊",
+              "point": [-1, -3],
+              "toScene": "C000H_V_MAP_-1_-3",
+              "icon": {},
+              "links": [[-2, -3]],
+            },
+            {
+              "title": "普济胡同",
+              "point": [-1, -4],
+              "toScene": "C000H_V_MAP_-1_-4",
+              "icon": {},
+              "links": [[-1, -5], [-2, -4]],
+            },
+            {
+              "title": "柳家",
+              "point": [-1, -5],
+              "toScene": "C000H_V_MAP_-1_-5",
+              "icon": {},
+            },
+            {
+              "title": "民宅",
+              "point": [-2, -2],
+              "toScene": "C000H_V_MAP_-2_-2",
+              "icon": {},
+              "links": [[-2, -3]],
+            },
+            {
+              "title": "西门",
+              "point": [-2, -3],
+              "toScene": "C000H_V_MAP_-2_-3",
+              "icon": {},
+              "links": [[-2, -4]],
+            },
+            {
+              "title": "民宅",
+              "point": [-2, -4],
+              "toScene": "C000H_V_MAP_-2_-4",
+              "icon": {},
+            },
+           ]
+
+          },
+   ],
+  ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

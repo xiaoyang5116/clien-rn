@@ -674,13 +674,14 @@ directory: [
         {
         point: [0, -38], title: '第三十九章 保命', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C39' ,
-        toChapter: 'WZXX_M1_N1_Z2C39', links: [[]] 
+        toChapter: 'WZXX_M1_N1_Z2C39', links: [[0, -39]] 
         },
 
-
-
-
-      
+        {
+        point: [0, -39], title: '第四十章 百草镇', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C40' ,
+        toChapter: 'WZXX_M1_N1_Z2C40', links: [[]] 
+        },
     ]
 
   },
@@ -690,7 +691,6 @@ directory: [
     title: '《第三卷》',
     map: 
     [
-#       
 
         {
         point: [0, 0], title: '第一章 寻找药方 ', 
@@ -755,18 +755,11 @@ directory: [
   
   {
     id: 4, 
-    title: '未开启',
+    title: '地图测试',
     map: [
-      { point: [0, 0], title: '起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
-      { point: [0, 1], title: '选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
-      { point: [1, 0], title: '向右', lock: true, toSctoChapterene: 'WZXX_M1_N1_C001B_[C2]', links: [[0, -1], [0, 1]] },
-      { point: [0, -1], title: '沉浸式阅读', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [], path: [[1, -1], [1, -2], [1, -3], [1, -4], [0, -4], [-1, -4]] },
-      { point: [-1, 0], title: '向左', lock: true, toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [[0, 1], [0, -1]] },
-      { point: [-2, 0], title: '我有秘籍, 要继续？', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [[-1, 0]], path: [[-2, 1], [-1, 1], [0, 1]] },
-      { point: [-1, -1], title: '开始游戏', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [[-1, 0], [0, -1], [-1, -2]] },
-      { point: [-1, -2], title: '选择副本', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [[-1, -3]], path: [[0, -2], [0, -1]] },
-      { point: [-1, -3], title: '击杀怪物', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [[-1, -4]] },
-      { point: [-1, -4], title: '获得奖励', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [], path: [[-2, -4], [-2, -3], [-2, -2], [-2, -1], [-2, 0]] },
+      { point: [0, 0], title: '小镇地图', toChapter: 'WZXX_M1_N1_Z3C98', links: [] },
+      { point: [0, -1], title: '绛云镇地图', toChapter: 'WZXX_M1_N1_Z3C99', links: [] },
+      
     ]
   },
 
