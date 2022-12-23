@@ -540,7 +540,19 @@ directory: [
         {
         point: [0, -17], title: '第十八章 百草镇 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C18' ,
-        toChapter: 'WZXX_M1_N1_Z2C18', links: [] 
+        toChapter: 'WZXX_M1_N1_Z2C18', links: [[0, -18]] 
+        },
+
+        {
+        point: [0, -18], title: '第十九章 宝物出世 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C19' ,
+        toChapter: 'WZXX_M1_N1_Z2C19', links: [[0, -19]] 
+        },
+
+        {
+        point: [0, -19], title: '第二十章 另外的队伍 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C20' ,
+        toChapter: 'WZXX_M1_N1_Z2C20', links: [] 
         },
 
     

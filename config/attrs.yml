@@ -18,7 +18,7 @@ data: {
         { title: '神识', key: 神识, value: 0 },
         { title: '鉴定', key: 鉴定, value: 0 },
         { title: '气运', key: 气运, value: 0 },
-        { title: '道行', key: 道行, value: 0 },
+        { title: '威势', key: 威势, value: 0 },
         { title: '神通', key: 神通, value: 0 },
         { title: '仙缘', key: 仙缘, value: 0 },
       ]],
@@ -37,10 +37,10 @@ data: {
       title: '才华',
       collapsed: true,
       data: [[
-        { title: '学识', key: 学识, value: 0 },
+        { title: '灵性', key: 灵性, value: 0 },
         { title: '悟性', key: 悟性, value: 0 },
         { title: '颜值', key: 颜值, value: 0 },
-        { title: '智慧', key: 智慧, value: 0 },
+        { title: '勇气', key: 勇气, value: 0 },
       ]],
     },
     {
@@ -57,7 +57,7 @@ data: {
       title: '善恶',
       data: [[
         { title: '善良', key: 善良, value: 0 },
-        { title: '冷漠', key: 冷漠, value: 0 },
+        { title: '邪恶', key: 邪恶, value: 0 },
       ]],
     },
      {

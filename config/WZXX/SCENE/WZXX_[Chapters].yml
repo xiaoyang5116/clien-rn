@@ -368,6 +368,12 @@ scenes: [
           { id: "WZXX_M1_N1_Z2C18",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z2C18FZ",min: 0, max: 1 },
 
+          { id: "WZXX_M1_N1_Z2C19",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z2C19FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z2C20",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z2C20FZ",min: 0, max: 1 },
+
 
         #第三卷
           { id: "WZXX_M1_N1_Z3C01",min: 0, max: 1 },

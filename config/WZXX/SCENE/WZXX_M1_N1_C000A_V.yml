@@ -280,7 +280,6 @@ scenes: [
     { id: "biaoqianv2", min: 0, max: 1 },
     { id: "biaoqianv3", min: 0, max: 1 },
     { id: "biaoqianv4", min: 0, max: 1 },
-    
     ],
     # 动作定义
     actions: [ ],
@@ -1860,6 +1859,7 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C1A' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/v_icon_101'], nextChat: 'C2' },
+       
     ],
     # 对话选项
     chats: [
