@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_ZC11_V',
+      id: 'WZXX_M1_N1_ZC006_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -29,10 +29,10 @@ scenes: [
       chats: [
       #
       { 
-        id: 'WZXX_M1_N1_ZC11_V1', desc: '味道', 
+        id: 'WZXX_M1_N1_ZC006_V1', desc: '味道', 
         options: [ 
           { 
-          title: "【这次是谁】",dialogs: ['C0051A_1.1A'],
+          title: "【这次是谁】",dialogs: ['C006A_1.1A'],
            icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
           },
         ],
@@ -51,7 +51,7 @@ scenes: [
 
          #选项对话
           { 
-            id: 'C0051A_1.1A',style: 6, title: '是谁？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C006A_1.1A',style: 6, title: '是谁？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -61,23 +61,23 @@ scenes: [
                 '虽然会有些得罪人，要不，猜一个？',],
                 btn: [
                 {
-                title: '赵掌柜，是你吗？',dialogs: ['C0051A_1.2A'],
+                title: '赵掌柜，是你吗？',dialogs: ['C006A_1.2A'],
                 icon: { id: 6, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
                 },
                 {
-                title: '斗笠人，是你吗？',dialogs: ['C0051A_1.2B'],
+                title: '斗笠人，是你吗？',dialogs: ['C006A_1.2B'],
                 icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
                 },
                 {
-                title: '胖商人，是你吗？',dialogs: ['C0051A_1.2C'],
+                title: '胖商人，是你吗？',dialogs: ['C006A_1.2C'],
                 icon: { id: 7, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
                 },
                 {
-                title: '白书生，是你吗？',dialogs: ['C0051A_1.2D'],
+                title: '白书生，是你吗？',dialogs: ['C006A_1.2D'],
                 icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']
                 },
                 {
-                title: '夏姑娘，是你吗？',dialogs: ['C0051A_1.2E'],
+                title: '夏姑娘，是你吗？',dialogs: ['C006A_1.2E'],
                 icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']
                 },
                 ]
@@ -86,7 +86,7 @@ scenes: [
           },
 
           { 
-            id: 'C0051A_1.1B',style: 6, title: '是谁？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C006A_1.1B',style: 6, title: '是谁？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -94,23 +94,23 @@ scenes: [
                 '虽然会有些得罪人，要不，猜一个？','到底会是谁呢？',],
                 btn: [
                 {
-                title: '赵掌柜，是你吗？',dialogs: ['C0051A_1.2A'],
+                title: '赵掌柜，是你吗？',dialogs: ['C006A_1.2A'],
                 icon: { id: 7, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
                 },
                 {
-                title: '斗笠人，是你吗？',dialogs: ['C0051A_1.2B'],
+                title: '斗笠人，是你吗？',dialogs: ['C006A_1.2B'],
                 icon: { id: 7, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
                 },
                 {
-                title: '胖商人，是你吗？',dialogs: ['C0051A_1.2C'],
+                title: '胖商人，是你吗？',dialogs: ['C006A_1.2C'],
                 icon: { id: 6, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
                 },
                 {
-                title: '白书生，是你吗？',dialogs: ['C0051A_1.2D'],
+                title: '白书生，是你吗？',dialogs: ['C006A_1.2D'],
                 icon: { id: 7, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']
                 },
                 {
-                title: '夏姑娘，是你吗？',dialogs: ['C0051A_1.2E'],
+                title: '夏姑娘，是你吗？',dialogs: ['C006A_1.2E'],
                 icon: { id: 7, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']
                 },
                 ]
@@ -119,7 +119,7 @@ scenes: [
           },
 
           { 
-            id: 'C0051A_1.2A',style: 6, title: '赵掌柜，是你吗？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C006A_1.2A',style: 6, title: '赵掌柜，是你吗？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -130,7 +130,7 @@ scenes: [
                 '“等下，虽然我没有味道，但是还有味！”','赵掌柜紧张的望向李森炎。',],
                 btn: [
                 {
-                title: '重选<<<',dialogs: ['C0051A_1.1B'],
+                title: '重选<<<',dialogs: ['C006A_1.1B'],
                 },
                 
                 ]
@@ -139,7 +139,7 @@ scenes: [
           },
 
           { 
-            id: 'C0051A_1.2B',style: 6, title: '斗笠人，是你吗？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C006A_1.2B',style: 6, title: '斗笠人，是你吗？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -150,7 +150,7 @@ scenes: [
                 '应该不是的样子！',],
                 btn: [
                 {
-                title: '重选<<<',dialogs: ['C0051A_1.1B'],
+                title: '重选<<<',dialogs: ['C006A_1.1B'],
                 },
                 
                 ]
@@ -159,7 +159,7 @@ scenes: [
           },
 
            { 
-            id: 'C0051A_1.2C',style: 6, title: '胖商人，是你吗？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C006A_1.2C',style: 6, title: '胖商人，是你吗？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -172,7 +172,7 @@ scenes: [
                 '李森炎：……？',],
                 btn: [
                 {
-                title: '就是你',toChapter: "WZXX_M1_N1_Z2C12",
+                title: '就是你',toChapter: "WZXX_M1_N1_Z2C07",
                 },
                 
                 ]
@@ -181,7 +181,7 @@ scenes: [
           },
 
           { 
-            id: 'C0051A_1.2D',style: 6, title: '白书生，是你吗？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C006A_1.2D',style: 6, title: '白书生，是你吗？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -190,16 +190,15 @@ scenes: [
                 '白书生：“看你眼神我就知道你想什么。”','李森炎欲言又止。',],
                 btn: [
                 {
-                title: '重选<<<',dialogs: ['C0051A_1.1B'],
+                title: '重选<<<',dialogs: ['C006A_1.1B'],
                 },
-                
                 ]
               },
             ]  
           },
 
           { 
-            id: 'C0051A_1.2E',style: 6, title: '夏姑娘，是你吗？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C006A_1.2E',style: 6, title: '夏姑娘，是你吗？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -208,7 +207,7 @@ scenes: [
                 '竟然没法躲！','这夏姑娘也是个强人。','这下亏大了。','哎呦！','“不再打你下，感觉不解恨！”',],
                 btn: [
                 {
-                title: '重选<<<',dialogs: ['C0051A_1.1B'],
+                title: '重选<<<',dialogs: ['C006A_1.1B'],
                 },
                 
                 ]

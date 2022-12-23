@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_ZC08_V',
+      id: 'WZXX_M1_N1_ZC004_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -14,6 +14,11 @@ scenes: [
       { id: "biaoqianv6", min: 0, max: 1 } ,
       { id: "biaoqianv7", min: 0, max: 1 } ,
       { id: "biaoqianv8", min: 0, max: 1 } ,
+      { id: "biaoqianv9", min: 0, max: 1 } ,
+      { id: "biaoqianv10", min: 0, max: 1 } ,
+      { id: "biaoqianv11", min: 0, max: 1 } ,
+      { id: "biaoqianv12", min: 0, max: 1 } ,
+      { id: "biaoqianv13", min: 0, max: 1 } ,
       ],
 
       # 动作定义
@@ -29,66 +34,62 @@ scenes: [
       chats: [
       #
       { 
-        id: 'WZXX_M1_N1_ZC08_V1', desc: '飞舟', 
+        id: 'WZXX_M1_N1_ZC004_V1', desc: '飞舟', 
         options: [ 
-          { title: "【做出行动】",dialogs: ['C0048A_1.1A'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
-          { title: "【跳过此段剧情】",toChapter: "WZXX_M1_N1_Z2C09", icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
+          { title: "【做出行动】",dialogs: ['C004A_1.1A'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
+          { title: "【跳过此段剧情】",toChapter: "WZXX_M1_N1_Z2C05", icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
         ],
       },
 
       { 
-        id: 'WZXX_M1_N1_ZC08_V2', desc: '询问', 
+        id: 'WZXX_M1_N1_ZC004_V2', desc: '询问', 
         options: [ 
-          { title: "【询问飞高要花费的灵石】",dialogs: ['C0048A_1.3A'], icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']},
+          { title: "【询问飞高要花费的灵石】",dialogs: ['C004A_1.3A'], icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']},
         ],
       },
 
       { 
-        id: 'WZXX_M1_N1_ZC08_V3', desc: '询问', 
+        id: 'WZXX_M1_N1_ZC004_V3', desc: '询问', 
         options: [ 
-          { title: "【真像是在开拖拉机】",toChapter: "WZXX_M1_N1_Z2C08_[N1]",},
+          { title: "【这是要做什么？】",toChapter: "WZXX_M1_N1_Z2C04_[N1]",},
         ],
       },
-
-     
-
         ],
 
       # 对话框
       dialogs:
         [
-
-
           #选项对话
           { 
-            id: 'C0048A_1.1A',style: 6, title: '做出行动', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C004A_1.1A',style: 6, title: '做出行动', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
                 content: ['李森炎仔细想了想','灵光一闪蹦出不少想法', '不如……',],
                 btn: [
                 {
-                title: '我们下降点高度',dialogs: ['C0048A_1.2A'],
+                title: '我们下降点高度',dialogs: ['C004A_1.2A'],
                 icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
                 },
                 {
-                title: '我们提升一点高度',dialogs: ['C0048A_1.2B'],
+                title: '我们提升一点高度',dialogs: ['C004A_1.2B'],
                 icon: { id: 6, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
                 },
                 {
-                title: '要不降落地面看看',dialogs: ['C0048A_1.2C'],
+                title: '要不降落地面看看',dialogs: ['C004A_1.2C'],
                 icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']
                 },
                 {
-                title: '不管这些鸟，加速移动',dialogs: ['C0048A_1.2D'],
+                title: '不管这些鸟，加速移动',dialogs: ['C004A_1.2D'],
                 icon: { id: 7, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']
-                },]
+                },
+                ]
               },
             ]  
           },
 
           { 
-            id: 'C0048A_1.2A',style: 6, title: '下降高度', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C004A_1.2A',style: 6, title: '下降高度', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -96,14 +97,18 @@ scenes: [
                 '众人操作飞蓬开始下降高度。', '高度不断下降，可以看见地面上的花瓣并且数的清晰的程度。','然而，飞蓬号上的鸟依旧赖着不走。',
                 '它们拍打翅膀，兴奋的四处张望，好像很开心的样子。','这下降高度的做法明显没用。',
                 ],
-                btn: [{title: '飞回原位',dialogs: ['C0048A_1.2A'],},
-                {title: '要不降落地面看看',dialogs: ['C0048A_1.2C'],},]
+                btn: [{title: '飞回原位，不管这些鸟了',dialogs: ['C004A_1.2D'],
+                icon: { id: 7, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8']
+                },
+                {title: '要不降落地面看看',dialogs: ['C004A_1.2C'],
+                icon: { id: 7, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9']
+                },]
               },
             ]  
           },
 
            { 
-            id: 'C0048A_1.2B',style: 6, title: '提升高度', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C004A_1.2B',style: 6, title: '提升高度', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -140,16 +145,20 @@ scenes: [
                 content: ['这个还真没试过，不过在往上的，那可不就是可不是两三枚灵石的能量你就能行的。',
                 '越往高度越往上的话，我们保护周围的防护法阵也会消耗更多更多的能量。', '这就不划算了。',
                 '你确定为了几只鸟，就要掏上个几十灵石，甚至上百灵石的程度嘛？','而且你真有了这些灵石吗？',],
-                btn: [{title: '打扰了，这灵石就算了',tokey: "P5",},
+                btn: [{title: '打扰了，这灵石就算了',tokey: "P5",
+                icon: { id: 7, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10']
+                },
                 # 当前选项不可能达成
-                {title: '如果我说我有呢？支付', useProps: '886,50',tokey: "P6",},]
+                {title: '如果我说我有呢？支付', useProps: '886,50',tokey: "P6",
+                icon: { id: 7, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11']
+                },]
               },
 
               {
                 key: 'P5', 
                 content: ['几十块灵石嘛，好像还真没有。',
                 '李森炎呵呵的笑了一笑。这么说确实是我有些无理取闹了。',],
-                btn: [{title: '飞回原位',dialogs: ['C0048A_1.2A'],},]
+                btn: [{title: '飞回原位，不管这些鸟了',dialogs: ['C004A_1.2D'],},]
               },
 
               {
@@ -157,13 +166,13 @@ scenes: [
                 content: ['“口说无凭，不如把灵石拿出来瞧瞧？”',
                 '“那自然是可以的。”','这时也顾不得什么财不露白的道理，李森炎感觉自己就应该在这时候显摆一下出出气，否则内心难安。',
                 ],
-                btn: [{title: '掏钱',toChapter: "WZXX_M1_N1_Z2C08_[N2]",},]
+                btn: [{title: '掏钱',toChapter: "WZXX_M1_N1_Z2C04_[N2]",},]
               },
             ]  
           },
 
           { 
-            id: 'C0048A_1.3A',style: 6, title: '询问还能不能再飞高', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C004A_1.3A',style: 6, title: '询问还能不能再飞高', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -171,20 +180,20 @@ scenes: [
                 '原来觉得无所谓的人，一看到需要再掏钱顿时无语了。', '原来觉得无所谓的人，一看到需要再掏钱顿时无语了。','省钱啊，如果不是为省钱或者急着赶路，乘坐大商会的船不好吗。',
                 '大家都不怎么愿意啊，那么这钱难道要自己出？',
                 ],
-                btn: [{title: '算了，返回',dialogs: ['C0048A_1.1A'],},
+                btn: [{title: '算了，返回',dialogs: ['C004A_1.1A'],},
                 ]
               },
             ]  
           },
 
            { 
-            id: 'C0048A_1.2C',style: 6, title: '降落地面', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C004A_1.2C',style: 6, title: '降落地面', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
                 content: ['“如果可能的话，我们要不降落一下，也许我们降落之后，这些鸟就不再停留了呢。”',
                 '“你这主意不错，那就下降到地面去。”', '“要不我们下降吧。”','“就这么办，下降，下降！”','“现在这里不能下降，你也不看看下面是什么地方。”',
-                ' 众人一看下面是连绵的树海，在这种未开开化的森林，往往有极大的危险存在。','而这并不是让众人犹豫的原因，这森林之上还有一些若有若无的瘴气在飘散。',
+                '众人一看下面是连绵的树海，在这种未开开化的森林，往往有极大的危险存在。','而这并不是让众人犹豫的原因，这森林之上还有一些若有若无的瘴气在飘散。',
                 ],
                 btn: [{title: '怎么到了这个地方？',tokey: "P2",},
                 ]
@@ -194,10 +203,14 @@ scenes: [
                 key: 'P2', 
                 content: ['在一些大山之中往往会有有毒瘴气。',
                 '有些是因为稀有矿藏，或者沼泽释放，也或者是动物和植物为了自保而释放，也有些是些死者阴魂凝聚不散所致，很多种可能，但都不是什么好东西。',
-                 '这附近的瘴气缘由已经查明，是一些植物所释放而来。','这是植物的优势，有了这些毒瘴气，植物能在更好的摆脱一些动物的骚扰。',
+                '这附近的瘴气缘由已经查明，是一些植物所释放而来。','这是植物的优势，有了这些毒瘴气，植物能在更好的摆脱一些动物的骚扰。',
                 ],
-                btn: [{title: '好好思考一下',tokey: "P3",},
-                {title: '也许这瘴气可以利用一下',tokey: "P4",},
+                btn: [{title: '好好思考一下',tokey: "P3",
+                icon: { id: 7, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12']
+                },
+                {title: '也许这瘴气可以利用一下',tokey: "P4",
+                icon: { id: 7, bindVar: 'biaoqianv13' }, varsOn: ['biaoqianv13']
+                },
                 ]
               },
 
@@ -207,7 +220,7 @@ scenes: [
                 '这样的情况就算是修仙者也不愿意轻易的进入，往往会把这些地区视为禁地，而现在就相当于众人在这禁地的高空飞行。',
                  '如果运气不好的话，反而会碰到这更厉害的生物，算了算了。',
                 ],
-                btn: [{title: '返回<<<',dialogs: ['C0048A_1.1A'],},
+                btn: [{title: '返回<<<',dialogs: ['C004A_1.1A'],},
                 
                 ]
               },
@@ -220,7 +233,7 @@ scenes: [
                 '大家都是做生意的，能安安全全的到目标就行了，可不是来多事的。',
                 '行吧，既李森炎是言见说服不了众人，那也只能选择不再提及。',
                 ],
-                btn: [{title: '算了，就这样吧',dialogs: ['C0048A_1.1A'],},
+                btn: [{title: '算了，就这样吧',dialogs: ['C004A_1.1A'],},
                 
                 ]
               },
@@ -228,7 +241,7 @@ scenes: [
           },
 
           { 
-            id: 'C0048A_1.2D',style: 6, title: '不管这些鸟', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'C004A_1.2D',style: 6, title: '不管这些鸟', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -237,7 +250,7 @@ scenes: [
                 '“先试试吧，我不信只加速一点点的话需要花掉多少灵石。”','除此以外，倒没发现什么事故。','一段时间过去，见这些鸟也没有什么对众人做出特别的攻击行为，众人也就把这些鸟当作一些看客来处理。毕竟都是只是些鸟类而已。',
                 '就算是开了一些灵智也只算是较低那种。','大家人不犯我，我不犯人就这么聊开了，说着一些小无伤大雅的话题。',
                 ],
-                btn: [{title: '就这么办！',toChapter: "WZXX_M1_N1_Z2C09",},
+                btn: [{title: '就这么办！',toChapter: "WZXX_M1_N1_Z2C05",},
                 ]
               },
             ]  

@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_ZC13_V',
+      id: 'WZXX_M1_N1_ZC007_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -26,15 +26,15 @@ scenes: [
       chats: [
       #
       { 
-        id: 'WZXX_M1_N1_ZC13_V1', desc: '该怎么办', 
+        id: 'WZXX_M1_N1_ZC007_V1', desc: '该怎么办', 
         options: [ 
           { 
-          title: "【我用法术来进攻】",dialogs: ['ZC13A_1.1A'],
+          title: "【我用法术来进攻】",dialogs: ['ZC007A_1.1A'],
            icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
           },
 
            { 
-          title: "【帮助白书生来操作弓弩】",toChapter: "WZXX_M1_N1_Z2C14",
+          title: "【帮助白书生来操作弓弩】",toChapter: "WZXX_M1_N1_Z2C08",
            icon: { id: 7, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
           },
         ],
@@ -53,7 +53,7 @@ scenes: [
 
          #选项对话
           { 
-            id: 'ZC13A_1.1A',style: 6, title: '法术', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'ZC007A_1.1A',style: 6, title: '法术', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -61,7 +61,7 @@ scenes: [
                 ],
                 btn: [
                 {
-                title: '重选', nextChat: 'WZXX_M1_N1_ZC13_V1'
+                title: '重选', nextChat: 'WZXX_M1_N1_ZC007_V1'
                 }
                 ]
               },

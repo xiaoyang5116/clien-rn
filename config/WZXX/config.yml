@@ -43,14 +43,19 @@ book: {
         "WZXX_M1_N1_C0021_V",
         "WZXX_M1_N1_C0022_V",
         "WZXX_M1_N1_C0025_V",
-        "WZXX_M1_N1_ZC08_V",
-        "WZXX_M1_N1_ZC10_V",
-        "WZXX_M1_N1_ZC11_V",
-        "WZXX_M1_N1_ZC13_V",
-        "WZXX_M1_N1_ZC16_V",
-        "WZXX_M1_N1_ZC19_V",
-        "WZXX_M1_N1_ZC27_V",
-        "WZXX_M1_N1_ZC33_V",
+
+        #第二卷
+        "WZXX_M1_N1_ZC004_V",
+        "WZXX_M1_N1_ZC005_V",
+        "WZXX_M1_N1_ZC006_V",
+        "WZXX_M1_N1_ZC007_V",
+        "WZXX_M1_N1_ZC008_V",
+        "WZXX_M1_N1_ZC009_V",
+        "WZXX_M1_N1_ZC012_V",
+        "WZXX_M1_N1_ZC014_V",
+
+
+        #第三卷分支
         "WZXX_M1_N1_ZC34_V",
         "WZXX_M1_N1_ZC35_V",
         "WZXX_MasterEventVar_01",

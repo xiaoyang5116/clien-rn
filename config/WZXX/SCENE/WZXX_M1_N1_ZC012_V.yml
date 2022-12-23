@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_ZC27_V',
+      id: 'WZXX_M1_N1_ZC012_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -31,22 +31,13 @@ scenes: [
       chats: [
       
       {
-        id: 'WZXX_M1_N1_ZC27_V1', desc: '该怎么办', 
+        id: 'WZXX_M1_N1_ZC012_V1', desc: '该怎么办', 
         options: [
           {
-          title: "【大胆叫价 五百灵石】",dialogs: ['ZC27_1.1A'],varsOn: ['biaoqianv1',],
+          title: "【大胆叫价 五百灵石】",dialogs: ['ZC12_1.1A'],varsOn: ['biaoqianv1',],
           icon: { id: 1, bindVar: 'biaoqianv1' }, 
           },
 
-          # {
-          # title: "【尽量争取 四百灵石】", andVarsOn: ['v1'],  varsOn: ['biaoqianv2',], dialogs: ['ZC27_1.1B'],
-          # icon: { id: 1, bindVar: 'biaoqianv2' }, 
-          # },
-
-          # {
-          # title: "【保守一点 三百灵石】",dialogs: ['ZC27A_1.1C'], andVarsOn: ['v2'],
-          # icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
-          # },
 
           
         ],
@@ -60,7 +51,7 @@ scenes: [
         [
          #选项对话
           { 
-            id: 'ZC27_1.1A',style: 6, title: '大胆叫价 五百灵石', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'ZC12_1.1A',style: 6, title: '大胆叫价 五百灵石', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -71,7 +62,7 @@ scenes: [
                 btn: [
                 {
                 title: '尽量争取 四百灵石',
-                 dialogs: ['ZC27_1.1B'],
+                 dialogs: ['ZC12_1.1B'],
                 },
                
                 ]
@@ -80,7 +71,7 @@ scenes: [
           }, 
 
           { 
-            id: 'ZC27_1.1B',style: 6, title: '尽量争取 四百灵石', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'ZC12_1.1B',style: 6, title: '尽量争取 四百灵石', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -91,7 +82,7 @@ scenes: [
                 '看来保底就是三百了。','李森炎也不是什么犯难的人，只是想尽量出个高价。',],
                 btn: [
                 {
-                title: '保守一点 三百灵石', dialogs: ['ZC27A_1.1C'],
+                title: '保守一点 三百灵石', dialogs: ['ZC12A_1.1C'],
                 },
                
                 ]
@@ -100,7 +91,7 @@ scenes: [
           }, 
 
           { 
-            id: 'ZC27A_1.1C',style: 6, title: '保守一点 三百灵石', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'ZC12A_1.1C',style: 6, title: '保守一点 三百灵石', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -114,7 +105,7 @@ scenes: [
                 '这大概是天机阁的某个高管，比这小姑娘有话语权，估计是报医灵的名字，才给的面子。',],
                 btn: [
                 {
-                title: '这就好说话了', toChapter: "WZXX_M1_N1_Z2C27",
+                title: '这就好说话了', toChapter: "WZXX_M1_N1_Z2C13",
                 },
                 ]
               },

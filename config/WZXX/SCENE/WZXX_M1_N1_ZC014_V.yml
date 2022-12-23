@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_ZC33_V',
+      id: 'WZXX_M1_N1_ZC014_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -30,25 +30,25 @@ scenes: [
       chats: [
       
       {
-        id: 'WZXX_M1_N1_ZC33_V1', desc: '诗', 
+        id: 'WZXX_M1_N1_ZC014_V1', desc: '诗', 
         options: [
           {
-          title: "【能不能说人话】",dialogs: ['ZC33_1.1A'],varsOn: ['biaoqianv1',],
+          title: "【能不能说人话】",dialogs: ['ZC14_1.1A'],varsOn: ['biaoqianv1',],
           icon: { id: 1, bindVar: 'biaoqianv1' }, 
           },
 
           {
-          title: "【我读书少，能不能爽快点】",  varsOn: ['biaoqianv2',], dialogs: ['ZC33_1.1B'],
+          title: "【我读书少，能不能爽快点】",  varsOn: ['biaoqianv2',], dialogs: ['ZC14_1.1B'],
           icon: { id: 1, bindVar: 'biaoqianv2' }, 
           },
 
           {
-          title: "【闹呢？搁着玩故弄玄虚那一套】",dialogs: ['ZC33_1.1C'], 
+          title: "【闹呢？搁着玩故弄玄虚那一套】",dialogs: ['ZC14_1.1C'], 
           icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
           },
 
           {
-          title: "【老头，不对啊，这有问题……】",dialogs: ['ZC33_1.1D'],
+          title: "【老头，不对啊，这有问题……】",dialogs: ['ZC14_1.1D'],
           icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
           },
         ],
@@ -60,7 +60,7 @@ scenes: [
         [
          #选项对话
           { 
-            id: 'ZC33_1.1A',style: 6, title: '能不能说人话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'ZC14_1.1A',style: 6, title: '能不能说人话', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -71,7 +71,7 @@ scenes: [
                 btn: [
                 {
                 title: '别卖关子了！',
-                toChapter: "WZXX_M1_N1_Z2C34",
+                toChapter: "WZXX_M1_N1_Z2C15",
                 },
                 ]
               },
@@ -79,7 +79,7 @@ scenes: [
           }, 
 
           { 
-            id: 'ZC33_1.1B',style: 6, title: '我读书少，能不能爽快点', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'ZC14_1.1B',style: 6, title: '我读书少，能不能爽快点', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -89,7 +89,7 @@ scenes: [
                 '李森炎看着他，“我读书少，你能不能爽快点！中译中一下？”',],
                 btn: [
                 {
-                title: '别卖关子了！',toChapter: "WZXX_M1_N1_Z2C34",
+                title: '别卖关子了！',toChapter: "WZXX_M1_N1_Z2C15",
                 },
                 ]
               },
@@ -97,7 +97,7 @@ scenes: [
           }, 
 
           { 
-            id: 'ZC33_1.1C',style: 6, title: '闹呢？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'ZC14_1.1C',style: 6, title: '故弄玄虚？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -107,7 +107,7 @@ scenes: [
                 '别给他整那一套，他在现代可是防诈先锋！',],
                 btn: [
                 {
-                title: '别卖关子了！', toChapter: "WZXX_M1_N1_Z2C34",
+                title: '别卖关子了！', toChapter: "WZXX_M1_N1_Z2C15",
                 },
                 ]
               },
@@ -115,7 +115,7 @@ scenes: [
           }, 
 
           { 
-            id: 'ZC33_1.1D',style: 6, title: '这有问题……', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            id: 'ZC14_1.1D',style: 6, title: '这有问题……', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
             sections: [
               {
                 key: 'P1', 
@@ -126,7 +126,7 @@ scenes: [
                 '老头：“……”',],
                 btn: [
                 {
-                title: '别卖关子了！', toChapter: "WZXX_M1_N1_Z2C34",
+                title: '别卖关子了！', toChapter: "WZXX_M1_N1_Z2C15",
                 },
                 ]
               },

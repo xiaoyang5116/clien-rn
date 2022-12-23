@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_ZC10_V',
+      id: 'WZXX_M1_N1_ZC005_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -10,10 +10,6 @@ scenes: [
       { id: "biaoqianv2", min: 0, max: 1 } ,
       { id: "biaoqianv3", min: 0, max: 1 } ,
       { id: "biaoqianv4", min: 0, max: 1 } ,
-      { id: "biaoqianv5", min: 0, max: 1 } ,
-      { id: "biaoqianv6", min: 0, max: 1 } ,
-      { id: "biaoqianv7", min: 0, max: 1 } ,
-      { id: "biaoqianv8", min: 0, max: 1 } ,
       ],
 
       # 动作定义
@@ -29,35 +25,30 @@ scenes: [
       chats: [
       #
       { 
-        id: 'WZXX_M1_N1_ZC10_V1', desc: '灵茶', 
+        id: 'WZXX_M1_N1_ZC005_V1', desc: '灵茶', 
         options: [ 
           { 
-          title: "【再喝一杯】",toChapter: "WZXX_M1_N1_Z2C11",
-           icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
+          title: "【再喝一杯】",toChapter: "WZXX_M1_N1_Z2C06",
+          icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
           },
 
           {
-           title: "【再喝三杯】",toChapter: "WZXX_M1_N1_Z2C11",
+          title: "【再喝三杯】",toChapter: "WZXX_M1_N1_Z2C06",
           icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
           },
 
           {
-           title: "【能喝多少喝多少】",toChapter: "WZXX_M1_N1_Z2C11",
-          icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
+          title: "【能喝多少喝多少】",toChapter: "WZXX_M1_N1_Z2C06",
+          icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']
           },
 
           { 
-          title: "【还是不要喝了】",toChapter: "WZXX_M1_N1_Z2C11",
-           icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
+          title: "【还是不要喝了】",toChapter: "WZXX_M1_N1_Z2C06",
+          icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4']
           },
         ],
       },
-
-     
-
-     
-
-        ],
+      ],
 
       # 对话框
       dialogs:
