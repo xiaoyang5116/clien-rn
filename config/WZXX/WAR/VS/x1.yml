@@ -27,7 +27,21 @@ challenge: {
          userName: '黑发阴灵', 
          skillIds: [40033, 40033, 40033],
          attrs: [
-          { key: 'hp', value: 3000 },
+          { key: 'hp', value: 30 },
+          { key: 'mp', value: 300 },
+          { key: 'speed', value: 0 },
+          { key: 'shield', value: 240 },
+          { key: 'physicalAttack', value: 300 },
+          { key: 'physicalDefense', value: 30 },
+          { key: 'magicDefense', value: 30 },
+          ],
+      },
+      { 
+         uid: 100000, 
+         userName: '黑发阴灵2', 
+         skillIds: [40033, 40033, 40033],
+         attrs: [
+          { key: 'hp', value: 30 },
           { key: 'mp', value: 300 },
           { key: 'speed', value: 0 },
           { key: 'shield', value: 240 },

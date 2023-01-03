@@ -3,6 +3,9 @@ import { action, LocalCacheKeys, BOTTOM_TOP_SMOOTH } from '../../constants';
 import EventListeners from '../../utils/EventListeners';
 import { GetTurnLattice } from '../../services/GetTurnLattice';
 import Toast from '../../components/toast';
+import Modal from '../../components/modal';
+import RewardsPageModal from '../../components/rewardsPageModal';
+import ArenaUtils from '../../utils/ArenaUtils';
 
 
 export default {
@@ -20,20 +23,33 @@ export default {
         LocalStorage.get,
         LocalCacheKeys.TURN_LATTICE_DATA,
       );
-      console.log("historyData", historyData);
+      // console.log("historyData", historyData);
       // 没有打开过
-      if (historyData === null || (historyData.find(item => item.latticeMazeId === latticeMazeId) === undefined)) {
+      if (historyData === null && (historyData?.find(item => item.latticeMazeId === latticeMazeId) === undefined)) {
         const { latticeMaze } = yield call(GetTurnLattice);
         const currentLatticeMazeData = latticeMaze.find(item => item.latticeMazeId === latticeMazeId)
         const { desc, unlockProps, consumableProps, data } = currentLatticeMazeData
         // 初始化
         for (let index = 0; index < data.length; index++) {
           const item = data[index];
+          const eventData = item.eventData
           for (let i = 0; i < item.config.length; i++) {
             const gridConfig = item.config[i]
             gridConfig.isOpened = false
             gridConfig.status = 0
-            if (gridConfig.type === undefined) gridConfig.type = "空"
+            if (gridConfig.type === undefined) {
+              gridConfig.type = "空"
+            }
+            if (gridConfig.type === "事件") {
+              const event = eventData.find(f => f.id === gridConfig.eventId)
+              if (event.type === "道具") {
+                const propConfig = yield put.resolve(
+                  action('PropsModel/getPropConfig')({ propId: Number(event.prop.id) }),
+                );
+                Object.assign(event.prop, propConfig)
+              }
+              gridConfig.event = event
+            }
           }
           // 设置 入口 附近的格子可以打开
           const entranceGrid = item.config.find(i => i.type === "入口")
@@ -217,14 +233,8 @@ export default {
 
     // 领取格子道具
     *getGridProps({ payload }, { call, put, select }) {
-      // {"isOpened": true, "prop": { id: 30, num: 1, iconId: 1, quality: 1, }, "status": 2, "type": "道具", "x": 1, "y": 3}
       const { item } = payload
-      const { prop } = item
-
-      const historyData = yield call(
-        LocalStorage.get,
-        LocalCacheKeys.TURN_LATTICE_DATA,
-      );
+      const { prop } = item.event
 
       yield put.resolve(action('PropsModel/sendProps')({ propId: prop.id, num: prop.num, quiet: true }));
       const propConfig = yield put.resolve(action('PropsModel/getPropConfig')({ propId: prop.id }));
@@ -234,13 +244,6 @@ export default {
       const { config: gridConfig } = turnLatticeData[currentLayer];
       const curIndex = gridConfig.findIndex(i => i.x === item.x && i.y === item.y);
       gridConfig[curIndex].type = "空";
-      yield put(action('updateState')({ turnLatticeData }));
-      yield call(
-        LocalStorage.set,
-        LocalCacheKeys.TURN_LATTICE_DATA,
-        historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, data: turnLatticeData } : item)
-      );
-      return gridConfig
     },
 
     // 出口
@@ -252,6 +255,161 @@ export default {
       }
       else {
         return null
+      }
+    },
+
+    // 开宝箱
+    *openGridTreasureChest({ payload }, { call, put, select }) {
+      const { item } = payload
+      const { treasureChestId } = item.event
+
+      const rewards = yield put.resolve(action('TreasureChestModel/openTreasureChest')({ id: treasureChestId }))
+      RewardsPageModal.gridRewards(rewards)
+
+      const { turnLatticeData, currentLayer } = yield select(state => state.TurnLatticeModel);
+      const { config: gridConfig } = turnLatticeData[currentLayer];
+      const curIndex = gridConfig.findIndex(i => i.x === item.x && i.y === item.y);
+      gridConfig[curIndex].event.treasureChestIsOpen = true;
+    },
+
+    // 遇见 boss
+    *meetBossEvent({ payload }, { call, put, select }) {
+      const { item } = payload;
+      const { turnLatticeData, currentLayer, curLatticeMazeId } = yield select(state => state.TurnLatticeModel);
+      const { config: gridConfig } = turnLatticeData[currentLayer];
+
+      const historyData = yield call(
+        LocalStorage.get,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+      );
+
+      const curIndex = gridConfig.findIndex(i => i.x === item.x && i.y === item.y);
+      gridConfig[curIndex].status = 2;
+      gridConfig[curIndex].isOpened = true
+
+      setAllRoundGridIsProhibitOpen(item, turnLatticeData[currentLayer], true)
+
+      yield put(action('updateState')({ turnLatticeData }));
+      yield call(
+        LocalStorage.set,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+        historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, data: turnLatticeData } : item)
+      );
+      return gridConfig
+    },
+
+    // 打赢 Boss
+    *challengeWin({ payload }, { call, put, select }) {
+      const { item } = payload
+      const { event } = item
+      const { turnLatticeData, currentLayer, curLatticeMazeId } = yield select(state => state.TurnLatticeModel);
+      const { config: gridConfig, eventData } = turnLatticeData[currentLayer];
+      const historyData = yield call(
+        LocalStorage.get,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+      );
+
+      const curIndex = gridConfig.findIndex(i => i.x === item.x && i.y === item.y);
+      gridConfig[curIndex].type = "空";
+
+      setAllRoundGridIsProhibitOpen(item, turnLatticeData[currentLayer], false)
+
+      if (event && event.afterEventId) {
+        const eventConfig = eventData.find(f => f.id === event.afterEventId)
+        if (eventConfig.type === "剧情") {
+          Modal.show(eventConfig)
+          gridConfig[curIndex].event.afterEventId = null;
+        }
+        if (eventConfig.type === "战斗") {
+          gridConfig[curIndex].type = "事件"
+          gridConfig[curIndex].event = eventConfig
+          setAllRoundGridIsProhibitOpen(item, turnLatticeData[currentLayer], true)
+        }
+      }
+
+      yield put(action('updateState')({ turnLatticeData }));
+      yield call(
+        LocalStorage.set,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+        historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, data: turnLatticeData } : item)
+      );
+      return gridConfig
+    },
+
+    // 触发事件
+    *triggerGridEvent({ payload }, { call, put, select }) {
+      // {"item": {
+      // "event": {"id": "1", "prop": [Object], "type": "道具"}, 
+      // "eventId": "1", "isOpened": true, "status": 2, "type": "事件", "x": 2, "y": 8
+      // }}
+
+      const { item } = payload
+      const { event } = item
+
+      const { turnLatticeData, currentLayer, curLatticeMazeId } = yield select(state => state.TurnLatticeModel);
+      const { eventData, config: gridConfig } = turnLatticeData[currentLayer]
+      const curIndex = gridConfig.findIndex(i => i.x === item.x && i.y === item.y);
+      const historyData = yield call(
+        LocalStorage.get,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+      );
+
+      // 前置事件
+      if (event && event.beforeEventId) {
+        const eventConfig = eventData.find(f => f.id === event.beforeEventId)
+        if (eventConfig.type === "剧情") {
+          Modal.show(eventConfig)
+          gridConfig[curIndex].event.beforeEventId = null;
+          yield put(action('updateState')({ turnLatticeData }));
+          yield call(
+            LocalStorage.set,
+            LocalCacheKeys.TURN_LATTICE_DATA,
+            historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, data: turnLatticeData } : item)
+          );
+          return gridConfig
+        }
+      }
+
+      if (event && event.type === "道具") {
+        yield put.resolve(action('getGridProps')({ item }));
+      }
+
+      if (event && event.type === "宝箱") {
+        yield put.resolve(action('openGridTreasureChest')({ item }));
+      }
+      if (event && event.type === "战斗") {
+        ArenaUtils.show({ challengeId: event.challenge });
+        return
+      }
+
+      // 后置事件
+      if (event && event.afterEventId) {
+        const eventConfig = eventData.find(f => f.id === event.afterEventId)
+        if (eventConfig.type === "剧情") {
+          Modal.show(eventConfig)
+          gridConfig[curIndex].event.afterEventId = null;
+        }
+      }
+
+      yield put(action('updateState')({ turnLatticeData }));
+      yield call(
+        LocalStorage.set,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+        historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, data: turnLatticeData } : item)
+      );
+      return gridConfig
+    },
+
+    // 判断是否有钥匙
+    *isHaveKey({ payload }, { call, put, select }) {
+      const { item } = payload
+      const propNum = yield put.resolve(
+        action('PropsModel/getPropNum')({ propId: Number(item.keyPropId) }),
+      );
+      if (propNum > 0) {
+        return true
+      } else {
+        return false
       }
     },
 
@@ -284,7 +442,7 @@ function isCanOpenedGrid(item) {
 }
 
 // 设置附近的格子状态为1
-function setNearbyGridStates(item, currentGridConfig) {
+function setNearbyGridStates(item, currentGridConfig,) {
   const { row, column, config: gridConfig } = currentGridConfig
   // 上面
   if (item.y - 1 >= 0) {
@@ -320,6 +478,101 @@ function setNearbyGridStates(item, currentGridConfig) {
     );
     if (isCanOpenedGrid(gridConfig[rightIndex])) {
       gridConfig[rightIndex].status = 1;
+    }
+  }
+}
+
+// 是否禁止格子
+function isProhibitGrid(item) {
+  if (item.status != 2 && item.type !== '墙' && item.type !== '入口') {
+    return true;
+  }
+  return false;
+}
+// 设置四周格子禁止翻开
+function setAllRoundGridIsProhibitOpen(item, currentGridConfig, isProhibit) {
+  const { row, column, config: gridConfig } = currentGridConfig
+  // 上面
+  if (item.y - 1 >= 0) {
+    const topIndex = gridConfig.findIndex(
+      i => i.x === item.x && i.y === item.y - 1,
+    );
+    if (isProhibitGrid(gridConfig[topIndex])) {
+      gridConfig[topIndex].status = 1;
+      gridConfig[topIndex].isProhibit = isProhibit;
+    }
+  }
+  // 下面
+  if (item.y + 1 < row) {
+    const botIndex = gridConfig.findIndex(
+      i => i.x === item.x && i.y === item.y + 1,
+    );
+    if (isProhibitGrid(gridConfig[botIndex])) {
+      gridConfig[botIndex].status = 1;
+      gridConfig[botIndex].isProhibit = isProhibit;
+    }
+  }
+  //左面
+  if (item.x - 1 >= 0) {
+    const leftIndex = gridConfig.findIndex(
+      i => i.x === item.x - 1 && i.y === item.y,
+    );
+    if (isProhibitGrid(gridConfig[leftIndex])) {
+      gridConfig[leftIndex].status = 1;
+      gridConfig[leftIndex].isProhibit = isProhibit;
+    }
+  }
+  // 右边
+  if (item.x + 1 < column) {
+    const rightIndex = gridConfig.findIndex(
+      i => i.x === item.x + 1 && i.y === item.y,
+    );
+    if (isProhibitGrid(gridConfig[rightIndex])) {
+      gridConfig[rightIndex].status = 1;
+      gridConfig[rightIndex].isProhibit = isProhibit;
+    }
+  }
+
+  // 左上
+  if (item.x - 1 < column && item.y - 1 >= 0) {
+    const leftTop = gridConfig.findIndex(
+      i => i.x === item.x - 1 && i.y === item.y - 1,
+    );
+    if (isProhibitGrid(gridConfig[leftTop])) {
+      gridConfig[leftTop].status = 1;
+      gridConfig[leftTop].isProhibit = isProhibit;
+    }
+  }
+  // 左下
+  if (item.x - 1 < column && item.y + 1 >= 0) {
+    const leftBottom = gridConfig.findIndex(
+      i => i.x === item.x - 1 && i.y === item.y + 1,
+    );
+    if (isProhibitGrid(gridConfig[leftBottom])) {
+      gridConfig[leftBottom].status = 1;
+      gridConfig[leftBottom].isProhibit = isProhibit;
+    }
+  }
+
+  // 右上
+  if (item.x + 1 < column && item.y - 1 >= 0) {
+    const rightTop = gridConfig.findIndex(
+      i => i.x === item.x + 1 && i.y === item.y - 1,
+    );
+    if (isProhibitGrid(gridConfig[rightTop])) {
+      gridConfig[rightTop].status = 1;
+      gridConfig[rightTop].isProhibit = isProhibit;
+    }
+  }
+
+  // 右下
+  if (item.x + 1 < column && item.y + 1 >= 0) {
+    const rightBottom = gridConfig.findIndex(
+      i => i.x === item.x + 1 && i.y === item.y + 1,
+    );
+    if (isProhibitGrid(gridConfig[rightBottom])) {
+      gridConfig[rightBottom].status = 1;
+      gridConfig[rightBottom].isProhibit = isProhibit;
     }
   }
 }

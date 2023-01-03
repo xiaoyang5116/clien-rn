@@ -2,7 +2,9 @@
 import lo from 'lodash';
 
 import { 
-  action,
+  action, 
+  DeviceEventEmitter,
+  EventKeys
 } from "../constants";
 import { assert } from '../constants/functions';
 
@@ -26,6 +28,7 @@ export default {
     __data: {
       enemyQueue: [],
       enemyIndex: 0,
+      challengeId:""
     },
   },
 
@@ -34,6 +37,9 @@ export default {
     *start({ payload }, { put, select, call }) {
       const arenaState = yield select(state => state.ArenaModel);
       const { challengeId } = payload;
+
+      // 记录战斗Id
+      arenaState.__data.challengeId = challengeId
 
       // 获取战斗配置数据
       const data = yield call(GetChallengeDataApi, challengeId);
