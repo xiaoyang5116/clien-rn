@@ -280,7 +280,6 @@ scenes: [
     { id: "biaoqianv2", min: 0, max: 1 },
     { id: "biaoqianv3", min: 0, max: 1 },
     { id: "biaoqianv4", min: 0, max: 1 },
-    
     ],
     # 动作定义
     actions: [ ],
@@ -1860,6 +1859,7 @@ scenes: [
     events: [
        { type: 'enter',  nextChat: 'C1A' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/v_icon_101'], nextChat: 'C2' },
+       
     ],
     # 对话选项
     chats: [
@@ -2278,7 +2278,7 @@ scenes: [
           toScene: 'C000A_V_MAP_2_2',
           links: [] 
           },
-          
+         
         ]
       },
     
@@ -2293,7 +2293,7 @@ scenes: [
      #横图显示
     sceneImage: 'BGT_30',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000A_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点
@@ -2846,7 +2846,8 @@ scenes: [
               params: { 
               addCluesId: ["xiansuo1"], useCluesId: ["liuyan1","liuyan2",],
               },
-            },},
+            },
+         },
          {title: '算了，能省则省',nextChat: 'C5' ,}
         ],
       },

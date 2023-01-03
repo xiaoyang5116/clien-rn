@@ -6,7 +6,7 @@ scenes: [
 
       # 变量定义 ，每个章节默认对应一个变量，主要用于分支,章节解锁的检测,
       vars: [
-           #
+           #第一卷
           { id: "WZXX_M1_N1_C001", min: 0, max: 1 },
           { id: "WZXX_M1_N1_C001FZ", min: 0, max: 1 },
 
@@ -269,7 +269,7 @@ scenes: [
           { id: "WZXX_M1_N1_C025",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C025FZ",min: 0, max: 1 },
 
-
+        #现实世界
           { id: "WZXX_M1_N1_C988",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C988FZ",min: 0, max: 1 },
 
@@ -308,6 +308,8 @@ scenes: [
           { id: "WZXX_M1_N1_C1000",min: 0, max: 1 },
           { id: "WZXX_M1_N1_C1000FZ",min: 0, max: 1 },
 
+
+         #第二卷
           
           { id: "WZXX_M1_N1_Z2C01",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z2C01FZ",min: 0, max: 1 },
@@ -318,8 +320,11 @@ scenes: [
           { id: "WZXX_M1_N1_Z2C03",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z2C03FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_Z2C04",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C04FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z2C04_[N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z2C04_[N1]FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z2C04_[N2]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z2C04_[N2]FZ",min: 0, max: 1 },
 
           { id: "WZXX_M1_N1_Z2C05",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z2C05FZ",min: 0, max: 1 },
@@ -330,11 +335,8 @@ scenes: [
           { id: "WZXX_M1_N1_Z2C07",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z2C07FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_Z2C08_[N1]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C08_[N1]FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C08_[N2]",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C08_[N2]FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z2C08",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z2C08FZ",min: 0, max: 1 },
 
           { id: "WZXX_M1_N1_Z2C09",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z2C09FZ",min: 0, max: 1 },
@@ -372,63 +374,8 @@ scenes: [
           { id: "WZXX_M1_N1_Z2C20",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z2C20FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_Z2C21",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C21FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_Z2C22",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C22FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C23",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C23FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C24",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C24FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C25",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C25FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C26",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C26FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C27",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C27FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C28",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C28FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C29",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C29FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C30",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C30FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C31",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C31FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C32",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C32FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C33",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C33FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C34",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C34FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C35",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C35FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C36",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C36FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C37",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C37FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C38",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C38FZ",min: 0, max: 1 },
-          
-          { id: "WZXX_M1_N1_Z2C39",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C39FZ",min: 0, max: 1 },
-
+        #第三卷
           { id: "WZXX_M1_N1_Z3C01",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z3C01FZ",min: 0, max: 1 },
 
@@ -455,6 +402,12 @@ scenes: [
 
           { id: "WZXX_M1_N1_Z3C09",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z3C09FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C98",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C98FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C99",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C99FZ",min: 0, max: 1 },
         
         ],
 
