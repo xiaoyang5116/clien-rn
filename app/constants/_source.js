@@ -81,6 +81,7 @@ const _images = {
     ],
 
     world_bg: [
+        
         { id: 'ShiJieBeiJing_V1', source: require('../../assets/bg/world_bg1.png') },
     ],
     bgDialog_bgImages: [
@@ -89,7 +90,13 @@ const _images = {
         { id: 3, img: require('../../assets/bg/BAIYUN_1080.webp') },
         { id: 4, img: require('../../assets/bg/bgDialog_clock.webp') },
         { id: 5, img: require('../../assets/bg/bgfangshicanhai1.webp') },
-        { id: 6, img: require('../../assets/bg/bgfangshicanhai2.webp') },
+
+        { id: 6, img: require('../../assets/bg/shandian1.webp') },
+        { id: 7, img: require('../../assets/bg/huohuabaozha.webp') },
+        { id: 8, img: require('../../assets/bg/wenquan.webp') },
+        // { id: 9, img: require('../../assets/bg/wenquan2.webp') },
+        { id: 10, img: require('../../assets/bg/feizhou.webp') },
+
     ],
     collectBackgroundImages: [
         { name: 'YanJiang', source: require('../../assets/collect/bg/YanJiang.png') },

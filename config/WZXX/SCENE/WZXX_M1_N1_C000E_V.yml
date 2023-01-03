@@ -125,7 +125,7 @@ scenes: [
     #横图显示
     sceneImage: 'BGT_68',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000E_V_MAP_0_1',
     # 地图中心点，也是进入地图后的点
@@ -198,11 +198,11 @@ scenes: [
     #横图显示
     sceneImage: 'BGT_69',
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图 
     mapId: 'C000E_V_MAP_0_2',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [0, -17],
+    mapCenterPoint: [0, -18],
 
      # 变量定义
     vars: [
@@ -340,7 +340,7 @@ scenes: [
     # 当前场景地图
     mapId: 'C000E_V_MAP_0_4',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [0, -16],
+    mapCenterPoint: [0, -17],
 
      # 变量定义
     vars: [
@@ -424,9 +424,9 @@ scenes: [
           { 
           point: [1, -18], 
           title: '？？？', 
-          links: [[], ] 
+          links: [ ] ,  
           },
-          
+
           { 
           point: [0, -18], 
           title: '枯木丛',
@@ -437,7 +437,7 @@ scenes: [
           point: [-1, -18], 
           title: '山间小径',
           links: [[0, -18], ] 
-          },
+         },
 
           { 
           point: [-1, -19], 
