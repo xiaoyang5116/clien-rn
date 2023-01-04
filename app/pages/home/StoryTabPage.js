@@ -310,9 +310,26 @@ const StoryTabPage = (props) => {
   refCurrentScene.current = props.scene;
   refCurrentChatId.current = props.chatId;
 
+  const DoubleClickFunc = (() => {
+    let times = 0;
+    let timer = null;
+    // 模仿双击事件
+    return () => {
+      clearTimeout(timer);
+      if (++times >= 2) {
+        times = 0;
+        // 把要执行的事件写在这
+        DeviceEventEmitter.emit("ARTICLE_PAGE_PRESS")
+      }
+      timer = setTimeout(() => {
+        times = 0;
+      }, 500)
+    }
+  })()
+
   return (
     <View style={props.currentStyles.viewContainer}>
-      <TouchableWithoutFeedback onPress={()=>{DeviceEventEmitter.emit("ARTICLE_PAGE_PRESS")}}>
+      <TouchableWithoutFeedback onPress={DoubleClickFunc} onLongPress={()=>{DeviceEventEmitter.emit("ARTICLE_PAGE_PRESS")}}>
         <View style={props.currentStyles.viewContainer}>
           <View style={[props.currentStyles.positionBar, { flexDirection: 'row', justifyContent: 'space-between' }]}>
             <View>
