@@ -750,6 +750,17 @@ export default {
               debugMessage("Invalid (CluesModel/getUnusedClues) result");
               continue;
             }
+          } else if (id.indexOf('@attr_') == 0) { // 属性条件判断
+            const attrs = yield put.resolve(action('UserModel/getAttrs')({}));
+            const [_k, v] = id.split('_');
+            const attr = lo.trim(v);
+            const currentAttr = attrs.find(item => item.key === attr)
+            if ( currentAttr != undefined ){
+              compareValue = currentAttr.value
+            } else {
+              debugMessage("Invalid (属性名 无效) result");
+              continue;
+            }
           } else if (id.indexOf('@') == 0) {
             debugMessage("Unknown '{0}' identifier!!!", id);
             continue;
