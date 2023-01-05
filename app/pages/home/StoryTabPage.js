@@ -28,6 +28,7 @@ import { BtnIcon } from '../../components/button';
 import CountDown from '../../components/coundown';
 import RootView from '../../components/RootView';
 import Transitions from '../../components/transition';
+import OptionComponents from '../../components/article/optionComponents';
 
 const CountDownAnimation = (props) => {
 
@@ -227,6 +228,25 @@ const StoryTabPage = (props) => {
     let iconComponent = <></>;
     if (lo.isObject(data.item.icon) && lo.isBoolean(data.item.icon.show) && data.item.icon.show) {
       iconComponent = <BtnIcon id={data.item.icon.id} style={{ marginTop: px2pd(14) }} />
+    }
+
+    if(data.item.btnType != undefined){
+      return (
+        <View style={theme.chatItem}>
+          <View style={{width:"100%", justifyContent: 'center', alignItems: 'center'}}>
+            <OptionComponents 
+              optionData={data.item}
+              btnType={data.item.btnType}
+              title={data.item.title}
+              disabled={data.item.disabled}
+              currentStyles={theme}
+              onPress={() => { onClickItem(data) }}
+            />
+            {iconComponent}
+          </View>
+        {progressView}
+      </View>
+      )
     }
 
     return (

@@ -17,6 +17,7 @@ const LeftTopTitle_Btn = props => {
   return (
     <TouchableHighlight underlayColor={"#fff"}
       style={{
+        width:"100%",
         marginTop: 5,
         marginBottom: 5,
       }}
