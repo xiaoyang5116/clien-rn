@@ -200,7 +200,7 @@ const AttrDetail = props => {
             />
           </TouchableWithoutFeedback>
           <Text style={{ fontSize: 18, color: '#000', textAlign: 'center' }}>
-            {propNum}
+            <Text style={{ color: (propNum > prop.num) ? "#FB5858" : "#000" }}>{propNum}</Text>/{prop.num}
           </Text>
         </View>
       );
