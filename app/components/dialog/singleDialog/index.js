@@ -32,7 +32,7 @@ const SingleDialog = (props) => {
 
 
     useEffect(() => {
-        // 初始化 按钮状态
+        // 检查 按钮状态
         props.dispatch(action('MaskModel/getOptionBtnStatus')({ optionBtnArr: showBtnList, __sceneId })).then((result) => {
             if (Array.isArray(result)) {
                 setShowBtnList(result)
@@ -45,7 +45,7 @@ const SingleDialog = (props) => {
                 animationEndListener.current.remove();
             }
         }
-    }, [])
+    }, [currentTextList])
 
     // 下一段话
     const nextParagraph = () => {
@@ -70,12 +70,7 @@ const SingleDialog = (props) => {
         const newDialogue = sections.filter(i => i.key === item.tokey);
         if (newDialogue.length > 0) {
             setCurrentTextList(newDialogue[0].content);
-            // 初始化 按钮状态
-            props.dispatch(action('MaskModel/getOptionBtnStatus')({ optionBtnArr: newDialogue[0].btn, __sceneId })).then((result) => {
-                if (Array.isArray(result)) {
-                    setShowBtnList(result)
-                }
-            })
+            setShowBtnList(newDialogue[0].btn)
             setCurrentIndex(0);
         } else {
             if (item.animation !== undefined) {

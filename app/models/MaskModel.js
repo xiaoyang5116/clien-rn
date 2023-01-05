@@ -147,21 +147,7 @@ export default {
     // 获取选项按钮数组,返回新的状态数组 
     *getOptionBtnStatus({ payload }, { call, put, select }) {
       const { optionBtnArr, __sceneId } = payload
-      let newBtnArr = []
-      for (let key in optionBtnArr) {
-        const item = optionBtnArr[key];
-        if (lo.isObject(item.icon)) {
-          const { bindVar } = item.icon;
-          if (bindVar != undefined) {
-            const checkVar = { andVarsOn: [bindVar], __sceneId };
-            const match = yield put.resolve(action('SceneModel/testCondition')(checkVar));
-            item.icon = { ...item.icon, show: match };
-          } else {
-            item.icon = { ...item.icon, show: true };
-          }
-        }
-        newBtnArr.push(item)
-      }
+      const newBtnArr =  yield put.resolve(action('ArticleModel/getValidOptions')({ options: optionBtnArr }));
       return newBtnArr
     },
   },

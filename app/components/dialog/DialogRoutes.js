@@ -27,6 +27,21 @@ const DialogRoutes = (props) => {
     // 场景id
     const __sceneId = props.viewData.__sceneId
 
+    useEffect(() => {
+        // 遍历 每个按钮中插入 场景id __sceneId
+        if (props.viewData.sections != undefined) {
+            for (let index = 0; index < props.viewData.sections.length; index++) {
+                const item = props.viewData.sections[index];
+                if(item.btn != undefined && Array.isArray(item.btn)){
+                    for (let b = 0; b < item.btn.length; b++) {
+                        const btn = item.btn[b];
+                        btn.__sceneId = __sceneId
+                    }
+                }
+            }
+        }
+    }, [])
+
     // 动作方法
     const actionMethod = (item) => {
         // 特效

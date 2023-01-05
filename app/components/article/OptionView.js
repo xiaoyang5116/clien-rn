@@ -69,7 +69,7 @@ class OptionView extends PureComponent {
                             <OptionComponents
                                 {...this.props}
                                 optionData={option}
-                                type={option.btnType}
+                                btnType={option.btnType}
                                 title={option.title}
                                 disabled={option.disabled}
                                 onPress={() => { this.optionPressHandler(option); }}

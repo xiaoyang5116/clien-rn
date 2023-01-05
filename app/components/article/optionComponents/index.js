@@ -8,9 +8,9 @@ import RightBottomTitle_Btn from './RightBottomTitle_Btn'
 
 
 const OptionComponents = (props) => {
-  const { type } = props
+  const { btnType } = props
 
-  switch (type) {
+  switch (btnType) {
     case "A1":
       return <LeftTopTitle_Btn {...props} />
     case "A2":

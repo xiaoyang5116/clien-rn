@@ -11,6 +11,7 @@ import { ThemeContext } from '../../../constants';
 import { LongTextButton, Header1, BtnIcon } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 import FastImage from 'react-native-fast-image';
+import OptionComponents from '../../article/optionComponents';
 
 
 const FullSingle = props => {
@@ -78,22 +79,38 @@ const FullSingle = props => {
 
     const renderBtn = ({ item }) => {
         if (currentIndex >= currentDialogueLength) {
-            return (
-                <View style={{ marginTop: 8, justifyContent: 'center' }}>
-                    {
-                        item.icon
-                            ? (<HaveBtnIcon item={item} />)
-                            : (
-                                <LongTextButton
-                                    title={item.title}
-                                    onPress={() => {
-                                        nextDialogue(item);
-                                    }}
-                                />
-                            )
-                    }
-                </View>
-            );
+            if (item.btnType === undefined) {
+                return (
+                    <View style={{ marginTop: 8, justifyContent: 'center' }}>
+                        {
+                            item.icon
+                                ? (<HaveBtnIcon item={item} />)
+                                : (
+                                    <LongTextButton
+                                        title={item.title}
+                                        onPress={() => {
+                                            nextDialogue(item);
+                                        }}
+                                    />
+                                )
+                        }
+                    </View>
+                );
+            } else {
+                return (
+                    <View style={{ marginTop: 8, justifyContent: 'center' }}>
+                        <OptionComponents
+                            optionData={item}
+                            btnType={item.btnType}
+                            title={item.title}
+                            disabled={item.disabled}
+                            currentStyles={theme}
+                            onPress={() => { nextDialogue(item) }}
+                        />
+                    </View>
+                )
+            }
+
         }
         return null;
     };
