@@ -128,8 +128,7 @@ scenes: [
     # 对话框
     dialogs: [
       {
-        id: 'p1', style: 200, textAnimationType: 'TextSingle',
-        
+        id: 'p1', style: 200, textAnimationType: 'TextSingle', duanWei: "宗师",
         sections: {
           content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
           btn: [

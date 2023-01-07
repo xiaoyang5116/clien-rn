@@ -9,7 +9,7 @@ import { TextButton, BtnIcon } from '../../../constants/custom-ui';
 
 const NpcDialog = props => {
   const { onDialogCancel, actionMethod } = props
-  const { __sceneId, sections } = props.viewData;
+  const { __sceneId, sections, duanWei } = props.viewData;
   const [hao_gan_du, set_hao_gan_du] = useState(null);
   const [npcConfig, setNpcConfig] = useState(null);
   const [btnData, setBtnData] = useState(sections.btn)
@@ -46,7 +46,6 @@ const NpcDialog = props => {
       onDialogCancel();
       actionMethod(item);
     }
-
   }
 
   const renderBtn = ({ item }) => {
@@ -87,6 +86,7 @@ const NpcDialog = props => {
               <Text>{npcConfig.name}</Text>
             </View>
             <View>
+              <Text>{duanWei}</Text>
               <Text>{hao_gan_du}</Text>
             </View>
           </View>
