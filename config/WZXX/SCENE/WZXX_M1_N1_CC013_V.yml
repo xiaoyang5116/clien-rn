@@ -1,0 +1,96 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_CC013_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "v2", min: 0, max: 1 },
+      { id: "v3", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+      { id: "biaoqianv5", min: 0, max: 1 } ,
+      { id: "biaoqianv6", min: 0, max: 1 } ,
+      { id: "biaoqianv7", min: 0, max: 1 } ,
+      { id: "biaoqianv8", min: 0, max: 1 } ,
+      ],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [
+      ],
+    
+      chats: [
+      
+      {
+        id: 'WZXX_M1_N1_CC013_V1', desc: '大分支剧情', 
+        options: [
+          {
+          title: "【白嫖当然行】",dialogs: ['ZC13_1.1A'],
+          },
+
+          {
+          title: "【还是算了吧】",dialogs: ['ZC13_1.1B'],
+          },
+        ],
+      },
+     
+
+      ],
+   
+      # 对话框
+      dialogs:
+        [
+
+         #选项对话
+          { 
+            id: 'ZC13_1.1A',style: 6, title: '白嫖当然行', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['接受花灵的真气的同时，也是接受花灵的手，拂过自己的胸，背，腹，小腹。。。',
+                '“为什么这里也要？”李森炎问。', 
+                '“丹田就在这里，不然呢？”','小腹可以输真气，但请不要把小腹弄热乎。',
+                '眼前又出现花灵的迷人笑靥，甚至花灵的瘦长的线条，在眼前肆意舞动，扭曲。而那双眸子，楚楚可怜得，让李森炎忍不住想戳下来。','李森炎跳起来，腾云步走起，并朝花灵扔了一堆天阶冰凌丹。',
+                '都没有能承载真气的壳，输着有毛用！',
+                ],
+                btn: [
+                {
+                title: '筑基，还得是筑基！',
+                 toChapter: "WZXX_M1_N1_Z3C12_[N2]", 
+                },
+                ]
+              },
+            ]  
+          },
+
+          { 
+            id: 'ZC13_1.1B',style: 6, title: '还是算了', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+
+
+              {
+                key: 'P1', 
+                content: ['李森炎严词拒绝。他并不确定，这到底是能涨修为的真气呢，还是香气。',
+                '总之他觉得花灵不太像一只花妖，估计是什么蛇，或者狐狸修成的。',
+                ],
+                btn: [
+                {
+                title: '还是算了吧',
+                toChapter: "WZXX_M1_N1_Z2C13", 
+                },
+               
+                ]
+              },
+            ]  
+          },
+        ],
+    }
+]

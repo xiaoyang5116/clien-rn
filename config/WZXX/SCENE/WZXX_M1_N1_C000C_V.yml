@@ -81,7 +81,7 @@ scenes: [
     id: 'C000C_V_MAP_0_4', name: '前台',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      sceneImage: 'BGT_18',
     #不显示时间
       worldTimeHidden: true,
@@ -160,7 +160,7 @@ scenes: [
     id: 'C000C_V_MAP_-1_3', name: '李小姐座位旁',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_8',
     #不显示时间
@@ -236,7 +236,7 @@ scenes: [
     id: 'C000C_V_MAP_-1_2', name: '王经理办公室',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_16',
     #不显示时间
@@ -315,7 +315,7 @@ scenes: [
     id: 'C000C_V_MAP_0_1', name: '财务主管工位',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_9',
     #不显示时间
@@ -391,7 +391,7 @@ scenes: [
   # NPC2
     id: 'C000C_V_MAP_1_2', name: '赵某旁边',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
       worldTimeHidden: true,
     #横图显示
@@ -466,7 +466,7 @@ scenes: [
     id: 'C000C_V_MAP_0_0', name: '董事长秘书工位',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
       worldTimeHidden: true,
     #横图显示
@@ -537,7 +537,7 @@ scenes: [
   # NPC2
     id: 'C000C_V_MAP_0_-1', name: '总经理办公室',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
     worldTimeHidden: true,
     #图片配置：
@@ -643,7 +643,7 @@ scenes: [
     id: 'C000C_V1_MAP_1_5', name: '公司大门',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_20',
     #不显示时间
@@ -693,7 +693,7 @@ scenes: [
     id: 'C000C_V1_MAP_0_4', name: '前台',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
       worldTimeHidden: true,
     # 当前场景地图
@@ -743,7 +743,7 @@ scenes: [
     id: 'C000C_V1_MAP_-1_3', name: '李小姐座位旁',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_8',
     #不显示时间
@@ -804,7 +804,7 @@ scenes: [
     id: 'C000C_V1_MAP_-1_2', name: '王经理办公室',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_16',
     #不显示时间
@@ -863,7 +863,7 @@ scenes: [
     id: 'C000C_V1_MAP_0_1', name: '财务主管工位',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_9',
     #不显示时间
@@ -918,7 +918,7 @@ scenes: [
     id: 'C000C_V1_MAP_1_2', name: '赵某旁边',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
       worldTimeHidden: true,
        #横图显示
@@ -973,7 +973,7 @@ scenes: [
     id: 'C000C_V1_MAP_0_0', name: '董事长秘书工位',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
     worldTimeHidden: true,
     #横图显示
@@ -1023,7 +1023,7 @@ scenes: [
     id: 'C000C_V1_MAP_0_-1', name: '总经理办公室',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
       worldTimeHidden: true,
       #图片配置：
@@ -1128,7 +1128,7 @@ scenes: [
     id: 'C000C_V3_MAP_1_-1', name: '小区门口',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_19',
     #不显示时间
@@ -1187,7 +1187,7 @@ scenes: [
     id: 'C000C_V3_MAP_0_1', name: '花园',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_12',
     #不显示时间
@@ -1246,7 +1246,7 @@ scenes: [
     id: 'C000C_V3_MAP_1_1', name: '过道',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
       worldTimeHidden: true,
        #横图显示
@@ -1304,7 +1304,7 @@ scenes: [
     id: 'C000C_V3_MAP_2_2', name: '家',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_22',
     #不显示时间
@@ -1385,7 +1385,7 @@ scenes: [
     id: 'C000C_V2_MAP_-1_2', name: '家门口',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
       worldTimeHidden: true,
       #横图显示
@@ -1435,7 +1435,7 @@ scenes: [
     id: 'C000C_V2_MAP_-2_4', name: '电脑桌',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_7',
     #不显示时间
@@ -1600,7 +1600,7 @@ scenes: [
     id: 'C000C_V2_MAP_-2_5', name: '床',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_23',
     #不显示时间
@@ -1655,7 +1655,7 @@ scenes: [
     # NPC2
     id: 'C000C_V2_MAP_-1_5', name: '衣柜',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_4',
     #不显示时间
@@ -1711,7 +1711,7 @@ scenes: [
     id: 'C000C_V2_MAP_0_6', name: '冰箱',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_24',
     #不显示时间
@@ -1762,7 +1762,7 @@ scenes: [
   # NPC2
     id: 'C000C_V2_MAP_-1_6', name: '洗衣机',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_5',
     #不显示时间
@@ -1808,7 +1808,7 @@ scenes: [
   # NPC2
     id: 'C000C_V2_MAP_-1_7', name: '阳台',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_25',
     #不显示时间
@@ -1861,7 +1861,7 @@ scenes: [
   # NPC2
     id: 'C000C_V2_MAP_0_5', name: '厨房',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_10',
     #不显示时间
@@ -1907,7 +1907,7 @@ scenes: [
     id: 'C000C_V2_MAP_0_4', name: '厕所',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_3',
     #不显示时间

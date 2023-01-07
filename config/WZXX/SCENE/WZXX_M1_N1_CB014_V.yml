@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_ZC014_V',
+      id: 'WZXX_M1_N1_CB014_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -30,7 +30,7 @@ scenes: [
       chats: [
       
       {
-        id: 'WZXX_M1_N1_ZC014_V1', desc: '诗', 
+        id: 'WZXX_M1_N1_CB014_V1', desc: '诗', 
         options: [
           {
           title: "【能不能说人话】",dialogs: ['ZC14_1.1A'],varsOn: ['biaoqianv1',],

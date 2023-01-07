@@ -27,21 +27,29 @@ latticeMaze: [
   {
     latticeMazeId: "航海探索",
     desc: "海上探索",
+    # 解锁道具 前面的‘1’代表道具ID 后面的‘1’代表数量
     unlockProps: ['1,1'],
+    # 消耗道具
     consumableProps: ['2,1'],
     data: [
       # --- 第一层
       {
         id: 1,
+        # 行
         row: 10,
+        # 列
         column: 10,
+        # 背景图片ID
         img: 1,
+        # 事件数据
         eventData : [
           {
             id: "1",
             type: "道具",
             prop: { id: 30, num: 1,},
+            #触发之前事件
             beforeEventId: "2",
+            # 事件之后触发
             afterEventId: "2",
           },
           {
@@ -58,12 +66,14 @@ latticeMaze: [
           {
             id: "3",
             type: "宝箱",
+            # 宝箱ID
             treasureChestId: 2,
           },
           {
             id: "4",
             type: "战斗",
             challenge: 'x1',
+            # BOSS 图标ID
             bossIconId: 1,
             afterEventId: "2",
           },
@@ -126,6 +136,7 @@ latticeMaze: [
             id: "4",
             type: "战斗",
             challenge: 'x1',
+            # boss图标ID
             bossIconId: 1,
             afterEventId: "2",
           },

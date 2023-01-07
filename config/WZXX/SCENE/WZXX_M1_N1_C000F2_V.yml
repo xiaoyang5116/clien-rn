@@ -122,7 +122,7 @@ scenes: [
     id: 'C000F2_V2_MAP_-1_2', name: '家门口',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
     worldTimeHidden: False,
     #横图显示
@@ -216,7 +216,7 @@ scenes: [
     id: 'C000F2_V2_MAP_-2_4', name: '电脑桌',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_7',
     #不显示时间
@@ -353,7 +353,7 @@ scenes: [
     id: 'C000F2_V2_MAP_-2_5', name: '床',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     # 横图显示
     sceneImage: 'BGT_23',
     # 不显示时间
@@ -515,7 +515,7 @@ scenes: [
     id: 'C000F2_V2_MAP_-1_5', name: '衣柜',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_4',
     #不显示时间
@@ -638,7 +638,7 @@ scenes: [
     id: 'C000F2_V2_MAP_0_6', name: '冰箱',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_24',
     #不显示时间
@@ -729,7 +729,7 @@ scenes: [
     id: 'C000F2_V2_MAP_-1_6', name: '洗衣机',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_5',
     #不显示时间
@@ -821,7 +821,7 @@ scenes: [
     id: 'C000F2_V2_MAP_-1_7', name: '阳台',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_25',
     #不显示时间
@@ -905,7 +905,7 @@ scenes: [
     id: 'C000F2_V2_MAP_0_5', name: '厨房',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_10',
     #不显示时间
@@ -993,7 +993,7 @@ scenes: [
     id: 'C000F2_V2_MAP_0_4', name: '厕所',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_3',
     #不显示时间
@@ -1183,7 +1183,7 @@ scenes: [
     id: 'C000F2_V3_MAP_1_-1', name: '小区门口',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_19',
     #不显示时间
@@ -1261,7 +1261,7 @@ scenes: [
     id: 'C000F2_V3_MAP_0_1', name: '花园',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     # 横图显示
     sceneImage: 'BGT_12',
     # 不显示时间
@@ -1352,7 +1352,7 @@ scenes: [
     id: 'C000F2_V3_MAP_1_1', name: '过道',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
     worldTimeHidden: False,
     #横图显示
@@ -1424,7 +1424,7 @@ scenes: [
     id: 'C000F2_V3_MAP_2_2', name: '家门',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_22',
     #不显示时间
@@ -1512,7 +1512,7 @@ scenes: [
     id: 'C000F2_V3_MAP_2_-1', name: '市场',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_93',
     #不显示时间
@@ -1655,7 +1655,7 @@ scenes: [
     id: 'C000F2_V_MAP_0_2', name: '公园入口',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_78',
     #不显示时间
@@ -1870,7 +1870,7 @@ scenes: [
     id: 'C000F2_V_MAP_0_3', name: '公告栏',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     # 横图显示
     sceneImage: 'BGT_80',
     # 不显示时间
@@ -2012,7 +2012,7 @@ scenes: [
     id: 'C000F2_V_MAP_-1_3', name: '植物园',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_86',
     #不显示时间
@@ -2075,7 +2075,7 @@ scenes: [
     id: 'C000F2_V_MAP_1_3', name: '动物园',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_79',
     #不显示时间
@@ -2142,7 +2142,7 @@ scenes: [
     id: 'C000F2_V_MAP_-1_4', name: '音乐走廊',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_82',
     #不显示时间
@@ -2211,7 +2211,7 @@ scenes: [
     id: 'C000F2_V_MAP_0_4', name: '中心广场',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_83',
     #不显示时间
@@ -2282,7 +2282,7 @@ scenes: [
     id: 'C000F2_V_MAP_1_4', name: '便利店',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_85',
     #不显示时间
@@ -2388,7 +2388,7 @@ scenes: [
     id: 'C000F2_V_MAP_-1_5', name: '展览馆',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_84',
     #不显示时间
@@ -2515,7 +2515,7 @@ scenes: [
     id: 'C000F2_V_MAP_1_5', name: '观景地',
     missionId: 'C000F2shijian',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_81',
     #不显示时间

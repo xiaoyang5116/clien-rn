@@ -53,7 +53,7 @@ scenes: [
     id: 'C000E_V_MAP_-1_-19', name: '山道',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_70',
     #不显示时间
@@ -121,7 +121,7 @@ scenes: [
   # NPC2
     id: 'C000E_V_MAP_-1_-18', name: '山间小径',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_68',
     #不显示时间
@@ -194,7 +194,7 @@ scenes: [
   # NPC2
     id: 'C000E_V_MAP_0_-18', name: '枯木丛',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_69',
     #不显示时间
@@ -264,7 +264,7 @@ scenes: [
   # NPC2
     id: 'C000E_V_MAP_1_-18', name: '山野草屋',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_71',
     #不显示时间
@@ -332,7 +332,7 @@ scenes: [
   # NPC2
     id: 'C000E_V_MAP_0_-17', name: '羊肠小道',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_72',
     #不显示时间
@@ -536,7 +536,7 @@ scenes: [
     id: 'C000E_V1_MAP_-1_5', name: '迷雾森林',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_75',
     #不显示时间
@@ -578,7 +578,7 @@ scenes: [
     id: 'C000E_V1_MAP_0_4', name: '北药山沟',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_76',
     #不显示时间
@@ -626,7 +626,7 @@ scenes: [
     id: 'C000E_V1_MAP_-1_3', name: '幽暗森林',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
     worldTimeHidden: true,
     #横图显示
@@ -691,7 +691,7 @@ scenes: [
     id: 'C000E_V1_MAP_0_3', name: '山谷',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_77',
     #不显示时间
@@ -801,7 +801,7 @@ scenes: [
     id: 'C000E_V2_MAP_-1_5', name: '迷雾森林',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_75',
     #不显示时间
@@ -843,7 +843,7 @@ scenes: [
     id: 'C000E_V2_MAP_0_4', name: '北药山沟',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_76',
     #不显示时间
@@ -892,7 +892,7 @@ scenes: [
     id: 'C000E_V2_MAP_0_3', name: '山谷',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_77',
     #不显示时间

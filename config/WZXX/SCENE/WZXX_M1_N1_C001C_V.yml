@@ -125,7 +125,7 @@ scenes: [
     id: 'C001C_V_MAP_0_0', name: '林间小道入口',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_27',
     #不显示时间
@@ -208,7 +208,7 @@ scenes: [
     id: 'C001C_V_MAP_0_1', name: '寻常窄道',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_26',
     #不显示时间
@@ -322,7 +322,7 @@ scenes: [
      id: 'C001C_V_MAP_0_2', name: '猎人小道',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_38',
     #不显示时间
@@ -452,7 +452,7 @@ scenes: [
   # NPC2
     id: 'C001C_V_MAP_0_3', name: '林荫休息处',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_29',
     #不显示时间
@@ -555,7 +555,7 @@ scenes: [
     id: 'C001C_V_MAP_0_4', name: '进城大道',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_28',
     #不显示时间
@@ -641,7 +641,7 @@ scenes: [
     id: 'C001C_V_MAP_0_5', name: '白城',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_65',
     #不显示时间

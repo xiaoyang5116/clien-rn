@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_ZC004_V',
+      id: 'WZXX_M1_N1_CB004_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -34,7 +34,7 @@ scenes: [
       chats: [
       #
       { 
-        id: 'WZXX_M1_N1_ZC004_V1', desc: '飞舟', 
+        id: 'WZXX_M1_N1_CB004_V1', desc: '飞舟', 
         options: [ 
           { title: "【做出行动】",dialogs: ['C004A_1.1A'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
           { title: "【跳过此段剧情】",toChapter: "WZXX_M1_N1_Z2C05", icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
@@ -42,14 +42,14 @@ scenes: [
       },
 
       { 
-        id: 'WZXX_M1_N1_ZC004_V2', desc: '询问', 
+        id: 'WZXX_M1_N1_CB004_V2', desc: '询问', 
         options: [ 
           { title: "【询问飞高要花费的灵石】",dialogs: ['C004A_1.3A'], icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']},
         ],
       },
 
       { 
-        id: 'WZXX_M1_N1_ZC004_V3', desc: '询问', 
+        id: 'WZXX_M1_N1_CB004_V3', desc: '询问', 
         options: [ 
           { title: "【这是要做什么？】",toChapter: "WZXX_M1_N1_Z2C04_[N1]",},
         ],

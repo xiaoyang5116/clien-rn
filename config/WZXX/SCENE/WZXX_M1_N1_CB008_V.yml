@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_ZC008_V',
+      id: 'WZXX_M1_N1_CB008_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -28,7 +28,7 @@ scenes: [
       chats: [
       
       {
-        id: 'WZXX_M1_N1_ZC008_V1', desc: '该怎么办', 
+        id: 'WZXX_M1_N1_CB008_V1', desc: '该怎么办', 
         options: [
           {
           title: "【让别人去探险】",dialogs: ['ZC08A_1.1A'],

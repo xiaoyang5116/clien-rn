@@ -365,17 +365,10 @@ scenes: [
           { id: "WZXX_M1_N1_Z2C17",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z2C17FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_Z2C18",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C18FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C19",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C19FZ",min: 0, max: 1 },
-
-          { id: "WZXX_M1_N1_Z2C20",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z2C20FZ",min: 0, max: 1 },
 
 
-        #第三卷
+           #第三卷
+
           { id: "WZXX_M1_N1_Z3C01",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z3C01FZ",min: 0, max: 1 },
 
@@ -385,20 +378,59 @@ scenes: [
           { id: "WZXX_M1_N1_Z3C03",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z3C03FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_Z3C04",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z3C04FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C10_[N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C10_[N1]FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_Z3C05",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z3C05FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C10_[N2]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C10_[N2]FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_Z3C06",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z3C06FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C11",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C11FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_Z3C07",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z3C07FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C12",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C12FZ",min: 0, max: 1 },
 
-          { id: "WZXX_M1_N1_Z3C08",min: 0, max: 1 },
-          { id: "WZXX_M1_N1_Z3C08FZ",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C13",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C13FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C14",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C14FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C15",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C15FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C16",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C16FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C17",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C17FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C18",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C18FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C20",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C20FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C21",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C21FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C22",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C22FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C23",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C23FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C24",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C24FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C25",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C25FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C26",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C26FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C27",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C27FZ",min: 0, max: 1 },
 
           { id: "WZXX_M1_N1_Z3C09",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z3C09FZ",min: 0, max: 1 },

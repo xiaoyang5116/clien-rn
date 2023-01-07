@@ -7,7 +7,7 @@ scenes: [
       id: 'questionnaire',
       name: '调查问卷',
       # 指定场景为NPC或MAP场景
-      isNpc: true,
+      isNpc: false,
       #横图显示
       # sceneImage: 'BGT_8',
       #不显示时间

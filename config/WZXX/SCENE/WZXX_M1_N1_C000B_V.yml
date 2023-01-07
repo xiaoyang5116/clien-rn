@@ -39,7 +39,7 @@ scenes: [
     id: 'C000B_V_MAP_0_0', name: '坊市出入口',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_51',
     #不显示时间
@@ -97,7 +97,7 @@ scenes: [
     id: 'C000B_V_MAP_0_1', name: '天机阁摊位',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
       #横图显示
     sceneImage: 'BGT_55',
        #不显示时间
@@ -164,7 +164,7 @@ scenes: [
   # NPC2
     id: 'C000B_V_MAP_1_2', name: '东街',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
     worldTimeHidden: true,
     #横图显示
@@ -256,7 +256,7 @@ scenes: [
   # NPC2
     id: 'C000B_V_MAP_1_3', name: '客栈',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_52',
     #不显示时间
@@ -307,7 +307,7 @@ scenes: [
   # NPC2
     id: 'C000B_V_MAP_2_2', name: '酒肆',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
     worldTimeHidden: true,
     #横图显示
@@ -385,7 +385,7 @@ scenes: [
   # NPC2
     id: 'C000B_V_MAP_0_2', name: '坊市主道',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
        #不显示时间
       worldTimeHidden: true,
        #横图显示
@@ -458,7 +458,7 @@ scenes: [
     id: 'C000B_V_MAP_-1_2', name: '医馆',
 
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_50',
     #不显示时间
@@ -523,7 +523,7 @@ scenes: [
   # NPC2
     id: 'C000B_V_MAP_-2_3', name: '饭馆',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_59',
     #不显示时间
@@ -645,7 +645,7 @@ scenes: [
   # NPC2
     id: 'C000B_V_MAP_-1_3', name: '当铺',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
       worldTimeHidden: true,
        #横图显示
@@ -766,7 +766,7 @@ scenes: [
   # NPC2
     id: 'C000B_V_MAP_0_3', name: '珍宝阁',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #不显示时间
       worldTimeHidden: true,
        #横图显示
@@ -822,7 +822,7 @@ scenes: [
   # NPC2
     id: 'C000B_V_MAP_-3_2', name: '赌摊',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_57',
        #不显示时间
@@ -889,7 +889,7 @@ scenes: [
   # NPC2
     id: 'C000B_V_MAP_-2_2', name: '西街',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_58',
        #不显示时间
@@ -963,7 +963,7 @@ scenes: [
   # NPC2
     id: 'C000B_V_MAP_-1_4', name: '兵器铺',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
     #横图显示
     sceneImage: 'BGT_60',
     #不显示时间
@@ -1018,7 +1018,7 @@ scenes: [
   # NPC2
     id: 'C000B_V_MAP_-1_5', name: '小集市',
     # 指定场景为NPC或MAP场景
-    isNpc: true,
+    isNpc: false,
      #横图显示
     sceneImage: 'BGT_54',
        #不显示时间

@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_ZC012_V',
+      id: 'WZXX_M1_N1_CB012_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -31,7 +31,7 @@ scenes: [
       chats: [
       
       {
-        id: 'WZXX_M1_N1_ZC012_V1', desc: '该怎么办', 
+        id: 'WZXX_M1_N1_CB012_V1', desc: '该怎么办', 
         options: [
           {
           title: "【大胆叫价 五百灵石】",dialogs: ['ZC12_1.1A'],varsOn: ['biaoqianv1',],

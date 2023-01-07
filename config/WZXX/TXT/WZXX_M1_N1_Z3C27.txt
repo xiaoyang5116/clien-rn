@@ -1,7 +1,7 @@
 #START========================================
 [
     #设置章节已读变量做章节解锁标记
-    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C08']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C089FZ'] }, 
+    { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C27']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C279FZ'] }, 
     { header: '第八章 绛云镇' },
     { world: { name: '灵修界' } },
     ]

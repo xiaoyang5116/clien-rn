@@ -537,23 +537,7 @@ directory: [
         toChapter: 'WZXX_M1_N1_Z2C17', links: [[0, -17]] 
         },
 
-        {
-        point: [0, -17], title: '第十八章 百草镇 ', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C18' ,
-        toChapter: 'WZXX_M1_N1_Z2C18', links: [[0, -18]] 
-        },
 
-        {
-        point: [0, -18], title: '第十九章 宝物出世 ', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C19' ,
-        toChapter: 'WZXX_M1_N1_Z2C19', links: [[0, -19]] 
-        },
-
-        {
-        point: [0, -19], title: '第二十章 另外的队伍 ', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C20' ,
-        toChapter: 'WZXX_M1_N1_Z2C20', links: [] 
-        },
 
     
     ]
@@ -567,57 +551,75 @@ directory: [
     [
 
         {
-        point: [0, 0], title: '第一章 寻找药方 ', 
+        point: [0, -1], title: '第一章 百草镇 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C01' ,
-        toChapter: 'WZXX_M1_N1_Z3C01', links: [[0, -1]] 
+        toChapter: 'WZXX_M1_N1_Z3C01', links: [[0, -2]] 
         },
 
         {
-        point: [0, -1], title: '第二章 八苦地 ', 
+        point: [0, -2], title: '第二章 宝物出世 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C02' ,
-        toChapter: 'WZXX_M1_N1_Z3C02', links: [[0, -2]] 
+        toChapter: 'WZXX_M1_N1_Z3C02', links: [[0, -3]] 
         },
 
         {
-        point: [0, -2], title: '第三章 采药 ', 
+        point: [0, -3], title: '第三章 另外的队伍 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C03' ,
-        toChapter: 'WZXX_M1_N1_Z3C03', links: [[0, -3]] 
+        toChapter: 'WZXX_M1_N1_Z3C03', links: [[]] 
         },
 
         {
-        point: [0, -3], title: '第四章 打斗 ', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C04' ,
-        toChapter: 'WZXX_M1_N1_Z3C04', links: [[0, -4]] 
+        point: [-1, -10], title: ' 寻找药方 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C20' ,
+        toChapter: 'WZXX_M1_N1_Z3C20', links: [[-1, -11]] 
         },
 
         {
-        point: [0, -4], title: '第五章 小偷 ', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C05' ,
-        toChapter: 'WZXX_M1_N1_Z3C05', links: [[0, -5]] 
+        point: [-1, -11], title: '八苦地 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C21' ,
+        toChapter: 'WZXX_M1_N1_Z3C21', links: [[-1, -12]] 
         },
 
         {
-        point: [0, -5], title: '第六章 拍卖会 ', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C06' ,
-        toChapter: 'WZXX_M1_N1_Z3C06', links: [[0, -6]] 
+        point: [-1, -12], title: ' 采药 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C22' ,
+        toChapter: 'WZXX_M1_N1_Z3C22', links: [[-1, -13]] 
+        },
+
+        {
+        point: [-1, -13], title: ' 打斗 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C23' ,
+        toChapter: 'WZXX_M1_N1_Z3C23', links: [[-1, -14]] 
+        },
+
+        {
+        point: [-1, -14], title: ' 小偷 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C24' ,
+        toChapter: 'WZXX_M1_N1_Z3C24', links: [[-1, -15]] 
+        },
+
+        {
+        point: [-1, -15], title: ' 拍卖会 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C25' ,
+        toChapter: 'WZXX_M1_N1_Z3C25', links: [[-1, -16]] 
         },
 
 
         {
-        point: [0, -6], title: '第七章 叫价 ', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C07' ,
-        toChapter: 'WZXX_M1_N1_Z3C07', links: [[0, -7]] 
+        point: [-1, -16], title: ' 叫价 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C26' ,
+        toChapter: 'WZXX_M1_N1_Z3C26', links: [[-1, -17]] 
         },
 
 
         {
-        point: [0, -7], title: '第八章 绛云镇 ', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C08' ,
-        toChapter: 'WZXX_M1_N1_Z3C08', links: [[0, -8]] 
+        point: [-1, -17], title: ' 绛云镇 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C27' ,
+        toChapter: 'WZXX_M1_N1_Z3C27', links: [[-1, -18]] 
         },
 
         {
-        point: [0, -8], title: '第九章 柳家 ', 
+        point: [-1, -18], title: ' 柳家 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C09' ,
         toChapter: 'WZXX_M1_N1_Z3C09', links: [[]] 
         },

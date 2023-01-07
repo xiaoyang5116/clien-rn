@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_ZC34_V',
+      id: 'WZXX_M1_N1_CC034_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -30,7 +30,7 @@ scenes: [
       chats: [
       
       {
-        id: 'WZXX_M1_N1_ZC34_V1', desc: '大分支剧情', 
+        id: 'WZXX_M1_N1_CC034_V1', desc: '大分支剧情', 
         options: [
           {
           title: "【听听是什么线索】",dialogs: ['ZC34_1.1A'],varsOn: ['biaoqianv1',],
@@ -136,7 +136,7 @@ scenes: [
                 addCluesId: ["xiansuo4",],
                      },
                  },
-                 toChapter: "WZXX_M1_N1_Z3C02",useProps: ['886,80'],
+                 toChapter: "WZXX_M1_N1_Z3C21",useProps: ['886,80'],
                 },
                 ]
               },
@@ -196,7 +196,7 @@ scenes: [
                 addCluesId: ["xiansuo4",],
                      },
                  },
-                 toChapter: "WZXX_M1_N1_Z3C02",useProps: ['886,50'],
+                 toChapter: "WZXX_M1_N1_Z3C21",useProps: ['886,50'],
                 },
                 ]
               },
@@ -255,7 +255,7 @@ scenes: [
                 addCluesId: ["xiansuo4",],
                      },
                  },
-                 toChapter: "WZXX_M1_N1_Z3C02",useProps: ['886,50'],
+                 toChapter: "WZXX_M1_N1_Z3C21",useProps: ['886,50'],
                 },
                 ]
               },
@@ -347,7 +347,7 @@ scenes: [
                 addCluesId: ["xiansuo4",],
                      },
                  },
-                 toChapter: "WZXX_M1_N1_Z3C02",useProps: ['886,38'],
+                 toChapter: "WZXX_M1_N1_Z3C21",useProps: ['886,38'],
                 },
                 ]
               },

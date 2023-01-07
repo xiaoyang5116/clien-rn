@@ -1,7 +1,7 @@
 scenes: [
     #
     {
-      id: 'WZXX_M1_N1_ZC35_V',
+      id: 'WZXX_M1_N1_CC035_V',
       name: "定义对应标题名当前章节内的选项和变量",
 
       # 变量定义
@@ -30,7 +30,7 @@ scenes: [
       chats: [
       
       {
-        id: 'WZXX_M1_N1_ZC35_V1', desc: '柳家', 
+        id: 'WZXX_M1_N1_CC035_V1', desc: '柳家', 
         options: [
           {
           title: "【随便说一个】",dialogs: ['ZC35_1.1A'],varsOn: ['biaoqianv1',],
