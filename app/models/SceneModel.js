@@ -388,10 +388,35 @@ export default {
       }
     },
 
-    *__onDialogCommand({ payload }, { select }) {
+    *__onDialogCommand({ payload }, { select, put }) {
       const sceneState = yield select(state => state.SceneModel);
       const dialog = sceneState.__data.cfgReader.getSceneDialog(payload.__sceneId, payload.params);
       if (dialog != null) {
+        if (Array.isArray(dialog.sections)) {
+          for (let index = 0; index < dialog.sections.length; index++) {
+            const item = dialog.sections[index];
+            if (item.btn === undefined) continue
+            if (item.btn != undefined && Array.isArray(item.btn)) {
+              // 遍历按钮 插入场景id
+              for (let b = 0; b < item.btn.length; b++) {
+                const btn = item.btn[b];
+                btn.__sceneId = dialog.__sceneId
+              }
+              // 获得有效 按钮数组
+              item.btn = yield put.resolve(action('ArticleModel/getValidOptions')({ options: item.btn }))
+            }
+          }
+        } else {
+          if(dialog.sections.btn != undefined && Array.isArray(dialog.sections.btn)) {
+            // 遍历按钮 插入场景id
+            for (let index = 0; index < dialog.sections.btn.length; index++) {
+              const btn = dialog.sections.btn[index];
+              btn.__sceneId = dialog.__sceneId
+            }
+            // 获得有效 按钮数组
+            dialog.sections.btn = yield put.resolve(action('ArticleModel/getValidOptions')({ options: dialog.sections.btn }))
+          }
+        }
         Modal.show({ ...dialog, __tokey: payload.__tokey });
       }
     },

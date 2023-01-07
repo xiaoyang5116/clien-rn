@@ -106,22 +106,6 @@ const HalfSingle = (props) => {
                     </View>
                 )
             }
-            // return (
-            //     <View style={{ marginTop: 8 }}>
-            //         {
-            //             item.icon
-            //                 ? (<HaveBtnIcon item={item} />)
-            //                 : (
-            //                     <TextButton
-            //                         title={item.title}
-            //                         onPress={() => {
-            //                             nextDialogue(item);
-            //                         }}
-            //                     />
-            //                 )
-            //         }
-            //     </View>
-            // );
         }
         return null;
     };
