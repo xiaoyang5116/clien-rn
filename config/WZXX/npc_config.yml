@@ -1,0 +1,17 @@
+# ====================
+# npc 配置数据
+# ====================
+
+data: [
+  { 
+    npcId: "npc_1",
+    level: [
+      { grade: -1, value: -100 , address: "厌恶", color: "#FF2E2E", desc: "厌恶..." },
+      { grade: 0, value: 0 , address: "路人", color: "#FF2E2E", desc: "路人..." },
+      { grade: 1, value: 10 , address: "有印象", color: "#000", desc: "有印象..." },
+      { grade: 2, value: 50 , address: "相识", color: "#000", desc: "相识..." },
+      { grade: 3, value: 100 , address: "朋友", color: "#000", desc: "朋友..." },
+    ]
+  }
+
+]

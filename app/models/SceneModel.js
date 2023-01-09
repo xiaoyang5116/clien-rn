@@ -23,6 +23,10 @@ import {
   GetBookConfigDataApi,
 } from "../services/GetBookConfigDataApi";
 
+import {
+  GetNpcDataApi,
+} from "../services/GetNpcDataApi";
+
 import lo from 'lodash';
 import LocalStorage from '../utils/LocalStorage';
 import * as DateTime from '../utils/DateTimeUtils';
@@ -680,6 +684,34 @@ export default {
       return (sceneState.__data.cfgReader != null)
                 ? sceneState.__data.cfgReader.getScene(payload.sceneId)
                 : null;
+    },
+
+    // 获取 NPC 数据
+    // 参数: { sceneId: xxx}
+    *getNpcData({ payload }, { select,call }) {
+      const { sceneId } = payload;
+      const sceneState = yield select(state => state.SceneModel);
+      const npc_SceneConfig = (sceneState.__data.cfgReader != null)
+        ? sceneState.__data.cfgReader.getScene(payload.sceneId)
+        : null;
+      if (npc_SceneConfig === null) return null
+      const npc_SceneVars = sceneState.__data.vars.filter(e => e.id.indexOf("{0}/".format(sceneId.toUpperCase())) == 0);
+      const hao_gan_du = npc_SceneVars.find(
+        item => item.id === `${sceneId.toUpperCase()}/HAO_GAN_DU`,
+      ).value;
+
+      // npc 配置数据
+      const { data: npc_ConfigData } = yield call(GetNpcDataApi)
+      const npc_data = npc_ConfigData.find(item => item.npcId === sceneId)
+      if (npc_data == undefined) return null
+      const npc_level = npc_data.level.filter(item => item.value <= hao_gan_du).sort((a, b) => a.grade - b.grade)
+
+      return {
+        name: npc_SceneConfig?.name,
+        avatarId: npc_SceneConfig?.avatarId,
+        hao_gan_du,
+        ...npc_level[npc_level.length - 1]
+      }
     },
 
     // 获取对话配置

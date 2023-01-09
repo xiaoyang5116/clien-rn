@@ -10,31 +10,15 @@ import { TextButton, BtnIcon } from '../../../constants/custom-ui';
 const NpcDialog = props => {
   const { onDialogCancel, actionMethod } = props
   const { __sceneId, sections, duanWei } = props.viewData;
-  const [hao_gan_du, set_hao_gan_du] = useState(null);
-  const [npcConfig, setNpcConfig] = useState(null);
+  const [npcData, setNpcData] = useState(null)
   const [btnData, setBtnData] = useState(sections.btn)
 
   useEffect(() => {
     props
-      .dispatch(action('SceneModel/getScene')({ sceneId: __sceneId }))
+      .dispatch(action('SceneModel/getNpcData')({ sceneId: __sceneId }))
       .then(result => {
-        if (result != undefined) {
-          const config = {
-            name: result.name,
-            avatarId: result.avatarId
-          };
-          setNpcConfig(config);
-        }
-      });
-
-    props
-      .dispatch(action('SceneModel/getSceneVars')({ sceneId: __sceneId }))
-      .then(result => {
-        if (result != undefined) {
-          const value = result.find(
-            item => item.id === `${__sceneId.toUpperCase()}/HAO_GAN_DU`,
-          ).value;
-          set_hao_gan_du(value);
+        if (result != undefined && result != null) {
+          setNpcData(result);
         }
       });
   }, []);
@@ -72,7 +56,7 @@ const NpcDialog = props => {
     )
   }
 
-  if (hao_gan_du != null && npcConfig != null) {
+  if (npcData != null) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <View style={styles.popContainer}>
@@ -80,14 +64,14 @@ const NpcDialog = props => {
             <View>
               <FastImage
                 style={{ width: 60, height: 60, overflow: "hidden", borderRadius: 30 }}
-                source={changeAvatar(npcConfig.avatarId)} />
+                source={changeAvatar(npcData.avatarId)} />
             </View>
             <View>
-              <Text>{npcConfig.name}</Text>
+              <Text>{npcData.name}</Text>
             </View>
             <View>
-              <Text>{duanWei}</Text>
-              <Text>{hao_gan_du}</Text>
+              <Text style={{ textAlign: 'center' }}>{duanWei}</Text>
+              <Text>{npcData.address}<Text style={{ color: npcData.color ? npcData.color : "#000" }}>{npcData.hao_gan_du}</Text></Text>
             </View>
           </View>
 

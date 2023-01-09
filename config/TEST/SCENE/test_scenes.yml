@@ -38,7 +38,7 @@ scenes: [
       {
         id: 'c0', desc: '配置测试', 
         options: [
-          { title: "老者npc", toScene: 'npc1' },
+          { title: "老者npc", toScene: 'npc_1' },
           { title: "砸鸡蛋", games: {id: 6, treasureChestId: 2} },
           { title: "没有style的确认取消-dialog", dialogs: ['p12']},
           { title: "1B-dialog", dialogs: ['p11']},
