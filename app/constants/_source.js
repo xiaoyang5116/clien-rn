@@ -81,7 +81,7 @@ const _images = {
     ],
 
     world_bg: [
-        
+
         { id: 'ShiJieBeiJing_V1', source: require('../../assets/bg/world_bg1.png') },
     ],
     bgDialog_bgImages: [
@@ -127,7 +127,14 @@ const _images = {
     bossIcon: [
         { id: 1, img: require('../../assets/games/turnLattice/boss_Icon/boss_1.png') },
         { id: 2, img: require('../../assets/games/turnLattice/boss_Icon/boss_2.png') },
-    ]
+    ],
+
+    // 翻格子 地图
+    turnLatticeBg: [
+        { id: 0, img: require('../../assets/bg/baojian.png') },
+        { id: 1, img: require('../../assets/bg/baojian.png') },
+        // { id: 2, img: require('../../assets/games/turnLattice/boss_Icon/boss_1.png') },
+    ],
 }
 
 const _videos = {
@@ -202,4 +209,9 @@ export const getSceneMapBg = (id) => {
 // 获取boss icon
 export const getBossIcon = (id) => {
     return _images.bossIcon.find(e => e.id === id).img;
+}
+
+// 获取翻格子地图
+export const getTurnLatticeBg = (id) => {
+    return _images.turnLatticeBg.find(e => e.id === id).img;
 }
