@@ -524,7 +524,7 @@ export default {
       }
     },
 
-    *__onVarCommand({ payload }, { put, select }) {
+    *__onVarCommand({ payload }, { put, select, call }) {
       const sceneState = yield select(state => state.SceneModel);
 
       const params = [];
@@ -555,6 +555,22 @@ export default {
         updateValue = newVarValue; 
       } else if (params[1] == '-=') {
         updateValue -= newVarValue; 
+      }
+
+      // 整 级 修改好感度
+      if (varId === "HAO_GAN_DU" && (operator == '++' || operator == '--')) {
+        const { data: npc_config } = yield call(GetNpcDataApi)
+        const current_npc_config = npc_config.find(item => item.npcId === payload.__sceneId)
+        const npcData = yield put.resolve(action("getNpcData")({ sceneId: payload.__sceneId }))
+        let newNpcData = null
+        if (operator == '++') {
+          newNpcData = current_npc_config.level.find(item => item.grade === (npcData.grade + newVarValue))
+        } else {
+          newNpcData = current_npc_config.level.find(item => item.grade === (npcData.grade - newVarValue))
+        }
+        if (newNpcData != null && newNpcData != undefined) {
+          updateValue = newNpcData.value
+        }
       }
 
       if (updateValue < varRef.min) updateValue = varRef.min;

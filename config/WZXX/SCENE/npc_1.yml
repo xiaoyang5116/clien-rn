@@ -10,13 +10,15 @@ scenes: [
 
     # 变量定义
     vars: [
-      { id: 'hao_gan_du', min: 0, max: 10000000, defaultValue: 0 },
+      { id: 'hao_gan_du', min: -1000, max: 10000000, defaultValue: 0 },
     ],
 
     # 动作定义
     actions: [
       { id: 'a1', cmd: 'var', params: 'hao_gan_du += 10' },
       { id: 'a2', cmd: 'var', params: 'hao_gan_du -= 10' },
+      { id: 'a3', cmd: 'var', params: 'hao_gan_du ++ 1' },
+      { id: 'a4', cmd: 'var', params: 'hao_gan_du -- 1' },
     ],
 
     # 事件定义
@@ -35,6 +37,8 @@ scenes: [
           { title: '好感度 < 200 显示', andVarsValue: ['hao_gan_du < 200'] },
           { title: '增加10点好感度', clickActions: ['a1'] },
           { title: '减少10点好感度', clickActions: ['a2'] },
+          { title: '好感度等级加一', clickActions: ['a3'] },
+          { title: '好感度等级减一', clickActions: ['a4'] },
           { title: '返回原场景', toScene: '@previous' },
         ],
       }
