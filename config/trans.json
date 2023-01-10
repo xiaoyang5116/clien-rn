@@ -43,5 +43,10 @@
     "id": "OPEN_Questionnaire",
     "name": "黑色圆形转场",
     "comment": "打开调查问卷"
+  },
+  {
+    "id": "OPEN_NpcDialog",
+    "name": "黑色圆形转场",
+    "comment": "打开Npc对话"
   }
 ]

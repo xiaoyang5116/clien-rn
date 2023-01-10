@@ -12,6 +12,7 @@ import { ThemeData } from '../../../constants';
 import { HalfPanel } from '../../panel';
 import { TextButton, BtnIcon } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
+import OptionComponents from '../../article/optionComponents';
 
 
 const HalfSingle = (props) => {
@@ -74,22 +75,37 @@ const HalfSingle = (props) => {
 
     const renderBtn = ({ item }) => {
         if (currentIndex >= currentDialogueLength) {
-            return (
-                <View style={{ marginTop: 8 }}>
-                    {
-                        item.icon
-                            ? (<HaveBtnIcon item={item} />)
-                            : (
-                                <TextButton
-                                    title={item.title}
-                                    onPress={() => {
-                                        nextDialogue(item);
-                                    }}
-                                />
-                            )
-                    }
-                </View>
-            );
+            if (item.btnType === undefined) {
+                return (
+                    <View style={{ marginTop: 8, justifyContent: 'center' }}>
+                        {
+                            item.icon
+                                ? (<HaveBtnIcon item={item} />)
+                                : (
+                                    <TextButton
+                                        title={item.title}
+                                        onPress={() => {
+                                            nextDialogue(item);
+                                        }}
+                                    />
+                                )
+                        }
+                    </View>
+                );
+            } else {
+                return (
+                    <View style={{ marginTop: 8, justifyContent: 'center' }}>
+                        <OptionComponents
+                            optionData={item}
+                            btnType={item.btnType}
+                            title={item.title}
+                            disabled={item.disabled}
+                            currentStyles={theme}
+                            onPress={() => { nextDialogue(item) }}
+                        />
+                    </View>
+                )
+            }
         }
         return null;
     };

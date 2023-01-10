@@ -64,6 +64,9 @@ book: {
         "WZXX_M1_N1_CC035_V",
         "WZXX_MasterEventVar_01",
         "WZXX_NormalEventVar_01",
+
+        # npc
+        "npc_1",
         
       ],
       

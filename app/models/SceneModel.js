@@ -23,6 +23,10 @@ import {
   GetBookConfigDataApi,
 } from "../services/GetBookConfigDataApi";
 
+import {
+  GetNpcDataApi,
+} from "../services/GetNpcDataApi";
+
 import lo from 'lodash';
 import LocalStorage from '../utils/LocalStorage';
 import * as DateTime from '../utils/DateTimeUtils';
@@ -388,10 +392,35 @@ export default {
       }
     },
 
-    *__onDialogCommand({ payload }, { select }) {
+    *__onDialogCommand({ payload }, { select, put }) {
       const sceneState = yield select(state => state.SceneModel);
       const dialog = sceneState.__data.cfgReader.getSceneDialog(payload.__sceneId, payload.params);
       if (dialog != null) {
+        if (Array.isArray(dialog.sections)) {
+          for (let index = 0; index < dialog.sections.length; index++) {
+            const item = dialog.sections[index];
+            if (item.btn === undefined) continue
+            if (item.btn != undefined && Array.isArray(item.btn)) {
+              // 遍历按钮 插入场景id
+              for (let b = 0; b < item.btn.length; b++) {
+                const btn = item.btn[b];
+                btn.__sceneId = dialog.__sceneId
+              }
+              // 获得有效 按钮数组
+              item.btn = yield put.resolve(action('ArticleModel/getValidOptions')({ options: item.btn }))
+            }
+          }
+        } else {
+          if(dialog.sections.btn != undefined && Array.isArray(dialog.sections.btn)) {
+            // 遍历按钮 插入场景id
+            for (let index = 0; index < dialog.sections.btn.length; index++) {
+              const btn = dialog.sections.btn[index];
+              btn.__sceneId = dialog.__sceneId
+            }
+            // 获得有效 按钮数组
+            dialog.sections.btn = yield put.resolve(action('ArticleModel/getValidOptions')({ options: dialog.sections.btn }))
+          }
+        }
         Modal.show({ ...dialog, __tokey: payload.__tokey });
       }
     },
@@ -495,7 +524,7 @@ export default {
       }
     },
 
-    *__onVarCommand({ payload }, { put, select }) {
+    *__onVarCommand({ payload }, { put, select, call }) {
       const sceneState = yield select(state => state.SceneModel);
 
       const params = [];
@@ -526,6 +555,22 @@ export default {
         updateValue = newVarValue; 
       } else if (params[1] == '-=') {
         updateValue -= newVarValue; 
+      }
+
+      // 整 级 修改好感度
+      if (varId === "HAO_GAN_DU" && (operator == '++' || operator == '--')) {
+        const { data: npc_config } = yield call(GetNpcDataApi)
+        const current_npc_config = npc_config.find(item => item.npcId === payload.__sceneId)
+        const npcData = yield put.resolve(action("getNpcData")({ sceneId: payload.__sceneId }))
+        let newNpcData = null
+        if (operator == '++') {
+          newNpcData = current_npc_config.level.find(item => item.grade === (npcData.grade + newVarValue))
+        } else {
+          newNpcData = current_npc_config.level.find(item => item.grade === (npcData.grade - newVarValue))
+        }
+        if (newNpcData != null && newNpcData != undefined) {
+          updateValue = newNpcData.value
+        }
       }
 
       if (updateValue < varRef.min) updateValue = varRef.min;
@@ -657,6 +702,34 @@ export default {
                 : null;
     },
 
+    // 获取 NPC 数据
+    // 参数: { sceneId: xxx}
+    *getNpcData({ payload }, { select,call }) {
+      const { sceneId } = payload;
+      const sceneState = yield select(state => state.SceneModel);
+      const npc_SceneConfig = (sceneState.__data.cfgReader != null)
+        ? sceneState.__data.cfgReader.getScene(payload.sceneId)
+        : null;
+      if (npc_SceneConfig === null) return null
+      const npc_SceneVars = sceneState.__data.vars.filter(e => e.id.indexOf("{0}/".format(sceneId.toUpperCase())) == 0);
+      const hao_gan_du = npc_SceneVars.find(
+        item => item.id === `${sceneId.toUpperCase()}/HAO_GAN_DU`,
+      ).value;
+
+      // npc 配置数据
+      const { data: npc_ConfigData } = yield call(GetNpcDataApi)
+      const npc_data = npc_ConfigData.find(item => item.npcId === sceneId)
+      if (npc_data == undefined) return null
+      const npc_level = npc_data.level.filter(item => item.value <= hao_gan_du).sort((a, b) => a.grade - b.grade)
+
+      return {
+        name: npc_SceneConfig?.name,
+        avatarId: npc_SceneConfig?.avatarId,
+        hao_gan_du,
+        ...npc_level[npc_level.length - 1]
+      }
+    },
+
     // 获取对话配置
     // 参数: { sceneId: xxx, chatId: xxx }
     *getChat({ payload }, { call, put, select }) {
@@ -748,6 +821,17 @@ export default {
               }
             } else {
               debugMessage("Invalid (CluesModel/getUnusedClues) result");
+              continue;
+            }
+          } else if (id.indexOf('@attr_') == 0) { // 属性条件判断
+            const attrs = yield put.resolve(action('UserModel/getAttrs')({}));
+            const [_k, v] = id.split('_');
+            const attr = lo.trim(v);
+            const currentAttr = attrs.find(item => item.key === attr)
+            if ( currentAttr != undefined ){
+              compareValue = currentAttr.value
+            } else {
+              debugMessage("Invalid (属性名 无效) result");
               continue;
             }
           } else if (id.indexOf('@') == 0) {

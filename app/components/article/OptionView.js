@@ -66,7 +66,16 @@ class OptionView extends PureComponent {
                 if (option.btnType !== undefined) {
                     buttonChilds.push(
                         <View key={key} style={{ marginTop: 5, marginBottom: 5 }}>
-                            <OptionComponents type={option.btnType} title={option.title} disabled={option.disabled} onPress={() => { this.optionPressHandler(option); }} />
+                            <OptionComponents
+                                {...this.props}
+                                optionData={option}
+                                btnType={option.btnType}
+                                title={option.title}
+                                disabled={option.disabled}
+                                onPress={() => { this.optionPressHandler(option); }}
+                                sourceType={"reader"}
+                                btnAnimateId={option.btnAnimateId}
+                            />
                             {iconComponent}
                         </View>
                     );

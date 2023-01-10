@@ -85,7 +85,9 @@
 scenes: [
   # NPC1
   {
-    id: 'npc1', name: '老者NPC',
+    id: 'npc1', name: '老者NPC', 
+    # npc 头像
+    avatarId: 2,
 
     # 指定场景为NPC场景
     isNpc: true,
@@ -99,6 +101,7 @@ scenes: [
     actions: [
       { id: 'a1', cmd: 'var', params: 'hao_gan_du += 10' },
       { id: 'a2', cmd: 'var', params: 'hao_gan_du -= 10' },
+
     ],
 
     # 事件定义
@@ -110,8 +113,9 @@ scenes: [
     chats: [
       #
       { 
-        id: 'c1', desc: '', 
+        id: 'c1', desc: '老者', 
         options: [ 
+          { title: "查看好感度", dialogs: ['p1'] },
           { title: '好感度 >= 200 显示', andVarsValue: ['hao_gan_du >= 200'] },
           { title: '好感度 < 200 显示', andVarsValue: ['hao_gan_du < 200'] },
           { title: '增加10点好感度', clickActions: ['a1'] },
@@ -123,11 +127,31 @@ scenes: [
 
     # 对话框
     dialogs: [
+      {
+        id: 'p1', style: 200, textAnimationType: 'TextSingle', duanWei: "宗师",
+        sections: {
+          content: '来这里这么多天了，连个像样的防身东西都没有，你觉得菜刀出现的正是时候。',
+          btn: [
+            { title: '对话', dialogs: ["p3"],},
+            { title:  '去破庙', toScene: 'pomiaomk'},
+          ]
+        }, 
+      },
+      { id: 'p3',
+        style: 7, 
+        artId: 1,
+        title: '你挂了',
+        dialogType: 'FullScreen', 
+        textAnimationType: 'TextFadeIn', 
+        sections: [
+        { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来', },]},
+        ],
+      },
     ],
   },
   # NPC2
   {
-    id: 'npc1', name: '老者NPC',
+    id: 'npc2', name: '老者NPC',
 
     # 指定场景为NPC场景
     isNpc: true,
@@ -169,7 +193,7 @@ scenes: [
   },
   # NPC3
   {
-    id: 'npc1', name: '老者NPC',
+    id: 'npc3', name: '老者NPC',
 
     # 指定场景为NPC场景
     isNpc: true,
@@ -194,7 +218,7 @@ scenes: [
     chats: [
       #
       { 
-        id: 'c1', desc: '', 
+        id: 'c1', desc: '老者', 
         options: [ 
           { title: '好感度 >= 200 显示', andVarsValue: ['hao_gan_du >= 200'] },
           { title: '好感度 < 200 显示', andVarsValue: ['hao_gan_du < 200'] },

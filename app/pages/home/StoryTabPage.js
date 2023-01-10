@@ -28,6 +28,7 @@ import { BtnIcon } from '../../components/button';
 import CountDown from '../../components/coundown';
 import RootView from '../../components/RootView';
 import Transitions from '../../components/transition';
+import OptionComponents from '../../components/article/optionComponents';
 
 const CountDownAnimation = (props) => {
 
@@ -229,6 +230,25 @@ const StoryTabPage = (props) => {
       iconComponent = <BtnIcon id={data.item.icon.id} style={{ marginTop: px2pd(14) }} />
     }
 
+    if(data.item.btnType != undefined){
+      return (
+        <View style={theme.chatItem}>
+          <View style={{width:"100%", justifyContent: 'center', alignItems: 'center'}}>
+            <OptionComponents 
+              optionData={data.item}
+              btnType={data.item.btnType}
+              title={data.item.title}
+              disabled={data.item.disabled}
+              currentStyles={theme}
+              onPress={() => { onClickItem(data) }}
+            />
+            {iconComponent}
+          </View>
+        {progressView}
+      </View>
+      )
+    }
+
     return (
       <View style={theme.chatItem}>
         <TouchableWithoutFeedback onPress={() => onClickItem(data)}>
@@ -310,9 +330,26 @@ const StoryTabPage = (props) => {
   refCurrentScene.current = props.scene;
   refCurrentChatId.current = props.chatId;
 
+  const DoubleClickFunc = (() => {
+    let times = 0;
+    let timer = null;
+    // 模仿双击事件
+    return () => {
+      clearTimeout(timer);
+      if (++times >= 2) {
+        times = 0;
+        // 把要执行的事件写在这
+        DeviceEventEmitter.emit("ARTICLE_PAGE_PRESS")
+      }
+      timer = setTimeout(() => {
+        times = 0;
+      }, 500)
+    }
+  })()
+
   return (
     <View style={props.currentStyles.viewContainer}>
-      <TouchableWithoutFeedback onPress={()=>{DeviceEventEmitter.emit("ARTICLE_PAGE_PRESS")}}>
+      <TouchableWithoutFeedback onPress={DoubleClickFunc} onLongPress={()=>{DeviceEventEmitter.emit("ARTICLE_PAGE_PRESS")}}>
         <View style={props.currentStyles.viewContainer}>
           <View style={[props.currentStyles.positionBar, { flexDirection: 'row', justifyContent: 'space-between' }]}>
             <View>

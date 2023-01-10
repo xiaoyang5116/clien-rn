@@ -19,6 +19,7 @@ import GorgeousTemplate from './gorgeousTemplate'
 import Transitions from '../transition';
 import { ArticleOptionActions } from '../article';
 import Questionnaire from './questionnaire';
+import NpcDialog from "./npcDialog"
 
 
 const DialogRoutes = (props) => {
@@ -150,6 +151,17 @@ const DialogRoutes = (props) => {
         return (
             <Transitions id={"OPEN_Questionnaire"}>
                 <Questionnaire
+                    {...props}
+                    actionMethod={actionMethod}
+                    specialEffects={specialEffects}
+                />
+            </Transitions>
+        )
+    }
+    else if (style === 200) {
+        return (
+            <Transitions id={"OPEN_NpcDialog"}>
+                <NpcDialog
                     {...props}
                     actionMethod={actionMethod}
                     specialEffects={specialEffects}

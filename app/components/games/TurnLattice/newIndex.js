@@ -14,7 +14,7 @@ import {
 import React, { useEffect, useState, useRef } from 'react';
 
 import qualityStyle from '../../../themes/qualityStyle';
-import { action, connect, getPropIcon, EventKeys } from '../../../constants';
+import { action, connect, getPropIcon, EventKeys, getTurnLatticeBg } from '../../../constants';
 import { px2pd } from '../../../constants/resolution';
 import Toast from '../../toast';
 import { ArticleOptionActions } from '../../article';
@@ -40,6 +40,7 @@ const TurnLattice = props => {
   const [gridConfig, setGridConfig] = useState([]);
   const row = turnLatticeData[currentLayer]?.row || 0;
   const column = turnLatticeData[currentLayer]?.row || 0;
+  const img = turnLatticeData[currentLayer]?.img || 0;
 
   const pan = useRef(new Animated.ValueXY()).current;
   const scaleAnim = useRef(new Animated.Value(1)).current;
@@ -191,7 +192,7 @@ const TurnLattice = props => {
                 position: 'absolute',
                 opacity: gridConfig.length === 0 ? 0 : 1,
               }}
-              source={require('../../../../assets/bg/baojian.png')}
+              source={getTurnLatticeBg(img)}
             />
             {gridConfig.length !== 0 ? (
               gridConfig.map((item, index) => (
