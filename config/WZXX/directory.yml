@@ -565,13 +565,13 @@ directory: [
         {
         point: [0, 0], title: '第三章 宝物出世 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C03' ,
-        toChapter: 'WZXX_M1_N1_Z3C03', links: [[]] 
+        toChapter: 'WZXX_M1_N1_Z3C03', links: [[0, -1]] 
         },
 
         {
         point: [0, -1], title: '第四章 另外的队伍 ', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C05' ,
-        toChapter: 'WZXX_M1_N1_Z3C05', links: [[]] 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C04' ,
+        toChapter: 'WZXX_M1_N1_Z3C04', links: [[0, -2]] 
         },
 
         {
