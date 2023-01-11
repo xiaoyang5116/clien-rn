@@ -38,41 +38,46 @@ latticeMaze: [
         # 行
         row: 10,
         # 列
-        column: 10,
+        column: 0,
         # 背景图片ID
-        img: 1,
+        img: 0,
         # 事件数据
         eventData : [
+          # 事件1怪物
+          # 事件2怪物
+          # 事件3宝箱
+          # 事件4怪物
+          # 事件5宝箱
+          
           {
             id: "1",
-            type: "道具",
-            prop: { id: 30, num: 1,},
-            #触发之前事件
-            beforeEventId: "2",
-            # 事件之后触发
+            type: "战斗",
+            challenge: 'x4',
+            # BOSS 图标ID
+            bossIconId: 1,
             afterEventId: "2",
           },
+
           {
             id: "2",
-            type: "剧情",
-            style: 10, 
-            textAnimationType: 'TextSingle',
-            sections: [
-              { figureId: "01", location: "right", content: ['“大爷你好。”', ], },
-              { figureId: "02", location: "left", content: ['“你好。”',], },
-              { figureId: "01", location: "right", content: ['“大爷你知道黄心叶、百络花、子星草这些东西在哪吗？”',], },
-            ],
+            type: "战斗",
+            challenge: 'x5',
+            # BOSS 图标ID
+            bossIconId: 1,
+            afterEventId: "2",
           },
+
           {
             id: "3",
             type: "宝箱",
-            # 宝箱ID
             treasureChestId: 2,
           },
+          # 明天优先配置几个战斗系统，把战斗配置完之后，大概结束第一层的配置 继续画图 宝箱的礼品配置，根据剧情来定。
+
           {
             id: "4",
             type: "战斗",
-            challenge: 'x1',
+            challenge: 'x6',
             # BOSS 图标ID
             bossIconId: 1,
             afterEventId: "2",
@@ -107,7 +112,7 @@ latticeMaze: [
         id: 2,
         row: 10,
         column: 10,
-        img: 1,
+        img: 0,
         eventData : [
           {
             id: "1",
