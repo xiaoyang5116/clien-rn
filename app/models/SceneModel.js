@@ -410,7 +410,7 @@ export default {
               item.btn = yield put.resolve(action('ArticleModel/getValidOptions')({ options: item.btn }))
             }
           }
-        } else {
+        } else if ( dialog.sections != undefined ) {
           if(dialog.sections.btn != undefined && Array.isArray(dialog.sections.btn)) {
             // 遍历按钮 插入场景id
             for (let index = 0; index < dialog.sections.btn.length; index++) {
