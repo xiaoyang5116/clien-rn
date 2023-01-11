@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C10_[N1]']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C10_[N1]FZ'] }, 
-    { header: '第十章 冰灵之心' },
+    { header: '铁匠分支1 冰灵之心' },
     { world: { name: '灵修界' } },
 ]
 #END==========================================

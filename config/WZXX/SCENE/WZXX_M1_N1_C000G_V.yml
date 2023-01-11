@@ -29,7 +29,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000G_V1', desc: '回忆', 
         options: [ 
-          { title: "【去百草镇里逛逛】",toScene: 'C000G_V_MAP_4_1', varsOn: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3'], transitionAnimation: '左右开门转场',
+          { title: "【去百草镇里逛逛】",toScene: 'C000G_V_MAP_4_1', varsOn: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3'], transitionAnimation: '上下开门转场',
           # sounds: [{ soundId: 'BGM_R_0003',}],
           },
         ],
@@ -83,7 +83,7 @@ scenes: [
          { title: '【镇西口】', toScene: 'C000G_V_MAP_0_-1'}, 
          { title: '【采药队聚集地】', toScene: 'C000G_V_MAP_1_0'}, 
          { title: '【大药园（门）】', toScene: 'C000G_V_MAP_1_-1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -145,7 +145,7 @@ scenes: [
          { title: '【采药店老王家】', toScene: 'C000G_V_MAP_0_'}, 
          { title: '【采药队聚集地】', toScene: 'C000G_V_MAP_1_0'}, 
          { title: '【大药园（门）】', toScene: 'C000G_V_MAP_1_-1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -237,7 +237,7 @@ scenes: [
          { title: '【酒楼】', toScene: 'C000G_V_MAP_2_0'}, 
          { title: '【采药店老王家】', toScene: 'C000G_V_MAP_0_0'}, 
          { title: '【大药园（门）】', toScene: 'C000G_V_MAP_1_-1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -290,7 +290,7 @@ scenes: [
          { title: '【采药队聚集地】', toScene: 'C000G_V_MAP_1_0'}, 
          { title: '【镇西口】', toScene: 'C000G_V_MAP_0_-1'}, 
          { title: '【大药园（墙）】', toScene: 'C000G_V_MAP_2_-1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -352,7 +352,7 @@ scenes: [
          { title: '【采药队聚集地】', toScene: 'C000G_V_MAP_1_0'}, 
          { title: '【客栈】', toScene: 'C000G_V_MAP_3_0'}, 
          { title: '【大药园（墙）】', toScene: 'C000G_V_MAP_2_-1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -414,7 +414,7 @@ scenes: [
          { title: '【破败的民家】', toScene: 'C000G_V_MAP_2_-2'}, 
          { title: '【隐秘小巷】', toScene: 'C000G_V_MAP_3_-2'}, 
          { title: '【青剑帮分舵】', toScene: 'C000G_V_MAP_3_-3'},
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -478,7 +478,7 @@ scenes: [
          { title: '【破败的民家】', toScene: 'C000G_V_MAP_2_-2'}, 
          { title: '【假山】', toScene: 'C000G_V_MAP_3_-1'}, 
          { title: '【杂货街】', toScene: 'C000G_V_MAP_4_-2'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -558,7 +558,7 @@ scenes: [
          { title: '【假山】', toScene: 'C000G_V_MAP_3_-1'}, 
          { title: '【隐秘小巷】', toScene: 'C000G_V_MAP_3_-2'}, 
          { title: '【青剑帮分舵】', toScene: 'C000G_V_MAP_3_-3'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -621,7 +621,7 @@ scenes: [
          { title: '【隐秘小巷】', toScene: 'C000G_V_MAP_3_-2'}, 
          { title: '【人字石阶梯】', toScene: 'C000G_V_MAP_4_-3'}, 
          { title: '【神兽宗】', toScene: 'C000G_V_MAP_4_-4'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -674,7 +674,7 @@ scenes: [
          { title: '【客栈】', toScene: 'C000G_V_MAP_3_0'}, 
          { title: '【大药园（墙）】', toScene: 'C000G_V_MAP_2_-1'}, 
          { title: '【草药集市】', toScene: 'C000G_V_MAP_4_-1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -757,7 +757,7 @@ scenes: [
          { title: '【酒楼】', toScene: 'C000G_V_MAP_2_0'}, 
          { title: '【民家】', toScene: 'C000G_V_MAP_3_1'}, 
          { title: '【法器集市】', toScene: 'C000G_V_MAP_4_0'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
         ],
       },
 
@@ -810,7 +810,7 @@ scenes: [
          { title: '【客栈】', toScene: 'C000G_V_MAP_3_0'}, 
          { title: '【北镇口迎客树】', toScene: 'C000G_V_MAP_4_1'}, 
          { title: '【镇长家】', toScene: 'C000G_V_MAP_3_2'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -872,7 +872,7 @@ scenes: [
          { title: '【客栈】', toScene: 'C000G_V_MAP_3_0'}, 
          { title: '【民家】', toScene: 'C000G_V_MAP_3_1'}, 
          { title: '【北镇口迎客树】', toScene: 'C000G_V_MAP_4_1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -934,7 +934,7 @@ scenes: [
          { title: '【观棋台】', toScene: 'C000G_V_MAP_5_-2'}, 
          { title: '【隐秘小巷】', toScene: 'C000G_V_MAP_3_-2'}, 
          { title: '【人字石阶梯】', toScene: 'C000G_V_MAP_4_-3'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -1003,7 +1003,7 @@ scenes: [
          { title: '【青剑帮分舵】', toScene: 'C000G_V_MAP_3_-3'}, 
          { title: '【神兽宗】', toScene: 'C000G_V_MAP_4_-4'}, 
          { title: '【富家宅】', toScene: 'C000G_V_MAP_5_-3'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -1033,6 +1033,7 @@ scenes: [
     { id: "biaoqianv1", min: 0, max: 1 },
     { id: "biaoqianv2", min: 0, max: 1 },
     { id: "T1", min: 0, max: 1 },
+    { id: "V3", min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -1065,7 +1066,8 @@ scenes: [
         id: 'C3', desc: "【老字号店铺内】\n老板：“客官有什么需要的？”", 
         options: [ 
         { title: '【随便聊聊】', nextChat: 'C4', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},  
-        { title: '【最近的新鲜事】',  nextChat: 'C5', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},  
+        { title: '【最近的新鲜事】', nextChat: 'C5',icon: { id: 8 ,}, andVarsOff: ['V3'], varsOn: ['V3','biaoqianv2'] }, 
+        { title: '【最近的新鲜事】', nextChat: 'C5',icon: { id: 1, bindVar: 'biaoqianv2' },andVarsOn: ['V3'], }, 
         ],
       },
 
@@ -1090,7 +1092,7 @@ scenes: [
          { title: '【假山】', toScene: 'C000G_V_MAP_3_-1'}, 
          { title: '【草药码头】', toScene: 'C000G_V_MAP_5_-1'}, 
          { title: '【法器集市】', toScene: 'C000G_V_MAP_4_0'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -1152,7 +1154,7 @@ scenes: [
          { title: '【客栈】', toScene: 'C000G_V_MAP_3_0'}, 
          { title: '【北镇口迎客树】', toScene: 'C000G_V_MAP_4_1'}, 
          { title: '【驿站】', toScene: 'C000G_V_MAP_5_0'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -1206,7 +1208,7 @@ scenes: [
          { title: '【法器集市】', toScene: 'C000G_V_MAP_4_0'}, 
          { title: '【民家】', toScene: 'C000G_V_MAP_3_1'}, 
          { title: '【大演武场】', toScene: 'C000G_V_MAP_5_1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -1269,7 +1271,7 @@ scenes: [
          { title: '【青剑帮分舵】', toScene: 'C000G_V_MAP_3_-3'}, 
          { title: '【人字石阶梯】', toScene: 'C000G_V_MAP_4_-3'}, 
          { title: '【富家宅】', toScene: 'C000G_V_MAP_5_-3'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -1361,7 +1363,7 @@ scenes: [
          { title: '【草药集市】', toScene: 'C000G_V_MAP_4_-1'}, 
          { title: '【空地】', toScene: 'C000G_V_MAP_6_-1'}, 
          { title: '【驿站】', toScene: 'C000G_V_MAP_5_0'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -1388,7 +1390,10 @@ scenes: [
      # 变量定义
     vars: [
     { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
     { id: "T1", min: 0, max: 1 },
+    { id: "V3", min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -1405,48 +1410,42 @@ scenes: [
       { 
         id: 'C1', desc: "驿站前围了不少人，有人在看告示，有人围着驿站仿佛在讨要说法", 
         options: [ 
-        { title: '【和旁人攀谈】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【去别处看看>>>】',andVarsOn: ['T1'],  nextChat: 'C6'}, 
+        { title: '【询问背包袱的路人】', nextChat: 'C2',icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
+        { title: '【询问商人】', nextChat: 'C3',icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
+        { title: '【询问老人】', nextChat: 'C4',icon: { id: 8 ,}, andVarsOff: ['V3'], varsOn: ['V3','biaoqianv2'] }, 
+        { title: '【询问老人】', nextChat: 'C4',icon: { id: 1, bindVar: 'biaoqianv2' },andVarsOn: ['V3'], }, 
+        { title: '【去别处看看>>>】',andVarsOn: ['T1'],  nextChat: 'C5'}, 
         ],
       },
 
       { 
-        id: 'C2', desc: "找谁聊聊好呢？", 
+        id: 'C2', desc: "背包袱的路人：“可恶，这驿站不做生意，我就没法外出了。”", 
         options: [ 
-        { title: '【询问背包袱的路人】',varsOn: ['T1'], nextChat: 'C3'}, 
-        { title: '【询问商人】',varsOn: ['T1'], nextChat: 'C4'}, 
-        { title: '【询问老人】',varsOn: ['T1'], nextChat: 'C5'}, 
+        { title: '【<<<好吧，返回】',varsOn: ['T1'], nextChat: 'C1'}, 
         ],
       },
 
       { 
-        id: 'C3', desc: "背包袱的路人：“可恶，这驿站不做生意，我就没法外出了。”", 
+        id: 'C3', desc: "商人：“如今商人们都在想办法，已经有不少人聚集在一起，你问在哪？这东边就是。”", 
         options: [ 
-        { title: '【<<<好吧，返回】', nextChat: 'C1'}, 
+        { title: '【<<<原来如此，返回】', varsOn: ['T1'],nextChat: 'C1'}, 
         ],
       },
 
       { 
-        id: 'C4', desc: "商人：“如今商人们都在想办法，已经有不少人聚集在一起，你问在哪？这东边就是。”", 
+        id: 'C4', desc: "老人：“在这里聚集的都是想离开百草镇的人，这平时都是通过驿站出行的，你说一个人也能出行？也许平时可以，现在太危险了。”", 
         options: [ 
-        { title: '【<<<原来如此，返回】', nextChat: 'C1'}, 
-        ],
-      },
-
-      { 
-        id: 'C5', desc: "老人：“在这里聚集的都是想离开百草镇的人，这平时都是通过驿站出行的，你说一个人也能出行？也许平时可以，现在太危险了。”", 
-        options: [ 
-        { title: '【<<<原来如此，返回】', varsOff: ['WZXX_M1_N1_C000G_V/v_icon_2',],nextChat: 'C1'}, 
+        { title: '【<<<原来如此，返回】',varsOn: ['T1'], varsOff: ['WZXX_M1_N1_C000G_V/v_icon_2',],nextChat: 'C1'}, 
         ],
       },
      
       { 
-        id: 'C6', desc: '准备往哪儿边走？', 
+        id: 'C5', desc: '准备往哪儿边走？', 
         options: [ 
          { title: '【法器集市】', toScene: 'C000G_V_MAP_4_0'}, 
          { title: '【商人集会场】', toScene: 'C000G_V_MAP_6_0'}, 
          { title: '【大演武场】', toScene: 'C000G_V_MAP_5_1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -1500,7 +1499,7 @@ scenes: [
          { title: '【杂货街】', toScene: 'C000G_V_MAP_4_-2'}, 
          { title: '【悬崖】', toScene: 'C000G_V_MAP_6_-2'}, 
          { title: '【富家宅】', toScene: 'C000G_V_MAP_5_-3'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -1554,7 +1553,7 @@ scenes: [
          { title: '【人字石阶梯】', toScene: 'C000G_V_MAP_4_-3'}, 
          { title: '【观棋台】', toScene: 'C000G_V_MAP_5_-2'}, 
          { title: '【悬崖】', toScene: 'C000G_V_MAP_6_-2'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -1616,7 +1615,7 @@ scenes: [
          { title: '【驿站】', toScene: 'C000G_V_MAP_5_0'}, 
          { title: '【法器集市】', toScene: 'C000G_V_MAP_4_0'}, 
          { title: '【商人集会场】', toScene: 'C000G_V_MAP_6_0'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -1648,6 +1647,7 @@ scenes: [
     { id: "biaoqianv3", min: 0, max: 1 },
     { id: "biaoqianv4", min: 0, max: 1 },
     { id: "T1", min: 0, max: 1 },
+    { id: "V3", min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -1667,7 +1667,8 @@ scenes: [
         { title: '【询问看热闹的路人】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
         { title: '【询问悠闲的商人】', nextChat: 'C5', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
         { title: '【询问着急的商人】', nextChat: 'C6', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']}, 
-        { title: '【询问管事的人】', nextChat: 'C7', icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']}, 
+        { title: '【询问管事的人】', nextChat: 'C7',icon: { id: 8 ,}, andVarsOff: ['V3'], varsOn: ['V3','biaoqianv3'] }, 
+        { title: '【询问管事的人】', nextChat: 'C7',icon: { id: 1, bindVar: 'biaoqianv3' },andVarsOn: ['V3'], }, 
         { title: '【去别处看看>>>】', andVarsOn: ['T1'], nextChat: 'C8'}, 
         
         ],
@@ -1722,7 +1723,7 @@ scenes: [
          { title: '【驿站】', toScene: 'C000G_V_MAP_5_0'}, 
          { title: '【空地】', toScene: 'C000G_V_MAP_6_-1'}, 
          { title: '【镇东口迎客树】', toScene: 'C000G_V_MAP_7_0'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,},}, 
 
         ],
       },
@@ -1777,7 +1778,7 @@ scenes: [
          { title: '【悬崖】', toScene: 'C000G_V_MAP_6_-2'}, 
          { title: '【草药码头】', toScene: 'C000G_V_MAP_5_-1'}, 
          { title: '【出镇大门】', toScene: 'C000G_V_MAP_7_-1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,},}, 
 
         ],
       },
@@ -1832,7 +1833,7 @@ scenes: [
          { title: '【观棋台】', toScene: 'C000G_V_MAP_5_-2'}, 
          { title: '【空地】', toScene: 'C000G_V_MAP_6_-1'}, 
          { title: '【出镇大门】', toScene: 'C000G_V_MAP_7_-1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
          
         ],
       },
@@ -1903,7 +1904,7 @@ scenes: [
          { title: '【空地】', toScene: 'C000G_V_MAP_6_-1'}, 
          { title: '【镇东口迎客树】', toScene: 'C000G_V_MAP_7_0'}, 
          { title: '【东侧出镇山路】', toScene: 'C000G_V_MAP_8_-1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -1967,7 +1968,7 @@ scenes: [
          { title: '【商人集会场】', toScene: 'C000G_V_MAP_6_0'}, 
          { title: '【出镇大门】', toScene: 'C000G_V_MAP_7_-1'}, 
          { title: '【东侧出镇山路】', toScene: 'C000G_V_MAP_8_-1'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },
@@ -2029,7 +2030,7 @@ scenes: [
          { title: '【出镇大门】', toScene: 'C000G_V_MAP_7_-1'}, 
          { title: '【镇东口迎客树】', toScene: 'C000G_V_MAP_7_0'}, 
          { title: '【悬崖】', toScene: 'C000G_V_MAP_6_-2'}, 
-         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],}, 
+         { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
 
         ],
       },

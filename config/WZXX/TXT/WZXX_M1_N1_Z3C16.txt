@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C16']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C16FZ'] }, 
-    { header: '第十六章 道心如铁' },
+    { header: '铁匠分支8 道心如铁' },
     { world: { name: '灵修界' } },
 ]
 #END==========================================

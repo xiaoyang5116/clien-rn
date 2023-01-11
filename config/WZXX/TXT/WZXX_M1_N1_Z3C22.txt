@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C22']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C22FZ'] }, 
-    { header: '第三章 采药' },
+    { header: '寻药分支3 采药' },
     { world: { name: '灵修界' } },
     ]
 #END==========================================

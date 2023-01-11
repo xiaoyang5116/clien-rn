@@ -22,7 +22,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000H_V1', desc: '回忆', 
         options: [ 
-          { title: "【进入地图】",toScene: 'C000H_V_MAP_0_0', transitionAnimation: '左右开门转场',
+          { title: "【进入地图】",toScene: 'C000H_V_MAP_0_0', transitionAnimation: '上下开门转场',
           # sounds: [{ soundId: 'BGM_R_0003',}],
           },
         ],

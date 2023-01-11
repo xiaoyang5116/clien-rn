@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C12_[N1]']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C12_[N1]FZ'] }, 
-    { header: '第十二章 白衣魔修' },
+    { header: '铁匠分支4 白衣魔修' },
     { world: { name: '灵修界' } },
 ]
 #END==========================================

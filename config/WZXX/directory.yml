@@ -581,19 +581,19 @@ directory: [
         },
 
         {
-        point: [1, -4], title: ' 铁匠分支1 冰灵之心 ', 
+        point: [1, -4], title: '铁匠分支1 冰灵之心', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C10_[N1]' ,
         toChapter: 'WZXX_M1_N1_Z3C10_[N1]', links: [[1, -5]] 
         },
 
         {
-        point: [1, -5], title: '铁匠分支2 神秘物件 ', 
+        point: [1, -5], title: '铁匠分支2 神秘物件', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C10_[N2]' ,
         toChapter: 'WZXX_M1_N1_Z3C10_[N2]', links: [[1, -6]] 
         },
 
         {
-        point: [1, -6], title: ' 铁匠分支3 道修魔修', 
+        point: [1, -6], title: '铁匠分支3 道修魔修', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C11' ,
         toChapter: 'WZXX_M1_N1_Z3C11', links: [[1, -7]] 
         },

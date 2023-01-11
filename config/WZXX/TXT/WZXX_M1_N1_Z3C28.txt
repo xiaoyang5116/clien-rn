@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C28']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C28FZ'] }, 
-    { header: '第九章 柳家' },
+    { header: '寻药分支9 柳家' },
     { world: { name: '灵修界' } },
     ]
 #END==========================================

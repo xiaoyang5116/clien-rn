@@ -64,7 +64,7 @@ scenes: [
                 btn: [
                 {
                 title: '筑基，还得是筑基！',
-                 toChapter: "WZXX_M1_N1_Z3C12_[N2]", 
+                toChapter: "WZXX_M1_N1_Z3C14", 
                 },
                 ]
               },
@@ -84,7 +84,7 @@ scenes: [
                 btn: [
                 {
                 title: '还是算了吧',
-                toChapter: "WZXX_M1_N1_Z2C13", 
+                toChapter: "WZXX_M1_N1_Z3C14", 
                 },
                
                 ]

@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C23']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C23FZ'] }, 
-    { header: '第四章 打斗' },
+    { header: '寻药分支4 打斗' },
     { world: { name: '灵修界' } },
     ]
 #END==========================================
