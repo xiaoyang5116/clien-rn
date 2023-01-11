@@ -1739,7 +1739,7 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: false,
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000A_V_MAP_0_0',
      #横图显示

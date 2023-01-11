@@ -534,7 +534,7 @@ directory: [
         {
         point: [0, -16], title: '第十七章 保命 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z2C17' ,
-        toChapter: 'WZXX_M1_N1_Z2C17', links: [[0, -17]] 
+        toChapter: 'WZXX_M1_N1_Z2C17', links: [[]] 
         },
 
 
@@ -551,21 +551,21 @@ directory: [
     [
 
         {
-        point: [0, -1], title: '第一章 百草镇 ', 
+        point: [0, 0], title: '第一章 百草镇 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C01' ,
-        toChapter: 'WZXX_M1_N1_Z3C01', links: [[0, -2]] 
+        toChapter: 'WZXX_M1_N1_Z3C01', links: [[0, -1]] 
         },
 
         {
-        point: [0, -2], title: '第二章 宝物出世 ', 
+        point: [0, -1], title: '第二章 宝物出世 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C02' ,
-        toChapter: 'WZXX_M1_N1_Z3C02', links: [[0, -3]] 
+        toChapter: 'WZXX_M1_N1_Z3C02', links: [[0, -2]] 
         },
 
         {
-        point: [0, -3], title: '第三章 另外的队伍 ', 
+        point: [0, -2], title: '第三章 另外的队伍 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C03' ,
-        toChapter: 'WZXX_M1_N1_Z3C03', links: [[0, -4]] 
+        toChapter: 'WZXX_M1_N1_Z3C03', links: [[]] 
         },
 
         {
