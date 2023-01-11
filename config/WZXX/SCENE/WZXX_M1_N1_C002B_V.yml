@@ -229,7 +229,7 @@ scenes: [
           { id: 'C002B_fangshiB',style: 6, title: '去坊市看看', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P10', content: ['李森炎想想觉得也行，毕竟他这些天的修行虽然升到了炼气三重了','不过却也，遇到了瓶颈了。','再想往上突破一层的话，没那么容易','而且修仙需要张弛有度，说不定去坊市还能淘到什么好东西',],
-          btn: [{title: "去坊市", toChapter: "WZXX_M1_N1_C010_[N1]",},]},
+          btn: [{title: "走吧", toChapter: "WZXX_M1_N1_C010_[N1]",},]},
         ],
     },
 

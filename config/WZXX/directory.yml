@@ -551,135 +551,147 @@ directory: [
     [
 
         {
-        point: [0, 0], title: '第一章 百草镇 ', 
+        point: [0, 2], title: '第一章 百草镇 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C01' ,
         toChapter: 'WZXX_M1_N1_Z3C01', links: [[0, -1]] 
         },
 
         {
-        point: [0, -1], title: '第二章 宝物出世 ', 
+        point: [0, 1], title: '第二章 百草镇的采药队 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C02' ,
         toChapter: 'WZXX_M1_N1_Z3C02', links: [[0, -2]] 
         },
 
         {
-        point: [0, -2], title: '第三章 另外的队伍 ', 
+        point: [0, 0], title: '第三章 宝物出世 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C03' ,
         toChapter: 'WZXX_M1_N1_Z3C03', links: [[]] 
         },
 
         {
-        point: [0, -4], title: ' 第十章 冰灵之心 ', 
+        point: [0, -1], title: '第四章 另外的队伍 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C05' ,
+        toChapter: 'WZXX_M1_N1_Z3C05', links: [[]] 
+        },
+
+        {
+        point: [0, -2], title: '第五章 没事找事 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C05' ,
+        toChapter: 'WZXX_M1_N1_Z3C05', links: [[]] 
+        },
+
+        {
+        point: [1, -4], title: ' 铁匠分支1 冰灵之心 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C10_[N1]' ,
-        toChapter: 'WZXX_M1_N1_Z3C10_[N1]', links: [[0, -5]] 
+        toChapter: 'WZXX_M1_N1_Z3C10_[N1]', links: [[1, -5]] 
         },
 
         {
-        point: [0, -5], title: '第十章 神秘物件 ', 
+        point: [1, -5], title: '铁匠分支2 神秘物件 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C10_[N2]' ,
-        toChapter: 'WZXX_M1_N1_Z3C10_[N2]', links: [[0, -6]] 
+        toChapter: 'WZXX_M1_N1_Z3C10_[N2]', links: [[1, -6]] 
         },
 
         {
-        point: [0, -6], title: ' 第十一章 道修魔修', 
+        point: [1, -6], title: ' 铁匠分支3 道修魔修', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C11' ,
-        toChapter: 'WZXX_M1_N1_Z3C11', links: [[0, -7]] 
+        toChapter: 'WZXX_M1_N1_Z3C11', links: [[1, -7]] 
         },
 
         {
-        point: [0, -7], title: '第十二章 白衣魔修', 
+        point: [1, -7], title: '铁匠分支4 白衣魔修', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C12' ,
-        toChapter: 'WZXX_M1_N1_Z3C12', links: [[0, -8]] 
+        toChapter: 'WZXX_M1_N1_Z3C12', links: [[1, -8]] 
         },
 
         {
-        point: [0, -8], title: '第十三章 胡乱修炼', 
+        point: [1, -8], title: '铁匠分支5 胡乱修炼', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C13' ,
-        toChapter: 'WZXX_M1_N1_Z3C13', links: [[0, -9]] 
+        toChapter: 'WZXX_M1_N1_Z3C13', links: [[1, -9]] 
         },
 
         {
-        point: [0, -9], title: '第十四章 重逢', 
+        point: [1, -9], title: '铁匠分支6 重逢', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C14' ,
-        toChapter: 'WZXX_M1_N1_Z3C14', links: [[0, -10]] 
+        toChapter: 'WZXX_M1_N1_Z3C14', links: [[1, -10]] 
         },
 
         {
-        point: [0, -10], title: '第十五章 铁骨铮铮！', 
+        point: [1, -10], title: '铁匠分支7 铁骨铮铮！', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C15' ,
-        toChapter: 'WZXX_M1_N1_Z3C15', links: [[0, -11]] 
+        toChapter: 'WZXX_M1_N1_Z3C15', links: [[1, -11]] 
         },
 
         {
-        point: [0, -11], title: '第十六章 道心如铁', 
+        point: [1, -11], title: '铁匠分支8 道心如铁', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C16' ,
-        toChapter: 'WZXX_M1_N1_Z3C16', links: [[0, -12]] 
+        toChapter: 'WZXX_M1_N1_Z3C16', links: [[1, -12]] 
         },
 
         {
-        point: [0, -12], title: '第十七章 有点慌', 
+        point: [1, -12], title: '铁匠分支9 有点慌', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C17' ,
-        toChapter: 'WZXX_M1_N1_Z3C17', links: [[0, -13]] 
+        toChapter: 'WZXX_M1_N1_Z3C17', links: [[1, -13]] 
         },
 
         {
-        point: [0, -13], title: '第十八章 天地异象', 
+        point: [1, -13], title: '铁匠分支10 天地异象', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C18' ,
-        toChapter: 'WZXX_M1_N1_Z3C18', links: [[-1, -14]] 
+        toChapter: 'WZXX_M1_N1_Z3C18', links: [[]] 
         },
 
         {
-        point: [-1, -14], title: '第二十章 寻找药方 ', 
+        point: [-1, -4], title: '寻药分支1 寻找药方 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C20' ,
-        toChapter: 'WZXX_M1_N1_Z3C20', links: [[-1, -15]] 
+        toChapter: 'WZXX_M1_N1_Z3C20', links: [[-1, -5]] 
         },
 
         {
-        point: [-1, -15], title: '第二十一章 八苦地 ', 
+        point: [-1, -5], title: '寻药分支2 八苦地 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C21' ,
-        toChapter: 'WZXX_M1_N1_Z3C21', links: [[-1, -16]] 
+        toChapter: 'WZXX_M1_N1_Z3C21', links: [[-1, -6]] 
         },
 
         {
-        point: [-1, -16], title: '第二十二章 采药 ', 
+        point: [-1, -6], title: '寻药分支3 采药 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C22' ,
-        toChapter: 'WZXX_M1_N1_Z3C22', links: [[-1, -17]] 
+        toChapter: 'WZXX_M1_N1_Z3C22', links: [[-1, -7]] 
         },
 
         {
-        point: [-1, -17], title: '第二十三章 打斗 ', 
+        point: [-1, -7], title: '寻药分支4 打斗 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C23' ,
-        toChapter: 'WZXX_M1_N1_Z3C23', links: [[-1, -18]] 
+        toChapter: 'WZXX_M1_N1_Z3C23', links: [[-1, -8]] 
         },
 
         {
-        point: [-1, -18], title: '第二十四章 小偷 ', 
+        point: [-1, -8], title: '寻药分支5 小偷 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C24' ,
-        toChapter: 'WZXX_M1_N1_Z3C24', links: [[-1, -19]] 
+        toChapter: 'WZXX_M1_N1_Z3C24', links: [[-1, -9]] 
         },
 
         {
-        point: [-1, -19], title: '第二十五章 拍卖会 ', 
+        point: [-1, -9], title: '寻药分支6 拍卖会 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C25' ,
-        toChapter: 'WZXX_M1_N1_Z3C25', links: [[-1, -20]] 
+        toChapter: 'WZXX_M1_N1_Z3C25', links: [[-1, -10]] 
         },
 
 
         {
-        point: [-1, -20], title: '第二十六章 叫价 ', 
+        point: [-1, -10], title: '寻药分支7 叫价 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C26' ,
-        toChapter: 'WZXX_M1_N1_Z3C26', links: [[-1, -21]] 
+        toChapter: 'WZXX_M1_N1_Z3C26', links: [[-1, -11]] 
         },
 
 
         {
-        point: [-1, -21], title: '第二十七章 绛云镇 ', 
+        point: [-1, -11], title: '寻药分支8 绛云镇 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C27' ,
-        toChapter: 'WZXX_M1_N1_Z3C27', links: [[-1, -22]] 
+        toChapter: 'WZXX_M1_N1_Z3C27', links: [[-1, -12]] 
         },
 
         {
-        point: [-1, -22], title: '第二十八章 柳家 ', 
+        point: [-1, -12], title: '寻药分支9 柳家 ', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C28' ,
         toChapter: 'WZXX_M1_N1_Z3C28', links: [[]] 
         },
