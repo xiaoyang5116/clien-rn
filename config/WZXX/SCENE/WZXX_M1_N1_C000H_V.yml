@@ -129,7 +129,7 @@ scenes: [
         id: 'C1', desc: '演武场内传来阵阵呐喊，看起来像是在操练的样子。', 
         options: [ 
          { title: '【进入查看】',nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-         { title: '【离开此地>>>】', andVarsOn: ['T1'], nextChat: 'C3'}, 
+         { title: '【移动>>>】', andVarsOn: ['T1'], nextChat: 'C3'}, 
         ],
       },
 
@@ -190,7 +190,7 @@ scenes: [
       { 
         id: 'C1', desc: '街道内人来人往，一片热闹，这里就是绛云镇最繁华的街区', 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
       { 
@@ -243,7 +243,7 @@ scenes: [
         id: 'C1', desc: '绛云镇的北门，来往的路人众多。', 
         options: [ 
          { title: '【和门卫攀谈】',nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-         { title: '【去别处看看>>>】',andVarsOn: ['T1'],nextChat: 'C3'}, 
+         { title: '【移动>>>】',andVarsOn: ['T1'],nextChat: 'C3'}, 
         ],
       },
 
@@ -303,7 +303,7 @@ scenes: [
         id: 'C1', desc: '一棵普通的大树，树下有小童在辩论。', 
         options: [ 
          { title: '【过去旁听】',dialogs: ['Screen1'], icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-         { title: '【离开此地>>>】',andVarsOn: ['T1'],nextChat: 'C2'}, 
+         { title: '【移动>>>】',andVarsOn: ['T1'],nextChat: 'C2'}, 
         ],
       },
 
@@ -362,7 +362,7 @@ scenes: [
       { 
         id: 'C1', desc: '绛云镇的官府之地，衙门内并不堂皇，官员也不多。', 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
 
@@ -417,7 +417,7 @@ scenes: [
       { 
         id: 'C1', desc: '绛云镇最中心的街道，聚集了各种南来北往的走货商人在此处', 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
 
@@ -472,7 +472,7 @@ scenes: [
       { 
         id: 'C1', desc: '作为最繁华街道的中心路口，或许能打听到一些消息', 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
 
@@ -527,7 +527,7 @@ scenes: [
       { 
         id: 'C1', desc: '此处多的是卖丹药的店铺，估计是受柳家的影响，之后若是有需要的可以到这里来看看', 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
 
@@ -582,7 +582,7 @@ scenes: [
       { 
         id: 'C1', desc: '镇口坐落着一座十分辉煌的楼宇，外观气派彰显气势', 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
 
@@ -641,7 +641,7 @@ scenes: [
         id: 'C1', desc: '绛云镇知名客栈，据说是当地评价最好的客栈。', 
         options: [ 
          { title: '【与店小二交谈】',nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-         { title: '【离开此地>>>】',andVarsOn: ['T1'],nextChat: 'C6'}, 
+         { title: '【移动>>>】',andVarsOn: ['T1'],nextChat: 'C6'}, 
         ],
       },
 
@@ -725,14 +725,27 @@ scenes: [
       { 
         id: 'C1', desc: '悠悠的茶香传来，能看见隐约阁内有文人和书生在品茶，看起来在举办诗会的模样。', 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【参加诗会】',nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
+         { title: '【移动>>>】', andVarsOn: ['T1'],nextChat: 'C5'}, 
         ],
       },
 
-      
+      { 
+        id: 'C2', desc: '进入茗香阁后，穿着十分文雅的你被邀请一同参加诗会，握笔沾墨的你在白纸上大手一挥，在诗会内露了一手', 
+        options: [ 
+         { title: '【作诗】',nextChat: 'C3'}, 
+        ],
+      },
 
       { 
-        id: 'C2', desc: '去别处看看……', 
+        id: 'C3', desc: "人言落日是天涯，望极天涯不见家\n已恨碧山相阻隔，碧山还被暮云遮\n写着写着，想起家乡和母亲的你蓦然落泪\n诗词展示，看哭了所有思乡之人",
+        options: [ 
+         { title: '【悄然离开】',varsOn: ['T1'],nextChat: 'C4'}, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: '去别处看看……', 
         options: [ 
          { title: '【中大街】', toScene: 'C000H_V_MAP_1_-2'}, 
          { title: '【绛云衙门】', toScene: 'C000H_V_MAP_2_-1'}, 
@@ -781,7 +794,7 @@ scenes: [
         id: 'C1', desc: '据说是以灵界大能天机老人来命名，不少人走在路上感觉到一股玄妙之感。', 
         options: [ 
          { title: '【走一走试试】',nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-         { title: '【离开此地>>>】',andVarsOn: ['T1'],nextChat: 'C3'}, 
+         { title: '【移动>>>】',andVarsOn: ['T1'],nextChat: 'C3'}, 
         ],
       },
 
@@ -841,7 +854,7 @@ scenes: [
       { 
         id: 'C1', desc: '一条普通的街道，看起来并无特别。', 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
 
@@ -959,7 +972,7 @@ scenes: [
          { title: '【选择搜索】',nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
          { title: '【选择不搜索】',nextChat: 'C3', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
          { title: '【与佛论道】',nextChat: 'C4', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']}, 
-         { title: '【离开此地>>>】', andVarsOn: ['T1'], nextChat: 'C5', }, 
+         { title: '【移动>>>】', andVarsOn: ['T1'], nextChat: 'C5', }, 
         ],
       },
 
@@ -1049,7 +1062,7 @@ scenes: [
       { 
         id: 'C2', desc: '富商：此物乃宝物和氏璧，我可以以一灵石的价格售于你', 
         options: [ 
-         { title: '【爽快买下！】',varsOn: ['T1'],nextChat: 'C3'}, 
+         { title: '【买了也没用啊……】',varsOn: ['T1'],nextChat: 'C3'}, 
          { title: '【等等，或许有坑】',varsOn: ['T1'],nextChat: 'C4'}, 
         ],
       },
@@ -1117,7 +1130,7 @@ scenes: [
       { 
         id: 'C1', desc: "绛云镇唯一的铁匠铺，价格似乎比其他地方要高一些", 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
 
@@ -1174,7 +1187,7 @@ scenes: [
       { 
         id: 'C1', desc: "隐匿在小巷中的黑市，不少小贩偷偷地摆摊贩卖着各种物品，似乎还有一些禁物", 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
 
@@ -1229,7 +1242,7 @@ scenes: [
       { 
         id: 'C1', desc: "绛云镇东边的大门，人迹稀少，看起来并没有什么人来往", 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
 
@@ -1284,7 +1297,7 @@ scenes: [
       { 
         id: 'C1', desc: "铺内的商品琳琅满目，不少客人驻足浏览。", 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
 
@@ -1340,7 +1353,7 @@ scenes: [
         id: 'C1', desc: "绛云镇闻名的算命先生，瞎掉的双眼看起来有点恐怖", 
         options: [ 
          { title: '【与算命先生攀谈】',nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-         { title: '【离开此地>>>】',andVarsOn: ['T1'],nextChat: 'C3'}, 
+         { title: '【移动>>>】',andVarsOn: ['T1'],nextChat: 'C3'}, 
         ],
       },
 
@@ -1401,7 +1414,7 @@ scenes: [
         id: 'C1', desc: "西门旁的大药坊，经常收购归来的采药人的药材", 
         options: [ 
          { title: '【与店小二攀谈】',nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-         { title: '【离开此地>>>】',andVarsOn: ['T1'],nextChat: 'C3'}, 
+         { title: '【移动>>>】',andVarsOn: ['T1'],nextChat: 'C3'}, 
         ],
       },
 
@@ -1461,7 +1474,7 @@ scenes: [
       { 
         id: 'C1', desc: "一条普通的胡同，并无特别。", 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
 
@@ -1518,7 +1531,7 @@ scenes: [
         options: [ 
          { title: '【与年轻炼丹师攀谈】',nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
          { title: '【进入柳家】',nextChat: 'C3'}, 
-         { title: '【去别处看看>>>】',andVarsOn: ['T1'],nextChat: 'C4'}, 
+         { title: '【移动>>>】',andVarsOn: ['T1'],nextChat: 'C4'}, 
 
         ],
       },
@@ -1586,7 +1599,7 @@ scenes: [
       { 
         id: 'C1', desc: "民家内传来孩子的吵闹和妇人的嫌弃声音。\n这只是普通的百姓家", 
         options: [ 
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },      
 
@@ -1639,7 +1652,7 @@ scenes: [
         id: 'C1', desc: "绛云镇西边大门，西边有灵山，门口有众多采药小队聚集", 
         options: [ 
          { title: '【和采药人攀谈】',nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-         { title: '【离开此地>>>】',andVarsOn: ['T1'],nextChat: 'C3'}, 
+         { title: '【移动>>>】',andVarsOn: ['T1'],nextChat: 'C3'}, 
         ],
       },
       #后期可加上探索假山，获得药草
@@ -1698,7 +1711,7 @@ scenes: [
       { 
         id: 'C1', desc: "屋顶的飘出整整浓烟，看起来像是在准备晚饭。", 
         options: [
-         { title: '【离开此地>>>】',nextChat: 'C2'}, 
+         { title: '【移动>>>】',nextChat: 'C2'}, 
         ],
       },
 

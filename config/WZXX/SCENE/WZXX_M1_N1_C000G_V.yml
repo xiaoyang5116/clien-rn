@@ -119,6 +119,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+      #  { type: 'enter', andVarsOn: ['biaoqianv0'] ,nextChat: 'C1', varsOff: ['biaoqianv0'], },
     ],
 
     # 对话选项
@@ -128,7 +129,7 @@ scenes: [
         id: 'C1', desc: '这里是小镇的出入口，外面可以看到群山的影子。', 
         options: [
          { title: '【出小镇】', nextChat: 'C2' , icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-         { title: '【去别处看看>>>】',andVarsOn: ['T1'], nextChat: 'C3' }, 
+         { title: '【移动>>>】',andVarsOn: ['T1'], nextChat: 'C3' }, 
         ],
       },
 
@@ -172,6 +173,7 @@ scenes: [
      # 变量定义
     vars: [
     { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
     { id: "T1", min: 0, max: 1 },
     ],
 
@@ -190,22 +192,24 @@ scenes: [
         id: 'C1', desc: '这里是采药队出镇前的集合地，有些采药人正在整装待发', 
         options: [
          { title: '【和采药人攀谈】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0'] }, 
-         { title: '【离开此地>>>】', andVarsOn: ['T1'], nextChat: 'C7' }, 
+         { title: '【移动>>>】', andVarsOn: ['T1'], nextChat: 'C7' }, 
         ],
       },
 
       { 
         id: 'C2', desc: '询问', 
         options: [
-         { title: '【外面的妖兽是什么情况？】',  varsOn: ['T1'],nextChat: 'C3' }, 
-         { title: '【你们在此处做什么？】', varsOn: ['T1'], nextChat: 'C4' }, 
+         { title: '【外面的妖兽是什么情况？】',  varsOn: ['T1','biaoqianv0'],nextChat: 'C3' , icon: { id: 1, bindVar: 'biaoqianv0' },}, 
+         { title: '【你们在此处做什么？】', varsOn: ['T1','biaoqianv1'], nextChat: 'C4' , icon: { id: 1, bindVar: 'biaoqianv1' }, }, 
+         { title: '【移动>>>】', andVarsOn: ['T1'], nextChat: 'C7' }, 
+
         ],
       },
 
       { 
         id: 'C3', desc: '采药人：“外边的妖兽和我们没太大关系，我们每次出行都有修行者带队”', 
         options: [
-         { title: '【<<<返回】', nextChat: 'C1' }, 
+         { title: '【<<<返回】', nextChat: 'C2' }, 
         ],
       },
 
@@ -220,14 +224,14 @@ scenes: [
       { 
         id: 'C5', desc: '采药人：“我怎么从未在画像上见过你？不是的话，就快离开吧！”', 
         options: [
-         { title: '【<<<返回】', nextChat: 'C1' }, 
+         { title: '【<<<返回】', nextChat: 'C2' }, 
         ],
       },
 
       { 
         id: 'C6', desc: '采药人：“既然不是就快离开吧。这里都是等待照应的人。”', 
         options: [
-         { title: '【<<<返回】', nextChat: 'C1' }, 
+         { title: '【<<<返回】', nextChat: 'C2' }, 
         ],
       },
 
@@ -280,7 +284,7 @@ scenes: [
       {
         id: 'C1', desc: '药园的门紧锁着，这里是有人定时进入打理的', 
         options: [
-         { title: '【去别处看看>>>】', nextChat: 'C2' }, 
+         { title: '【移动>>>】', nextChat: 'C2' }, 
         ],
       },
 
@@ -396,7 +400,7 @@ scenes: [
         id: 'C1', desc: '这里是镇内药园，药园的外边有一层围墙，虽然轻易可以翻过，但里边是有人看守的', 
         options: [
          { title: '【翻墙进入】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0'] }, 
-         { title: '【离开此地>>>】', andVarsOn: ['T1'],nextChat: 'C3' }, 
+         { title: '【移动>>>】', andVarsOn: ['T1'],nextChat: 'C3' }, 
 
         ],
       },
@@ -526,7 +530,7 @@ scenes: [
         options: [
          { title: '【街道旁的混混甲】', nextChat: 'C2' , icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
          { title: '【街道旁的混混乙】', nextChat: 'C3', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] }, 
-         { title: '【离开此地>>>】', andVarsOn: ['T1'], nextChat: 'C5'}, 
+         { title: '【移动>>>】', andVarsOn: ['T1'], nextChat: 'C5'}, 
 
         ],
       },
@@ -603,7 +607,7 @@ scenes: [
         id: 'C1', desc: "这里一帮人正在改造房子，看样子是准备把一个小院改造成铺面\n这是青剑帮刚买下的铺面，正在装修",  
         options: [
          { title: '【观察】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0'] }, 
-         { title: '【去别处看看>>>】', andVarsOn: ['T1'], nextChat: 'C3' }, 
+         { title: '【移动>>>】', andVarsOn: ['T1'], nextChat: 'C3' }, 
 
         ],
       },
@@ -664,7 +668,7 @@ scenes: [
       {
         id: 'C1', desc: "一个平淡无奇的假山，下面布满青苔，旁边是分叉进入胡同的小路",  
         options: [
-         { title: '【离开此地>>>】', nextChat: 'C2' }, 
+         { title: '【移动>>>】', nextChat: 'C2' }, 
         ],
       },
 
@@ -718,7 +722,7 @@ scenes: [
         id: 'C1', desc: '客栈来来往往的人很多，很热闹', 
         options: [ 
         { title: '【进客栈看看】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【去别处看看>>>】',andVarsOn: ['T1'], nextChat: 'C6'}, 
+        { title: '【移动>>>】',andVarsOn: ['T1'], nextChat: 'C6'}, 
         ],
       },
       
@@ -855,7 +859,7 @@ scenes: [
         id: 'C1', desc: '眼前是一处阔气的房子，门前还有看门的守卫', 
         options: [ 
         { title: '【和守卫攀谈】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【离开此地>>>】',andVarsOn: ['T1'], nextChat: 'C3'}, 
+        { title: '【移动>>>】',andVarsOn: ['T1'], nextChat: 'C3'}, 
         ],
       },
 
@@ -917,7 +921,7 @@ scenes: [
         id: 'C1', desc: '这里人来人往，还算热闹。', 
         options: [ 
         { title: '【观察】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【去别处看看>>>】', andVarsOn: ['T1'], nextChat: 'C3'}, 
+        { title: '【移动>>>】', andVarsOn: ['T1'], nextChat: 'C3'}, 
         ],
       },
 
@@ -979,7 +983,7 @@ scenes: [
         id: 'C1', desc: '这台阶做的十分讲究，还有围栏，顺着能到一处高出处的寺院式院落，只是没什么人', 
         options: [ 
         { title: '【顺台阶而上】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【离开此地>>>】',  andVarsOn: ['T1'],nextChat: 'C4'}, 
+        { title: '【移动>>>】',  andVarsOn: ['T1'],nextChat: 'C4'}, 
         ],
       },
 
@@ -1034,6 +1038,7 @@ scenes: [
     { id: "biaoqianv2", min: 0, max: 1 },
     { id: "T1", min: 0, max: 1 },
     { id: "V3", min: 0, max: 1 },
+    { id: "V2", min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -1050,8 +1055,10 @@ scenes: [
       { 
         id: 'C1', desc: "这里是售卖出草药的集市，有不少的摊子\n也许能淘到些宝贝。", 
         options: [ 
-        { title: '【随便看看】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【去别处看看>>>】',andVarsOn: ['T1'], nextChat: 'C6'}, 
+
+        { title: '【随便看看】', nextChat: 'C2',icon: { id: 8 ,}, andVarsOff: ['V2'], varsOn: ['V3','biaoqianv0'] }, 
+        { title: '【随便看看】', nextChat: 'C2',icon: { id: 1, bindVar: 'biaoqianv0' },andVarsOn: ['V2'], }, 
+        { title: '【移动>>>】',andVarsOn: ['T1'], nextChat: 'C6'}, 
         ],
       },
 
@@ -1066,22 +1073,23 @@ scenes: [
         id: 'C3', desc: "【老字号店铺内】\n老板：“客官有什么需要的？”", 
         options: [ 
         { title: '【随便聊聊】', nextChat: 'C4', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},  
-        { title: '【最近的新鲜事】', nextChat: 'C5',icon: { id: 8 ,}, andVarsOff: ['V3'], varsOn: ['V3','biaoqianv2'] }, 
-        { title: '【最近的新鲜事】', nextChat: 'C5',icon: { id: 1, bindVar: 'biaoqianv2' },andVarsOn: ['V3'], }, 
+        { title: '【最近的新鲜事】', nextChat: 'C5', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']}, 
+        { title: '【移动>>>】',andVarsOn: ['T1'], nextChat: 'C6'}, 
+
         ],
       },
 
       { 
         id: 'C4', desc: "“您放心。这百草镇做草药的生意已经有百年了，我这店铺就是其中一个百年老店，这信誉，没得说了”\n聊得还算投机，“好，我下次有什么需要的，就来您这儿买。”", 
         options: [ 
-        { title: '【<<<返回】', nextChat: 'C1'},  
+        { title: '【<<<返回】',varsOff: ['WZXX_M1_N1_C000G_V/v_icon_1',], nextChat: 'C3'},  
         ],
       },
 
       { 
         id: 'C5', desc: "老板：“最近的事情吗，这不是外边有飞行妖兽吗，闹的不少商家怨声载道。”\n李森炎：“那可怎么办？你们准备如何应对？”\n老板：“我猜也就一两个月就过去了 ，以前也不是没有类似情况。”", 
         options: [ 
-        { title: '【<<<返回】',  varsOff: ['WZXX_M1_N1_C000G_V/v_icon_1',], nextChat: 'C1'},  
+        { title: '【<<<返回】',  varsOff: ['WZXX_M1_N1_C000G_V/v_icon_1',], nextChat: 'C3'},  
         ],
       },
 
@@ -1137,7 +1145,7 @@ scenes: [
         id: 'C1', desc: "这百草镇是仙凡混居的，所以集市上直接可以看到一些法器的贩卖\n可惜这些法器的价格太高，只能以后再说。", 
         options: [ 
         { title: '【随便看看】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【离开此地>>>】', andVarsOn: ['T1'], nextChat: 'C3'}, 
+        { title: '【移动>>>】', andVarsOn: ['T1'], nextChat: 'C3'}, 
         ],
       },
 
@@ -1198,7 +1206,7 @@ scenes: [
       { 
         id: 'C1', desc: "一个古老的大树在村口提供阴凉，有些孩子在嬉闹。\n还有一两个贩卖玩具的商贩。", 
         options: [ 
-        { title: '【离开此地>>>】', nextChat: 'C2'}, 
+        { title: '【移动>>>】', nextChat: 'C2'}, 
         ],
       },
      
@@ -1253,15 +1261,15 @@ scenes: [
         id: 'C1', desc: "守卫：“你是何人，来我们神兽宗做什么！”", 
         options: [ 
         { title: '【询问主人是否回来】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【离开此地>>>】', andVarsOn: ['T1'], nextChat: 'C3'}, 
+        { title: '【移动>>>】', andVarsOn: ['T1'], nextChat: 'C3'}, 
         
         ],
       },
 
       { 
-        id: 'C2', desc: "“暂时还没有任何消息，你可以再等等。”", 
+        id: 'C2', desc: "“我们宗门此地管事最近因为妖兽的缘故，外出清缴妖兽去了，短时间不会回来。”\n“暂时还没有任何消息，你可以再等等。”", 
         options: [ 
-        { title: '【<<<没事，返回】', nextChat: 'C1'}, 
+        { title: '【<<<没事，返回】', varsOn: ['T1'], nextChat: 'C1'}, 
         ],
       },
      
@@ -1316,7 +1324,7 @@ scenes: [
         id: 'C1', desc: "一群工人在忙碌着搬运货物", 
         options: [ 
         { title: '【询问】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【去别处看看>>>】',andVarsOn: ['T1'], nextChat: 'C7'}, 
+        { title: '【移动>>>】',andVarsOn: ['T1'], nextChat: 'C7'}, 
         ],
       },
 
@@ -1326,13 +1334,15 @@ scenes: [
         { title: '【询问老工人】',varsOn: ['T1'], nextChat: 'C3'}, 
         { title: '【询问年轻小伙】',varsOn: ['T1'], nextChat: 'C4'}, 
         { title: '【询问管事】', varsOn: ['T1'],nextChat: 'C6'}, 
+        { title: '【移动>>>】',andVarsOn: ['T1'], nextChat: 'C7'}, 
+
         ],
       },
 
       { 
         id: 'C3', desc: "“一切如常，外边的妖兽管我们什么事。我得搬货了！不聊了。”", 
         options: [ 
-        { title: '【<<<好吧，返回】', nextChat: 'C1'}, 
+        { title: '【<<<好吧，返回】', nextChat: 'C2'}, 
         ],
       },
 
@@ -1346,14 +1356,14 @@ scenes: [
       { 
         id: 'C5', desc: "“这里是镇长家的生意，镇长家是这最富的人。”", 
         options: [ 
-        { title: '【<<<原来如此，返回】', nextChat: 'C1'}, 
+        { title: '【<<<原来如此，返回】', nextChat: 'C2'}, 
         ],
       },
 
       { 
         id: 'C6', desc: "“怎么样，有没有去那采药队的聚集地看看，哪里也许有你想要的。”", 
         options: [ 
-        { title: '【<<<好的，返回】', nextChat: 'C1'}, 
+        { title: '【<<<好的，返回】', nextChat: 'C2'}, 
         ],
       },
      
@@ -1393,6 +1403,9 @@ scenes: [
     { id: "biaoqianv1", min: 0, max: 1 },
     { id: "biaoqianv2", min: 0, max: 1 },
     { id: "T1", min: 0, max: 1 },
+
+    { id: "V1", min: 0, max: 1 },
+    { id: "V2", min: 0, max: 1 },
     { id: "V3", min: 0, max: 1 },
     ],
 
@@ -1410,11 +1423,16 @@ scenes: [
       { 
         id: 'C1', desc: "驿站前围了不少人，有人在看告示，有人围着驿站仿佛在讨要说法", 
         options: [ 
-        { title: '【询问背包袱的路人】', nextChat: 'C2',icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【询问商人】', nextChat: 'C3',icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
+        
+        { title: '【询问背包袱的路人】', nextChat: 'C2',icon: { id: 8 ,}, andVarsOff: ['V1'], varsOn: ['V1','biaoqianv0'] }, 
+        { title: '【询问背包袱的路人】', nextChat: 'C2',icon: { id: 1, bindVar: 'biaoqianv0' },andVarsOn: ['V1'], }, 
+        
+        { title: '【询问商人】', nextChat: 'C3',icon: { id: 8 ,}, andVarsOff: ['V2'], varsOn: ['V2','biaoqianv1'] }, 
+        { title: '【询问商人】', nextChat: 'C3',icon: { id: 1, bindVar: 'biaoqianv1' },andVarsOn: ['V2'], }, 
+
         { title: '【询问老人】', nextChat: 'C4',icon: { id: 8 ,}, andVarsOff: ['V3'], varsOn: ['V3','biaoqianv2'] }, 
         { title: '【询问老人】', nextChat: 'C4',icon: { id: 1, bindVar: 'biaoqianv2' },andVarsOn: ['V3'], }, 
-        { title: '【去别处看看>>>】',andVarsOn: ['T1'],  nextChat: 'C5'}, 
+        { title: '【移动>>>】',andVarsOn: ['T1'],  nextChat: 'C5'}, 
         ],
       },
 
@@ -1598,7 +1616,7 @@ scenes: [
         id: 'C1', desc: "这是一个比镇子的其他地方的都要高的平整高台，周围竖着一些旗帜\n这里是演武场，现在没有人的样子。", 
         options: [ 
         { title: '【观察演武场】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【去别处看看>>>】', andVarsOn: ['T1'], nextChat: 'C3'}, 
+        { title: '【移动>>>】', andVarsOn: ['T1'], nextChat: 'C3'}, 
         ],
       },
      
@@ -1648,6 +1666,8 @@ scenes: [
     { id: "biaoqianv4", min: 0, max: 1 },
     { id: "T1", min: 0, max: 1 },
     { id: "V3", min: 0, max: 1 },
+    { id: "V2", min: 0, max: 1 },
+    { id: "V1", min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -1664,12 +1684,18 @@ scenes: [
       { 
         id: 'C1', desc: "一群准备离开的百草镇的商客，因为驿站的停运，准备商议聚集人手结伴出行\n发生什么事了？", 
         options: [ 
-        { title: '【询问看热闹的路人】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【询问悠闲的商人】', nextChat: 'C5', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
-        { title: '【询问着急的商人】', nextChat: 'C6', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']}, 
+        { title: '【询问看热闹的路人】', nextChat: 'C2',icon: { id: 8 ,}, andVarsOff: ['V0'], varsOn: ['V0','biaoqianv0'] }, 
+        { title: '【询问看热闹的路人】', nextChat: 'C2',icon: { id: 1, bindVar: 'biaoqianv0' },andVarsOn: ['V0'], }, 
+
+        { title: '【询问悠闲的商人】', nextChat: 'C5',icon: { id: 8 ,}, andVarsOff: ['V1'], varsOn: ['V0','biaoqianv1'] }, 
+        { title: '【询问悠闲的商人】', nextChat: 'C5',icon: { id: 1, bindVar: 'biaoqianv1' },andVarsOn: ['V1'], }, 
+
+        { title: '【询问着急的商人】', nextChat: 'C6',icon: { id: 8 ,}, andVarsOff: ['V2'], varsOn: ['V0','biaoqianv2'] }, 
+        { title: '【询问着急的商人】', nextChat: 'C6',icon: { id: 1, bindVar: 'biaoqianv2' },andVarsOn: ['V2'], }, 
+
         { title: '【询问管事的人】', nextChat: 'C7',icon: { id: 8 ,}, andVarsOff: ['V3'], varsOn: ['V3','biaoqianv3'] }, 
         { title: '【询问管事的人】', nextChat: 'C7',icon: { id: 1, bindVar: 'biaoqianv3' },andVarsOn: ['V3'], }, 
-        { title: '【去别处看看>>>】', andVarsOn: ['T1'], nextChat: 'C8'}, 
+        { title: '【移动>>>】', andVarsOn: ['T1'], nextChat: 'C8'}, 
         
         ],
       },
@@ -1767,7 +1793,7 @@ scenes: [
       { 
         id: 'C1', desc: "这里是停放马车的空地，现在因为驿站关闭，所以没什么人。", 
         options: [ 
-        { title: '【离开此地>>>】', nextChat: 'C2'}, 
+        { title: '【移动>>>】', nextChat: 'C2'}, 
 
         ],
       },
@@ -1919,7 +1945,7 @@ scenes: [
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['有时候要听听劝才行','这回别白死了，赶紧离开此处'], btn: [{title: '<<<返回',nextChat: 'C1'}, ]},
+           { key: 'p1', content: ['只感觉一阵寒光袭来，莫名其妙的，天旋地转','有时候要听听劝才行','这回别白死了，赶紧离开此处'], btn: [{title: '<<<返回',nextChat: 'C1'}, ]},
            ],
          },
     ],
@@ -2013,7 +2039,7 @@ scenes: [
         id: 'C1', desc: "一路来到小镇外，这路上一个人都没有。你感觉总有些诡异的气氛若隐若现。", 
         options: [ 
         { title: '【继续向前走】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv0' }, varsOn: ['biaoqianv0']}, 
-        { title: '【去别处看看>>>】', andVarsOn: ['T1'],nextChat: 'C3'}, 
+        { title: '【移动>>>】', andVarsOn: ['T1'],nextChat: 'C3'}, 
         ],
       },
 
@@ -2045,7 +2071,7 @@ scenes: [
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['有时候要听听劝才行','这回别白死了，赶紧离开此处'], btn: [{title: '<<<返回',nextChat: 'C1'}, ]},
+           { key: 'p1', content: ['只感觉一阵寒光袭来，莫名其妙的，天旋地转','有时候要听听劝才行','这回别白死了，赶紧离开此处'], btn: [{title: '<<<返回',nextChat: 'C1'}, ]},
            ],
          },
     ],
