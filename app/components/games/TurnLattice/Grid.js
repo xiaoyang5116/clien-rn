@@ -28,6 +28,7 @@ import PopComponent from './PopComponent';
 import PropGrid from './eventGrid/PropGrid';
 import TreasureChestGrid from './eventGrid/TreasureChestGrid';
 import BossGrid from './eventGrid/BossGrid';
+import DialogGrid from './eventGrid/DialogGrid';
 
 // 事件类型:  "道具" || "战斗" || "剧情"
 
@@ -234,6 +235,9 @@ const Grid_Event = (props) => {
   }
   if (event.type === '战斗') {
     return <BossGrid {...props} />;
+  }
+  if (event.type === '剧情') {
+    return <DialogGrid {...props} />;
   }
 
   return <Grid_NotOpen />;

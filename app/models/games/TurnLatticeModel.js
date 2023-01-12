@@ -374,6 +374,11 @@ export default {
         yield put.resolve(action('getGridProps')({ item }));
       }
 
+      if (event && event.type === "剧情") {
+        Modal.show(event)
+        gridConfig[curIndex].type = "空"
+      }
+
       if (event && event.type === "宝箱") {
         yield put.resolve(action('openGridTreasureChest')({ item }));
       }
