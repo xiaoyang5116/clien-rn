@@ -129,7 +129,7 @@ const Grid_Export = (props) => {
         confirm('确认进入下一层？',
           () => {
             props
-              .dispatch(action('TurnLatticeModel/exportGrid')())
+              .dispatch(action('TurnLatticeModel/exportGrid')({ toLayer: item.toLayer }))
               .then(result => {
                 if (result !== undefined && result != null) {
                   setGridConfig([...result]);
