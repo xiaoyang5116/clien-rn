@@ -136,6 +136,10 @@ const _images = {
         // { id: 2, img: require('../../assets/games/turnLattice/zhizhudonku1.png') },
         // { id: 0, img: require('../../assets/games/turnLattice/zhizhudonku1.png') },
     ],
+    // 技能icon
+    skillIcon: [
+        { id: 1, img: require('../../assets/games/turnLattice/zhizhudonku1.png') },
+    ],
 }
 
 const _videos = {
@@ -215,4 +219,9 @@ export const getBossIcon = (id) => {
 // 获取翻格子地图
 export const getTurnLatticeBg = (id) => {
     return _images.turnLatticeBg.find(e => e.id === id).img;
+}
+
+// 获取技能 icon
+export const getSkillIcon = (id) => {
+    return _images.skillIcon.find(e => e.id === id).img;
 }

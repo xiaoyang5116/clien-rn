@@ -23,6 +23,7 @@ import { formula_expr } from './formula';
       assert(properties.effects != undefined);
 
       this._id = properties.id;
+      this._iconId = properties.iconId;
       this._name = properties.name;
       this._xuLiMillis = properties.xuLiMillis;
       this._cdMillis = properties.cdMillis;

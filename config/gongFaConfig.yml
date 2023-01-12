@@ -9,12 +9,6 @@ data: {
     { level: 3, levelName: "三阶", gongFaId: [4, 5,6] }
   ],
 
-  # skillConfig: [
-  #   {id: 1, name: "穿云刺", },
-  #   {id: 2, name: "焚心斩", },
-  #   {id: 3, name: "杀鸡儆猴", },
-  # ],
-
   gonFaData: [
     {
       gongFaId: 1,

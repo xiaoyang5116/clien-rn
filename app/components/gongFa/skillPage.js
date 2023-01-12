@@ -14,7 +14,7 @@ import RootView from '../RootView';
 
 import { TextButton } from '../../constants/custom-ui';
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import SkillsList from './components/SkillsList';
+import SkillsList, { SkillDetail } from './components/SkillsList';
 
 const AddSkillComponent = (props) => {
   return (
@@ -27,35 +27,39 @@ const AddSkillComponent = (props) => {
 }
 
 const SkillPage = props => {
-  const { equipmentSkills, gongFaProgressData } = props;
-
-  const checkedSkill = (id, checked) => {
-    props.dispatch(action('GongFaModel/checkedGongFaSkill')({ id, checked }));
-  };
+  const { equipmentSkills, gongFaProgressData, gongFaConfig } = props;
+  const [reload, setReload] = useState(false)
 
   const openSkillsList = (index) => {
     const key = RootView.add(
       <SkillsList
         equipmentIndex={index}
-        onClose={() => { RootView.remove(key) }}
+        onClose={() => {
+          RootView.remove(key)
+          setReload(!reload)
+        }}
       />
     )
   }
 
   const _renderSkills = ({ item, index }) => {
-    {/* <CheckBox
-            title={item.name}
-            textStyle={{ fontSize: 18, color: "#000" }}
-            checked={item.isChecked}
-            onPress={() => {
-              checkedSkill(item.id, !item.isChecked)
-            }}
-          /> */}
     if (item.isUnlock) {
       if (item._id === undefined) {
         return <AddSkillComponent onPress={() => { openSkillsList(index) }} />
       } else {
-
+        const { levelName } = gongFaConfig.gongFaLevelData.find(f => {
+          return f.gongFaId.find(id => id === item.gongFaId) != undefined
+        })
+        return (
+          <View style={{ marginTop: 24 }}>
+            <SkillDetail
+              levelName={levelName}
+              skillData={item}
+              onPress={() => { openSkillsList(index) }}
+              isShowIcon={false}
+            />
+          </View>
+        )
       }
     } else {
       return (
@@ -75,7 +79,11 @@ const SkillPage = props => {
         装备的技能
       </Text>
       <View>
-        <FlatList data={equipmentSkills} renderItem={_renderSkills} />
+        <FlatList
+          data={equipmentSkills}
+          renderItem={_renderSkills}
+          extraData={reload}
+        />
       </View>
     </View>
   );
