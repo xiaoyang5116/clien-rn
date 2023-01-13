@@ -48,7 +48,8 @@ export default {
       
       // 生成己方数据
       if (challenge.myself != undefined) {
-        arenaState.myself = newTarget(challenge.myself);
+        const newMyself = changeAttrs(challenge.myself)
+        arenaState.myself = newTarget(newMyself);
       } else {
         const myself = { uid: 1, userName: '李森炎', skillIds: [1, 2, 4], attrs: [
           { key: 'speed', value: 100 }, { key: 'shield', value: 200 }
@@ -65,7 +66,8 @@ export default {
       arenaState.__data.enemyIndex = 0;
       arenaState.__data.enemyQueue.length = 0;
       challenge.enemies.forEach(e => {
-        arenaState.__data.enemyQueue.push(newTarget(e));
+        const newEnemies = changeAttrs(e)
+        arenaState.__data.enemyQueue.push(newTarget(newEnemies));
       });
 
       yield put.resolve(action('next')({}));
@@ -113,4 +115,30 @@ export default {
       // });
     },
   }
+}
+
+function changeAttrs(obj) {
+  if (Array.isArray(obj.liftRate) && Array.isArray(obj.attrs)) {
+    const all = obj.liftRate.find(item => item.attr === "all")
+    if (all != undefined) {
+      for (let index = 0; index < obj.attrs.length; index++) {
+        const attr = obj.attrs[index];
+        const isExist = obj.liftRate.find(item => item.attr === attr.key)
+        if (isExist === undefined) {
+          attr.value = attr.value * all.multiplied
+        } else {
+          attr.value = attr.value * isExist.multiplied
+        }
+      }
+    } else {
+      for (let index = 0; index < obj.liftRate.length; index++) {
+        const liftRate = obj.liftRate[index];
+        const attr = obj.attrs.find(item => item.key === liftRate.attr)
+        if (attr != undefined) {
+          attr.value = attr.value * liftRate.multiplied
+        }
+      }
+    }
+  }
+  return obj
 }
