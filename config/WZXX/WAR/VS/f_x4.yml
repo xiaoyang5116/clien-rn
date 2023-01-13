@@ -1,0 +1,54 @@
+# ===========================================
+# 战斗配置
+# ===========================================
+challenge: {
+    # 战斗ID
+    id: 'f_x4',
+    #和黑发阴灵的第一次战斗
+    myself: 
+      {
+         uid: 1, 
+         userName: '李森炎', 
+         skillIds: [10, 11, 12, 13, 14, 15],
+         attrs: [
+          { key: 'hp', value: 2000 },
+          { key: 'mp', value: 200 },
+          { key: 'speed', value: 200 },
+          { key: 'shield', value: 120 },
+          { key: 'physicalAttack', value: 200 },
+          { key: 'physicalDefense', value: 15 },
+          { key: 'magicDefense', value: 15 },
+         ],
+      },
+
+    enemies: [
+      { 
+         uid: 100000, 
+         userName: '黑发阴灵', 
+         skillIds: [40033, 40033, 40033],
+         attrs: [
+          { key: 'hp', value: 30 },
+          { key: 'mp', value: 300 },
+          { key: 'speed', value: 0 },
+          { key: 'shield', value: 240 },
+          { key: 'physicalAttack', value: 300 },
+          { key: 'physicalDefense', value: 30 },
+          { key: 'magicDefense', value: 30 },
+          ],
+      },
+      { 
+         uid: 100000, 
+         userName: '黑发阴灵2', 
+         skillIds: [40033, 40033, 40033],
+         attrs: [
+          { key: 'hp', value: 30 },
+          { key: 'mp', value: 300 },
+          { key: 'speed', value: 0 },
+          { key: 'shield', value: 240 },
+          { key: 'physicalAttack', value: 300 },
+          { key: 'physicalDefense', value: 30 },
+          { key: 'magicDefense', value: 30 },
+          ],
+      },
+    ]
+  }
