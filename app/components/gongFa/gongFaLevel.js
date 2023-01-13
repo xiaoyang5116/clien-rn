@@ -129,9 +129,8 @@ const styles = StyleSheet.create({
     width: '100%',
     marginTop: 20,
     flexDirection: 'row',
-    flexWrap: 'nowrap',
-    // justifyContent: "center",
-    justifyContent: 'space-evenly',
+    flexWrap: 'wrap',
+    justifyContent: "center",
     alignItems: 'center',
   },
   gongFa: {
