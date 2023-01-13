@@ -14,9 +14,9 @@ skills: [
      # 图标ID
      iconId: 1 ,
      # 蓄力时间，以毫秒作为单位
-     xuLiMillis: 500 ,
+     xuLiMillis: 2000 ,
      # 冷却时间
-     cdMillis: 500,
+     cdMillis: 5000,
      # 技能消耗，需要整数，不支持小数点
      consume: [{hp: 0,mp: 0}], 
      # 被动技能与否
@@ -45,9 +45,9 @@ skills: [
      # 图标ID
      iconId: 1 ,
      # 蓄力时间，以毫秒作为单位
-     xuLiMillis: 500 ,
+     xuLiMillis: 2500 ,
      # 冷却时间
-     cdMillis: 500,
+     cdMillis: 5000,
      # 技能消耗，需要整数，不支持小数点
      consume: [{hp: 0,mp: 0}], 
      # 被动技能与否
@@ -76,9 +76,9 @@ skills: [
      # 图标ID
      iconId: 1 ,
      # 蓄力时间，以毫秒作为单位
-     xuLiMillis: 500 ,
+     xuLiMillis: 3000 ,
      # 冷却时间
-     cdMillis: 500,
+     cdMillis: 5000,
      # 技能消耗，需要整数，不支持小数点
      consume: [{hp: 0,mp: 0}], 
      # 被动技能与否
@@ -111,7 +111,7 @@ skills: [
      effects: [],
    },
    { 
-    id: 54, name: '气血法', desc: '初级火属性功法内功' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    id: 54, name: '火符', desc: '初级火属性符咒功法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
     passive: "false" ,
      # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
      actions: [
@@ -126,7 +126,7 @@ skills: [
      effects: [],
    },
    { 
-    id: 55, name: '内劲', desc: '初级火属性功法内功' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    id: 55, name: '炎火符', desc: '初级火属性符咒功法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
     passive: "false" ,
      # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
      actions: [
@@ -141,7 +141,7 @@ skills: [
      effects: [],
    },
    { 
-    id: 56, name: '归元', desc: '初级火属性功法内功' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    id: 56, name: '炎爆符', desc: '初级火属性符咒功法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
     passive: "false" ,
      # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
      actions: [
@@ -156,7 +156,7 @@ skills: [
      effects: [],
    },
    { 
-    id: 57, name: '引雷诀', desc: '初级雷属性功法招式' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    id: 57, name: '引雷符', desc: '初级雷属性功法招式' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
     passive: "false" ,
      # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
      actions: [
@@ -367,6 +367,21 @@ skills: [
    },
    { 
     id: 71, name: '寒风指', desc: '风水属性初级指法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 72, name: '雷暴符', desc: '初级雷属性符咒功法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
     passive: "false" ,
      # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
      actions: [

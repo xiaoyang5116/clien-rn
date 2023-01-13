@@ -82,10 +82,10 @@ data: {
       gongFaId: 2,
       name: '离火诀',
       conditions: { needProps: [ '1,10', ],},
-      desc: "初级火属性功法",
+      desc: "初级火属性符咒功法",
       layerConfig: [
         [
-          { grade: 1, title: '血', needProps: [ '1,1','2,1', ], award: { skillId: 54, }, desc: "获得技能 - 气血法", },
+          { grade: 1, title: '血', needProps: [ '1,1','2,1', ], award: { skillId: 54, }, desc: "获得技能 - 火符", },
           { grade: 2, title: '二', needProps: [ '2,1', ], award: {}, desc: "火属性 +1", },
           { grade: 3, title: '三', needProps: [ '3,1', ], award: {}, desc: "火属性 +1", },
           { grade: 4, title: '四', needProps: [ '1,1', ], award: {}, desc: "火属性 +1", },
@@ -118,7 +118,7 @@ data: {
           { grade: 7, title: '七', needProps: [ '1,1', ], award: {}, desc: "火属性 +1", },
           { grade: 8, title: '八', needProps: [ '1,1', ], award: {}, desc: "火属性 +1", },
           { grade: 9, title: '九', needProps: [ '1,1', ], award: {}, desc: "火属性 +1", },
-          { grade: 10, title: '劲', needProps: [ '1,1', ], award: { skillId: 55, }, desc: "获得技能 - 内劲", },
+          { grade: 10, title: '劲', needProps: [ '1,1', ], award: { skillId: 55, }, desc: "获得技能 - 炎火符", },
         ],
         [
           { grade: 1, title: '攻', needProps: [ '1,1', ], award: {}, desc: "火攻击 +5", },
@@ -142,7 +142,7 @@ data: {
           { grade: 7, title: '七', needProps: [ '1,1', ], award: {}, desc: "火属性 +1", },
           { grade: 8, title: '八', needProps: [ '1,1', ], award: {}, desc: "火属性 +1", },
           { grade: 9, title: '九', needProps: [ '1,1', ], award: {}, desc: "火属性 +1", },
-          { grade: 10, title: '归', needProps: [ '1,1', ], award: { skillId: 56, }, desc: "获得技能 - 归元", },
+          { grade: 10, title: '归', needProps: [ '1,1', ], award: { skillId: 56, }, desc: "获得技能 - 炎爆符", },
         ],
         [
           { grade: 1, title: '攻', needProps: [ '1,1', ], award: {}, desc: "火攻击 +10", },
@@ -165,7 +165,7 @@ data: {
       desc: "初级雷属性功法",
       layerConfig: [
         [
-          { grade: 1, title: '血', needProps: [ '1,1','2,1', ], award: { skillId: 57, }, desc: "获得技能 - 引雷诀", },
+          { grade: 1, title: '血', needProps: [ '1,1','2,1', ], award: { skillId: 54, }, desc: "获得技能 - 引雷诀", },
           { grade: 2, title: '二', needProps: [ '2,1', ], award: {}, desc: "雷属性 +1", },
           { grade: 3, title: '三', needProps: [ '3,1', ], award: {}, desc: "雷属性 +1", },
           { grade: 4, title: '四', needProps: [ '1,1', ], award: {}, desc: "雷属性 +1", },
@@ -198,7 +198,7 @@ data: {
           { grade: 7, title: '七', needProps: [ '1,1', ], award: {}, desc: "雷属性 +1", },
           { grade: 8, title: '八', needProps: [ '1,1', ], award: {}, desc: "雷属性 +1", },
           { grade: 9, title: '九', needProps: [ '1,1', ], award: {}, desc: "雷属性 +1", },
-          { grade: 10, title: '劲', needProps: [ '1,1', ], award: {}, desc: "获得技能 - 内劲", },
+          { grade: 10, title: '劲', needProps: [ '1,1', ], award: { skillId: 56, }, desc: "获得技能 - 悟雷", },
         ],
         [
           { grade: 1, title: '攻', needProps: [ '1,1', ], award: {}, desc: "雷攻击 +5", },
@@ -222,7 +222,7 @@ data: {
           { grade: 7, title: '七', needProps: [ '1,1', ], award: {}, desc: "雷属性 +1", },
           { grade: 8, title: '八', needProps: [ '1,1', ], award: {}, desc: "雷属性 +1", },
           { grade: 9, title: '九', needProps: [ '1,1', ], award: {}, desc: "雷属性 +1", },
-          { grade: 10, title: '归', needProps: [ '1,1', ], award: { skillId: 58, }, desc: "获得技能 - 悟雷", },
+          { grade: 10, title: '归', needProps: [ '1,1', ], award: { skillId: 72, }, desc: "获得技能 - 雷暴符", },
         ],
       ]
     },
