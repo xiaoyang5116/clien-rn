@@ -33,6 +33,7 @@ const TurnLattice = props => {
     currentLayer,
     __sceneId,
     latticeMazeId = '航海探索',
+    isReload = true
   } = props;
 
   const [pop, setPop] = useState(<></>);
@@ -53,23 +54,25 @@ const TurnLattice = props => {
 
   useEffect(() => {
     props
-      .dispatch(action('TurnLatticeModel/getTurnLatticeData')({ latticeMazeId }))
+      .dispatch(action('TurnLatticeModel/getTurnLatticeData')({ latticeMazeId, isReload, }))
       .then(result => {
         if (result !== undefined) {
-          setPop(
-            <View style={styles.popContainer}>
-              <PopComponent
-                title={latticeMazeId}
-                desc={result.desc}
-                message={result.message}
-                confirm={() => {
-                  props.dispatch(action('TurnLatticeModel/consumableProps')());
-                  setPop(<></>);
-                }}
-                onClose={onClose}
-              />
-            </View>,
-          );
+          if (isReload) {
+            setPop(
+              <View style={styles.popContainer}>
+                <PopComponent
+                  title={latticeMazeId}
+                  desc={result.desc}
+                  message={result.message}
+                  confirm={() => {
+                    props.dispatch(action('TurnLatticeModel/consumableProps')());
+                    setPop(<></>);
+                  }}
+                  onClose={onClose}
+                />
+              </View>,
+            );
+          }
           setGridConfig([...result.latticeConfig]);
         }
       });

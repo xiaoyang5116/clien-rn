@@ -28,6 +28,7 @@ import PopComponent from './PopComponent';
 import PropGrid from './eventGrid/PropGrid';
 import TreasureChestGrid from './eventGrid/TreasureChestGrid';
 import BossGrid from './eventGrid/BossGrid';
+import DialogGrid from './eventGrid/DialogGrid';
 
 // 事件类型:  "道具" || "战斗" || "剧情"
 
@@ -128,7 +129,7 @@ const Grid_Export = (props) => {
         confirm('确认进入下一层？',
           () => {
             props
-              .dispatch(action('TurnLatticeModel/exportGrid')())
+              .dispatch(action('TurnLatticeModel/exportGrid')({ toLayer: item.toLayer }))
               .then(result => {
                 if (result !== undefined && result != null) {
                   setGridConfig([...result]);
@@ -234,6 +235,9 @@ const Grid_Event = (props) => {
   }
   if (event.type === '战斗') {
     return <BossGrid {...props} />;
+  }
+  if (event.type === '剧情') {
+    return <DialogGrid {...props} />;
   }
 
   return <Grid_NotOpen />;
