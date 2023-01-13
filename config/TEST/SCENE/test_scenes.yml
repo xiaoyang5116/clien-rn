@@ -54,7 +54,9 @@ scenes: [
           { title: '种植', openUI: "ZhongZhi" },
           { title: '炼器', openUI: "LianQi" },
           { title: '【背景对话框(5 号)】', dialogs: ['p1'] },
-          { title: '航海探索', games: { id: 8, latticeMazeId: "航海探索", isReload: false } },
+          { title: '航海探索', games: { id: 8, latticeMazeId: "航海探索", 
+          # isReload: false 
+          } },
           { title: '抽签选项', dialogs: ['p2'] },
           { title: '透明黑旁白', dialogs: ['p3'] },
           { title: '字帖小游戏', games: {id: 5, word: ["木"], fail: {toScene: "wzkj"}, success: {toScene: "pomiao"} } },

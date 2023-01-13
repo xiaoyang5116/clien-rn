@@ -438,6 +438,18 @@ scenes: [
           { id: "WZXX_M1_N1_Z3C27",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z3C27FZ",min: 0, max: 1 },
 
+          { id: "WZXX_M1_N1_Z3C28",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C28FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C30",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C30FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C31_[N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C31_[N1]FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z3C31_[N2]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C31_[N2]FZ",min: 0, max: 1 },
+
           { id: "WZXX_M1_N1_Z3C09",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z3C09FZ",min: 0, max: 1 },
 

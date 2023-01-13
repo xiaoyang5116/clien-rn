@@ -133,6 +133,7 @@ const _images = {
     // 翻格子 地图
     turnLatticeBg: [
         { id: 0, img: require('../../assets/games/turnLattice/zhizhudonku1.png') },
+        { id: 1, img: require('../../assets/games/turnLattice/zhizhudonku2.png') },
         // { id: 1, img: require('../../assets/games/turnLattice/zhizhudonku1.png') },
         // { id: 2, img: require('../../assets/games/turnLattice/zhizhudonku1.png') },
         // { id: 0, img: require('../../assets/games/turnLattice/zhizhudonku1.png') },

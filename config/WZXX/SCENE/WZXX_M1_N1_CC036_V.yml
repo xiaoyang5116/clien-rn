@@ -1,0 +1,100 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_CC036_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "v2", min: 0, max: 1 },
+      { id: "v3", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+      { id: "biaoqianv5", min: 0, max: 1 } ,
+      { id: "biaoqianv6", min: 0, max: 1 } ,
+      { id: "biaoqianv7", min: 0, max: 1 } ,
+      { id: "biaoqianv8", min: 0, max: 1 } ,
+      ],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [
+      ],
+    
+      chats: [
+
+
+      {
+        id: 'WZXX_M1_N1_CC036_V1', desc: '', 
+        options: [
+          {
+          title: "【先一起赶路吧】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } 
+          },
+
+        ],
+      },
+
+      {
+        id: 'WZXX_M1_N1_CC036_V2', desc: '', 
+        options: [
+          {
+          title: "【加入小队】", dialogs: ['ZC35_1.1C'],
+          },
+
+          {
+          title: "【不加入小队】", toChapter: "WZXX_M1_N1_Z3C31",
+          },
+
+        ],
+      },
+
+      {
+        id: 'WZXX_M1_N1_CC036_V3', desc: '', 
+        options: [
+
+        {
+        title: "【独自赶路】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,sendProps: ['376,1'],
+        },
+
+        ],
+      },
+      ],
+
+
+      # 对话框
+      dialogs:
+        [
+         #选项对话
+          { 
+            id: 'ZC36_1.1A',style: 6, title: '加入小队', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['在邀请李森炎的同时，杨真也让赖崇信向李森炎致歉。',
+                '赖崇信虽然内心不愿，不过碍于队长的面子，再加上出于现实的考量——有李森炎加入的话，他们寻宝的胜算也会更大一些。', '基于这两点，他纵使内心怨气再深，也得先拉下这个脸来，跟李森炎赔不是，称自己是看走了眼，让李森炎原谅。',
+                '“不算什么事情。”','李森炎耸了耸肩说道，这话倒是不假，他一点伤都没有受到，这个赖崇信差点被他打得半死，人家都不介意了他怎么会介意。','至于他们团队的邀请，李森炎想了想，既然大家都是散修，抱个团探宝也未尝不可。',
+                '更重要的是有灵石。','互相之间也有个照应，总比一个人行动要来得好些。','而且还有报酬，这简直一举多得。',
+                '“既如此，那便走吧。”',],
+                btn: [
+                {
+                title: '既如此，那便走吧',
+                sendProps: ['375,1'],
+                games: { id: 8, latticeMazeId: "航海探索", isReload: false } 
+                },
+                ]
+              },
+            ]  
+          }, 
+
+        
+
+ 
+        ],
+    }
+]
