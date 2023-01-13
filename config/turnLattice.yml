@@ -51,8 +51,9 @@ latticeMaze: [
                 # afterEventId: "2",
                 #出洞窟的钥匙
                 { id: "2", type: "宝箱",
-                
-                 treasureChestId: 4 },
+                beforeEventId: "3",
+                treasureChestId: 4 ,
+                afterEventId: "4", },
 
                 {
                  id: '3', style: 13, title: '山洞石窟', imgName: "BGT_165",
