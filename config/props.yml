@@ -150,10 +150,11 @@ props: [
   { id:  359, name: '玄天宝鉴', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '用于修士之间传讯的宝器' },
   { id:  360, name: '护体丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: '能够保护修士体内筋脉不受伤害，且能恢复一定法力' },
   #丹药
-  { id:  368, name: '炼气丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },				
-
-  													
-									
+  { id:  368, name: '炼气丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+   
+  #蜘蛛洞穴道具
+  { id:  373, name: '蜘蛛洞钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },				
+  { id:  374, name: '铁剑', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },												
 
   
    #完成任务需要使用的道具

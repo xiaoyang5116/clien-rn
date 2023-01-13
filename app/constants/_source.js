@@ -96,6 +96,7 @@ const _images = {
         { id: 8, img: require('../../assets/bg/wenquan.webp') },
         // { id: 9, img: require('../../assets/bg/wenquan2.webp') },
         { id: 10, img: require('../../assets/bg/feizhou.webp') },
+        { id: 11, img: require('../../assets/bg/dongxue.webp') },
 
     ],
     collectBackgroundImages: [

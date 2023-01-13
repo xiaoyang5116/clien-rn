@@ -1968,7 +1968,7 @@ scenes: [
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [1, 4],
     #横图显示
-    sceneImage: 'BGT_102',
+    sceneImage: 'BGT_101',
     # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -2080,7 +2080,7 @@ scenes: [
    { 
     id: 'C8', desc: "木人所使用的灵石，需要中品灵石或以上才能驱动", 
     options: [ 
-     { title: '【放入1颗灵石】',
+     { title: '【放入1颗中品灵石】',
       useProps: '891', 
        nextChat: 'C8',icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1','v1'],}, 
 
@@ -2184,7 +2184,7 @@ scenes: [
     # 地图中心点，也是进入地图后的点
     mapCenterPoint: [0, 4],
     #横图显示
-    sceneImage: 'BGT_101',
+    sceneImage: 'BGT_102',
     # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },

@@ -1101,7 +1101,6 @@ scenes: [
          { title: '【草药码头】', toScene: 'C000G_V_MAP_5_-1'}, 
          { title: '【法器集市】', toScene: 'C000G_V_MAP_4_0'}, 
          { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,}}, 
-
         ],
       },
 
