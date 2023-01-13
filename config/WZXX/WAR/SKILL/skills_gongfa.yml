@@ -1,0 +1,383 @@
+# ===========================================
+# 技能配置
+# ===========================================
+skills: [
+   {
+     # 技能唯一ID
+     id: 50,
+     # 技能名称
+     name: '炎阳拳',
+     # 描述
+     desc: '初级火属性功法招式' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconId: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 500 ,
+     # 冷却时间
+     cdMillis: 500,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+  {
+     # 技能唯一ID
+     id: 51,
+     # 技能名称
+     name: '炎阳掌',
+     # 描述
+     desc: '初级火属性功法招式' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconId: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 500 ,
+     # 冷却时间
+     cdMillis: 500,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   {
+     # 技能唯一ID
+     id: 52,
+     # 技能名称
+     name: '炎阳腿',
+     # 描述
+     desc: '初级火属性功法招式' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconId: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 500 ,
+     # 冷却时间
+     cdMillis: 500,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+  { 
+    id: 53, name: '炎阳心诀', desc: '初级火属性功法心诀' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 54, name: '气血法', desc: '初级火属性功法内功' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 55, name: '内劲', desc: '初级火属性功法内功' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 56, name: '归元', desc: '初级火属性功法内功' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 57, name: '引雷诀', desc: '初级雷属性功法招式' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 58, name: '悟雷', desc: '初始雷属性功法内功' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 59, name: '落尘剑法一式', desc: '无属性剑法招式' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 60, name: '落尘剑法二式', desc: '无属性剑法招式' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 61, name: '落尘剑法三式', desc: '无属性剑法招式' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 62, name: '普世炼体法', desc: '初阶炼体之法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 63, name: '百脉炼体诀', desc: '百脉炼体诀' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 64, name: '御风诀', desc: '初级御风之法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 65, name: '御风急行', desc: '初级御风之法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 66, name: '飘渺步伐', desc: '初级御风之法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 67, name: '撼山心诀', desc: '初级土属性心诀' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 68, name: '撼山掌', desc: '初级土属性掌法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 69, name: '灵兔纵跃', desc: '灵兔纵跃' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 70, name: '如意寒风诀', desc: '风水属性初级口诀' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+   { 
+    id: 71, name: '寒风指', desc: '风水属性初级指法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+]
