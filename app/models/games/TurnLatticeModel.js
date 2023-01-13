@@ -18,12 +18,11 @@ export default {
 
   effects: {
     *getTurnLatticeData({ payload }, { call, put, select }) {
-      const { latticeMazeId } = payload
+      const { latticeMazeId, isReload } = payload
       const historyData = yield call(
         LocalStorage.get,
         LocalCacheKeys.TURN_LATTICE_DATA,
       );
-      // console.log("historyData", historyData);
       // 没有打开过
       if (historyData === null && (historyData?.find(item => item.latticeMazeId === latticeMazeId) === undefined)) {
         const { latticeMaze } = yield call(GetTurnLattice);
@@ -99,40 +98,50 @@ export default {
 
       } else {
         const currentData = historyData.find(item => item.latticeMazeId === latticeMazeId)
-        const { desc, data, consumableProps } = currentData
-        for (let index = 0; index < data.length; index++) {
-          const item = data[index];
-          for (let i = 0; i < item.config.length; i++) {
-            const gridConfig = item.config[i]
-            gridConfig.status = 0
+        const { desc, data, consumableProps, currentLayer } = currentData
+
+        if (isReload) {
+          for (let index = 0; index < data.length; index++) {
+            const item = data[index];
+            for (let i = 0; i < item.config.length; i++) {
+              const gridConfig = item.config[i]
+              gridConfig.status = 0
+            }
+            // 设置 入口 附近的格子可以打开
+            const entranceGrid = item.config.find(i => i.type === "入口")
+            setNearbyGridStates(entranceGrid, item)
           }
-          // 设置 入口 附近的格子可以打开
-          const entranceGrid = item.config.find(i => i.type === "入口")
-          setNearbyGridStates(entranceGrid, item)
-        }
-        // 消耗道具
-        const message = [];
-        if (consumableProps !== undefined) {
-          for (let index = 0; index < consumableProps.length; index++) {
-            const prop = consumableProps[index].split(',');
-            const propNum = yield put.resolve(
-              action('PropsModel/getPropNum')({ propId: Number(prop[0]) }),
-            );
-            const propConfig = yield put.resolve(
-              action('PropsModel/getPropConfig')({ propId: Number(prop[0]) }),
-            );
-            const isOK = propNum >= Number(prop[1]);
-            message.push({
-              isOK: isOK,
-              msg: `拥有${propConfig.name}数量: ${propNum}/${Number(prop[1])}`,
-            });
+          // 消耗道具
+          const message = [];
+          if (consumableProps !== undefined) {
+            for (let index = 0; index < consumableProps.length; index++) {
+              const prop = consumableProps[index].split(',');
+              const propNum = yield put.resolve(
+                action('PropsModel/getPropNum')({ propId: Number(prop[0]) }),
+              );
+              const propConfig = yield put.resolve(
+                action('PropsModel/getPropConfig')({ propId: Number(prop[0]) }),
+              );
+              const isOK = propNum >= Number(prop[1]);
+              message.push({
+                isOK: isOK,
+                msg: `拥有${propConfig.name}数量: ${propNum}/${Number(prop[1])}`,
+              });
+            }
           }
-        }
-        yield put(action('updateState')({ turnLatticeData: data, currentLayer: 0, curLatticeMazeId: latticeMazeId }));
-        return {
-          desc,
-          message,
-          latticeConfig: data[0].config
+          yield put(action('updateState')({ turnLatticeData: data, currentLayer: 0, curLatticeMazeId: latticeMazeId }));
+          return {
+            desc,
+            message,
+            latticeConfig: data[0].config
+          }
+        } else {
+          // 恢复 上次数据
+          yield put(action('updateState')({ turnLatticeData: data, currentLayer, curLatticeMazeId: latticeMazeId }));
+          return {
+            desc,
+            latticeConfig: data[currentLayer].config
+          }
         }
       }
     },
@@ -179,14 +188,14 @@ export default {
           yield call(
             LocalStorage.set,
             LocalCacheKeys.TURN_LATTICE_DATA,
-            [currentLatticeMazeData]
+            [{ ...currentLatticeMazeData, currentLayer: 0, }]
           );
         }
         else {
           yield call(
             LocalStorage.set,
             LocalCacheKeys.TURN_LATTICE_DATA,
-            [...historyData, currentLatticeMazeData]
+            [...historyData, { ...currentLatticeMazeData, currentLayer: 0, }]
           );
         }
       } else {
@@ -248,10 +257,20 @@ export default {
 
     // 出口
     *exportGrid({ payload }, { call, put, select }) {
-      const { turnLatticeData, currentLayer } = yield select(state => state.TurnLatticeModel);
-      if (turnLatticeData.length - 1 > currentLayer) {
-        yield put(action('updateState')({ currentLayer: currentLayer + 1 }));
-        return turnLatticeData[currentLayer + 1].config
+      const { toLayer } = payload
+      const { turnLatticeData, currentLayer, curLatticeMazeId } = yield select(state => state.TurnLatticeModel);
+      const historyData = yield call(
+        LocalStorage.get,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+      );
+      if (turnLatticeData.length >= toLayer) {
+        yield call(
+          LocalStorage.set,
+          LocalCacheKeys.TURN_LATTICE_DATA,
+          historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, currentLayer: toLayer - 1 } : item)
+        );
+        yield put(action('updateState')({ currentLayer: toLayer - 1 }));
+        return turnLatticeData[toLayer - 1].config
       }
       else {
         return null
