@@ -4,4 +4,5 @@
 
 skill_list: [
   'skills',
+  'skills_gongfa',
 ]
