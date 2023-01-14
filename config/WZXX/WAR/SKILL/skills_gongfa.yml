@@ -96,7 +96,7 @@ skills: [
      effects: [],
    },
   { 
-    id: 53, name: '炎阳心诀', desc: '初级火属性功法心诀' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    id: 53, name: '炎阳心诀', desc: '初级火属性功法心诀' , level: 1, iconId: 1 , xuLiMillis: 3000 , cdMillis: 3000,consume: [{hp: 0,mp: 0}],
     passive: "false" ,
      # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
      actions: [
@@ -111,7 +111,7 @@ skills: [
      effects: [],
    },
    { 
-    id: 54, name: '火符', desc: '初级火属性符咒功法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    id: 54, name: '火符', desc: '初级火属性符咒功法' , level: 1, iconId: 1 , xuLiMillis: 3000 , cdMillis: 6000,consume: [{hp: 0,mp: 0}],
     passive: "false" ,
      # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
      actions: [
@@ -126,7 +126,7 @@ skills: [
      effects: [],
    },
    { 
-    id: 55, name: '炎火符', desc: '初级火属性符咒功法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    id: 55, name: '炎火符', desc: '初级火属性符咒功法' , level: 1, iconId: 1 , xuLiMillis: 3500 , cdMillis: 7000,consume: [{hp: 0,mp: 0}],
     passive: "false" ,
      # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
      actions: [
@@ -141,7 +141,7 @@ skills: [
      effects: [],
    },
    { 
-    id: 56, name: '炎爆符', desc: '初级火属性符咒功法' , level: 1, iconId: 1 , xuLiMillis: 500 , cdMillis: 500,consume: [{hp: 0,mp: 0}],
+    id: 56, name: '炎爆符', desc: '初级火属性符咒功法' , level: 1, iconId: 1 , xuLiMillis: 4000 , cdMillis: 8000,consume: [{hp: 0,mp: 0}],
     passive: "false" ,
      # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
      actions: [
