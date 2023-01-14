@@ -49,6 +49,16 @@ scenes: [
           
         ],
       },
+      { 
+        id: 'WZXX_M1_N1_C001Vssss', desc: '选项', 
+        options: [     
+            {title: "【急中生智！】",games: { id: 8, latticeMazeId: "航海探索", 
+          # isReload: false 
+          } },
+           
+          
+        ],
+      },
       #
       { 
         id: 'WZXX_M1_N1_C001C_CCXZ', desc: '选择穿越的出身', 

@@ -65,7 +65,7 @@
 #START========================================
 #
 [
-   { sceneId: 'WZXX_M1_N1_CC036_V', chatId: 'WZXX_M1_N1_CC036_V2' },
+   { sceneId: 'WZXX_M1_N1_CC036_V', chatId: 'WZXX_M1_N1_CC036_V3' },
 ]
 #END==========================================
  

@@ -44,11 +44,11 @@ scenes: [
         id: 'WZXX_M1_N1_CC036_V2', desc: '', 
         options: [
           {
-          title: "【加入小队】", dialogs: ['ZC35_1.1C'],
+          title: "【加入小队】", dialogs: ['ZC36_1.1A'], sendProps: ['375,1'],
           },
 
           {
-          title: "【不加入小队】", toChapter: "WZXX_M1_N1_Z3C31",
+          title: "【不加入小队】", toChapter: "WZXX_M1_N1_Z3C31_[N2]",sendProps: ['376,1'],
           },
 
         ],
@@ -59,7 +59,7 @@ scenes: [
         options: [
 
         {
-        title: "【独自赶路】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,sendProps: ['376,1'],
+        title: "【独自赶路】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
         },
 
         ],
@@ -121,7 +121,6 @@ scenes: [
                 btn: [
                 {
                 title: '既如此，那便走吧',
-                sendProps: ['375,1'],
                 games: { id: 8, latticeMazeId: "航海探索", isReload: false } 
                 },
                 ]

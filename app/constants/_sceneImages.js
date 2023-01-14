@@ -170,6 +170,8 @@ const topBgImages = [
     { name: 'BGT_162', img: require('../../assets/scene/BGT_162.webp') },
     { name: 'BGT_163', img: require('../../assets/scene/BGT_163.webp') },
     { name: 'BGT_164', img: require('../../assets/scene/BGT_164.webp') },
+    { name: 'BGT_165', img: require('../../assets/scene/BGT_165.webp') },
+    { name: 'BGT_166', img: require('../../assets/scene/BGT_166.webp') },
 
 
    // { name: '上部背景图57656', img: require('../../assets/scene/BGT_70789789.jpg') },

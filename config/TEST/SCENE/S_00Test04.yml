@@ -124,52 +124,43 @@ scenes: [
 
     # 事件定义
     events: [
-       { type: 'enter', andVarsOn: ['v888'], nextChat: 'c1',},
+       { type: 'enter', nextChat: 'c1',},
     ],
 
     # 对话选项
     chats: [
       # 新手对话主列表
       { 
-        id: 'c0', desc: '李森炎见状立刻捏起一张定身 符朝这生物扔过去，随着黄符一阵白光亮起，一股灵气瞬间将这白面蜘蛛震的全身发麻。', 
+        id: 'c0', desc: '李森炎见状立刻捏起一张定身符朝这生物扔过去，随着黄符一阵白光亮起，一股灵气瞬间将这白面蜘蛛震的全身发麻。', 
         options: [ 
-          { title: '交战', varsOn: ['v888'], toScene: 'S_00Test03',}, 
+          { title: '交战',  toScene: 'S_00Test04',}, 
         ],
       },
       
       { 
-        id: 'c1', desc: '趁着这白面蜘蛛处于僵直状态的时候，李森炎也是再次掏出一张符箓，上面写着一个大大的雷字。', 
+        id: 'c1', desc: '趁着这白面蜘蛛处于僵直状态的时候，李森炎也是再次……', 
         options: [ 
-          { title: '攻击', nextChat: 'c2', clickActions: ['a2'] }, 
-          { title: '躲避', nextChat: 'c3',  clickActions: ['a3'] }, 
+          { title: '掏出雷符箓', nextChat: 'c2', clickActions: ['a2'] }, 
         ],
       },
 
       {
         id: 'c2', desc: '随着这引雷符快要飞到这白面蜘蛛面前的时候，一股猛烈的紫雷从符箓中钻出，顿时将白面蜘蛛给电的神魂俱灭，全身都呈现烧焦的状况。', 
         options: [
-          { title: '随后重重一拳，朝他脸上狠狠砸去', nextChat: 'c4'}, 
+          { title: '再次使用定身符', nextChat: 'c3'}, 
         ]
       },
 
       { 
         id: 'c3', desc: '你扔出一张定身符，黄符白光亮起，猛烈的灵气冲向人面白蛛，人面白蛛进入震痹状态', 
         options: [ 
-          { title: '李森炎反应机敏，迅速闪身躲开',nextChat: 'c4'}, 
-        ]
-      },
-      
-      {
-        id: 'c7', desc: '（你再次掏出一张引雷符扔向人面白蛛，造成100点伤害。）', 
-        options: [ 
-          { title: '“子星草在山谷里，大侠饶命啊！”',toScene: 'WZXX_M1_N1_C000E_V',dropIds: ["S_00Test03_Vdrop1",]}, 
+          { title: '成功了！', games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,}, 
         ]
       },
     ],
 
    # 对话框
     dialogs: [
-  
       # {
       #   id: 'gameover01',
       #   style: 7,artID: 2,
