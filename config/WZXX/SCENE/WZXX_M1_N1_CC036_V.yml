@@ -64,6 +64,43 @@ scenes: [
 
         ],
       },
+
+      #战斗测试目录跳转
+
+       { 
+        id: 'WZXX_M1_N1_CC036_VA', desc: '进入战斗', 
+        options: [ 
+          { title: "【进入战斗】",challenge: 'f_x1',},
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_CC036_VB', desc: '进入战斗', 
+        options: [ 
+          { title: "【进入战斗】",challenge: 'f_x2',},
+        ],
+      },
+      { 
+        id: 'WZXX_M1_N1_CC036_VC', desc: '进入战斗', 
+        options: [ 
+          { title: "【进入战斗】",challenge: 'f_x3',},
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_CC036_VD', desc: '进入战斗', 
+        options: [ 
+          { title: "【进入战斗】",challenge: 'f_x4',},
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_CC036_VE', desc: '进入战斗', 
+        options: [ 
+          { title: "【进入战斗】",challenge: 'f_x5',},
+        ],
+      },
+
       ],
 
 

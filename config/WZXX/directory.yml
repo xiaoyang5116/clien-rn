@@ -713,37 +713,9 @@ directory: [
 
   {
     id: 5, 
-    title: '战斗测试',
+    title: '未开启',
     map: [
-      #  {
-      #   point: [0, 2], title: 'f_x1 ', 
-      #   # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C01' ,
-      #   toChapter: 'WZXX_M1_N1_Z3C01', links: [[0, -1]] 
-      #   },
-
-      #   {
-      #   point: [0, 1], title: 'f_x2 ', 
-      #   # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C02' ,
-      #   toChapter: 'WZXX_M1_N1_Z3C02', links: [[0, -2]] 
-      #   },
-
-      #   {
-      #   point: [0, 0], title: 'f_x3 ', 
-      #   # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C03' ,
-      #   toChapter: 'WZXX_M1_N1_Z3C03', links: [[0, -1]] 
-      #   },
-
-      #   {
-      #   point: [0, -1], title: 'f_x4 ', 
-      #   # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C04' ,
-      #   toChapter: 'WZXX_M1_N1_Z3C04', links: [[0, -2]] 
-      #   },
-
-      #   {
-      #   point: [0, -2], title: 'f_x5 ', 
-      #   # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C05' ,
-      #   toChapter: 'WZXX_M1_N1_Z3C05', links: [[]] 
-      #   },
+       
 
     ]
   },
@@ -767,18 +739,37 @@ directory: [
 
   {
     id: 7, 
-    title: '未开启',
+    title: '战斗测试',
     map: [
-      { point: [0, 0], title: '起点', toChapter: 'WZXX_M1_N1_C001', links: [[0, 1], [0, -1], [-1, 0], [1, 0]] },
-      { point: [0, 1], title: '选择世界', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [] },
-      { point: [1, 0], title: '向右', toSctoChapterene: 'WZXX_M1_N1_C001B_[C2]', links: [[0, -1], [0, 1]] },
-      { point: [0, -1], title: '沉浸式阅读', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [], path: [[1, -1], [1, -2], [1, -3], [1, -4], [0, -4], [-1, -4]] },
-      { point: [-1, 0], title: '向左', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [[0, 1], [0, -1]] },
-      { point: [-2, 0], title: '我有秘籍, 要继续？', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [[-1, 0]], path: [[-2, 1], [-1, 1], [0, 1]] },
-      { point: [-1, -1], title: '开始游戏', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [[-1, 0], [0, -1], [-1, -2]] },
-      { point: [-1, -2], title: '选择副本', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [[-1, -3]], path: [[0, -2], [0, -1]] },
-      { point: [-1, -3], title: '击杀怪物', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [[-1, -4]] },
-      { point: [-1, -4], title: '获得奖励', toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [], path: [[-2, -4], [-2, -3], [-2, -2], [-2, -1], [-2, 0]] },
+      {
+        point: [0, 2], title: 'f_x1 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C93' ,
+        toChapter: 'WZXX_M1_N1_Z3C93', links: [[0, -1]] 
+        },
+
+        {
+        point: [0, 1], title: 'f_x2 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C94' ,
+        toChapter: 'WZXX_M1_N1_Z3C94', links: [[0, -2]] 
+        },
+
+        {
+        point: [0, 0], title: 'f_x3 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C95' ,
+        toChapter: 'WZXX_M1_N1_Z3C95', links: [[0, -1]] 
+        },
+
+        {
+        point: [0, -1], title: 'f_x4 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C96' ,
+        toChapter: 'WZXX_M1_N1_Z3C96', links: [[0, -2]] 
+        },
+
+        {
+        point: [0, -2], title: 'f_x5 ', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C97' ,
+        toChapter: 'WZXX_M1_N1_Z3C97', links: [[]] 
+        },
     ]
   },
 
