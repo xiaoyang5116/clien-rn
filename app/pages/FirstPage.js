@@ -37,6 +37,7 @@ import WorshipModal from '../components/worship';
 import { px2pd } from '../constants/resolution';
 import FastImage from 'react-native-fast-image';
 import { ArticleOptionActions } from '../components/article';
+import LoginPop from './login';
 
 
 const BTN_STYLE = {
@@ -152,6 +153,12 @@ const FirstPage = (props) => {
               {/* 测试按钮 */}
               <ImageButton {...BTN_STYLE} source={require('../../assets/button/test_button.png')} selectedSource={require('../../assets/button/test_button_selected.png')} onPress={() => {
                 props.dispatch(action('StoryModel/enter')({ sceneId: 'test_scenes' }));
+              }} />
+              {/* 登录按钮 */}
+              <ImageButton {...BTN_STYLE} source={require('../../assets/button/test_button.png')} selectedSource={require('../../assets/button/test_button_selected.png')} onPress={() => {
+                const key = RootView.add(
+                  <LoginPop onClose={() => { RootView.remove(key) }} />
+                )
               }} />
             </View>
           </SafeAreaView>
