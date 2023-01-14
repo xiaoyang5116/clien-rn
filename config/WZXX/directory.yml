@@ -713,9 +713,38 @@ directory: [
 
   {
     id: 5, 
-    title: '未开启',
+    title: '战斗测试',
     map: [
-      
+      #  {
+      #   point: [0, 2], title: 'f_x1 ', 
+      #   # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C01' ,
+      #   toChapter: 'WZXX_M1_N1_Z3C01', links: [[0, -1]] 
+      #   },
+
+      #   {
+      #   point: [0, 1], title: 'f_x2 ', 
+      #   # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C02' ,
+      #   toChapter: 'WZXX_M1_N1_Z3C02', links: [[0, -2]] 
+      #   },
+
+      #   {
+      #   point: [0, 0], title: 'f_x3 ', 
+      #   # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C03' ,
+      #   toChapter: 'WZXX_M1_N1_Z3C03', links: [[0, -1]] 
+      #   },
+
+      #   {
+      #   point: [0, -1], title: 'f_x4 ', 
+      #   # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C04' ,
+      #   toChapter: 'WZXX_M1_N1_Z3C04', links: [[0, -2]] 
+      #   },
+
+      #   {
+      #   point: [0, -2], title: 'f_x5 ', 
+      #   # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C05' ,
+      #   toChapter: 'WZXX_M1_N1_Z3C05', links: [[]] 
+      #   },
+
     ]
   },
 
