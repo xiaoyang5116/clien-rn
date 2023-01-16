@@ -158,10 +158,13 @@ props: [
   #加入小队钥匙
   { id:  375, name: '传送门上品钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
   #不加入小队钥匙
-  { id:  376, name: '传送门中品钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
-												
+  { id:  376, name: '传送门中品钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },		
+  #  第三层的钥匙A和B
+  { id:  377, name: '蜘蛛洞窟三层钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },														
+  { id:  378, name: '三层蜘蛛洞窟钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },														
+  { id:  379, name: '蜘蛛洞窟四层钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },														
+                  
 
-												
 
   
    #完成任务需要使用的道具
