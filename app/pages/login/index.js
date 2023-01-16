@@ -29,7 +29,7 @@ const LoginPop = (props) => {
         <AntDesign
           onPress={onClose}
           name='close'
-          style={{ fontSize: 24, position: 'absolute', right: 8, top: 8, color: "#000" }}
+          style={{ fontSize: 24, position: 'absolute', right: 8, top: 8, color: "#000", zIndex: 2 }}
         />
         {content}
       </View>

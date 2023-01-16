@@ -1,22 +1,101 @@
-import { StyleSheet, Text, View, TextInput } from 'react-native';
-import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, Keyboard, DeviceEventEmitter } from 'react-native';
+import React, { useRef, useState } from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { TextButton } from '../../constants/custom-ui';
 import { EyeComponent } from './Login';
+import { AppDispath, EventKeys } from '../../constants';
+import EventListeners from '../../utils/EventListeners';
+
+async function registerApi({ username, password }) {
+  const url = 'http://172.10.1.81:8443/unAuth/login/register';
+  try {
+    let response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username,
+        password
+      })
+    })
+    return await response.json();
+  } catch (error) {
+    console.log('Request Failed', error);
+  }
+}
+
+const ErrorMsg = ({ msg }) => {
+  return msg
+    ? (
+      <View style={styles.errorMsg}>
+        <Text style={{ fontSize: 16, color: "#FF2E2E" }}>{msg}</Text>
+      </View>
+    )
+    : (<View style={styles.errorMsg}></View>)
+}
 
 const Register = props => {
   const { onClose, setPage } = props;
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const username = useRef("")
+  const password = useRef("")
+  const twoPassword = useRef("")
   const [firstPasswordIsHide, setFirstPasswordIsHide] = useState(true);
   const [twoPasswordIsHide, setTwoPasswordIsHide] = useState(true);
+  const [usernameErrorMsg, setUsernameErrorMsg] = useState(null)
+  const [passwordErrorMsg, setPasswordErrorMsg] = useState(null)
+  const [twoPasswordErrorMsg, setTwoPasswordErrorMsg] = useState(null)
 
   const changeUsername = value => {
-    console.log('value', value);
+    username.current = value;
   };
   const changePassword = value => {
-    console.log('value', value);
+    password.current = value;
+  };
+  const changeTwoPassword = value => {
+    twoPassword.current = value;
+  };
+
+  const handlerRegister = async () => {
+    Keyboard.dismiss()
+    let isRegister = true
+    if (username.current.length === 0) {
+      isRegister = false
+      setUsernameErrorMsg("用户名不能为空")
+    } else {
+      setUsernameErrorMsg(null)
+    }
+    if (password.current.length === 0) {
+      isRegister = false
+      setPasswordErrorMsg("密码不能为空")
+    } else {
+      setPasswordErrorMsg(null)
+    }
+    if (twoPassword.current.length === 0) {
+      isRegister = false
+      setTwoPasswordErrorMsg("请再次输入密码")
+    } else {
+      setTwoPasswordErrorMsg(null)
+    }
+    if (password.current != twoPassword.current) {
+      isRegister = false
+      setTwoPasswordErrorMsg("两次密码不一致")
+    } else {
+      setTwoPasswordErrorMsg(null)
+    }
+    if (isRegister) {
+      const result = await registerApi({ username: username.current, password: password.current })
+      if (result) {
+        AppDispath({
+          type: 'UserModel/register', payload: result, cb: (v) => {
+            if (v === true) {
+              onClose()
+            }
+          }
+        })
+      }
+    }
   };
 
   return (
@@ -27,6 +106,7 @@ const Register = props => {
           fontSize: 20,
           color: '#000',
           textAlign: 'center',
+          marginBottom: 24
         }}>
         注册
       </Text>
@@ -41,6 +121,7 @@ const Register = props => {
           textContentType={'username'}
         />
       </View>
+      <ErrorMsg msg={usernameErrorMsg} />
       <View style={styles.inputContainer}>
         <AntDesign name="lock1" style={{ fontSize: 24, marginLeft: 12 }} />
         <TextInput
@@ -51,24 +132,33 @@ const Register = props => {
           textContentType={'password'}
           secureTextEntry={firstPasswordIsHide}
         />
-        <EyeComponent isHidePassword={firstPasswordIsHide} setIsHidePassword={setFirstPasswordIsHide} />
+        <EyeComponent
+          isHidePassword={firstPasswordIsHide}
+          setIsHidePassword={setFirstPasswordIsHide}
+        />
       </View>
+      <ErrorMsg msg={passwordErrorMsg} />
       <View style={styles.inputContainer}>
         <AntDesign name="lock1" style={{ fontSize: 24, marginLeft: 12 }} />
         <TextInput
           style={styles.input}
           maxLength={12}
           placeholder={'重新输入密码'}
-          onChangeText={changePassword}
+          onChangeText={changeTwoPassword}
           textContentType={'password'}
           secureTextEntry={twoPasswordIsHide}
         />
-        <EyeComponent isHidePassword={twoPasswordIsHide} setIsHidePassword={setTwoPasswordIsHide} />
+        <EyeComponent
+          isHidePassword={twoPasswordIsHide}
+          setIsHidePassword={setTwoPasswordIsHide}
+        />
       </View>
-      <View style={{ marginTop: 20 }}>
-        <TextButton title={'提交'} onPress={() => setPage('register')} />
+      <ErrorMsg msg={twoPasswordErrorMsg} />
+
+      <View style={{ marginTop: 20, width: "100%" }}>
+        <TextButton title={'提交'} onPress={handlerRegister} />
       </View>
-      <View style={{ marginTop: 20 }}>
+      <View style={{ marginTop: 20, width: "100%" }}>
         <TextButton title={'返回'} onPress={() => setPage('login')} />
       </View>
     </View>
@@ -82,7 +172,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inputContainer: {
-    marginTop: 24,
+    // marginTop: 24,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -96,4 +186,7 @@ const styles = StyleSheet.create({
     padding: 0,
     color: '#000',
   },
+  errorMsg: {
+    height: 24
+  }
 });
