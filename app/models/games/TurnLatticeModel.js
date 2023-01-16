@@ -148,7 +148,7 @@ export default {
 
     // 解锁 和 消耗 道具
     *consumableProps({ payload }, { call, put, select }) {
-      const { curLatticeMazeId } = yield select(state => state.TurnLatticeModel);
+      const { curLatticeMazeId, turnLatticeData } = yield select(state => state.TurnLatticeModel);
       const { latticeMaze } = yield call(GetTurnLattice);
       const currentLatticeMazeData = latticeMaze.find(item => item.latticeMazeId === curLatticeMazeId)
 
@@ -188,14 +188,14 @@ export default {
           yield call(
             LocalStorage.set,
             LocalCacheKeys.TURN_LATTICE_DATA,
-            [{ ...currentLatticeMazeData, currentLayer: 0, }]
+            [{ ...currentLatticeMazeData, currentLayer: 0, data: turnLatticeData }]
           );
         }
         else {
           yield call(
             LocalStorage.set,
             LocalCacheKeys.TURN_LATTICE_DATA,
-            [...historyData, { ...currentLatticeMazeData, currentLayer: 0, }]
+            [...historyData, { ...currentLatticeMazeData, currentLayer: 0, data: turnLatticeData }]
           );
         }
       } else {
