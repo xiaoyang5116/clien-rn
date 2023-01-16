@@ -1,0 +1,100 @@
+# ===========================================
+# 技能配置
+# ===========================================
+skills: [
+   {
+     # 技能唯一ID
+     id: 40030,
+     # 技能名称
+     name: '普通攻击',
+     # 描述
+     desc: '怪物的普通攻击' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconId: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 1000 ,
+     # 冷却时间
+     cdMillis: 2000,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 5 ,
+     crit_add: 5 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+
+  {
+     # 技能唯一ID
+     id: 40031,
+     # 技能名称
+     name: '重攻击',
+     # 描述
+     desc: '怪物的重攻击' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconId: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 1500 ,
+     # 冷却时间
+     cdMillis: 2500 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: "false" ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 3 ,
+     crit_add: 3 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8',
+     },
+                ],
+     # BUFF效果列表
+     effects: [],
+   },
+
+   {
+     # 技能唯一ID
+     id: 40032,
+     # 技能名称
+     name: '全力一击',
+     # 描述
+     desc: '怪物的权力一击' ,
+     # 技能等级，同一个技能ID下可以有多个等级
+     level: 1,
+     # 图标ID
+     iconId: 1 ,
+     # 蓄力时间，以毫秒作为单位
+     xuLiMillis: 2000 ,
+     # 冷却时间
+     cdMillis: 3000 ,
+     # 技能消耗，需要整数，不支持小数点
+     consume: [{hp: 0,mp: 0}], 
+     # 被动技能与否
+     passive: false ,
+     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
+     actions: [
+     {
+     hit_rate: 100 ,
+     crit_rate: 4 ,
+     crit_add: 4 ,
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8',
+     },
+      ],
+     # BUFF效果列表
+     effects: [],
+   },
+]

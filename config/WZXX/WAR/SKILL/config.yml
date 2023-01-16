@@ -5,4 +5,5 @@
 skill_list: [
   'skills',
   'skills_gongfa',
+  'skills_guaiwu',
 ]
