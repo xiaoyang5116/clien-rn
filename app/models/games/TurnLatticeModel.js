@@ -1,11 +1,12 @@
 import LocalStorage from '../../utils/LocalStorage';
-import { action, LocalCacheKeys, BOTTOM_TOP_SMOOTH } from '../../constants';
+import { action, LocalCacheKeys, BOTTOM_TOP_SMOOTH, EventKeys } from '../../constants';
 import EventListeners from '../../utils/EventListeners';
 import { GetTurnLattice } from '../../services/GetTurnLattice';
 import Toast from '../../components/toast';
 import Modal from '../../components/modal';
 import RewardsPageModal from '../../components/rewardsPageModal';
 import ArenaUtils from '../../utils/ArenaUtils';
+import { DeviceEventEmitter } from 'react-native';
 
 
 export default {
@@ -257,23 +258,28 @@ export default {
 
     // 出口
     *exportGrid({ payload }, { call, put, select }) {
-      const { toLayer } = payload
+      const { toLayer, toChapter } = payload
       const { turnLatticeData, currentLayer, curLatticeMazeId } = yield select(state => state.TurnLatticeModel);
       const historyData = yield call(
         LocalStorage.get,
         LocalCacheKeys.TURN_LATTICE_DATA,
       );
-      if (turnLatticeData.length >= toLayer) {
-        yield call(
-          LocalStorage.set,
-          LocalCacheKeys.TURN_LATTICE_DATA,
-          historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, currentLayer: toLayer - 1 } : item)
-        );
-        yield put(action('updateState')({ currentLayer: toLayer - 1 }));
-        return turnLatticeData[toLayer - 1].config
-      }
-      else {
-        return null
+      if (toChapter != undefined && toLayer === undefined) {
+        yield put.resolve(action('SceneModel/processActions')({ ...payload }))
+        DeviceEventEmitter.emit(EventKeys.CLOSE_TURN_LATTICE_EVENT)
+      } else {
+        if (turnLatticeData.length >= toLayer) {
+          yield call(
+            LocalStorage.set,
+            LocalCacheKeys.TURN_LATTICE_DATA,
+            historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, currentLayer: toLayer - 1 } : item)
+          );
+          yield put(action('updateState')({ currentLayer: toLayer - 1 }));
+          return turnLatticeData[toLayer - 1].config
+        }
+        else {
+          return null
+        }
       }
     },
 
