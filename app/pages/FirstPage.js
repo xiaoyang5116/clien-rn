@@ -57,7 +57,6 @@ const FirstPage = (props) => {
 
   React.useEffect(() => {
     DeviceEventEmitter.emit(EventKeys.NAVIGATION_ROUTE_CHANGED, { routeName: 'First' });
-    props.dispatch(action('PropsModel/test')());
   }, []);
 
   const onLayout = (e) => {
