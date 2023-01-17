@@ -384,6 +384,9 @@ scenes: [
           { id: "WZXX_M1_N1_Z3C05",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z3C05FZ",min: 0, max: 1 },
 
+          { id: "WZXX_M1_N1_Z3C09",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z3C09FZ",min: 0, max: 1 },
+
           { id: "WZXX_M1_N1_Z3C10",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z3C10FZ",min: 0, max: 1 },
 

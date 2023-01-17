@@ -580,11 +580,11 @@ directory: [
         toChapter: 'WZXX_M1_N1_Z3C05', links: [[]] 
         },
 
-        # {
-        # point: [1, -4], title: '铁匠分支1 冰灵之心', 
-        # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C10_[N1]' ,
-        # toChapter: 'WZXX_M1_N1_Z3C10_[N1]', links: [[1, -5]] 
-        # },
+        {
+        point: [1, -4], title: '铁匠分支 进入探索副本', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C09' ,
+        toChapter: 'WZXX_M1_N1_Z3C09', links: [[1, -5]] 
+        },
 
         {
         point: [1, -5], title: '铁匠分支 神秘物件', 

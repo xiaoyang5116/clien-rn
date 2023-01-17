@@ -151,7 +151,7 @@ scenes: [
         ]
       },
 
-      { 
+      {
         id: 'c3', desc: '你扔出一张定身符，黄符白光亮起，猛烈的灵气冲向人面白蛛，人面白蛛进入震痹状态', 
         options: [ 
           { title: '成功了！', games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,}, 

@@ -29,7 +29,16 @@ scenes: [
     
       chats: [
 
-
+      { 
+        id: 'WZXX_M1_N1_CC036_VS', desc: '选项', 
+        options: [     
+            {title: "【进入探索副本】",games: { id: 8, latticeMazeId: "航海探索", 
+          # isReload: false 
+          } },
+           
+          
+        ],
+      },
       {
         id: 'WZXX_M1_N1_CC036_V1', desc: '', 
         options: [
@@ -44,12 +53,9 @@ scenes: [
         id: 'WZXX_M1_N1_CC036_V2', desc: '', 
         options: [
           {
-          title: "【加入小队】", sendProps: '375,1', dialogs: ['ZC36_1.1A'],
+          title: "【抉择】", dialogs: ['ZC36_1.1B'],
           },
 
-          {
-          title: "【不加入小队】", toChapter: "WZXX_M1_N1_Z3C31_[N2]",sendProps: '376,1'
-          },
 
         ],
       },
@@ -172,6 +178,21 @@ scenes: [
               },
             ]  
           }, 
+
+            { id: 'ZC36_1.1B', style: 12,title: '抉择',
+         sections: {
+            content: '加入小队跟着这一行人还是单打独斗孤身奋进呢？',
+            btn: [
+              {
+              title: "【加入小队】", sendProps: '375,1', dialogs: ['ZC36_1.1A'],
+              },
+
+              {
+              title: "【不加入小队】", toChapter: "WZXX_M1_N1_Z3C31_[N2]",sendProps: '376,1'
+              },
+            ]
+        },  
+       },
 
         
 
