@@ -26,14 +26,20 @@ async function registerApi({ username, password }) {
   }
 }
 
-const ErrorMsg = ({ msg }) => {
+export const ErrorMsg = ({ msg, defaultMsg }) => {
   return msg
     ? (
       <View style={styles.errorMsg}>
         <Text style={{ fontSize: 16, color: "#FF2E2E" }}>{msg}</Text>
       </View>
     )
-    : (<View style={styles.errorMsg}></View>)
+    : defaultMsg
+      ? (
+        <View style={styles.errorMsg}>
+          <Text style={{ fontSize: 16, color: "#eee" }}>{defaultMsg}</Text>
+        </View>
+      )
+      : (<View style={styles.errorMsg}></View>)
 }
 
 const Register = props => {
@@ -60,15 +66,25 @@ const Register = props => {
   const handlerRegister = async () => {
     Keyboard.dismiss()
     let isRegister = true
+
+    // 用户名
     if (username.current.length === 0) {
       isRegister = false
       setUsernameErrorMsg("用户名不能为空")
+    } else if (username.current.length < 5) {
+      isRegister = false
+      setUsernameErrorMsg("用户名长度不能低于6位数")
     } else {
       setUsernameErrorMsg(null)
     }
+
+    // 密码
     if (password.current.length === 0) {
       isRegister = false
       setPasswordErrorMsg("密码不能为空")
+    } else if (password.current.length < 7) {
+      isRegister = false
+      setPasswordErrorMsg("密码长度不能低于8位数")
     } else {
       setPasswordErrorMsg(null)
     }
@@ -121,7 +137,7 @@ const Register = props => {
           textContentType={'username'}
         />
       </View>
-      <ErrorMsg msg={usernameErrorMsg} />
+      <ErrorMsg msg={usernameErrorMsg} defaultMsg={"用户名长度不能低于6位数"} />
       <View style={styles.inputContainer}>
         <AntDesign name="lock1" style={{ fontSize: 24, marginLeft: 12 }} />
         <TextInput
@@ -137,7 +153,7 @@ const Register = props => {
           setIsHidePassword={setFirstPasswordIsHide}
         />
       </View>
-      <ErrorMsg msg={passwordErrorMsg} />
+      <ErrorMsg msg={passwordErrorMsg} defaultMsg={"密码长度不能低于8位数"} />
       <View style={styles.inputContainer}>
         <AntDesign name="lock1" style={{ fontSize: 24, marginLeft: 12 }} />
         <TextInput
