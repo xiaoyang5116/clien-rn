@@ -9,7 +9,7 @@ import FastImage from 'react-native-fast-image';
 
 // 道具格子
 const PropGrid = (props) => {
-  const { item, openGrid, isTouchStart, setGridConfig, handlerGridEvent } = props
+  const { item, openGrid, isTouchStart, setGridConfig, handlerGridEvent, isTrigger } = props
   const { prop } = item.event
   const quality_style = qualityStyle.styles.find(
     e => e.id == parseInt(prop.quality),
@@ -22,7 +22,7 @@ const PropGrid = (props) => {
   if (item.status === 1) {
     return (
       <Grid_CanOpen
-        item={item}
+        item={{ ...item, isTrigger }}
         openGrid={openGrid}
         isTouchStart={isTouchStart}
         containerStyle={{ justifyContent: 'center', alignItems: 'center' }}

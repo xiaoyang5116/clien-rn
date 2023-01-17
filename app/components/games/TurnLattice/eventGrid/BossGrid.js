@@ -9,7 +9,7 @@ import FastImage from 'react-native-fast-image';
 
 // Boss格子
 const BossGrid = (props) => {
-  const { item, openGrid, isTouchStart, setGridConfig, handlerGridEvent } = props
+  const { item, openGrid, isTouchStart, setGridConfig, handlerGridEvent, isTrigger } = props
   const { bossIconId, challenge } = item.event
 
   const image = getBossIcon(bossIconId);
@@ -43,7 +43,7 @@ const BossGrid = (props) => {
   if (item.status === 1) {
     return (
       <Grid_CanOpen
-        item={item}
+        item={{ ...item, isTrigger }}
         openGrid={meetBoss}
         isTouchStart={isTouchStart}
         containerStyle={{ justifyContent: 'center', alignItems: 'center' }}

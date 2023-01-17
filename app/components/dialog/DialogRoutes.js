@@ -65,6 +65,10 @@ const DialogRoutes = (props) => {
         if (item.closeTurnLattice !== undefined && item.closeTurnLattice === true) {
             DeviceEventEmitter.emit(EventKeys.CLOSE_TURN_LATTICE_EVENT)
         }
+        // 改变 翻格子小游戏 变量
+        if (item.turnLattice_varsOn !== undefined || item.turnLattice_varsOff != undefined) {
+            props.dispatch(action('TurnLatticeModel/turnLatticeChangeVars')(item));
+        }
     }
 
     // 特效方法
