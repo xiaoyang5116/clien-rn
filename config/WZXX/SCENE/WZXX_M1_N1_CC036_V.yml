@@ -179,7 +179,7 @@ scenes: [
 
             { id: 'ZC36_1.1B', style: 12,title: '抉择',
          sections: {
-            content: '加入小队跟着这一行人还是单打独斗孤身奋进呢？',
+            content: '究竟是选择跟着这一行人一起探险，还是单打独斗孤身奋进呢？',
             btn: [
               {
               title: "【加入小队】", sendProps: '375,1', dialogs: ['ZC36_1.1A'],
