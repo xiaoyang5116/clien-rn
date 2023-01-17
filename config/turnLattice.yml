@@ -27,9 +27,9 @@ latticeMaze: [
       latticeMazeId: '航海探索',
       desc: '海上探索',
       # 解锁道具 前面的‘1’代表道具ID 后面的‘1’代表数量
-      unlockProps: ['1,1'],
+      # unlockProps: ['381,1'],
       # 消耗道具
-      consumableProps: ['2,1'],
+      consumableProps: ['382,1'],
 
       vars: [
       { id: "v1", min: 0, max: 1 },

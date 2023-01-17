@@ -32,11 +32,9 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_CC036_VS', desc: '选项', 
         options: [     
-            {title: "【进入探索副本】",games: { id: 8, latticeMazeId: "航海探索", 
-          # isReload: false 
+        {title: "【进入探索副本】", sendProps: '382,10', games: { id: 8, latticeMazeId: "航海探索", 
+             # isReload: false'381,1', 
           } },
-           
-          
         ],
       },
       {

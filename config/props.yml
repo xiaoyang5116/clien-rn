@@ -165,7 +165,10 @@ props: [
   #选择带走神秘物件 
   { id:  379, name: '蜘蛛洞窟四层钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },					
   #选择不带走神秘物件 
-  { id:  380, name: '四层钥匙蜘蛛洞窟', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },														
+  { id:  380, name: '四层钥匙蜘蛛洞窟', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },				
+  									
+  { id:  381, name: '蜘蛛洞窟解锁钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+  { id:  382, name: '蜘蛛洞窟消耗钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
 
   
    #完成任务需要使用的道具
