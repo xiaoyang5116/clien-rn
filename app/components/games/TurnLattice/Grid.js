@@ -53,7 +53,7 @@ export const Grid_CanOpen = ({
   children = null,
   containerStyle
 }) => {
-  const { isProhibit } = item
+  const { isProhibit, isTrigger = true } = item
 
   return (
     <TouchableHighlight
@@ -64,8 +64,11 @@ export const Grid_CanOpen = ({
         isTouchStart.current = true;
       }}
       onPress={() => {
-        if (!isProhibit) {
+        if (!isProhibit && isTrigger) {
           openGrid()
+        }
+        if (isTrigger === false) {
+          confirm('未触发对应剧情');
         }
       }}>
       <View style={[styles.gridContainer, containerStyle]}>
@@ -79,7 +82,7 @@ export const Grid_CanOpen = ({
           }}
         />
         {
-          isProhibit
+          (isProhibit || !isTrigger)
             ? (
               <View
                 style={{
@@ -222,17 +225,29 @@ const Grid_Wall = () => {
 // 事件格子
 const Grid_Event = (props) => {
   const { event } = props.item;
+  const [isTrigger, setIsTrigger] = useState(true)
+  useEffect(() => {
+    if (props.item.andVarsOn != undefined || props.item.varsOff != undefined) {
+      props.dispatch(action('TurnLatticeModel/checkEventStatus')({ ...props.item }))
+        .then((result) => {
+          if (result != undefined) {
+            setIsTrigger(result)
+          }
+        })
+    }
+  }, [])
+
   if (event.type === '道具') {
-    return <PropGrid {...props} />;
+    return <PropGrid {...props} isTrigger={isTrigger} />;
   }
   if (event.type === '宝箱') {
-    return <TreasureChestGrid {...props} />;
+    return <TreasureChestGrid {...props} isTrigger={isTrigger} />;
   }
   if (event.type === '战斗') {
-    return <BossGrid {...props} />;
+    return <BossGrid {...props} isTrigger={isTrigger} />;
   }
   if (event.type === '剧情') {
-    return <DialogGrid {...props} />;
+    return <DialogGrid {...props} isTrigger={isTrigger} />;
   }
 
   return <Grid_NotOpen />;

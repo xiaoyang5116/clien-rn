@@ -46,6 +46,7 @@ const TurnLattice = props => {
   const pan = useRef(new Animated.ValueXY()).current;
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const isTouchStart = useRef(true);
+  const [isRefresh, setIsRefresh] = useState(false)
 
   const status = useRef({
     // 记录双指触发的起始坐标
@@ -83,8 +84,15 @@ const TurnLattice = props => {
         onClose();
       },
     );
+    const refreshEvent = DeviceEventEmitter.addListener(
+      "TURN_LATTICE_REFRESH",
+      () => {
+        setIsRefresh(!isRefresh);
+      },
+    );
     return () => {
       closeTurnLatticeEvent.remove();
+      refreshEvent.remove()
     };
   }, []);
 
