@@ -81,29 +81,31 @@ scenes: [
         options: [
 
         {
-        title: "【搜刮夺宝】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
+        title: "【离开】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
         },
 
         ],
       },
 
-       {
-        id: 'WZXX_M1_N1_CC036_V6', desc: '', 
-        options: [
+      #  {
+      #   id: 'WZXX_M1_N1_CC036_V6', desc: '', 
+      #   options: [
 
-        {
-        title: "【凌云步，闪身！】", sendProps: '379,1', games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
-        },
+      #   {
+      #   title: "【凌云步，闪身！】", sendProps: '379,1', games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
+      #   },
 
-        ],
-      },
+      #   ],
+      # },
 
       {
         id: 'WZXX_M1_N1_CC036_V7', desc: '', 
         options: [
 
         {
-        title: "【一切都结束了】", sendProps: '379,1', games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
+        title: "【一切都结束了】",
+        #  sendProps: '379,1',
+        games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
         },
 
         ],

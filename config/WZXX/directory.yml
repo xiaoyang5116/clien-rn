@@ -580,62 +580,62 @@ directory: [
         toChapter: 'WZXX_M1_N1_Z3C05', links: [[]] 
         },
 
+        # {
+        # point: [1, -4], title: '铁匠分支1 冰灵之心', 
+        # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C10_[N1]' ,
+        # toChapter: 'WZXX_M1_N1_Z3C10_[N1]', links: [[1, -5]] 
+        # },
+
         {
-        point: [1, -4], title: '铁匠分支1 冰灵之心', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C10_[N1]' ,
-        toChapter: 'WZXX_M1_N1_Z3C10_[N1]', links: [[1, -5]] 
+        point: [1, -5], title: '铁匠分支 神秘物件', 
+        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C10' ,
+        toChapter: 'WZXX_M1_N1_Z3C10', links: [[1, -6]] 
         },
 
         {
-        point: [1, -5], title: '铁匠分支2 神秘物件', 
-        # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C10_[N2]' ,
-        toChapter: 'WZXX_M1_N1_Z3C10_[N2]', links: [[1, -6]] 
-        },
-
-        {
-        point: [1, -6], title: '铁匠分支3 道修魔修', 
+        point: [1, -6], title: '铁匠分支 道修魔修', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C11' ,
         toChapter: 'WZXX_M1_N1_Z3C11', links: [[1, -7]] 
         },
 
         {
-        point: [1, -7], title: '铁匠分支4 白衣魔修', 
+        point: [1, -7], title: '铁匠分支 白衣魔修', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C12' ,
         toChapter: 'WZXX_M1_N1_Z3C12', links: [[1, -8]] 
         },
 
         {
-        point: [1, -8], title: '铁匠分支5 胡乱修炼', 
+        point: [1, -8], title: '铁匠分支 胡乱修炼', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C13' ,
         toChapter: 'WZXX_M1_N1_Z3C13', links: [[1, -9]] 
         },
 
         {
-        point: [1, -9], title: '铁匠分支6 重逢', 
+        point: [1, -9], title: '铁匠分支 重逢', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C14' ,
         toChapter: 'WZXX_M1_N1_Z3C14', links: [[1, -10]] 
         },
 
         {
-        point: [1, -10], title: '铁匠分支7 铁骨铮铮！', 
+        point: [1, -10], title: '铁匠分支 铁骨铮铮！', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C15' ,
         toChapter: 'WZXX_M1_N1_Z3C15', links: [[1, -11]] 
         },
 
         {
-        point: [1, -11], title: '铁匠分支8 道心如铁', 
+        point: [1, -11], title: '铁匠分支 道心如铁', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C16' ,
         toChapter: 'WZXX_M1_N1_Z3C16', links: [[1, -12]] 
         },
 
         {
-        point: [1, -12], title: '铁匠分支9 有点慌', 
+        point: [1, -12], title: '铁匠分支 有点慌', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C17' ,
         toChapter: 'WZXX_M1_N1_Z3C17', links: [[1, -13]] 
         },
 
         {
-        point: [1, -13], title: '铁匠分支10 天地异象', 
+        point: [1, -13], title: '铁匠分支 天地异象', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_Z3C18' ,
         toChapter: 'WZXX_M1_N1_Z3C18', links: [[]] 
         },
