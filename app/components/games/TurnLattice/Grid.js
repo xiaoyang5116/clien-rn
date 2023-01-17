@@ -123,25 +123,20 @@ const Grid_Entrance = props => {
 const Grid_Export = (props) => {
   const { item, openGrid, isTouchStart, turnLatticeData, currentLayer, setGridConfig, onClose } = props
   const [isHaveKey, setIsHaveKey] = useState(false)
+
   const exportHandler = () => {
     if (isHaveKey) {
-      if (turnLatticeData.length - 1 > currentLayer) {
-        confirm('确认进入下一层？',
-          () => {
-            props
-              .dispatch(action('TurnLatticeModel/exportGrid')({ toLayer: item.toLayer }))
-              .then(result => {
-                if (result !== undefined && result != null) {
-                  setGridConfig([...result]);
-                }
-              });
-          });
-      } else {
-        confirm('确认退出？',
-          () => {
-            onClose()
-          });
-      }
+      const text = (item.toChapter != undefined && item.toLayer === undefined) ? "恭喜通关!" : `确认进入下一层？`
+      confirm(text,
+        () => {
+          props
+            .dispatch(action('TurnLatticeModel/exportGrid')({ ...item }))
+            .then(result => {
+              if (result !== undefined && result != null) {
+                setGridConfig([...result]);
+              }
+            });
+        });
     } else {
       confirm('没有钥匙', () => { });
     }
