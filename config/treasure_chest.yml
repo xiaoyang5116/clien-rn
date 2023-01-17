@@ -89,7 +89,7 @@ data: [
 
   {
     # ID
-    id: 5,
+    id: 6,
 
     # 是否宝箱类型
     box: true,
@@ -105,7 +105,7 @@ data: [
 
   {
     # ID
-    id: 5,
+    id: 7,
 
     # 是否宝箱类型
     box: true,
