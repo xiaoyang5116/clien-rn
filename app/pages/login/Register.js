@@ -8,17 +8,19 @@ import { AppDispath, EventKeys } from '../../constants';
 import EventListeners from '../../utils/EventListeners';
 
 async function registerApi({ username, password }) {
+  const params = new URLSearchParams();
+  params.append('username', username);
+  params.append('password', password)
+
   const url = 'http://172.10.1.81:8443/unAuth/login/register';
   try {
     let response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+        // 'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        username,
-        password
-      })
+      body: params.toString(),
     })
     return await response.json();
   } catch (error) {

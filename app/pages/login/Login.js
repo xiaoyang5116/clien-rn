@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, TextInput,Keyboard } from 'react-native';
 import React, { useState, useRef } from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -18,17 +18,17 @@ export const EyeComponent = ({ isHidePassword, setIsHidePassword }) => {
 };
 
 async function LoginApi({ username, password }) {
+  const params = new URLSearchParams();
+  params.append('username', username);
+  params.append('password', password)
   const url = 'http://172.10.1.81:8443/unAuth/login/password';
   try {
     let response = await fetch(url, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
       },
-      body: JSON.stringify({
-        username,
-        password
-      })
+      body: params.toString(),
     })
     return await response.json();
   } catch (error) {
@@ -51,26 +51,26 @@ const Login = props => {
     password.current = value
   };
 
-  const handlerLogin =  async () => {
-    // Keyboard.dismiss()
+  const handlerLogin = async () => {
+    Keyboard.dismiss()
     let isRegister = true
-    // if (username.current.length === 0) {
-    //   isRegister = false
-    //   setUsernameErrorMsg("用户名不能为空")
-    // } else {
-    //   setUsernameErrorMsg(null)
-    // }
-    // if (password.current.length === 0) {
-    //   isRegister = false
-    //   setPasswordErrorMsg("密码不能为空")
-    // } else {
-    //   setPasswordErrorMsg(null)
-    // }
+    if (username.current.length === 0) {
+      isRegister = false
+      setUsernameErrorMsg("用户名不能为空")
+    } else {
+      setUsernameErrorMsg(null)
+    }
+    if (password.current.length === 0) {
+      isRegister = false
+      setPasswordErrorMsg("密码不能为空")
+    } else {
+      setPasswordErrorMsg(null)
+    }
     if (isRegister) {
       const result = await LoginApi({ username: username.current, password: password.current })
       if (result) {
         AppDispath({
-          type: 'UserModel/register', payload: result, cb: (v) => {
+          type: 'UserModel/login', payload: result, cb: (v) => {
             if (v === true) {
               onClose()
             }

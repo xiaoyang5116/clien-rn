@@ -248,6 +248,22 @@ export default {
           return true
         }
       }
+    },
+    // 登录
+    *login({ payload }, { put, call, select }) {
+      const { code, data, msg } = payload
+      if (code === 200) {
+        if (data.datas.login.succ === false || data.datas.login?.errorMsg === "bean") {
+          Toast.show("登录失败")
+          return false
+        }
+        if (data.datas.login.succ === true) {
+          Toast.show("登录成功")
+          yield call(LocalStorage.set, LocalCacheKeys.USER_TOKEN_DATA, data.datas.login);
+          yield put(action('updateState')({ userToken: data.datas.login }));
+          return true
+        }
+      }
     }
   },
   
