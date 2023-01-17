@@ -74,4 +74,7 @@ export class LocalCacheKeys {
     // 调查问卷数据
     static QUESTIONNAIRE_DATA = 'QUESTIONNAIRE_DATA'
 
+    // 用户 token
+    static USER_TOKEN_DATA = 'USER_TOKEN_DATA'
+
 }
