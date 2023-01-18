@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C18']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C18FZ'] }, 
-    { header: '铁匠分支10 天地异象' },
+    { header: '铁匠分支 天地异象' },
     { world: { name: '灵修界' } },
 ]
 #END==========================================

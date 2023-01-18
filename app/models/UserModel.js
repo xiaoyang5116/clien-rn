@@ -16,6 +16,7 @@ import {
 import LocalStorage from '../utils/LocalStorage';
 import EventListeners from '../utils/EventListeners';
 import WorldUtils from "../utils/WorldUtils";
+import Toast from "../components/toast";
 
 export default {
   namespace: 'UserModel',
@@ -31,6 +32,8 @@ export default {
     copper: 0,  // 铜币数量
     attrs: [], // 普通（阅读器）属性，不参与战斗计算。
     persistedStates: [], // 持久状态，记录一次性状态, 值为KEY
+
+    userToken: {},  // 用户token
   },
 
   effects: {
@@ -229,6 +232,39 @@ export default {
       });
       yield call(LocalStorage.set, LocalCacheKeys.USER_DATA, serialize);
     },
+
+    // 注册
+    *register({ payload }, { put, call, select }) {
+      const { code, data, msg } = payload
+      if (code === 200) {
+        if (data.datas.login.succ === false || data.datas.login?.errorMsg === "bean") {
+          Toast.show("注册失败")
+          return false
+        }
+        if (data.datas.login.succ === true) {
+          Toast.show("注册成功")
+          yield call(LocalStorage.set, LocalCacheKeys.USER_TOKEN_DATA, data.datas.login);
+          yield put(action('updateState')({ userToken: data.datas.login }));
+          return true
+        }
+      }
+    },
+    // 登录
+    *login({ payload }, { put, call, select }) {
+      const { code, data, msg } = payload
+      if (code === 200) {
+        if (data.datas.login.succ === false || data.datas.login?.errorMsg === "bean") {
+          Toast.show("登录失败")
+          return false
+        }
+        if (data.datas.login.succ === true) {
+          Toast.show("登录成功")
+          yield call(LocalStorage.set, LocalCacheKeys.USER_TOKEN_DATA, data.datas.login);
+          yield put(action('updateState')({ userToken: data.datas.login }));
+          return true
+        }
+      }
+    }
   },
   
   reducers: {

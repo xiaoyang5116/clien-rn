@@ -8,7 +8,7 @@ import { Grid_CanOpen, Grid_HaveOpened, Grid_NotOpen } from '../Grid'
 import FastImage from 'react-native-fast-image';
 
 const DialogGrid = (props) => {
-  const { item, openGrid, isTouchStart, setGridConfig, handlerGridEvent } = props
+  const { item, openGrid, isTouchStart, setGridConfig, handlerGridEvent, isTrigger } = props
   const { iconId } = item.event
   const image = getBtnIcon(iconId)
 
@@ -18,7 +18,7 @@ const DialogGrid = (props) => {
   if (item.status === 1) {
     return (
       <Grid_CanOpen
-        item={item}
+        item={{ ...item, isTrigger }}
         openGrid={openGrid}
         isTouchStart={isTouchStart}
         containerStyle={{ justifyContent: 'center', alignItems: 'center' }}

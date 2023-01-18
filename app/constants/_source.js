@@ -134,6 +134,8 @@ const _images = {
     turnLatticeBg: [
         { id: 0, img: require('../../assets/games/turnLattice/zhizhudonku1.png') },
         { id: 1, img: require('../../assets/games/turnLattice/zhizhudonku2.png') },
+        { id: 2, img: require('../../assets/games/turnLattice/zhizhudonku3.png') },
+        { id: 3, img: require('../../assets/games/turnLattice/zhizhudonku4.png') },
         // { id: 1, img: require('../../assets/games/turnLattice/zhizhudonku1.png') },
         // { id: 2, img: require('../../assets/games/turnLattice/zhizhudonku1.png') },
         // { id: 0, img: require('../../assets/games/turnLattice/zhizhudonku1.png') },

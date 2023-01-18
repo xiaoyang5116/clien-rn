@@ -29,7 +29,14 @@ scenes: [
     
       chats: [
 
-
+      { 
+        id: 'WZXX_M1_N1_CC036_VS', desc: '选项', 
+        options: [     
+        {title: "【进入探索副本】", sendProps: '382,10', games: { id: 8, latticeMazeId: "航海探索", 
+             # isReload: false'381,1', 
+          } },
+        ],
+      },
       {
         id: 'WZXX_M1_N1_CC036_V1', desc: '', 
         options: [
@@ -44,12 +51,9 @@ scenes: [
         id: 'WZXX_M1_N1_CC036_V2', desc: '', 
         options: [
           {
-          title: "【加入小队】", dialogs: ['ZC35_1.1C'],
+          title: "【抉择】", dialogs: ['ZC36_1.1B'],
           },
 
-          {
-          title: "【不加入小队】", toChapter: "WZXX_M1_N1_Z3C31",
-          },
 
         ],
       },
@@ -59,7 +63,52 @@ scenes: [
         options: [
 
         {
-        title: "【独自赶路】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,sendProps: ['376,1'],
+        title: "【独自赶路】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
+        },
+
+        ],
+      },
+
+      {
+        id: 'WZXX_M1_N1_CC036_V4', desc: '', 
+        options: [
+
+        {
+        title: "【继续赶路吧】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
+        },
+
+        ],
+      },
+
+      {
+        id: 'WZXX_M1_N1_CC036_V5', desc: '', 
+        options: [
+        {
+        title: "【离开】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
+        },
+
+        ],
+      },
+
+      #  {
+      #   id: 'WZXX_M1_N1_CC036_V6', desc: '', 
+      #   options: [
+
+      #   {
+      #   title: "【凌云步，闪身！】", sendProps: '379,1', games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
+      #   },
+
+      #   ],
+      # },
+
+      {
+        id: 'WZXX_M1_N1_CC036_V7', desc: '', 
+        options: [
+
+        {
+        title: "【一切都结束了】",
+        #  sendProps: '379,1',
+        games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
         },
 
         ],
@@ -121,13 +170,27 @@ scenes: [
                 btn: [
                 {
                 title: '既如此，那便走吧',
-                sendProps: ['375,1'],
                 games: { id: 8, latticeMazeId: "航海探索", isReload: false } 
                 },
                 ]
               },
             ]  
           }, 
+
+            { id: 'ZC36_1.1B', style: 12,title: '抉择',
+         sections: {
+            content: '究竟是选择跟着这一行人一起探险，还是单打独斗孤身奋进呢？',
+            btn: [
+              {
+              title: "【加入小队】", sendProps: '375,1', dialogs: ['ZC36_1.1A'],
+              },
+
+              {
+              title: "【不加入小队】", toChapter: "WZXX_M1_N1_Z3C31_[N2]",sendProps: '376,1'
+              },
+            ]
+        },  
+       },
 
         
 

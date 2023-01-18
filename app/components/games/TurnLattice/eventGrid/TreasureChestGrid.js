@@ -10,7 +10,7 @@ const imgData = {
 }
 
 const TreasureChestGrid = (props) => {
-  const { item, openGrid, isTouchStart, setGridConfig, handlerGridEvent } = props
+  const { item, openGrid, isTouchStart, setGridConfig, handlerGridEvent, isTrigger } = props
   const { treasureChestIsOpen } = item.event
   const img = treasureChestIsOpen ? imgData.opened : imgData.unOpen
 
@@ -29,7 +29,7 @@ const TreasureChestGrid = (props) => {
   if (item.status === 1) {
     return (
       <Grid_CanOpen
-        item={item}
+        item={{ ...item, isTrigger }}
         openGrid={openGrid}
         isTouchStart={isTouchStart}
         containerStyle={{ justifyContent: 'center', alignItems: 'center' }}

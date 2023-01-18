@@ -1,11 +1,12 @@
 import LocalStorage from '../../utils/LocalStorage';
-import { action, LocalCacheKeys, BOTTOM_TOP_SMOOTH } from '../../constants';
+import { action, LocalCacheKeys, BOTTOM_TOP_SMOOTH, EventKeys } from '../../constants';
 import EventListeners from '../../utils/EventListeners';
 import { GetTurnLattice } from '../../services/GetTurnLattice';
 import Toast from '../../components/toast';
 import Modal from '../../components/modal';
 import RewardsPageModal from '../../components/rewardsPageModal';
 import ArenaUtils from '../../utils/ArenaUtils';
+import { DeviceEventEmitter } from 'react-native';
 
 
 export default {
@@ -148,7 +149,7 @@ export default {
 
     // 解锁 和 消耗 道具
     *consumableProps({ payload }, { call, put, select }) {
-      const { curLatticeMazeId } = yield select(state => state.TurnLatticeModel);
+      const { curLatticeMazeId, turnLatticeData } = yield select(state => state.TurnLatticeModel);
       const { latticeMaze } = yield call(GetTurnLattice);
       const currentLatticeMazeData = latticeMaze.find(item => item.latticeMazeId === curLatticeMazeId)
 
@@ -158,7 +159,7 @@ export default {
       );
 
       if (historyData === null || (historyData.find(item => item.latticeMazeId === curLatticeMazeId) === undefined)) {
-        const { unlockProps, consumableProps } = currentLatticeMazeData
+        const { unlockProps, consumableProps, vars } = currentLatticeMazeData
         // 扣除 解锁 道具
         for (let k in unlockProps) {
           const prop = unlockProps[k].split(',');
@@ -183,19 +184,29 @@ export default {
           );
         }
 
+        // 初始化变量
+        for (let index = 0; index < vars.length; index++) {
+          const currentVar = vars[index];
+          if (currentVar.default != undefined) {
+            currentVar.value = currentVar.default
+          } else {
+            currentVar.value = currentVar.min
+          }
+        }
+
         // 保存副本
         if (historyData === null) {
           yield call(
             LocalStorage.set,
             LocalCacheKeys.TURN_LATTICE_DATA,
-            [{ ...currentLatticeMazeData, currentLayer: 0, }]
+            [{ ...currentLatticeMazeData, currentLayer: 0, data: turnLatticeData, vars }]
           );
         }
         else {
           yield call(
             LocalStorage.set,
             LocalCacheKeys.TURN_LATTICE_DATA,
-            [...historyData, { ...currentLatticeMazeData, currentLayer: 0, }]
+            [...historyData, { ...currentLatticeMazeData, currentLayer: 0, data: turnLatticeData, vars }]
           );
         }
       } else {
@@ -257,23 +268,28 @@ export default {
 
     // 出口
     *exportGrid({ payload }, { call, put, select }) {
-      const { toLayer } = payload
+      const { toLayer, toChapter } = payload
       const { turnLatticeData, currentLayer, curLatticeMazeId } = yield select(state => state.TurnLatticeModel);
       const historyData = yield call(
         LocalStorage.get,
         LocalCacheKeys.TURN_LATTICE_DATA,
       );
-      if (turnLatticeData.length >= toLayer) {
-        yield call(
-          LocalStorage.set,
-          LocalCacheKeys.TURN_LATTICE_DATA,
-          historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, currentLayer: toLayer - 1 } : item)
-        );
-        yield put(action('updateState')({ currentLayer: toLayer - 1 }));
-        return turnLatticeData[toLayer - 1].config
-      }
-      else {
-        return null
+      if (toChapter != undefined && toLayer === undefined) {
+        yield put.resolve(action('SceneModel/processActions')({ ...payload }))
+        DeviceEventEmitter.emit(EventKeys.CLOSE_TURN_LATTICE_EVENT)
+      } else {
+        if (turnLatticeData.length >= toLayer) {
+          yield call(
+            LocalStorage.set,
+            LocalCacheKeys.TURN_LATTICE_DATA,
+            historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, currentLayer: toLayer - 1 } : item)
+          );
+          yield put(action('updateState')({ currentLayer: toLayer - 1 }));
+          return turnLatticeData[toLayer - 1].config
+        }
+        else {
+          return null
+        }
       }
     },
 
@@ -435,6 +451,79 @@ export default {
       } else {
         return false
       }
+    },
+
+    // 检查 事件 状态
+    *checkEventStatus({ payload }, { call, put, select }) {
+      const { andVarsOn, andVarsOff } = payload
+      const { curLatticeMazeId, turnLatticeData } = yield select(state => state.TurnLatticeModel);
+      const historyData = yield call(
+        LocalStorage.get,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+      );
+      const currentLatticeMazeData = historyData?.find(item => item.latticeMazeId === curLatticeMazeId)
+      // 没有保存 就直接返回
+      if (historyData == null || currentLatticeMazeData === undefined) {
+        return true
+      }
+
+      const { vars } = currentLatticeMazeData
+      let isTrigger = true
+      if (Array.isArray(andVarsOn)) {
+        for (let index = 0; index < andVarsOn.length; index++) {
+          const currentVar = vars.find(item => item.id === andVarsOn[index])
+          if (currentVar.value === 0) {
+            isTrigger = false
+            break;
+          }
+        }
+      }
+      if (Array.isArray(andVarsOff) && isTrigger === true) {
+        for (let index = 0; index < andVarsOn.length; index++) {
+          const currentVar = vars.find(item => item.id === andVarsOn[index])
+          if (currentVar.value === 1) {
+            isTrigger = false
+            break;
+          }
+        }
+      }
+
+      return isTrigger
+    },
+
+    // 改变 vars 值
+    *turnLatticeChangeVars({ payload }, { call, put, select }) {
+      const { turnLattice_varsOn, turnLattice_varsOff } = payload
+      const { curLatticeMazeId, turnLatticeData } = yield select(state => state.TurnLatticeModel);
+      const historyData = yield call(
+        LocalStorage.get,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+      );
+      const currentLatticeMazeData = historyData?.find(item => item.latticeMazeId === curLatticeMazeId)
+      // 没有保存 就直接返回
+      if (historyData == null || currentLatticeMazeData === undefined) {
+        return
+      }
+
+      const { vars } = currentLatticeMazeData
+      if (Array.isArray(turnLattice_varsOn)) {
+        for (let index = 0; index < turnLattice_varsOn.length; index++) {
+          const currentVar = vars.find(item => item.id === turnLattice_varsOn[index])
+          currentVar.value = 1
+        }
+      }
+      if (Array.isArray(turnLattice_varsOff)) {
+        for (let index = 0; index < turnLattice_varsOff.length; index++) {
+          const currentVar = vars.find(item => item.id === turnLattice_varsOff[index])
+          currentVar.value = 0
+        }
+      }
+      yield call(
+        LocalStorage.set,
+        LocalCacheKeys.TURN_LATTICE_DATA,
+        historyData.map(item => item.latticeMazeId === curLatticeMazeId ? { ...item, vars } : item)
+      );
+      DeviceEventEmitter.emit("TURN_LATTICE_REFRESH")
     },
 
   },

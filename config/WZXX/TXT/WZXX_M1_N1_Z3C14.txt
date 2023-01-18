@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C14']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C14FZ'] }, 
-    { header: '铁匠分支6 重逢' },
+    { header: '铁匠分支 重逢' },
     { world: { name: '灵修界' } },
 ]
 #END==========================================

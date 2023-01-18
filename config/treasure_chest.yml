@@ -70,4 +70,52 @@ data: [
       }
     },
   },
+
+  {
+    # ID
+    id: 5,
+
+    # 是否宝箱类型
+    box: true,
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [  { propId: 377, num: 1, rate: 100 } ],
+      }
+    },
+  },
+
+  {
+    # ID
+    id: 6,
+
+    # 是否宝箱类型
+    box: true,
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [  { propId: 378, num: 1, rate: 100 } ],
+      }
+    },
+  },
+
+  {
+    # ID
+    id: 7,
+
+    # 是否宝箱类型
+    box: true,
+
+    # 产出配置
+    products: {
+      # 随机道具
+      props: {
+        p100: [  { propId: 379, num: 1, rate: 100 } ],
+      }
+    },
+  },
 ]
