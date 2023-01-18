@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   gridContainer: {
     width: 50,
     height: 50,
-    borderColor: '#fff',
+    borderColor: 'rgba(0,0,0)',
     borderBottomWidth: 1,
     borderRightWidth: 1,
   },

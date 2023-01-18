@@ -39,9 +39,14 @@ export const Grid_NotOpen = ({ isOpened }) => {
     <View
       style={[
         styles.gridContainer,
-        { backgroundColor: '#0E64FF', opacity: isOpened ? 0.7 : 1 },
       ]}
-    />
+    >
+      {
+        isOpened
+          ? <FastImage style={{ flex: 1 }} source={require("../../../../assets/games/turnLattice/grid/blue_2.png")} />
+          : <FastImage style={{ flex: 1 }} source={require("../../../../assets/games/turnLattice/grid/blue_1.png")} />
+      }
+    </View>
   );
 };
 
@@ -72,15 +77,7 @@ export const Grid_CanOpen = ({
         }
       }}>
       <View style={[styles.gridContainer, containerStyle]}>
-        <View
-          style={{
-            ...styles.gridContainer,
-            position: 'absolute',
-            zIndex: 3,
-            backgroundColor: '#F76363',
-            opacity: 0.7,
-          }}
-        />
+        <FastImage style={{ position: 'absolute', width: "100%", height: "100%", zIndex: 3, }} source={require('../../../../assets/games/turnLattice/grid/red_2.png')} />
         {
           (isProhibit || !isTrigger)
             ? (
@@ -219,7 +216,9 @@ const Grid_Empty = ({ item, openGrid, isTouchStart }) => {
 
 // 墙格子
 const Grid_Wall = () => {
-  return <View style={[styles.gridContainer, { backgroundColor: '#0E64FF' }]} />;
+  return <View style={[styles.gridContainer,]} >
+    <FastImage style={{ flex: 1 }} source={require("../../../../assets/games/turnLattice/grid/blue_1.png")} />
+  </View>;
 };
 
 // 事件格子
@@ -282,7 +281,7 @@ const styles = StyleSheet.create({
   gridContainer: {
     width: 50,
     height: 50,
-    borderColor: '#fff',
+    borderColor: 'rgba(0,0,0)',
     borderBottomWidth: 1,
     borderRightWidth: 1,
   },

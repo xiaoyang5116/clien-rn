@@ -42,6 +42,7 @@ const TurnLattice = props => {
   const row = turnLatticeData[currentLayer]?.row || 0;
   const column = turnLatticeData[currentLayer]?.row || 0;
   const img = turnLatticeData[currentLayer]?.img || 0;
+  const layerTitle = turnLatticeData[currentLayer]?.desc || ""
 
   const pan = useRef(new Animated.ValueXY()).current;
   const scaleAnim = useRef(new Animated.Value(1)).current;
@@ -180,6 +181,7 @@ const TurnLattice = props => {
 
   return (
     <View style={styles.viewContainer}>
+      <FastImage source={require('../../../../assets/games/turnLattice/bg.png')} style={{ position: 'absolute', width: '100%', height: "100%" }} />
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <Animated.View
@@ -196,6 +198,9 @@ const TurnLattice = props => {
                 { translateY: pan.y },
               ],
             }}>
+            <View style={{ position: 'absolute', top: -50 }}>
+              <Text style={{ fontSize: 20, color: "#fff" }}>{layerTitle}</Text>
+            </View>
             <Image
               style={{
                 width: '100%',
