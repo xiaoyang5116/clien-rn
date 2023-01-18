@@ -3,6 +3,7 @@ import React from 'react'
 
 import { Grid_CanOpen, Grid_HaveOpened, Grid_NotOpen } from '../Grid'
 import FastImage from 'react-native-fast-image';
+import { playEffect } from '../../../sound/utils';
 
 const imgData = {
   opened: require('../../../../../assets/games/turnLattice/baoxiang_opened.png'),
@@ -19,6 +20,7 @@ const TreasureChestGrid = (props) => {
     if (treasureChestIsOpen) {
 
     } else {
+      playEffect({ soundId: "SE_UE_0012" })
       handlerGridEvent(item)
     }
   }

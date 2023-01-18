@@ -6,6 +6,7 @@ import { action, connect, getBossIcon, EventKeys } from '../../../../constants';
 
 import { Grid_CanOpen, Grid_HaveOpened, Grid_NotOpen } from '../Grid'
 import FastImage from 'react-native-fast-image';
+import { playEffect } from '../../../sound/utils';
 
 // Boss格子
 const BossGrid = (props) => {
@@ -64,7 +65,10 @@ const BossGrid = (props) => {
         <TouchableOpacity
           onPressIn={() => { isTouchStart.current = false }}
           onPressOut={() => { isTouchStart.current = true }}
-          onPress={() => handlerGridEvent(item)}>
+          onPress={() => {
+            playEffect({ soundId: "SE_UE_0011" })
+            handlerGridEvent(item)
+          }}>
           <View
             style={[
               styles.gridContainer,

@@ -48,7 +48,10 @@ const PropGrid = (props) => {
         <TouchableOpacity
           onPressIn={() => { isTouchStart.current = false }}
           onPressOut={() => { isTouchStart.current = true }}
-          onPress={() => handlerGridEvent(item)}>
+          onPress={() => {
+            playEffect({ soundId: "SE_UE_0013" })
+            handlerGridEvent(item)
+          }}>
           <View
             style={[
               styles.gridContainer,

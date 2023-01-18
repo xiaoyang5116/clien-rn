@@ -29,6 +29,7 @@ import PropGrid from './eventGrid/PropGrid';
 import TreasureChestGrid from './eventGrid/TreasureChestGrid';
 import BossGrid from './eventGrid/BossGrid';
 import DialogGrid from './eventGrid/DialogGrid';
+import { playEffect } from '../../sound/utils';
 
 // 事件类型:  "道具" || "战斗" || "剧情"
 
@@ -71,6 +72,7 @@ export const Grid_CanOpen = ({
       onPress={() => {
         if (!isProhibit && isTrigger) {
           openGrid()
+          playEffect({ soundId: "SE_UE_0001" })
         }
         if (isTrigger === false) {
           confirm('未触发对应剧情');
@@ -125,6 +127,7 @@ const Grid_Export = (props) => {
   const [isHaveKey, setIsHaveKey] = useState(false)
 
   const exportHandler = () => {
+    playEffect({ soundId: "SE_UE_0001" })
     if (isHaveKey) {
       const text = (item.toChapter != undefined && item.toLayer === undefined) ? "恭喜通关!" : `确认进入下一层？`
       confirm(text,
