@@ -59,7 +59,7 @@ export const Grid_CanOpen = ({
   children = null,
   containerStyle
 }) => {
-  const { isProhibit, isTrigger = true } = item
+  const { isProhibit, isTrigger = true, event } = item
 
   return (
     <TouchableHighlight
@@ -96,7 +96,23 @@ export const Grid_CanOpen = ({
                 />
               </View>
             )
-            : <></>
+            : event != undefined
+              ? (
+                <View
+                  style={{
+                    ...styles.gridContainer,
+                    position: 'absolute',
+                    zIndex: 4,
+                  }}
+                >
+                  <FastImage
+                    resizeMode="contain"
+                    style={{ width: '100%', height: "100%" }}
+                    source={require('../../../../assets/animations/onomatopoeia/feiwu_gantanhao.png')}
+                  />
+                </View>
+              )
+              : <></>
         }
         {children}
       </View>
