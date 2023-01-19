@@ -42,7 +42,7 @@ const DialogGrid = (props) => {
           onPressIn={() => { isTouchStart.current = false }}
           onPressOut={() => { isTouchStart.current = true }}
           onPress={() => {
-            playEffect({ soundId: "SE_UE_0010" })
+            // playEffect({ soundId: "SE_UE_0010" })
             handlerGridEvent(item)
           }}>
           <View

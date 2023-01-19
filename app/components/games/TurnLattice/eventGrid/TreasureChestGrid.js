@@ -20,7 +20,7 @@ const TreasureChestGrid = (props) => {
     if (treasureChestIsOpen) {
 
     } else {
-      playEffect({ soundId: "SE_UE_0012" })
+      playEffect({ soundId: "SE_UE_0015" })
       handlerGridEvent(item)
     }
   }

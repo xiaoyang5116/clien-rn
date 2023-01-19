@@ -49,7 +49,7 @@ const PropGrid = (props) => {
           onPressIn={() => { isTouchStart.current = false }}
           onPressOut={() => { isTouchStart.current = true }}
           onPress={() => {
-            playEffect({ soundId: "SE_UE_0013" })
+            // playEffect({ soundId: "SE_UE_0013" })
             handlerGridEvent(item)
           }}>
           <View

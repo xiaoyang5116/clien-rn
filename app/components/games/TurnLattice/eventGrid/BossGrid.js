@@ -66,7 +66,7 @@ const BossGrid = (props) => {
           onPressIn={() => { isTouchStart.current = false }}
           onPressOut={() => { isTouchStart.current = true }}
           onPress={() => {
-            playEffect({ soundId: "SE_UE_0011" })
+            // playEffect({ soundId: "SE_UE_0011" })
             handlerGridEvent(item)
           }}>
           <View
