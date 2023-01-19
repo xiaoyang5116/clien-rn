@@ -21,7 +21,7 @@ import { ArticleOptionActions } from '../../article';
 import { confirm } from '../../dialog';
 
 import FastImage from 'react-native-fast-image';
-import { TextButton } from '../../../constants/custom-ui';
+import { ImageButton, ReturnButton, TextButton } from '../../../constants/custom-ui';
 import RootView from '../../RootView';
 import PopComponent from './PopComponent';
 import Grid from './Grid';
@@ -43,6 +43,9 @@ const TurnLattice = props => {
   const column = turnLatticeData[currentLayer]?.row || 0;
   const img = turnLatticeData[currentLayer]?.img || 0;
   const layerTitle = turnLatticeData[currentLayer]?.desc || ""
+
+  const _height = 50 * column
+  const _width = 50 * row
 
   const pan = useRef(new Animated.ValueXY()).current;
   const scaleAnim = useRef(new Animated.Value(1)).current;
@@ -187,39 +190,66 @@ const TurnLattice = props => {
           <Animated.View
             {...panResponder.panHandlers}
             style={{
-              height: 50 * column,
-              width: 50 * row,
-              flexDirection: 'row',
-              justifyContent: 'flex-start',
-              flexWrap: 'wrap',
+              height: _height + 30,
+              width: _width + 30,
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "rgba(60,60,60,0.6)",
+              borderWidth: 2,
+              borderColor: "rgba(62,62,62,0.6)",
               transform: [
                 { scale: scaleAnim },
                 { translateX: pan.x },
                 { translateY: pan.y },
               ],
             }}>
-            <View style={{ position: 'absolute', top: -50 }}>
+            <View style={{ position: 'absolute', top: -50, left: 0, zIndex: 5 }}>
               <Text style={{ fontSize: 20, color: "#fff" }}>{layerTitle}</Text>
             </View>
-            <Image
-              style={{
-                width: '100%',
-                height: '100%',
-                position: 'absolute',
-                opacity: gridConfig.length === 0 ? 0 : 1,
-              }}
-              source={getTurnLatticeBg(img)}
-            />
-            {gridConfig.length !== 0 ? (
-              gridConfig.map((item, index) => (
-                <RenderItem key={index} item={item} />
-              ))
-            ) : (
-              <></>
-            )}
+            <View style={{
+              width: _width + 20,
+              height: _height + 20,
+              justifyContent: "center",
+              alignItems: "center",
+              borderWidth: 4,
+              borderColor: "rgba(101,101,101,0.6)",
+            }}>
+              <View style={{
+                borderWidth: 2,
+                borderColor: "666666"
+              }}>
+                <View style={{
+                  height: _height,
+                  width: _width,
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                  flexWrap: 'wrap',
+                }}>
+                  <Image
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      position: 'absolute',
+                      opacity: gridConfig.length === 0 ? 0 : 1,
+                    }}
+                    source={getTurnLatticeBg(img)}
+                  />
+                  {gridConfig.length !== 0 ? (
+                    gridConfig.map((item, index) => (
+                      <RenderItem key={index} item={item} />
+                    ))
+                  ) : (
+                    <></>
+                  )}
+                </View>
+              </View>
+            </View>
+
           </Animated.View>
         </View>
-        <TextButton title="退出" onPress={onClose} style={{ marginTop: 20 }} />
+        <View style={{ width: px2pd(172), marginBottom: 12 }}>
+          <ReturnButton onPress={onClose} />
+        </View>
       </SafeAreaView>
       {pop}
     </View>
@@ -247,14 +277,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     zIndex: 99,
-    backgroundColor: '#fff',
-  },
-  gridContainer: {
-    width: 50,
-    height: 50,
-    borderColor: '#fff',
-    borderBottomWidth: 1,
-    borderRightWidth: 1,
   },
   popContainer: {
     position: 'absolute',
