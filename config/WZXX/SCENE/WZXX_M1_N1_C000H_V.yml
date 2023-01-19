@@ -134,9 +134,17 @@ scenes: [
       },
 
       {
-        id: 'C2', desc: '军事重地，闲杂人等不得进入', 
+        id: 'C2', desc: '军事重地，闲杂人等不得进入，不过外面有个木人，可以练习战斗……', 
         options: [
-         { title: '【<<<返回】', varsOn: ['T1'], nextChat: 'C1'}, 
+         { title: '【和木人练习战斗】', challenge: 'f_x1', varsOn: ['T1'], nextChat: 'C4'}, 
+         { title: '【<<<算了，返回】', varsOn: ['T1'], nextChat: 'C1'}, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: "感觉武力有所提升！", 
+        options: [ 
+         { title: '【返回】', varsOn: ['T1'], nextChat: 'C1'}, 
         ],
       },
 
@@ -1297,7 +1305,16 @@ scenes: [
       { 
         id: 'C1', desc: "铺内的商品琳琅满目，不少客人驻足浏览。", 
         options: [ 
+        { title: '【进入商铺购买】',toShop: 'default_4',  nextChat: 'C4'},  
          { title: '【移动>>>】',nextChat: 'C2'}, 
+        ],
+      },
+
+      
+      { 
+        id: 'C4', desc: '买完去别处看看……', 
+        options: [
+        { title: '【<<<返回】', nextChat: 'C1'},  
         ],
       },
 

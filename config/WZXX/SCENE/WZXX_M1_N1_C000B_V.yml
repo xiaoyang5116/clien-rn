@@ -988,10 +988,12 @@ scenes: [
       { 
         id: 'C1', desc: '建筑风格狂野，棱角分明，很符合自身定位', 
         options: [ 
+         { title: '【可以购买装备和兵器】',toShop: 'default_1',  nextChat: 'C4'},  
          { title: '【兵器铺告示】', nextChat: 'C2'}, 
          { title: '【移动】', nextChat: 'X1'}, 
         ],
       },
+
       #
       { 
         id: 'C2', desc: '招募练器师傅，需要练器师一阶，筑基期修为', 

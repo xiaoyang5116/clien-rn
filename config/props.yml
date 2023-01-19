@@ -259,6 +259,7 @@ props: [
   { id:  370, name: '剧情灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
   { id:  371, name: '细节灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
   { id:  372, name: '操作灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capac     ity: 100, desc: ' ' },	
-
+   
+  
 
 ]

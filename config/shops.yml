@@ -26,8 +26,518 @@ shops: [
                { propId: 887, num: 10 },
             ]
          },
+
+         { 
+            # 道具ID
+            propId: 100004,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 100 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100006,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 100 },
+            ]
+         },
+
+          { 
+            # 道具ID
+            propId: 100008,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 100 },
+            ]
+         },
       ]
    },
+
+
+   {
+      id: 'default_1',
+
+      name: '坊市商铺',
+
+      # CD刷新周期，单位秒
+      cdValue: 0,
+
+      # 商城道具购买列表
+      buy_list: [
+         { 
+            # 道具ID
+            propId: 100006,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 10 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100000,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 100 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100002,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 1000 },
+            ]
+         },
+
+          { 
+            # 道具ID
+            propId: 100004,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 1000 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100008,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 10000 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100010,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 1000 },
+            ]
+         },
+      ]
+   },
+
+
+   {
+      id: 'default_2',
+
+      name: '牧川坊市商铺',
+
+      # CD刷新周期，单位秒
+      cdValue: 0,
+
+      # 商城道具购买列表
+      buy_list: [
+         { 
+            # 道具ID
+            propId: 100014,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 10 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100016,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 100 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100018,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 1000 },
+            ]
+         },
+
+          { 
+            # 道具ID
+            propId: 100020,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 1000 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100022,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 10000 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100024,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 1000 },
+            ]
+         },
+      ]
+   },
+
+
+   {
+      id: 'default_3',
+
+      name: '百草坊市商铺',
+
+      # CD刷新周期，单位秒
+      cdValue: 0,
+
+      # 商城道具购买列表
+      buy_list: [
+         { 
+            # 道具ID
+            propId: 100028,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 10 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100030,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 100 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100032,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 1000 },
+            ]
+         },
+
+          { 
+            # 道具ID
+            propId: 100034,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 1000 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100036,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 10000 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100038,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 1000 },
+            ]
+         },
+      ]
+   },
+
+
+   {
+      id: 'default_4',
+
+      name: '绛云商铺',
+
+      # CD刷新周期，单位秒
+      cdValue: 0,
+
+      # 商城道具购买列表
+      buy_list: [
+         { 
+            # 道具ID
+            propId: 100042,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 10 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100044,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 100 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100046,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 1000 },
+            ]
+         },
+
+          { 
+            # 道具ID
+            propId: 100048,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 1000 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100050,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 10000 },
+            ]
+         },
+
+         { 
+            # 道具ID
+            propId: 100052,
+            # 刷新概率设定
+            rates : {
+               p100: [ { num: 1, rate: 100 }, { num: 1, rate: 100 } ],
+               # p1000: [ { num: 30, rate: 200 }, { num: 40, rate: 300 } ],
+               # p10000: [ { num: 50, rate: 800 } ],
+            },
+            # 消耗设定
+            consume: [
+               { propId: 887, num: 1000 },
+            ]
+         },
+      ]
+   },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
     {
       id: 'shop_sell_test_1',
 

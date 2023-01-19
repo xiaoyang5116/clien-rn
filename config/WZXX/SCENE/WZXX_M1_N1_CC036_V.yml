@@ -32,7 +32,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_CC036_VS', desc: '选项', 
         options: [     
-        {title: "【进入探索副本】", sendProps: '382,10', games: { id: 8, latticeMazeId: "航海探索", 
+        {title: "【前去查看】", sendProps: '382,10', games: { id: 8, latticeMazeId: "蜘蛛洞窟探险", 
              # isReload: false'381,1', 
           } },
         ],
@@ -41,7 +41,7 @@ scenes: [
         id: 'WZXX_M1_N1_CC036_V1', desc: '', 
         options: [
           {
-          title: "【先一起赶路吧】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } 
+          title: "【先一起赶路吧】", games: { id: 8, latticeMazeId: "蜘蛛洞窟探险", isReload: false } 
           },
 
         ],
@@ -63,7 +63,7 @@ scenes: [
         options: [
 
         {
-        title: "【独自赶路】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
+        title: "【独自赶路】", games: { id: 8, latticeMazeId: "蜘蛛洞窟探险", isReload: false } ,
         },
 
         ],
@@ -74,7 +74,7 @@ scenes: [
         options: [
 
         {
-        title: "【继续赶路吧】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
+        title: "【继续赶路吧】", games: { id: 8, latticeMazeId: "蜘蛛洞窟探险", isReload: false } ,
         },
 
         ],
@@ -84,7 +84,7 @@ scenes: [
         id: 'WZXX_M1_N1_CC036_V5', desc: '', 
         options: [
         {
-        title: "【离开】", games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
+        title: "【离开】", games: { id: 8, latticeMazeId: "蜘蛛洞窟探险", isReload: false } ,
         },
 
         ],
@@ -108,7 +108,7 @@ scenes: [
         {
         title: "【一切都结束了】",
         #  sendProps: '379,1',
-        games: { id: 8, latticeMazeId: "航海探索", isReload: false } ,
+        games: { id: 8, latticeMazeId: "蜘蛛洞窟探险", isReload: false } ,
         },
 
         ],
@@ -170,7 +170,7 @@ scenes: [
                 btn: [
                 {
                 title: '既如此，那便走吧',
-                games: { id: 8, latticeMazeId: "航海探索", isReload: false } 
+                games: { id: 8, latticeMazeId: "蜘蛛洞窟探险", isReload: false } 
                 },
                 ]
               },
