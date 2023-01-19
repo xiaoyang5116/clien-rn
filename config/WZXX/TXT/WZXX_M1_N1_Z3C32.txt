@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C32']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C32FZ'] }, 
-    { header: '蜘蛛洞穴 第三层 （加入小队）' },
+    { header: '蜘蛛洞穴 第三层 ' },
     { world: { name: '灵修界' } },
     ]
 #END==========================================
