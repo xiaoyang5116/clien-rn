@@ -1064,8 +1064,8 @@ scenes: [
         id: 'C1', desc: "这里是售卖出草药的集市，有不少的摊子\n也许能淘到些宝贝。", 
         options: [ 
 
-        { title: '【随便看看】', nextChat: 'C2',icon: { id: 8 ,}, andVarsOff: ['V2'], varsOn: ['V3','biaoqianv0'] }, 
-        { title: '【随便看看】', nextChat: 'C2',icon: { id: 1, bindVar: 'biaoqianv0' },andVarsOn: ['V2'], }, 
+        { title: '【随便看看】', nextChat: 'C2',icon: { id: 8 ,}, andVarsOff: ['V3'], varsOn: ['V3','biaoqianv0'] }, 
+        { title: '【随便看看】', nextChat: 'C2',icon: { id: 1, bindVar: 'biaoqianv0' },andVarsOn: ['V3'], }, 
         { title: '【移动>>>】',andVarsOn: ['T1'], nextChat: 'C6'}, 
         ],
       },
@@ -1683,6 +1683,7 @@ scenes: [
     { id: "V3", min: 0, max: 1 },
     { id: "V2", min: 0, max: 1 },
     { id: "V1", min: 0, max: 1 },
+    { id: "V0", min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -1702,10 +1703,10 @@ scenes: [
         { title: '【询问看热闹的路人】', nextChat: 'C2',icon: { id: 8 ,}, andVarsOff: ['V0'], varsOn: ['V0','biaoqianv0'] }, 
         { title: '【询问看热闹的路人】', nextChat: 'C2',icon: { id: 1, bindVar: 'biaoqianv0' },andVarsOn: ['V0'], }, 
 
-        { title: '【询问悠闲的商人】', nextChat: 'C5',icon: { id: 8 ,}, andVarsOff: ['V1'], varsOn: ['V0','biaoqianv1'] }, 
+        { title: '【询问悠闲的商人】', nextChat: 'C5',icon: { id: 8 ,}, andVarsOff: ['V1'], varsOn: ['V1','biaoqianv1'] }, 
         { title: '【询问悠闲的商人】', nextChat: 'C5',icon: { id: 1, bindVar: 'biaoqianv1' },andVarsOn: ['V1'], }, 
 
-        { title: '【询问着急的商人】', nextChat: 'C6',icon: { id: 8 ,}, andVarsOff: ['V2'], varsOn: ['V0','biaoqianv2'] }, 
+        { title: '【询问着急的商人】', nextChat: 'C6',icon: { id: 8 ,}, andVarsOff: ['V2'], varsOn: ['V2','biaoqianv2'] }, 
         { title: '【询问着急的商人】', nextChat: 'C6',icon: { id: 1, bindVar: 'biaoqianv2' },andVarsOn: ['V2'], }, 
 
         { title: '【询问管事的人】', nextChat: 'C7',icon: { id: 8 ,}, andVarsOff: ['V3'], varsOn: ['V3','biaoqianv3'] }, 
@@ -1765,7 +1766,6 @@ scenes: [
          { title: '【空地】', toScene: 'C000G_V_MAP_6_-1'}, 
          { title: '【镇东口迎客树】', toScene: 'C000G_V_MAP_7_0'}, 
          { title: '【信息了解完毕】',toChapter: "WZXX_M1_N1_Z3C02",andVarsOff: ['WZXX_M1_N1_C000G_V/v_icon_1','WZXX_M1_N1_C000G_V/v_icon_2','WZXX_M1_N1_C000G_V/v_icon_3',],icon: { id: 11 ,},}, 
-
         ],
       },
 
