@@ -54,7 +54,7 @@ scenes: [
           { title: '种植', openUI: "ZhongZhi" },
           { title: '炼器', openUI: "LianQi" },
           { title: '【背景对话框(5 号)】', dialogs: ['p1'] },
-          { title: '航海探索', games: { id: 8, latticeMazeId: "航海探索", 
+          { title: '航海探索', games: { id: 8, latticeMazeId: "蜘蛛洞窟探险", 
           # isReload: false 
           } },
           { title: '抽签选项', dialogs: ['p2'] },

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ImageBackground } from 'react-native';
 
 import {
     action,
@@ -10,14 +11,15 @@ import {
     DEBUG_MODE,
 } from "../../constants";
 
-import { 
-    View, 
-    Text, 
-    FlatList, 
+import {
+    View,
+    Text,
+    FlatList,
     TouchableOpacity,
 } from '../../constants/native-ui';
 
 import {
+    ReturnButton,
     TabButton, TextButton,
 } from '../../constants/custom-ui';
 
@@ -29,8 +31,14 @@ import WorldUtils from '../../utils/WorldUtils';
 import qualityStyle from '../../themes/qualityStyle';
 import { confirm } from '../../components/dialog';
 
+const worldBtnBgData = [
+    { id: 0, img: require('../../../assets/button/world_0_btn.png') },
+    { id: 1, img: require('../../../assets/button/world_1_btn.png') },
+    { id: 2, img: require('../../../assets/button/world_2_btn.png') },
+]
 const WorldButton = (props) => {
     const worldId = WorldUtils.getWorldIdByName(props.name);
+    const img = worldBtnBgData.find(item => item.id === worldId).img
 
     const onSelected = (worldId) => {
         props.dispatch(action('PropsModel/filter')({ type: '', worldId: worldId }));
@@ -41,13 +49,36 @@ const WorldButton = (props) => {
 
     return (
         <View>
-            <TextButton title={props.name} onPress={() => onSelected(worldId)} />
-            {
-            (props.user.worldId != worldId)
-            ? (<View style={{ position: 'absolute', borderRadius: 5, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)' }} pointerEvents='none' />)
-            : <></>
-            }
+            <TouchableOpacity onPress={() => onSelected(worldId)}>
+                <FastImage style={{
+                    width: px2pd(260),
+                    height: px2pd(160),
+                    opacity: (props.user.worldId != worldId) ? 0.6 : 1,
+                }} source={img} />
+            </TouchableOpacity>
+            {/* <TextButton title={props.name} onPress={() => onSelected(worldId)} /> */}
+            {/* {
+                (props.user.worldId != worldId)
+                    ? (<View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.1)' }} pointerEvents='none' />)
+                    : <></>
+            } */}
+        </View >
+    )
+}
+
+const PropTabButton = ({ title, style, onPress }) => {
+    return (
+        <View style={style}>
+            <TouchableOpacity onPress={onPress} style={{ overflow: "hidden" }}>
+                <ImageBackground
+                    style={{ width: px2pd(160), height: px2pd(88), justifyContent: 'center', alignItems: "center" }}
+                    source={require('../../../assets/button/propPage_btnBg.png')}
+                >
+                    <Text style={{ fontSize: 16, color: "#000" }}>{title}</Text>
+                </ImageBackground>
+            </TouchableOpacity>
         </View>
+
     )
 }
 
@@ -83,28 +114,28 @@ const PropsPage = (props) => {
         const quality_style = qualityStyle.styles.find(e => e.id == parseInt(data.item.quality));
         const image = getPropIcon(data.item.iconId);
         return (
-        <TouchableOpacity onPress={() => propSelected(data)} activeOpacity={1}>
-            <View style={[styles.propsItem, (data.index == 0) ? styles.propsTopBorder : {}]}>
-                {(selectId == data.index) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={theme.propSelectedImage} /> : <></>}
-                <View style={styles.propsBorder}>
-                    <View style={{ }}>
-                        <FastImage style={{ 
-                                width: px2pd(100), height: px2pd(100), 
+            <TouchableOpacity onPress={() => propSelected(data)} activeOpacity={1}>
+                <View style={[styles.propsItem, (data.index == 0) ? styles.propsTopBorder : {}]}>
+                    {(selectId == data.index) ? <FastImage style={{ width: '100%', height: '100%', position: 'absolute', opacity: 0.6 }} source={theme.propSelectedImage} /> : <></>}
+                    <View style={styles.propsBorder}>
+                        <View style={{}}>
+                            <FastImage style={{
+                                width: px2pd(100), height: px2pd(100),
                                 borderRadius: 5, borderWidth: 1, borderColor: quality_style.borderColor,
-                                backgroundColor: quality_style.backgroundColor, 
-                            }} 
-                            source={image.img}
-                        />
-                    </View>
-                    <View style={{ flexDirection: 'row', marginLeft: px2pd(24) }} >
-                        <Text style={[{ fontSize: 22 }, { color: quality_style.fontColor }]} numberOfLines={1}>{data.item.name}</Text>
-                    </View>
-                    <View style={{ position: 'absolute', right: 0 }}>
-                        <Text style={{ marginRight: 10, fontSize: 22, color: '#424242', textAlign: 'right' }}>x{data.item.num}</Text>
+                                backgroundColor: quality_style.backgroundColor,
+                            }}
+                                source={image.img}
+                            />
+                        </View>
+                        <View style={{ flexDirection: 'row', marginLeft: px2pd(24) }} >
+                            <Text style={[{ fontSize: 22 }, { color: quality_style.fontColor }]} numberOfLines={1}>{data.item.name}</Text>
+                        </View>
+                        <View style={{ position: 'absolute', right: 0 }}>
+                            <Text style={{ marginRight: 10, fontSize: 22, color: '#424242', textAlign: 'right' }}>x{data.item.num}</Text>
+                        </View>
                     </View>
                 </View>
-            </View>
-        </TouchableOpacity>
+            </TouchableOpacity>
         );
     }
 
@@ -123,20 +154,20 @@ const PropsPage = (props) => {
                     </View>
                 </View>
                 <View style={{ height: 38 }}>
-                    <ScrollView horizontal={true} 
-                        pagingEnabled={false} 
-                        showsHorizontalScrollIndicator={false} 
+                    <ScrollView horizontal={true}
+                        pagingEnabled={false}
+                        showsHorizontalScrollIndicator={false}
                         contentContainerStyle={{ justifyContent: 'center', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-                        <TabButton title='全部' style={{ marginLeft: 8, marginRight: 15 }} onPress={() => { typeFilter('全部') }} />
-                        <TabButton title='材料' style={{ marginRight: 15 }} onPress={() => { typeFilter('材料') }} />
-                        <TabButton title='装备' style={{ marginRight: 15 }} onPress={() => { typeFilter('装备') }} />
-                        <TabButton title='丹药' style={{ marginRight: 15 }} onPress={() => { typeFilter('丹药')}} />
-                        <TabButton title='碎片' style={{ marginRight: 15 }} onPress={() => { typeFilter('碎片') }} />
-                        <TabButton title='特殊' style={{ marginRight: 10 }} onPress={() => { typeFilter('特殊') }} />
+                        <PropTabButton title={"全部"} style={{ marginLeft: 8, marginRight: 15 }} onPress={() => { typeFilter('全部') }} />
+                        <PropTabButton title='材料' style={{ marginRight: 15 }} onPress={() => { typeFilter('材料') }} />
+                        <PropTabButton title='装备' style={{ marginRight: 15 }} onPress={() => { typeFilter('装备') }} />
+                        <PropTabButton title='丹药' style={{ marginRight: 15 }} onPress={() => { typeFilter('丹药') }} />
+                        <PropTabButton title='碎片' style={{ marginRight: 15 }} onPress={() => { typeFilter('碎片') }} />
+                        <PropTabButton title='特殊' style={{ marginRight: 10 }} onPress={() => { typeFilter('特殊') }} />
                         {
-                        (DEBUG_MODE)
-                        ? <TabButton title='测试' style={{ marginRight: 10 }} onPress={() => { testHandler() }} />
-                        : <></>
+                            (DEBUG_MODE)
+                                ? <PropTabButton title='测试' style={{ marginRight: 10 }} onPress={() => { testHandler() }} />
+                                : <></>
                         }
                     </ScrollView>
                 </View>
@@ -157,11 +188,15 @@ const PropsPage = (props) => {
                         keyExtractor={item => item.recordId}
                     />
                 </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>
-                    <WorldButton name={'尘界'} {...props} />
-                    <WorldButton name={'现实'} {...props} />
-                    <WorldButton name={'灵修界'} {...props} />
+                <View style={{ width: "100%", flexDirection: 'row', justifyContent: "space-between", alignItems: "center", }}>
+                    <ReturnButton onPress={props.onClose} />
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: "space-evenly" }}>
+                        <WorldButton name={'尘界'} {...props} />
+                        <WorldButton name={'现实'} {...props} />
+                        <WorldButton name={'灵修界'} {...props} />
+                    </View>
                 </View>
+
             </View>
         </View>
     );
@@ -181,7 +216,7 @@ const styles = StyleSheet.create({
         height: px2pd(120),
     },
     propsBorder: {
-        flex: 1, 
+        flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         height: '100%',

@@ -27,8 +27,8 @@ import PropIcon from './components/PropIcon';
 
 export const TitleComponent = ({ title, style, source, }) => {
 
-  const img = source ? source : require('../../../assets/button/lianDan.png')
-  const widthAndHeight = source ? {} : { width: px2pd(385), height: px2pd(108), }
+  const img = source ? source : require('../../../assets/button/lianDan2.png')
+  const widthAndHeight = source ? {} : { width: px2pd(500), height: px2pd(108), }
   return (
     <ImageBackground style={{ ...widthAndHeight, justifyContent: 'center', alignItems: 'center', ...style }} source={img} >
       <Text style={styles.title_box}>{title}</Text>
@@ -113,7 +113,7 @@ const TargetsComponent = (props) => {
         <TitleComponent
           title={`预计耗时:${h_m_s_Format(time)}`}
           source={require('../../../assets/button/lianDan2.png')}
-          style={{ width: px2pd(500), height: px2pd(108),marginLeft: 24 }}
+          style={{ width: px2pd(500), height: px2pd(108), marginLeft:8 }}
         />
 
       </View>
