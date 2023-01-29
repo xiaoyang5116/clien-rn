@@ -87,10 +87,10 @@ scenes: [
         title: '随机抽签......',
         sections: [
           { id: 1, iconId: 1, rate: "<,25", content: '上上签', dialogs: ['p1'] },
-          { id: 2, iconId: 1, rate: "<,50", content: '上吉签', dialogs: ['p1'] },
-          { id: 3, iconId: 1, rate: "<,75", content: '中吉签', dialogs: ['p1'] },
-          { id: 4, iconId: 1, rate: "<,80", content: '中平签', dialogs: ['p1'] },
-          { id: 5, iconId: 1, rate: ">=,80", content: '下下签', dialogs: ['p1'] },
+          { id: 2, iconId: 2, rate: "<,50", content: '上吉签', dialogs: ['p1'] },
+          { id: 3, iconId: 3, rate: "<,75", content: '中吉签', dialogs: ['p1'] },
+          { id: 4, iconId: 4, rate: "<,80", content: '中平签', dialogs: ['p1'] },
+          { id: 5, iconId: 5, rate: ">=,80", content: '下下签', dialogs: ['p1'] },
         ]
       },
       { id: 'p3', style: 3, sections: ['记忆到此为止', '这只是聊个天，怎么就搞成真穿越了呢', '……',],  },
