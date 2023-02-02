@@ -11,7 +11,9 @@ scenes: [
 
     # 变量定义
     vars: [
-      { id: 'v1', min: 0, max: 1 }
+      { id: 'v1', min: 0, max: 1 },
+      { id: 'v2', min: 0, max: 1 },
+      { id: 'v3', min: 0, max: 1 },
     ],
 
     # 动作定义
@@ -38,6 +40,7 @@ scenes: [
       {
         id: 'c0', desc: '配置测试', 
         options: [
+          { title: "分支对话框", dialogs: ['p13'] },
           { title: "老者npc", toScene: 'npc_1' },
           { title: "砸鸡蛋", games: {id: 6, treasureChestId: 2} },
           { title: "没有style的确认取消-dialog", dialogs: ['p12']},
@@ -68,6 +71,31 @@ scenes: [
     ],
 
     dialogs: [
+      {
+        id: 'p13', style: 201,
+        sections: [
+          {
+            title: "分支1",
+            content: "发发沙发上度过的时间发",
+            conditions: [
+              { content: "条件一", andVarsOff: ['v1'], },
+              { content: "条件2", andVarsOff: ['v2'], },
+              { content: "条件3", andVarsOff: ['v3'], },
+            ],
+            btn: [{ title: '穿越', dialogs: ["p4"] },]
+          },
+          {
+            title: "分支2",
+            content: "说放假啊了快放假了",
+            conditions: [
+              { content: "条件一", andVarsOn: ['v1'], },
+              { content: "条件2", andVarsOn: ['v2'], },
+              { content: "条件3", andVarsOn: ['v3'], },
+            ],
+            btn: [{ title: '发烧', dialogs: ['p5'] },]
+          },
+        ],
+      },
       {
         id: 'p1', style: 5, textAnimationType: 'TextSingle',
         sections: [

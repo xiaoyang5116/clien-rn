@@ -171,7 +171,7 @@ const SimpleInfo = (props) => {
                 <View style={styles.progressBarView}>
                     <FastImage style={styles.progressBarBG} source={require('../../../assets/character/attr_bg.png')} />
                     <FastImage style={[styles.progressBarBody, { width: (tiLi / 1000) * px2pd(500) }]} source={require('../../../assets/character/tiLi_bar.png')} />
-                    <Text style={styles.progressBarText}>{tiLi}</Text>
+                    <Text style={styles.progressBarText}>{tiLi}/1000</Text>
                 </View>
             </View>
             <View style={styles.progressBarContainer}>
@@ -180,7 +180,7 @@ const SimpleInfo = (props) => {
                     <FastImage style={styles.progressBarBG} source={require('../../../assets/character/attr_bg.png')} />
                     {/* <View style={[styles.progressBarBody, { transform: [{ translateX: (faLi / 1000) * 180 }] }]} /> */}
                     <FastImage style={[styles.progressBarBody, { width: (faLi / 1000) * px2pd(500) }]} source={require('../../../assets/character/faLi_bar.png')} />
-                    <Text style={styles.progressBarText}>{faLi}</Text>
+                    <Text style={styles.progressBarText}>{faLi}/1000</Text>
                 </View>
             </View>
             <View style={styles.attrsContainer}>
