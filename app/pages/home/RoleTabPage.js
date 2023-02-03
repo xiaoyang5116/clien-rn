@@ -13,9 +13,10 @@ import {
     TouchableWithoutFeedback,
 } from '../../constants/native-ui';
 
-import { 
+import {
     DeviceEventEmitter,
-    ScrollView, 
+    ScrollView,
+    TouchableOpacity
 } from 'react-native';
 
 import lo from 'lodash';
@@ -27,6 +28,8 @@ import EquippedSideBar from '../../components/equips/EquippedSideBar';
 import XiuXingTabPage from './XiuXingTabPage';
 import Transitions from '../../components/transition';
 import GongFa from '../../components/gongFa';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../constants/resolution';
 
 const AttrsPage = (props) => {
     return (
@@ -44,7 +47,7 @@ const AttrsPage = (props) => {
                 <View style={detailStyles.labelAttrsDetail}>
                     <Text style={{ color: '#000', fontSize: 24, fontWeight: 'bold' }}>详细属性</Text>
                 </View>
-                <ScrollView style={{  }}>
+                <ScrollView style={{}}>
                     <View style={detailStyles.attrsDetailContainer}>
                         <ImageCapInset
                             style={{ width: '100%', height: '100%', position: 'absolute' }}
@@ -113,11 +116,13 @@ const SimpleInfo = (props) => {
     const [affects, setAffects] = React.useState([]);
 
     const updateHandler = () => {
-        AppDispath({ type: 'UserModel/getFinalAttrs', payload: { }, cb: (v) => {
-            if (!lo.isArray(v))
-                return
-            setAffects(v);
-        }});
+        AppDispath({
+            type: 'UserModel/getFinalAttrs', payload: {}, cb: (v) => {
+                if (!lo.isArray(v))
+                    return
+                setAffects(v);
+            }
+        });
     }
 
     React.useEffect(() => {
@@ -139,7 +144,7 @@ const SimpleInfo = (props) => {
     const getAffectValue = (array, key) => {
         if (!lo.isArray(array) || array.length <= 0)
             return 0;
-        
+
         let total = 0;
         array.forEach(e => {
             if (lo.isEqual(e.key, key)) {
@@ -157,50 +162,62 @@ const SimpleInfo = (props) => {
     const faShuFangYu = getAffectValue(affects, 'magicDefense');
 
     return (
-        <>
+        <View style={{ width: "45%" }}>
             <View style={styles.roleNameContainer}>
-                <View style={styles.roleName}>
-                    <Text style={{ color: '#000', fontWeight: 'bold' }}>李森炎</Text>
+                <Text style={{ color: '#6C7682', fontSize: 28 }}>李森炎</Text>
+            </View>
+            <View style={styles.progressBarContainer}>
+                <Text style={{ fontSize: 14, color: "#596068" }}>体力:</Text>
+                <View style={styles.progressBarView}>
+                    <FastImage style={styles.progressBarBG} source={require('../../../assets/character/attr_bg.png')} />
+                    <FastImage style={[styles.progressBarBody, { width: (tiLi / 1000) * px2pd(500) }]} source={require('../../../assets/character/tiLi_bar.png')} />
+                    <Text style={styles.progressBarText}>{tiLi}/1000</Text>
                 </View>
             </View>
             <View style={styles.progressBarContainer}>
-                <Text>体力:</Text>
+                <Text style={{ fontSize: 14, color: "#596068" }}>法力:</Text>
                 <View style={styles.progressBarView}>
-                    <View style={[styles.progressBarBody, { transform: [{ translateX: (tiLi / 1000) * 180 }] }]} />
-                    <Text style={styles.progressBarText}>{tiLi}</Text>
-                </View>
-            </View>
-            <View style={styles.progressBarContainer}>
-                <Text>法力:</Text>
-                <View style={styles.progressBarView}>
-                <View style={[styles.progressBarBody, { transform: [{ translateX: (faLi / 1000) * 180 }] }]} />
-                    <Text style={styles.progressBarText}>{faLi}</Text>
+                    <FastImage style={styles.progressBarBG} source={require('../../../assets/character/attr_bg.png')} />
+                    {/* <View style={[styles.progressBarBody, { transform: [{ translateX: (faLi / 1000) * 180 }] }]} /> */}
+                    <FastImage style={[styles.progressBarBody, { width: (faLi / 1000) * px2pd(500) }]} source={require('../../../assets/character/faLi_bar.png')} />
+                    <Text style={styles.progressBarText}>{faLi}/1000</Text>
                 </View>
             </View>
             <View style={styles.attrsContainer}>
                 <View style={styles.attrsItemView}>
-                    <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>物理攻击:</Text></View>
+                    {/* <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>物理攻击:</Text></View> */}
+                    <FastImage style={styles.attrsItemLeft} source={require('../../../assets/character/ptgj.png')} />
                     <View style={styles.attrsItemRight}><Text style={styles.attrsItemText}>{wuLiGongJi}</Text></View>
+                    <FastImage style={{ position: "absolute", bottom: 0, width: "100%", height: px2pd(3) }} source={require('../../../assets/character/line.png')} />
                 </View>
                 <View style={styles.attrsItemView}>
-                    <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>法术攻击:</Text></View>
+                    {/* <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>法术攻击:</Text></View> */}
+                    <FastImage style={styles.attrsItemLeft} source={require('../../../assets/character/fsgj.png')} />
                     <View style={styles.attrsItemRight}><Text style={styles.attrsItemText}>{faShuGongJi}</Text></View>
+                    <FastImage style={{ position: "absolute", bottom: 0, width: "100%", height: px2pd(3) }} source={require('../../../assets/character/line.png')} />
                 </View>
                 <View style={styles.attrsItemView}>
-                    <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>物理防御:</Text></View>
+                    {/* <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>物理防御:</Text></View> */}
+                    <FastImage style={styles.attrsItemLeft} source={require('../../../assets/character/ptfy.png')} />
                     <View style={styles.attrsItemRight}><Text style={styles.attrsItemText}>{puTongFangYu}</Text></View>
+                    <FastImage style={{ position: "absolute", bottom: 0, width: "100%", height: px2pd(3) }} source={require('../../../assets/character/line.png')} />
                 </View>
                 <View style={styles.attrsItemView}>
-                    <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>法术防御:</Text></View>
+                    {/* <View style={styles.attrsItemLeft}><Text style={styles.attrsItemText}>法术防御:</Text></View> */}
+                    <FastImage style={styles.attrsItemLeft} source={require('../../../assets/character/fsfy.png')} />
                     <View style={styles.attrsItemRight}><Text style={styles.attrsItemText}>{faShuFangYu}</Text></View>
+                    <FastImage style={{ position: "absolute", bottom: 0, width: "100%", height: px2pd(3) }} source={require('../../../assets/character/line.png')} />
                 </View>
             </View>
             <View style={styles.detailContainer}>
-                <View style={styles.detailButtonView}>
+                <TouchableOpacity>
+                    <FastImage style={{ width: px2pd(145), height: px2pd(55) }} source={require('../../../assets/character/detail.png')} />
+                </TouchableOpacity>
+                {/* <View style={styles.detailButtonView}>
                     <TextButton title={'详细'} onPress={onDetailHandler} />
-                </View>
+                </View> */}
             </View>
-        </>
+        </View>
     );
 }
 
@@ -208,9 +225,9 @@ const FuncButtons = (props) => {
 
     const openXiuXing = () => {
         const key = RootView.add(
-        <Transitions id={'OPEN_XIUXING_UI'}>
-            <XiuXingTabPage onClose={() => { RootView.remove(key); }} />
-        </Transitions>);
+            <Transitions id={'OPEN_XIUXING_UI'}>
+                <XiuXingTabPage onClose={() => { RootView.remove(key); }} />
+            </Transitions>);
     }
 
     const openGongFa = () => {
@@ -218,25 +235,43 @@ const FuncButtons = (props) => {
     }
 
     return (
-    <View style={fbStyles.viewContainer}>
-        <View style={fbStyles.box}>
-            <TextButton style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'修行'} onPress={() => openXiuXing()} />
+        <View style={fbStyles.viewContainer}>
+            <View style={fbStyles.box}>
+                <TouchableOpacity onPress={openXiuXing}>
+                    <FastImage style={{ width: px2pd(204), height: px2pd(206) }} source={require('../../../assets/character/xiulian.png')} />
+                </TouchableOpacity>
+                {/* <TextButton style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'修行'} onPress={() => openXiuXing()} /> */}
+            </View>
+            <View style={fbStyles.box}>
+                <TouchableOpacity onPress={openGongFa}>
+                    <FastImage style={{ width: px2pd(167), height: px2pd(193) }} source={require('../../../assets/character/gongfa.png')} />
+                </TouchableOpacity>
+                {/* <TextButton style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} onPress={openGongFa} title={'功法'} /> */}
+            </View>
+            <View style={fbStyles.box}>
+                <TouchableOpacity>
+                    <FastImage style={{ width: px2pd(169), height: px2pd(195) }} source={require('../../../assets/character/lingeng.png')} />
+                </TouchableOpacity>
+            </View>
+            <View style={fbStyles.box}>
+                <TouchableOpacity>
+                    <FastImage style={{ width: px2pd(181), height: px2pd(190) }} source={require('../../../assets/character/jianxia.png')} />
+                </TouchableOpacity>
+            </View>
+            {/* <View style={fbStyles.box}>
+                <TextButton disabled={true} style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'解锁'} />
+            </View> */}
         </View>
-        <View style={fbStyles.box}>
-            <TextButton style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} onPress={openGongFa} title={'功法'} />
-        </View>
-        <View style={fbStyles.box}>
-            <TextButton disabled={true} style={{ width: 60, height: 60, justifyContent: 'center', alignItems: 'center' }} title={'解锁'} />
-        </View>
-    </View>
     );
 }
 
 const RoleTabPage = (props) => {
     return (
         <View style={styles.viewContainer}>
-            <SimpleInfo />
-            <EquippedSideBar />
+            <View style={{ flexDirection: 'row', width: "100%", justifyContent: "space-between", paddingLeft: 12, paddingRight: 12 }}>
+                <SimpleInfo />
+                <EquippedSideBar />
+            </View>
             <FuncButtons />
         </View>
     );
@@ -252,44 +287,37 @@ const styles = StyleSheet.create({
 
     roleNameContainer: {
         width: '94%',
-        height: 50,
         marginTop: 10,
         marginBottom: 10,
-        justifyContent: 'center',
-        // backgroundColor: '#669900',
     },
 
     roleName: {
-        width: 180,
-        height: 35,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#666',
-        backgroundColor: '#ccc',
+
     },
 
     progressBarContainer: {
         width: '94%',
         height: 40,
-        // backgroundColor: '#669900',
     },
 
     progressBarView: {
-        width: 180,
-        height: 20,
-        backgroundColor: '#ccc',
-        borderRadius: 6,
+        width: px2pd(500),
+        height: px2pd(45),
         alignItems: 'center',
+        justifyContent: "center",
         overflow: 'hidden',
+    },
+    progressBarBG: {
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        zIndex: 0
     },
 
     progressBarBody: {
         position: 'absolute',
-        left: -180,
-        width: 180,
-        height: '100%',
-        backgroundColor: '#669900',
+        left: 2,
+        height: '71%',
     },
 
     progressBarText: {
@@ -299,21 +327,18 @@ const styles = StyleSheet.create({
     attrsContainer: {
         width: '94%',
         marginTop: 20,
-        // backgroundColor: '#669900',
     },
 
     attrsItemView: {
         flexDirection: 'row',
+        alignItems: "center",
         marginTop: 3,
         marginBottom: 3,
     },
 
     attrsItemLeft: {
-        width: 80,
-        height: 28,
-        // alignItems: 'center',
-        justifyContent: 'center',
-        // backgroundColor: '#669900',
+        width: px2pd(144),
+        height: px2pd(33),
     },
 
     attrsItemRight: {
@@ -322,9 +347,6 @@ const styles = StyleSheet.create({
         marginLeft: 0,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1,
-        borderColor: '#666',
-        backgroundColor: '#eee',
     },
 
     attrsItemText: {
@@ -332,11 +354,10 @@ const styles = StyleSheet.create({
     },
 
     detailContainer: {
-        width: '94%',
-        height: 40,
+        width: px2pd(145),
+        height: px2pd(55),
         marginTop: 20,
         justifyContent: 'center',
-        // backgroundColor: '#669900',
     },
 
     detailButtonView: {
@@ -356,7 +377,6 @@ const detailStyles = StyleSheet.create({
         width: '90%',
         height: '90%',
         alignItems: 'center',
-        // backgroundColor: '#669900',
     },
     closeButtonView: {
         position: 'absolute',
@@ -369,7 +389,6 @@ const detailStyles = StyleSheet.create({
         height: 40,
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor: 'rgba(0,0,0,0.5)'
     },
     attrsDetailContainer: {
         width: '100%',
@@ -390,7 +409,6 @@ const detailStyles = StyleSheet.create({
         height: 30,
         justifyContent: 'center',
         marginLeft: 15,
-        // backgroundColor: '#669900',
     },
     attrsDetailText: {
         color: '#000',
@@ -399,18 +417,15 @@ const detailStyles = StyleSheet.create({
 
 const fbStyles = StyleSheet.create({
     viewContainer: {
-        position: 'absolute', 
-        bottom: 50, 
-        width: '100%', 
-        height: 100, 
-        paddingLeft: 10,
-        justifyContent: 'flex-start', 
-        alignItems: 'center', 
+        width: '100%',
+        marginTop: 20,
+        justifyContent: 'flex-start',
+        alignItems: 'center',
         flexDirection: 'row',
-    }, 
+    },
     box: {
-        margin: 12, 
-        justifyContent: 'center', 
+        margin: 12,
+        justifyContent: 'center',
         alignItems: 'center',
     }
 });

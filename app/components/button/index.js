@@ -20,3 +20,16 @@ export const ReturnButton = (props) => {
     onPress={onPress ? onPress : () => { }}
   />
 }
+
+export const ExitButton = (props) => {
+  const BTN_STYLE = {
+    width: px2pd(217),
+    height: px2pd(220),
+  }
+  const { onPress } = props
+  return <ImageButton {...BTN_STYLE}
+    source={require('../../../assets/button/exit_button.png')}
+    selectedSource={require('../../../assets/button/exit_button_selected.png')}
+    onPress={onPress ? onPress : () => { }}
+  />
+}

@@ -6,9 +6,10 @@ import {
 
 import {
     View,
+    Text
 } from '../../constants/native-ui';
 
-import { 
+import {
     StyleSheet,
 } from 'react-native';
 
@@ -23,21 +24,24 @@ const EquippedSideBar = (props) => {
     const [placeHolders, setPlaceHolders] = React.useState([]);
 
     React.useEffect(() => {
-        AppDispath({ type: 'EquipModel/getEquipsEntity', payload: { }, cb: (v) => {
-            if (!lo.isArray(v))
-                return
+        AppDispath({
+            type: 'EquipModel/getEquipsEntity', payload: {}, cb: (v) => {
+                if (!lo.isArray(v))
+                    return
 
-            const views = [];
-            lo.forEach(tags, (t, k) => {
-                const found = v.find(e => lo.isEqual(e.tag, t));
-                views.push( <EquipPlaceHolder key={k} tag={t} initEquip={(found != undefined ? found.entity : null)} />);
-            });
-            setPlaceHolders(views);
-        }});
+                const views = [];
+                lo.forEach(tags, (t, k) => {
+                    const found = v.find(e => lo.isEqual(e.tag, t));
+                    views.push(<EquipPlaceHolder key={k} tag={t} initEquip={(found != undefined ? found.entity : null)} />);
+                });
+                setPlaceHolders(views);
+            }
+        });
     }, []);
 
     return (
         <View style={equipStyles.viewContainer}>
+            <Text style={{ color: '#6C7682', fontSize: 28, marginTop: 10, marginBottom: 10, textAlign:"right" }}>装备</Text>
             {placeHolders}
         </View>
     );
@@ -45,14 +49,15 @@ const EquippedSideBar = (props) => {
 
 const equipStyles = StyleSheet.create({
     viewContainer: {
-        position: 'absolute', 
-        right: 0, 
+        width: "45%",
+        // position: 'absolute', 
+        // right: 0, 
         // backgroundColor: 'rgba(128,128,128,0.5)', 
-        width: WIN_SIZE.width / 2, 
-        paddingTop: 10,
-        paddingBottom: 10,
-        justifyContent: 'center',
-        alignItems: 'flex-end',
+        // width: WIN_SIZE.width / 2, 
+        // paddingTop: 10,
+        // paddingBottom: 10,
+        // justifyContent: 'center',
+        // alignItems: 'flex-end',
     },
 });
 

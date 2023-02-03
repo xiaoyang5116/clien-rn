@@ -48,5 +48,10 @@
     "id": "OPEN_NpcDialog",
     "name": "黑色圆形转场",
     "comment": "打开Npc对话"
+  },
+  {
+    "id": "OPEN_FenZhiDialog",
+    "name": "黑色圆形转场",
+    "comment": "打开分支对话框"
   }
 ]

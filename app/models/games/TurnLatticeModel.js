@@ -412,6 +412,7 @@ export default {
       if (event && event.type === "剧情") {
         Modal.show(event)
         gridConfig[curIndex].type = "空"
+        gridConfig[curIndex].event = null
       }
 
       if (event && event.type === "宝箱") {

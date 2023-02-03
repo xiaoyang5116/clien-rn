@@ -20,6 +20,7 @@ import Transitions from '../transition';
 import { ArticleOptionActions } from '../article';
 import Questionnaire from './questionnaire';
 import NpcDialog from "./npcDialog"
+import FenZhiDialog from './fenZhiDialog';
 
 
 const DialogRoutes = (props) => {
@@ -166,6 +167,16 @@ const DialogRoutes = (props) => {
         return (
             <Transitions id={"OPEN_NpcDialog"}>
                 <NpcDialog
+                    {...props}
+                    actionMethod={actionMethod}
+                    specialEffects={specialEffects}
+                />
+            </Transitions>
+        )
+    } else if (style === 201) {
+        return (
+            <Transitions id={"OPEN_FenZhiDialog"}>
+                <FenZhiDialog
                     {...props}
                     actionMethod={actionMethod}
                     specialEffects={specialEffects}

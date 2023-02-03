@@ -18,6 +18,8 @@ import lo from 'lodash';
 import RootView from '../../components/RootView';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import EquipSelector from './EquipSelector';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../constants/resolution';
 
 const EquipPlaceHolder = (props) => {
 
@@ -57,9 +59,15 @@ const EquipPlaceHolder = (props) => {
             }} />);
         }}>
             <View style={equipStyles.equipItem}>
+                {
+                    lo.isEmpty(equip) 
+                    ? <FastImage style={{ width:px2pd(449), height:px2pd(76), position:"absolute" }} source={require(`../../../assets/character/zb_0.png`)}/>
+                    : <FastImage style={{ width:px2pd(445), height:px2pd(72), position:"absolute" }} source={require(`../../../assets/character/zb_1.png`)}/>
+                }
+                
                 <Text style={{ color: '#000', fontSize: 16 }}>{(lo.isEmpty(equip) ? props.tag : equip.name)}</Text>
-                <View style={{ position: 'absolute', right: 0 }}>
-                    <AntDesign name='plus' size={23} />
+                <View style={{ position: 'absolute', right: 12 }}>
+                    <FastImage style={{width:px2pd(55),height:px2pd(56)}} source={require('../../../assets/character/addBtn.png')} />
                 </View>
             </View>
         </TouchableWithoutFeedback>
@@ -68,13 +76,15 @@ const EquipPlaceHolder = (props) => {
 
 const equipStyles = StyleSheet.create({
     equipItem: {
-        width: 120, 
-        height: 30, 
-        borderWidth: 1, 
-        borderColor: '#4d4b49', 
-        borderRadius: 10, 
+        width:px2pd(449),
+        height:px2pd(76),
+        // width: 120, 
+        // height: 30, 
+        // borderWidth: 1, 
+        // borderColor: '#4d4b49', 
+        // borderRadius: 10, 
         flexDirection: 'row',
-        backgroundColor: '#b7b2ad',
+        // backgroundColor: '#b7b2ad',
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 5,
