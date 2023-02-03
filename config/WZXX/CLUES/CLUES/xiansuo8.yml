@@ -1,0 +1,11 @@
+# 线索1
+clues:
+  {
+    id: 'xiansuo8',
+    type: '线索',
+    groupId: '药炉坊市',
+    filterCondition: {location: '坊市', chapter: '第三卷'},
+    title: '茶馆的下联',
+    content: ['【地作琵琶路当丝哪人能弹】',],
+    condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
+  }

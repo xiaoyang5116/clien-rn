@@ -261,11 +261,63 @@ drops: [
 
   { id: 'S_00Test03_Vdrop1',  sendProps: '887,100,showBag',},
   { id: 'S_00Test03_Vdrop2',  alterAttrs: ['勇气,-1'],},
+  { id: 'S_00Test03_gameover01',  sendProps: '383,1,showBag',},
 
  
+ #死亡勋章
+  { id: 'WZXX_M1_N1_C000D_V_gameover01',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C000D_V_gameover02',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C000G_V_gameover01',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C000G_V_gameover02',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001A_V_gameover01',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001A_V_gameover02',  sendProps: '383,1,showBag',},
+
+  { id: 'WZXX_M1_N1_C001B_V_gameover00',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001B_V_gameover01',  sendProps: '383,1,showBag',},
   
+  { id: 'WZXX_M1_N1_C001B_V_gameoverD1',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001B_V_gameoverD2',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001B_V_gameoverD3',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001B_V_gameoverD4',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001B_V_gameoverD5',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001B_V_gameoverD6',  sendProps: '383,1,showBag',},
 
 
-  
+  { id: 'WZXX_M1_N1_C001C_V_gameover00',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001C_V_gameover01',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001C_V_gameover02',  sendProps: '383,1,showBag',},
+
+  { id: 'WZXX_M1_N1_C001V_gameoverp1DGG',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001V_gameover00',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001V_gameover01A',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001V_gameover01',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001V_gameover02',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001V_gameover03',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001V_gameover04',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001V_gameover05',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C001V_gameover06',  sendProps: '383,1,showBag',},
+
+  { id: 'WZXX_M1_N1_C002A_V_gameover10',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_gameover10A',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_gameover12',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_gameover13',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_gameover14',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_gameover15',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_gameover16',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_gameover17',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_gameover18',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_gameover19',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_gameover03',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C002A_V_gameover06',  sendProps: '383,1,showBag',},
+
+
+  { id: 'WZXX_M1_N1_C002C_V_gameover01',  sendProps: '383,1,showBag',},
+  { id: 'WZXX_M1_N1_C002C_V_gameover2',  sendProps: '383,1,showBag',},
+
+  { id: 'WZXX_M1_N1_CC035_V_gameover00',  sendProps: '383,1,showBag',},
+
+  { id: 'S_00Test02_gameover01',  sendProps: '383,1,showBag',},
+
+
   
 ]

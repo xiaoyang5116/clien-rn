@@ -470,13 +470,13 @@ scenes: [
      #死亡1
           { id: 'gameover01',style: 7,artId: 2 ,  title: '《白城笑话大全》', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B3', content: ['笑声引来了冲进院子里的黑衣人','李森炎惨死刀下',],
-          btn: [{title: '重新选书',dialogs: ['C002C_shuA']},]},
+          btn: [{title: '重新选书',dialogs: ['C002C_shuA'],dropIds: ["WZXX_M1_N1_C002C_V_gameover01",],},]},
           ], },
 
              #死亡2
           { id: 'gameover2',style: 7, title: '亮光一闪！',artId: 3 , varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B19', content: ['白家巡逻的护卫看见你从小姐的房间里出来，立马拿刀架住了你','厉声讯问，“你是何人，为什么会从小姐的闺房出来！”',['边缘闪烁红'],'“大哥，这是误会，误会……我和你们小姐没发生任何关系。”','“没关系，你还敢擅闯小姐闺房，找死！”','说完，手起刀落。',[{ sounds: [{ soundId: 'SE_KO_0007',}] }],'你挂了',],
-          btn: [{title: '不放弃，再来',dialogs: ['C002C_baifuA']},]},
+          btn: [{title: '不放弃，再来',dialogs: ['C002C_baifuA'],dropIds: ["WZXX_M1_N1_C002C_V_gameover2",],},]},
           ], },
   
 

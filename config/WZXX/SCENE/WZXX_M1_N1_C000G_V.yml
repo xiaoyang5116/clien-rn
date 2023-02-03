@@ -1960,7 +1960,7 @@ scenes: [
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['只感觉一阵寒光袭来，莫名其妙的，天旋地转','有时候要听听劝才行','这回别白死了，赶紧离开此处'], btn: [{title: '<<<返回',nextChat: 'C1'}, ]},
+           { key: 'p1', content: ['只感觉一阵寒光袭来，莫名其妙的，天旋地转','有时候要听听劝才行','这回别白死了，赶紧离开此处'], btn: [{title: '<<<返回',dropIds: ["WZXX_M1_N1_C000G_V_gameover01",],nextChat: 'C1'}, ]},
            ],
          },
     ],
@@ -2086,7 +2086,7 @@ scenes: [
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['只感觉一阵寒光袭来，莫名其妙的，天旋地转','有时候要听听劝才行','这回别白死了，赶紧离开此处'], btn: [{title: '<<<返回',nextChat: 'C1'}, ]},
+           { key: 'p1', content: ['只感觉一阵寒光袭来，莫名其妙的，天旋地转','有时候要听听劝才行','这回别白死了，赶紧离开此处'], btn: [{title: '<<<返回',dropIds: ["WZXX_M1_N1_C000G_V_gameover02",],nextChat: 'C1'}, ]},
            ],
          },
     ],

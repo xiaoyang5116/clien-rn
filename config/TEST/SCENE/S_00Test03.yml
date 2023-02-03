@@ -210,7 +210,7 @@ scenes: [
               '身受重伤被打了一顿，还被抢了钱财',                 
               ['边缘闪烁红'],
             ],
-            btn: [{title: '重新再来',nextChat: 'c4',dropIds: ["S_00Test03_Vdrop2",]}, ]
+            btn: [{title: '重新再来',nextChat: 'c4',dropIds: ["S_00Test03_gameover01",]}, ]
           },
         ], 
       },

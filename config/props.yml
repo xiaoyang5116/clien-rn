@@ -87,13 +87,13 @@ props: [
    { id:  321, name: '青灵玉符', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
    { id:  322, name: '天阶护体丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
    { id:  323, name: '玄天照海镜', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
-   { id:  324, name: '万象鼎', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
+   { id:  324, name: '万象鼎', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },
    { id:  325, name: '玉简', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
-   { id:  326, name: '炼丹葫芦', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
+   { id:  326, name: '炼丹葫芦', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },
    { id:  327, name: '真元丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
-   { id:  328, name: '岐黄神草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
+   { id:  328, name: '岐黄神草', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },
    { id:  329, name: '混元鼎', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
-   { id:  330, name: '梵音香', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
+   { id:  330, name: '梵音香', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },
    { id:  331, name: '天栾衣', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },
    { id:  332, name: '大还丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: '补充大量气血，恢复伤势' },	
    { id:  333, name: '小还丹', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: ['剧情'], capacity: 100, desc: ' ' },													
@@ -168,7 +168,11 @@ props: [
   { id:  380, name: '四层钥匙蜘蛛洞窟', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },				
   									
   { id:  381, name: '蜘蛛洞窟解锁钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
-  { id:  382, name: '蜘蛛洞窟消耗钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },	
+  { id:  382, name: '蜘蛛洞窟消耗钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
+
+  { id:  383, name: '死亡勋章', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },						
+  { id:  384, name: '胭脂水粉', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },													
+
 
   
    #完成任务需要使用的道具

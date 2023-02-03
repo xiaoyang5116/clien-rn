@@ -2311,7 +2311,7 @@ scenes: [
         dialogType: 'FullScreen', 
         textAnimationType: 'TextFadeIn', 
         sections: [
-        { key: 'p1', content: ['一道白光闪过','身体中产生一道剧烈的疼痛，随后那熟悉的感觉再度传来',['边缘闪烁红'],'好像又死了……',], btn: [{title: '轻易还是不要尝试了', nextChat: 'C3'  }, ]},
+        { key: 'p1', content: ['一道白光闪过','身体中产生一道剧烈的疼痛，随后那熟悉的感觉再度传来',['边缘闪烁红'],'好像又死了……',], btn: [{title: '轻易还是不要尝试了', dropIds: ["WZXX_M1_N1_C000D_V_gameover01",], nextChat: 'C3'  }, ]},
         ],      
       }, 
 
@@ -2399,10 +2399,9 @@ scenes: [
         dialogType: 'FullScreen', 
         textAnimationType: 'TextFadeIn', 
         sections: [
-        { key: 'p1', content: ['一道白光闪过','身体中产生一道剧烈的疼痛，随后那熟悉的感觉再度传来',['边缘闪烁红'],'好像又死了……',], btn: [{title: '轻易还是不要尝试了', nextChat: 'C3'  }, ]},
+        { key: 'p1', content: ['一道白光闪过','身体中产生一道剧烈的疼痛，随后那熟悉的感觉再度传来',['边缘闪烁红'],'好像又死了……',], btn: [{title: '轻易还是不要尝试了',dropIds: ["WZXX_M1_N1_C000D_V_gameover02",], nextChat: 'C3'  }, ]},
         ],      
       }, 
-
      ],
   },
 #=======================事件场景==========================
@@ -2412,7 +2411,7 @@ scenes: [
     # 指定场景为NPC或MAP场景
     isNpc: false,
     #不显示时间
-      worldTimeHidden: true,
+    worldTimeHidden: true,
     # 当前场景地图
     mapId: 'C000D_V2_MAP_0_0',
     # 地图中心点，也是进入地图后的点

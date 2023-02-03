@@ -176,6 +176,23 @@ const topBgImages = [
     { name: 'BGT_167', img: require('../../assets/scene/BGT_167.webp') },
     { name: 'BGT_168', img: require('../../assets/scene/BGT_168.webp') },
     { name: 'BGT_169', img: require('../../assets/scene/BGT_169.webp') },
+
+    { name: 'BGT_170', img: require('../../assets/scene/BGT_170.webp') },
+    { name: 'BGT_171', img: require('../../assets/scene/BGT_171.webp') },
+    { name: 'BGT_172', img: require('../../assets/scene/BGT_172.webp') },
+    { name: 'BGT_173', img: require('../../assets/scene/BGT_173.webp') },
+    { name: 'BGT_174', img: require('../../assets/scene/BGT_174.webp') },
+    { name: 'BGT_175', img: require('../../assets/scene/BGT_175.webp') },
+    { name: 'BGT_176', img: require('../../assets/scene/BGT_176.webp') },
+    { name: 'BGT_177', img: require('../../assets/scene/BGT_177.webp') },
+    { name: 'BGT_178', img: require('../../assets/scene/BGT_178.webp') },
+    { name: 'BGT_179', img: require('../../assets/scene/BGT_179.webp') },
+    { name: 'BGT_180', img: require('../../assets/scene/BGT_180.webp') },
+    { name: 'BGT_181', img: require('../../assets/scene/BGT_181.webp') },
+    { name: 'BGT_182', img: require('../../assets/scene/BGT_182.webp') },
+    { name: 'BGT_183', img: require('../../assets/scene/BGT_183.webp') },
+    { name: 'BGT_184', img: require('../../assets/scene/BGT_184.webp') },
+
    // { name: '上部背景图57656', img: require('../../assets/scene/BGT_70789789.jpg') },
 ];
 

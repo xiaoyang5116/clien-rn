@@ -37,6 +37,8 @@ scenes: [
       # 对话选项
       chats: [
       #
+ 
+
       { 
         id: 'WZXX_M1_N1_C001V', desc: '选项', 
         options: [     
@@ -45,8 +47,6 @@ scenes: [
             # {title: "【跳过此段剧情】", 
             # # openUI: 'WorldMap', 
             # dropIds: [ 'WZXX_M1_N1_C001V_drop11'],}
-           
-          
         ],
       },
       
@@ -93,7 +93,7 @@ scenes: [
             ]},   
 
           { key: 'p1B1', content: ['一言之善，重于千金','这句话的说的是善意重于千金','何必打打杀杀……','……','等下？，你把剑放下？！……',['震屏1'],'……',  ],
-          btn: [{title: '我觉得我还能抢救一下!',dialogs: ['gameover00'] , varsOn: ['biaoqianv2','biaoqianv5',]}]},    
+          btn: [{title: '我觉得我还能抢救一下!',dialogs: ['gameover01A'] , varsOn: ['biaoqianv2','biaoqianv5',]}]},    
           
           { key: 'p1B2', content: ['对方无视了你的话语','并扇了你了一巴掌！！',['震屏1'],'说人话！','……',],
           btn: [{title: '我说，我说…………（重选）',tokey: "p1", varsOn: ['biaoqianv2','biaoqianv6',]}]}, 
@@ -102,7 +102,7 @@ scenes: [
           #btn: [{title: '…………',dialogs: ['gameover00'], varsOn: ['biaoqianv2','biaoqianv7',]}]},
 
            { key: 'p1D', content: ['李森炎纵身一跃，大步飞奔。','刚跑两步，听背后风声呼啸。','扭头查看',['边缘闪烁红'],'只看到剑光一闪','李森炎挂了','…………',], 
-             btn: [{title: '…………',dialogs: ['gameover00'], varsOn: ['biaoqianv4',]}]},   
+             btn: [{title: '…………',dialogs: ['gameover02'], varsOn: ['biaoqianv4',]}]},   
 
            { key: 'p1C', content: ['头脑一阵清明，灵感爆发，你飞快的说出'],
            btn: [
@@ -123,16 +123,16 @@ scenes: [
             ]},   
 
            { key: 'p2B1', content: ['我管你上有老，我管你几岁。','我就是来杀你的！','剑光一闪',['边缘闪烁红'],'…………',], 
-             btn: [{title: '我觉得我还能抢救一下!',dialogs: ['gameover00'], varsOn: ['biaoqianv10','biaoqianv11','biaoqianv3','biaoqianv13',] }]},   
+             btn: [{title: '我觉得我还能抢救一下!',dialogs: ['gameover03'], varsOn: ['biaoqianv10','biaoqianv11','biaoqianv3','biaoqianv13',] }]},   
          
            { key: 'p2B2', content: ['那对了，杀的就是你','剑光一闪',['边缘闪烁红'],'…………',],
-            btn: [{title: '…………!',dialogs: ['gameover00'], varsOn: ['biaoqianv3',] }]},   
+            btn: [{title: '…………!',dialogs: ['gameover04'], varsOn: ['biaoqianv3',] }]},   
 
            { key: 'gg1', content: ['早就调查清楚了','你就是一个单身小屁孩','这么小就撒谎',['边缘闪烁红'],'让你活着何用',],
-            btn: [{title: '…………',dialogs: ['gameover00'] ,varsOn: ['biaoqianv8','biaoqianv12','biaoqianv3',]},]},   
+            btn: [{title: '…………',dialogs: ['gameover05'] ,varsOn: ['biaoqianv8','biaoqianv12','biaoqianv3',]},]},   
 
            { key: 'gg2', content: ['就你那种穷样','我可不信','剑光一闪',['边缘闪烁红'],'…………',],
-            btn: [{title: '…………',dialogs: ['gameover00'] , varsOn: ['biaoqianv9','biaoqianv3',]},]}, 
+            btn: [{title: '…………',dialogs: ['gameover06'] , varsOn: ['biaoqianv9','biaoqianv3',]},]}, 
 
     
             
@@ -160,32 +160,99 @@ scenes: [
 
          #死亡1
           { id: 'p1DGG',style: 7,title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',sections: [
-          { key: 'p1', content: ['临死前听到一句话，距离这么近你还敢跑……'],btn: [{title: '不放弃，再来',tokey: "p1"},{title: '啊我死了（回章节开头）',tokey: "next", toChapter: "WZXX_M1_N1_C001"}]},
-          ], },
+          { key: 'p1', content: ['临死前听到一句话，距离这么近你还敢跑……'],
+          btn: [{title: '不放弃，再来',tokey: "p1"},
+          {title: '啊我死了（回章节开头）',tokey: "next",dropIds: ["WZXX_M1_N1_C001V_gameoverp1DGG",], toChapter: "WZXX_M1_N1_C001"}]},
+          ], 
+          },
         #死亡2
          { id: 'gameover00',
            style: 7, artId: 1,
            title: '你挂了',
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
-           sections: [
-           { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来',dialogs: ['Screen1'] },]},
+           sections: [ 
+           { key: 'p1', content: ['你挂了，请选择'], 
+           btn: [{title: '不放弃，再来',dialogs: ['Screen1'],dropIds: ["WZXX_M1_N1_C001V_gameover00",], },]},
+           ],
+         },
+
+         { id: 'gameover01A',
+           style: 7, artId: 2,
+           title: '你挂了',
+           dialogType: 'FullScreen', 
+           textAnimationType: 'TextFadeIn', 
+           sections: [ 
+           { key: 'p1', content: ['你挂了，请选择'], 
+           btn: [{title: '不放弃，再来',dialogs: ['Screen1'],dropIds: ["WZXX_M1_N1_C001V_gameover01A",], },]},
+           ],
+         },
+
+         { id: 'gameover02',
+           style: 7, artId: 3,
+           title: '你挂了',
+           dialogType: 'FullScreen', 
+           textAnimationType: 'TextFadeIn', 
+           sections: [ 
+           { key: 'p1', content: ['你挂了，请选择'], 
+           btn: [{title: '不放弃，再来',dialogs: ['Screen1'],dropIds: ["WZXX_M1_N1_C001V_gameover02",], },]},
+           ],
+         },
+
+         { id: 'gameover03',
+           style: 7, artId: 4,
+           title: '你挂了',
+           dialogType: 'FullScreen', 
+           textAnimationType: 'TextFadeIn', 
+           sections: [ 
+           { key: 'p1', content: ['你挂了，请选择'], 
+           btn: [{title: '不放弃，再来',dialogs: ['Screen1'],dropIds: ["WZXX_M1_N1_C001V_gameover03",], },]},
+           ],
+         },
+
+          { id: 'gameover04',
+           style: 7, artId: 2,
+           title: '你挂了',
+           dialogType: 'FullScreen', 
+           textAnimationType: 'TextFadeIn', 
+           sections: [ 
+           { key: 'p1', content: ['你挂了，请选择'], 
+           btn: [{title: '不放弃，再来',dialogs: ['Screen1'],dropIds: ["WZXX_M1_N1_C001V_gameover04",], },]},
+           ],
+         },
+
+          { id: 'gameover05',
+           style: 7, artId: 3,
+           title: '你挂了',
+           dialogType: 'FullScreen', 
+           textAnimationType: 'TextFadeIn', 
+           sections: [ 
+           { key: 'p1', content: ['你挂了，请选择'], 
+           btn: [{title: '不放弃，再来',dialogs: ['Screen1'],dropIds: ["WZXX_M1_N1_C001V_gameover05",], },]},
+           ],
+         },
+
+        { id: 'gameover06',
+           style: 7, artId: 4,
+           title: '你挂了',
+           dialogType: 'FullScreen', 
+           textAnimationType: 'TextFadeIn', 
+           sections: [ 
+           { key: 'p1', content: ['你挂了，请选择'], 
+           btn: [{title: '不放弃，再来',dialogs: ['Screen1'],dropIds: ["WZXX_M1_N1_C001V_gameover06",], },]},
            ],
          },
        #死亡3
-         { id: 'gameover01',style: 7,artId: 4, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p3', content: ['临死前听到一句话','我一个学武的，最讨厌你们这帮文人……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},]},
-         ], },
+         { id: 'gameover01',style: 7,artId: 1, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
+         { key: 'p3', content: ['临死前听到一句话','我一个学武的，最讨厌你们这帮文人……','你挂了，请选择'],
+         btn: [{title: '不放弃，再来',dialogs: ['Screen1'],dropIds: ["WZXX_M1_N1_C001V_gameover01",],},]},
+         ], 
+         },
        #死亡3
           #{ id: 'gameover02',style: 7, title: '你挂了', varsOn: ['v1'], dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
           #{ key: 'p4', content: ['临死前听到一句话','我把你宰了，也能拿钱……','你挂了，请选择'],btn: [{title: '不放弃，再来',dialogs: ['Screen1']},{title: '回章节开头',toChapter: "WZXX_M1_N1_C001"}]},
           #], },
-
-
-
         ],
-
-
 
     },
 

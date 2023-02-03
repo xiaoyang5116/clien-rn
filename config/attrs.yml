@@ -37,6 +37,7 @@ data: {
       title: '才华',
       collapsed: true,
       data: [[
+        { title: '学识', key: 学识, value: 0 },
         { title: '灵性', key: 灵性, value: 0 },
         { title: '悟性', key: 悟性, value: 0 },
         { title: '颜值', key: 颜值, value: 0 },
@@ -56,7 +57,7 @@ data: {
      {
       title: '善恶',
       data: [[
-        { title: '善良', key: 善良, value: 0 },
+        { title: '正义', key: 正义, value: 0 },
         { title: '邪恶', key: 邪恶, value: 0 },
       ]],
     },
@@ -64,10 +65,12 @@ data: {
       title: '力量倾向',
       collapsed: true,
       data: [[
-        { title: '成神', key: 成神, value: 0 },
-        { title: '入魔', key: 入魔, value: 0 },
         { title: '变化', key: 变化, value: 0 },
         { title: '自由', key: 自由, value: 0 },
+        { title: '逼格', key: 逼格, value: 0 },
+        { title: '节操', key: 节操, value: 0 },
+        { title: '成神', key: 成神, value: 0 },
+        { title: '入魔', key: 入魔, value: 0 },
       ]],
     },
   ]

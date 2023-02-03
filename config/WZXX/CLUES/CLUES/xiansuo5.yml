@@ -1,0 +1,11 @@
+# 线索1
+clues:
+  {
+    id: 'xiansuo5',
+    type: '线索',
+    groupId: '药炉坊市',
+    filterCondition: {location: '坊市', chapter: '地图'},
+    title: '医灵的事',
+    content: ['',],
+    condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
+  }

@@ -223,7 +223,7 @@ scenes: [
               ['边缘闪烁红'],
               '李森炎死在了小师弟的剑下……',
             ], 
-            btn: [{title: '看来还是得勇一点！',nextChat: 'c8',},]
+            btn: [{title: '看来还是得勇一点！',dropIds: ["S_00Test02_gameover01",],nextChat: 'c8',},]
           },
         ], 
       },

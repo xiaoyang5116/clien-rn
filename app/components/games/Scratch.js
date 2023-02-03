@@ -77,7 +77,7 @@ class Scratch extends Component {
         return (
             <View style={styles.container}>
                 <View style={{ width: '90%', height: '70%', justifyContent: "space-around", alignItems: "center" }}>
-                    <Text style={{ fontSize: 24, color: "#ccc" }}>触摸查看</Text>
+                    <Text style={{ fontSize: 24, color: "#ccc" }}>擦拭查看</Text>
                     <View style={{ width: 300, height: 300, overflow: "hidden" }} pointerEvents={this.state.isScratchDone ? "none" : "auto"}>
                         {/* <View style={{ width: 300, height: 300, overflow: "hidden" }}> */}
                         <ScratchView

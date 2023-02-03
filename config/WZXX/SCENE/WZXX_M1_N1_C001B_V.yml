@@ -494,39 +494,46 @@ scenes: [
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['你挂了……',请选择'], btn: [{title: '不放弃，再来',toScene: 'WZXX_M1_N1_C001B_V',  }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001B",}]},
+           { key: 'p1', content: ['你挂了……',请选择'], btn: [{title: '不放弃，再来',toScene: 'WZXX_M1_N1_C001B_V',dropIds: ["WZXX_M1_N1_C001B_V_gameover01",],  }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001B",dropIds: ["WZXX_M1_N1_C001B_V_gameover01",],}]},
            ],
          },
 
 
         #死亡3
          { id: 'gameover01',style: 7, artId: 2,title: '迷路',  dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['和之前的森林不同','这部分森林似乎更加难以辨别道路……','原本的道路都不见了……','数天后，你依旧在树林里打转……','请选择'],btn: [{title: '不放弃，再来', toScene: 'WZXX_M1_N1_C001B_V', },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
-         ], },
+         { key: 'p1', content: ['和之前的森林不同','这部分森林似乎更加难以辨别道路……','原本的道路都不见了……','数天后，你依旧在树林里打转……','请选择'],btn: [{title: '不放弃，再来', toScene: 'WZXX_M1_N1_C001B_V',dropIds: ["WZXX_M1_N1_C001B_V_gameover01",], },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B",dropIds: ["WZXX_M1_N1_C001B_V_gameover01",],}]},
+         ], 
+         },
          #死亡3
          { id: 'gameoverD1',style: 7,artId: 2, title: '逃跑', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['你慌忙惊吓跑路','怪不得刚才有那种不好的预感','早知道就不该走这条路的！','跑啊跑','慌忙中越来越心跳加速','突然觉得背后一痛','……你死了',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
-         ], },
+         { key: 'p1', content: ['你慌忙惊吓跑路','怪不得刚才有那种不好的预感','早知道就不该走这条路的！','跑啊跑','慌忙中越来越心跳加速','突然觉得背后一痛','……你死了',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' ,dropIds: ["WZXX_M1_N1_C001B_V_gameoverD1",],  },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B",dropIds: ["WZXX_M1_N1_C001B_V_gameoverD1",], }]},
+         ], 
+         },
          #死亡3
          { id: 'gameoverD2',style: 7, artId: 4,title: '战斗',dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['没办法，直接正面硬刚','你抬起手里的木棍甩了甩','对面的杀手抬起手中的剑甩了甩','？？？','你发现手中武器和对方比起来，只有一点点的小差距','你挂了','……'],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
-         ], },
+         { key: 'p1', content: ['没办法，直接正面硬刚','你抬起手里的木棍甩了甩','对面的杀手抬起手中的剑甩了甩','？？？','你发现手中武器和对方比起来，只有一点点的小差距','你挂了','……'],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' ,dropIds: ["WZXX_M1_N1_C001B_V_gameoverD2",], },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B",dropIds: ["WZXX_M1_N1_C001B_V_gameoverD2",],}]},
+         ], 
+         },
           #死亡3
          { id: 'gameoverD3',style: 7,artId: 1, title: '遇袭',dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['正走着，你发现后背突然一凉','一阵剧痛袭来','你挂了','……'],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
-         ], },
+         { key: 'p1', content: ['正走着，你发现后背突然一凉','一阵剧痛袭来','你挂了','……'],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' ,dropIds: ["WZXX_M1_N1_C001B_V_gameoverD3",], },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B", dropIds: ["WZXX_M1_N1_C001B_V_gameoverD3",],}]},
+         ], 
+         },
            #死亡3
          { id: 'gameoverD4',style: 7,artId: 3, title: '迷路', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['怪不得刚才有那种不好的预感','早知道就不该走这条路的','你慌忙惊吓跑路','跑啊跑','慌忙中越来越心跳加速','……',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
-         ], },
+         { key: 'p1', content: ['怪不得刚才有那种不好的预感','早知道就不该走这条路的','你慌忙惊吓跑路','跑啊跑','慌忙中越来越心跳加速','……',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' ,dropIds: ["WZXX_M1_N1_C001B_V_gameoverD4",], },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B",dropIds: ["WZXX_M1_N1_C001B_V_gameoverD4",],}]},
+         ], 
+         },
            #死亡3
          { id: 'gameoverD5',style: 7, artId: 2,title: '野狼', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['你看到了几只妖狼正向你的方向快速扑来','虽然你有一身跑路的本事','但两条腿跑不过四条腿的','……','你挂了',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
-         ], },
+         { key: 'p1', content: ['你看到了几只妖狼正向你的方向快速扑来','虽然你有一身跑路的本事','但两条腿跑不过四条腿的','……','你挂了',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1', dropIds: ["WZXX_M1_N1_C001B_V_gameoverD5",], },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B",dropIds: ["WZXX_M1_N1_C001B_V_gameoverD5",],}]},
+         ], 
+         },
            #死亡3
          { id: 'gameoverD6',style: 7,artId: 4, title: '好奇心害死猫', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn', sections: [
-         { key: 'p1', content: ['碰触石门后','你觉得一阵眩晕','你被某个阵法杀死了','……',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' , },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B"}]},
-         ], },
+         { key: 'p1', content: ['碰触石门后','你觉得一阵眩晕','你被某个阵法杀死了','……',],btn: [{title: '不放弃，再来', nextChat: 'C001B_EventSTART1' ,dropIds: ["WZXX_M1_N1_C001B_V_gameoverD6",], },{title: '回章节开头',toChapter: "WZXX_M1_N1_C001B", dropIds: ["WZXX_M1_N1_C001B_V_gameoverD6",],}]},
+         ], 
+         },
  
 
  

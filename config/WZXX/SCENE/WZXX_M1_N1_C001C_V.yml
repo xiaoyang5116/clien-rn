@@ -305,8 +305,9 @@ scenes: [
            dialogType: 'FullScreen', 
            textAnimationType: 'TextFadeIn', 
            sections: [
-           { key: 'p1', content: ['你挂了，请选择'], btn: [{title: '不放弃，再来', dialogs: ['jinruzhaidao'] },
-            {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
+           { key: 'p1', content: ['你挂了，请选择'],
+            btn: [{title: '不放弃，再来', dialogs: ['jinruzhaidao'] ,dropIds: ["WZXX_M1_N1_C001C_V_gameover00",],},
+            {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",dropIds: ["WZXX_M1_N1_C001C_V_gameover00",],}]},
            ],
          },
           #合理退出
@@ -425,7 +426,9 @@ scenes: [
         dialogType: 'FullScreen', 
         textAnimationType: 'TextFadeIn', 
         sections: [
-        { key: 'p1', content: ['杀手大概是对这条路无比熟悉','走的很快','你也快步跟上','忽然被绊倒了','杀手听见‘啪唧’一声','回过头就看见李森炎四仰八叉倒在地上的样子','“我懂，这回我自己死……”',], btn: [{title: '不放弃，再来', dialogs: ['lierenxiaodao'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
+        { key: 'p1', content: ['杀手大概是对这条路无比熟悉','走的很快','你也快步跟上','忽然被绊倒了','杀手听见‘啪唧’一声','回过头就看见李森炎四仰八叉倒在地上的样子','“我懂，这回我自己死……”',], 
+        btn: [{title: '不放弃，再来', dialogs: ['lierenxiaodao'] ,dropIds: ["WZXX_M1_N1_C001C_V_gameover01",],},
+         {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",dropIds: ["WZXX_M1_N1_C001C_V_gameover01",],}]},
         ],      
         },      
         #死亡3
@@ -436,9 +439,11 @@ scenes: [
         dialogType: 'FullScreen', 
         textAnimationType: 'TextFadeIn', 
         sections: [
-        { key: 'p2', content: ['李森炎偷笑','哈哈哈哈哈哈','哎不是，不小心笑出声了？','刚想捂上嘴，结果忽然感觉脚下一凉','……','你好，回见',], btn: [{title: '不放弃，再来', dialogs: ['lierenxiaodao'] }, {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",}]},
+        { key: 'p2', content: ['李森炎偷笑','哈哈哈哈哈哈','哎不是，不小心笑出声了？','刚想捂上嘴，结果忽然感觉脚下一凉','……','你好，回见',], 
+        btn: [{title: '不放弃，再来', dialogs: ['lierenxiaodao'] ,dropIds: ["WZXX_M1_N1_C001C_V_gameover02",],},
+         {title: '回章节开头', toChapter: "WZXX_M1_N1_C001C",dropIds: ["WZXX_M1_N1_C001C_V_gameover02",],}]},
         ],      
-        },      
+        },
         #合理退出
         {
         key: 'END01', content: ['结束这次跟踪？','确认后，将关闭互动','从下段章节剧情继续',],

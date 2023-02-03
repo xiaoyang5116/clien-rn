@@ -20,6 +20,7 @@ book: {
         "WZXX_M1_N1_C000F2_V",
         "WZXX_M1_N1_C000G_V",
         "WZXX_M1_N1_C000H_V",
+        "WZXX_M1_N1_C000I_V",
         "WZXX_M1_N1_C001A_V",
         "WZXX_M1_N1_C001B_V",
         "WZXX_M1_N1_C001C_V",
@@ -80,6 +81,7 @@ book: {
       'collect_5',
       'collect_6',
       'collect_7',
+      'collect_8',
  
     ],
     
