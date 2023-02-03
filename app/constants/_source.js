@@ -64,6 +64,8 @@ const _images = {
         { id: 12, img: require('../../assets/button_icon/12.png'), top: 0, left: 10 },
         { id: 13, img: require('../../assets/button_icon/13.png'), top: 0, left: 10, width: px2pd(74), height: px2pd(76) },
         { id: 14, img: require('../../assets/button_icon/14.png'), top: 0, left: 10, width: px2pd(86), height: px2pd(80) },
+        { id: 15, img: require('../../assets/button_icon/15.png'), top: 0, left: 10, width: px2pd(54), height: px2pd(43) },
+        { id: 16, img: require('../../assets/button_icon/16.png'), top: 0, left: 10, width: px2pd(54), height: px2pd(43) },
 
         { id: 100, img: require('../../assets/button_icon/100.png'), top: -8, right: 3, width: px2pd(50), height: px2pd(50) },
         { id: 101, img: require('../../assets/button_icon/101.png'), top: -8, right: 3, width: px2pd(50), height: px2pd(50) },
