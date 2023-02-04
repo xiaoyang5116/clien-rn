@@ -27,7 +27,7 @@ skills: [
      hit_rate: 100 ,
      crit_rate: 5 ,
      crit_add: 5 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 10',
      },
       ],
      # BUFF效果列表
@@ -59,7 +59,7 @@ skills: [
      hit_rate: 100 ,
      crit_rate: 3 ,
      crit_add: 3 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 10',
      },
                 ],
      # BUFF效果列表
@@ -91,7 +91,7 @@ skills: [
      hit_rate: 100 ,
      crit_rate: 4 ,
      crit_add: 4 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 10',
      },
       ],
      # BUFF效果列表
