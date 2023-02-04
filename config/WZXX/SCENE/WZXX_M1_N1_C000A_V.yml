@@ -596,7 +596,14 @@ scenes: [
         id: 'C4B1', desc:  "等李森炎肯定的点点头后他才说\n“我也不太熟知，只是听人说起过，老人故居里面有位德高望重的老人似乎可以炼制丹药。”",
         options: [
         # { title: '【机不可失，立刻赶去老人故居】', varsOff: ['v1'], varsOn: ['WZXX_M1_N1_C000A_V/LRGJ_A',],   toScene: 'C000A_V_MAP_1_-2'},
-        { title: '【严谨一点，详细追问一下】',   nextChat: 'C5'}, 
+        { title: '【严谨一点，详细追问一下】', 
+        
+         toMsg: { 
+              action: 'CluesModel/useClues', 
+              params: { 
+              useCluesId: ["xiansuo1"],
+              },
+            },  nextChat: 'C5'}, 
         ],
       }, 
 
@@ -654,7 +661,7 @@ scenes: [
         id: 'C1', desc: '郊外有野兽出没，比较危险', 
         options: [
          { title: '【查看四周】',  nextChat: 'C4', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'], }, 
-         { title: '【去危险的山谷中】',  nextChat: 'C2',   }, 
+         { title: '【去危险的山谷中】',andVarsValue: ['@clues_xiansuo1 == 1'],  nextChat: 'C2',   }, 
         #  { title: '【郊区】', toScene: 'C000A_V_MAP_0_5'}, 
         #  { title: '【森林】', toScene: 'C000A_V_MAP_-1_5'}, 
         #  { title: '【离开集市】', andVarsValue: ['@props_350 <= 0']},
@@ -664,7 +671,7 @@ scenes: [
       { 
         id: 'C2', desc: '坑坑洼洼的土路，路很难走，偶尔能见到野兽出来觅食', 
         options: [ 
-         { title: '采集完赶紧走',nextChat: 'C3',andVarsValue: ['@clues_xiansuo1 == 1'], collect: '3',  }, 
+         { title: '采集完赶紧走',nextChat: 'C3', collect: '3',  },
         ],
       },
       { 

@@ -318,6 +318,7 @@ drops: [
 
   { id: 'S_00Test02_gameover01',  sendProps: '383,1,showBag',},
 
+  { id: 'WZXX_M1_N1_CC036_V_Vdrop1',  sendProps: '382,10,showBag',},
 
   
 ]
