@@ -2,6 +2,15 @@ import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import React from 'react';
 import Toast from '../../toast';
 
+import { ImageButton } from '../../../constants/custom-ui';
+import { px2pd } from '../../../constants/resolution';
+
+const BTN_STYLE = {
+  width: px2pd(1067),
+  height: px2pd(155),
+}
+
+
 const LeftTopTitle_Btn = props => {
   const { title, disabled, onPress, currentStyles, optionData } = props;
   const { leftTop_Title } = optionData;
@@ -15,66 +24,53 @@ const LeftTopTitle_Btn = props => {
   }
 
   return (
-    <TouchableHighlight underlayColor={"#fff"}
-      style={{
-        width:"100%",
-        marginTop: 5,
-        marginBottom: 5,
-      }}
-      onPress={handlerOnPress}>
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: disabled
-            ? '#999'
-            : currentStyles.button.backgroundColor,
-          borderColor: '#666',
-          borderWidth: 1,
-          borderRadius: 3,
+    <View style={{
+      width: "100%",
+      marginTop: 5,
+      marginBottom: 5,
+      justifyContent: "center",
+      alignItems: "center",
+      height: px2pd(155),
+    }}>
+      <ImageButton
+        {...BTN_STYLE}
+        onPress={handlerOnPress}
+        source={require('../../../../assets/button/LeftTopTitle_Btn1.png')}
+        selectedSource={require('../../../../assets/button/LeftTopTitle_Btn2.png')}
+      />
+      <View style={{ ...BTN_STYLE, position: "absolute", }} pointerEvents="none">
+        <View style={{
+          width: px2pd(712),
+          height: px2pd(55),
+          marginTop: px2pd(1),
+          marginLeft: px2pd(45),
+          alignItems: "center"
         }}>
-        <View
-          style={{
-            position: 'absolute',
-            zIndex: 2,
-            left: -1,
-            top: -10,
-            backgroundColor: '#C3C0C0',
-          }}>
           <Text
             style={{
               fontSize: 14,
-              paddingLeft: 8,
-              paddingRight: 8,
               paddingTop: 4,
               paddingBottom: 4,
             }}>
             {leftTop_Title}
           </Text>
         </View>
-        <Text
-          style={[
-            styles.textStyle,
-            {
-              color: currentStyles.button.color,
-            },
-          ]}>
-          {title}
-        </Text>
+        <View style={{
+          width: px2pd(980),
+          height: px2pd(88),
+          marginLeft: px2pd(45),
+          marginTop: px2pd(5),
+          justifyContent: "center",
+          alignItems: "center"
+        }}>
+          <Text>{title}</Text>
+        </View>
       </View>
-    </TouchableHighlight>
-  );
+    </View>
+  )
 };
 
 export default LeftTopTitle_Btn;
 
 const styles = StyleSheet.create({
-  textStyle: {
-    paddingTop: 16,
-    paddingBottom: 16,
-    paddingLeft: 12,
-    paddingRight: 12,
-    textAlign: 'center',
-    fontSize: 18,
-  },
 });
