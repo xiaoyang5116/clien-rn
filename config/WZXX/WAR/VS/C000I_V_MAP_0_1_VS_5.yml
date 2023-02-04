@@ -3,8 +3,8 @@
 # ===========================================
 challenge: {
     # 战斗ID
-    id: 'f_x4',
-    #挂机战斗_不入流_
+    id: 'C000I_V_MAP_0_1_VS_5',
+    #
     myself: 
       {
          uid: 1, 
@@ -24,7 +24,7 @@ challenge: {
     enemies: [
       { 
          uid: 100000, 
-         userName: '红巨蟒', 
+         userName: '猛虎', 
          skillIds: [40030, 40031, 40032],
          attrs: [
           { key: 'hp', value: 400 },
