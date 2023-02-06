@@ -12,7 +12,7 @@ const BTN_STYLE = {
 
 
 const LeftTopTitle_Btn = props => {
-  const { title, disabled, onPress, currentStyles, optionData } = props;
+  const { title, disabled, onPress, currentStyles, optionData, containerStyle } = props;
   const { leftTop_Title } = optionData;
 
   const handlerOnPress = () => {
@@ -31,6 +31,7 @@ const LeftTopTitle_Btn = props => {
       justifyContent: "center",
       alignItems: "center",
       height: px2pd(155),
+      ...containerStyle
     }}>
       <ImageButton
         {...BTN_STYLE}

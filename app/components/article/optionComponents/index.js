@@ -4,13 +4,15 @@ import React from 'react'
 import LeftTopTitle_Btn from './LeftTopTitle_Btn'
 import TopAndBottomTitle_Btn from './TopAndBottomTitle_Btn'
 import RightBottomTitle_Btn from './RightBottomTitle_Btn'
-
+import SingleLine from './SingleLine'
 
 
 const OptionComponents = (props) => {
   const { btnType } = props
 
   switch (btnType) {
+    case "A0":
+      return <SingleLine {...props} />
     case "A1":
       return <LeftTopTitle_Btn {...props} />
     case "A2":
