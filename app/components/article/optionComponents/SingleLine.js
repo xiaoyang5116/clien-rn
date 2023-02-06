@@ -44,7 +44,7 @@ const SingleLine = (props) => {
           width: px2pd(980),
           height: px2pd(98),
           marginLeft: px2pd(45),
-          marginTop: px2pd(5),
+          marginTop: px2pd(2),
           justifyContent: "center",
           alignItems: "center"
         }}>

@@ -44,8 +44,7 @@ const LeftTopTitle_Btn = props => {
           width: px2pd(712),
           height: px2pd(55),
           marginTop: px2pd(1),
-          marginLeft: px2pd(45),
-          alignItems: "center"
+          marginLeft: px2pd(120),
         }}>
           <Text
             style={{

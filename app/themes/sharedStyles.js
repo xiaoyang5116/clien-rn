@@ -108,7 +108,7 @@ const sharedStyles = StyleSheet.create({
         flex: 1,
         paddingTop: 10,
         paddingBottom: 10,
-        textAlign: 'center',
+        textAlign: 'left',
         backgroundColor: "#fff"
     },
 

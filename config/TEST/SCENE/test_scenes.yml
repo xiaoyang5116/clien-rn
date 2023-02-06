@@ -83,9 +83,9 @@ scenes: [
             key: 'p1',
             content: ['卧槽，这回可不能再死了。','李森炎的求生本能发动，脑子飞快运转。','从自己看过的符合类似情节的电影片段里找啊找啊。','灵机一动。', '李森炎下意识的想到，这时候最合适的台词是什么。'],
             btn: [
-              { title: '草，想不出来！', btnType: "A0", icon: { id: 6, bindVar: 'biaoqianv1' } },
-              { title: '兄台何必执着杀人！',btnType: "A2", leftTop_Title: '颜值+1',rightBottom_Title: "颜值+1----------", icon: { id: 6, bindVar: 'biaoqianv2' } },
-              { title: '等一下！',btnType: "A3", rightBottom_Title: '颜值+1', icon: { id: 7, bindVar: 'biaoqianv3' }},
+              { title: '草，想不出来！豆腐干豆腐是个帅哥2', btnType: "A1",leftTop_Title: '颜值+1', icon: { id: 6, bindVar: 'biaoqianv1' } },
+              { title: '兄台何必执着杀人似懂非懂沙发舒服！',btnType: "A2", leftTop_Title: '颜值+1',rightBottom_Title: "颜值+1----------", icon: { id: 6, bindVar: 'biaoqianv2' } },
+              { title: '等一下是的发送到发的啥饭撒！',btnType: "A0", icon: { id: 7, bindVar: 'biaoqianv3' }},
               { title: '说个毛线，拔腿就跑！', icon: { id: 6, bindVar: 'biaoqianv4' } }
             ]
           }
