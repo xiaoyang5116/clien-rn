@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import React from 'react';
 import Toast from '../../toast';
 
-import { ImageButton } from '../../../constants/custom-ui';
+import { ImageButton, BtnIcon } from '../../../constants/custom-ui';
 import { px2pd } from '../../../constants/resolution';
 
 const BTN_STYLE = {
@@ -13,7 +13,7 @@ const BTN_STYLE = {
 
 const SingleLine = (props) => {
   const { title, disabled, onPress, currentStyles, optionData, containerStyle } = props;
-  const { leftTop_Title } = optionData;
+  const { icon } = optionData;
 
   const handlerOnPress = () => {
     if (disabled) {
@@ -48,6 +48,7 @@ const SingleLine = (props) => {
           justifyContent: "center",
           alignItems: "center"
         }}>
+          {icon.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center", }} /> : null}
           <Text>{title}</Text>
         </View>
       </View>
