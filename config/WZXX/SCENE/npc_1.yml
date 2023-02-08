@@ -1,9 +1,9 @@
 scenes: [
   # NPC1
   {
-    id: 'npc_1', name: '老者NPC——2', 
+    id: 'npc_1', name: '老者NPC', 
     # npc 头像
-    avatarId: 2,
+    avatarId: 8,
 
     # 指定场景为NPC场景
     isNpc: true,

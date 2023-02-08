@@ -15,6 +15,7 @@ const _images = {
         { id: 1, img: require('../../assets/avatar/1.png') },
         { id: 2, img: require('../../assets/avatar/6.png') },
         { id: 3, img: require('../../assets/avatar/7.png') },
+        { id: 8, img: require('../../assets/avatar/8.png') },
     ],
     panel: [
         { id: 1, img: require('../../assets/bg/panel_b.png') },

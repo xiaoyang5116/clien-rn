@@ -1,11 +1,12 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View, ImageBackground } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
-import { action, changeAvatar } from '../../../constants';
+import { action, getBustImg } from '../../../constants';
 import { px2pd, SCALE_FACTOR } from '../../../constants/resolution';
 
 import FastImage from 'react-native-fast-image';
-import { TextButton, BtnIcon } from '../../../constants/custom-ui';
+import { TextButton, BtnIcon, ImageButton } from '../../../constants/custom-ui';
+
 
 const NpcDialog = props => {
   const { onDialogCancel, actionMethod } = props
@@ -34,24 +35,34 @@ const NpcDialog = props => {
 
   const renderBtn = ({ item }) => {
     return (
-      <View style={{ marginTop: 8, justifyContent: 'center' }}>
-        <TextButton
-          title={item.title}
+      <View style={{ marginTop: 8, justifyContent: 'center', alignItems: 'center' }}>
+        <ImageButton
+          width={px2pd(709)}
+          height={px2pd(70)}
+          source={require('../../../../assets/dialog/npc/btn_1.png')}
+          selectedSource={require('../../../../assets/dialog/npc/btn_2.png')}
           onPress={() => handlerOnPress(item)}
         />
+        <View pointerEvents="none" style={{ position: 'absolute', }}>
+          <Text style={{ color: '#656564' }}>{item.title}</Text>
+        </View>
       </View>
     )
   }
 
   const renderFooter = () => {
     return (
-      <View style={{ marginTop: 8, justifyContent: 'center' }}>
-        <TextButton
-          title={"关闭"}
-          onPress={() => {
-            onDialogCancel();
-          }}
+      <View style={{ marginTop: 8, justifyContent: 'center', alignItems: 'center' }}>
+        <ImageButton
+          width={px2pd(709)}
+          height={px2pd(70)}
+          source={require('../../../../assets/dialog/npc/btn_1.png')}
+          selectedSource={require('../../../../assets/dialog/npc/btn_2.png')}
+          onPress={onDialogCancel}
         />
+        <View pointerEvents="none" style={{ position: 'absolute', }}>
+          <Text style={{ color: '#656564' }}>关闭</Text>
+        </View>
       </View>
     )
   }
@@ -59,25 +70,38 @@ const NpcDialog = props => {
   if (npcData != null) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <View style={styles.popContainer}>
+        <ImageBackground
+          source={require('../../../../assets/dialog/npc/bg.png')}
+          style={styles.popContainer}
+        >
+          <FastImage
+            style={{ position: "absolute", right: -px2pd(140), top: -px2pd(70), width: px2pd(334), height: px2pd(219) }}
+            source={require('../../../../assets/dialog/npc/right_top.png')}
+          />
           <View style={styles.headerContainer}>
             <View>
               <FastImage
-                style={{ width: 60, height: 60, overflow: "hidden", borderRadius: 30 }}
-                source={changeAvatar(npcData.avatarId)} />
+                style={{ width: px2pd(265), height: px2pd(354), }}
+                source={getBustImg(npcData.avatarId)} />
             </View>
-            <View>
-              <Text>{npcData.name}</Text>
+            <View style={{ marginLeft: 12, marginBottom: 12 }}>
+              <Text style={{ fontSize: 20, color: "#617778" }}>{npcData.name}</Text>
             </View>
-            <View>
-              <Text style={{ textAlign: 'center' }}>{duanWei}</Text>
-              <Text>{npcData.address}<Text style={{ color: npcData.color ? npcData.color : "#000" }}>{npcData.hao_gan_du}</Text></Text>
+            <View style={{ position: "absolute", right: 8, top: 18 }}>
+              <Text style={{ textAlign: 'right', fontSize: 18, color: "#6b8e8f" }}>{duanWei}</Text>
+              <Text style={{ textAlign: 'right', fontSize: 16, color: "#e75555" }}>{npcData.address}<Text style={{ color: npcData.color ? npcData.color : "#000" }}>{npcData.hao_gan_du}</Text></Text>
             </View>
           </View>
 
           <View style={styles.contentContainer}>
-            <Text style={{ fontSize: 16 }}>{sections.content}</Text>
-            <View style={{ marginBottom: 20 }}>
+            <ImageBackground
+              source={require('../../../../assets/dialog/npc/content_bg.png')}
+              style={{ width: px2pd(709), height: px2pd(361), paddingLeft: 12, paddingRight: 12, paddingTop: 12, paddingBottom: 12 }}
+            >
+              <Text style={{ fontSize: 16 }}>{sections.content}</Text>
+            </ImageBackground>
+
+            <View style={{ marginBottom: 20, marginTop: 12 }}>
               <FlatList
                 data={btnData}
                 renderItem={renderBtn}
@@ -86,7 +110,11 @@ const NpcDialog = props => {
               />
             </View>
           </View>
-        </View>
+          <FastImage
+            style={{ position: "absolute", left: -px2pd(80), bottom: -px2pd(140), width: px2pd(326), height: px2pd(262) }}
+            source={require('../../../../assets/dialog/npc/left_bottom.png')}
+          />
+        </ImageBackground>
       </View >
     );
   }
@@ -103,25 +131,21 @@ export default NpcDialog;
 
 const styles = StyleSheet.create({
   popContainer: {
-    height: 400,
-    width: 300,
-    backgroundColor: "#eee",
-    borderColor: "#000",
-    borderWidth: 1,
-    borderRadius: 5,
+    height: px2pd(1137),
+    width: px2pd(806),
     paddingLeft: 12,
     paddingRight: 12,
-    paddingTop: 12,
-    paddingBottom: 12
   },
   headerContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    justifyContent: "flex-start",
+    alignItems: "flex-end",
+    height: px2pd(279),
   },
   contentContainer: {
     marginTop: 12,
     flex: 1,
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "center"
   }
 });
