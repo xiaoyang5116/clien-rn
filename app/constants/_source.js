@@ -3,6 +3,7 @@ import lo from 'lodash';
 import { px2pd } from './resolution';
 
 const _images = {
+    // 头像npc
     avatar: [
         { id: 1, img: require('../../assets/avatar/1.png') },
         { id: 2, img: require('../../assets/avatar/2.png') },

@@ -10,7 +10,11 @@ scenes: [
 
     # 变量定义
     vars: [
-      { id: 'hao_gan_du', min: -1000, max: 10000000, defaultValue: 0 },
+      { id: 'hao_gan_du',
+       min: -1000,
+       max: 10000000, 
+      #  默认好感度为0
+       defaultValue: 0 },
     ],
 
     # 动作定义

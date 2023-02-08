@@ -109,10 +109,39 @@ scenes: [
             { title: "【开始跟踪杀手】", toScene: 'C001C_V_MAP_0_0' },
           ],
         },
+
+        { 
+          id: 'WZXX_M1_N1_C001C_VSSS', desc: '开始跟踪杀手', 
+          options: [ 
+            { title: "【开始跟踪杀手】", dialogs: ['p13'] },
+          ],
+        },
       ],
       # 对话框 FullScreen全屏 HalfScreen 半屏
       dialogs:
         [
+        {
+        id: 'p13', style: 201,
+        sections: [
+          {
+            title: "分支1",
+            content: "<<<<跟踪杀手，寻找线索>>>>\n知己知彼才能百战不殆，李森炎决定跟踪杀手，看能否从这个杀手身上了解到他一直被追杀的根源！",
+            conditions: [
+              { content: "需要足够的勇气值",toChapter: "WZXX_M1_N1_C001B_[C3]", },
+            ],
+            btn: [{ title: '确定', toChapter: "WZXX_M1_N1_C001B_[C3]",},]
+          },
+          {
+            title: "分支2",
+            content: "<<<<去最近的城市,平川府白城>>>>\n记忆中原身家里也有些秘密和谜团亟待解开，现在进城，说不定能找到一些回去的线索！",
+            conditions: [
+              { content: "需要足够的灵性", andVarsValue: ['@attr_灵性 >= 1']  },
+           
+            ],
+            btn: [{ title: '确定', toChapter: "WZXX_M1_N1_C001B_[A1]",},]
+          },
+        ],
+      },
 
         ],
 

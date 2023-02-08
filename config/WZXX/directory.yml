@@ -738,7 +738,7 @@ directory: [
     map: [
       { point: [0, 0], title: '百草镇地图', toChapter: 'WZXX_M1_N1_Z3C98', links: [] },
       { point: [0, -1], title: '绛云镇地图', toChapter: 'WZXX_M1_N1_Z3C99', links: [] },
-      { point: [0, -2], title: '药炉坊市地图', toChapter: 'WZXX_M1_N1_Z3C100', links: [] },
+      { point: [0, -2], title: '白城坊市地图', toChapter: 'WZXX_M1_N1_Z3C100', links: [] },
       
     ]
   },

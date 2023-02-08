@@ -1,0 +1,1596 @@
+scenes: [
+
+    #
+    {
+      id: 'WZXX_M1_N1_C000A1_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      # { id: "v1", min: 0, max: 1 },
+      # { id: "v_icon_100", min: 0, max: 1 },
+      # { id: "v_icon_101", min: 0, max: 1 },
+      # { id: "v_icon_102", min: 0, max: 1 },
+      # { id: "v_icon_103", min: 0, max: 1 },
+      # { id: "v_icon_104", min: 0, max: 1 },
+      # { id: "v_icon_105", min: 0, max: 1 },
+      # { id: "v_icon_106", min: 0, max: 1 },
+      # { id: "LRGJ_A", min: 0, max: 1 },
+      # { id: "LRGJ_B", min: 0, max: 1 },
+      # { id: "maicaoyao_A", min: 0, max: 1 },
+      # { id: "maicaoyao_B", min: 0, max: 1 },
+      #回溯，西市路口
+      { id: "xishilukou_A", min: 0, max: 1 },
+      #回溯 米铺
+      { id: "mipu_A", min: 0, max: 1 },
+      #回溯 道具
+      { id: "daoju_A", min: 0, max: 1 },
+      #回溯 换装
+      { id: "huanzhuang_A", min: 0, max: 1 },
+      #郊区采集
+      { id: "v_icon_107", min: 0, max: 1 },
+      #森林采集
+      { id: "v_icon_108", min: 0, max: 1 },
+      #天水亭采集
+      { id: "v_icon_109", min: 0, max: 1 },
+      #郊外采集
+      { id: "v_icon_110", min: 0, max: 1 },
+      #进入商铺买簪子
+      { id: "maizanzi_A", min: 0, max: 1 },
+      { id: "caiyao", min: 0, max: 1 },
+
+      { id: "KCJ", min: 0, max: 1 } ,
+
+      { id: "raolu_B", min: 0, max: 1 },
+      { id: "raolu_A", min: 0, max: 1 },
+      { id: "raolu", min: 0, max: 1 },
+      { id: "yingchuang", min: 0, max: 1 },
+      { id: "youdi", min: 0, max: 1 },
+      { id: "fenzhi_2", min: 0, max: 1 },
+      { id: "fenzhi_4", min: 0, max: 1 },
+      
+      ],
+
+      # 动作定义
+      actions: [],
+      #不显示时间
+      worldTimeHidden: true,
+      # 事件定义# 故事中的场景事件暂时没什么意义
+      events: [],
+
+      chats: [
+
+      { 
+        id: 'WZXX_M1_N1_C000A1_V', desc: '原路回家', 
+        options: [ 
+          { title: "【继续原路回家】",toScene: 'C000A1_V_MAP_-1_1',sounds: [{ soundId: 'BGM_C_0004',}],  },
+        ],
+      },
+
+       { 
+        id: 'WZXX_M1_N1_C000A1_V2', desc: '', 
+        options: [ 
+          { title: "【冲出去阻止】", dialogs: ['C00A1_1.1A'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_2'],  },
+          { title: "【出言威胁】", dialogs: ['C00A1_1.1B'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_2'],  },
+          { title: "【抱腿求饶】", dialogs: ['C00A1_1.1C'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_2'], },
+        ],
+      },
+
+       { 
+        id: 'WZXX_M1_N1_C000A1_V3', desc: '', 
+        options: [ 
+          { title: "【冲出阻止】", dialogs: ['C00A1_1.2A'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_4'],  },
+          { title: "【出言威胁】", dialogs: ['C00A1_1.2B'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_4'],  },
+          { title: "【抱腿求饶】", dialogs: ['C00A1_1.2C'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_4'], },
+        ],
+      },
+        ],
+
+         # 对话框
+      dialogs:
+        [
+
+
+
+        { id: 'C00A1_1.1A',style: 6, title: '冲出去阻止', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“喂，你们，给我站住！”',
+          '李森炎突然大喊出声。',
+          '他以搏命之势，状若疯魔般冲入人群中，挥拳便打！',
+          '一开始伤了几个人，但因寡不敌众，最终被围殴而死',
+          '李森炎又挂了。',
+          ['震屏1'],],
+          btn: [{title: '重新再来',
+          { title: '原来如此', nextChat: 'C3',
+         toMsg: {
+              action: 'CluesModel/useClues',
+              params: {
+              addCluesId: ["xiansuo9"], 
+              },
+            }, }, 
+          toScene: 'C000A1_V_MAP_-1_1', } 
+          ,]},
+           ]  
+        },
+
+        { id: 'C00A1_1.1B',style: 6, title: '出言威胁', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“喂，你们给我站住！”','李森炎突然大喊道。',
+          '前方，皇城司的人转头看过来，一脸懵逼。',
+          '“我的人你们也敢动？没死过是吧？”',
+          '李森炎也是语气冰冷地说道。',
+          '看到这任务目标竟然送上门来，他们直接将这家伙给砍了。',
+          '李森炎又挂了。',
+          ['震屏1'],],
+          btn: [{title: '重新再来',
+          
+          { title: '原来如此', nextChat: 'C3',
+         toMsg: {
+              action: 'CluesModel/useClues',
+              params: {
+              addCluesId: ["xiansuo9"], 
+              },
+            }, }, toScene: 'C000A1_V_MAP_-1_1', } 
+          ,]},
+           ]  
+        },
+
+        { id: 'C00A1_1.1C',style: 6, title: '抱腿求饶', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“喂，你们给我站住！','李森炎突然大喊道。',
+          '前方，皇城司的人转头看过来，有点疑惑。',
+          '“皇城司做事，闲杂人等不许靠近。”','皇城司的人拔出刀冷冷地说道。',
+          '“求求你们放了我妈吧。”',
+          '还没等他们反应过来，李森炎直接抱着其中一个皇城司的人的大腿哭丧道。',
+          '皇城司的人看着这任务目标不由大喜，对李森炎根本没有任何怜悯，对着他大刀一挥。',
+          '李森炎又挂了。',['震屏1'],],
+          btn: [{title: '重新再来',
+          
+          { title: '原来如此', nextChat: 'C3',
+         toMsg: {
+              action: 'CluesModel/useClues',
+              params: {
+              addCluesId: ["xiansuo9"], 
+              },
+            }, },  toScene: 'C000A1_V_MAP_-1_1',} 
+          ,]},
+           ]  
+        },
+
+
+        { id: 'C00A1_1.2A',style: 6, title: '冲出去阻止', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“我跟你们拼了！”','李森炎突然大喊出声。',
+          '前方，皇城司的人转头看过来，一脸懵逼。',
+          '这老头，突然咋咋呼呼的，怕不是有什么大病！',
+          '可下一刻，令他们更为震惊的事情发生了。',
+          '那看着老弱病残，半只脚踏进棺材的佝偻老头突然挺直了腰。','健步如飞，朝着他们直直冲过来！',
+          '“卧槽！我眼花了吗？”','“这老头什么情况？”','“戒备！”','李森炎以搏命之势，状若疯魔般冲入人群中，挥拳便打！',
+          '一开始伤了几个人，但因寡不敌众，最终被围殴而死',
+          ['震屏1'],],
+          btn: [{title: '重新再来',toScene: 'C000A1_V_MAP_-1_1', } 
+          ,]},
+           ]  
+        },
+
+        { id: 'C00A1_1.2B',style: 6, title: '出言威胁', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“喂，你们给我站住！”','李森炎突然大喊道。',
+          '前方，皇城司的人转头看过来，一脸懵逼。','这老头突然咋呼呼的，怕不是有什么大病。',
+          '“皇城司做事，闲杂人等不许靠近。”','皇城司的人拔出刀冷冷地说道。',
+          '“我的人你们也敢动？没死过是吧？”',
+          '李森炎也是语气冰冷地说道。',
+          '听到这老头的话，皇城司的人也是微微一惊，这老头说话这么嚣张，难不成是什么高手？',
+          '不过当他们上下打量了一番这老头之后，并没有发现什么异常。',
+          '见这老头影响他们办事，他们直接一刀就将这老头给砍了。',
+          '李森炎又挂了。',
+          ['震屏1'],],
+          btn: [{title: '重新再来',toScene: 'C000A1_V_MAP_-1_1', } 
+          ,]},
+           ]  
+        },
+
+        { id: 'C00A1_1.2C',style: 6, title: '抱腿求饶', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['“喂，你们给我站住！','李森炎突然大喊道。',
+          '前方，皇城司的人转头看过来，有点疑惑。',
+          '这老头突然咋呼呼的，怕不是有什么大病。',
+          '“皇城司做事，闲杂人等不许靠近。”','皇城司的人拔出刀冷冷地说道。',
+          '“求求你们放了我妈吧。”',
+          '李森炎变得谨慎起来，可不敢跟之前那样回答了。',
+          '还没等他们反应过来，李森炎直接抱着其中一个皇城司的人的大腿哭丧道。','皇城司的人看着这老头一脸黑线。',
+          '这老头看起来都能够做这女人的爸了，竟然还有脸叫对方妈，脑子怕是不好使',
+          '由于这老头阻碍他们办事，所以他们对着你大刀一挥。',
+          '李森炎又挂了。',['震屏1'],],
+          btn: [{title: '重新再来', toScene: 'C000A1_V_MAP_-1_1',} 
+          ,]},
+           ]  
+        },
+        ],
+    },
+
+
+#===========事件场景==============
+  {
+  # NPC2
+    id: 'C000A1_V_MAP_-1_-3', name: '布庄',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+     #横图显示
+    sceneImage: 'BGT_39',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, -3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A'], nextChat: 'C1' }, 
+       
+    ],
+    # 对话选项
+    chats: [
+
+       { 
+        id: 'C1', desc: "李森炎认真想了想可能还是自己的容颜太过亮眼\n如鹤立鸡群，在人群中太有辨识度\n这才轻易被杀手认出来\n“是你们逼我使用杀手锏的！”",   
+        options: [ 
+         { title: '术二重奏，化妆加变装', nextChat: 'C1A' ,}, 
+        ],
+      },
+
+       { 
+        id: 'C1A', desc: "要想骗过那些杀手的眼睛，这次乔装一定要颠覆，要大胆",   
+        options: [ 
+         { title: '版本答案——女装', nextChat: 'C2' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
+         { title: '黑衣，杀手装', nextChat: 'C3', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] }, 
+         { title: '老人装', nextChat: 'C4', icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: "‘女装才是版本答案！’\n李森炎在心中虔诚的默喊了三遍然后在布庄老板诡异打量的眼神中，换上了精致婀娜的女装\n原身皮肤白皙，又鲜少练武，偏瘦也没什么肌肉\n原身皮肤白皙，又鲜少练武，偏瘦也没什么肌肉",   
+        options: [ 
+         { title: '这下稳了！', toScene: 'C000A1_V_MAP_-2_-3' }, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: "李森炎深思之下，选择了类似杀手黑衣的装扮\n打不过就加入，这是明智的选择\n只要能成功混入杀手行列，说不定还能打探到更多内幕消息",   
+        options: [ 
+         { title: '就这样，准没错！', nextChat: 'C3_A'  }, 
+        ],
+      },
+
+        { 
+        id: 'C3_A', desc: "李森炎攀上一间民舍的房檐\n作为杀手当然要不走寻常路\n正准备飞檐走壁偷偷摸回家，突然身后有人喊住了他,“喂！你小子怎么在这儿，叫你去春花阁偷的东西呢？”",   
+        options: [ 
+         { title: '……', nextChat: 'C3A'  }, 
+        ],
+      },
+      { 
+        id: 'C3A', desc: "被当成盗贼同伙了是吧？\n你看清楚，我这是杀手装，逼格不一样的好吗？\n转头，就见一个黑衣人蒙着面，跟自己穿的是同款\n说不定还是在同一家店买的\n好吧，这破衣服，根本就没什么逼格",   
+        options: [ 
+         { title: '你认错人了，我不是你同伙', nextChat: 'C3B'  }, 
+         { title: '先装成同伙，尽快把人打发走', nextChat: 'C3C'  }, 
+        ],
+      },
+
+      { 
+        id: 'C3B', desc: "“你认错人了，我不是你同伙。”李森炎没好气的白了他一眼\n心中暗骂倒霉，决定快步离开\n刚走出两步，便听见身后那男人嘀咕一句\n“就算不是，你也知道了春花阁的事，小兄弟，得罪了！\n那黑衣人担心事情被李森炎泄露，决定除之后快！",   
+        options: [ 
+         { title: '这条路走不通，再来', nextChat: 'C1'  }, 
+        ],
+      },
+
+      { 
+        id: 'C3C', desc: "李森炎装作是他的同伙，接上对方话头道\n“春花阁宾客太多，我没找着机会，我现在再去一趟。”\n他想着以‘再去一趟’这个借口离开，然后自己偷偷溜回家\n却不曾想，黑衣人似乎是发现了一点端倪\n“喂，你声音怎么变了？”",   
+        options: [ 
+         { title: '找个借口', nextChat: 'C3D'  }, 
+         { title: '告诉他你认错人了', nextChat: 'C3B'  }, 
+        ],
+      },
+
+      { 
+        id: 'C3D', desc: "“我……我感冒了，所以声音变了。”\n说完，李森炎还佯装难受，剧烈的咳了咳\n可是黑衣人没再说话\n就在李森炎以为自己蒙混过关的时候\n黑衣人忽然一把扯下了他的面罩\n在看见他的真实面貌之后，气愤至极，将李森炎杀了",   
+        options: [ 
+         { title: '重来……', nextChat: 'C1'  }, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: "李森炎到布庄买了一件老人装，一个拐杖\n又给自己贴上白眉，胡子\n脸上的皱纹，白斑也没放过，统统安排上\n最后刻意弯下腰，装出老人佝偻的模样\n如此装扮，行走在大街上，根本不会有人多看一眼\n毕竟谁会对一个老头感兴趣？",   
+        options: [ 
+         { title: '回家！', toScene: 'C000A1_V_MAP_-2_0' }, 
+        ],
+      },
+       #
+    ],
+  
+  },
+
+#===========事件场景==============
+  {
+  # NPC2
+    id: 'C000A1_V_MAP_-1_-2', name: '春花阁',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+     #横图显示
+    sceneImage: 'BGT_44',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, -2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+      chats: [
+    
+      
+    ],
+  },
+
+  #===========事件场景==============
+  {
+  # NPC2
+    id: 'C000A1_V_MAP_-1_-1', name: '西市一街',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+     #横图显示
+    sceneImage: 'BGT_34',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, -1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       
+    ],
+  },
+  #===========事件场景==============
+  {
+  # NPC2
+    id: 'C000A1_V_MAP_-1_1', name: '西市',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+     #横图显示
+    sceneImage: 'BGT_41',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/raolu_B'], nextChat: 'C6A_1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_2'], nextChat: 'C6_S' },
+
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/xishilukou_A'], nextChat: 'C3' }, 
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/xishilukou_A'], nextChat: 'C5' }, 
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/mipu_A'], nextChat: 'C8' }, 
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/daoju_A'], nextChat: 'C9' }, 
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: "这一次，李森炎不再走神\n疾行途中，目光四巡\n格外小心谨慎\n直到来到第一次死亡的位置，寒光骤闪",
+        options: [ 
+          { title: '【仔细查看！】', nextChat: 'C2'}, 
+      ],
+      },
+      { 
+        id: 'C2', desc: "李森炎终于看清，那是一把飞刀\n飞刀疾如电，快速抹过他的脖子\n眼角的余光，瞥见黑衣人从隔壁民舍的屋檐跳下\n嘴角勾勒出得意的笑", 
+        options: [ 
+         { title: '原来如此', nextChat: 'C3',
+         toMsg: {
+              action: 'CluesModel/useClues',
+              params: {
+              addCluesId: ["qingbao1"], 
+              },
+            }, }, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: "果然有杀手埋伏……\n再次回到西市路口，李森炎心里有底\n初步总结，死亡后回溯的时间节点可以由个人意志控制\n如果在死亡的那一瞬间没有意识去刻意控制，回溯的时间节点就会是完全随机的",
+        options: [ 
+          { title: '【>>>继续】', varsOff: ['WZXX_M1_N1_C000A_V/xishilukou_A'], nextChat: 'C4'}, 
+      ],
+      },
+
+      { 
+        id: 'C4', desc: "但无论是意志控制还是完全随机，最多不会超过三个时辰~\n也就是说，他死后，最多回到死亡前三个时辰内的时间节点\n其二，是否需要死亡才能触发回档，这个结果他还没有试验出来\n反正他暂时还没有遇到过这种情况。",
+        options: [ 
+          # { title: '【绕路回家！】', toScene: 'C000A1_V_MAP_-1_-1'}, 
+          { title: '【太奇怪了】',nextChat: 'C5'},
+      ],
+      },
+
+      { 
+        id: 'C5', desc: "同时他也注意到\n自己怀表里的玉石比之前暗淡了些许\n难道自己的死亡轮回，与怀表里的这枚玉石有关？",
+        options: [ 
+          { title: '【该不会……】',  nextChat: 'C6'}, 
+      ],
+      },
+
+      { 
+        id: 'C6', desc: "“当玉石的光泽彻底消失后，我就再也不能轮回了吧？”\n这问题当然不会有答案\n李森炎只能自己心中暗自警惕，时刻关注着怀表玉石的光芒\n只要多注意，应该不会有大碍",
+        options: [ 
+          { title: '【硬闯过去】',  toScene: 'C000A1_V_MAP_-1_2', varsOn: ['WZXX_M1_N1_C000A1_V/yingchuang'],}, 
+          { title: '【绕路而走】',  nextChat: 'C6A', }, 
+          { title: '【思索一下】',  nextChat: 'C7'}, 
+          { title: '【进行一次彻底的乔装】', varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A'], toScene: 'C000A1_V_MAP_-1_-3'}, 
+      ],
+      },
+
+      { 
+        id: 'C6_S', desc: "“当玉石的光泽彻底消失后，我就再也不能轮回了吧？”\n这问题当然不会有答案\n李森炎只能自己心中暗自警惕，时刻关注着怀表玉石的光芒\n只要多注意，应该不会有大碍",
+        options: [ 
+          { title: '【硬闯过去】',  toScene: 'C000A1_V_MAP_-1_2', varsOn: ['WZXX_M1_N1_C000A1_V/yingchuang'],}, 
+          { title: '【思索一下】',  nextChat: 'C7A'}, 
+          { title: '【进行一次彻底的乔装】', varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A'], toScene: 'C000A1_V_MAP_-1_-3'}, 
+      ],
+      },
+
+      { 
+        id: 'C6A', desc: "走了几次的李森炎已经确定这条路有杀手了，而且好像是在屋檐的左边，所以他还是选择绕路而走",
+        options: [ 
+          { title: '【去西市三街】',varsOn: ['WZXX_M1_N1_C000A1_V/raolu_A'], toScene: 'C000A1_V_MAP_-2_-1'}, 
+          { title: '【去小院】',varsOn: ['WZXX_M1_N1_C000A1_V/raolu'], toScene: 'C000A1_V_MAP_-3_-1'}, 
+      ],
+      },
+
+       { 
+        id: 'C6A_1', desc: "走了几次的李森炎已经确定这条路有杀手了，而且好像是在屋檐的左边，所以他还是选择绕路而走",
+        options: [ 
+          { title: '【去西市三街】', toScene: 'C000A1_V_MAP_-2_-1'}, 
+          { title: '【去小院】', varsOn: ['WZXX_M1_N1_C000A1_V/raolu'], toScene: 'C000A1_V_MAP_-3_-1'}, 
+      ],
+      },
+
+      { 
+        id: 'C7', desc: "李森炎眉头紧锁，他并不清楚杀手的位置，所以他的处境比较麻烦。\n现在他在明敌在暗，不找出这个杀手的位置，也很难防住对方的袭击\n所以他现在首要目标就是要找这个杀手出来，只有将这个杀手给找出来，他才能够更好地应对这个家伙。",
+        options: [ 
+          { title: '【……】',  nextChat: 'C8'}, 
+          
+      ],
+      },
+
+       { 
+        id: 'C8', desc: "慢慢寻找的话恐怕需要不少时间，但是这方法还是比较稳妥的，只要小心一点，早晚能够将这个杀手给找出来。\n而自己似乎不怕死，倒是能够靠这能力快速将这杀手给引诱出来，只是要承受一些痛楚。",
+        options: [ 
+          { title: '【慢慢寻找】', nextChat: 'C9'}, 
+          { title: '【以身诱敌】', varsOn: ['WZXX_M1_N1_C000A1_V/youdi'], toScene: 'C000A1_V_MAP_-1_0'}, 
+      ],
+      },
+
+       { 
+        id: 'C9', desc: "为了稳妥起见，李森炎选择在这通往李家的小巷中寻找杀手。\n可惜找了几炷香的时间，他并没有找到杀手的身影",
+        options: [ 
+          { title: '【重新选择】',nextChat: 'C8' }, 
+      ],
+      },
+    ],
+  },
+
+   #===========事件场景==============
+  {
+    # NPC2
+    id: 'C000A1_V_MAP_-1_0', name: '小巷',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_46',
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 0],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/xunzhao'], nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/youdi'], nextChat: 'C1A' },
+    ],
+
+   # 对话选项
+      chats: [      
+      { 
+        id: 'C1', desc: "李森炎庆幸自己找到了最合适的乔装\n一路畅行无阻，也没有再遇到暗杀\n终于，他成功看到李家的大门\n但是，那一刹那，他却浑身一震！",
+        options: [ 
+         { title: '怎么会这样！', toChapter: "WZXX_M1_N1_C002_[N12]" ,icon: { id: 11 },sounds: [{ stopBGM: true }],}, 
+        ],
+      },
+
+  
+
+        { 
+        id: 'C1A', desc: "为了节省时间，李森炎打算以身诱敌\n他信步闲庭地走在这道路上，但眼睛却是不断地观察着四周。\n“咻...”\n随着道左边传来一阵细微的声响后，李森炎看到一个黑影迅速朝他袭来。\n尽管他抬手去抵挡了，但依然死在了这杀手的刀下。",
+        options: [ 
+          { title: '【似乎找到了杀手的位置】',nextChat: 'C2'}, 
+      ],
+      },
+
+       { 
+        id: 'C2', desc: "原来在这左边的老旧民居楼房檐上...\n得知了杀手的位置之后，李森炎并没有着急。\n而是四处张望了一下，打算随地捡一些道具当武器。\n虽然白城有个铁匠铺可以购买铁剑，但是他现在身上就只有十铜钱想要买个铁剑不现实，这点钱应该够买一个剑柄，所以也只能就地取材了。",
+        options: [ 
+          { title: '【探索】',nextChat: 'C3'}, 
+      ],
+      },
+
+      { 
+        id: 'C3', desc: "他捡起了个扫把，顺便将几块板砖和一把沙土塞进了兜里。\n他清楚赤手空拳很难击败对方，所以自然是随地捡一些能够当做武器的东西了。",
+        options: [ 
+          { title: '【准备的差不多了】',nextChat: 'C4'}, 
+      ],
+      },
+
+      { 
+        id: 'C4', desc: "准备好一切之后，李森炎偷偷爬上屋檐摸到了这杀手身后的位置。\n由于李森炎的身法不错，而且谨慎无比，所以这杀手并没有发现李森炎。\n现在李森炎位于杀手的身后。",
+        options: [ 
+          { title: '【扫把千年杀】',nextChat: 'C5'}, 
+          { title: '【使用十字固】',nextChat: 'C9'}, 
+          { title: '【掏出板砖】',nextChat: 'C12A'}, 
+          { title: '【吓唬杀手】',nextChat: 'C15'}, 
+      ],
+      },
+
+       { 
+        id: 'C5', desc: "由于这杀手背对着李森炎没有任何防备，他看着手中握着的扫把再看了看杀手的屁股咽了咽口水，一股冲动用上心头。\n随着杀手的一声惨叫响起，那不可置信的“惊喜”眼神恐怕永远都会记住这一刻。",
+        options: [ 
+          { title: '【！！！】',nextChat: 'C6'}, 
+      ],
+      },
+
+      { 
+        id: 'C6', desc: "此刻李森炎心里不由想起了一首歌。没有一丝丝防备，没有一丝丝顾虑，我就这样出现，在你的世界里，带给你惊喜…\n看着杀手竟然没有失去战斗力，李森炎有点惊恐，对方这怕是“钢”铁侠了。\n看着想要活撕了他的杀手，李森炎决定…",
+        options: [ 
+          { title: '【赶紧逃跑】',nextChat: 'C7'}, 
+          { title: '【再来一击】',nextChat: 'C8'}, 
+      ],
+      },
+
+      
+      { 
+        id: 'C7', desc: "李森炎立刻使出身法想要逃跑，他知道对方那想要活撕了他的愤怒眼神绝对不是假的。\n杀手见追不上李森炎，竟然不顾后遗症一次性直接服下了数颗轻身丹，在七窍流血的情况下想要追上李森炎。\n可惜他在服用过多丹药，在想要对着李森炎出刀的那一刻，心脏负荷过大而亡。",
+        options: [ 
+          { title: '【顺利逃脱】', toChapter: "WZXX_M1_N1_C002_[N11]",icon: { id: 11 },sounds: [{ stopBGM: true }], }, 
+      ],
+      },
+
+      { 
+        id: 'C8', desc: "李森炎看着对方想要活撕了自己的眼神，感觉有点不妙，立刻冲上去打算再给他来一下，让他彻底丧失战斗能力和男人的尊严。\n没想到这杀手死死护住后背根本不给他这机会。并且拖着被重创的身躯狠狠给他来了一刀。",
+        options: [ 
+          { title: '【挂了，重新再来】',nextChat: 'C6'}, 
+          ],
+      },
+
+      { 
+        id: 'C9', desc: "由于李森炎前世看过不少动作片，所以受到动作片的影响，他打算用十字固的方式绞杀对方\n五秒可晕厥，十秒可死亡。\n这就是十字固的威力。\n看着毫无防备的杀手，他迅速上前勒住对方的方的脖子。",
+        options: [ 
+          { title: '【马上就要成功了……】',nextChat: 'C10'}, 
+      ],
+      },
+
+       { 
+        id: 'C10', desc: "随着李森炎双臂不断地发力，他的嘴角也是逐渐上扬，笑容也是越发猖狂\n电影那反派被勒晕的画面不断在他脑海浮现，他感觉自己已经胜券在握了。\n但是李森炎没想到修行者的力量如此强大，对方不仅轻易掰开了你的手臂，并且转身直接掐住了他的脖子。",
+        options: [ 
+          { title: '【……】',nextChat: 'C11'}, 
+      ],
+      },
+
+      { 
+        id: 'C11', desc: "看着杀手那冷冽的面庞，他说道：“我只是想抱抱你信吗？”\n李森炎又挂了",
+        options: [ 
+          { title: '【……】',nextChat: 'C4A'}, 
+      ],
+      },
+
+       { 
+        id: 'C4A', desc: "准备好一切之后，李森炎偷偷爬上屋檐摸到了这杀手身后的位置。\n由于李森炎的身法不错，而且谨慎无比，所以这杀手并没有发现李森炎。\n现在李森炎位于杀手的身后。",
+        options: [ 
+          { title: '【扫把千年杀】',nextChat: 'C5'}, 
+          { title: '【使用十字固】',nextChat: 'C12'}, 
+          { title: '【掏出板砖】',nextChat: 'C12A'}, 
+          { title: '【吓唬杀手】',nextChat: 'C15'}, 
+      ],
+      },
+
+      { 
+        id: 'C12', desc: "李森炎知道十字固无法给对方造成太大的伤害，他放弃了这个想法。",
+        options: [ 
+          { title: '【……】',nextChat: 'C4'}, 
+      ],
+      },
+
+       { 
+        id: 'C12A', desc: "由于对方背对着李森炎毫无防备，他小心翼翼地掏出兜里的板砖，随后双手高举\n用尽吃奶的力将转角砸向了这杀手的脑勺",
+        options: [ 
+          { title: '【……】',nextChat: 'C13'}, 
+      ],
+      },
+
+        { 
+        id: 'C13', desc: "随着杀手一阵恍惚，他看起来还没反应过来怎么回事。\n看着还没有被砸晕的杀手李森炎有点震惊，要是普通人这一下不死都要重伤，这杀手竟然只是踉跄了几步，并没有要倒地的感觉。",
+        options: [ 
+          { title: '【赶紧！】',nextChat: 'C14'}, 
+      ],
+      },
+
+       { 
+        id: 'C14', desc: "趁杀手恍惚之际夺剑那就占据优势了，如果再来一击说不定就能够击晕对方，稳妥点耍阴招撒出沙尘也能让对方暂时失明。",
+        options: [ 
+          { title: '【夺剑】',nextChat: 'C17'}, 
+          { title: '【再来一击】',nextChat: 'C18'}, 
+          { title: '【撒出沙尘】',nextChat: 'C19'}, 
+      ],
+      },
+
+      
+       { 
+        id: 'C15', desc: "看着背对着自己的杀手，李森炎忍不住大声尖叫了一声，打算吓死这家伙。\n毫无防备的杀手吓得一个抖擞，并且下意识一剑向后砍去。",
+        options: [ 
+          { title: '【李森炎一脸黑线地挂了！再来！】',nextChat: 'C4B'}, 
+      ],
+      },
+
+      { 
+        id: 'C4B', desc: "准备好一切之后，李森炎偷偷爬上屋檐摸到了这杀手身后的位置。\n由于李森炎的身法不错，而且谨慎无比，所以这杀手并没有发现李森炎。\n现在李森炎位于杀手的身后。",
+        options: [ 
+          { title: '【扫把千年杀】',nextChat: 'C5'}, 
+          { title: '【使用十字固】',nextChat: 'C12'}, 
+          { title: '【掏出板砖】',nextChat: 'C12A'}, 
+          { title: '【吓唬杀手】',nextChat: 'C16'}, 
+      ],
+      },
+
+        { 
+        id: 'C16', desc: "李森炎知道根本吓不死对方，他放弃了这个想法。",
+        options: [ 
+          { title: '【返回重选】',nextChat: 'C4'}, 
+      ],
+      },
+
+      
+       { 
+        id: 'C17', desc: "李森炎感觉板砖对他的伤害不高之后，打算夺取他的长剑反杀他。\n可惜对方很快回过神来，一剑将他砍了。",
+        options: [ 
+          { title: '【又挂了！再来！】',nextChat: 'C14'}, 
+      ],
+      },
+
+       { 
+        id: 'C18', desc: "由于对方还没有丧失战斗力，李森炎再次高举板砖砸向这杀手。\n可惜这次杀手早有防备，抵挡住他的攻击后一剑刺向了他。",
+        options: [ 
+          { title: '【又挂了！再来！】',nextChat: 'C14'}, 
+      ],
+      },
+
+      { 
+        id: 'C19', desc: "为了保险起见，李森炎选择从兜里抓起一把尘土朝着杀手的眼睛撒了过去。\n没来得及闭眼的杀手眼睛进了大量沙尘，暂时失去了视觉。杀手在惊恐之下，四处挥砍",
+        options: [ 
+          { title: '【上前猛砸】',nextChat: 'C20'}, 
+          { title: '【远处瓦砖】',nextChat: 'C21'}, 
+      ],
+      },
+
+      { 
+        id: 'C20', desc: "看着对方已经失去了视觉，你大喜过望，再次拿起板砖打算给他来几记狠的。\n不过出乎你的意料的是这杀手四处挥砍的速度十分快，你还没靠近便被连砍几刀。",
+        options: [ 
+          { title: '【又挂了重来】',nextChat: 'C19'}, 
+      ],
+      },
+
+      { 
+        id: 'C21', desc: "尽管对方已经失去了视力，但是看着对方这毫无章法的挥砍，李森炎十分忌惮。\n这种没有任何套路可循的乱砍十分危险，而且对方这挥剑的速度也是十分恐怖\n他并不觉得自己能够安然无恙地靠近。",
+        options: [ 
+          { title: '【保险起见……】',nextChat: 'C22'}, 
+      ],
+      },
+
+      { 
+        id: 'C22', desc: "他随地捡起屋檐上的瓦砖，并且选择了一个好位置，猛地扔出了自己手中的瓦砖\n由于他小时候十分喜欢玩打水漂，所以他的投砖技术十分精湛。\n无论力度，速度还是准度，都在他手中发挥完美。",
+        options: [ 
+          { title: '【继续甩！】',nextChat: 'C23'}, 
+      ],
+      },
+
+       { 
+        id: 'C23', desc: "随着这瓦砖猛地砸向了这杀手的脑袋，“碰”的一声传来，杀手吃痛大吼\n看着对方动作变得迟缓了起来。\n李森炎并没有着急，而是猛地扔多几颗瓦砖砸过去。\n尽管这个杀手的肉身十分强大，这些石头对他的伤害并不大。",
+        options: [ 
+          { title: '【不过……】',nextChat: 'C24'}, 
+      ],
+      },
+
+      { 
+        id: 'C24', desc: "但是李森炎这扔石头的技术十分高，几乎每次都能够砸在同一个位置\n就算这瓦砖对修士的伤害不大，但是被这种坚硬的东西砸了这么多次脑袋，而且还是同一个位置，就算是铁人来了也撑不住。\n这杀手很快就在李森炎不断扔的瓦砖下被砸下了屋檐，倒在了小巷里面。",
+        options: [ 
+          { title: '【终于成功了！】',nextChat: 'C25'}, 
+      ],
+      },
+
+      { 
+        id: 'C25', desc: "由于这条小巷并没有什么人，所以并没有发现这边的情况。\n杀手倒地后，长剑也掉落在他身边",
+        options: [ 
+          { title: '【上千捡剑】', nextChat: 'C26'}, 
+          { title: '【砸开长剑】', nextChat: 'C27'}, 
+      ],
+      },
+
+      { 
+        id: 'C26', desc: "见杀手倒地后，李森炎打算上前捡起他掉落的长剑\n但是他没想到对方竟然还有气力向自己扑来。\n将李森炎扑倒在地后，杀手用尽最后的力气一掌挥出，跟他同归于尽",
+        options: [ 
+          { title: '【怎会如此！再来】',nextChat: 'C25'}, 
+      ],
+      },
+
+       { 
+        id: 'C27', desc: "见杀手倒地后，李森炎依然小心谨慎。他选择扔出板砖\n将这掉落在杀手附近的长剑砸开\n然后在安全的位置将长剑捡了起来。",
+        options: [ 
+          { title: '【有了武器！】',nextChat: 'C28'}, 
+      ],
+      },
+
+      { 
+        id: 'C28', desc: "信心大涨，但依然小心翼翼地靠近这个杀手\n当李森炎距离这杀手不足一米的时候，原本倒在地上的杀手突然暴起。",
+        options: [ 
+          { title: '【迅速反击！】',nextChat: 'C29'}, 
+      ],
+      },
+
+      { 
+        id: 'C29', desc: "不过早有预料的李森炎立刻使用身法躲避，随后一剑捅穿了这个杀手的胸膛\n看着彻底倒地不起的杀手，李森炎眼神有点复杂。",
+        options: [ 
+          { title: '【放其一马】',nextChat: 'C30'}, 
+          { title: '【斩超除根】',nextChat: 'C31'}, 
+      ],
+      },
+
+      { 
+        id: 'C30', desc: "拿着长剑的李森炎有点颤抖，毕竟作为一个现代人\n从来没有想过有一天要杀人。\n最终他还是没能战胜自己心理。\n深深叹了口气后，便赶紧离开这个地方，打算为接下来的追杀做打算。",
+        options: [ 
+          { title: '【赶紧离开】',toChapter: "WZXX_M1_N1_C002_[N11]",icon: { id: 11 },sounds: [{ stopBGM: true }], }, 
+      ],
+      },
+
+      { 
+        id: 'C31', desc: "拿着长剑的李森炎有点颤抖，毕竟作为一个现代人\n从来没有想过有一天要杀人。\n但是想到对方想要杀自己的事情，再想到不除掉他的后果，你的眼神逐渐冰冷了下来",
+        options: [ 
+          { title: '【杀人者，人恒杀之】', nextChat: 'C32'},  
+      ],
+      },
+
+      
+      { 
+        id: 'C32', desc: "前世已经活的这么憋屈了，这辈子拥有这不死的能力，那自然要讲究一个快意恩仇\n随着他长剑一挥，这杀手双目圆瞪，脖子鲜血四溅。",
+        options: [ 
+          { title: '【痛快，离开】', toChapter: "WZXX_M1_N1_C002_[N11]" ,icon: { id: 11 },sounds: [{ stopBGM: true }],},  
+      ],
+      },
+
+      
+
+
+    ],
+
+  },
+
+   #===========事件场景==============
+  {
+    # NPC2
+    id: 'C000A1_V_MAP_-3_0', name: '胡同',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_46',
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, 0],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+
+   # 对话选项
+      chats: [      
+     
+    ],
+
+  },
+
+  #===========事件场景==============
+  {
+  # NPC2
+    id: 'C000A1_V_MAP_-2_0', name: '李家',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_46',
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, 0],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+
+   # 对话选项
+      chats: [      
+      { 
+        id: 'C1', desc: "李森炎庆幸自己找到了最合适的乔装\n一路畅行无阻，也没有再遇到暗杀\n终于，他成功看到李家的大门\n但是，那一刹那，他却浑身一震！",
+        options: [ 
+         { title: '怎么会这样！', toChapter: "WZXX_M1_N1_C002_[N13]" ,icon: { id: 11 },sounds: [{ stopBGM: true }],}, 
+        
+         
+        ],
+      },
+    
+       #
+    ],
+
+  },
+ #===========事件场景==============
+  {
+  # NPC2
+    id: 'C000A1_V_MAP_-1_2', name: '西市二街',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+     #横图显示
+    sceneImage: 'BGT_42',
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+      #  { type: 'enter',  andVarsOn: ['WZXX_M1_N1_C000A1_V/yingchuang'], nextChat: 'C1' },
+       
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: "不信邪的李森炎再次使用轻功，快速向着李家飞奔而去。\n这次他用尽全力使出自己的身法，如同一只轻盈的跳兔般迅速疾驰\n他清楚只要自己穿过这小巷混进人群当中，那自己基本就能安全了。",   
+        options: [ 
+          { title: '行动',  nextChat: 'C2' }, 
+        ],
+      },
+      { 
+        id: 'C2', desc: "李森炎还没跑出多远，眼前的画面再次天旋地转了起来。\n李森炎又挂了。",   
+        options: [ 
+          { title: '果然不行……',  nextChat: 'C3' }, 
+        ],
+      },
+      { 
+        id: 'C3', desc: "又挂一次的李森炎清楚自己身法无法躲开这个在通往李家必经之路守株待兔的杀手。\n所以他决定用其他方法通往李家。\n不过现在的他似乎已经知道了杀手大概的方位，这倒是能够想办法对付这家伙。",   
+        options: [ 
+          { title: '等待白事队伍',  nextChat: 'C3A' }, 
+          # 需要触发二号之后再解锁这个选项
+          { title: '直面杀手',  nextChat: 'C5A' }, 
+          { title: '无视杀手',  nextChat: 'C4' }, 
+        ],
+      },
+
+      { 
+        id: 'C3A', desc: "李森炎在远处慢慢等待，他清楚很快一伙办丧事的队伍经过了这条道路，\n果不其然过了半小时后一只披麻戴孝的队伍走来，他不动声色地混了进去。",   
+        options: [ 
+          { title: '好像……能成？！',  nextChat: 'C3B' }, 
+        ],
+      },
+
+      { 
+        id: 'C3B', desc: "由于李森炎成功混进了这伙白事队伍，杀手并没有发现异常，他顺利到达了李家。\n但是他却发现母亲已经被杀手带走，而李家也埋伏了众多杀手等待着他，在杀手的围攻之下，李森炎在围攻中没有撑住，很快就命丧黄泉。",   
+        options: [ 
+          { title: '重新再来！',  nextChat: 'C3' }, 
+        ],
+      },
+      
+      { 
+        id: 'C5A', desc: "得知杀手大概的方位之后，李森炎仗着自己死不去的能力打算跟杀手死磕一番",   
+        options: [ 
+          { title: '不管怎么样，警惕一点吧！',  nextChat: 'C5' }, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: "得知杀手大概位置后，李森炎轻易躲开了他的偷袭，你选择无视杀手继续逃跑。\n不过对方对李森炎紧追不舍，服下了几颗轻身丹追上了他。\n李森炎又挂了。",   
+        options: [ 
+          { title: '重新选！',  nextChat: 'C3' }, 
+        ],
+      },
+
+      { 
+        id: 'C5', desc: "李森炎走在道路上，不过眼神一直警惕地看向左边，因为这杀手是从左边的屋檐中偷袭的\n走了一段路后，杀手果不其然从左边的房顶跳下来，随后朝着他猛然袭杀\n不过早有预料的李森炎迅速躲避，并且立刻做出反应。",   
+        options: [ 
+          { title: '高喊绝学', nextChat: 'C6'  }, 
+          { title: '直接逃跑', nextChat: 'C7'  }, 
+          { title: '突然大笑', nextChat: 'C8'  }, 
+          { title: '说后面有美女', nextChat: 'C9'  }, 
+        ],
+      },
+
+       { 
+        id: 'C6', desc: "见到杀手出现后，李森炎神情自信，高举手中，似乎有暗流在涌动，杀手见他这么自信不由咽了咽口水。\n“降龙十八掌！”\n李森炎忽然怒吼，吓得杀手连忙举剑抵挡，名字如此威猛的招式肯定威力不凡。",   
+        options: [ 
+          { title: '可行！',  nextChat: 'C10' }, 
+        ],
+      },
+
+       { 
+        id: 'C7', desc: "见到杀手出现后，李森炎头也不回地奔向城门，不过让他没想到的是这杀手轻功不俗，竟然追上了他的脚步。\n李森炎又挂了。",   
+        options: [ 
+          { title: '还是不行',  nextChat: 'C5' }, 
+        ],
+      },
+
+       { 
+        id: 'C8', desc: "见到杀手出现后，李森炎突然大笑了起来，身上散发出无比的自信。\n“手握日月摘星辰，世间无我这般人。”\n“小子，你确定要对我动手？”他眯了眯眼神秘莫测地说道。",   
+        options: [ 
+          { title: '不知唬住他了没……',  nextChat: 'C11' }, 
+        ],
+      },
+
+       { 
+        id: 'C9', desc: "见到杀手后，李森炎连忙指向他身后。\n“我的天，有美女！”\n杀手不为所动，直接朝着李森炎袭来。\n李森炎连忙跑路，但还是因为动静太大引来了更多的杀手，最终死在了杀手刀下。\n李森炎又挂了。",   
+        options: [ 
+          { title: '还是不行',  nextChat: 'C5' }, 
+        ],
+      },
+
+       { 
+        id: 'C10', desc: "由于被李森炎那威猛的招式名字给震慑住，杀手高举长剑，严阵以待李森炎那强大的招式。\n不过预想当中的招式并没有来，李森炎只给了他一个潇洒的背影。",   
+        options: [ 
+          { title: '成功通过',  toChapter: "WZXX_M1_N1_C002_[N11]" ,icon: { id: 11 },sounds: [{ stopBGM: true }],}, 
+        ],
+      },
+
+       { 
+        id: 'C11', desc: "听到李森炎的话之后，杀手心神剧震。\n手握日月摘星辰？这是何等的实力，怕是仙人都做不到这地步了…\n怪不得皇城司会派这么多人过来追杀他…\n见杀手被震慑住，李森炎不紧不慢地离开了这个小巷\n离开小巷后，趁着这杀手还没反应过来，李森炎赶紧拔腿就跑",   
+        options: [ 
+          { title: '成功通过',  toChapter: "WZXX_M1_N1_C002_[N11]",icon: { id: 11 },sounds: [{ stopBGM: true }], }, 
+        ],
+      },
+    ],
+  },
+ #===========事件场景==============
+  {
+  # NPC2
+    id: 'C000A1_V_MAP_-3_1', name: '米铺',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_31',
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, 1],
+    # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+      # { 
+      #   id: 'C1', desc: "李森炎费尽心思，终于看到李家的围墙\n李森炎翻身上墙，忍不住吐槽\n同一时间，有个蒙面人从墙内翻出来。\n李森炎和他对上眼，两人同时都愣住了一下\n李森炎：“你丫是谁？”\n蒙面人：“这还不明显吗？我呀，是个贼！”\n蒙面人以迅雷不及掩耳之势掏出匕首，白刀子进，红刀子出",   
+      #   options: [ 
+      #    { title: '又死了？？？', varsOn: ['WZXX_M1_N1_C000A_V/mipu_A'] ,toScene: 'C000A1_V_MAP_-1_1' }, 
+      #   ],
+      # },
+
+      { 
+        id: 'C1', desc: "离开小巷后，李森炎来到了米铺，\n现在他距离李家也不过一公里的距离，他来到了一个小分叉路口。",   
+        options: [ 
+         { title: '左边小路', nextChat: 'C2'  }, 
+         { title: '右边小路', nextChat: 'C3'  }, 
+         { title: '翻墙进去', nextChat: 'C4'  }, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: "李森炎选择左边小路继续赶路，不过却被一队迎面而来的队伍挡住了去路。\n这队伍全部人披麻戴孝，穿着白色的衣服，还有不少人哭泣不止，显然是举办丧事的队伍了。",   
+        options: [ 
+         { title: '艰难的穿过队伍', toChapter: "WZXX_M1_N1_C002_[N12]",icon: { id: 11 },sounds: [{ stopBGM: true }],  }, 
+
+        ],
+      },
+
+       { 
+        id: 'C3', desc: "李森炎选择右边小路继续赶路，不过却被一队迎面而来的队伍挡住了去路\n这队伍的人全身穿红，喜庆无比，为首骑马的男子看起来像个新郎官，显然是接亲的队伍。",   
+        options: [ 
+         { title: '艰难的穿过队伍', toChapter: "WZXX_M1_N1_C002_[N12]" ,icon: { id: 11 },sounds: [{ stopBGM: true }],}, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: "李家跟米铺有条捷径，只要翻过围墙就能快速赶往李家后门。\n李森炎费尽心思，终于看到李家的围墙。\n“真是够了！进自己家跟特么做贼一样！”",   
+        options: [ 
+         { title: '太难了', nextChat: 'C5'}, 
+        ],
+      },
+
+      { 
+        id: 'C5', desc: "李森炎翻身上墙，忍不住吐槽。\n同一时间，有个蒙面人从墙内翻出来。\n李森炎和他对上眼，两人同时都愣住了一下。",   
+        options: [ 
+         { title: '“你丫是谁！”', nextChat: 'C6'}, 
+        ],
+      },
+
+      { 
+        id: 'C6', desc: "蒙面人：“这还不明显吗？我呀，是个贼！”\n蒙面人以迅雷不及掩耳之势掏出匕首，白刀子进，红刀子出\n李森炎：“……”\n李森炎又挂了。",   
+        options: [ 
+         { title: '离谱……重新再来！', nextChat: 'C1'}, 
+        ],
+      },
+      ],
+  },
+  #===========事件场景==============
+  {
+  # NPC2
+    id: 'C000A1_V_MAP_-3_-1', name: '小院',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_30',
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, -1],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '李森炎选择前往小院，这条路上似乎没有杀手。', 
+        options: [ 
+        { title: '【小院左路】', nextChat: 'C2' , },
+        { title: '【小院右路】',nextChat: 'C2A' ,}, 
+       
+        ],
+      },
+      
+       {
+        id: 'C2', desc: "在小院前往米铺的小巷里，李森炎遇到了一个长发飘飘，气质出尘的姑娘。\n虽然看不到这姑娘的正脸，但是单看背影已经能够幻想出她那绝世的面容。",
+        options: [ 
+         { title: '上前搭讪', nextChat: 'C4' }, 
+         { title: '无视美人', nextChat: 'C3' }, 
+        
+        ],
+      },
+
+      { 
+        id: 'C3', desc: "李森炎回城心切，无视了这“美人”，迅速地向着李家跑去。",   
+        options: [ 
+         { title: '离开', toScene: 'C000A1_V_MAP_-3_1'}, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: "李森炎看到这漂亮的背影心神微震，忍不住上前搭讪\n不过当这美人转过来之后，李森炎双目惊恐，浑身颤抖，立刻抽回了自己搭在对方肩膀上的手。\n因为眼前这“美人”满脸络腮胡，甚至鼻毛都露出来一堆，整张脸十分粗犷，完全不像一个女人",   
+        options: [ 
+         { title: '！！！', nextChat: 'C5' }, 
+        ],
+      },
+
+      { 
+        id: 'C5', desc: "面对你这非礼的行为，这“美女”大声喊叫，叫声引来了附近的杀手。\n由于被这“美人”给吓到的李森炎双腿发软，被赶来的杀手一刀毙命。\n李森炎又挂了。",   
+        options: [ 
+         { title: '！！！', nextChat: 'C2' }, 
+        ],
+      },
+
+      {
+        id: 'C2A', desc: "在西市一街前往李家的小巷中，遇到了一个正在蹲着抱头哭泣的小孩\n只不过这个小孩看起来有点异常，毕竟这哭声有点不像是小孩的声音。",
+        options: [ 
+         { title: '上前帮忙', nextChat: 'C3A' }, 
+         { title: '直接离开', nextChat: 'C4A' }, 
+        ],
+      },
+
+      {
+        id: 'C3A', desc: "李森炎犹豫了一下决定上前帮忙，他伸出手准备慰问一下这小孩的时候\n发现这家伙抬头的时候这脸竟然是成年人的脸，显然是个侏儒症患者。\n而且这家伙竟然怀里藏刀，一刀捅在了李森炎的腹部上面\n李森炎又挂了。",
+        options: [ 
+         { title: '……可气，重来', nextChat: 'C2A' }, 
+        ],
+      },
+
+      {
+        id: 'C4A', desc: "由于李森炎察觉到了一丝危险的气息，他决定不多管闲事赶紧离开。\n在李森炎离开小巷前，他的余光看到了这“小孩”怀里藏着的刀子。\n在李森炎离开小巷前，他的余光看到了这“小孩”怀里藏着的刀子。",
+        options: [ 
+         { title: '迅速离开', toScene: 'C000A1_V_MAP_-3_1'}, 
+        ],
+      },
+      ],
+  },
+#===========事件场景==============
+  {
+  # NPC2
+    id: 'C000A1_V_MAP_-2_-1', name: '西市三街',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_41',
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, -1],
+    # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/raolu_A'], nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/raolu_B'], nextChat: 'C2' },
+    ],
+    # 对话选项
+    chats: [
+    { 
+        id: 'C1', desc: "李森炎选择前往西市三街\n不过他刚踏上通往三街的道路上\n脑袋再次在半空中三百六十度旋转。",   
+        options: [ 
+         { title: '又挂了重新再来', toScene: 'C000A1_V_MAP_-1_1',
+            varsOn: ['WZXX_M1_N1_C000A1_V/raolu_B'],
+            varsOff: ['WZXX_M1_N1_C000A1_V/raolu_A'],
+            }, 
+        ],
+    },
+
+    { 
+        id: 'C2', desc: "李森炎清楚这条路上也有杀手，他放弃了这个想法。",   
+        options: [ 
+         { title: '……', toScene: 'C000A1_V_MAP_-1_1',
+            # varsOn: ['WZXX_M1_N1_C000A_V/xishilukou_A'],
+            }, 
+        ],
+    },
+
+
+    ],
+  },
+  #===========事件场景==============
+  {
+  # NPC2
+    id: 'C000A1_V_MAP_-3_-2', name: '白府',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+     #横图显示
+    sceneImage: 'BGT_64',
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, -2],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '尊贵的白府，远远一看就很高大上', 
+        options: [ 
+        { title: '【四处逛逛】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
+        { title: '【想起来，该去买簪子了】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A1_V_MAP_3_-1 }, 
+        { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A1_V_MAP_-1_5' },
+        # { title: '【小院】',toScene: 'C000A1_V_MAP_-3_-1'},
+        # { title: '【西市三街】',toScene: 'C000A1_V_MAP_-2_-1'},
+        # { title: '【路口】',toScene: 'C000A1_V_MAP_-2_-3'},
+        # { title: '【街角】',toScene: 'C000A1_V_MAP_-3_-3'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        ],
+      },
+      
+      { 
+        id: 'C2', desc: "李森炎好奇的在白府四周逛逛\n这白府还真是非比寻常，很宏伟繁华”\n走着走着被白府管事看到\n“喂！你是何人，有何事啊？”",   
+        options: [ 
+         { title: '我就是来闲逛的', nextChat: 'C2A' }, 
+         { title: '我是白家的亲戚', nextChat: 'C3' }, 
+         { title: '我跟你们小姐认识……', nextChat: 'C4' }, 
+        ],
+      },
+
+      { 
+        id: 'C2A', desc: "“此处不让闲逛，快走！”\n白府家丁把李森炎赶走\n……离开此处吧",   
+        options: [ 
+         { title: '【西市三街】',toScene: 'C000A1_V_MAP_-2_-1'},
+         { title: '【路口】',toScene: 'C000A1_V_MAP_-2_-3'},
+         { title: '【街角】',toScene: 'C000A1_V_MAP_-3_-3'},
+        ],
+      },
+
+      { 
+        id: 'C3', desc: "“你是白家亲戚？”\n“对，远亲，我能进去拜访拜访吗？”\n“可以，要先预约”\n“啊？预约多久？”\n“大概半年吧，毕竟像你这么说的，没有一千也有八百个了”\n“人一有钱嘛，亲戚就多了，能理解吧？”",   
+        options: [ 
+         { title: '哈哈哈，理解理解，走吧', nextChat: 'C1' }, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: "“我认识你们家小姐……”\n“去去去，都这么说。”\n“我真认识！”\n“那好，我家小姐的小名叫什么？”\n小白？小月？小光？\n“滚！我家小姐就没有小名！还敢装熟，讨打！”",   
+        options: [ 
+         { title: '白府管家作势要打人，赶紧开溜', nextChat: 'C1' }, 
+        ],
+      },
+      ],
+
+  },
+    #===========事件场景==============
+  {
+  # NPC2
+    id: 'C000A1_V_MAP_-2_-3', name: '路口',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+     #横图显示
+    sceneImage: 'BGT_46',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, -3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A'], nextChat: 'C1' }, 
+    ],
+    # 对话选项
+    chats: [
+      
+      { 
+        id: 'C1', desc: "谁能想到，一个‘铁血硬汉’竟然能变成如此娇嫩的姑娘呢\n他正得意，刚走出百步，便迎头撞上个地痞\n“这么漂亮的妹子，怎么一个人回家，要不要哥哥陪你啊……”",   
+        options: [ 
+        { title: '……！', nextChat: 'C1A' }, 
+        ],
+      },
+
+      { 
+        id: 'C1A', desc: "说着，那地痞凑过来就要对他上下其手\n地痞靠近，此时你决定",   
+        options: [ 
+        { title: '装柔弱女人，喊救命', nextChat: 'C2' }, 
+        { title: '装彪悍女人，让他知难而退', nextChat: 'C4' }, 
+        ],
+      },
+      
+      { 
+        id: 'C2', desc: "李森炎一边后退，一边夹着嗓子喊\n“救命啊！有人耍流氓啊！”\n刹那间，有不少正义之士冲过来。\n痞眼见人多，当即落荒而逃。\n李森炎一一道谢，正准备走\n突然有个青年挡在他面前，笃定道：“你是男的。”",   
+        options: [ 
+        { title: '不是吧？这你都能看出来？', nextChat: 'C1' }, 
+        ],
+      },
+      { 
+        id: 'C3', desc: "青年邪魅一笑：“毕竟我们是同道中人，我也喜欢穿女装。”\n谁特么跟你同道中人，谁特么喜欢穿女装了啊！\n我这是迫不得已的好吗？\n痞眼见人多，当即落荒而逃。",   
+        options: [ 
+        { title: '逃过一劫', nextChat: 'C3A' }, 
+        ],
+      },
+      { 
+        id: 'C3A', desc: "这时候，有杀手经过，听到青年的话，盯上了李森炎\n不久之后，李森炎被认出来，惨遭毒手",   
+        options: [ 
+         { title: '重来！', toScene: 'C000A1_V_MAP_-1_-3'}, 
+        ],
+      },
+      { 
+        id: 'C4', desc: "李森炎随手捡起地上一块砖头\n地痞笑得更猥琐了：“小娘子想反抗吗？”\n李森炎默不作声，开始徒手劈砖",   
+        options: [ 
+         { title: '劈砖', games: { id: 1 }, nextChat: 'C5' }, 
+        ],
+      },
+      { 
+        id: 'C5', desc: "当看到砖头在李森炎手上瞬间碎裂的时候\n地痞的脚步也停住了\n李森炎问：“你还要陪我回家吗？”\n“不，打扰了！”\n就这还回个屁的家啊！\n你一个女的比我男的都彪，我还想多活几年呢\n地痞掉头就走！",   
+        options: [ 
+          { title: '逃过一劫', nextChat: 'C5A' }, 
+        ],
+      },
+      { 
+        id: 'C5A', desc: "这时候，有杀手经过\n看了李森炎徒手劈砖的举动\n瞬间盯上了他，久之后，李森炎被认了出来，惨遭毒手",   
+        options: [ 
+         { title: '重来！', toScene: 'C000A1_V_MAP_-1_-3'}, 
+        ],
+      },
+      ],
+  },
+  #=======================事件场景==========================
+  {
+  # NPC2
+    id: 'C000A1_V_MAP_-3_-3', name: '街角',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+     #横图显示
+    sceneImage: 'BGT_41',
+    #不显示时间
+      worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000A1_V_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, -3],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+    # 对话选项
+    chats: [
+       { 
+        id: 'C1', desc: '前面有个衣衫褴褛的乞丐', 
+        options: [ 
+        { title: '【和他搭话】', nextChat: 'C2' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
+        # { title: '【路口】',toScene: 'C000A1_V_MAP_-2_-3'},
+        { title: '【白府】', toScene: 'C000A1_V_MAP_-3_-2'},
+        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+        ],
+      },
+      
+       { 
+        id: 'C2', desc: "李森炎走近那乞丐走近，就听见他口里吟着什么————\n“蓬头垢面万家客，衣衫褴褛千城游。身无分文浑不怕，腰有万贯不自由。”\n李森炎上前，拍了拍那乞丐的肩\n“小兄弟，何事？”",   
+        options: [ 
+         { title: '没事，认错人了', nextChat: 'C1' }, 
+         { title: '和你随便聊聊天', nextChat: 'C3' }, 
+         { title: '打听事情', nextChat: 'C4' }, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: "“五两银子一时辰，十两银子三个时辰，小兄弟想聊个多少钱的天？”\n乞丐抬起那市侩的脸，笑吟吟的开口\n“……”\n李森炎汗颜，聊不起了先溜了",   
+        options: [ 
+         { title: '还是走吧', nextChat: 'C1' }, 
+        ],
+      },
+
+       { 
+        id: 'C4', desc: "“打听事情五两银子一次。十辆银子三次，小兄弟要打听什么？”\n'“我去，你抢钱啊！”李森炎深感晦气，后退了一步',\n乞丐脸一下就垮了下来：“没钱你瞎打听什么，情报不用钱吗？”",   
+        options: [
+         { title: '……', nextChat: 'C5' }, 
+        ],
+      },
+
+      { 
+        id: 'C5', desc: "乞丐上下打量一身风尘尤为狼狈的李森炎\n乞丐露出一副人上人的嘴脸\n“看你这倒霉的样子，我给你指条明路吧，跟我一起干，只需要三天，你就能赚到买情报的钱。”",   
+        options: [ 
+         { title: '还是算了吧', nextChat: 'C1' }, 
+        ],
+      },
+      ],
+
+  },
+
+#=================================场景地图的设置==================================
+    maps: [
+      {
+        id: 'C000A1_V_MAP_0_0',
+        images: {
+          small: '1',
+          big: "100"
+        },
+        data: [
+          { 
+          point: [-1, 1], title: '西市',
+          # toScene: 'C000A1_V_MAP_-1_1',
+          links: [[-1, 1],[-2, 0],[-1, -1],] 
+          },
+
+          { 
+          point: [-1, 0], title: '小巷',
+          # toScene: 'C000A1_V_MAP_-1_0',
+          links: [[-1, 1],[-2, 0]] 
+          },
+
+          { 
+          point: [-2, 0], title: '李家',
+          # toScene: 'C000A1_V_MAP_-2_0', 
+          links: [[-3, 0],[-2, -1]]
+          },
+
+          { 
+          point: [-3, 1], title: '米铺', 
+          # toScene: 'C000A1_V_MAP_-3_1',
+          links: [[-3, 0]] 
+          },
+
+          { 
+          point: [-3, 0], title: '胡同', 
+          # toScene: 'C000A1_V_MAP_-3_0',
+          links: [[-3, -1],[-2, 0]] 
+          },
+
+          { 
+          point: [-3, -1], title: '小院',
+          # toScene: 'C000A1_V_MAP_-3_-1',
+          links: [[-3, -2],[-2, -1]] 
+          },
+
+          { 
+          point: [-1, 2], title: '西市二街',
+          # toScene: 'C000A1_V_MAP_-1_2',
+          links: [] 
+          },
+
+          { 
+          point: [-1, -1], title: '西市一街', 
+          # toScene: 'C000A1_V_MAP_-1_-1',
+          links: [[-2, -1]] 
+          },
+
+          { 
+          point: [-2, -1], title: '西市三街',
+          # toScene: 'C000A1_V_MAP_-2_-1', 
+          links: [[-3, -1],[-2, 0],] 
+          },
+
+          {
+          point: [-1, -2], title: '春花阁',
+          #  toScene: 'C000A1_V_MAP_-1_-2', 
+           links: [[-1, -1],[-1, -3],] 
+          },
+
+          {
+          point: [-1, -3], title: '布庄', 
+          # toScene: 'C000A1_V_MAP_-1_-3',
+          links: [[-2, -3],] 
+          },
+
+          { 
+          point: [-3, -2], title: '白府',
+          # toScene: 'C000A1_V_MAP_-3_-2', 
+          links: [[-3, -3],[-2, -3],[-3, -1],[-2, -1],] 
+          },
+
+          { 
+          point: [-2, -3], title: '路口',
+          # toScene: 'C000A1_V_MAP_-2_-3', 
+          links: [] 
+          },
+
+          { 
+          point: [-3, -3], title: '街角', 
+          # toScene: 'C000A1_V_MAP_-3_-3', 
+          links: [[-3, -2]]
+          }, 
+        ]
+      },
+    ],
+]
+
+
+

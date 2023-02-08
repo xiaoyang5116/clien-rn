@@ -62,7 +62,7 @@ scenes: [
           #{title: '草，想不出来！（理直气壮）',tokey: "p1A"},
           {title: '不如念一段道德经？', tokey: "p1B", icon: { id: 6, bindVar: 'biaoqianv1' }},
           {title: '用小学课本里看到的诗句！', tokey: "p1C",  icon: { id: 6, bindVar: 'biaoqianv2' }},
-          {title: '不行，再想想', tokey: "p1D" , icon: { id: 7, bindVar: 'biaoqianv3' }},
+          {title: '不行，再想想', tokey: "p1D" , icon: { id: 7, bindVar: 'biaoqianv3' }, dropIds: ['WZXX_M1_N1_C001A_V_Vdrop2',], },
           #{title: '做几个广播体操的动作', tokey: "p1E"},
           ]},
 
@@ -82,7 +82,7 @@ scenes: [
  
           { key: 'p1C2', content: ['你看我给你背一首秘籍里的诗','日照香炉生紫烟,李白来到烤鸭店。','口水直流三千尺,一摸口袋没带钱。', '李森炎：哈哈哈哈隔……','……','杀手……','一阵尴尬……',['边缘闪烁红'],'……','李森炎挂了',],
                btn: [{title: '…………',dialogs: ['gameover00'], varsOn: ['biaoqianv2','biaoqianv9',]}]},
- 
+
           #{ key: 'p1C3', content: ['你看我给你背一首秘籍里的诗',君子坦荡荡，小人写作业。,'人生自古谁无死，来生继续写作业。', '李森炎：哈哈哈哈……','……','杀手……','一阵尴尬……',['边缘闪烁红'],'李森炎挂了',[{ sounds: [{ soundId: 'SE_KO_0016',}] }] ,],
            #    btn: [{title: '…………',dialogs: ['gameover00']}]}, 
  

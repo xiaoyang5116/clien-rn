@@ -2,12 +2,11 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C100']  }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_Z3C100FZ'] }, 
-    { header: '药炉坊市地图' },
-    { world: { name: '灵修界' } },
+    { header: '白城坊市地图' },
     ]
 #END==========================================
 　　
-　　地图测试
+　　白城回家地图地图测试
 
 
 
@@ -15,7 +14,7 @@
 #START========================================
 #
 [
-   { sceneId: 'WZXX_M1_N1_C000I_V', chatId: 'WZXX_M1_N1_C000I_V1' },
+   { sceneId: 'WZXX_M1_N1_C000A1_V', chatId: 'WZXX_M1_N1_C000A1_V' },
 ]
 #END==========================================
  

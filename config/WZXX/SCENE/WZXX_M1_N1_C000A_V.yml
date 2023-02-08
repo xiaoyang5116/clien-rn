@@ -70,14 +70,14 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000A_V2', desc: '原路回家', 
         options: [ 
-          { title: "【继续原路回家】",toScene: 'C000A_V3_MAP_-1_0',sounds: [{ soundId: 'BGM_C_0004',}],  },
+          { title: "【继续原路回家】",toScene: 'C000A_V3_MAP_-1_1',sounds: [{ soundId: 'BGM_C_0004',}],  },
         ],
       },
         ],
     },
 
  #===========事件场景==============
-       {
+  {
   # NPC2
     id: 'C000A_V_MAP_0_-4', name: '城门',
 
@@ -3216,7 +3216,7 @@ scenes: [
   #===========事件场景==============
   {
   # NPC2
-    id: 'C000A_V3_MAP_-1_0', name: '西市',
+    id: 'C000A_V3_MAP_-1_1', name: '西市',
     # 指定场景为NPC或MAP场景
     isNpc: false,
      #横图显示
@@ -3226,7 +3226,7 @@ scenes: [
     # 当前场景地图
     mapId: 'C000A_V3_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [-1, 0],
+    mapCenterPoint: [-1, 1],
      # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -3272,9 +3272,9 @@ scenes: [
       },
 
       { 
-        id: 'C4', desc: "但无论是意志控制还是完全随机，最多不会超过三个时辰~\n也就是说，他死后，最多回到死亡前三个时辰内的时间节点\n其二，是否需要死亡才能触发回档，这个结果他还没有试验出来\n反正他暂时还没有遇到过这种情况，姑且不论",
+        id: 'C4', desc: "但无论是意志控制还是完全随机，最多不会超过三个时辰~\n也就是说，他死后，最多回到死亡前三个时辰内的时间节点\n其二，是否需要死亡才能触发回档，这个结果他还没有试验出来\n反正他暂时还没有遇到过这种情况。",
         options: [ 
-          { title: '【绕路回家！】', toScene: 'C000A_V3_MAP_-1_-1'}, 
+          # { title: '【绕路回家！】', toScene: 'C000A_V3_MAP_-1_-1'}, 
           { title: '【先想想别的办法】',nextChat: 'C7'},
       ],
       },
@@ -3289,8 +3289,9 @@ scenes: [
       { 
         id: 'C6', desc: "“当玉石的光泽彻底消失后，我就再也不能轮回了吧？”\n这问题当然不会有答案\n李森炎只能自己心中暗自警惕，时刻关注着怀表玉石的光芒\n只要多注意，应该不会有大碍",
         options: [ 
-          { title: '【老子偏不信这个邪！再绕！】',  nextChat: 'C7'}, 
+          { title: '【硬闯过去】',  nextChat: 'C7'}, 
           { title: '【冷静一点，想想别的办法！】',  nextChat: 'C6A'}, 
+          { title: '【进行一次彻底的乔装】', varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A'], toScene: 'C000A_V3_MAP_-1_-3'}, 
       ],
       },
 
@@ -3303,9 +3304,9 @@ scenes: [
       },
 
       { 
-        id: 'C7', desc: "李家的西边有个米铺，原身小时经常去买米\n米铺有个后门，从后门出来，可以翻墙进入李家",
+        id: 'C7', desc: "不信邪的李森炎再次使用轻功，快速向着李家飞奔而去。\n这次他用尽全力使出自己的身法，如同一只轻盈的跳兔般迅速疾驰。他清楚只要自己穿过这小巷混进人群当中，那自己基本就能安全了。\n",
         options: [ 
-          { title: '【去米铺】', toScene: 'C000A_V3_MAP_-3_0'}, 
+          { title: '【去米铺】', toScene: 'C000A_V3_MAP_-3_1'}, 
          
       ],
       },
@@ -3348,6 +3349,85 @@ scenes: [
       
     ],
   },
+
+   #===========事件场景==============
+  {
+    # NPC2
+    id: 'C000A_V3_MAP_-1_0', name: '小巷',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_46',
+    # 当前场景地图
+    mapId: 'C000A_V3_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, 0],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+
+   # 对话选项
+      chats: [      
+      { 
+        id: 'C1', desc: "李森炎庆幸自己找到了最合适的乔装\n一路畅行无阻，也没有再遇到暗杀\n终于，他成功看到李家的大门\n但是，那一刹那，他却浑身一震！",
+        options: [ 
+         { title: '怎么会这样！', toChapter: "WZXX_M1_N1_C002_[N8]" ,icon: { id: 11 },sounds: [{ stopBGM: true }],}, 
+        ],
+      },
+    ],
+
+  },
+
+   #===========事件场景==============
+  {
+    # NPC2
+    id: 'C000A_V3_MAP_-3_0', name: '胡同',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    #横图显示
+    sceneImage: 'BGT_46',
+    # 当前场景地图
+    mapId: 'C000A_V3_MAP_0_0',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-3, 0],
+     # 变量定义
+    vars: [
+    { id: "ONE_OPEN_0", min: 0, max: 1 },
+    { id: "ONE_OPEN_1", min: 0, max: 1 },
+    { id: "biaoqianv1", min: 0, max: 1 },
+    ],
+    # 动作定义
+    actions: [ ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1' },
+    ],
+
+   # 对话选项
+      chats: [      
+      { 
+        id: 'C1', desc: "李森炎庆幸自己找到了最合适的乔装\n一路畅行无阻，也没有再遇到暗杀\n终于，他成功看到李家的大门\n但是，那一刹那，他却浑身一震！",
+        options: [ 
+         { title: '怎么会这样！', toChapter: "WZXX_M1_N1_C002_[N8]" ,icon: { id: 11 },sounds: [{ stopBGM: true }],}, 
+        ],
+      },
+    ],
+
+  },
+
   #===========事件场景==============
   {
   # NPC2
@@ -3447,7 +3527,7 @@ scenes: [
       { 
         id: 'C5', desc: "这叫小小砍一刀？\n你这一刀都快砍我大动脉上了\n“你他娘的还真是个人才。”\n“不过，成交！”\n卧槽！这都能成交？\n这下轮到李森炎愣住了\n还是太年轻，说少了！",   
         options: [ 
-          { title: '兵器在手，天下我有，回家！', toScene: 'C000A_V3_MAP_-1_0'  }, 
+          { title: '兵器在手，天下我有，回家！', toScene: 'C000A_V3_MAP_-1_1'  }, 
         ],
       },
     ],
@@ -3455,7 +3535,7 @@ scenes: [
  #===========事件场景==============
   {
   # NPC2
-    id: 'C000A_V3_MAP_-3_0', name: '米铺',
+    id: 'C000A_V3_MAP_-3_1', name: '米铺',
     # 指定场景为NPC或MAP场景
     isNpc: false,
     #不显示时间
@@ -3465,7 +3545,7 @@ scenes: [
     # 当前场景地图
     mapId: 'C000A_V3_MAP_0_0',
     # 地图中心点，也是进入地图后的点
-    mapCenterPoint: [-3, 0],
+    mapCenterPoint: [-3, 1],
     # 变量定义
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
@@ -3483,7 +3563,7 @@ scenes: [
       { 
         id: 'C1', desc: "李森炎费尽心思，终于看到李家的围墙\n李森炎翻身上墙，忍不住吐槽\n同一时间，有个蒙面人从墙内翻出来。\n李森炎和他对上眼，两人同时都愣住了一下\n李森炎：“你丫是谁？”\n蒙面人：“这还不明显吗？我呀，是个贼！”\n蒙面人以迅雷不及掩耳之势掏出匕首，白刀子进，红刀子出",   
         options: [ 
-         { title: '又死了？？？', varsOn: ['WZXX_M1_N1_C000A_V/mipu_A'] ,toScene: 'C000A_V3_MAP_-1_0' }, 
+         { title: '又死了？？？', varsOn: ['WZXX_M1_N1_C000A_V/mipu_A'] ,toScene: 'C000A_V3_MAP_-1_1' }, 
         ],
       },
       ],
@@ -3524,14 +3604,14 @@ scenes: [
         { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V3_MAP_-1_5' }, 
         { title: '【西市三街】',toScene: 'C000A_V3_MAP_-2_-1'},
         # { title: '【白府】',toScene: 'C000A_V_MAP_-3_-2'},
-        # { title: '【米铺】', toScene: 'C000A_V_MAP_-3_0'},
+        # { title: '【米铺】', toScene: 'C000A_V3_MAP_-3_1'},
         # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
         # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
         ],
       },
       
-       { 
-        id: 'C2', desc: "李森炎笑着上前，和小姑娘搭话\n问了下最近有哪些大事发生,“小孩，哥哥向你打听事儿。”\n小姑娘吃着糖，告诉你了许多",   
+       {
+        id: 'C2', desc: "李森炎笑着上前，和小姑娘搭话\n问了下最近有哪些大事发生,“小孩，哥哥向你打听事儿。”\n小姑娘吃着糖，告诉你了许多",
         options: [ 
          { title: '仔细听听', nextChat: 'C3' }, 
         
@@ -3578,7 +3658,7 @@ scenes: [
     { 
         id: 'C1', desc: "“这下你可逮不到我了吧？老银币！”\n李森炎正沾沾自喜！\n突然一个壮汉从天而降\n李森炎只感觉眼前一黑\n被使用千斤坠的壮汉狠狠砸入地底！\n“我草拟大爷……”",   
         options: [ 
-         { title: '……', toScene: 'C000A_V3_MAP_-1_0',
+         { title: '……', toScene: 'C000A_V3_MAP_-1_1',
           toMsg: {
               action: 'CluesModel/useClues',
               params: {
@@ -3834,9 +3914,15 @@ scenes: [
         },
         data: [
           { 
-          point: [-1, 0], title: '西市',
-          # toScene: 'C000A_V3_MAP_-1_0',
+          point: [-1, 1], title: '西市',
+          # toScene: 'C000A_V3_MAP_-1_1',
           links: [[-1, 1],[-2, 0],[-1, -1],] 
+          },
+
+          { 
+          point: [-1, 0], title: '小巷',
+          # toScene: 'C000A_V3_MAP_-1_0',
+          links: [[-1, 1],[-2, 0]] 
           },
 
           { 
@@ -3846,7 +3932,13 @@ scenes: [
           },
 
           { 
-          point: [-3, 0], title: '米铺', 
+          point: [-3, 1], title: '米铺', 
+          # toScene: 'C000A_V3_MAP_-3_1',
+          links: [[-3, 0]] 
+          },
+
+          { 
+          point: [-3, 0], title: '胡同', 
           # toScene: 'C000A_V3_MAP_-3_0',
           links: [[-3, -1],[-2, 0]] 
           },
@@ -3858,7 +3950,7 @@ scenes: [
           },
 
           { 
-          point: [-1, 1], title: '西市二街',
+          point: [-1, 2], title: '西市二街',
           # toScene: 'C000A_V3_MAP_-1_1',
           links: [] 
           },

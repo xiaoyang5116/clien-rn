@@ -12,6 +12,24 @@ scenes: [
       { id: "chaguan_2", min: 0, max: 1 },
       { id: "diyicijinru_1", min: 0, max: 1 },
 
+      { id: "zhandou_1", min: 0, max: 1 },
+      { id: "zhandou_1A", min: 0, max: 1 },
+
+      { id: "zhandou_3", min: 0, max: 1 },
+      { id: "zhandou_3A", min: 0, max: 1 },
+
+      { id: "zhandou_4", min: 0, max: 1 },
+      { id: "zhandou_4A", min: 0, max: 1 },
+      
+      { id: "zhandou_5", min: 0, max: 1 },
+      { id: "zhandou_5A", min: 0, max: 1 },
+
+      { id: "zhandou_6", min: 0, max: 1 },
+      { id: "zhandou_6A", min: 0, max: 1 },
+
+      { id: "zhandou_7", min: 0, max: 1 },
+      { id: "zhandou_7A", min: 0, max: 1 },
+
       ],
 
       # 动作定义
@@ -1623,8 +1641,8 @@ scenes: [
       {
         id: 'C1', desc: '越走越荒，上下的行人很多，据说能够采到一些不错的草药，但也有一定风险',
         options: [
-         { title: '【上山试试】',nextChat: 'C1'}, 
-         { title: '【还是离开吧>>>】',nextChat: 'C1'}, 
+         { title: '【上山试试】',nextChat: 'C2'}, 
+         { title: '【往一条隐秘的小道走】',toScene: 'C000I_V_MAP2_0_0'}, 
         ],
       },
 
@@ -1646,7 +1664,7 @@ scenes: [
       { 
         id: 'C4', desc: '还没走几步，忽然李森炎眉头紧皱，察觉到了什么……竟然遇见了一只红巨蟒！', 
         options: [ 
-         { title: '【开始打斗！】',challenge: 'f_x1', nextChat: 'C5A'}, 
+         { title: '【开始打斗！】',challenge: 'f_x4', nextChat: 'C5A'}, 
         ],
       },
 
@@ -1661,7 +1679,7 @@ scenes: [
       },
 
       { 
-        id: 'C5', desc: '有惊无险，获得了一些蟒蛇皮，说不定可以入药', 
+        id: 'C5A', desc: '有惊无险，获得了一些蟒蛇皮，说不定可以入药', 
         options: [ 
          { title: '【胡同口】', toScene: 'C000I_V_MAP_4_-3'}, 
          { title: '【车马行会】', toScene: 'C000I_V_MAP_5_-4'}, 
@@ -1779,6 +1797,8 @@ scenes: [
          { title: '【酒肆】',toScene: 'C000I_V_MAP_3_-4'}, 
          { title: '【东街】',toScene: 'C000I_V_MAP_2_-4'}, 
          { title: '【神药斋】', toScene: 'C000I_V_MAP_4_-5'},
+         { title: '【离开坊市】', toScene: 'C000I_V_MAP1_0_0'},
+         
         ],
       },
 
@@ -2510,9 +2530,855 @@ scenes: [
 
           },
    ],
+
+
+    {
+    id: 'C000I_V_MAP1_0_0', name: '坊市出口',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_1',
+    #横图显示
+    sceneImage: 'BGT_51',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 0],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      {
+        id: 'C1', desc: '一片茂密的森林，人烟稀少，鸟兽颇多',
+        options: [
+         { title: '【林间小路】', toScene: 'C000I_V_MAP1_0_-3'}, 
+         { title: '【返回坊市内】', toScene: 'C000I_V_MAP_3_-6'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+
+    ],
+  },
+
+   {
+    id: 'C000I_V_MAP1_0_-1', name: '林间小路',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_1',
+    #横图显示
+    sceneImage: 'BGT_29',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, -1],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_1',
+       'WZXX_M1_N1_C000I_V/zhandou_7','WZXX_M1_N1_C000I_V/zhandou_3','WZXX_M1_N1_C000I_V/zhandou_4','WZXX_M1_N1_C000I_V/zhandou_5','WZXX_M1_N1_C000I_V/zhandou_6'
+       ], nextChat: 'C1A'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      {
+        id: 'C1', desc: '林中小路，曲径幽幽',
+        options: [
+         { title: '【偶遇 拦路虎】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_1'], challenge: 'C000I_V_MAP_0_1_VS_1', nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C1A', desc: '林中小路，曲径幽幽',
+        options: [
+         { title: '【挂机战斗】',challenge: 'C000I_V_MAP_0_1_VS_2', nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: '去别处探险————',
+        options: [
+         { title: '【灌木丛】', toScene: 'C000I_V_MAP1_0_-3'}, 
+         { title: '【遮挡的道路】',toScene: 'C000I_V_MAP1_0_-3'}, 
+         { title: '【坊市出入口】',toScene: 'C000I_V_MAP_3_-6'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+     
+
+    ],
+  },
+
+  {
+    id: 'C000I_V_MAP1_0_-2', name: '灌木丛',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_1',
+    #横图显示
+    sceneImage: 'BGT_38',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, -2],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      {
+        id: 'C1', desc: '灌木丛生的地方',
+        options: [
+         { title: '【遭遇 食虫花精】',varsOn: ['WZXX_M1_N1_C000I_V/zhandou_3'], challenge: 'C000I_V_MAP_0_1_VS_3', nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: '去别处探险————',
+        options: [
+         { title: '【西南山丘】', toScene: 'C000I_V_MAP1_0_-3'}, 
+         { title: '【破旧的庭院】', toScene: 'C000I_V_MAP1_0_-4'}, 
+         { title: '【林间小路】', toScene: 'C000I_V_MAP1_0_-1'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+
+    ],
+  },
+
+  {
+    id: 'C000I_V_MAP1_-1_-2', name: '遮挡的道路',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_1',
+    #横图显示
+    sceneImage: 'BGT_27',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-1, -2],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      {
+        id: 'C1', desc: '被树木遮挡住的隐蔽的道路',
+        options: [
+         { title: '【遭遇 鬼藤】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_4'],challenge: 'C000I_V_MAP_0_1_VS_4',nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: '去别处探险————',
+        options: [
+         { title: '【洞窟】', toScene: 'C000I_V_MAP1_-2_-3'}, 
+         { title: '【林间小路】', toScene: 'C000I_V_MAP1_0_-1'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+
+    ],
+  },
+
+
+  {
+    id: 'C000I_V_MAP1_-2_-3', name: '洞窟',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_1',
+    #横图显示
+    sceneImage: 'BGT_166',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [-2, -3],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      {
+        id: 'C1', desc: '神秘的洞窟',
+        options: [
+         { title: '【遭遇 猛虎】',varsOn: ['WZXX_M1_N1_C000I_V/zhandou_5'],challenge: 'C000I_V_MAP_0_1_VS_5',  nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: '去别处探险————',
+        options: [
+         { title: '【西南山丘】', toScene: 'C000I_V_MAP1_0_-3'}, 
+         { title: '【遮挡的道路】', toScene: 'C000I_V_MAP1_-1_-2'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+
+    ],
+  },
+
+  {
+    id: 'C000I_V_MAP1_0_-3', name: '西南山丘',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_1',
+    #横图显示
+    sceneImage: 'BGT_70',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, -3],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      {
+        id: 'C1', desc: '西南角的山丘，猛兽出没，十分危险',
+        options: [
+         { title: '【遭遇 猛虎】',varsOn: ['WZXX_M1_N1_C000I_V/zhandou_6'], challenge: 'C000I_V_MAP_0_1_VS_6', nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: '去别处探险————',
+        options: [
+         { title: '【洞窟】', toScene: 'C000I_V_MAP1_-2_-3'}, 
+         { title: '【灌木丛】', toScene: 'C000I_V_MAP1_0_-2'}, 
+         { title: '【破旧的庭院】', toScene: 'C000I_V_MAP1_0_-4'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+
+    ],
+  },
+
+   {
+    id: 'C000I_V_MAP1_0_-4', name: '破旧的庭院',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_1',
+    #横图显示
+    sceneImage: 'BGT_98',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, -4],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      {
+        id: 'C1', desc: '不知废弃了多久的庭院，早已破败不堪',
+        options: [
+         { title: '【遭遇 鬼藤】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_7'], challenge: 'C000I_V_MAP_0_1_VS_7',nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: '去别处探险————',
+        options: [
+         { title: '【西南山丘】', toScene: 'C000I_V_MAP1_0_-3'}, 
+         { title: '【灌木丛】', toScene: 'C000I_V_MAP1_0_-2'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+
+    ],
+  },
+
+
+#=================================场景地图的设置==================================
+    maps: [
+    {
+            id: 'C000I_V_MAP_0_1',
+            data: [
+
+              { 
+              point: [0, 0], title: '坊市出入口', 
+              toScene: 'C000I_V_MAP1_0_0', 
+              links: [[0, -1], ] 
+              },
+
+              { 
+              point: [0, -1], title: '林间小路', 
+              toScene: 'C000I_V_MAP1_0_-1', 
+              links: [[0, -2],[-1, -2], ] 
+              },
+
+              { 
+              point: [0, -2], title: '灌木丛', 
+              toScene: 'C000I_V_MAP1_0_-2', 
+              links: [[0, -3], ] 
+              },
+
+              { 
+              point: [-1, -2], title: '遮挡的道路', 
+              toScene: 'C000I_V_MAP1_-1_-2', 
+              links: [[-2, -3], ] 
+              },
+
+              { 
+              point: [-2, -3], title: '洞窟', 
+              toScene: 'C000I_V_MAP1_-2_-3', 
+              links: [[], ] 
+              },
+
+              { 
+              point: [0, -3], title: '西南山丘', 
+              toScene: 'C000I_V_MAP1_0_-3', 
+              links: [[0, -4], ] 
+              },
+
+              { 
+              point: [0, -4], title: '破旧的庭院', 
+              toScene: 'C000I_V_MAP1_0_-4', 
+              links: [[], ] 
+              },
+
+            ]
+          },
+   ],
+
+   {
+    id: 'C000I_V_MAP2_0_0', name: '东郊平原',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_2',
+    #横图显示
+    sceneImage: 'BGT_177',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 0],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+     
+
+      {
+        id: 'C1', desc: '东郊的平原，常有野兽出没，较为危险',
+        options: [
+         { title: '【东郊丘陵】', toScene: 'C000I_V_MAP2_1_0'}, 
+         { title: '【返回坊市东郊】', toScene: 'C000I_V_MAP_5_-3'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+
+    ],
+  },
+
+    {
+    id: 'C000I_V_MAP2_1_0', name: '东郊丘陵',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_2',
+    #横图显示
+    sceneImage: 'BGT_186',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [1, 0],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_1A',
+       'WZXX_M1_N1_C000I_V/zhandou_7A','WZXX_M1_N1_C000I_V/zhandou_3A','WZXX_M1_N1_C000I_V/zhandou_4A','WZXX_M1_N1_C000I_V/zhandou_5A','WZXX_M1_N1_C000I_V/zhandou_6A'
+       ], nextChat: 'C1A'  
+       },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      {
+        id: 'C1', desc: '东郊平原外的丘陵，经常有野兽躲藏于此',
+        options: [
+         { title: '【遭遇 红眼妖兔】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_1A'], challenge: 'C000I_V_MAP_0_2_VS_1', nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C1A', desc: '东郊平原外的丘陵，经常有野兽躲藏于此',
+        options: [
+         { title: '【挂机战斗】',challenge: 'C000I_V_MAP_0_2_VS_2', nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: '去别处探险————',
+        options: [
+         { title: '【繁茂的竹林】', toScene: 'C000I_V_MAP2_2_-1'}, 
+         { title: '【小型的池塘】',toScene: 'C000I_V_MAP2_2_0'}, 
+         { title: '【隐秘的小路】',toScene: 'C000I_V_MAP2_2_1'}, 
+        ],
+      },
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+
+    ],
+  },
+
+  {
+    id: 'C000I_V_MAP2_2_-1', name: '繁茂的竹林',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_2',
+    #横图显示
+    sceneImage: 'BGT_188',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, -1],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+     
+
+      {
+        id: 'C1', desc: '长势繁茂的竹林',
+        options: [
+         { title: '【遭遇 红眼妖兔】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_3A'], challenge: 'C000I_V_MAP_0_2_VS_3', nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: '去别处探险————',
+        options: [
+         { title: '【荒废的田地】', toScene: 'C000I_V_MAP2_3_-1'}, 
+         { title: '【东郊丘陵】',toScene: 'C000I_V_MAP2_1_0'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+
+    ],
+  },
+
+  {
+    id: 'C000I_V_MAP2_2_0', name: '小型的池塘',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_2',
+    #横图显示
+    sceneImage: 'BGT_187',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, 0],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+     
+
+      {
+        id: 'C1', desc: '无人打理的小型池塘，早已是淤泥堵塞',
+        options: [
+         { title: '【遭遇 食虫花精】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_4A'], challenge: 'C000I_V_MAP_0_2_VS_4', nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: '去别处探险————',
+        options: [
+         { title: '【东郊丘陵】', toScene: 'C000I_V_MAP2_1_0'}, 
+         { title: '【隐秘的小路】',toScene: 'C000I_V_MAP2_2_1'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+
+    ],
+  },
+
+   {
+    id: 'C000I_V_MAP2_2_1', name: '隐秘的小路',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_2',
+    #横图显示
+    sceneImage: 'BGT_26',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [2, 1],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+     
+
+      {
+        id: 'C1', desc: '被草木遮挡住的道路',
+        options: [
+         { title: '【遭遇 鬼藤】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_5A'], challenge: 'C000I_V_MAP_0_2_VS_5', nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: '去别处探险————',
+        options: [
+         { title: '【未知的山洞】', toScene: 'C000I_V_MAP2_3_1'}, 
+         { title: '【东郊的丘陵】',toScene: 'C000I_V_MAP2_0_-1'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+
+    ],
+  },
+
+   {
+    id: 'C000I_V_MAP2_3_-1', name: '荒废田地',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_2',
+    #横图显示
+    sceneImage: 'BGT_87',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [3, -1],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+     
+
+      {
+        id: 'C1', desc: '被草木遮挡住的道路',
+        options: [
+         { title: '【遭遇 红眼妖兔群】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_6A'], challenge: 'C000I_V_MAP_0_2_VS_6', nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: '去别处探险————',
+        options: [
+         { title: '【未知的山洞】', toScene: 'C000I_V_MAP2_3_1'}, 
+         { title: '【东郊的丘陵】',toScene: 'C000I_V_MAP2_0_-1'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+
+    ],
+  },
+
+  {
+    id: 'C000I_V_MAP2_3_1', name: '未知的山洞',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_2',
+    #横图显示
+    sceneImage: 'BGT_185',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [3, 1],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',  nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+     
+
+      {
+        id: 'C1', desc: '未知的山洞，洞口有野兽出入的痕迹',
+        options: [
+         { title: '【遭遇 正在休息的虎王】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_7A'], challenge: 'C000I_V_MAP_0_2_VS_7', nextChat: 'C2'}, 
+        ],
+      },
+
+      {
+        id: 'C2', desc: '去别处探险————',
+        options: [
+         { title: '【隐秘的小路】', toScene: 'C000I_V_MAP2_2_1'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+
+    ],
+  },
+
+   
+
+#=================================场景地图的设置==================================
+    maps: [
+    {
+            id: 'C000I_V_MAP_0_2',
+            data: [
+
+              { 
+              point: [0, 0], title: '东郊平原', 
+              toScene: 'C000I_V_MAP2_0_0', 
+              links: [[1, 0], ] 
+              },
+
+              { 
+              point: [1, 0], title: '东郊丘陵', 
+              toScene: 'C000I_V_MAP2_1_0', 
+              links: [[2, 1],[2, 0],[2, -1], ] 
+              },
+
+              { 
+              point: [2, 1], title: '隐秘的小路', 
+              toScene: 'C000I_V_MAP2_2_1', 
+              links: [[3, 1], ] 
+              },
+
+              { 
+              point: [3, 1], title: '未知的山洞', 
+              toScene: 'C000I_V_MAP2_3_1', 
+              links: [  ] 
+              },
+
+              { 
+              point: [2, 0], title: '小型的池塘', 
+              toScene: 'C000I_V_MAP2_2_0', 
+              links: [ ] 
+              },
+
+              { 
+              point: [2, -1], title: '繁茂的竹林', 
+              toScene: 'C000I_V_MAP2_2_-1', 
+              links: [[3, -1], ] 
+              },
+
+              { 
+              point: [3, -1], title: '荒废的田地', 
+              toScene: 'C000I_V_MAP2_3_-1', 
+              links: [[], ] 
+              },
+
+             
+
+            ]
+          },
+   ],
   ]
-
-
 
 
 
