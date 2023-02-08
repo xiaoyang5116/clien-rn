@@ -12,6 +12,7 @@ import { LongTextButton, Header1, BtnIcon } from '../../../constants/custom-ui';
 import TextAnimation from '../../textAnimation';
 import FastImage from 'react-native-fast-image';
 import OptionComponents from '../../article/optionComponents';
+import { px2pd } from '../../../constants/resolution';
 
 
 const FullSingle = props => {
@@ -106,6 +107,7 @@ const FullSingle = props => {
                             disabled={item.disabled}
                             currentStyles={theme}
                             onPress={() => { nextDialogue(item) }}
+                            containerStyle={{ width: px2pd(1013) }}
                         />
                     </View>
                 )

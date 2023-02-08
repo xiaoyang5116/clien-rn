@@ -8,7 +8,8 @@ import {
   Animated,
   Platform,
   ImageBackground,
-  TouchableOpacity
+  TouchableOpacity,
+  Easing
 } from 'react-native';
 
 import {
@@ -59,6 +60,20 @@ const WorldPreview = (props) => {
   const { item } = props;
   const [propNum, setPropNum] = React.useState(-1);
   const opacity = React.useRef(new Animated.Value(0)).current;
+  const spinValue = React.useRef(new Animated.Value(0)).current;
+  const spinFunc = () => {
+    spinValue.setValue(0)
+    Animated.timing(spinValue, {
+      toValue: 1, // 最终值 为1，这里表示最大旋转 360度
+      duration: 40000,
+      easing: Easing.linear,
+      useNativeDriver: false
+    }).start(() => spinFunc())
+  }
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],//输入值
+    outputRange: ['0deg', '360deg'] //输出值
+  })
 
   React.useEffect(() => {
     AppDispath({
@@ -76,6 +91,7 @@ const WorldPreview = (props) => {
       duration: 600,
       useNativeDriver: false,
     }).start();
+    spinFunc()
   }, []);
 
   if (propNum >= 0) {
@@ -126,8 +142,11 @@ const WorldPreview = (props) => {
                 >
                   <FastImage style={{ width: px2pd(260), height: px2pd(122) }} source={require('../../../assets/world/enter.png')} />
                 </TouchableOpacity>
-                <FastImage style={{ width: px2pd(522), height: px2pd(335), marginLeft: 12 }} source={require('../../../assets/world/enterBg.png')} />
-
+                <FastImage style={{ width: px2pd(522), height: px2pd(335), marginLeft: 20 }} source={require('../../../assets/world/enterBg.png')} />
+                <Animated.Image
+                  style={{ width: px2pd(247), height: px2pd(248), position: "absolute", zIndex: 0, transform: [{ rotate: spin }] }}
+                  source={require('../../../assets/world/enterBg_yuan.png')}
+                />
               </View>
               {
                 (!propEnough)

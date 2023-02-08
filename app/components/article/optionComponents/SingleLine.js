@@ -7,13 +7,13 @@ import { px2pd } from '../../../constants/resolution';
 
 const BTN_STYLE = {
   width: px2pd(1067),
-  height: px2pd(155),
+  height: px2pd(98),
 }
 
 
-const LeftTopTitle_Btn = props => {
+const SingleLine = (props) => {
   const { title, disabled, onPress, currentStyles, optionData, containerStyle } = props;
-  const { leftTop_Title, icon } = optionData;
+  const { icon } = optionData;
 
   const handlerOnPress = () => {
     if (disabled) {
@@ -30,48 +30,32 @@ const LeftTopTitle_Btn = props => {
       marginBottom: 5,
       justifyContent: "center",
       alignItems: "center",
-      height: px2pd(155),
+      height: px2pd(98),
       ...containerStyle
     }}>
       <ImageButton
         {...BTN_STYLE}
         onPress={handlerOnPress}
-        source={require('../../../../assets/button/LeftTopTitle_Btn1.png')}
-        selectedSource={require('../../../../assets/button/LeftTopTitle_Btn2.png')}
+        source={require('../../../../assets/button/singleLine_1.png')}
+        selectedSource={require('../../../../assets/button/singleLine_2.png')}
       />
       <View style={{ ...BTN_STYLE, position: "absolute", }} pointerEvents="none">
         <View style={{
-          width: px2pd(712),
-          height: px2pd(55),
-          marginTop: px2pd(1),
-          marginLeft: px2pd(120),
-        }}>
-          <Text
-            style={{
-              fontSize: 14,
-              paddingTop: 4,
-              paddingBottom: 4,
-            }}>
-            {leftTop_Title}
-          </Text>
-        </View>
-        <View style={{
           width: px2pd(980),
-          height: px2pd(88),
+          height: px2pd(98),
           marginLeft: px2pd(45),
-          marginTop: px2pd(5),
+          marginTop: px2pd(2),
           justifyContent: "center",
           alignItems: "center"
         }}>
-          {icon.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
+          {icon.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center", }} /> : null}
           <Text>{title}</Text>
         </View>
       </View>
     </View>
   )
-};
+}
 
-export default LeftTopTitle_Btn;
+export default SingleLine
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create({})

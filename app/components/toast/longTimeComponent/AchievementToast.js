@@ -67,7 +67,7 @@ const ContentComponent = (props) => {
         clearInterval(timer)
         showEnd()
       }
-    }, 1700);
+    }, 1000);
 
     return () => {
       clearInterval(timer)
@@ -120,8 +120,8 @@ const AchievementToast = (props) => {
   const showEnd = () => {
     Animated.timing(opacityAnim, {
       toValue: 0,
-      duration: 2000,
-      delay: 3000,
+      duration: 1000,
+      delay: 100,
       useNativeDriver: false,
     }).start(() => closeToast(1))
   }

@@ -76,7 +76,6 @@ class OptionView extends PureComponent {
                                 sourceType={"reader"}
                                 btnAnimateId={option.btnAnimateId}
                             />
-                            {iconComponent}
                         </View>
                     );
                 }

@@ -2,9 +2,18 @@ import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import React from 'react';
 import Toast from '../../toast';
 
+import { ImageButton, BtnIcon } from '../../../constants/custom-ui';
+import { px2pd } from '../../../constants/resolution';
+
+const BTN_STYLE = {
+  width: px2pd(1067),
+  height: px2pd(154),
+}
+
+
 const RightBottomTitle_Btn = props => {
-  const { title, disabled, onPress, currentStyles, optionData } = props;
-  const { rightBottom_Title } = optionData;
+  const { title, disabled, onPress, currentStyles, optionData, containerStyle } = props;
+  const { rightBottom_Title, icon } = optionData;
 
   const handlerOnPress = () => {
     if (disabled) {
@@ -15,67 +24,53 @@ const RightBottomTitle_Btn = props => {
   }
 
   return (
-    <TouchableHighlight underlayColor={"#fff"}
-      style={{
-        width:"100%",
-        marginTop: 5,
-        marginBottom: 5,
-      }}
-      onPress={handlerOnPress}>
-      <View
-        style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: disabled
-            ? '#999'
-            : currentStyles.button.backgroundColor,
-          borderColor: '#666',
-          borderWidth: 1,
-          borderRadius: 3,
+    <View style={{
+      width: "100%",
+      marginTop: 5,
+      marginBottom: 5,
+      justifyContent: "center",
+      alignItems: "center",
+      height: px2pd(154),
+      ...containerStyle,
+    }}>
+      <ImageButton
+        {...BTN_STYLE}
+        onPress={handlerOnPress}
+        source={require('../../../../assets/button/RightBottomTitle_Btn1.png')}
+        selectedSource={require('../../../../assets/button/RightBottomTitle_Btn2.png')}
+      />
+      <View style={{ ...BTN_STYLE, position: "absolute", }} pointerEvents="none">
+        <View style={{
+          width: px2pd(980),
+          height: px2pd(88),
+          marginLeft: px2pd(45),
+          marginTop: px2pd(5),
+          justifyContent: "center",
+          alignItems: "center",
         }}>
-        {/* 右上角标题 */}
-        <View
-          style={{
-            position: 'absolute',
-            zIndex: 2,
-            right: 10,
-            bottom: -10,
-            backgroundColor: '#C3C0C0',
-          }}>
-          <Text
-            style={{
-              fontSize: 14,
-              paddingLeft: 8,
-              paddingRight: 8,
-              paddingTop: 4,
-              paddingBottom: 4,
-            }}>
+          {icon.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
+          <Text style={{ fontSize: 14, }}>{title}</Text>
+        </View>
+        <View style={{
+          width: px2pd(670),
+          height: px2pd(45),
+          marginLeft: px2pd(305),
+          marginTop: px2pd(3),
+          justifyContent: 'center',
+          alignItems: "center"
+        }}>
+          <Text style={{ fontSize: 14, }}>
             {rightBottom_Title}
           </Text>
         </View>
-        <Text
-          style={[
-            styles.textStyle,
-            {
-              color: currentStyles.button.color,
-            },
-          ]}>
-          {title}
-        </Text>
+
       </View>
-    </TouchableHighlight>
-  );
+    </View>
+  )
+
 };
 
 export default RightBottomTitle_Btn
 
 const styles = StyleSheet.create({
-  textStyle: {
-    paddingTop: 16,
-    paddingBottom: 16,
-    paddingLeft: 12,
-    paddingRight: 12,
-    textAlign: 'center',
-    fontSize: 18,
-  },
 });
