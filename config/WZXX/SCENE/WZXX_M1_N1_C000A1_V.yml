@@ -70,18 +70,18 @@ scenes: [
        { 
         id: 'WZXX_M1_N1_C000A1_V2', desc: '', 
         options: [ 
-          { title: "【冲出去阻止】", dialogs: ['C00A1_1.1A'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_2'],  },
-          { title: "【出言威胁】", dialogs: ['C00A1_1.1B'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_2'],  },
-          { title: "【抱腿求饶】", dialogs: ['C00A1_1.1C'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_2'], },
+          { title: "【冲出去阻止】" ,dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop5'],dialogs: ['C00A1_1.1A'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_2'],  },
+          { title: "【出言威胁】", dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop6'],dialogs: ['C00A1_1.1B'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_2'],  },
+          { title: "【抱腿求饶】",dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop7'], dialogs: ['C00A1_1.1C'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_2'], },
         ],
       },
 
        { 
         id: 'WZXX_M1_N1_C000A1_V3', desc: '', 
         options: [ 
-          { title: "【冲出阻止】", dialogs: ['C00A1_1.2A'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_4'],  },
-          { title: "【出言威胁】", dialogs: ['C00A1_1.2B'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_4'],  },
-          { title: "【抱腿求饶】", dialogs: ['C00A1_1.2C'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_4'], },
+          { title: "【冲去阻止】",dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop8'],dialogs: ['C00A1_1.2A'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_4'],  },
+          { title: "【出言威胁】",dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop9'],dialogs: ['C00A1_1.2B'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_4'],  },
+          { title: "【抱腿求饶】",dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop10'],dialogs: ['C00A1_1.2C'], varsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_4'], },
         ],
       },
         ],
@@ -168,7 +168,7 @@ scenes: [
           '“卧槽！我眼花了吗？”','“这老头什么情况？”','“戒备！”','李森炎以搏命之势，状若疯魔般冲入人群中，挥拳便打！',
           '一开始伤了几个人，但因寡不敌众，最终被围殴而死',
           ['震屏1'],],
-          btn: [{title: '重新再来',toScene: 'C000A1_V_MAP_-1_1', } 
+          btn: [{title: '怎么会这样',toChapter: "WZXX_M1_N1_C002_[N9]" , } 
           ,]},
            ]  
         },
@@ -185,7 +185,7 @@ scenes: [
           '见这老头影响他们办事，他们直接一刀就将这老头给砍了。',
           '李森炎又挂了。',
           ['震屏1'],],
-          btn: [{title: '重新再来',toScene: 'C000A1_V_MAP_-1_1', } 
+          btn: [{title: '怎么会这样',toChapter: "WZXX_M1_N1_C002_[N9]" , } 
           ,]},
            ]  
         },
@@ -202,7 +202,7 @@ scenes: [
           '这老头看起来都能够做这女人的爸了，竟然还有脸叫对方妈，脑子怕是不好使',
           '由于这老头阻碍他们办事，所以他们对着你大刀一挥。',
           '李森炎又挂了。',['震屏1'],],
-          btn: [{title: '重新再来', toScene: 'C000A1_V_MAP_-1_1',} 
+          btn: [{title: '怎么会这样',toChapter: "WZXX_M1_N1_C002_[N9]" ,} 
           ,]},
            ]  
         },
@@ -231,6 +231,8 @@ scenes: [
     { id: "biaoqianv1", min: 0, max: 1 },
     { id: "biaoqianv2", min: 0, max: 1 },
     { id: "biaoqianv3", min: 0, max: 1 },
+    { id: "biaoqianv4", min: 0, max: 1 },
+    { id: "biaoqianv5", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
@@ -282,8 +284,8 @@ scenes: [
       { 
         id: 'C3A', desc: "被当成盗贼同伙了是吧？\n你看清楚，我这是杀手装，逼格不一样的好吗？\n转头，就见一个黑衣人蒙着面，跟自己穿的是同款\n说不定还是在同一家店买的\n好吧，这破衣服，根本就没什么逼格",   
         options: [ 
-         { title: '你认错人了，我不是你同伙', nextChat: 'C3B'  }, 
-         { title: '先装成同伙，尽快把人打发走', nextChat: 'C3C'  }, 
+         { title: '你认错人了，我不是你同伙', nextChat: 'C3B' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv4'] }, 
+         { title: '先装成同伙，尽快把人打发走', nextChat: 'C3C' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv5'] }, 
         ],
       },
 
@@ -403,6 +405,13 @@ scenes: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
+    { id: "biaoqianv4", min: 0, max: 1 },
+    { id: "biaoqianv5", min: 0, max: 1 },
+    { id: "biaoqianv6", min: 0, max: 1 },
+    { id: "biaoqianv7", min: 0, max: 1 },
+    { id: "biaoqianv8", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
@@ -412,10 +421,6 @@ scenes: [
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/raolu_B'], nextChat: 'C6A_1' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_2'], nextChat: 'C6_S' },
 
-      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/xishilukou_A'], nextChat: 'C3' }, 
-      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/xishilukou_A'], nextChat: 'C5' }, 
-      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/mipu_A'], nextChat: 'C8' }, 
-      #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A_V/daoju_A'], nextChat: 'C9' }, 
     ],
     # 对话选项
     chats: [
@@ -461,37 +466,37 @@ scenes: [
       },
 
       { 
-        id: 'C6', desc: "“当玉石的光泽彻底消失后，我就再也不能轮回了吧？”\n这问题当然不会有答案\n李森炎只能自己心中暗自警惕，时刻关注着怀表玉石的光芒\n只要多注意，应该不会有大碍",
+        id: 'C6', desc: "“当玉石的光泽彻底消失后，我就再也不能轮回了吧？”\n李森炎只能自己心中暗自警惕，时刻关注着怀表玉石的光芒",
         options: [ 
-          { title: '【硬闯过去】',  toScene: 'C000A1_V_MAP_-1_2', varsOn: ['WZXX_M1_N1_C000A1_V/yingchuang'],}, 
-          { title: '【绕路而走】',  nextChat: 'C6A', }, 
-          { title: '【思索一下】',  nextChat: 'C7'}, 
-          { title: '【进行一次彻底的乔装】', varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A'], toScene: 'C000A1_V_MAP_-1_-3'}, 
+          { title: '【硬闯过去】',dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop1'], icon: { id: 1, bindVar: 'biaoqianv1' },   toScene: 'C000A1_V_MAP_-1_2', varsOn: ['WZXX_M1_N1_C000A1_V/yingchuang','biaoqianv1'],}, 
+          { title: '【绕路而走】',dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop2'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] ,  nextChat: 'C6A', }, 
+          { title: '【思索一下】',dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop3'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] ,  nextChat: 'C7'}, 
+          { title: '【进行一次彻底的乔装】',dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop4'], icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A','biaoqianv4'], toScene: 'C000A1_V_MAP_-1_-3'}, 
       ],
       },
 
       { 
-        id: 'C6_S', desc: "“当玉石的光泽彻底消失后，我就再也不能轮回了吧？”\n这问题当然不会有答案\n李森炎只能自己心中暗自警惕，时刻关注着怀表玉石的光芒\n只要多注意，应该不会有大碍",
+        id: 'C6_S', desc: "“当玉石的光泽彻底消失后，我就再也不能轮回了吧？”\n李森炎只能自己心中暗自警惕，时刻关注着怀表玉石的光芒",
         options: [ 
-          { title: '【硬闯过去】',  toScene: 'C000A1_V_MAP_-1_2', varsOn: ['WZXX_M1_N1_C000A1_V/yingchuang'],}, 
-          { title: '【思索一下】',  nextChat: 'C7A'}, 
-          { title: '【进行一次彻底的乔装】', varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A'], toScene: 'C000A1_V_MAP_-1_-3'}, 
+          { title: '【硬闯过去】', dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop1'], icon: { id: 1, bindVar: 'biaoqianv1' },   toScene: 'C000A1_V_MAP_-1_2', varsOn: ['WZXX_M1_N1_C000A1_V/yingchuang','biaoqianv1'],}, 
+          { title: '【思索一下】', dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop3'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] ,  nextChat: 'C7'}, 
+          { title: '【进行一次彻底的乔装】', dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop4'], icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A','biaoqianv4'], toScene: 'C000A1_V_MAP_-1_-3'}, 
       ],
       },
 
       { 
         id: 'C6A', desc: "走了几次的李森炎已经确定这条路有杀手了，而且好像是在屋檐的左边，所以他还是选择绕路而走",
         options: [ 
-          { title: '【去西市三街】',varsOn: ['WZXX_M1_N1_C000A1_V/raolu_A'], toScene: 'C000A1_V_MAP_-2_-1'}, 
-          { title: '【去小院】',varsOn: ['WZXX_M1_N1_C000A1_V/raolu'], toScene: 'C000A1_V_MAP_-3_-1'}, 
+          { title: '【去西市三街】',varsOn: ['WZXX_M1_N1_C000A1_V/raolu_A','biaoqianv5'], toScene: 'C000A1_V_MAP_-2_-1', icon: { id: 1, bindVar: 'biaoqianv5' }, }, 
+          { title: '【去小院】',varsOn: ['WZXX_M1_N1_C000A1_V/raolu','biaoqianv6'], icon: { id: 1, bindVar: 'biaoqianv6' }, toScene: 'C000A1_V_MAP_-3_-1'}, 
       ],
       },
 
        { 
         id: 'C6A_1', desc: "走了几次的李森炎已经确定这条路有杀手了，而且好像是在屋檐的左边，所以他还是选择绕路而走",
         options: [ 
-          { title: '【去西市三街】', toScene: 'C000A1_V_MAP_-2_-1'}, 
-          { title: '【去小院】', varsOn: ['WZXX_M1_N1_C000A1_V/raolu'], toScene: 'C000A1_V_MAP_-3_-1'}, 
+          { title: '【去西市三街】', icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] ,  toScene: 'C000A1_V_MAP_-2_-1'}, 
+          { title: '【去小院】', varsOn: ['WZXX_M1_N1_C000A1_V/raolu','biaoqianv6'],icon: { id: 1, bindVar: 'biaoqianv6' },  toScene: 'C000A1_V_MAP_-3_-1'}, 
       ],
       },
 
@@ -506,8 +511,8 @@ scenes: [
        { 
         id: 'C8', desc: "慢慢寻找的话恐怕需要不少时间，但是这方法还是比较稳妥的，只要小心一点，早晚能够将这个杀手给找出来。\n而自己似乎不怕死，倒是能够靠这能力快速将这杀手给引诱出来，只是要承受一些痛楚。",
         options: [ 
-          { title: '【慢慢寻找】', nextChat: 'C9'}, 
-          { title: '【以身诱敌】', varsOn: ['WZXX_M1_N1_C000A1_V/youdi'], toScene: 'C000A1_V_MAP_-1_0'}, 
+          { title: '【慢慢寻找】',  icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] , nextChat: 'C9'}, 
+          { title: '【以身诱敌】', icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000A1_V/youdi','biaoqianv8'], toScene: 'C000A1_V_MAP_-1_0'}, 
       ],
       },
 
@@ -538,7 +543,20 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
+    { id: "biaoqianv4", min: 0, max: 1 },
+    { id: "biaoqianv5", min: 0, max: 1 },
+    { id: "biaoqianv6", min: 0, max: 1 },
+    { id: "biaoqianv7", min: 0, max: 1 },
+    { id: "biaoqianv8", min: 0, max: 1 },
+    { id: "biaoqianv9", min: 0, max: 1 },
+    { id: "biaoqianv10", min: 0, max: 1 },
+    { id: "biaoqianv11", min: 0, max: 1 },
+    { id: "biaoqianv12", min: 0, max: 1 },
+    { id: "biaoqianv13", min: 0, max: 1 },
+    { id: "biaoqianv14", min: 0, max: 1 },
+    { id: "biaoqianv15", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
@@ -554,7 +572,7 @@ scenes: [
       { 
         id: 'C1', desc: "李森炎庆幸自己找到了最合适的乔装\n一路畅行无阻，也没有再遇到暗杀\n终于，他成功看到李家的大门\n但是，那一刹那，他却浑身一震！",
         options: [ 
-         { title: '怎么会这样！', toChapter: "WZXX_M1_N1_C002_[N12]" ,icon: { id: 11 },sounds: [{ stopBGM: true }],}, 
+         { title: '怎么会这样！', toChapter: "WZXX_M1_N1_C002_[N12]" ,}, 
         ],
       },
 
@@ -582,12 +600,12 @@ scenes: [
       },
 
       { 
-        id: 'C4', desc: "准备好一切之后，李森炎偷偷爬上屋檐摸到了这杀手身后的位置。\n由于李森炎的身法不错，而且谨慎无比，所以这杀手并没有发现李森炎。\n现在李森炎位于杀手的身后。",
+        id: 'C4', desc: "准备好一切之后，李森炎偷偷爬上屋檐摸到了这杀手身后的位置。\n由于李森炎的身法不错，而且谨慎无比，所以这杀手并没有发现李森炎。",
         options: [ 
-          { title: '【扫把千年杀】',nextChat: 'C5'}, 
-          { title: '【使用十字固】',nextChat: 'C9'}, 
-          { title: '【掏出板砖】',nextChat: 'C12A'}, 
-          { title: '【吓唬杀手】',nextChat: 'C15'}, 
+          { title: '【扫把千年杀】',nextChat: 'C5', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
+          { title: '【使用十字固】',nextChat: 'C9', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
+          { title: '【掏出板砖】',nextChat: 'C12A', icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
+          { title: '【吓唬杀手】',nextChat: 'C15', icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] , }, 
       ],
       },
 
@@ -601,8 +619,8 @@ scenes: [
       { 
         id: 'C6', desc: "此刻李森炎心里不由想起了一首歌。没有一丝丝防备，没有一丝丝顾虑，我就这样出现，在你的世界里，带给你惊喜…\n看着杀手竟然没有失去战斗力，李森炎有点惊恐，对方这怕是“钢”铁侠了。\n看着想要活撕了他的杀手，李森炎决定…",
         options: [ 
-          { title: '【赶紧逃跑】',nextChat: 'C7'}, 
-          { title: '【再来一击】',nextChat: 'C8'}, 
+          { title: '【赶紧逃跑】',nextChat: 'C7', icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] , }, 
+          { title: '【再来一击】',nextChat: 'C8', icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] , }, 
       ],
       },
 
@@ -645,10 +663,10 @@ scenes: [
        { 
         id: 'C4A', desc: "准备好一切之后，李森炎偷偷爬上屋檐摸到了这杀手身后的位置。\n由于李森炎的身法不错，而且谨慎无比，所以这杀手并没有发现李森炎。\n现在李森炎位于杀手的身后。",
         options: [ 
-          { title: '【扫把千年杀】',nextChat: 'C5'}, 
-          { title: '【使用十字固】',nextChat: 'C12'}, 
-          { title: '【掏出板砖】',nextChat: 'C12A'}, 
-          { title: '【吓唬杀手】',nextChat: 'C15'}, 
+          { title: '【扫把千年杀】',nextChat: 'C5', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
+          { title: '【使用十字固】',nextChat: 'C12', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
+          { title: '【掏出板砖】',nextChat: 'C12A', icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
+          { title: '【吓唬杀手】',nextChat: 'C15', icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] , }, 
       ],
       },
 
@@ -676,9 +694,9 @@ scenes: [
        { 
         id: 'C14', desc: "趁杀手恍惚之际夺剑那就占据优势了，如果再来一击说不定就能够击晕对方，稳妥点耍阴招撒出沙尘也能让对方暂时失明。",
         options: [ 
-          { title: '【夺剑】',nextChat: 'C17'}, 
-          { title: '【再来一击】',nextChat: 'C18'}, 
-          { title: '【撒出沙尘】',nextChat: 'C19'}, 
+          { title: '【夺剑】',nextChat: 'C17', icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] , }, 
+          { title: '【再来一击】',nextChat: 'C18', icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8'] , }, 
+          { title: '【撒出沙尘】',nextChat: 'C19', icon: { id: 1, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9'] , }, 
       ],
       },
 
@@ -693,10 +711,10 @@ scenes: [
       { 
         id: 'C4B', desc: "准备好一切之后，李森炎偷偷爬上屋檐摸到了这杀手身后的位置。\n由于李森炎的身法不错，而且谨慎无比，所以这杀手并没有发现李森炎。\n现在李森炎位于杀手的身后。",
         options: [ 
-          { title: '【扫把千年杀】',nextChat: 'C5'}, 
-          { title: '【使用十字固】',nextChat: 'C12'}, 
-          { title: '【掏出板砖】',nextChat: 'C12A'}, 
-          { title: '【吓唬杀手】',nextChat: 'C16'}, 
+          { title: '【扫把千年杀】',nextChat: 'C5', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
+          { title: '【使用十字固】',nextChat: 'C12', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
+          { title: '【掏出板砖】',nextChat: 'C12A', icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
+          { title: '【吓唬杀手】',nextChat: 'C16', icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] , }, 
       ],
       },
 
@@ -725,8 +743,8 @@ scenes: [
       { 
         id: 'C19', desc: "为了保险起见，李森炎选择从兜里抓起一把尘土朝着杀手的眼睛撒了过去。\n没来得及闭眼的杀手眼睛进了大量沙尘，暂时失去了视觉。杀手在惊恐之下，四处挥砍",
         options: [ 
-          { title: '【上前猛砸】',nextChat: 'C20'}, 
-          { title: '【远处瓦砖】',nextChat: 'C21'}, 
+          { title: '【上前猛砸】',nextChat: 'C20', icon: { id: 1, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10'] , }, 
+          { title: '【远处瓦砖】',nextChat: 'C21', icon: { id: 1, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11'] , }, 
       ],
       },
 
@@ -768,8 +786,8 @@ scenes: [
       { 
         id: 'C25', desc: "由于这条小巷并没有什么人，所以并没有发现这边的情况。\n杀手倒地后，长剑也掉落在他身边",
         options: [ 
-          { title: '【上千捡剑】', nextChat: 'C26'}, 
-          { title: '【砸开长剑】', nextChat: 'C27'}, 
+          { title: '【上前捡剑】', nextChat: 'C26', icon: { id: 1, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12'] , }, 
+          { title: '【砸开长剑】', nextChat: 'C27', icon: { id: 1, bindVar: 'biaoqianv13' }, varsOn: ['biaoqianv13'] , }, 
       ],
       },
 
@@ -797,8 +815,8 @@ scenes: [
       { 
         id: 'C29', desc: "不过早有预料的李森炎立刻使用身法躲避，随后一剑捅穿了这个杀手的胸膛\n看着彻底倒地不起的杀手，李森炎眼神有点复杂。",
         options: [ 
-          { title: '【放其一马】',nextChat: 'C30'}, 
-          { title: '【斩超除根】',nextChat: 'C31'}, 
+          { title: '【放其一马】',nextChat: 'C30', icon: { id: 1, bindVar: 'biaoqianv14' }, varsOn: ['biaoqianv14'] , }, 
+          { title: '【斩超除根】',nextChat: 'C31', icon: { id: 1, bindVar: 'biaoqianv15' }, varsOn: ['biaoqianv15'] , }, 
       ],
       },
 
@@ -925,7 +943,13 @@ scenes: [
     vars: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
-    { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
+    { id: "biaoqianv4", min: 0, max: 1 },
+    { id: "biaoqianv5", min: 0, max: 1 },
+    { id: "biaoqianv6", min: 0, max: 1 },
+    { id: "biaoqianv7", min: 0, max: 1 },
+    { id: "biaoqianv8", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
@@ -952,10 +976,10 @@ scenes: [
       { 
         id: 'C3', desc: "又挂一次的李森炎清楚自己身法无法躲开这个在通往李家必经之路守株待兔的杀手。\n所以他决定用其他方法通往李家。\n不过现在的他似乎已经知道了杀手大概的方位，这倒是能够想办法对付这家伙。",   
         options: [ 
-          { title: '等待白事队伍',  nextChat: 'C3A' }, 
+          { title: '等待白事队伍',  nextChat: 'C3A' ,andVarsValue: ['@clues_xiansuo9 == 1',],alwayDisplay: true ,  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
           # 需要触发二号之后再解锁这个选项
-          { title: '直面杀手',  nextChat: 'C5A' }, 
-          { title: '无视杀手',  nextChat: 'C4' }, 
+          { title: '直面杀手',  nextChat: 'C5A' , icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
+          { title: '无视杀手',  nextChat: 'C4' , icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
         ],
       },
 
@@ -988,12 +1012,12 @@ scenes: [
       },
 
       { 
-        id: 'C5', desc: "李森炎走在道路上，不过眼神一直警惕地看向左边，因为这杀手是从左边的屋檐中偷袭的\n走了一段路后，杀手果不其然从左边的房顶跳下来，随后朝着他猛然袭杀\n不过早有预料的李森炎迅速躲避，并且立刻做出反应。",   
+        id: 'C5', desc: "李森炎走在道路上，不过眼神一直警惕地看向左边。\n走了一段路后，杀手果不其然从左边的房顶跳下来，随后朝着他猛然袭杀\n不过早有预料的李森炎迅速躲避，并且立刻做出反应。",   
         options: [ 
-          { title: '高喊绝学', nextChat: 'C6'  }, 
-          { title: '直接逃跑', nextChat: 'C7'  }, 
-          { title: '突然大笑', nextChat: 'C8'  }, 
-          { title: '说后面有美女', nextChat: 'C9'  }, 
+          { title: '高喊绝学', nextChat: 'C6' , icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] ,  }, 
+          { title: '直接逃跑', nextChat: 'C7', icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] ,   }, 
+          { title: '突然大笑', nextChat: 'C8' , icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] ,  }, 
+          { title: '说后面有美女', nextChat: 'C9' , icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] ,  }, 
         ],
       },
 
@@ -1059,6 +1083,8 @@ scenes: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
@@ -1078,9 +1104,9 @@ scenes: [
       { 
         id: 'C1', desc: "离开小巷后，李森炎来到了米铺，\n现在他距离李家也不过一公里的距离，他来到了一个小分叉路口。",   
         options: [ 
-         { title: '左边小路', nextChat: 'C2'  }, 
-         { title: '右边小路', nextChat: 'C3'  }, 
-         { title: '翻墙进去', nextChat: 'C4'  }, 
+         { title: '左边小路', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] ,  }, 
+         { title: '右边小路', nextChat: 'C3' , icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
+         { title: '翻墙进去', nextChat: 'C4' , icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
         ],
       },
 
@@ -1140,6 +1166,12 @@ scenes: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
+    { id: "biaoqianv4", min: 0, max: 1 },
+    { id: "biaoqianv5", min: 0, max: 1 },
+    { id: "biaoqianv6", min: 0, max: 1 },
+    { id: "biaoqianv7", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
@@ -1152,8 +1184,8 @@ scenes: [
        { 
         id: 'C1', desc: '李森炎选择前往小院，这条路上似乎没有杀手。', 
         options: [ 
-        { title: '【小院左路】', nextChat: 'C2' , },
-        { title: '【小院右路】',nextChat: 'C2A' ,}, 
+        { title: '【小院左路】', nextChat: 'C2' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] ,  },
+        { title: '【小院右路】',nextChat: 'C2A' , icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
        
         ],
       },
@@ -1161,8 +1193,8 @@ scenes: [
        {
         id: 'C2', desc: "在小院前往米铺的小巷里，李森炎遇到了一个长发飘飘，气质出尘的姑娘。\n虽然看不到这姑娘的正脸，但是单看背影已经能够幻想出她那绝世的面容。",
         options: [ 
-         { title: '上前搭讪', nextChat: 'C4' }, 
-         { title: '无视美人', nextChat: 'C3' }, 
+         { title: '上前搭讪', nextChat: 'C4' , icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
+         { title: '无视美人', nextChat: 'C3' , icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] , }, 
         
         ],
       },
@@ -1191,8 +1223,8 @@ scenes: [
       {
         id: 'C2A', desc: "在西市一街前往李家的小巷中，遇到了一个正在蹲着抱头哭泣的小孩\n只不过这个小孩看起来有点异常，毕竟这哭声有点不像是小孩的声音。",
         options: [ 
-         { title: '上前帮忙', nextChat: 'C3A' }, 
-         { title: '直接离开', nextChat: 'C4A' }, 
+         { title: '上前帮忙', nextChat: 'C3A' , icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] , }, 
+         { title: '直接离开', nextChat: 'C4A', icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] ,  }, 
         ],
       },
 
@@ -1291,52 +1323,52 @@ scenes: [
     ],
     # 对话选项
     chats: [
-       { 
-        id: 'C1', desc: '尊贵的白府，远远一看就很高大上', 
-        options: [ 
-        { title: '【四处逛逛】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
-        { title: '【想起来，该去买簪子了】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A1_V_MAP_3_-1 }, 
-        { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A1_V_MAP_-1_5' },
-        # { title: '【小院】',toScene: 'C000A1_V_MAP_-3_-1'},
-        # { title: '【西市三街】',toScene: 'C000A1_V_MAP_-2_-1'},
-        # { title: '【路口】',toScene: 'C000A1_V_MAP_-2_-3'},
-        # { title: '【街角】',toScene: 'C000A1_V_MAP_-3_-3'},
-        # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
-        # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
-        ],
-      },
+      #  { 
+      #   id: 'C1', desc: '尊贵的白府，远远一看就很高大上', 
+      #   options: [ 
+      #   { title: '【四处逛逛】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
+      #   { title: '【想起来，该去买簪子了】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A1_V_MAP_3_-1 }, 
+      #   { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A1_V_MAP_-1_5' },
+      #   # { title: '【小院】',toScene: 'C000A1_V_MAP_-3_-1'},
+      #   # { title: '【西市三街】',toScene: 'C000A1_V_MAP_-2_-1'},
+      #   # { title: '【路口】',toScene: 'C000A1_V_MAP_-2_-3'},
+      #   # { title: '【街角】',toScene: 'C000A1_V_MAP_-3_-3'},
+      #   # { title: '【离开集市】', andVarsValue: ['@props_350 <= 0'] },
+      #   # { title: '【离开集市】', andVarsValue: ['@props_350 > 0'], toChapter: "WZXX_M1_N1_C002_[N3]" },
+      #   ],
+      # },
       
-      { 
-        id: 'C2', desc: "李森炎好奇的在白府四周逛逛\n这白府还真是非比寻常，很宏伟繁华”\n走着走着被白府管事看到\n“喂！你是何人，有何事啊？”",   
-        options: [ 
-         { title: '我就是来闲逛的', nextChat: 'C2A' }, 
-         { title: '我是白家的亲戚', nextChat: 'C3' }, 
-         { title: '我跟你们小姐认识……', nextChat: 'C4' }, 
-        ],
-      },
+      # { 
+      #   id: 'C2', desc: "李森炎好奇的在白府四周逛逛\n这白府还真是非比寻常，很宏伟繁华”\n走着走着被白府管事看到\n“喂！你是何人，有何事啊？”",   
+      #   options: [ 
+      #    { title: '我就是来闲逛的', nextChat: 'C2A', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] ,  }, 
+      #    { title: '我是白家的亲戚', nextChat: 'C3' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
+      #    { title: '我跟你们小姐认识……', nextChat: 'C4' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
+      #   ],
+      # },
 
-      { 
-        id: 'C2A', desc: "“此处不让闲逛，快走！”\n白府家丁把李森炎赶走\n……离开此处吧",   
-        options: [ 
-         { title: '【西市三街】',toScene: 'C000A1_V_MAP_-2_-1'},
-         { title: '【路口】',toScene: 'C000A1_V_MAP_-2_-3'},
-         { title: '【街角】',toScene: 'C000A1_V_MAP_-3_-3'},
-        ],
-      },
+      # { 
+      #   id: 'C2A', desc: "“此处不让闲逛，快走！”\n白府家丁把李森炎赶走\n……离开此处吧",   
+      #   options: [ 
+      #    { title: '【西市三街】',toScene: 'C000A1_V_MAP_-2_-1'},
+      #    { title: '【路口】',toScene: 'C000A1_V_MAP_-2_-3'},
+      #    { title: '【街角】',toScene: 'C000A1_V_MAP_-3_-3'},
+      #   ],
+      # },
 
-      { 
-        id: 'C3', desc: "“你是白家亲戚？”\n“对，远亲，我能进去拜访拜访吗？”\n“可以，要先预约”\n“啊？预约多久？”\n“大概半年吧，毕竟像你这么说的，没有一千也有八百个了”\n“人一有钱嘛，亲戚就多了，能理解吧？”",   
-        options: [ 
-         { title: '哈哈哈，理解理解，走吧', nextChat: 'C1' }, 
-        ],
-      },
+      # { 
+      #   id: 'C3', desc: "“你是白家亲戚？”\n“对，远亲，我能进去拜访拜访吗？”\n“可以，要先预约”\n“啊？预约多久？”\n“大概半年吧，毕竟像你这么说的，没有一千也有八百个了”\n“人一有钱嘛，亲戚就多了，能理解吧？”",   
+      #   options: [ 
+      #    { title: '哈哈哈，理解理解，走吧', nextChat: 'C1' }, 
+      #   ],
+      # },
 
-      { 
-        id: 'C4', desc: "“我认识你们家小姐……”\n“去去去，都这么说。”\n“我真认识！”\n“那好，我家小姐的小名叫什么？”\n小白？小月？小光？\n“滚！我家小姐就没有小名！还敢装熟，讨打！”",   
-        options: [ 
-         { title: '白府管家作势要打人，赶紧开溜', nextChat: 'C1' }, 
-        ],
-      },
+      # { 
+      #   id: 'C4', desc: "“我认识你们家小姐……”\n“去去去，都这么说。”\n“我真认识！”\n“那好，我家小姐的小名叫什么？”\n小白？小月？小光？\n“滚！我家小姐就没有小名！还敢装熟，讨打！”",   
+      #   options: [ 
+      #    { title: '白府管家作势要打人，赶紧开溜', nextChat: 'C1' }, 
+      #   ],
+      # },
       ],
 
   },
@@ -1359,6 +1391,7 @@ scenes: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
@@ -1380,8 +1413,8 @@ scenes: [
       { 
         id: 'C1A', desc: "说着，那地痞凑过来就要对他上下其手\n地痞靠近，此时你决定",   
         options: [ 
-        { title: '装柔弱女人，喊救命', nextChat: 'C2' }, 
-        { title: '装彪悍女人，让他知难而退', nextChat: 'C4' }, 
+        { title: '装柔弱女人，喊救命', nextChat: 'C2' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
+        { title: '装彪悍女人，让他知难而退', nextChat: 'C4' , icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
         ],
       },
       
@@ -1442,6 +1475,9 @@ scenes: [
     { id: "ONE_OPEN_0", min: 0, max: 1 },
     { id: "ONE_OPEN_1", min: 0, max: 1 },
     { id: "biaoqianv1", min: 0, max: 1 },
+    { id: "biaoqianv2", min: 0, max: 1 },
+    { id: "biaoqianv3", min: 0, max: 1 },
+    { id: "biaoqianv4", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
@@ -1465,9 +1501,9 @@ scenes: [
        { 
         id: 'C2', desc: "李森炎走近那乞丐走近，就听见他口里吟着什么————\n“蓬头垢面万家客，衣衫褴褛千城游。身无分文浑不怕，腰有万贯不自由。”\n李森炎上前，拍了拍那乞丐的肩\n“小兄弟，何事？”",   
         options: [ 
-         { title: '没事，认错人了', nextChat: 'C1' }, 
-         { title: '和你随便聊聊天', nextChat: 'C3' }, 
-         { title: '打听事情', nextChat: 'C4' }, 
+         { title: '没事，认错人了', nextChat: 'C1', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
+         { title: '和你随便聊聊天', nextChat: 'C3' , icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] ,}, 
+         { title: '打听事情', nextChat: 'C4', icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
         ],
       },
 
