@@ -40,16 +40,12 @@ const TopAndBottomTitle_Btn = props => {
       />
       <View style={{ ...BTN_STYLE, position: "absolute", }} pointerEvents="none">
         <View style={{
-          width: px2pd(712),
+          width: px2pd(600),
           height: px2pd(55),
           marginTop: px2pd(1),
           marginLeft: px2pd(120),
         }}>
-          <Text style={{
-            fontSize: 14,
-            paddingTop: 4,
-            paddingBottom: 4,
-          }}>
+          <Text style={{ fontSize: 14, }}>
             {leftTop_Title}
           </Text>
         </View>

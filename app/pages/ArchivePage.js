@@ -75,7 +75,7 @@ class ArchivePage extends Component {
 
   render() {
     return (
-      <DarkBlurView>
+      <DarkBlurView style={{ zIndex: 99, flex:1 }}>
         <SafeAreaView style={{ flex: 1 }}>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Image style={{ width: '90%', height: '70%', position: "absolute", zIndex: 0, }} source={this.context.dialogBg_2_img} />
