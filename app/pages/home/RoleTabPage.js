@@ -210,7 +210,7 @@ const SimpleInfo = (props) => {
                 </View>
             </View>
             <View style={styles.detailContainer}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onDetailHandler}>
                     <FastImage style={{ width: px2pd(145), height: px2pd(55) }} source={require('../../../assets/character/detail.png')} />
                 </TouchableOpacity>
                 {/* <View style={styles.detailButtonView}>

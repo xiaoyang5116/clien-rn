@@ -175,13 +175,13 @@ const DialogRoutes = (props) => {
         )
     } else if (style === 201) {
         return (
-            <Transitions id={"OPEN_FenZhiDialog"}>
+            // <Transitions id={"OPEN_FenZhiDialog"}>
                 <FenZhiDialog
                     {...props}
                     actionMethod={actionMethod}
                     specialEffects={specialEffects}
                 />
-            </Transitions>
+            // </Transitions>
         )
     }
 

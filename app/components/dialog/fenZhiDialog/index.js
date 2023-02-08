@@ -5,6 +5,8 @@ import { BtnIcon, ExitButton } from '../../button';
 import { ImageButton, TextButton } from '../../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import { px2pd } from '../../../constants/resolution';
+import RootView from '../../RootView';
+import ArchivePage from '../../../pages/ArchivePage';
 
 const BTN_STYLE = {
   width: px2pd(978),
@@ -100,9 +102,14 @@ const FenZhiDialog = props => {
               renderItem={_renderFenZhi}
             />
           </View>
-          <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 10, }}>
+          <View style={{ position: "absolute", width: "100%", bottom: 10, flexDirection: "row", justifyContent: "space-between", }}>
             <ExitButton onPress={onDialogCancel} />
             <ImageButton
+              onPress={() => {
+                const key = RootView.add(<ArchivePage onClose={() => {
+                  RootView.remove(key);
+                }} />);
+              }}
               width={px2pd(217)}
               height={px2pd(220)}
               source={require('../../../../assets/dialog/fen_zhi/cunDan1.png')}
