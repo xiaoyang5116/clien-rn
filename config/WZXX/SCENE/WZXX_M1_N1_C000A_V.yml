@@ -1247,7 +1247,7 @@ scenes: [
         id: 'C1', desc: '尊贵的白府，远远一看就很高大上', 
         options: [ 
         { title: '【四处逛逛】', nextChat: 'C2', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']}, 
-        { title: '【想起来，该去买簪子了】',andVarsValue: ['@props_350 <= 0'] ,toScene: C000A_V_MAP_3_-1 }, 
+        { title: '【想起来，该去买簪子了】',andVarsValue: ['@props_350 <= 0'] ,toScene: 'C000A_V_MAP_3_-1'}, 
         # { title: '【是时候该去森林采集草药了】', andVarsValue: ['@props_350 > 0'],toScene: 'C000A_V_MAP_-1_5' },
         # { title: '【小院】',toScene: 'C000A_V_MAP_-3_-1'},
         # { title: '【西市三街】',toScene: 'C000A_V_MAP_-2_-1'},

@@ -50,6 +50,26 @@ scenes: [
         ],
       },
       
+
+      { 
+        id: 'WZXX_M1_N1_C001V_S', desc: '选项', 
+        options: [     
+            {title: "这位兄台，这是何意？",dropIds: [ 'WZXX_M1_N1_C001V_Vdrop100'], },
+            {title: "兄弟，拍戏呢？要不给个替身吧？",dropIds: [ 'WZXX_M1_N1_C001V_Vdrop101'], },
+            {title: "敢将剑架在我脖子上的人你是第一个",dropIds: [ 'WZXX_M1_N1_C001V_Vdrop102'], },
+
+        ],
+      },
+
+       { 
+        id: 'WZXX_M1_N1_C001V_SS', desc: '选项', 
+        options: [     
+            {title: "谁能保我不死，我就和谁说",dropIds: [ 'WZXX_M1_N1_C001V_Vdrop103'], },
+            {title: "求求你们别杀我啊",dropIds: [ 'WZXX_M1_N1_C001V_Vdrop104'], },
+            {title: "想要让我拿出来，可是需要好处的",dropIds: [ 'WZXX_M1_N1_C001V_Vdrop105'], },
+
+        ],
+      },
       #
       { 
         id: 'WZXX_M1_N1_C001C_CCXZ', desc: '选择穿越的出身', 
@@ -101,7 +121,7 @@ scenes: [
           #{ key: 'p1B3', content: ['名誉与生命，哪个更值得爱惜？','生命与财富，哪个更为珍贵？','获得与丧失，哪个更有害？','救人一命，胜过……','这话还没说完，剑光一闪',['边缘闪烁红'],'李森炎挂了','…………',],
           #btn: [{title: '…………',dialogs: ['gameover00'], varsOn: ['biaoqianv2','biaoqianv7',]}]},
 
-           { key: 'p1D', content: ['李森炎纵身一跃，大步飞奔。','刚跑两步，听背后风声呼啸。','扭头查看',['边缘闪烁红'],'只看到剑光一闪','李森炎挂了','…………',], 
+           { key: 'p1D', content: ['哈哈哈哈，苦练三十年今天终于派上用场了','想杀我轻功水上漂没那么容易','李森炎纵身一跃，大步飞奔。','刚跑两步，听背后风声呼啸。','扭头查看',['边缘闪烁红'],'只看到剑光一闪','李森炎挂了','…………',], 
              btn: [{title: '…………',dialogs: ['gameover02'], varsOn: ['biaoqianv4',]}]},   
 
            { key: 'p1C', content: ['头脑一阵清明，灵感爆发，你飞快的说出'],

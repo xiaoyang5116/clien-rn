@@ -53,6 +53,33 @@ scenes: [
         ],
       },
 
+      { 
+        id: 'WZXX_M1_N1_C003_VS', desc: '白月光对话', 
+        options: [ 
+          { 
+          title: "【我不是贼】",
+          andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1',  rightBottom_Title: "可获得：正义+1", 
+          icon: { id: 6, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9']
+          },
+          { 
+          title: "【有这么帅的贼？】",
+          andVarsValue: ['@attr_颜值 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '颜值属性大于1',  rightBottom_Title: "可获得：颜值+1", 
+          icon: { id: 7, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10']
+          },
+          { 
+          title: "【我怎么可能是贼】",
+          andVarsValue: ['@attr_节操 <= 10',], alwayDisplay: true, btnType: "A2", leftTop_Title: '节操属性小于10',  rightBottom_Title: "可获得：节操-1", 
+          icon: { id: 6, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11']
+          },
+          { 
+          title: "【我是采花贼】",
+          andVarsValue: ['@attr_邪恶 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '邪恶属性大于1',  rightBottom_Title: "可获得：邪恶+1", 
+          dialogs: ['C003_1.1D'] , 
+          icon: { id: 6, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12']
+          }
+        ],
+      },
+
      
         ],
 
@@ -167,6 +194,41 @@ scenes: [
           ]},
            ]  
         },
+
+        #选项对话8
+        #   { id: 'C003_1.2D',style: 6, title: '我不是贼', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+        #   sections: [
+        #   { key: 'P1', content: ['我并非贼人，只是为了追我家猫才私闯了姑娘闺房',
+        #   ],
+        #   btn: [{title: '不是此事……',dialogs: ['C003_1.1B'], },
+        #   ]},
+        #    ]  
+        # },
+
+        #   { id: 'C003_1.2D',style: 6, title: '我不是贼', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+        #   sections: [
+        #   { key: 'P1', content: ['你有见过这么帅的贼吗？',
+        #   ],
+        #   btn: [{title: '不是此事……',dialogs: ['C003_1.1B'], },
+        #   ]},
+        #    ]  
+        # },
+
+        #    { id: 'C003_1.2D',style: 6, title: '我不是贼', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+        #   sections: [
+        #   { key: 'P1', content: ['我怎么可能是贼？我最讨厌别人污蔑我了',
+        #   ],
+        #   btn: [{title: '不是此事……',dialogs: ['C003_1.1B'], },
+        #   ]},
+        #    ]  
+        # },
+
+          { id: 'gameover1',style: 7, title: '亮光一闪！', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+          { key: 'B19', content: ['身后传来一股强大的气息，还没等你转身，你便感觉到脖子一抹冰凉。',['边缘闪烁红'],'你挂了',],
+          btn: [{title: '老实交钱', 
+          dialogs: ['C002_1.1D'] ,
+            },]},
+          ], },
 
 
 
