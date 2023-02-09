@@ -19,7 +19,7 @@ import { View, Text, FlatList } from '../../constants/native-ui';
 import FastImage from 'react-native-fast-image';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Collapsible from 'react-native-collapsible';
-import { SafeAreaView, TouchableWithoutFeedback } from 'react-native';
+import { ImageBackground, SafeAreaView, TouchableWithoutFeedback } from 'react-native';
 import { px2pd } from '../../constants/resolution';
 
 const BuffCollapsible = (props) => {
@@ -138,12 +138,19 @@ const Character = (props, ref) => {
     }
 
     return (
-        <View style={[{ flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', height: 100, backgroundColor: '#403340' }, (props.contentStyle != undefined) ? props.contentStyle : {}]}>
-            <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center', }}>
-                <FastImage style={{ width: px2pd(218), height: px2pd(211) }} source={require('../../../assets/bg/arena_character_bg.png')} />
-                <Text style={{ position: 'absolute', color: '#000' }}>{props.user.userName}</Text>
+        <View style={[{ flexDirection: 'row', justifyContent: 'flex-start', height: px2pd(395) }, (props.contentStyle != undefined) ? props.contentStyle : {}]}>
+            <FastImage
+                style={{ height: px2pd(395), width: px2pd(1080), position: 'absolute', top: 0 }}
+                source={require('../../../assets/arenaPage/attr_bg2.png')}
+            />
+            {/* <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center', }}> */}
+            <View style={{ width: px2pd(232), height: 90, marginLeft: 15, marginRight: 5, justifyContent: "flex-end", alignItems: 'center' }}>
+                <FastImage style={{ width: px2pd(210), height: px2pd(202) }} source={require('../../../assets/arenaPage/arena_character_bg.png')} />
+                <ImageBackground style={{ width: px2pd(232), height: px2pd(52), position: "absolute", justifyContent: "center", alignItems: "center" }} source={require('../../../assets/arenaPage/name_bg.png')}>
+                    <Text style={{ color: '#000' }}>{props.user.userName}</Text>
+                </ImageBackground>
             </View>
-            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', height: '100%' }}>
+            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', height: 90, }}>
                 <View style={{ height: 3, marginTop: 6, marginRight: 6, marginBottom: 0 }}>
                     <ProgressBar percent={shieldPercent} sections={[{ x: 0, y: 100, color: '#3390ff' }]} />
                 </View>
@@ -153,7 +160,7 @@ const Character = (props, ref) => {
                 <View style={{ height: 15, marginTop: 6, marginRight: 6, marginBottom: 6 }}>
                     <ProgressBar percent={mpPercent} sections={[{ x: 0, y: 100, color: '#12b7b5' }]} />
                 </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                {/* <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                     <Text style={{ flex: 1, color: '#fff' }}>物攻: {props.user.attrs.physicalAttack || 0}</Text>
                     <Text style={{ flex: 1, color: '#fff' }}>法攻: {props.user.attrs.magicAttack || 0}</Text>
                     <Text style={{ flex: 1, color: '#fff' }}>物防: {props.user.attrs.physicalDefense || 0}</Text>
@@ -164,7 +171,7 @@ const Character = (props, ref) => {
                     <Text style={{ flex: 1, color: '#fff' }}>暴击: {props.user.attrs.crit || 0}</Text>
                     <Text style={{ flex: 1, color: '#fff' }}>闪避: {props.user.attrs.dodge || 0}</Text>
                     <Text style={{ flex: 1, color: '#fff' }}>敏捷: {props.user.attrs.dodge || 0}</Text>
-                </View>
+                </View> */}
             </View>
         </View>
     );
@@ -247,32 +254,36 @@ const ArenaPage = (props) => {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#403340' }}>
-            <View style={props.currentStyles.viewContainer}>
-                <View style={{ position: 'absolute', zIndex: 10, top: 0, left: px2pd(20) }}>
+        <View style={{ flex: 1 }}>
+            <FastImage style={{ position: "absolute", width: "100%", height: "100%" }} source={require("../../../assets/arenaPage/bg.png")} />
+            <SafeAreaView style={{ flex: 1 }}>
+                <View style={props.currentStyles.viewContainer}>
+                    {/* <View style={{ position: 'absolute', zIndex: 10, top: 0, left: px2pd(20) }}>
                     <AntDesign name='left' style={{ color: '#fff' }} size={30} onPress={closeHandler} />
-                </View>
-                <CharacterWrapper ref={refCharacterMysef} user={props.myself} contentStyle={{ marginTop: px2pd(80) }} />
-                <View style={{ flex: 1, flexDirection: 'row', backgroundColor: '#5a5a70' }}>
-                    <FlatList
-                        ref={refList}
-                        data={listData.current}
-                        renderItem={renderMsgItem}
-                        keyExtractor={item => item.id}
-                        onContentSizeChange={() => {
-                            if (listData.current.length > 0 && status.current != 2) {
-                                refList.current.scrollToEnd({ animated: true });
-                                // 停止滚动
-                                if (status.current == 1) {
-                                    status.current = 2;
+                </View> */}
+                    <CharacterWrapper ref={refCharacterEnemy} user={props.enemy} contentStyle={{ marginTop: 20 }} />
+                    <View style={{ flex: 1, flexDirection: 'row', backgroundColor: '#5a5a70' }}>
+                        <FlatList
+                            ref={refList}
+                            data={listData.current}
+                            renderItem={renderMsgItem}
+                            keyExtractor={item => item.id}
+                            onContentSizeChange={() => {
+                                if (listData.current.length > 0 && status.current != 2) {
+                                    refList.current.scrollToEnd({ animated: true });
+                                    // 停止滚动
+                                    if (status.current == 1) {
+                                        status.current = 2;
+                                    }
                                 }
-                            }
-                        }}
-                    />
+                            }}
+                        />
+                    </View>
+                    <CharacterWrapper ref={refCharacterMysef} user={props.myself} />
                 </View>
-                <CharacterWrapper ref={refCharacterEnemy} user={props.enemy} />
-            </View>
-        </SafeAreaView>
+            </SafeAreaView>
+        </View>
+
     );
 }
 
