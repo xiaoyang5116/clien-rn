@@ -424,7 +424,7 @@ scenes: [
     ],
     # 对话选项
     chats: [
-       { 
+      { 
         id: 'C1', desc: "这一次，李森炎不再走神\n疾行途中，目光四巡\n格外小心谨慎\n直到来到第一次死亡的位置，寒光骤闪",
         options: [ 
           { title: '【仔细查看！】', nextChat: 'C2'}, 
@@ -976,7 +976,7 @@ scenes: [
       { 
         id: 'C3', desc: "又挂一次的李森炎清楚自己身法无法躲开这个在通往李家必经之路守株待兔的杀手。\n所以他决定用其他方法通往李家。\n不过现在的他似乎已经知道了杀手大概的方位，这倒是能够想办法对付这家伙。",   
         options: [ 
-          { title: '等待白事队伍',  nextChat: 'C3A' ,andVarsValue: ['@clues_xiansuo9 == 1',],alwayDisplay: true ,  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
+          { title: '等待白事队伍',  nextChat: 'C3A' ,andVarsValue: ['@clues_xiansuo9 == 1',], alwayDisplay: true ,  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
           # 需要触发二号之后再解锁这个选项
           { title: '直面杀手',  nextChat: 'C5A' , icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
           { title: '无视杀手',  nextChat: 'C4' , icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
@@ -1579,7 +1579,7 @@ scenes: [
           { 
           point: [-1, 2], title: '西市二街',
           # toScene: 'C000A1_V_MAP_-1_2',
-          links: [] 
+          links: [[-1, 1],] 
           },
 
           { 
