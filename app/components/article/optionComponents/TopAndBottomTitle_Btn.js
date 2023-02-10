@@ -1,14 +1,10 @@
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, ImageBackground } from 'react-native';
 import React from 'react';
 import Toast from '../../toast';
 
-import { ImageButton, BtnIcon } from '../../../constants/custom-ui';
+import { ImageButton, BtnIcon, ImageBtn } from '../../../constants/custom-ui';
 import { px2pd } from '../../../constants/resolution';
 
-const BTN_STYLE = {
-  width: px2pd(1067),
-  height: px2pd(211),
-}
 
 const TopAndBottomTitle_Btn = props => {
   const { title, disabled, onPress, currentStyles, optionData, containerStyle } = props;
@@ -23,59 +19,31 @@ const TopAndBottomTitle_Btn = props => {
   }
 
   return (
-    <View style={{
-      width: "100%",
-      marginTop: 5,
-      marginBottom: 5,
-      justifyContent: "center",
-      alignItems: "center",
-      height: px2pd(211),
-      ...containerStyle,
-    }}>
-      <ImageButton
-        {...BTN_STYLE}
+    <View style={{ width: px2pd(1067) }}>
+      <ImageBackground
+        style={{ width: px2pd(1067), height: px2pd(57), justifyContent: 'center', paddingLeft: 30, paddingTop: px2pd(5), }}
+        source={require('../../../../assets/button/topbot_btn/left_top.png')}
+      >
+        <Text style={{ fontSize: 14, color: "#000" }}>{leftTop_Title}</Text>
+      </ImageBackground>
+      <ImageBtn
+        imgStyle={{ width: px2pd(1067), height: px2pd(98), }}
         onPress={handlerOnPress}
-        source={require('../../../../assets/button/TopAndBottomTitle_Btn1.png')}
-        selectedSource={require('../../../../assets/button/TopAndBottomTitle_Btn2.png')}
-      />
-      <View style={{ ...BTN_STYLE, position: "absolute", }} pointerEvents="none">
-        <View style={{
-          width: px2pd(600),
-          height: px2pd(55),
-          marginTop: px2pd(1),
-          marginLeft: px2pd(120),
-        }}>
-          <Text style={{ fontSize: 14, }}>
-            {leftTop_Title}
-          </Text>
-        </View>
-        <View style={{
-          width: px2pd(980),
-          height: px2pd(88),
-          marginLeft: px2pd(45),
-          marginTop: px2pd(5),
-          justifyContent: "center",
-          alignItems: "center",
-        }}>
-          {icon?.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
-          <Text style={{ fontSize: 14, }}>{title}</Text>
-        </View>
-        <View style={{
-          width: px2pd(670),
-          height: px2pd(45),
-          marginLeft: px2pd(305),
-          marginTop: px2pd(3),
-          justifyContent: 'center',
-          alignItems: "center"
-        }}>
-          <Text style={{ fontSize: 14, }}>
-            {rightBottom_Title}
-          </Text>
-        </View>
-
-      </View>
+        source={require('../../../../assets/button/topbot_btn/left_bot1.png')}
+        selectedSource={require('../../../../assets/button/topbot_btn/left_bot2.png')}
+      >
+        {icon?.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
+        <Text style={{ fontSize: 14, color: "#000" }}>{title}</Text>
+      </ImageBtn>
+      <ImageBackground
+        style={{ width: px2pd(1067), height: px2pd(56), justifyContent: 'center', paddingLeft: px2pd(292), }}
+        source={require('../../../../assets/button/topbot_btn/right_bottom.png')}
+      >
+        <Text style={{ fontSize: 14, width: px2pd(713), textAlign: 'center', color: "#000" }}>{rightBottom_Title}</Text>
+      </ImageBackground>
     </View>
   )
+
 };
 
 export default TopAndBottomTitle_Btn

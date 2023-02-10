@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { ImageButton } from '../../constants/custom-ui'
+import { StyleSheet, Text, View, TouchableWithoutFeedback, ImageBackground } from 'react-native'
+import React, { useState } from 'react';
+
 import { px2pd } from '../../constants/resolution'
 
+import { ImageButton } from '../../constants/custom-ui'
 export { LongTextButton } from './LongTextButton'
-
+import FastImage from 'react-native-fast-image';
 export { BtnIcon } from './BtnIcon'
 
 
@@ -32,4 +33,31 @@ export const ExitButton = (props) => {
     selectedSource={require('../../../assets/button/exit_button_selected.png')}
     onPress={onPress ? onPress : () => { }}
   />
+}
+
+export const ImageBtn = (props) => {
+  const { onPress, source, selectedSource, imgStyle, containerStyle, children } = props
+  const [isPress, setIsPress] = useState(false)
+
+  return (
+    <TouchableWithoutFeedback
+      onPressIn={() => { setIsPress(!isPress) }}
+      onPressOut={() => { setIsPress(!isPress) }}
+      onPress={onPress}
+      style={imgStyle}
+    >
+      <View style={{ justifyContent: 'center', alignItems: "center", ...imgStyle, ...containerStyle, }}>
+        {
+          isPress
+            ? (<FastImage style={{ ...imgStyle, position: 'absolute' }}
+              source={selectedSource}
+            />)
+            : (<FastImage style={{ ...imgStyle, position: 'absolute' }}
+              source={source}
+            />)
+        }
+        {children}
+      </View>
+    </TouchableWithoutFeedback>
+  )
 }
