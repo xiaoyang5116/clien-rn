@@ -140,7 +140,7 @@ scenes: [
           sections: [
           { key: 'P1', content: ['掌柜：滚犊子',],
           btn: [
-          {title: '老实交钱', toShop: 'default',andVarsValue: ['@attr_正义 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '正义属性大于1',  rightBottom_Title: "奖励：正义+1", 
+          {title: '老实交钱', toShop: 'default',andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：正义+1", 
           dialogs: ['C002_1.1D'] ,
            },
          
