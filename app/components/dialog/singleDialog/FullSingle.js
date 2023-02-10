@@ -125,7 +125,7 @@ const FullSingle = props => {
                 {/* 标题 */}
                 <Header1 style={{ marginBottom: 10 }} title={title} />
                 {/* 显示区域 */}
-                <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12 }}>
+                <View style={{ flex: 1, }}>
                     <TouchableWithoutFeedback onPress={nextParagraph}>
                         <View style={{ flex: 1 }}>
                             {/* 内容显示区域 */}
@@ -137,6 +137,7 @@ const FullSingle = props => {
                                                 ? '50%'
                                                 : '60%'
                                             : '100%',
+                                    paddingLeft: 12, paddingRight: 12
                                 }}
                                 onLayout={() => {
                                     refFlatList.current.scrollToEnd({ animated: true });

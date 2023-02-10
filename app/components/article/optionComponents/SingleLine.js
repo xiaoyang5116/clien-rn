@@ -1,14 +1,9 @@
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, ImageBackground } from 'react-native';
 import React from 'react';
 import Toast from '../../toast';
 
-import { ImageButton, BtnIcon } from '../../../constants/custom-ui';
+import { ImageButton, BtnIcon, ImageBtn } from '../../../constants/custom-ui';
 import { px2pd } from '../../../constants/resolution';
-
-const BTN_STYLE = {
-  width: px2pd(1067),
-  height: px2pd(98),
-}
 
 
 const SingleLine = (props) => {
@@ -24,36 +19,19 @@ const SingleLine = (props) => {
   }
 
   return (
-    <View style={{
-      width: "100%",
-      marginTop: 5,
-      marginBottom: 5,
-      justifyContent: "center",
-      alignItems: "center",
-      height: px2pd(98),
-      ...containerStyle
-    }}>
-      <ImageButton
-        {...BTN_STYLE}
+    <View style={{ width: px2pd(1067) }}>
+      <ImageBtn
+        imgStyle={{ width: px2pd(1067), height: px2pd(98), }}
         onPress={handlerOnPress}
-        source={require('../../../../assets/button/singleLine_1.png')}
-        selectedSource={require('../../../../assets/button/singleLine_2.png')}
-      />
-      <View style={{ ...BTN_STYLE, position: "absolute", }} pointerEvents="none">
-        <View style={{
-          width: px2pd(980),
-          height: px2pd(98),
-          marginLeft: px2pd(45),
-          marginTop: px2pd(2),
-          justifyContent: "center",
-          alignItems: "center"
-        }}>
-          {icon?.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center", }} /> : null}
-          <Text>{title}</Text>
-        </View>
-      </View>
+        source={require('../../../../assets/button/topbot_btn/content1.png')}
+        selectedSource={require('../../../../assets/button/topbot_btn/content2.png')}
+      >
+        {icon?.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
+        <Text style={{ fontSize: 14, color: "#000" }}>{title}</Text>
+      </ImageBtn>
     </View>
   )
+
 }
 
 export default SingleLine
