@@ -375,7 +375,7 @@ scenes: [
           { id: 'C002C_shuA',style: 6, title: '书房', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
 
-          { key: 'P1', content: ['外边的脚步声越来越近','你总觉得这脚步声是冲着你而来','再这样疑神疑鬼不是办法','你准备先拿一本书躲起来再看','眼前有三本书，因为天色太黑，有些字无法看清楚','你选择拿上哪一本？'],
+          { key: 'P1', content: ['外边的脚步声越来越近','你总觉得这脚步声是冲着你而来','再这样疑神疑鬼不是办法','你准备先拿一本书躲起来再看','眼前有三本书，因为天色太黑，有些字无法看清楚','李森炎选择拿上哪一本？'],
           btn: [{title: '《白城？？大全》',tokey: "P3", icon: { id: 6, bindVar: 'biaoqianv28' }, varsOn: ['biaoqianv28'] },
           {title: '《思无？》', tokey: "P7", icon: { id: 6, bindVar: 'biaoqianv29' }, varsOn: ['biaoqianv29'] },
           {title: '《凌云？？》', tokey: "P2", icon: { id: 7, bindVar: 'biaoqianv30' }, varsOn: ['biaoqianv30']},]},

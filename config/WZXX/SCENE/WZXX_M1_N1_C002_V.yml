@@ -90,14 +90,14 @@ scenes: [
           '掌柜乐呵呵的说，“当然有啊，不如您挑一件如何”','掌柜摆出一些簪子让李森炎查看','其中一个看着还不错','“就这个了。”',
           '掌柜：“客官真是好眼力”',],
           btn: [
-            { title: '老实交钱', toShop: 'default',andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1',  rightBottom_Title: "可获得：正义+1",  dialogs: ['C002_1.1D'] ,
-             icon: { id: 7, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']
+            { title: '老实交钱', toShop: 'default',andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：正义+1",  dialogs: ['C002_1.1D'] ,
+             icon: { id: 7, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'],dropIds: ["WZXX_M1_N1_C002_V_Vdrop1",],
                },
-            { title: '你我推心置腹，何须钱财这种身外之物', andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '节操属性大于1',  rightBottom_Title: "可获得：节操+1",   dialogs: ['C002_1.1C'] ,
-            icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']  
+            { title: '你我推心置腹，何须钱财这种身外之物', andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '节操属性大于1',  rightBottom_Title: "奖励：节操+1",   dialogs: ['C002_1.1C'] ,
+            icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] ,dropIds: ["WZXX_M1_N1_C002_V_Vdrop2",],
             },
-          {title: '我李森炎买东西什么时候给过钱', andVarsValue: ['@attr_入魔 >= 5',], alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于5',  rightBottom_Title: "可获得：入魔+1", 
-          dialogs: ['gameover1'] ,
+          {title: '我李森炎买东西什么时候给过钱', andVarsValue: ['@attr_入魔 >= 5',], alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于5',  rightBottom_Title: "奖励：入魔+1", 
+          dialogs: ['gameover1'] ,dropIds: ["WZXX_M1_N1_C002_V_Vdrop3",],
           icon: { id: 6, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] },
          
            ]  
@@ -111,7 +111,7 @@ scenes: [
           sections: [
           { key: 'P1', content: ['掌柜：滚犊子',],
           btn: [
-          {title: '老实交钱', toShop: 'default',andVarsValue: ['@attr_正义 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '正义属性大于1',  rightBottom_Title: "可获得：正义+1", 
+          {title: '老实交钱', toShop: 'default',andVarsValue: ['@attr_正义 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '正义属性大于1',  rightBottom_Title: "奖励：正义+1", 
           dialogs: ['C002_1.1D'] ,
            },
          
@@ -133,7 +133,7 @@ scenes: [
     
      { id: 'gameover1',style: 7, title: '亮光一闪！', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B19', content: ['正当你想要挟持这个情报阁老板逼问情报的时候，没想到对方爆发出强大的气势，对着你一掌拍出。你死了。',['边缘闪烁红'],],
-          btn: [{title: '老实交钱', toShop: 'default',andVarsValue: ['@attr_正义 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '正义属性大于1',  rightBottom_Title: "可获得：正义+1", 
+          btn: [{title: '老实交钱', toShop: 'default',andVarsValue: ['@attr_正义 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '正义属性大于1',  rightBottom_Title: "奖励：正义+1", 
           dialogs: ['C002_1.1D'] ,
             },]},
           ], },
@@ -142,18 +142,18 @@ scenes: [
           sections: [
           { key: 'P1', content: ['谁能想到自己穿越过来了','而且时间还回溯到了即将被杀的瞬间','让穿越过来的李森炎又切实地体会了一把死亡的感觉！'],
           btn: [
-          {title: '唉，我会替你好好的活着的', andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1',  rightBottom_Title: "可获得：正义+1", 
-          toChapter: "WZXX_M1_N1_C002_[N14]",
+          {title: '唉，我会替你好好的活着的', andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：正义+1", 
+          toChapter: "WZXX_M1_N1_C002_[N14]",dropIds: ["WZXX_M1_N1_C002_V_Vdrop4",],
           icon: { id: 6, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8']  },
-          {title: '既来之则安之，先保命要紧', andVarsValue: ['@attr_勇气 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '勇气属性大于1',  rightBottom_Title: "可获得：勇气+1",  
-          toChapter: "WZXX_M1_N1_C002_[N14]",
+          {title: '既来之则安之，先保命要紧', andVarsValue: ['@attr_勇气 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '勇气属性大于1',  rightBottom_Title: "奖励：勇气+1",  
+          toChapter: "WZXX_M1_N1_C002_[N14]",dropIds: ["WZXX_M1_N1_C002_V_Vdrop5",],
           icon: { id: 7, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9']  },
-          {title: '晦气！把我给穿来这个鬼地方', andVarsValue: ['@attr_嫌弃 >= 2',], alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于5',  rightBottom_Title: "可获得：嫌弃+1", 
-          toChapter: "WZXX_M1_N1_C002_[N14]",
+          {title: '晦气！把我给穿来这个鬼地方', andVarsValue: ['@attr_嫌弃 >= 2',], alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于5',  rightBottom_Title: "奖励：嫌弃+1", 
+          toChapter: "WZXX_M1_N1_C002_[N14]",dropIds: ["WZXX_M1_N1_C002_V_Vdrop6",],
           icon: { id: 6, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10'] },
 
-          {title: '我会帮你将这仇给报了！', andVarsValue: ['@attr_崇敬 >= 2',], alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于5',  rightBottom_Title: "可获得：崇敬+2", 
-          toChapter: "WZXX_M1_N1_C002_[N14]",
+          {title: '我会帮你将这仇给报了！', andVarsValue: ['@attr_崇敬 >= 2',], alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于5',  rightBottom_Title: "奖励：崇敬+2", 
+          toChapter: "WZXX_M1_N1_C002_[N14]",dropIds: ["WZXX_M1_N1_C002_V_Vdrop7",],
           icon: { id: 6, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11'] },
            ]  
         }, ]

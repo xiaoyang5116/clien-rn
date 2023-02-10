@@ -113,7 +113,7 @@ scenes: [
         { 
           id: 'WZXX_M1_N1_C001C_VSSS', desc: '开始跟踪杀手', 
           options: [ 
-            { title: "【开始跟踪杀手】", dialogs: ['p13'] },
+            { title: "【选择如何行动】", dialogs: ['p13'] },
           ],
         },
       ],

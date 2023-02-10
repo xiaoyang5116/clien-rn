@@ -8,6 +8,12 @@ scenes: [
       { id: "v1", min: 0, max: 1 },
       { id: "v2", min: 0, max: 1 } ,
       { id: "v3", min: 0, max: 1 } ,
+
+      { id: "v1A", min: 0, max: 1 } ,
+      { id: "v2A", min: 0, max: 1 } ,
+      { id: "v3A", min: 0, max: 1 } ,
+
+      
       { id: "biaoqianv1", min: 0, max: 1 } ,
       { id: "biaoqianv2", min: 0, max: 1 } ,
       { id: "biaoqianv3", min: 0, max: 1 } ,
@@ -54,9 +60,27 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C001V_S', desc: '选项', 
         options: [     
-            {title: "这位兄台，这是何意？",dropIds: [ 'WZXX_M1_N1_C001V_Vdrop100'], },
-            {title: "兄弟，拍戏呢？要不给个替身吧？",dropIds: [ 'WZXX_M1_N1_C001V_Vdrop101'], },
-            {title: "敢将剑架在我脖子上的人你是第一个",dropIds: [ 'WZXX_M1_N1_C001V_Vdrop102'], },
+            {
+             title: "这位兄台，这是何意？",andVarsOff: ['v1A'], varsOn: ['v2A,v3A'],
+             alwayDisplay: true, 
+             btnType: "A3",
+             rightBottom_Title: "奖励：勇气+1",
+             dropIds: [ 'WZXX_M1_N1_C001V_Vdrop100'], 
+            },
+            {
+             title: "兄弟，拍戏呢？要不给个替身吧？",andVarsOff: ['v2A'], varsOn: ['v1A,v3A'], 
+             alwayDisplay: true,
+             btnType: "A3",
+             rightBottom_Title: "奖励：嫌弃+1",
+             dropIds: [ 'WZXX_M1_N1_C001V_Vdrop101'], 
+            },
+            {
+             title: "敢将剑架在我脖子上的人你是第一个",andVarsOff: ['v3A'], varsOn: ['v2A,v1A'],
+             alwayDisplay: true,
+             btnType: "A3",
+             rightBottom_Title: "奖励：逼格+1",
+             dropIds: [ 'WZXX_M1_N1_C001V_Vdrop102'], 
+            },
 
         ],
       },

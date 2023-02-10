@@ -6,119 +6,226 @@ directory: [
    map: 
    [
 
-          { 
-          point: [0, 4], title: '第一章上篇脱身',
+          # { 
+          # point: [0, 4], title: '第一章上篇脱身',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001',
+          # toChapter: 'WZXX_M1_N1_C001', links: [[0, 3], ] 
+          # },
+
+          # { 
+          # point: [0, 3], title: '接续第一章 我有秘籍？',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001A',
+          # toChapter: 'WZXX_M1_N1_C001A', links: [[0, 2], ] 
+          # },
+
+          # { 
+          # point: [0, 2], title: '第一章  回忆现代',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B',
+          # toChapter: 'WZXX_M1_N1_C001B', links: [[0, 1], ] 
+          # },
+
+          # {
+          # point: [0, 1], title: '第一篇 中篇 行动',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[N1]',
+          # toChapter: 'WZXX_M1_N1_C001B_[N1]', links: [[-1, 0],[1, 0],] 
+          # },
+
+          # { 
+          # point: [-1, 0], title: '第一章  选择先回城',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[A1]' ,
+          # toChapter: 'WZXX_M1_N1_C001B_[A1]', links: [[0, -1], ]
+          # },
+
+          # {
+          # point: [1, 0], title: '第一章  选择跟踪',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[C1]' ,
+          # toChapter: 'WZXX_M1_N1_C001B_[C1]', links: [[2, 0], ] 
+          # },
+
+          # { 
+          # point: [2, 0], title: '第一章  跟踪结束',
+          # #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]' ,
+          # toChapter: 'WZXX_M1_N1_C001B_[C2]',links: [[1, -1]], 
+          # },
+
+          # { 
+          # point: [0, -1], title: '第一章  进入白城',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001C' ,
+          # toChapter: 'WZXX_M1_N1_C001C', links: [[0, -2], ] 
+          # },
+
+          # {
+          # point: [1, -1], title: '第一章  选择身份记忆1 修真世家',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001C_[N1]' ,
+          # toChapter: 'WZXX_M1_N1_C001C_[N1]', links: [[0, -1]] 
+          # },
+
+          # { 
+          # point: [0, -2], title: '第一章 回忆开始',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N1]' ,
+          # toChapter: 'WZXX_M1_N1_C002_[N1]', links: [[0, -3]] 
+          # },
+
+          # { 
+          # point: [0, -3], title: '第二章站住！',
+          # #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N3]' ,
+          # toChapter: 'WZXX_M1_N1_C002_[N3]', links: [[0, -4],] 
+          # },
+
+          # {
+          # point: [0, -4], title: '第二章 药丹',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N5]' ,                        
+          # toChapter: 'WZXX_M1_N1_C002_[N5]', links: [[0, -5]], 
+          # },
+
+          # {
+          # point: [0, -5], title: '第二章 行动 ',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N6]' ,
+          # toChapter: 'WZXX_M1_N1_C002_[N6]', links: [[0, -6] ], 
+          # },
+
+          # {
+          # point: [0, -6], title: '第二章 循环',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N7]' ,
+          # toChapter: 'WZXX_M1_N1_C002_[N7]', links: [[0, -7] ], 
+          # },
+
+          # {
+          # point: [0, -7], title: '第二章 为时已晚',
+          # #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N8]' ,
+          # toChapter: 'WZXX_M1_N1_C002_[N8]', links: [[0, -8] ], 
+          # },
+
+          # {
+          # point: [0, -8], title: '第二章 成功见到母亲',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N9]' ,
+          # toChapter: 'WZXX_M1_N1_C002_[N9]', links: [[0, -9], ], 
+          # },
+
+          # { 
+          # point: [0, -9], title: '第二章 书房',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N10]' ,
+          # toChapter: 'WZXX_M1_N1_C002_[N10]', links: [ [0, -10]], 
+          # },
+
+          # { 
+          # point: [0, -10], title: '第三章 去白府',
+          # # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C003_[N1]' ,
+          # toChapter: 'WZXX_M1_N1_C003_[N1]', links: [[0, -11],] 
+          # },
+
+          # { 
+          # point: [0, -11], title: '第三章 白月光',
+          # #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C003_[N2]' ,
+          # toChapter: 'WZXX_M1_N1_C003_[N2]', links: [[0, -12]], 
+          # },
+
+         { 
+          point: [0, 0], title: '第一章脱身',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001',
-          toChapter: 'WZXX_M1_N1_C001', links: [[0, 3], ] 
+          toChapter: 'WZXX_M1_N1_C001', links: [[0, -1], ] 
           },
 
           { 
-          point: [0, 3], title: '接续第一章 我有秘籍？',
+          point: [0, -1], title: '接续第一章 我有秘籍？',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001A',
-          toChapter: 'WZXX_M1_N1_C001A', links: [[0, 2], ] 
+          toChapter: 'WZXX_M1_N1_C001A', links: [[0, -2], ] 
           },
 
           { 
-          point: [0, 2], title: '第一章  回忆现代',
+          point: [0, -2], title: '第一章  回忆现代',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B',
-          toChapter: 'WZXX_M1_N1_C001B', links: [[0, 1], ] 
+          toChapter: 'WZXX_M1_N1_C001B', links: [[0, -4], ] 
           },
 
           {
-          point: [0, 1], title: '第一篇 中篇 行动',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[N1]',
-          toChapter: 'WZXX_M1_N1_C001B_[N1]', links: [[-1, 0],[1, 0],] 
+          point: [-1, -3], title: '第一篇 选择先回城',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[A1]',
+          toChapter: 'WZXX_M1_N1_C001B_[A1]', links: [[0, -4],[0, -2]] 
           },
 
-          { 
-          point: [-1, 0], title: '第一章  选择先回城',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[A1]' ,
-          toChapter: 'WZXX_M1_N1_C001B_[A1]', links: [[0, -1], ]
+
+          {
+          point: [1, -3], title: '第一章 选择跟踪',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[C3]',
+          toChapter: 'WZXX_M1_N1_C001B_[C3]', links: [[2, -3],[0, -2]] 
           },
 
           {
-          point: [1, 0], title: '第一章  选择跟踪',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[C1]' ,
-          toChapter: 'WZXX_M1_N1_C001B_[C1]', links: [[2, 0], ] 
-          },
-
-          { 
-          point: [2, 0], title: '第一章  跟踪结束',
-          #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]' ,
-          toChapter: 'WZXX_M1_N1_C001B_[C2]',links: [[1, -1]], 
-          },
-
-          { 
-          point: [0, -1], title: '第一章  进入白城',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001C' ,
-          toChapter: 'WZXX_M1_N1_C001C', links: [[0, -2], ] 
+          point: [2, -3], title: '跟踪结束',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]',
+          toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [], path: [[2, -4],[1, -4],[0, -4],] ,
           },
 
           {
-          point: [1, -1], title: '第一章  选择身份记忆1 修真世家',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001C_[N1]' ,
-          toChapter: 'WZXX_M1_N1_C001C_[N1]', links: [[0, -1]] 
-          },
-
-          { 
-          point: [0, -2], title: '第一章 回忆开始',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N1]' ,
-          toChapter: 'WZXX_M1_N1_C002_[N1]', links: [[0, -3]] 
-          },
-
-          { 
-          point: [0, -3], title: '第二章站住！',
-          #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N3]' ,
-          toChapter: 'WZXX_M1_N1_C002_[N3]', links: [[0, -4],] 
+          point: [0, -4], title: '第一章 进入白城',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001C',
+          toChapter: 'WZXX_M1_N1_C001C', links: [[0, -6],[0, -2],] 
           },
 
           {
-          point: [0, -4], title: '第二章 药丹',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N5]' ,                        
-          toChapter: 'WZXX_M1_N1_C002_[N5]', links: [[0, -5]], 
+          point: [1, -5], title: '救母 结局1',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N13]',
+          toChapter: 'WZXX_M1_N1_C002_[N13]', links: [[0, -6],[0, -4]] 
           },
 
           {
-          point: [0, -5], title: '第二章 行动 ',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N6]' ,
-          toChapter: 'WZXX_M1_N1_C002_[N6]', links: [[0, -6] ], 
+          point: [2, -5], title: '救母 结局2',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N11]',
+          toChapter: 'WZXX_M1_N1_C002_[N11]', links: [[1, -5],] 
           },
 
           {
-          point: [0, -6], title: '第二章 循环',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N7]' ,
-          toChapter: 'WZXX_M1_N1_C002_[N7]', links: [[0, -7] ], 
+          point: [-2, -5], title: '救母 结局3',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N12]',
+          toChapter: 'WZXX_M1_N1_C002_[N12]', links: [[-1, -5],] 
           },
 
           {
-          point: [0, -7], title: '第二章 为时已晚',
-          #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N8]' ,
-          toChapter: 'WZXX_M1_N1_C002_[N8]', links: [[0, -8] ], 
+          point: [-1, -5], title: '救母 结局4',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N9]',
+          toChapter: 'WZXX_M1_N1_C002_[N9]', links: [[0, -6],[0, -4]] 
           },
 
           {
-          point: [0, -8], title: '第二章 成功见到母亲',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N9]' ,
-          toChapter: 'WZXX_M1_N1_C002_[N9]', links: [[0, -9], ], 
+          point: [0, -6], title: '回忆开始',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N1]',
+          toChapter: 'WZXX_M1_N1_C002_[N1]', links: [[0, -7],[0, -4],] 
           },
 
-          { 
-          point: [0, -9], title: '第二章 书房',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N10]' ,
-          toChapter: 'WZXX_M1_N1_C002_[N10]', links: [ [0, -10]], 
+          {
+          point: [0, -7], title: '站住',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N3]',
+          toChapter: 'WZXX_M1_N1_C002_[N3]', links: [[0, -8],] 
           },
 
-          { 
-          point: [0, -10], title: '第三章 去白府',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C003_[N1]' ,
+
+          {
+          point: [0, -8], title: '找到母亲',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N14]',
+          toChapter: 'WZXX_M1_N1_C002_[N14]', links: [[0, -9],] 
+          },
+
+          {
+          point: [0, -9], title: '书房',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N10]',
+          toChapter: 'WZXX_M1_N1_C002_[N10]', links: [[0, -10],] 
+          },
+
+           {
+          point: [0, -10], title: '去书房',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C003_[N1]',
           toChapter: 'WZXX_M1_N1_C003_[N1]', links: [[0, -11],] 
           },
 
-          { 
-          point: [0, -11], title: '第三章 白月光',
-          #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C003_[N2]' ,
-          toChapter: 'WZXX_M1_N1_C003_[N2]', links: [[0, -12]], 
+           {
+          point: [0, -11], title: '白月光',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C003_[N2]',
+          toChapter: 'WZXX_M1_N1_C003_[N2]', links: [[0, -12],] 
           },
+
+          
+          
 
           { 
           point: [0, -12], title: '第三章 被猫撞',

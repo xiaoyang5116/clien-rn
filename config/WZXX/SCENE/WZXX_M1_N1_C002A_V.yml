@@ -164,7 +164,7 @@ scenes: [
           '所以你决定，今天晚上，打死都不出门！','一个时辰过去——','两个时辰过去——','你感觉腹间暖意喷涌……','肚子越来越不舒服了',['边缘闪烁红'],],
           btn: [{title: '无论如何都憋不住了！',dialogs: ['gameover01'], varsOn: ['biaoqianv1',]}]},
 
-          { key: 'P2B', content: ['外边的脚步声越来越近','你总觉得这脚步声是冲着你而来','再这样疑神疑鬼不是办法','你准备先拿一本书躲起来再看','眼前有三本书，因为天色太黑，有些字无法看清楚','你选择拿上哪一本？'],
+          { key: 'P2B', content: ['外边的脚步声越来越近','你总觉得这脚步声是冲着你而来','再这样疑神疑鬼不是办法','你准备先拿一本书躲起来再看','眼前有三本书，因为天色太黑，有些字无法看清楚','李森炎选择拿上哪一本？'],
           btn: [{title: '《白城？？大全》',tokey: "P3", dropIds: ['WZXX_M1_N1_C002A_V_Vdrop1'],  icon: { id: 6, bindVar: 'biaoqianv3' }},
           {title: '《思无？》', tokey: "P4", dropIds: ['WZXX_M1_N1_C002A_V_Vdrop2'], icon: { id: 6, bindVar: 'biaoqianv4' }},
           {title: '《凌云？？》', tokey: "P2C", dropIds: [ 'WZXX_M1_N1_C002A_V_Vdrop3'],  icon: { id: 7, bindVar: 'biaoqianv5' }},]},
@@ -346,7 +346,7 @@ scenes: [
 
 
             #死亡12
-          { id: 'gameover12',style: 6,artId: 4, title: '赶紧溜！', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+          { id: 'gameover12',style: 7,artId: 4, title: '赶紧溜！', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B12', content: ['你选择溜，毫不犹豫，马不停蹄的溜！','傻瓜才参合着乱七八糟的事','李森炎趁没人注意，找了个倒霉蛋的衣服，直接换上逃走',],
           btn: [{title: '赶紧回家',dropIds: ["WZXX_M1_N1_C002A_V_gameover12",],dialogs: ['C002A_fenzhiA']},]},
           ], },
