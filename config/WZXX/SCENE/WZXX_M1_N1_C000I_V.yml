@@ -30,6 +30,14 @@ scenes: [
       { id: "zhandou_7", min: 0, max: 1 },
       { id: "zhandou_7A", min: 0, max: 1 },
 
+
+      { id: "v_icon_100", min: 0, max: 1 },
+      { id: "v_icon_101", min: 0, max: 1 },
+      { id: "v_icon_102", min: 0, max: 1 },
+      { id: "v_icon_103", min: 0, max: 1 },
+      { id: "v_icon_104", min: 0, max: 1 },
+      { id: "v_icon_105", min: 0, max: 1 },
+
       ],
 
       # 动作定义
@@ -1642,7 +1650,10 @@ scenes: [
         id: 'C1', desc: '越走越荒，上下的行人很多，据说能够采到一些不错的草药，但也有一定风险',
         options: [
          { title: '【上山试试】',nextChat: 'C2'}, 
-         { title: '【往一条隐秘的小道走】',toScene: 'C000I_V_MAP2_0_0'}, 
+         { title: '【往一条隐秘的小道走】',toScene: 'C000I_V_MAP2_0_0' ,
+         varsOn: ['WZXX_M1_N1_C000I_V/v_icon_100','WZXX_M1_N1_C000I_V/v_icon_101',
+         'WZXX_M1_N1_C000I_V/v_icon_102','WZXX_M1_N1_C000I_V/v_icon_103','WZXX_M1_N1_C000I_V/v_icon_104','WZXX_M1_N1_C000I_V/v_icon_105',
+         ],}, 
         ],
       },
 
@@ -3339,37 +3350,37 @@ scenes: [
 
               { 
               point: [1, 0], title: '东郊丘陵', 
-              toScene: 'C000I_V_MAP2_1_0', 
+              toScene: 'C000I_V_MAP2_1_0',  icon: { id: 100, bindVar: 'WZXX_M1_N1_C000I_V/v_icon_100' },
               links: [[2, 1],[2, 0],[2, -1], ] 
               },
 
               { 
               point: [2, 1], title: '隐秘的小路', 
-              toScene: 'C000I_V_MAP2_2_1', 
+              toScene: 'C000I_V_MAP2_2_1', icon: { id: 100, bindVar: 'WZXX_M1_N1_C000I_V/v_icon_101' }, 
               links: [[3, 1], ] 
               },
 
               { 
               point: [3, 1], title: '未知的山洞', 
-              toScene: 'C000I_V_MAP2_3_1', 
+              toScene: 'C000I_V_MAP2_3_1', icon: { id: 100, bindVar: 'WZXX_M1_N1_C000I_V/v_icon_102' }, 
               links: [  ] 
               },
 
               { 
               point: [2, 0], title: '小型的池塘', 
-              toScene: 'C000I_V_MAP2_2_0', 
+              toScene: 'C000I_V_MAP2_2_0', icon: { id: 100, bindVar: 'WZXX_M1_N1_C000I_V/v_icon_103' }, 
               links: [ ] 
               },
 
               { 
               point: [2, -1], title: '繁茂的竹林', 
-              toScene: 'C000I_V_MAP2_2_-1', 
+              toScene: 'C000I_V_MAP2_2_-1', icon: { id: 100, bindVar: 'WZXX_M1_N1_C000I_V/v_icon_104' }, 
               links: [[3, -1], ] 
               },
 
               { 
               point: [3, -1], title: '荒废的田地', 
-              toScene: 'C000I_V_MAP2_3_-1', 
+              toScene: 'C000I_V_MAP2_3_-1', icon: { id: 100, bindVar: 'WZXX_M1_N1_C000I_V/v_icon_105' }, 
               links: [[], ] 
               },
 
