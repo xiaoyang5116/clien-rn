@@ -1,0 +1,11 @@
+# 线索1
+clues:
+  {
+    id: 'qingbao5',
+    type: '情报',
+    filterCondition: {locaton: '白城',},
+    title: '手表情报',
+    content: ['穿越最初地点可能有落下的东西',],
+    condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
+    groupId: '李家村',
+  }

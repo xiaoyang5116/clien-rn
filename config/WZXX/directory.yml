@@ -133,7 +133,7 @@ directory: [
           },
 
           { 
-          point: [0, -2], title: '第一章  回忆现代',
+          point: [0, -2], title: '第一章  惊险逃脱',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B',
           toChapter: 'WZXX_M1_N1_C001B', links: [[0, -4], ] 
           },
@@ -147,12 +147,12 @@ directory: [
 
           {
           point: [1, -3], title: '第一章 选择跟踪',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[C3]',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_ C001B_[C3]',
           toChapter: 'WZXX_M1_N1_C001B_[C3]', links: [[2, -3],[0, -2]] 
           },
 
           {
-          point: [2, -3], title: '跟踪结束',
+          point: [2, -3], title: '第一章 跟踪结束',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[C2]',
           toChapter: 'WZXX_M1_N1_C001B_[C2]', links: [], path: [[2, -4],[1, -4],[0, -4],] ,
           },
@@ -164,62 +164,62 @@ directory: [
           },
 
           {
-          point: [1, -5], title: '救母 结局1',
+          point: [1, -5], title: '第二章 救母 畅通无阻',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N13]',
           toChapter: 'WZXX_M1_N1_C002_[N13]', links: [[0, -6],[0, -4]] 
           },
 
           {
-          point: [2, -5], title: '救母 结局2',
+          point: [2, -5], title: '第二章 救母 历尽艰辛',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N11]',
           toChapter: 'WZXX_M1_N1_C002_[N11]', links: [[1, -5],] 
           },
 
           {
-          point: [-2, -5], title: '救母 结局3',
+          point: [-2, -5], title: '第二章 救母 可乘之机',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N12]',
           toChapter: 'WZXX_M1_N1_C002_[N12]', links: [[-1, -5],] 
           },
 
           {
-          point: [-1, -5], title: '救母 结局4',
+          point: [-1, -5], title: '第二章 救母 老人家',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N9]',
           toChapter: 'WZXX_M1_N1_C002_[N9]', links: [[0, -6],[0, -4]] 
           },
 
           {
-          point: [0, -6], title: '回忆开始',
+          point: [0, -6], title: '第二章 三个时辰前',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N1]',
           toChapter: 'WZXX_M1_N1_C002_[N1]', links: [[0, -7],[0, -4],] 
           },
 
           {
-          point: [0, -7], title: '站住',
+          point: [0, -7], title: '第二章 皇城司',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N3]',
           toChapter: 'WZXX_M1_N1_C002_[N3]', links: [[0, -8],] 
           },
 
 
           {
-          point: [0, -8], title: '找到母亲',
+          point: [0, -8], title: '第二章 找到母亲',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N14]',
           toChapter: 'WZXX_M1_N1_C002_[N14]', links: [[0, -9],] 
           },
 
           {
-          point: [0, -9], title: '书房',
+          point: [0, -9], title: '第二章 脚步声',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N10]',
           toChapter: 'WZXX_M1_N1_C002_[N10]', links: [[0, -10],] 
           },
 
            {
-          point: [0, -10], title: '去书房',
+          point: [0, -10], title: '第三章 去白府',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C003_[N1]',
           toChapter: 'WZXX_M1_N1_C003_[N1]', links: [[0, -11],] 
           },
 
            {
-          point: [0, -11], title: '白月光',
+          point: [0, -11], title: '第三章 白月光',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C003_[N2]',
           toChapter: 'WZXX_M1_N1_C003_[N2]', links: [[0, -12],] 
           },
@@ -845,7 +845,7 @@ directory: [
     map: [
       { point: [0, 0], title: '百草镇地图', toChapter: 'WZXX_M1_N1_Z3C98', links: [] },
       { point: [0, -1], title: '绛云镇地图', toChapter: 'WZXX_M1_N1_Z3C99', links: [] },
-      { point: [0, -2], title: '白城坊市地图', toChapter: 'WZXX_M1_N1_Z3C100', links: [] },
+      { point: [0, -2], title: '药炉坊市地图', toChapter: 'WZXX_M1_N1_Z3C100', links: [] },
       
     ]
   },

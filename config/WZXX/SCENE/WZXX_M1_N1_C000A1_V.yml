@@ -100,14 +100,7 @@ scenes: [
           '一开始伤了几个人，但因寡不敌众，最终被围殴而死',
           '李森炎又挂了。',
           ['震屏1'],],
-          btn: [{title: '重新再来',
-          { title: '原来如此', nextChat: 'C3',
-         toMsg: {
-              action: 'CluesModel/useClues',
-              params: {
-              addCluesId: ["xiansuo9"], 
-              },
-            }, }, 
+          btn: [{title: '重新再来',addCluesId: ["xiansuo9"] ,
           toScene: 'C000A1_V_MAP_-1_1', } 
           ,]},
            ]  
@@ -122,15 +115,8 @@ scenes: [
           '看到这任务目标竟然送上门来，他们直接将这家伙给砍了。',
           '李森炎又挂了。',
           ['震屏1'],],
-          btn: [{title: '重新再来',
-          
-          { title: '原来如此', nextChat: 'C3',
-         toMsg: {
-              action: 'CluesModel/useClues',
-              params: {
-              addCluesId: ["xiansuo9"], 
-              },
-            }, }, toScene: 'C000A1_V_MAP_-1_1', } 
+          btn: [{title: '重新再来',addCluesId: ["xiansuo9"] ,
+          toScene: 'C000A1_V_MAP_-1_1', } 
           ,]},
            ]  
         },
@@ -144,68 +130,65 @@ scenes: [
           '还没等他们反应过来，李森炎直接抱着其中一个皇城司的人的大腿哭丧道。',
           '皇城司的人看着这任务目标不由大喜，对李森炎根本没有任何怜悯，对着他大刀一挥。',
           '李森炎又挂了。',['震屏1'],],
-          btn: [{title: '重新再来',
+          btn: [
           
-          { title: '原来如此', nextChat: 'C3',
-         toMsg: {
-              action: 'CluesModel/useClues',
-              params: {
-              addCluesId: ["xiansuo9"], 
-              },
-            }, },  toScene: 'C000A1_V_MAP_-1_1',} 
-          ,]},
+          { title: '原来如此',toScene: 'C000A1_V_MAP_-1_1',addCluesId: ["xiansuo9"] 
+
+        },  
+          ]
+          },
            ]  
         },
 
 
-        { id: 'C00A1_1.2A',style: 6, title: '冲出去阻止', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'P1', content: ['“我跟你们拼了！”','李森炎突然大喊出声。',
-          '前方，皇城司的人转头看过来，一脸懵逼。',
-          '这老头，突然咋咋呼呼的，怕不是有什么大病！',
-          '可下一刻，令他们更为震惊的事情发生了。',
-          '那看着老弱病残，半只脚踏进棺材的佝偻老头突然挺直了腰。','健步如飞，朝着他们直直冲过来！',
-          '“卧槽！我眼花了吗？”','“这老头什么情况？”','“戒备！”','李森炎以搏命之势，状若疯魔般冲入人群中，挥拳便打！',
-          '一开始伤了几个人，但因寡不敌众，最终被围殴而死',
-          ['震屏1'],],
-          btn: [{title: '怎么会这样',toChapter: "WZXX_M1_N1_C002_[N9]" , } 
-          ,]},
-           ]  
-        },
+        # { id: 'C00A1_1.2A',style: 6, title: '冲出去阻止', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+        #   sections: [
+        #   { key: 'P1', content: ['“我跟你们拼了！”','李森炎突然大喊出声。',
+        #   '前方，皇城司的人转头看过来，一脸懵逼。',
+        #   '这老头，突然咋咋呼呼的，怕不是有什么大病！',
+        #   '可下一刻，令他们更为震惊的事情发生了。',
+        #   '那看着老弱病残，半只脚踏进棺材的佝偻老头突然挺直了腰。','健步如飞，朝着他们直直冲过来！',
+        #   '“卧槽！我眼花了吗？”','“这老头什么情况？”','“戒备！”','李森炎以搏命之势，状若疯魔般冲入人群中，挥拳便打！',
+        #   '一开始伤了几个人，但因寡不敌众，最终被围殴而死',
+        #   ['震屏1'],],
+        #   btn: [{title: '怎么会这样',toChapter: "WZXX_M1_N1_C002_[N9]" , } 
+        #   ,]},
+        #    ]  
+        # },
 
-        { id: 'C00A1_1.2B',style: 6, title: '出言威胁', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'P1', content: ['“喂，你们给我站住！”','李森炎突然大喊道。',
-          '前方，皇城司的人转头看过来，一脸懵逼。','这老头突然咋呼呼的，怕不是有什么大病。',
-          '“皇城司做事，闲杂人等不许靠近。”','皇城司的人拔出刀冷冷地说道。',
-          '“我的人你们也敢动？没死过是吧？”',
-          '李森炎也是语气冰冷地说道。',
-          '听到这老头的话，皇城司的人也是微微一惊，这老头说话这么嚣张，难不成是什么高手？',
-          '不过当他们上下打量了一番这老头之后，并没有发现什么异常。',
-          '见这老头影响他们办事，他们直接一刀就将这老头给砍了。',
-          '李森炎又挂了。',
-          ['震屏1'],],
-          btn: [{title: '怎么会这样',toChapter: "WZXX_M1_N1_C002_[N9]" , } 
-          ,]},
-           ]  
-        },
+        # { id: 'C00A1_1.2B',style: 6, title: '出言威胁', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+        #   sections: [
+        #   { key: 'P1', content: ['“喂，你们给我站住！”','李森炎突然大喊道。',
+        #   '前方，皇城司的人转头看过来，一脸懵逼。','这老头突然咋呼呼的，怕不是有什么大病。',
+        #   '“皇城司做事，闲杂人等不许靠近。”','皇城司的人拔出刀冷冷地说道。',
+        #   '“我的人你们也敢动？没死过是吧？”',
+        #   '李森炎也是语气冰冷地说道。',
+        #   '听到这老头的话，皇城司的人也是微微一惊，这老头说话这么嚣张，难不成是什么高手？',
+        #   '不过当他们上下打量了一番这老头之后，并没有发现什么异常。',
+        #   '见这老头影响他们办事，他们直接一刀就将这老头给砍了。',
+        #   '李森炎又挂了。',
+        #   ['震屏1'],],
+        #   btn: [{title: '怎么会这样',toChapter: "WZXX_M1_N1_C002_[N9]" , } 
+        #   ,]},
+        #    ]  
+        # },
 
-        { id: 'C00A1_1.2C',style: 6, title: '抱腿求饶', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
-          sections: [
-          { key: 'P1', content: ['“喂，你们给我站住！','李森炎突然大喊道。',
-          '前方，皇城司的人转头看过来，有点疑惑。',
-          '这老头突然咋呼呼的，怕不是有什么大病。',
-          '“皇城司做事，闲杂人等不许靠近。”','皇城司的人拔出刀冷冷地说道。',
-          '“求求你们放了我妈吧。”',
-          '李森炎变得谨慎起来，可不敢跟之前那样回答了。',
-          '还没等他们反应过来，李森炎直接抱着其中一个皇城司的人的大腿哭丧道。','皇城司的人看着这老头一脸黑线。',
-          '这老头看起来都能够做这女人的爸了，竟然还有脸叫对方妈，脑子怕是不好使',
-          '由于这老头阻碍他们办事，所以他们对着你大刀一挥。',
-          '李森炎又挂了。',['震屏1'],],
-          btn: [{title: '怎么会这样',toChapter: "WZXX_M1_N1_C002_[N9]" ,} 
-          ,]},
-           ]  
-        },
+        # { id: 'C00A1_1.2C',style: 6, title: '抱腿求饶', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+        #   sections: [
+        #   { key: 'P1', content: ['“喂，你们给我站住！','李森炎突然大喊道。',
+        #   '前方，皇城司的人转头看过来，有点疑惑。',
+        #   '这老头突然咋呼呼的，怕不是有什么大病。',
+        #   '“皇城司做事，闲杂人等不许靠近。”','皇城司的人拔出刀冷冷地说道。',
+        #   '“求求你们放了我妈吧。”',
+        #   '李森炎变得谨慎起来，可不敢跟之前那样回答了。',
+        #   '还没等他们反应过来，李森炎直接抱着其中一个皇城司的人的大腿哭丧道。','皇城司的人看着这老头一脸黑线。',
+        #   '这老头看起来都能够做这女人的爸了，竟然还有脸叫对方妈，脑子怕是不好使',
+        #   '由于这老头阻碍他们办事，所以他们对着你大刀一挥。',
+        #   '李森炎又挂了。',['震屏1'],],
+        #   btn: [{title: '怎么会这样',toChapter: "WZXX_M1_N1_C002_[N9]" ,} 
+        #   ,]},
+        #    ]  
+        # },
         ],
     },
 
@@ -433,6 +416,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1' },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/raolu_A'], nextChat: 'C6A_1' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/raolu_B'], nextChat: 'C6A_1' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/fenzhi_2'], nextChat: 'C6_S' },
 
@@ -449,12 +433,7 @@ scenes: [
         id: 'C2', desc: "李森炎终于看清，那是一把飞刀\n飞刀疾如电，快速抹过他的脖子\n眼角的余光，瞥见黑衣人出现在他身侧\n嘴角勾勒出得意的笑容", 
         options: [ 
          { title: '原来如此', nextChat: 'C3',
-         toMsg: {
-              action: 'CluesModel/useClues',
-              params: {
-              addCluesId: ["qingbao1"], 
-              },
-            }, }, 
+         }, 
         ],
       },
 
@@ -484,7 +463,7 @@ scenes: [
         id: 'C6', desc: "“当玉石的光泽彻底消失后，我就再也不能轮回了吧？”\n李森炎只能自己心中暗自警惕，时刻关注着怀表玉石的光芒",
         options: [ 
           { title: '【硬闯过去】',dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop1'], icon: { id: 1, bindVar: 'biaoqianv1' },   toScene: 'C000A1_V_MAP_-1_2', varsOn: ['WZXX_M1_N1_C000A1_V/yingchuang','biaoqianv1'],}, 
-          { title: '【绕路而走】',dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop2'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] ,  nextChat: 'C6A', }, 
+          { title: '【绕路而走】',dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop2'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2',] ,  nextChat: 'C6A', }, 
           { title: '【思索一下】',dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop3'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] ,  nextChat: 'C7'}, 
           { title: '【进行一次彻底的乔装】',dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop4'], icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A','biaoqianv4'], toScene: 'C000A1_V_MAP_-1_-3'}, 
       ],
@@ -510,7 +489,7 @@ scenes: [
        { 
         id: 'C6A_1', desc: "走了几次的李森炎已经确定这条路有杀手了，而且好像是在屋檐的左边，所以他还是选择绕路而走",
         options: [ 
-          { title: '【去西市三街】', icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] ,  toScene: 'C000A1_V_MAP_-2_-1'}, 
+          { title: '【去西市三街】', icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['WZXX_M1_N1_C000A1_V/raolu_A','biaoqianv5'] ,  toScene: 'C000A1_V_MAP_-2_-1'}, 
           { title: '【去小院】', varsOn: ['WZXX_M1_N1_C000A1_V/raolu','biaoqianv6'],icon: { id: 1, bindVar: 'biaoqianv6' },  toScene: 'C000A1_V_MAP_-3_-1'}, 
       ],
       },
@@ -518,8 +497,7 @@ scenes: [
       { 
         id: 'C7', desc: "李森炎眉头紧锁，他并不清楚杀手的位置，所以他的处境比较麻烦。\n现在他在明敌在暗，不找出这个杀手的位置，也很难防住对方的袭击\n所以他现在首要目标就是要找这个杀手出来，只有将这个杀手给找出来，他才能够更好地应对这个家伙。",
         options: [ 
-          { title: '【……】',  nextChat: 'C8'}, 
-          
+          { title: '【……】',  nextChat: 'C8'},
       ],
       },
 
@@ -1046,15 +1024,21 @@ scenes: [
       { 
         id: 'C3', desc: "又挂一次的李森炎清楚自己身法无法躲开这个在通往李家必经之路守株待兔的杀手。\n所以他决定用其他方法通往李家。\n不过现在的他似乎已经知道了杀手大概的方位，这倒是能够想办法对付这家伙。",   
         options: [ 
-          { title: '等待白事队伍',  nextChat: 'C3A' ,andVarsValue: ['@clues_xiansuo9 == 1',], alwayDisplay: true ,  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
+          { title: '等待队伍通过',  nextChat: 'C3A' ,andVarsValue: ['@clues_xiansuo9 == 1',],
+          toMsg: {
+              action: 'CluesModel/useClues',
+              params: {
+              useCluesId: ["xiansuo9"]
+              },
+            }, alwayDisplay: true ,  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , },
           # 需要触发二号之后再解锁这个选项
           { title: '直面杀手',  nextChat: 'C5A' , icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
-          { title: '无视杀手',  nextChat: 'C4' , icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
+          { title: '无视杀手',   dialogs: ['gameover03'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
         ],
       },
 
       { 
-        id: 'C3A', desc: "李森炎在远处慢慢等待，他清楚很快一伙办丧事的队伍经过了这条道路，\n果不其然过了半小时后一只披麻戴孝的队伍走来，他不动声色地混了进去。",   
+        id: 'C3A', desc: "李森炎在远处慢慢等待，他清楚很快一伙浩荡的队伍经过这条道路，\n可以等待队伍来了在不动声色的混进去",   
         options: [ 
           { title: '好像……能成？！',   dialogs: ['gameover02'], }, 
         ],
@@ -1070,7 +1054,7 @@ scenes: [
       { 
         id: 'C5A', desc: "得知杀手大概的方位之后，李森炎仗着自己死不去的能力打算跟杀手死磕一番",   
         options: [ 
-          { title: '不管怎么样，警惕一点吧！',  dialogs: ['gameover03'], }, 
+          { title: '不管怎么样，警惕一点吧！',  nextChat: 'C5'  }, 
         ],
       },
 
@@ -1353,7 +1337,7 @@ scenes: [
       # },
 
       {
-        id: 'C4A', desc: "由于李森炎察觉到了一丝危险的气息，他决定不多管闲事赶紧离开。\n在李森炎离开小巷前，他的余光看到了这“小孩”怀里藏着的刀子。\n在李森炎离开小巷前，他的余光看到了这“小孩”怀里藏着的刀子。",
+        id: 'C4A', desc: "由于李森炎察觉到了一丝危险的气息，他决定不多管闲事赶紧离开。\n在李森炎离开小巷前，他的余光看到了这“小孩”怀里藏着的刀子。",
         options: [ 
          { title: '迅速离开', toScene: 'C000A1_V_MAP_-3_1'}, 
         ],
@@ -1400,7 +1384,7 @@ scenes: [
     actions: [ ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C1' },
+       
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/raolu_A'], dialogs: ['gameover01'], },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/raolu_B'], nextChat: 'C2'  },
     ],

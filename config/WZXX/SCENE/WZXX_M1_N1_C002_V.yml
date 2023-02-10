@@ -65,6 +65,17 @@ scenes: [
         ],
       },
 
+      { 
+        id: 'WZXX_M1_N1_C002_VS', desc: '测试段落', plain: true,
+        options: [ 
+
+        { title: "这个世界年代显然是古代，肯定没有手表这东西，所以这手表必然是他穿越时带过来的，可他身上手机之类其他东西却没有带过来，只带过来这个手表，这很难不让人怀疑。", dialogs: ["p1"] },
+          # 震动
+          # { title: "<一阵疼痛袭来。>", shock: 'slightShock' },
+
+        ],
+      },
+
      
         ],
 
@@ -73,6 +84,24 @@ scenes: [
       # 对话框
       dialogs:
         [
+
+
+        
+      { id: 'p1',style: 6, title: '手表', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['难道我身上其他的东西也在？','让我想想...我最初穿越的地方是哪里？','该不会有东西落在那边，我没有注意到...',],
+          btn: [
+            { title: '确定',addCluesId: ["qingbao5"] 
+        }, 
+         
+           ]  
+        },
+
+        
+  ]
+    },
+
+
         
             {
             id: 'C002_1.1A',style: "9A", textAnimationType: 'TextSingle',

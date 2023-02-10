@@ -6,6 +6,6 @@ clues:
     groupId: '白城李家',
     filterCondition: {location: '坊市', chapter: '第一卷'},
     title: '救母之路',
-    content: ['【绕路而走行不通，原路屋檐左边有杀手，有白事和红事队伍会路过】',],
+    content: ['【绕路而走行不通，原路屋檐左边有杀手，有拥挤的队伍会路过】',],
     condition: {npcId: 1, scenes: 'pomiao', prop: 20, andVarsOff: ['v7']},
   }

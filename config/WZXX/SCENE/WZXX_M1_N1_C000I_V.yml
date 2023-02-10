@@ -3044,7 +3044,7 @@ scenes: [
       {
         id: 'C1', desc: '东郊平原外的丘陵，经常有野兽躲藏于此',
         options: [
-         { title: '【遭遇 红眼妖兔】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_1A'], challenge: 'C000I_V_MAP_0_2_VS_1', nextChat: 'C2'}, 
+         { title: '【遭遇 红眼妖兔】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_1A'], varsOff: ['WZXX_M1_N1_C000I_V/v_icon_100'], challenge: 'C000I_V_MAP_0_2_VS_1', nextChat: 'C2'}, 
         ],
       },
 
@@ -3104,7 +3104,7 @@ scenes: [
       {
         id: 'C1', desc: '长势繁茂的竹林',
         options: [
-         { title: '【遭遇 红眼妖兔】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_3A'], challenge: 'C000I_V_MAP_0_2_VS_3', nextChat: 'C2'}, 
+         { title: '【遭遇 红眼妖兔】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_3A'], varsOff: ['WZXX_M1_N1_C000I_V/v_icon_104'],challenge: 'C000I_V_MAP_0_2_VS_3', nextChat: 'C2'}, 
         ],
       },
 
@@ -3157,7 +3157,7 @@ scenes: [
       {
         id: 'C1', desc: '无人打理的小型池塘，早已是淤泥堵塞',
         options: [
-         { title: '【遭遇 食虫花精】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_4A'], challenge: 'C000I_V_MAP_0_2_VS_4', nextChat: 'C2'}, 
+         { title: '【遭遇 食虫花精】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_4A'], varsOff: ['WZXX_M1_N1_C000I_V/v_icon_103'],challenge: 'C000I_V_MAP_0_2_VS_4', nextChat: 'C2'}, 
         ],
       },
 
@@ -3210,7 +3210,7 @@ scenes: [
       {
         id: 'C1', desc: '被草木遮挡住的道路',
         options: [
-         { title: '【遭遇 鬼藤】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_5A'], challenge: 'C000I_V_MAP_0_2_VS_5', nextChat: 'C2'}, 
+         { title: '【遭遇 鬼藤】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_5A'], varsOff: ['WZXX_M1_N1_C000I_V/v_icon_101'],challenge: 'C000I_V_MAP_0_2_VS_5', nextChat: 'C2'}, 
         ],
       },
 
@@ -3263,7 +3263,7 @@ scenes: [
       {
         id: 'C1', desc: '被草木遮挡住的道路',
         options: [
-         { title: '【遭遇 红眼妖兔群】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_6A'], challenge: 'C000I_V_MAP_0_2_VS_6', nextChat: 'C2'}, 
+         { title: '【遭遇 红眼妖兔群】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_6A'],varsOff: ['WZXX_M1_N1_C000I_V/v_icon_105'], challenge: 'C000I_V_MAP_0_2_VS_6', nextChat: 'C2'}, 
         ],
       },
 
@@ -3316,7 +3316,7 @@ scenes: [
       {
         id: 'C1', desc: '未知的山洞，洞口有野兽出入的痕迹',
         options: [
-         { title: '【遭遇 正在休息的虎王】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_7A'], challenge: 'C000I_V_MAP_0_2_VS_7', nextChat: 'C2'}, 
+         { title: '【遭遇 正在休息的虎王】', varsOn: ['WZXX_M1_N1_C000I_V/zhandou_7A'],varsOff: ['WZXX_M1_N1_C000I_V/v_icon_102'], challenge: 'C000I_V_MAP_0_2_VS_7', nextChat: 'C2'}, 
         ],
       },
 

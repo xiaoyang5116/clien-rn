@@ -2,7 +2,7 @@
 [
     #设置章节已读变量做章节解锁标记
     { varsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C002_[N13]'] }, { andVarsOn: ['WZXX_[Chapters]/WZXX_M1_N1_C002_[N13]FZ'] }, 
-     { header: '第二章 可乘之机！' },
+     { header: '第二章 救母 畅通无阻' },
 ]
 #END==========================================
 
