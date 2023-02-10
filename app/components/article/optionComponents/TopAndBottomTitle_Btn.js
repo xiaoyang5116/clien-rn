@@ -57,7 +57,7 @@ const TopAndBottomTitle_Btn = props => {
           justifyContent: "center",
           alignItems: "center",
         }}>
-          {icon.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
+          {icon?.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
           <Text style={{ fontSize: 14, }}>{title}</Text>
         </View>
         <View style={{
