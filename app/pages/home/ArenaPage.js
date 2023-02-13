@@ -21,6 +21,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Collapsible from 'react-native-collapsible';
 import { ImageBackground, SafeAreaView, TouchableWithoutFeedback } from 'react-native';
 import { px2pd } from '../../constants/resolution';
+import { ExitButton, ReturnButton } from '../../constants/custom-ui';
 
 const BuffCollapsible = (props) => {
 
@@ -280,6 +281,9 @@ const ArenaPage = (props) => {
                         />
                     </View>
                     <CharacterWrapper ref={refCharacterMysef} user={props.myself} />
+                    <View style={{ width: "100%", justifyContent: "flex-start", }}>
+                        <ReturnButton onPress={closeHandler} />
+                    </View>
                 </View>
             </SafeAreaView>
         </View>
