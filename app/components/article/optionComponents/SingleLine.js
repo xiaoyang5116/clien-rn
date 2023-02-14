@@ -19,7 +19,7 @@ const SingleLine = (props) => {
   }
 
   return (
-    <View style={{ width: px2pd(1067) }}>
+    <View style={{ width: "100%", alignItems: "center" }}>
       <ImageBtn
         imgStyle={{ width: px2pd(1067), height: px2pd(98), }}
         onPress={handlerOnPress}

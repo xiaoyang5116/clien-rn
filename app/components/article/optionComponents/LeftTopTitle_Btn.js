@@ -20,7 +20,7 @@ const LeftTopTitle_Btn = props => {
     }
   }
   return (
-    <View style={{ width: px2pd(1067), }}>
+    <View style={{ width: "100%", alignItems: "center" }}>
       <ImageBackground
         style={{ width: px2pd(1067), height: px2pd(57), justifyContent: 'center', paddingLeft: 30, paddingTop: px2pd(5) }}
         source={require('../../../../assets/button/topbot_btn/left_top.png')}
