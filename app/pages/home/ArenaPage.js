@@ -68,28 +68,45 @@ const ActionMsgItem = (props) => {
     const isMyself = (props.user.uid == props.data.attackerUid);
 
     return (
-        <View style={{ borderWidth: 2, borderColor: '#ccc', borderRadius: 4, justifyContent: 'flex-start', alignItems: 'center', margin: 5 }}>
-            <View style={{ width: '100%', height: px2pd(80), backgroundColor: '#ccc', alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, marginBottom: 12 }}>
+            <View style={{ width: '100%', height: px2pd(80), alignItems: 'center', justifyContent: 'center' }}>
                 {
                     (isMyself)
-                        ? (<View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <RenderHTML contentWidth={100} source={{ html: `${props.data.attackerName} 的攻击` }} />
-                        </View>)
-                        : (<View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                            <RenderHTML contentWidth={100} source={{ html: `${props.data.attackerName} 的攻击` }} />
-                        </View>)
-                }
+                        ? (
+                            <>
+                                <ImageBackground
+                                    source={require('../../../assets/arenaPage/mySelf/gj_bg.png')}
+                                    style={{ width: px2pd(1065), height: px2pd(205), justifyContent: 'center', alignItems: 'center' }}>
+                                    {/* <RenderHTML contentWidth={100} source={{ html: `${props.data.attackerName} 的攻击` }} /> */}
+                                    <Text style={{ color: "#94604e", fontSize: 18 }}>{`${props.data.attackerName}的攻击`}</Text>
+                                </ImageBackground>
+                                <View style={{ position: 'absolute', right: px2pd(150), justifyContent: 'center', alignItems: 'center', }}>
+                                    {/* {(props.data.crit) ? <Text style={{ color: '#ff0817' }}>[暴击]</Text> : <></>} */}
+                                    {(props.data.crit) ? <FastImage style={{ width: px2pd(218), height: px2pd(123) }} source={require('../../../assets/arenaPage/baoJi.png')} /> : <></>}
+                                </View>
+                                <FastImage style={{ position: 'absolute', right: 5, width: px2pd(163), height: px2pd(92) }} source={require('../../../assets/arenaPage/mySelf/jian.png')} />
+                            </>
+                        )
+                        : (
+                            <>
+                                <ImageBackground
+                                    source={require('../../../assets/arenaPage/enemy/gj_bg.png')}
+                                    style={{ width: px2pd(1065), height: px2pd(84), justifyContent: 'center', alignItems: 'center' }}>
+                                    {/* <RenderHTML contentWidth={100} source={{ html: `${props.data.attackerName}的攻击` }} /> */}
+                                    <Text style={{ color: "#21272b", fontSize: 18 }}>{`${props.data.attackerName}的攻击`}</Text>
+                                </ImageBackground>
+                                <View style={{ position: 'absolute', left: px2pd(150), justifyContent: 'center', alignItems: 'center', }}>
+                                    {/* {(props.data.crit) ? <Text style={{ color: '#ff0817' }}>[暴击]</Text> : <></>} */}
+                                    {(props.data.crit) ? <FastImage style={{ width: px2pd(218), height: px2pd(123) }} source={require('../../../assets/arenaPage/baoJi.png')} /> : <></>}
+                                </View>
+                                <FastImage style={{ position: 'absolute', left: 5, width: px2pd(161), height: px2pd(88) }} source={require('../../../assets/arenaPage/enemy/jian.png')} />
+                            </>
 
-                <View style={{ position: 'absolute', right: px2pd(200) }}>
-                    {(props.data.crit) ? <Text style={{ color: '#ff0817' }}>[暴击]</Text> : <></>}
-                </View>
-                {
-                    (isMyself)
-                        ? <AntDesign style={{ position: 'absolute', right: 5 }} name='arrowright' color={'#333'} size={25} />
-                        : <AntDesign style={{ position: 'absolute', left: 5 }} name='arrowleft' color={'#333'} size={25} />
+                        )
                 }
             </View>
-            <View style={{ marginTop: 5, marginBottom: 5, backgroundColor: 'rgba(148,148,186,0.5)', width: '98%', height: px2pd(80), flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ marginTop: 5, marginBottom: 5, width: '98%', height: px2pd(80), flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                <FastImage source={require('../../../assets/arenaPage/di.png')} style={{ position: 'absolute', width: px2pd(1065), height: px2pd(76) }} />
                 {(props.data.physicalDamage != 0) ? <Text style={{ color: '#fff', marginLeft: 5, marginRight: 5 }}>物伤：{props.data.physicalDamage}</Text> : <></>}
                 {(props.data.magicDamage != 0) ? <Text style={{ color: '#fff', marginLeft: 5, marginRight: 5 }}>法伤：{props.data.magicDamage}</Text> : <></>}
                 {(props.data.rechargeHP != 0) ? <Text style={{ color: '#fff', marginLeft: 5, marginRight: 5 }}>治疗：{props.data.rechargeHP}</Text> : <></>}
@@ -98,8 +115,9 @@ const ActionMsgItem = (props) => {
             {
                 lo.map(props.data.skills, (e, k) => {
                     return (
-                        <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(238,213,185,0.3)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
-                            <Text style={{ color: '#333' }}>{e.name}</Text>
+                        <View key={k} style={{ marginBottom: 5, width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                            <FastImage source={require('../../../assets/arenaPage/di.png')} style={{ position: 'absolute', width: px2pd(1065), height: px2pd(76), zIndex: 0 }} />
+                            <Text style={{ color: '#fff' }}>{e.name}</Text>
                             {(e.passive) ? <Text style={{ marginLeft: 5, color: '#fff', }}>(被动)</Text> : <></>}
                         </View>
                     );

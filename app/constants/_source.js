@@ -68,6 +68,10 @@ const _images = {
         { id: 14, img: require('../../assets/button_icon/14.png'), top: 0, left: 10, width: px2pd(86), height: px2pd(80) },
         { id: 15, img: require('../../assets/button_icon/15.png'), top: 0, left: 10, width: px2pd(54), height: px2pd(43) },
         { id: 16, img: require('../../assets/button_icon/16.png'), top: 0, left: 10, width: px2pd(54), height: px2pd(43) },
+        { id: 17, img: require('../../assets/button_icon/17.png'), top: 0, left: 10, width: px2pd(78), height: px2pd(78) },
+        { id: 18, img: require('../../assets/button_icon/18.png'), top: 0, left: 10, width: px2pd(78), height: px2pd(78) },
+        { id: 106, img: require('../../assets/button_icon/17.png'), top: 0, left: 10, width: px2pd(78), height: px2pd(78) },
+        { id: 107, img: require('../../assets/button_icon/18.png'), top: 0, left: 10, width: px2pd(78), height: px2pd(78) },
 
         { id: 100, img: require('../../assets/button_icon/100.png'), top: -8, right: 3, width: px2pd(50), height: px2pd(50) },
         { id: 101, img: require('../../assets/button_icon/101.png'), top: -8, right: 3, width: px2pd(50), height: px2pd(50) },
@@ -75,8 +79,6 @@ const _images = {
         { id: 103, img: require('../../assets/button_icon/103.png'), top: -8, right: 3, width: px2pd(50), height: px2pd(50) },
         { id: 104, img: require('../../assets/button_icon/104.png'), top: -8, left: 3, width: px2pd(50), height: px2pd(50) },
         { id: 105, img: require('../../assets/button_icon/105.png'), top: -8, left: 3, width: px2pd(50), height: px2pd(50) },
-        { id: 106, img: require('../../assets/button_icon/106.png'), top: -8, left: 3, width: px2pd(50), height: px2pd(50) },
-        { id: 107, img: require('../../assets/button_icon/107.png'), top: -8, left: 3, width: px2pd(50), height: px2pd(50) },
     ],
     propIcons: [
         { id: 1, width: px2pd(160), height: px2pd(160), img: require('../../assets/props/v_1.png') },
