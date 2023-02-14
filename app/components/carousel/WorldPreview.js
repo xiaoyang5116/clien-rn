@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     width: px2pd(1046),
-    height: px2pd(467),
+    height: px2pd(463),
     justifyContent: 'center',
     alignItems: "center"
   },

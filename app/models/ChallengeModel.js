@@ -49,9 +49,11 @@ export default {
       yield put.resolve(action('initTargetSkill')({ target: enemy }));
 
       // 初始化属性
-      myself.colorUserName = '<span style="color:#36b7b5">{0}</span>'.format(myself.userName);
+      // myself.colorUserName = '<span style="color:#36b7b5">{0}</span>'.format(myself.userName);
+      myself.colorUserName = '' + myself.userName
       myself.prepare = false;
-      enemy.colorUserName = '<span style="color:#7a81ff">{0}</span>'.format(enemy.userName);
+      // enemy.colorUserName = '<span style="color:#7a81ff">{0}</span>'.format(enemy.userName);
+      enemy.colorUserName = '' + enemy.userName;
       enemy.prepare = false;
 
       const report = [];

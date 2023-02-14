@@ -135,7 +135,7 @@ const FullSingle = props => {
                                         currentIndex >= currentDialogueLength
                                             ? showBtnList.length > 4
                                                 ? '50%'
-                                                : '60%'
+                                                : '55%'
                                             : '100%',
                                     paddingLeft: 12, paddingRight: 12
                                 }}
@@ -163,7 +163,7 @@ const FullSingle = props => {
                                     data={showBtnList}
                                     renderItem={renderBtn}
                                     keyExtractor={(item, index) => item.title + index}
-                                    ListFooterComponent={() => <View style={{ height: 24 }} />}
+                                    ListFooterComponent={() => <View style={{ height: 12 }} />}
                                     getItemLayout={(data, index) => ({
                                         length: 48,
                                         offset: 48 * index,

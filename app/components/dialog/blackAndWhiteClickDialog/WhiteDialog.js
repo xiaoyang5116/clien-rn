@@ -42,7 +42,9 @@ const WhiteDialog = (props) => {
               }
               fontSize={24}
               type={textAnimationType}
-              style={{ color: "#000" }}>
+              style={{ color: "#000" }}
+              isShowAllContent={currentIndex === index ? false : true}
+            >
               {item}
             </TextAnimation>
             {/* <View style={{ position: 'absolute' }}>

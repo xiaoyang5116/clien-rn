@@ -11,8 +11,8 @@ challenge: {
          userName: '李森炎', 
          skillIds: [10, 11, 12, 13, 14, 15],
          attrs: [
-          { key: 'hp', value: 20000 },
-          { key: 'mp', value: 20000 },
+          { key: 'hp', value: 2000 },
+          { key: 'mp', value: 200 },
           { key: 'speed', value: 200 },
           { key: 'shield', value: 120 },
           { key: 'physicalAttack', value: 200 },
