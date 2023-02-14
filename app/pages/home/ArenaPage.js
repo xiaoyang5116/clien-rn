@@ -70,9 +70,16 @@ const ActionMsgItem = (props) => {
     return (
         <View style={{ borderWidth: 2, borderColor: '#ccc', borderRadius: 4, justifyContent: 'flex-start', alignItems: 'center', margin: 5 }}>
             <View style={{ width: '100%', height: px2pd(80), backgroundColor: '#ccc', alignItems: 'center', justifyContent: 'center' }}>
-                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <RenderHTML contentWidth={100} source={{ html: `${props.data.attackerName} 的攻击` }} />
-                </View>
+                {
+                    (isMyself)
+                        ? (<View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <RenderHTML contentWidth={100} source={{ html: `${props.data.attackerName} 的攻击` }} />
+                        </View>)
+                        : (<View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                            <RenderHTML contentWidth={100} source={{ html: `${props.data.attackerName} 的攻击` }} />
+                        </View>)
+                }
+
                 <View style={{ position: 'absolute', right: px2pd(200) }}>
                     {(props.data.crit) ? <Text style={{ color: '#ff0817' }}>[暴击]</Text> : <></>}
                 </View>
@@ -93,7 +100,7 @@ const ActionMsgItem = (props) => {
                     return (
                         <View key={k} style={{ marginBottom: 5, backgroundColor: 'rgba(238,213,185,0.3)', width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                             <Text style={{ color: '#333' }}>{e.name}</Text>
-                            {(e.passive) ? <Text style={{ marginLeft: 5, color: '#fff' }}>(被动)</Text> : <></>}
+                            {(e.passive) ? <Text style={{ marginLeft: 5, color: '#fff', }}>(被动)</Text> : <></>}
                         </View>
                     );
                 })
@@ -106,7 +113,8 @@ const ActionMsgItem = (props) => {
 const TextMsgItem = (props) => {
     const htmlMsg = '<li style="color: #ffffff">{0}</li>'.format(props.data.msg);
     return (
-        <View style={{ height: px2pd(60), justifyContent: 'center', alignItems: 'center', margin: 5 }}>
+        <View style={{ height: px2pd(76), justifyContent: "center", alignItems: "flex-start", margin: 5, paddingLeft: 20 }}>
+            <FastImage style={{ position: "absolute", height: px2pd(76), width: px2pd(1072) }} source={require('../../../assets/arenaPage/TextMsg_bg.png')} />
             <RenderHTML contentWidth={100} source={{ html: htmlMsg }} />
         </View>
     )
@@ -139,27 +147,44 @@ const Character = (props, ref) => {
     }
 
     return (
-        <View style={[{ flexDirection: 'row', justifyContent: 'flex-start', height: px2pd(395) }, (props.contentStyle != undefined) ? props.contentStyle : {}]}>
+        <View style={[{ flexDirection: 'row', justifyContent: 'flex-start', height: px2pd(282), alignItems: "center" }, (props.contentStyle != undefined) ? props.contentStyle : {}]}>
             <FastImage
-                style={{ height: px2pd(395), width: px2pd(1080), position: 'absolute', top: 0 }}
+                style={{ height: px2pd(359), width: px2pd(1080), position: 'absolute', top: 0 }}
                 source={require('../../../assets/arenaPage/attr_bg2.png')}
             />
             {/* <View style={{ width: 90, height: 90, marginLeft: 5, marginRight: 5, flexDirection: 'row', borderRadius: 10, justifyContent: 'center', alignItems: 'center', }}> */}
-            <View style={{ width: px2pd(232), height: 90, marginLeft: 15, marginRight: 5, justifyContent: "flex-end", alignItems: 'center' }}>
+            <View style={{ width: px2pd(232), marginLeft: 15, marginRight: 5, justifyContent: "flex-end", alignItems: 'center' }}>
                 <FastImage style={{ width: px2pd(210), height: px2pd(202) }} source={require('../../../assets/arenaPage/arena_character_bg.png')} />
                 <ImageBackground style={{ width: px2pd(232), height: px2pd(52), position: "absolute", justifyContent: "center", alignItems: "center" }} source={require('../../../assets/arenaPage/name_bg.png')}>
                     <Text style={{ color: '#000' }}>{props.user.userName}</Text>
                 </ImageBackground>
             </View>
-            <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'center', height: 90, }}>
-                <View style={{ height: 3, marginTop: 6, marginRight: 6, marginBottom: 0 }}>
-                    <ProgressBar percent={shieldPercent} sections={[{ x: 0, y: 100, color: '#3390ff' }]} />
+            <View style={{ flex: 1, justifyContent: 'center', paddingTop: 30, alignItems: 'center' }}>
+                <View style={{ height: px2pd(49), marginTop: 6, marginRight: 6, flexDirection: 'row' }}>
+                    <Text style={{ color: "#fff", fontSize: 16 }}>护盾: </Text>
+                    <ImageBackground style={{ width: px2pd(581), height: px2pd(49), }} source={require("../../../assets/arenaPage/xueliang.png")}>
+                        <View style={{ borderRadius: 12, width: "100%", height: "100%", overflow: "hidden", padding: 3 }}>
+                            <ProgressBar percent={shieldPercent} sections={[{ x: 0, y: 100, color: '#3390ff' }]} />
+                        </View>
+                    </ImageBackground>
                 </View>
-                <View style={{ height: 12, marginTop: 0, marginRight: 6, marginBottom: 3 }}>
-                    <ProgressBar percent={hpPercent} sections={[{ x: 0, y: 30, color: '#ff2600' }, { x: 30, y: 60, color: '#fbbb39' }, { x: 60, y: 100, color: '#ffd479' }]} />
+                <View style={{ height: px2pd(49), marginTop: 6, marginRight: 6, flexDirection: 'row' }}>
+                    <Text style={{ color: "#fff", fontSize: 16 }}>血量: </Text>
+                    <ImageBackground style={{ width: px2pd(581), height: px2pd(49), }} source={require("../../../assets/arenaPage/xueliang.png")}>
+                        <View style={{ borderRadius: 12, width: "100%", height: "100%", overflow: "hidden", padding: 3 }}>
+                            <ProgressBar percent={hpPercent} sections={[{ x: 0, y: 30, color: '' }, { x: 30, y: 60, color: '#fbbb39' }, { x: 60, y: 100, color: '#ffd479' }]} />
+                        </View>
+                    </ImageBackground>
+                </View>
+                <View style={{ height: px2pd(49), marginTop: 6, marginRight: 6, flexDirection: 'row' }}>
+                    <Text style={{ color: "#fff", fontSize: 16 }}>法力: </Text>
+                    <ImageBackground style={{ width: px2pd(581), height: px2pd(49) }} source={require("../../../assets/arenaPage/xueliang.png")}>
+                        <View style={{ borderRadius: 12, width: "100%", height: "100%", overflow: "hidden", padding: 3 }}>
+                            <ProgressBar percent={mpPercent} sections={[{ x: 0, y: 100, color: '#12b7b5' }]} />
+                        </View>
+                    </ImageBackground>
                 </View>
                 <View style={{ height: 15, marginTop: 6, marginRight: 6, marginBottom: 6 }}>
-                    <ProgressBar percent={mpPercent} sections={[{ x: 0, y: 100, color: '#12b7b5' }]} />
                 </View>
                 {/* <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                     <Text style={{ flex: 1, color: '#fff' }}>物攻: {props.user.attrs.physicalAttack || 0}</Text>
@@ -262,8 +287,8 @@ const ArenaPage = (props) => {
                     {/* <View style={{ position: 'absolute', zIndex: 10, top: 0, left: px2pd(20) }}>
                     <AntDesign name='left' style={{ color: '#fff' }} size={30} onPress={closeHandler} />
                 </View> */}
-                    <CharacterWrapper ref={refCharacterEnemy} user={props.enemy} contentStyle={{ marginTop: 20 }} />
-                    <View style={{ flex: 1, flexDirection: 'row', backgroundColor: '#5a5a70' }}>
+                    <CharacterWrapper ref={refCharacterEnemy} user={props.enemy} contentStyle={{}} />
+                    <View style={{ flex: 1, flexDirection: 'row', }}>
                         <FlatList
                             ref={refList}
                             data={listData.current}
