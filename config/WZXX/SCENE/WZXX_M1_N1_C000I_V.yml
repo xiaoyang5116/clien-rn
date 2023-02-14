@@ -1663,7 +1663,7 @@ scenes: [
         id: 'C1', desc: '越走越荒，上下的行人很多，据说能够采到一些不错的草药，但也有一定风险',
         options: [
          { title: '【上山试试】',nextChat: 'C2'}, 
-         { title: '【往一条隐秘的小道走】',toScene: 'C000I_V_MAP2_0_0' , icon: { id: 107 },
+         { title: '【往一条隐秘的小道走】',toScene: 'C000I_V_MAP2_0_0' , icon: { id: 18 },
          varsOn: ['WZXX_M1_N1_C000I_V/v_icon_107','WZXX_M1_N1_C000I_V/v_icon_108',
          'WZXX_M1_N1_C000I_V/v_icon_109','WZXX_M1_N1_C000I_V/v_icon_110','WZXX_M1_N1_C000I_V/v_icon_111','WZXX_M1_N1_C000I_V/v_icon_112',
          ],}, 
@@ -1821,7 +1821,7 @@ scenes: [
          { title: '【酒肆】',toScene: 'C000I_V_MAP_3_-4'}, 
          { title: '【东街】',toScene: 'C000I_V_MAP_2_-4'}, 
          { title: '【神药斋】', toScene: 'C000I_V_MAP_4_-5'},
-         { title: '【离开坊市】', toScene: 'C000I_V_MAP1_0_0', icon: { id: 107 },
+         { title: '【离开坊市】', toScene: 'C000I_V_MAP1_0_0', icon: { id: 18 },
          varsOn: ['WZXX_M1_N1_C000I_V/v_icon_101','WZXX_M1_N1_C000I_V/v_icon_102','WZXX_M1_N1_C000I_V/v_icon_103','WZXX_M1_N1_C000I_V/v_icon_104','WZXX_M1_N1_C000I_V/v_icon_105','WZXX_M1_N1_C000I_V/v_icon_106'],
          },
          
@@ -2638,7 +2638,7 @@ scenes: [
       {
         id: 'C1', desc: '林中小路，曲径幽幽',
         options: [
-         { title: '【偶遇 拦路虎】', icon: { id: 107 },varsOn: ['WZXX_M1_N1_C000I_V/zhandou_1']
+         { title: '【偶遇 拦路虎】', icon: { id: 18 },varsOn: ['WZXX_M1_N1_C000I_V/zhandou_1']
          , varsOff: ['WZXX_M1_N1_C000I_V/v_icon_101'],
           challenge: 'C000I_V_MAP_0_1_VS_1', nextChat: 'C2'}, 
         ],
@@ -2701,7 +2701,7 @@ scenes: [
         id: 'C1', desc: '灌木丛生的地方',
         options: [
          { title: '【遭遇 食虫花精】',
-         icon: { id: 107 },varsOn: ['WZXX_M1_N1_C000I_V/zhandou_3']
+         icon: { id: 18 },varsOn: ['WZXX_M1_N1_C000I_V/zhandou_3']
          , varsOff: ['WZXX_M1_N1_C000I_V/v_icon_102'],
           challenge: 'C000I_V_MAP_0_1_VS_3', nextChat: 'C2'}, 
         ],
@@ -2756,7 +2756,7 @@ scenes: [
         id: 'C1', desc: '被树木遮挡住的隐蔽的道路',
         options: [
          { title: '【遭遇 鬼藤】', 
-         icon: { id: 107 },varsOn: ['WZXX_M1_N1_C000I_V/zhandou_4']
+         icon: { id: 18 },varsOn: ['WZXX_M1_N1_C000I_V/zhandou_4']
          , varsOff: ['WZXX_M1_N1_C000I_V/v_icon_103'],
          challenge: 'C000I_V_MAP_0_1_VS_4',nextChat: 'C2'}, 
         ],
@@ -2810,7 +2810,7 @@ scenes: [
       {
         id: 'C1', desc: '神秘的洞窟',
         options: [
-         { title: '【遭遇 猛虎】',icon: { id: 107 },
+         { title: '【遭遇 猛虎】',icon: { id: 18 },
          varsOn: ['WZXX_M1_N1_C000I_V/zhandou_5']
          , varsOff: ['WZXX_M1_N1_C000I_V/v_icon_104'],
          challenge: 'C000I_V_MAP_0_1_VS_5',  nextChat: 'C2'}, 
@@ -2864,7 +2864,7 @@ scenes: [
       {
         id: 'C1', desc: '西南角的山丘，猛兽出没，十分危险',
         options: [
-         { title: '【遭遇 猛虎】',icon: { id: 107 },
+         { title: '【遭遇 猛虎】',icon: { id: 18 },
          varsOn: ['WZXX_M1_N1_C000I_V/zhandou_6'], challenge: 'C000I_V_MAP_0_1_VS_6', varsOff: ['WZXX_M1_N1_C000I_V/v_icon_105'], nextChat: 'C2'}, 
         ],
       },
@@ -2917,7 +2917,7 @@ scenes: [
       {
         id: 'C1', desc: '不知废弃了多久的庭院，早已破败不堪',
         options: [
-         { title: '【遭遇 鬼藤】', icon: { id: 107 },
+         { title: '【遭遇 鬼藤】', icon: { id: 18 },
          varsOn: ['WZXX_M1_N1_C000I_V/zhandou_7'], varsOff: ['WZXX_M1_N1_C000I_V/v_icon_106'], challenge: 'C000I_V_MAP_0_1_VS_7',nextChat: 'C2'}, 
         ],
       },
@@ -3073,7 +3073,7 @@ scenes: [
       {
         id: 'C1', desc: '东郊平原外的丘陵，经常有野兽躲藏于此',
         options: [
-         { title: '【遭遇 红眼妖兔】', icon: { id: 107 },
+         { title: '【遭遇 红眼妖兔】', icon: { id: 18 },
          varsOn: ['WZXX_M1_N1_C000I_V/zhandou_1A'], varsOff: ['WZXX_M1_N1_C000I_V/v_icon_107'], challenge: 'C000I_V_MAP_0_2_VS_1', nextChat: 'C2'}, 
         ],
       },
@@ -3134,7 +3134,7 @@ scenes: [
       {
         id: 'C1', desc: '长势繁茂的竹林',
         options: [
-         { title: '【遭遇 红眼妖兔】',icon: { id: 107 },
+         { title: '【遭遇 红眼妖兔】',icon: { id: 18 },
           varsOn: ['WZXX_M1_N1_C000I_V/zhandou_3A'], varsOff: ['WZXX_M1_N1_C000I_V/v_icon_111'],challenge: 'C000I_V_MAP_0_2_VS_3', nextChat: 'C2'}, 
         ],
       },
@@ -3188,7 +3188,7 @@ scenes: [
       {
         id: 'C1', desc: '无人打理的小型池塘，早已是淤泥堵塞',
         options: [
-         { title: '【遭遇 食虫花精】', icon: { id: 107 },
+         { title: '【遭遇 食虫花精】', icon: { id: 18 },
          varsOn: ['WZXX_M1_N1_C000I_V/zhandou_4A'], varsOff: ['WZXX_M1_N1_C000I_V/v_icon_110'],challenge: 'C000I_V_MAP_0_2_VS_4', nextChat: 'C2'}, 
         ],
       },
@@ -3242,7 +3242,7 @@ scenes: [
       {
         id: 'C1', desc: '被草木遮挡住的道路',
         options: [
-         { title: '【遭遇 鬼藤】', icon: { id: 107 },
+         { title: '【遭遇 鬼藤】', icon: { id: 18 },
          varsOn: ['WZXX_M1_N1_C000I_V/zhandou_5A'], varsOff: ['WZXX_M1_N1_C000I_V/v_icon_108'],challenge: 'C000I_V_MAP_0_2_VS_5', nextChat: 'C2'}, 
         ],
       },
@@ -3296,7 +3296,7 @@ scenes: [
       {
         id: 'C1', desc: '被草木遮挡住的道路',
         options: [
-         { title: '【遭遇 红眼妖兔群】',icon: { id: 107 },
+         { title: '【遭遇 红眼妖兔群】',icon: { id: 18 },
           varsOn: ['WZXX_M1_N1_C000I_V/zhandou_6A'],varsOff: ['WZXX_M1_N1_C000I_V/v_icon_112'], challenge: 'C000I_V_MAP_0_2_VS_6', nextChat: 'C2'}, 
         ],
       },
@@ -3350,7 +3350,7 @@ scenes: [
       {
         id: 'C1', desc: '未知的山洞，洞口有野兽出入的痕迹',
         options: [
-         { title: '【遭遇 正在休息的虎王】',icon: { id: 107 }, varsOn: ['WZXX_M1_N1_C000I_V/zhandou_7A'],varsOff: ['WZXX_M1_N1_C000I_V/v_icon_109'], challenge: 'C000I_V_MAP_0_2_VS_7', nextChat: 'C2'}, 
+         { title: '【遭遇 正在休息的虎王】',icon: { id: 18 }, varsOn: ['WZXX_M1_N1_C000I_V/zhandou_7A'],varsOff: ['WZXX_M1_N1_C000I_V/v_icon_109'], challenge: 'C000I_V_MAP_0_2_VS_7', nextChat: 'C2'}, 
         ],
       },
 

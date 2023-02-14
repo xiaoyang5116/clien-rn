@@ -70,8 +70,7 @@ const _images = {
         { id: 16, img: require('../../assets/button_icon/16.png'), top: 0, left: 10, width: px2pd(54), height: px2pd(43) },
         { id: 17, img: require('../../assets/button_icon/17.png'), top: 0, left: 10, width: px2pd(78), height: px2pd(78) },
         { id: 18, img: require('../../assets/button_icon/18.png'), top: 0, left: 10, width: px2pd(78), height: px2pd(78) },
-        { id: 106, img: require('../../assets/button_icon/17.png'), top: 0, left: 10, width: px2pd(78), height: px2pd(78) },
-        { id: 107, img: require('../../assets/button_icon/18.png'), top: 0, left: 10, width: px2pd(78), height: px2pd(78) },
+     
 
         { id: 100, img: require('../../assets/button_icon/100.png'), top: -8, right: 3, width: px2pd(50), height: px2pd(50) },
         { id: 101, img: require('../../assets/button_icon/101.png'), top: -8, right: 3, width: px2pd(50), height: px2pd(50) },
