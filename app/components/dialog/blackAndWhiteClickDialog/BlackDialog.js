@@ -40,7 +40,9 @@ const BlackDialog = (props) => {
               }
               fontSize={24}
               type={textAnimationType}
-              style={{ color: "#fff", }}>
+              style={{ color: "#fff", }}
+              isShowAllContent={currentIndex === index ? false : true}
+            >
               {item}
             </TextAnimation>
           </View>
