@@ -44,6 +44,12 @@ scenes: [
       { id: "v_icon_110", min: 0, max: 1 },
       { id: "v_icon_111", min: 0, max: 1 },
       { id: "v_icon_112", min: 0, max: 1 },
+       
+       #坊市出入口
+      { id: "v_icon_113", min: 0, max: 1 },
+      #东郊
+      { id: "v_icon_114", min: 0, max: 1 },
+
 
       ],
 
@@ -59,7 +65,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000I_V1', desc: '回忆', 
         options: [ 
-          { title: "【进入地图】",toScene: 'C000I_V_MAP_3_-6',  transitionAnimation: '上下开门转场',
+          { title: "【进入地图】",toScene: 'C000I_V_MAP_3_-6', varsOn: ['WZXX_M1_N1_C000I_V/v_icon_113','WZXX_M1_N1_C000I_V/zhandou_3',],  transitionAnimation: '上下开门转场',
           # sounds: [{ soundId: 'BGM_R_0003',}],
           },
         ],
@@ -1657,7 +1663,7 @@ scenes: [
         id: 'C1', desc: '越走越荒，上下的行人很多，据说能够采到一些不错的草药，但也有一定风险',
         options: [
          { title: '【上山试试】',nextChat: 'C2'}, 
-         { title: '【往一条隐秘的小道走】',toScene: 'C000I_V_MAP2_0_0' ,
+         { title: '【往一条隐秘的小道走】',toScene: 'C000I_V_MAP2_0_0' , icon: { id: 107 },
          varsOn: ['WZXX_M1_N1_C000I_V/v_icon_107','WZXX_M1_N1_C000I_V/v_icon_108',
          'WZXX_M1_N1_C000I_V/v_icon_109','WZXX_M1_N1_C000I_V/v_icon_110','WZXX_M1_N1_C000I_V/v_icon_111','WZXX_M1_N1_C000I_V/v_icon_112',
          ],}, 
@@ -1815,7 +1821,9 @@ scenes: [
          { title: '【酒肆】',toScene: 'C000I_V_MAP_3_-4'}, 
          { title: '【东街】',toScene: 'C000I_V_MAP_2_-4'}, 
          { title: '【神药斋】', toScene: 'C000I_V_MAP_4_-5'},
-         { title: '【离开坊市】', toScene: 'C000I_V_MAP1_0_0', varsOn: ['WZXX_M1_N1_C000I_V/v_icon_101','WZXX_M1_N1_C000I_V/v_icon_102','WZXX_M1_N1_C000I_V/v_icon_103','WZXX_M1_N1_C000I_V/v_icon_104','WZXX_M1_N1_C000I_V/v_icon_105','WZXX_M1_N1_C000I_V/v_icon_106'],},
+         { title: '【离开坊市】', toScene: 'C000I_V_MAP1_0_0', icon: { id: 107 },
+         varsOn: ['WZXX_M1_N1_C000I_V/v_icon_101','WZXX_M1_N1_C000I_V/v_icon_102','WZXX_M1_N1_C000I_V/v_icon_103','WZXX_M1_N1_C000I_V/v_icon_104','WZXX_M1_N1_C000I_V/v_icon_105','WZXX_M1_N1_C000I_V/v_icon_106'],
+         },
          
         ],
       },
@@ -2476,7 +2484,7 @@ scenes: [
             "title": "东郊",
             "point": [5,-3],
             "toScene": "C000I_V_MAP_5_-3",
-            "icon": {}
+            "icon": {id: 105, bindVar: 'WZXX_M1_N1_C000I_V/v_icon_114'}
           },
           {
             "title": "客栈",
@@ -2489,7 +2497,7 @@ scenes: [
             "title": "坊市出入口",
             "point": [3,-6],
             "toScene": "C000I_V_MAP_3_-6",
-            "icon": {}
+            "icon": { id: 105, bindVar: 'WZXX_M1_N1_C000I_V/v_icon_113'}
           },
           {
             "title": "神药斋",

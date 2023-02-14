@@ -138,7 +138,7 @@ scenes: [
         },  
           ]
           },
-           ]  
+        ]  
         },
 
 
@@ -217,6 +217,10 @@ scenes: [
     { id: "biaoqianv3", min: 0, max: 1 },
     { id: "biaoqianv4", min: 0, max: 1 },
     { id: "biaoqianv5", min: 0, max: 1 },
+    { id: "biaoqianv6", min: 0, max: 1 },
+    { id: "biaoqianv7", min: 0, max: 1 },
+    { id: "biaoqianv8", min: 0, max: 1 },
+    { id: "biaoqianv9", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
@@ -268,8 +272,8 @@ scenes: [
       { 
         id: 'C3A', desc: "被当成盗贼同伙了是吧？\n你看清楚，我这是杀手装，逼格不一样的好吗？\n转头，就见一个黑衣人蒙着面，跟自己穿的是同款\n说不定还是在同一家店买的\n好吧，这破衣服，根本就没什么逼格",   
         options: [ 
-         { title: '你认错人了，我不是你同伙', dialogs: ['gameover01'],  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv4'] }, 
-         { title: '先装成同伙，尽快把人打发走', nextChat: 'C3C' , icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv5'] }, 
+         { title: '你认错人了，我不是你同伙', dialogs: ['gameover01'],  icon: { id: 6, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] }, 
+         { title: '先装成同伙，尽快把人打发走', nextChat: 'C3C' , icon: { id: 7, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] }, 
         ],
       },
 
@@ -283,8 +287,8 @@ scenes: [
       { 
         id: 'C3C', desc: "李森炎装作是他的同伙，接上对方话头道\n“春花阁宾客太多，我没找着机会，我现在再去一趟。”\n他想着以‘再去一趟’这个借口离开，然后自己偷偷溜回家\n却不曾想，黑衣人似乎是发现了一点端倪\n“喂，你声音怎么变了？”",   
         options: [ 
-         { title: '找个借口', dialogs: ['gameover02'],  }, 
-         { title: '告诉他你认错人了', nextChat: 'C3B'  }, 
+         { title: '找个借口', dialogs: ['gameover02'],  icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']  }, 
+         { title: '告诉他你认错人了', nextChat: 'C3B' ,  icon: { id: 7, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7']  }, 
         ],
       },
 
@@ -325,8 +329,8 @@ scenes: [
           '被当成盗贼同伙了是吧？','你看清楚，我这是杀手装，逼格不一样的好吗？','转头，就见一个黑衣人蒙着面，跟自己穿的是同款',
           '说不定还是在同一家店买的','好吧，这破衣服，根本就没什么逼格',],
           btn: [
-          {title: '你认错人了，我不是你同伙',dialogs: ['gameover01'],},
-          {title: '先装成同伙，尽快把人打发走', nextChat: 'C3C' ,},
+          {title: '你认错人了，我不是你同伙',dialogs: ['gameover01'],  icon: { id: 6, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8'] },
+          {title: '先装成同伙，尽快把人打发走', nextChat: 'C3C' ,  icon: { id: 7, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9'] },
           ]},
          ],
       }
@@ -423,6 +427,11 @@ scenes: [
     { id: "biaoqianv6", min: 0, max: 1 },
     { id: "biaoqianv7", min: 0, max: 1 },
     { id: "biaoqianv8", min: 0, max: 1 },
+    { id: "biaoqianv9", min: 0, max: 1 },
+    { id: "biaoqianv10", min: 0, max: 1 },
+    { id: "biaoqianv11", min: 0, max: 1 },
+    { id: "biaoqianv12", min: 0, max: 1 },
+    { id: "biaoqianv13", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
@@ -485,25 +494,25 @@ scenes: [
       { 
         id: 'C6_S', desc: "“当玉石的光泽彻底消失后，我就再也不能轮回了吧？”\n李森炎只能自己心中暗自警惕，时刻关注着怀表玉石的光芒",
         options: [ 
-          { title: '【硬闯过去】', dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop1'], icon: { id: 1, bindVar: 'biaoqianv1' },   toScene: 'C000A1_V_MAP_-1_2', varsOn: ['WZXX_M1_N1_C000A1_V/yingchuang','biaoqianv1'],}, 
-          { title: '【思索一下】', dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop3'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] ,  nextChat: 'C7'}, 
-          { title: '【进行一次彻底的乔装】', dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop4'], icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A','biaoqianv4'], toScene: 'C000A1_V_MAP_-1_-3'}, 
+          { title: '【硬闯过去】', dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop1'], icon: { id: 1, bindVar: 'biaoqianv5' },   toScene: 'C000A1_V_MAP_-1_2', varsOn: ['WZXX_M1_N1_C000A1_V/yingchuang','biaoqianv5'],}, 
+          { title: '【思索一下】', dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop3'], icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] ,  nextChat: 'C7'}, 
+          { title: '【进行一次彻底的乔装】', dropIds: ['WZXX_M1_N1_C000A1_V_Vdrop4'], icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['WZXX_M1_N1_C000A_V/huanzhuang_A','biaoqianv7'], toScene: 'C000A1_V_MAP_-1_-3'}, 
       ],
       },
 
       { 
         id: 'C6A', desc: "走了几次的李森炎已经确定这条路有杀手了，而且好像是在屋檐的左边，所以他还是选择绕路而走",
         options: [ 
-          { title: '【去西市三街】',varsOn: ['WZXX_M1_N1_C000A1_V/raolu_A','biaoqianv5'], toScene: 'C000A1_V_MAP_-2_-1', icon: { id: 1, bindVar: 'biaoqianv5' }, }, 
-          { title: '【去小院】',varsOn: ['WZXX_M1_N1_C000A1_V/raolu','biaoqianv6'], icon: { id: 1, bindVar: 'biaoqianv6' }, toScene: 'C000A1_V_MAP_-3_-1'}, 
+          { title: '【去西市三街】',varsOn: ['WZXX_M1_N1_C000A1_V/raolu_A','biaoqianv9'], toScene: 'C000A1_V_MAP_-2_-1', icon: { id: 1, bindVar: 'biaoqianv9' }, }, 
+          { title: '【去小院】',varsOn: ['WZXX_M1_N1_C000A1_V/raolu','biaoqianv8'], icon: { id: 1, bindVar: 'biaoqianv8' }, toScene: 'C000A1_V_MAP_-3_-1'}, 
       ],
       },
 
        { 
         id: 'C6A_1', desc: "走了几次的李森炎已经确定这条路有杀手了，而且好像是在屋檐的左边，所以他还是选择绕路而走",
         options: [ 
-          { title: '【去西市三街】', icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['WZXX_M1_N1_C000A1_V/raolu_A','biaoqianv5'] ,  toScene: 'C000A1_V_MAP_-2_-1'}, 
-          { title: '【去小院】', varsOn: ['WZXX_M1_N1_C000A1_V/raolu','biaoqianv6'],icon: { id: 1, bindVar: 'biaoqianv6' },  toScene: 'C000A1_V_MAP_-3_-1'}, 
+          { title: '【去西市三街】', icon: { id: 1, bindVar: 'biaoqianv10' }, varsOn: ['WZXX_M1_N1_C000A1_V/raolu_A','biaoqianv10'] ,  toScene: 'C000A1_V_MAP_-2_-1'}, 
+          { title: '【去小院】', varsOn: ['WZXX_M1_N1_C000A1_V/raolu','biaoqianv11'],icon: { id: 1, bindVar: 'biaoqianv11' },  toScene: 'C000A1_V_MAP_-3_-1'}, 
       ],
       },
 
@@ -517,8 +526,8 @@ scenes: [
        { 
         id: 'C8', desc: "慢慢寻找的话恐怕需要不少时间，但是这方法还是比较稳妥的，只要小心一点，早晚能够将这个杀手给找出来。\n而自己似乎不怕死，倒是能够靠这能力快速将这杀手给引诱出来，只是要承受一些痛楚。",
         options: [ 
-          { title: '【慢慢寻找】',  icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] , nextChat: 'C9'}, 
-          { title: '【以身诱敌】', icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['WZXX_M1_N1_C000A1_V/youdi','biaoqianv8'], toScene: 'C000A1_V_MAP_-1_0'}, 
+          { title: '【慢慢寻找】',  icon: { id: 1, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12'] , nextChat: 'C9'}, 
+          { title: '【以身诱敌】', icon: { id: 1, bindVar: 'biaoqianv13' }, varsOn: ['WZXX_M1_N1_C000A1_V/youdi','biaoqianv13'], toScene: 'C000A1_V_MAP_-1_0'}, 
       ],
       },
 
@@ -586,12 +595,20 @@ scenes: [
     { id: "biaoqianv13", min: 0, max: 1 },
     { id: "biaoqianv14", min: 0, max: 1 },
     { id: "biaoqianv15", min: 0, max: 1 },
+    { id: "biaoqianv16", min: 0, max: 1 },
+    { id: "biaoqianv17", min: 0, max: 1 },
+    { id: "biaoqianv18", min: 0, max: 1 },
+    { id: "biaoqianv19", min: 0, max: 1 },
+    { id: "biaoqianv20", min: 0, max: 1 },
+    { id: "biaoqianv21", min: 0, max: 1 },
+    { id: "biaoqianv22", min: 0, max: 1 },
+    { id: "biaoqianv23", min: 0, max: 1 },
     ],
     # 动作定义
     actions: [ ],
     # 事件定义
     events: [
-       { type: 'enter',  nextChat: 'C1' },
+      #  { type: 'enter',  nextChat: 'C1' },
       #  { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/xunzhao'], nextChat: 'C1' },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000A1_V/youdi'], nextChat: 'C1A' },
     ],
@@ -626,10 +643,10 @@ scenes: [
       { 
         id: 'C4', desc: "准备好一切之后，李森炎偷偷爬上屋檐摸到了这杀手身后的位置。\n由于李森炎的身法不错，而且谨慎无比，所以这杀手并没有发现李森炎。",
         options: [ 
-          { title: '【扫把千年杀】',nextChat: 'C5', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
-          { title: '【使用十字固】',dialogs: ['Screen2'], icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
-          { title: '【掏出板砖】',nextChat: 'C12A', icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
-          { title: '【吓唬杀手】',nextChat: 'C15', icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] , }, 
+          { title: '【扫把千年杀】',nextChat: 'C5', icon: { id: 7, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
+          { title: '【使用十字固】',dialogs: ['Screen2'], icon: { id: 6, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
+          { title: '【掏出板砖】',nextChat: 'C12A', icon: { id: 7, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
+          { title: '【吓唬杀手】',nextChat: 'C15', icon: { id: 7, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] , }, 
       ],
       },
 
@@ -643,8 +660,8 @@ scenes: [
       { 
         id: 'C6', desc: "此刻李森炎心里不由想起了一首歌。没有一丝丝防备，没有一丝丝顾虑，我就这样出现，在你的世界里，带给你惊喜…\n看着杀手竟然没有失去战斗力，李森炎有点惊恐，对方这怕是“钢”铁侠了。\n看着想要活撕了他的杀手，李森炎决定…",
         options: [ 
-          { title: '【赶紧逃跑】',nextChat: 'C7', icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] , }, 
-          { title: '【再来一击】', dialogs: ['gameover01'], icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] , }, 
+          { title: '【赶紧逃跑】',nextChat: 'C7', icon: { id: 7, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] , }, 
+          { title: '【再来一击】', dialogs: ['gameover01'], icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] , }, 
       ],
       },
 
@@ -687,10 +704,10 @@ scenes: [
        { 
         id: 'C4A', desc: "准备好一切之后，李森炎偷偷爬上屋檐摸到了这杀手身后的位置。\n由于李森炎的身法不错，而且谨慎无比，所以这杀手并没有发现李森炎。\n现在李森炎位于杀手的身后。",
         options: [ 
-          { title: '【扫把千年杀】',nextChat: 'C5', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
-          { title: '【使用十字固】',nextChat: 'C12', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
-          { title: '【掏出板砖】',dialogs: ['Screen3'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
-          { title: '【吓唬杀手】',dialogs: ['gameover03'], icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] , }, 
+          { title: '【扫把千年杀】',nextChat: 'C5', icon: { id: 7, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] , }, 
+          { title: '【使用十字固】',nextChat: 'C12', icon: { id: 7, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8'] , }, 
+          { title: '【掏出板砖】',dialogs: ['Screen3'], icon: { id: 7, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9'] , }, 
+          { title: '【吓唬杀手】',dialogs: ['gameover03'], icon: { id: 6, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10'] , }, 
       ],
       },
 
@@ -718,9 +735,9 @@ scenes: [
        { 
         id: 'C14', desc: "趁杀手恍惚之际夺剑那就占据优势了，如果再来一击说不定就能够击晕对方，稳妥点耍阴招撒出沙尘也能让对方暂时失明。",
         options: [ 
-          { title: '【夺剑】',dialogs: ['gameover04'], icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] , }, 
-          { title: '【再来一击】',dialogs: ['gameover05'], icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8'] , }, 
-          { title: '【撒出沙尘】',nextChat: 'C19', icon: { id: 1, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9'] , }, 
+          { title: '【夺剑】',dialogs: ['gameover04'], icon: { id: 6, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11'] , }, 
+          { title: '【再来一击】',dialogs: ['gameover05'], icon: { id: 6, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12'] , }, 
+          { title: '【撒出沙尘】',nextChat: 'C19', icon: { id: 7, bindVar: 'biaoqianv13' }, varsOn: ['biaoqianv13'] , }, 
       ],
       },
 
@@ -735,10 +752,10 @@ scenes: [
       { 
         id: 'C4B', desc: "准备好一切之后，李森炎偷偷爬上屋檐摸到了这杀手身后的位置。\n由于李森炎的身法不错，而且谨慎无比，所以这杀手并没有发现李森炎。\n现在李森炎位于杀手的身后。",
         options: [ 
-          { title: '【扫把千年杀】',nextChat: 'C5', icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
-          { title: '【使用十字固】',nextChat: 'C12', icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
-          { title: '【掏出板砖】',nextChat: 'C12A', icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
-          { title: '【吓唬杀手】',nextChat: 'C16', icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] , }, 
+          { title: '【扫把千年杀】',nextChat: 'C5', icon: { id: 7, bindVar: 'biaoqianv14' }, varsOn: ['biaoqianv14'] , }, 
+          { title: '【使用十字固】',nextChat: 'C12', icon: { id: 7, bindVar: 'biaoqianv15' }, varsOn: ['biaoqianv15'] , }, 
+          { title: '【掏出板砖】',nextChat: 'C12A', icon: { id: 7, bindVar: 'biaoqianv16' }, varsOn: ['biaoqianv16'] , }, 
+          { title: '【吓唬杀手】',nextChat: 'C16', icon: { id: 6, bindVar: 'biaoqianv17' }, varsOn: ['biaoqianv17'] , }, 
       ],
       },
 
@@ -767,8 +784,8 @@ scenes: [
       { 
         id: 'C19', desc: "为了保险起见，李森炎选择从兜里抓起一把尘土朝着杀手的眼睛撒了过去。\n没来得及闭眼的杀手眼睛进了大量沙尘，暂时失去了视觉。杀手在惊恐之下，四处挥砍",
         options: [ 
-          { title: '【上前猛砸】',dialogs: ['gameover06'], icon: { id: 1, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10'] , }, 
-          { title: '【远处瓦砖】',dialogs: ['Screen4'], icon: { id: 1, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11'] , }, 
+          { title: '【上前猛砸】',dialogs: ['gameover06'], icon: { id: 6, bindVar: 'biaoqianv18' }, varsOn: ['biaoqianv18'] , }, 
+          { title: '【远处瓦砖】',dialogs: ['Screen4'], icon: { id: 7, bindVar: 'biaoqianv19' }, varsOn: ['biaoqianv19'] , }, 
       ],
       },
 
@@ -810,8 +827,8 @@ scenes: [
       { 
         id: 'C25', desc: "由于这条小巷并没有什么人，所以并没有发现这边的情况。\n杀手倒地后，长剑也掉落在他身边",
         options: [ 
-          { title: '【上前捡剑】', nextChat: 'C26', icon: { id: 1, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12'] , }, 
-          { title: '【砸开长剑】', dialogs: ['Screen5'], icon: { id: 1, bindVar: 'biaoqianv13' }, varsOn: ['biaoqianv13'] , }, 
+          { title: '【上前捡剑】', nextChat: 'C26', icon: { id: 6, bindVar: 'biaoqianv20' }, varsOn: ['biaoqianv20'] , }, 
+          { title: '【砸开长剑】', dialogs: ['Screen5'], icon: { id: 7, bindVar: 'biaoqianv21' }, varsOn: ['biaoqianv21'] , }, 
       ],
       },
 
@@ -839,8 +856,8 @@ scenes: [
       { 
         id: 'C29', desc: "不过早有预料的李森炎立刻使用身法躲避，随后一剑捅穿了这个杀手的胸膛\n看着彻底倒地不起的杀手，李森炎眼神有点复杂。",
         options: [ 
-          { title: '【放其一马】',nextChat: 'C30', icon: { id: 1, bindVar: 'biaoqianv14' }, varsOn: ['biaoqianv14'] , }, 
-          { title: '【斩超除根】',nextChat: 'C31', icon: { id: 1, bindVar: 'biaoqianv15' }, varsOn: ['biaoqianv15'] , }, 
+          { title: '【放其一马】',nextChat: 'C30', icon: { id: 1, bindVar: 'biaoqianv22' }, varsOn: ['biaoqianv22'] , }, 
+          { title: '【斩超除根】',nextChat: 'C31', icon: { id: 1, bindVar: 'biaoqianv23' }, varsOn: ['biaoqianv23'] , }, 
       ],
       },
 
@@ -1123,10 +1140,10 @@ scenes: [
               params: {
               useCluesId: ["xiansuo9"]
               },
-            }, alwayDisplay: true ,  icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , },
+            }, alwayDisplay: true ,  icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , },
           # 需要触发二号之后再解锁这个选项
-          { title: '直面杀手',  nextChat: 'C5A' , icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
-          { title: '无视杀手',   dialogs: ['gameover03'], icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
+          { title: '直面杀手',  nextChat: 'C5A' , icon: { id: 7, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
+          { title: '无视杀手',   dialogs: ['gameover03'], icon: { id: 6, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
         ],
       },
 
@@ -1161,10 +1178,10 @@ scenes: [
       { 
         id: 'C5', desc: "李森炎走在道路上，不过眼神一直警惕地看向左边。\n走了一段路后，杀手果不其然从左边的房顶跳下来，随后朝着他猛然袭杀\n不过早有预料的李森炎迅速躲避，并且立刻做出反应。",   
         options: [ 
-          { title: '高喊绝学', nextChat: 'C6' , icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] ,  }, 
+          { title: '高喊绝学', nextChat: 'C6' , icon: { id: 7, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] ,  }, 
           # { title: '直接逃跑', dialogs: ['gameover04'], icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] ,   }, 
-          { title: '突然大笑', nextChat: 'C8' , icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] ,  }, 
-          { title: '说后面有美女', dialogs: ['gameover05'],  icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] ,  }, 
+          { title: '突然大笑', nextChat: 'C8' , icon: { id: 7, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] ,  }, 
+          { title: '说后面有美女', dialogs: ['gameover05'],  icon: { id: 6, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] ,  }, 
         ],
       },
 
@@ -1233,7 +1250,7 @@ scenes: [
           ], 
      },
 
-      { 
+    { 
           id: 'gameover04',style: 7,artId: 2, title: '你挂了', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B10', content: ['见到杀手出现后，李森炎咧嘴一笑：“哼，想杀我轻功水漂，没那么容易！”','随着他一脚将地上的沙尘踢向这杀手，打算遮挡他的视线。',
           '李森炎趁此机会头也不回地奔向自己家。','“就这还轻功水上漂？”','就当他以为自己能够轻易甩开这杀手的时候，杀手的声音竟然在他耳边响起。',
@@ -1241,7 +1258,7 @@ scenes: [
           '随着杀手一刀朝着他的脖子砍去，他眼中的画面瞬间天旋地转了起来。','李森炎挂了。',],
           btn: [{title: '还是不行',dropIds: ["WZXX_M1_N1_C000A1_V_gameover13",],nextChat: 'C5' },]},
           ], 
-     },
+    },
 
      { 
           id: 'gameover05',style: 7,artId: 3, title: '你挂了', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
@@ -1422,8 +1439,8 @@ scenes: [
       {
         id: 'C2A', desc: "在西市一街前往李家的小巷中，遇到了一个正在蹲着抱头哭泣的小孩\n只不过这个小孩看起来有点异常，毕竟这哭声有点不像是小孩的声音。",
         options: [ 
-         { title: '上前帮忙', dialogs: ['gameover02'], icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] , }, 
-         { title: '直接离开', nextChat: 'C4A', icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] ,  }, 
+         { title: '上前帮忙', dialogs: ['gameover02'], icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5'] , }, 
+         { title: '直接离开', nextChat: 'C4A', icon: { id: 7, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6'] ,  }, 
         ],
       },
 

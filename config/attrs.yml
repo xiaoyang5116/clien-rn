@@ -42,6 +42,7 @@ data: {
         { title: '悟性', key: 悟性, value: 0 },
         { title: '颜值', key: 颜值, value: 0 },
         { title: '勇气', key: 勇气, value: 0 },
+        { title: '嫌弃', key: 嫌弃, value: 0 },
       ]],
     },
     {
