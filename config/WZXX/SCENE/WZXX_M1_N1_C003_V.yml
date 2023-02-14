@@ -89,6 +89,9 @@ scenes: [
       dialogs:
         [
 
+
+         
+
            #选项对话1
           { id: 'C003_1.1A',style: 6, title: '诚恳开口', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [

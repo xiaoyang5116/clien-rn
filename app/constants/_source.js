@@ -106,6 +106,11 @@ const _images = {
         { id: 10, img: require('../../assets/bg/feizhou.webp') },
         { id: 11, img: require('../../assets/bg/dongxue.webp') },
 
+        { id: 12, img: require('../../assets/bg/lingxiujiechuanson3.webp') },
+        { id: 13, img: require('../../assets/bg/lingxiujiechuanson2.webp') },
+        { id: 14, img: require('../../assets/bg/lingxiujiechuanson1.webp') },
+        { id: 15, img: require('../../assets/bg/lingxiujiechuanson0.webp') },
+
     ],
     collectBackgroundImages: [
         { name: 'YanJiang', source: require('../../assets/collect/bg/YanJiang.png') },

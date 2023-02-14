@@ -65,7 +65,7 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C000I_V1', desc: '回忆', 
         options: [ 
-          { title: "【进入地图】",toScene: 'C000I_V_MAP_3_-6', varsOn: ['WZXX_M1_N1_C000I_V/v_icon_113','WZXX_M1_N1_C000I_V/zhandou_3',],  transitionAnimation: '上下开门转场',
+          { title: "【进入地图】",toScene: 'C000I_V_MAP_3_-6', varsOn: ['WZXX_M1_N1_C000I_V/v_icon_113','WZXX_M1_N1_C000I_V/v_icon_114',],  transitionAnimation: '上下开门转场',
           # sounds: [{ soundId: 'BGM_R_0003',}],
           },
         ],
@@ -248,6 +248,7 @@ scenes: [
         id: 'C1', desc: '建筑风格狂野，棱角分明，很符合自身定位', 
         options: [ 
          { title: '【可以购买装备和兵器】',toShop: 'default_1',  nextChat: 'C4'},  
+         { title: '【和木人练习战斗】', challenge: 'C000I_V_MAP_0_0_VS_8', nextChat: 'C3'}, 
          { title: '【兵器铺告示】', nextChat: 'C2'}, 
          { title: '【移动>>>】', nextChat: 'X1'}, 
         ],
@@ -265,6 +266,13 @@ scenes: [
         id: 'C4', desc: '好东西真多，不过价格也真是贵啊！', 
         options: [ 
          { title: '离开>>>', nextChat: 'X1' }, 
+        ],
+      },
+
+      { 
+        id: 'C3', desc: "感觉武力有所提升！", 
+        options: [ 
+         { title: '【返回】', varsOn: ['T1'], nextChat: 'C1'}, 
         ],
       },
       #

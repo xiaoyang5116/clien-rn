@@ -123,7 +123,20 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C002C_V7', desc: '二穿', 
         options: [ 
-         { title: '【发生什么事了】', animations: { id: 11, data: { worldId: '灵修界', desc: '突然，眼前一变，周围的景色完全不同', toChapter: 'WZXX_M1_N1_C004_[N1]' , } } }, 
+         { title: '【发生什么事了】', animations: { id: 11, data: { worldId: '灵修界', desc: '突然，眼前一变，周围的景色完全不同', 
+         toChapter: 'WZXX_M1_N1_C004_[N1]' , 
+        #  dialogs: ['C002_8.8A'],
+         } } }, 
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C002C_VS', desc: '', 
+        options: [ 
+         { title: '【……】', 
+        #  toChapter: 'WZXX_M1_N1_C004_[N1]' , 
+         dialogs: ['C002_8.8A'],
+        }, 
         ],
       },
 
@@ -164,6 +177,44 @@ scenes: [
       # 对话框
       dialogs:
         [
+
+        { 
+            id: 'C002_8.8A',style: 5, textAnimationType: 'TextSingle',
+          sections: [
+              { 
+                type: "TopToBottom", bgImageId: 12, loop: true, play: true,
+                content: [
+                '灵修界。','青岚宗。','降临阵周围人头攒动。',
+                '今日是降临阵的开启之日。','尘界达到筑基期的修士，神魂可经由降临阵抵达灵修界，模拟身躯，悟道修炼，达至更高境界。','降临阵在灵修界一千道年才开启一次，但如今，却提前了五百道年开启。',
+                ] 
+              },
+
+              { 
+                type: "TopToBottom", bgImageId: 13, loop: true, play: true,
+                content: ['宗主说此次反常，盖因有可能成为青岚宗未来的掌门的人，于冥冥之中，将被选中降临而来。',
+                '但具体样貌特征，却没有定论。','宗主此言，勾动众位弟子好奇心，大师姐何语清早早率领一众师姐弟前来迎接。',
+                '何语清拿出太虚宝鉴，内有宗主的神照意志，可照出所有降临之人的境界及重要过往。','“令狐光，男，24岁。','种族：人族',
+                '境界，筑基大圆满。','重要事件：十八岁突破至筑基境。”','“十八岁筑基，天资还不错，可为内门弟子。”',
+                '令狐光顿时兴奋异常，这些降临阵穿越的人，个个都知道来灵修界最重要的事，就是被青岚宗提前选定为内门弟子。',
+                '太虚宝鉴浮空游移，镜面上发出阵阵青色光芒，每一批从降临阵中出来庞大的人流，都被准确判定，一个不漏。',
+                '数万名修士，在一天之内，尽数被筛选完毕，本次结果不太理想，只选出不到百名弟子，内门弟子甚至只有三位。',
+                '何语清不禁有些失望，而至苦闷。灵修界可能是真的后继无人了，这些进来的修士，基础资质是一届不如一届。'
+                ],
+              },
+
+               { 
+                type: "TopToBottom", bgImageId: 14, loop: true, play: true,
+                content: ['“降临阵就要关闭了，还会有人来吗？”','何语清身后的师妹出声道。','就目前已确定入门的这些弟子来看，他们的天赋和能力，还远没有达到能成为宗门未来继承人的标准。',
+                '难道宗主也有出错的时候？','“不清楚。”','何语清俏脸上浮现一抹凝重之色。',
+                '就在这时，降临阵碧色玄光一阵闪烁，浮动流转，一个人影从降临阵中跌落出来，躺在地上半天没有动弹。','如此别致的出场方式，自然吸引了所有人的目光。','此时降临阵碧色玄光闪灭，归于寂然。',
+                '这是降临阵关闭的表现，这最后一个人，就是他！','虽然这人的出场方式有点奇怪，但这也侧面证明他与众不同……此时大部分人心里是这么想的。',
+                
+                ],
+              },
+            ],
+             toChapter: 'WZXX_M1_N1_C004_[N1]' 
+            
+          },
 
         { id: 'C002C_diqizhangA',style: 6, title: '决心！', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
@@ -376,9 +427,13 @@ scenes: [
           sections: [
 
           { key: 'P1', content: ['外边的脚步声越来越近','你总觉得这脚步声是冲着你而来','再这样疑神疑鬼不是办法','你准备先拿一本书躲起来再看','眼前有三本书，因为天色太黑，有些字无法看清楚','李森炎选择拿上哪一本？'],
-          btn: [{title: '《白城？？大全》',tokey: "P3", icon: { id: 6, bindVar: 'biaoqianv28' }, varsOn: ['biaoqianv28'] },
-          {title: '《思无？》', tokey: "P7", icon: { id: 6, bindVar: 'biaoqianv29' }, varsOn: ['biaoqianv29'] },
-          {title: '《凌云？？》', tokey: "P2", icon: { id: 7, bindVar: 'biaoqianv30' }, varsOn: ['biaoqianv30']},]},
+          btn: [{title: '《白城？？大全》',tokey: "P3", dropIds: ['WZXX_M1_N1_C002A_V_Vdrop1'],  icon: { id: 6, bindVar: 'biaoqianv28' }, varsOn: ['biaoqianv28']},
+          {title: '《思无？》', tokey: "P4", dropIds: ['WZXX_M1_N1_C002A_V_Vdrop2'], icon: { id: 6, bindVar: 'biaoqianv29' }, varsOn: ['biaoqianv29']},
+          {title: '《凌云？？》', tokey: "P2C", dropIds: [ 'WZXX_M1_N1_C002A_V_Vdrop3'],  icon: { id: 7, bindVar: 'biaoqianv30' }, varsOn: ['biaoqianv30']},]},
+         
+          # btn: [{title: '《白城？？大全》',tokey: "P3", icon: { id: 6, bindVar: 'biaoqianv28' }, varsOn: ['biaoqianv28'] },
+          # {title: '《思无？》', tokey: "P7", icon: { id: 6, bindVar: 'biaoqianv29' }, varsOn: ['biaoqianv29'] },
+          # {title: '《凌云？？》', tokey: "P2", icon: { id: 7, bindVar: 'biaoqianv30' }, varsOn: ['biaoqianv30']},]},
 
           { key: 'P2', content: ['拿起书，李森炎一个翻滚，躲在书房的床椅下面','说时迟，那时快，书房的门被打开',[{ sounds: [{ soundId: 'SE_UE_0009',}] }],'然后似乎是看到没有人，书房的门又被关上了','李森炎不敢走出房间，先翻了眼刚才拿到的书',[{games: {id: 4, imgName: "凌云要诀"}}],'这时候才能仔细看到书名',
           '《凌云要诀》。',[{ sounds: [{ soundId: 'SE_UE_0001',}] }],'这名字听着就很有修真内味了。','果不其然，他翻开迅速扫了几眼，发现这本书竟是关于‘凌云步’的修炼之法',['盖章过关'],  ],

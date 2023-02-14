@@ -16,7 +16,7 @@ challenge: {
           { key: 'speed', value: 50 },
           { key: 'shield', value: 50 },
           { key: 'physicalAttack', value: 20 },
-          { key: 'physicalDefense', value: 10 },
+          { key: 'physicalDefense', value: 10 },     
           { key: 'magicDefense', value: 10 },
          ],
       },
