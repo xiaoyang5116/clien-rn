@@ -53,7 +53,7 @@ const WorldButton = (props) => {
                 <FastImage style={{
                     width: px2pd(260),
                     height: px2pd(160),
-                    opacity: (props.user.worldId != worldId) ? 0.6 : 1,
+                    opacity: (props.worldId != worldId) ? 0.6 : 1,
                 }} source={img} />
             </TouchableOpacity>
             {/* <TextButton title={props.name} onPress={() => onSelected(worldId)} /> */}

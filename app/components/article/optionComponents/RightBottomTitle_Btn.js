@@ -33,7 +33,7 @@ const RightBottomTitle_Btn = props => {
         style={{ width: px2pd(1067), height: px2pd(56), justifyContent: 'center', paddingLeft: px2pd(292), }}
         source={require('../../../../assets/button/topbot_btn/right_bottom2.png')}
       >
-        <Text style={{ fontSize: 14, width: px2pd(713), textAlign: 'center', color: "#000" }}>{rightBottom_Title}</Text>
+        <Text style={{ fontSize: 14, width: px2pd(713), textAlign: 'center', color: "#000", paddingBottom: px2pd(4) }}>{rightBottom_Title}</Text>
       </ImageBackground>
     </View>
   )
