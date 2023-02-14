@@ -371,11 +371,20 @@ drops: [
   { id: 'WZXX_M1_N1_C002_V_Vdrop5',  alterAttrs: ['勇气,1'],},
   { id: 'WZXX_M1_N1_C002_V_Vdrop6',  alterAttrs: ['嫌弃,1'],},
   { id: 'WZXX_M1_N1_C002_V_Vdrop7',  alterAttrs: ['崇敬,2'],},
+
+  { id: 'WZXX_M1_N1_C002_V_Vdrop8',  alterAttrs: ['悟性,1'],},
+  { id: 'WZXX_M1_N1_C002_V_Vdrop9',  alterAttrs: ['节操,1'],},
+  { id: 'WZXX_M1_N1_C002_V_Vdrop10',  alterAttrs: ['逼格,1'],},
+
+
   
   { id: 'WZXX_M1_N1_C003_V_Vdrop1',  alterAttrs: ['正义,1'],},
   { id: 'WZXX_M1_N1_C003_V_Vdrop2',  alterAttrs: ['颜值,1'],},
   { id: 'WZXX_M1_N1_C003_V_Vdrop3',  alterAttrs: ['节操,-1'],},
   { id: 'WZXX_M1_N1_C003_V_Vdrop4',  alterAttrs: ['邪恶,1'],},
+
+
+
 
   
 ]

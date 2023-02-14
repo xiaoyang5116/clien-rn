@@ -36,6 +36,13 @@ scenes: [
       #
       { id: "biaoqianv16", min: 0, max: 1 } ,
       { id: "biaoqianv17", min: 0, max: 1 } ,
+
+      { id: "biaoqianv20", min: 0, max: 1 } ,
+      { id: "biaoqianv21", min: 0, max: 1 } ,
+      { id: "biaoqianv22", min: 0, max: 1 } ,
+      { id: "biaoqianv23", min: 0, max: 1 } ,
+      { id: "biaoqianv24", min: 0, max: 1 } ,
+      { id: "biaoqianv25", min: 0, max: 1 } ,
       ],
 
       # 动作定义
@@ -66,20 +73,23 @@ scenes: [
         options: [     
             {
              title: "这位兄台，这是何意？",
-             andVarsOff: ['v1A'], varsOn: ['v2A','v3A'],
+             andVarsOff: ['v1A'], varsOn: ['v2A','v3A','biaoqianv20'],
              alwayDisplay: true, 
+             icon: { id: 7, bindVar: 'biaoqianv20' },
              dropIds: [ 'WZXX_M1_N1_C001V_Vdrop100'], 
             },
             {
              title: "兄弟，拍戏呢？要不给个替身吧？",
-             andVarsOff: ['v2A'], varsOn: ['v1A','v3A'], 
+             andVarsOff: ['v2A'], varsOn: ['v1A','v3A','biaoqianv21'], 
              alwayDisplay: true,
+             icon: { id: 7, bindVar: 'biaoqianv21' },
              dropIds: [ 'WZXX_M1_N1_C001V_Vdrop101'], 
             },
             {
              title: "敢将剑架在我脖子上的人你是第一个",
-             andVarsOff: ['v3A'], varsOn: ['v2A','v1A'],
+             andVarsOff: ['v3A'], varsOn: ['v2A','v1A','biaoqianv22'],
              alwayDisplay: true,
+             icon: { id: 7, bindVar: 'biaoqianv22' },
              dropIds: [ 'WZXX_M1_N1_C001V_Vdrop102'], 
             },
 
@@ -89,19 +99,29 @@ scenes: [
        { 
         id: 'WZXX_M1_N1_C001V_SS', desc: '选项', 
         options: [     
-            {title: "谁能保我不死，我就和谁说",
-            andVarsOff: ['v1B'], varsOn: ['v2B','v3B'],
-             alwayDisplay: true, 
-            dropIds: ['WZXX_M1_N1_C001V_Vdrop103'], },
+            {
+            title: "谁能保我不死，我就和谁说",
+            andVarsOff: ['v1B'], varsOn: ['v2B','v3B','biaoqianv23'],
+            alwayDisplay: true, 
+            icon: { id: 7, bindVar: 'biaoqianv23' },
+            dropIds: ['WZXX_M1_N1_C001V_Vdrop103'], 
+            },
 
-            {title: "求求你们别杀我啊",
-            andVarsOff: ['v2B'], varsOn: ['v1B','v3B'], 
-             alwayDisplay: true,
-            dropIds: ['WZXX_M1_N1_C001V_Vdrop104'], },
-            {title: "想要让我拿出来，可是需要好处的",
-            andVarsOff: ['v3B'], varsOn: ['v2B','v1B'],
-             alwayDisplay: true,
-            dropIds: ['WZXX_M1_N1_C001V_Vdrop105'], },
+            {
+            title: "求求你们别杀我啊",
+            andVarsOff: ['v2B'], varsOn: ['v1B','v3B','biaoqianv24'], 
+            alwayDisplay: true,
+            icon: { id: 7, bindVar: 'biaoqianv24' },
+            dropIds: ['WZXX_M1_N1_C001V_Vdrop104'], 
+            },
+
+            {
+            title: "想要让我拿出来，可是需要好处的",
+            andVarsOff: ['v3B'], varsOn: ['v2B','v1B','biaoqianv25'],
+            alwayDisplay: true,
+            icon: { id: 7, bindVar: 'biaoqianv25' },
+            dropIds: ['WZXX_M1_N1_C001V_Vdrop105'], 
+            },
 
         ],
       },

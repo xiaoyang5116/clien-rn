@@ -414,12 +414,14 @@ scenes: [
 
           { key: 'P10', content: ['你仔细打量了下这三个人，觉得还是村民最靠谱','于是你，走上前去，与他攀谈',
           '“大哥，和你打听个事儿呗……”你一连串问了好多问题','那村民也很有耐心的听着，但这个村民是个哑巴，他帮不上你',],
-          btn: [{title: '算了，直接回家',dialogs: ['C002A_fenzhiA'],},]},
+          btn: [{title: '算了，直接回家',dialogs: ['C002A_fenzhiA'],},]
+          },
 
           { key: 'P11', content: ['思量之下，你选择了向乞丐打听','毕竟丐帮，也算是天下第一大帮了','你朝那乞丐走近，就听见他口里吟着什么————',
           '“蓬头垢面万家客，衣衫褴褛千城游。身无分文浑不怕，腰有万贯不自由。”','闻言，你就更是笃定自己选的没错了','你上前，拍了拍那乞丐的肩，“大哥，向你打听个事儿。”',
           '“五两银子一次。十辆银子三次，小兄弟要打听什么？”乞丐抬起那市侩的脸，笑吟吟的开口',],
-          btn: [{title: '我去，你抢钱呢？！',tokey: "P11A"},]},
+          btn: [{title: '我去，你抢钱呢？！',tokey: "P11A"},]
+          },
 
           { key: 'P11A', content: [
           '“我去，你抢钱啊！”李森炎深感晦气，后退了一步。',
@@ -439,7 +441,7 @@ scenes: [
     },
 
      #选项对话4
-          { id: 'C002A_fenzhimaoA',style: 6, title: '事不宜迟，哪有时间逗猫，离开', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+    { id: 'C002A_fenzhimaoA',style: 6, title: '事不宜迟，哪有时间逗猫，离开', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { 
             key: 'M1', content: ['时间不早了，你决定先去买簪子','所以没有理会那狸猫','忽然————',[{ sounds: [{ soundId: 'SE_AM_0001',}] }] ,'狸猫猛地跳起，将毫无防备的你，扑倒在地',['震屏1'],'“我去！还搞偷袭？不讲武德！”你跌倒后，十分的狼狈',],
@@ -449,7 +451,7 @@ scenes: [
     },
 
      #选项对话5
-          { id: 'C002A_fenzhimaoB',style: 6, title: '回屋拿粮，逗逗猫再去买簪子', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+    { id: 'C002A_fenzhimaoB',style: 6, title: '回屋拿粮，逗逗猫再去买簪子', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'M2', content: ['狸花猫仰起脖子，瞪圆了眼，直勾勾的看着你','你走到哪儿，它便更到哪儿','现在空闲下来，你便想逗一逗',[{ games: {id: 2}, }],'于是你进屋拿了些猫食，摆在它面前',[{ sounds: [{ soundId: 'SE_AM_0002' }]}],'看着它大快朵颐的模样……',],
           btn: [{title: "忽然想起来什么……",toChapter: "WZXX_M1_N1_C002_[N2]"}]},
@@ -469,7 +471,7 @@ scenes: [
       #选项对话7
           { id: 'C002A_fenzhiDH2',style: 6, title: '好汉不吃眼前亏', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'M1', content: [' 李森炎不管不顾，“哐”一下跪在地上：“壮士饶命！您真的认错人了，我就是个平头老百姓，我就叫闫二狗，长了一副大众脸，我真不是你要找的人！”','大汉看着眼前这人声泪俱下地求饶，还一个劲磕响头，面露鄙夷地凌乱了：“这人的性格，和主子要找的李家小少爷完全不搭边啊！不是说好学富五车，天资聪颖，英俊潇洒么？”','手下甲乙丙：“也没说他胆肥啊。”',[{ sounds: [{ soundId: 'SE_AM_0001' }] }] ,'眼看周围的人一拥而上，蹲在一旁的狸花猫忽然窜起，照着其中一个人的脸狠狠几爪，哀嚎声传来，你乘乱窜了出去，朝着反方向狂奔而去',],
+          { key: 'M1', content: ['李森炎不管不顾，“哐”一下跪在地上：“壮士饶命！您真的认错人了，我就是个平头老百姓，我就叫闫二狗，长了一副大众脸，我真不是你要找的人！”','大汉看着眼前这人声泪俱下地求饶，还一个劲磕响头，面露鄙夷地凌乱了：“这人的性格，和主子要找的李家小少爷完全不搭边啊！不是说好学富五车，天资聪颖，英俊潇洒么？”','手下甲乙丙：“也没说他胆肥啊。”',[{ sounds: [{ soundId: 'SE_AM_0001' }] }] ,'眼看周围的人一拥而上，蹲在一旁的狸花猫忽然窜起，照着其中一个人的脸狠狠几爪，哀嚎声传来，你乘乱窜了出去，朝着反方向狂奔而去',],
           btn: [{title: "进巷子里先躲一会儿", toChapter: "WZXX_M1_N1_C002_[N4]"},{title: 继续跑！马不停蹄的跑！,toChapter: "WZXX_M1_N1_C002_[N4]"}]},
           
         ],

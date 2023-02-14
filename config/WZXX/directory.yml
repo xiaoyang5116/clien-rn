@@ -164,9 +164,9 @@ directory: [
           },
 
           {
-          point: [1, -5], title: '第二章 救母 畅通无阻',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N13]',
-          toChapter: 'WZXX_M1_N1_C002_[N13]', links: [[0, -6],[0, -4]] 
+          point: [1, -5], title: '第二章 为时已晚',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N8]',
+          toChapter: 'WZXX_M1_N1_C002_[N8]', links: [[0, -6],[0, -4]] 
           },
 
           {
