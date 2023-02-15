@@ -241,8 +241,8 @@ directory: [
 
           { 
           point: [0, -14], title: '第四章 打斗之后',
-          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N2]' ,
-          toChapter: 'WZXX_M1_N1_C004_[N2]', links: [[0, -15]], 
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N5]' ,
+          toChapter: 'WZXX_M1_N1_C004_[N5]', links: [[0, -15]], 
           },
 
 

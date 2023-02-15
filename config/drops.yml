@@ -142,7 +142,7 @@ drops: [
   { id: 'WZXX_M1_N1_C001V_drop11',  sendProps: '887,100,showBag',},
   #887铜币WZXX_M1_N1_C001A_V
   { id: 'WZXX_M1_N1_C001A_V_Vdrop1', sendProps: '887,10,showBag', },
-  { id: 'WZXX_M1_N1_C001A_V_Vdrop2', alterAttrs: ['灵性,1'] },
+  { id: 'WZXX_M1_N1_C001A_V_Vdrop2', alterAttrs: ['勇气,1'] },
   #600白城冷笑话
   { id: 'WZXX_M1_N1_C002A_V_Vdrop1', sendProps: '600,1,showBag', },
   #601思无邪
@@ -314,6 +314,11 @@ drops: [
 
   { id: 'WZXX_M1_N1_C002C_V_gameover01',  sendProps: '383,1,showBag',},
   { id: 'WZXX_M1_N1_C002C_V_gameover2',  sendProps: '383,1,showBag',},
+
+  { id: 'WZXX_M1_N1_C002C_V_Vdrop1',   alterAttrs: ['入魔,1'],},
+  { id: 'WZXX_M1_N1_C002C_V_Vdrop2',   alterAttrs: ['勇气,1'],},
+  { id: 'WZXX_M1_N1_C002C_V_Vdrop3',   alterAttrs: ['入道,1'],},
+
 
   { id: 'WZXX_M1_N1_CC035_V_gameover00',  sendProps: '383,1,showBag',},
 

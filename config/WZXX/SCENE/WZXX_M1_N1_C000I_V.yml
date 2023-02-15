@@ -2657,7 +2657,9 @@ scenes: [
       {
         id: 'C1A', desc: '林中小路，曲径幽幽',
         options: [
-         { title: '【挂机战斗】',icon: { id: 18 },challenge: 'C000I_V_MAP_0_1_VS_2', nextChat: 'C2'}, 
+         { title: '【挂机战斗】',icon: { id: 18 },challenge: 'C000I_V_MAP_0_1_VS_2', }, 
+         { title: '【灌木丛】', toScene: 'C000I_V_MAP1_0_-2'}, 
+         { title: '【遮挡的道路】',toScene: 'C000I_V_MAP1_-1_-2'}, 
         ],
       },
 
@@ -3101,7 +3103,10 @@ scenes: [
       {
         id: 'C1A', desc: '东郊平原外的丘陵，经常有野兽躲藏于此',
         options: [
-         { title: '【挂机战斗】',challenge: 'C000I_V_MAP_0_2_VS_2', nextChat: 'C2'}, 
+         { title: '【挂机战斗】',challenge: 'C000I_V_MAP_0_2_VS_2', }, 
+         { title: '【繁茂的竹林】', toScene: 'C000I_V_MAP2_2_-1'}, 
+         { title: '【小型的池塘】',toScene: 'C000I_V_MAP2_2_0'}, 
+         { title: '【隐秘的小路】',toScene: 'C000I_V_MAP2_2_1'}, 
         ],
       },
 
@@ -3144,6 +3149,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_3A'],  nextChat: 'C2'  },
+
     ],
 
     # 对话选项
@@ -3198,6 +3205,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_4A'],  nextChat: 'C2'  },
+
     ],
 
     # 对话选项
@@ -3217,7 +3226,7 @@ scenes: [
         id: 'C2', desc: '去别处探险————',
         options: [
          { title: '【东郊丘陵】', toScene: 'C000I_V_MAP2_1_0'}, 
-         { title: '【隐秘的小路】',toScene: 'C000I_V_MAP2_2_1'}, 
+        #  { title: '【隐秘的小路】',toScene: 'C000I_V_MAP2_2_1'}, 
         ],
       },
 
@@ -3252,6 +3261,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_5A'],  nextChat: 'C2'  },
+
     ],
 
     # 对话选项
@@ -3271,7 +3282,7 @@ scenes: [
         id: 'C2', desc: '去别处探险————',
         options: [
          { title: '【未知的山洞】', toScene: 'C000I_V_MAP2_3_1'}, 
-         { title: '【东郊的丘陵】',toScene: 'C000I_V_MAP2_0_-1'}, 
+         { title: '【东郊丘陵】',toScene: 'C000I_V_MAP2_1_0'}, 
         ],
       },
 
@@ -3306,6 +3317,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_6A'],  nextChat: 'C2'  },
+
     ],
 
     # 对话选项
@@ -3324,8 +3337,8 @@ scenes: [
       {
         id: 'C2', desc: '去别处探险————',
         options: [
-         { title: '【未知的山洞】', toScene: 'C000I_V_MAP2_3_1'}, 
-         { title: '【东郊的丘陵】',toScene: 'C000I_V_MAP2_0_-1'}, 
+         { title: '【繁茂的竹林】', toScene: 'C000I_V_MAP2_2_-1'}, 
+        #  { title: '【东郊的丘陵】',toScene: 'C000I_V_MAP2_0_-1'}, 
         ],
       },
 
@@ -3360,6 +3373,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_7A'],  nextChat: 'C2'  },
+
     ],
 
     # 对话选项
