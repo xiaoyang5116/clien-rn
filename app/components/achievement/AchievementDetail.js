@@ -17,7 +17,7 @@ const AchievementDetail = (props) => {
   const { title, rarity, detail } = item
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+    <View style={{ flex: 1, backgroundColor: "#fff", zIndex: 99 }}>
       <SafeAreaView style={{ flex: 1, }}>
         <View style={{ alignItems: 'center' }}>
           <Text style={{ fontSize: 20, color: "#000" }}>{title}</Text>
