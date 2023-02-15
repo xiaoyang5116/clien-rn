@@ -36,7 +36,7 @@ export const ExitButton = (props) => {
 }
 
 export const ImageBtn = (props) => {
-  const { onPress, source, selectedSource, imgStyle, containerStyle, children } = props
+  const { onPress, source, selectedSource, imgStyle, containerStyle, children, disabled = false } = props
   const [isPress, setIsPress] = useState(false)
 
   return (
@@ -45,6 +45,7 @@ export const ImageBtn = (props) => {
       onPressOut={() => { setIsPress(!isPress) }}
       onPress={onPress}
       style={imgStyle}
+      disabled={disabled}
     >
       <View style={{ justifyContent: 'center', alignItems: "center", ...imgStyle, ...containerStyle, }}>
         {
