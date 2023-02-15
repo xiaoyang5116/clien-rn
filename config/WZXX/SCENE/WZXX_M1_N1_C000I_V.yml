@@ -248,7 +248,7 @@ scenes: [
         id: 'C1', desc: '建筑风格狂野，棱角分明，很符合自身定位', 
         options: [ 
          { title: '【可以购买装备和兵器】',toShop: 'default_1',  nextChat: 'C4'},  
-         { title: '【和木人练习战斗】', challenge: 'C000I_V_MAP_0_0_VS_8', nextChat: 'C3'}, 
+         { title: '【和木人练习战斗】', icon: { id: 18 }, challenge: 'C000I_V_MAP_0_0_VS_8', nextChat: 'C3'}, 
          { title: '【兵器铺告示】', nextChat: 'C2'}, 
          { title: '【移动>>>】', nextChat: 'X1'}, 
         ],
@@ -2598,7 +2598,7 @@ scenes: [
       {
         id: 'C1', desc: '一片茂密的森林，人烟稀少，鸟兽颇多',
         options: [
-         { title: '【林间小路】', toScene: 'C000I_V_MAP1_0_-3'}, 
+         { title: '【林间小路】', toScene: 'C000I_V_MAP1_0_-1'}, 
          { title: '【返回坊市内】', toScene: 'C000I_V_MAP_3_-6'}, 
         ],
       },
@@ -2635,6 +2635,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_1'], nextChat: 'C2'  },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_1',
        'WZXX_M1_N1_C000I_V/zhandou_7','WZXX_M1_N1_C000I_V/zhandou_3','WZXX_M1_N1_C000I_V/zhandou_4','WZXX_M1_N1_C000I_V/zhandou_5','WZXX_M1_N1_C000I_V/zhandou_6'
        ], nextChat: 'C1A'  },
@@ -2648,23 +2649,24 @@ scenes: [
         options: [
          { title: '【偶遇 拦路虎】', icon: { id: 18 },varsOn: ['WZXX_M1_N1_C000I_V/zhandou_1']
          , varsOff: ['WZXX_M1_N1_C000I_V/v_icon_101'],
-          challenge: 'C000I_V_MAP_0_1_VS_1', nextChat: 'C2'}, 
+          challenge: 'C000I_V_MAP_0_1_VS_1', nextChat: 'C2'
+         }, 
         ],
       },
 
       {
         id: 'C1A', desc: '林中小路，曲径幽幽',
         options: [
-         { title: '【挂机战斗】',challenge: 'C000I_V_MAP_0_1_VS_2', nextChat: 'C2'}, 
+         { title: '【挂机战斗】',icon: { id: 18 },challenge: 'C000I_V_MAP_0_1_VS_2', nextChat: 'C2'}, 
         ],
       },
 
       {
         id: 'C2', desc: '去别处探险————',
         options: [
-         { title: '【灌木丛】', toScene: 'C000I_V_MAP1_0_-3'}, 
-         { title: '【遮挡的道路】',toScene: 'C000I_V_MAP1_0_-3'}, 
-         { title: '【坊市出入口】',toScene: 'C000I_V_MAP_3_-6'}, 
+         { title: '【灌木丛】', toScene: 'C000I_V_MAP1_0_-2'}, 
+         { title: '【遮挡的道路】',toScene: 'C000I_V_MAP1_-1_-2'}, 
+        #  { title: '【坊市出入口】',toScene: 'C000I_V_MAP_3_-6'}, 
         ],
       },
 
@@ -2700,6 +2702,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_3'], nextChat: 'C2'  },
+
     ],
 
     # 对话选项
@@ -2719,7 +2723,7 @@ scenes: [
         id: 'C2', desc: '去别处探险————',
         options: [
          { title: '【西南山丘】', toScene: 'C000I_V_MAP1_0_-3'}, 
-         { title: '【破旧的庭院】', toScene: 'C000I_V_MAP1_0_-4'}, 
+        #  { title: '【破旧的庭院】', toScene: 'C000I_V_MAP1_0_-4'}, 
          { title: '【林间小路】', toScene: 'C000I_V_MAP1_0_-1'}, 
         ],
       },
@@ -2755,6 +2759,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_4'], nextChat: 'C2'  },
+
     ],
 
     # 对话选项
@@ -2809,6 +2815,7 @@ scenes: [
     ],
     # 事件定义
     events: [
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_5'], nextChat: 'C2'  },
        { type: 'enter',  nextChat: 'C1'  },
     ],
 
@@ -2828,7 +2835,7 @@ scenes: [
       {
         id: 'C2', desc: '去别处探险————',
         options: [
-         { title: '【西南山丘】', toScene: 'C000I_V_MAP1_0_-3'}, 
+        #  { title: '【西南山丘】', toScene: 'C000I_V_MAP1_0_-3'}, 
          { title: '【遮挡的道路】', toScene: 'C000I_V_MAP1_-1_-2'}, 
         ],
       },
@@ -2864,6 +2871,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_6'], nextChat: 'C2'  },
+
     ],
 
     # 对话选项
@@ -2880,7 +2889,7 @@ scenes: [
       {
         id: 'C2', desc: '去别处探险————',
         options: [
-         { title: '【洞窟】', toScene: 'C000I_V_MAP1_-2_-3'}, 
+        #  { title: '【洞窟】', toScene: 'C000I_V_MAP1_-2_-3'}, 
          { title: '【灌木丛】', toScene: 'C000I_V_MAP1_0_-2'}, 
          { title: '【破旧的庭院】', toScene: 'C000I_V_MAP1_0_-4'}, 
         ],
@@ -2917,6 +2926,8 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_7'], nextChat: 'C2'  },
+
     ],
 
     # 对话选项
@@ -2934,7 +2945,7 @@ scenes: [
         id: 'C2', desc: '去别处探险————',
         options: [
          { title: '【西南山丘】', toScene: 'C000I_V_MAP1_0_-3'}, 
-         { title: '【灌木丛】', toScene: 'C000I_V_MAP1_0_-2'}, 
+        #  { title: '【灌木丛】', toScene: 'C000I_V_MAP1_0_-2'}, 
         ],
       },
 
@@ -3069,6 +3080,7 @@ scenes: [
     # 事件定义
     events: [
        { type: 'enter',  nextChat: 'C1'  },
+       { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_1A'],  nextChat: 'C2'  },
        { type: 'enter', andVarsOn: ['WZXX_M1_N1_C000I_V/zhandou_1A',
        'WZXX_M1_N1_C000I_V/zhandou_7A','WZXX_M1_N1_C000I_V/zhandou_3A','WZXX_M1_N1_C000I_V/zhandou_4A','WZXX_M1_N1_C000I_V/zhandou_5A','WZXX_M1_N1_C000I_V/zhandou_6A'
        ], nextChat: 'C1A'  

@@ -1630,7 +1630,7 @@ scenes: [
       { 
         id: 'C2', desc: "演武场一边是镇子，另外一侧是陡峭的悬崖……\n这个看起来挺危险的。", 
         options: [ 
-         { title: '【和木人练习战斗】', challenge: 'f_x1', varsOn: ['T1'], nextChat: 'C4'}, 
+         { title: '【和木人练习战斗】',icon: { id: 18 }, challenge: 'f_x1', varsOn: ['T1'], nextChat: 'C4'}, 
          { title: '【<<<等有比赛再参观，返回】', varsOn: ['T1'], nextChat: 'C1'}, 
         ],
       },
