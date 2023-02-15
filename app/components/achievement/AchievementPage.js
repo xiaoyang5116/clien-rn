@@ -6,18 +6,20 @@ import {
   FlatList,
   TouchableOpacity,
   Platform,
+  ImageBackground,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
 import { connect, action, getAchievementBadgeImage } from '../../constants';
-import { TextButton } from '../../constants/custom-ui';
+import { ExitButton, ImageBtn, TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import RootView from '../RootView';
 import AchievementDetail from './AchievementDetail';
+import { px2pd } from '../../constants/resolution';
 
 
 const AchievementComponent = props => {
-  const { data, title: titleText } = props;
+  const { data, } = props;
 
   const openAchievementDetail = (item) => {
     const key = RootView.add(
@@ -34,78 +36,58 @@ const AchievementComponent = props => {
 
     return (
       <TouchableOpacity
-        style={{ width: '50%', marginBottom: 12 }}
-        onPress={() => { openAchievementDetail(item) }}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-          }}>
-          <View>
-            <FastImage style={{ width: 50, height: 50 }} source={img} />
-          </View>
-          <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12 }}>
+        style={{ width: '50%', marginBottom: 12, justifyContent: 'center', alignItems: 'center' }}
+        onPress={() => { openAchievementDetail(item) }}
+      >
+        <ImageBackground
+          style={{ width: px2pd(502), height: px2pd(218), flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
+          source={require('../../../assets/achievement/border.png')}
+        >
+          <FastImage style={{ width: px2pd(166), height: px2pd(196) }} source={img} />
+          <View style={{ width: px2pd(280) }}>
             <View style={styles.titleContainer}>
-              <Text style={{ fontSize: 16, color: '#000' }}>{title}</Text>
+              <Text style={{ fontSize: 16, color: '#e6d5be' }}>{title}</Text>
             </View>
             <View style={styles.descContainer}>
-              <Text style={{ fontSize: 14, color: '#707070' }}>{desc}</Text>
+              <Text style={{ fontSize: 14, color: '#d8d8d8' }}>{desc}</Text>
             </View>
           </View>
-        </View>
+        </ImageBackground>
       </TouchableOpacity>
     );
   };
 
   return (
-    <View style={{ flex: 1, paddingLeft: 12, paddingRight: 12 }}>
-      <View
-        style={{
-          width: 140,
-          height: 40,
-          backgroundColor: '#BAE8FF',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text style={{ fontSize: 20, color: '#000' }}>{titleText}</Text>
-      </View>
-      <View
-        style={{
-          width: '100%',
-          height: 1,
-          backgroundColor: '#ccc',
-          marginTop: 12,
-          marginBottom: 12,
-        }}
-      />
-      <View style={{ flex: 1 }}>
-        <FlatList data={data} renderItem={_renderItem} numColumns={2} />
-      </View>
+    <View style={{ flex: 1, marginTop: 20 }}>
+      <FlatList data={data} renderItem={_renderItem} numColumns={2} />
     </View>
   );
 };
 
-const Footer = ({ setSwitchIndex, onClose }) => {
+const Footer = ({ setSwitchIndex, onClose, switchIndex }) => {
   return (
     <View style={styles.footerContainer}>
       <View>
-        <TextButton title={'退出'} onPress={onClose} />
+        <ExitButton onPress={onClose} />
       </View>
       <View style={styles.footerContainer}>
-        <TextButton
-          title={'通常成就'}
-          onPress={() => {
-            setSwitchIndex('通常成就');
-          }}
+        <ImageBtn
+          imgStyle={{ width: px2pd(353), height: px2pd(184) }}
+          onPress={() => { setSwitchIndex('通常'); }}
+          disabled={switchIndex === "通常" ? true : false}
+          source={switchIndex === "通常" ? require('../../../assets/achievement/pt_2.png') : require('../../../assets/achievement/pt_1.png')}
+          selectedSource={require('../../../assets/achievement/pt_2.png')}
         />
-        <TextButton
-          title={'稀有成就'}
-          onPress={() => {
-            setSwitchIndex('稀有成就');
-          }}
-          containerStyle={{ marginLeft: 12 }}
-        />
+        <View style={{ marginLeft: 12 }}>
+          <ImageBtn
+            imgStyle={{ width: px2pd(350), height: px2pd(184) }}
+            onPress={() => { setSwitchIndex('稀有'); }}
+            disabled={switchIndex === "稀有" ? true : false}
+            source={switchIndex === "稀有" ? require('../../../assets/achievement/xy_2.png') : require('../../../assets/achievement/xy_1.png')}
+            selectedSource={require('../../../assets/achievement/xy_2.png')}
+          />
+        </View>
+
       </View>
     </View>
   );
@@ -113,40 +95,17 @@ const Footer = ({ setSwitchIndex, onClose }) => {
 
 const AchievementPage = props => {
   const { onClose, achievementData } = props;
-  const [switchIndex, setSwitchIndex] = useState('通常成就');
-
-  if (achievementData.length === 0) {
-    return (
-      <View style={styles.viewContainer}>
-        <SafeAreaView style={{ flex: 1 }}>
-          <View style={{ flex: 1 }}>
-            <Text>还没有获得成就</Text>
-          </View>
-          <Footer setSwitchIndex={setSwitchIndex} onClose={onClose} />
-        </SafeAreaView>
-      </View>
-    )
-  }
+  const [switchIndex, setSwitchIndex] = useState('通常');
+  const data = achievementData.filter(item => item.type === switchIndex)
 
   return (
     <View style={styles.viewContainer}>
+      <FastImage style={{ position: "absolute", width: "100%", height: "100%" }} source={require('../../../assets/achievement/bg.png')} />
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
-          <View style={{ flex: 1 }}>
-            {switchIndex === '通常成就' && (
-              <AchievementComponent
-                title={'通常成就'}
-                data={achievementData.filter(item => item.type == '通常')}
-              />
-            )}
-            {switchIndex === '稀有成就' && (
-              <AchievementComponent
-                title={'稀有成就'}
-                data={achievementData.filter(item => item.type == '稀有')}
-              />
-            )}
-          </View>
-          <Footer setSwitchIndex={setSwitchIndex} onClose={onClose} />
+          <FastImage style={{ width: px2pd(1061), height: px2pd(247) }} source={require('../../../assets/achievement/title_img.png')} />
+          <AchievementComponent data={data} />
+          <Footer setSwitchIndex={setSwitchIndex} onClose={onClose} switchIndex={switchIndex} />
         </View>
       </SafeAreaView>
     </View>
@@ -159,7 +118,6 @@ const styles = StyleSheet.create({
   viewContainer: {
     flex: 1,
     zIndex: 99,
-    backgroundColor: '#fff',
   },
   footerContainer: {
     flexDirection: 'row',
@@ -168,18 +126,16 @@ const styles = StyleSheet.create({
     marginBottom: Platform.OS === "android" ? 12 : 0
   },
   titleContainer: {
-    backgroundColor: '#ccc',
+    backgroundColor: '#000',
     width: '100%',
-    height: 20,
+    height: 25,
     justifyContent: 'center',
     alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: '#ABABAB',
+    borderRadius: 2
   },
   descContainer: {
-    backgroundColor: '#ccc',
     width: '100%',
-    height: 20,
+    height: 25,
     justifyContent: 'center',
     alignItems: 'center',
   },

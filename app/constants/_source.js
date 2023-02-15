@@ -125,9 +125,9 @@ const _images = {
     ],
     // 成就徽章
     achievementBadgeImage: [
-        { id: 1, img: require('../../assets/button_icon/1.png'), },
-        { id: 2, img: require('../../assets/button_icon/2.png'), },
-        { id: 3, img: require('../../assets/button_icon/3.png'), },
+        { id: 1, img: require('../../assets/achievement/1.png'), },
+        { id: 2, img: require('../../assets/achievement/2.png'), },
+        { id: 3, img: require('../../assets/achievement/3.png'), },
     ],
     // 场景地图背景图片
     sceneMapBg: [
