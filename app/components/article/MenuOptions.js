@@ -18,11 +18,12 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import OpenUI from '../../pages/OpenUI';
 
 
 const MENU_OPTIONS = [
   { id: 1, title: '返回主页', icon: 'exit-outline', type: 'Ionicons' },
-  { id: 2, title: '功能未解锁', icon: 'laptop', type: 'AntDesign' },
+  { id: 2, title: '旅行记述', icon: 'laptop', type: 'AntDesign' },
   { id: 3, title: '功能未解锁', icon: 'linechart', type: 'AntDesign' },
   { id: 4, title: '功能未解锁', icon: 'filter', type: 'AntDesign' },
   { id: 5, title: '功能未解锁', icon: 'sharealt', type: 'AntDesign' },
@@ -55,6 +56,14 @@ const MenuOptions = (props) => {
           AppDispath({ type: 'ArticleModel/cleanup' });
         }
       }
+      if (item.id == 2) {
+        pressHandler = () => {
+          // 关闭 按钮浮层页面
+          DeviceEventEmitter.emit(EventKeys.OPTIONS_HIDE)
+          OpenUI.open("ChengJiu")
+        }
+      }
+
     } else {
       pressHandler = item.action;
     }
