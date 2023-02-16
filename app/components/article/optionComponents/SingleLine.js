@@ -18,6 +18,22 @@ const SingleLine = (props) => {
     }
   }
 
+  if (disabled) {
+    return (
+      <View style={{ width: "100%", alignItems: "center" }}>
+        <ImageBtn
+          imgStyle={{ width: px2pd(1067), height: px2pd(98), }}
+          onPress={handlerOnPress}
+          source={require('../../../../assets/button/topbot_btn_2/content1_2.png')}
+          selectedSource={require('../../../../assets/button/topbot_btn_2/content2_2.png')}
+        >
+          {icon?.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
+          <Text style={{ fontSize: 14, color: "#000" }}>{title}</Text>
+        </ImageBtn>
+      </View>
+    )
+  }
+
   return (
     <View style={{ width: "100%", alignItems: "center" }}>
       <ImageBtn

@@ -19,6 +19,30 @@ const LeftTopTitle_Btn = props => {
       onPress()
     }
   }
+
+  if (disabled) {
+    return (
+      <View style={{ width: "100%", alignItems: "center" }}>
+        <ImageBackground
+          style={{ width: px2pd(1067), height: px2pd(57), justifyContent: 'center', paddingLeft: 30, paddingTop: px2pd(5) }}
+          source={require('../../../../assets/button/topbot_btn_2/left_top_2.png')}
+        >
+          <Text style={{ fontSize: 14, color: "#000" }}>{leftTop_Title}</Text>
+        </ImageBackground>
+        <ImageBtn
+          imgStyle={{ width: px2pd(1067), height: px2pd(98), }}
+          onPress={handlerOnPress}
+          source={require('../../../../assets/button/topbot_btn_2/left_top1_2.png')}
+          selectedSource={require('../../../../assets/button/topbot_btn_2/left_top2_2.png')}
+        >
+          {icon?.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
+          <Text style={{ fontSize: 14, color: "#000" }}>{title}</Text>
+        </ImageBtn>
+      </View>
+    )
+  }
+
+
   return (
     <View style={{ width: "100%", alignItems: "center" }}>
       <ImageBackground
