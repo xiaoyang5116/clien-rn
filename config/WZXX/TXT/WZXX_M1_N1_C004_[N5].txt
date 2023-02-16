@@ -11,23 +11,24 @@
 　　 两剑相击忽然间狂风怒号
 
 　　一道无形之波震得来人身影急退
+
+　　就在这时。
+
+　　洪亮的一声喝令响起。
+
 #START========================================
   { 
     pop: {
        style: 10, textAnimationType: 'TextSingle',
       sections: [
         
-            { figureId: "08", location: "right", content: ['住手。', ], },
+            { figureId: "11", location: "right", content: ['住手。', ], },
 
       ]
    }
 }
 #END==========================================
 　　“住手。”
-
-　　就在这时。
-
-　　洪亮的一声喝令响起。
 
 　　小师弟的剑尖离李森炎的脖子只有寸许的距离，听到这声音后不敢再下手，生生止住，回剑入鞘。
 
@@ -48,7 +49,7 @@
        style: 10, textAnimationType: 'TextSingle',
       sections: [
         
-            { figureId: "08", location: "right", content: ['小子，老夫见你筋骨不凡，恰逢仙缘，不如老夫收你为关门弟子如何？', ], },
+            { figureId: "11", location: "right", content: ['小子，老夫见你筋骨不凡，恰逢仙缘，不如老夫收你为关门弟子如何？', ], },
 
       ]
    }
