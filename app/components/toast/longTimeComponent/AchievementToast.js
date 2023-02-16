@@ -46,7 +46,8 @@ const LeftToRightSwiper = props => {
         transform: [{ translateX: translateXAnim }],
         width: viewWidth,
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        // justifyContent: 'space-between',
+        // justifyContent: 'center',
         alignItems: 'center',
         opacity: opacityAnim,
       }}>
@@ -118,12 +119,12 @@ const AchievementToast = (props) => {
   const scaleAnim = useRef(new Animated.Value(0)).current;
 
   const showEnd = () => {
-    Animated.timing(opacityAnim, {
-      toValue: 0,
-      duration: 1000,
-      delay: 100,
-      useNativeDriver: false,
-    }).start(() => closeToast(1))
+    // Animated.timing(opacityAnim, {
+    //   toValue: 0,
+    //   duration: 30000,
+    //   delay: 100,
+    //   useNativeDriver: false,
+    // }).start(() => closeToast(1))
   }
 
   const maoPaoFlashing = () => {
@@ -150,40 +151,44 @@ const AchievementToast = (props) => {
         ? isPad() ? 0 : "25%"
         : 30,
     }}>
-      <Animated.Image
-        style={{
-          position: 'absolute',
-          width: px2pd(1080),
-          height: px2pd(404),
-          opacity: bgOpacityAnim,
-        }}
-        source={require('../../../../assets/clues/clues_bg_1.png')}
-      />
       <LeftToRightSwiper maoPaoFlashing={maoPaoFlashing}>
         <FastImage
-          style={{ width: px2pd(1080), height: px2pd(200), position: 'absolute' }}
-          source={require('../../../../assets/clues/clues_bg_2.png')}
+          style={{ width: px2pd(1080), height: px2pd(376), position: 'absolute' }}
+          source={require('../../../../assets/achievement/toast_bg.png')}
         />
         <Animated.Image
           style={{
-            width: px2pd(180), height: px2pd(62), position: 'absolute',
+            width: px2pd(166), height: px2pd(196), position: 'absolute',
+            top: 0,
+            left: px2pd(40),
             marginLeft: isPad() ? 23 : 6,
             transform: [{ scale: scaleAnim }]
           }}
-          source={require('../../../../assets/clues/maopao.png')}
+          source={require('../../../../assets/achievement/1.png')}
         />
+        <Animated.Image
+          style={{
+            width: px2pd(204), height: px2pd(48), position: 'absolute',
+            top: px2pd(150),
+            left: px2pd(40),
+            // marginLeft: isPad() ? 23 : 6,
+            transform: [{ scale: scaleAnim }]
+          }}
+          source={require('../../../../assets/achievement/unlock.png')}
+        />
+
         <View style={{
           width: px2pd(1080),
-          height: px2pd(312),
-          flexDirection: 'row',
-          justifyContent: "flex-start",
-          alignItems: 'flex-end',
-          alignContent: 'center',
-          alignSelf: "center",
-          paddingBottom: isPad() ? 50 : 22,
+          height: px2pd(300),
         }}>
-          <Text style={{ fontSize: 14, color: "#fff", marginLeft: isPad() ? 40 : 23, height: 20 }}>解锁新成就</Text>
-          <ContentComponent content={msg.content} showEnd={showEnd} />
+          <View style={{
+            position: "absolute",
+            left: px2pd(300),
+            top: px2pd(-90)
+            // paddingBottom: isPad() ? 50 : 22,
+          }}>
+            <ContentComponent content={msg.content} showEnd={showEnd} />
+          </View>
         </View>
       </LeftToRightSwiper>
     </Animated.View>
