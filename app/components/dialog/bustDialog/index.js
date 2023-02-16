@@ -126,7 +126,7 @@ const BustDialog = props => {
               style={{
                 height: 150,
                 width: '100%',
-                borderRadius: 12,
+                borderRadius: 5,
                 overflow: "hidden",
               }}
               source={require('../../../../assets/bg/bustDialog_bg.png')}
