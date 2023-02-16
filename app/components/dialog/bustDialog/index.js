@@ -11,6 +11,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { action, connect, getBustImg, ThemeData } from '../../../constants';
 import TextAnimation from '../../textAnimation';
+import { px2pd } from '../../../constants/resolution';
 
 
 const BustImage = ({ figureList, figuresArr, currentSections }) => {
@@ -33,7 +34,7 @@ const BustImage = ({ figureList, figuresArr, currentSections }) => {
               left: location === 'left' ? 0 : null,
               right: location === 'right' ? 0 : null,
             }}>
-            <Image source={bustImg} />
+            <Image style={{ width: px2pd(600), height: px2pd(600) }} source={bustImg} />
           </View>
         )
       })}
@@ -116,7 +117,7 @@ const BustDialog = props => {
     <View style={styles.viewContainer}>
       <TouchableWithoutFeedback onPress={nextDialog}>
         <View style={styles.container}>
-          <View style={{ position: 'absolute', height: 400, width: '95%', }}>
+          <View style={{ position: 'absolute', width: '95%', }}>
             <BustImage
               figureList={figureList}
               figuresArr={figuresArr.current}
@@ -126,7 +127,7 @@ const BustDialog = props => {
               style={{
                 height: 150,
                 width: '100%',
-                borderRadius: 12,
+                borderRadius: 5,
                 overflow: "hidden",
               }}
               source={require('../../../../assets/bg/bustDialog_bg.png')}
@@ -167,8 +168,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   bustContainer: {
-    height: 250,
-    width: '100%',
+    height: px2pd(600),
+    width: "100%",
     justifyContent: 'flex-end',
   },
   contentContainer: {
