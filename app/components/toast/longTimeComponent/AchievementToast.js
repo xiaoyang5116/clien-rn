@@ -119,12 +119,12 @@ const AchievementToast = (props) => {
   const scaleAnim = useRef(new Animated.Value(0)).current;
 
   const showEnd = () => {
-    // Animated.timing(opacityAnim, {
-    //   toValue: 0,
-    //   duration: 30000,
-    //   delay: 100,
-    //   useNativeDriver: false,
-    // }).start(() => closeToast(1))
+    Animated.timing(opacityAnim, {
+      toValue: 0,
+      duration: 30000,
+      delay: 100,
+      useNativeDriver: false,
+    }).start(() => closeToast(1))
   }
 
   const maoPaoFlashing = () => {
