@@ -45,7 +45,7 @@ scenes: [
       { id: "v_icon_111", min: 0, max: 1 },
       { id: "v_icon_112", min: 0, max: 1 },
        
-       #坊市出入口
+       #坊市出口
       { id: "v_icon_113", min: 0, max: 1 },
       #东郊
       { id: "v_icon_114", min: 0, max: 1 },
@@ -1773,7 +1773,7 @@ scenes: [
         id: 'X1', desc: '离开', 
         options: [ 
          { title: '【酒肆】',toScene: 'C000I_V_MAP_3_-4'}, 
-         { title: '【坊市出入口】',toScene: 'C000I_V_MAP_3_-6'}, 
+         { title: '【坊市入口】',toScene: 'C000I_V_MAP_3_-6'}, 
          { title: '【神药斋】', toScene: 'C000I_V_MAP_4_-5'}, 
 
         ],
@@ -1781,7 +1781,7 @@ scenes: [
       ],},
 
   {
-    id: 'C000I_V_MAP_3_-6', name: '坊市出入口',
+    id: 'C000I_V_MAP_3_-6', name: '坊市入口',
     # 指定场景为NPC或MAP场景
     isNpc: false,
     #不显示时间
@@ -2502,7 +2502,7 @@ scenes: [
             "links": [[3,-6],[4,-5]]
           },
           {
-            "title": "坊市出入口",
+            "title": "坊市入口",
             "point": [3,-6],
             "toScene": "C000I_V_MAP_3_-6",
             "icon": { id: 105, bindVar: 'WZXX_M1_N1_C000I_V/v_icon_113'}
@@ -2668,7 +2668,7 @@ scenes: [
         options: [
          { title: '【灌木丛】', toScene: 'C000I_V_MAP1_0_-2'}, 
          { title: '【遮挡的道路】',toScene: 'C000I_V_MAP1_-1_-2'}, 
-        #  { title: '【坊市出入口】',toScene: 'C000I_V_MAP_3_-6'}, 
+         { title: '【坊市出口】',toScene: 'C000I_V_MAP_3_-6'}, 
         ],
       },
 
@@ -2966,7 +2966,7 @@ scenes: [
             data: [
 
               { 
-              point: [0, 0], title: '坊市出入口',
+              point: [0, 0], title: '坊市出口',
               toScene: 'C000I_V_MAP1_0_0', 
               links: [[0, -1], ] 
               },
@@ -3116,6 +3116,7 @@ scenes: [
          { title: '【繁茂的竹林】', toScene: 'C000I_V_MAP2_2_-1'}, 
          { title: '【小型的池塘】',toScene: 'C000I_V_MAP2_2_0'}, 
          { title: '【隐秘的小路】',toScene: 'C000I_V_MAP2_2_1'}, 
+         { title: '【东郊平原】',toScene: 'C000I_V_MAP2_0_0'}, 
         ],
       },
     ],
