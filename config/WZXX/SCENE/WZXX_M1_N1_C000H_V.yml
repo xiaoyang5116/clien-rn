@@ -136,7 +136,7 @@ scenes: [
       {
         id: 'C2', desc: '军事重地，闲杂人等不得进入，不过外面有个木人，可以练习战斗……', 
         options: [
-         { title: '【和木人练习战斗】', challenge: 'f_x1', varsOn: ['T1'], nextChat: 'C4'}, 
+         { title: '【和木人练习战斗】',icon: { id: 18 }, challenge: 'f_x1', varsOn: ['T1'], nextChat: 'C4'}, 
          { title: '【<<<算了，返回】', varsOn: ['T1'], nextChat: 'C1'}, 
         ],
       },

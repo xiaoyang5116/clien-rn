@@ -8,5 +8,10 @@ data:
         { id: "03", name: "为老不尊", avatar: "4", cover: "", bust: 3, },
         { id: "05", name: "吾才是本尊", avatar: "5", cover: "", bust: 4, },
         { id: "04", name: "云云", avatar: "2", cover: "", bust: 5, },
+        { id: "06", name: "小师妹", avatar: "10", cover: "", bust: 10, },
+        { id: "07", name: "大师姐", avatar: "11", cover: "", bust: 11, },
+        { id: "08", name: "路人1", avatar: "12", cover: "", bust: 12, },
+        { id: "09", name: "路人2", avatar: "13", cover: "", bust: 13, },
+
       ],
   }
