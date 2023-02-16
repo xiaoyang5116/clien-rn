@@ -12,8 +12,8 @@
 data:
   [
     #  type: "通常"
-    { id: 1, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细，", "成就详细。", "成就详细。"],},
-    { id: 2, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
+    { id: 1, badgeId: 1, type: "通常", rarity: "黑铁", title: "挂掉十次", desc: "成就简述", detail: ["成就详细，", "成就详细。", "成就详细。"],},
+    { id: 2, badgeId: 1, type: "通常", rarity: "黑铁", title: "挂掉二十次", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
     { id: 3, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
     { id: 4, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
     { id: 5, badgeId: 1, type: "通常", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
@@ -31,5 +31,4 @@ data:
     { id: 105, badgeId: 1, type: "稀有", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
     { id: 106, badgeId: 1, type: "稀有", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
     { id: 107, badgeId: 1, type: "稀有", rarity: "黑铁", title: "成就标题", desc: "成就简述", detail: ["成就详细", "成就详细", "成就详细"],},
-
   ]
