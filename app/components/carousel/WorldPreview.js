@@ -110,6 +110,9 @@ const WorldPreview = (props) => {
               if (props.item.toChapter != undefined) {
                 AppDispath({ type: 'SceneModel/processActions', payload: { toChapter: props.item.toChapter, __sceneId: '' } });
               }
+              if (props.item.dialogs != undefined) {
+                AppDispath({ type: 'SceneModel/processActions', payload: { dialogs: props.item.dialogs, __sceneId: props.item.__sceneId } });
+              }
             } else {
               DeviceEventEmitter.emit(EventKeys.CAROUSEL_SELECT_ITEM, { item: props.item, index: props.index });
             }
