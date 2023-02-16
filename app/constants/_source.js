@@ -10,13 +10,23 @@ const _images = {
         { id: 3, img: require('../../assets/avatar/3.png') },
         { id: 4, img: require('../../assets/avatar/4.png') },
         { id: 5, img: require('../../assets/avatar/5.png') },
+        { id: 9, img: require('../../assets/avatar/9.png') },
+        { id: 10, img: require('../../assets/avatar/10.png') },
+        { id: 11, img: require('../../assets/avatar/11.png') },
+        { id: 12, img: require('../../assets/avatar/12.png') },
+        { id: 13, img: require('../../assets/avatar/13.png') },
     ],
-
+     //半生像npc 
     bust: [
         { id: 1, img: require('../../assets/avatar/1.png') },
         { id: 2, img: require('../../assets/avatar/6.png') },
         { id: 3, img: require('../../assets/avatar/7.png') },
         { id: 8, img: require('../../assets/avatar/8.png') },
+        { id: 9, img: require('../../assets/avatar/9.png') },
+        { id: 10, img: require('../../assets/avatar/10.png') },
+        { id: 11, img: require('../../assets/avatar/11.png') },
+        { id: 12, img: require('../../assets/avatar/12.png') },
+        { id: 13, img: require('../../assets/avatar/13.png') },
     ],
     panel: [
         { id: 1, img: require('../../assets/bg/panel_b.png') },

@@ -52,18 +52,20 @@
 　　数万名修士，在一天之内，尽数被筛选完毕，本次结果不太理想，只选出不到百名弟子，内门弟子甚至只有三位。
 
 　　何语清不禁有些失望，而至苦闷。灵修界可能是真的后继无人了，这些进来的修士，基础资质是一届不如一届。
-
-　　“降临阵就要关闭了，还会有人来吗？”
-
-　　何语清身后的师妹出声道。
-
-　　就目前已确定入门的这些弟子来看，他们的天赋和能力，还远没有达到能成为宗门未来继承人的标准。
-
-　　难道宗主也有出错的时候？
-
-　　“不清楚。”
-
-　　何语清俏脸上浮现一抹凝重之色。
+#START========================================
+  { 
+    pop: {
+       style: 10, textAnimationType: 'TextSingle',
+      sections: [
+        
+            { figureId: "06", location: "right", content: ['“降临阵就要关闭了，还会有人来吗？”','“就目前已确定入门的这些弟子来看，还远没有达到能成为宗门未来继承人的标准，难道宗主也有出错的时候？”' ], },
+            { figureId: "07", location: "left", content: ['“不清楚。”',], },
+           
+      ]
+   }
+}
+#END==========================================
+　　
 
 　　就在这时，降临阵碧色玄光一阵闪烁，浮动流转，一个人影从降临阵中跌落出来，躺在地上半天没有动弹。
 
@@ -75,13 +77,20 @@
 
 　　虽然这人的出场方式有点奇怪，但这也侧面证明他与众不同……此时大部分人心里是这么想的。
 
-　　何语清身后的师妹更是兴奋地笑出声来。
+#START========================================
+  { 
+    pop: {
+       style: 10, textAnimationType: 'TextSingle',
+      sections: [
+        
+            { figureId: "06", location: "right", content: ['“来了，师傅说的最强之人终于来了！”','“不对，他怎么……是个凡人？”' ], },
+            { figureId: "07", location: "left", content: ['“不对啊，这么弱的凡人，怎么可能来到这里的？”',], },
+      ]
+   }
+}
+#END==========================================
 
-　　“来了，师傅说的最强之人终于来了！”
-
-　　但很快，她就笑不出来了。
-
-　　“不对，他怎么……是个凡人？”
+　　一时间周围响起的哗然之声，如同苍蝇在李森炎耳边立体声环绕。
 
 　　李森炎意识慢慢回归。
 
@@ -153,13 +162,13 @@
        style: 10, textAnimationType: 'TextSingle',
       sections: [
         
-            { figureId: "01", location: "right", content: ['“怎么回事？”', ], },
-            { figureId: "02", location: "left", content: ['“是不是搞错了？”',], },
-            { figureId: "01", location: "right", content: ['“我也觉得是搞错了。”',], },
-            { figureId: "02", location: "left", content: ['“能不能再来一次？”', ], },
-            { figureId: "01", location: "right", content: ['“降临阵都关了，你还来个屁！”',], },
-            { figureId: "02", location: "left", content: ['“好的，我这就给你来个屁。”', ], },
-            { figureId: "01", location: "right", content: ['“卧槽，你还真来啊！”',], },
+            { figureId: "08", location: "right", content: ['“怎么回事？”', ], },
+            { figureId: "09", location: "left", content: ['“是不是搞错了？”',], },
+            { figureId: "08", location: "right", content: ['“我也觉得是搞错了。”',], },
+            { figureId: "09", location: "left", content: ['“能不能再来一次？”', ], },
+            { figureId: "08", location: "right", content: ['“降临阵都关了，你还来个屁！”',], },
+            { figureId: "09", location: "left", content: ['“好的，我这就给你来个屁。”', ], },
+            { figureId: "08", location: "right", content: ['“卧槽，你还真来啊！”',], },
       ]
    }
 }
