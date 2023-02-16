@@ -2706,6 +2706,7 @@ scenes: [
         options: [
          { title: '【挂机战斗】',icon: { id: 18 },challenge: 'C000I_V_MAP_0_1_VS_2', }, 
          { title: '【灌木丛】', toScene: 'C000I_V_MAP1_0_-2'}, 
+         { title: '【坊市出口】',toScene: 'C000I_V_MAP_3_-6'}, 
          { title: '【遮挡的道路】',toScene: 'C000I_V_MAP1_-1_-2'}, 
         ],
       },

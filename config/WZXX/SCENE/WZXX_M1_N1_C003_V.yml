@@ -15,6 +15,10 @@ scenes: [
         { id: "biaoqianv6", min: 0, max: 1 } ,
         { id: "biaoqianv7", min: 0, max: 1 } ,
         { id: "biaoqianv8", min: 0, max: 1 } ,
+        { id: "v1A", min: 0, max: 1 } ,
+        { id: "v2A", min: 0, max: 1 } ,
+        { id: "v3A", min: 0, max: 1 } ,
+        { id: "v4A", min: 0, max: 1 } ,
 
       ],
 
@@ -58,24 +62,36 @@ scenes: [
         options: [ 
           { 
           title: "【我不是贼】",
-          andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：正义+1", 
-          icon: { id: 6, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9'],dropIds: ["WZXX_M1_N1_C003_V_Vdrop1",],
+          andVarsOff: ['v1A'], 
+          andVarsValue: ['@attr_灵性 >= 1',],
+           alwayDisplay: true, btnType: "A2", 
+           leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：正义+1", 
+          icon: { id: 6, bindVar: 'biaoqianv9' },
+           varsOn: ['biaoqianv9','v2A','v3A','v4A',],dropIds: ["WZXX_M1_N1_C003_V_Vdrop1",],
           },
           { 
           title: "【有这么帅的贼？】",
-          andVarsValue: ['@attr_颜值 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '颜值属性大于1',  rightBottom_Title: "奖励：颜值+1", 
-          icon: { id: 7, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10'],dropIds: ["WZXX_M1_N1_C003_V_Vdrop2",],
+          andVarsOff: ['v2A'],
+          andVarsValue: ['@attr_颜值 >= 1',], 
+          alwayDisplay: true, btnType: "A2", leftTop_Title: '颜值属性大于1', 
+           rightBottom_Title: "奖励：颜值+1", 
+          icon: { id: 7, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10','v1A','v3A','v4A',],dropIds: ["WZXX_M1_N1_C003_V_Vdrop2",],
           },
           { 
           title: "【我怎么可能是贼】",
-          andVarsValue: ['@attr_节操 <= 10',], alwayDisplay: true, btnType: "A2", leftTop_Title: '节操属性小于10',  rightBottom_Title: "奖励：节操-1", 
-          icon: { id: 6, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11'],dropIds: ["WZXX_M1_N1_C003_V_Vdrop3",],
+          andVarsOff: ['v3A'],
+          andVarsValue: ['@attr_节操 <= 10',], 
+          alwayDisplay: true, btnType: "A2", leftTop_Title: '节操属性小于10',  rightBottom_Title: "奖励：节操-1", 
+          icon: { id: 6, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11','v2A','v1A','v4A',],dropIds: ["WZXX_M1_N1_C003_V_Vdrop3",],
           },
           { 
           title: "【我是采花贼】",
-          andVarsValue: ['@attr_邪恶 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '邪恶属性大于1',  rightBottom_Title: "奖励：邪恶+1", 
+          andVarsOff: ['v4A'],
+          andVarsValue: ['@attr_邪恶 >= 1',], 
+          alwayDisplay: true, btnType: "A2", leftTop_Title: '邪恶属性大于1',  
+          rightBottom_Title: "奖励：邪恶+1", 
           dialogs: ['C003_1.1D'] , dropIds: ["WZXX_M1_N1_C003_V_Vdrop4",],
-          icon: { id: 6, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12']
+          icon: { id: 6, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12','v2A','v1A','v3A']
           }
         ],
       },

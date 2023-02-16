@@ -53,6 +53,15 @@ scenes: [
         { id: "biaoqianv43", min: 0, max: 1 } ,
         { id: "biaoqianv44", min: 0, max: 1 } ,
         { id: "biaoqianv45", min: 0, max: 1 } ,
+
+
+        { id: "biaoqianv46", min: 0, max: 1 } ,
+        { id: "biaoqianv47", min: 0, max: 1 } ,
+        { id: "biaoqianv48", min: 0, max: 1 } ,
+
+        { id: "v1A", min: 0, max: 1 } ,
+        { id: "v2A", min: 0, max: 1 } ,
+        { id: "v3A", min: 0, max: 1 } ,
       
 
 
@@ -181,20 +190,33 @@ scenes: [
         options: [ 
           { 
           title: "【霸气硬怼】",
-          andVarsValue: ['@attr_入魔 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于1',  rightBottom_Title: "奖励：入魔+1", 
+          andVarsOff: ['v1A'], 
+          andVarsValue: ['@attr_入魔 >= 1',],
+           alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于1',
+             rightBottom_Title: "奖励：入魔+1", 
           toChapter: "WZXX_M1_N1_C004_[N2]"  ,
           dropIds: ["WZXX_M1_N1_C002C_V_Vdrop1",],
+          icon: { id: 1, bindVar: 'biaoqianv46' }, varsOn: ['biaoqianv46','v2A','v3A',]  
           },
           { 
           title: "【勇敢反驳】",
-          andVarsValue: ['@attr_勇气 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '勇气属性大于1',  rightBottom_Title: "奖励：勇气+1", 
+          andVarsOff: ['v2A'], 
+          andVarsValue: ['@attr_勇气 >= 1',], 
+          alwayDisplay: true, btnType: "A2", leftTop_Title: '勇气属性大于1',  
+          rightBottom_Title: "奖励：勇气+1", 
           toChapter: "WZXX_M1_N1_C004_[N3]" ,
           dropIds: ["WZXX_M1_N1_C002C_V_Vdrop2",], 
+          icon: { id: 1, bindVar: 'biaoqianv47' }, varsOn: ['biaoqianv47','v1A','v3A',]  
           },
           { title: "【和和气气】",
-          andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：入道+1", 
+          andVarsOff: ['v3A'], 
+          andVarsValue: ['@attr_灵性 >= 1',],
+          alwayDisplay: true, btnType: "A2",
+           leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：入道+1", 
           toChapter: "WZXX_M1_N1_C004_[N4]"  ,
           dropIds: ["WZXX_M1_N1_C002C_V_Vdrop3",],
+          icon: { id: 1, bindVar: 'biaoqianv48' }, varsOn: ['biaoqianv48','v2A','v1A',] 
+
           },
         ],
       },
@@ -278,8 +300,7 @@ scenes: [
                 ],
               },
             ],
-            #  toChapter: 'WZXX_M1_N1_C004_[N1]' 
-            
+             toChapter: 'WZXX_M1_N1_C004_[N1]' 
           },
 
 
@@ -537,7 +558,7 @@ scenes: [
           { key: 'P1', content: ['外边的脚步声越来越近','你总觉得这脚步声是冲着你而来','再这样疑神疑鬼不是办法','你准备先拿一本书躲起来再看','眼前有三本书，因为天色太黑，有些字无法看清楚','李森炎选择拿上哪一本？'],
           btn: [{title: '《白城？？大全》',tokey: "P3", dropIds: ['WZXX_M1_N1_C002A_V_Vdrop1'],  icon: { id: 6, bindVar: 'biaoqianv28' }, varsOn: ['biaoqianv28']},
           {title: '《思无？》', tokey: "P4", dropIds: ['WZXX_M1_N1_C002A_V_Vdrop2'], icon: { id: 6, bindVar: 'biaoqianv29' }, varsOn: ['biaoqianv29']},
-          {title: '《凌云？？》', tokey: "P2C", dropIds: [ 'WZXX_M1_N1_C002A_V_Vdrop3'],  icon: { id: 7, bindVar: 'biaoqianv30' }, varsOn: ['biaoqianv30']},]},
+          {title: '《凌云？？》', tokey: "P2", dropIds: [ 'WZXX_M1_N1_C002A_V_Vdrop3'],  icon: { id: 7, bindVar: 'biaoqianv30' }, varsOn: ['biaoqianv30']},]},
          
           # btn: [{title: '《白城？？大全》',tokey: "P3", icon: { id: 6, bindVar: 'biaoqianv28' }, varsOn: ['biaoqianv28'] },
           # {title: '《思无？》', tokey: "P7", icon: { id: 6, bindVar: 'biaoqianv29' }, varsOn: ['biaoqianv29'] },
