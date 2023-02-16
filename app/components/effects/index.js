@@ -22,7 +22,7 @@ import WorldSwitchAnimation from './WorldSwitchAnimation';
 
 export default class EffectAnimations {
 
-    static show(params) {
+    static show(params, __sceneId) {
         let items = [];
         if (lo.isArray(params)) {
             items.push(...params);
@@ -74,8 +74,10 @@ export default class EffectAnimations {
                             worldId: worldId, 
                             title: e.data.worldId, 
                             desc: e.data.desc, 
-                            toChapter: e.data.toChapter 
-                        }} 
+                            toChapter: e.data.toChapter,
+                            dialogs: e.data.dialogs,
+                            __sceneId: __sceneId
+                        }}
                         animation={true}
                         onClose={() => {
                             RootView.remove(key);
