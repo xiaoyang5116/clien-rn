@@ -69,7 +69,7 @@ const ActionMsgItem = (props) => {
 
     return (
         <View style={{ justifyContent: 'flex-start', alignItems: 'center', marginTop: 12, marginBottom: 12 }}>
-            <View style={{ width: '100%', height: px2pd(80), alignItems: 'center', justifyContent: 'center' }}>
+            <View style={{ width: '100%', height: px2pd(84), alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                 {
                     (isMyself)
                         ? (
@@ -105,7 +105,7 @@ const ActionMsgItem = (props) => {
                         )
                 }
             </View>
-            <View style={{ marginTop: 5, marginBottom: 5, width: '98%', height: px2pd(80), flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ marginTop: isMyself ? 3 : 2, marginBottom: 1, width: '98%', height: px2pd(80), flexDirection: 'row', justifyContent: 'center', alignItems: 'center', }}>
                 <FastImage source={require('../../../assets/arenaPage/di.png')} style={{ position: 'absolute', width: px2pd(1065), height: px2pd(76) }} />
                 {(props.data.physicalDamage != 0) ? <Text style={{ color: '#fff', marginLeft: 5, marginRight: 5 }}>物伤：{props.data.physicalDamage}</Text> : <></>}
                 {(props.data.magicDamage != 0) ? <Text style={{ color: '#fff', marginLeft: 5, marginRight: 5 }}>法伤：{props.data.magicDamage}</Text> : <></>}
@@ -115,7 +115,7 @@ const ActionMsgItem = (props) => {
             {
                 lo.map(props.data.skills, (e, k) => {
                     return (
-                        <View key={k} style={{ marginBottom: 5, width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
+                        <View key={k} style={{ marginBottom: 1, width: '98%', height: px2pd(80), justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
                             <FastImage source={require('../../../assets/arenaPage/di.png')} style={{ position: 'absolute', width: px2pd(1065), height: px2pd(76), zIndex: 0 }} />
                             <Text style={{ color: '#fff' }}>{e.name}</Text>
                             {(e.passive) ? <Text style={{ marginLeft: 5, color: '#fff', }}>(被动)</Text> : <></>}
