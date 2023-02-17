@@ -236,223 +236,259 @@ directory: [
           { 
           point: [0, -13], title: '第四章 灵修界',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N1]' ,
-          toChapter: 'WZXX_M1_N1_C004_[N1]', links: [[0, -14],]
+          toChapter: 'WZXX_M1_N1_C004_[N1]', links: [[0, -14],[-1, -14],[1, -14],]
           },
 
           { 
-          point: [0, -14], title: '第四章 打斗之后',
+          point: [-1, -14], title: '第四章 霸气硬怼',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N2]' ,
+          toChapter: 'WZXX_M1_N1_C004_[N2]', links: [[0, -14],]
+          },
+
+          { 
+          point: [0, -14], title: '第四章 勇敢反驳',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N3]' ,
+          toChapter: 'WZXX_M1_N1_C004_[N3]', links: [[0, -15],]
+          },
+
+          { 
+          point: [1, -14], title: '第四章 和和气气',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N4]' ,
+          toChapter: 'WZXX_M1_N1_C004_[N4]', links: [[0, -14],]
+          },
+
+          { 
+          point: [0, -15], title: '第四章 青渊长老',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N5]' ,
           toChapter: 'WZXX_M1_N1_C004_[N5]', links: [[0, -15]], 
           },
 
+          { 
+          point: [-1, -16], title: '第四章 我不愿意',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N6]' ,
+          toChapter: 'WZXX_M1_N1_C004_[N6]', links: [[0, -15],[0, -16]], 
+          },
+
+          { 
+          point: [0, -16], title: '第四章 大可不必',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N7]' ,
+          toChapter: 'WZXX_M1_N1_C004_[N7]', links: [[0, -17]], 
+          },
+
+          { 
+          point: [1, -16], title: '第四章 意不在此',
+          # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C004_[N8]' ,
+          toChapter: 'WZXX_M1_N1_C004_[N8]', links: [[0, -15],[0, -16]], 
+          },
+
 
           {
-          point: [0, -15], title: '第五章 子母罗仪', 
+          point: [0, -17], title: '第五章 子母罗仪', 
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C005' ,
-          toChapter: 'WZXX_M1_N1_C005', links: [[0, -16],], 
+          toChapter: 'WZXX_M1_N1_C005', links: [[0, -18],], 
           },
 
           { 
-          point: [0, -16], title: '第六章 疗伤', 
+          point: [0, -18], title: '第六章 疗伤', 
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C006' ,
-          toChapter: 'WZXX_M1_N1_C006', links: [[0, -17], ] 
+          toChapter: 'WZXX_M1_N1_C006', links: [[0, -19], ] 
           },
 
           { 
-          point: [0, -17], title: '第七章 雪落', 
+          point: [0, -19], title: '第七章 雪落', 
           #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C007' ,
-          toChapter: 'WZXX_M1_N1_C007', links: [[0, -18],] 
+          toChapter: 'WZXX_M1_N1_C007', links: [[0, -20],] 
           },
 
           { 
-          point: [0, -18], title: '第八章 修炼',
+          point: [0, -20], title: '第八章 修炼',
           #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C008' ,
-          toChapter: 'WZXX_M1_N1_C008', links: [[0, -19]] 
+          toChapter: 'WZXX_M1_N1_C008', links: [[0, -21]] 
           },
 
           { 
-          point: [0, -19], title: '第九章 炼气',
+          point: [0, -21], title: '第九章 炼气',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C009_[N1]' ,
-          toChapter: 'WZXX_M1_N1_C009_[N1]', links: [[0, -20], ] 
+          toChapter: 'WZXX_M1_N1_C009_[N1]', links: [[0, -22], ] 
           },
 
           {
-          point: [0, -20], title: '第九章 打坐',
+          point: [0, -22], title: '第九章 打坐',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C009_[N2]' ,
-          toChapter: 'WZXX_M1_N1_C009_[N2]', links: [[0, -21]], 
+          toChapter: 'WZXX_M1_N1_C009_[N2]', links: [[0, -23]], 
           },
 
 
           { 
-          point: [0, -21], title: '第十章 医灵',
+          point: [0, -23], title: '第十章 医灵',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C010_[N1]' ,
-          toChapter: 'WZXX_M1_N1_C010_[N1]', links: [[0, -22],],
+          toChapter: 'WZXX_M1_N1_C010_[N1]', links: [[0, -24],],
           },
 
           { 
-          point: [0, -22], title: '第十一章 守夜 ',
+          point: [0, -24], title: '第十一章 守夜 ',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C011_[N2]' , 
-          toChapter: 'WZXX_M1_N1_C011_[N2]', links: [[1, -22],[0, -23], ], 
+          toChapter: 'WZXX_M1_N1_C011_[N2]', links: [[1, -24],[0, -25], ], 
           },
 
           { 
-          point: [1, -22], title: '第十一章 识人 ',
+          point: [1, -24], title: '第十一章 识人 ',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C011_[N1]' ,
-          toChapter: 'WZXX_M1_N1_C011_[N1]', links: [[1, -22],], path: [[1, -22]] ,
+          toChapter: 'WZXX_M1_N1_C011_[N1]', links: [[0, -25],], path: [[0, -25]] ,
           },
 
           { 
-          point: [0, -23], title: '第十二章 保镖',
+          point: [0, -25], title: '第十二章 保镖',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C012_[N1]' ,
-          toChapter: 'WZXX_M1_N1_C012_[N1]', links: [[0, -24], ] 
+          toChapter: 'WZXX_M1_N1_C012_[N1]', links: [[0, -26], ] 
           },
 
           { 
-          point: [0, -24], title: '第十二章 危难',
+          point: [0, -26], title: '第十二章 危难',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C012_[N2]' ,
-          toChapter: 'WZXX_M1_N1_C012_[N2]', links: [[0, -25],],  
+          toChapter: 'WZXX_M1_N1_C012_[N2]', links: [[0, -27],],  
           },
 
           { 
-          point: [0, -25], title: '第十三章 恶灵肉',
+          point: [0, -27], title: '第十三章 恶灵肉',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C013_[N1]' , 
-          toChapter: 'WZXX_M1_N1_C013_[N1]', links: [[0, -26], ] 
+          toChapter: 'WZXX_M1_N1_C013_[N1]', links: [[0, -28], ] 
           },
 
           { 
-          point: [0, -26], title: '第十三章 战斗', 
+          point: [0, -28], title: '第十三章 战斗', 
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C013_[N2]' ,
-          toChapter: 'WZXX_M1_N1_C013_[N2]', links: [[0, -27]], 
+          toChapter: 'WZXX_M1_N1_C013_[N2]', links: [[0, -29]], 
           },
 
           { 
-          point: [0, -27], title: '第十三章 杀意', 
+          point: [0, -29], title: '第十三章 杀意', 
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C013_[N3]' ,
-          toChapter: 'WZXX_M1_N1_C013_[N4]', links: [[0, -27]], 
+          toChapter: 'WZXX_M1_N1_C013_[N4]', links: [[0, -30]], 
           },
 
           { 
-          point: [0, -28], title: '第十三章 清醒', 
+          point: [0, -30], title: '第十三章 清醒', 
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C013_[N4]' ,
-          toChapter: 'WZXX_M1_N1_C013_[N4]', links: [[0, -27]], 
+          toChapter: 'WZXX_M1_N1_C013_[N4]', links: [[0, -31]], 
           },
 
         { 
-          point: [0, -29], title: '第十四章 选择', 
+          point: [0, -31], title: '第十四章 选择', 
           # bindVar: 'WZXX_M1_N1_C014A' ,
-          toChapter: 'WZXX_M1_N1_C014A', links: [[0, -28]], 
+          toChapter: 'WZXX_M1_N1_C014A', links: [[0, -32]], 
         },
 
         { 
-        point: [0, -30], title: '第十四章 离开医馆',
+        point: [0, -32], title: '第十四章 离开医馆',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C014_[N1]' ,
-        toChapter: 'WZXX_M1_N1_C014_[N1]', links: [[0, -29]], 
+        toChapter: 'WZXX_M1_N1_C014_[N1]', links: [[0, -33]], 
         },
 
         { 
-        point: [0, -31], title: '第十五章 接触', 
+        point: [0, -33], title: '第十五章 接触', 
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C015_[N1]' ,
-        toChapter: 'WZXX_M1_N1_C015_[N1]', links: [[0, -30]] 
+        toChapter: 'WZXX_M1_N1_C015_[N1]', links: [[0, -34]] 
         },
 
         { 
-        point: [0, -32], title: '第十六章 再遇陶老',
+        point: [0, -34], title: '第十六章 再遇陶老',
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C016_[N1]' , 
-        toChapter: 'WZXX_M1_N1_C016_[N1]', links: [[0, -31],],  
+        toChapter: 'WZXX_M1_N1_C016_[N1]', links: [[0, -35],],  
         },
 
         { 
-        point: [0, -33], title: '第十六章 灵田',
+        point: [0, -35], title: '第十六章 灵田',
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C016_[N2]' , 
-        toChapter: 'WZXX_M1_N1_C016_[N2]', links: [[0, -32], ],  
+        toChapter: 'WZXX_M1_N1_C016_[N2]', links: [[0, -36], ],  
         },
 
         { 
-        point: [0, -34], title: '第十六章 炸桶',
+        point: [0, -36], title: '第十六章 炸桶',
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C016_[N3]' , 
-        toChapter: 'WZXX_M1_N1_C016_[N3]', links: [[0, -33],],   
+        toChapter: 'WZXX_M1_N1_C016_[N3]', links: [[0, -37],],   
         },
 
         { 
-        point: [0, -35], title: '第十七章 赔钱',
+        point: [0, -37], title: '第十七章 赔钱',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C017_[N1]' , 
-        toChapter: 'WZXX_M1_N1_C017_[N1]', links: [[0, -34], ],  
+        toChapter: 'WZXX_M1_N1_C017_[N1]', links: [[0, -38], ],  
         },       
 
         { 
-        point: [0, -36], title: '第十七章 突破炼气四重', 
+        point: [0, -38], title: '第十七章 突破炼气四重', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C017_[N2]' ,
-        toChapter: 'WZXX_M1_N1_C017_[N2]', links: [[0, -35], ],  
+        toChapter: 'WZXX_M1_N1_C017_[N2]', links: [[0, -39], ],  
         },
 
         { 
-        point: [0, -37], title: '第十八章对话陶老',
+        point: [0, -39], title: '第十八章对话陶老',
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C018_[N1]' ,
-        toChapter: 'WZXX_M1_N1_C018_[N1]', links: [[0, -36]],  
+        toChapter: 'WZXX_M1_N1_C018_[N1]', links: [[0, -40]],  
         },
 
         { 
-        point: [0, -38], title: '第十八章怒怼陶老',
+        point: [0, -40], title: '第十八章怒怼陶老',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C018_[N2]' ,
-        toChapter: 'WZXX_M1_N1_C018_[N2]', links: [[0, -37]],  
+        toChapter: 'WZXX_M1_N1_C018_[N2]', links: [[0, -41]],  
         },
 
         { 
-        point: [0, -39], title: '第十九章用灵液', 
+        point: [0, -41], title: '第十九章用灵液', 
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C019_[N1]' ,
-        toChapter: 'WZXX_M1_N1_C019_[N1]', links: [[0, -38]],
+        toChapter: 'WZXX_M1_N1_C019_[N1]', links: [[0, -42]],
         },
 
         { 
-        point: [0, -40], title: '第十九章恶犬恶主',
+        point: [0, -42], title: '第十九章恶犬恶主',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C019_[N2]' ,
-        toChapter: 'WZXX_M1_N1_C019_[N2]', links: [[0, -39]],
+        toChapter: 'WZXX_M1_N1_C019_[N2]', links: [[0, -43]],
         },
 
         {
-        point: [0, -41], title: '第二十章暴打黑光', 
+        point: [0, -43], title: '第二十章暴打黑光', 
         #  bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C020' ,
-        toChapter: 'WZXX_M1_N1_C020', links: [[0, -42]],  
+        toChapter: 'WZXX_M1_N1_C020', links: [[0, -44]],  
         },
 
         { 
-        point: [0, -42], title: '第二十一章 金丹灵液',
+        point: [0, -44], title: '第二十一章 金丹灵液',
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C021' ,
-        toChapter: 'WZXX_M1_N1_C021', links: [[1, -43],[-1, -43],[0, -44] ] 
+        toChapter: 'WZXX_M1_N1_C021', links: [[-1, -45],[1, -45],[0, -46] ] 
         },
 
         { 
-        point: [1, -43], title: '第二十二章 陶老鞭挞', 
+        point: [1, -45], title: '第二十二章 陶老鞭挞', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C022_[N1]' ,
-        toChapter: 'WZXX_M1_N1_C022_[N1]', links: [[0, -44], ] 
+        toChapter: 'WZXX_M1_N1_C022_[N1]', links: [[0, -46],[0, -44], ] 
         },
 
         { 
-        point: [-1, -43], title: '第二十二章 医灵鞭挞', 
+        point: [-1, -45], title: '第二十二章 医灵鞭挞', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C022_[N2]' ,
-        toChapter: 'WZXX_M1_N1_C022_[N2]', links: [[0, -44],] 
+        toChapter: 'WZXX_M1_N1_C022_[N2]', links: [[0, -46],[0, -44],] 
         },
 
         { 
-        point: [0, -44], title: '第二十三章 重逢之日', 
+        point: [0, -46], title: '第二十三章 重逢之日', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C023_[N1]' ,
-        toChapter: 'WZXX_M1_N1_C023_[N1]', links: [[0, -45],[0, -42],] 
+        toChapter: 'WZXX_M1_N1_C023_[N1]', links: [[0, -47],[0, -44]] 
         },
 
         { 
-        point: [0, -45], title: '第二十三章 杀气', 
+        point: [0, -47], title: '第二十三章 杀气', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C023_[N2]' ,
-        toChapter: 'WZXX_M1_N1_C023_[N2]', links: [[0, -46],] 
+        toChapter: 'WZXX_M1_N1_C023_[N2]', links: [[0, -48],] 
         },
 
         { 
-        point: [0, -46], title: '第二十四章 找抽', 
+        point: [0, -48], title: '第二十四章 找抽', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C024_[N1]' ,
-        toChapter: 'WZXX_M1_N1_C024_[N1]', links: [[0, -47],] 
+        toChapter: 'WZXX_M1_N1_C024_[N1]', links: [[0, -49],] 
         },
 
         { 
-        point: [0, -47], title: '第二十五章 发誓', 
+        point: [0, -49], title: '第二十五章 发誓', 
         # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C025' ,
         toChapter: 'WZXX_M1_N1_C025', links: [[],] 
         },

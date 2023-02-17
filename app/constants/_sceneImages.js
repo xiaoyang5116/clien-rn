@@ -196,6 +196,7 @@ const topBgImages = [
     { name: 'BGT_186', img: require('../../assets/scene/BGT_186.webp') },
     { name: 'BGT_187', img: require('../../assets/scene/BGT_187.webp') },
     { name: 'BGT_188', img: require('../../assets/scene/BGT_188.webp') },
+    { name: 'BGT_189', img: require('../../assets/scene/BGT_189.webp') },
 
    // { name: '上部背景图57656', img: require('../../assets/scene/BGT_70789789.jpg') },
 ];

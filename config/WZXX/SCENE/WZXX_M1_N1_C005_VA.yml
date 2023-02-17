@@ -26,14 +26,14 @@ scenes: [
     
       chats: [
 
-       { 
+      {
         id: 'WZXX_M1_N1_C005_VA1', desc: '守夜', 
         options: [ 
           { title: "【守夜】",dialogs: ['C005A_shouyeA'],},
         ],
       },
       
-      { 
+      {
         id: 'WZXX_M1_N1_C005_VA2', desc: '小师弟', 
         options: [ 
           { title: "【三十六计走为上】",dialogs: ['C005A_1.1A'],
@@ -42,11 +42,10 @@ scenes: [
           icon: { id: 7, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']},
           { title: "【赶紧想个办法】",dialogs: ['C005A_1.1C'],
           icon: { id: 7, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3']},
-          
         ],
       },
 
-       { 
+      {
         id: 'WZXX_M1_N1_C005_VA3', desc: '陶老', 
         options: [ 
           { title: "【是谁？】",toChapter: "WZXX_M1_N1_C005D",},

@@ -155,7 +155,7 @@ scenes: [
           { key: 'p1', content: ['卧槽，这回可不能再死了。','李森炎的求生本能发动，脑子飞快运转。','从自己看过的符合类似情节的电影片段里找啊找啊。','灵机一动。', '李森炎下意识的想到，这时候最合适的台词是什么。'],
           btn: [{title: '草，想不出来！',tokey: "p1A", dropIds: ['WZXX_M1_N1_C001V_drop8'],  icon: { id: 6, bindVar: 'biaoqianv1' }},
           {title: '兄台何必执着杀人！', tokey: "p1B", icon: { id: 6, bindVar: 'biaoqianv2' }},
-          {title: '等一下！', tokey: "p1C", dropIds: ['WZXX_M1_N1_C001V_drop7'], icon: { id: 7, bindVar: 'biaoqianv3' }},
+          {title: '等一下！', tokey: "p1C", sendProps: '887,100',dropIds: ['WZXX_M1_N1_C001V_drop7'], icon: { id: 7, bindVar: 'biaoqianv3' }},
           {title: '说个毛线，拔腿就跑！', dropIds: [ 'WZXX_M1_N1_C001V_drop9'], tokey: "p1D", icon: { id: 6, bindVar: 'biaoqianv4' }},]},
 
           { key: 'p1A', content: ['李森炎露出自信的笑容，牙齿仿佛在闪闪发光！','剑光一闪',['震屏1','边缘闪烁红'],'李森炎挂了','…………',], 
@@ -189,13 +189,15 @@ scenes: [
            #{title: '别杀我，我有能保命的情报',tokey: "gg3"},
            ]},
  
-           { key: 'p2A', content: ['大侠饶命！我上有八十老母，下有三岁小儿！','句句是真！句句属实啊！','对方点了点头笑了，那你几岁？', ],
+          { 
+            key: 'p2A', content: ['大侠饶命！我上有八十老母，下有三岁小儿！','句句是真！句句属实啊！','对方点了点头笑了，那你几岁？', ],
             btn: [{title: '80?',tokey: "p2B1",icon: { id: 6, bindVar: 'biaoqianv10' }},
             {title: '而立之年啊',tokey: "p2B1",icon: { id: 6, bindVar: 'biaoqianv11' }},
             # {title: '风华正茂啊',tokey: "p2B1"},icon: { id: 6, bindVar: 'biaoqianv12' }
             # # {title: '随便编一个',tokey: "gg3",icon: { id: 6, bindVar: 'biaoqianv12' }},
             {title: '照实说',tokey: "p2B2"}
-            ]},   
+            ]
+          },   
 
            { key: 'p2B1', content: ['我管你上有老，我管你几岁。','我就是来杀你的！','剑光一闪',['边缘闪烁红'],'…………',], 
              btn: [{title: '我觉得我还能抢救一下!',dialogs: ['gameover03'], varsOn: ['biaoqianv10','biaoqianv11','biaoqianv3','biaoqianv13',] }]},   

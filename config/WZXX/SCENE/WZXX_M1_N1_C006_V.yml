@@ -71,18 +71,13 @@ scenes: [
         id: 'WZXX_M1_N1_C006_V3', desc: '进入战斗', 
         options: [ 
           { title: "【进入战斗！】", challenge: 'x1'  },
-         
         ],
       },
       
-
-    
-
       #  { 
       #   id: 'WZXX_M1_N1_C006_V3', desc: '遇见云云', 
       #   options: [ 
       #     { title: "【现在该怎么办】",toChapter: "WZXX_M1_N1_C011_[N1]"  },
-         
       #   ],
       # },
       # { 

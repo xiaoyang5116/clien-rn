@@ -29,20 +29,35 @@ scenes: [
       chats: [
       #
 
-        { 
+      { 
         id: 'WZXX_M1_N1_C007_V1', desc: '……', 
         options: [ 
           { 
           title: "【回溯五秒】",dialogs: ['C007A_1.1A'],
+          andVarsValue: ['@props_887 >= 10'],
+          useProps: '887,10',
+          alwayDisplay: true, 
+          btnType: "A1",
+          leftTop_Title: '铜币大于10',
           icon: { id: 6, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']
           },
           { 
           title: "【回溯十秒】",dialogs: ['C007A_1.1B'],
+          andVarsValue: ['@props_887 >= 20'], 
+          useProps: '887,20',
+          alwayDisplay: true, 
+          btnType: "A1",
+          leftTop_Title: '铜币大于20',
           icon: { id: 7, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2']
           },
           #需要设置使用灵石才可开启
           {
-           title: "【回溯十五秒】",dialogs: ['C007A_1.1C'],
+          title: "【回溯十五秒】",dialogs: ['C007A_1.1C'],
+          andVarsValue: ['@props_887 >= 50'], 
+          useProps: '887,50',
+          alwayDisplay: true, 
+          btnType: "A1",
+          leftTop_Title: '铜币大于50',
           icon: { id: 7, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] 
           },
         ],

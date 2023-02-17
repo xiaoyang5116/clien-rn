@@ -164,6 +164,105 @@ scenes: [
 
   {
 
+    id: 'C000I_V_MAP_0_1', name: '武馆',
+    # 指定场景为NPC或MAP场景
+    isNpc: false,
+    #不显示时间
+    worldTimeHidden: true,
+    # 当前场景地图
+    mapId: 'C000I_V_MAP_0_0',
+    #横图显示
+    sceneImage: 'BGT_189',
+    # 地图中心点，也是进入地图后的点
+    mapCenterPoint: [0, 1],
+     # 变量定义
+    vars: [
+    { id: "biaoqianv0", min: 0, max: 1 },
+    { id: "T1", min: 0, max: 1 },
+    ],
+
+    # 动作定义
+    actions: [
+    ],
+    # 事件定义
+    events: [
+       { type: 'enter',   nextChat: 'C1'  },
+    ],
+
+    # 对话选项
+    chats: [
+      #
+      { 
+        id: 'C1', desc: '武馆的门口传来一阵阵呐喊声，里面看起来像是在练功的模样', 
+        options: [ 
+         { title: '【进入武馆】',nextChat: 'C2'}, 
+         { title: '【没意思，离开】',nextChat: 'C6'}, 
+        ],
+      },
+
+      { 
+        id: 'C2', desc: '武馆的看门弟子拦住了李森炎的去路，进入武馆学武需要交纳5铜钱。', 
+        options: [ 
+         { title: '【表示不解】', dialogs: ['Screen1'] ,}, 
+         { title: '【乖乖交钱】',nextChat: 'C3'},        
+         { title: '【离开】',nextChat: 'C6'},        
+        ],
+      },
+
+      { 
+        id: 'C3', desc: '武馆内充满来杀伐之气，各种兵器横列在室内', 
+        options: [ 
+         { title: '【武馆武师】',   dialogs: ['Screen2'] ,}, 
+         { title: '【武馆木人】',icon: { id: 18 },challenge: 'C000I_V_MAP_0_0_VS_8',}, 
+         { title: '【武馆同门】',  nextChat: 'C5'}, 
+         { title: '【挑战武馆馆主】', nextChat: 'C4'}, 
+         { title: '【离开武馆】',  nextChat: 'C6'}, 
+        ],
+      },
+
+      { 
+        id: 'C4', desc: '馆主满身横肉，看起来力大无穷的模样', 
+        options: [ 
+         { title: '【进行战斗】',icon: { id: 18 },challenge: 'C000I_V_MAP_0_0_VS_9',}, 
+        ],
+      },
+
+      { 
+        id: 'C5', desc: '武馆内的同门经常切磋，实力看起来并不弱。', 
+        options: [ 
+         { title: '【与武馆同门切磋】',icon: { id: 18 },challenge: 'C000I_V_MAP_0_0_VS_10', }, 
+        ],
+      },
+
+      { 
+        id: 'C6', desc: '智商税，还不如多喝热水', 
+        options: [ 
+         { title: '【法器商店】', toScene: 'C000I_V_MAP_1_0'}, 
+         { title: '【小集市】', toScene: 'C000I_V_MAP_0_-1'}, 
+         { title: '【永安坊】', toScene: 'C000I_V_MAP_0_0'}, 
+        ],
+      },
+
+    ],
+     # 对话框 1黑旁白2白旁白
+    dialogs: [
+      { id: 'Screen1',style: 6, title: '表示不解', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎对着看门弟子疑惑地问道：“你没有的东西为什么觉得我会有？”','李森炎直接被赶了出去。',],
+          btn: [{title: '【离开】' ,nextChat: 'C6'}, ]},
+    ],},
+
+    { id: 'Screen2',style: 6, title: '讨教拳法', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['李森炎找到一个武师，并且向他讨教功法。','李森炎：“师傅，我想学拳！”','武师：“年轻人，你想学什么拳？”','李森炎：“一拳打破苍穹的。”',
+          '武师一脸黑线：“没有。”','李森炎：“有没有从天而降的拳法。”','武师：“年轻人，别好高骛远的。”',],
+          btn: [{title: '【离开】' ,nextChat: 'C6'}, ]},
+    ],},
+    ],
+  },
+
+  {
+
     id: 'C000I_V_MAP_0_-1', name: '小集市',
     # 指定场景为NPC或MAP场景
     isNpc: false,

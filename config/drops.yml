@@ -218,6 +218,7 @@ drops: [
   { id: 'WZXX_M1_N1_C007_V_drop2', alterAttrs: ['智慧,1'],},
   { id: 'WZXX_M1_N1_C007_V_drop3', alterAttrs: ['仙缘,1'],},
 
+  { id: 'S_00Test02_dropS', sendProps: '887,100,showBag', },
   #
   { id: 'WZXX_M1_N1_C0017_V_Vdrop1',  alterAttrs: ['入魔,1'] },
   #
@@ -387,6 +388,12 @@ drops: [
   { id: 'WZXX_M1_N1_C003_V_Vdrop2',  alterAttrs: ['颜值,1'],},
   { id: 'WZXX_M1_N1_C003_V_Vdrop3',  alterAttrs: ['节操,-1'],},
   { id: 'WZXX_M1_N1_C003_V_Vdrop4',  alterAttrs: ['邪恶,1'],},
+
+
+  { id: 'WZXX_M1_N1_C0010_V_Vdrop1',  alterAttrs: ['悟性,1'],},
+  { id: 'WZXX_M1_N1_C0010_V_Vdrop2',  alterAttrs: ['勇敢,1'],},
+
+  { id: 'WZXX_M1_N1_C0010_V_Vdrop3',  alterAttrs: ['节操,1'],},
 
 
 
