@@ -1,0 +1,48 @@
+# ===========================================
+# 战斗配置
+# ===========================================
+challenge: {
+    # 战斗ID
+    id: 'C000I_V_MAP_0_0_VS_9',
+    #
+    myself: 
+      {
+         uid: 1, 
+         userName: '李森炎', 
+         skillIds: [50, 51, 52, 54, 55, 56],
+         attrs: [
+          { key: 'hp', value: 150 },
+          { key: 'mp', value: 50 },
+          { key: 'speed', value: 20 },
+          { key: 'shield', value: 50 },
+          { key: 'physicalAttack', value: 40 },
+          { key: 'physicalDefense', value: 10 },
+          { key: 'magicDefense', value: 5 },
+         ],
+      },
+
+    enemies: [
+      { 
+         uid: 100000, 
+         userName: '武馆馆主', 
+         skillIds: [50, 51, 52],
+         attrs: [
+          { key: 'hp', value: 220 },
+          { key: 'mp', value: 20 },
+          { key: 'speed', value: 1 },
+          { key: 'shield', value: 40 },
+          { key: 'physicalAttack', value: 60 },
+          { key: 'physicalDefense', value: 35 },
+          { key: 'magicDefense', value: 0 },
+          ],
+        liftRate: [
+          { attr: "all", multiplied: 1.2 },
+          #{ attr: "all", multiplied: 1 },
+          #{ attr: "all", multiplied: 0.8 },
+          #{ attr: "speed", multiplied: 1.3 },
+          #{ attr: "all", multiplied: 0.5 },
+          #{ attr: "hp", multiplied: 2 },
+         ]
+      },
+    ]
+  }

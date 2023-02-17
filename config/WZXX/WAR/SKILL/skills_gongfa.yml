@@ -14,13 +14,13 @@ skills: [
      # 图标ID
      iconId: 1 ,
      # 蓄力时间，以毫秒作为单位
-     xuLiMillis: 2000 ,
+     xuLiMillis: 1000 ,
      # 冷却时间
-     cdMillis: 5000,
+     cdMillis: 2000,
      # 技能消耗，需要整数，不支持小数点
      consume: [{hp: 0,mp: 0}], 
      # 被动技能与否
-     passive: "false" ,
+     passive: false ,
      # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
      actions: [
      {
@@ -45,7 +45,7 @@ skills: [
      # 图标ID
      iconId: 1 ,
      # 蓄力时间，以毫秒作为单位
-     xuLiMillis: 2500 ,
+     xuLiMillis: 1500 ,
      # 冷却时间
      cdMillis: 5000,
      # 技能消耗，需要整数，不支持小数点
@@ -76,7 +76,7 @@ skills: [
      # 图标ID
      iconId: 1 ,
      # 蓄力时间，以毫秒作为单位
-     xuLiMillis: 3000 ,
+     xuLiMillis: 2000 ,
      # 冷却时间
      cdMillis: 5000,
      # 技能消耗，需要整数，不支持小数点
