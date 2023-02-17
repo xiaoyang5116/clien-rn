@@ -169,7 +169,7 @@ const _images = {
     ],
     // 技能icon
     skillIcon: [
-        { id: 1, img: require('../../assets/games/turnLattice/zhizhudonku1.png') },
+        { id: 1, img: require('../../assets/gongFa/skill/icon/skill_icon.png') },
     ],
 }
 

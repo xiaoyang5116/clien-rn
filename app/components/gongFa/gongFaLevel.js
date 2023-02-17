@@ -14,6 +14,8 @@ import RootView from '../RootView';
 
 import { TextButton } from '../../constants/custom-ui';
 import PopComponent from './components/PopComponent';
+import FastImage from 'react-native-fast-image';
+import { px2pd } from '../../constants/resolution';
 
 const GongFaLevel = props => {
   const { gongFaConfig, gongFaProgressData } = props;
@@ -51,7 +53,7 @@ const GongFaLevel = props => {
               );
             }
           });
-      }else{
+      } else {
         const key = RootView.add(
           <PopComponent
             gongFa={item}
@@ -67,7 +69,7 @@ const GongFaLevel = props => {
     return (
       <TouchableOpacity onPress={openGongFa}>
         <View style={styles.gongFa}>
-          <View style={styles.gongFaImag}></View>
+          <FastImage style={{ width: px2pd(190), height: px2pd(177) }} source={require('../../../assets/gongFa/skill/icon/skill_icon.png')} />
           <Text style={styles.gongFaName}>{item.name}</Text>
         </View>
       </TouchableOpacity>
