@@ -664,7 +664,7 @@ export default {
     },
 
     *__onAnimationsCommand({ payload }, { put }) {
-      EffectAnimations.show(payload.params);
+      EffectAnimations.show(payload.params, payload.__sceneId);
     },
 
     *__onDropIdsCommand({ payload }, { put }) {

@@ -53,6 +53,15 @@ scenes: [
         { id: "biaoqianv43", min: 0, max: 1 } ,
         { id: "biaoqianv44", min: 0, max: 1 } ,
         { id: "biaoqianv45", min: 0, max: 1 } ,
+
+
+        { id: "biaoqianv46", min: 0, max: 1 } ,
+        { id: "biaoqianv47", min: 0, max: 1 } ,
+        { id: "biaoqianv48", min: 0, max: 1 } ,
+
+        { id: "v1A", min: 0, max: 1 } ,
+        { id: "v2A", min: 0, max: 1 } ,
+        { id: "v3A", min: 0, max: 1 } ,
       
 
 
@@ -127,21 +136,21 @@ scenes: [
         id: 'WZXX_M1_N1_C002C_V7', desc: '二穿', 
         options: [ 
          { title: '【发生什么事了】', animations: { id: 11, data: { worldId: '灵修界', desc: '突然，眼前一变，周围的景色完全不同', 
-         toChapter: 'WZXX_M1_N1_C004_[N1]' , 
-        #  dialogs: ['C002_8.8A'],
+        #  toChapter: 'WZXX_M1_N1_C004_[N1]' , 
+         dialogs: ['C002_8.8A'],
          } } }, 
         ],
       },
 
-      { 
-        id: 'WZXX_M1_N1_C002C_VS', desc: '', 
-        options: [ 
-         { title: '【……】', 
-        #  toChapter: 'WZXX_M1_N1_C004_[N1]' , 
-         dialogs: ['C002_8.8A'],
-        }, 
-        ],
-      },
+      # { 
+      #   id: 'WZXX_M1_N1_C002C_VS', desc: '', 
+      #   options: [ 
+      #    { title: '【……】', 
+      #   #  toChapter: 'WZXX_M1_N1_C004_[N1]' , 
+      #    dialogs: ['C002_8.8A'],
+      #   }, 
+      #   ],
+      # },
 
       { 
         id: 'WZXX_M1_N1_C002C_V8', desc: '打斗', 
@@ -181,20 +190,33 @@ scenes: [
         options: [ 
           { 
           title: "【霸气硬怼】",
-          andVarsValue: ['@attr_入魔 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于1',  rightBottom_Title: "奖励：入魔+1", 
+          andVarsOff: ['v1A'], 
+          andVarsValue: ['@attr_入魔 >= 1',],
+           alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于1',
+             rightBottom_Title: "奖励：入魔+1", 
           toChapter: "WZXX_M1_N1_C004_[N2]"  ,
           dropIds: ["WZXX_M1_N1_C002C_V_Vdrop1",],
+          icon: { id: 1, bindVar: 'biaoqianv46' }, varsOn: ['biaoqianv46','v2A','v3A',]  
           },
           { 
           title: "【勇敢反驳】",
-          andVarsValue: ['@attr_勇气 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '勇气属性大于1',  rightBottom_Title: "奖励：勇气+1", 
+          andVarsOff: ['v2A'], 
+          andVarsValue: ['@attr_勇气 >= 1',], 
+          alwayDisplay: true, btnType: "A2", leftTop_Title: '勇气属性大于1',  
+          rightBottom_Title: "奖励：勇气+1", 
           toChapter: "WZXX_M1_N1_C004_[N3]" ,
           dropIds: ["WZXX_M1_N1_C002C_V_Vdrop2",], 
+          icon: { id: 1, bindVar: 'biaoqianv47' }, varsOn: ['biaoqianv47','v1A','v3A',]  
           },
           { title: "【和和气气】",
-          andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：入道+1", 
+          andVarsOff: ['v3A'], 
+          andVarsValue: ['@attr_灵性 >= 1',],
+          alwayDisplay: true, btnType: "A2",
+           leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：入道+1", 
           toChapter: "WZXX_M1_N1_C004_[N4]"  ,
           dropIds: ["WZXX_M1_N1_C002C_V_Vdrop3",],
+          icon: { id: 1, bindVar: 'biaoqianv48' }, varsOn: ['biaoqianv48','v2A','v1A',] 
+
           },
         ],
       },
@@ -241,75 +263,73 @@ scenes: [
           '这剑刃恐怕能直接捅穿了他的咽喉','这死亡的预警直接让他放弃了幻想。',],
           btn: [
             { title: '确定',}, 
-         
            ]  
-        },]
+        },] 
         },
 
-        # { 
-        #     id: 'C002_8.8A',style: 5, textAnimationType: 'TextSingle',
-        #   sections: [
-        #       { 
-        #         type: "TopToBottom", bgImageId: 12, loop: true, play: true,
-        #         content: [
-        #         '灵修界。','青岚宗。','降临阵周围人头攒动。',
-        #         '今日是降临阵的开启之日。','尘界达到筑基期的修士，神魂可经由降临阵抵达灵修界，模拟身躯，悟道修炼，达至更高境界。','降临阵在灵修界一千道年才开启一次，但如今，却提前了五百道年开启。',
-        #         ] 
-        #       },
-
-        #       { 
-        #         type: "TopToBottom", bgImageId: 13, loop: true, play: true,
-        #         content: ['宗主说此次反常，盖因有可能成为青岚宗未来的掌门的人，于冥冥之中，将被选中降临而来。',
-        #         '但具体样貌特征，却没有定论。','宗主此言，勾动众位弟子好奇心，大师姐何语清早早率领一众师姐弟前来迎接。',
-        #         '何语清拿出太虚宝鉴，内有宗主的神照意志，可照出所有降临之人的境界及重要过往。','“令狐光，男，24岁。','种族：人族',
-        #         '境界，筑基大圆满。','重要事件：十八岁突破至筑基境。”','“十八岁筑基，天资还不错，可为内门弟子。”',
-        #         '令狐光顿时兴奋异常，这些降临阵穿越的人，个个都知道来灵修界最重要的事，就是被青岚宗提前选定为内门弟子。',
-        #         '太虚宝鉴浮空游移，镜面上发出阵阵青色光芒，每一批从降临阵中出来庞大的人流，都被准确判定，一个不漏。',
-        #         '数万名修士，在一天之内，尽数被筛选完毕，本次结果不太理想，只选出不到百名弟子，内门弟子甚至只有三位。',
-        #         '何语清不禁有些失望，而至苦闷。灵修界可能是真的后继无人了，这些进来的修士，基础资质是一届不如一届。'
-        #         ],
-        #       },
-
-        #        { 
-        #         type: "TopToBottom", bgImageId: 14, loop: true, play: true,
-        #         content: ['“降临阵就要关闭了，还会有人来吗？”','何语清身后的师妹出声道。','就目前已确定入门的这些弟子来看，他们的天赋和能力，还远没有达到能成为宗门未来继承人的标准。',
-        #         '难道宗主也有出错的时候？','“不清楚。”','何语清俏脸上浮现一抹凝重之色。',
-        #         '就在这时，降临阵碧色玄光一阵闪烁，浮动流转，一个人影从降临阵中跌落出来，躺在地上半天没有动弹。','如此别致的出场方式，自然吸引了所有人的目光。','此时降临阵碧色玄光闪灭，归于寂然。',
-        #         '这是降临阵关闭的表现，这最后一个人，就是他！','虽然这人的出场方式有点奇怪，但这也侧面证明他与众不同……此时大部分人心里是这么想的。',
-        #         ],
-        #       },
-        #     ],
-        #     #  toChapter: 'WZXX_M1_N1_C004_[N1]' 
-            
-        #   },
-
-
-         { 
+        { 
             id: 'C002_8.8A',style: 5, textAnimationType: 'TextSingle',
           sections: [
               { 
                 type: "TopToBottom", bgImageId: 12, loop: true, play: true,
                 content: [
-                '灵修界。','青岚宗。','随着阵阵钟响，万物俱静。',
+                '灵修界。','青岚宗。','降临阵周围人头攒动。',
+                '今日是降临阵的开启之日。','尘界达到筑基期的修士，神魂可经由降临阵抵达灵修界，模拟身躯，悟道修炼，达至更高境界。','降临阵在灵修界一千道年才开启一次，但如今，却提前了五百道年开启。',
                 ] 
               },
 
               { 
                 type: "TopToBottom", bgImageId: 13, loop: true, play: true,
-                content: ['这里瀑布如银似河，日月山川，彰显着仙家的气派。',
-                '远远看去，一座座山头云雾缠绕，山上的宗门建筑气势恢弘，灵气非凡，虹桥四起，仙鹤环绕，令人目不暇接。'
+                content: ['宗主说此次反常，盖因有可能成为青岚宗未来的掌门的人，于冥冥之中，将被选中降临而来。',
+                '但具体样貌特征，却没有定论。','宗主此言，勾动众位弟子好奇心，大师姐何语清早早率领一众师姐弟前来迎接。',
+                '何语清拿出太虚宝鉴，内有宗主的神照意志，可照出所有降临之人的境界及重要过往。','“令狐光，男，24岁。','种族：人族',
+                '境界，筑基大圆满。','重要事件：十八岁突破至筑基境。”','“十八岁筑基，天资还不错，可为内门弟子。”',
+                '令狐光顿时兴奋异常，这些降临阵穿越的人，个个都知道来灵修界最重要的事，就是被青岚宗提前选定为内门弟子。',
+                '太虚宝鉴浮空游移，镜面上发出阵阵青色光芒，每一批从降临阵中出来庞大的人流，都被准确判定，一个不漏。',
+                '数万名修士，在一天之内，尽数被筛选完毕，本次结果不太理想，只选出不到百名弟子，内门弟子甚至只有三位。',
+                '何语清不禁有些失望，而至苦闷。灵修界可能是真的后继无人了，这些进来的修士，基础资质是一届不如一届。'
                 ],
               },
 
                { 
                 type: "TopToBottom", bgImageId: 14, loop: true, play: true,
-                content: ['原本封尘已久的降临阵，今天散发着青色的光芒。','降临阵四周，人头攒动。',
+                content: ['“降临阵就要关闭了，还会有人来吗？”','何语清身后的师妹出声道。','就目前已确定入门的这些弟子来看，他们的天赋和能力，还远没有达到能成为宗门未来继承人的标准。',
+                '难道宗主也有出错的时候？','“不清楚。”','何语清俏脸上浮现一抹凝重之色。',
+                '就在这时，降临阵碧色玄光一阵闪烁，浮动流转，一个人影从降临阵中跌落出来，躺在地上半天没有动弹。','如此别致的出场方式，自然吸引了所有人的目光。','此时降临阵碧色玄光闪灭，归于寂然。',
+                '这是降临阵关闭的表现，这最后一个人，就是他！','虽然这人的出场方式有点奇怪，但这也侧面证明他与众不同……此时大部分人心里是这么想的。',
                 ],
               },
             ],
-            #  toChapter: 'WZXX_M1_N1_C004_[N1]' 
-            
+             toChapter: 'WZXX_M1_N1_C004_[N1]' 
           },
+
+
+        #  { 
+        #     id: 'C002_8.8A',style: 5, textAnimationType: 'TextSingle',
+        #   sections: [
+        #       { 
+        #         type: "TopToBottom", bgImageId: 12, loop: true, play: true,
+        #         content: [
+        #         '灵修界。','青岚宗。','随着阵阵钟响，万物俱静。',
+        #         ] 
+        #       },
+
+        #       { 
+        #         type: "TopToBottom", bgImageId: 13, loop: true, play: true,
+        #         content: ['这里瀑布如银似河，日月山川，彰显着仙家的气派。',
+        #         '远远看去，一座座山头云雾缠绕，山上的宗门建筑气势恢弘，灵气非凡，虹桥四起，仙鹤环绕，令人目不暇接。'
+        #         ],
+        #       },
+
+        #        { 
+        #         type: "TopToBottom", bgImageId: 14, loop: true, play: true,
+        #         content: ['原本封尘已久的降临阵，今天散发着青色的光芒。','降临阵四周，人头攒动。',
+        #         ],
+        #       },
+        #     ],
+        #      toChapter: 'WZXX_M1_N1_C004_[N1]' 
+            
+        #   },
 
            { 
            id: 'C002_8.8B',style: 10, textAnimationType: 'TextSingle',
@@ -538,7 +558,7 @@ scenes: [
           { key: 'P1', content: ['外边的脚步声越来越近','你总觉得这脚步声是冲着你而来','再这样疑神疑鬼不是办法','你准备先拿一本书躲起来再看','眼前有三本书，因为天色太黑，有些字无法看清楚','李森炎选择拿上哪一本？'],
           btn: [{title: '《白城？？大全》',tokey: "P3", dropIds: ['WZXX_M1_N1_C002A_V_Vdrop1'],  icon: { id: 6, bindVar: 'biaoqianv28' }, varsOn: ['biaoqianv28']},
           {title: '《思无？》', tokey: "P4", dropIds: ['WZXX_M1_N1_C002A_V_Vdrop2'], icon: { id: 6, bindVar: 'biaoqianv29' }, varsOn: ['biaoqianv29']},
-          {title: '《凌云？？》', tokey: "P2C", dropIds: [ 'WZXX_M1_N1_C002A_V_Vdrop3'],  icon: { id: 7, bindVar: 'biaoqianv30' }, varsOn: ['biaoqianv30']},]},
+          {title: '《凌云？？》', tokey: "P2", dropIds: [ 'WZXX_M1_N1_C002A_V_Vdrop3'],  icon: { id: 7, bindVar: 'biaoqianv30' }, varsOn: ['biaoqianv30']},]},
          
           # btn: [{title: '《白城？？大全》',tokey: "P3", icon: { id: 6, bindVar: 'biaoqianv28' }, varsOn: ['biaoqianv28'] },
           # {title: '《思无？》', tokey: "P7", icon: { id: 6, bindVar: 'biaoqianv29' }, varsOn: ['biaoqianv29'] },
