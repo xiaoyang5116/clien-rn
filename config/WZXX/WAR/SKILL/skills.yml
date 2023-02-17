@@ -20,14 +20,14 @@ skills: [
      # 技能消耗，需要整数，不支持小数点
      consume: [{hp: 0,mp: 0}], 
      # 被动技能与否
-     passive: "false" ,
+     passive: false ,
      # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
      actions: [
      {
      hit_rate: 100 ,
      crit_rate: 5 ,
      crit_add: 5 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 30',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 3',
      },
       ],
      # BUFF效果列表
@@ -52,14 +52,14 @@ skills: [
      # 技能消耗，需要整数，不支持小数点
      consume: [{hp: 0,mp: 0}], 
      # 被动技能与否
-     passive: "false" ,
+     passive: false ,
      # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
      actions: [
      {
      hit_rate: 100 ,
      crit_rate: 3 ,
      crit_add: 3 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 40',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 4',
      },
                 ],
      # BUFF效果列表
@@ -91,7 +91,7 @@ skills: [
      hit_rate: 100 ,
      crit_rate: 4 ,
      crit_add: 4 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 50',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 5',
      },
       ],
      # BUFF效果列表
@@ -123,7 +123,7 @@ skills: [
      hit_rate: 100 ,
      crit_rate: 4 ,
      crit_add: 4 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 60',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 6',
      },
                 ],
      # BUFF效果列表
@@ -155,7 +155,7 @@ skills: [
      hit_rate: 100 ,
      crit_rate: 5 ,
      crit_add: 5 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 70',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 7',
      },
                 ],
      # BUFF效果列表
@@ -187,7 +187,7 @@ skills: [
      hit_rate: 100 ,
      crit_rate: 5 ,
      crit_add: 5 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 80',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 8',
      },
                 ],
      # BUFF效果列表
@@ -219,7 +219,7 @@ skills: [
      hit_rate: 100 ,
      crit_rate: 5 ,
      crit_add: 5 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 90',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 9',
      },
                 ],
      # BUFF效果列表
@@ -251,7 +251,7 @@ skills: [
      hit_rate: 100 ,
      crit_rate: 6 ,
      crit_add: 6 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 100',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 10',
      },
                 ],
      # BUFF效果列表
@@ -283,7 +283,7 @@ skills: [
      hit_rate: 100 ,
      crit_rate: 10 ,
      crit_add: 10 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 110',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 11',
      },
                 ],
      # BUFF效果列表
@@ -315,7 +315,7 @@ skills: [
      hit_rate: 100 ,
      crit_rate: 7 ,
      crit_add: 7 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 140',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 14',
      },
      ],
      # BUFF效果列表
@@ -347,103 +347,7 @@ skills: [
      hit_rate: 100 ,
      crit_rate: 12 ,
      crit_add: 12 ,
-     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 160',
-     },
-     ],
-     # BUFF效果列表
-     effects: [],
-     },
-
-    {
-     # 技能唯一ID
-     id: 40031,
-     # 技能名称
-     name: '普通攻击',
-     # 描述
-     desc: '普通攻击' ,
-     # 技能等级，同一个技能ID下可以有多个等级
-     level: 1,
-     # 图标ID
-     iconId: 1 ,
-     # 蓄力时间，以毫秒作为单位
-     xuLiMillis: 500 ,
-     # 冷却时间
-     cdMillis: 500 ,
-     # 技能消耗，需要整数，不支持小数点
-     consume: [{hp: 0,mp: 1}], 
-     # 被动技能与否
-     passive: false ,
-     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
-     actions: [
-     {
-     hit_rate: 100 ,
-     crit_rate: 0 ,
-     crit_add: 0 ,
-     formula: '伤害 = (A_物理攻击 * 0.8 - D_物理防御) * 1.0 + 10',
-     },
-    ],
-     # BUFF效果列表
-     effects: [],
-     },
-
-    {
-     # 技能唯一ID
-     id: 40032,
-     # 技能名称
-     name: '重攻击',
-     # 描述
-     desc: '重攻击' ,
-     # 技能等级，同一个技能ID下可以有多个等级
-     level: 1,
-     # 图标ID
-     iconId: 1 ,
-     # 蓄力时间，以毫秒作为单位
-     xuLiMillis: 1000 ,
-     # 冷却时间
-     cdMillis: 2000 ,
-     # 技能消耗，需要整数，不支持小数点
-     consume: [{hp: 0,mp: 5}], 
-     # 被动技能与否
-     passive: false ,
-     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
-     actions: [
-     {
-     hit_rate: 80 ,
-     crit_rate: 3 ,
-     crit_add: 3 ,
-     formula: '伤害 = (A_物理攻击 * 0.9 - D_物理防御) * 1.0 + 100',
-     },
-     ],
-     # BUFF效果列表
-     effects: [],
-     },
-
-      {
-     # 技能唯一ID
-     id: 40033,
-     # 技能名称
-     name: '头发攻击',
-     # 描述
-     desc: '黑发阴灵的特殊攻击' ,
-     # 技能等级，同一个技能ID下可以有多个等级
-     level: 1,
-     # 图标ID
-     iconId: 1 ,
-     # 蓄力时间，以毫秒作为单位
-     xuLiMillis: 0 ,
-     # 冷却时间
-     cdMillis: 100 ,
-     # 技能消耗，需要整数，不支持小数点
-     consume: [{hp: 0,mp: 10}], 
-     # 被动技能与否
-     passive: false ,
-     # 技能影响公式hit_rate: 命中 crit_rate: 暴击率crit_add: 暴击倍率 formula: 伤害公式
-     actions: [
-     {
-     hit_rate: 60 ,
-     crit_rate: 0 ,
-     crit_add: 0 ,
-     formula: '伤害 = (A_物理攻击 * 0.5 - D_物理防御) * 1.0 + 200',
+     formula: '伤害 = (A_物理攻击 - D_物理防御) * 0.8 + 16',
      },
      ],
      # BUFF效果列表

@@ -25,7 +25,7 @@ challenge: {
       { 
          uid: 100000, 
          userName: '盗贼', 
-         skillIds: [40030, 40031, 40032],
+         skillIds: [50, 51, 52, 54, 55, 56],
          attrs: [
           { key: 'hp', value: 400 },
           { key: 'mp', value: 20 },
