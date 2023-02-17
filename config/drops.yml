@@ -168,7 +168,7 @@ drops: [
   { id: 'WZXX_M1_N1_C003_V_Vdrop1',  alterAttrs: ['悟性,1'] },
   { id: 'WZXX_M1_N1_C003_V_Vdrop2',  alterAttrs: ['神识,1'] },
   #时空宝玉8888【难道是原身曾英雄救美】
-   { id: 'WZXX_M1_N1_C003_V_Vdrop888',  sendProps: '44,1,showBag',},
+   { id: 'WZXX_M1_N1_C003_V_Vdrop888',  sendProps: '44,100,showBag',},
 
   #
   { id: 'WZXX_M1_N1_C005_V_Vdrop1',  alterAttrs: ['入魔,1'] },
