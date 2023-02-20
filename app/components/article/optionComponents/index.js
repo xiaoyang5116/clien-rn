@@ -5,6 +5,7 @@ import LeftTopTitle_Btn from './LeftTopTitle_Btn'
 import TopAndBottomTitle_Btn from './TopAndBottomTitle_Btn'
 import RightBottomTitle_Btn from './RightBottomTitle_Btn'
 import SingleLine from './SingleLine'
+import Video_Btn from './Video_Btn'
 
 
 const OptionComponents = (props) => {
@@ -19,6 +20,8 @@ const OptionComponents = (props) => {
       return <TopAndBottomTitle_Btn {...props} />
     case "A3":
       return <RightBottomTitle_Btn {...props} />
+    case "A4":
+      return <Video_Btn {...props} />
   }
 }
 
