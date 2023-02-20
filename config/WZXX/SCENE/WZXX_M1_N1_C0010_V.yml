@@ -112,9 +112,9 @@ scenes: [
        { 
         id: 'WZXX_M1_N1_C0010_V11', desc: '', 
         options: [ 
-          { title: "【多谢姑娘救命，请问..】",},
-          { title: "【敢问姑娘...】",},
-          { title: "【告诉我，这是什么地...】",},
+          { title: "【多谢姑娘救命，请问..】",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop4'],},
+          { title: "【敢问姑娘...】",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop5'],},
+          { title: "【告诉我，这是什么地...】",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop6'],},
         ],
       },
 
@@ -126,6 +126,24 @@ scenes: [
         { title: "他当然不是真的要爆缸，只是想借口离开。",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop3'], dialogs: ["p1"] },
           # 震动
           # { title: "<一阵疼痛袭来。>", shock: 'slightShock' },
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C0010_V13', desc: '', 
+        options: [ 
+          { title: "有别的途经可以让我抵债吗？",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop7'],},
+          { title: "我倒是可以牺牲一下肉身……",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop8'],},
+          { title: "我是小学生，能送我吗？",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop9'],},
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_C0010_V14', desc: '', 
+        options: [ 
+          { title: "没事，你躲我身后，我来保护你",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop10'],},
+          { title: "你怕个毛线，你不是修炼四万八千年了吗？",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop11'],},
+          { title: "你自己引过来的，你自己解决",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop12'],},
         ],
       },
 
