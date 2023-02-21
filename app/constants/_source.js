@@ -66,7 +66,7 @@ const _images = {
         { id: 'ZANZI', width: px2pd(720), height: px2pd(720), source: require('../../assets/chapter/ZANZI.webp') },
     ],
     btn_icon: [
-        { id: 1, img: require('../../assets/button_icon/1.png'), top: 0, left: 10 },
+        { id: 1, img: require('../../assets/button_icon/7.png'), top: 0, left: 10 },
         { id: 2, img: require('../../assets/button_icon/2.png'), top: -1, left: 10 },
         { id: 3, img: require('../../assets/button_icon/3.png'), top: 0, left: 10 },
         { id: 4, img: require('../../assets/button_icon/4.png'), top: 0, left: 10 },
