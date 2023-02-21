@@ -215,12 +215,8 @@ const Grid = (props) => {
     gridImg = require('../../../assets/button/scene_map_button2.png');
   }
 
-  const borderEffect = isCenterPoint
-    ? { borderWidth: 1.5, borderColor: '#31aac8', borderRadius: 5 }
-    : {};
-
   return (
-    <View style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top }, borderEffect]}
+    <View style={[{ position: 'absolute', width: GRID_PX_WIDTH, height: GRID_PX_HEIGHT, justifyContent: 'center', alignItems: 'center' }, { left, top },]}
       onTouchStart={() => {
         touchStart = true;
       }}
@@ -239,6 +235,7 @@ const Grid = (props) => {
     >
       <FastImage style={{ position: 'absolute', zIndex: 0, width: '100%', height: '100%' }} source={gridImg} />
       <Text style={{ color: '#000', zIndex: 1 }}>{props.data.title}</Text>
+      { (isCenterPoint) ? <FastImage style={{position: 'absolute', width:px2pd(310), height: px2pd(94)}} source={require('../../../assets/button/scene_map_buttonF.png')} /> : <></>}
       {(isCenterPoint) ? <CentPointAnimation /> : <></>}
       {(props.data.icon != undefined && props.data.icon.show) ? (<BtnIcon id={props.data.icon.id} style={{}} />) : <></>}
     </View>
