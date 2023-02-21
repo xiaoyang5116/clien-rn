@@ -9,6 +9,10 @@ scenes: [
       { id: "v1", min: 0, max: 1 },
       { id: "biaoqianv1", min: 0, max: 1 } ,
       { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+      { id: "biaoqianv5", min: 0, max: 1 } ,
+      { id: "biaoqianv6", min: 0, max: 1 } ,
       ],
 
       # 动作定义
@@ -37,6 +41,42 @@ scenes: [
           { title: "【使不得使不得】",dialogs: ['C0020A_buyaoA'], icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1']},
         ],
       },
+
+      { 
+        id: 'WZXX_M1_N1_C0020_V3', desc: '选项', 
+        options: [     
+            {
+             title: "君子动口不动手，我们好好谈谈",
+             andVarsOff: ['v1A'], varsOn: ['v2A','v3A','v4A','biaoqianv3'],
+             alwayDisplay: true, 
+             icon: { id: 7, bindVar: 'biaoqianv3' },
+             dropIds: [ 'WZXX_M1_N1_C0020_V_Vdrop4'], 
+            },
+            {
+             title: "你还真敢张嘴，我要是说一个不给呢？",
+             andVarsOff: ['v2A'], varsOn: ['v1A','v3A','v4A','biaoqianv4'], 
+             alwayDisplay: true,
+             icon: { id: 7, bindVar: 'biaoqianv4' },
+             dropIds: [ 'WZXX_M1_N1_C0020_V_Vdrop5'], 
+            },
+            {
+             title: "你们这是在找死！",
+             andVarsOff: ['v3A'], varsOn: ['v1A','v2A','v4A','biaoqianv5'],
+             alwayDisplay: true,
+             icon: { id: 7, bindVar: 'biaoqianv5' },
+             dropIds: [ 'WZXX_M1_N1_C0020_V_Vdrop6'], 
+            },
+            {
+             title: "修仙讲究人情世故，而非打打杀杀",
+             andVarsOff: ['v4A'], varsOn: ['v1A','v2A','v3A','biaoqianv6'],
+             alwayDisplay: true,
+             icon: { id: 7, bindVar: 'biaoqianv6' },
+             dropIds: [ 'WZXX_M1_N1_C0020_V_Vdrop7'], 
+            },
+
+        ],
+      },
+
 
       
 

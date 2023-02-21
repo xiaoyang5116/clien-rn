@@ -8,6 +8,14 @@ scenes: [
       vars: [{ id: "v1", min: 0, max: 1 } ,
       { id: "biaoqianv1", min: 0, max: 1 } ,
       { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+      { id: "biaoqianv5", min: 0, max: 1 } ,
+
+      { id: "v1A", min: 0, max: 1 } ,
+      { id: "v2A", min: 0, max: 1 } ,
+      { id: "v3A", min: 0, max: 1 } ,
+
       
       ],
 
@@ -62,6 +70,34 @@ scenes: [
            },
         ],
       },
+
+      { 
+        id: 'WZXX_M1_N1_C0021_V5', desc: '选项', 
+        options: [     
+            {
+             title: "他也只是为我好，我并不恨他",
+             andVarsOff: ['v1A'], varsOn: ['v2A','v3A','biaoqianv3'],
+             alwayDisplay: true, 
+             icon: { id: 7, bindVar: 'biaoqianv3' },
+             dropIds: [ 'WZXX_M1_N1_C0021_V_Vdrop2'], 
+            },
+            {
+             title: "不恨，我只是痛恨欺骗而已。",
+             andVarsOff: ['v2A'], varsOn: ['v1A','v3A','biaoqianv4'], 
+             alwayDisplay: true,
+             icon: { id: 7, bindVar: 'biaoqianv4' },
+             dropIds: [ 'WZXX_M1_N1_C0021_V_Vdrop3'], 
+            },
+            {
+             title: "不恨，只是不喜欢别人擅自帮我做主而已",
+             andVarsOff: ['v3A'], varsOn: ['v1A','v2A','biaoqianv5'],
+             alwayDisplay: true,
+             icon: { id: 7, bindVar: 'biaoqianv5' },
+             dropIds: [ 'WZXX_M1_N1_C0021_V_Vdrop4'], 
+            },
+
+        ],
+      },
         ],
 
 
@@ -74,7 +110,7 @@ scenes: [
             btn: [
           { title: "【跟着陶老修行】", toChapter: "WZXX_M1_N1_C022_[N1]" },
           { title: "【寻找医灵修行】", toChapter: "WZXX_M1_N1_C022_[N2]" },
-            ]
+         ]
         },  
        },
 

@@ -96,7 +96,7 @@ scenes: [
         ],
       },
 
-       { 
+      {
         id: 'WZXX_M1_N1_C001V_SS', desc: '选项', 
         options: [     
             {
@@ -147,7 +147,7 @@ scenes: [
         options: [ 
 
        { 
-          title: "【异样】",dialogs: ['C001_1.S'], 
+          title: "【异样】",btnType: "A4", dialogs: ['C001_1.S'], 
        },
 
         ],

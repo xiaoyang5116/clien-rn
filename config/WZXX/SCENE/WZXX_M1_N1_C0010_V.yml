@@ -7,9 +7,31 @@ scenes: [
       # 变量定义
       vars: [
       { id: "v1", min: 0, max: 1 },
+
+      { id: "NXSJ", min: 0, max: 1 },
+
       { id: "biaoqianv1", min: 0, max: 1 } ,
       { id: "biaoqianv2", min: 0, max: 1 } ,
-      { id: "NXSJ", min: 0, max: 1 },
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+      { id: "biaoqianv5", min: 0, max: 1 } ,
+      { id: "biaoqianv6", min: 0, max: 1 } ,
+      { id: "biaoqianv7", min: 0, max: 1 } ,
+      { id: "biaoqianv8", min: 0, max: 1 } ,
+      { id: "biaoqianv9", min: 0, max: 1 } ,
+
+      { id: "v1A", min: 0, max: 1 },
+      { id: "v2A", min: 0, max: 1 },
+      { id: "v3A", min: 0, max: 1 },
+
+      { id: "v1B", min: 0, max: 1 },
+      { id: "v2B", min: 0, max: 1 },
+      { id: "v3B", min: 0, max: 1 },
+
+      { id: "v1C", min: 0, max: 1 },
+      { id: "v2C", min: 0, max: 1 },
+      { id: "v3C", min: 0, max: 1 },
+
       ],
 
       # 动作定义
@@ -90,7 +112,7 @@ scenes: [
         id: 'WZXX_M1_N1_C0010_V8', desc: '', 
         options: [ 
           { title: "【万一把人玩废了就不好了，给】",dialogs: ['C0010_1.5A'],},
-          { title: "【要的就是艺高人胆大，不给！】",dialogs: ['C0010_1.5B'], },
+          { title: "【要的就是艺高人胆大，不给！】",dialogs: ['C0010_1.5B'],},
         ],
       },
 
@@ -112,9 +134,27 @@ scenes: [
        { 
         id: 'WZXX_M1_N1_C0010_V11', desc: '', 
         options: [ 
-          { title: "【多谢姑娘救命，请问..】",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop4'],},
-          { title: "【敢问姑娘...】",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop5'],},
-          { title: "【告诉我，这是什么地...】",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop6'],},
+          { 
+          title: "【多谢姑娘救命，请问..】",
+          andVarsOff: ['v1A'], varsOn: ['v2A','v3A','biaoqianv1'],
+          alwayDisplay: true, 
+          icon: { id: 7, bindVar: 'biaoqianv1' },
+          dropIds: ['WZXX_M1_N1_C0010_V_Vdrop4'],
+          },
+          {
+           title: "【敢问姑娘...】",
+          andVarsOff: ['v2A'], varsOn: ['v1A','v3A','biaoqianv2'], 
+          alwayDisplay: true,
+          icon: { id: 7, bindVar: 'biaoqianv2' },
+          dropIds: ['WZXX_M1_N1_C0010_V_Vdrop5'],
+          },
+          { 
+          title: "【告诉我，这是什么地...】",
+          andVarsOff: ['v3A'], varsOn: ['v2A','v1A','biaoqianv3'],
+          alwayDisplay: true,
+          icon: { id: 7, bindVar: 'biaoqianv3' },
+          dropIds: ['WZXX_M1_N1_C0010_V_Vdrop6'],
+          },
         ],
       },
 
@@ -132,18 +172,56 @@ scenes: [
       { 
         id: 'WZXX_M1_N1_C0010_V13', desc: '', 
         options: [ 
-          { title: "有别的途经可以让我抵债吗？",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop7'],},
-          { title: "我倒是可以牺牲一下肉身……",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop8'],},
-          { title: "我是小学生，能送我吗？",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop9'],},
+          { 
+          title: "有别的途经可以让我抵债吗？",
+          andVarsOff: ['v1B'], varsOn: ['v2B','v3B','biaoqianv4'],
+          alwayDisplay: true, 
+          icon: { id: 7, bindVar: 'biaoqianv4' },
+          dropIds: ['WZXX_M1_N1_C0010_V_Vdrop7'],
+          },
+
+          {
+          title: "我倒是可以牺牲一下肉身……",
+          andVarsOff: ['v2B'], varsOn: ['v1B','v3B','biaoqianv5'],
+          alwayDisplay: true,
+          icon: { id: 7, bindVar: 'biaoqianv5' },
+          dropIds: ['WZXX_M1_N1_C0010_V_Vdrop8'],
+          },
+
+          { 
+          title: "我是小学生，能送我吗？",
+          andVarsOff: ['v3B'], varsOn: ['v2B','v1B','biaoqianv6'],
+          alwayDisplay: true,
+          icon: { id: 7, bindVar: 'biaoqianv6' },
+          dropIds: ['WZXX_M1_N1_C0010_V_Vdrop9'],
+          },
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C0010_V14', desc: '', 
         options: [ 
-          { title: "没事，你躲我身后，我来保护你",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop10'],},
-          { title: "你怕个毛线，你不是修炼四万八千年了吗？",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop11'],},
-          { title: "你自己引过来的，你自己解决",dropIds: ['WZXX_M1_N1_C0010_V_Vdrop12'],},
+          {
+          title: "没事，你躲我身后，我来保护你",
+          andVarsOff: ['v1C'], varsOn: ['v2C','v3C','biaoqianv7'],
+          alwayDisplay: true, 
+          icon: { id: 7, bindVar: 'biaoqianv7' },
+          dropIds: ['WZXX_M1_N1_C0010_V_Vdrop10'],
+          },
+          { 
+          title: "你怕个毛线，你不是修炼四万八千年了吗？",
+          andVarsOff: ['v2C'], varsOn: ['v1C','v3C','biaoqianv8'], 
+          alwayDisplay: true,
+          icon: { id: 7, bindVar: 'biaoqianv8' },
+          dropIds: ['WZXX_M1_N1_C0010_V_Vdrop11'],
+          },
+          { 
+          title: "你自己引过来的，你自己解决",
+          andVarsOff: ['v3C'], varsOn: ['v2C','v1C','biaoqianv9'],
+          alwayDisplay: true,
+          icon: { id: 7, bindVar: 'biaoqianv9' },
+          dropIds: ['WZXX_M1_N1_C0010_V_Vdrop12'],
+          },
         ],
       },
 
@@ -217,8 +295,8 @@ scenes: [
          sections: {
             content: "切换不同视角可体验不同角色的剧情，请选择接下来您要体验的角色视角\n注：视角切换仅对此剧情内有效，坊市剧情结束将会跳转为主角‘李森炎’视角。",
             btn: [
-          { title: "【切换医灵视角】", toChapter: "WZXX_M1_N1_C010_[N3]" },
-          { title: "【继续李森炎视角】", toChapter: "WZXX_M1_N1_C010_[N2]" },
+              { title: "【切换医灵视角】", toChapter: "WZXX_M1_N1_C010_[N3]" },
+              { title: "【继续李森炎视角】", toChapter: "WZXX_M1_N1_C010_[N2]" },
             ]
         },  
        },
@@ -232,7 +310,6 @@ scenes: [
           '那所谓的李家后人，叫李森炎。','用花灵的话来说，就是个什么都不会的废物，想来是阴差阳错来到这灵修界的。',
           '这次跟着那多云，就是想要修炼。','但我颦眉一想，废物？修炼？','这岂不是挺有意思的？','反正都是白纸了也不怕练废，说不定玩一玩还能练出个惊喜来！','不过，那自然是要自己亲力亲为帮他修炼了，万一李森炎触及歪门邪道，修了魔道，那便是罪孽了！',
           '而后，花灵又说，似乎他们准备来坊市。',
-          
           ],
           btn: [{title: '有注意了',toChapter: "WZXX_M1_N1_C010_[N5]",},]},
 
@@ -337,9 +414,7 @@ scenes: [
           
           ],
           btn: [{title: '帮忙',toChapter: "WZXX_M1_N1_C010_[N13]",},]},
-
-       
-           ]  
+          ]  
         },
 
          { 

@@ -46,32 +46,31 @@ scenes: [
       #
 
       { 
-        id: 'WZXX_M1_N1_C002_V1', desc: ' ', 
+        id: 'WZXX_M1_N1_C002_V1', desc: '选项', 
         options: [ 
           { 
           title: "【貌似回想起了什么……】",dialogs: ['C002_1.1A'], 
-
           },
 
         ],
       },
 
         { 
-        id: 'WZXX_M1_N1_C002_V2', desc: ' ', 
+        id: 'WZXX_M1_N1_C002_V2', desc: '选项', 
         options: [ 
           { 
           title: "【去买簪子】",dialogs: ['C002_1.1B'], 
-
           },
 
         ],
       },
 
        { 
-        id: 'WZXX_M1_N1_C002_V3', desc: ' ', 
+        id: 'WZXX_M1_N1_C002_V3', desc: '选项', 
         options: [ 
 
-         {title: '唉，我会替你好好的活着的',
+         {
+         title: '唉，我会替你好好的活着的',
          andVarsOff: ['v1A'], 
           andVarsValue: ['@attr_灵性 >= 1',], 
          alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1', 
@@ -92,31 +91,28 @@ scenes: [
           {
           title: '晦气！把我给穿来这个鬼地方',
            andVarsOff: ['v3A'],
-          andVarsValue: ['@attr_嫌弃 >= 2',], alwayDisplay: true, 
-           btnType: "A2", leftTop_Title: '入魔属性大于5',  
+          andVarsValue: ['@attr_嫌弃 >= 2',], alwayDisplay: true , 
+           btnType: "A2", leftTop_Title: '嫌弃属性大于2',   
            rightBottom_Title: "奖励：嫌弃+1", 
           toChapter: "WZXX_M1_N1_C002_[N14]",
           dropIds: ["WZXX_M1_N1_C002_V_Vdrop6",],
           icon: { id: 1, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10','v2A','v1A','v4A',] 
           },
-
           {
           title: '我会帮你将这仇给报了！',
-           andVarsOff: ['v4A'], 
+          andVarsOff: ['v4A'], 
           andVarsValue: ['@attr_崇敬 >= 2',],
-           alwayDisplay: true,
-            btnType: "A2", leftTop_Title: '入魔属性大于5',  rightBottom_Title: "奖励：崇敬+2", 
+          alwayDisplay: true ,
+          btnType: "A2", leftTop_Title: '崇敬属性大于2', rightBottom_Title: "奖励：崇敬+2", 
           toChapter: "WZXX_M1_N1_C002_[N14]"
           ,dropIds: ["WZXX_M1_N1_C002_V_Vdrop7",],
           icon: { id: 1, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11','v2A','v1A','v3A'] 
           },
-        
-
         ],
       },
 
       { 
-        id: 'WZXX_M1_N1_C002_VS', desc: '测试段落', plain: true,
+        id: 'WZXX_M1_N1_C002_VS', desc: '测试段落', plain: true ,
         options: [ 
 
         { title: "这个世界年代显然是古代，肯定没有手表这东西，所以这手表必然是他穿越时带过来的，可他身上手机之类其他东西却没有带过来，只带过来这个手表，这很难不让人怀疑。", dialogs: ["p1"] },
@@ -127,11 +123,11 @@ scenes: [
       },
 
       { 
-        id: 'WZXX_M1_N1_C002_V4', desc: '测试段落', plain: true,
+        id: 'WZXX_M1_N1_C002_V4', desc: '选项',
         options: [ 
 
        { 
-          title: "【手表异常】",dialogs: ['C002_1.S'], 
+          title: "【手表异常】",btnType: "A4", dialogs: ['C002_1.S'], 
        },
 
         ],

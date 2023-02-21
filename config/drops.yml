@@ -407,6 +407,32 @@ drops: [
   { id: 'WZXX_M1_N1_C0010_V_Vdrop11',  alterAttrs: ['节操,1'],},
   { id: 'WZXX_M1_N1_C0010_V_Vdrop12',  alterAttrs: ['入魔,1'],},
 
+  { id: 'WZXX_M1_N1_C0016_V_Vdrop1',  alterAttrs: ['正义,1'],},
+  { id: 'WZXX_M1_N1_C0016_V_Vdrop2',  alterAttrs: ['节操,1'],},
+  { id: 'WZXX_M1_N1_C0016_V_Vdrop3',  alterAttrs: ['邪恶,1'],},
+
+  { id: 'WZXX_M1_N1_C0016_V_Vdrop4',  alterAttrs: ['节操,-1'],},
+  { id: 'WZXX_M1_N1_C0016_V_Vdrop5',  alterAttrs: ['气运,1'],},
+  { id: 'WZXX_M1_N1_C0016_V_Vdrop6',  alterAttrs: ['体魄,1'],},
+  
+  { id: 'WZXX_M1_N1_C0018_VA_Vdrop1',  alterAttrs: ['勇气,1'],},
+  { id: 'WZXX_M1_N1_C0018_VA_Vdrop2',  alterAttrs: ['入魔,1'],},
+  { id: 'WZXX_M1_N1_C0018_VA_Vdrop3',  alterAttrs: ['逼格,1'],},
+  
+  { id: 'WZXX_M1_N1_C0018_VA_Vdrop4',  alterAttrs: ['勇气,1'],},
+  { id: 'WZXX_M1_N1_C0018_VA_Vdrop5',  alterAttrs: ['灵性,1'],},
+  { id: 'WZXX_M1_N1_C0018_VA_Vdrop6',  alterAttrs: ['自由,1'],},
+
+  { id: 'WZXX_M1_N1_C0020_V_Vdrop4',  alterAttrs: ['入道,1'],},
+  { id: 'WZXX_M1_N1_C0020_V_Vdrop5',  alterAttrs: ['逼格,1'],},
+  { id: 'WZXX_M1_N1_C0020_V_Vdrop6',  alterAttrs: ['入魔,1'],},
+  { id: 'WZXX_M1_N1_C0020_V_Vdrop7',  alterAttrs: ['节操,1'],},
+  
+  
+  { id: 'WZXX_M1_N1_C0021_V_Vdrop2',  alterAttrs: ['入道,1'],},
+  { id: 'WZXX_M1_N1_C0021_V_Vdrop3',  alterAttrs: ['自由,1'],},
+  { id: 'WZXX_M1_N1_C0021_V_Vdrop4',  alterAttrs: ['勇气,1'],},
+
 
 
 
