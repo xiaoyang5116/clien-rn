@@ -149,7 +149,7 @@ const SceneMapWrapper = (props) => {
   }, []);
 
   return (
-    <SceneMap data={props.mapData} initialCenterPoint={mapCenterPoint} />
+    <SceneMap data={props.mapData} initialCenterPoint={mapCenterPoint} mapImages={props.mapImages} />
   );
 }
 
