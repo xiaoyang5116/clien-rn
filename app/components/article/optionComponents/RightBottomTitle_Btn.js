@@ -46,6 +46,7 @@ const RightBottomTitle_Btn = props => {
         <Text style={{ fontSize: 14, color: "#000" }}>{title}</Text>
       </ImageBtn>
       <ImageBackground
+        resizeMode="stretch"
         style={{ ...imgData.bottom.size, justifyContent: 'center', paddingLeft: px2pd(292), }}
         source={disabled ? imgData.bottom.disabled : imgData.bottom.default}
       >

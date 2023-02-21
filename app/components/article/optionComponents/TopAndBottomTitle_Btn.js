@@ -42,6 +42,7 @@ const TopAndBottomTitle_Btn = props => {
   return (
     <View style={{ width: "100%", alignItems: "center" }}>
       <ImageBackground
+        resizeMode="stretch"
         style={{ ...imgData.top.size, justifyContent: 'center', paddingLeft: 30, paddingTop: px2pd(5), }}
         source={disabled ? imgData.top.disabled : imgData.top.default}
       >
@@ -57,6 +58,7 @@ const TopAndBottomTitle_Btn = props => {
         <Text style={{ fontSize: 14, color: "#000" }}>{title}</Text>
       </ImageBtn>
       <ImageBackground
+        resizeMode="stretch"
         style={{ ...imgData.bottom.size, justifyContent: 'center', paddingLeft: px2pd(292), }}
         source={disabled ? imgData.bottom.disabled : imgData.bottom.default}
       >

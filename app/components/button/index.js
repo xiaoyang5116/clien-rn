@@ -50,10 +50,10 @@ export const ImageBtn = (props) => {
       <View style={{ justifyContent: 'center', alignItems: "center", ...imgStyle, ...containerStyle, }}>
         {
           isPress
-            ? (<FastImage style={{ ...imgStyle, position: 'absolute' }}
+            ? (<FastImage resizeMode="stretch" style={{ ...imgStyle, position: 'absolute' }}
               source={selectedSource}
             />)
-            : (<FastImage style={{ ...imgStyle, position: 'absolute' }}
+            : (<FastImage resizeMode="stretch" style={{ ...imgStyle, position: 'absolute' }}
               source={source}
             />)
         }
