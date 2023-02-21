@@ -150,6 +150,10 @@ const _images = {
         { id: "2", img: require('../../assets/sceneMapBg/scene_map2.png'), },
         { id: "3", img: require('../../assets/sceneMapBg/scene_map3.png'), },
         // 大地图
+        { id: "100", img: require('../../assets/sceneMapBg/scene_map_big_new.png'), },
+        { id: "101", img: require('../../assets/sceneMapBg/scene_map_big_new.png'), },
+        { id: "102", img: require('../../assets/sceneMapBg/scene_map_big_new.png'), },
+        // { id: "100", img: require('../../assets/button_icon/2.png'), },
         // { id: "100", img: require('../../assets/button_icon/2.png'), },
     ],
 
