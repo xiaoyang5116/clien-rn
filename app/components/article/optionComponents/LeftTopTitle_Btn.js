@@ -7,6 +7,21 @@ import { px2pd } from '../../../constants/resolution';
 import FastImage from 'react-native-fast-image';
 import { ImageBtn } from '../../../constants/custom-ui';
 
+const imgData = {
+  top: {
+    size: { width: px2pd(1070), height: px2pd(57), },
+    default: require('../../../../assets/button/leftTop_titleButton/default/top.png'),
+    disabled: require('../../../../assets/button/leftTop_titleButton/disabled/top.png'),
+  },
+  center: {
+    size: { width: px2pd(1070), height: px2pd(98), },
+    default: require('../../../../assets/button/leftTop_titleButton/default/center_1.png'),
+    default_click: require('../../../../assets/button/leftTop_titleButton/default/center_2.png'),
+    // disabled
+    disabled: require('../../../../assets/button/leftTop_titleButton/disabled/center_1.png'),
+    disabled_click: require('../../../../assets/button/leftTop_titleButton/disabled/center_2.png'),
+  },
+}
 
 const LeftTopTitle_Btn = props => {
   const { title, disabled, onPress, currentStyles, optionData, containerStyle } = props;
@@ -20,42 +35,20 @@ const LeftTopTitle_Btn = props => {
     }
   }
 
-  if (disabled) {
-    return (
-      <View style={{ width: "100%", alignItems: "center" }}>
-        <ImageBackground
-          style={{ width: px2pd(1067), height: px2pd(57), justifyContent: 'center', paddingLeft: 30, paddingTop: px2pd(5) }}
-          source={require('../../../../assets/button/topbot_btn_2/left_top_2.png')}
-        >
-          <Text style={{ fontSize: 14, color: "#000" }}>{leftTop_Title}</Text>
-        </ImageBackground>
-        <ImageBtn
-          imgStyle={{ width: px2pd(1067), height: px2pd(98), }}
-          onPress={handlerOnPress}
-          source={require('../../../../assets/button/topbot_btn_2/left_top1_2.png')}
-          selectedSource={require('../../../../assets/button/topbot_btn_2/left_top2_2.png')}
-        >
-          {icon?.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
-          <Text style={{ fontSize: 14, color: "#000" }}>{title}</Text>
-        </ImageBtn>
-      </View>
-    )
-  }
-
-
   return (
     <View style={{ width: "100%", alignItems: "center" }}>
       <ImageBackground
-        style={{ width: px2pd(1067), height: px2pd(57), justifyContent: 'center', paddingLeft: 30, paddingTop: px2pd(5) }}
-        source={require('../../../../assets/button/topbot_btn/left_top.png')}
+        resizeMode="stretch"
+        style={{ ...imgData.top.size, justifyContent: 'center', paddingLeft: 30, paddingTop: px2pd(5) }}
+        source={disabled ? imgData.top.disabled : imgData.top.default}
       >
         <Text style={{ fontSize: 14, color: "#000" }}>{leftTop_Title}</Text>
       </ImageBackground>
       <ImageBtn
-        imgStyle={{ width: px2pd(1067), height: px2pd(98), }}
+        imgStyle={imgData.center.size}
         onPress={handlerOnPress}
-        source={require('../../../../assets/button/topbot_btn/left_top1.png')}
-        selectedSource={require('../../../../assets/button/topbot_btn/left_top2.png')}
+        source={disabled ? imgData.center.disabled : imgData.center.default}
+        selectedSource={disabled ? imgData.center.disabled_click : imgData.center.default_click}
       >
         {icon?.show ? <BtnIcon id={icon.id} style={{ height: "100%", justifyContent: "center" }} /> : null}
         <Text style={{ fontSize: 14, color: "#000" }}>{title}</Text>

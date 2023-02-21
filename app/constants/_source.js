@@ -147,6 +147,8 @@ const _images = {
     sceneMapBg: [
         // 小地图
         { id: "1", img: require('../../assets/sceneMapBg/scene_map.png'), },
+        { id: "2", img: require('../../assets/sceneMapBg/scene_map2.png'), },
+        { id: "3", img: require('../../assets/sceneMapBg/scene_map3.png'), },
         // 大地图
         // { id: "100", img: require('../../assets/button_icon/2.png'), },
     ],
