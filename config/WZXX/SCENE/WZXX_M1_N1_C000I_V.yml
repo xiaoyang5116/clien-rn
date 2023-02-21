@@ -2498,7 +2498,11 @@ scenes: [
     maps: [
         {
             id: 'C000I_V_MAP_0_0',
-            data: [
+             images: {
+              small: '2',
+              big: "100"
+            },
+           data: [
           {
             "title": "永安坊",
             "point": [0,0],
@@ -3110,6 +3114,10 @@ scenes: [
     maps: [
     {
             id: 'C000I_V_MAP_0_1',
+             images: {
+                small: '3',
+                big: "100"
+              },
             data: [
 
               { 
@@ -3561,6 +3569,10 @@ scenes: [
     maps: [
     {
             id: 'C000I_V_MAP_0_2',
+             images: {
+                small: '3',
+                big: "100"
+              },
             data: [
 
               { 

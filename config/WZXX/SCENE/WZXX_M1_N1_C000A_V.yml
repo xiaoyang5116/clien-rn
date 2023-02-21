@@ -2102,10 +2102,10 @@ scenes: [
     maps: [
       {
         id: 'C000A_V_MAP_0_0',
-        # images: {
-        #   small: '1',
-        #   big: "100"
-        # },
+         images: {
+          small: '2',
+          big: "100"
+        },
         data: [
           { 
           point: [0, -4], title: '城门', 
@@ -2948,6 +2948,10 @@ scenes: [
     maps: [
       {
         id: 'C000A_V2_MAP_0_0',
+         images: {
+          small: '2',
+          big: "100"
+        },
         data: [
           {
           point: [1, -3], title: '来福客栈', 
@@ -3908,8 +3912,8 @@ scenes: [
     maps: [
       {
         id: 'C000A_V3_MAP_0_0',
-        images: {
-          small: '1',
+         images: {
+          small: '2',
           big: "100"
         },
         data: [

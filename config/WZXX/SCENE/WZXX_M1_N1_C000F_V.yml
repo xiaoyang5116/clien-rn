@@ -1002,6 +1002,10 @@ scenes: [
     maps: [
       {
         id: 'C000F_V2_MAP_0_0',
+         images: {
+          small: '1',
+          big: "100"
+        },
         data: [
           { 
           point: [-1, 2], title: '家门口', 
@@ -2085,6 +2089,10 @@ scenes: [
     maps: [
     {
             id: 'C000F_V_MAP_0_0',
+             images: {
+                small: '1',
+                big: "100"
+              },
             data: [
 
               { 

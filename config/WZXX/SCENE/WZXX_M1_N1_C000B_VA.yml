@@ -704,6 +704,10 @@ scenes: [
     maps: [
       {
         id: 'C000B_VA_MAP_0_0',
+         images: {
+          small: '2',
+          big: "100"
+        },
         data: [
           { 
           point: [0, 0], title: '坊市出入口',
