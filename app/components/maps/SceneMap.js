@@ -395,7 +395,7 @@ const SceneBigMap = (props) => {
             e.stopPropagation();
           }} {...panResponder.panHandlers}>
             <Animated.View style={[{ position: 'absolute', bottom: 0 }, { ...MAP_BIG_SIZE }, { transform: [{ translateY: translateY }] }]}>
-              <FastImage style={[{ position: 'absolute', width: '100%', height: '100%' }]} source={require('../../../assets/bg/scene_map_big_new.png')} />
+              <FastImage style={[{ position: 'absolute', width: '100%', height: '100%' }]} source={getSceneMapBg(props.bigImage)} />
               {/* 大地图网格 */}
               <View style={{ flex: 1, margin: 4, overflow: 'hidden' }}>
                 <Animated.View style={{ position: 'absolute', transform: [{ translateX: bigMapPos.x }, { translateY: bigMapPos.y }, { scale: bigMapScale }] }}>
