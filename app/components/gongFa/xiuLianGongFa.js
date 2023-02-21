@@ -7,6 +7,7 @@ import {
   FlatList,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  ImageBackground,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
@@ -56,7 +57,11 @@ const XiuLianGongFa = props => {
 
   useEffect(() => {
     // 获取修炼需要的道具
-    if (gongFaGrade < checkedIndex && currentGongFaLayer === gongFaLayer && gongFaStatus !== 2) {
+    if (
+      gongFaGrade < checkedIndex &&
+      currentGongFaLayer === gongFaLayer &&
+      gongFaStatus !== 2
+    ) {
       props
         .dispatch(
           action('GongFaModel/getXiuLianNeedProps')({
@@ -85,7 +90,7 @@ const XiuLianGongFa = props => {
     if (currentGongFaLayer === gongFaLayer && gongFaGrade >= checkedIndex) {
       setUpgradeProps([]);
     }
-    if (currentGongFaLayer < gongFaLayer ) {
+    if (currentGongFaLayer < gongFaLayer) {
       setUpgradeProps([]);
     }
   }, [checkedIndex]);
@@ -107,7 +112,6 @@ const XiuLianGongFa = props => {
             setGongFaProgress(result);
             SetCurrentGongFaLayer(result.gongFaLayer);
             setCheckedIndex(result.gongFaGrade + 1);
-            
           }
         });
     } else {
@@ -240,34 +244,31 @@ const XiuLianGongFa = props => {
   };
 
   const GongFaGradeDesc = () => {
-    if (gongFaStatus == 2) {
-      return (
-        <View style={{ alignItems: 'center' }}>
-          <View style={styles.gongFaGradeDesc}>
-            <Text style={{ fontSize: 16, color: '#000' }}>
-              功法圆满
-            </Text>
-          </View>
-        </View>
-      );
-    }
     return (
       <View style={{ alignItems: 'center' }}>
-        <View style={styles.gongFaGradeDesc}>
-          <Text style={{ fontSize: 16, color: '#000' }}>
-            <Text>
-              {checkedIndex === gongFaGrade + 1 &&
-                currentGongFaLayer === gongFaLayer
-                ? '当前'
-                : '查看'}
-            </Text>
-            : {gongFaLayerNumber[currentGongFaLayer]}层 {checkedIndex}/
-            {layerConfig.length}
-          </Text>
-          <Text style={{ fontSize: 16, color: '#000', marginTop: 8 }}>
-            激活: {layerConfig[checkedIndex - 1].desc}
-          </Text>
-        </View>
+        <ImageBackground
+          source={require('../../../assets/gongFa/xiuLian/desc_bg.png')}
+          style={styles.gongFaGradeDesc}>
+          {gongFaStatus == 2 ? (
+            <Text style={{ fontSize: 16, color: '#082748' }}>功法圆满</Text>
+          ) : (
+            <>
+              <Text style={{ fontSize: 18, color: '#082748' }}>
+                <Text>
+                  {checkedIndex === gongFaGrade + 1 &&
+                    currentGongFaLayer === gongFaLayer
+                    ? '当前'
+                    : '查看'}
+                </Text>
+                : {gongFaLayerNumber[currentGongFaLayer]}层 {checkedIndex}/
+                {layerConfig.length}
+              </Text>
+              <Text style={{ fontSize: 18, color: '#082748', marginTop: 8 }}>
+                激活: {layerConfig[checkedIndex - 1].desc}
+              </Text>
+            </>
+          )}
+        </ImageBackground>
       </View>
     );
   };
@@ -336,7 +337,7 @@ const XiuLianGongFa = props => {
 
   const XiuLianBtn = () => {
     if (gongFaStatus === 2) {
-      return <></>
+      return <></>;
     }
     if (
       checkedIndex === gongFaGrade + 1 &&
@@ -423,11 +424,17 @@ const XiuLianGongFa = props => {
 
   return (
     <View style={styles.viewContainer}>
+      <FastImage
+        style={{ position: 'absolute', width: '100%', height: '100%' }}
+        source={require('../../../assets/gongFa/xiuLian/bg.png')}
+      />
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
-          <View style={styles.gongFaNameContainer}>
+          <ImageBackground
+            style={styles.gongFaNameContainer}
+            source={require('../../../assets/gongFa/xiuLian/title_bg.png')}>
             <Text style={styles.gongFaName}>{name}</Text>
-          </View>
+          </ImageBackground>
           {/* 功法等级 */}
           <View style={{ flex: 1 }}>
             <View style={{ width: '100%', height: 400 }}>
@@ -457,13 +464,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   gongFaNameContainer: {
-    width: '100%',
-    marginTop: 40,
+    width: px2pd(1168),
+    height: px2pd(172),
+    marginTop: 12,
     alignItems: 'center',
   },
   gongFaName: {
     fontSize: 24,
-    color: '#000',
+    color: '#6d7789',
+    marginTop: px2pd(34),
   },
   round: {
     width: 40,
@@ -472,12 +481,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderRadius: 60,
-    // borderColor: '#000',
   },
   gongFaGradeDesc: {
-    width: 350,
-    height: 85,
-    backgroundColor: '#ccc',
+    width: px2pd(1071),
+    height: px2pd(288),
     justifyContent: 'center',
     alignItems: 'center',
   },
