@@ -2,7 +2,7 @@ export default {
     // 文字颜色
     color: "#262626",
     // 背景颜色
-    bgColor: "#e8ddcc",
+    bgColor: "#ced6e0", // 之前 "#e8ddcc"
     // // 弹出框的文字颜色
     // popUpColor: "#706a61",
     // 弹出的框的背景颜色
