@@ -141,7 +141,7 @@ directory: [
           {
           point: [-1, -3], title: '第一篇 选择先回城',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001B_[A1]',
-          toChapter: 'WZXX_M1_N1_C001B_[A1]', links: [[0, -4],[0, -2]] 
+          toChapter: 'WZXX_M1_N1_C001B_[A1]', links: [[0, -4],[0, -2]]
           },
 
 
@@ -172,7 +172,7 @@ directory: [
           {
           point: [2, -5], title: '第二章 救母 历尽艰辛',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C002_[N11]',
-          toChapter: 'WZXX_M1_N1_C002_[N11]', links: [[1, -5],] 
+          toChapter: 'WZXX_M1_N1_C002_[N11]', links: [[1, -5],]
           },
 
           {

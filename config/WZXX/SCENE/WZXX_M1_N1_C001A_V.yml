@@ -59,10 +59,11 @@ scenes: [
           sections: [
           { key: 'p1', content: ['得想个办法','让这杀手知道我真有秘籍',],
           btn: [
+          {title: '不行，再想想', tokey: "p1D" , icon: { id: 7, bindVar: 'biaoqianv3' }, dropIds: ['WZXX_M1_N1_C001A_V_Vdrop2',], },
+
           #{title: '草，想不出来！（理直气壮）',tokey: "p1A"},
           {title: '不如念一段道德经？', tokey: "p1B", icon: { id: 6, bindVar: 'biaoqianv1' }},
           {title: '用小学课本里看到的诗句！', tokey: "p1C",  icon: { id: 6, bindVar: 'biaoqianv2' }},
-          {title: '不行，再想想', tokey: "p1D" , icon: { id: 7, bindVar: 'biaoqianv3' }, dropIds: ['WZXX_M1_N1_C001A_V_Vdrop2',], },
           #{title: '做几个广播体操的动作', tokey: "p1E"},
           ]},
 
@@ -88,10 +89,10 @@ scenes: [
  
           { key: 'p1D', content: ['得想个办法','让这杀手知道我真有秘籍','这秘籍肯定不能说放在身上，何况身上也没有。','那么就说放在家里或者藏起来？',],
           btn: [
+          {title: '干脆什么都不说', tokey: "p1D4",  icon: { id: 7, bindVar: 'biaoqianv7' }},]},
           {title: '秘籍放在家里',tokey: "p1D1",  icon: { id: 6, bindVar: 'biaoqianv4' }},
           {title: '秘籍藏起来了', tokey: "p1D2",  icon: { id: 6, bindVar: 'biaoqianv5' }},
           {title: '秘籍在别人手里', tokey: "p1D3",  icon: { id: 6, bindVar: 'biaoqianv6' }},
-          {title: '干脆什么都不说', tokey: "p1D4",  icon: { id: 7, bindVar: 'biaoqianv7' }},]},
 
           #{ key: 'p1E', content: ['我这功法有些奇特，主要打基础，只要习得人人可炼体小成。','你看我--时代在召唤','一二三四','二二三四', '李森炎……怎么样','……','……没看懂','两边一阵尴尬沉默后，李森炎猝。',],
           #btn: [{title: '……', dialogs: ['gameover00'] ,},]},   
