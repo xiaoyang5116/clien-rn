@@ -17,6 +17,8 @@ const _images = {
         { id: 12, img: require('../../assets/avatar/12.png') },
         { id: 13, img: require('../../assets/avatar/13.png') },
         { id: 14, img: require('../../assets/avatar/14.png') },
+        { id: 15, img: require('../../assets/avatar/15.png') },
+        { id: 16, img: require('../../assets/avatar/16.png') },
     ],
      //半身像npc 
     bust: [
@@ -31,6 +33,8 @@ const _images = {
         { id: 12, img: require('../../assets/avatar/12.png') },
         { id: 13, img: require('../../assets/avatar/13.png') },
         { id: 14, img: require('../../assets/avatar/14.png') },
+        { id: 15, img: require('../../assets/avatar/15.png') },
+        { id: 16, img: require('../../assets/avatar/16.png') },
     ],
     panel: [
         { id: 1, img: require('../../assets/bg/panel_b.png') },

@@ -43,6 +43,8 @@ scenes: [
       { id: "biaoqianv23", min: 0, max: 1 } ,
       { id: "biaoqianv24", min: 0, max: 1 } ,
       { id: "biaoqianv25", min: 0, max: 1 } ,
+
+      { id: "biaoqianv26", min: 0, max: 1 } ,
       ],
 
       # 动作定义
@@ -147,7 +149,9 @@ scenes: [
         options: [ 
 
        { 
-          title: "【异样】",btnType: "A4", dialogs: ['C001_1.S'], 
+          title: "观看剧情动画【异样】",btnType: "A4",
+           icon: { id: 1, bindVar: 'biaoqianv26' }, varsOn: ['biaoqianv26'],
+           dialogs: ['C001_1.S'], 
        },
 
         ],

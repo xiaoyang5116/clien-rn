@@ -341,7 +341,6 @@ scenes: [
             { figureId: "01", location: "right", content: ['“降临阵都关了，你还来个屁！”',], },
             { figureId: "02", location: "left", content: ['“好的，我这就给你来个屁。”', ], },
             { figureId: "01", location: "right", content: ['“卧槽，你还真来啊！”',], },
-
             ]
           },
 

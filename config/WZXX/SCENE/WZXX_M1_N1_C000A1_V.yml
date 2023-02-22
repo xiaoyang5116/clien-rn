@@ -646,7 +646,7 @@ scenes: [
           { title: '【扫把千年杀】',nextChat: 'C5', icon: { id: 7, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1'] , }, 
           { title: '【使用十字固】',dialogs: ['Screen2'], icon: { id: 6, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2'] , }, 
           { title: '【掏出板砖】',nextChat: 'C12A', icon: { id: 7, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3'] , }, 
-          { title: '【吓唬杀手】',nextChat: 'C15', icon: { id: 7, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] , }, 
+          { title: '【吓唬杀手】',dialogs: ['gameover03'],icon: { id: 7, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4'] , }, 
       ],
       },
 

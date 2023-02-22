@@ -91,7 +91,7 @@ scenes: [
           alwayDisplay: true, btnType: "A2", leftTop_Title: '邪恶属性大于1',  
           rightBottom_Title: "奖励：邪恶+1", 
           dialogs: ['C003_1.1D'] , dropIds: ["WZXX_M1_N1_C003_V_Vdrop4",],
-          icon: { id: 6, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12','v2A','v1A','v3A']
+          icon: { id: 6, bindVar: 'biaoqianv12'}, varsOn: ['biaoqianv12','v2A','v1A','v3A']
           }
         ],
       },
@@ -127,9 +127,9 @@ scenes: [
           btn: [
           {title: '原身是白月光的粉丝头子', dialogs: ['C003_1.2A'] ,
           icon: { id: 6, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5']  },
-          {title: '难道是原身曾英雄救美',  dialogs: ['C003_1.2B'] ,dropIds: [ 'WZXX_M1_N1_C003_V_Vdrop1','WZXX_M1_N1_C003_V_Vdrop888',],
+          {title: '难道是原身曾英雄救美',  dialogs: ['C003_1.2B'] ,dropIds: [ 'WZXX_M1_N1_C003_V_Vdrop888',],
           icon: { id: 7, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6']  },
-          {title: '大胆点，或许是有感情渊源？', dialogs: ['C003_1.2C'] ,
+          {title: '大胆点，或许是有感情渊源？', dialogs: ['C003_1.2C'] ,dropIds: [ 'WZXX_M1_N1_C003_V_Vdrop1',],
           icon: { id: 6, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7'] },
           {title: '是否与白家李家家族关系有关？',  dialogs: ['C003_1.2D'] ,dropIds: [ 'WZXX_M1_N1_C003_V_Vdrop2'],
           icon: { id: 6, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8'] },
@@ -144,8 +144,10 @@ scenes: [
           { key: 'P1', content: ['白月光冷凝的眼神落在他身上，不满道，“你不会是不记得了吧？”','李森炎挠着头，挤出尴尬而不失礼貌的微笑来，“怎么会呢！我怎么可能忘！”',
           '“哦？是么。”白月光红唇微勾，月眉星眼看着李森炎，眸中满是冷艳。','“上次的事情那么重要我怎么会不记得，咱们上次见面，不就是上次嘛。”','“内什么嘛，我知道，我猜你上次之后，是不是对我记忆深刻，难以忘记啊？”',
           '“啊，如果我没猜错的话，一定是猜对了……”','还未说完，便看见白月光递给自己一个冷眼，“你跟我搁这儿搁这儿呢？”'],
-          btn: [{title: '算了还是再仔细想想吧', nextChat: 'WZXX_M1_N1_C003_V1'  }
-          ,]},
+          btn: [
+          {title: '算了还是再仔细想想吧', nextChat: 'WZXX_M1_N1_C003_V1'  }
+          ,]
+          },
            ]  
         },
 

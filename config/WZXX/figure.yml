@@ -14,5 +14,7 @@ data:
         { id: "09", name: "路人2", avatar: "13", cover: "", bust: 13, },
         { id: "10", name: "采药大爷", avatar: "6", cover: "", bust: 14, },
         { id: "11", name: "青渊长老", avatar: "9", cover: "", bust: 9, },
+        { id: "12", name: "医灵", avatar: "15", cover: "", bust: 15, },
+        { id: "13", name: "花灵", avatar: "16", cover: "", bust: 16, },
       ],
   }
