@@ -70,13 +70,16 @@ export default class EffectAnimations {
                 const worldId = WorldUtils.getWorldIdByName(e.data.worldId);
                 if (worldId >= 0) {
                     const key = RootView.add(<WorldPreview 
-                        item={{ 
+                        item={{
                             worldId: worldId, 
-                            title: e.data.worldId, 
+                            title: e.data.worldId,
                             desc: e.data.desc, 
                             toChapter: e.data.toChapter,
                             dialogs: e.data.dialogs,
-                            __sceneId: __sceneId
+                            __sceneId: __sceneId,
+                            isUseProp: e.data.isUseProp === undefined ? true: e.data.isUseProp,
+                            useProps: e.data.useProps,
+                            conditions: e.data.conditions === undefined ? [] : e.data.conditions,
                         }}
                         animation={true}
                         onClose={() => {
