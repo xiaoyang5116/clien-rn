@@ -42,8 +42,19 @@ scenes: [
     # 对话选项
     chats: [
       {
-        id: 'c0', desc: '配置测试', 
+        id: 'c0', desc: '配置测试',
         options: [
+          {
+            title: '进入灵修界',
+            animations: { id: 11, data: {
+              worldId: '灵修界', 
+              desc: '突然，眼前一变，周围的景色完全不同', 
+              #  toChapter: 'WZXX_M1_N1_C004_[N1]' , 
+              dialogs: ['C002_8.8A'],
+              isUseProp: false,
+              useProps: [ '1,2', ]
+            }}
+          },
           { title: "六号对话框", dialogs: ['p14'] },
           { title: "分支对话框", dialogs: ['p13'] },
           { title: "老者npc", toScene: 'npc_1' },

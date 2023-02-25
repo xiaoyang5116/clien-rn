@@ -117,6 +117,7 @@ const EntryButton = (props) => {
                             break;
                         case 'HeChengFeng':
                             ComposeUtils.show();
+                            break;
                         case 'GongFeng':
                             WorshipModal.show();
                             break;

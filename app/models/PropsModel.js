@@ -1,5 +1,5 @@
 
-import { 
+import {
   action,
   DeviceEventEmitter,
   errorMessage,
@@ -79,10 +79,10 @@ export default {
       const propsState = yield select(state => state.PropsModel);
       const userState = yield select(state => state.UserModel);
       const { type, worldId } = payload;
-      
-      const chooseWorldId = WorldUtils.isValidWorldId(worldId) 
-            ? worldId 
-            : userState.worldId;
+
+      const chooseWorldId = WorldUtils.isValidWorldId(worldId)
+        ? worldId
+        : userState.worldId;
 
       propsState.listData.length = 0;
       for (let key in propsState.__data.bags[chooseWorldId]) {
@@ -327,11 +327,11 @@ export default {
 
       const found = propsState.__data.bags[userState.worldId].find((e) => e.id == propId);
       if (config.stack != undefined && !config.stack) {
-            // 不堆叠则分开几条记录
-            for (let i = 0; i < num; i++) {
-              propsState.__data.bags[userState.worldId].push({ recordId: propsState.__data.recordId + 1, ...config, num: 1 });
-              propsState.__data.recordId += 1;
-            }
+        // 不堆叠则分开几条记录
+        for (let i = 0; i < num; i++) {
+          propsState.__data.bags[userState.worldId].push({ recordId: propsState.__data.recordId + 1, ...config, num: 1 });
+          propsState.__data.recordId += 1;
+        }
       } else {
         if (found != undefined) {
           found.num += num;
@@ -343,7 +343,7 @@ export default {
       }
 
       if (!batchPipeline) {
-        if (!quiet)  Toast.show(`获得${config.name}*${num}`);
+        if (!quiet) Toast.show(`获得${config.name}*${num}`);
         yield put(action('updateState')({}));
         yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
         DeviceEventEmitter.emit(EventKeys.PROPS_NUM_CHANGED);
@@ -365,7 +365,7 @@ export default {
           yield put.resolve(action('sendProps')({ propId: item.propId, num: item.num, batchPipeline: true }));
         }
       }
-      
+
       yield put(action('updateState')({}));
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
       DeviceEventEmitter.emit(EventKeys.PROPS_NUM_CHANGED);
@@ -431,11 +431,29 @@ export default {
       yield put(action('updateState')({}));
       yield call(LocalStorage.set, LocalCacheKeys.PROPS_DATA, propsState.__data.bags);
     },
+
+    /**
+     * 判断 道具数量
+     * 参数: [ '1,2' ] => ['propId,num']
+     */
+    *judgmentQuantityProps({ payload }, { put, call, select }) {
+      let isOk = true
+      for (let index = 0; index < payload.length; index++) {
+        const propId = payload[index].split(',')[0]
+        const propNum = payload[index].split(',')[1]
+        const num = yield put.resolve(action('getPropNum')({ propId: propId }));
+        if (num < propNum) {
+          isOk = false
+          break;
+        }
+      }
+      return isOk
+    },
   },
-  
+
   reducers: {
     updateState(state, { payload }) {
-      return { 
+      return {
         ...state,
         ...payload
       };
@@ -445,7 +463,7 @@ export default {
   subscriptions: {
     registerReloadEvent({ dispatch }) {
       EventListeners.register('reload', (msg) => {
-        return dispatch({ 'type':  'reload'});
+        return dispatch({ 'type': 'reload' });
       });
     },
   }

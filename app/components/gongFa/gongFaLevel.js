@@ -7,18 +7,18 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 
-import { connect, action } from '../../constants';
+import {connect, action} from '../../constants';
 import RootView from '../RootView';
 
-import { TextButton } from '../../constants/custom-ui';
+import {TextButton} from '../../constants/custom-ui';
 import PopComponent from './components/PopComponent';
 import FastImage from 'react-native-fast-image';
-import { px2pd } from '../../constants/resolution';
+import {px2pd} from '../../constants/resolution';
 
 const GongFaLevel = props => {
-  const { gongFaConfig, gongFaProgressData } = props;
+  const {gongFaConfig, gongFaProgressData} = props;
   const [gongFaLevelData, setGongFaLevelData] = useState([]);
 
   useEffect(() => {
@@ -29,8 +29,8 @@ const GongFaLevel = props => {
     });
   }, []);
 
-  const GongFa = ({ item }) => {
-    const { gongFaId, name, desc } = item;
+  const GongFa = ({item}) => {
+    const {gongFaId, name, desc} = item;
     const currentGongFaProgress = gongFaProgressData.find(
       f => f.gongFaId === gongFaId,
     );
@@ -38,7 +38,7 @@ const GongFaLevel = props => {
     const openGongFa = () => {
       if (currentGongFaProgress.gongFaStatus === 0) {
         props
-          .dispatch(action('GongFaModel/openGongFa')({ gongFaId }))
+          .dispatch(action('GongFaModel/openGongFa')({gongFaId}))
           .then(result => {
             if (result != undefined) {
               const key = RootView.add(
@@ -62,23 +62,34 @@ const GongFaLevel = props => {
               RootView.remove(key);
             }}
           />,
-        )
+        );
       }
     };
 
     return (
       <TouchableOpacity onPress={openGongFa}>
         <View style={styles.gongFa}>
-          <FastImage style={{ width: px2pd(190), height: px2pd(177) }} source={require('../../../assets/gongFa/skill/icon/skill_icon.png')} />
+          {currentGongFaProgress.gongFaStatus === 0 ? (
+            <FastImage
+              style={{width: px2pd(190), height: px2pd(177)}}
+              source={require('../../../assets/gongFa/skill/icon/skill_icon_unlock.png')}
+            />
+          ) : (
+            <FastImage
+              style={{width: px2pd(190), height: px2pd(177)}}
+              source={require('../../../assets/gongFa/skill/icon/skill_icon.png')}
+            />
+          )}
+
           <Text style={styles.gongFaName}>{item.name}</Text>
         </View>
       </TouchableOpacity>
     );
   };
 
-  const _renderItem = ({ item, index }) => {
+  const _renderItem = ({item, index}) => {
     return (
-      <View style={{ marginTop: 40 }}>
+      <View style={{marginTop: 40}}>
         <View style={styles.gongFaLevelContainer}>
           <View style={styles.line} />
           <Text style={styles.levelText}>{item.levelName}</Text>
@@ -94,13 +105,13 @@ const GongFaLevel = props => {
   };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <FlatList data={gongFaLevelData} renderItem={_renderItem} />
     </View>
   );
 };
 
-export default connect(state => ({ ...state.GongFaModel }))(GongFaLevel);
+export default connect(state => ({...state.GongFaModel}))(GongFaLevel);
 
 const styles = StyleSheet.create({
   viewContainer: {
@@ -132,7 +143,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: "center",
+    justifyContent: 'center',
     alignItems: 'center',
   },
   gongFa: {
