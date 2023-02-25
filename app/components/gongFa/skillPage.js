@@ -39,7 +39,7 @@ const AddSkillComponent = props => {
 const SkillPage = props => {
   const { equipmentSkills, gongFaProgressData, gongFaConfig } = props;
   const [reload, setReload] = useState(false);
-  const [skillSwitch, setSkillSwitch] = useState('主动');
+  const [skillSwitch, setSkillSwitch] = useState('攻击');
 
   const openSkillsList = index => {
     const key = RootView.add(
@@ -111,7 +111,7 @@ const SkillPage = props => {
             height: px2pd(74),
           }}
           onPress={() => {
-            setSkillSwitch('主动');
+            setSkillSwitch('攻击');
           }}>
           <View
             style={{
@@ -119,7 +119,7 @@ const SkillPage = props => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            {skillSwitch === '主动' ? (
+            {skillSwitch === '攻击' ? (
               <FastImage
                 style={{
                   width: px2pd(366),
@@ -132,7 +132,7 @@ const SkillPage = props => {
               <></>
             )}
             <Text style={{ color: '#354252', fontSize: 16 }}>
-              {`主动技能 (1/3)`}
+              {`攻击技能 (1/3)`}
             </Text>
           </View>
         </TouchableOpacity>
@@ -142,7 +142,7 @@ const SkillPage = props => {
             height: px2pd(74),
           }}
           onPress={() => {
-            setSkillSwitch('被动');
+            setSkillSwitch('防御');
           }}>
           <View
             style={{
@@ -150,7 +150,7 @@ const SkillPage = props => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            {skillSwitch === '被动' ? (
+            {skillSwitch === '防御' ? (
               <FastImage
                 style={{
                   width: px2pd(366),
@@ -163,7 +163,7 @@ const SkillPage = props => {
               <></>
             )}
             <Text style={{ color: '#354252', fontSize: 16 }}>
-              {`被动技能 (1/3)`}
+              {`防御技能 (1/3)`}
             </Text>
           </View>
         </TouchableOpacity>
