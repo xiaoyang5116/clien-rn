@@ -77,7 +77,7 @@ const WorldPreview = props => {
   });
 
   React.useEffect(() => {
-    if (item.isUseProp === true && item.useProps != undefined) {
+    if (item.useProps != undefined) {
       AppDispath({
         type: 'PropsModel/judgmentQuantityProps',
         payload: item.useProps,
@@ -85,9 +85,10 @@ const WorldPreview = props => {
           setIsOK(result);
         },
       });
-    } else if (item.isUseProp === false) {
-      setIsOK(true);
     }
+    // if (item.isUseProp === false) {
+    //   setIsOK(true);
+    // }
   }, []);
 
   React.useEffect(() => {
@@ -236,8 +237,7 @@ const WorldPreview = props => {
                 source={require('../../../assets/world/enterBg_yuan.png')}
               />
             </View>
-            {item.isUseProp ? (
-              isOk ? (
+            {isOk ? (
                 <></>
               ) : (
                 <View style={styles.tipsContainer}>
@@ -245,10 +245,7 @@ const WorldPreview = props => {
                     * 道具数量不足，当前数量={propNum}
                   </Text>
                 </View>
-              )
-            ) : (
-              <></>
-            )}
+              )}
             <View
               style={{
                 position: 'absolute',

@@ -51,8 +51,8 @@ scenes: [
               desc: '突然，眼前一变，周围的景色完全不同', 
               #  toChapter: 'WZXX_M1_N1_C004_[N1]' , 
               dialogs: ['C002_8.8A'],
-              isUseProp: false,
-              useProps: [ '1,2', ]
+              # isUseProp: false,
+              useProps: [ '1,1' ]
             }}
           },
           { title: "六号对话框", dialogs: ['p14'] },
