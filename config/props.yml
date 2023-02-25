@@ -1,8 +1,12 @@
 # ===========================================
 # 道具配置
+# 1-100是测试用的道具
+# 101开始是正式使用的道具，程序如果需要添加测试道具请在一百的范围内添加
+# 剧情道具是从300之后开始增加
 # ===========================================
 props: [
-  { id: 1, name: '金创药', iconId: 1, num: 0, quality: 1, type: 0, tags: [], attrs: ['丹药'], capacity: 1, desc: '回血100点', sell: [{ propId: 887, num: 10 }] },
+# 原金创药修改成顿悟石
+  { id: 1, name: '功法顿悟石', iconId: 1, num: 0, quality: 1, type: 0, tags: [], attrs: ['功法'], capacity: 1, desc: '解锁功法技能', sell: [{ propId: 887, num: 10 }] },
   { id: 2, name: '回魂丹', iconId: 2, num: 0, quality: 2, type: 0, tags: [], attrs: ['丹药'], capacity: 1, desc: '', sell: [{ propId: 887, num: 10 }] },
   { id: 3, name: '狼牙', iconId: 3, num: 0, quality: 1, type: 0, tags: [], attrs: ['测试'], capacity: 1, desc: '' },
   # { id: 4, name: '护腕', iconId: 4, num: 100, quality: 3, type: 0, tags: [], attrs: ['装备'], capacity: 1, desc: '' },
@@ -465,7 +469,7 @@ props: [
    { id:  888, name: '黄金', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },													
    { id:  889, name: '白银', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },
    { id:  890, name: '黄金饰品', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: ['测试'], capacity: 100, desc: ' ' },				
-   { id:  891, name: '中品灵石', iconId: 2, num:  1, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },											
+								
 									
 
   # 供奉道具 type:200
@@ -519,7 +523,8 @@ props: [
   { id:  370, name: '剧情灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
   { id:  371, name: '细节灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capacity: 100, desc: ' ' },
   { id:  372, name: '操作灵感钥匙', iconId: 2, num:  0, quality: 2, type: 0, tags: ['普通'], attrs: [''], capac     ity: 100, desc: ' ' },	
-   
+  #  功法类
+  # { id: 4000, name: '功法顿悟石', iconId: 1, num: 0, quality: 1, type: 0, tags: [], attrs: ['功法'], capacity: 1, desc: '解锁功法技能', sell: [{ propId: 887, num: 10 }] },
   
 
 ]

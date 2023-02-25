@@ -16,6 +16,7 @@ scenes: [
         { id: "biaoqianv7", min: 0, max: 1 } ,
         { id: "biaoqianv8", min: 0, max: 1 } ,
         { id: "biaoqianv9", min: 0, max: 1 } ,
+        { id: "biaoqianvS", min: 0, max: 1 } ,
 
         { id: "v1A", min: 0, max: 1 } ,
         { id: "v2A", min: 0, max: 1 } ,
@@ -72,9 +73,9 @@ scenes: [
 
          {
          title: '唉，我会替你好好的活着的',
-         andVarsOff: ['v1A'], 
+          andVarsOff: ['v1A'], 
           andVarsValue: ['@attr_灵性 >= 1',], 
-         alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1', 
+          alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1', 
           rightBottom_Title: "奖励：正义+1", 
           toChapter: "WZXX_M1_N1_C002_[N14]",dropIds: ["WZXX_M1_N1_C002_V_Vdrop4",],
           icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8','v2A','v3A','v4A',]  
@@ -82,19 +83,19 @@ scenes: [
           {
           title: '既来之则安之，先保命要紧', 
           andVarsOff: ['v2A'],
-          andVarsValue: ['@attr_勇气 >= 1',],
-           alwayDisplay: true, btnType: "A2", 
-           leftTop_Title: '勇气属性大于1',  
-           rightBottom_Title: "奖励：勇气+1",  
+          # andVarsValue: ['@attr_勇气 >= 1',],
+          #  alwayDisplay: true, btnType: "A2", 
+          #  leftTop_Title: '勇气属性大于1',  
+          #  rightBottom_Title: "奖励：勇气+1",  
           toChapter: "WZXX_M1_N1_C002_[N14]",dropIds: ["WZXX_M1_N1_C002_V_Vdrop5",],
           icon: { id: 1, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9','v1A','v3A','v4A',]  
           },
           {
           title: '晦气！把我给穿来这个鬼地方',
            andVarsOff: ['v3A'],
-          andVarsValue: ['@attr_嫌弃 >= 2',], alwayDisplay: true , 
-           btnType: "A2", leftTop_Title: '嫌弃属性大于2',   
-           rightBottom_Title: "奖励：嫌弃+1", 
+          # andVarsValue: ['@attr_嫌弃 >= 2',], alwayDisplay: true , 
+          #  btnType: "A2", leftTop_Title: '嫌弃属性大于2',   
+          #  rightBottom_Title: "奖励：嫌弃+1", 
           toChapter: "WZXX_M1_N1_C002_[N14]",
           dropIds: ["WZXX_M1_N1_C002_V_Vdrop6",],
           icon: { id: 1, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10','v2A','v1A','v4A',] 
@@ -102,9 +103,9 @@ scenes: [
           {
           title: '我会帮你将这仇给报了！',
           andVarsOff: ['v4A'], 
-          andVarsValue: ['@attr_崇敬 >= 2',],
-          alwayDisplay: true ,
-          btnType: "A2", leftTop_Title: '崇敬属性大于2', rightBottom_Title: "奖励：崇敬+2", 
+          # andVarsValue: ['@attr_崇敬 >= 2',],
+          # alwayDisplay: true ,
+          # btnType: "A2", leftTop_Title: '崇敬属性大于2', rightBottom_Title: "奖励：崇敬+2", 
           toChapter: "WZXX_M1_N1_C002_[N14]"
           ,dropIds: ["WZXX_M1_N1_C002_V_Vdrop7",],
           icon: { id: 1, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11','v2A','v1A','v3A'] 
@@ -119,21 +120,18 @@ scenes: [
         { title: "这个世界年代显然是古代，肯定没有手表这东西，所以这手表必然是他穿越时带过来的，可他身上手机之类其他东西却没有带过来，只带过来这个手表，这很难不让人怀疑。", dialogs: ["p1"] },
           # 震动
           # { title: "<一阵疼痛袭来。>", shock: 'slightShock' },
-
         ],
       },
 
       { 
         id: 'WZXX_M1_N1_C002_V4', desc: '选项',
-        options: [ 
-
+        options: [
        { 
           title: "观看剧情动画【手表异常】",btnType: "A4",
-          icon: { id: 6, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9',] ,
+          icon: { id: 6, bindVar: 'biaoqianvS' }, varsOn: ['biaoqianvS',] ,
            dialogs: ['C002_1.S'], 
        },
-
-        ],
+      ],
       },
 
      
@@ -144,9 +142,6 @@ scenes: [
       # 对话框
       dialogs:
         [
-
-
-        
       { id: 'p1',style: 6, title: '手表', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['难道我身上其他的东西也在？','让我想想...我最初穿越的地方是哪里？','该不会有东西落在那边，我没有注意到...',],
@@ -156,9 +151,7 @@ scenes: [
          
            ]  
         },
-
-        
-  ]
+        ]
     },
 
     { 
@@ -191,35 +184,42 @@ scenes: [
               #选项对话2
           { id: 'C002_1.1B',style: 6, title: '买簪子', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
-          { key: 'P1', content: ['“客官，可要买点什么？”掌柜的笑吟吟','李森炎看了一眼琳琅满目的商柜','脱口而出，“我要买簪子。”',
-          '掌柜乐呵呵的说，“当然有啊，不如您挑一件如何”','掌柜摆出一些簪子让李森炎查看','其中一个看着还不错','“就这个了。”',
-          '掌柜：“客官真是好眼力”',],
+            { key: 'P1', content: ['“客官，可要买点什么？”掌柜的笑吟吟','李森炎看了一眼琳琅满目的商柜','脱口而出，“我要买簪子。”',
+            '掌柜乐呵呵的说，“当然有啊，不如您挑一件如何”','掌柜摆出一些簪子让李森炎查看','其中一个看着还不错','“就这个了。”',
+            '掌柜：“客官真是好眼力”',
+            ],
           btn: [
             { 
             title: '老实交钱',
-            andVarsOff: ['v1B'], toShop: 'default',andVarsValue: ['@attr_灵性 >= 1',],
-             alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1', 
-              rightBottom_Title: "奖励：正义+1",  dialogs: ['C002_1.1D'] ,
+            andVarsOff: ['v1B'], toShop: 'default',
+            # andVarsValue: ['@attr_灵性 >= 1',],
+            #  alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1', 
+              # rightBottom_Title: "奖励：正义+1", 
+            dialogs: ['C002_1.1D'] ,
              icon: { id: 7, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5','v2B','v3B'],
              dropIds: ["WZXX_M1_N1_C002_V_Vdrop1",],
             },
-            { title: '你我推心置腹，何须钱财这种身外之物',
+            {
+            title: '你我推心置腹，何须钱财这种身外之物',
             andVarsOff: ['v2B'],
-             andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true,
-              btnType: "A2", leftTop_Title: '节操属性大于1', 
-               rightBottom_Title: "奖励：节操+1",   dialogs: ['C002_1.1C'] ,
+            #  andVarsValue: ['@attr_灵性 >= 1',],
+            # alwayDisplay: true,
+            # btnType: "A2", leftTop_Title: '节操属性大于1', 
+            # rightBottom_Title: "奖励：节操+1",  
+             dialogs: ['C002_1.1C'] ,
             icon: { id: 6, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6','v1B','v3B'] ,
             dropIds: ["WZXX_M1_N1_C002_V_Vdrop2",],
             },
-          {
-          title: '我李森炎买东西什么时候给过钱',
-          andVarsOff: ['v3B'],
-           andVarsValue: ['@attr_入魔 >= 5',], 
-           alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于5', 
-           rightBottom_Title: "奖励：入魔+1", 
-          dialogs: ['gameover1'] ,dropIds: ["WZXX_M1_N1_C002_V_Vdrop3",],
-          icon: { id: 6, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7','v2B','v1B'] 
-          },
+            {
+            title: '我李森炎买东西什么时候给过钱',
+            andVarsOff: ['v3B'],
+            #  andVarsValue: ['@attr_入魔 >= 5',], 
+            #  alwayDisplay: true, 
+            #  btnType: "A2", leftTop_Title: '入魔属性大于5', 
+            #  rightBottom_Title: "奖励：入魔+1", 
+            dialogs: ['gameover1'] ,dropIds: ["WZXX_M1_N1_C002_V_Vdrop3",],
+            icon: { id: 6, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7','v2B','v1B'] 
+            },
          
            ]  
         },
@@ -228,22 +228,24 @@ scenes: [
   ]
     },
 
-    { id: 'C002_1.1C',style: 6, title: '滚犊子', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+         { id: 'C002_1.1C',style: 6, title: '滚犊子', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['掌柜：滚犊子',],
           btn: [
-          {title: '老实交钱', toShop: 'default',andVarsValue: ['@attr_灵性 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：正义+1", 
+          {title: '老实交钱', toShop: 'default',
+          # andVarsValue: ['@attr_灵性 >= 1',], 
+          # alwayDisplay: true,
+          #  btnType: "A2", leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：正义+1", 
           dialogs: ['C002_1.1D'] ,
            },
          
            ]  
-        },
+        },       
+            ]
+         },
 
-        
-  ]
-    },
-
-    { id: 'C002_1.1D',style: 6, title: '买完簪子回家', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+        { 
+          id: 'C002_1.1D',style: 6, title: '买完簪子回家', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['原身去商铺买完簪子回来，路过市集时，感觉身边出现了许多陌生面孔。','按理来说，市集里出现陌生的面孔很正常，但原身就是能判断出，哪些人是附近赶集的乡民，哪些人可能是兵痞子，而且能感应到各自的威胁性。',
           '这种能力不是普通人所能具备，只不过原身自己不知道，他自幼还有过目不忘的本事，不过这种本事也并未得到父亲的赞许，只说是稀松平常。','当时他决定绕路回家，然而还是晚了，刚走没几步，就被一群彪形大汉堵住了去路。',
@@ -253,56 +255,71 @@ scenes: [
           {title: '他住在玄德大街三巷，经常有人认错我们' ,dropIds: ["WZXX_M1_N1_C002_V_Vdrop9",], toChapter: "WZXX_M1_N1_C002_[N3]",  }, 
           {title: '谁都可以是李森炎，反正我不是' , dropIds: ["WZXX_M1_N1_C002_V_Vdrop10",],toChapter: "WZXX_M1_N1_C002_[N3]",  }, 
           ]},
-    ],},
+          ],
+        },
 
     
-     { id: 'gameover1',style: 7, title: '亮光一闪！', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
+         { id: 'gameover1',style: 7, title: '亮光一闪！', varsOn: ['v1'], dialogType: 'FullScreen', textAnimationType: 'TextFadeIn', sections: [
           { key: 'B19', content: ['正当你想要挟持这个情报阁老板逼问情报的时候，没想到对方爆发出强大的气势，对着你一掌拍出。你死了。',['边缘闪烁红'],],
-          btn: [{title: '老实交钱', toShop: 'default',andVarsValue: ['@attr_正义 >= 1',], alwayDisplay: true, btnType: "A2", leftTop_Title: '正义属性大于1',  rightBottom_Title: "奖励：正义+1", 
+          btn: [
+          {title: '老实交钱', toShop: 'default',
+          # andVarsValue: ['@attr_正义 >= 1',], 
+          alwayDisplay: true,
+          #  btnType: "A2", leftTop_Title: '正义属性大于1',  rightBottom_Title: "奖励：正义+1", 
           dialogs: ['C002_1.1D'] ,
-            },]},
-          ], },
+            },
+          ]},
+          ], 
+         },
 
         { id: 'C002_1.2A',style: 6, title: '穿越', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
           sections: [
           { key: 'P1', content: ['谁能想到自己穿越过来了','而且时间还回溯到了即将被杀的瞬间','让穿越过来的李森炎又切实地体会了一把死亡的感觉！'],
           btn: [
-          {title: '唉，我会替你好好的活着的',
-           andVarsOff: ['v1C'],
-           andVarsValue: ['@attr_灵性 >= 1',], 
-           alwayDisplay: true, btnType: "A2", leftTop_Title: '灵性属性大于1', 
-            rightBottom_Title: "奖励：正义+1", 
+          {
+          title: '唉，我会替你好好的活着的',
+          andVarsOff: ['v1C'],
+          # andVarsValue: ['@attr_灵性 >= 1',], 
+          alwayDisplay: true,
+          # btnType: "A2", leftTop_Title: '灵性属性大于1', 
+          # rightBottom_Title: "奖励：正义+1", 
           toChapter: "WZXX_M1_N1_C002_[N14]",dropIds: ["WZXX_M1_N1_C002_V_Vdrop4",],
           icon: { id: 6, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8','v2C','v3C','v4C'] 
-           },
-          {title: '既来之则安之，先保命要紧', 
-           andVarsOff: ['v2C'],
-          andVarsValue: ['@attr_勇气 >= 1',], 
-          alwayDisplay: true, btnType: "A2", leftTop_Title: '勇气属性大于1', 
-           rightBottom_Title: "奖励：勇气+1",  
+          },
+          {
+          title: '既来之则安之，先保命要紧', 
+          andVarsOff: ['v2C'],
+          # andVarsValue: ['@attr_勇气 >= 1',], 
+          alwayDisplay: true, 
+          # btnType: "A2", leftTop_Title: '勇气属性大于1', 
+          # rightBottom_Title: "奖励：勇气+1",  
           toChapter: "WZXX_M1_N1_C002_[N14]",dropIds: ["WZXX_M1_N1_C002_V_Vdrop5",],
           icon: { id: 7, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9','v1C','v3C','v4C'] 
-           },
-          {title: '晦气！把我给穿来这个鬼地方', 
-           andVarsOff: ['v3C'],
-          andVarsValue: ['@attr_嫌弃 >= 2',], 
-          alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于5', 
-           rightBottom_Title: "奖励：嫌弃+1", 
+          },
+          {
+          title: '晦气！把我给穿来这个鬼地方', 
+          andVarsOff: ['v3C'],
+          # andVarsValue: ['@attr_嫌弃 >= 2',], 
+          alwayDisplay: true,
+          # btnType: "A2", leftTop_Title: '入魔属性大于5', 
+          # rightBottom_Title: "奖励：嫌弃+1", 
           toChapter: "WZXX_M1_N1_C002_[N14]",dropIds: ["WZXX_M1_N1_C002_V_Vdrop6",],
           icon: { id: 6, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10','v1C','v2C','v4C'] 
           },
 
-          {title: '我会帮你将这仇给报了！',
-           andVarsOff: ['v4C'],
-           andVarsValue: ['@attr_崇敬 >= 2',], 
-          alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于5',
-            rightBottom_Title: "奖励：崇敬+2", 
+          {
+          title: '我会帮你将这仇给报了！',
+          andVarsOff: ['v4C'],
+          #  andVarsValue: ['@attr_崇敬 >= 2',], 
+          alwayDisplay: true,
+          #  btnType: "A2", leftTop_Title: '入魔属性大于5',
+            # rightBottom_Title: "奖励：崇敬+2", 
           toChapter: "WZXX_M1_N1_C002_[N14]",dropIds: ["WZXX_M1_N1_C002_V_Vdrop7",],
           icon: { id: 6, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11','v1C','v2C','v3C'] 
           },
            ]  
         }, ]
-    },
+        },
 
 
     

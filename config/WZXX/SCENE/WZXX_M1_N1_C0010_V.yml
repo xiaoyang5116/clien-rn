@@ -225,12 +225,31 @@ scenes: [
         ],
       },
 
+       { 
+        id: 'WZXX_M1_N1_C0010_V15', desc: '', 
+        options: [ 
+          { title: "【医灵的故事】",dialogs: ['pSSS'],},
+        ],
+      },
+
         ],
 
 
       # 对话框
       dialogs:
         [
+
+        { id: 'pSSS',style: 6, title: '医灵的故事', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
+          sections: [
+          { key: 'P1', content: ['医灵却不管他要不要，微微一笑，擦拭起药壶，水葱般嫩的手指，纤纤上下浮动，差点没把李森炎催眠，直到李森炎面露不耐之色，才开始缓缓道出自己的身世。',
+          '她本是一株灵界仙草，苦心修炼四万八千载。','她本是一株灵界仙草，苦心修炼四万八千载。',
+          '故事说得简单，但经医灵如泣如诉地演绎，她说了足足半个时辰。','李森炎：“打扰一下，人有三急，能不能让我先出去一趟？”',
+          '李森炎：“打扰一下，人有三急，能不能让我先出去一趟？”',],
+          btn: [
+            { title: '确定',}, 
+           ]  
+        },] 
+        },
 
 
         { id: 'p1',style: 6, title: '极限拉扯', dialogType: 'HalfScreen', textAnimationType: 'TextFadeIn',
@@ -396,9 +415,7 @@ scenes: [
           '想到这里，我便没有再说，直接进了房间。',
           
           ],
-          btn: [{title: '人各有命',toChapter: "WZXX_M1_N1_C010_[N12]",},]},
-
-       
+          btn: [{title: '人各有命',toChapter: "WZXX_M1_N1_C010_[N12]",},]},       
            ]  
         },
 
@@ -422,7 +439,6 @@ scenes: [
           sections: [
           { key: 'P1', content: ['李森炎虽然聪明有点小机智，但是到底也才是个甚至有点小聪明，头脑清晰，这样的人就算现在还只是炼体，以后也必有大用。炼体二重。',
           '要真的放任不管，恐怕待会儿‘李家后人’，就是一具尸体了！','我没再多想，踢开门，缓缓走了出去。',
-          
           ],
           btn: [{title: '帮忙',toChapter: "WZXX_M1_N1_C010_[N13]",},]},
 

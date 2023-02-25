@@ -127,7 +127,7 @@ directory: [
           },
 
           { 
-          point: [0, -1], title: '接续第一章 我有秘籍？',
+          point: [0, -1], title: '第一章 我有秘籍？',
           # bindVar: 'WZXX_[Chapters]/WZXX_M1_N1_C001A',
           toChapter: 'WZXX_M1_N1_C001A', links: [[0, -2], ] 
           },

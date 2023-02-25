@@ -191,9 +191,11 @@ scenes: [
           { 
           title: "【霸气硬怼】",
           andVarsOff: ['v1A'], 
-          andVarsValue: ['@attr_入魔 >= 1',],
-           alwayDisplay: true, btnType: "A2", leftTop_Title: '入魔属性大于1',
-             rightBottom_Title: "奖励：入魔+1", 
+          # andVarsValue: ['@attr_入魔 >= 1',],
+           alwayDisplay: true, 
+          #  btnType: "A2", 
+          #  leftTop_Title: '入魔属性大于1',
+          # rightBottom_Title: "奖励：入魔+1", 
           toChapter: "WZXX_M1_N1_C004_[N2]"  ,
           dropIds: ["WZXX_M1_N1_C002C_V_Vdrop1",],
           icon: { id: 1, bindVar: 'biaoqianv46' }, varsOn: ['biaoqianv46','v2A','v3A',]  
@@ -201,19 +203,21 @@ scenes: [
           { 
           title: "【勇敢反驳】",
           andVarsOff: ['v2A'], 
-          andVarsValue: ['@attr_勇气 >= 1',], 
-          alwayDisplay: true, btnType: "A2", leftTop_Title: '勇气属性大于1',  
-          rightBottom_Title: "奖励：勇气+1", 
+          # andVarsValue: ['@attr_勇气 >= 1',], 
+          alwayDisplay: true,
+          #  btnType: "A2", leftTop_Title: '勇气属性大于1',  
+          # rightBottom_Title: "奖励：勇气+1", 
           toChapter: "WZXX_M1_N1_C004_[N3]" ,
           dropIds: ["WZXX_M1_N1_C002C_V_Vdrop2",], 
           icon: { id: 1, bindVar: 'biaoqianv47' }, varsOn: ['biaoqianv47','v1A','v3A',]  
           },
           { title: "【和和气气】",
           andVarsOff: ['v3A'], 
-          andVarsValue: ['@attr_灵性 >= 1',],
-          alwayDisplay: true, btnType: "A2",
-           leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：入道+1", 
-          toChapter: "WZXX_M1_N1_C004_[N4]"  ,
+          # andVarsValue: ['@attr_灵性 >= 1',],
+          alwayDisplay: true,
+          #  btnType: "A2",
+          #  leftTop_Title: '灵性属性大于1',  rightBottom_Title: "奖励：入道+1", 
+          toChapter: "WZXX_M1_N1_C004_[N4]",
           dropIds: ["WZXX_M1_N1_C002C_V_Vdrop3",],
           icon: { id: 1, bindVar: 'biaoqianv48' }, varsOn: ['biaoqianv48','v2A','v1A',] 
 

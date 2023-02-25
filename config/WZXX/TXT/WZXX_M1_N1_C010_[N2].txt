@@ -15,17 +15,7 @@
 　　他一直在寻找能帮助自己突破瓶颈的宝贝，不过问了好几个摊位，那些摊主都是大摇其头。
 
 　　“小地方，估计是没有那种宝贝了。”
-#START========================================
-[
-    {
-        animations: [
-            { id: 6, typeId: 5 },
-            { id: 8, type: "震屏1" }
-        ]
-    }
-        
-]
-#END==========================================
+
 　　李森炎正准备走的时候，忽然，一阵怪风袭来，扑面而来的还有一整难闻的异香。
 
 　　再接着，李森炎胸口一闷，有种说不清道不明的感觉在体内乱窜，等到那风吹过，他以为会好些，结果四肢无力，腿脚发软，浑身上下有种撕扯般的强烈痛感。
@@ -66,10 +56,10 @@
        style: 10, textAnimationType: 'TextSingle',
       sections: [
         
-            { figureId: "12", location: "right", content: ['“你醒啦”', '“来，大郎该喝药了”', ], },
-            { figureId: "01", location: "left",content: ['？？？？', ], },
-            { figureId: "12", location: "right", content: ['“来，把药喝了，这药能解你身上的毒。”', ], },
-            { figureId: "01", location: "left",content: ['解毒？原来我是在坊市中毒了吗？', ], },
+            { figureId: "12", location: "left", content: ['“你醒啦”', '“来，大郎该喝药了”', ], },
+            { figureId: "01", location: "right",content: ['？？？？', ], },
+            { figureId: "12", location: "left", content: ['“来，把药喝了，这药能解你身上的毒。”', ], },
+            { figureId: "01", location: "right",content: ['解毒？原来我是在坊市中毒了吗？', ], },
 
       ]
    }
@@ -91,40 +81,36 @@
     pop: {
        style: 10, textAnimationType: 'TextSingle',
       sections: [ 
-            { figureId: "12", location: "right", content: ['“别问了，快喝！”', ], },
-            { figureId: "01", location: "left",content: ['……','什么情况这是？这人变脸有点快啊...', '咕噜……（喝完）', ], },
-            { figureId: "12", location: "right", content: ['“这才对嘛！有病就要治，有毒就要解，你既有病又有毒，更要坚持喝药了。”', ], },
-            { figureId: "01", location: "left",content: ['“道理是这么个道理，可我怎么感觉你在骂人呢……”', ], },
-            { figureId: "12", location: "right", content: ['“别那么会感觉。”', ], },
-            { figureId: "01", location: "left",content: ['“好吧，多谢姑娘出手相救，请问，我这是在哪……”', ], },
-            { figureId: "12", location: "right", content: ['“你在我家，你还没问我叫什么呢？”', ], },
-            { figureId: "01", location: "left",content: ['“额...敢问姑娘芳名？”', ], },
-            { figureId: "12", location: "right",content: ['“罗里吧嗦什么！我叫医灵。”', ], },
-            { figureId: "01", location: "left",content: ['...这人难道精神有问题？','“这地方还在坊市里面吗？”', ], },
-            { figureId: "12", location: "right", content: ['“是的。”', ], },
-            { figureId: "01", location: "left", content: ['是坊市里面就好，这人怕是有点问题，还是赶紧跑路再说。','“多有打扰，我还有事，这就告辞了。”','（寻找一番……）','“额...麻烦告知一下，我怎么出去？”', ], },
-            { figureId: "12", location: "right",content: ['“呵，男人，需要人家的时候，恨不得跪下来求，不需要的时候，提了裤子就想走。”', ], },
-            { figureId: "01", location: "left", content: ['……','“别说这种容易让人误会的话好不好？”','“我可什么也没干啊！”', ], },
-            { figureId: "12", location: "right",content: ['“在你走之前，要不要先听听我的故事？”', ], },
+            { figureId: "12", location: "left", content: ['“别问了，快喝！”', ], },
+            { figureId: "01", location: "right",content: ['……','什么情况这是？这人变脸有点快啊...', '咕噜……（喝完）', ], },
+            { figureId: "12", location: "left", content: ['“这才对嘛！有病就要治，有毒就要解，你既有病又有毒，更要坚持喝药了。”', ], },
+            { figureId: "01", location: "right",content: ['“道理是这么个道理，可我怎么感觉你在骂人呢……”', ], },
+            { figureId: "12", location: "left", content: ['“别那么会感觉。”', ], },
+            { figureId: "01", location: "right",content: ['“好吧，多谢姑娘出手相救，请问，我这是在哪……”', ], },
+            { figureId: "12", location: "left", content: ['“你在我家，你还没问我叫什么呢？”', ], },
+            { figureId: "01", location: "right",content: ['“额...敢问姑娘芳名？”', ], },
+            { figureId: "12", location: "left",content: ['“罗里吧嗦什么！我叫医灵。”', ], },
+            { figureId: "01", location: "right",content: ['...这人难道精神有问题？','“这地方还在坊市里面吗？”', ], },
+            { figureId: "12", location: "left", content: ['“是的。”', ], },
+            { figureId: "01", location: "right", content: ['是坊市里面就好，这人怕是有点问题，还是赶紧跑路再说。','“多有打扰，我还有事，这就告辞了。”','（寻找一番……）','“额...麻烦告知一下，我怎么出去？”', ], },
+            { figureId: "12", location: "left",content: ['“呵，男人，需要人家的时候，恨不得跪下来求，不需要的时候，提了裤子就想走。”', ], },
+            { figureId: "01", location: "right", content: ['……','“别说这种容易让人误会的话好不好？”','“我可什么也没干啊！”', ], },
+            { figureId: "12", location: "left",content: ['“在你走之前，要不要先听听我的故事？”', ], },
+            { figureId: "01", location: "right", content: ['……','“我能说不要吗？”', ], },
+
       ]
    }
 }
 #END==========================================
 　　
+#START========================================
+#
+[
+    { sceneId: 'WZXX_M1_N1_C0010_V', chatId: 'WZXX_M1_N1_C0010_V15' },
+   
+]
+#END==========================================
 
-　　医灵却不管他要不要，微微一笑，擦拭起药壶，水葱般嫩的手指，纤纤上下浮动，差点没把李森炎催眠，直到李森炎面露不耐之色，才开始缓缓道出自己的身世。
-
-　　她本是一株灵界仙草，苦心修炼四万八千载。
-
-　　天界千道年一度的敕仙台开启，医灵彼时已历经敕仙台九九八十一道雷劫，即将飞升进入化神期。岂料彼时魔族入侵灵界，敕仙台首当其冲被吸干了灵气，医灵硬是在以嫦娥奔月的姿势飞升时，重新堕入凡尘。
-
-　　故事说得简单，但经医灵如泣如诉地演绎，她说了足足半个时辰。
-
-　　“打扰一下，人有三急，能不能让我先出去一趟？”
-
-　　救命恩人，尤其是美女当前，李森炎还是憋住一肚子气，耐心而温和地问道。
-
-　　“可我还没说完呢。”医灵没好气道。
 
 　　“我知道你的前尘今世了，也知道你四万八千岁了，但你再不让我出去，我就要爆缸了。”
 #START========================================
@@ -133,19 +119,21 @@
     { sceneId: 'WZXX_M1_N1_C0010_V',chatId: 'WZXX_M1_N1_C0010_V12' },  
 ]
 #END==========================================
-　　“床下有夜壶，你慢慢解决，我会再来的。”
 
-　　一说完，不待李森炎开口，便即起身。
+#START========================================
+  { 
+    pop: {
+       style: 10, textAnimationType: 'TextSingle',
+      sections: [ 
+            { figureId: "12", location: "left", content: ['“床下有夜壶，你慢慢解决，我会再来的”', ],},
+            { figureId: "01", location: "right",content: ['“你是要把我关在这吗？”', ], },
+            { figureId: "12", location: "left", content: ['“你身上的毒还没有祛除干净，还不能走，我要对我的病人负责！”','(医灵缓缓起身离开，随手对李森炎捏了个手印，拨动个什么机关，身影像是消失在墙壁中。)', ], },
+            { figureId: "01", location: "right",content: ['“……”','“放我出去！”','“造孽啊，到底是哪个混蛋对我下的毒！”', ], },
+      ]
+   }
+}
+#END==========================================
 
-　　李森炎微微变色：“你是要把我关在这吗？”
-
-　　“你身上的毒还没有祛除干净，还不能走，我要对我的病人负责！”说完医灵甩手就走，随手对李森炎捏了个手印，拨动个什么机关，身影像是消失在墙壁中。室内只有小方桌上豆大的火苗发出微弱的灯光。
-
-　　“……”
-
-　　“放我出去！”李森炎狠狠捶了一拳墙壁，但身体突然一阵虚弱感袭来，拳头硬是变成了粉拳，木质墙壁都没被砸出声。
-
-　　“造孽啊，到底是哪个混蛋对我下的毒！”
 
 　　医灵这一走又不知过了多久，外头响起了敲击声，听见有人声。
 

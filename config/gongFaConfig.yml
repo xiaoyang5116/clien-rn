@@ -13,11 +13,17 @@ data: {
     {
       gongFaId: 1,
       name: '炎阳功',
+      # 解锁道具和数量
       conditions: { needProps: [ '1,10', ],},
       desc: "最基础也是最低级的火属性功法",
       layerConfig: [
         [
-          { grade: 1, title: '拳', needProps: [ '1,1','2,1', ], award: { skillId: 50, }, desc: "获得技能 - 炎阳拳", },
+          { grade: 1, title: '拳', 
+          # 需要的道具和数量
+          needProps: [ '1,1','2,1', ],
+          # 获得的技能id
+           award: { skillId: 50, },
+            desc: "获得技能 - 炎阳拳", },
           { grade: 2, title: '二', needProps: [ '2,1', ], award: {}, desc: "火属性 +1", },
           { grade: 3, title: '三', needProps: [ '3,1', ], award: {}, desc: "火属性 +1", },
           { grade: 4, title: '四', needProps: [ '1,1', ], award: {}, desc: "火属性 +1", },
@@ -97,7 +103,7 @@ data: {
           { grade: 10, title: '御', needProps: [ '1,1', ], award: {}, desc: "火防御 +5", },
         ],
         [
-          { grade: 1, title: '火', needProps: [ '1,1', ], award: {}, desc: "火属性 +10", },
+          { grade: 1, title: '火', needProps: [ '1,1', ], award: {}, desc: "火属性 +10",},
           { grade: 2, title: '二', needProps: [ '2,1', ], award: {}, desc: "火属性 +1", },
           { grade: 3, title: '三', needProps: [ '3,1', ], award: {}, desc: "火属性 +1", },
           { grade: 4, title: '四', needProps: [ '1,1', ], award: {}, desc: "火属性 +1", },
