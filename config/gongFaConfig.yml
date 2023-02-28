@@ -17,7 +17,7 @@ data: {
       desc: "最基础也是最低级的火属性功法",
       layerConfig: [
         [
-          { grade: 1, title: '拳', needProps: [ '1,1','2,1', ], award: { skillId: 50, }, desc: "获得技能 - 炎阳拳", },
+          { grade: 1, title: '拳', needProps: [ '1,1','2,1', ], award: { skillId: 50, }, desc: "炎阳拳", },
           { grade: 2, title: '二', needProps: [ '2,1', ], award: {}, desc: "火属性 +1", },
           { grade: 3, title: '三', needProps: [ '3,1', ], award: {}, desc: "火属性 +1", },
           { grade: 4, title: '四', needProps: [ '1,1', ], award: {}, desc: "火属性 +1", },
@@ -29,7 +29,7 @@ data: {
           { grade: 10, title: '御', needProps: [ '1,1', ], award: {}, desc: "火防御 +5", },
         ],
         [
-          { grade: 1, title: '掌', needProps: [ '1,1', ], award: {skillId: 51,}, desc: "获得技能 -炎阳掌", },
+          { grade: 1, title: '掌', needProps: [ '1,1', ], award: {skillId: 51,}, desc: "炎阳掌", },
           { grade: 2, title: '二', needProps: [ '2,1', ], award: {},desc: "火属性 +1", },
           { grade: 3, title: '三', needProps: [ '3,1', ], award: {},desc: "火属性 +1", },
           { grade: 4, title: '四', needProps: [ '1,1', ], award: {},desc: "火属性 +1", },
@@ -50,7 +50,7 @@ data: {
           { grade: 7, title: '七', needProps: [ '1,1', ], award: {},desc: "火属性 +1", },
           { grade: 8, title: '八', needProps: [ '1,1', ], award: {},desc: "火属性 +1", },
           { grade: 9, title: '九', needProps: [ '1,1', ], award: {},desc: "火属性 +1", },
-          { grade: 10, title: '诀', needProps: [ '1,1', ], award: {skillId: 53,},desc: "获得技能 - 炎阳诀", },
+          { grade: 10, title: '诀', needProps: [ '1,1', ], award: {skillId: 53,},desc: "炎阳诀", },
         ],
         [
           { grade: 1, title: '攻', needProps: [ '1,1', ], award: {}, desc: "火攻击 +5", },
@@ -74,7 +74,7 @@ data: {
           { grade: 7, title: '七', needProps: [ '1,1', ], award: {},desc: "火属性 +1", },
           { grade: 8, title: '八', needProps: [ '1,1', ], award: {},desc: "火属性 +1", },
           { grade: 9, title: '九', needProps: [ '1,1', ], award: {},desc: "火属性 +1", },
-          { grade: 10, title: '腿', needProps: [ '1,1', ], award: {skillId: 52,},desc: "获得技能 - 炎阳腿", },
+          { grade: 10, title: '腿', needProps: [ '1,1', ], award: {skillId: 52,},desc: "炎阳腿", },
         ],
       ]
     },

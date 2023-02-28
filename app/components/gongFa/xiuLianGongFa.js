@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   ImageBackground,
+  Animated,
+  Easing,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 
@@ -19,26 +21,56 @@ import {
 } from '../games/SmallUniverseProject/UpgradePage';
 import { px2pd } from '../../constants/resolution';
 
-import { TextButton } from '../../constants/custom-ui';
+import { ImageButton, ReturnButton, TextButton } from '../../constants/custom-ui';
 import FastImage from 'react-native-fast-image';
 import Toast from '../toast';
 
+const BTN_STYLE = {
+  width: px2pd(189),
+  height: px2pd(168),
+}
+
 export const gongFaLayerNumber = ['一', '二', '三', '四', '五', '六'];
 
-const location = [
-  { top: '60%', left: '10%' },
-  { top: '70%', left: '30%' },
-  { top: '55%', left: '40%' },
+const layoutConfigData = [
+  {
+    id: 1,
+    img: require('../../../assets/gongFa/xiuLian/lianXian.png'),
+    location: [
+      { top: '52%', left: '-6%' },
+      { top: '59%', left: '20%' },
+      { top: '31%', left: '38%' },
 
-  { top: '35%', left: '22%' },
-  { top: '12%', left: '22%' },
-  { top: '15%', left: '49%' },
+      { top: '12%', left: '40%' },
+      { top: '-3%', left: '74%' },
+      { top: '8%', left: '92%' },
 
-  { top: '13%', left: '65%' },
-  { top: '23%', left: '80%' },
-  { top: '35%', left: '60%' },
+      { top: '51%', left: '65%' },
+      { top: '68%', left: '55%' },
+      { top: '83%', left: '60%' },
 
-  { top: '65%', left: '55%' },
+      { top: '93%', left: '69%' },
+    ]
+  },
+  {
+    id: 2,
+    img: require('../../../assets/gongFa/xiuLian/lianXian_2.png'),
+    location: [
+      { top: '10%', left: '-6%' },
+      { top: '29%', left: '0%' },
+      { top: '41%', left: '14%' },
+
+      { top: '66%', left: '10%' },
+      { top: '79%', left: '35%' },
+      { top: '70%', left: '53%' },
+
+      { top: '13%', left: '37%' },
+      { top: '29%', left: '50%' },
+      { top: '39%', left: '73%' },
+
+      { top: '63%', left: '77%' },
+    ]
+  }
 ];
 
 const XiuLianGongFa = props => {
@@ -52,8 +84,25 @@ const XiuLianGongFa = props => {
   );
   const layerConfig = gongFa.layerConfig[currentGongFaLayer];
 
+  const layoutData = (currentGongFaLayer % 2 === 0) ? layoutConfigData[0] : layoutConfigData[1]
+
   const [checkedIndex, setCheckedIndex] = useState(gongFaGrade + 1);
   const [upgradeProps, setUpgradeProps] = useState([]);
+
+  const spinValue = React.useRef(new Animated.Value(0)).current;
+  const spinFunc = () => {
+    spinValue.setValue(0);
+    Animated.timing(spinValue, {
+      toValue: 1, // 最终值 为1，这里表示最大旋转 360度
+      duration: 2000,
+      easing: Easing.linear,
+      useNativeDriver: false,
+    }).start(() => spinFunc());
+  };
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1], //输入值
+    outputRange: ['0deg', '360deg'], //输出值
+  });
 
   useEffect(() => {
     // 获取修炼需要的道具
@@ -103,6 +152,10 @@ const XiuLianGongFa = props => {
     }
   }, [currentGongFaLayer]);
 
+  useEffect(() => {
+    spinFunc();
+  }, [])
+
   const xiuLian = () => {
     if (upgradeProps.every(item => (item.isOk ? true : false))) {
       props
@@ -120,28 +173,60 @@ const XiuLianGongFa = props => {
   };
 
   const Grade = ({ item }) => {
+    let imgBg = {
+      source: require("../../../assets/gongFa/xiuLian/smallYuan1.png"),
+      disabled: require('../../../assets/gongFa/xiuLian/smallYuan2.png'),
+      rotation: require('../../../assets/gongFa/xiuLian/smallYuan3.png'),
+      style: { width: px2pd(100), height: px2pd(100) },
+
+    }
+    if (item.grade === 1 || item.grade === 4 || item.grade === 8) {
+      imgBg = {
+        source: require("../../../assets/gongFa/xiuLian/bigYuan1.png"),
+        disabled: require('../../../assets/gongFa/xiuLian/bigYuan2.png'),
+        rotation: require('../../../assets/gongFa/xiuLian/bigYuan3.png'),
+        style: { width: px2pd(140), height: px2pd(140) }
+      }
+    }
     if (gongFaStatus === 2) {
       return (
-        <View style={{ position: 'absolute', ...location[item.grade - 1] }}>
+        <View style={{ position: 'absolute', ...layoutData.location[item.grade - 1] }}>
           <TouchableOpacity
             style={{ alignItems: 'center' }}
             onPress={() => {
               setCheckedIndex(item.grade);
             }}>
-            <View style={{ alignItems: 'center' }}>
-              <Text style={{ opacity: item.grade === checkedIndex ? 1 : 0 }}>
-                {item.desc}
-              </Text>
-            </View>
-            <View
-              style={[
-                styles.round,
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <View style={styles.descContainer}
+                pointerEvents="none"
+              >
+                <Text style={{ opacity: item.grade === checkedIndex ? 1 : 0, color: "#fff", fontSize: 16 }}>
+                  {item.desc}
+                </Text>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: 'center',
+                  ...imgBg.style,
+                }}>
+                <FastImage style={{ ...imgBg.style, position: "absolute" }} source={imgBg.source} />
+                <Text style={{ color: "#fff", fontSize: 14 }}>{item.title}</Text>
                 {
-                  backgroundColor: '#F5BA1C',
-                  borderColor: item.grade === checkedIndex ? '#F5BA1C' : '#000',
-                },
-              ]}>
-              <Text>{item.title}</Text>
+                  (item.grade === checkedIndex) ? (
+                    <Animated.Image
+                      style={{
+                        ...imgBg.style,
+                        position: 'absolute',
+                        zIndex: 0,
+                        transform: [{ rotate: spin }],
+                      }}
+                      source={imgBg.rotation}
+                    />
+                  ) : <></>
+                }
+
+              </View>
             </View>
           </TouchableOpacity>
         </View>
@@ -150,90 +235,148 @@ const XiuLianGongFa = props => {
 
     if (currentGongFaLayer < gongFaLayer) {
       return (
-        <View style={{ position: 'absolute', ...location[item.grade - 1] }}>
+        <View style={{ position: 'absolute', ...layoutData.location[item.grade - 1] }}>
           <TouchableOpacity
-            style={{ alignItems: 'center' }}
             onPress={() => {
               setCheckedIndex(item.grade);
             }}>
-            <View style={{ alignItems: 'center' }}>
-              <Text style={{ opacity: item.grade === checkedIndex ? 1 : 0 }}>
-                {item.desc}
-              </Text>
-            </View>
-            <View
-              style={[
-                styles.round,
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <View style={styles.descContainer}
+                pointerEvents="none"
+              >
+                <Text style={{ opacity: item.grade === checkedIndex ? 1 : 0, color: "#fff", fontSize: 16 }}>
+                  {item.desc}
+                </Text>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: 'center',
+                  ...imgBg.style,
+                }}>
+                <FastImage style={{ ...imgBg.style, position: "absolute" }} source={imgBg.source} />
+                <Text style={{ color: "#fff", fontSize: 14 }}>{item.title}</Text>
                 {
-                  backgroundColor: '#F5BA1C',
-                  borderColor: item.grade === checkedIndex ? '#F5BA1C' : '#000',
-                },
-              ]}>
-              <Text>{item.title}</Text>
+                  (item.grade === checkedIndex) ? (
+                    <Animated.Image
+                      style={{
+                        ...imgBg.style,
+                        position: 'absolute',
+                        zIndex: 0,
+                        transform: [{ rotate: spin }],
+                      }}
+                      source={imgBg.rotation}
+                    />
+                  ) : <></>
+                }
+
+              </View>
             </View>
           </TouchableOpacity>
         </View>
       );
     } else if (currentGongFaLayer === gongFaLayer) {
       return (
-        <View style={{ position: 'absolute', ...location[item.grade - 1] }}>
+        <View style={{ position: 'absolute', ...layoutData.location[item.grade - 1] }}>
           <TouchableOpacity
-            style={{ alignItems: 'center' }}
             onPress={() => {
               setCheckedIndex(item.grade);
             }}>
-            <View style={{ alignItems: 'center' }}>
-              <Text style={{ opacity: item.grade === checkedIndex ? 1 : 0 }}>
-                {item.desc}
-              </Text>
-              {item.grade === gongFaGrade + 1 && (
-                <Text
-                  style={{
-                    position: 'absolute',
-                    opacity: item.grade !== checkedIndex ? 1 : 0,
-                  }}>
-                  当前
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <View style={styles.descContainer}
+                pointerEvents="none"
+              >
+                <Text style={{ opacity: item.grade === checkedIndex ? 1 : 0, color: "#fff", fontSize: 16 }}>
+                  {item.desc}
                 </Text>
-              )}
-            </View>
-            <View
-              style={[
-                styles.round,
+                {item.grade === gongFaGrade + 1 && (
+                  <Text
+                    style={{
+                      position: 'absolute',
+                      opacity: item.grade !== checkedIndex ? 1 : 0,
+                      color: "#fff",
+                      fontSize: 16
+                    }}>
+                    当前
+                  </Text>
+                )}
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: 'center',
+                  ...imgBg.style,
+                }}>
                 {
-                  backgroundColor:
-                    item.grade <= gongFaGrade &&
-                      currentGongFaLayer <= gongFaLayer
-                      ? '#F5BA1C'
-                      : null,
-                  borderColor: item.grade === checkedIndex ? '#F5BA1C' : '#000',
-                },
-              ]}>
-              <Text>{item.title}</Text>
+                  (item.grade <= gongFaGrade && currentGongFaLayer <= gongFaLayer) ? (
+                    <>
+                      <FastImage style={{ ...imgBg.style, position: "absolute" }} source={imgBg.source} />
+                      <Text style={{ color: "#fff", fontSize: 14 }}>{item.title}</Text>
+                    </>
+                  ) : (
+                    <>
+                      <FastImage style={{ ...imgBg.style, position: "absolute" }} source={imgBg.disabled} />
+                      <Text style={{ color: "#fff", fontSize: 14 }}>{item.title}</Text>
+                    </>
+                  )
+                }
+                {
+                  (item.grade === checkedIndex) ? (
+                    <Animated.Image
+                      style={{
+                        ...imgBg.style,
+                        position: 'absolute',
+                        zIndex: 0,
+                        transform: [{ rotate: spin }],
+                      }}
+                      source={imgBg.rotation}
+                    />
+                  ) : <></>
+                }
+
+              </View>
             </View>
           </TouchableOpacity>
         </View>
       );
     } else if (currentGongFaLayer > gongFaLayer) {
       return (
-        <View style={{ position: 'absolute', ...location[item.grade - 1] }}>
+        <View style={{ position: 'absolute', ...layoutData.location[item.grade - 1] }}>
           <TouchableOpacity
-            style={{ alignItems: 'center' }}
             onPress={() => {
               setCheckedIndex(item.grade);
             }}>
-            <View style={{ alignItems: 'center' }}>
-              <Text style={{ opacity: item.grade === checkedIndex ? 1 : 0 }}>
-                {item.desc}
-              </Text>
-            </View>
-            <View
-              style={[
-                styles.round,
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <View style={styles.descContainer}
+                pointerEvents="none"
+              >
+                <Text style={{ opacity: item.grade === checkedIndex ? 1 : 0, color: "#fff", fontSize: 16 }}>
+                  {item.desc}
+                </Text>
+              </View>
+              <View
+                style={{
+                  justifyContent: "center",
+                  alignItems: 'center',
+                  ...imgBg.style,
+                }}>
+                <FastImage style={{ ...imgBg.style, position: "absolute" }} source={imgBg.disabled} />
+                <Text style={{ color: "#fff", fontSize: 14 }}>{item.title}</Text>
                 {
-                  borderColor: item.grade === checkedIndex ? '#F5BA1C' : '#000',
-                },
-              ]}>
-              <Text>{item.title}</Text>
+                  (item.grade === checkedIndex) ? (
+                    <Animated.Image
+                      style={{
+                        ...imgBg.style,
+                        position: 'absolute',
+                        zIndex: 0,
+                        transform: [{ rotate: spin }],
+                      }}
+                      source={imgBg.rotation}
+                    />
+                  ) : <></>
+                }
+
+              </View>
             </View>
           </TouchableOpacity>
         </View>
@@ -310,10 +453,14 @@ const XiuLianGongFa = props => {
                     source={image.img}
                   />
                 </TouchableWithoutFeedback>
-                <Text
-                  style={{ fontSize: 18, color: '#000', textAlign: 'center' }}>
-                  {item.num}/{item.needNum}
-                </Text>
+                <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: 8 }}>
+                  <FastImage style={{ position: 'absolute', width: px2pd(294), height: px2pd(60) }} source={require('../../../assets/gongFa/xiuLian/num_bg.png')} />
+                  <Text
+                    style={{ fontSize: 18, color: '#27ff27', textAlign: 'center' }}>
+                    {item.num}/{item.needNum}
+                  </Text>
+                </View>
+
               </View>
             );
           })}
@@ -345,40 +492,44 @@ const XiuLianGongFa = props => {
     ) {
       return (
         <View style={{ alignItems: 'center', width: '100%' }}>
-          <TouchableOpacity onPress={xiuLian}>
-            <View style={styles.btn}>
-              <Text style={{ fontSize: 18, color: '#000' }}>修炼</Text>
-            </View>
-          </TouchableOpacity>
+          <ImageButton
+            width={px2pd(191)}
+            height={px2pd(72)}
+            source={require('../../../assets/gongFa/xiuLian/xiuLian_btn1.png')}
+            selectedSource={require('../../../assets/gongFa/xiuLian/xiuLian_btn2.png')}
+            onPress={xiuLian}
+          />
         </View>
       );
     }
     if (checkedIndex > gongFaGrade + 1 && gongFaLayer === currentGongFaLayer) {
       return (
         <View style={{ alignItems: 'center', width: '100%' }}>
-          <TouchableOpacity
+          <ImageButton
+            width={px2pd(253)}
+            height={px2pd(72)}
+            source={require('../../../assets/gongFa/xiuLian/return_btn1.png')}
+            selectedSource={require('../../../assets/gongFa/xiuLian/return_btn2.png')}
             onPress={() => {
               setCheckedIndex(gongFaGrade + 1);
-            }}>
-            <View style={styles.btn}>
-              <Text style={{ fontSize: 18, color: '#000' }}>返回当前</Text>
-            </View>
-          </TouchableOpacity>
+            }}
+          />
         </View>
       );
     }
     if (gongFaLayer < currentGongFaLayer) {
       return (
         <View style={{ alignItems: 'center', width: '100%' }}>
-          <TouchableOpacity
+          <ImageButton
+            width={px2pd(253)}
+            height={px2pd(72)}
+            source={require('../../../assets/gongFa/xiuLian/return_btn1.png')}
+            selectedSource={require('../../../assets/gongFa/xiuLian/return_btn2.png')}
             onPress={() => {
               setCheckedIndex(gongFaGrade + 1);
               SetCurrentGongFaLayer(gongFaLayer);
-            }}>
-            <View style={styles.btn}>
-              <Text style={{ fontSize: 18, color: '#000' }}>返回当前</Text>
-            </View>
-          </TouchableOpacity>
+            }}
+          />
         </View>
       );
     }
@@ -390,32 +541,24 @@ const XiuLianGongFa = props => {
     return (
       <View style={styles.footerContainer}>
         <View style={styles.footerLeft}>
-          <TouchableOpacity onPress={onClose}>
-            <View style={styles.btn}>
-              <Text style={{ fontSize: 18, color: '#000' }}>返回</Text>
-            </View>
-          </TouchableOpacity>
+          <ReturnButton onPress={onClose} />
         </View>
         <View style={styles.footerRight}>
           {currentGongFaLayer > 0 && (
-            <TouchableOpacity
-              onPress={() => SetCurrentGongFaLayer(currentGongFaLayer - 1)}>
-              <View style={styles.btn}>
-                <Text style={{ fontSize: 18, color: '#000' }}>上一层</Text>
-              </View>
-            </TouchableOpacity>
+            <ImageButton {...BTN_STYLE}
+              source={require('../../../assets/gongFa/upperFloor1.png')}
+              selectedSource={require('../../../assets/gongFa/upperFloor2.png')}
+              onPress={() => SetCurrentGongFaLayer(currentGongFaLayer - 1)}
+            />
           )}
           {currentGongFaLayer < gongFa.layerConfig.length - 1 ? (
-            <TouchableOpacity
-              onPress={() => SetCurrentGongFaLayer(currentGongFaLayer + 1)}>
-              <View style={styles.btn}>
-                <Text style={{ fontSize: 18, color: '#000' }}>下一层</Text>
-              </View>
-            </TouchableOpacity>
+            <ImageButton {...BTN_STYLE}
+              source={require('../../../assets/gongFa/next.png')}
+              selectedSource={require('../../../assets/gongFa/next2.png')}
+              onPress={() => SetCurrentGongFaLayer(currentGongFaLayer + 1)}
+            />
           ) : (
-            <View style={[styles.btn, { opacity: 0 }]}>
-              <Text style={{ fontSize: 18, color: '#000' }}>下一层</Text>
-            </View>
+            <View style={{ ...BTN_STYLE }} />
           )}
         </View>
       </View>
@@ -437,11 +580,18 @@ const XiuLianGongFa = props => {
           </ImageBackground>
           {/* 功法等级 */}
           <View style={{ flex: 1 }}>
-            <View style={{ width: '100%', height: 400 }}>
-              {layerConfig.map((item, index) => {
-                return <Grade key={item.grade} item={item} />;
-              })}
+            <View style={{ width: '100%', alignItems: 'center' }}>
+              <View style={{ width: px2pd(894), height: px2pd(932), marginTop: 20, marginBottom: 20 }}>
+                <FastImage
+                  style={{ position: "absolute", width: px2pd(894), height: px2pd(932) }}
+                  source={layoutData.img}
+                />
+                {layerConfig.map((item, index) => {
+                  return <Grade key={item.grade} item={item} />;
+                })}
+              </View>
             </View>
+
             {/* 描述 */}
             <GongFaGradeDesc />
             {/* 升级道具 */}
@@ -474,13 +624,14 @@ const styles = StyleSheet.create({
     color: '#6d7789',
     marginTop: px2pd(34),
   },
-  round: {
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
+  descContainer: {
+    position: 'absolute',
+    top: -18,
+    height: 18,
+    width: 150,
+    justifyContent: "center",
     alignItems: 'center',
-    borderWidth: 1,
-    borderRadius: 60,
+    zIndex: 3,
   },
   gongFaGradeDesc: {
     width: px2pd(1071),
