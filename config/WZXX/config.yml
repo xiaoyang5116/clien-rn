@@ -48,6 +48,7 @@ book: {
         "WZXX_M1_N1_C0025_V",
 
         #第二卷
+        "WZXX_M1_N1_CB001_V",
         "WZXX_M1_N1_CB004_V",
         "WZXX_M1_N1_CB005_V",
         "WZXX_M1_N1_CB006_V",
@@ -59,6 +60,7 @@ book: {
 
 
         #第三卷分支
+        "WZXX_M1_N1_CC009_V",
         "WZXX_M1_N1_CC010_V",
         "WZXX_M1_N1_CC012_V",
         "WZXX_M1_N1_CC013_V",

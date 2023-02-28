@@ -1,0 +1,260 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_CB001_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+      { id: "biaoqianv5", min: 0, max: 1 } ,
+      { id: "biaoqianv6", min: 0, max: 1 } ,
+      { id: "biaoqianv7", min: 0, max: 1 } ,
+      { id: "biaoqianv8", min: 0, max: 1 } ,
+      { id: "biaoqianv9", min: 0, max: 1 } ,
+      { id: "biaoqianv10", min: 0, max: 1 } ,
+      { id: "biaoqianv11", min: 0, max: 1 } ,
+      { id: "biaoqianv12", min: 0, max: 1 } ,
+      { id: "biaoqianv13", min: 0, max: 1 } ,
+
+      { id: "TL", min: 0, max: 1 },
+      { id: "YL", min: 0, max: 1 },
+      { id: "ZJ", min: 0, max: 1 },
+
+      ],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [
+      ],
+
+
+    
+      chats: [
+      #
+      { 
+        id: 'WZXX_M1_N1_CB001_V', desc: '飞舟', 
+        options: [ 
+          { title: "【找陶老解决】",toChapter: "WZXX_M1_N1_Z2C00_[N1]", icon: { id: 1, bindVar: 'biaoqianv1' }, varsOn: ['biaoqianv1','TL']},
+          { title: "【找医灵解决】",toChapter: "WZXX_M1_N1_Z2C00_[N2]", icon: { id: 1, bindVar: 'biaoqianv2' }, varsOn: ['biaoqianv2','YL',]},
+          { title: "【自己动手丰衣足食】",toChapter: "WZXX_M1_N1_Z2C02", icon: { id: 1, bindVar: 'biaoqianv3' }, varsOn: ['biaoqianv3','ZJ',]},
+        ],
+      },
+
+      { 
+        id: 'WZXX_M1_N1_CB001_V1', desc: '', 
+        options: [ 
+          { title: "【老实给钱】", icon: { id: 1, bindVar: 'biaoqianv4' }, varsOn: ['biaoqianv4',]},
+          { title: "【讨价还价】",dialogs: ['B001A_3A'], icon: { id: 1, bindVar: 'biaoqianv5' }, varsOn: ['biaoqianv5',]},
+        ],
+      },
+
+      # { 
+      #   id: 'WZXX_M1_N1_CB001_V2', desc: '飞舟', 
+      #   options: [ 
+      #     { title: "【老实给钱】",dialogs: ['B001A_1.2A'],},
+      #     { title: "【讨价还价】",dialogs: ['B001A_1.1B'],},
+      #   ],
+      # },
+
+      { 
+        id: 'WZXX_M1_N1_CB001_V3', desc: '飞舟', 
+        options: [ 
+          { title: "【不等了】",dialogs: ['B001A_2B'], icon: { id: 1, bindVar: 'biaoqianv6' }, varsOn: ['biaoqianv6',]},
+          { title: "【继续等待】",toChapter: "WZXX_M1_N1_Z2C03", icon: { id: 1, bindVar: 'biaoqianv7' }, varsOn: ['biaoqianv7',]},
+        ],
+      },
+      # 找陶老解决
+      { 
+        id: 'WZXX_M1_N1_CB001_VS', desc: '', 
+        options: [ 
+          { title: "能不能借我200灵石，我之后一定会还的",dialogs: ['B001A_1A'], icon: { id: 1, bindVar: 'biaoqianv8' }, varsOn: ['biaoqianv8',]},
+          { title: "我是小学生，送我200灵石，不要不知好歹",dialogs: ['B001A_1A'], icon: { id: 1, bindVar: 'biaoqianv9' }, varsOn: ['biaoqianv9',]},
+          { title: "医灵姐心胸广阔，肯定会借我200灵石的",dialogs: ['B001A_1A'], icon: { id: 1, bindVar: 'biaoqianv10' }, varsOn: ['biaoqianv10',]},
+        ],
+      },
+      # 找医灵解决
+      {
+        id: 'WZXX_M1_N1_CB001_VS1', desc: '', 
+        options: [ 
+          { title: "能不能借我200灵石，我之后一定会还的",dialogs: ['B001A_1B'], icon: { id: 1, bindVar: 'biaoqianv11' }, varsOn: ['biaoqianv11',]},
+          { title: "我是小学生，送我200灵石，不要不知好歹",dialogs: ['B001A_1B'], icon: { id: 1, bindVar: 'biaoqianv12' }, varsOn: ['biaoqianv12',]},
+          { title: "医灵姐心胸广阔，肯定会借我200灵石的",dialogs: ['B001A_1B'], icon: { id: 1, bindVar: 'biaoqianv13' }, varsOn: ['biaoqianv13',]},
+        ],
+      },
+
+        ],
+
+      # 对话框
+      dialogs:
+        [
+
+        { 
+            id: 'B001A_1A',style: 6, title: '找陶老解决', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['他看了看时辰，现在不过是清晨，陶老要午时才到，所以他买完测灵盘再吃顿午饭都够时间了。','想到这里，他当即动身前往法器铺子。', '“老板！来个二百里的测灵盘。”',
+                '到了法器铺子后，李森炎也不浪费时间，直接对着老板说道。','“好嘞，盛惠200灵石。”','老板拿出一个崭新银铁色的测灵盘放在了柜台上。',
+                ],
+                btn: [
+                {
+                title: '老实给钱',dialogs: ['B001A_3A'],
+                },
+                {
+                title: '讨价还价',dialogs: ['B001A_2A'],
+                },
+                
+                ]
+              },
+            ]  
+          },
+          #选项对话
+          { 
+            id: 'B001A_2A',style: 6, title: '找陶老解决', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['“老板，200灵石太贵了。”','“打个折170灵石怎么样？”', '李森炎看老板笑了笑说道。',
+                '“你这骨折式打折是吧？”','“最低195灵石。”','老板摇了摇头说道。',
+                '“180吧，180灵石我直接买了。”','李森炎直接掏出180灵石说道。',
+                '“行吧，今天还没开张，便宜点就便宜点了。”','老板也没有计较太多。',
+                ],
+                btn: [
+                {
+                title: '成交',dialogs: ['B001A_3A'],
+                },
+                
+                ]
+              },
+            ]  
+          },
+
+          { 
+            id: 'B001A_3A',style: 6, title: '前往白云镇', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['买到了测灵盘之后，李森炎也是在酒肆吃了顿饭等待过了午时前往东郊。','没过多久便看到腾云驾雾而来的陶老。', '“陶老！”',
+                '李森炎看到陶老后挥了挥手。','“走吧。”','看到李森炎后，陶老打手一挥便用灵气将李森炎托了上来，随后直接飞上万米高空。',
+                '只是短短四炷香的时间，他们便已经来到了百草镇的入口。','“那李小友就自己小心了。”',
+                '“千万不要荒废修炼。”','陶老走的很快，放下李森炎后便离开了。',
+                ],
+                btn: [
+                {
+                title: '前往百草镇',toChapter: "WZXX_M1_N1_Z3C01", 
+                },
+                
+                ]
+              },
+            ]  
+          },
+
+          { 
+            id: 'B001A_1B',style: 6, title: '买灵盘', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['他看了看时辰，现在不过是清晨，陶老要午时才到，所以他买完测灵盘再吃顿午饭都够时间了。','想到这里，他当即动身前往法器铺子。', '“老板！来个二百里的测灵盘。”',
+                '到了法器铺子后，李森炎也不浪费时间，直接对着老板说道。','“好嘞，盛惠200灵石。”','老板拿出一个崭新银铁色的测灵盘放在了柜台上。',
+                ],
+                btn: [
+                {
+                title: '老实给钱',dialogs: ['B001A_3B'],
+                },
+                {
+                title: '讨价还价',dialogs: ['B001A_2B'],
+                },
+                
+                ]
+              },
+            ]  
+          },
+
+           { 
+            id: 'B001A_2B',style: 6, title: '找医灵解决', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['“老板，200灵石太贵了。”','“打个折170灵石怎么样？”', '李森炎看老板笑了笑说道。',
+                '“你这骨折式打折是吧？”','“最低195灵石。”','老板摇了摇头说道。',
+                '“180吧，180灵石我直接买了。”','李森炎直接掏出180灵石说道。',
+                '“行吧，今天还没开张，便宜点就便宜点了。”','老板也没有计较太多。',
+                ],
+                btn: [
+                {
+                title: '成交',dialogs: ['B001A_3B'],
+                },
+                
+                ]
+              },
+            ]  
+          },
+
+          { 
+            id: 'B001A_3B',style: 6, title: '前往白云镇', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['准备好一切后，李森炎再次来到医馆。','“准备好了，现在可以出发了。”', '他对着医灵说道。',
+                '“嗯，那你做一下心理准备。”','医灵平静地对着李森炎提醒道。','“心理准备？”',
+                '李森炎有点疑惑地说道。','还没等他反应过来，医灵便已经抓住了他的后衣领腾空而起。',
+                '被抓住后衣领的李森炎就如同一只被老鹰抓住的老鼠一样在半空飞翔。','“我给了钱的，哪有这样子带人的，至少背我啊！”',
+                '“100灵石是背，50灵石是提，给多少钱当然提供相应的服务了。”','医灵并没有理会李森炎的叫喊，就这么提着他走完了全程。','大概花了一整个下午的时间，他们也是终于来到了这个百草镇。',
+                '一路被提过来的李森炎脸色煞白。','他刚想要找这个医灵理论一番的时候，却发现这家伙竟然消失的无影无踪。','只留下一个在风中凌乱的自己。',
+                ],
+                btn: [
+                {
+                title: '前往百草镇',toChapter: "WZXX_M1_N1_Z3C01", 
+                },
+                
+                ]
+              },
+            ]  
+          },
+
+          { 
+            id: 'B001A_2B',style: 6, title: '不等了', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['感觉太过麻烦的李森炎也不打算继续等了，而是想其他办法去百草镇吧',
+                ],
+                btn: [
+                { title: "【找陶老解决】",toChapter: "WZXX_M1_N1_Z2C00_[N1]", },
+                { title: "【找医灵解决】",toChapter: "WZXX_M1_N1_Z2C00_[N2]", },
+                
+                ]
+              },
+            ]  
+          },
+
+           { 
+            id: 'B001A_3A',style: 6, title: '砍价', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['“老板，200灵石太贵了。”','“打个折170灵石怎么样？”', '李森炎看老板笑了笑说道。',
+                '“你这骨折式打折是吧？”','“最低195灵石。”','老板摇了摇头说道。',
+                '“180吧，180灵石我直接买了。”','李森炎直接掏出180灵石说道。',
+                '“行吧，今天还没开张，便宜点就便宜点了。”','老板也没有计较太多。',
+                ],
+                btn: [
+                {
+                title: '离开',
+                },
+                
+                ]
+              },
+            ]  
+          },
+        ],
+    }
+]

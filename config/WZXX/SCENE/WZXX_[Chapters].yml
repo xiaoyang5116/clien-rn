@@ -301,7 +301,15 @@ scenes: [
 
 
          #第二卷
-          
+          { id: "WZXX_M1_N1_Z2C00_[N1]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z2C00_[N1]FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z2C00_[N2]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z2C00_[N2]FZ",min: 0, max: 1 },
+
+          { id: "WZXX_M1_N1_Z2C00_[N3]",min: 0, max: 1 },
+          { id: "WZXX_M1_N1_Z2C01FZ",min: 0, max: 1 },
+
           { id: "WZXX_M1_N1_Z2C01",min: 0, max: 1 },
           { id: "WZXX_M1_N1_Z2C01FZ",min: 0, max: 1 },
 

@@ -1,0 +1,128 @@
+scenes: [
+    #
+    {
+      id: 'WZXX_M1_N1_CC009_V',
+      name: "定义对应标题名当前章节内的选项和变量",
+
+      # 变量定义
+      vars: [
+      { id: "v1", min: 0, max: 1 },
+      { id: "v2", min: 0, max: 1 },
+      { id: "v3", min: 0, max: 1 },
+      { id: "biaoqianv1", min: 0, max: 1 } ,
+      { id: "biaoqianv2", min: 0, max: 1 } ,
+      { id: "biaoqianv3", min: 0, max: 1 } ,
+      { id: "biaoqianv4", min: 0, max: 1 } ,
+      { id: "biaoqianv5", min: 0, max: 1 } ,
+      { id: "biaoqianv6", min: 0, max: 1 } ,
+      { id: "biaoqianv7", min: 0, max: 1 } ,
+      { id: "biaoqianv8", min: 0, max: 1 } ,
+
+      
+      ],
+
+      # 动作定义
+      actions: [],
+
+      # 事件定义
+      # 故事中的场景事件暂时没什么意义
+      events: [
+      ],
+    
+      chats: [
+  
+
+      {
+        id: 'WZXX_M1_N1_CC009_V1', desc: '神秘物件', 
+        options: [
+          {
+          title: "【云云救命！】",  andVarsOn: ['WZXX_M1_N1_CB001_V/TL',],
+           dialogs: ['ZC09_1.1A'],
+          },
+          {
+          title: "【没想到吧？】", andVarsOn: ['WZXX_M1_N1_CB001_V/YL',],
+          dialogs: ['ZC09_1.1B'],
+          },
+          {
+          title: "【拜拜嘞您！】", andVarsOn: ['WZXX_M1_N1_CB001_V/ZJ',],
+          dialogs: ['ZC09_1.1C'],
+          },
+        ],
+      },
+
+
+     
+
+      ],
+
+
+      # 对话框
+      dialogs:
+        [
+         #选项对话
+          { 
+            id: 'ZC09_1.1A',style: 6, title: '云云救命！', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+              {
+                key: 'P1', 
+                content: ['看着在半空中的云云，李森炎大声呼喊着。',
+                '他从刚才就发现了在半空中偷偷观察他的云云，所以才敢这般直接跳崖。',
+                '“小炎子，你胆子挺大的啊。”','云云一边往远处飘一边说道，只留下了一众懵逼的山匪，他们还是第一次见到能够载人的云。',
+                '“云云姐，大恩大德无以为报。”','“不过你不是跟陶老走了吗？怎么还在这里？”','李森炎有点疑惑地问道。',
+                '“陶老他算到你会遇到麻烦，所以让我来帮你一下。”','“不过现在帮你逃过难关，我该回去了。”','云云还没等李森炎回话，直接一个翻身将李森炎从半空中扔了下去。','“你这家伙至少送我到地面啊！”',
+                '不过还好这距离地面不是太高，以李森炎修士的肉身摔在地上并没有大碍，就是屁股有点痛。',],
+                btn: [
+                {
+                title: '离开',
+                toChapter: "WZXX_M1_N1_Z3C11",
+                },
+               
+                ]
+              },
+            ]  
+          },
+
+          { 
+            id: 'ZC09_1.1B',style: 6, title: '没想到吧？', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+
+              {
+                key: 'P1', 
+                content: ['跳崖之后不断坠落的李森炎当即意念一动，直接利用纳戒回到了自己的小世界。',
+                '由于之前他就测试过在百草镇能够进入这小世界，所以跳崖之前自然是把握十足了。', '回到了小世界之后，他找了另一个地方离开了小世界。',
+                '看着突然消失的李森炎，这些山匪一脸懵逼。','这么大个人怎么突然就消失不见了？','难道遇到鬼了？',
+                '想到这里他们不由打了个冷战，当即便四散而逃。','由于位置的变动，他从小世界出来的地方自然不是原本的地方了，而是在距离这悬崖不远处的地方。',],
+                btn: [
+                {
+                title: '离开',
+                toChapter: "WZXX_M1_N1_Z3C11",
+                },
+               
+                ]
+              },
+            ]  
+          },
+
+          { 
+            id: 'ZC09_1.1C',style: 6, title: '拜拜嘞您！', dialogType: 'FullScreen', textAnimationType: 'TextFadeIn',
+            sections: [
+
+              {
+                key: 'P1', 
+                content: ['只见那李森炎跳崖之处，一个奇特的飞行法器，刚好把李森炎接住。',
+                '李森炎再不复刚才笑容，严肃的落下操纵杆。', '随着飞行法器加速离开悬崖边。',
+                '远处传来了李森炎的大笑和嘲讽，早就想说这句了：“傻了吧，爷会飞！”','留下一种急红眼的山匪们。',],
+                btn: [
+                {
+                title: '离开',
+                toChapter: "WZXX_M1_N1_Z3C11",
+                },
+               
+                ]
+              },
+            ]  
+          },
+
+        ],
+    }
+]
